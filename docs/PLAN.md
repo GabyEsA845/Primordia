@@ -34,7 +34,7 @@ Cada módulo vive en su propia carpeta de `Assets/_Primordia/Scripts/` (`Core`, 
 Solo sistemas genéricos, sin ambientación final, por si la jam no permite llevar contenido hecho (revisar las reglas).
 
 - [x] `feature/core`
-- [ ] `feature/player`
+- [x] `feature/player`
 - [ ] `feature/combat` → etiqueta **`v0.1-prototipo`**
 - [ ] `feature/enemies` (1 enemigo genérico)
 - [ ] `feature/rooms`

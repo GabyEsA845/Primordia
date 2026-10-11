@@ -5,6 +5,7 @@ using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.SceneManagement;
 
 namespace Primordia.Editor
 {
@@ -33,8 +34,6 @@ namespace Primordia.Editor
             if (!EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo())
                 return;
 
-            Directory.CreateDirectory(PrefabsFolder);
-            Directory.CreateDirectory(PlaceholderFolder);
 
             var square = CreateSquareSprite();
             var cameraRig = CreateCameraRigPrefab();
@@ -42,8 +41,9 @@ namespace Primordia.Editor
             CreateTestScene(cameraRig, gameManager, square);
         }
 
-        static Sprite CreateSquareSprite()
+        internal static Sprite CreateSquareSprite()
         {
+            Directory.CreateDirectory(PlaceholderFolder);
             if (!File.Exists(SquareSpritePath))
             {
                 // Cuadrado blanco de 16×16 con borde oscuro de 1 px, para ver los píxeles en pantalla.
@@ -74,12 +74,13 @@ namespace Primordia.Editor
             return AssetDatabase.LoadAssetAtPath<Sprite>(SquareSpritePath);
         }
 
-        static GameObject CreateCameraRigPrefab()
+        internal static GameObject CreateCameraRigPrefab()
         {
             var existing = AssetDatabase.LoadAssetAtPath<GameObject>(CameraRigPath);
             if (existing != null)
                 return existing;
 
+            Directory.CreateDirectory(PrefabsFolder);
             var root = new GameObject("CameraRig");
             float orthographicSize = ReferenceHeight / (2f * PixelsPerUnit);
 
@@ -122,12 +123,13 @@ namespace Primordia.Editor
             return prefab;
         }
 
-        static GameObject CreateGameManagerPrefab()
+        internal static GameObject CreateGameManagerPrefab()
         {
             var existing = AssetDatabase.LoadAssetAtPath<GameObject>(GameManagerPath);
             if (existing != null)
                 return existing;
 
+            Directory.CreateDirectory(PrefabsFolder);
             var root = new GameObject("GameManager");
             root.AddComponent<GameManager>();
 
@@ -136,24 +138,37 @@ namespace Primordia.Editor
             return prefab;
         }
 
-        static void CreateTestScene(GameObject cameraRig, GameObject gameManager, Sprite square)
+        /// <summary>
+        /// Crea una escena a partir de la plantilla 2D URP con el CameraRig y el GameManager.
+        /// Si la escena ya existe, solo la abre y devuelve false.
+        /// </summary>
+        internal static bool TryCreateSceneFromTemplate(string path, GameObject cameraRig, GameObject gameManager,
+            out Scene scene, out GameObject rig)
         {
-            if (File.Exists(TestScenePath))
+            if (File.Exists(path))
             {
-                EditorSceneManager.OpenScene(TestScenePath);
-                return;
+                scene = EditorSceneManager.OpenScene(path);
+                rig = null;
+                return false;
             }
 
-            // La plantilla 2D URP ya trae la Global Light 2D; solo cambiamos su cámara por el CameraRig.
-            AssetDatabase.CopyAsset(TemplateScenePath, TestScenePath);
-            var scene = EditorSceneManager.OpenScene(TestScenePath);
+            // La plantilla ya trae la Global Light 2D; solo cambiamos su cámara por el CameraRig.
+            AssetDatabase.CopyAsset(TemplateScenePath, path);
+            scene = EditorSceneManager.OpenScene(path);
 
             var templateCamera = GameObject.Find("Main Camera");
             if (templateCamera != null)
                 Object.DestroyImmediate(templateCamera);
 
-            var rig = (GameObject)PrefabUtility.InstantiatePrefab(cameraRig, scene);
+            rig = (GameObject)PrefabUtility.InstantiatePrefab(cameraRig, scene);
             PrefabUtility.InstantiatePrefab(gameManager, scene);
+            return true;
+        }
+
+        static void CreateTestScene(GameObject cameraRig, GameObject gameManager, Sprite square)
+        {
+            if (!TryCreateSceneFromTemplate(TestScenePath, cameraRig, gameManager, out var scene, out var rig))
+                return;
 
             var dummy = new GameObject("Dummy");
             var renderer = dummy.AddComponent<SpriteRenderer>();

@@ -4,7 +4,7 @@ Roguelike de acción con vista cenital, hecho en Unity + C#.
 Una criatura primitiva cruza salas, derrota enemigos y muta su cuerpo para sobrevivir.
 
 - **Documento de diseño:** https://claude.ai/code/artifact/ff1c1d95-cc54-460a-b902-5eb9b297c4bf
-- **Motor:** Unity 6 (o 2022 LTS), plantilla 2D URP
+- **Motor:** Unity 6 (6000.6.2f1), plantilla 2D URP
 - **Estilo:** pixel art, 16 px por unidad
 
 ## Cómo abrir el proyecto

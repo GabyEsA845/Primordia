@@ -53,3 +53,4 @@ Solo sistemas genéricos, sin ambientación final, por si la jam no permite llev
 Problemas conocidos o ideas que no entran ahora, para retomarlos cuando el prototipo jugable esté completo.
 
 - [ ] **Enemigos que rodean obstáculos.** Ahora van en línea recta hacia el jugador y se quedan atascados contra paredes y obstáculos. Opciones: pathfinding en rejilla sobre el Tilemap de la sala (A* sencillo) o steering con raycasts para esquivar. Afecta a `EnemyAI`.
+- [ ] **Textos con TextMeshPro y fuente pixel.** La interfaz usa ahora la fuente integrada de Unity (`Text` de uGUI) para no depender de importar los recursos de TextMeshPro. Cuando exista la fuente pixel (ver [MULTIMEDIA.md](MULTIMEDIA.md)), cambiar los textos a `TextMeshProUGUI`. Afecta a `UISetup` y a los prefabs de `Prefabs/UI`.

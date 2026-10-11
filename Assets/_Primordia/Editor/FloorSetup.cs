@@ -5,6 +5,7 @@ using Unity.Cinemachine;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Primordia.Editor
 {
@@ -55,11 +56,17 @@ namespace Primordia.Editor
             var cameraRig = CoreSetup.CreateCameraRigPrefab();
             var gameManager = CoreSetup.CreateGameManagerPrefab();
             var player = PlayerSetup.CreatePlayerPrefab(square);
-            CombatSetup.CreateAssets(square);
-            EnemySetup.CreateAssets(square);
+            CreateAssets(square);
 
             CreateTestScene(cameraRig, gameManager, player);
             AssetDatabase.SaveAssets();
+        }
+
+        /// <summary>Todo lo que el piso necesita: combate y enemigos.</summary>
+        internal static void CreateAssets(Sprite square)
+        {
+            CombatSetup.CreateAssets(square);
+            EnemySetup.CreateAssets(square);
         }
 
         static void CreateTestScene(GameObject cameraRig, GameObject gameManager, GameObject playerPrefab)
@@ -67,6 +74,13 @@ namespace Primordia.Editor
             if (!CoreSetup.TryCreateSceneFromTemplate(TestScenePath, cameraRig, gameManager, out var scene, out var rig))
                 return;
 
+            BuildFloor(scene, rig, playerPrefab);
+            EditorSceneManager.SaveScene(scene);
+        }
+
+        /// <summary>Construye el piso de prueba y coloca al jugador en la sala inicial, en la escena indicada.</summary>
+        internal static void BuildFloor(Scene scene, GameObject rig, GameObject playerPrefab)
+        {
             // Se cargan desde disco después de abrir la escena, para que las referencias sean válidas.
             var square = CoreSetup.CreateSquareSprite();
             var prefabs = new Dictionary<string, Enemy>
@@ -114,8 +128,6 @@ namespace Primordia.Editor
             player.transform.position = CellCenter(specs[0].Cell);
             rig.GetComponentInChildren<CinemachineCamera>().Follow = player.transform;
             rig.GetComponentInChildren<CinemachineCamera>().transform.position = player.transform.position + Vector3.back * 10f;
-
-            EditorSceneManager.SaveScene(scene);
         }
 
         static Vector2 CellCenter(Vector2Int cell) => new(cell.x * CellWidth, cell.y * CellHeight);

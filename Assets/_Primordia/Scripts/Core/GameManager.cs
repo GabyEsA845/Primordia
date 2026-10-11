@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 namespace Primordia.Core
 {
@@ -98,6 +99,36 @@ namespace Primordia.Core
                 SetState(GameState.Paused);
             else if (State == GameState.Paused)
                 SetState(GameState.Playing);
+        }
+
+        public void Resume()
+        {
+            if (State == GameState.Paused)
+                SetState(GameState.Playing);
+        }
+
+        public void StartGame() => LoadScene(SceneNames.Game, GameState.Playing);
+
+        /// <summary>Vuelve a cargar la escena actual desde el principio.</summary>
+        public void RestartLevel() => LoadScene(SceneManager.GetActiveScene().name, GameState.Playing);
+
+        public void GoToMainMenu() => LoadScene(SceneNames.MainMenu, GameState.MainMenu);
+
+        public void QuitGame()
+        {
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#else
+            Application.Quit();
+#endif
+        }
+
+        // El estado se fija antes de cargar: el GameManager sobrevive al cambio de escena
+        // y el de la escena nueva se destruye por ser un duplicado.
+        void LoadScene(string sceneName, GameState stateAfterLoad)
+        {
+            SetState(stateAfterLoad);
+            SceneManager.LoadScene(sceneName);
         }
 
         void OnPausePerformed(InputAction.CallbackContext _) => TogglePause();

@@ -43,25 +43,36 @@ namespace Primordia.Editor
 
         internal static Sprite CreateSquareSprite()
         {
-            Directory.CreateDirectory(PlaceholderFolder);
-            if (!File.Exists(SquareSpritePath))
+            // Cuadrado blanco de 16×16 con borde oscuro de 1 px, para ver los píxeles en pantalla.
+            var pixels = new Color32[PixelsPerUnit * PixelsPerUnit];
+            for (int y = 0; y < PixelsPerUnit; y++)
+            for (int x = 0; x < PixelsPerUnit; x++)
             {
-                // Cuadrado blanco de 16×16 con borde oscuro de 1 px, para ver los píxeles en pantalla.
-                var texture = new Texture2D(PixelsPerUnit, PixelsPerUnit);
-                var pixels = new Color32[PixelsPerUnit * PixelsPerUnit];
-                for (int y = 0; y < PixelsPerUnit; y++)
-                for (int x = 0; x < PixelsPerUnit; x++)
-                {
-                    bool border = x == 0 || y == 0 || x == PixelsPerUnit - 1 || y == PixelsPerUnit - 1;
-                    pixels[y * PixelsPerUnit + x] = border ? new Color32(40, 40, 40, 255) : new Color32(255, 255, 255, 255);
-                }
+                bool border = x == 0 || y == 0 || x == PixelsPerUnit - 1 || y == PixelsPerUnit - 1;
+                pixels[y * PixelsPerUnit + x] = border ? new Color32(40, 40, 40, 255) : new Color32(255, 255, 255, 255);
+            }
+
+            return CreatePixelSprite(SquareSpritePath, PixelsPerUnit, PixelsPerUnit, pixels);
+        }
+
+        /// <summary>
+        /// Guarda los píxeles como PNG y lo importa como sprite pixel art (16 PPU, filtro Point, sin compresión).
+        /// Si el archivo ya existe, solo lo carga. Los píxeles van de abajo arriba, como en Texture2D.
+        /// </summary>
+        internal static Sprite CreatePixelSprite(string path, int width, int height, Color32[] pixels)
+        {
+            if (!File.Exists(path))
+            {
+                Directory.CreateDirectory(Path.GetDirectoryName(path));
+
+                var texture = new Texture2D(width, height);
                 texture.SetPixels32(pixels);
                 texture.Apply();
-                File.WriteAllBytes(SquareSpritePath, texture.EncodeToPNG());
+                File.WriteAllBytes(path, texture.EncodeToPNG());
                 Object.DestroyImmediate(texture);
 
-                AssetDatabase.ImportAsset(SquareSpritePath);
-                var importer = (TextureImporter)AssetImporter.GetAtPath(SquareSpritePath);
+                AssetDatabase.ImportAsset(path);
+                var importer = (TextureImporter)AssetImporter.GetAtPath(path);
                 importer.textureType = TextureImporterType.Sprite;
                 importer.spriteImportMode = SpriteImportMode.Single;
                 importer.spritePixelsPerUnit = PixelsPerUnit;
@@ -71,7 +82,7 @@ namespace Primordia.Editor
                 importer.SaveAndReimport();
             }
 
-            return AssetDatabase.LoadAssetAtPath<Sprite>(SquareSpritePath);
+            return AssetDatabase.LoadAssetAtPath<Sprite>(path);
         }
 
         internal static GameObject CreateCameraRigPrefab()

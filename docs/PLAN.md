@@ -38,7 +38,7 @@ Solo sistemas genéricos, sin ambientación final, por si la jam no permite llev
 - [x] `feature/combat` → etiqueta **`v0.1-prototipo`**
 - [x] `feature/enemies` (perseguidor, tirador y división al morir)
 - [x] `feature/rooms`
-- [ ] `feature/mutations` (estructura + 1 o 2 mutaciones de prueba)
+- [x] `feature/mutations` (las 9 mutaciones del GDD y elección 1 de 3)
 - [ ] `feature/build` (build de prueba temprana)
 
 ### Durante la jam (48 h)

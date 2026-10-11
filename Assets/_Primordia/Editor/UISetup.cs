@@ -90,12 +90,20 @@ namespace Primordia.Editor
             AssetDatabase.SaveAssets();
         }
 
+        [MenuItem("Primordia/UI/Actualizar prefabs de interfaz")]
+        static void UpdateUIPrefabs()
+        {
+            CreateUIAssets();
+            Debug.Log("Prefabs de interfaz actualizados. Las escenas que los usan reciben los cambios solas.");
+        }
+
         /// <summary>Iconos de corazón y prefabs de interfaz. Lo que ya existe no se toca, salvo para añadir lo que le falte.</summary>
         internal static void CreateUIAssets()
         {
             CreateHeartSprites();
             CreateGameUIPrefab();
             EnsureMutationChoice();
+            EnsureMutationList();
             CreateMainMenuUIPrefab();
             AssetDatabase.SaveAssets();
         }
@@ -366,6 +374,74 @@ namespace Primordia.Editor
 
             canvas.AddComponent<MutationChoiceUI>().Configure(panel.gameObject, cards, skip);
             panel.gameObject.SetActive(false);
+        }
+
+        // ---------- Lista de mutaciones en la pausa ----------
+
+        /// <summary>Añade al panel de pausa del prefab GameUI la lista de ranuras si todavía no la tiene.</summary>
+        static void EnsureMutationList()
+        {
+            var root = PrefabUtility.LoadPrefabContents(GameUIPath);
+            try
+            {
+                var pausePanel = root.transform.Find("PausePanel");
+                if (pausePanel == null || pausePanel.GetComponentInChildren<MutationListUI>(true) != null)
+                    return;
+
+                AddMutationList(pausePanel);
+                PrefabUtility.SaveAsPrefabAsset(root, GameUIPath);
+            }
+            finally
+            {
+                PrefabUtility.UnloadPrefabContents(root);
+            }
+        }
+
+        /// <summary>Recuadro a la derecha del panel de pausa con las 4 ranuras.</summary>
+        static void AddMutationList(Transform pausePanel)
+        {
+            var list = CreateRect("MutationList", pausePanel);
+            list.anchorMin = list.anchorMax = list.pivot = new Vector2(1f, 0.5f);
+            list.anchoredPosition = new Vector2(-12f, 0f);
+            list.sizeDelta = new Vector2(150f, 0f);
+
+            // Fuera de la columna centrada de botones del panel.
+            list.gameObject.AddComponent<LayoutElement>().ignoreLayout = true;
+            list.gameObject.AddComponent<Image>().color = new Color(0.06f, 0.1f, 0.08f, 0.95f);
+
+            var layout = list.gameObject.AddComponent<VerticalLayoutGroup>();
+            layout.padding = new RectOffset(8, 8, 8, 8);
+            layout.spacing = 2f;
+            layout.childAlignment = TextAnchor.UpperLeft;
+            layout.childControlWidth = layout.childControlHeight = true;
+            layout.childForceExpandWidth = true;
+            layout.childForceExpandHeight = false;
+            list.gameObject.AddComponent<ContentSizeFitter>().verticalFit = ContentSizeFitter.FitMode.PreferredSize;
+
+            var title = CreateText(list, "MUTACIONES", 12, TitleColor);
+            title.alignment = TextAnchor.MiddleLeft;
+            title.gameObject.AddComponent<LayoutElement>().preferredHeight = 18f;
+
+            string[] slotNames = { "Boca", "Extremidades", "Piel", "Órgano especial" };
+            var names = new Text[slotNames.Length];
+            var descriptions = new Text[slotNames.Length];
+
+            for (int i = 0; i < slotNames.Length; i++)
+            {
+                var slotLabel = CreateText(list, slotNames[i].ToUpperInvariant(), 8, new Color(0.6f, 0.7f, 0.65f));
+                slotLabel.alignment = TextAnchor.MiddleLeft;
+                // Un poco de aire antes de cada ranura, salvo la primera.
+                slotLabel.gameObject.AddComponent<LayoutElement>().minHeight = i == 0 ? 10f : 16f;
+
+                names[i] = CreateText(list, "— vacía —", 11, TextColor);
+                names[i].alignment = TextAnchor.MiddleLeft;
+
+                descriptions[i] = CreateText(list, "", 8, TextColor);
+                descriptions[i].alignment = TextAnchor.UpperLeft;
+                descriptions[i].horizontalOverflow = HorizontalWrapMode.Wrap;
+            }
+
+            list.gameObject.AddComponent<MutationListUI>().Configure(names, descriptions);
         }
 
         static MutationCard CreateMutationCard(Transform parent)

@@ -1,8 +1,7 @@
 # Primordia
 
-Roguelike de acción con vista cenital, hecho en Unity + C# para la GameJam 2026.
-Una criatura primitiva cruza salas, derrota enemigos y muta su cuerpo para sobrevivir,
-inspirado en *Enter the Gungeon* y *Everything is Crab*.
+Roguelike de acción con vista cenital, hecho en Unity + C#.
+Una criatura primitiva cruza salas, derrota enemigos y muta su cuerpo para sobrevivir.
 
 - **Documento de diseño:** https://claude.ai/code/artifact/ff1c1d95-cc54-460a-b902-5eb9b297c4bf
 - **Motor:** Unity 6 (o 2022 LTS), plantilla 2D URP

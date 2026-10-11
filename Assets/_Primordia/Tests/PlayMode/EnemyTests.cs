@@ -170,7 +170,7 @@ namespace Primordia.Tests
             var enemy = CreateEnemy(CreateData(EnemyBehaviour.Shooter, splitPrefab: splitTemplate, splitCount: 2), Vector2.zero);
 
             var children = new List<Enemy>();
-            enemy.SplitSpawned += children.Add;
+            enemy.ChildSpawned += children.Add;
 
             enemy.Health.TakeDamage(enemy.Health.Max);
             yield return null;

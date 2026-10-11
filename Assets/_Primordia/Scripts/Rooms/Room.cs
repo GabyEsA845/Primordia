@@ -91,13 +91,13 @@ namespace Primordia.Rooms
         {
             AliveEnemies++;
             enemy.Died += OnEnemyDied;
-            enemy.SplitSpawned += Register;
+            enemy.ChildSpawned += Register;
         }
 
         void OnEnemyDied(Enemy enemy)
         {
             enemy.Died -= OnEnemyDied;
-            enemy.SplitSpawned -= Register;
+            enemy.ChildSpawned -= Register;
 
             AliveEnemies--;
             if (AliveEnemies == 0 && State == RoomState.Combat)

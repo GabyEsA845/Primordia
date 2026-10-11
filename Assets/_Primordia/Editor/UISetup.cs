@@ -104,6 +104,7 @@ namespace Primordia.Editor
             CreateGameUIPrefab();
             EnsureMutationChoice();
             EnsureMutationList();
+            EnsureBossBar();
             CreateMainMenuUIPrefab();
             AssetDatabase.SaveAssets();
         }
@@ -374,6 +375,62 @@ namespace Primordia.Editor
 
             canvas.AddComponent<MutationChoiceUI>().Configure(panel.gameObject, cards, skip);
             panel.gameObject.SetActive(false);
+        }
+
+        // ---------- Barra de vida del jefe ----------
+
+        /// <summary>Añade la barra de vida del jefe al prefab GameUI si todavía no la tiene.</summary>
+        static void EnsureBossBar()
+        {
+            var root = PrefabUtility.LoadPrefabContents(GameUIPath);
+            try
+            {
+                if (root.GetComponent<BossHealthBar>() != null)
+                    return;
+
+                AddBossBar(root);
+                PrefabUtility.SaveAsPrefabAsset(root, GameUIPath);
+            }
+            finally
+            {
+                PrefabUtility.UnloadPrefabContents(root);
+            }
+        }
+
+        /// <summary>Nombre del jefe y barra de 220 × 10 px, arriba en el centro.</summary>
+        static void AddBossBar(GameObject canvas)
+        {
+            var bar = CreateRect("BossBar", canvas.transform);
+            bar.anchorMin = bar.anchorMax = bar.pivot = new Vector2(0.5f, 1f);
+            bar.anchoredPosition = new Vector2(0f, -6f);
+            bar.sizeDelta = new Vector2(220f, 24f);
+
+            var title = CreateText(bar, "Jefe", 10, TextColor);
+            var titleRect = (RectTransform)title.transform;
+            titleRect.anchorMin = new Vector2(0f, 1f);
+            titleRect.anchorMax = Vector2.one;
+            titleRect.pivot = new Vector2(0.5f, 1f);
+            titleRect.sizeDelta = new Vector2(0f, 12f);
+            titleRect.anchoredPosition = Vector2.zero;
+
+            var back = CreateRect("Back", bar);
+            back.anchorMin = Vector2.zero;
+            back.anchorMax = new Vector2(1f, 0f);
+            back.pivot = new Vector2(0.5f, 0f);
+            back.sizeDelta = new Vector2(0f, 10f);
+            back.anchoredPosition = Vector2.zero;
+            back.gameObject.AddComponent<Image>().color = new Color(0.05f, 0.05f, 0.08f, 0.9f);
+
+            // El relleno ocupa el fondo con 1 px de margen; la barra mueve su ancla derecha.
+            var fill = CreateRect("Fill", back);
+            fill.anchorMin = Vector2.zero;
+            fill.anchorMax = Vector2.one;
+            fill.offsetMin = new Vector2(1f, 1f);
+            fill.offsetMax = new Vector2(-1f, -1f);
+            var fillImage = fill.gameObject.AddComponent<Image>();
+
+            canvas.AddComponent<BossHealthBar>().Configure(bar.gameObject, fill, fillImage, title);
+            bar.gameObject.SetActive(false);
         }
 
         // ---------- Lista de mutaciones en la pausa ----------

@@ -155,7 +155,7 @@ namespace Primordia.Tests
 
             var parent = enemiesRoot.GetComponentInChildren<Enemy>();
             var children = new List<Enemy>();
-            parent.SplitSpawned += children.Add;
+            parent.ChildSpawned += children.Add;
             parent.Health.TakeDamage(parent.Health.Max);
 
             Assert.AreEqual(2, children.Count);

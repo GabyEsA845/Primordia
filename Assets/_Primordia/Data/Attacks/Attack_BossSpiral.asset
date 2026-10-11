@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4006459c6d3b79e4a9467275d67afaf8, type: 3}
+  m_Name: Attack_BossSpiral
+  m_EditorClassIdentifier: Primordia::Primordia.Combat.AttackData
+  projectilePrefab: {fileID: 8842364405371321590, guid: 7bb5ff916ca2a7a42a44b37eb4094693, type: 3}
+  fireRate: 1
+  automatic: 0
+  damage: 1
+  projectileSpeed: 5
+  lifetime: 7
+  projectileCount: 1
+  spreadAngle: 0
+  poisonDamagePerSecond: 0
+  poisonDuration: 0

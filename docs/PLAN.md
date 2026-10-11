@@ -1,13 +1,13 @@
 # Primordia: plan de desarrollo
 
-Plan por módulos y ramas para la versión de la GameJam 2026. El diseño del juego está en [el GDD](GDD%20Roguelike%20de%20evolución%20(GameJam%202026).md) y el contenido multimedia en [MULTIMEDIA.md](MULTIMEDIA.md).
+Plan por módulos y ramas de Primordia, proyecto personal que se publica en itch.io como build web. El diseño del juego está en [el GDD](GDD%20Primordia.md) y el contenido multimedia en [MULTIMEDIA.md](MULTIMEDIA.md).
 
 ## Flujo de ramas
 
 - **`main`**: siempre abre en Unity y siempre es jugable. No se trabaja directamente en ella.
 - **`feature/<módulo>`**: una rama corta por módulo. Sale de `main` y vuelve a `main` cuando cumple su criterio de "listo".
-- **`fix/<error>`**: arreglos puntuales (las únicas ramas permitidas en las últimas 4 h de la jam).
-- **Etiquetas de hito**: `v0.1-prototipo`, `v0.5-jugable`, `v1.0-jam`. Sirven para volver atrás si algo se rompe.
+- **`fix/<error>`**: arreglos puntuales sobre algo ya publicado.
+- **Etiquetas de hito**: `v0.1-prototipo`, `v0.2-jugable`, `v0.5-jugable`, `v1.0`. Sirven para volver atrás si algo se rompe y marcan cada versión publicada.
 
 **Regla de escenas:** cada rama prueba su módulo en su propia escena (`Assets/_Primordia/Scenes/Test_<módulo>.unity`) y sus propios prefabs. Las escenas de Unity se mezclan mal entre ramas, así que la escena `Game` solo se toca al integrar en `main`.
 
@@ -19,34 +19,40 @@ Plan por módulos y ramas para la versión de la GameJam 2026. El diseño del ju
 | 1 | `feature/player` | `PlayerController`: WASD, apuntado con ratón, esquiva con invulnerabilidad | 0 | El jugador se mueve en 8 direcciones, mira al cursor y esquiva con recarga |
 | 2 | `feature/combat` | `Weapon`, `Projectile`, pool de proyectiles, capas de daño | 0, 1 | Clic izquierdo dispara y daña a un objetivo de prueba |
 | 3 | `feature/enemies` | `EnemyData` (ScriptableObject) + `EnemyAI` con máquina de estados pequeña | 0, 2 | 2 enemigos que atacan, reciben daño y mueren |
-| 4 | `feature/rooms` | `Room` (puertas que se cierran), `FloorManager`, salas con Tilemap, transición entre salas | 3 | Entrar → puertas cerradas → limpiar → se abren → siguiente sala |
-| 5 | `feature/mutations` | `MutationData`, `MutationSlots` (4 ranuras), efectos sobre jugador y arma, interfaz "elige 1 de 3" | 1, 2 | Una mutación de Boca cambia el disparo; otra en la misma ranura la reemplaza |
-| 6 | `feature/boss` | Virus gigante con disparo en espiral y sala del jefe | 3, 4 | Se puede vencer y aparece la elección de mutación |
+| 4 | `feature/rooms` | `Room` (puertas que se cierran), `Door`, `RoomExit` y piso de prueba | 3 | Entrar → puertas cerradas → limpiar → se abren → siguiente sala |
+| 5 | `feature/mutations` | `MutationData` y sus tipos, `PlayerMutations` (4 ranuras), habilidad con recarga, "elige 1 de 3" | 1, 2 | Una mutación de Boca cambia el disparo; otra en la misma ranura la reemplaza |
+| 6 | `feature/boss` | Virus gigante con 2 fases, barra de vida y sala del jefe | 3, 4 | Se puede vencer y aparece la salida |
 | 7 | `feature/ui-flow` | Menú principal, HUD de corazones, pausa, pantallas de derrota y victoria, reinicio | 0 | Partida completa del menú a victoria/derrota y vuelta a empezar |
-| 8 | `feature/build` | Ajustes de build para la plataforma de la jam (probablemente WebGL) | todos | La build corre fuera del editor |
+| 8 | `feature/build` | Ajustes WebGL para itch.io y menú de build | todos | La build corre en el navegador desde itch.io |
 
 Cada módulo vive en su propia carpeta de `Assets/_Primordia/Scripts/` (`Core`, `Player`, `Combat`, `Mutations`, `Enemies`, `Rooms`, `UI`), así dos ramas casi nunca tocan los mismos archivos.
 
-## Calendario
+## Hoja de ruta
 
-### Esta semana: preparación
-
-Solo sistemas genéricos, sin ambientación final, por si la jam no permite llevar contenido hecho (revisar las reglas).
+### Fase 1: prototipo jugable (terminada)
 
 - [x] `feature/core`
 - [x] `feature/player`
 - [x] `feature/combat` → etiqueta **`v0.1-prototipo`**
 - [x] `feature/enemies` (perseguidor, tirador y división al morir)
 - [x] `feature/rooms`
+- [x] `feature/ui-flow` → etiqueta **`v0.2-jugable`**
 - [x] `feature/mutations` (las 9 mutaciones del GDD y elección 1 de 3)
-- [ ] `feature/build` (build de prueba temprana)
+- [x] `feature/boss` → etiqueta **`v0.5-jugable`** (partida completa con jefe)
 
-### Durante la jam (48 h)
+### Fase 2: primera versión publicada (v1.0)
 
-1. **Primeras 2 h:** leer el tema, ajustar la ambientación y cerrar el mínimo jugable.
-2. **Resto del día 1:** `feature/enemies-piso1`, `feature/boss`, `feature/mutations-contenido` (las 6 mutaciones) y `feature/ui-flow` → etiqueta **`v0.5-jugable`** (partida completa, aunque sea fea).
-3. **Mañana del día 2:** `feature/art`, `feature/audio`, `feature/balance`. Si el mínimo está listo: `feature/random-rooms`, `feature/lineages`, `feature/mutation-visuals`.
-4. **Últimas 4 h:** congelar funciones; solo ramas `fix/*`. Build final → etiqueta **`v1.0-jam`** y subirla con margen.
+- [ ] `feature/build`: build web y página en itch.io (primero como borrador privado)
+- [ ] `feature/random-rooms`: mapa distinto en cada partida y salas con formas (ver mejoras a futuro)
+- [ ] `feature/art`: arte del piso 1 (ver [MULTIMEDIA.md](MULTIMEDIA.md))
+- [ ] `feature/audio`: música y efectos
+- [ ] `feature/lineages`: bonus de sinergia de linajes (resolver antes el problema de Tóxico)
+- [ ] `feature/balance`: equilibrio de vida, daño y ritmo
+- [ ] Página de itch.io pública → etiqueta **`v1.0`**
+
+### Fase 3: después de la v1.0
+
+Ideas del GDD para seguir creciendo: pisos 2 y 3, tercer enemigo y salas especiales, tienda con biomasa y salas secretas, soporte de mando y opciones de audio, desbloqueos permanentes entre partidas.
 
 ## Mejoras a futuro
 

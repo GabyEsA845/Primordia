@@ -1,17 +1,15 @@
 # Primordia: lista de contenido multimedia
 
-Lista viva de sprites, música, efectos y fuentes que necesita el juego. Se actualiza cada vez que se añade, cambia o termina un recurso. El diseño está en [el GDD](GDD%20Roguelike%20de%20evolución%20(GameJam%202026).md) y el orden de trabajo en [PLAN.md](PLAN.md).
+Lista viva de sprites, música, efectos y fuentes que necesita el juego. Se actualiza cada vez que se añade, cambia o termina un recurso. El diseño está en [el GDD](GDD%20Primordia.md) y el orden de trabajo en [PLAN.md](PLAN.md).
 
 ## Cómo usar esta lista
 
-**Prioridad** (igual que el alcance del GDD):
-- **M**: mínimo jugable, obligatorio para la jam.
-- **D**: deseable, si el mínimo está listo a mitad del día 2.
-- **S**: solo si sobra tiempo.
+**Prioridad:**
+- **M**: necesario para la primera versión publicada (v1.0).
+- **D**: deseable para la v1.0 si da tiempo.
+- **S**: más adelante.
 
 **Estado:** `Pendiente` → `Placeholder` (forma o sonido provisional) → `En curso` → `Listo`.
-
-Al empezar el día 1 de la jam, revisar la ambientación según el tema y ajustar las descripciones.
 
 ## Especificaciones técnicas
 
@@ -96,7 +94,7 @@ Al empezar el día 1 de la jam, revisar la ambientación según el tema y ajusta
 | Fondo del menú principal | | D | Pendiente |
 | Pantallas de victoria y derrota | | M | Pendiente |
 | Iconos de linaje | Depredador, Acorazado, Tóxico | D | Pendiente |
-| Portada para la página de la jam | Captura o arte promocional | M | Pendiente |
+| Portada para la página de itch.io | 630×500 px, captura o arte promocional | M | Pendiente |
 
 ## Música
 
@@ -139,7 +137,7 @@ Al empezar el día 1 de la jam, revisar la ambientación según el tema y ajusta
 
 ## Registro de licencias
 
-Anotar aquí todo recurso que no sea propio (bancos de sonido, fuentes, etc.) para cumplir las reglas de la jam y dar créditos.
+Anotar aquí todo recurso que no sea propio (bancos de sonido, fuentes, etc.) para respetar sus licencias y dar créditos en la página de itch.io.
 
 | Recurso | Autor / fuente | Licencia | Enlace |
 |---------|---------------|----------|--------|

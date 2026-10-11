@@ -26,12 +26,16 @@ namespace Primordia.UI
 
         internal void Refresh(PlayerMutations player)
         {
+            // Los textos pueden faltar si aún no se ha configurado (por ejemplo, justo al añadir el componente).
             for (int i = 0; i < nameTexts.Length; i++)
             {
                 var mutation = player != null ? player.Get((MutationSlot)i) : null;
 
-                nameTexts[i].text = mutation != null ? mutation.DisplayName : EmptySlotText;
-                nameTexts[i].color = mutation != null ? mutation.Color : EmptyColor;
+                if (nameTexts[i] != null)
+                {
+                    nameTexts[i].text = mutation != null ? mutation.DisplayName : EmptySlotText;
+                    nameTexts[i].color = mutation != null ? mutation.Color : EmptyColor;
+                }
 
                 if (i < descriptionTexts.Length && descriptionTexts[i] != null)
                     descriptionTexts[i].text = mutation != null ? mutation.Description : "";

@@ -68,7 +68,7 @@ namespace Primordia.Editor
         internal static Enemy LoadPrefab(string prefabName) =>
             AssetDatabase.LoadAssetAtPath<Enemy>($"{PrefabsFolder}/{prefabName}.prefab");
 
-        static EnemyData CreateData(string assetName, System.Action<EnemyData> configure)
+        internal static EnemyData CreateData(string assetName, System.Action<EnemyData> configure)
         {
             string path = $"{DataFolder}/{assetName}.asset";
             var existing = AssetDatabase.LoadAssetAtPath<EnemyData>(path);

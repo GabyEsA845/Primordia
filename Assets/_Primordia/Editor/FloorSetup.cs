@@ -72,6 +72,7 @@ namespace Primordia.Editor
         {
             CombatSetup.CreateAssets(square);
             EnemySetup.CreateAssets(square);
+            BossSetup.CreateAssets(square);
         }
 
         static void CreateTestScene(GameObject cameraRig, GameObject gameManager, GameObject playerPrefab)
@@ -94,10 +95,11 @@ namespace Primordia.Editor
             var prefabs = new Dictionary<string, Enemy>
             {
                 ["Chaser"] = EnemySetup.LoadPrefab("Enemy_Chaser"),
-                ["Shooter"] = EnemySetup.LoadPrefab("Enemy_Shooter")
+                ["Shooter"] = EnemySetup.LoadPrefab("Enemy_Shooter"),
+                ["Boss"] = BossSetup.LoadPrefab()
             };
 
-            // Recorrido: Inicio → derecha → arriba → derecha → derecha (sala final con la salida).
+            // Recorrido: Inicio → derecha → arriba → derecha → derecha → derecha (jefe y salida).
             var specs = new[]
             {
                 new RoomSpec("Room_0_Start", new Vector2Int(0, 0), reward: false),
@@ -108,9 +110,11 @@ namespace Primordia.Editor
                 new RoomSpec("Room_3", new Vector2Int(2, 1), reward: false,
                     ("Chaser", new Vector2(-4f, 5f)), ("Chaser", new Vector2(4f, -5f)),
                     ("Shooter", new Vector2(9f, 5f)), ("Shooter", new Vector2(9f, -5f))),
-                new RoomSpec("Room_4_Final", new Vector2Int(3, 1), reward: true,
+                new RoomSpec("Room_4", new Vector2Int(3, 1), reward: true,
                     ("Chaser", new Vector2(-5f, 6f)), ("Chaser", new Vector2(-5f, -6f)), ("Chaser", new Vector2(0f, 6f)),
-                    ("Shooter", new Vector2(8f, 5f)), ("Shooter", new Vector2(8f, -5f)))
+                    ("Shooter", new Vector2(8f, 5f)), ("Shooter", new Vector2(8f, -5f))),
+                new RoomSpec("Room_5_Boss", new Vector2Int(4, 1), reward: false,
+                    ("Boss", new Vector2(0f, 4f)))
             };
 
             var floor = new GameObject("Floor").transform;
@@ -125,6 +129,11 @@ namespace Primordia.Editor
                     doorDirections.Add(specs[i + 1].Cell - specs[i].Cell);
 
                 var room = BuildRoom(floor, specs[i], doorDirections, prefabs, square);
+
+                // El jefe orbita alrededor del centro de su sala.
+                foreach (var boss in room.GetComponentsInChildren<BossAI>(true))
+                    BossSetup.SetArenaCenter(boss, room.transform);
+
                 if (specs[i].Reward && rewardPool != null)
                     room.gameObject.AddComponent<MutationReward>().Configure(rewardPool, 3);
                 rooms.Add(room);

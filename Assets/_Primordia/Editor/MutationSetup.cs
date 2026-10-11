@@ -25,7 +25,7 @@ namespace Primordia.Editor
         const string DataFolder = "Assets/_Primordia/Data/Mutations";
         const string PrefabsFolder = "Assets/_Primordia/Prefabs/Mutations";
         const string PoolPath = DataFolder + "/MutationPool.asset";
-        const string CircleSpritePath = "Assets/_Primordia/Art/Placeholder/Circle32.png";
+        internal const string CircleSpritePath = "Assets/_Primordia/Art/Placeholder/Circle32.png";
         const string PixelSpritePath = "Assets/_Primordia/Art/Placeholder/Pixel.png";
         const string TestScenePath = "Assets/_Primordia/Scenes/Test_Mutations.unity";
 
@@ -359,7 +359,7 @@ namespace Primordia.Editor
             EditorSceneManager.SaveScene(scene);
         }
 
-        static void CreatePickup(Transform parent, MutationData mutation, Vector2 position, Sprite circle)
+        internal static void CreatePickup(Transform parent, MutationData mutation, Vector2 position, Sprite circle)
         {
             var pickup = new GameObject($"Pickup_{mutation.name}");
             pickup.transform.SetParent(parent, false);

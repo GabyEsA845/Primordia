@@ -48,8 +48,14 @@ namespace Primordia.Combat
             return true;
         }
 
-        /// <summary>Dispara ya, sin mirar la recarga. Útil para patrones de jefe.</summary>
-        public void Fire(Vector2 direction)
+        /// <summary>Dispara ya, sin mirar la recarga.</summary>
+        public void Fire(Vector2 direction) => Fire(direction, attack);
+
+        /// <summary>
+        /// Dispara otro ataque desde esta arma, sin mirar la recarga ni cambiar el ataque actual.
+        /// Útil para patrones de jefe con varios tipos de proyectil.
+        /// </summary>
+        public void Fire(Vector2 direction, AttackData attack)
         {
             if (attack == null || attack.ProjectilePrefab == null || direction.sqrMagnitude < 0.0001f)
                 return;

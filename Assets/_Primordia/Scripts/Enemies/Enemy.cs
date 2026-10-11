@@ -17,11 +17,14 @@ namespace Primordia.Enemies
         public EnemyData Data => data;
         public Health Health { get; private set; }
 
-        /// <summary>Se lanza al morir, después de <see cref="SplitSpawned"/> y antes de destruirse.</summary>
+        /// <summary>Se lanza al morir, después de <see cref="ChildSpawned"/> y antes de destruirse.</summary>
         public event Action<Enemy> Died;
 
-        /// <summary>Se lanza por cada enemigo nuevo que aparece al dividirse.</summary>
-        public event Action<Enemy> SplitSpawned;
+        /// <summary>Se lanza por cada enemigo nuevo que nace de este: al dividirse o al ser invocado (jefe).</summary>
+        public event Action<Enemy> ChildSpawned;
+
+        /// <summary>Avisa de un enemigo nuevo creado por este, para que la sala lo cuente.</summary>
+        public void RegisterChild(Enemy child) => ChildSpawned?.Invoke(child);
 
         void Awake()
         {
@@ -88,7 +91,7 @@ namespace Primordia.Enemies
                     childAi.Alert();
                 }
 
-                SplitSpawned?.Invoke(child);
+                RegisterChild(child);
             }
         }
     }

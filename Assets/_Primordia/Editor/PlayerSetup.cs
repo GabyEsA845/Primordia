@@ -74,7 +74,6 @@ namespace Primordia.Editor
             var controller = root.AddComponent<PlayerController>();
             var serialized = new SerializedObject(controller);
             serialized.FindProperty("aimPivot").objectReferenceValue = aimPivot.transform;
-            serialized.FindProperty("body").objectReferenceValue = bodyRenderer;
             serialized.ApplyModifiedPropertiesWithoutUndo();
 
             var prefab = PrefabUtility.SaveAsPrefabAsset(root, PlayerPath);

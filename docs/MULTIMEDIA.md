@@ -22,6 +22,14 @@ Lista viva de sprites, música, efectos y fuentes que necesita el juego. Se actu
 | Efectos de sonido | `.wav` cortos | *Decompress On Load* | `Audio/SFX/` |
 | Fuentes | `.ttf` / `.otf` pixel | Fuente TextMeshPro sin suavizado | `Art/Fonts/` |
 
+### Carpeta temporal: `docs/multimedia-temp/`
+
+Los recursos nuevos (hojas de sprites, GIF de revisión, scripts que los generan) se dejan primero en `docs/multimedia-temp/<recurso>/`. Esa carpeta **no se sube al repositorio** (está en `.gitignore`); lo que se sube es lo que Unity importa a `Assets/_Primordia/Art/`.
+
+| Recurso | Carpeta temporal | Cómo se importa |
+|---------|------------------|-----------------|
+| Jugador | `docs/multimedia-temp/player/` (`Player_<Acción>_<dirección>.png`, `Player_Hurt.png`, `Player_Death.png`) | Menú **Primordia > Art > Importar animaciones del jugador**: copia las hojas a `Art/Characters/Player/`, las corta (cuadros del alto de la hoja, pivote centrado), crea los clips y el Animator en `Animations/` y se los pone al prefab del jugador. Se puede repetir cada vez que cambie el arte. |
+
 `.png`, `.aseprite`, `.wav`, `.ogg`, `.mp3`, `.ttf` y `.otf` se guardan con Git LFS (ya configurado en `.gitattributes`).
 
 ## Sprites
@@ -30,7 +38,7 @@ Lista viva de sprites, música, efectos y fuentes que necesita el juego. Se actu
 
 | Recurso | Descripción | Animaciones | Prioridad | Estado |
 |---------|-------------|-------------|-----------|--------|
-| Célula base | Criatura del piso 1, mira hacia el cursor | Reposo, moverse, esquivar, recibir daño, morir | M | Pendiente |
+| Célula base | Criatura del piso 1, mira hacia el cursor | Reposo, moverse, esquivar, recibir daño, morir | M | Listo |
 | Capa de mutación: Mandíbulas | Visible sobre la célula (pilar "Eres lo que comes") | Reposo, atacar | D | Pendiente |
 | Capa de mutación: Aguijón | | Reposo, atacar | D | Pendiente |
 | Capa de mutación: Esporas | | Reposo, atacar | D | Pendiente |

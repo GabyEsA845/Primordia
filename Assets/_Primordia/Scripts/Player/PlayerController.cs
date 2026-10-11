@@ -7,6 +7,7 @@ namespace Primordia.Player
 {
     /// <summary>
     /// Movimiento en 8 direcciones, apuntado hacia el ratón y esquiva con invulnerabilidad.
+    /// La orientación del sprite la lleva <see cref="PlayerAnimator"/>.
     /// La esquiva va en la dirección del movimiento; si el jugador está quieto, hacia donde apunta.
     /// Solo responde mientras el GameManager está en <see cref="GameState.Playing"/>.
     /// </summary>
@@ -28,8 +29,6 @@ namespace Primordia.Player
         [Header("Apuntado")]
         [Tooltip("Gira hacia el cursor. Aquí cuelgan la boca y el punto de disparo.")]
         [SerializeField] Transform aimPivot;
-        [Tooltip("Sprite del cuerpo; se voltea según el lado al que se apunta.")]
-        [SerializeField] SpriteRenderer body;
 
         public Vector2 MoveInput { get; private set; }
         public Vector2 AimDirection { get; private set; } = Vector2.right;
@@ -107,7 +106,7 @@ namespace Primordia.Player
             if (readInput && dodgeAction != null && dodgeAction.WasPressedThisFrame())
                 TryDodge();
 
-            UpdateFacing();
+            UpdateAimPivot();
         }
 
         void FixedUpdate()
@@ -179,13 +178,10 @@ namespace Primordia.Player
                 AimDirection = toCursor.normalized;
         }
 
-        void UpdateFacing()
+        void UpdateAimPivot()
         {
             if (aimPivot != null)
                 aimPivot.rotation = Quaternion.Euler(0f, 0f, Mathf.Atan2(AimDirection.y, AimDirection.x) * Mathf.Rad2Deg);
-
-            if (body != null)
-                body.flipX = AimDirection.x < 0f;
         }
 
         void EndDodge()

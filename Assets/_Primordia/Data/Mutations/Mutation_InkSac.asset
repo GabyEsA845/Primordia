@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16336cad0387e8c4d8882b2821b608bd, type: 3}
+  m_Name: Mutation_InkSac
+  m_EditorClassIdentifier: Primordia::Primordia.Mutations.InkCloudMutation
+  displayName: Vejiga de tinta
+  description: 'Clic derecho: nube que ciega 3 s a los enemigos cercanos. Recarga: 8 s.'
+  slot: 3
+  lineage: 0
+  visualPrefab: {fileID: 4345504743200473610, guid: 122cb86335f38ff4292a9eed6bb0a9fa, type: 3}
+  color: {r: 0.95, g: 0.5, b: 0.35, a: 1}
+  cooldown: 8
+  effectPrefab: {fileID: 8917262179130335009, guid: 03e68f32310cbb7488a4552192d56c5d, type: 3}
+  radius: 3
+  blindDuration: 3

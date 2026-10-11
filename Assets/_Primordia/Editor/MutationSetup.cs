@@ -1,0 +1,394 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using Primordia.Combat;
+using Primordia.Core;
+using Primordia.Mutations;
+using Primordia.UI;
+using Unity.Cinemachine;
+using UnityEditor;
+using UnityEditor.SceneManagement;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem.UI;
+using Object = UnityEngine.Object;
+
+namespace Primordia.Editor
+{
+    /// <summary>
+    /// Crea las 9 mutaciones del GDD (con sus ataques, efectos y aspecto provisional), la reserva
+    /// de mutaciones, añade al jugador las ranuras, la habilidad y la barra de recarga, y crea la
+    /// escena de prueba Test_Mutations. No sobrescribe nada que ya exista.
+    /// </summary>
+    public static class MutationSetup
+    {
+        const string DataFolder = "Assets/_Primordia/Data/Mutations";
+        const string PrefabsFolder = "Assets/_Primordia/Prefabs/Mutations";
+        const string PoolPath = DataFolder + "/MutationPool.asset";
+        const string CircleSpritePath = "Assets/_Primordia/Art/Placeholder/Circle32.png";
+        const string PixelSpritePath = "Assets/_Primordia/Art/Placeholder/Pixel.png";
+        const string TestScenePath = "Assets/_Primordia/Scenes/Test_Mutations.unity";
+
+        static readonly Color PredatorColor = new(0.95f, 0.5f, 0.35f);
+        static readonly Color ArmoredColor = new(0.55f, 0.7f, 0.9f);
+        static readonly Color ToxicColor = new(0.55f, 0.9f, 0.35f);
+
+        [MenuItem("Primordia/Mutations/Crear mutaciones y escena de prueba")]
+        static void CreateAll()
+        {
+            if (!EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo())
+                return;
+
+            var square = CoreSetup.CreateSquareSprite();
+            var cameraRig = CoreSetup.CreateCameraRigPrefab();
+            var gameManager = CoreSetup.CreateGameManagerPrefab();
+            var player = PlayerSetup.CreatePlayerPrefab(square);
+            FloorSetup.CreateAssets(square);
+            CreateAssets(square);
+            UISetup.CreateUIAssets();
+
+            CreateTestScene(cameraRig, gameManager, player);
+            AssetDatabase.SaveAssets();
+        }
+
+        internal static MutationPool LoadPool() => AssetDatabase.LoadAssetAtPath<MutationPool>(PoolPath);
+
+        /// <summary>Mutaciones, reserva y mejoras del jugador. Lo guarda todo antes de volver.</summary>
+        internal static void CreateAssets(Sprite square)
+        {
+            Directory.CreateDirectory(DataFolder);
+            Directory.CreateDirectory(PrefabsFolder);
+
+            var pixel = CreatePixelSprite();
+            var circle = CreateCircleSprite();
+
+            // Ataques de Boca.
+            var mandiblesProjectile = CombatSetup.CreateProjectilePrefab("Projectile_Mandibles", new Color(1f, 0.95f, 0.85f), 0.625f, square);
+            var stingerProjectile = CombatSetup.CreateProjectilePrefab("Projectile_Stinger", ToxicColor, new Vector2(0.6f, 0.2f), square);
+            var sporeProjectile = CombatSetup.CreateProjectilePrefab("Projectile_Spore", new Color(0.75f, 0.5f, 0.95f), 0.5f, square);
+
+            var mandiblesAttack = CombatSetup.CreateAttack("Attack_Mandibles", mandiblesProjectile,
+                fireRate: 2.5f, damage: 3, speed: 12f, lifetime: 0.35f);
+            var stingerAttack = CombatSetup.CreateAttack("Attack_Stinger", stingerProjectile,
+                fireRate: 4f, damage: 1, speed: 16f, lifetime: 2f, automatic: true, poisonDamagePerSecond: 1, poisonDuration: 3f);
+            var sporesAttack = CombatSetup.CreateAttack("Attack_Spores", sporeProjectile,
+                fireRate: 2f, damage: 1, speed: 7f, lifetime: 2.5f, count: 3, spread: 30f);
+
+            // Efectos de las habilidades.
+            var inkEffect = CreateEffect("Effect_InkCloud", circle, new Color(0.1f, 0.1f, 0.25f, 0.8f), duration: 1f, endScale: 1.1f);
+            var shockEffect = CreateEffect("Effect_Shockwave", circle, new Color(0.5f, 0.95f, 1f, 0.6f), duration: 0.35f, endScale: 1.3f);
+
+            var mutations = new List<MutationData>
+            {
+                CreateMutation<AttackMutation>("Mutation_Mandibles", "Mandíbulas",
+                    "Mordisco corto y potente (3 de daño). Cada 3 enemigos que mates, curas medio corazón.",
+                    MutationSlot.Mouth, Lineage.Predator,
+                    Visual("Visual_Mandibles", pixel, new Color(0.95f, 0.95f, 0.85f),
+                        (new Vector2(0.85f, 0.22f), new Vector2(0.35f, 0.15f)), (new Vector2(0.85f, -0.22f), new Vector2(0.35f, 0.15f))),
+                    m => m.Configure(mandiblesAttack, newHealEveryKills: 3)),
+
+                CreateMutation<AttackMutation>("Mutation_Stinger", "Aguijón",
+                    "Disparo automático y rápido que envenena: 1 de daño por segundo durante 3 s.",
+                    MutationSlot.Mouth, Lineage.Toxic,
+                    Visual("Visual_Stinger", pixel, ToxicColor, (new Vector2(1.05f, 0f), new Vector2(0.6f, 0.12f))),
+                    m => m.Configure(stingerAttack, newHealEveryKills: 0)),
+
+                CreateMutation<AttackMutation>("Mutation_Spores", "Esporas",
+                    "Tres esporas lentas en abanico.",
+                    MutationSlot.Mouth, Lineage.Toxic,
+                    Visual("Visual_Spores", pixel, new Color(0.75f, 0.5f, 0.95f),
+                        (new Vector2(0.9f, 0.3f), Vector2.one * 0.18f), (new Vector2(1f, 0f), Vector2.one * 0.18f),
+                        (new Vector2(0.9f, -0.3f), Vector2.one * 0.18f)),
+                    m => m.Configure(sporesAttack, newHealEveryKills: 0)),
+
+                CreateMutation<StatMutation>("Mutation_Fins", "Aletas",
+                    "+30 % de velocidad y esquiva un 50 % más larga.",
+                    MutationSlot.Limbs, Lineage.Predator,
+                    Visual("Visual_Fins", pixel, new Color(0.4f, 0.8f, 0.95f),
+                        (new Vector2(0f, 0.62f), new Vector2(0.7f, 0.22f)), (new Vector2(0f, -0.62f), new Vector2(0.7f, 0.22f))),
+                    m => m.Configure(speedMultiplier: 1.3f, dodgeMultiplier: 1.5f, healthBonus: 0)),
+
+                CreateMutation<DodgePushMutation>("Mutation_JointedLegs", "Patas articuladas",
+                    "Al esquivar contra un enemigo, lo empujas, lo aturdes y le haces 1 de daño.",
+                    MutationSlot.Limbs, Lineage.Armored,
+                    Visual("Visual_JointedLegs", pixel, new Color(0.6f, 0.45f, 0.3f),
+                        (new Vector2(0.45f, 0.6f), new Vector2(0.18f, 0.3f)), (new Vector2(-0.45f, 0.6f), new Vector2(0.18f, 0.3f)),
+                        (new Vector2(0.45f, -0.6f), new Vector2(0.18f, 0.3f)), (new Vector2(-0.45f, -0.6f), new Vector2(0.18f, 0.3f))),
+                    m => m.Configure(newPushSpeed: 12f, newStunDuration: 0.5f, newDamage: 1)),
+
+                CreateMutation<StatMutation>("Mutation_Carapace", "Caparazón",
+                    "+1 corazón de vida máxima, pero −10 % de velocidad.",
+                    MutationSlot.Skin, Lineage.Armored,
+                    Visual("Visual_Carapace", pixel, new Color(0.55f, 0.6f, 0.6f), sortingOrder: 9,
+                        (Vector2.zero, Vector2.one * 1.3f)),
+                    m => m.Configure(speedMultiplier: 0.9f, dodgeMultiplier: 1f, healthBonus: 2)),
+
+                CreateMutation<ThornsMutation>("Mutation_StingingSkin", "Piel urticante",
+                    "Los enemigos que te tocan reciben 2 de daño.",
+                    MutationSlot.Skin, Lineage.Toxic,
+                    Visual("Visual_StingingSkin", pixel, new Color(0.75f, 0.9f, 0.3f),
+                        (new Vector2(0.62f, 0f), Vector2.one * 0.2f), (new Vector2(-0.62f, 0f), Vector2.one * 0.2f),
+                        (new Vector2(0f, 0.62f), Vector2.one * 0.2f), (new Vector2(0f, -0.62f), Vector2.one * 0.2f)),
+                    m => m.Configure(newDamage: 2, newInterval: 0.5f)),
+
+                CreateMutation<InkCloudMutation>("Mutation_InkSac", "Vejiga de tinta",
+                    "Clic derecho: nube que ciega 3 s a los enemigos cercanos. Recarga: 8 s.",
+                    MutationSlot.Organ, Lineage.Predator,
+                    Visual("Visual_InkSac", pixel, new Color(0.15f, 0.2f, 0.45f), (new Vector2(-0.2f, 0.2f), Vector2.one * 0.3f)),
+                    m =>
+                    {
+                        m.ConfigureAbility(newCooldown: 8f, inkEffect);
+                        m.Configure(newRadius: 3f, newBlindDuration: 3f);
+                    }),
+
+                CreateMutation<ShockwaveMutation>("Mutation_ShockGland", "Glándula de choque",
+                    "Clic derecho: onda que destruye los proyectiles enemigos y empuja a los enemigos. Recarga: 6 s.",
+                    MutationSlot.Organ, Lineage.Armored,
+                    Visual("Visual_ShockGland", pixel, new Color(0.95f, 0.85f, 0.3f), (new Vector2(-0.2f, 0.2f), Vector2.one * 0.3f)),
+                    m =>
+                    {
+                        m.ConfigureAbility(newCooldown: 6f, shockEffect);
+                        m.Configure(newRadius: 4f, newPushSpeed: 14f, newStunDuration: 0.4f);
+                    })
+            };
+
+            if (LoadPool() == null)
+            {
+                var pool = ScriptableObject.CreateInstance<MutationPool>();
+                pool.Configure(mutations);
+                AssetDatabase.CreateAsset(pool, PoolPath);
+            }
+
+            AssetDatabase.SaveAssets();
+            AddMutationsToPlayer(pixel);
+            AssetDatabase.SaveAssets();
+        }
+
+        static Color LineageColor(Lineage lineage) => lineage switch
+        {
+            Lineage.Predator => PredatorColor,
+            Lineage.Armored => ArmoredColor,
+            _ => ToxicColor
+        };
+
+        static T CreateMutation<T>(string assetName, string displayName, string description, MutationSlot slot,
+            Lineage lineage, GameObject visual, Action<T> configure) where T : MutationData
+        {
+            string path = $"{DataFolder}/{assetName}.asset";
+            var existing = AssetDatabase.LoadAssetAtPath<T>(path);
+            if (existing != null)
+                return existing;
+
+            var mutation = ScriptableObject.CreateInstance<T>();
+            mutation.ConfigureBase(displayName, description, slot, lineage, LineageColor(lineage), visual);
+            configure(mutation);
+            AssetDatabase.CreateAsset(mutation, path);
+            return mutation;
+        }
+
+        // ---------- Sprites y prefabs provisionales ----------
+
+        static Sprite CreatePixelSprite() =>
+            CoreSetup.CreatePixelSprite(PixelSpritePath, 1, 1, new[] { new Color32(255, 255, 255, 255) });
+
+        static Sprite CreateCircleSprite()
+        {
+            const int size = 32;
+            var pixels = new Color32[size * size];
+            float radius = size / 2f;
+            for (int y = 0; y < size; y++)
+            for (int x = 0; x < size; x++)
+            {
+                float dx = x + 0.5f - radius;
+                float dy = y + 0.5f - radius;
+                bool inside = dx * dx + dy * dy <= radius * radius;
+                pixels[y * size + x] = inside ? new Color32(255, 255, 255, 255) : new Color32(0, 0, 0, 0);
+            }
+
+            return CoreSetup.CreatePixelSprite(CircleSpritePath, size, size, pixels);
+        }
+
+        /// <summary>Efecto de habilidad: un círculo de 2 unidades de diámetro que se desvanece.</summary>
+        static GameObject CreateEffect(string prefabName, Sprite circle, Color color, float duration, float endScale)
+        {
+            string path = $"{PrefabsFolder}/{prefabName}.prefab";
+            var existing = AssetDatabase.LoadAssetAtPath<GameObject>(path);
+            if (existing != null)
+                return existing;
+
+            var root = new GameObject(prefabName);
+            var renderer = root.AddComponent<SpriteRenderer>();
+            renderer.sprite = circle;
+            renderer.color = color;
+            renderer.sortingOrder = 15;
+
+            var fade = root.AddComponent<FadeOutEffect>();
+            var serialized = new SerializedObject(fade);
+            serialized.FindProperty("duration").floatValue = duration;
+            serialized.FindProperty("endScale").floatValue = endScale;
+            serialized.ApplyModifiedPropertiesWithoutUndo();
+
+            return SavePrefab(root, path);
+        }
+
+        static GameObject Visual(string prefabName, Sprite pixel, Color color, params (Vector2 position, Vector2 size)[] parts) =>
+            Visual(prefabName, pixel, color, sortingOrder: 11, parts);
+
+        /// <summary>Aspecto provisional de una mutación: rectángulos de color, en unidades del jugador.</summary>
+        static GameObject Visual(string prefabName, Sprite pixel, Color color, int sortingOrder,
+            params (Vector2 position, Vector2 size)[] parts)
+        {
+            string path = $"{PrefabsFolder}/Visuals/{prefabName}.prefab";
+            var existing = AssetDatabase.LoadAssetAtPath<GameObject>(path);
+            if (existing != null)
+                return existing;
+
+            Directory.CreateDirectory($"{PrefabsFolder}/Visuals");
+            var root = new GameObject(prefabName);
+
+            // El sprite de 1 píxel mide 1/16 de unidad: se escala ×16 para medir en unidades.
+            float pixelsPerUnit = pixel.pixelsPerUnit;
+            foreach (var (position, size) in parts)
+            {
+                var part = new GameObject("Part");
+                part.transform.SetParent(root.transform, false);
+                part.transform.localPosition = position;
+                part.transform.localScale = new Vector3(size.x * pixelsPerUnit, size.y * pixelsPerUnit, 1f);
+
+                var renderer = part.AddComponent<SpriteRenderer>();
+                renderer.sprite = pixel;
+                renderer.color = color;
+                renderer.sortingOrder = sortingOrder;
+            }
+
+            return SavePrefab(root, path);
+        }
+
+        static GameObject SavePrefab(GameObject root, string path)
+        {
+            var prefab = PrefabUtility.SaveAsPrefabAsset(root, path);
+            Object.DestroyImmediate(root);
+            return prefab;
+        }
+
+        // ---------- Jugador ----------
+
+        /// <summary>Añade al prefab del jugador las ranuras, la habilidad y la barra de recarga.</summary>
+        static void AddMutationsToPlayer(Sprite pixel)
+        {
+            var root = PrefabUtility.LoadPrefabContents(PlayerSetup.PlayerPath);
+            try
+            {
+                if (!root.TryGetComponent<PlayerMutations>(out var mutations))
+                {
+                    mutations = root.AddComponent<PlayerMutations>();
+                    mutations.SetAnchors(root.transform.Find("AimPivot"), root.transform);
+                }
+
+                if (!root.TryGetComponent<PlayerAbility>(out var ability))
+                    ability = root.AddComponent<PlayerAbility>();
+
+                if (root.transform.Find("CooldownBar") == null)
+                    CreateCooldownBar(root.transform, ability, pixel);
+
+                PrefabUtility.SaveAsPrefabAsset(root, PlayerSetup.PlayerPath);
+            }
+            finally
+            {
+                PrefabUtility.UnloadPrefabContents(root);
+            }
+        }
+
+        /// <summary>Barra de 1 × 0,125 unidades (16 × 2 px) bajo el jugador.</summary>
+        static void CreateCooldownBar(Transform player, PlayerAbility ability, Sprite pixel)
+        {
+            var bar = new GameObject("CooldownBar");
+            bar.transform.SetParent(player, false);
+            bar.transform.localPosition = new Vector3(0f, -0.85f, 0f);
+
+            SpriteRenderer Part(string name, Color color, int order)
+            {
+                var part = new GameObject(name);
+                part.transform.SetParent(bar.transform, false);
+                part.transform.localScale = new Vector3(16f, 2f, 1f);
+                var renderer = part.AddComponent<SpriteRenderer>();
+                renderer.sprite = pixel;
+                renderer.color = color;
+                renderer.sortingOrder = order;
+                return renderer;
+            }
+
+            var background = Part("Background", new Color(0.05f, 0.05f, 0.08f, 0.85f), 30);
+            var fill = Part("Fill", new Color(0.45f, 0.85f, 1f), 31);
+            bar.AddComponent<CooldownBar>().Configure(ability, background, fill);
+        }
+
+        // ---------- Escena de prueba ----------
+
+        static void CreateTestScene(GameObject cameraRig, GameObject gameManager, GameObject playerPrefab)
+        {
+            if (!CoreSetup.TryCreateSceneFromTemplate(TestScenePath, cameraRig, gameManager, out var scene, out var rig))
+                return;
+
+            // Se cargan desde disco después de abrir la escena, para que las referencias sean válidas.
+            var square = CoreSetup.CreateSquareSprite();
+            var circle = AssetDatabase.LoadAssetAtPath<Sprite>(CircleSpritePath);
+            var pool = LoadPool();
+
+            var player = (GameObject)PrefabUtility.InstantiatePrefab(playerPrefab, scene);
+            rig.GetComponentInChildren<CinemachineCamera>().Follow = player.transform;
+
+            PlayerSetup.CreateTestRoom(square);
+
+            // Las 9 mutaciones en fila, abajo, con su nombre encima.
+            var pickups = new GameObject("Pickups").transform;
+            for (int i = 0; i < pool.Mutations.Count; i++)
+                CreatePickup(pickups, pool.Mutations[i], new Vector2(-16f + i * 4f, -10f), circle);
+
+            var enemies = new GameObject("Enemies").transform;
+            var chaser = EnemySetup.LoadPrefab("Enemy_Chaser").gameObject;
+            var shooter = EnemySetup.LoadPrefab("Enemy_Shooter").gameObject;
+            foreach (var position in new[] { new Vector2(14f, 8f), new Vector2(15f, 3f), new Vector2(13f, -1f) })
+                ((GameObject)PrefabUtility.InstantiatePrefab(chaser, enemies)).transform.position = position;
+            foreach (var position in new[] { new Vector2(-14f, 8f), new Vector2(-15f, 1f) })
+                ((GameObject)PrefabUtility.InstantiatePrefab(shooter, enemies)).transform.position = position;
+
+            PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath<GameObject>("Assets/_Primordia/Prefabs/UI/GameUI.prefab"), scene);
+            new GameObject("EventSystem", typeof(EventSystem), typeof(InputSystemUIInputModule));
+
+            EditorSceneManager.SaveScene(scene);
+        }
+
+        static void CreatePickup(Transform parent, MutationData mutation, Vector2 position, Sprite circle)
+        {
+            var pickup = new GameObject($"Pickup_{mutation.name}");
+            pickup.transform.SetParent(parent, false);
+            pickup.transform.position = position;
+            pickup.transform.localScale = Vector3.one * 0.5f;
+
+            var renderer = pickup.AddComponent<SpriteRenderer>();
+            renderer.sprite = circle;
+            renderer.color = mutation.Color;
+            renderer.sortingOrder = 2;
+
+            pickup.AddComponent<CircleCollider2D>().isTrigger = true;
+            pickup.AddComponent<MutationPickup>().SetMutation(mutation);
+
+            // Nombre flotante encima, con la fuente integrada.
+            var label = new GameObject("Label");
+            label.transform.SetParent(pickup.transform, false);
+            label.transform.localPosition = new Vector3(0f, 2.2f, 0f);
+            var text = label.AddComponent<TextMesh>();
+            var font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+            text.font = font;
+            text.text = mutation.DisplayName;
+            text.fontSize = 48;
+            text.characterSize = 0.08f;
+            text.anchor = TextAnchor.LowerCenter;
+            text.alignment = TextAlignment.Center;
+            var labelRenderer = label.GetComponent<MeshRenderer>();
+            labelRenderer.sharedMaterial = font.material;
+            labelRenderer.sortingOrder = 50;
+        }
+    }
+}

@@ -60,6 +60,24 @@ Propuesta: el cuerpo tiene **4 ranuras** y cada ranura solo admite una mutación
 
 **Cómo se consiguen:** al limpiar una sala cae "biomasa" (moneda) y, de vez en cuando, una mutación menor. Al derrotar al jefe se elige 1 de 3 mutaciones mayores. Cambiar una mutación por otra en la misma ranura la reemplaza para siempre en esa partida.
 
+**Valores de las mutaciones (versión de la jam)**
+
+Referencia: jugador base con velocidad 6, esquiva de 3 unidades, 3 corazones y disparo de 1 de daño (5 por segundo).
+
+| Mutación | Valores |
+| --- | --- |
+| Mandíbulas | Mordisco de unas 4 unidades de alcance, 3 de daño, 2,5 por segundo. Cada 3 enemigos matados cura medio corazón |
+| Aguijón | Automático, 4 por segundo, 1 de daño + veneno de 1 por segundo durante 3 s |
+| Esporas | 3 proyectiles lentos en abanico de 30°, 1 de daño cada uno, 2 disparos por segundo |
+| Aletas | +30 % de velocidad, esquiva un 50 % más larga |
+| Patas articuladas | Al esquivar contra un enemigo: empujón, aturdimiento de 0,5 s y 1 de daño |
+| Caparazón | +1 corazón de vida máxima (y lo cura), −10 % de velocidad |
+| Piel urticante | 2 de daño a quien te toca, como máximo cada 0,5 s por enemigo |
+| Vejiga de tinta | Nube de 3 unidades de radio, ciega 3 s; recarga de 8 s |
+| Glándula de choque | Onda de 4 unidades de radio que destruye proyectiles enemigos y empuja; recarga de 6 s |
+
+**Jefe del piso 1 (virus gigante):** 60 de vida, 3×3 unidades, avanza despacio hacia el centro, medio corazón por contacto. Fase 1: espiral de un brazo y ráfaga circular de 12 proyectiles cada 4 s. Fase 2 (desde el 50 %): espiral de dos brazos más rápida, ráfaga de 16 e invoca 2 bacterias cada 8 s (máximo 4 vivas).
+
 ## Pisos y etapas evolutivas
 
 Para la jam: **1 piso muy pulido**, la sopa primordial. Los pisos 2 y 3 quedan diseñados aquí para continuar después de la jam; cada piso es una etapa de la vida en la Tierra.
@@ -177,5 +195,11 @@ Objetivo: que añadir una mutación, un enemigo o una sala nueva sea crear un ar
 | Exclusiones | Por ranuras del cuerpo; revisar si el proyecto continúa tras la jam |
 | Linajes | Depredador, Acorazado y Tóxico |
 | Alcance de la jam | 1 piso muy pulido; los demás, después |
+| Obtención de mutaciones | Con un solo piso, la mutación tras el jefe no se usaría. Al limpiar las salas 2 y 4 aparece "elige 1 de 3": 3 mutaciones al azar, sin las equipadas, con botón Saltar |
+| Mutaciones de la jam | Las 9 del borrador, con los valores de la tabla "Valores de las mutaciones" |
+| Sinergia de linajes | Cada mutación guarda su linaje; el bonus queda como deseable. Ojo: Tóxico no puede reunir 3 (dos de sus mutaciones son de Boca) |
+| Aspecto de las mutaciones | Marcas de color provisionales en el cuerpo por cada ranura, hasta tener arte |
+| Recarga del Órgano especial | Barra bajo el jugador que se llena durante la recarga y desaparece al estar lista |
+| Jefe del piso 1 | Virus gigante con 2 fases (la segunda desde el 50 % de vida); vencerlo abre la salida y da la victoria |
 
 La evolución entre pisos será **fija**: célula en el piso 1, criatura marina en el 2 y anfibio en el 3.

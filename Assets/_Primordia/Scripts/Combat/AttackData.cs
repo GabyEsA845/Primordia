@@ -32,6 +32,12 @@ namespace Primordia.Combat
         [Tooltip("Apertura total del abanico en grados. Solo cuenta con 2 o más proyectiles.")]
         [SerializeField, Range(0f, 360f)] float spreadAngle;
 
+        [Header("Veneno")]
+        [Tooltip("Daño por segundo del veneno que deja cada impacto. 0 = sin veneno.")]
+        [SerializeField, Min(0)] int poisonDamagePerSecond;
+        [Tooltip("Segundos que dura el veneno. Un impacto nuevo lo reinicia.")]
+        [SerializeField, Min(0f)] float poisonDuration;
+
         public Projectile ProjectilePrefab => projectilePrefab;
         public float FireRate => fireRate;
         public float Cooldown => 1f / fireRate;
@@ -42,10 +48,15 @@ namespace Primordia.Combat
         public float Range => projectileSpeed * lifetime;
         public int ProjectileCount => projectileCount;
         public float SpreadAngle => spreadAngle;
+        public int PoisonDamagePerSecond => poisonDamagePerSecond;
+        public float PoisonDuration => poisonDuration;
+        public bool AppliesPoison => poisonDamagePerSecond > 0 && poisonDuration > 0f;
 
         internal void Configure(Projectile prefab, float fireRate, int damage, float speed, float lifetime,
-            int count = 1, float spread = 0f, bool automatic = false)
+            int count = 1, float spread = 0f, bool automatic = false, int poisonDamagePerSecond = 0, float poisonDuration = 0f)
         {
+            this.poisonDamagePerSecond = Mathf.Max(0, poisonDamagePerSecond);
+            this.poisonDuration = Mathf.Max(0f, poisonDuration);
             projectilePrefab = prefab;
             this.automatic = automatic;
             this.fireRate = Mathf.Max(0.1f, fireRate);

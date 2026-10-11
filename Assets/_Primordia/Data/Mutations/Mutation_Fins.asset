@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91db59cfeb5532645918739b37eb9edb, type: 3}
+  m_Name: Mutation_Fins
+  m_EditorClassIdentifier: Primordia::Primordia.Mutations.StatMutation
+  displayName: Aletas
+  description: "+30 % de velocidad y esquiva un 50 % m\xE1s larga."
+  slot: 1
+  lineage: 0
+  visualPrefab: {fileID: 5042964042937067566, guid: 85116a04c3b873b4eb848394e633b9fc, type: 3}
+  color: {r: 0.95, g: 0.5, b: 0.35, a: 1}
+  moveSpeedMultiplier: 1.3
+  dodgeDistanceMultiplier: 1.5
+  maxHealthBonus: 0

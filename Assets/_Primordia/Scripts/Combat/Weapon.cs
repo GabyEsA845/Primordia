@@ -1,4 +1,5 @@
 using System;
+using Primordia.Core;
 using UnityEngine;
 
 namespace Primordia.Combat
@@ -27,6 +28,9 @@ namespace Primordia.Combat
 
         /// <summary>Se lanza en cada disparo, con la dirección central.</summary>
         public event Action<Vector2> Fired;
+
+        /// <summary>Se lanza cuando un proyectil de esta arma hace daño. Si el objetivo murió, su IsDead es true.</summary>
+        public event Action<Health> HitTarget;
 
         float nextFireTime;
         int projectileLayer;
@@ -60,12 +64,13 @@ namespace Primordia.Combat
             for (int i = 0; i < count; i++)
             {
                 var projectileDirection = Rotate(direction, firstAngle + step * i);
-                ProjectilePool.Get(attack.ProjectilePrefab).Launch(origin, projectileDirection,
-                    attack.ProjectileSpeed, attack.Damage, attack.Lifetime, projectileLayer);
+                ProjectilePool.Get(attack.ProjectilePrefab).Launch(origin, projectileDirection, attack, projectileLayer, this);
             }
 
             Fired?.Invoke(direction);
         }
+
+        internal void ReportHit(Health target) => HitTarget?.Invoke(target);
 
         static Vector2 Rotate(Vector2 vector, float degrees) => Quaternion.Euler(0f, 0f, degrees) * vector;
     }

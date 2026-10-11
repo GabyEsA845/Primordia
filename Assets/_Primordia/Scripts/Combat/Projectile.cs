@@ -16,6 +16,8 @@ namespace Primordia.Combat
 
         Rigidbody2D rb;
         ObjectPool<Projectile> pool;
+        AttackData attack;
+        Weapon source;
         float expireTime;
         bool launched;
 
@@ -31,7 +33,8 @@ namespace Primordia.Combat
 
         internal void SetPool(ObjectPool<Projectile> owner) => pool = owner;
 
-        public void Launch(Vector2 position, Vector2 direction, float speed, int damage, float lifetime, int layer)
+        /// <param name="source">Arma que disparó; recibe el aviso de cada impacto. Puede ser null.</param>
+        public void Launch(Vector2 position, Vector2 direction, AttackData attack, int layer, Weapon source)
         {
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
@@ -39,10 +42,12 @@ namespace Primordia.Combat
             transform.SetPositionAndRotation(position, Quaternion.Euler(0f, 0f, angle));
             rb.position = position;
             rb.rotation = angle;
-            rb.linearVelocity = direction.normalized * speed;
+            rb.linearVelocity = direction.normalized * attack.ProjectileSpeed;
 
-            Damage = damage;
-            expireTime = Time.time + lifetime;
+            this.attack = attack;
+            this.source = source;
+            Damage = attack.Damage;
+            expireTime = Time.time + attack.Lifetime;
             launched = true;
         }
 
@@ -65,8 +70,17 @@ namespace Primordia.Combat
                 return;
             }
 
-            if (health.TakeDamage(Damage))
-                Despawn();
+            if (!health.TakeDamage(Damage))
+                return;
+
+            if (attack.AppliesPoison && !health.IsDead)
+                Poison.Apply(health, attack.PoisonDamagePerSecond, attack.PoisonDuration);
+
+            // El arma puede haberse destruido (enemigo muerto) mientras el proyectil volaba.
+            if (source != null)
+                source.ReportHit(health);
+
+            Despawn();
         }
 
         public void Despawn()
@@ -75,6 +89,7 @@ namespace Primordia.Combat
                 return;
 
             launched = false;
+            source = null;
             rb.linearVelocity = Vector2.zero;
 
             if (pool != null)

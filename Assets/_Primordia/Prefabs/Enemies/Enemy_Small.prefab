@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 3533260097358440429}
   - component: {fileID: 1677456762082724005}
   - component: {fileID: 7652390006251467086}
-  - component: {fileID: 1009540937215995111}
   - component: {fileID: 5239597052026312155}
   - component: {fileID: 454645805260661641}
   - component: {fileID: 515888343886514180}
+  - component: {fileID: 2933919753113313065}
   m_Layer: 7
   m_Name: Enemy_Small
   m_TagString: Untagged
@@ -33,7 +33,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.625, y: 0.625, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1862595043200135557}
@@ -101,7 +101,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.45
+  m_Radius: 0.28
 --- !u!114 &7652390006251467086
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,21 +116,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Primordia::Primordia.Core.Health
   maxHealth: 6
   invulnerabilityAfterHit: 0
---- !u!114 &1009540937215995111
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1205786518144642845}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6aeee98e3c536245948a8e5299a95ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Primordia::Primordia.Core.DamageFlash
-  renderers: []
-  flashColor: {r: 1, g: 1, b: 1, a: 1}
-  duration: 0.08
 --- !u!114 &5239597052026312155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,6 +145,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Primordia::Primordia.Enemies.Enemy
   data: {fileID: 11400000, guid: 98ff373b82d6934429c9f149f743cefa, type: 2}
+  deathDuration: 0.6
+  splitDuration: 0
 --- !u!114 &515888343886514180
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,6 +160,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Primordia::Primordia.Enemies.EnemyAI
   target: {fileID: 0}
+  fireWindup: 0
+--- !u!114 &2933919753113313065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1205786518144642845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4dd1d193b8e4814e8b7edbc856b02bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Primordia::Primordia.Enemies.EnemyAnimator
+  animator: {fileID: 5481408725646765839}
+  body: {fileID: 2270851597868284579}
 --- !u!1 &6224516150888066971
 GameObject:
   m_ObjectHideFlags: 0
@@ -183,6 +185,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1862595043200135557}
   - component: {fileID: 2270851597868284579}
+  - component: {fileID: 5481408725646765839}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -254,8 +257,8 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 5
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: bc9bd159743ed944e9321a5b368508a5, type: 3}
-  m_Color: {r: 0.95, g: 0.65, b: 0.4, a: 1}
+  m_Sprite: {fileID: 5204627415410256102, guid: ca92bb6ecc3f98743a5c41932f5f9ba0, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -265,3 +268,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
+--- !u!95 &5481408725646765839
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6224516150888066971}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: eaa05c083a0695c4ab4719cac492d6a7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

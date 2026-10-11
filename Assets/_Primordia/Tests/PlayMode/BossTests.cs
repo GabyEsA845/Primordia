@@ -145,5 +145,46 @@ namespace Primordia.Tests
             foreach (var minion in minions)
                 Assert.IsTrue(minion.Health.IsDead);
         }
+
+        [UnityTest]
+        public IEnumerator Burst_IsAnnounced_BeforeItFires()
+        {
+            var burst = CreateAttack();
+            var boss = CreateBoss(burst: burst);
+            boss.SetAnimationTimings(newBurstWindup: 0.3f, newSummonWindup: 0f, newTransitionDuration: 0f);
+            boss.Configure(null, burst, null);
+            int announcements = 0;
+            boss.BurstStarting += () => announcements++;
+
+            yield return null;
+
+            Assert.AreEqual(1, announcements);
+            Assert.AreEqual(0, Object.FindObjectsByType<Projectile>(FindObjectsSortMode.None).Length);
+
+            yield return new WaitForSeconds(0.4f);
+
+            Assert.GreaterOrEqual(Object.FindObjectsByType<Projectile>(FindObjectsSortMode.None).Length, 12);
+            Assert.AreEqual(1, announcements);
+        }
+
+        [UnityTest]
+        public IEnumerator Phase2Transition_PausesTheAttacks()
+        {
+            var spiral = CreateAttack();
+            var boss = CreateBoss(spiral: spiral);
+            boss.SetAnimationTimings(newBurstWindup: 0f, newSummonWindup: 0f, newTransitionDuration: 0.5f);
+
+            boss.Health.TakeDamage(5);
+            yield return null;
+            Assert.IsTrue(boss.IsTransitioning);
+            int projectiles = Object.FindObjectsByType<Projectile>(FindObjectsSortMode.None).Length;
+
+            yield return new WaitForSeconds(0.3f);
+            Assert.AreEqual(projectiles, Object.FindObjectsByType<Projectile>(FindObjectsSortMode.None).Length);
+
+            yield return new WaitForSeconds(0.4f);
+            Assert.IsFalse(boss.IsTransitioning);
+            Assert.Greater(Object.FindObjectsByType<Projectile>(FindObjectsSortMode.None).Length, projectiles);
+        }
     }
 }

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2881371711074537768}
   - component: {fileID: 8437631973568505021}
+  - component: {fileID: 1708099578547220110}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -81,8 +82,8 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 5
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: bc9bd159743ed944e9321a5b368508a5, type: 3}
-  m_Color: {r: 0.9, g: 0.45, b: 0.3, a: 1}
+  m_Sprite: {fileID: 130719258211147651, guid: f3c5f48ba35cd3d4f95b327a3f5251fa, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -92,6 +93,28 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
+--- !u!95 &1708099578547220110
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4357865248145878834}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 17702da68faa6f84a9cbfa5ee82ead53, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7164425445881853361
 GameObject:
   m_ObjectHideFlags: 0
@@ -104,10 +127,10 @@ GameObject:
   - component: {fileID: 794298366948992452}
   - component: {fileID: 2388464200040824908}
   - component: {fileID: 3376362216139746129}
-  - component: {fileID: 8330430976427959625}
   - component: {fileID: 5815943007255846397}
   - component: {fileID: 8882603238870742745}
   - component: {fileID: 1063111859091686282}
+  - component: {fileID: 407680281690193025}
   m_Layer: 7
   m_Name: Enemy_Chaser
   m_TagString: Untagged
@@ -208,21 +231,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Primordia::Primordia.Core.Health
   maxHealth: 6
   invulnerabilityAfterHit: 0
---- !u!114 &8330430976427959625
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7164425445881853361}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6aeee98e3c536245948a8e5299a95ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Primordia::Primordia.Core.DamageFlash
-  renderers: []
-  flashColor: {r: 1, g: 1, b: 1, a: 1}
-  duration: 0.08
 --- !u!114 &5815943007255846397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -252,6 +260,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Primordia::Primordia.Enemies.Enemy
   data: {fileID: 11400000, guid: e6dea1c2118063945bde39aa90ca332b, type: 2}
+  deathDuration: 0.6
+  splitDuration: 0
 --- !u!114 &1063111859091686282
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -265,3 +275,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Primordia::Primordia.Enemies.EnemyAI
   target: {fileID: 0}
+  fireWindup: 0
+--- !u!114 &407680281690193025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7164425445881853361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4dd1d193b8e4814e8b7edbc856b02bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Primordia::Primordia.Enemies.EnemyAnimator
+  animator: {fileID: 1708099578547220110}
+  body: {fileID: 8437631973568505021}

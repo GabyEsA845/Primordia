@@ -56,12 +56,29 @@ namespace Primordia.Enemies
         [SerializeField, Min(0)] int summonCount = 2;
         [SerializeField, Min(0)] int maxMinions = 4;
 
+        [Header("Animación")]
+        [Tooltip("Segundos de aviso antes de cada ráfaga (animación Burst). 0 = sin aviso.")]
+        [SerializeField, Min(0f)] float burstWindup;
+        [Tooltip("Segundos de aviso antes de cada invocación (animación Summon). 0 = sin aviso.")]
+        [SerializeField, Min(0f)] float summonWindup;
+        [Tooltip("Segundos sin atacar al pasar a la fase 2 (animación Phase2_Transition).")]
+        [SerializeField, Min(0f)] float phase2TransitionDuration;
+
         public string DisplayName => displayName;
         public int Phase { get; private set; } = 1;
         public Health Health { get; private set; }
         public IReadOnlyList<Enemy> Minions => minions;
 
+        /// <summary>True durante la pausa del cambio a la fase 2.</summary>
+        public bool IsTransitioning => Time.time < transitionUntil;
+
         public event Action<int> PhaseChanged;
+
+        /// <summary>Se lanza al empezar el aviso de una ráfaga; los proyectiles salen al terminar.</summary>
+        public event Action BurstStarting;
+
+        /// <summary>Se lanza al empezar el aviso de una invocación; los enemigos aparecen al terminar.</summary>
+        public event Action SummonStarting;
 
         Enemy enemy;
         Weapon weapon;
@@ -72,6 +89,9 @@ namespace Primordia.Enemies
         float nextSpiral;
         float nextBurst;
         float nextSummon;
+        float transitionUntil;
+        bool burstAnnounced;
+        bool summonAnnounced;
         readonly List<Enemy> minions = new();
 
         // El proyecto entra en Play sin recargar el dominio, así que los static hay que limpiarlos a mano.
@@ -95,7 +115,9 @@ namespace Primordia.Enemies
             Current = this;
             home = arenaCenter != null ? (Vector2)arenaCenter.position : (Vector2)transform.position;
             activeSince = Time.time;
-            nextSpiral = nextBurst = Time.time + startDelay;
+            nextSpiral = Time.time + startDelay;
+            // La primera ráfaga espera también su aviso, para que se vea entero.
+            nextBurst = nextSpiral + burstWindup;
             enemy.Died += OnDied;
         }
 
@@ -116,7 +138,16 @@ namespace Primordia.Enemies
             summonInterval = newSummonInterval;
             summonCount = newSummonCount;
             maxMinions = newMaxMinions;
-            nextSpiral = nextBurst = Time.time + startDelay;
+            nextSpiral = Time.time + startDelay;
+            // La primera ráfaga espera también su aviso, para que se vea entero.
+            nextBurst = nextSpiral + burstWindup;
+        }
+
+        internal void SetAnimationTimings(float newBurstWindup, float newSummonWindup, float newTransitionDuration)
+        {
+            burstWindup = newBurstWindup;
+            summonWindup = newSummonWindup;
+            phase2TransitionDuration = newTransitionDuration;
         }
 
         internal void SetArenaCenter(Transform center) => arenaCenter = center;
@@ -128,6 +159,9 @@ namespace Primordia.Enemies
 
             if (Phase == 1 && Health.Current <= Health.Max * phase2Threshold)
                 EnterPhase2();
+
+            if (IsTransitioning)
+                return;
 
             UpdateSpiral();
             UpdateBurst();
@@ -149,7 +183,12 @@ namespace Primordia.Enemies
         void EnterPhase2()
         {
             Phase = 2;
-            nextSummon = Time.time + 1f;
+            transitionUntil = Time.time + phase2TransitionDuration;
+            nextSummon = transitionUntil + 1f;
+
+            // La ráfaga anunciada se cancela; la siguiente vuelve a avisar tras la transición.
+            burstAnnounced = false;
+            nextBurst = Mathf.Max(nextBurst, transitionUntil + burstWindup);
             PhaseChanged?.Invoke(Phase);
         }
 
@@ -168,9 +207,19 @@ namespace Primordia.Enemies
 
         void UpdateBurst()
         {
-            if (burstAttack == null || Time.time < nextBurst)
+            if (burstAttack == null)
                 return;
 
+            if (!burstAnnounced && Time.time >= nextBurst - burstWindup)
+            {
+                burstAnnounced = true;
+                BurstStarting?.Invoke();
+            }
+
+            if (Time.time < nextBurst)
+                return;
+
+            burstAnnounced = false;
             int count = Phase == 2 ? phase2BurstCount : burstCount;
             // Desfase de media separación para que no coincida con la espiral.
             float offset = spiralAngle + 180f / count;
@@ -182,9 +231,22 @@ namespace Primordia.Enemies
 
         void UpdateSummons()
         {
-            if (minionPrefab == null || Time.time < nextSummon)
+            if (minionPrefab == null)
                 return;
 
+            if (!summonAnnounced && Time.time >= nextSummon - summonWindup)
+            {
+                summonAnnounced = true;
+                minions.RemoveAll(m => m == null);
+                // Sin hueco para más invocaciones no hay aviso.
+                if (summonCount > 0 && minions.Count < maxMinions)
+                    SummonStarting?.Invoke();
+            }
+
+            if (Time.time < nextSummon)
+                return;
+
+            summonAnnounced = false;
             nextSummon = Time.time + summonInterval;
             minions.RemoveAll(m => m == null);
 

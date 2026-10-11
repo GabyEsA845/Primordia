@@ -26,6 +26,9 @@ namespace Primordia.Combat
         public Team Team => team;
         public bool CanFire => attack != null && attack.ProjectilePrefab != null && Time.time >= nextFireTime;
 
+        /// <summary>Momento (Time.time) a partir del cual termina la recarga.</summary>
+        public float NextFireTime => nextFireTime;
+
         /// <summary>Se lanza en cada disparo, con la dirección central.</summary>
         public event Action<Vector2> Fired;
 

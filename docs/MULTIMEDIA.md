@@ -29,6 +29,7 @@ Los recursos nuevos (hojas de sprites, GIF de revisión, scripts que los generan
 | Recurso | Carpeta temporal | Cómo se importa |
 |---------|------------------|-----------------|
 | Jugador | `docs/multimedia-temp/player/` (`Player_<Acción>_<dirección>.png`, `Player_Hurt.png`, `Player_Death.png`) | Menú **Primordia > Art > Importar animaciones del jugador**: copia las hojas a `Art/Characters/Player/`, las corta (cuadros del alto de la hoja, pivote centrado), crea los clips y el Animator en `Animations/` y se los pone al prefab del jugador. Se puede repetir cada vez que cambie el arte. |
+| Enemigos y jefe | `docs/multimedia-temp/enemies/<Enemigo>/` (`Bacteria`, `Ameba`, `AmebaSmall`, `BossVirus`; hojas `<Enemigo>_<Animación>.png`) | Menú **Primordia > Art > Importar animaciones de enemigos y jefe**: igual que el jugador, en `Art/Characters/Enemies/<Enemigo>/`. Aplica cada uno a su prefab (`Enemy_Chaser`, `Enemy_Shooter`, `Enemy_Small`, `Boss_Virus`) con escala 1, y ajusta los tiempos de juego a las animaciones: aviso de disparo de la ameba, aviso de ráfaga e invocación del jefe, pausa de la transición a la fase 2, división al final de Split y tiempo de muerte. |
 
 `.png`, `.aseprite`, `.wav`, `.ogg`, `.mp3`, `.ttf` y `.otf` se guardan con Git LFS (ya configurado en `.gitattributes`).
 
@@ -53,10 +54,10 @@ Los recursos nuevos (hojas de sprites, GIF de revisión, scripts que los generan
 
 | Recurso | Descripción | Animaciones | Prioridad | Estado |
 |---------|-------------|-------------|-----------|--------|
-| Bacteria | Persigue al jugador | Moverse, recibir daño, morir | M | Pendiente |
-| Ameba | Se divide al morir | Moverse, disparar, dividirse, morir | M | Pendiente |
-| Ameba pequeña | Resultado de la división | Moverse, morir | M | Pendiente |
-| Virus gigante (jefe) | Dispara en espiral | Reposo, atacar, recibir daño, morir | M | Pendiente |
+| Bacteria | Persigue al jugador | Moverse, recibir daño, morir | M | Listo |
+| Ameba | Se divide al morir | Moverse, disparar, dividirse, morir | M | Listo |
+| Ameba pequeña | Resultado de la división | Moverse, morir | M | Listo |
+| Virus gigante (jefe) | Dispara en espiral | Reposo, atacar, recibir daño, morir | M | Listo |
 | Tercer enemigo | Por definir | Por definir | D | Pendiente |
 
 ### Proyectiles y efectos visuales

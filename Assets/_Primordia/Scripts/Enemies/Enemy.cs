@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Primordia.Combat;
 using Primordia.Core;
 using UnityEngine;
@@ -14,8 +15,17 @@ namespace Primordia.Enemies
     {
         [SerializeField] EnemyData data;
 
+        [Header("Animación")]
+        [Tooltip("Segundos que sigue en escena tras morir, para ver la animación Death. 0 = desaparece en el acto.")]
+        [SerializeField, Min(0f)] float deathDuration;
+        [Tooltip("Segundos que tarda en dividirse (animación Split). Las crías aparecen al final. 0 = en el acto.")]
+        [SerializeField, Min(0f)] float splitDuration;
+
         public EnemyData Data => data;
         public Health Health { get; private set; }
+
+        /// <summary>True si al morir se divide en otros enemigos.</summary>
+        public bool WillSplit => data != null && data.SplitCount > 0 && data.SplitPrefab != null;
 
         /// <summary>Se lanza al morir, después de <see cref="ChildSpawned"/> y antes de destruirse.</summary>
         public event Action<Enemy> Died;
@@ -61,12 +71,51 @@ namespace Primordia.Enemies
                 contact.Damage = data.ContactDamage;
         }
 
+        internal void SetAnimationTimings(float newDeathDuration, float newSplitDuration)
+        {
+            deathDuration = newDeathDuration;
+            splitDuration = newSplitDuration;
+        }
+
         void OnDied()
         {
+            if (WillSplit && splitDuration > 0f)
+            {
+                // Died llega al final: la sala sigue en combate hasta que nacen las crías.
+                Freeze();
+                StartCoroutine(SplitAfterDelay());
+                return;
+            }
+
             // Primero los hijos: quien cuente enemigos vivos (la sala) los registra antes de recibir Died.
             SpawnSplits();
             Died?.Invoke(this);
+
+            if (!WillSplit && deathDuration > 0f)
+            {
+                Freeze();
+                Destroy(gameObject, deathDuration);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+        }
+
+        IEnumerator SplitAfterDelay()
+        {
+            yield return new WaitForSeconds(splitDuration);
+            SpawnSplits();
+            Died?.Invoke(this);
             Destroy(gameObject);
+        }
+
+        /// <summary>Lo deja quieto y sin colisiones mientras se ve su animación de muerte.</summary>
+        void Freeze()
+        {
+            var body = GetComponent<Rigidbody2D>();
+            body.linearVelocity = Vector2.zero;
+            body.simulated = false;
         }
 
         void SpawnSplits()
@@ -79,8 +128,9 @@ namespace Primordia.Enemies
 
             for (int i = 0; i < data.SplitCount; i++)
             {
-                // Repartidos en círculo para que no aparezcan uno encima de otro.
-                Vector2 offset = Quaternion.Euler(0f, 0f, step * i + 45f) * Vector2.right * 0.5f;
+                // Repartidos en círculo para que no aparezcan uno encima de otro. Empezando por la
+                // derecha, 2 crías quedan lado a lado, como en el último cuadro de la animación Split.
+                Vector2 offset = Quaternion.Euler(0f, 0f, step * i) * Vector2.right * 0.5f;
                 var child = Instantiate(data.SplitPrefab, (Vector2)transform.position + offset, Quaternion.identity, transform.parent);
 
                 // Los hijos nacen ya alerta: el jugador acaba de atacar a su "padre".

@@ -185,6 +185,128 @@ namespace Primordia.Tests
         }
 
         [UnityTest]
+        public IEnumerator Death_WithDeathDuration_RaisesDiedAtOnce_AndStaysForTheAnimation()
+        {
+            target.transform.position = new Vector3(20f, 0f, 0f);
+            var enemy = CreateEnemy(CreateData(EnemyBehaviour.Chaser), Vector2.zero);
+            enemy.SetAnimationTimings(newDeathDuration: 0.3f, newSplitDuration: 0f);
+            int deaths = 0;
+            enemy.Died += _ => deaths++;
+
+            enemy.Health.TakeDamage(enemy.Health.Max);
+            yield return null;
+
+            Assert.AreEqual(1, deaths, "La sala debe contarlo como muerto en el acto.");
+            Assert.IsTrue(enemy != null);
+            Assert.IsFalse(enemy.GetComponent<Rigidbody2D>().simulated, "Mientras se ve la muerte no choca con nada.");
+
+            yield return new WaitForSeconds(0.4f);
+
+            Assert.IsTrue(enemy == null);
+        }
+
+        [UnityTest]
+        public IEnumerator Death_WithSplitDuration_SpawnsChildrenAtTheEnd()
+        {
+            target.transform.position = new Vector3(20f, 0f, 0f);
+            var splitTemplate = CreateEnemy(CreateData(EnemyBehaviour.Chaser, maxHealth: 1, detectionRange: 0f), new Vector2(100f, 0f));
+            var enemy = CreateEnemy(CreateData(EnemyBehaviour.Shooter, splitPrefab: splitTemplate, splitCount: 2), Vector2.zero);
+            enemy.SetAnimationTimings(newDeathDuration: 0f, newSplitDuration: 0.3f);
+
+            var children = new List<Enemy>();
+            int deaths = 0;
+            enemy.ChildSpawned += children.Add;
+            enemy.Died += _ => deaths++;
+
+            enemy.Health.TakeDamage(enemy.Health.Max);
+            yield return null;
+
+            Assert.AreEqual(0, children.Count);
+            Assert.AreEqual(0, deaths, "Died llega después de las crías, para que la sala no se abra antes.");
+
+            yield return new WaitForSeconds(0.4f);
+
+            Assert.AreEqual(2, children.Count);
+            Assert.AreEqual(1, deaths);
+            Assert.IsTrue(enemy == null);
+        }
+
+        [UnityTest]
+        public IEnumerator Shooter_WithWindup_StopsToAim_ThenFires()
+        {
+            var attack = CreateAttack();
+            target.transform.position = new Vector3(6f, 0f, 0f);
+            var enemy = CreateEnemy(CreateData(EnemyBehaviour.Shooter, preferredDistance: 6f, attack: attack), Vector2.zero, withWeapon: true);
+            var ai = enemy.GetComponent<EnemyAI>();
+            ai.FireWindup = 0.15f;
+            int aims = 0;
+            ai.AimStarted += () => aims++;
+
+            yield return null;
+
+            Assert.AreEqual(1, aims);
+            Assert.AreEqual(EnemyAI.State.Aim, ai.Current);
+            Assert.AreEqual(0, Object.FindObjectsByType<Projectile>(FindObjectsSortMode.None).Length);
+
+            yield return new WaitForSeconds(0.25f);
+
+            Assert.Greater(Object.FindObjectsByType<Projectile>(FindObjectsSortMode.None).Length, 0);
+        }
+
+        [Test]
+        public void Animator_ShowsHurt_WhenDamaged()
+        {
+            target.transform.position = new Vector3(20f, 0f, 0f);
+            var enemy = CreateEnemy(CreateData(EnemyBehaviour.Chaser), Vector2.zero);
+            var animator = enemy.gameObject.AddComponent<EnemyAnimator>();
+
+            enemy.Health.TakeDamage(1);
+
+            Assert.AreEqual(EnemyAnimator.HurtState, animator.CurrentState);
+        }
+
+        [Test]
+        public void Animator_ShowsDeath_OrSplit_WhenItDies()
+        {
+            target.transform.position = new Vector3(20f, 0f, 0f);
+            var splitTemplate = CreateEnemy(CreateData(EnemyBehaviour.Chaser, maxHealth: 1, detectionRange: 0f), new Vector2(100f, 0f));
+            var splitter = CreateEnemy(CreateData(EnemyBehaviour.Shooter, splitPrefab: splitTemplate, splitCount: 2), Vector2.zero);
+            var chaser = CreateEnemy(CreateData(EnemyBehaviour.Chaser), new Vector2(0f, 5f));
+            var splitterAnimator = splitter.gameObject.AddComponent<EnemyAnimator>();
+            var chaserAnimator = chaser.gameObject.AddComponent<EnemyAnimator>();
+
+            splitter.Health.TakeDamage(splitter.Health.Max);
+            chaser.Health.TakeDamage(chaser.Health.Max);
+
+            Assert.AreEqual(EnemyAnimator.SplitState, splitterAnimator.CurrentState);
+            Assert.AreEqual(EnemyAnimator.DeathState, chaserAnimator.CurrentState);
+        }
+
+        [UnityTest]
+        public IEnumerator Animator_ShowsShoot_WhenAiming()
+        {
+            target.transform.position = new Vector3(6f, 0f, 0f);
+            var enemy = CreateEnemy(CreateData(EnemyBehaviour.Shooter, preferredDistance: 6f, attack: CreateAttack()), Vector2.zero, withWeapon: true);
+            enemy.GetComponent<EnemyAI>().FireWindup = 0.15f;
+            var animator = enemy.gameObject.AddComponent<EnemyAnimator>();
+
+            yield return null;
+
+            Assert.AreEqual(EnemyAnimator.ShootState, animator.CurrentState);
+        }
+
+        AttackData CreateAttack()
+        {
+            var projectileTemplate = Track(new GameObject("ProjectileTemplate"));
+            projectileTemplate.SetActive(false);
+            projectileTemplate.AddComponent<Rigidbody2D>();
+            projectileTemplate.AddComponent<CircleCollider2D>().radius = 0.1f;
+            var attack = Track(ScriptableObject.CreateInstance<AttackData>());
+            attack.Configure(projectileTemplate.AddComponent<Projectile>(), fireRate: 5f, damage: 1, speed: 10f, lifetime: 2f);
+            return attack;
+        }
+
+        [UnityTest]
         public IEnumerator ContactDamage_HurtsThePlayer()
         {
             target.layer = LayerMask.NameToLayer(CombatLayers.Player);

@@ -1,3 +1,4 @@
+using System;
 using Primordia.Combat;
 using Primordia.Core;
 using UnityEngine;
@@ -7,7 +8,7 @@ namespace Primordia.Enemies
     /// <summary>
     /// Máquina de estados pequeña. Espera hasta detectar al jugador (o recibir daño) y luego:
     /// el Chaser va directo hacia él; el Shooter se acerca o se aleja para mantener su
-    /// distancia preferida y dispara cuando lo tiene a tiro.
+    /// distancia preferida y dispara cuando lo tiene a tiro (con aviso opcional: se para a apuntar).
     /// No hay búsqueda de caminos: los obstáculos lo frenan.
     /// </summary>
     [RequireComponent(typeof(Enemy))]
@@ -24,7 +25,10 @@ namespace Primordia.Enemies
             Stunned,
 
             /// <summary>Cegado: se queda quieto y no ataca.</summary>
-            Blind
+            Blind,
+
+            /// <summary>Se para a apuntar justo antes de disparar (solo con aviso de disparo).</summary>
+            Aim
         }
 
         // Margen alrededor de la distancia preferida para que el Shooter no tiemble.
@@ -36,6 +40,19 @@ namespace Primordia.Enemies
         [Tooltip("A quién persigue. Si está vacío, busca el objeto con la etiqueta Player.")]
         [SerializeField] Transform target;
 
+        [Tooltip("Segundos que se para a apuntar antes de cada disparo, para la animación Shoot. " +
+                 "Empieza antes de que acabe la recarga, así que la cadencia no cambia. 0 = sin aviso.")]
+        [SerializeField, Min(0f)] float fireWindup;
+
+        /// <summary>Se lanza al empezar a apuntar; el disparo sale <see cref="FireWindup"/> segundos después.</summary>
+        public event Action AimStarted;
+
+        public float FireWindup
+        {
+            get => fireWindup;
+            set => fireWindup = Mathf.Max(0f, value);
+        }
+
         public Transform Target
         {
             get => target;
@@ -46,6 +63,7 @@ namespace Primordia.Enemies
         public bool IsAlert { get; private set; }
         public bool IsStunned => Time.time < stunnedUntil;
         public bool IsBlind => Time.time < blindUntil;
+        public bool IsAiming { get; private set; }
 
         Enemy enemy;
         Health health;
@@ -55,6 +73,7 @@ namespace Primordia.Enemies
         Vector2 knockbackVelocity;
         float stunnedUntil;
         float blindUntil;
+        float fireAt;
 
         void Awake()
         {
@@ -108,6 +127,7 @@ namespace Primordia.Enemies
 
             if (IsStunned)
             {
+                IsAiming = false;
                 Current = State.Stunned;
                 desiredVelocity = knockbackVelocity;
                 knockbackVelocity = Vector2.MoveTowards(knockbackVelocity, Vector2.zero, KnockbackDeceleration * Time.deltaTime);
@@ -116,12 +136,14 @@ namespace Primordia.Enemies
 
             if (IsBlind)
             {
+                IsAiming = false;
                 Current = State.Blind;
                 return;
             }
 
             if (target == null || !target.gameObject.activeInHierarchy)
             {
+                IsAiming = false;
                 Current = State.Idle;
                 return;
             }
@@ -162,8 +184,44 @@ namespace Primordia.Enemies
                 Current = State.Hold;
             }
 
-            if (weapon != null && weapon.Attack != null && distance <= weapon.Attack.Range)
+            UpdateFiring(toTarget, distance);
+        }
+
+        void UpdateFiring(Vector2 toTarget, float distance)
+        {
+            if (weapon == null || weapon.Attack == null)
+                return;
+
+            if (IsAiming)
+            {
+                Current = State.Aim;
+                desiredVelocity = Vector2.zero;
+                if (Time.time >= fireAt)
+                {
+                    IsAiming = false;
+                    weapon.TryFire(toTarget);
+                }
+                return;
+            }
+
+            if (distance > weapon.Attack.Range)
+                return;
+
+            if (fireWindup <= 0f)
+            {
                 weapon.TryFire(toTarget);
+                return;
+            }
+
+            // Empieza a apuntar cuando a la recarga le queda lo que dura el aviso.
+            if (weapon.Attack.ProjectilePrefab != null && Time.time >= weapon.NextFireTime - fireWindup)
+            {
+                IsAiming = true;
+                fireAt = Time.time + fireWindup;
+                Current = State.Aim;
+                desiredVelocity = Vector2.zero;
+                AimStarted?.Invoke();
+            }
         }
 
         void FixedUpdate() => rb.linearVelocity = desiredVelocity;

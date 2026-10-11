@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26918f213e4c24c4b8e1e16e7703ae05, type: 3}
+  m_Name: Mutation_ShockGland
+  m_EditorClassIdentifier: Primordia::Primordia.Mutations.ShockwaveMutation
+  displayName: "Gl\xE1ndula de choque"
+  description: 'Clic derecho: onda que destruye los proyectiles enemigos y empuja a los enemigos. Recarga: 6 s.'
+  slot: 3
+  lineage: 1
+  visualPrefab: {fileID: 3184935572049106030, guid: 5c900ec731fe7f741b967271776c675b, type: 3}
+  color: {r: 0.55, g: 0.7, b: 0.9, a: 1}
+  cooldown: 6
+  effectPrefab: {fileID: 5147786757589481648, guid: f5b4fb2c036ef9548a927b7cdefef551, type: 3}
+  radius: 4
+  pushSpeed: 14
+  stunDuration: 0.4

@@ -136,7 +136,10 @@ namespace Primordia.Editor
             row.longValue = mask;
         }
 
-        static Projectile CreateProjectilePrefab(string prefabName, Color color, float size, Sprite square)
+        internal static Projectile CreateProjectilePrefab(string prefabName, Color color, float size, Sprite square) =>
+            CreateProjectilePrefab(prefabName, color, new Vector2(size, size), square);
+
+        internal static Projectile CreateProjectilePrefab(string prefabName, Color color, Vector2 size, Sprite square)
         {
             string path = $"{PrefabsFolder}/{prefabName}.prefab";
             var existing = AssetDatabase.LoadAssetAtPath<Projectile>(path);
@@ -144,7 +147,7 @@ namespace Primordia.Editor
                 return existing;
 
             var root = new GameObject(prefabName);
-            root.transform.localScale = new Vector3(size, size, 1f);
+            root.transform.localScale = new Vector3(size.x, size.y, 1f);
 
             var renderer = root.AddComponent<SpriteRenderer>();
             renderer.sprite = square;
@@ -163,8 +166,8 @@ namespace Primordia.Editor
             return prefab.GetComponent<Projectile>();
         }
 
-        static AttackData CreateAttack(string assetName, Projectile projectile, float fireRate, int damage, float speed,
-            float lifetime, int count = 1, float spread = 0f)
+        internal static AttackData CreateAttack(string assetName, Projectile projectile, float fireRate, int damage, float speed,
+            float lifetime, int count = 1, float spread = 0f, bool automatic = false, int poisonDamagePerSecond = 0, float poisonDuration = 0f)
         {
             string path = $"{AttacksFolder}/{assetName}.asset";
             var existing = AssetDatabase.LoadAssetAtPath<AttackData>(path);
@@ -172,7 +175,7 @@ namespace Primordia.Editor
                 return existing;
 
             var data = ScriptableObject.CreateInstance<AttackData>();
-            data.Configure(projectile, fireRate, damage, speed, lifetime, count, spread);
+            data.Configure(projectile, fireRate, damage, speed, lifetime, count, spread, automatic, poisonDamagePerSecond, poisonDuration);
             AssetDatabase.CreateAsset(data, path);
             return data;
         }

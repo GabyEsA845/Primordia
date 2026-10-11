@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 416b79f85b9a45c4e80c9dfae255be58, type: 3}
+  m_Name: Mutation_StingingSkin
+  m_EditorClassIdentifier: Primordia::Primordia.Mutations.ThornsMutation
+  displayName: Piel urticante
+  description: "Los enemigos que te tocan reciben 2 de da\xF1o."
+  slot: 2
+  lineage: 2
+  visualPrefab: {fileID: 6445471568931119495, guid: 9abd6a9a23ce6ac45804bb76d7f3cbe8, type: 3}
+  color: {r: 0.55, g: 0.9, b: 0.35, a: 1}
+  damage: 2
+  interval: 0.5

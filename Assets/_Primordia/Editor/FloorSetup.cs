@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Primordia.Enemies;
+using Primordia.Mutations;
 using Primordia.Rooms;
 using Unity.Cinemachine;
 using UnityEditor;
@@ -38,10 +39,14 @@ namespace Primordia.Editor
             public readonly Vector2Int Cell;
             public readonly (string prefab, Vector2 position)[] Enemies;
 
-            public RoomSpec(string name, Vector2Int cell, params (string, Vector2)[] enemies)
+            /// <summary>Al limpiarla, ofrece elegir 1 de 3 mutaciones.</summary>
+            public readonly bool Reward;
+
+            public RoomSpec(string name, Vector2Int cell, bool reward, params (string, Vector2)[] enemies)
             {
                 Name = name;
                 Cell = cell;
+                Reward = reward;
                 Enemies = enemies;
             }
         }
@@ -78,8 +83,11 @@ namespace Primordia.Editor
             EditorSceneManager.SaveScene(scene);
         }
 
-        /// <summary>Construye el piso de prueba y coloca al jugador en la sala inicial, en la escena indicada.</summary>
-        internal static void BuildFloor(Scene scene, GameObject rig, GameObject playerPrefab)
+        /// <summary>
+        /// Construye el piso de prueba y coloca al jugador en la sala inicial, en la escena indicada.
+        /// Con <paramref name="rewardPool"/>, las salas marcadas ofrecen mutaciones al limpiarlas.
+        /// </summary>
+        internal static void BuildFloor(Scene scene, GameObject rig, GameObject playerPrefab, MutationPool rewardPool = null)
         {
             // Se cargan desde disco después de abrir la escena, para que las referencias sean válidas.
             var square = CoreSetup.CreateSquareSprite();
@@ -92,15 +100,15 @@ namespace Primordia.Editor
             // Recorrido: Inicio → derecha → arriba → derecha → derecha (sala final con la salida).
             var specs = new[]
             {
-                new RoomSpec("Room_0_Start", new Vector2Int(0, 0)),
-                new RoomSpec("Room_1", new Vector2Int(1, 0),
+                new RoomSpec("Room_0_Start", new Vector2Int(0, 0), reward: false),
+                new RoomSpec("Room_1", new Vector2Int(1, 0), reward: false,
                     ("Chaser", new Vector2(-6f, 4f)), ("Chaser", new Vector2(6f, 4f)), ("Chaser", new Vector2(0f, -5f))),
-                new RoomSpec("Room_2", new Vector2Int(1, 1),
+                new RoomSpec("Room_2", new Vector2Int(1, 1), reward: true,
                     ("Shooter", new Vector2(-8f, 5f)), ("Shooter", new Vector2(8f, 5f)), ("Chaser", new Vector2(0f, 3f))),
-                new RoomSpec("Room_3", new Vector2Int(2, 1),
+                new RoomSpec("Room_3", new Vector2Int(2, 1), reward: false,
                     ("Chaser", new Vector2(-4f, 5f)), ("Chaser", new Vector2(4f, -5f)),
                     ("Shooter", new Vector2(9f, 5f)), ("Shooter", new Vector2(9f, -5f))),
-                new RoomSpec("Room_4_Final", new Vector2Int(3, 1),
+                new RoomSpec("Room_4_Final", new Vector2Int(3, 1), reward: true,
                     ("Chaser", new Vector2(-5f, 6f)), ("Chaser", new Vector2(-5f, -6f)), ("Chaser", new Vector2(0f, 6f)),
                     ("Shooter", new Vector2(8f, 5f)), ("Shooter", new Vector2(8f, -5f)))
             };
@@ -116,7 +124,10 @@ namespace Primordia.Editor
                 if (i < specs.Length - 1)
                     doorDirections.Add(specs[i + 1].Cell - specs[i].Cell);
 
-                rooms.Add(BuildRoom(floor, specs[i], doorDirections, prefabs, square));
+                var room = BuildRoom(floor, specs[i], doorDirections, prefabs, square);
+                if (specs[i].Reward && rewardPool != null)
+                    room.gameObject.AddComponent<MutationReward>().Configure(rewardPool, 3);
+                rooms.Add(room);
             }
 
             for (int i = 0; i < specs.Length - 1; i++)

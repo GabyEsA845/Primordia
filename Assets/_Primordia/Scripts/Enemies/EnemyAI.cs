@@ -18,11 +18,20 @@ namespace Primordia.Enemies
             Idle,
             Chase,
             Retreat,
-            Hold
+            Hold,
+
+            /// <summary>Empujado: se desliza sin control y no ataca.</summary>
+            Stunned,
+
+            /// <summary>Cegado: se queda quieto y no ataca.</summary>
+            Blind
         }
 
         // Margen alrededor de la distancia preferida para que el Shooter no tiemble.
         const float DistanceTolerance = 1f;
+
+        // Cuánto frena el empujón, en unidades por segundo cada segundo.
+        const float KnockbackDeceleration = 30f;
 
         [Tooltip("A quién persigue. Si está vacío, busca el objeto con la etiqueta Player.")]
         [SerializeField] Transform target;
@@ -35,12 +44,17 @@ namespace Primordia.Enemies
 
         public State Current { get; private set; }
         public bool IsAlert { get; private set; }
+        public bool IsStunned => Time.time < stunnedUntil;
+        public bool IsBlind => Time.time < blindUntil;
 
         Enemy enemy;
         Health health;
         Rigidbody2D rb;
         Weapon weapon;
         Vector2 desiredVelocity;
+        Vector2 knockbackVelocity;
+        float stunnedUntil;
+        float blindUntil;
 
         void Awake()
         {
@@ -70,12 +84,43 @@ namespace Primordia.Enemies
 
         void OnDamaged(int _) => Alert();
 
+        /// <summary>Empuja al enemigo con esa velocidad y lo deja sin actuar durante el aturdimiento.</summary>
+        public void Knockback(Vector2 velocity, float stunDuration)
+        {
+            knockbackVelocity = velocity;
+            stunnedUntil = Mathf.Max(stunnedUntil, Time.time + stunDuration);
+            Alert();
+        }
+
+        /// <summary>Lo deja quieto y sin atacar durante ese tiempo.</summary>
+        public void Blind(float duration) => blindUntil = Mathf.Max(blindUntil, Time.time + duration);
+
         void Update()
         {
             desiredVelocity = Vector2.zero;
             var data = enemy.Data;
 
-            if (data == null || !CanAct() || target == null || !target.gameObject.activeInHierarchy)
+            if (data == null || !CanAct())
+            {
+                Current = State.Idle;
+                return;
+            }
+
+            if (IsStunned)
+            {
+                Current = State.Stunned;
+                desiredVelocity = knockbackVelocity;
+                knockbackVelocity = Vector2.MoveTowards(knockbackVelocity, Vector2.zero, KnockbackDeceleration * Time.deltaTime);
+                return;
+            }
+
+            if (IsBlind)
+            {
+                Current = State.Blind;
+                return;
+            }
+
+            if (target == null || !target.gameObject.activeInHierarchy)
             {
                 Current = State.Idle;
                 return;

@@ -45,25 +45,67 @@ namespace Primordia.Editor
             var gameManager = CoreSetup.CreateGameManagerPrefab();
             var player = PlayerSetup.CreatePlayerPrefab(square);
             FloorSetup.CreateAssets(square);
+            MutationSetup.CreateAssets(square);
+            CreateUIAssets();
 
-            CreateHeartSprites();
-            CreateGameUIPrefab();
-            CreateMainMenuUIPrefab();
-            AssetDatabase.SaveAssets();
-
-            string mainMenuPath = $"{ScenesFolder}/{SceneNames.MainMenu}.unity";
-            string gamePath = $"{ScenesFolder}/{SceneNames.Game}.unity";
-            CreateMainMenuScene(mainMenuPath, cameraRig, gameManager);
-            CreateGameScene(gamePath, cameraRig, gameManager, player);
+            CreateMainMenuScene(MainMenuScenePath, cameraRig, gameManager);
+            CreateGameScene(GameScenePath, cameraRig, gameManager, player);
 
             EditorBuildSettings.scenes = new[]
             {
-                new EditorBuildSettingsScene(mainMenuPath, true),
-                new EditorBuildSettingsScene(gamePath, true)
+                new EditorBuildSettingsScene(MainMenuScenePath, true),
+                new EditorBuildSettingsScene(GameScenePath, true)
             };
 
             AssetDatabase.SaveAssets();
-            EditorSceneManager.OpenScene(mainMenuPath);
+            EditorSceneManager.OpenScene(MainMenuScenePath);
+        }
+
+        static string MainMenuScenePath => $"{ScenesFolder}/{SceneNames.MainMenu}.unity";
+        static string GameScenePath => $"{ScenesFolder}/{SceneNames.Game}.unity";
+
+        [MenuItem("Primordia/UI/Regenerar escena Game (borra la actual)")]
+        static void RegenerateGameScene()
+        {
+            if (!EditorUtility.DisplayDialog("Regenerar escena Game",
+                    "Se borrará Game.unity y se volverá a crear con el piso actual. " +
+                    "Los cambios hechos a mano en esa escena se perderán.", "Regenerar", "Cancelar"))
+                return;
+
+            if (!EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo())
+                return;
+
+            var square = CoreSetup.CreateSquareSprite();
+            var cameraRig = CoreSetup.CreateCameraRigPrefab();
+            var gameManager = CoreSetup.CreateGameManagerPrefab();
+            var player = PlayerSetup.CreatePlayerPrefab(square);
+            FloorSetup.CreateAssets(square);
+            MutationSetup.CreateAssets(square);
+            CreateUIAssets();
+
+            // Abrir otra escena antes de borrar, por si Game.unity era la abierta.
+            EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
+            AssetDatabase.DeleteAsset(GameScenePath);
+            CreateGameScene(GameScenePath, cameraRig, gameManager, player);
+            AssetDatabase.SaveAssets();
+        }
+
+        [MenuItem("Primordia/UI/Actualizar prefabs de interfaz")]
+        static void UpdateUIPrefabs()
+        {
+            CreateUIAssets();
+            Debug.Log("Prefabs de interfaz actualizados. Las escenas que los usan reciben los cambios solas.");
+        }
+
+        /// <summary>Iconos de corazón y prefabs de interfaz. Lo que ya existe no se toca, salvo para añadir lo que le falte.</summary>
+        internal static void CreateUIAssets()
+        {
+            CreateHeartSprites();
+            CreateGameUIPrefab();
+            EnsureMutationChoice();
+            EnsureMutationList();
+            CreateMainMenuUIPrefab();
+            AssetDatabase.SaveAssets();
         }
 
         // ---------- Corazones ----------
@@ -89,7 +131,7 @@ namespace Primordia.Editor
             "................"
         };
 
-        static void CreateHeartSprites()
+        internal static void CreateHeartSprites()
         {
             var red = new Color32(230, 60, 75, 255);
             var empty = new Color32(60, 40, 50, 255);
@@ -257,10 +299,21 @@ namespace Primordia.Editor
 
         static void CreateButton(Transform parent, string label, FlowAction action)
         {
-            var rect = CreateRect($"Button_{action}", parent);
+            var button = CreatePlainButton(parent, label, $"Button_{action}");
+
+            var flowButton = button.gameObject.AddComponent<GameFlowButton>();
+            var serialized = new SerializedObject(flowButton);
+            serialized.FindProperty("action").enumValueIndex = (int)action;
+            serialized.ApplyModifiedPropertiesWithoutUndo();
+        }
+
+        static Button CreatePlainButton(Transform parent, string label, string name)
+        {
+            var rect = CreateRect(name, parent);
             var image = rect.gameObject.AddComponent<Image>();
             image.color = ButtonColor;
-            rect.gameObject.AddComponent<Button>().targetGraphic = image;
+            var button = rect.gameObject.AddComponent<Button>();
+            button.targetGraphic = image;
 
             var layoutElement = rect.gameObject.AddComponent<LayoutElement>();
             layoutElement.preferredWidth = 140f;
@@ -268,11 +321,162 @@ namespace Primordia.Editor
 
             var text = CreateText(rect, label, 12, TextColor);
             Stretch((RectTransform)text.transform);
+            return button;
+        }
 
-            var flowButton = rect.gameObject.AddComponent<GameFlowButton>();
-            var serialized = new SerializedObject(flowButton);
-            serialized.FindProperty("action").enumValueIndex = (int)action;
-            serialized.ApplyModifiedPropertiesWithoutUndo();
+        // ---------- Elección de mutación ----------
+
+        /// <summary>Añade la pantalla "elige 1 de 3" al prefab GameUI si todavía no la tiene.</summary>
+        static void EnsureMutationChoice()
+        {
+            var root = PrefabUtility.LoadPrefabContents(GameUIPath);
+            try
+            {
+                if (root.GetComponent<MutationChoiceUI>() != null)
+                    return;
+
+                AddMutationChoice(root);
+                PrefabUtility.SaveAsPrefabAsset(root, GameUIPath);
+            }
+            finally
+            {
+                PrefabUtility.UnloadPrefabContents(root);
+            }
+        }
+
+        static void AddMutationChoice(GameObject canvas)
+        {
+            var panel = CreateRect("MutationChoicePanel", canvas.transform);
+            Stretch(panel);
+            panel.gameObject.AddComponent<Image>().color = OverlayColor;
+
+            var layout = panel.gameObject.AddComponent<VerticalLayoutGroup>();
+            layout.childAlignment = TextAnchor.MiddleCenter;
+            layout.spacing = 8f;
+            layout.childControlWidth = layout.childControlHeight = true;
+            layout.childForceExpandWidth = layout.childForceExpandHeight = false;
+
+            var title = CreateText(panel, "ELIGE UNA MUTACIÓN", 20, TitleColor);
+            title.gameObject.AddComponent<LayoutElement>().preferredHeight = 30f;
+
+            var row = CreateRect("Cards", panel);
+            var rowLayout = row.gameObject.AddComponent<HorizontalLayoutGroup>();
+            rowLayout.childAlignment = TextAnchor.MiddleCenter;
+            rowLayout.spacing = 8f;
+            rowLayout.childControlWidth = rowLayout.childControlHeight = true;
+            rowLayout.childForceExpandWidth = rowLayout.childForceExpandHeight = false;
+
+            var cards = new MutationCard[3];
+            for (int i = 0; i < cards.Length; i++)
+                cards[i] = CreateMutationCard(row);
+
+            var skip = CreatePlainButton(panel, "Saltar", "Button_Skip");
+
+            canvas.AddComponent<MutationChoiceUI>().Configure(panel.gameObject, cards, skip);
+            panel.gameObject.SetActive(false);
+        }
+
+        // ---------- Lista de mutaciones en la pausa ----------
+
+        /// <summary>Añade al panel de pausa del prefab GameUI la lista de ranuras si todavía no la tiene.</summary>
+        static void EnsureMutationList()
+        {
+            var root = PrefabUtility.LoadPrefabContents(GameUIPath);
+            try
+            {
+                var pausePanel = root.transform.Find("PausePanel");
+                if (pausePanel == null || pausePanel.GetComponentInChildren<MutationListUI>(true) != null)
+                    return;
+
+                AddMutationList(pausePanel);
+                PrefabUtility.SaveAsPrefabAsset(root, GameUIPath);
+            }
+            finally
+            {
+                PrefabUtility.UnloadPrefabContents(root);
+            }
+        }
+
+        /// <summary>Recuadro a la derecha del panel de pausa con las 4 ranuras.</summary>
+        static void AddMutationList(Transform pausePanel)
+        {
+            var list = CreateRect("MutationList", pausePanel);
+            list.anchorMin = list.anchorMax = list.pivot = new Vector2(1f, 0.5f);
+            list.anchoredPosition = new Vector2(-12f, 0f);
+            list.sizeDelta = new Vector2(150f, 0f);
+
+            // Fuera de la columna centrada de botones del panel.
+            list.gameObject.AddComponent<LayoutElement>().ignoreLayout = true;
+            list.gameObject.AddComponent<Image>().color = new Color(0.06f, 0.1f, 0.08f, 0.95f);
+
+            var layout = list.gameObject.AddComponent<VerticalLayoutGroup>();
+            layout.padding = new RectOffset(8, 8, 8, 8);
+            layout.spacing = 2f;
+            layout.childAlignment = TextAnchor.UpperLeft;
+            layout.childControlWidth = layout.childControlHeight = true;
+            layout.childForceExpandWidth = true;
+            layout.childForceExpandHeight = false;
+            list.gameObject.AddComponent<ContentSizeFitter>().verticalFit = ContentSizeFitter.FitMode.PreferredSize;
+
+            var title = CreateText(list, "MUTACIONES", 12, TitleColor);
+            title.alignment = TextAnchor.MiddleLeft;
+            title.gameObject.AddComponent<LayoutElement>().preferredHeight = 18f;
+
+            string[] slotNames = { "Boca", "Extremidades", "Piel", "Órgano especial" };
+            var names = new Text[slotNames.Length];
+            var descriptions = new Text[slotNames.Length];
+
+            for (int i = 0; i < slotNames.Length; i++)
+            {
+                var slotLabel = CreateText(list, slotNames[i].ToUpperInvariant(), 8, new Color(0.6f, 0.7f, 0.65f));
+                slotLabel.alignment = TextAnchor.MiddleLeft;
+                // Un poco de aire antes de cada ranura, salvo la primera.
+                slotLabel.gameObject.AddComponent<LayoutElement>().minHeight = i == 0 ? 10f : 16f;
+
+                names[i] = CreateText(list, "— vacía —", 11, TextColor);
+                names[i].alignment = TextAnchor.MiddleLeft;
+
+                descriptions[i] = CreateText(list, "", 8, TextColor);
+                descriptions[i].alignment = TextAnchor.UpperLeft;
+                descriptions[i].horizontalOverflow = HorizontalWrapMode.Wrap;
+            }
+
+            list.gameObject.AddComponent<MutationListUI>().Configure(names, descriptions);
+        }
+
+        static MutationCard CreateMutationCard(Transform parent)
+        {
+            var card = CreateRect("Card", parent);
+            var image = card.gameObject.AddComponent<Image>();
+            image.color = ButtonColor;
+            card.gameObject.AddComponent<Button>().targetGraphic = image;
+
+            var element = card.gameObject.AddComponent<LayoutElement>();
+            element.preferredWidth = 130f;
+            element.preferredHeight = 150f;
+
+            var layout = card.gameObject.AddComponent<VerticalLayoutGroup>();
+            layout.padding = new RectOffset(6, 6, 6, 6);
+            layout.spacing = 4f;
+            layout.childAlignment = TextAnchor.UpperCenter;
+            layout.childControlWidth = layout.childControlHeight = true;
+            layout.childForceExpandWidth = true;
+            layout.childForceExpandHeight = false;
+
+            var strip = CreateRect("ColorStrip", card).gameObject.AddComponent<Image>();
+            strip.gameObject.AddComponent<LayoutElement>().preferredHeight = 4f;
+
+            var title = CreateText(card, "Mutación", 14, TitleColor);
+            var details = CreateText(card, "Ranura · Linaje", 9, TextColor);
+            var description = CreateText(card, "Descripción", 9, TextColor);
+            description.horizontalOverflow = HorizontalWrapMode.Wrap;
+            description.alignment = TextAnchor.UpperCenter;
+            description.gameObject.AddComponent<LayoutElement>().flexibleHeight = 1f;
+            var replaces = CreateText(card, "Ranura libre", 9, new Color(1f, 0.8f, 0.5f));
+
+            var mutationCard = card.gameObject.AddComponent<MutationCard>();
+            mutationCard.Configure(strip, title, details, description, replaces);
+            return mutationCard;
         }
 
         static void SavePrefab(GameObject root, string path)
@@ -305,7 +509,7 @@ namespace Primordia.Editor
             if (!CoreSetup.TryCreateSceneFromTemplate(path, cameraRig, gameManager, out var scene, out var rig))
                 return;
 
-            FloorSetup.BuildFloor(scene, rig, player);
+            FloorSetup.BuildFloor(scene, rig, player, MutationSetup.LoadPool());
             PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath<GameObject>(GameUIPath), scene);
             CreateEventSystem();
             EditorSceneManager.SaveScene(scene);

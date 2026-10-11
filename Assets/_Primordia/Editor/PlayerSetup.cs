@@ -111,7 +111,7 @@ namespace Primordia.Editor
             CreateBlock(walls, "Obstacle", new Vector2(5f, 6f), new Vector2(6f, 1f), square);
         }
 
-        static void CreateBlock(Transform parent, string name, Vector2 position, Vector2 size, Sprite square)
+        internal static GameObject CreateBlock(Transform parent, string name, Vector2 position, Vector2 size, Sprite square)
         {
             var block = new GameObject(name);
             block.transform.SetParent(parent, false);
@@ -123,6 +123,7 @@ namespace Primordia.Editor
             renderer.color = WallColor;
 
             block.AddComponent<BoxCollider2D>();
+            return block;
         }
     }
 }

@@ -37,7 +37,7 @@ Solo sistemas genéricos, sin ambientación final, por si la jam no permite llev
 - [x] `feature/player`
 - [x] `feature/combat` → etiqueta **`v0.1-prototipo`**
 - [x] `feature/enemies` (perseguidor, tirador y división al morir)
-- [ ] `feature/rooms`
+- [x] `feature/rooms`
 - [ ] `feature/mutations` (estructura + 1 o 2 mutaciones de prueba)
 - [ ] `feature/build` (build de prueba temprana)
 

@@ -36,7 +36,7 @@ Solo sistemas genéricos, sin ambientación final, por si la jam no permite llev
 - [x] `feature/core`
 - [x] `feature/player`
 - [x] `feature/combat` → etiqueta **`v0.1-prototipo`**
-- [ ] `feature/enemies` (1 enemigo genérico)
+- [x] `feature/enemies` (perseguidor, tirador y división al morir)
 - [ ] `feature/rooms`
 - [ ] `feature/mutations` (estructura + 1 o 2 mutaciones de prueba)
 - [ ] `feature/build` (build de prueba temprana)
@@ -47,3 +47,9 @@ Solo sistemas genéricos, sin ambientación final, por si la jam no permite llev
 2. **Resto del día 1:** `feature/enemies-piso1`, `feature/boss`, `feature/mutations-contenido` (las 6 mutaciones) y `feature/ui-flow` → etiqueta **`v0.5-jugable`** (partida completa, aunque sea fea).
 3. **Mañana del día 2:** `feature/art`, `feature/audio`, `feature/balance`. Si el mínimo está listo: `feature/random-rooms`, `feature/lineages`, `feature/mutation-visuals`.
 4. **Últimas 4 h:** congelar funciones; solo ramas `fix/*`. Build final → etiqueta **`v1.0-jam`** y subirla con margen.
+
+## Mejoras a futuro
+
+Problemas conocidos o ideas que no entran ahora, para retomarlos cuando el prototipo jugable esté completo.
+
+- [ ] **Enemigos que rodean obstáculos.** Ahora van en línea recta hacia el jugador y se quedan atascados contra paredes y obstáculos. Opciones: pathfinding en rejilla sobre el Tilemap de la sala (A* sencillo) o steering con raycasts para esquivar. Afecta a `EnemyAI`.

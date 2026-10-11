@@ -30,12 +30,25 @@ namespace Primordia.Editor
             if (!EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo())
                 return;
 
-            ConfigureLayers();
-
             var square = CoreSetup.CreateSquareSprite();
             var cameraRig = CoreSetup.CreateCameraRigPrefab();
             var gameManager = CoreSetup.CreateGameManagerPrefab();
             var player = PlayerSetup.CreatePlayerPrefab(square);
+
+            CreateAssets(square);
+            CreateTestScene(cameraRig, gameManager, player, square);
+
+            AssetDatabase.SaveAssets();
+        }
+
+        /// <summary>
+        /// Capas, proyectiles, ataques y arma del jugador. Los guarda en disco antes de volver,
+        /// así se pueden abrir escenas después sin perder las referencias.
+        /// </summary>
+        internal static void CreateAssets(Sprite square)
+        {
+            ConfigureLayers();
+            PlayerSetup.CreatePlayerPrefab(square);
 
             Directory.CreateDirectory(PrefabsFolder);
             Directory.CreateDirectory(AttacksFolder);
@@ -52,10 +65,11 @@ namespace Primordia.Editor
             AssetDatabase.SaveAssets();
 
             AddCombatToPlayer(playerBasic);
-            CreateTestScene(cameraRig, gameManager, player, square);
-
             AssetDatabase.SaveAssets();
         }
+
+        internal static AttackData LoadAttack(string assetName) =>
+            AssetDatabase.LoadAssetAtPath<AttackData>($"{AttacksFolder}/{assetName}.asset");
 
         [MenuItem("Primordia/Combat/Configurar capas de física")]
         internal static void ConfigureLayers()
@@ -191,7 +205,7 @@ namespace Primordia.Editor
             }
         }
 
-        static void ConfigureWeapon(Weapon weapon, AttackData attack, Team team, Transform muzzle)
+        internal static void ConfigureWeapon(Weapon weapon, AttackData attack, Team team, Transform muzzle)
         {
             var serialized = new SerializedObject(weapon);
             serialized.FindProperty("attack").objectReferenceValue = attack;
@@ -206,7 +220,7 @@ namespace Primordia.Editor
                 return;
 
             // Se carga desde disco después de abrir la escena, para que la referencia sea válida.
-            var turretAttack = AssetDatabase.LoadAssetAtPath<AttackData>($"{AttacksFolder}/Attack_EnemyFan.asset");
+            var turretAttack = LoadAttack("Attack_EnemyFan");
 
             var player = (GameObject)PrefabUtility.InstantiatePrefab(playerPrefab, scene);
             rig.GetComponentInChildren<CinemachineCamera>().Follow = player.transform;

@@ -21,7 +21,17 @@ namespace Primordia.UI
 
         public FlowAction Action => action;
 
-        void Awake() => GetComponent<Button>().onClick.AddListener(Run);
+        void Awake()
+        {
+            // En el navegador no se puede cerrar la pestaña desde el juego: el botón Salir sobra.
+            if (action == FlowAction.Quit && Application.platform == RuntimePlatform.WebGLPlayer)
+            {
+                gameObject.SetActive(false);
+                return;
+            }
+
+            GetComponent<Button>().onClick.AddListener(Run);
+        }
 
         void Run()
         {

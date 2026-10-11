@@ -66,7 +66,8 @@ namespace Primordia.Player
         float dodgeEndTime;
         float nextDodgeTime;
 
-        bool CanAct => !health.IsDead && (GameManager.Instance == null || GameManager.Instance.State == GameState.Playing);
+        /// <summary>True si el jugador puede actuar: está vivo y el juego está en curso.</summary>
+        public bool CanAct => !health.IsDead && (GameManager.Instance == null || GameManager.Instance.State == GameState.Playing);
 
         void Reset() => ConfigureRigidbody(GetComponent<Rigidbody2D>());
 

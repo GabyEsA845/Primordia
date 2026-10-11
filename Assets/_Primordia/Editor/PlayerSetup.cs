@@ -15,7 +15,7 @@ namespace Primordia.Editor
     public static class PlayerSetup
     {
         const string PrefabsFolder = "Assets/_Primordia/Prefabs/Player";
-        const string PlayerPath = PrefabsFolder + "/Player.prefab";
+        internal const string PlayerPath = PrefabsFolder + "/Player.prefab";
         const string TestScenePath = "Assets/_Primordia/Scenes/Test_Player.unity";
 
         // Sala de prueba más grande que la vista (30×17 unidades) para ver cómo sigue la cámara.
@@ -37,7 +37,7 @@ namespace Primordia.Editor
             CreateTestScene(cameraRig, gameManager, player, square);
         }
 
-        static GameObject CreatePlayerPrefab(Sprite square)
+        internal static GameObject CreatePlayerPrefab(Sprite square)
         {
             var existing = AssetDatabase.LoadAssetAtPath<GameObject>(PlayerPath);
             if (existing != null)
@@ -90,6 +90,13 @@ namespace Primordia.Editor
             var player = (GameObject)PrefabUtility.InstantiatePrefab(playerPrefab, scene);
             rig.GetComponentInChildren<CinemachineCamera>().Follow = player.transform;
 
+            CreateTestRoom(square);
+            EditorSceneManager.SaveScene(scene);
+        }
+
+        /// <summary>Sala de prueba con paredes y obstáculos, en la escena activa.</summary>
+        internal static void CreateTestRoom(Sprite square)
+        {
             var walls = new GameObject("Walls").transform;
             float halfWidth = RoomWidth / 2f;
             float halfHeight = RoomHeight / 2f;
@@ -102,8 +109,6 @@ namespace Primordia.Editor
             CreateBlock(walls, "Obstacle", new Vector2(-8f, 4f), new Vector2(3f, 3f), square);
             CreateBlock(walls, "Obstacle", new Vector2(9f, -5f), new Vector2(2f, 6f), square);
             CreateBlock(walls, "Obstacle", new Vector2(5f, 6f), new Vector2(6f, 1f), square);
-
-            EditorSceneManager.SaveScene(scene);
         }
 
         static void CreateBlock(Transform parent, string name, Vector2 position, Vector2 size, Sprite square)

@@ -105,9 +105,12 @@ GameObject:
   - component: {fileID: 8572091314830005546}
   - component: {fileID: 6445701342903422727}
   - component: {fileID: 4560163568451250268}
-  m_Layer: 0
+  - component: {fileID: 8288266056372940232}
+  - component: {fileID: 674912717017771856}
+  - component: {fileID: 996428091537902926}
+  m_Layer: 6
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -224,6 +227,48 @@ MonoBehaviour:
   dodgeCooldown: 0.4
   aimPivot: {fileID: 2465394465590933847}
   body: {fileID: 2014002076244917393}
+--- !u!114 &8288266056372940232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2873998751450272095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aaddc07e47df8c74f8e522d242690e2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Primordia::Primordia.Combat.Weapon
+  attack: {fileID: 11400000, guid: 0db4f9ebba5deaf4a987d3c20ad65118, type: 2}
+  team: 0
+  muzzle: {fileID: 7228819968958572778}
+--- !u!114 &674912717017771856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2873998751450272095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2b62136ad302014481b8ad91df896e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Primordia::Primordia.Player.PlayerAttack
+--- !u!114 &996428091537902926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2873998751450272095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6aeee98e3c536245948a8e5299a95ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Primordia::Primordia.Core.DamageFlash
+  renderers: []
+  flashColor: {r: 1, g: 1, b: 1, a: 1}
+  duration: 0.08
 --- !u!1 &5020795593227158931
 GameObject:
   m_ObjectHideFlags: 0

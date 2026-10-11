@@ -25,7 +25,7 @@ Plan por módulos y ramas para la versión de la GameJam 2026. El diseño del ju
 | 7 | `feature/ui-flow` | Menú principal, HUD de corazones, pausa, pantallas de derrota y victoria, reinicio | 0 | Partida completa del menú a victoria/derrota y vuelta a empezar |
 | 8 | `feature/build` | Ajustes de build para la plataforma de la jam (probablemente WebGL) | todos | La build corre fuera del editor |
 
-Cada módulo vive en su propia carpeta de `Assets/_Primordia/Scripts/` (`Core`, `Player`, `Mutations`, `Enemies`, `Rooms`, `UI`), así dos ramas casi nunca tocan los mismos archivos.
+Cada módulo vive en su propia carpeta de `Assets/_Primordia/Scripts/` (`Core`, `Player`, `Combat`, `Mutations`, `Enemies`, `Rooms`, `UI`), así dos ramas casi nunca tocan los mismos archivos.
 
 ## Calendario
 
@@ -35,7 +35,7 @@ Solo sistemas genéricos, sin ambientación final, por si la jam no permite llev
 
 - [x] `feature/core`
 - [x] `feature/player`
-- [ ] `feature/combat` → etiqueta **`v0.1-prototipo`**
+- [x] `feature/combat` → etiqueta **`v0.1-prototipo`**
 - [ ] `feature/enemies` (1 enemigo genérico)
 - [ ] `feature/rooms`
 - [ ] `feature/mutations` (estructura + 1 o 2 mutaciones de prueba)

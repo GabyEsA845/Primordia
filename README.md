@@ -18,10 +18,10 @@ Una criatura primitiva cruza salas, derrota enemigos y muta su cuerpo para sobre
 Assets/_Primordia/
   Art/          sprites, tilesets, animaciones
   Audio/        música y efectos
-  Data/         ScriptableObjects (mutaciones, enemigos)
+  Data/         ScriptableObjects (ataques, mutaciones, enemigos)
   Prefabs/      jugador, enemigos, salas, proyectiles
   Scenes/       MainMenu, Game
-  Scripts/      Player, Enemies, Mutations, Rooms, Core, UI
+  Scripts/      Core, Player, Combat, Enemies, Mutations, Rooms, UI
 ```
 
 ## Controles

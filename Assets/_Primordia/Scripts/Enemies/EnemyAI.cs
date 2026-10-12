@@ -1,15 +1,18 @@
 using System;
+using System.Collections.Generic;
 using Primordia.Combat;
 using Primordia.Core;
+using Primordia.Rooms;
 using UnityEngine;
 
 namespace Primordia.Enemies
 {
     /// <summary>
     /// Máquina de estados pequeña. Espera hasta detectar al jugador (o recibir daño) y luego:
-    /// el Chaser va directo hacia él; el Shooter se acerca o se aleja para mantener su
-    /// distancia preferida y dispara cuando lo tiene a tiro (con aviso opcional: se para a apuntar).
-    /// No hay búsqueda de caminos: los obstáculos lo frenan.
+    /// el Chaser va hacia él; el Shooter se acerca o se aleja para mantener su distancia preferida
+    /// y dispara cuando lo tiene a tiro y lo ve (con aviso opcional: se para a apuntar).
+    /// Con la rejilla del piso (<see cref="NavigationGrid"/>) rodean paredes y columnas, y el Shooter solo
+    /// dispara con línea de visión; sin ella, van en línea recta. Además se apartan unos de otros.
     /// </summary>
     [RequireComponent(typeof(Enemy))]
     public class EnemyAI : MonoBehaviour
@@ -36,6 +39,16 @@ namespace Primordia.Enemies
 
         // Cuánto frena el empujón, en unidades por segundo cada segundo.
         const float KnockbackDeceleration = 30f;
+
+        // Grosor de la línea de visión del tirador (algo menos que un proyectil): ve por los huecos de puerta.
+        const float SightRadius = 0.15f;
+        // Distancia libre que necesita a su espalda para retroceder; si no la tiene, se queda quieto.
+        const float RetreatCheckDistance = 1.5f;
+        // Separación entre enemigos: radio en el que se apartan y fuerza del empuje respecto a su velocidad.
+        const float SeparationRadius = 1.2f;
+        const float SeparationWeight = 0.6f;
+
+        static readonly List<Collider2D> nearby = new();
 
         [Tooltip("A quién persigue. Si está vacío, busca el objeto con la etiqueta Player.")]
         [SerializeField] Transform target;
@@ -74,6 +87,8 @@ namespace Primordia.Enemies
         float stunnedUntil;
         float blindUntil;
         float fireAt;
+        float bodyRadius;
+        ContactFilter2D separationFilter;
 
         void Awake()
         {
@@ -82,6 +97,10 @@ namespace Primordia.Enemies
             health = GetComponent<Health>();
             rb = GetComponent<Rigidbody2D>();
             weapon = GetComponent<Weapon>();
+
+            var body = GetComponent<Collider2D>();
+            bodyRadius = body != null ? Mathf.Min(body.bounds.extents.x, body.bounds.extents.y) : 0.45f;
+            separationFilter = new ContactFilter2D { useTriggers = false, useLayerMask = true, layerMask = LayerMask.GetMask(CombatLayers.Enemy) };
         }
 
         void Start()
@@ -161,30 +180,83 @@ namespace Primordia.Enemies
             }
 
             Vector2 direction = distance > 0.0001f ? toTarget / distance : Vector2.zero;
+            Vector2 targetPosition = target.position;
+            float speed = data.MoveSpeed;
 
             if (data.Behaviour == EnemyBehaviour.Chaser)
             {
                 Current = State.Chase;
-                desiredVelocity = direction * data.MoveSpeed;
+                desiredVelocity = Steer(PathTo(targetPosition) * speed, speed);
+                return;
+            }
+
+            // Sin línea de visión no dispara: lo busca por el camino hasta volver a verlo.
+            if (!CanSee(targetPosition))
+            {
+                IsAiming = false;
+                Current = State.Chase;
+                desiredVelocity = Steer(PathTo(targetPosition) * speed, speed);
                 return;
             }
 
             if (distance > data.PreferredDistance + DistanceTolerance)
             {
                 Current = State.Chase;
-                desiredVelocity = direction * data.MoveSpeed;
+                desiredVelocity = Steer(PathTo(targetPosition) * speed, speed);
             }
-            else if (distance < data.PreferredDistance - DistanceTolerance)
+            else if (distance < data.PreferredDistance - DistanceTolerance && HasRoomBehind(-direction))
             {
                 Current = State.Retreat;
-                desiredVelocity = -direction * data.MoveSpeed;
+                desiredVelocity = Steer(-direction * speed, speed);
             }
             else
             {
                 Current = State.Hold;
+                desiredVelocity = Steer(Vector2.zero, speed);
             }
 
             UpdateFiring(toTarget, distance);
+        }
+
+        /// <summary>Dirección hacia ese punto rodeando paredes y columnas (recta si no hay rejilla del piso).</summary>
+        Vector2 PathTo(Vector2 point)
+        {
+            var grid = NavigationGrid.Current;
+            return grid == null ? (point - rb.position).normalized : grid.DirectionTo(rb.position, point, bodyRadius * 0.9f);
+        }
+
+        /// <summary>True si no hay pared entre el enemigo y ese punto (siempre, si no hay rejilla del piso).</summary>
+        bool CanSee(Vector2 point)
+        {
+            var grid = NavigationGrid.Current;
+            return grid == null || grid.HasLineOfSight(rb.position, point, SightRadius);
+        }
+
+        /// <summary>True si puede retroceder en esa dirección sin chocar enseguida con una pared.</summary>
+        bool HasRoomBehind(Vector2 away)
+        {
+            var grid = NavigationGrid.Current;
+            return grid == null || grid.HasLineOfSight(rb.position, rb.position + away * RetreatCheckDistance, bodyRadius * 0.9f);
+        }
+
+        /// <summary>Suma a la velocidad deseada un empuje para apartarse de los enemigos cercanos, sin pasar de la velocidad.</summary>
+        Vector2 Steer(Vector2 velocity, float speed)
+        {
+            nearby.Clear();
+            Physics2D.OverlapCircle(rb.position, SeparationRadius, separationFilter, nearby);
+
+            var push = Vector2.zero;
+            foreach (var other in nearby)
+            {
+                if (other.attachedRigidbody == rb)
+                    continue;
+                var away = rb.position - (Vector2)other.transform.position;
+                float d = away.magnitude;
+                if (d > 0.001f)
+                    push += away / d * (1f - d / SeparationRadius);
+            }
+
+            return Vector2.ClampMagnitude(velocity + Vector2.ClampMagnitude(push, 1f) * speed * SeparationWeight, speed);
         }
 
         void UpdateFiring(Vector2 toTarget, float distance)

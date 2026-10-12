@@ -175,6 +175,69 @@ namespace Primordia.Tests
             }
         }
 
+        [Test]
+        public void Catalog_HasNoImpossibleCells_AndAlignedDoors()
+        {
+            foreach (var (name, layout) in RoomLayouts.All)
+            {
+                var template = ScriptableObject.CreateInstance<RoomTemplate>();
+                try
+                {
+                    template.SetLayout(layout);
+                    var problems = template.Validate();
+                    Assert.IsEmpty(problems, $"{name}:\n{string.Join("\n", problems)}");
+
+                    foreach (var direction in new[] { Vector2Int.up, Vector2Int.down, Vector2Int.left, Vector2Int.right })
+                        Assert.AreEqual(2, template.DoorCells(direction).Count, $"{name} debe tener puerta hacia {direction}.");
+                }
+                finally
+                {
+                    Object.DestroyImmediate(template);
+                }
+            }
+        }
+
+        [TestCase(28, 16, 26, 12)]
+        [TestCase(22, 15, 20, 11)]
+        public void Rectangle_HasThreeWallRowsOnTop(int width, int height, int floorWidth, int floorHeight)
+        {
+            var template = ScriptableObject.CreateInstance<RoomTemplate>();
+            try
+            {
+                template.SetLayout(RoomLayouts.Rectangle(width, height));
+
+                Assert.AreEqual(new RectInt(1, 1, floorWidth, floorHeight), template.FloorBounds());
+                Assert.AreEqual(new Vector2Int(width / 2, 1 + floorHeight / 2), template.Anchor,
+                    "El anclaje queda en medio de las puertas, que están centradas.");
+            }
+            finally
+            {
+                Object.DestroyImmediate(template);
+            }
+        }
+
+        [Test]
+        public void Validate_ReportsMisalignedDoors()
+        {
+            var template = ScriptableObject.CreateInstance<RoomTemplate>();
+            try
+            {
+                template.SetLayout(
+                    "#^^####\n" +
+                    "#######\n" +
+                    "#######\n" +
+                    "#.....#\n" +
+                    "#.....#\n" +
+                    "####vv#\n");
+
+                Assert.IsTrue(template.Validate().Exists(p => p.Contains("arriba y abajo")));
+            }
+            finally
+            {
+                Object.DestroyImmediate(template);
+            }
+        }
+
         [UnityTest]
         public IEnumerator Door_BlocksAtOnce_AndAnimatesItsMembrane()
         {

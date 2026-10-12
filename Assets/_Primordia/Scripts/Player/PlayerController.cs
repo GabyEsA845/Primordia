@@ -32,6 +32,9 @@ namespace Primordia.Player
 
         public Vector2 MoveInput { get; private set; }
         public Vector2 AimDirection { get; private set; } = Vector2.right;
+
+        /// <summary>Del jugador al cursor, en unidades (sin normalizar). Lo usa la cámara para adelantarse.</summary>
+        public Vector2 AimOffset { get; private set; } = Vector2.right;
         public bool IsDodging { get; private set; }
         public Vector2 DodgeDirection { get; private set; }
         public bool CanDodge => CanAct && !IsDodging && Time.time >= nextDodgeTime;
@@ -154,7 +157,10 @@ namespace Primordia.Player
         {
             MoveInput = Vector2.ClampMagnitude(move, 1f);
             if (aim.sqrMagnitude > 0.0001f)
+            {
                 AimDirection = aim.normalized;
+                AimOffset = aim;
+            }
         }
 
         void ReadInput()
@@ -175,7 +181,10 @@ namespace Primordia.Player
 
             // Con el cursor justo encima del jugador se conserva la última dirección.
             if (toCursor.sqrMagnitude > 0.0001f)
+            {
                 AimDirection = toCursor.normalized;
+                AimOffset = toCursor;
+            }
         }
 
         void UpdateAimPivot()

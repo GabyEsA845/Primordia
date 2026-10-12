@@ -33,6 +33,25 @@ namespace Primordia.Tests
         }
 
         [Test]
+        public void CameraLookAhead_MovesPartOfTheWayToTheCursor_UpToAMaximum()
+        {
+            var near = CameraLookAhead.Target(Vector3.zero, new Vector2(4f, 0f), fraction: 0.25f, maxDistance: 3f);
+            var far = CameraLookAhead.Target(Vector3.zero, new Vector2(0f, 40f), fraction: 0.25f, maxDistance: 3f);
+
+            Assert.AreEqual(new Vector3(1f, 0f, 0f), near);
+            Assert.AreEqual(new Vector3(0f, 3f, 0f), far);
+        }
+
+        [Test]
+        public void SetInput_RemembersTheOffsetToTheCursor()
+        {
+            player.SetInput(Vector2.zero, new Vector2(3f, 4f));
+
+            Assert.AreEqual(new Vector2(3f, 4f), player.AimOffset);
+            Assert.AreEqual(1f, player.AimDirection.magnitude, 0.0001f);
+        }
+
+        [Test]
         public void ChooseDodgeDirection_WhileMoving_UsesMovement()
         {
             var direction = PlayerController.ChooseDodgeDirection(new Vector2(0f, 1f), Vector2.right);

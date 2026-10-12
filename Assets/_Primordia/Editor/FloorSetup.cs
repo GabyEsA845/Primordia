@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using Primordia.Enemies;
 using Primordia.Mutations;
+using Primordia.Player;
 using Primordia.Rooms;
 using Unity.Cinemachine;
 using UnityEditor;
@@ -17,20 +17,17 @@ namespace Primordia.Editor
     /// <summary>
     /// Construye un piso: salas hechas con plantillas de texto (<see cref="RoomTemplate"/>) en una rejilla,
     /// unidas por pasillos, con puertas, enemigos y una salida en la última sala. Todo el piso se pinta en
-    /// un único Tilemap con el arte del escenario (<see cref="RoomTheme"/>), y la cámara queda limitada a las
-    /// salas y pasillos: una sala que cabe en pantalla se ve entera y la cámara se desliza por los pasillos.
+    /// un único Tilemap con el arte del escenario (<see cref="RoomTheme"/>). La cámara sigue al jugador,
+    /// adelantada hacia el cursor (<see cref="CameraLookAhead"/>).
     /// </summary>
     public static class FloorSetup
     {
         const string TestScenePath = "Assets/_Primordia/Scenes/Test_Floor.unity";
         const string TemplatesFolder = "Assets/_Primordia/Data/Rooms";
-        const string NormalTemplatePath = TemplatesFolder + "/Room_Normal.asset";
         internal const string SoupThemePath = "Assets/_Primordia/Art/Environment/Soup/Theme_Soup.asset";
         internal const string BossThemePath = "Assets/_Primordia/Art/Environment/Boss/Theme_Boss.asset";
 
-        // Sala normal: 28×16 tiles con las paredes (suelo de 26×12), cabe entera en la vista de 30×16,9.
-        const int NormalWidth = 28;
-        const int NormalHeight = 16;
+        // Pasillo más corto entre dos salas vecinas; si una sala es más pequeña que su celda, el pasillo crece.
         const int CorridorLength = 4;
 
         // Sin decoración tan cerca de una puerta, para que no tape el paso.
@@ -41,21 +38,26 @@ namespace Primordia.Editor
 
         static readonly Color ExitColor = new(0.3f, 0.95f, 0.8f);
 
-        /// <summary>Una sala del piso: su celda en la rejilla, su tema y sus enemigos (prefab y posición relativa al centro).</summary>
+        /// <summary>
+        /// Una sala del piso: su celda en la rejilla, su forma (<see cref="RoomLayouts"/>), su tema y sus enemigos
+        /// (prefab y posición relativa al centro del suelo).
+        /// </summary>
         readonly struct RoomSpec
         {
             public readonly string Name;
             public readonly Vector2Int Cell;
+            public readonly string Template;
             public readonly int Theme;
             public readonly (string prefab, Vector2 position)[] Enemies;
 
             /// <summary>Al limpiarla, ofrece elegir 1 de 3 mutaciones.</summary>
             public readonly bool Reward;
 
-            public RoomSpec(string name, Vector2Int cell, bool reward, int theme, params (string, Vector2)[] enemies)
+            public RoomSpec(string name, Vector2Int cell, string template, bool reward, int theme, params (string, Vector2)[] enemies)
             {
                 Name = name;
                 Cell = cell;
+                Template = template;
                 Reward = reward;
                 Theme = theme;
                 Enemies = enemies;
@@ -108,54 +110,31 @@ namespace Primordia.Editor
             CreateTemplates();
         }
 
+        /// <summary>Un asset por forma del catálogo. No sobrescribe los que ya existen, que se pueden retocar a mano.</summary>
         static void CreateTemplates()
         {
-            if (AssetDatabase.LoadAssetAtPath<RoomTemplate>(NormalTemplatePath) != null)
-                return;
-
             Directory.CreateDirectory(TemplatesFolder);
-            var template = ScriptableObject.CreateInstance<RoomTemplate>();
-            template.SetLayout(RectangleLayout(NormalWidth, NormalHeight));
-            AssetDatabase.CreateAsset(template, NormalTemplatePath);
+            foreach (var (name, layout) in RoomLayouts.All)
+            {
+                string path = TemplatePath(name);
+                if (AssetDatabase.LoadAssetAtPath<RoomTemplate>(path) != null)
+                    continue;
+
+                var template = ScriptableObject.CreateInstance<RoomTemplate>();
+                template.SetLayout(layout);
+                AssetDatabase.CreateAsset(template, path);
+            }
             AssetDatabase.SaveAssets();
+
+            foreach (var name in RoomLayouts.All.Keys)
+            {
+                var problems = AssetDatabase.LoadAssetAtPath<RoomTemplate>(TemplatePath(name)).Validate();
+                if (problems.Count > 0)
+                    Debug.LogWarning($"FloorSetup: la plantilla {name} tiene problemas:\n{string.Join("\n", problems)}");
+            }
         }
 
-        /// <summary>
-        /// Sala rectangular: pared de 3 filas arriba (tapa y cara) y de 1 en los demás lados,
-        /// con huecos de 2 tiles centrados en cada lado.
-        /// </summary>
-        internal static string RectangleLayout(int width, int height)
-        {
-            // El suelo va de la fila 1 a la height - 4 (arriba hay 3 filas de pared).
-            int doorX = width / 2 - 1;
-            int doorY = 1 + (height - 4 - 2) / 2;
-            var text = new StringBuilder();
-            for (int row = 0; row < height; row++)
-            {
-                int y = height - 1 - row;
-                for (int x = 0; x < width; x++)
-                {
-                    bool doorColumn = x == doorX || x == doorX + 1;
-                    bool doorRow = y == doorY || y == doorY + 1;
-                    char c;
-                    if (row == 0)
-                        c = doorColumn ? '^' : '#';
-                    else if (row < 3)
-                        c = '#';
-                    else if (y == 0)
-                        c = doorColumn ? 'v' : '#';
-                    else if (x == 0)
-                        c = doorRow ? '<' : '#';
-                    else if (x == width - 1)
-                        c = doorRow ? '>' : '#';
-                    else
-                        c = '.';
-                    text.Append(c);
-                }
-                text.Append('\n');
-            }
-            return text.ToString();
-        }
+        static string TemplatePath(string name) => $"{TemplatesFolder}/{name}.asset";
 
         static void CreateTestScene(GameObject cameraRig, GameObject gameManager, GameObject playerPrefab)
         {
@@ -181,7 +160,6 @@ namespace Primordia.Editor
                 return;
             }
 
-            var template = AssetDatabase.LoadAssetAtPath<RoomTemplate>(NormalTemplatePath);
             var prefabs = new Dictionary<string, Enemy>
             {
                 ["Chaser"] = EnemySetup.LoadPrefab("Enemy_Chaser"),
@@ -190,34 +168,35 @@ namespace Primordia.Editor
             };
 
             // Recorrido: Inicio → derecha → arriba → derecha → derecha → derecha (jefe y salida).
-            // Posiciones relativas al centro del suelo, que mide 26×12.
+            // Posiciones relativas al centro del suelo de cada sala.
             var specs = new[]
             {
-                new RoomSpec("Room_0_Start", new Vector2Int(0, 0), reward: false, SoupTheme),
-                new RoomSpec("Room_1", new Vector2Int(1, 0), reward: false, SoupTheme,
-                    ("Chaser", new Vector2(-6f, 3f)), ("Chaser", new Vector2(6f, 3f)), ("Chaser", new Vector2(0f, -3.5f))),
-                new RoomSpec("Room_2", new Vector2Int(1, 1), reward: true, SoupTheme,
+                // Pequeña (suelo 20×11).
+                new RoomSpec("Room_0_Start", new Vector2Int(0, 0), RoomLayouts.Small, reward: false, SoupTheme),
+                // Cruz (suelo de 28×18 en total): un perseguidor en cada brazo.
+                new RoomSpec("Room_1", new Vector2Int(1, 0), RoomLayouts.Cross, reward: false, SoupTheme,
+                    ("Chaser", new Vector2(-9f, 0.5f)), ("Chaser", new Vector2(9f, 0.5f)), ("Chaser", new Vector2(0f, 6f))),
+                // Normal con dos columnas (suelo 26×12) para cubrirse de los tiradores.
+                new RoomSpec("Room_2", new Vector2Int(1, 1), RoomLayouts.Pillars, reward: true, SoupTheme,
                     ("Shooter", new Vector2(-9f, 3.5f)), ("Shooter", new Vector2(9f, 3.5f)), ("Chaser", new Vector2(0f, 2f))),
-                new RoomSpec("Room_3", new Vector2Int(2, 1), reward: false, SoupTheme,
-                    ("Chaser", new Vector2(-4f, 3.5f)), ("Chaser", new Vector2(4f, -3.5f)),
-                    ("Shooter", new Vector2(9f, 3.5f)), ("Shooter", new Vector2(9f, -3.5f))),
-                new RoomSpec("Room_4", new Vector2Int(3, 1), reward: true, SoupTheme,
-                    ("Chaser", new Vector2(-5f, 4f)), ("Chaser", new Vector2(-5f, -4f)), ("Chaser", new Vector2(0f, 4f)),
-                    ("Shooter", new Vector2(8f, 3.5f)), ("Shooter", new Vector2(8f, -3.5f))),
-                new RoomSpec("Room_5_Boss", new Vector2Int(4, 1), reward: false, BossTheme,
+                // L (banda de 26×8 abajo y brazo de 12×8 arriba a la izquierda).
+                new RoomSpec("Room_3", new Vector2Int(2, 1), RoomLayouts.LShape, reward: false, SoupTheme,
+                    ("Chaser", new Vector2(-3f, 2f)), ("Chaser", new Vector2(4f, -4f)),
+                    ("Shooter", new Vector2(-8f, 6f)), ("Shooter", new Vector2(10f, -6f))),
+                // Grande (suelo 38×20): más que la pantalla; la cámara sigue al jugador.
+                new RoomSpec("Room_4", new Vector2Int(3, 1), RoomLayouts.Large, reward: true, SoupTheme,
+                    ("Chaser", new Vector2(-8f, 6f)), ("Chaser", new Vector2(-8f, -6f)), ("Chaser", new Vector2(0f, 7f)),
+                    ("Shooter", new Vector2(12f, 5f)), ("Shooter", new Vector2(12f, -5f))),
+                // El jefe, en una sala normal que cabe entera en pantalla.
+                new RoomSpec("Room_5_Boss", new Vector2Int(4, 1), RoomLayouts.Normal, reward: false, BossTheme,
                     ("Boss", new Vector2(0f, 2.5f)))
             };
 
-            var cellSize = new Vector2Int(template.Width + CorridorLength, template.Height + CorridorLength);
-            var placed = specs.Select(spec => new PlacedRoom
-            {
-                Spec = spec,
-                Template = template,
-                Origin = new Vector2Int(spec.Cell.x * cellSize.x, spec.Cell.y * cellSize.y)
-            }).ToList();
+            var placed = PlaceRooms(specs);
+            if (placed == null)
+                return;
 
             var map = new FloorMap(MapBounds(placed));
-            var corridors = new List<RectInt>();
             var noDecoration = new HashSet<Vector2Int>();
 
             for (int i = 0; i < placed.Count; i++)
@@ -227,7 +206,7 @@ namespace Primordia.Editor
                 var direction = placed[i + 1].Spec.Cell - placed[i].Spec.Cell;
                 OpenDoor(map, placed[i], direction);
                 OpenDoor(map, placed[i + 1], -direction);
-                corridors.Add(DigCorridor(map, placed[i], placed[i + 1], direction, noDecoration));
+                DigCorridor(map, placed[i], placed[i + 1], direction, noDecoration);
             }
 
             foreach (var room in placed)
@@ -259,20 +238,74 @@ namespace Primordia.Editor
 
             BuildExit(rooms[^1], square);
 
-            var cameraBounds = BuildCameraBounds(floor, placed, corridors);
-            var vcam = rig.GetComponentInChildren<CinemachineCamera>();
-            ConfineCamera(vcam, cameraBounds);
-
             var player = (GameObject)PrefabUtility.InstantiatePrefab(playerPrefab, scene);
             player.transform.position = placed[0].FloorCenter;
-            vcam.Follow = player.transform;
+
+            // La cámara sigue a un punto entre el jugador y el cursor.
+            var cameraTarget = new GameObject("CameraTarget").AddComponent<CameraLookAhead>();
+            cameraTarget.Configure(player.GetComponent<PlayerController>());
+            var vcam = rig.GetComponentInChildren<CinemachineCamera>();
+            vcam.Follow = cameraTarget.transform;
             vcam.transform.position = player.transform.position + Vector3.back * 10f;
+        }
+
+        /// <summary>
+        /// Coloca cada sala en su celda de la rejilla alineando su anclaje (el centro de sus puertas) con el de
+        /// la celda: así las puertas de salas vecinas quedan enfrentadas aunque tengan tamaños distintos, y el
+        /// pasillo entre ellas es recto. Cada columna mide lo que su sala más ancha y cada fila lo que su sala
+        /// más alta, más el pasillo mínimo, para que los pasillos no se alarguen de más.
+        /// </summary>
+        static List<PlacedRoom> PlaceRooms(RoomSpec[] specs)
+        {
+            var templates = new Dictionary<string, RoomTemplate>();
+            foreach (var name in specs.Select(spec => spec.Template).Distinct())
+            {
+                var template = AssetDatabase.LoadAssetAtPath<RoomTemplate>(TemplatePath(name));
+                if (template == null)
+                {
+                    Debug.LogError($"FloorSetup: falta la plantilla {name}. Ejecuta Primordia > Rooms > Crear piso de prueba o regenera la escena Game.");
+                    return null;
+                }
+                templates[name] = template;
+            }
+
+            var anchorX = Anchors(specs, spec => spec.Cell.x, spec => templates[spec.Template].Anchor.x,
+                spec => templates[spec.Template].Width);
+            var anchorY = Anchors(specs, spec => spec.Cell.y, spec => templates[spec.Template].Anchor.y,
+                spec => templates[spec.Template].Height);
+
+            return specs.Select(spec =>
+            {
+                var template = templates[spec.Template];
+                var anchor = new Vector2Int(anchorX[spec.Cell.x], anchorY[spec.Cell.y]);
+                return new PlacedRoom { Spec = spec, Template = template, Origin = anchor - template.Anchor };
+            }).ToList();
+        }
+
+        /// <summary>
+        /// Posición del anclaje de cada columna (o fila) de la rejilla: tras la anterior, deja sitio para lo que
+        /// sobresale de sus salas antes y después del anclaje, y el pasillo mínimo entre medias.
+        /// </summary>
+        static Dictionary<int, int> Anchors(RoomSpec[] specs, System.Func<RoomSpec, int> index,
+            System.Func<RoomSpec, int> anchor, System.Func<RoomSpec, int> size)
+        {
+            var result = new Dictionary<int, int>();
+            int next = 0;
+            foreach (var group in specs.GroupBy(index).OrderBy(g => g.Key))
+            {
+                int before = group.Max(anchor);
+                int after = group.Max(spec => size(spec) - anchor(spec));
+                result[group.Key] = next + before;
+                next += before + after + CorridorLength;
+            }
+            return result;
         }
 
         static RectInt MapBounds(List<PlacedRoom> rooms)
         {
-            // Margen de pared alrededor, para que no se vea el vacío al borde del piso.
-            const int margin = 8;
+            // Relleno de pared alrededor: media vista (15×8,5) más el adelanto de la cámara (3), con holgura,
+            // para que nunca se vea el vacío al borde del piso.
+            const int margin = 20;
             int minX = rooms.Min(r => r.Rect.xMin) - margin, minY = rooms.Min(r => r.Rect.yMin) - margin;
             int maxX = rooms.Max(r => r.Rect.xMax) + margin, maxY = rooms.Max(r => r.Rect.yMax) + margin;
             return new RectInt(minX, minY, maxX - minX, maxY - minY);
@@ -326,12 +359,11 @@ namespace Primordia.Editor
             room.ArchCells[direction] = arch;
         }
 
-        /// <summary>Pasillo recto de 2 tiles de ancho entre las puertas de dos salas vecinas. Devuelve su suelo.</summary>
-        static RectInt DigCorridor(FloorMap map, PlacedRoom from, PlacedRoom to, Vector2Int direction, HashSet<Vector2Int> corridorCells)
+        /// <summary>Pasillo recto de 2 tiles de ancho entre las puertas de dos salas vecinas.</summary>
+        static void DigCorridor(FloorMap map, PlacedRoom from, PlacedRoom to, Vector2Int direction, HashSet<Vector2Int> corridorCells)
         {
             var start = from.DoorCells[direction];
             var end = to.DoorCells[-direction];
-            int min = int.MaxValue, max = int.MinValue;
 
             foreach (var cell in start)
             {
@@ -341,17 +373,8 @@ namespace Primordia.Editor
                     map.Set(step, FloorMap.Kind.Floor);
                     map.SetTheme(step, SoupTheme);
                     corridorCells.Add(step);
-                    int along = direction.x != 0 ? step.x : step.y;
-                    min = Mathf.Min(min, along);
-                    max = Mathf.Max(max, along);
                 }
             }
-
-            int acrossMin = start.Min(c => direction.x != 0 ? c.y : c.x);
-            int acrossMax = start.Max(c => direction.x != 0 ? c.y : c.x);
-            return direction.x != 0
-                ? new RectInt(min, acrossMin, max - min + 1, acrossMax - acrossMin + 1)
-                : new RectInt(acrossMin, min, acrossMax - acrossMin + 1, max - min + 1);
         }
 
         static void PaintLevel(Transform parent, FloorMap map, RoomTheme[] themes, HashSet<Vector2Int> noDecoration)
@@ -363,12 +386,13 @@ namespace Primordia.Editor
             var decoration = CreateTilemap(grid.transform, "Decoration", -15);
             var walls = CreateTilemap(grid.transform, "Walls", -10);
 
-            // Una sola forma de colisión para todas las paredes.
+            // Una sola forma de colisión para todas las paredes. En contornos y no en polígonos: las salas son
+            // huecos dentro de la pared, y en modo polígonos esos huecos quedarían rellenos.
             var body = walls.gameObject.AddComponent<Rigidbody2D>();
             body.bodyType = RigidbodyType2D.Static;
             var tilemapCollider = walls.gameObject.AddComponent<TilemapCollider2D>();
             tilemapCollider.compositeOperation = Collider2D.CompositeOperation.Merge;
-            walls.gameObject.AddComponent<CompositeCollider2D>().geometryType = CompositeCollider2D.GeometryType.Polygons;
+            walls.gameObject.AddComponent<CompositeCollider2D>().geometryType = CompositeCollider2D.GeometryType.Outlines;
 
             var missing = RoomPainter.Paint(map, themes, floor, decoration, walls, noDecoration);
             if (missing.Count > 0)
@@ -409,6 +433,10 @@ namespace Primordia.Editor
             {
                 var enemy = (GameObject)PrefabUtility.InstantiatePrefab(prefabs[prefabName].gameObject, enemiesRoot);
                 enemy.transform.position = center + position;
+
+                var cell = Vector2Int.FloorToInt(center + position) - placed.Origin;
+                if (placed.Template.Get(cell.x, cell.y) != RoomTemplate.Mark.Floor)
+                    Debug.LogWarning($"FloorSetup: {prefabName} de {placed.Spec.Name} queda fuera del suelo, en {position}.");
             }
 
             var room = roomObject.AddComponent<Room>();
@@ -463,54 +491,6 @@ namespace Primordia.Editor
 
         static string DirectionName(Vector2Int direction) =>
             direction == Vector2Int.up ? "Up" : direction == Vector2Int.down ? "Down" : direction == Vector2Int.left ? "Left" : "Right";
-
-        /// <summary>
-        /// Zona por la que puede moverse la cámara: cada sala entera (con paredes) y cada pasillo con sus paredes.
-        /// Si una sala cabe en la vista, la cámara se queda en su centro; en los pasillos se desliza.
-        /// </summary>
-        static Collider2D BuildCameraBounds(Transform parent, List<PlacedRoom> rooms, List<RectInt> corridors)
-        {
-            var boundsObject = new GameObject("CameraBounds") { layer = LayerMask.NameToLayer("Ignore Raycast") };
-            boundsObject.transform.SetParent(parent, false);
-            var body = boundsObject.AddComponent<Rigidbody2D>();
-            body.bodyType = RigidbodyType2D.Static;
-
-            var rects = rooms.Select(room => room.Rect).ToList();
-            foreach (var corridor in corridors)
-            {
-                // El pasillo con su pared: 3 filas encima (tapa y cara) y 1 a cada lado.
-                bool horizontal = corridor.height == 2;
-                rects.Add(horizontal
-                    ? new RectInt(corridor.xMin, corridor.yMin - 1, corridor.width, corridor.height + 4)
-                    : new RectInt(corridor.xMin - 1, corridor.yMin, corridor.width + 2, corridor.height));
-            }
-
-            foreach (var rect in rects)
-            {
-                var box = boundsObject.AddComponent<BoxCollider2D>();
-                box.isTrigger = true;
-                box.offset = rect.center;
-                box.size = rect.size;
-                box.compositeOperation = Collider2D.CompositeOperation.Merge;
-            }
-
-            var composite = boundsObject.AddComponent<CompositeCollider2D>();
-            composite.geometryType = CompositeCollider2D.GeometryType.Polygons;
-            composite.isTrigger = true;
-            composite.GenerateGeometry();
-            return composite;
-        }
-
-        static void ConfineCamera(CinemachineCamera vcam, Collider2D bounds)
-        {
-            if (!vcam.TryGetComponent<CinemachineConfiner2D>(out var confiner))
-                confiner = vcam.gameObject.AddComponent<CinemachineConfiner2D>();
-
-            confiner.BoundingShape2D = bounds;
-            confiner.Damping = 0.3f;
-            // La vista es más grande que las salas y que el ancho de los pasillos: hay que calcular ese caso.
-            confiner.OversizeWindow = new CinemachineConfiner2D.OversizeWindowSettings { Enabled = true };
-        }
 
         static void BuildExit(Room room, Sprite square)
         {

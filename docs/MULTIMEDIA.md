@@ -92,7 +92,7 @@ Los recursos nuevos (hojas de sprites, GIF de revisión, scripts que los generan
 |---------|-------------|-----------|--------|
 | Tileset de suelo | Charco microscópico, tonos verdes; variantes y sombra bajo la pared | M | Listo |
 | Tileset de paredes | Bordes de las salas rectangulares (tapa, cara en 2 filas, bordes y esquinas) | M | Listo |
-| Paredes para salas con formas | `Wall_FaceUpper/Lower_EndLeft/Right` y `Wall_OuterTopLeft/Right`, para entrantes y columnas (encargo en `docs/multimedia-temp/environment-shapes/PROMPT.md`) | M | Pendiente |
+| Paredes para salas con formas | `Wall_FaceUpper/Lower_EndLeft/Right` y `Wall_OuterTopLeft/Right`, para entrantes y columnas (`docs/multimedia-temp/environment-shapes/`) | M | Listo |
 | Puerta abierta / cerrada | Membrana animada de 5 cuadros en los 4 lados y arco fijo arriba | M | Listo |
 | Decoración | Algas y burbujas animadas, diatomeas y motas, repartidas al azar (5 % del suelo) | D | Listo |
 | Sala del jefe | Variante `Boss` del tileset, con restos infectados | D | Listo |

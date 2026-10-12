@@ -19,12 +19,15 @@ namespace Primordia.Editor
     {
         const string ArtFolder = "Assets/_Primordia/Art/UI";
         const string PrefabsFolder = "Assets/_Primordia/Prefabs/UI";
-        const string GameUIPath = PrefabsFolder + "/GameUI.prefab";
-        const string MainMenuUIPath = PrefabsFolder + "/MainMenuUI.prefab";
+        internal const string GameUIPath = PrefabsFolder + "/GameUI.prefab";
+        internal const string MainMenuUIPath = PrefabsFolder + "/MainMenuUI.prefab";
         const string ScenesFolder = "Assets/_Primordia/Scenes";
 
         // La interfaz se diseña sobre la misma resolución que el juego.
         static readonly Vector2 ReferenceResolution = new(480f, 270f);
+
+        // Igual que los sprites: así un píxel del arte es un píxel de la interfaz (y los bordes 9-slice no se agrandan).
+        internal const float ReferencePixelsPerUnit = 16f;
 
         static readonly Color OverlayColor = new(0f, 0f, 0f, 0.75f);
         static readonly Color MenuBackground = new(0.06f, 0.1f, 0.08f, 1f);
@@ -106,6 +109,7 @@ namespace Primordia.Editor
             EnsureMutationList();
             EnsureSeedLabel();
             EnsureBossBar();
+            EnsureMutationIcons();
             CreateMainMenuUIPrefab();
             AssetDatabase.SaveAssets();
         }
@@ -243,6 +247,7 @@ namespace Primordia.Editor
             scaler.referenceResolution = ReferenceResolution;
             scaler.screenMatchMode = CanvasScaler.ScreenMatchMode.MatchWidthOrHeight;
             scaler.matchWidthOrHeight = 1f;
+            scaler.referencePixelsPerUnit = ReferencePixelsPerUnit;
 
             return canvasObject;
         }
@@ -528,7 +533,9 @@ namespace Primordia.Editor
                 descriptions[i].horizontalOverflow = HorizontalWrapMode.Wrap;
             }
 
-            list.gameObject.AddComponent<MutationListUI>().Configure(names, descriptions);
+            var listUI = list.gameObject.AddComponent<MutationListUI>();
+            listUI.Configure(names, descriptions);
+            AddListIcons(listUI);
         }
 
         static MutationCard CreateMutationCard(Transform parent)
@@ -563,7 +570,97 @@ namespace Primordia.Editor
 
             var mutationCard = card.gameObject.AddComponent<MutationCard>();
             mutationCard.Configure(strip, title, details, description, replaces);
+            AddCardIcons(mutationCard);
             return mutationCard;
+        }
+
+        // ---------- Iconos de mutación ----------
+
+        /// <summary>Añade los huecos de los iconos a las tarjetas y a la lista de la pausa del prefab GameUI si no los tienen.</summary>
+        internal static void EnsureMutationIcons()
+        {
+            var root = PrefabUtility.LoadPrefabContents(GameUIPath);
+            try
+            {
+                bool changed = false;
+                foreach (var card in root.GetComponentsInChildren<MutationCard>(true))
+                    changed |= AddCardIcons(card);
+                foreach (var list in root.GetComponentsInChildren<MutationListUI>(true))
+                    changed |= AddListIcons(list);
+
+                if (changed)
+                    PrefabUtility.SaveAsPrefabAsset(root, GameUIPath);
+            }
+            finally
+            {
+                PrefabUtility.UnloadPrefabContents(root);
+            }
+        }
+
+        /// <summary>
+        /// Icono de 32×32 bajo la franja de color, y el icono de linaje a la izquierda de "Ranura · Linaje".
+        /// Devuelve false si la tarjeta ya los tenía.
+        /// </summary>
+        static bool AddCardIcons(MutationCard card)
+        {
+            if (card.transform.Find("Icon") != null)
+                return false;
+
+            var icon = CreateIcon("Icon", card.transform, 32f);
+            icon.preserveAspect = true;
+            icon.transform.SetSiblingIndex(1);
+
+            var details = card.Details;
+            var row = CreateRow("Info", card.transform, details.transform.GetSiblingIndex(), TextAnchor.MiddleCenter);
+            var lineageIcon = CreateIcon("LineageIcon", row, 12f);
+            details.transform.SetParent(row, false);
+
+            card.ConfigureIcons(icon, lineageIcon);
+            return true;
+        }
+
+        /// <summary>Icono de 16×16 a la izquierda del nombre de cada ranura. Devuelve false si ya los tenía.</summary>
+        static bool AddListIcons(MutationListUI list)
+        {
+            var names = list.NameTexts;
+            if (names.Length == 0 || names[0] == null || names[0].transform.parent != list.transform)
+                return false;
+
+            var icons = new Image[names.Length];
+            for (int i = 0; i < names.Length; i++)
+            {
+                var row = CreateRow($"Slot{i}", list.transform, names[i].transform.GetSiblingIndex(), TextAnchor.MiddleLeft);
+                icons[i] = CreateIcon("Icon", row, 16f);
+                names[i].transform.SetParent(row, false);
+                names[i].gameObject.AddComponent<LayoutElement>().flexibleWidth = 1f;
+            }
+
+            list.ConfigureIcons(icons);
+            return true;
+        }
+
+        static RectTransform CreateRow(string name, Transform parent, int siblingIndex, TextAnchor alignment)
+        {
+            var row = CreateRect(name, parent);
+            row.SetSiblingIndex(siblingIndex);
+            var layout = row.gameObject.AddComponent<HorizontalLayoutGroup>();
+            layout.spacing = 3f;
+            layout.childAlignment = alignment;
+            layout.childControlWidth = layout.childControlHeight = true;
+            layout.childForceExpandWidth = layout.childForceExpandHeight = false;
+            return row;
+        }
+
+        /// <summary>Imagen cuadrada de ese tamaño en píxeles de la interfaz, vacía hasta que se le pone un sprite.</summary>
+        static Image CreateIcon(string name, Transform parent, float size)
+        {
+            var image = CreateRect(name, parent).gameObject.AddComponent<Image>();
+            image.enabled = false;
+            image.raycastTarget = false;
+            var element = image.gameObject.AddComponent<LayoutElement>();
+            element.preferredWidth = element.minWidth = size;
+            element.preferredHeight = element.minHeight = size;
+            return image;
         }
 
         static void SavePrefab(GameObject root, string path)

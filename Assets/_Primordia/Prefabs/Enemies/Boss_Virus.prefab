@@ -132,6 +132,7 @@ GameObject:
   - component: {fileID: 1183084727335379411}
   - component: {fileID: 6893796967039342331}
   - component: {fileID: 4785260781329424427}
+  - component: {fileID: 276029270050615252}
   m_Layer: 7
   m_Name: Boss_Virus
   m_TagString: Untagged
@@ -327,3 +328,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Primordia::Primordia.Enemies.BossAnimator
   animator: {fileID: 6574261747548198778}
+--- !u!114 &276029270050615252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5535523149205059272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4044d5b350aa4541b86970756bcf304, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Primordia::Primordia.Mutations.MutationDrop
+  pool: {fileID: 11400000, guid: 44d7ff0aa2725894b8aa5e92ff4b83a8, type: 2}
+  pickupPrefab: {fileID: 6509183854426299438, guid: 5eefc55d350cd944f9aa74a25824635e, type: 3}
+  count: 3
+  spacing: 2.5
+  height: 3

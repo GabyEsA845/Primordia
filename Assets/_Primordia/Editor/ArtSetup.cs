@@ -118,7 +118,7 @@ namespace Primordia.Editor
         };
 
         // Un clip por proyectil (Projectile_Spore.png → Spore). Todos miran a la derecha; Projectile los gira.
-        // Projectile_Mandibles ya no se usa: Mandíbulas muerde, con la hoja de BiteArt.
+        // Projectile_Mandibles ya no se usa: Mandíbulas muerde, y el mordisco se ve en su Boca (Mouth_Mandibles_Attack).
         static readonly Character ProjectilesArt = new()
         {
             Name = "Projectile",
@@ -132,18 +132,6 @@ namespace Primordia.Editor
                 ("Player", 10f, true), ("Stinger", 12f, true), ("Spore", 6f, true),
                 ("Enemy", 6f, true), ("BossSpiral", 10f, true), ("BossBurst", 6f, true),
             },
-        };
-
-        // Mordisco de Mandíbulas (Mandibles_Bite.png → Bite): sin bucle y con las duraciones del README del arte.
-        // Dura 0,35 s, lo mismo que el Lifetime de Attack_Mandibles, que es lo que se ve el efecto.
-        static readonly Character BiteArt = new()
-        {
-            Name = "Mandibles",
-            SourceFolder = ProjectilesSourceFolder,
-            ArtFolder = ProjectilesArtFolder,
-            ControllerPerClip = true,
-            FrameDurations = new Dictionary<string, float[]> { ["Bite"] = new[] { 0.06f, 0.06f, 0.05f, 0.09f, 0.09f } },
-            Timings = new[] { ("Bite", 0f, false) },
         };
 
         // Efectos sueltos (Impact_Player.png → Impact_Player). La onda dura 0,35 s: 6 cuadros a 6 / 0,35 fps;
@@ -374,48 +362,7 @@ namespace Primordia.Editor
             foreach (var (name, controller) in art.Controllers)
                 ApplyToProjectilePrefab($"{ProjectilesArt.SheetPrefix}{name}", controller, art.FirstSprites[name]);
 
-            var bite = Import(BiteArt);
-            if (bite != null)
-                CreateBiteEffect(bite.Controllers["Bite"], bite.FirstSprites["Bite"]);
-
             AssetDatabase.SaveAssets();
-        }
-
-        /// <summary>
-        /// Mandíbulas no dispara: su hoja es el efecto del mordisco, que aparece en la boca. Crea o actualiza
-        /// Effect_Bite y convierte el ataque de Mandíbulas en un golpe cuerpo a cuerpo que lo usa.
-        /// </summary>
-        static void CreateBiteEffect(AnimatorController controller, Sprite sprite)
-        {
-            string path = $"{ProjectilePrefabsFolder}/Effect_Bite.prefab";
-            bool exists = AssetDatabase.LoadAssetAtPath<GameObject>(path) != null;
-            var root = exists ? PrefabUtility.LoadPrefabContents(path) : new GameObject("Effect_Bite");
-            try
-            {
-                // 24 px = 1,5 unidades: colocado en la boca, cubre todo el alcance del mordisco.
-                root.transform.localScale = Vector3.one;
-
-                var renderer = GetOrAdd<SpriteRenderer>(root);
-                renderer.sprite = sprite;
-                renderer.sortingOrder = 12;
-
-                GetOrAdd<Animator>(root).runtimeAnimatorController = controller;
-                PrefabUtility.SaveAsPrefabAsset(root, path);
-            }
-            finally
-            {
-                if (exists)
-                    PrefabUtility.UnloadPrefabContents(root);
-                else
-                    Object.DestroyImmediate(root);
-            }
-
-            AssetDatabase.SaveAssets();
-            var effect = AssetDatabase.LoadAssetAtPath<GameObject>(path);
-            var attack = CombatSetup.LoadAttack("Attack_Mandibles");
-            if (attack == null)
-                Debug.LogWarning("ArtSetup: no existe Attack_Mandibles; créalo con Primordia > Mutations.");
-            MutationSetup.ConfigureMandiblesBite(attack, effect);
         }
 
         /// <summary>Copia, corta y anima las hojas del personaje. Devuelve null si no hay hojas.</summary>

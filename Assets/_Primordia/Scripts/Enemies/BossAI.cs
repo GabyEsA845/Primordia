@@ -152,6 +152,9 @@ namespace Primordia.Enemies
 
         internal void SetArenaCenter(Transform center) => arenaCenter = center;
 
+        /// <summary>Centro de su sala (o donde apareció, si no tiene): ahí deja caer su recompensa.</summary>
+        public Vector2 ArenaCenter => arenaCenter != null ? (Vector2)arenaCenter.position : home;
+
         void Update()
         {
             if (!CanAct() || Time.time < activeSince + startDelay)

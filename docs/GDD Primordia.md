@@ -178,14 +178,16 @@ Objetivo: que añadir una mutación, un enemigo o una sala nueva sea crear un ar
 | Exclusiones | Por ranuras del cuerpo |
 | Linajes | Depredador, Acorazado y Tóxico |
 | Alcance de la v1.0 | 1 piso muy pulido; los demás, en versiones siguientes |
-| Obtención de mutaciones | Con un solo piso, la mutación tras el jefe no se usaría. Al limpiar la 2.ª y la 4.ª sala de combate del camino, y cada sala lateral, aparece "elige 1 de 3": 3 mutaciones al azar, sin las equipadas, con botón Saltar |
+| Obtención de mutaciones | Al limpiar la 2.ª y la 4.ª sala de combate del camino, y cada sala lateral, aparece "elige 1 de 3": 3 mutaciones al azar, sin las equipadas, con botón Saltar. El jefe, al morir, deja 3 burbujas de mutación en el suelo (las únicas que caen al suelo): al coger una, las otras revientan. La salida se abre igual, así que es opcional |
 | Mutaciones de la v1.0 | Las 9 del borrador, con los valores de la tabla "Valores de las mutaciones" |
 | Sinergia de linajes | Cada mutación guarda su linaje; el bonus queda como deseable. Ojo: Tóxico no puede reunir 3 (dos de sus mutaciones son de Boca) |
 | Aspecto de las mutaciones | Cambio muy visible por capas, al estilo de *Everything is Crab*: la Piel sustituye al cuerpo entero y lo agranda (también su colisión); la Boca es un arma grande en el borde del cuerpo que gira hacia el cursor y anima cada ataque; las Extremidades se mueven con el cuerpo; el Órgano se ve dentro de la célula y se activa con la habilidad. Las piezas se ocultan al esquivar y al morir |
 | Mapa | Camino con giros del inicio al jefe, con 4 o 5 salas de combate y 1 o 2 salas laterales sin salida; enemigos por presupuesto que sube a lo largo del camino. Semilla visible en la pausa |
 | Salas | Formas en texto: pequeña 22×15, normal 28×16 (cabe en pantalla), grande 40×24, con columnas, en cruz y en L |
 | Mandíbulas | Mordisco cuerpo a cuerpo en arco delante de la boca, no un disparo |
-| Recarga del Órgano especial | Barra bajo el jugador que se llena durante la recarga y desaparece al estar lista |
+| Recarga del Órgano especial | Barra bajo el jugador que se llena durante la recarga, destella y desaparece al estar lista |
+| Biomasa | Se programa junto con la tienda (el arte ya existe) |
+| Cursor | Mira dibujada por el juego durante la partida; en la pausa y en la elección de mutación, cursor normal |
 | Jefe del piso 1 | Virus gigante con 2 fases (la segunda desde el 50 % de vida); vencerlo abre la salida y da la victoria |
 
 La evolución entre pisos será **fija**: célula en el piso 1, criatura marina en el 2 y anfibio en el 3.

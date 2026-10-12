@@ -30,6 +30,7 @@ Los recursos nuevos (hojas de sprites, GIF de revisión, scripts que los generan
 |---------|------------------|-----------------|
 | Jugador | `docs/multimedia-temp/player/` (`Player_<Acción>_<dirección>.png`, `Player_Hurt.png`, `Player_Death.png`) | Menú **Primordia > Art > Importar animaciones del jugador**: copia las hojas a `Art/Characters/Player/`, las corta (cuadros del alto de la hoja, pivote centrado), crea los clips y el Animator en `Animations/` y se los pone al prefab del jugador. Se puede repetir cada vez que cambie el arte. |
 | Enemigos y jefe | `docs/multimedia-temp/enemies/<Enemigo>/` (`Bacteria`, `Ameba`, `AmebaSmall`, `BossVirus`; hojas `<Enemigo>_<Animación>.png`) | Menú **Primordia > Art > Importar animaciones de enemigos y jefe**: igual que el jugador, en `Art/Characters/Enemies/<Enemigo>/`. Aplica cada uno a su prefab (`Enemy_Chaser`, `Enemy_Shooter`, `Enemy_Small`, `Boss_Virus`) con escala 1, y ajusta los tiempos de juego a las animaciones: aviso de disparo de la ameba, aviso de ráfaga e invocación del jefe, pausa de la transición a la fase 2, división al final de Split y tiempo de muerte. |
+| Proyectiles | `docs/multimedia-temp/projectiles/` (`Projectile_<Nombre>.png`, el mismo nombre que su prefab) | Menú **Primordia > Art > Importar animaciones de proyectiles**: copia las hojas a `Art/Projectiles/`, crea un clip y un controlador por proyectil (se reproduce solo al salir del pool) y los aplica a los prefabs de `Prefabs/Combat` con escala 1, conservando el radio de colisión. Las celdas no cuadradas se indican en `ArtSetup` (`Stinger`: 12×6). Mandíbulas no dispara: `Mandibles_Bite.png` crea `Prefabs/Combat/Effect_Bite` (escala 1, en la boca) y convierte el ataque en mordisco; `Projectile_Mandibles.png` ya no se importa. Las duraciones por cuadro se indican en `ArtSetup`. |
 
 `.png`, `.aseprite`, `.wav`, `.ogg`, `.mp3`, `.ttf` y `.otf` se guardan con Git LFS (ya configurado en `.gitattributes`).
 
@@ -50,6 +51,12 @@ Los recursos nuevos (hojas de sprites, GIF de revisión, scripts que los generan
 | Capa de mutación: Vejiga de tinta | | Activar | D | Pendiente |
 | Capa de mutación: Glándula de choque | | Activar | D | Pendiente |
 
+**Piezas de mutación** (encargo completo en `docs/multimedia-temp/mutations/README.md`):
+
+- **Boca** (Mandíbulas, Aguijón, Esporas): `Mouth_<Mutación>_Idle.png` y `_Attack.png`, celdas de 16×16 dibujadas mirando a la derecha. Se colocan en la boca (0,75 unidades del centro) y giran hacia el cursor; detrás de la célula cuando mira hacia arriba.
+- **Cuerpo** (Extremidades, Piel, Órgano): `Body_<Mutación>_side/down/up.png`, celdas de 20×20 con la célula centrada y 4 cuadros que siguen el reposo del jugador. Se ocultan al esquivar, recibir daño y morir. Órganos con `_Activate.png` opcional.
+- Orden de dibujo, de atrás hacia delante: Extremidades, célula, Órgano, Piel, Boca.
+
 ### Enemigos y jefe (piso 1)
 
 | Recurso | Descripción | Animaciones | Prioridad | Estado |
@@ -64,12 +71,12 @@ Los recursos nuevos (hojas de sprites, GIF de revisión, scripts que los generan
 
 | Recurso | Descripción | Prioridad | Estado |
 |---------|-------------|-----------|--------|
-| Proyectil base del jugador | Disparo sin mutación de Boca | M | Pendiente |
-| Proyectil: Mandíbulas | Corto y potente | M | Pendiente |
-| Proyectil: Aguijón | Envenena | M | Pendiente |
-| Proyectil: Espora | Lento, en abanico de 3 | M | Pendiente |
-| Proyectil enemigo | Lento, de color fuerte y fácil de leer | M | Pendiente |
-| Proyectil del jefe | Variante del enemigo para la espiral | M | Pendiente |
+| Proyectil base del jugador | Disparo sin mutación de Boca | M | Listo |
+| Mordisco: Mandíbulas | Efecto del mordisco cuerpo a cuerpo delante de la boca (`Effect_Bite`, hoja `Mandibles_Bite.png`: 5 cuadros de 24×24 que duran 60, 60, 50, 90 y 90 ms) | M | Listo |
+| Proyectil: Aguijón | Envenena | M | Listo |
+| Proyectil: Espora | Lento, en abanico de 3 | M | Listo |
+| Proyectil enemigo | Lento, de color fuerte y fácil de leer | M | Listo |
+| Proyectil del jefe | Mini virión para la espiral y orbe grande para la ráfaga | M | Listo |
 | Impacto | Al golpear a algo | M | Pendiente |
 | Muerte de enemigo | Estallido o burbujas | M | Pendiente |
 | Estela de esquiva | Rastro mientras el jugador es invulnerable | D | Pendiente |

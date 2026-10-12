@@ -214,7 +214,7 @@ namespace Primordia.Enemies
             }
 
             // Empieza a apuntar cuando a la recarga le queda lo que dura el aviso.
-            if (weapon.Attack.ProjectilePrefab != null && Time.time >= weapon.NextFireTime - fireWindup)
+            if (weapon.Attack.IsUsable && Time.time >= weapon.NextFireTime - fireWindup)
             {
                 IsAiming = true;
                 fireAt = Time.time + fireWindup;

@@ -182,5 +182,36 @@ namespace Primordia.Tests
 
             Assert.AreSame(first, ActiveProjectiles().Single());
         }
+
+        [UnityTest]
+        public IEnumerator Melee_HitsEveryEnemyInTheArc_AndNothingBehind()
+        {
+            attack.ConfigureMelee(range: 1.5f, arc: 180f, effect: null);
+            var front = CreateEnemyDummy(new Vector2(1f, 0.5f));
+            var side = CreateEnemyDummy(new Vector2(0.2f, -1.2f));
+            var behind = CreateEnemyDummy(new Vector2(-1f, 0f));
+            var far = CreateEnemyDummy(new Vector2(4f, 0f));
+            int reported = 0;
+            weapon.HitTarget += _ => reported++;
+            yield return new WaitForFixedUpdate();
+
+            Assert.IsTrue(weapon.TryFire(Vector2.right));
+
+            Assert.AreEqual(front.Max - 1, front.Current);
+            Assert.AreEqual(side.Max - 1, side.Current);
+            Assert.AreEqual(behind.Max, behind.Current);
+            Assert.AreEqual(far.Max, far.Current);
+            Assert.AreEqual(2, reported, "Cada golpe avisa al arma, para la curación de Mandíbulas.");
+            Assert.IsEmpty(ActiveProjectiles(), "El golpe cuerpo a cuerpo no dispara proyectiles.");
+        }
+
+        Health CreateEnemyDummy(Vector2 position)
+        {
+            var dummy = new GameObject("EnemyDummy") { layer = LayerMask.NameToLayer(CombatLayers.Enemy) };
+            dummy.transform.position = position;
+            dummy.AddComponent<CircleCollider2D>().radius = 0.3f;
+            dummy.transform.SetParent(shooter.transform, true);
+            return dummy.AddComponent<Health>();
+        }
     }
 }

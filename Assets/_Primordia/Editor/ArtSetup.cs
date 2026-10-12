@@ -21,12 +21,16 @@ namespace Primordia.Editor
         const string CharactersFolder = "Assets/_Primordia/Art/Characters";
         const string EnemiesSourceFolder = "docs/multimedia-temp/enemies";
         const string EnemyPrefabsFolder = "Assets/_Primordia/Prefabs/Enemies";
+        const string ProjectilePrefabsFolder = "Assets/_Primordia/Prefabs/Combat";
+        const string ProjectilesSourceFolder = "docs/multimedia-temp/projectiles";
+        const string ProjectilesArtFolder = "Assets/_Primordia/Art/Projectiles";
         const int PixelsPerUnit = 16;
 
         // Cuadro (desde 0) en el que sale el disparo o aparece la invocación, según el README del arte.
         const int ShootFireFrame = 2;
         const int BurstFireFrame = 2;
         const int SummonSpawnFrame = 1;
+
 
         /// <summary>Un personaje: de dónde salen sus hojas, adónde van y a qué ritmo va cada animación.</summary>
         sealed class Character
@@ -39,6 +43,18 @@ namespace Primordia.Editor
             // Cuadros por segundo según el prefijo del clip; gana el primero que encaje.
             public (string prefix, float fps, bool loop)[] Timings;
 
+            // Ancho de celda por clip, para las hojas cuyos cuadros no son cuadrados (por defecto, el alto).
+            public Dictionary<string, int> CellWidths = new();
+
+            // True: un controlador por clip, que se reproduce solo (proyectiles). False: uno con todos los clips.
+            public bool ControllerPerClip;
+
+            // Duración de cada cuadro en segundos, para los clips que no van a ritmo fijo (sustituye a los fps).
+            public Dictionary<string, float[]> FrameDurations = new();
+
+            // Hojas de la carpeta que no se importan (por nombre de clip).
+            public HashSet<string> SkipClips = new();
+
             public string SheetPrefix => Name + "_";
             public string AnimationsFolder => ArtFolder + "/Animations";
             public string ControllerPath => $"{AnimationsFolder}/{Name}.controller";
@@ -50,6 +66,10 @@ namespace Primordia.Editor
             public AnimatorController Controller;
             public Sprite DefaultSprite;
             public readonly Dictionary<string, AnimationClip> Clips = new();
+
+            // Solo con ControllerPerClip: controlador y primer cuadro de cada clip.
+            public readonly Dictionary<string, AnimatorController> Controllers = new();
+            public readonly Dictionary<string, Sprite> FirstSprites = new();
 
             public float Length(string clip) => Clips.TryGetValue(clip, out var c) ? c.length : 0f;
 
@@ -86,6 +106,35 @@ namespace Primordia.Editor
                 ("Idle_P1", 6f, true), ("Idle_P2", 10f, true), ("Burst", 10f, false), ("Summon", 10f, false),
                 ("Hurt", 10f, false), ("Phase2_Transition", 8f, false), ("Death", 10f, false),
             },
+        };
+
+        // Un clip por proyectil (Projectile_Spore.png → Spore). Todos miran a la derecha; Projectile los gira.
+        // Projectile_Mandibles ya no se usa: Mandíbulas muerde, con la hoja de BiteArt.
+        static readonly Character ProjectilesArt = new()
+        {
+            Name = "Projectile",
+            SourceFolder = ProjectilesSourceFolder,
+            ArtFolder = ProjectilesArtFolder,
+            ControllerPerClip = true,
+            CellWidths = new Dictionary<string, int> { ["Stinger"] = 12 },
+            SkipClips = new HashSet<string> { "Mandibles" },
+            Timings = new[]
+            {
+                ("Player", 10f, true), ("Stinger", 12f, true), ("Spore", 6f, true),
+                ("Enemy", 6f, true), ("BossSpiral", 10f, true), ("BossBurst", 6f, true),
+            },
+        };
+
+        // Mordisco de Mandíbulas (Mandibles_Bite.png → Bite): sin bucle y con las duraciones del README del arte.
+        // Dura 0,35 s, lo mismo que el Lifetime de Attack_Mandibles, que es lo que se ve el efecto.
+        static readonly Character BiteArt = new()
+        {
+            Name = "Mandibles",
+            SourceFolder = ProjectilesSourceFolder,
+            ArtFolder = ProjectilesArtFolder,
+            ControllerPerClip = true,
+            FrameDurations = new Dictionary<string, float[]> { ["Bite"] = new[] { 0.06f, 0.06f, 0.05f, 0.09f, 0.09f } },
+            Timings = new[] { ("Bite", 0f, false) },
         };
 
         static readonly EditorCurveBinding SpriteBinding = EditorCurveBinding.PPtrCurve("", typeof(SpriteRenderer), "m_Sprite");
@@ -133,6 +182,60 @@ namespace Primordia.Editor
             AssetDatabase.SaveAssets();
         }
 
+        [MenuItem("Primordia/Art/Importar animaciones de proyectiles")]
+        static void ImportProjectiles()
+        {
+            var art = Import(ProjectilesArt);
+            if (art == null)
+                return;
+
+            foreach (var (name, controller) in art.Controllers)
+                ApplyToProjectilePrefab($"{ProjectilesArt.SheetPrefix}{name}", controller, art.FirstSprites[name]);
+
+            var bite = Import(BiteArt);
+            if (bite != null)
+                CreateBiteEffect(bite.Controllers["Bite"], bite.FirstSprites["Bite"]);
+
+            AssetDatabase.SaveAssets();
+        }
+
+        /// <summary>
+        /// Mandíbulas no dispara: su hoja es el efecto del mordisco, que aparece en la boca. Crea o actualiza
+        /// Effect_Bite y convierte el ataque de Mandíbulas en un golpe cuerpo a cuerpo que lo usa.
+        /// </summary>
+        static void CreateBiteEffect(AnimatorController controller, Sprite sprite)
+        {
+            string path = $"{ProjectilePrefabsFolder}/Effect_Bite.prefab";
+            bool exists = AssetDatabase.LoadAssetAtPath<GameObject>(path) != null;
+            var root = exists ? PrefabUtility.LoadPrefabContents(path) : new GameObject("Effect_Bite");
+            try
+            {
+                // 24 px = 1,5 unidades: colocado en la boca, cubre todo el alcance del mordisco.
+                root.transform.localScale = Vector3.one;
+
+                var renderer = GetOrAdd<SpriteRenderer>(root);
+                renderer.sprite = sprite;
+                renderer.sortingOrder = 12;
+
+                GetOrAdd<Animator>(root).runtimeAnimatorController = controller;
+                PrefabUtility.SaveAsPrefabAsset(root, path);
+            }
+            finally
+            {
+                if (exists)
+                    PrefabUtility.UnloadPrefabContents(root);
+                else
+                    Object.DestroyImmediate(root);
+            }
+
+            AssetDatabase.SaveAssets();
+            var effect = AssetDatabase.LoadAssetAtPath<GameObject>(path);
+            var attack = CombatSetup.LoadAttack("Attack_Mandibles");
+            if (attack == null)
+                Debug.LogWarning("ArtSetup: no existe Attack_Mandibles; créalo con Primordia > Mutations.");
+            MutationSetup.ConfigureMandiblesBite(attack, effect);
+        }
+
         /// <summary>Copia, corta y anima las hojas del personaje. Devuelve null si no hay hojas.</summary>
         static ImportedArt Import(Character character)
         {
@@ -148,15 +251,25 @@ namespace Primordia.Editor
             var art = new ImportedArt();
             foreach (var sheet in sheets)
             {
-                var sprites = SliceSheet(sheet);
-                var clip = CreateClip(character, sheet, sprites);
+                string clipName = ClipName(character, sheet);
+                var sprites = SliceSheet(sheet, character.CellWidths.TryGetValue(clipName, out int width) ? width : 0);
+                var clip = CreateClip(character, clipName, sprites);
                 art.Clips[clip.name] = clip;
+                art.FirstSprites[clip.name] = sprites[0];
                 if (clip.name == character.DefaultState)
                     art.DefaultSprite = sprites[0];
             }
 
             AssetDatabase.SaveAssets();
-            art.Controller = CreateController(character, art.Clips.Values);
+            if (character.ControllerPerClip)
+            {
+                foreach (var clip in art.Clips.Values)
+                    art.Controllers[clip.name] = CreateController($"{character.AnimationsFolder}/{clip.name}.controller", new[] { clip }, clip.name);
+            }
+            else
+            {
+                art.Controller = CreateController(character.ControllerPath, art.Clips.Values, character.DefaultState);
+            }
 
             Debug.Log($"ArtSetup: {art.Clips.Count} animaciones de {character.Name} importadas en {character.AnimationsFolder}.");
             return art;
@@ -172,6 +285,9 @@ namespace Primordia.Editor
             {
                 foreach (var source in Directory.GetFiles(character.SourceFolder, pattern))
                 {
+                    if (character.SkipClips.Contains(ClipName(character, source)))
+                        continue;
+
                     var target = $"{character.ArtFolder}/{Path.GetFileName(source)}";
                     File.Copy(source, target, overwrite: true);
                     AssetDatabase.ImportAsset(target, ImportAssetOptions.ForceUpdate);
@@ -183,16 +299,21 @@ namespace Primordia.Editor
             }
 
             return Directory.GetFiles(character.ArtFolder, pattern)
+                .Where(path => !character.SkipClips.Contains(ClipName(character, path)))
                 .Select(path => path.Replace('\\', '/'))
                 .OrderBy(path => path)
                 .ToList();
         }
 
+        /// <summary>Nombre del clip de una hoja: Bacteria_Move.png → Move.</summary>
+        static string ClipName(Character character, string sheetPath) =>
+            Path.GetFileNameWithoutExtension(sheetPath).Substring(character.SheetPrefix.Length);
+
         /// <summary>
-        /// Configura la hoja como pixel art y la corta en cuadros cuadrados del alto de la imagen,
-        /// con pivote centrado. Conserva los identificadores de los cuadros que ya existían.
+        /// Configura la hoja como pixel art y la corta en cuadros del alto de la imagen y del ancho indicado
+        /// (0 = cuadrados), con pivote centrado. Conserva los identificadores de los cuadros que ya existían.
         /// </summary>
-        static Sprite[] SliceSheet(string path)
+        static Sprite[] SliceSheet(string path, int cellWidth)
         {
             var importer = (TextureImporter)AssetImporter.GetAtPath(path);
             importer.textureType = TextureImporterType.Sprite;
@@ -205,7 +326,7 @@ namespace Primordia.Editor
             importer.SaveAndReimport();
 
             importer.GetSourceTextureWidthAndHeight(out int width, out int height);
-            int cell = height;
+            int cell = cellWidth > 0 ? cellWidth : height;
             int count = width / cell;
             string baseName = Path.GetFileNameWithoutExtension(path);
 
@@ -225,7 +346,7 @@ namespace Primordia.Editor
                 rects[i] = new SpriteRect
                 {
                     name = name,
-                    rect = new Rect(i * cell, 0, cell, cell),
+                    rect = new Rect(i * cell, 0, cell, height),
                     alignment = SpriteAlignment.Center,
                     pivot = new Vector2(0.5f, 0.5f),
                     spriteID = previousIds.TryGetValue(name, out var id) ? id : GUID.Generate(),
@@ -245,9 +366,8 @@ namespace Primordia.Editor
         }
 
         /// <summary>Crea o actualiza el clip de una hoja: Bacteria_Move.png → Move.anim.</summary>
-        static AnimationClip CreateClip(Character character, string sheetPath, Sprite[] sprites)
+        static AnimationClip CreateClip(Character character, string name, Sprite[] sprites)
         {
-            string name = Path.GetFileNameWithoutExtension(sheetPath).Substring(character.SheetPrefix.Length);
             var timing = character.Timings.FirstOrDefault(t => name.StartsWith(t.prefix));
             if (timing.prefix == null)
             {
@@ -261,12 +381,24 @@ namespace Primordia.Editor
             if (isNew)
                 clip = new AnimationClip { name = name };
 
-            clip.frameRate = timing.fps;
+            // Con duraciones por cuadro, el clip se muestrea cada 10 ms para que cada cambio caiga en su sitio.
+            bool customDurations = character.FrameDurations.TryGetValue(name, out var durations);
+            if (customDurations && durations.Length != sprites.Length)
+            {
+                Debug.LogWarning($"ArtSetup: {character.Name}/{name} tiene {sprites.Length} cuadros y {durations.Length} duraciones; se usa ritmo fijo.");
+                customDurations = false;
+            }
+            clip.frameRate = customDurations ? 100f : timing.fps;
 
-            // El último cuadro se repite al final para que dure lo mismo que los demás.
+            // El último cuadro se repite al final para que dure lo mismo que los demás (o lo que diga su duración).
             var keys = new ObjectReferenceKeyframe[sprites.Length + 1];
+            float time = 0f;
             for (int i = 0; i <= sprites.Length; i++)
-                keys[i] = new ObjectReferenceKeyframe { time = i / timing.fps, value = sprites[Mathf.Min(i, sprites.Length - 1)] };
+            {
+                keys[i] = new ObjectReferenceKeyframe { time = time, value = sprites[Mathf.Min(i, sprites.Length - 1)] };
+                if (i < sprites.Length)
+                    time += customDurations ? durations[i] : 1f / timing.fps;
+            }
             AnimationUtility.SetObjectReferenceCurve(clip, SpriteBinding, keys);
 
             var settings = AnimationUtility.GetAnimationClipSettings(clip);
@@ -280,11 +412,14 @@ namespace Primordia.Editor
             return clip;
         }
 
-        /// <summary>Animator con un estado por clip y sin transiciones: el código elige el estado.</summary>
-        static AnimatorController CreateController(Character character, IEnumerable<AnimationClip> clips)
+        /// <summary>
+        /// Animator con un estado por clip y sin transiciones: el código elige el estado.
+        /// Con un solo clip, ese estado es el inicial y se reproduce solo.
+        /// </summary>
+        static AnimatorController CreateController(string path, IEnumerable<AnimationClip> clips, string defaultState)
         {
-            var controller = AssetDatabase.LoadAssetAtPath<AnimatorController>(character.ControllerPath)
-                ?? AnimatorController.CreateAnimatorControllerAtPath(character.ControllerPath);
+            var controller = AssetDatabase.LoadAssetAtPath<AnimatorController>(path)
+                ?? AnimatorController.CreateAnimatorControllerAtPath(path);
             var machine = controller.layers[0].stateMachine;
 
             foreach (var clip in clips)
@@ -292,12 +427,50 @@ namespace Primordia.Editor
                 var state = machine.states.Select(s => s.state).FirstOrDefault(s => s.name == clip.name)
                     ?? machine.AddState(clip.name);
                 state.motion = clip;
-                if (clip.name == character.DefaultState)
+                if (clip.name == defaultState)
                     machine.defaultState = state;
             }
 
             EditorUtility.SetDirty(controller);
             return controller;
+        }
+
+        /// <summary>
+        /// Pone el sprite animado al proyectil y deja su escala en 1 (el sprite ya tiene su tamaño).
+        /// El radio de colisión se multiplica por la escala que tenía, para que el juego no cambie.
+        /// </summary>
+        static void ApplyToProjectilePrefab(string prefabName, AnimatorController controller, Sprite sprite)
+        {
+            string path = $"{ProjectilePrefabsFolder}/{prefabName}.prefab";
+            if (AssetDatabase.LoadAssetAtPath<GameObject>(path) == null)
+            {
+                Debug.LogWarning($"ArtSetup: no existe {path}; créalo antes con Primordia > Combat, Mutations o Boss.");
+                return;
+            }
+
+            var root = PrefabUtility.LoadPrefabContents(path);
+            try
+            {
+                var scale = root.transform.localScale;
+                var collider = root.GetComponent<CircleCollider2D>();
+                collider.radius *= Mathf.Max(Mathf.Abs(scale.x), Mathf.Abs(scale.y));
+                root.transform.localScale = Vector3.one;
+
+                var renderer = root.GetComponent<SpriteRenderer>();
+                renderer.sprite = sprite;
+                renderer.color = Color.white;
+
+                // Al sacarlo del pool el Animator empieza de nuevo: el mordisco de Mandíbulas se ve en cada disparo.
+                var animator = GetOrAdd<Animator>(root);
+                animator.runtimeAnimatorController = controller;
+                animator.cullingMode = AnimatorCullingMode.CullCompletely;
+
+                PrefabUtility.SaveAsPrefabAsset(root, path);
+            }
+            finally
+            {
+                PrefabUtility.UnloadPrefabContents(root);
+            }
         }
 
         static void ApplyToPlayerPrefab(AnimatorController controller, Sprite idleSprite)

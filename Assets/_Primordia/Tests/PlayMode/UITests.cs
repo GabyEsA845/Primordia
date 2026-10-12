@@ -2,8 +2,10 @@ using System.Collections;
 using System.Linq;
 using NUnit.Framework;
 using Primordia.Core;
+using Primordia.Mutations;
 using Primordia.UI;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.TestTools;
 
 namespace Primordia.Tests
@@ -103,6 +105,41 @@ namespace Primordia.Tests
             manager.SetState(GameState.Defeat);
             manager.Resume();
             Assert.AreEqual(GameState.Defeat, manager.State);
+        }
+
+        [UnityTest]
+        public IEnumerator MutationChoice_IgnoresClicks_RightAfterOpening()
+        {
+            root = new GameObject("UI");
+            root.SetActive(false);
+            var panel = CreatePanel("ChoicePanel");
+            var skip = new GameObject("Skip").AddComponent<Button>();
+            skip.transform.SetParent(root.transform);
+            var choice = root.AddComponent<MutationChoiceUI>();
+            choice.Configure(panel, new MutationCard[0], skip, newInputLockDuration: 0.3f);
+            root.SetActive(true);
+
+            var mutation = ScriptableObject.CreateInstance<StatMutation>();
+            try
+            {
+                choice.Show(new[] { mutation }, null);
+
+                Assert.IsTrue(choice.IsLocked);
+                Assert.IsFalse(skip.interactable);
+                choice.Skip();
+                Assert.IsTrue(choice.IsOpen, "Un clic durante el bloqueo no cuenta.");
+
+                yield return new WaitForSecondsRealtime(0.4f);
+
+                Assert.IsFalse(choice.IsLocked);
+                Assert.IsTrue(skip.interactable);
+                choice.Skip();
+                Assert.IsFalse(choice.IsOpen);
+            }
+            finally
+            {
+                Object.DestroyImmediate(mutation);
+            }
         }
 
         GameObject CreatePanel(string name)

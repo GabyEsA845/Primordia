@@ -1,3 +1,5 @@
+using System.Collections;
+using Primordia.Core;
 using Primordia.Rooms;
 using Primordia.UI;
 using UnityEngine;
@@ -13,6 +15,8 @@ namespace Primordia.Mutations
     {
         [SerializeField] MutationPool pool;
         [SerializeField, Min(1)] int optionCount = 3;
+        [Tooltip("Segundos entre limpiar la sala y mostrar la elección, para que el último clic de combate no elija nada.")]
+        [SerializeField, Min(0f)] float delay = 1f;
 
         Room room;
 
@@ -24,8 +28,28 @@ namespace Primordia.Mutations
 
         void OnRoomCleared(Room _)
         {
+            if (delay > 0f)
+                StartCoroutine(OfferAfterDelay());
+            else
+                Offer();
+        }
+
+        IEnumerator OfferAfterDelay()
+        {
+            yield return new WaitForSeconds(delay);
+
+            // Si mientras tanto el jugador murió o la partida terminó, ya no hay recompensa.
+            if (GameManager.Instance == null || GameManager.Instance.State == GameState.Playing)
+                Offer();
+        }
+
+        void Offer()
+        {
             var playerObject = GameObject.FindWithTag("Player");
             if (pool == null || playerObject == null || !playerObject.TryGetComponent<PlayerMutations>(out var player))
+                return;
+
+            if (player.Health.IsDead)
                 return;
 
             var options = pool.PickOffer(optionCount, player.Equipped);
@@ -42,10 +66,11 @@ namespace Primordia.Mutations
             choiceUI.Show(options, player);
         }
 
-        internal void Configure(MutationPool newPool, int newOptionCount)
+        internal void Configure(MutationPool newPool, int newOptionCount, float newDelay = 1f)
         {
             pool = newPool;
             optionCount = newOptionCount;
+            delay = newDelay;
         }
     }
 }

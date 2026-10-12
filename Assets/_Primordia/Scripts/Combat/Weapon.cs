@@ -118,8 +118,9 @@ namespace Primordia.Combat
                 if (!health.TakeDamage(attack.Damage))
                     continue;
 
+                OneShotEffect.Spawn(attack.MeleeHitEffect, hit.bounds.center);
                 if (attack.AppliesPoison && !health.IsDead)
-                    Poison.Apply(health, attack.PoisonDamagePerSecond, attack.PoisonDuration);
+                    Poison.Apply(health, attack.PoisonDamagePerSecond, attack.PoisonDuration, attack.PoisonEffect);
                 ReportHit(health);
             }
 

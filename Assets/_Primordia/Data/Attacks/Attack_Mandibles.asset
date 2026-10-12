@@ -22,7 +22,9 @@ MonoBehaviour:
   spreadAngle: 0
   poisonDamagePerSecond: 0
   poisonDuration: 0
+  poisonEffect: {fileID: 0}
   melee: 1
   meleeRange: 1.5
   meleeArc: 180
   meleeEffect: {fileID: 3707442466709138440, guid: 0027f354d09c1ac439863fd8b0251f90, type: 3}
+  meleeHitEffect: {fileID: 4614783711616770725, guid: fe29d096a61be9f4b9ba88133856bdb0, type: 3}

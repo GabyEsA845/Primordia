@@ -31,6 +31,7 @@ Los recursos nuevos (hojas de sprites, GIF de revisión, scripts que los generan
 | Jugador | `docs/multimedia-temp/player/` (`Player_<Acción>_<dirección>.png`, `Player_Hurt.png`, `Player_Death.png`) | Menú **Primordia > Art > Importar animaciones del jugador**: copia las hojas a `Art/Characters/Player/`, las corta (cuadros del alto de la hoja, pivote centrado), crea los clips y el Animator en `Animations/` y se los pone al prefab del jugador. Se puede repetir cada vez que cambie el arte. |
 | Enemigos y jefe | `docs/multimedia-temp/enemies/<Enemigo>/` (`Bacteria`, `Ameba`, `AmebaSmall`, `BossVirus`; hojas `<Enemigo>_<Animación>.png`) | Menú **Primordia > Art > Importar animaciones de enemigos y jefe**: igual que el jugador, en `Art/Characters/Enemies/<Enemigo>/`. Aplica cada uno a su prefab (`Enemy_Chaser`, `Enemy_Shooter`, `Enemy_Small`, `Boss_Virus`) con escala 1, y ajusta los tiempos de juego a las animaciones: aviso de disparo de la ameba, aviso de ráfaga e invocación del jefe, pausa de la transición a la fase 2, división al final de Split y tiempo de muerte. |
 | Proyectiles | `docs/multimedia-temp/projectiles/` (`Projectile_<Nombre>.png`, el mismo nombre que su prefab) | Menú **Primordia > Art > Importar animaciones de proyectiles**: copia las hojas a `Art/Projectiles/`, crea un clip y un controlador por proyectil (se reproduce solo al salir del pool) y los aplica a los prefabs de `Prefabs/Combat` con escala 1, conservando el radio de colisión. Las celdas no cuadradas se indican en `ArtSetup` (`Stinger`: 12×6). Mandíbulas no dispara: `Mandibles_Bite.png` crea `Prefabs/Combat/Effect_Bite` (escala 1, en la boca) y convierte el ataque en mordisco; `Projectile_Mandibles.png` ya no se importa. Las duraciones por cuadro se indican en `ArtSetup`. |
+| Efectos | `docs/multimedia-temp/effects/` (cada hoja con su nombre, sin prefijo común) | Menú **Primordia > Art > Importar efectos**: crea los prefabs de `Prefabs/Effects` (los que no van en bucle se destruyen solos al acabar, con `OneShotEffect`) y los conecta: impactos en los prefabs de proyectil y en la mordida, veneno en el Aguijón, burbujas en los enemigos, estela en el jugador. La tinta y la onda sustituyen al círculo de `Prefabs/Mutations`; `AbilityMutation.effectRadius` indica a qué radio están dibujadas para no agrandarlas. Necesita haber importado antes enemigos y proyectiles. |
 
 `.png`, `.aseprite`, `.wav`, `.ogg`, `.mp3`, `.ttf` y `.otf` se guardan con Git LFS (ya configurado en `.gitattributes`).
 
@@ -77,12 +78,12 @@ Los recursos nuevos (hojas de sprites, GIF de revisión, scripts que los generan
 | Proyectil: Espora | Lento, en abanico de 3 | M | Listo |
 | Proyectil enemigo | Lento, de color fuerte y fácil de leer | M | Listo |
 | Proyectil del jefe | Mini virión para la espiral y orbe grande para la ráfaga | M | Listo |
-| Impacto | Al golpear a algo | M | Pendiente |
-| Muerte de enemigo | Estallido o burbujas | M | Pendiente |
-| Estela de esquiva | Rastro mientras el jugador es invulnerable | D | Pendiente |
-| Veneno | Indicador de daño en el tiempo sobre el enemigo | D | Pendiente |
-| Nube de tinta | Habilidad Vejiga de tinta | M | Pendiente |
-| Onda de choque | Habilidad Glándula de choque | M | Pendiente |
+| Impacto | Al golpear un objetivo o una pared: lima los disparos y la mordida del jugador (`Effect_Impact_Player`), rosa los enemigos (`Effect_Impact_Enemy`) | M | Listo |
+| Muerte de enemigo | Burbujas encima de la muerte (`Effect_EnemyDeath`); no en la división de la ameba ni en el jefe | M | Listo |
+| Estela de esquiva | Una silueta cada 0,05 s mientras esquiva (`Effect_DodgeTrail`, componente `DodgeTrail`) | D | Listo |
+| Veneno | Burbujas en bucle sobre el enemigo mientras dura (`Effect_Poison`) | D | Listo |
+| Nube de tinta | Habilidad Vejiga de tinta; dibujada a radio 3 (96 px) | M | Listo |
+| Onda de choque | Habilidad Glándula de choque; dibujada a radio 4 (128 px) | M | Listo |
 
 ### Escenario (sopa primordial)
 

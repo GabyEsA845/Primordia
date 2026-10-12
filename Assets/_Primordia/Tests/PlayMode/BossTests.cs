@@ -15,9 +15,9 @@ namespace Primordia.Tests
         [TearDown]
         public void TearDown()
         {
-            foreach (var enemy in Object.FindObjectsByType<Enemy>(FindObjectsInactive.Include, FindObjectsSortMode.None))
+            foreach (var enemy in Object.FindObjectsByType<Enemy>(FindObjectsInactive.Include))
                 Object.DestroyImmediate(enemy.gameObject);
-            foreach (var projectile in Object.FindObjectsByType<Projectile>(FindObjectsInactive.Include, FindObjectsSortMode.None))
+            foreach (var projectile in Object.FindObjectsByType<Projectile>(FindObjectsInactive.Include))
                 Object.DestroyImmediate(projectile.gameObject);
 
             foreach (var obj in created)
@@ -111,7 +111,7 @@ namespace Primordia.Tests
             yield return new WaitForSeconds(0.5f);
 
             // La ráfaga de fase 1 son 12 proyectiles; la espiral añade varios más.
-            Assert.Greater(Object.FindObjectsByType<Projectile>(FindObjectsSortMode.None).Length, 12);
+            Assert.Greater(Object.FindObjectsByType<Projectile>().Length, 12);
         }
 
         [UnityTest]
@@ -159,11 +159,11 @@ namespace Primordia.Tests
             yield return null;
 
             Assert.AreEqual(1, announcements);
-            Assert.AreEqual(0, Object.FindObjectsByType<Projectile>(FindObjectsSortMode.None).Length);
+            Assert.AreEqual(0, Object.FindObjectsByType<Projectile>().Length);
 
             yield return new WaitForSeconds(0.4f);
 
-            Assert.GreaterOrEqual(Object.FindObjectsByType<Projectile>(FindObjectsSortMode.None).Length, 12);
+            Assert.GreaterOrEqual(Object.FindObjectsByType<Projectile>().Length, 12);
             Assert.AreEqual(1, announcements);
         }
 
@@ -177,14 +177,14 @@ namespace Primordia.Tests
             boss.Health.TakeDamage(5);
             yield return null;
             Assert.IsTrue(boss.IsTransitioning);
-            int projectiles = Object.FindObjectsByType<Projectile>(FindObjectsSortMode.None).Length;
+            int projectiles = Object.FindObjectsByType<Projectile>().Length;
 
             yield return new WaitForSeconds(0.3f);
-            Assert.AreEqual(projectiles, Object.FindObjectsByType<Projectile>(FindObjectsSortMode.None).Length);
+            Assert.AreEqual(projectiles, Object.FindObjectsByType<Projectile>().Length);
 
             yield return new WaitForSeconds(0.4f);
             Assert.IsFalse(boss.IsTransitioning);
-            Assert.Greater(Object.FindObjectsByType<Projectile>(FindObjectsSortMode.None).Length, projectiles);
+            Assert.Greater(Object.FindObjectsByType<Projectile>().Length, projectiles);
         }
     }
 }

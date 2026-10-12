@@ -581,7 +581,7 @@ namespace Primordia.Editor
                 return;
 
             // El GameManager de esta escena empieza en el menú: el jugador no puede actuar.
-            var manager = Object.FindObjectsByType<GameManager>(FindObjectsSortMode.None).First();
+            var manager = Object.FindObjectsByType<GameManager>().First();
             var serialized = new SerializedObject(manager);
             serialized.FindProperty("initialState").enumValueIndex = (int)GameState.MainMenu;
             serialized.ApplyModifiedPropertiesWithoutUndo();

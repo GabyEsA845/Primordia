@@ -5,7 +5,7 @@ namespace Primordia.Rooms
 {
     /// <summary>
     /// Salida del piso. Aparece cuando su sala queda limpia; al tocarla, el jugador gana.
-    /// Más adelante estará en la sala del jefe.
+    /// El generador del piso la pone en el centro de la sala del jefe, así que aparece al vencerlo.
     /// </summary>
     [RequireComponent(typeof(Collider2D))]
     public class RoomExit : MonoBehaviour

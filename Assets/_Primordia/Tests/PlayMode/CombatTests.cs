@@ -39,7 +39,7 @@ namespace Primordia.Tests
         public void TearDown()
         {
             // Incluye la plantilla, que también tiene un Projectile.
-            foreach (var projectile in Object.FindObjectsByType<Projectile>(FindObjectsInactive.Include, FindObjectsSortMode.None))
+            foreach (var projectile in Object.FindObjectsByType<Projectile>(FindObjectsInactive.Include))
                 Object.DestroyImmediate(projectile.gameObject);
 
             ProjectilePool.Clear();
@@ -50,7 +50,7 @@ namespace Primordia.Tests
         }
 
         static Projectile[] ActiveProjectiles() =>
-            Object.FindObjectsByType<Projectile>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
+            Object.FindObjectsByType<Projectile>(FindObjectsInactive.Exclude);
 
         GameObject CreateTarget(bool withHealth)
         {

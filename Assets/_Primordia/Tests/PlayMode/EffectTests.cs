@@ -32,9 +32,9 @@ namespace Primordia.Tests
             foreach (var copy in Copies())
                 Object.DestroyImmediate(copy);
             // Incluye las crías de la división, que no están en la lista.
-            foreach (var enemy in Object.FindObjectsByType<Enemy>(FindObjectsInactive.Include, FindObjectsSortMode.None))
+            foreach (var enemy in Object.FindObjectsByType<Enemy>(FindObjectsInactive.Include))
                 Object.DestroyImmediate(enemy.gameObject);
-            foreach (var projectile in Object.FindObjectsByType<Projectile>(FindObjectsInactive.Include, FindObjectsSortMode.None))
+            foreach (var projectile in Object.FindObjectsByType<Projectile>(FindObjectsInactive.Include))
                 Object.DestroyImmediate(projectile.gameObject);
             ProjectilePool.Clear();
 
@@ -53,7 +53,7 @@ namespace Primordia.Tests
         }
 
         static GameObject[] Copies() =>
-            Object.FindObjectsByType<Transform>(FindObjectsSortMode.None)
+            Object.FindObjectsByType<Transform>()
                 .Where(t => t.name == EffectName + "(Clone)")
                 .Select(t => t.gameObject)
                 .ToArray();

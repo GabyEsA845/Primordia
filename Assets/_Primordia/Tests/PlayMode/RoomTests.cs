@@ -19,7 +19,7 @@ namespace Primordia.Tests
         [TearDown]
         public void TearDown()
         {
-            foreach (var enemy in Object.FindObjectsByType<Enemy>(FindObjectsInactive.Include, FindObjectsSortMode.None))
+            foreach (var enemy in Object.FindObjectsByType<Enemy>(FindObjectsInactive.Include))
                 Object.DestroyImmediate(enemy.gameObject);
 
             foreach (var obj in created)

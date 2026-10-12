@@ -1,11 +1,12 @@
 using System;
+using System.Collections.Generic;
 using Primordia.Core;
 using UnityEngine;
 
 namespace Primordia.Combat
 {
     /// <summary>
-    /// Dispara el ataque definido en un <see cref="AttackData"/>. Lo usan el jugador
+    /// Dispara (o golpea, si es cuerpo a cuerpo) el ataque definido en un <see cref="AttackData"/>. Lo usan el jugador
     /// (cambia de ataque con las mutaciones de Boca) y los enemigos que disparan.
     /// </summary>
     public class Weapon : MonoBehaviour
@@ -24,7 +25,7 @@ namespace Primordia.Combat
         }
 
         public Team Team => team;
-        public bool CanFire => attack != null && attack.ProjectilePrefab != null && Time.time >= nextFireTime;
+        public bool CanFire => attack != null && attack.IsUsable && Time.time >= nextFireTime;
 
         /// <summary>Momento (Time.time) a partir del cual termina la recarga.</summary>
         public float NextFireTime => nextFireTime;
@@ -37,6 +38,7 @@ namespace Primordia.Combat
 
         float nextFireTime;
         int projectileLayer;
+        readonly HashSet<Health> hitThisStrike = new();
 
         void Awake() => projectileLayer = CombatLayers.ProjectileLayer(team);
 
@@ -60,11 +62,18 @@ namespace Primordia.Combat
         /// </summary>
         public void Fire(Vector2 direction, AttackData attack)
         {
-            if (attack == null || attack.ProjectilePrefab == null || direction.sqrMagnitude < 0.0001f)
+            if (attack == null || !attack.IsUsable || direction.sqrMagnitude < 0.0001f)
                 return;
 
             direction.Normalize();
             Vector2 origin = muzzle != null ? muzzle.position : transform.position;
+
+            if (attack.IsMelee)
+            {
+                Strike(direction, origin, attack);
+                Fired?.Invoke(direction);
+                return;
+            }
 
             int count = attack.ProjectileCount;
             float step = count > 1 ? attack.SpreadAngle / (count - 1) : 0f;
@@ -80,6 +89,49 @@ namespace Primordia.Combat
         }
 
         internal void ReportHit(Health target) => HitTarget?.Invoke(target);
+
+        /// <summary>
+        /// Golpe cuerpo a cuerpo: daña una vez a cada objetivo del otro equipo que esté dentro del alcance
+        /// (medido desde el centro del atacante) y del arco delante de él.
+        /// </summary>
+        void Strike(Vector2 direction, Vector2 effectPosition, AttackData attack)
+        {
+            Vector2 center = transform.position;
+            var ownHealth = GetComponentInParent<Health>();
+            int targets = LayerMask.GetMask(team == Team.Player ? CombatLayers.Enemy : CombatLayers.Player);
+
+            hitThisStrike.Clear();
+            foreach (var hit in Physics2D.OverlapCircleAll(center, attack.Range, targets))
+            {
+                if (hit.isTrigger)
+                    continue;
+
+                var health = hit.GetComponentInParent<Health>();
+                if (health == null || health == ownHealth || !hitThisStrike.Add(health))
+                    continue;
+
+                // El punto del colisionador más cercano: así cuenta aunque solo asome dentro del arco.
+                Vector2 toTarget = hit.ClosestPoint(center) - center;
+                if (toTarget.sqrMagnitude > 0.0001f && Vector2.Angle(direction, toTarget) > attack.MeleeArc / 2f)
+                    continue;
+
+                if (!health.TakeDamage(attack.Damage))
+                    continue;
+
+                if (attack.AppliesPoison && !health.IsDead)
+                    Poison.Apply(health, attack.PoisonDamagePerSecond, attack.PoisonDuration);
+                ReportHit(health);
+            }
+
+            if (attack.MeleeEffect != null)
+            {
+                // Cuelga del mismo padre que la boca, así sigue al jugador mientras dura.
+                var parent = muzzle != null ? muzzle.parent : transform;
+                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                var effect = Instantiate(attack.MeleeEffect, effectPosition, Quaternion.Euler(0f, 0f, angle), parent);
+                Destroy(effect, attack.Lifetime);
+            }
+        }
 
         static Vector2 Rotate(Vector2 vector, float degrees) => Quaternion.Euler(0f, 0f, degrees) * vector;
     }

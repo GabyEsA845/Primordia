@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4006459c6d3b79e4a9467275d67afaf8, type: 3}
   m_Name: Attack_Mandibles
   m_EditorClassIdentifier: Primordia::Primordia.Combat.AttackData
-  projectilePrefab: {fileID: 129588519303832029, guid: 959c4e35d63535544a600a5c7ab3d4b8, type: 3}
+  projectilePrefab: {fileID: 0}
   fireRate: 2.5
   automatic: 0
   damage: 3
@@ -22,3 +22,7 @@ MonoBehaviour:
   spreadAngle: 0
   poisonDamagePerSecond: 0
   poisonDuration: 0
+  melee: 1
+  meleeRange: 1.5
+  meleeArc: 180
+  meleeEffect: {fileID: 3707442466709138440, guid: 0027f354d09c1ac439863fd8b0251f90, type: 3}

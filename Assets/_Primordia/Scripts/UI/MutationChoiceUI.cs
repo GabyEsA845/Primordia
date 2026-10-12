@@ -15,11 +15,19 @@ namespace Primordia.UI
         [SerializeField] GameObject panel;
         [SerializeField] MutationCard[] cards;
         [SerializeField] Button skipButton;
+        [Tooltip("Segundos (reales: el juego está en pausa) en que los botones no aceptan clics al abrirse, " +
+                 "para no elegir por error si se seguía disparando.")]
+        [SerializeField, Min(0f)] float inputLockDuration = 0.5f;
 
         public bool IsOpen => panel != null && panel.activeSelf;
 
+        /// <summary>True mientras los botones aún no aceptan clics.</summary>
+        public bool IsLocked => IsOpen && Time.unscaledTime < unlockTime;
+
         readonly List<MutationData> options = new();
         PlayerMutations player;
+        float unlockTime;
+        bool buttonsEnabled = true;
 
         void Awake()
         {
@@ -50,13 +58,23 @@ namespace Primordia.UI
             }
 
             panel.SetActive(true);
+            unlockTime = Time.unscaledTime + inputLockDuration;
+            SetButtonsEnabled(inputLockDuration <= 0f);
+
             if (GameManager.Instance != null)
                 GameManager.Instance.SetState(GameState.MutationChoice);
         }
 
+        void Update()
+        {
+            // Los botones desactivados se ven atenuados; se activan al acabar el bloqueo.
+            if (IsOpen && !buttonsEnabled && !IsLocked)
+                SetButtonsEnabled(true);
+        }
+
         public void Choose(int index)
         {
-            if (!IsOpen || index < 0 || index >= options.Count)
+            if (!IsOpen || IsLocked || index < 0 || index >= options.Count)
                 return;
 
             player.Equip(options[index]);
@@ -65,8 +83,17 @@ namespace Primordia.UI
 
         public void Skip()
         {
-            if (IsOpen)
+            if (IsOpen && !IsLocked)
                 Close();
+        }
+
+        void SetButtonsEnabled(bool enabled)
+        {
+            buttonsEnabled = enabled;
+            foreach (var card in cards)
+                card.Button.interactable = enabled;
+            if (skipButton != null)
+                skipButton.interactable = enabled;
         }
 
         void Close()
@@ -77,11 +104,12 @@ namespace Primordia.UI
                 GameManager.Instance.SetState(GameState.Playing);
         }
 
-        internal void Configure(GameObject newPanel, MutationCard[] newCards, Button newSkipButton)
+        internal void Configure(GameObject newPanel, MutationCard[] newCards, Button newSkipButton, float newInputLockDuration = 0.5f)
         {
             panel = newPanel;
             cards = newCards;
             skipButton = newSkipButton;
+            inputLockDuration = newInputLockDuration;
         }
     }
 }

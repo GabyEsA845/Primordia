@@ -3,7 +3,7 @@ using UnityEngine;
 namespace Primordia.Combat
 {
     /// <summary>
-    /// Datos de un ataque a distancia: qué proyectil dispara, cuánto daña, a qué ritmo y en qué forma.
+    /// Datos de un ataque: qué proyectil dispara (o si es un golpe cuerpo a cuerpo), cuánto daña, a qué ritmo y en qué forma.
     /// Las mutaciones de Boca y los enemigos que disparan usan uno de estos.
     /// </summary>
     [CreateAssetMenu(menuName = "Primordia/Attack Data", fileName = "Attack_")]
@@ -38,14 +38,30 @@ namespace Primordia.Combat
         [Tooltip("Segundos que dura el veneno. Un impacto nuevo lo reinicia.")]
         [SerializeField, Min(0f)] float poisonDuration;
 
+        [Header("Cuerpo a cuerpo")]
+        [Tooltip("Activo: no dispara proyectiles; daña a todo lo que hay en un arco delante (mordisco de Mandíbulas).")]
+        [SerializeField] bool melee;
+        [Tooltip("Alcance del golpe desde el centro del atacante, en unidades.")]
+        [SerializeField, Min(0.1f)] float meleeRange = 1.5f;
+        [Tooltip("Apertura del arco en grados, centrado en la dirección de ataque.")]
+        [SerializeField, Range(1f, 360f)] float meleeArc = 180f;
+        [Tooltip("Efecto visual del golpe. Se coloca en la boca y dura lo mismo que Lifetime.")]
+        [SerializeField] GameObject meleeEffect;
+
         public Projectile ProjectilePrefab => projectilePrefab;
+        public bool IsMelee => melee;
+        public float MeleeArc => meleeArc;
+        public GameObject MeleeEffect => meleeEffect;
+
+        /// <summary>True si con estos datos se puede atacar: tiene proyectil o es cuerpo a cuerpo.</summary>
+        public bool IsUsable => melee || projectilePrefab != null;
         public float FireRate => fireRate;
         public float Cooldown => 1f / fireRate;
         public bool Automatic => automatic;
         public int Damage => damage;
         public float ProjectileSpeed => projectileSpeed;
         public float Lifetime => lifetime;
-        public float Range => projectileSpeed * lifetime;
+        public float Range => melee ? meleeRange : projectileSpeed * lifetime;
         public int ProjectileCount => projectileCount;
         public float SpreadAngle => spreadAngle;
         public int PoisonDamagePerSecond => poisonDamagePerSecond;
@@ -65,6 +81,19 @@ namespace Primordia.Combat
             this.lifetime = Mathf.Max(0.05f, lifetime);
             projectileCount = Mathf.Max(1, count);
             spreadAngle = Mathf.Clamp(spread, 0f, 360f);
+        }
+
+        /// <summary>
+        /// Lo convierte en un golpe cuerpo a cuerpo, sin proyectil.
+        /// Daño, ritmo y Lifetime (duración del efecto) se conservan.
+        /// </summary>
+        internal void ConfigureMelee(float range, float arc, GameObject effect)
+        {
+            melee = true;
+            projectilePrefab = null;
+            meleeRange = Mathf.Max(0.1f, range);
+            meleeArc = Mathf.Clamp(arc, 1f, 360f);
+            meleeEffect = effect;
         }
     }
 }

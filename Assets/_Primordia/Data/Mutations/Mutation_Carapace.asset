@@ -16,7 +16,9 @@ MonoBehaviour:
   description: "+1 coraz\xF3n de vida m\xE1xima, pero \u221210 % de velocidad."
   slot: 2
   lineage: 1
-  visualPrefab: {fileID: 4688975349844355754, guid: 4514fc1972915524c98da0c8355df3e0, type: 3}
+  look: {fileID: 9100000, guid: e1a19c24b93ff2549b312fc08ac68f4a, type: 2}
+  bodyRadius: 0.55
+  mouthDistance: 0.53125
   color: {r: 0.55, g: 0.7, b: 0.9, a: 1}
   moveSpeedMultiplier: 0.9
   dodgeDistanceMultiplier: 1

@@ -16,7 +16,8 @@ using Object = UnityEngine.Object;
 namespace Primordia.Editor
 {
     /// <summary>
-    /// Crea las 9 mutaciones del GDD (con sus ataques, efectos y aspecto provisional), la reserva
+    /// Crea las 9 mutaciones del GDD (con sus ataques y efectos; el aspecto lo pone
+    /// Primordia > Art > Importar piezas de mutación), la reserva
     /// de mutaciones, añade al jugador las ranuras, la habilidad y la barra de recarga, y crea la
     /// escena de prueba Test_Mutations. No sobrescribe nada que ya exista.
     /// </summary>
@@ -97,58 +98,41 @@ namespace Primordia.Editor
                 CreateMutation<AttackMutation>("Mutation_Mandibles", "Mandíbulas",
                     "Mordisco corto y potente (3 de daño). Cada 3 enemigos que mates, curas medio corazón.",
                     MutationSlot.Mouth, Lineage.Predator,
-                    Visual("Visual_Mandibles", pixel, new Color(0.95f, 0.95f, 0.85f),
-                        (new Vector2(0.85f, 0.22f), new Vector2(0.35f, 0.15f)), (new Vector2(0.85f, -0.22f), new Vector2(0.35f, 0.15f))),
                     m => m.Configure(mandiblesAttack, newHealEveryKills: 3)),
 
                 CreateMutation<AttackMutation>("Mutation_Stinger", "Aguijón",
                     "Disparo automático y rápido que envenena: 1 de daño por segundo durante 3 s.",
                     MutationSlot.Mouth, Lineage.Toxic,
-                    Visual("Visual_Stinger", pixel, ToxicColor, (new Vector2(1.05f, 0f), new Vector2(0.6f, 0.12f))),
                     m => m.Configure(stingerAttack, newHealEveryKills: 0)),
 
                 CreateMutation<AttackMutation>("Mutation_Spores", "Esporas",
                     "Tres esporas lentas en abanico.",
                     MutationSlot.Mouth, Lineage.Toxic,
-                    Visual("Visual_Spores", pixel, new Color(0.75f, 0.5f, 0.95f),
-                        (new Vector2(0.9f, 0.3f), Vector2.one * 0.18f), (new Vector2(1f, 0f), Vector2.one * 0.18f),
-                        (new Vector2(0.9f, -0.3f), Vector2.one * 0.18f)),
                     m => m.Configure(sporesAttack, newHealEveryKills: 0)),
 
                 CreateMutation<StatMutation>("Mutation_Fins", "Aletas",
                     "+30 % de velocidad y esquiva un 50 % más larga.",
                     MutationSlot.Limbs, Lineage.Predator,
-                    Visual("Visual_Fins", pixel, new Color(0.4f, 0.8f, 0.95f),
-                        (new Vector2(0f, 0.62f), new Vector2(0.7f, 0.22f)), (new Vector2(0f, -0.62f), new Vector2(0.7f, 0.22f))),
                     m => m.Configure(speedMultiplier: 1.3f, dodgeMultiplier: 1.5f, healthBonus: 0)),
 
                 CreateMutation<DodgePushMutation>("Mutation_JointedLegs", "Patas articuladas",
                     "Al esquivar contra un enemigo, lo empujas, lo aturdes y le haces 1 de daño.",
                     MutationSlot.Limbs, Lineage.Armored,
-                    Visual("Visual_JointedLegs", pixel, new Color(0.6f, 0.45f, 0.3f),
-                        (new Vector2(0.45f, 0.6f), new Vector2(0.18f, 0.3f)), (new Vector2(-0.45f, 0.6f), new Vector2(0.18f, 0.3f)),
-                        (new Vector2(0.45f, -0.6f), new Vector2(0.18f, 0.3f)), (new Vector2(-0.45f, -0.6f), new Vector2(0.18f, 0.3f))),
                     m => m.Configure(newPushSpeed: 12f, newStunDuration: 0.5f, newDamage: 1)),
 
                 CreateMutation<StatMutation>("Mutation_Carapace", "Caparazón",
                     "+1 corazón de vida máxima, pero −10 % de velocidad.",
                     MutationSlot.Skin, Lineage.Armored,
-                    Visual("Visual_Carapace", pixel, new Color(0.55f, 0.6f, 0.6f), sortingOrder: 9,
-                        (Vector2.zero, Vector2.one * 1.3f)),
                     m => m.Configure(speedMultiplier: 0.9f, dodgeMultiplier: 1f, healthBonus: 2)),
 
                 CreateMutation<ThornsMutation>("Mutation_StingingSkin", "Piel urticante",
                     "Los enemigos que te tocan reciben 2 de daño.",
                     MutationSlot.Skin, Lineage.Toxic,
-                    Visual("Visual_StingingSkin", pixel, new Color(0.75f, 0.9f, 0.3f),
-                        (new Vector2(0.62f, 0f), Vector2.one * 0.2f), (new Vector2(-0.62f, 0f), Vector2.one * 0.2f),
-                        (new Vector2(0f, 0.62f), Vector2.one * 0.2f), (new Vector2(0f, -0.62f), Vector2.one * 0.2f)),
                     m => m.Configure(newDamage: 2, newInterval: 0.5f)),
 
                 CreateMutation<InkCloudMutation>("Mutation_InkSac", "Vejiga de tinta",
                     "Clic derecho: nube que ciega 3 s a los enemigos cercanos. Recarga: 8 s.",
                     MutationSlot.Organ, Lineage.Predator,
-                    Visual("Visual_InkSac", pixel, new Color(0.15f, 0.2f, 0.45f), (new Vector2(-0.2f, 0.2f), Vector2.one * 0.3f)),
                     m =>
                     {
                         m.ConfigureAbility(newCooldown: 8f, inkEffect);
@@ -158,7 +142,6 @@ namespace Primordia.Editor
                 CreateMutation<ShockwaveMutation>("Mutation_ShockGland", "Glándula de choque",
                     "Clic derecho: onda que destruye los proyectiles enemigos y empuja a los enemigos. Recarga: 6 s.",
                     MutationSlot.Organ, Lineage.Armored,
-                    Visual("Visual_ShockGland", pixel, new Color(0.95f, 0.85f, 0.3f), (new Vector2(-0.2f, 0.2f), Vector2.one * 0.3f)),
                     m =>
                     {
                         m.ConfigureAbility(newCooldown: 6f, shockEffect);
@@ -186,7 +169,7 @@ namespace Primordia.Editor
         };
 
         static T CreateMutation<T>(string assetName, string displayName, string description, MutationSlot slot,
-            Lineage lineage, GameObject visual, Action<T> configure) where T : MutationData
+            Lineage lineage, Action<T> configure) where T : MutationData
         {
             string path = $"{DataFolder}/{assetName}.asset";
             var existing = AssetDatabase.LoadAssetAtPath<T>(path);
@@ -194,7 +177,7 @@ namespace Primordia.Editor
                 return existing;
 
             var mutation = ScriptableObject.CreateInstance<T>();
-            mutation.ConfigureBase(displayName, description, slot, lineage, LineageColor(lineage), visual);
+            mutation.ConfigureBase(displayName, description, slot, lineage, LineageColor(lineage));
             configure(mutation);
             AssetDatabase.CreateAsset(mutation, path);
             return mutation;
@@ -245,39 +228,6 @@ namespace Primordia.Editor
             return SavePrefab(root, path);
         }
 
-        static GameObject Visual(string prefabName, Sprite pixel, Color color, params (Vector2 position, Vector2 size)[] parts) =>
-            Visual(prefabName, pixel, color, sortingOrder: 11, parts);
-
-        /// <summary>Aspecto provisional de una mutación: rectángulos de color, en unidades del jugador.</summary>
-        static GameObject Visual(string prefabName, Sprite pixel, Color color, int sortingOrder,
-            params (Vector2 position, Vector2 size)[] parts)
-        {
-            string path = $"{PrefabsFolder}/Visuals/{prefabName}.prefab";
-            var existing = AssetDatabase.LoadAssetAtPath<GameObject>(path);
-            if (existing != null)
-                return existing;
-
-            Directory.CreateDirectory($"{PrefabsFolder}/Visuals");
-            var root = new GameObject(prefabName);
-
-            // El sprite de 1 píxel mide 1/16 de unidad: se escala ×16 para medir en unidades.
-            float pixelsPerUnit = pixel.pixelsPerUnit;
-            foreach (var (position, size) in parts)
-            {
-                var part = new GameObject("Part");
-                part.transform.SetParent(root.transform, false);
-                part.transform.localPosition = position;
-                part.transform.localScale = new Vector3(size.x * pixelsPerUnit, size.y * pixelsPerUnit, 1f);
-
-                var renderer = part.AddComponent<SpriteRenderer>();
-                renderer.sprite = pixel;
-                renderer.color = color;
-                renderer.sortingOrder = sortingOrder;
-            }
-
-            return SavePrefab(root, path);
-        }
-
         static GameObject SavePrefab(GameObject root, string path)
         {
             var prefab = PrefabUtility.SaveAsPrefabAsset(root, path);
@@ -293,11 +243,8 @@ namespace Primordia.Editor
             var root = PrefabUtility.LoadPrefabContents(PlayerSetup.PlayerPath);
             try
             {
-                if (!root.TryGetComponent<PlayerMutations>(out var mutations))
-                {
-                    mutations = root.AddComponent<PlayerMutations>();
-                    mutations.SetAnchors(root.transform.Find("AimPivot"), root.transform);
-                }
+                if (!root.TryGetComponent<PlayerMutations>(out _))
+                    root.AddComponent<PlayerMutations>();
 
                 if (!root.TryGetComponent<PlayerAbility>(out var ability))
                     ability = root.AddComponent<PlayerAbility>();

@@ -16,7 +16,9 @@ MonoBehaviour:
   description: "Al esquivar contra un enemigo, lo empujas, lo aturdes y le haces 1 de da\xF1o."
   slot: 1
   lineage: 1
-  visualPrefab: {fileID: 6027660467558682527, guid: 648d42ac1f59a7f479c25c6affe66489, type: 3}
+  look: {fileID: 9100000, guid: 0eaac03a83adc274ca62bda6b23896cf, type: 2}
+  bodyRadius: 0
+  mouthDistance: 0
   color: {r: 0.55, g: 0.7, b: 0.9, a: 1}
   pushSpeed: 12
   stunDuration: 0.5

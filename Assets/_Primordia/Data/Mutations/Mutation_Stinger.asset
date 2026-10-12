@@ -16,7 +16,9 @@ MonoBehaviour:
   description: "Disparo autom\xE1tico y r\xE1pido que envenena: 1 de da\xF1o por segundo durante 3 s."
   slot: 0
   lineage: 2
-  visualPrefab: {fileID: 2787204866301347465, guid: 7df162dac158d364fb7985284f86f106, type: 3}
+  look: {fileID: 9100000, guid: 9bae97a3d9065ba44b138462e97888ad, type: 2}
+  bodyRadius: 0
+  mouthDistance: 0
   color: {r: 0.55, g: 0.9, b: 0.35, a: 1}
   attack: {fileID: 11400000, guid: b6c3f22c0110a2548b95eda6f2d352df, type: 2}
   healEveryKills: 0

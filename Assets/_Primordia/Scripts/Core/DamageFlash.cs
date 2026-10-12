@@ -47,7 +47,7 @@ namespace Primordia.Core
 
             StopFlash();
 
-            // Se recogen en cada golpe para incluir los aspectos de mutación añadidos durante la partida.
+            // Se recogen en cada golpe para incluir las piezas de mutación equipadas durante la partida.
             if (collectOnHit)
             {
                 GetComponentsInChildren(buffer);

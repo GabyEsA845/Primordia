@@ -33,6 +33,17 @@ namespace Primordia.Player
         public Facing CurrentFacing { get; private set; } = Facing.Down;
         public Action CurrentAction { get; private set; } = Action.Idle;
         public bool IsHurt => !health.IsDead && Time.time < hurtUntil;
+        public Animator BodyAnimator => animator;
+        public SpriteRenderer Body => body;
+
+        /// <summary>
+        /// Se lanza cuando el cuerpo empieza (o vuelve a empezar) una animación de reposo, moverse o esquiva.
+        /// Las piezas de mutación lo usan para ir al mismo cuadro que el cuerpo.
+        /// </summary>
+        public event System.Action<Action, Facing> StateChanged;
+
+        RuntimeAnimatorController cellController;
+        bool hasCellController;
 
         void Awake()
         {
@@ -79,7 +90,8 @@ namespace Primordia.Player
             if (CurrentAction != Action.Dodge && IsHurt)
                 return;
 
-            Play(States[(int)CurrentAction, (int)CurrentFacing]);
+            if (Play(States[(int)CurrentAction, (int)CurrentFacing]))
+                StateChanged?.Invoke(CurrentAction, CurrentFacing);
         }
 
         /// <summary>Lateral si la dirección es más horizontal que vertical; si no, arriba o abajo.</summary>
@@ -93,6 +105,31 @@ namespace Primordia.Player
 
         /// <summary>Nombre del estado del Animator (y del clip) para una acción y orientación.</summary>
         public static string StateName(Action action, Facing facing) => $"{action}_{facing.ToString().ToLowerInvariant()}";
+
+        /// <summary>
+        /// Cambia las animaciones del cuerpo (la Piel sustituye a la célula); null vuelve a las de la célula.
+        /// El controlador nuevo debe tener los mismos estados que el del jugador.
+        /// </summary>
+        public void SetBodyController(RuntimeAnimatorController controller)
+        {
+            if (animator == null)
+                return;
+
+            if (!hasCellController)
+            {
+                cellController = animator.runtimeAnimatorController;
+                hasCellController = true;
+            }
+
+            animator.runtimeAnimatorController = controller != null ? controller : cellController;
+
+            // El controlador nuevo empieza en su estado por defecto: se vuelve a elegir el que toca.
+            currentState = 0;
+            if (health.IsDead)
+                Play(DeathState, restart: true);
+            else if (IsHurt)
+                Play(HurtState, restart: true);
+        }
 
         internal void Configure(Animator animator, SpriteRenderer body)
         {
@@ -114,7 +151,7 @@ namespace Primordia.Player
             if (body != null)
                 body.flipX = false;
 
-            // Al reventar solo queda la célula: se ocultan la boca y los aspectos de mutación.
+            // Al reventar solo queda el cuerpo: se ocultan la boca y las piezas de mutación.
             foreach (var sprite in GetComponentsInChildren<SpriteRenderer>())
             {
                 if (sprite != body)
@@ -124,13 +161,16 @@ namespace Primordia.Player
             Play(DeathState, restart: true);
         }
 
-        void Play(int state, bool restart = false)
+        /// <summary>Pone el estado desde el principio. Devuelve false si ya estaba en él (y no se reinicia).</summary>
+        bool Play(int state, bool restart = false)
         {
-            if (animator == null || (state == currentState && !restart))
-                return;
+            if (state == currentState && !restart)
+                return false;
 
-            animator.Play(state, 0, 0f);
+            if (animator != null && animator.runtimeAnimatorController != null)
+                animator.Play(state, 0, 0f);
             currentState = state;
+            return true;
         }
 
         static int[,] BuildStates()

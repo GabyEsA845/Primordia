@@ -31,8 +31,13 @@ namespace Primordia.Mutations
         [SerializeField] MutationSlot slot;
         [SerializeField] Lineage lineage;
 
-        [Tooltip("Aspecto que se añade al cuerpo del jugador. En la boca gira con el apuntado.")]
-        [SerializeField] GameObject visualPrefab;
+        [Tooltip("Animaciones de la pieza (se dibuja con MutationLook). En la Piel sustituye a las del cuerpo, " +
+                 "con los mismos estados que el jugador.")]
+        [SerializeField] RuntimeAnimatorController look;
+        [Tooltip("Solo Piel: radio de colisión del cuerpo. 0 = el de la célula.")]
+        [SerializeField, Min(0f)] float bodyRadius;
+        [Tooltip("Solo Piel: distancia del centro al borde del cuerpo, donde se coloca la Boca. 0 = la de la célula.")]
+        [SerializeField, Min(0f)] float mouthDistance;
         [Tooltip("Color de la mutación en la interfaz y en los objetos del suelo.")]
         [SerializeField] Color color = Color.white;
 
@@ -40,7 +45,9 @@ namespace Primordia.Mutations
         public string Description => description;
         public MutationSlot Slot => slot;
         public Lineage Lineage => lineage;
-        public GameObject VisualPrefab => visualPrefab;
+        public RuntimeAnimatorController Look => look;
+        public float BodyRadius => bodyRadius;
+        public float MouthDistance => mouthDistance;
         public Color Color => color;
 
         public abstract void Apply(PlayerMutations player);
@@ -48,16 +55,20 @@ namespace Primordia.Mutations
         public virtual void Remove(PlayerMutations player) { }
 
         internal void ConfigureBase(string newName, string newDescription, MutationSlot newSlot, Lineage newLineage,
-            Color newColor, GameObject newVisual = null)
+            Color newColor)
         {
             displayName = newName;
             description = newDescription;
             slot = newSlot;
             lineage = newLineage;
             color = newColor;
-            visualPrefab = newVisual;
         }
 
-        internal void SetVisual(GameObject newVisual) => visualPrefab = newVisual;
+        internal void SetLook(RuntimeAnimatorController newLook, float newBodyRadius = 0f, float newMouthDistance = 0f)
+        {
+            look = newLook;
+            bodyRadius = Mathf.Max(0f, newBodyRadius);
+            mouthDistance = Mathf.Max(0f, newMouthDistance);
+        }
     }
 }

@@ -60,6 +60,9 @@ namespace Primordia.Editor
             // Hojas de la carpeta que no se importan (por nombre de clip).
             public HashSet<string> SkipClips = new();
 
+            // Pivote de los cuadros, de 0 a 1 (por defecto, el centro).
+            public Vector2 Pivot = new(0.5f, 0.5f);
+
             // Sin nombre, las hojas no comparten prefijo y el clip se llama como la hoja (efectos).
             public string SheetPrefix => string.IsNullOrEmpty(Name) ? "" : Name + "_";
             public string AnimationsFolder => ArtFolder + "/Animations";
@@ -431,7 +434,7 @@ namespace Primordia.Editor
             foreach (var sheet in sheets)
             {
                 string clipName = ClipName(character, sheet);
-                var sprites = SliceSheet(sheet, character.CellWidths.TryGetValue(clipName, out int width) ? width : 0);
+                var sprites = SliceSheet(sheet, character.CellWidths.TryGetValue(clipName, out int width) ? width : 0, character.Pivot);
                 var clip = CreateClip(character, clipName, sprites);
                 art.Clips[clip.name] = clip;
                 art.FirstSprites[clip.name] = sprites[0];
@@ -490,9 +493,11 @@ namespace Primordia.Editor
 
         /// <summary>
         /// Configura la hoja como pixel art y la corta en cuadros del alto de la imagen y del ancho indicado
-        /// (0 = cuadrados), con pivote centrado. Conserva los identificadores de los cuadros que ya existían.
+        /// (0 = cuadrados), con ese pivote. Conserva los identificadores de los cuadros que ya existían.
         /// </summary>
-        static Sprite[] SliceSheet(string path, int cellWidth)
+        static Sprite[] SliceSheet(string path, int cellWidth) => SliceSheet(path, cellWidth, new Vector2(0.5f, 0.5f));
+
+        static Sprite[] SliceSheet(string path, int cellWidth, Vector2 pivot)
         {
             var importer = (TextureImporter)AssetImporter.GetAtPath(path);
             importer.textureType = TextureImporterType.Sprite;
@@ -526,8 +531,8 @@ namespace Primordia.Editor
                 {
                     name = name,
                     rect = new Rect(i * cell, 0, cell, height),
-                    alignment = SpriteAlignment.Center,
-                    pivot = new Vector2(0.5f, 0.5f),
+                    alignment = pivot == new Vector2(0.5f, 0.5f) ? SpriteAlignment.Center : SpriteAlignment.Custom,
+                    pivot = pivot,
                     spriteID = previousIds.TryGetValue(name, out var id) ? id : GUID.Generate(),
                 };
             }
@@ -673,7 +678,7 @@ namespace Primordia.Editor
                 var playerAnimator = GetOrAdd<PlayerAnimator>(root);
                 SetFields(playerAnimator, ("animator", animator), ("body", bodyRenderer));
 
-                // El cuerpo tiene su animación Hurt; el destello blanco queda para los aspectos de mutación.
+                // El cuerpo tiene su animación Hurt; el destello queda para las piezas de mutación.
                 if (root.TryGetComponent<DamageFlash>(out var flash))
                 {
                     var flashSerialized = new SerializedObject(flash);

@@ -76,6 +76,33 @@ namespace Primordia.Tests
         }
 
         [Test]
+        public void Skin_GrowsTheCollider_AndRestoresItOnUnequip()
+        {
+            // Se añade otra vez el jugador con colisión: PlayerMutations guarda el radio de la célula en Awake.
+            var cellObject = Track(new GameObject("PlayerWithCollider"));
+            var collider = cellObject.AddComponent<CircleCollider2D>();
+            collider.radius = 0.4f;
+            cellObject.AddComponent<Weapon>();
+            cellObject.AddComponent<PlayerController>().readInput = false;
+            var cell = cellObject.AddComponent<PlayerMutations>();
+
+            var carapace = CreateStat(MutationSlot.Skin, 1f, 1f, 0);
+            carapace.SetLook(null, newBodyRadius: 0.55f);
+            var plainSkin = CreateStat(MutationSlot.Skin, 1f, 1f, 0);
+
+            cell.Equip(carapace);
+            Assert.AreEqual(0.55f, collider.radius, 0.0001f);
+
+            // Una Piel sin radio propio deja el de la célula.
+            cell.Equip(plainSkin);
+            Assert.AreEqual(0.4f, collider.radius, 0.0001f);
+
+            cell.Equip(carapace);
+            cell.Unequip(MutationSlot.Skin);
+            Assert.AreEqual(0.4f, collider.radius, 0.0001f);
+        }
+
+        [Test]
         public void StatMutation_ChangesSpeedAndDodge_AndUndoesOnUnequip()
         {
             float speed = controller.MoveSpeed;

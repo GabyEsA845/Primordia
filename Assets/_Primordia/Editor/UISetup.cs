@@ -104,6 +104,7 @@ namespace Primordia.Editor
             CreateGameUIPrefab();
             EnsureMutationChoice();
             EnsureMutationList();
+            EnsureSeedLabel();
             EnsureBossBar();
             CreateMainMenuUIPrefab();
             AssetDatabase.SaveAssets();
@@ -446,6 +447,35 @@ namespace Primordia.Editor
                     return;
 
                 AddMutationList(pausePanel);
+                PrefabUtility.SaveAsPrefabAsset(root, GameUIPath);
+            }
+            finally
+            {
+                PrefabUtility.UnloadPrefabContents(root);
+            }
+        }
+
+        /// <summary>Añade al panel de pausa la semilla del piso, abajo a la izquierda, si todavía no la tiene.</summary>
+        static void EnsureSeedLabel()
+        {
+            var root = PrefabUtility.LoadPrefabContents(GameUIPath);
+            try
+            {
+                var pausePanel = root.transform.Find("PausePanel");
+                if (pausePanel == null || pausePanel.GetComponentInChildren<SeedLabel>(true) != null)
+                    return;
+
+                var label = CreateText(pausePanel, "", 9, new Color(0.6f, 0.7f, 0.65f));
+                label.name = "Seed";
+                label.alignment = TextAnchor.LowerLeft;
+                var rect = label.rectTransform;
+                rect.anchorMin = rect.anchorMax = rect.pivot = Vector2.zero;
+                rect.anchoredPosition = new Vector2(8f, 8f);
+                rect.sizeDelta = new Vector2(200f, 14f);
+                // Fuera de la columna centrada de botones del panel.
+                label.gameObject.AddComponent<LayoutElement>().ignoreLayout = true;
+                label.gameObject.AddComponent<SeedLabel>();
+
                 PrefabUtility.SaveAsPrefabAsset(root, GameUIPath);
             }
             finally

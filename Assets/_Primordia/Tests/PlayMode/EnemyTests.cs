@@ -23,9 +23,9 @@ namespace Primordia.Tests
         [TearDown]
         public void TearDown()
         {
-            foreach (var enemy in Object.FindObjectsByType<Enemy>(FindObjectsInactive.Include, FindObjectsSortMode.None))
+            foreach (var enemy in Object.FindObjectsByType<Enemy>(FindObjectsInactive.Include))
                 Object.DestroyImmediate(enemy.gameObject);
-            foreach (var projectile in Object.FindObjectsByType<Projectile>(FindObjectsInactive.Include, FindObjectsSortMode.None))
+            foreach (var projectile in Object.FindObjectsByType<Projectile>(FindObjectsInactive.Include))
                 Object.DestroyImmediate(projectile.gameObject);
 
             foreach (var obj in created)
@@ -144,7 +144,7 @@ namespace Primordia.Tests
 
             yield return new WaitForSeconds(0.2f);
 
-            Assert.Greater(Object.FindObjectsByType<Projectile>(FindObjectsSortMode.None).Length, 0);
+            Assert.Greater(Object.FindObjectsByType<Projectile>().Length, 0);
         }
 
         [UnityTest]
@@ -246,11 +246,11 @@ namespace Primordia.Tests
 
             Assert.AreEqual(1, aims);
             Assert.AreEqual(EnemyAI.State.Aim, ai.Current);
-            Assert.AreEqual(0, Object.FindObjectsByType<Projectile>(FindObjectsSortMode.None).Length);
+            Assert.AreEqual(0, Object.FindObjectsByType<Projectile>().Length);
 
             yield return new WaitForSeconds(0.25f);
 
-            Assert.Greater(Object.FindObjectsByType<Projectile>(FindObjectsSortMode.None).Length, 0);
+            Assert.Greater(Object.FindObjectsByType<Projectile>().Length, 0);
         }
 
         [Test]

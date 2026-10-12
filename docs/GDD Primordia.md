@@ -127,8 +127,8 @@ La v1.0 es el piso 1 completo y pulido, publicado en itch.io. El orden de trabaj
 
 **Para la v1.0**
 
-- [ ] Mapa distinto en cada partida y salas con formas distintas
-- [ ] Arte del piso 1 y cambio visual del jugador por cada mutación (ahora son marcas provisionales)
+- [x] Mapa distinto en cada partida y salas con formas distintas
+- [ ] Arte del piso 1 y cambio visual del jugador por cada mutación (hecho: jugador, enemigos, jefe, proyectiles, efectos y escenario; falta el aspecto de cada mutación, que aún son marcas provisionales)
 - [ ] Música y efectos de sonido
 - [ ] Linajes con bonus de sinergia
 - [ ] Más variedad en el piso 1: un tercer enemigo y salas especiales
@@ -149,13 +149,14 @@ Objetivo: que añadir una mutación, un enemigo o una sala nueva sea crear un ar
 | `PlayerController` | Movimiento, apuntado, esquiva | Input System nuevo, `Rigidbody2D` |
 | `Health` | Vida, daño, muerte | Componente reutilizable para jugador y enemigos |
 | `MutationData` | Datos de una mutación: ranura, linaje, icono, efectos | `ScriptableObject` |
-| `MutationSlots` | Qué mutación hay en cada ranura y aplicar sus efectos | Componente en el jugador |
-| `Weapon` / `Projectile` | Disparo según la mutación de Boca | Pool de objetos para los proyectiles |
-| `EnemyData` + `EnemyAI` | Estadísticas y comportamiento simple | `ScriptableObject` + máquina de estados pequeña |
-| `Room` / `FloorManager` | Puertas, oleadas, orden de salas, jefe | Salas como prefabs con Tilemap |
+| `PlayerMutations` | Qué mutación hay en cada ranura y aplicar sus efectos | Componente en el jugador |
+| `Weapon` / `Projectile` | Disparo (o mordisco cuerpo a cuerpo) según la mutación de Boca | `AttackData` (`ScriptableObject`) y pool de objetos para los proyectiles |
+| `EnemyData` + `EnemyAI` | Estadísticas y comportamiento: perseguir, mantener la distancia y disparar con línea de visión | `ScriptableObject` + máquina de estados pequeña que rodea obstáculos con la rejilla del piso (`NavigationGrid`) |
+| `Room` / `FloorGenerator` | Puertas, salas, orden del piso, enemigos y jefe | Formas de sala como texto (`RoomTemplate`); al empezar cada partida, el generador crea un plano al azar con su semilla, lo pinta en un Tilemap (`RoomTheme`) y reparte enemigos por presupuesto, todo según un `FloorConfig` |
 | `GameManager` | Estados: menú, jugando, elección de mutación, victoria, derrota | Singleton simple |
+| Animaciones | Jugador, enemigos, jefe, proyectiles, efectos y escenario | Menús `Primordia > Art` que importan las hojas de `docs/multimedia-temp` y crean clips, Animator y tiles |
 
-**Herramientas:** Unity 6 (6000.6.2f1) con plantilla 2D (URP), Tilemap para salas, Cinemachine para la cámara, TextMeshPro para la interfaz y Git con un `.gitignore` de Unity.
+**Herramientas:** Unity 6 (6000.6.2f1) con plantilla 2D (URP), Tilemap para salas, Cinemachine para la cámara (sigue al jugador, adelantada hacia el cursor), interfaz con uGUI (TextMeshPro cuando haya fuente pixel) y Git con un `.gitignore` de Unity y Git LFS para el arte.
 
 **Pixel art:** sprites de 16 px por unidad (personajes de 16×16 a 32×32), filtro *Point* sin compresión y la *Pixel Perfect Camera* de URP para que los píxeles no se deformen.
 
@@ -177,10 +178,13 @@ Objetivo: que añadir una mutación, un enemigo o una sala nueva sea crear un ar
 | Exclusiones | Por ranuras del cuerpo |
 | Linajes | Depredador, Acorazado y Tóxico |
 | Alcance de la v1.0 | 1 piso muy pulido; los demás, en versiones siguientes |
-| Obtención de mutaciones | Con un solo piso, la mutación tras el jefe no se usaría. Al limpiar las salas 2 y 4 aparece "elige 1 de 3": 3 mutaciones al azar, sin las equipadas, con botón Saltar |
+| Obtención de mutaciones | Con un solo piso, la mutación tras el jefe no se usaría. Al limpiar la 2.ª y la 4.ª sala de combate del camino, y cada sala lateral, aparece "elige 1 de 3": 3 mutaciones al azar, sin las equipadas, con botón Saltar |
 | Mutaciones de la v1.0 | Las 9 del borrador, con los valores de la tabla "Valores de las mutaciones" |
 | Sinergia de linajes | Cada mutación guarda su linaje; el bonus queda como deseable. Ojo: Tóxico no puede reunir 3 (dos de sus mutaciones son de Boca) |
-| Aspecto de las mutaciones | Marcas de color provisionales en el cuerpo por cada ranura, hasta tener arte |
+| Aspecto de las mutaciones | Piezas encima de la célula: las de Boca en la boca, girando hacia el cursor; las del cuerpo, una por dirección. Hasta tener el arte, marcas de color provisionales |
+| Mapa | Camino con giros del inicio al jefe, con 4 o 5 salas de combate y 1 o 2 salas laterales sin salida; enemigos por presupuesto que sube a lo largo del camino. Semilla visible en la pausa |
+| Salas | Formas en texto: pequeña 22×15, normal 28×16 (cabe en pantalla), grande 40×24, con columnas, en cruz y en L |
+| Mandíbulas | Mordisco cuerpo a cuerpo en arco delante de la boca, no un disparo |
 | Recarga del Órgano especial | Barra bajo el jugador que se llena durante la recarga y desaparece al estar lista |
 | Jefe del piso 1 | Virus gigante con 2 fases (la segunda desde el 50 % de vida); vencerlo abre la salida y da la victoria |
 

@@ -18,7 +18,7 @@ namespace Primordia.Editor
     /// cuadros, crea un clip por hoja y el Animator de cada personaje, y se los pone a su prefab.
     /// Se puede ejecutar de nuevo cada vez que cambie el arte: sobrescribe las hojas y actualiza los clips.
     /// </summary>
-    public static class ArtSetup
+    public static partial class ArtSetup
     {
         const string CharactersFolder = "Assets/_Primordia/Art/Characters";
         const string EnemiesSourceFolder = "docs/multimedia-temp/enemies";

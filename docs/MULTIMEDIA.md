@@ -32,6 +32,7 @@ Los recursos nuevos (hojas de sprites, GIF de revisión, scripts que los generan
 | Enemigos y jefe | `docs/multimedia-temp/enemies/<Enemigo>/` (`Bacteria`, `Ameba`, `AmebaSmall`, `BossVirus`; hojas `<Enemigo>_<Animación>.png`) | Menú **Primordia > Art > Importar animaciones de enemigos y jefe**: igual que el jugador, en `Art/Characters/Enemies/<Enemigo>/`. Aplica cada uno a su prefab (`Enemy_Chaser`, `Enemy_Shooter`, `Enemy_Small`, `Boss_Virus`) con escala 1, y ajusta los tiempos de juego a las animaciones: aviso de disparo de la ameba, aviso de ráfaga e invocación del jefe, pausa de la transición a la fase 2, división al final de Split y tiempo de muerte. |
 | Proyectiles | `docs/multimedia-temp/projectiles/` (`Projectile_<Nombre>.png`, el mismo nombre que su prefab) | Menú **Primordia > Art > Importar animaciones de proyectiles**: copia las hojas a `Art/Projectiles/`, crea un clip y un controlador por proyectil (se reproduce solo al salir del pool) y los aplica a los prefabs de `Prefabs/Combat` con escala 1, conservando el radio de colisión. Las celdas no cuadradas se indican en `ArtSetup` (`Stinger`: 12×6). Mandíbulas no dispara: `Mandibles_Bite.png` crea `Prefabs/Combat/Effect_Bite` (escala 1, en la boca) y convierte el ataque en mordisco; `Projectile_Mandibles.png` ya no se importa. Las duraciones por cuadro se indican en `ArtSetup`. |
 | Efectos | `docs/multimedia-temp/effects/` (cada hoja con su nombre, sin prefijo común) | Menú **Primordia > Art > Importar efectos**: crea los prefabs de `Prefabs/Effects` (los que no van en bucle se destruyen solos al acabar, con `OneShotEffect`) y los conecta: impactos en los prefabs de proyectil y en la mordida, veneno en el Aguijón, burbujas en los enemigos, estela en el jugador. La tinta y la onda sustituyen al círculo de `Prefabs/Mutations`; `AbilityMutation.effectRadius` indica a qué radio están dibujadas para no agrandarlas. Necesita haber importado antes enemigos y proyectiles. |
+| Escenario | `docs/multimedia-temp/environment/<Soup|Boss>/` (`tiles/`, `deco/`, `Door_*.png`, `Doorway_Top.png`) y, para salas con formas, `docs/multimedia-temp/environment-shapes/<Soup|Boss>/tiles/` | Menú **Primordia > Art > Importar escenario**: crea un tile por imagen (las paredes con colisión), la decoración (algas y burbujas como tiles animados) y un `RoomTheme` por variante en `Art/Environment/`. Después hay que regenerar el piso (**Primordia > UI > Regenerar escena Game**). Las salas son plantillas de texto (`Data/Rooms/`) que un pintor viste con el tema; las celdas sin pieza salen en magenta. |
 
 `.png`, `.aseprite`, `.wav`, `.ogg`, `.mp3`, `.ttf` y `.otf` se guardan con Git LFS (ya configurado en `.gitattributes`).
 
@@ -89,11 +90,12 @@ Los recursos nuevos (hojas de sprites, GIF de revisión, scripts que los generan
 
 | Recurso | Descripción | Prioridad | Estado |
 |---------|-------------|-----------|--------|
-| Tileset de suelo | Charco microscópico, tonos verdes | M | Pendiente |
-| Tileset de paredes | Bordes de las salas | M | Pendiente |
-| Puerta abierta / cerrada | Se cierra durante el combate | M | Pendiente |
-| Decoración | Burbujas y partículas de fondo | D | Pendiente |
-| Sala del jefe | Variante del tileset o decoración propia | D | Pendiente |
+| Tileset de suelo | Charco microscópico, tonos verdes; variantes y sombra bajo la pared | M | Listo |
+| Tileset de paredes | Bordes de las salas rectangulares (tapa, cara en 2 filas, bordes y esquinas) | M | Listo |
+| Paredes para salas con formas | `Wall_FaceUpper/Lower_EndLeft/Right` y `Wall_OuterTopLeft/Right`, para entrantes y columnas (encargo en `docs/multimedia-temp/environment-shapes/PROMPT.md`) | M | Pendiente |
+| Puerta abierta / cerrada | Membrana animada de 5 cuadros en los 4 lados y arco fijo arriba | M | Listo |
+| Decoración | Algas y burbujas animadas, diatomeas y motas, repartidas al azar (5 % del suelo) | D | Listo |
+| Sala del jefe | Variante `Boss` del tileset, con restos infectados | D | Listo |
 
 ### Objetos e interfaz
 

@@ -26,9 +26,18 @@ namespace Primordia.Rooms
         public FloorLayout Layout { get; private set; }
         public FloorBuilder.BuiltFloor Built { get; private set; }
 
+        NavigationGrid navigation;
+
         // El proyecto entra en Play sin recargar el dominio, así que los static hay que limpiarlos a mano.
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
         static void ResetStatics() => CurrentSeed = 0;
+
+        // Al salir de la escena, los enemigos de otra escena (pruebas, menú) no deben usar la rejilla de este piso.
+        void OnDestroy()
+        {
+            if (navigation != null && NavigationGrid.Current == navigation)
+                NavigationGrid.Current = null;
+        }
 
         void Awake()
         {
@@ -61,6 +70,8 @@ namespace Primordia.Rooms
             var random = new System.Random(seed);
             Layout = FloorLayoutGenerator.Generate(config, random);
             Built = FloorBuilder.Build(Layout, config, transform, random);
+            navigation = new NavigationGrid(Built.Map);
+            NavigationGrid.Current = navigation;
 
             Vector3 start = Built.StartPosition;
             if (player != null)

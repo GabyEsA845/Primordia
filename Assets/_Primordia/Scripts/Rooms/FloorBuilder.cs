@@ -31,6 +31,9 @@ namespace Primordia.Rooms
             public readonly List<Room> Rooms = new();
             public Vector2 StartPosition;
             public int MissingCells;
+
+            /// <summary>Qué hay en cada celda del piso: sirve para la navegación de los enemigos.</summary>
+            public FloorMap Map;
         }
 
         /// <summary>Una sala del plano ya colocada en el mapa.</summary>
@@ -63,6 +66,7 @@ namespace Primordia.Rooms
             var byLayout = placed.ToDictionary(room => room.Layout);
 
             var map = new FloorMap(MapBounds(placed));
+            built.Map = map;
             var noDecoration = new HashSet<Vector2Int>();
 
             foreach (var room in placed)

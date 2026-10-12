@@ -20,6 +20,8 @@ namespace Primordia.Enemies
         [Tooltip("Animator del cuerpo, con un estado por clip (Move, Hurt, Death…).")]
         [SerializeField] Animator animator;
         [SerializeField] SpriteRenderer body;
+        [Tooltip("Efecto encima de la muerte (burbujas). No aparece al dividirse: Split ya cuenta lo que pasa.")]
+        [SerializeField] GameObject deathEffect;
 
         Enemy enemy;
         Health health;
@@ -57,10 +59,11 @@ namespace Primordia.Enemies
                 ai.AimStarted -= OnAimStarted;
         }
 
-        internal void Configure(Animator newAnimator, SpriteRenderer newBody)
+        internal void Configure(Animator newAnimator, SpriteRenderer newBody, GameObject newDeathEffect = null)
         {
             animator = newAnimator;
             body = newBody;
+            deathEffect = newDeathEffect;
             states = new AnimatorStates(animator);
         }
 
@@ -107,6 +110,9 @@ namespace Primordia.Enemies
         {
             bool split = enemy.WillSplit && (animator == null || states.Has(SplitState));
             states.Play(split ? SplitState : DeathState, restart: true);
+
+            if (!enemy.WillSplit)
+                OneShotEffect.Spawn(deathEffect, transform.position);
         }
 
         void Show(string state)

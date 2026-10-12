@@ -275,6 +275,7 @@ GameObject:
   - component: {fileID: 7142700440647645222}
   - component: {fileID: 710169707579753331}
   - component: {fileID: 4329951006136539611}
+  - component: {fileID: 5062205932139135664}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -480,6 +481,20 @@ MonoBehaviour:
   animator: {fileID: 1705292199529342473}
   body: {fileID: 2014002076244917393}
   hurtDuration: 0.2
+--- !u!114 &5062205932139135664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2873998751450272095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f1ab5090d0dea9489344b351f6f798f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Primordia::Primordia.Player.DodgeTrail
+  trailPrefab: {fileID: 4536956360931052317, guid: 631d657baa604564290ce104dc130532, type: 3}
+  interval: 0.05
 --- !u!1 &4980531296642416501
 GameObject:
   m_ObjectHideFlags: 0

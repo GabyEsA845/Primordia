@@ -37,6 +37,8 @@ namespace Primordia.Combat
         [SerializeField, Min(0)] int poisonDamagePerSecond;
         [Tooltip("Segundos que dura el veneno. Un impacto nuevo lo reinicia.")]
         [SerializeField, Min(0f)] float poisonDuration;
+        [Tooltip("Efecto en bucle sobre el objetivo mientras dura el veneno.")]
+        [SerializeField] GameObject poisonEffect;
 
         [Header("Cuerpo a cuerpo")]
         [Tooltip("Activo: no dispara proyectiles; daña a todo lo que hay en un arco delante (mordisco de Mandíbulas).")]
@@ -47,11 +49,15 @@ namespace Primordia.Combat
         [SerializeField, Range(1f, 360f)] float meleeArc = 180f;
         [Tooltip("Efecto visual del golpe. Se coloca en la boca y dura lo mismo que Lifetime.")]
         [SerializeField] GameObject meleeEffect;
+        [Tooltip("Efecto sobre cada objetivo alcanzado por el golpe.")]
+        [SerializeField] GameObject meleeHitEffect;
 
         public Projectile ProjectilePrefab => projectilePrefab;
         public bool IsMelee => melee;
         public float MeleeArc => meleeArc;
         public GameObject MeleeEffect => meleeEffect;
+        public GameObject MeleeHitEffect => meleeHitEffect;
+        public GameObject PoisonEffect => poisonEffect;
 
         /// <summary>True si con estos datos se puede atacar: tiene proyectil o es cuerpo a cuerpo.</summary>
         public bool IsUsable => melee || projectilePrefab != null;
@@ -95,5 +101,9 @@ namespace Primordia.Combat
             meleeArc = Mathf.Clamp(arc, 1f, 360f);
             meleeEffect = effect;
         }
+
+        internal void SetMeleeHitEffect(GameObject effect) => meleeHitEffect = effect;
+
+        internal void SetPoisonEffect(GameObject effect) => poisonEffect = effect;
     }
 }

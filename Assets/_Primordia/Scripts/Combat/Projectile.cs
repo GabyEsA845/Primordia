@@ -12,6 +12,9 @@ namespace Primordia.Combat
     [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
     public class Projectile : MonoBehaviour
     {
+        [Tooltip("Efecto al golpear un objetivo o una pared (no al acabarse su tiempo de vida).")]
+        [SerializeField] GameObject impactEffect;
+
         public int Damage { get; private set; }
 
         Rigidbody2D rb;
@@ -32,6 +35,8 @@ namespace Primordia.Combat
         }
 
         internal void SetPool(ObjectPool<Projectile> owner) => pool = owner;
+
+        internal void SetImpactEffect(GameObject effect) => impactEffect = effect;
 
         /// <param name="source">Arma que disparó; recibe el aviso de cada impacto. Puede ser null.</param>
         public void Launch(Vector2 position, Vector2 direction, AttackData attack, int layer, Weapon source)
@@ -66,6 +71,7 @@ namespace Primordia.Combat
             var health = other.GetComponentInParent<Health>();
             if (health == null)
             {
+                OneShotEffect.Spawn(impactEffect, transform.position);
                 Despawn();
                 return;
             }
@@ -73,8 +79,9 @@ namespace Primordia.Combat
             if (!health.TakeDamage(Damage))
                 return;
 
+            OneShotEffect.Spawn(impactEffect, transform.position);
             if (attack.AppliesPoison && !health.IsDead)
-                Poison.Apply(health, attack.PoisonDamagePerSecond, attack.PoisonDuration);
+                Poison.Apply(health, attack.PoisonDamagePerSecond, attack.PoisonDuration, attack.PoisonEffect);
 
             // El arma puede haberse destruido (enemigo muerto) mientras el proyectil volaba.
             if (source != null)

@@ -1,8 +1,10 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Primordia.Combat;
 using Primordia.Core;
 using Primordia.Enemies;
+using Primordia.Mutations;
 using Primordia.Player;
 using UnityEditor;
 using UnityEditor.Animations;
@@ -24,6 +26,9 @@ namespace Primordia.Editor
         const string ProjectilePrefabsFolder = "Assets/_Primordia/Prefabs/Combat";
         const string ProjectilesSourceFolder = "docs/multimedia-temp/projectiles";
         const string ProjectilesArtFolder = "Assets/_Primordia/Art/Projectiles";
+        const string EffectPrefabsFolder = "Assets/_Primordia/Prefabs/Effects";
+        const string MutationPrefabsFolder = "Assets/_Primordia/Prefabs/Mutations";
+        const string MutationDataFolder = "Assets/_Primordia/Data/Mutations";
         const int PixelsPerUnit = 16;
 
         // Cuadro (desde 0) en el que sale el disparo o aparece la invocación, según el README del arte.
@@ -55,7 +60,8 @@ namespace Primordia.Editor
             // Hojas de la carpeta que no se importan (por nombre de clip).
             public HashSet<string> SkipClips = new();
 
-            public string SheetPrefix => Name + "_";
+            // Sin nombre, las hojas no comparten prefijo y el clip se llama como la hoja (efectos).
+            public string SheetPrefix => string.IsNullOrEmpty(Name) ? "" : Name + "_";
             public string AnimationsFolder => ArtFolder + "/Animations";
             public string ControllerPath => $"{AnimationsFolder}/{Name}.controller";
         }
@@ -137,6 +143,22 @@ namespace Primordia.Editor
             Timings = new[] { ("Bite", 0f, false) },
         };
 
+        // Efectos sueltos (Impact_Player.png → Impact_Player). La onda dura 0,35 s: 6 cuadros a 6 / 0,35 fps;
+        // la tinta, 1 s: 9 cuadros a 9 fps.
+        static readonly Character EffectsArt = new()
+        {
+            Name = "",
+            SourceFolder = "docs/multimedia-temp/effects",
+            ArtFolder = "Assets/_Primordia/Art/Effects",
+            ControllerPerClip = true,
+            SkipClips = new HashSet<string> { "vista_previa_efectos" },
+            Timings = new[]
+            {
+                ("Impact", 20f, false), ("EnemyDeath_Bubbles", 12f, false), ("DodgeTrail", 20f, false),
+                ("Poison", 8f, true), ("InkCloud", 9f, false), ("Shockwave", 6f / 0.35f, false),
+            },
+        };
+
         static readonly EditorCurveBinding SpriteBinding = EditorCurveBinding.PPtrCurve("", typeof(SpriteRenderer), "m_Sprite");
 
         static Character EnemyCharacter(string name, params (string, float, bool)[] timings) => new()
@@ -180,6 +202,163 @@ namespace Primordia.Editor
                 ApplyToBossPrefab(boss);
 
             AssetDatabase.SaveAssets();
+        }
+
+        [MenuItem("Primordia/Art/Importar efectos")]
+        static void ImportEffects()
+        {
+            var art = Import(EffectsArt);
+            if (art == null)
+                return;
+
+            Directory.CreateDirectory(EffectPrefabsFolder);
+            var playerImpact = CreateEffectPrefab("Effect_Impact_Player", art, "Impact_Player", sortingOrder: 21);
+            var enemyImpact = CreateEffectPrefab("Effect_Impact_Enemy", art, "Impact_Enemy", sortingOrder: 21);
+            var deathBubbles = CreateEffectPrefab("Effect_EnemyDeath", art, "EnemyDeath_Bubbles", sortingOrder: 7);
+            var dodgeTrail = CreateEffectPrefab("Effect_DodgeTrail", art, "DodgeTrail", sortingOrder: 9);
+            var poison = CreateEffectPrefab("Effect_Poison", art, "Poison", sortingOrder: 8);
+            AssetDatabase.SaveAssets();
+
+            // El color del impacto dice de quién era el disparo: lima del jugador, rosa de los enemigos.
+            foreach (var name in new[] { "Projectile_Player", "Projectile_Stinger", "Projectile_Spore" })
+                EditPrefab($"{ProjectilePrefabsFolder}/{name}.prefab", root => root.GetComponent<Projectile>().SetImpactEffect(playerImpact));
+            foreach (var name in new[] { "Projectile_Enemy", "Projectile_BossSpiral", "Projectile_BossBurst" })
+                EditPrefab($"{ProjectilePrefabsFolder}/{name}.prefab", root => root.GetComponent<Projectile>().SetImpactEffect(enemyImpact));
+
+            EditAttack("Attack_Mandibles", attack => attack.SetMeleeHitEffect(playerImpact));
+            EditAttack("Attack_Stinger", attack => attack.SetPoisonEffect(poison));
+
+            foreach (var name in new[] { "Enemy_Chaser", "Enemy_Shooter", "Enemy_Small" })
+                EditPrefab($"{EnemyPrefabsFolder}/{name}.prefab", root =>
+                {
+                    if (root.TryGetComponent<EnemyAnimator>(out var animator))
+                        SetFields(animator, ("deathEffect", deathBubbles));
+                    else
+                        Debug.LogWarning($"ArtSetup: {name} no tiene EnemyAnimator; importa antes las animaciones de enemigos.");
+                });
+
+            EditPrefab(PlayerSetup.PlayerPath, root => GetOrAdd<DodgeTrail>(root).Configure(dodgeTrail));
+
+            // Dibujados a su tamaño real: tinta de radio 3 y onda de radio 4.
+            UpdateAbilityEffect("Effect_InkCloud", art, "InkCloud", "Mutation_InkSac", drawnRadius: 3f);
+            UpdateAbilityEffect("Effect_Shockwave", art, "Shockwave", "Mutation_ShockGland", drawnRadius: 4f);
+
+            AssetDatabase.SaveAssets();
+        }
+
+        /// <summary>
+        /// Crea o actualiza el prefab de un efecto: sprite animado y, si no va en bucle,
+        /// <see cref="OneShotEffect"/> para que se destruya al terminar la animación.
+        /// </summary>
+        static GameObject CreateEffectPrefab(string prefabName, ImportedArt art, string clip, int sortingOrder)
+        {
+            if (!art.Controllers.TryGetValue(clip, out var controller))
+            {
+                Debug.LogWarning($"ArtSetup: falta la hoja {clip}.png; no se crea {prefabName}.");
+                return null;
+            }
+
+            return EditPrefab($"{EffectPrefabsFolder}/{prefabName}.prefab", root =>
+            {
+                SetAnimatedSprite(root, controller, art.FirstSprites[clip], sortingOrder);
+
+                bool loops = AnimationUtility.GetAnimationClipSettings(art.Clips[clip]).loopTime;
+                if (loops)
+                {
+                    if (root.TryGetComponent<OneShotEffect>(out var oneShot))
+                        Object.DestroyImmediate(oneShot);
+                }
+                else
+                {
+                    GetOrAdd<OneShotEffect>(root).SetDuration(art.Length(clip));
+                }
+            }, create: true);
+        }
+
+        /// <summary>
+        /// Cambia el círculo provisional de una habilidad por su animación. Quita el crecimiento de
+        /// FadeOutEffect y le dice a la mutación a qué radio está dibujado, para que no se agrande.
+        /// </summary>
+        static void UpdateAbilityEffect(string prefabName, ImportedArt art, string clip, string mutationName, float drawnRadius)
+        {
+            if (!art.Controllers.TryGetValue(clip, out var controller))
+            {
+                Debug.LogWarning($"ArtSetup: falta la hoja {clip}.png; {prefabName} no cambia.");
+                return;
+            }
+
+            EditPrefab($"{MutationPrefabsFolder}/{prefabName}.prefab", root =>
+            {
+                if (root.TryGetComponent<FadeOutEffect>(out var fade))
+                    Object.DestroyImmediate(fade);
+
+                var renderer = root.GetComponent<SpriteRenderer>();
+                SetAnimatedSprite(root, controller, art.FirstSprites[clip], renderer.sortingOrder);
+                GetOrAdd<OneShotEffect>(root).SetDuration(art.Length(clip));
+            });
+
+            var mutation = AssetDatabase.LoadAssetAtPath<AbilityMutation>($"{MutationDataFolder}/{mutationName}.asset");
+            if (mutation == null)
+            {
+                Debug.LogWarning($"ArtSetup: no existe {mutationName}; créalo con Primordia > Mutations.");
+                return;
+            }
+
+            mutation.SetEffectRadius(drawnRadius);
+            EditorUtility.SetDirty(mutation);
+        }
+
+        static void SetAnimatedSprite(GameObject root, AnimatorController controller, Sprite sprite, int sortingOrder)
+        {
+            root.transform.localScale = Vector3.one;
+            var renderer = GetOrAdd<SpriteRenderer>(root);
+            renderer.sprite = sprite;
+            renderer.color = Color.white;
+            renderer.sortingOrder = sortingOrder;
+            GetOrAdd<Animator>(root).runtimeAnimatorController = controller;
+        }
+
+        static void EditAttack(string attackName, System.Action<AttackData> edit)
+        {
+            var attack = CombatSetup.LoadAttack(attackName);
+            if (attack == null)
+            {
+                Debug.LogWarning($"ArtSetup: no existe {attackName}; créalo con Primordia > Combat o Mutations.");
+                return;
+            }
+
+            edit(attack);
+            EditorUtility.SetDirty(attack);
+        }
+
+        /// <summary>
+        /// Abre el prefab, aplica los cambios y lo guarda. Si no existe, lo crea (con <paramref name="create"/>)
+        /// o avisa y devuelve null.
+        /// </summary>
+        static GameObject EditPrefab(string path, System.Action<GameObject> edit, bool create = false)
+        {
+            bool exists = AssetDatabase.LoadAssetAtPath<GameObject>(path) != null;
+            if (!exists && !create)
+            {
+                Debug.LogWarning($"ArtSetup: no existe {path}.");
+                return null;
+            }
+
+            var root = exists ? PrefabUtility.LoadPrefabContents(path) : new GameObject(Path.GetFileNameWithoutExtension(path));
+            try
+            {
+                edit(root);
+                PrefabUtility.SaveAsPrefabAsset(root, path);
+            }
+            finally
+            {
+                if (exists)
+                    PrefabUtility.UnloadPrefabContents(root);
+                else
+                    Object.DestroyImmediate(root);
+            }
+
+            return AssetDatabase.LoadAssetAtPath<GameObject>(path);
         }
 
         [MenuItem("Primordia/Art/Importar animaciones de proyectiles")]

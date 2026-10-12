@@ -56,14 +56,15 @@ namespace Primordia.Editor
 
         /// <summary>
         /// Mandíbulas muerde delante de la boca: alcance 1,5 unidades desde el centro y arco de 180°.
-        /// Sirve también para convertir el ataque de proyectil que tenían las partidas anteriores.
+        /// Sin efecto propio: el mordisco se ve en la animación Attack de la pieza de Boca.
+        /// Sirve también para convertir los ataques de versiones anteriores (proyectil o efecto Effect_Bite).
         /// </summary>
-        internal static void ConfigureMandiblesBite(AttackData attack, GameObject effect)
+        internal static void ConfigureMandiblesBite(AttackData attack)
         {
             if (attack == null)
                 return;
 
-            attack.ConfigureMelee(range: 1.5f, arc: 180f, effect);
+            attack.ConfigureMelee(range: 1.5f, arc: 180f, effect: null);
             EditorUtility.SetDirty(attack);
         }
 
@@ -76,14 +77,13 @@ namespace Primordia.Editor
             var pixel = CreatePixelSprite();
             var circle = CreateCircleSprite();
 
-            // Ataques de Boca. Mandíbulas es un mordisco cuerpo a cuerpo: no tiene proyectil, y Lifetime
-            // es lo que dura el efecto del mordisco (lo crea Primordia > Art > Importar animaciones de proyectiles).
+            // Ataques de Boca. Mandíbulas es un mordisco cuerpo a cuerpo: no tiene proyectil.
             var stingerProjectile = CombatSetup.CreateProjectilePrefab("Projectile_Stinger", ToxicColor, new Vector2(0.6f, 0.2f), square);
             var sporeProjectile = CombatSetup.CreateProjectilePrefab("Projectile_Spore", new Color(0.75f, 0.5f, 0.95f), 0.5f, square);
 
             var mandiblesAttack = CombatSetup.CreateAttack("Attack_Mandibles", null,
                 fireRate: 2.5f, damage: 3, speed: 12f, lifetime: 0.35f);
-            ConfigureMandiblesBite(mandiblesAttack, mandiblesAttack.MeleeEffect);
+            ConfigureMandiblesBite(mandiblesAttack);
             var stingerAttack = CombatSetup.CreateAttack("Attack_Stinger", stingerProjectile,
                 fireRate: 4f, damage: 1, speed: 16f, lifetime: 2f, automatic: true, poisonDamagePerSecond: 1, poisonDuration: 3f);
             var sporesAttack = CombatSetup.CreateAttack("Attack_Spores", sporeProjectile,

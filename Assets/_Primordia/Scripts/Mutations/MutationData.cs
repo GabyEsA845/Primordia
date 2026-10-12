@@ -38,6 +38,10 @@ namespace Primordia.Mutations
         [SerializeField, Min(0f)] float bodyRadius;
         [Tooltip("Solo Piel: distancia del centro al borde del cuerpo, donde se coloca la Boca. 0 = la de la célula.")]
         [SerializeField, Min(0f)] float mouthDistance;
+        [Tooltip("Icono de 16×16: lista de la pausa y burbuja del suelo.")]
+        [SerializeField] Sprite icon;
+        [Tooltip("Icono de 32×32: tarjetas de elección. Si falta, se usa el pequeño.")]
+        [SerializeField] Sprite largeIcon;
         [Tooltip("Color de la mutación en la interfaz y en los objetos del suelo.")]
         [SerializeField] Color color = Color.white;
 
@@ -48,6 +52,8 @@ namespace Primordia.Mutations
         public RuntimeAnimatorController Look => look;
         public float BodyRadius => bodyRadius;
         public float MouthDistance => mouthDistance;
+        public Sprite Icon => icon;
+        public Sprite LargeIcon => largeIcon != null ? largeIcon : icon;
         public Color Color => color;
 
         public abstract void Apply(PlayerMutations player);
@@ -62,6 +68,12 @@ namespace Primordia.Mutations
             slot = newSlot;
             lineage = newLineage;
             color = newColor;
+        }
+
+        internal void SetIcons(Sprite newIcon, Sprite newLargeIcon)
+        {
+            icon = newIcon;
+            largeIcon = newLargeIcon;
         }
 
         internal void SetLook(RuntimeAnimatorController newLook, float newBodyRadius = 0f, float newMouthDistance = 0f)

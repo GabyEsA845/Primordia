@@ -1,4 +1,4 @@
-# Primordia: lista de contenido multimedia
+| Listo || Listo || Listo || En curso || En curso || Listo || Listo || Listo || En curso |# Primordia: lista de contenido multimedia
 
 Lista viva de sprites, música, efectos y fuentes que necesita el juego. Se actualiza cada vez que se añade, cambia o termina un recurso. El diseño está en [el GDD](GDD%20Primordia.md) y el orden de trabajo en [PLAN.md](PLAN.md).
 
@@ -30,9 +30,10 @@ Los recursos nuevos (hojas de sprites, GIF de revisión, scripts que los generan
 |---------|------------------|-----------------|
 | Jugador | `docs/multimedia-temp/player/` (`Player_<Acción>_<dirección>.png`, `Player_Hurt.png`, `Player_Death.png`) | Menú **Primordia > Art > Importar animaciones del jugador**: copia las hojas a `Art/Characters/Player/`, las corta (cuadros del alto de la hoja, pivote centrado), crea los clips y el Animator en `Animations/` y se los pone al prefab del jugador. Se puede repetir cada vez que cambie el arte. |
 | Enemigos y jefe | `docs/multimedia-temp/enemies/<Enemigo>/` (`Bacteria`, `Ameba`, `AmebaSmall`, `BossVirus`; hojas `<Enemigo>_<Animación>.png`) | Menú **Primordia > Art > Importar animaciones de enemigos y jefe**: igual que el jugador, en `Art/Characters/Enemies/<Enemigo>/`. Aplica cada uno a su prefab (`Enemy_Chaser`, `Enemy_Shooter`, `Enemy_Small`, `Boss_Virus`) con escala 1, y ajusta los tiempos de juego a las animaciones: aviso de disparo de la ameba, aviso de ráfaga e invocación del jefe, pausa de la transición a la fase 2, división al final de Split y tiempo de muerte. |
-| Proyectiles | `docs/multimedia-temp/projectiles/` (`Projectile_<Nombre>.png`, el mismo nombre que su prefab) | Menú **Primordia > Art > Importar animaciones de proyectiles**: copia las hojas a `Art/Projectiles/`, crea un clip y un controlador por proyectil (se reproduce solo al salir del pool) y los aplica a los prefabs de `Prefabs/Combat` con escala 1, conservando el radio de colisión. Las celdas no cuadradas se indican en `ArtSetup` (`Stinger`: 12×6). Mandíbulas no dispara: `Mandibles_Bite.png` crea `Prefabs/Combat/Effect_Bite` (escala 1, en la boca) y convierte el ataque en mordisco; `Projectile_Mandibles.png` ya no se importa. Las duraciones por cuadro se indican en `ArtSetup`. |
+| Proyectiles | `docs/multimedia-temp/projectiles/` (`Projectile_<Nombre>.png`, el mismo nombre que su prefab) | Menú **Primordia > Art > Importar animaciones de proyectiles**: copia las hojas a `Art/Projectiles/`, crea un clip y un controlador por proyectil (se reproduce solo al salir del pool) y los aplica a los prefabs de `Prefabs/Combat` con escala 1, conservando el radio de colisión. Las celdas no cuadradas se indican en `ArtSetup` (`Stinger`: 12×6). Mandíbulas no dispara: muerde, y el mordisco se ve en la animación `Attack` de su pieza de Boca; `Projectile_Mandibles.png` ya no se importa. |
 | Efectos | `docs/multimedia-temp/effects/` (cada hoja con su nombre, sin prefijo común) | Menú **Primordia > Art > Importar efectos**: crea los prefabs de `Prefabs/Effects` (los que no van en bucle se destruyen solos al acabar, con `OneShotEffect`) y los conecta: impactos en los prefabs de proyectil y en la mordida, veneno en el Aguijón, burbujas en los enemigos, estela en el jugador. La tinta y la onda sustituyen al círculo de `Prefabs/Mutations`; `AbilityMutation.effectRadius` indica a qué radio están dibujadas para no agrandarlas. Necesita haber importado antes enemigos y proyectiles. |
 | Piezas de mutación | `docs/multimedia-temp/mutations/<Skin|Mouth|Limbs|Organ>/` (`<Ranura>_<Mutación>_<Animación>.png`) | Menú **Primordia > Art > Importar piezas de mutación**: copia cada mutación a `Art/Mutations/<Mutación>/`, crea sus clips y su controlador y se lo pone a su `Mutation_<Mutación>` (campo *Look*). La Boca se corta con el pivote en su punto de unión (borde izquierdo, a media altura). En las Pieles fija también el radio de colisión (Caparazón 0,55; Piel urticante 0,45) y la distancia de la Boca. Añade al jugador las piezas `Limbs`, `Organ` y `AimPivot/MouthPiece` con `MutationLook`, pone en rojo el destello de daño y borra los `Visual_*` provisionales. Necesita haber importado antes al jugador. |
+| Objetos e interfaz | `docs/multimedia-temp/ui/<Items|Icons|HUD|Panels>/` | Menú **Primordia > Art > Importar objetos e interfaz**: importa los sprites sueltos a `Art/UI/` (los de panel, en 9-slice) y pone a cada `Mutation_<Mutación>` sus iconos de 16 y 32. Viste `GameUI` y `MainMenuUI` (escala 1:1 con 16 px por unidad, corazones, botones y tarjetas con un sprite por estado, franja teñida, iconos de mutación y de linaje en las tarjetas y en la lista de la pausa) y la barra de recarga del jugador (con destello al quedar lista). Crea `Prefabs/Mutations/MutationPickup` (burbuja del linaje en `Art/Items/`, icono encima, sombra y efecto al reventar) y se lo da al jefe con `MutationDrop`. Biomasa, mira y ranuras del HUD aún no se importan: falta su código. |
 | Escenario | `docs/multimedia-temp/environment/<Soup|Boss>/` (`tiles/`, `deco/`, `Door_*.png`, `Doorway_Top.png`) y, para salas con formas, `docs/multimedia-temp/environment-shapes/<Soup|Boss>/tiles/` | Menú **Primordia > Art > Importar escenario**: crea un tile por imagen (las paredes con colisión), la decoración (algas y burbujas como tiles animados) y un `RoomTheme` por variante en `Art/Environment/`. Después hay que regenerar el piso (**Primordia > UI > Regenerar escena Game**). Las salas son plantillas de texto (`Data/Rooms/`) que un pintor viste con el tema; las celdas sin pieza salen en magenta. |
 
 `.png`, `.aseprite`, `.wav`, `.ogg`, `.mp3`, `.ttf` y `.otf` se guardan con Git LFS (ya configurado en `.gitattributes`).
@@ -57,7 +58,7 @@ Los recursos nuevos (hojas de sprites, GIF de revisión, scripts que los generan
 **Piezas de mutación** (encargo en `docs/multimedia-temp/mutations/PROMPT.md`; cambios muy visibles, al estilo de *Everything is Crab*):
 
 - **Piel** (Caparazón, Piel urticante): sustituye al cuerpo en todas sus animaciones (24×24; `Death` 32×32) y agranda la colisión.
-- **Boca** (Mandíbulas, Aguijón, Esporas): arma de 24×24 dibujada mirando a la derecha, unida por el borde izquierdo a media altura. Se coloca en el borde del cuerpo (6 px en la célula, 8,5 con Caparazón, 7 con Piel urticante) y gira hacia el cursor. `Idle` (4 cuadros) y `Attack` (3, en cada disparo o mordisco).
+- **Boca** (Mandíbulas, Aguijón, Esporas): arma de 24×24 dibujada mirando a la derecha, unida por el borde izquierdo a media altura. Se coloca en el borde del cuerpo (6 px en la célula, 8,5 con Caparazón, 7 con Piel urticante) y gira hacia el cursor. `Idle` (4 cuadros) y `Attack` (3, en cada disparo o mordisco; en Mandíbulas es lo único que se ve del mordisco).
 - **Extremidades** (Aletas, Patas articuladas): 32×32 centradas, `Idle` y `Move` en las tres direcciones; van al mismo cuadro que el cuerpo.
 - **Órgano** (Vejiga de tinta, Glándula de choque): 16×16 dentro de la célula; `Activate` (32×32) al usar la habilidad, junto con la nube o la onda.
 - Orden de dibujo, de atrás hacia delante: Extremidades, cuerpo, Órgano, Boca (mirando hacia arriba, la Boca va detrás del cuerpo). Las piezas se ocultan al esquivar y al morir; al recibir daño destellan en rojo mientras el cuerpo hace `Hurt`.
@@ -77,7 +78,6 @@ Los recursos nuevos (hojas de sprites, GIF de revisión, scripts que los generan
 | Recurso | Descripción | Prioridad | Estado |
 |---------|-------------|-----------|--------|
 | Proyectil base del jugador | Disparo sin mutación de Boca | M | Listo |
-| Mordisco: Mandíbulas | Efecto del mordisco cuerpo a cuerpo delante de la boca (`Effect_Bite`, hoja `Mandibles_Bite.png`: 5 cuadros de 24×24 que duran 60, 60, 50, 90 y 90 ms) | M | Listo |
 | Proyectil: Aguijón | Envenena | M | Listo |
 | Proyectil: Espora | Lento, en abanico de 3 | M | Listo |
 | Proyectil enemigo | Lento, de color fuerte y fácil de leer | M | Listo |
@@ -104,12 +104,12 @@ Los recursos nuevos (hojas de sprites, GIF de revisión, scripts que los generan
 
 | Recurso | Descripción | Prioridad | Estado |
 |---------|-------------|-----------|--------|
-| Biomasa | Moneda que cae al limpiar una sala | M | Pendiente |
-| Mutación menor en el suelo | Objeto para recoger | M | Pendiente |
+| Biomasa | Moneda que cae al limpiar una sala. Arte hecho; falta programarla (con la tienda) | M | Pendiente |
+| Mutación en el suelo | Burbuja del linaje con el icono dentro; solo la suelta el jefe (3, se coge 1) | M | Pendiente |
 | Iconos de mutación (×9) | Uno por mutación del GDD | M | Pendiente |
 | Corazones | Lleno, medio y vacío | M | Pendiente |
-| Mira del ratón | Sustituye al cursor | M | Pendiente |
-| Ranuras del cuerpo en el HUD | Boca, Extremidades, Piel, Órgano especial | M | Pendiente |
+| Mira del ratón | Sustituye al cursor durante la partida. Arte hecho; falta su código | M | Pendiente |
+| Ranuras del cuerpo en el HUD | Boca, Extremidades, Piel, Órgano especial. Arte hecho; falta su código | M | Pendiente |
 | Recarga de habilidad | Indicador del clic derecho | M | Pendiente |
 | Tarjetas "elige 1 de 3" | Fondo para la elección de mutación | M | Pendiente |
 | Logo de *Primordia* | Título del menú principal | M | Pendiente |

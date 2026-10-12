@@ -17,6 +17,8 @@ namespace Primordia.UI
         [SerializeField] Text[] nameTexts = new Text[4];
         [Tooltip("Un texto de descripción por ranura, en el mismo orden.")]
         [SerializeField] Text[] descriptionTexts = new Text[4];
+        [Tooltip("Un icono por ranura, junto al nombre, en el mismo orden. Vacío si la ranura está libre.")]
+        [SerializeField] Image[] icons = new Image[4];
 
         void OnEnable()
         {
@@ -39,6 +41,13 @@ namespace Primordia.UI
 
                 if (i < descriptionTexts.Length && descriptionTexts[i] != null)
                     descriptionTexts[i].text = mutation != null ? mutation.Description : "";
+
+                if (icons != null && i < icons.Length && icons[i] != null)
+                {
+                    var sprite = mutation != null ? mutation.Icon : null;
+                    icons[i].sprite = sprite;
+                    icons[i].enabled = sprite != null;
+                }
             }
         }
 
@@ -47,5 +56,9 @@ namespace Primordia.UI
             nameTexts = names;
             descriptionTexts = descriptions;
         }
+
+        internal Text[] NameTexts => nameTexts;
+
+        internal void ConfigureIcons(Image[] newIcons) => icons = newIcons;
     }
 }

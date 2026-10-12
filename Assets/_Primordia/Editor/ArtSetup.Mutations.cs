@@ -77,6 +77,9 @@ namespace Primordia.Editor
                 imported++;
             }
 
+            // El mordisco ya se ve en la Boca: Mandíbulas no lleva el efecto aparte de versiones anteriores.
+            MutationSetup.ConfigureMandiblesBite(CombatSetup.LoadAttack("Attack_Mandibles"));
+
             AssetDatabase.SaveAssets();
             ApplyMutationLookToPlayer();
 

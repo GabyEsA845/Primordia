@@ -16,7 +16,9 @@ MonoBehaviour:
   description: "Los enemigos que te tocan reciben 2 de da\xF1o."
   slot: 2
   lineage: 2
-  visualPrefab: {fileID: 6445471568931119495, guid: 9abd6a9a23ce6ac45804bb76d7f3cbe8, type: 3}
+  look: {fileID: 9100000, guid: 8864141f9374df049bd4d9e6b1ce855c, type: 2}
+  bodyRadius: 0.45
+  mouthDistance: 0.4375
   color: {r: 0.55, g: 0.9, b: 0.35, a: 1}
   damage: 2
   interval: 0.5

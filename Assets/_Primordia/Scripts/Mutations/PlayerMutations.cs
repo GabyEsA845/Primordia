@@ -10,14 +10,11 @@ namespace Primordia.Mutations
     /// <summary>
     /// Las 4 ranuras del cuerpo del jugador. Equipar una mutación en una ranura ocupada
     /// reemplaza la anterior: primero se deshace su efecto y luego se aplica el nuevo.
+    /// La Piel cambia también el radio de colisión; el aspecto de las piezas lo dibuja <see cref="MutationLook"/>.
     /// </summary>
     [RequireComponent(typeof(PlayerController), typeof(Health), typeof(Weapon))]
     public class PlayerMutations : MonoBehaviour
     {
-        [Tooltip("Donde se cuelgan los aspectos de Boca. Gira con el apuntado.")]
-        [SerializeField] Transform mouthAnchor;
-        [Tooltip("Donde se cuelgan los aspectos del resto de ranuras.")]
-        [SerializeField] Transform bodyAnchor;
         [Tooltip("Mutaciones con las que empieza la partida. Útil para probar.")]
         [SerializeField] MutationData[] startingMutations = Array.Empty<MutationData>();
 
@@ -36,10 +33,12 @@ namespace Primordia.Mutations
         public event Action<MutationSlot, MutationData> Changed;
 
         readonly Dictionary<MutationSlot, MutationData> equipped = new();
-        readonly Dictionary<MutationSlot, GameObject> visuals = new();
         readonly Dictionary<MutationSlot, List<Component>> behaviours = new();
 
         public IEnumerable<MutationData> Equipped => equipped.Values;
+
+        CircleCollider2D bodyCollider;
+        float cellRadius;
 
         void Awake()
         {
@@ -47,6 +46,9 @@ namespace Primordia.Mutations
             Health = GetComponent<Health>();
             Weapon = GetComponent<Weapon>();
             DefaultAttack = Weapon.Attack;
+            bodyCollider = GetComponent<CircleCollider2D>();
+            if (bodyCollider != null)
+                cellRadius = bodyCollider.radius;
         }
 
         void Start()
@@ -69,7 +71,7 @@ namespace Primordia.Mutations
 
             equipped[mutation.Slot] = mutation;
             mutation.Apply(this);
-            AddVisual(mutation);
+            UpdateBodyRadius();
 
             Changed?.Invoke(mutation.Slot, mutation);
         }
@@ -111,32 +113,18 @@ namespace Primordia.Mutations
                 behaviours.Remove(slot);
             }
 
-            if (visuals.TryGetValue(slot, out var visual))
-            {
-                if (visual != null)
-                    Destroy(visual);
-                visuals.Remove(slot);
-            }
-
+            UpdateBodyRadius();
             return true;
         }
 
-        void AddVisual(MutationData mutation)
+        /// <summary>La Piel agranda (o encoge) la colisión; sin Piel, vuelve a la de la célula.</summary>
+        void UpdateBodyRadius()
         {
-            if (mutation.VisualPrefab == null)
+            if (bodyCollider == null)
                 return;
 
-            var anchor = mutation.Slot == MutationSlot.Mouth ? mouthAnchor : bodyAnchor;
-            if (anchor == null)
-                anchor = transform;
-
-            visuals[mutation.Slot] = Instantiate(mutation.VisualPrefab, anchor, false);
-        }
-
-        internal void SetAnchors(Transform mouth, Transform body)
-        {
-            mouthAnchor = mouth;
-            bodyAnchor = body;
+            var skin = Get(MutationSlot.Skin);
+            bodyCollider.radius = skin != null && skin.BodyRadius > 0f ? skin.BodyRadius : cellRadius;
         }
     }
 }

@@ -16,7 +16,9 @@ MonoBehaviour:
   description: Tres esporas lentas en abanico.
   slot: 0
   lineage: 2
-  visualPrefab: {fileID: 2651808412601946492, guid: 99a6b540e8d520645ac1805a9b41d371, type: 3}
+  look: {fileID: 9100000, guid: 51c93d48e3303174fa9e433f92c863ca, type: 2}
+  bodyRadius: 0
+  mouthDistance: 0
   color: {r: 0.55, g: 0.9, b: 0.35, a: 1}
   attack: {fileID: 11400000, guid: 30b703fc6d1697d47a0e24871476e1d7, type: 2}
   healEveryKills: 0

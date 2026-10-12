@@ -16,7 +16,9 @@ MonoBehaviour:
   description: 'Clic derecho: onda que destruye los proyectiles enemigos y empuja a los enemigos. Recarga: 6 s.'
   slot: 3
   lineage: 1
-  visualPrefab: {fileID: 3184935572049106030, guid: 5c900ec731fe7f741b967271776c675b, type: 3}
+  look: {fileID: 9100000, guid: 6b5f9226d70f5924abcbcf7f65fc9db5, type: 2}
+  bodyRadius: 0
+  mouthDistance: 0
   color: {r: 0.55, g: 0.7, b: 0.9, a: 1}
   cooldown: 6
   effectPrefab: {fileID: 5147786757589481648, guid: f5b4fb2c036ef9548a927b7cdefef551, type: 3}

@@ -16,7 +16,9 @@ MonoBehaviour:
   description: "Mordisco corto y potente (3 de da\xF1o). Cada 3 enemigos que mates, curas medio coraz\xF3n."
   slot: 0
   lineage: 0
-  visualPrefab: {fileID: 2725931033567296168, guid: cc66254c0a7fb1941bdcfd84fff151f6, type: 3}
+  look: {fileID: 9100000, guid: a8ec2ed480b8c014982851aeccc76fbd, type: 2}
+  bodyRadius: 0
+  mouthDistance: 0
   color: {r: 0.95, g: 0.5, b: 0.35, a: 1}
   attack: {fileID: 11400000, guid: 2dea36bdb5aa9ba49ab5eaa57e026bc4, type: 2}
   healEveryKills: 3

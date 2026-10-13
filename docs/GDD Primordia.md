@@ -155,7 +155,7 @@ La v1.0 es el piso 1 completo y pulido, publicado en itch.io. El orden de trabaj
 **Más adelante**
 
 - [ ] Pisos 2 y 3
-- [ ] Tienda con biomasa (en curso) y salas secretas
+- [ ] Tienda con biomasa (hecha) y salas secretas
 - [ ] Soporte de mando y opciones de audio
 - [ ] Desbloqueos permanentes entre partidas
 
@@ -206,7 +206,7 @@ Objetivo: que añadir una mutación, un enemigo o una sala nueva sea crear un ar
 | Mandíbulas | Mordisco cuerpo a cuerpo en arco delante de la boca, no un disparo |
 | Recarga del Órgano especial | Barra bajo el jugador que se llena durante la recarga, destella y desaparece al estar lista |
 | Biomasa | Moneda de la partida (se pierde al morir). Cada enemigo, al morir, suelta biomasa grande (vale 5) con un 10 % de probabilidad o pequeña (vale 1) con un 40 %; las crías, solo pequeña con un 10 %; el jefe, 10 fijos (sus invocaciones no sueltan nada). Cada sala de combate da como mínimo 2. Se recoge al tocarla, con un pequeño imán; al limpiar la sala, toda la que queda vuela hacia el jugador y se recoge sola (como en *Enter the Gungeon*). Contador en el HUD bajo las ranuras de mutación |
-| Tienda | Una por piso, en una sala lateral sin salida y sin enemigos, con su icono en el mapa. El tendero es un pequeño Charles Darwin, de momento solo decorativo, que celebra cada compra. 4 pedestales: 2 mutaciones al azar (15), mejora de nivel de una mutación equipada que pueda subir, con su icono y "I → II" (20), y curación de medio corazón (5), que pasa a ser un corazón extra (25) si el jugador entra con la vida llena. Al acercarse aparece la tecla E sobre el artículo; se compra pulsándola. Si no llega la biomasa, el precio se pone rojo y el artículo tiembla |
+| Tienda | Una por piso: una sala lateral más (la pequeña, 22×15), sin salida y sin enemigos, que cuelga de una sala de combate de la segunda mitad del camino. Su icono sale en el mapa al limpiar la sala de la que cuelga. El tendero es un pequeño Charles Darwin tras su mostrador, de momento solo decorativo, que celebra cada compra. 4 pedestales que se surten la primera vez que entras y ya no cambian: 2 mutaciones al azar sin las equipadas (15), la mejora de nivel de una mutación equipada que pueda subir, con su icono y "I > II" (20 a nivel II, 30 a nivel III; si ninguna puede subir, una tercera mutación) y medio corazón (5), que es un corazón extra (25) si entras con la vida llena. Al acercarse aparecen la tecla E sobre el artículo y un cartel con el nombre, los detalles y qué mutación reemplaza; se compra con E (Interactuar, la tecla para todo lo que se use en el futuro). Si no llega la biomasa o no sirve (vida llena), el precio está en rojo y el artículo tiembla. Cada pedestal se vende una sola vez y en su sitio queda flotando una señal de vendido. Los pedestales de mutación ofrecen en cada momento lo que le sirve al jugador: la mutación (15) si no la lleva, su mejora (20 o 30) si la lleva, aunque la consiguiera o subiera fuera de la tienda, y, si ya la tiene al nivel III, el artículo desaparece para siempre y queda clavado un letrero de no disponible. Si el jugador cambia la mutación de la mejora por otra, ese pedestal la vende como mutación nueva |
 | Cursor | Mira dibujada por el juego durante la partida; en la pausa y en la elección de mutación, cursor normal |
 | Jefe del piso 1 | Virus gigante con 2 fases (la segunda desde el 50 % de vida); vencerlo abre la salida y da la victoria |
 

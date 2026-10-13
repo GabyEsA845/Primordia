@@ -52,7 +52,7 @@ Cada módulo vive en su propia carpeta de `Assets/_Primordia/Scripts/` (`Core`, 
 
 ### Fase 3: después de la v1.0
 
-Ideas del GDD para seguir creciendo: pisos 2 y 3, tercer enemigo y salas especiales, tienda con biomasa y salas secretas, soporte de mando y opciones de audio, desbloqueos permanentes entre partidas.
+Ideas del GDD para seguir creciendo: pisos 2 y 3, tercer enemigo y salas especiales, tienda con biomasa (hecha en `feature/shop`) y salas secretas, soporte de mando y opciones de audio, desbloqueos permanentes entre partidas.
 
 ## Mejoras a futuro
 

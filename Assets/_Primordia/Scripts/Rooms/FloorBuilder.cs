@@ -3,6 +3,7 @@ using System.Linq;
 using Primordia.Biomass;
 using Primordia.Enemies;
 using Primordia.Mutations;
+using Primordia.Shop;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -10,7 +11,7 @@ namespace Primordia.Rooms
 {
     /// <summary>
     /// Monta un <see cref="FloorLayout"/> en la escena: coloca las plantillas en la rejilla, las une con pasillos,
-    /// pinta todo el piso en Tilemaps y crea salas, puertas, enemigos, recompensas, jefe y salida.
+    /// pinta todo el piso en Tilemaps y crea salas, puertas, enemigos, recompensas, tienda, jefe y salida.
     /// Funciona igual en el juego (piso aleatorio) que en el editor.
     /// </summary>
     public static class FloorBuilder
@@ -22,6 +23,9 @@ namespace Primordia.Rooms
         const int Margin = 20;
         // Sin decoración tan cerca de una puerta, para que no tape el paso.
         const int DoorClearance = 2;
+
+        // Distancia del centro del mostrador a la pared izquierda cuando se aparta de una puerta de arriba.
+        const float ShopCounterMargin = 3.5f;
 
         const int SoupTheme = 0;
         const int BossTheme = 1;
@@ -300,12 +304,20 @@ namespace Primordia.Rooms
             var room = roomObject.AddComponent<Room>();
             room.Configure(enemiesRoot, doors.ToArray());
 
-            // La de inicio no tiene enemigos, así que no suelta nada.
-            if (placed.Layout.Role != RoomRole.Start && config.SmallBiomass != null)
+            // La de inicio y la tienda no tienen enemigos, así que no sueltan nada.
+            if (placed.Layout.Role is not (RoomRole.Start or RoomRole.Shop) && config.SmallBiomass != null)
                 roomObject.AddComponent<RoomBiomass>().Configure(config.SmallBiomass, config.BigBiomass, config.MinimumBiomassPerRoom);
 
             if (placed.Layout.Reward && config.RewardPool != null)
                 roomObject.AddComponent<MutationReward>().Configure(config.RewardPool, config.RewardOptions);
+
+            if (placed.Layout.Role == RoomRole.Shop && config.ShopPrefab != null)
+            {
+                var shop = Object.Instantiate(config.ShopPrefab, placed.FloorCenter, Quaternion.identity, roomObject.transform);
+                // El mostrador va arriba en el centro; si la puerta está arriba, se aparta para no taparla.
+                if (placed.DoorCells.ContainsKey(Vector2Int.up))
+                    shop.MoveCounter(-(placed.Template.FloorBounds().width / 2f) + ShopCounterMargin);
+            }
 
             return room;
         }
@@ -315,6 +327,7 @@ namespace Primordia.Rooms
             switch (placed.Layout.Role)
             {
                 case RoomRole.Start:
+                case RoomRole.Shop:
                     return;
 
                 case RoomRole.Boss:

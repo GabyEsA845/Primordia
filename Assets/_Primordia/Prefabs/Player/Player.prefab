@@ -284,6 +284,7 @@ GameObject:
   - component: {fileID: 5267439446711912441}
   - component: {fileID: 5304406059359759695}
   - component: {fileID: 3020279068946391564}
+  - component: {fileID: 1610869096247293023}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -548,6 +549,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Primordia::Primordia.Biomass.PlayerBiomass
   startingAmount: 0
+--- !u!114 &1610869096247293023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2873998751450272095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc6e921084329ed4baf43366e92dddf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Primordia::Primordia.Player.PlayerInteractor
 --- !u!1 &4190937158644940233
 GameObject:
   m_ObjectHideFlags: 0

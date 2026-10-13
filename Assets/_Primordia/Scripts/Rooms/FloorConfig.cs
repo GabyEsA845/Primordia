@@ -2,6 +2,7 @@ using System;
 using Primordia.Biomass;
 using Primordia.Enemies;
 using Primordia.Mutations;
+using Primordia.Shop;
 using UnityEngine;
 
 namespace Primordia.Rooms
@@ -71,6 +72,11 @@ namespace Primordia.Rooms
         [Tooltip("Biomasa mínima de cada sala con enemigos.")]
         [SerializeField, Min(0)] int minimumBiomassPerRoom = 2;
 
+        [Header("Tienda")]
+        [Tooltip("Forma de la sala de la tienda. Vacío (o sin prefab): el piso no tiene tienda.")]
+        [SerializeField] RoomTemplate shopRoom;
+        [SerializeField] ShopRoom shopPrefab;
+
         [Header("Salida")]
         [SerializeField] Sprite exitSprite;
         [SerializeField] Color exitColor = new(0.3f, 0.95f, 0.8f);
@@ -95,6 +101,9 @@ namespace Primordia.Rooms
         public BiomassPickup SmallBiomass => smallBiomass;
         public BiomassPickup BigBiomass => bigBiomass;
         public int MinimumBiomassPerRoom => minimumBiomassPerRoom;
+        public RoomTemplate ShopTemplate => shopRoom;
+        public ShopRoom ShopPrefab => shopPrefab;
+        public bool HasShop => shopRoom != null && shopPrefab != null;
         public Sprite ExitSprite => exitSprite;
         public Color ExitColor => exitColor;
 
@@ -129,6 +138,12 @@ namespace Primordia.Rooms
             smallBiomass = newSmall;
             bigBiomass = newBig;
             minimumBiomassPerRoom = Mathf.Max(0, newMinimum);
+        }
+
+        internal void ConfigureShop(RoomTemplate newShopRoom, ShopRoom newShopPrefab)
+        {
+            shopRoom = newShopRoom;
+            shopPrefab = newShopPrefab;
         }
 
         internal void ConfigureRewards(MutationPool newPool, int[] newRewardAfter)

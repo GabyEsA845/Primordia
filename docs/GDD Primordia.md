@@ -77,6 +77,24 @@ Referencia: jugador base con velocidad 6, esquiva de 3 unidades, 3 corazones y d
 | Vejiga de tinta | Nube de 3 unidades de radio, ciega 3 s; recarga de 8 s |
 | Glándula de choque | Onda de 4 unidades de radio que destruye proyectiles enemigos y empuja; recarga de 6 s |
 
+**Niveles y evoluciones**
+
+Cada mutación tiene **3 niveles**. Se sube eligiéndola otra vez en la elección de 1 de 3 (o en las burbujas del jefe); más adelante también se podrá comprar con biomasa en la tienda. Si llevas alguna mutación que aún puede subir, al menos una de las 3 cartas es una mejora. Al reemplazar una mutación por otra de la misma ranura, el nivel se pierde y la nueva empieza en el I. El nivel se ve con una insignia (puntos, gemas doradas en el III) sobre el icono en el HUD, las tarjetas y la pausa.
+
+| Mutación | Nivel II (valores) | Nivel III: evolución |
+| --- | --- | --- |
+| Mandíbulas | Daño 3 → 4 y alcance +15 % | **Desgarro:** el mordisco hace sangrar (1 por segundo durante 3 s) y cura medio corazón cada 2 muertes |
+| Aguijón | Veneno de 1 → 2 por segundo | **Contagio:** un enemigo envenenado que muere estalla y envenena a los cercanos (radio 2) |
+| Esporas | 3 → 5 esporas, abanico de 30° → 45° | **Esporas buscadoras:** se curvan hacia el enemigo más cercano |
+| Aletas | Velocidad +45 % y recarga de la esquiva −25 % | **Emboscada:** tras esquivar, +50 % de daño durante 1,5 s (con aura visible) |
+| Patas articuladas | Aturdimiento 0,5 → 1 s y daño 1 → 2 | **Pisotón:** al acabar cada esquiva, una onda de radio 2 aturde a los que haya alrededor |
+| Caparazón | +2 corazones en total y velocidad −10 % → −5 % | **Placas:** anula el primer golpe que recibes en cada sala (se recarga al entrar en la siguiente) |
+| Piel urticante | Daño al contacto 2 → 3, y además envenena | **Erizo:** al recibir un golpe, disparas 8 púas en círculo (1 de daño más veneno) |
+| Vejiga de tinta | Radio 3 → 4 y recarga 8 → 6 s | **Tinta corrosiva:** los enemigos dentro de la nube reciben 1 de daño por segundo |
+| Glándula de choque | Radio 4 → 6 y recarga 6 → 4,5 s | **Paralizante:** los enemigos que alcanza la onda quedan paralizados 2 s |
+
+La nube de tinta ahora permanece los 3 s que dura la ceguera (aparece, se mantiene y se disipa), es más transparente y ciega también a quien entra en ella. Los estados de los enemigos se ven con marcas encima de su cabeza: veneno, sangrado, cegado, aturdido y paralizado (este, además, con rayos por el cuerpo).
+
 **Jefe del piso 1 (virus gigante):** 60 de vida, 3×3 unidades, avanza despacio hacia el centro, medio corazón por contacto. Fase 1: espiral de un brazo y ráfaga circular de 12 proyectiles cada 4 s. Fase 2 (desde el 50 %): espiral de dos brazos más rápida, ráfaga de 16 e invoca 2 bacterias cada 8 s (máximo 4 vivas).
 
 ## Pisos y etapas evolutivas

@@ -10,8 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5071070257566174773}
   - component: {fileID: 7866104041766336160}
-  - component: {fileID: 7618442118737136032}
-  - component: {fileID: 1343628299029389205}
+  - component: {fileID: 4689051102264261564}
   m_Layer: 0
   m_Name: Effect_InkCloud
   m_TagString: Untagged
@@ -83,7 +82,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 15
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 2268185780667775344, guid: bbd154e9a485106488f5a4345f4709f9, type: 3}
+  m_Sprite: {fileID: -2811208681673385484, guid: eb3ce02eeb270d447856baa602a96ced, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -94,29 +93,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
---- !u!95 &7618442118737136032
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8917262179130335009}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 7ae56f0872bf433418e253ba24ae5a89, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1343628299029389205
+--- !u!114 &4689051102264261564
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -125,7 +102,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 8917262179130335009}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 721d1c351d5d1114988cbc9a150ce912, type: 3}
+  m_Script: {fileID: 11500000, guid: 3f041fe50b15f044699de52d9dff7873, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Primordia::Primordia.Core.OneShotEffect
-  duration: 1.1111112
+  m_EditorClassIdentifier: Primordia::Primordia.Mutations.InkCloudArea
+  startFrames:
+  - {fileID: -2811208681673385484, guid: eb3ce02eeb270d447856baa602a96ced, type: 3}
+  - {fileID: -6331707960882585148, guid: eb3ce02eeb270d447856baa602a96ced, type: 3}
+  - {fileID: -4930603613037819715, guid: eb3ce02eeb270d447856baa602a96ced, type: 3}
+  - {fileID: 3834171872193148108, guid: eb3ce02eeb270d447856baa602a96ced, type: 3}
+  startFrameDuration: 0.09
+  loopFrames:
+  - {fileID: -5829536339979241975, guid: 70069b8fa8706ad4184129c9aeeb3c92, type: 3}
+  - {fileID: -8862076438548173405, guid: 70069b8fa8706ad4184129c9aeeb3c92, type: 3}
+  - {fileID: -8577818328194987553, guid: 70069b8fa8706ad4184129c9aeeb3c92, type: 3}
+  - {fileID: 8588314754695426492, guid: 70069b8fa8706ad4184129c9aeeb3c92, type: 3}
+  - {fileID: -2196817331599551497, guid: 70069b8fa8706ad4184129c9aeeb3c92, type: 3}
+  - {fileID: 1585637945984607015, guid: 70069b8fa8706ad4184129c9aeeb3c92, type: 3}
+  loopFrameDuration: 0.15
+  endFrames:
+  - {fileID: -8502651021547494589, guid: f57e14c1b3c128645b6e6f04091000a9, type: 3}
+  - {fileID: -5987992109734089083, guid: f57e14c1b3c128645b6e6f04091000a9, type: 3}
+  - {fileID: -7464783844845781825, guid: f57e14c1b3c128645b6e6f04091000a9, type: 3}
+  - {fileID: -3731616571218938226, guid: f57e14c1b3c128645b6e6f04091000a9, type: 3}
+  endFrameDuration: 0.11

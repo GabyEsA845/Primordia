@@ -4,67 +4,71 @@ using UnityEngine;
 namespace Primordia.Combat
 {
     /// <summary>
-    /// Daño en el tiempo: quita vida una vez por segundo, tantas veces como segundos dure.
-    /// Se añade al objetivo con <see cref="Apply"/>; un veneno nuevo reinicia los golpes que quedan.
-    /// Mientras dura, puede mostrar un efecto en bucle sobre el objetivo.
+    /// Veneno: daño en el tiempo con su marca de burbujas verdes. Con contagio (Aguijón nivel III), si el objetivo
+    /// muere envenenado estalla y envenena a los de su equipo que estén cerca, que a su vez pueden contagiar.
     /// </summary>
-    public class Poison : MonoBehaviour
+    public class Poison : DamageOverTime
     {
-        // Altura del efecto sobre el centro del objetivo, en unidades.
-        const float EffectHeight = 0.25f;
+        public const string Key = "Poison";
 
-        Health health;
-        int damagePerTick;
-        int ticksLeft;
-        float tickTimer;
-        GameObject effect;
+        float burstRadius;
+        GameObject burstEffect;
+        GameObject markerPrefab;
+        float duration;
 
-        public int TicksLeft => ticksLeft;
-        public GameObject Effect => effect;
+        protected override string MarkerKey => Key;
 
-        public static Poison Apply(Health target, int damagePerSecond, float duration, GameObject effectPrefab = null)
+        /// <summary>Radio del estallido al morir envenenado (0 = sin contagio).</summary>
+        public float BurstRadius => burstRadius;
+
+        public static Poison Apply(Health target, int damagePerSecond, float duration, GameObject effectPrefab = null) =>
+            Apply<Poison>(target, damagePerSecond, duration, effectPrefab);
+
+        /// <summary>Veneno que, si el objetivo muere con él, estalla y contagia a los cercanos.</summary>
+        public static Poison ApplyContagious(Health target, int damagePerSecond, float duration, GameObject effectPrefab,
+            float burstRadius, GameObject burstEffect)
         {
-            if (!target.TryGetComponent<Poison>(out var poison))
-                poison = target.gameObject.AddComponent<Poison>();
-
-            poison.health = target;
-            poison.damagePerTick = Mathf.Max(poison.damagePerTick, damagePerSecond);
-            // Se cuentan golpes enteros y no segundos con decimales, para no perder el último por redondeo.
-            poison.ticksLeft = Mathf.Max(poison.ticksLeft, Mathf.Max(1, Mathf.RoundToInt(duration)));
-
-            if (poison.effect == null && effectPrefab != null)
+            var poison = Apply<Poison>(target, damagePerSecond, duration, effectPrefab);
+            if (burstRadius > poison.burstRadius)
             {
-                Vector2 position = target.transform.position + Vector3.up * EffectHeight;
-                poison.effect = OneShotEffect.Spawn(effectPrefab, position, parent: target.transform);
+                poison.burstRadius = burstRadius;
+                poison.burstEffect = burstEffect;
             }
-
+            poison.markerPrefab = effectPrefab;
+            poison.duration = Mathf.Max(poison.duration, duration);
             return poison;
         }
 
-        void Update()
+        void OnEnable()
         {
-            if (health == null || health.IsDead)
-            {
-                Destroy(this);
-                return;
-            }
-
-            tickTimer += Time.deltaTime;
-            if (tickTimer < 1f)
-                return;
-
-            tickTimer -= 1f;
-            ticksLeft--;
-            health.TakeDamage(damagePerTick);
-
-            if (ticksLeft <= 0)
-                Destroy(this);
+            if (TryGetComponent(out Health target))
+                target.Died += OnDied;
         }
 
-        void OnDestroy()
+        void OnDisable()
         {
-            if (effect != null)
-                Destroy(effect);
+            if (TryGetComponent(out Health target))
+                target.Died -= OnDied;
+        }
+
+        void OnDied()
+        {
+            if (burstRadius <= 0f)
+                return;
+
+            Vector2 center = transform.position;
+            OneShotEffect.Spawn(burstEffect, center);
+
+            // Contagia a los de la misma capa (enemigos con enemigos), sin contar al que estalla.
+            int mask = 1 << gameObject.layer;
+            foreach (var hit in Physics2D.OverlapCircleAll(center, burstRadius, mask))
+            {
+                var other = hit.GetComponentInParent<Health>();
+                if (other == null || other == health || other.IsDead)
+                    continue;
+
+                ApplyContagious(other, DamagePerTick, duration, markerPrefab, burstRadius, burstEffect);
+            }
         }
     }
 }

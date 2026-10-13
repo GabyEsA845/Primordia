@@ -1,3 +1,4 @@
+using System.IO;
 using Primordia.Core;
 using Primordia.Mutations;
 using Primordia.Player;
@@ -61,7 +62,11 @@ namespace Primordia.Editor
             int imported = 0;
             foreach (var (slot, name, bodyRadius, mouthPixels) in MutationPieces)
             {
-                var art = Import(MutationPiece(slot, name));
+                var piece = MutationPiece(slot, name);
+                // El Aguijón y el Caparazón se rehicieron: su arte bueno está en la carpeta de evoluciones.
+                if (RemadeMutations.Contains(name) && Directory.Exists($"{EvolutionsSourceFolder}/{slot}"))
+                    piece.SourceFolder = $"{EvolutionsSourceFolder}/{slot}";
+                var art = Import(piece);
                 if (art == null)
                     continue;
 

@@ -22,8 +22,23 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 047dc5f67833af54b861ab2f3dce47aa, type: 3}
   largeIcon: {fileID: 21300000, guid: e7b5841a65b99194b9afa86dc6e5fbd5, type: 3}
   color: {r: 0.95, g: 0.5, b: 0.35, a: 1}
+  levelDescriptions:
+  - "Nube m\xE1s grande (radio 4) y recarga de 6 s."
+  - 'Tinta corrosiva: los enemigos dentro de la nube pierden 1 de vida por segundo.'
   cooldown: 8
   effectPrefab: {fileID: 8917262179130335009, guid: 03e68f32310cbb7488a4552192d56c5d, type: 3}
   effectRadius: 3
   radius: 3
   blindDuration: 3
+  upgrades:
+  - radius: 4
+    cooldown: 6
+    effect: {fileID: 7236571427145570089, guid: e0e438dc502feb0489d05a745271bcac, type: 3}
+    effectRadius: 4
+    damagePerSecond: 0
+  - radius: 4
+    cooldown: 6
+    effect: {fileID: 7236571427145570089, guid: e0e438dc502feb0489d05a745271bcac, type: 3}
+    effectRadius: 4
+    damagePerSecond: 1
+  blindMarker: {fileID: 5774755635975343440, guid: da40c97c855f514438fbe1b5d35f6fb0, type: 3}

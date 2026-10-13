@@ -40,6 +40,24 @@ namespace Primordia.Combat
         [Tooltip("Efecto en bucle sobre el objetivo mientras dura el veneno.")]
         [SerializeField] GameObject poisonEffect;
 
+        [Tooltip("Contagio: radio del estallido de veneno cuando muere un objetivo envenenado. 0 = sin contagio.")]
+        [SerializeField, Min(0f)] float poisonBurstRadius;
+        [Tooltip("Efecto del estallido de veneno, dibujado a su radio real.")]
+        [SerializeField] GameObject poisonBurstEffect;
+
+        [Header("Sangrado")]
+        [Tooltip("Daño por segundo del sangrado que deja cada golpe. 0 = sin sangrado.")]
+        [SerializeField, Min(0)] int bleedDamagePerSecond;
+        [SerializeField, Min(0f)] float bleedDuration;
+        [Tooltip("Marca en bucle sobre el objetivo mientras sangra.")]
+        [SerializeField] GameObject bleedEffect;
+
+        [Header("Proyectiles buscadores")]
+        [Tooltip("Grados por segundo que gira el proyectil hacia el enemigo más cercano. 0 = recto.")]
+        [SerializeField, Min(0f)] float homingTurnRate;
+        [Tooltip("Distancia a la que el proyectil busca objetivo.")]
+        [SerializeField, Min(0f)] float homingRange = 5f;
+
         [Header("Cuerpo a cuerpo")]
         [Tooltip("Activo: no dispara proyectiles; daña a todo lo que hay en un arco delante (mordisco de Mandíbulas).")]
         [SerializeField] bool melee;
@@ -73,6 +91,32 @@ namespace Primordia.Combat
         public int PoisonDamagePerSecond => poisonDamagePerSecond;
         public float PoisonDuration => poisonDuration;
         public bool AppliesPoison => poisonDamagePerSecond > 0 && poisonDuration > 0f;
+        public float PoisonBurstRadius => poisonBurstRadius;
+        public GameObject PoisonBurstEffect => poisonBurstEffect;
+        public int BleedDamagePerSecond => bleedDamagePerSecond;
+        public float BleedDuration => bleedDuration;
+        public GameObject BleedEffect => bleedEffect;
+        public bool AppliesBleed => bleedDamagePerSecond > 0 && bleedDuration > 0f;
+        public float HomingTurnRate => homingTurnRate;
+        public float HomingRange => homingRange;
+
+        /// <summary>Envenena (y, con contagio, prepara el estallido) o hace sangrar al objetivo, según el ataque.</summary>
+        public void ApplyStatus(Core.Health target)
+        {
+            if (target == null || target.IsDead)
+                return;
+
+            if (AppliesPoison)
+            {
+                if (poisonBurstRadius > 0f)
+                    Poison.ApplyContagious(target, poisonDamagePerSecond, poisonDuration, poisonEffect, poisonBurstRadius, poisonBurstEffect);
+                else
+                    Poison.Apply(target, poisonDamagePerSecond, poisonDuration, poisonEffect);
+            }
+
+            if (AppliesBleed)
+                Bleed.Apply(target, bleedDamagePerSecond, bleedDuration, bleedEffect);
+        }
 
         internal void Configure(Projectile prefab, float fireRate, int damage, float speed, float lifetime,
             int count = 1, float spread = 0f, bool automatic = false, int poisonDamagePerSecond = 0, float poisonDuration = 0f)
@@ -105,5 +149,43 @@ namespace Primordia.Combat
         internal void SetMeleeHitEffect(GameObject effect) => meleeHitEffect = effect;
 
         internal void SetPoisonEffect(GameObject effect) => poisonEffect = effect;
+
+        internal void ConfigureContagion(float radius, GameObject effect)
+        {
+            poisonBurstRadius = Mathf.Max(0f, radius);
+            poisonBurstEffect = effect;
+        }
+
+        internal void ConfigureBleed(int damagePerSecond, float duration, GameObject effect)
+        {
+            bleedDamagePerSecond = Mathf.Max(0, damagePerSecond);
+            bleedDuration = Mathf.Max(0f, duration);
+            bleedEffect = effect;
+        }
+
+        internal void ConfigureHoming(float turnRate, float range)
+        {
+            homingTurnRate = Mathf.Max(0f, turnRate);
+            homingRange = Mathf.Max(0f, range);
+        }
+
+        internal void SetDamage(int newDamage) => damage = Mathf.Max(0, newDamage);
+
+        internal void SetFan(int count, float spread)
+        {
+            projectileCount = Mathf.Max(1, count);
+            spreadAngle = Mathf.Clamp(spread, 0f, 360f);
+        }
+
+        internal void SetPoison(int damagePerSecond, float duration)
+        {
+            poisonDamagePerSecond = Mathf.Max(0, damagePerSecond);
+            poisonDuration = Mathf.Max(0f, duration);
+        }
+
+        internal void SetMeleeRange(float range) => meleeRange = Mathf.Max(0.1f, range);
+
+        /// <summary>Copia todos los valores de otro ataque (para crear el de un nivel a partir del anterior).</summary>
+        internal void CopyFrom(AttackData other) => JsonUtility.FromJsonOverwrite(JsonUtility.ToJson(other), this);
     }
 }

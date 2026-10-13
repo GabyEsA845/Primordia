@@ -21,6 +21,8 @@ namespace Primordia.UI
         [SerializeField] Sprite frameSprite;
         [Tooltip("Silueta de cada ranura libre, en el orden Boca, Extremidades, Piel, Órgano. Vacía = sin icono.")]
         [SerializeField] Sprite[] emptySprites = new Sprite[4];
+        [Tooltip("Insignias de nivel para los iconos de 16, de nivel 1 a 3.")]
+        [SerializeField] Sprite[] levelBadges = new Sprite[3];
         [SerializeField] Vector2 slotSize = new(20f, 20f);
         [SerializeField] Vector2 iconSize = new(16f, 16f);
         [Tooltip("Color que oscurece el icono del Órgano mientras se recarga.")]
@@ -34,6 +36,7 @@ namespace Primordia.UI
             public RectTransform Root;
             public Image Icon;
             public Image Shade;
+            public Image Badge;
             public float PopStart = -1f;
         }
 
@@ -79,6 +82,9 @@ namespace Primordia.UI
         public Image IconOf(MutationSlot slot) => slots.TryGetValue(slot, out var s) ? s.Icon : null;
         public Image ShadeOf(MutationSlot slot) => slots.TryGetValue(slot, out var s) ? s.Shade : null;
         public RectTransform SlotOf(MutationSlot slot) => slots.TryGetValue(slot, out var s) ? s.Root : null;
+        public Image BadgeOf(MutationSlot slot) => slots.TryGetValue(slot, out var s) ? s.Badge : null;
+
+        internal void SetLevelBadges(Sprite[] badges) => levelBadges = badges;
 
         void OnChanged(MutationSlot slot, MutationData mutation)
         {
@@ -101,6 +107,7 @@ namespace Primordia.UI
             s.Icon.sprite = sprite;
             s.Icon.enabled = sprite != null;
             s.Shade.sprite = sprite;
+            LevelBadge.Show(s.Badge, levelBadges, mutation != null ? player.LevelOf(slot) : 0);
         }
 
         void LateUpdate()
@@ -160,7 +167,11 @@ namespace Primordia.UI
             shade.fillOrigin = (int)Image.OriginVertical.Top;
             shade.enabled = false;
 
-            return new Slot { Root = rect, Icon = icon, Shade = shade };
+            // Encima del icono y de la sombra de recarga.
+            var badge = LevelBadge.Create(icon, new Vector2(8f, 12f));
+            badge.transform.SetParent(rect, true);
+
+            return new Slot { Root = rect, Icon = icon, Shade = shade, Badge = badge };
         }
 
         Image CreateImage(string name, Transform parent)

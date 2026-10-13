@@ -12,6 +12,43 @@ namespace Primordia.Mutations
 
         public IReadOnlyList<MutationData> Mutations => mutations;
 
+        /// <summary>
+        /// Oferta para ese jugador: mutaciones nuevas (las que no lleva) y mejoras (las que lleva y aún pueden
+        /// subir de nivel). Si hay alguna mejora posible, al menos una de las cartas es una mejora; las demás salen
+        /// al azar entre todo lo que queda. El orden final es al azar.
+        /// </summary>
+        public List<MutationData> PickOffer(int count, PlayerMutations player)
+        {
+            if (player == null)
+                return PickOffer(count, (IEnumerable<MutationData>)null);
+
+            var candidates = mutations.Where(m => m != null && (!player.IsEquipped(m) || player.CanLevelUp(m))).Distinct().ToList();
+            var upgrades = candidates.Where(player.IsEquipped).ToList();
+            Shuffle(candidates);
+
+            var offer = new List<MutationData>();
+            if (upgrades.Count > 0 && count > 0)
+            {
+                var upgrade = upgrades[Random.Range(0, upgrades.Count)];
+                offer.Add(upgrade);
+                candidates.Remove(upgrade);
+            }
+
+            offer.AddRange(candidates.Take(count - offer.Count));
+            Shuffle(offer);
+            return offer;
+        }
+
+        static void Shuffle<T>(IList<T> list)
+        {
+            // Fisher-Yates.
+            for (int i = list.Count - 1; i > 0; i--)
+            {
+                int j = Random.Range(0, i + 1);
+                (list[i], list[j]) = (list[j], list[i]);
+            }
+        }
+
         /// <summary>Hasta <paramref name="count"/> mutaciones distintas al azar, sin las de <paramref name="exclude"/>.</summary>
         public List<MutationData> PickOffer(int count, IEnumerable<MutationData> exclude)
         {

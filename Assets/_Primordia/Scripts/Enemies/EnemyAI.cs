@@ -85,6 +85,7 @@ namespace Primordia.Enemies
         Vector2 desiredVelocity;
         Vector2 knockbackVelocity;
         float stunnedUntil;
+        float paralyzedUntil;
         float blindUntil;
         float fireAt;
         float bodyRadius;
@@ -122,16 +123,40 @@ namespace Primordia.Enemies
 
         void OnDamaged(int _) => Alert();
 
-        /// <summary>Empuja al enemigo con esa velocidad y lo deja sin actuar durante el aturdimiento.</summary>
-        public void Knockback(Vector2 velocity, float stunDuration)
+        /// <summary>
+        /// Empuja al enemigo con esa velocidad y lo deja sin actuar durante el aturdimiento.
+        /// Con <paramref name="stunMarker"/>, lo muestra sobre su cabeza mientras dura.
+        /// </summary>
+        public void Knockback(Vector2 velocity, float stunDuration, GameObject stunMarker = null)
         {
             knockbackVelocity = velocity;
             stunnedUntil = Mathf.Max(stunnedUntil, Time.time + stunDuration);
             Alert();
+            if (stunDuration > 0f)
+                StatusMarkers.Show(this, "Stun", stunMarker, stunDuration);
         }
 
-        /// <summary>Lo deja quieto y sin atacar durante ese tiempo.</summary>
-        public void Blind(float duration) => blindUntil = Mathf.Max(blindUntil, Time.time + duration);
+        /// <summary>Lo deja quieto y sin atacar durante ese tiempo, con su marca de cegado si la hay.</summary>
+        public void Blind(float duration, GameObject blindMarker = null)
+        {
+            blindUntil = Mathf.Max(blindUntil, Time.time + duration);
+            StatusMarkers.Show(this, "Blind", blindMarker, duration);
+        }
+
+        /// <summary>
+        /// Paraliza: sin moverse por sí mismo ni atacar durante ese tiempo (Glándula de choque nivel III); un empujón
+        /// recibido a la vez sigue frenándose. Muestra su marca encima y los rayos por el cuerpo.
+        /// </summary>
+        public void Paralyze(float duration, GameObject marker = null, GameObject bodyEffect = null)
+        {
+            stunnedUntil = Mathf.Max(stunnedUntil, Time.time + duration);
+            paralyzedUntil = Mathf.Max(paralyzedUntil, Time.time + duration);
+            Alert();
+            StatusMarkers.Show(this, "Paralyzed", marker, duration);
+            StatusMarkers.Show(this, "ParalyzedBody", bodyEffect, duration, overhead: false);
+        }
+
+        public bool IsParalyzed => Time.time < paralyzedUntil;
 
         void Update()
         {

@@ -22,5 +22,14 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: bb2fc30c172a8f545a0c4233d925c4ce, type: 3}
   largeIcon: {fileID: 21300000, guid: 013588a0ea714da46a8254af9d884b01, type: 3}
   color: {r: 0.55, g: 0.9, b: 0.35, a: 1}
+  levelDescriptions:
+  - El veneno quita 2 de vida por segundo.
+  - 'Contagio: un enemigo envenenado que muere estalla y envenena a los que tenga cerca.'
   attack: {fileID: 11400000, guid: b6c3f22c0110a2548b95eda6f2d352df, type: 2}
   healEveryKills: 0
+  upgrades:
+  - attack: {fileID: 11400000, guid: 2f2b009ed0dca0b48be653a1156e4d54, type: 2}
+    healEveryKills: 0
+  - attack: {fileID: 11400000, guid: 8dea7b1c07f50d64282384cdca1baceb, type: 2}
+    healEveryKills: 0
+  healEffect: {fileID: 0}

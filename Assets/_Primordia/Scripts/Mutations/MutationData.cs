@@ -19,13 +19,16 @@ namespace Primordia.Mutations
     }
 
     /// <summary>
-    /// Base de todas las mutaciones: nombre, ranura, linaje y aspecto. Cada tipo de mutación
-    /// (estadísticas, ataque, habilidad...) hereda de aquí y aplica su efecto en <see cref="Apply"/>.
-    /// Los cambios que hace <see cref="Apply"/> los deshace <see cref="Remove"/>; los componentes
-    /// añadidos con <see cref="PlayerMutations.AddBehaviour{T}"/> se quitan solos.
+    /// Base de todas las mutaciones: nombre, ranura, linaje, aspecto y niveles. Cada tipo de mutación
+    /// (estadísticas, ataque, habilidad...) hereda de aquí y aplica su efecto en <see cref="Apply"/> según el nivel
+    /// (1 a <see cref="MaxLevel"/>): el II mejora valores y el III desbloquea una evolución. Los cambios que hace
+    /// <see cref="Apply"/> los deshace <see cref="Remove"/> con el mismo nivel; los componentes añadidos con
+    /// <see cref="PlayerMutations.AddBehaviour{T}"/> se quitan solos.
     /// </summary>
     public abstract class MutationData : ScriptableObject
     {
+        public const int MaxLevel = 3;
+
         [SerializeField] string displayName;
         [SerializeField, TextArea(2, 4)] string description;
         [SerializeField] MutationSlot slot;
@@ -44,6 +47,8 @@ namespace Primordia.Mutations
         [SerializeField] Sprite largeIcon;
         [Tooltip("Color de la mutación en la interfaz y en los objetos del suelo.")]
         [SerializeField] Color color = Color.white;
+        [Tooltip("Lo que añade cada nivel: el II y el III (evolución).")]
+        [SerializeField, TextArea(2, 4)] string[] levelDescriptions = new string[MaxLevel - 1];
 
         public string DisplayName => string.IsNullOrEmpty(displayName) ? name : displayName;
         public string Description => description;
@@ -56,9 +61,22 @@ namespace Primordia.Mutations
         public Sprite LargeIcon => largeIcon != null ? largeIcon : icon;
         public Color Color => color;
 
-        public abstract void Apply(PlayerMutations player);
+        /// <summary>Lo que añade ese nivel (2 o 3); vacío en el nivel 1 o si no está escrito.</summary>
+        public string LevelDescription(int level)
+        {
+            int index = level - 2;
+            return levelDescriptions != null && index >= 0 && index < levelDescriptions.Length ? levelDescriptions[index] ?? "" : "";
+        }
 
-        public virtual void Remove(PlayerMutations player) { }
+        /// <param name="level">Nivel de la mutación, de 1 a <see cref="MaxLevel"/>.</param>
+        public abstract void Apply(PlayerMutations player, int level);
+
+        /// <summary>Deshace lo que hizo <see cref="Apply"/> con ese mismo nivel.</summary>
+        public virtual void Remove(PlayerMutations player, int level) { }
+
+        /// <summary>Índice (desde 0) del elemento de una lista de mejoras por nivel: el nivel 2 usa el 0. -1 en el nivel 1.</summary>
+        protected static int UpgradeIndex<T>(T[] upgrades, int level) =>
+            upgrades == null || upgrades.Length == 0 || level < 2 ? -1 : Mathf.Min(level - 2, upgrades.Length - 1);
 
         internal void ConfigureBase(string newName, string newDescription, MutationSlot newSlot, Lineage newLineage,
             Color newColor)
@@ -69,6 +87,8 @@ namespace Primordia.Mutations
             lineage = newLineage;
             color = newColor;
         }
+
+        internal void SetLevelDescriptions(params string[] descriptions) => levelDescriptions = descriptions;
 
         internal void SetIcons(Sprite newIcon, Sprite newLargeIcon)
         {

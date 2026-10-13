@@ -22,5 +22,18 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 814fa29f7a3de5b438ea49cb74c6913f, type: 3}
   largeIcon: {fileID: 21300000, guid: 4a5c61cee97089043b4b95751daf5ca6, type: 3}
   color: {r: 0.55, g: 0.9, b: 0.35, a: 1}
+  levelDescriptions:
+  - "3 de da\xF1o al tocarte, y adem\xE1s envenena."
+  - "Erizo: al recibir un golpe, disparas 8 p\xFAas venenosas en c\xEDrculo."
   damage: 2
   interval: 0.5
+  upgrades:
+  - damage: 3
+    poisonDamagePerSecond: 1
+    poisonDuration: 3
+  - damage: 3
+    poisonDamagePerSecond: 1
+    poisonDuration: 3
+  poisonEffect: {fileID: 8873232975335143540, guid: 99cb1376493db4045a3fdfbcf847a06c, type: 3}
+  quillAttack: {fileID: 11400000, guid: d5f53ce74f72c8c458135d74873b9dbf, type: 2}
+  quillCount: 8

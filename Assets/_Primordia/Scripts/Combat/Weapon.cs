@@ -33,6 +33,13 @@ namespace Primordia.Combat
         /// <summary>Se lanza en cada disparo, con la dirección central.</summary>
         public event Action<Vector2> Fired;
 
+        /// <summary>Multiplica el daño de cada disparo o mordisco (la Emboscada de las Aletas). 1 = normal.</summary>
+        public float DamageMultiplier { get; set; } = 1f;
+
+        /// <summary>Daño de ese ataque con el multiplicador actual (redondeado hacia arriba).</summary>
+        public int DamageOf(AttackData attack) =>
+            Mathf.Max(0, Mathf.CeilToInt(attack.Damage * DamageMultiplier - 0.001f));
+
         /// <summary>Se lanza cuando un proyectil de esta arma hace daño. Si el objetivo murió, su IsDead es true.</summary>
         public event Action<Health> HitTarget;
 
@@ -115,12 +122,11 @@ namespace Primordia.Combat
                 if (toTarget.sqrMagnitude > 0.0001f && Vector2.Angle(direction, toTarget) > attack.MeleeArc / 2f)
                     continue;
 
-                if (!health.TakeDamage(attack.Damage))
+                if (!health.TakeDamage(DamageOf(attack)))
                     continue;
 
                 OneShotEffect.Spawn(attack.MeleeHitEffect, hit.bounds.center);
-                if (attack.AppliesPoison && !health.IsDead)
-                    Poison.Apply(health, attack.PoisonDamagePerSecond, attack.PoisonDuration, attack.PoisonEffect);
+                attack.ApplyStatus(health);
                 ReportHit(health);
             }
 

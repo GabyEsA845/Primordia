@@ -362,7 +362,7 @@ namespace Primordia.Tests
             Assert.IsTrue(tooltip.IsShown);
             Assert.IsTrue(panel.CalloutOf(MutationSlot.Limbs).IsHighlighted);
             Assert.AreEqual("Aletas", tooltip.Title.text);
-            Assert.AreEqual("Extremidades · Depredador", tooltip.Details.text);
+            Assert.AreEqual("Extremidades · Depredador · Nivel I", tooltip.Details.text);
             Assert.AreEqual("Más velocidad.", tooltip.Description.text);
 
             panel.Hover(panel.CalloutOf(MutationSlot.Mouth));

@@ -24,7 +24,7 @@ namespace Primordia.Mutations
 
         /// <summary>De 0 (recién usada) a 1 (lista).</summary>
         public float CooldownProgress =>
-            !IsCharging ? 1f : Mathf.Clamp01(1f - (readyTime - Time.time) / Ability.Cooldown);
+            !IsCharging ? 1f : Mathf.Clamp01(1f - (readyTime - Time.time) / Mathf.Max(0.01f, currentCooldown));
 
         public event Action Used;
 
@@ -32,6 +32,8 @@ namespace Primordia.Mutations
         PlayerMutations mutations;
         InputAction specialAction;
         float readyTime;
+        // Recarga de la última vez que se usó (depende del nivel del Órgano).
+        float currentCooldown = 1f;
 
         void Awake()
         {
@@ -57,7 +59,8 @@ namespace Primordia.Mutations
             if (!IsReady || !controller.CanAct)
                 return false;
 
-            readyTime = Time.time + Ability.Cooldown;
+            currentCooldown = Ability.CooldownAt(Mathf.Max(1, mutations.LevelOf(Ability.Slot)));
+            readyTime = Time.time + currentCooldown;
             Ability.Activate(mutations);
             Used?.Invoke();
             return true;

@@ -18,11 +18,16 @@ namespace Primordia.UI
         [SerializeField] Sprite highlightedFrame;
         [Tooltip("Silueta apagada de la ranura libre.")]
         [SerializeField] Sprite emptyIcon;
+        [Tooltip("Insignias de nivel para los iconos de 16, de nivel 1 a 3.")]
+        [SerializeField] Sprite[] levelBadges = new Sprite[3];
+
+        Image badge;
 
         internal CreaturePanel Panel;
 
         public MutationSlot Slot => slot;
         public MutationData Mutation { get; private set; }
+        public int Level { get; private set; }
         public bool IsHighlighted { get; private set; }
         public Image Icon => icon;
         public RectTransform Rect => (RectTransform)transform;
@@ -42,13 +47,20 @@ namespace Primordia.UI
             SetHighlighted(IsHighlighted);
         }
 
-        public void Show(MutationData mutation)
+        public void Show(MutationData mutation, int level = 1)
         {
             Mutation = mutation;
+            Level = mutation != null ? level : 0;
             var sprite = mutation != null && mutation.Icon != null ? mutation.Icon : emptyIcon;
             icon.sprite = sprite;
             icon.enabled = sprite != null;
+
+            if (badge == null)
+                badge = LevelBadge.Create(icon, new Vector2(8f, 12f));
+            LevelBadge.Show(badge, levelBadges, Level);
         }
+
+        internal void SetLevelBadges(Sprite[] badges) => levelBadges = badges;
 
         public void SetHighlighted(bool highlighted)
         {

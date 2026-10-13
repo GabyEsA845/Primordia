@@ -49,8 +49,9 @@ namespace Primordia.UI
             if (mutation != null)
             {
                 title.text = mutation.DisplayName;
-                details.text = $"{MutationText.SlotName(mutation.Slot)} · {MutationText.LineageName(mutation.Lineage)}";
-                description.text = mutation.Description;
+                details.text = $"{MutationText.SlotName(mutation.Slot)} · {MutationText.LineageName(mutation.Lineage)} · " +
+                               $"Nivel {MutationText.LevelName(Mathf.Max(1, callout.Level))}";
+                description.text = MutationText.FullDescription(mutation, callout.Level);
                 stripe.color = mutation.Color;
                 int lineage = (int)mutation.Lineage;
                 lineageIcon.sprite = lineageIcons != null && lineage < lineageIcons.Length ? lineageIcons[lineage] : null;

@@ -56,7 +56,7 @@ namespace Primordia.Mutations
             if (player.Health.IsDead)
                 return;
 
-            var options = pool.PickOffer(optionCount, player.Equipped);
+            var options = pool.PickOffer(optionCount, player);
             if (options.Count == 0)
                 return;
 

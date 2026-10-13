@@ -47,7 +47,7 @@ namespace Primordia.Mutations
 
             var playerObject = GameObject.FindWithTag("Player");
             var player = playerObject != null ? playerObject.GetComponent<PlayerMutations>() : null;
-            var options = pool.PickOffer(count, player != null ? player.Equipped : null);
+            var options = pool.PickOffer(count, player);
 
             Vector2 center = TryGetComponent<BossAI>(out var boss) ? boss.ArenaCenter : (Vector2)transform.position;
             for (int i = 0; i < options.Count; i++)

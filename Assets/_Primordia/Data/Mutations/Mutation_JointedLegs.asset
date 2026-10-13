@@ -22,6 +22,17 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 9d847d4f4af4eae47a600fb8cd0b1f5a, type: 3}
   largeIcon: {fileID: 21300000, guid: a4d4f3f414d799640b982b1e64ce210a, type: 3}
   color: {r: 0.55, g: 0.7, b: 0.9, a: 1}
+  levelDescriptions:
+  - "El empuj\xF3n aturde 1 s y hace 2 de da\xF1o."
+  - "Pisot\xF3n: al terminar cada esquiva, aturdes a todos los enemigos cercanos."
   pushSpeed: 12
   stunDuration: 0.5
   damage: 1
+  upgrades:
+  - stunDuration: 1
+    damage: 2
+  - stunDuration: 1
+    damage: 2
+  stunMarker: {fileID: 7523948879994839015, guid: ebb175b98e8a2014fbb7247080c1af43, type: 3}
+  stompRadius: 2
+  stompEffect: {fileID: 1423941882161136202, guid: a9dbc59e2edd16543a04329352e1fac0, type: 3}

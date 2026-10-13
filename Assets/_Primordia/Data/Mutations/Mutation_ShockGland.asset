@@ -22,9 +22,24 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: d809792cefdd9fc4daa6672fb3acbfcc, type: 3}
   largeIcon: {fileID: 21300000, guid: 1ccf462038905d54e843b0dc43c8c167, type: 3}
   color: {r: 0.55, g: 0.7, b: 0.9, a: 1}
+  levelDescriptions:
+  - "Onda mucho m\xE1s grande (radio 6) y recarga de 4,5 s."
+  - 'Paralizante: los enemigos que alcanza la onda quedan paralizados 2 s.'
   cooldown: 6
   effectPrefab: {fileID: 5147786757589481648, guid: f5b4fb2c036ef9548a927b7cdefef551, type: 3}
   effectRadius: 4
   radius: 4
   pushSpeed: 14
   stunDuration: 0.4
+  upgrades:
+  - radius: 6
+    cooldown: 4.5
+    effect: {fileID: 6853243281291740732, guid: 4500d28bccbd00d49a8b84add338c26b, type: 3}
+    effectRadius: 6
+  - radius: 6
+    cooldown: 4.5
+    effect: {fileID: 6853243281291740732, guid: 4500d28bccbd00d49a8b84add338c26b, type: 3}
+    effectRadius: 6
+  paralyzeDuration: 2
+  paralyzedMarker: {fileID: 4071086763907210616, guid: 4017591832b43984c92580b381566f44, type: 3}
+  paralyzedBodyEffect: {fileID: 8151926411419001404, guid: b62ee18beedd3ce478bb9a451a10b0a5, type: 3}

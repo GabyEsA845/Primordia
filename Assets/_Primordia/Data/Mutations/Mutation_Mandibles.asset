@@ -22,5 +22,14 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: b90d81d999b30cc408173ab69ddebda9, type: 3}
   largeIcon: {fileID: 21300000, guid: b8b84e330728398418710f9c44d61f9e, type: 3}
   color: {r: 0.95, g: 0.5, b: 0.35, a: 1}
+  levelDescriptions:
+  - "Mordisco m\xE1s fuerte (4 de da\xF1o) y un 15 % m\xE1s de alcance."
+  - "Desgarro: el mordisco hace sangrar (1 de da\xF1o por segundo durante 3 s) y curas medio coraz\xF3n cada 2 enemigos."
   attack: {fileID: 11400000, guid: 2dea36bdb5aa9ba49ab5eaa57e026bc4, type: 2}
   healEveryKills: 3
+  upgrades:
+  - attack: {fileID: 11400000, guid: a43c94da49e82ed4a9372ecb7b4385e7, type: 2}
+    healEveryKills: 3
+  - attack: {fileID: 11400000, guid: c320a519c580e014380e4969bdcc80c3, type: 2}
+    healEveryKills: 2
+  healEffect: {fileID: 634519857664457622, guid: e1eb0108d9dbd9641b37f27de094375b, type: 3}

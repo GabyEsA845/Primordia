@@ -506,6 +506,11 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 7c279ec3145638447894e9d6b1b5c598, type: 3}
   - {fileID: 21300000, guid: 849b7126ba4200b4aaf198a0ef6d8d41, type: 3}
   - {fileID: 21300000, guid: c4d7a31befb4d7d4281449c340ef3670, type: 3}
+  levelBadges:
+  - {fileID: 21300000, guid: f863e8299acb6fc4da3f43244fa4ad74, type: 3}
+  - {fileID: 21300000, guid: 7c63b17d60aada647b3ebb50145388f4, type: 3}
+  - {fileID: 21300000, guid: 6c881920dabdcd24691ebb44b0d37472, type: 3}
+  upgradeArrow: {fileID: 21300000, guid: a5569c0fa1a936946b8eb8d876711ab5, type: 3}
 --- !u!1 &626277266362249836
 GameObject:
   m_ObjectHideFlags: 0
@@ -1618,6 +1623,11 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 7c279ec3145638447894e9d6b1b5c598, type: 3}
   - {fileID: 21300000, guid: 849b7126ba4200b4aaf198a0ef6d8d41, type: 3}
   - {fileID: 21300000, guid: c4d7a31befb4d7d4281449c340ef3670, type: 3}
+  levelBadges:
+  - {fileID: 21300000, guid: f863e8299acb6fc4da3f43244fa4ad74, type: 3}
+  - {fileID: 21300000, guid: 7c63b17d60aada647b3ebb50145388f4, type: 3}
+  - {fileID: 21300000, guid: 6c881920dabdcd24691ebb44b0d37472, type: 3}
+  upgradeArrow: {fileID: 21300000, guid: a5569c0fa1a936946b8eb8d876711ab5, type: 3}
 --- !u!1 &1693284953201660520
 GameObject:
   m_ObjectHideFlags: 0
@@ -2041,6 +2051,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 60e95739a29d79843a3ac21702703039, type: 3}
   - {fileID: 21300000, guid: ee06496fcea7cf047b979a9f17edbd6d, type: 3}
   - {fileID: 21300000, guid: 26844d0e2abccfc4f809366779c44f24, type: 3}
+  levelBadges:
+  - {fileID: 21300000, guid: 2e600f143f7c56e45bcdbddd66a1d8ca, type: 3}
+  - {fileID: 21300000, guid: 34aec88338668074db32e8243eb9bfde, type: 3}
+  - {fileID: 21300000, guid: ea985b0b988aeda4980cf848eaced596, type: 3}
   slotSize: {x: 20, y: 20}
   iconSize: {x: 16, y: 16}
   cooldownShade: {r: 0, g: 0, b: 0, a: 0.7}
@@ -3513,6 +3527,10 @@ MonoBehaviour:
   normalFrame: {fileID: 21300000, guid: 3eefc74ef4007c349a89afaab09ca695, type: 3}
   highlightedFrame: {fileID: 21300000, guid: 9856da28110e0bd4db743e59517c3bba, type: 3}
   emptyIcon: {fileID: 21300000, guid: 60e95739a29d79843a3ac21702703039, type: 3}
+  levelBadges:
+  - {fileID: 21300000, guid: 2e600f143f7c56e45bcdbddd66a1d8ca, type: 3}
+  - {fileID: 21300000, guid: 34aec88338668074db32e8243eb9bfde, type: 3}
+  - {fileID: 21300000, guid: ea985b0b988aeda4980cf848eaced596, type: 3}
 --- !u!1 &3172084968312398390
 GameObject:
   m_ObjectHideFlags: 0
@@ -4144,6 +4162,10 @@ MonoBehaviour:
   normalFrame: {fileID: 21300000, guid: 3eefc74ef4007c349a89afaab09ca695, type: 3}
   highlightedFrame: {fileID: 21300000, guid: 9856da28110e0bd4db743e59517c3bba, type: 3}
   emptyIcon: {fileID: 21300000, guid: ca139b70936422640a4bb86812884699, type: 3}
+  levelBadges:
+  - {fileID: 21300000, guid: 2e600f143f7c56e45bcdbddd66a1d8ca, type: 3}
+  - {fileID: 21300000, guid: 34aec88338668074db32e8243eb9bfde, type: 3}
+  - {fileID: 21300000, guid: ea985b0b988aeda4980cf848eaced596, type: 3}
 --- !u!1 &3732134648581361591
 GameObject:
   m_ObjectHideFlags: 0
@@ -5969,6 +5991,10 @@ MonoBehaviour:
   normalFrame: {fileID: 21300000, guid: 3eefc74ef4007c349a89afaab09ca695, type: 3}
   highlightedFrame: {fileID: 21300000, guid: 9856da28110e0bd4db743e59517c3bba, type: 3}
   emptyIcon: {fileID: 21300000, guid: ee06496fcea7cf047b979a9f17edbd6d, type: 3}
+  levelBadges:
+  - {fileID: 21300000, guid: 2e600f143f7c56e45bcdbddd66a1d8ca, type: 3}
+  - {fileID: 21300000, guid: 34aec88338668074db32e8243eb9bfde, type: 3}
+  - {fileID: 21300000, guid: ea985b0b988aeda4980cf848eaced596, type: 3}
 --- !u!1 &5199552102779966924
 GameObject:
   m_ObjectHideFlags: 0
@@ -8155,6 +8181,10 @@ MonoBehaviour:
   normalFrame: {fileID: 21300000, guid: 3eefc74ef4007c349a89afaab09ca695, type: 3}
   highlightedFrame: {fileID: 21300000, guid: 9856da28110e0bd4db743e59517c3bba, type: 3}
   emptyIcon: {fileID: 21300000, guid: 26844d0e2abccfc4f809366779c44f24, type: 3}
+  levelBadges:
+  - {fileID: 21300000, guid: 2e600f143f7c56e45bcdbddd66a1d8ca, type: 3}
+  - {fileID: 21300000, guid: 34aec88338668074db32e8243eb9bfde, type: 3}
+  - {fileID: 21300000, guid: ea985b0b988aeda4980cf848eaced596, type: 3}
 --- !u!1 &7027615360090149859
 GameObject:
   m_ObjectHideFlags: 0
@@ -9916,6 +9946,11 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 7c279ec3145638447894e9d6b1b5c598, type: 3}
   - {fileID: 21300000, guid: 849b7126ba4200b4aaf198a0ef6d8d41, type: 3}
   - {fileID: 21300000, guid: c4d7a31befb4d7d4281449c340ef3670, type: 3}
+  levelBadges:
+  - {fileID: 21300000, guid: f863e8299acb6fc4da3f43244fa4ad74, type: 3}
+  - {fileID: 21300000, guid: 7c63b17d60aada647b3ebb50145388f4, type: 3}
+  - {fileID: 21300000, guid: 6c881920dabdcd24691ebb44b0d37472, type: 3}
+  upgradeArrow: {fileID: 21300000, guid: a5569c0fa1a936946b8eb8d876711ab5, type: 3}
 --- !u!1 &8607690758156691308
 GameObject:
   m_ObjectHideFlags: 0

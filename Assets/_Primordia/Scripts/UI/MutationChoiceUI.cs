@@ -54,7 +54,7 @@ namespace Primordia.UI
                 bool used = i < options.Count;
                 cards[i].gameObject.SetActive(used);
                 if (used)
-                    cards[i].Show(options[i], player.Get(options[i].Slot));
+                    cards[i].Show(options[i], player.Get(options[i].Slot), player.LevelOf(options[i].Slot));
             }
 
             panel.SetActive(true);

@@ -231,7 +231,9 @@ namespace Primordia.Editor
             EditPrefab(PlayerSetup.PlayerPath, root => GetOrAdd<DodgeTrail>(root).Configure(dodgeTrail));
 
             // Dibujados a su tamaño real: tinta de radio 3 y onda de radio 4.
-            UpdateAbilityEffect("Effect_InkCloud", art, "InkCloud", "Mutation_InkSac", drawnRadius: 3f);
+            var inkCloud = AssetDatabase.LoadAssetAtPath<GameObject>($"{MutationPrefabsFolder}/Effect_InkCloud.prefab");
+            if (inkCloud == null || !inkCloud.TryGetComponent<InkCloudArea>(out _))
+                UpdateAbilityEffect("Effect_InkCloud", art, "InkCloud", "Mutation_InkSac", drawnRadius: 3f);
             UpdateAbilityEffect("Effect_Shockwave", art, "Shockwave", "Mutation_ShockGland", drawnRadius: 4f);
 
             AssetDatabase.SaveAssets();
@@ -361,6 +363,10 @@ namespace Primordia.Editor
 
             foreach (var (name, controller) in art.Controllers)
                 ApplyToProjectilePrefab($"{ProjectilesArt.SheetPrefix}{name}", controller, art.FirstSprites[name]);
+
+            // El Aguijón se rehízo: su proyectil bueno (y la púa del Erizo) está en la carpeta de evoluciones.
+            if (Directory.Exists(EvolutionsSourceFolder + "/Projectiles"))
+                ImportEvolutionProjectiles();
 
             AssetDatabase.SaveAssets();
         }

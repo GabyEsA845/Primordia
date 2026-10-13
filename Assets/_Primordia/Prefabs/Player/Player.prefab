@@ -282,6 +282,7 @@ GameObject:
   - component: {fileID: 4329951006136539611}
   - component: {fileID: 5062205932139135664}
   - component: {fileID: 5267439446711912441}
+  - component: {fileID: 5304406059359759695}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -519,6 +520,20 @@ MonoBehaviour:
   cellMouthDistance: 0.375
   mouthFrontOrder: 12
   mouthBehindOrder: 9
+--- !u!114 &5304406059359759695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2873998751450272095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eeba6518a9d4fdb4993605a972dc74d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Primordia::Primordia.Mutations.LevelUpEffect
+  levelUpEffect: {fileID: 7444110892727214283, guid: 4516fedbff16c0f4c9e26a933c2168dd, type: 3}
+  evolveEffect: {fileID: 1746545796632829951, guid: a752499fb58553a459bb822187f34fd4, type: 3}
 --- !u!1 &4190937158644940233
 GameObject:
   m_ObjectHideFlags: 0

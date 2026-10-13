@@ -61,8 +61,8 @@ namespace Primordia.Editor
         {
             foreach (var name in MutationNames)
             {
-                var small = ImportUISprite("Icons", $"Icon_{name}_16");
-                var large = ImportUISprite("Icons", $"Icon_{name}_32");
+                var small = RemadeMutations.Contains(name) ? RemadeIcon(name, 16) ?? ImportUISprite("Icons", $"Icon_{name}_16") : ImportUISprite("Icons", $"Icon_{name}_16");
+                var large = RemadeMutations.Contains(name) ? RemadeIcon(name, 32) ?? ImportUISprite("Icons", $"Icon_{name}_32") : ImportUISprite("Icons", $"Icon_{name}_32");
                 var mutation = AssetDatabase.LoadAssetAtPath<MutationData>($"{MutationDataFolder}/Mutation_{name}.asset");
                 if (mutation == null)
                 {

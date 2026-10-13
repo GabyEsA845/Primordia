@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using NUnit.Framework;
 using Primordia.Combat;
 using Primordia.Enemies;
@@ -76,7 +77,7 @@ namespace Primordia.Tests
         }
 
         [Test]
-        public void Death_DropsThreeMutations_WithoutTheEquippedOnes()
+        public void Death_DropsThreeMutations_OneOfThemAnUpgrade()
         {
             var equipped = Mutation("Equipada", MutationSlot.Mouth);
             player.Equip(equipped);
@@ -86,9 +87,9 @@ namespace Primordia.Tests
             Assert.AreEqual(0, drop.Dropped.Count);
             enemy.Health.TakeDamage(enemy.Health.Max);
 
+            // La equipada puede subir de nivel, así que una de las burbujas es su mejora.
             Assert.AreEqual(3, drop.Dropped.Count);
-            foreach (var pickup in drop.Dropped)
-                Assert.AreNotEqual(equipped, pickup.Mutation);
+            Assert.AreEqual(1, drop.Dropped.Count(pickup => pickup.Mutation == equipped));
         }
 
         [UnityTest]

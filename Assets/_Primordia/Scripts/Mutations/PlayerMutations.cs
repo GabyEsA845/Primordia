@@ -33,10 +33,17 @@ namespace Primordia.Mutations
         /// <summary>Velocidad de la célula sin mutaciones.</summary>
         public float BaseMoveSpeed { get; private set; }
 
-        /// <summary>Se lanza al cambiar una ranura: (ranura, mutación nueva o null si quedó vacía).</summary>
+        /// <summary>
+        /// Se lanza al cambiar una ranura: (ranura, mutación nueva o null si quedó vacía). También al subir
+        /// de nivel la mutación de la ranura.
+        /// </summary>
         public event Action<MutationSlot, MutationData> Changed;
 
+        /// <summary>Se lanza al subir de nivel una mutación: (ranura, nivel nuevo).</summary>
+        public event Action<MutationSlot, int> LevelChanged;
+
         readonly Dictionary<MutationSlot, MutationData> equipped = new();
+        readonly Dictionary<MutationSlot, int> levels = new();
         readonly Dictionary<MutationSlot, List<Component>> behaviours = new();
 
         public IEnumerable<MutationData> Equipped => equipped.Values;
@@ -68,18 +75,59 @@ namespace Primordia.Mutations
         public bool IsEquipped(MutationData mutation) =>
             mutation != null && equipped.TryGetValue(mutation.Slot, out var current) && current == mutation;
 
+        /// <summary>Nivel de la mutación de esa ranura (0 si está vacía).</summary>
+        public int LevelOf(MutationSlot slot) => levels.TryGetValue(slot, out int level) ? level : 0;
+
+        /// <summary>Nivel de esa mutación si la lleva equipada; 0 si no.</summary>
+        public int LevelOf(MutationData mutation) => IsEquipped(mutation) ? LevelOf(mutation.Slot) : 0;
+
+        /// <summary>True si la lleva equipada y aún puede subir de nivel.</summary>
+        public bool CanLevelUp(MutationData mutation) => IsEquipped(mutation) && LevelOf(mutation.Slot) < MutationData.MaxLevel;
+
+        /// <summary>
+        /// Equipa la mutación en nivel 1, reemplazando a la que hubiera en su ranura (que pierde su nivel).
+        /// Si ya la lleva, la sube de nivel.
+        /// </summary>
         public void Equip(MutationData mutation)
         {
-            if (mutation == null || IsEquipped(mutation))
+            if (mutation == null)
                 return;
+
+            if (IsEquipped(mutation))
+            {
+                LevelUp(mutation.Slot);
+                return;
+            }
 
             RemoveFromSlot(mutation.Slot);
 
             equipped[mutation.Slot] = mutation;
-            mutation.Apply(this);
+            levels[mutation.Slot] = 1;
+            mutation.Apply(this, 1);
             UpdateBodyRadius();
 
             Changed?.Invoke(mutation.Slot, mutation);
+        }
+
+        /// <summary>
+        /// Sube un nivel la mutación de esa ranura (hasta <see cref="MutationData.MaxLevel"/>): deshace el nivel
+        /// actual y aplica el siguiente. También la usará la tienda. Devuelve false si no pudo subir.
+        /// </summary>
+        public bool LevelUp(MutationSlot slot)
+        {
+            var mutation = Get(slot);
+            int level = LevelOf(slot);
+            if (mutation == null || level >= MutationData.MaxLevel)
+                return false;
+
+            RemoveEffects(slot, mutation, level);
+            levels[slot] = level + 1;
+            mutation.Apply(this, level + 1);
+            UpdateBodyRadius();
+
+            LevelChanged?.Invoke(slot, level + 1);
+            Changed?.Invoke(slot, mutation);
+            return true;
         }
 
         public void Unequip(MutationSlot slot)
@@ -106,21 +154,28 @@ namespace Primordia.Mutations
             if (!equipped.TryGetValue(slot, out var old))
                 return false;
 
-            old.Remove(this);
+            RemoveEffects(slot, old, LevelOf(slot));
             equipped.Remove(slot);
+            levels.Remove(slot);
+
+            UpdateBodyRadius();
+            return true;
+        }
+
+        /// <summary>Deshace el efecto de la mutación en ese nivel y quita sus componentes (al momento, para que no se dupliquen al subir de nivel).</summary>
+        void RemoveEffects(MutationSlot slot, MutationData mutation, int level)
+        {
+            mutation.Remove(this, level);
 
             if (behaviours.TryGetValue(slot, out var list))
             {
                 foreach (var component in list)
                 {
                     if (component != null)
-                        Destroy(component);
+                        DestroyImmediate(component);
                 }
                 behaviours.Remove(slot);
             }
-
-            UpdateBodyRadius();
-            return true;
         }
 
         /// <summary>La Piel agranda (o encoge) la colisión; sin Piel, vuelve a la de la célula.</summary>

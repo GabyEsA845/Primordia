@@ -30,6 +30,13 @@ namespace Primordia.Core
 
         public bool CanTakeDamage => !IsDead && !IsInvulnerable && Time.time >= invulnerableUntil;
 
+        /// <summary>Golpes que se anulan enteros antes de quitar vida (las Placas del Caparazón).</summary>
+        public int Shields
+        {
+            get => shields;
+            set => shields = Mathf.Max(0, value);
+        }
+
         /// <summary>Se lanza al cambiar la vida actual o la máxima: (actual, máxima).</summary>
         public event Action<int, int> Changed;
 
@@ -38,7 +45,11 @@ namespace Primordia.Core
 
         public event Action Died;
 
+        /// <summary>Se lanza cuando un escudo anula un golpe.</summary>
+        public event Action ShieldBlocked;
+
         float invulnerableUntil;
+        int shields;
 
         void Awake()
         {
@@ -50,6 +61,15 @@ namespace Primordia.Core
         {
             if (amount <= 0 || !CanTakeDamage)
                 return false;
+
+            // El escudo para el golpe entero; cuenta como golpe (da la invulnerabilidad de después).
+            if (shields > 0)
+            {
+                shields--;
+                invulnerableUntil = Time.time + invulnerabilityAfterHit;
+                ShieldBlocked?.Invoke();
+                return true;
+            }
 
             Current = Mathf.Max(0, Current - amount);
             invulnerableUntil = Time.time + invulnerabilityAfterHit;

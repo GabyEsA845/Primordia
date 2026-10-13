@@ -53,6 +53,13 @@ namespace Primordia.Player
             set => dodgeDistance = Mathf.Max(0.1f, value);
         }
 
+        /// <summary>Segundos entre el final de una esquiva y la siguiente; las Aletas lo acortan.</summary>
+        public float DodgeCooldown
+        {
+            get => dodgeCooldown;
+            set => dodgeCooldown = Mathf.Max(0f, value);
+        }
+
         public event Action DodgeStarted;
         public event Action DodgeEnded;
 

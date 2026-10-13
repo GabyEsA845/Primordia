@@ -90,7 +90,7 @@ namespace Primordia.UI
             foreach (var callout in callouts)
             {
                 if (callout != null)
-                    callout.Show(player != null ? player.Get(callout.Slot) : null);
+                    callout.Show(player != null ? player.Get(callout.Slot) : null, player != null ? player.LevelOf(callout.Slot) : 0);
             }
 
             if (portrait != null)

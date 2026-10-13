@@ -29,6 +29,12 @@ namespace Primordia.Rooms
         public event Action<Room> Entered;
         public event Action<Room> Cleared;
 
+        /// <summary>
+        /// Se lanza al morir cada enemigo de la sala, ya descontado de <see cref="AliveEnemies"/> y antes de
+        /// <see cref="Cleared"/>: con el último, AliveEnemies ya vale 0.
+        /// </summary>
+        public event Action<Room, Enemy> EnemyDied;
+
         void Awake()
         {
             // El trigger debe ser algo más pequeño que el interior: así el jugador ya
@@ -100,6 +106,7 @@ namespace Primordia.Rooms
             enemy.ChildSpawned -= Register;
 
             AliveEnemies--;
+            EnemyDied?.Invoke(this, enemy);
             if (AliveEnemies == 0 && State == RoomState.Combat)
                 Clear();
         }

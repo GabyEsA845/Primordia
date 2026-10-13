@@ -1,4 +1,5 @@
 using System;
+using Primordia.Biomass;
 using Primordia.Enemies;
 using Primordia.Mutations;
 using UnityEngine;
@@ -63,6 +64,13 @@ namespace Primordia.Rooms
         [Tooltip("Salas de combate del camino (1 = la primera) que ofrecen mutación al limpiarlas. Las laterales siempre.")]
         [SerializeField] int[] rewardAfter = { 2, 4 };
 
+        [Header("Biomasa")]
+        [Tooltip("Vacío: las salas no sueltan biomasa.")]
+        [SerializeField] BiomassPickup smallBiomass;
+        [SerializeField] BiomassPickup bigBiomass;
+        [Tooltip("Biomasa mínima de cada sala con enemigos.")]
+        [SerializeField, Min(0)] int minimumBiomassPerRoom = 2;
+
         [Header("Salida")]
         [SerializeField] Sprite exitSprite;
         [SerializeField] Color exitColor = new(0.3f, 0.95f, 0.8f);
@@ -84,6 +92,9 @@ namespace Primordia.Rooms
         public MutationPool RewardPool => rewardPool;
         public int RewardOptions => rewardOptions;
         public int[] RewardAfter => rewardAfter;
+        public BiomassPickup SmallBiomass => smallBiomass;
+        public BiomassPickup BigBiomass => bigBiomass;
+        public int MinimumBiomassPerRoom => minimumBiomassPerRoom;
         public Sprite ExitSprite => exitSprite;
         public Color ExitColor => exitColor;
 
@@ -111,6 +122,13 @@ namespace Primordia.Rooms
             boss = newBoss;
             baseBudget = newBaseBudget;
             budgetPerRoom = newBudgetPerRoom;
+        }
+
+        internal void ConfigureBiomass(BiomassPickup newSmall, BiomassPickup newBig, int newMinimum = 2)
+        {
+            smallBiomass = newSmall;
+            bigBiomass = newBig;
+            minimumBiomassPerRoom = Mathf.Max(0, newMinimum);
         }
 
         internal void ConfigureRewards(MutationPool newPool, int[] newRewardAfter)

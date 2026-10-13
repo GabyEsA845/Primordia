@@ -261,6 +261,8 @@ namespace Primordia.Enemies
                 if (minion.TryGetComponent<EnemyAI>(out var ai))
                     ai.Alert();
 
+                // Si soltaran biomasa, un combate largo daría demasiada.
+                minion.DropsBiomass = false;
                 minions.Add(minion);
                 enemy.RegisterChild(minion);
             }

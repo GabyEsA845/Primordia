@@ -15,7 +15,7 @@ namespace Primordia.Editor
     /// </summary>
     public static class EnemySetup
     {
-        const string DataFolder = "Assets/_Primordia/Data/Enemies";
+        internal const string DataFolder = "Assets/_Primordia/Data/Enemies";
         const string PrefabsFolder = "Assets/_Primordia/Prefabs/Enemies";
         const string TestScenePath = "Assets/_Primordia/Scenes/Test_Enemies.unity";
 

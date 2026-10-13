@@ -115,6 +115,7 @@ namespace Primordia.Editor
             EnsureBossBar();
             EnsureMutationIcons();
             EnsureHudSlotsAndCrosshair();
+            EnsureBiomassCounter();
             CreateMainMenuUIPrefab();
             AssetDatabase.SaveAssets();
         }
@@ -492,6 +493,54 @@ namespace Primordia.Editor
 
                 if (changed)
                     PrefabUtility.SaveAsPrefabAsset(root, GameUIPath);
+            }
+            finally
+            {
+                PrefabUtility.UnloadPrefabContents(root);
+            }
+        }
+
+        // ---------- Biomasa ----------
+
+        /// <summary>
+        /// Añade al prefab GameUI el contador de biomasa bajo las ranuras de mutación, si todavía no lo tiene.
+        /// El icono lo pone Primordia > Art > Importar biomasa.
+        /// </summary>
+        internal static void EnsureBiomassCounter()
+        {
+            var root = PrefabUtility.LoadPrefabContents(GameUIPath);
+            try
+            {
+                if (root.GetComponentInChildren<BiomassCounter>(true) != null)
+                    return;
+
+                // Bajo las ranuras (8, -26, 20 de alto), con 4 px de aire.
+                var counter = CreateRect("Biomass", root.transform);
+                counter.anchorMin = counter.anchorMax = counter.pivot = new Vector2(0f, 1f);
+                counter.anchoredPosition = new Vector2(8f, -50f);
+                counter.sizeDelta = new Vector2(80f, 12f);
+                var slots = root.GetComponentInChildren<MutationSlotsDisplay>(true);
+                if (slots != null)
+                    counter.SetSiblingIndex(slots.transform.GetSiblingIndex() + 1);
+
+                var layout = counter.gameObject.AddComponent<HorizontalLayoutGroup>();
+                layout.spacing = 3f;
+                layout.childAlignment = TextAnchor.MiddleLeft;
+                layout.childControlWidth = layout.childControlHeight = true;
+                layout.childForceExpandWidth = layout.childForceExpandHeight = false;
+
+                var icon = CreateIcon("Icon", counter, 12f);
+                var label = CreateText(counter, "0", 8, TextColor);
+                label.name = "Amount";
+                label.alignment = TextAnchor.MiddleLeft;
+                label.raycastTarget = false;
+                // Contorno oscuro para leerse sobre el suelo y las paredes.
+                var shadow = label.gameObject.AddComponent<Shadow>();
+                shadow.effectColor = new Color32(0x18, 0x14, 0x25, 0xff);
+                shadow.effectDistance = new Vector2(1f, -1f);
+
+                counter.gameObject.AddComponent<BiomassCounter>().Configure(null, icon, label);
+                PrefabUtility.SaveAsPrefabAsset(root, GameUIPath);
             }
             finally
             {

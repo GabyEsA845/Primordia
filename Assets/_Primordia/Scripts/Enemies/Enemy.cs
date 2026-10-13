@@ -24,6 +24,9 @@ namespace Primordia.Enemies
         public EnemyData Data => data;
         public Health Health { get; private set; }
 
+        /// <summary>False en las invocaciones del jefe: al morir no sueltan biomasa.</summary>
+        public bool DropsBiomass { get; internal set; } = true;
+
         /// <summary>True si al morir se divide en otros enemigos.</summary>
         public bool WillSplit => data != null && data.SplitCount > 0 && data.SplitPrefab != null;
 

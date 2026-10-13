@@ -10,7 +10,7 @@ namespace Primordia.Editor
     /// <summary>
     /// Objetos e interfaz (docs/multimedia-temp/ui/): corazones, botones, tarjetas, panel de la pausa, iconos de
     /// mutación y de linaje, barra de recarga y las burbujas de mutación que suelta el jefe.
-    /// También la mira y las ranuras del cuerpo del HUD. La biomasa se importará cuando exista su código (con la tienda).
+    /// También la mira y las ranuras del cuerpo del HUD. La biomasa tiene su propio menú (ArtSetup.Biomass).
     /// </summary>
     public static partial class ArtSetup
     {

@@ -59,7 +59,7 @@ Propuesta: el cuerpo tiene **4 ranuras** y cada ranura solo admite una mutación
 | Vejiga de tinta | Órgano especial | Depredador | Nube que ciega a los enemigos 3 s |
 | Glándula de choque | Órgano especial | Acorazado | Onda que repele proyectiles |
 
-**Cómo se consiguen:** al limpiar una sala cae "biomasa" (moneda) y, de vez en cuando, una mutación menor. Al derrotar al jefe se elige 1 de 3 mutaciones mayores. Cambiar una mutación por otra en la misma ranura la reemplaza para siempre en esa partida.
+**Cómo se consiguen:** al limpiar ciertas salas aparece la elección de 1 de 3 mutaciones, y en la tienda se compran con biomasa. Al derrotar al jefe se elige 1 de 3 mutaciones mayores. Cambiar una mutación por otra en la misma ranura la reemplaza para siempre en esa partida.
 
 **Valores de las mutaciones (versión actual)**
 
@@ -155,7 +155,7 @@ La v1.0 es el piso 1 completo y pulido, publicado en itch.io. El orden de trabaj
 **Más adelante**
 
 - [ ] Pisos 2 y 3
-- [ ] Tienda con biomasa y salas secretas
+- [ ] Tienda con biomasa (en curso) y salas secretas
 - [ ] Soporte de mando y opciones de audio
 - [ ] Desbloqueos permanentes entre partidas
 
@@ -205,7 +205,8 @@ Objetivo: que añadir una mutación, un enemigo o una sala nueva sea crear un ar
 | Salas | Formas en texto: pequeña 22×15, normal 28×16 (cabe en pantalla), grande 40×24, con columnas, en cruz y en L |
 | Mandíbulas | Mordisco cuerpo a cuerpo en arco delante de la boca, no un disparo |
 | Recarga del Órgano especial | Barra bajo el jugador que se llena durante la recarga, destella y desaparece al estar lista |
-| Biomasa | Se programa junto con la tienda (el arte ya existe) |
+| Biomasa | Moneda de la partida (se pierde al morir). Cada enemigo, al morir, suelta biomasa grande (vale 5) con un 10 % de probabilidad o pequeña (vale 1) con un 40 %; las crías, solo pequeña con un 10 %; el jefe, 10 fijos (sus invocaciones no sueltan nada). Cada sala de combate da como mínimo 2. Se recoge al tocarla, con un pequeño imán; al limpiar la sala, toda la que queda vuela hacia el jugador y se recoge sola (como en *Enter the Gungeon*). Contador en el HUD bajo las ranuras de mutación |
+| Tienda | Una por piso, en una sala lateral sin salida y sin enemigos, con su icono en el mapa. El tendero es un pequeño Charles Darwin, de momento solo decorativo, que celebra cada compra. 4 pedestales: 2 mutaciones al azar (15), mejora de nivel de una mutación equipada que pueda subir, con su icono y "I → II" (20), y curación de medio corazón (5), que pasa a ser un corazón extra (25) si el jugador entra con la vida llena. Al acercarse aparece la tecla E sobre el artículo; se compra pulsándola. Si no llega la biomasa, el precio se pone rojo y el artículo tiembla |
 | Cursor | Mira dibujada por el juego durante la partida; en la pausa y en la elección de mutación, cursor normal |
 | Jefe del piso 1 | Virus gigante con 2 fases (la segunda desde el 50 % de vida); vencerlo abre la salida y da la victoria |
 

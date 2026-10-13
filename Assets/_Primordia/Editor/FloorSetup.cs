@@ -20,7 +20,7 @@ namespace Primordia.Editor
     {
         const string TestScenePath = "Assets/_Primordia/Scenes/Test_Floor.unity";
         const string TemplatesFolder = "Assets/_Primordia/Data/Rooms";
-        const string FloorConfigPath = TemplatesFolder + "/Floor_1.asset";
+        internal const string FloorConfigPath = TemplatesFolder + "/Floor_1.asset";
         internal const string SoupThemePath = "Assets/_Primordia/Art/Environment/Soup/Theme_Soup.asset";
         internal const string BossThemePath = "Assets/_Primordia/Art/Environment/Boss/Theme_Boss.asset";
 

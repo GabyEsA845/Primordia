@@ -11,7 +11,9 @@ namespace Primordia.Rooms
         Combat,
         /// <summary>Sala de combate sin salida que cuelga del camino principal.</summary>
         Side,
-        Boss
+        Boss,
+        /// <summary>Tienda: sala sin salida y sin enemigos que cuelga de una sala de combate de la segunda mitad del camino.</summary>
+        Shop
     }
 
     /// <summary>Una sala del plano: su celda en la rejilla, su forma y hacia dónde tiene puertas.</summary>
@@ -35,6 +37,7 @@ namespace Primordia.Rooms
             RoomRole.Start => "Room_Start",
             RoomRole.Boss => "Room_Boss",
             RoomRole.Side => $"Room_{Depth}_Side",
+            RoomRole.Shop => "Room_Shop",
             _ => $"Room_{Depth}"
         };
     }
@@ -60,8 +63,9 @@ namespace Primordia.Rooms
     }
 
     /// <summary>
-    /// Genera el plano de un piso: un camino con giros al azar desde el inicio hasta el jefe, y unas pocas
-    /// salas laterales sin salida colgadas de salas de combate. Con la misma semilla sale siempre el mismo plano.
+    /// Genera el plano de un piso: un camino con giros al azar desde el inicio hasta el jefe, unas pocas
+    /// salas laterales sin salida colgadas de salas de combate y, si el piso tiene tienda, una sala más para ella
+    /// colgada de la segunda mitad del camino. Con la misma semilla sale siempre el mismo plano.
     /// </summary>
     public static class FloorLayoutGenerator
     {
@@ -83,12 +87,41 @@ namespace Primordia.Rooms
                 if (sides == null)
                     continue;
 
-                return Build(config, random, path, sides);
+                (int parent, Vector2Int cell)? shop = null;
+                if (config.HasShop)
+                {
+                    shop = ShopCell(random, path, sides);
+                    if (shop == null)
+                        continue;
+                }
+
+                return Build(config, random, path, sides, shop);
             }
 
             // Muy improbable: sin sitio para las laterales tras muchos intentos. Camino recto, sin laterales.
             var straight = Enumerable.Range(0, combatCount + 2).Select(i => new Vector2Int(i, 0)).ToList();
-            return Build(config, random, straight, new List<(int, Vector2Int)>());
+            var none = new List<(int, Vector2Int)>();
+            return Build(config, random, straight, none, config.HasShop ? ShopCell(random, straight, none) : null);
+        }
+
+        /// <summary>
+        /// Celda libre para la tienda, vecina de una sala de combate de la segunda mitad del camino (para llegar
+        /// con biomasa). Null si no cabe.
+        /// </summary>
+        static (int parent, Vector2Int cell)? ShopCell(System.Random random, List<Vector2Int> path, List<(int parent, Vector2Int cell)> sides)
+        {
+            var used = new HashSet<Vector2Int>(path.Concat(sides.Select(side => side.cell)));
+            int combatCount = path.Count - 2;
+            var parents = Enumerable.Range(combatCount / 2 + 1, combatCount - combatCount / 2).OrderBy(_ => random.Next()).ToList();
+
+            foreach (int parent in parents)
+            {
+                var free = Directions.Select(d => path[parent] + d).Where(cell => !used.Contains(cell)).ToList();
+                if (free.Count > 0)
+                    return (parent, free[random.Next(free.Count)]);
+            }
+
+            return null;
         }
 
         /// <summary>Camino que no se cruza consigo mismo, con giros al azar. Null si se encierra.</summary>
@@ -139,7 +172,8 @@ namespace Primordia.Rooms
             return result.Count == count ? result : null;
         }
 
-        static FloorLayout Build(FloorConfig config, System.Random random, List<Vector2Int> path, List<(int parent, Vector2Int cell)> sides)
+        static FloorLayout Build(FloorConfig config, System.Random random, List<Vector2Int> path, List<(int parent, Vector2Int cell)> sides,
+            (int parent, Vector2Int cell)? shop)
         {
             var layout = new FloorLayout();
             var rewardAfter = new HashSet<int>(config.RewardAfter ?? new int[0]);
@@ -179,6 +213,20 @@ namespace Primordia.Rooms
                 };
                 layout.Rooms.Add(side);
                 layout.Link(layout.Rooms[parent], side);
+            }
+
+            if (shop.HasValue)
+            {
+                var (shopParent, shopCell) = shop.Value;
+                var shopRoom = new LayoutRoom
+                {
+                    Cell = shopCell,
+                    Role = RoomRole.Shop,
+                    Depth = layout.Rooms[shopParent].Depth,
+                    Template = config.ShopTemplate,
+                };
+                layout.Rooms.Add(shopRoom);
+                layout.Link(layout.Rooms[shopParent], shopRoom);
             }
 
             return layout;

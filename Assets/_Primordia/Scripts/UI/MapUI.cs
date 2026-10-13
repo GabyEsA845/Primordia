@@ -10,7 +10,8 @@ namespace Primordia.UI
     /// Minimapa del HUD (arriba a la derecha, centrado en el jugador y recortado por su recuadro) y mapa grande
     /// (TAB, con el juego detenido: todo lo descubierto, ×2 o ×1 si no cabe). Los dos muestran la misma textura
     /// de <see cref="MapPainter"/>, que se repinta al cambiar de sala o al cambiar el estado de alguna sala.
-    /// Marcas: jugador, sala del jefe y salas con mutación aún sin limpiar; los iconos no se amplían con el mapa.
+    /// Marcas: jugador, sala del jefe, salas con mutación aún sin limpiar y la tienda (cuando se descubre: al limpiar
+    /// la sala de la que cuelga); los iconos no se amplían con el mapa.
     /// Sin piso generado (escenas de prueba) se oculta.
     /// </summary>
     public class MapUI : MonoBehaviour
@@ -21,6 +22,7 @@ namespace Primordia.UI
         [SerializeField, Min(0.01f)] float playerFrameDuration = 0.15f;
         [SerializeField] Sprite bossIcon;
         [SerializeField] Sprite rewardIcon;
+        [SerializeField] Sprite shopIcon;
 
         [Header("Minimapa")]
         [Tooltip("Raíz del minimapa (marco y fondo); se oculta si no hay piso.")]
@@ -41,6 +43,7 @@ namespace Primordia.UI
             public RawImage Image;
             public Image Player;
             public Image Boss;
+            public Image Shop;
             public readonly List<Image> Rewards = new();
         }
 
@@ -71,6 +74,21 @@ namespace Primordia.UI
             playerFrames = newPlayerFrames ?? System.Array.Empty<Sprite>();
             bossIcon = newBossIcon;
             rewardIcon = newRewardIcon;
+        }
+
+        internal void SetShopIcon(Sprite newShopIcon) => shopIcon = newShopIcon;
+
+        /// <summary>La tienda se marca al entrar en ella o al limpiar una sala vecina (la de la que cuelga).</summary>
+        public static bool ShopDiscovered(MapRoom room)
+        {
+            if (MapPainter.IsVisited(room))
+                return true;
+            foreach (var neighbor in room.Neighbors)
+            {
+                if (neighbor.Room != null && neighbor.Room.State == Room.RoomState.Cleared)
+                    return true;
+            }
+            return false;
         }
 
         internal void ConfigureViews(GameObject newMinimapRoot, RectTransform newMinimapViewport, GameObject newBigMapRoot,
@@ -179,6 +197,12 @@ namespace Primordia.UI
                     SetIcon(minimap.Boss, visible, painter.MarkerPosition(room));
                     SetIcon(bigMap.Boss, visible, painter.MarkerPosition(room));
                 }
+                else if (room.Role == RoomRole.Shop)
+                {
+                    bool discovered = ShopDiscovered(room);
+                    SetIcon(minimap.Shop, discovered, painter.MarkerPosition(room));
+                    SetIcon(bigMap.Shop, discovered, painter.MarkerPosition(room));
+                }
             }
 
             int reward = 0;
@@ -278,6 +302,11 @@ namespace Primordia.UI
 
             var view = new View { Content = content, Image = image };
             view.Boss = CreateMarker(content, bossIcon);
+            foreach (var room in rooms)
+            {
+                if (room.Role == RoomRole.Shop)
+                    view.Shop = CreateMarker(content, shopIcon);
+            }
             foreach (var room in rooms)
             {
                 if (room.HasReward)

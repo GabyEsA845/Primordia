@@ -110,6 +110,7 @@ namespace Primordia.Editor
             EnsureSeedLabel();
             EnsureBossBar();
             EnsureMutationIcons();
+            EnsureHudSlotsAndCrosshair();
             CreateMainMenuUIPrefab();
             AssetDatabase.SaveAssets();
         }
@@ -437,6 +438,61 @@ namespace Primordia.Editor
 
             canvas.AddComponent<BossHealthBar>().Configure(bar.gameObject, fill, fillImage, title);
             bar.gameObject.SetActive(false);
+        }
+
+        // ---------- Ranuras del cuerpo y mira ----------
+
+        /// <summary>
+        /// Añade al prefab GameUI la fila de ranuras bajo los corazones y la mira, si todavía no los tiene.
+        /// Sus sprites los pone Primordia > Art > Importar objetos e interfaz.
+        /// </summary>
+        internal static void EnsureHudSlotsAndCrosshair()
+        {
+            var root = PrefabUtility.LoadPrefabContents(GameUIPath);
+            try
+            {
+                bool changed = false;
+
+                if (root.GetComponentInChildren<MutationSlotsDisplay>(true) == null)
+                {
+                    // Bajo los corazones (8, -8, 16 de alto), con 2 px de aire.
+                    var slots = CreateRect("MutationSlots", root.transform);
+                    slots.anchorMin = slots.anchorMax = slots.pivot = new Vector2(0f, 1f);
+                    slots.anchoredPosition = new Vector2(8f, -26f);
+                    slots.sizeDelta = new Vector2(200f, 20f);
+                    var hearts = root.transform.Find("Hearts");
+                    if (hearts != null)
+                        slots.SetSiblingIndex(hearts.GetSiblingIndex() + 1);
+
+                    var layout = slots.gameObject.AddComponent<HorizontalLayoutGroup>();
+                    layout.spacing = 2f;
+                    layout.childAlignment = TextAnchor.UpperLeft;
+                    layout.childControlWidth = layout.childControlHeight = false;
+                    layout.childForceExpandWidth = layout.childForceExpandHeight = false;
+                    slots.gameObject.AddComponent<MutationSlotsDisplay>();
+                    changed = true;
+                }
+
+                if (root.GetComponentInChildren<Crosshair>(true) == null)
+                {
+                    var crosshair = CreateRect("Crosshair", root.transform);
+                    crosshair.anchorMin = crosshair.anchorMax = crosshair.pivot = new Vector2(0.5f, 0.5f);
+                    crosshair.sizeDelta = new Vector2(15f, 15f);
+                    var image = crosshair.gameObject.AddComponent<Image>();
+                    image.raycastTarget = false;
+                    // La enciende el juego al empezar a jugar.
+                    image.enabled = false;
+                    crosshair.gameObject.AddComponent<Crosshair>();
+                    changed = true;
+                }
+
+                if (changed)
+                    PrefabUtility.SaveAsPrefabAsset(root, GameUIPath);
+            }
+            finally
+            {
+                PrefabUtility.UnloadPrefabContents(root);
+            }
         }
 
         // ---------- Lista de mutaciones en la pausa ----------

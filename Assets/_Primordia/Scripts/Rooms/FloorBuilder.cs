@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Primordia.Biomass;
 using Primordia.Enemies;
 using Primordia.Mutations;
 using UnityEngine;
@@ -298,6 +299,10 @@ namespace Primordia.Rooms
 
             var room = roomObject.AddComponent<Room>();
             room.Configure(enemiesRoot, doors.ToArray());
+
+            // La de inicio no tiene enemigos, así que no suelta nada.
+            if (placed.Layout.Role != RoomRole.Start && config.SmallBiomass != null)
+                roomObject.AddComponent<RoomBiomass>().Configure(config.SmallBiomass, config.BigBiomass, config.MinimumBiomassPerRoom);
 
             if (placed.Layout.Reward && config.RewardPool != null)
                 roomObject.AddComponent<MutationReward>().Configure(config.RewardPool, config.RewardOptions);

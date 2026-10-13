@@ -37,6 +37,11 @@ namespace Primordia.Mutations
 
         float phase;
 
+        // Quien la tocó; se equipa en el siguiente Update, fuera del callback de físicas (al reemplazar una
+        // mutación, PlayerMutations destruye componentes al momento, y Unity no lo permite dentro de un trigger).
+        PlayerMutations pendingPlayer;
+        bool burst;
+
         void Awake()
         {
             GetComponent<Collider2D>().isTrigger = true;
@@ -47,6 +52,14 @@ namespace Primordia.Mutations
 
         void Update()
         {
+            if (pendingPlayer != null)
+            {
+                var player = pendingPlayer;
+                pendingPlayer = null;
+                Collect(player);
+                return;
+            }
+
             if (floating == null)
                 return;
 
@@ -59,13 +72,14 @@ namespace Primordia.Mutations
         {
             var body = other.attachedRigidbody;
             if (body != null && body.TryGetComponent<PlayerMutations>(out var player))
-                Collect(player);
+                pendingPlayer = player;
         }
 
         /// <summary>El jugador la equipa y la burbuja revienta.</summary>
         internal void Collect(PlayerMutations player)
         {
-            if (mutation == null)
+            // Ya reventó (el jugador cogió otra del grupo en el mismo cuadro).
+            if (mutation == null || burst)
                 return;
 
             player.Equip(mutation);
@@ -77,6 +91,10 @@ namespace Primordia.Mutations
         /// <summary>Revienta sin equiparse; por ejemplo, cuando el jugador coge otra del mismo grupo.</summary>
         public void Burst()
         {
+            if (burst)
+                return;
+
+            burst = true;
             if (mutation != null)
                 OneShotEffect.Spawn(LineageItem(lineageBursts), floating != null ? floating.position : transform.position);
             Destroy(gameObject);

@@ -42,6 +42,14 @@ namespace Primordia.Enemies
         [SerializeField] Enemy splitPrefab;
         [SerializeField, Min(0)] int splitCount;
 
+        [Header("Biomasa")]
+        [Tooltip("Probabilidad de soltar biomasa pequeña (vale 1) al morir.")]
+        [SerializeField, Range(0f, 1f)] float smallBiomassChance = 0.4f;
+        [Tooltip("Probabilidad de soltar biomasa grande (vale 5) al morir. Se tira antes que la pequeña: nunca suelta las dos.")]
+        [SerializeField, Range(0f, 1f)] float bigBiomassChance = 0.1f;
+        [Tooltip("Biomasa fija que suelta siempre, además de la tirada (el jefe).")]
+        [SerializeField, Min(0)] int fixedBiomass;
+
         public int MaxHealth => maxHealth;
         public float MoveSpeed => moveSpeed;
         public EnemyBehaviour Behaviour => behaviour;
@@ -51,6 +59,9 @@ namespace Primordia.Enemies
         public AttackData Attack => attack;
         public Enemy SplitPrefab => splitPrefab;
         public int SplitCount => splitPrefab != null ? splitCount : 0;
+        public float SmallBiomassChance => smallBiomassChance;
+        public float BigBiomassChance => bigBiomassChance;
+        public int FixedBiomass => fixedBiomass;
 
         internal void Configure(EnemyBehaviour behaviour, int maxHealth, float moveSpeed, float detectionRange,
             int contactDamage, float preferredDistance = 6f, AttackData attack = null,
@@ -65,6 +76,13 @@ namespace Primordia.Enemies
             this.attack = attack;
             this.splitPrefab = splitPrefab;
             this.splitCount = Mathf.Max(0, splitCount);
+        }
+
+        internal void ConfigureBiomass(float smallChance, float bigChance, int fixedValue = 0)
+        {
+            smallBiomassChance = Mathf.Clamp01(smallChance);
+            bigBiomassChance = Mathf.Clamp01(bigChance);
+            fixedBiomass = Mathf.Max(0, fixedValue);
         }
     }
 }

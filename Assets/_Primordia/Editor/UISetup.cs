@@ -32,10 +32,15 @@ namespace Primordia.Editor
         static readonly Color OverlayColor = new(0f, 0f, 0f, 0.75f);
         static readonly Color MenuBackground = new(0.06f, 0.1f, 0.08f, 1f);
         static readonly Color ButtonColor = new(0.2f, 0.32f, 0.26f, 1f);
-        static readonly Color TextColor = new(0.9f, 0.97f, 0.9f, 1f);
-        static readonly Color TitleColor = new(0.55f, 0.95f, 0.6f, 1f);
+        internal static readonly Color TextColor = new(0.9f, 0.97f, 0.9f, 1f);
+        internal static readonly Color TitleColor = new(0.55f, 0.95f, 0.6f, 1f);
 
-        static Font UIFont => Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+        // Fuente pixel (Silkscreen, OFL): nítida a tamaño 8 y sus múltiplos. Sin ella, la de Unity.
+        internal const string FontPath = "Assets/_Primordia/Art/Fonts/Silkscreen-Regular.ttf";
+        internal const string BoldFontPath = "Assets/_Primordia/Art/Fonts/Silkscreen-Bold.ttf";
+
+        internal static Font UIFont =>
+            AssetDatabase.LoadAssetAtPath<Font>(FontPath) ?? Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
 
         [MenuItem("Primordia/UI/Crear menú principal y escena de juego")]
         static void CreateAll()
@@ -106,7 +111,6 @@ namespace Primordia.Editor
             CreateHeartSprites();
             CreateGameUIPrefab();
             EnsureMutationChoice();
-            EnsureMutationList();
             EnsureSeedLabel();
             EnsureBossBar();
             EnsureMutationIcons();
@@ -253,14 +257,14 @@ namespace Primordia.Editor
             return canvasObject;
         }
 
-        static RectTransform CreateRect(string name, Transform parent)
+        internal static RectTransform CreateRect(string name, Transform parent)
         {
             var rectObject = new GameObject(name, typeof(RectTransform));
             rectObject.transform.SetParent(parent, false);
             return (RectTransform)rectObject.transform;
         }
 
-        static void Stretch(RectTransform rect)
+        internal static void Stretch(RectTransform rect)
         {
             rect.anchorMin = Vector2.zero;
             rect.anchorMax = Vector2.one;
@@ -291,7 +295,7 @@ namespace Primordia.Editor
             return panel.gameObject;
         }
 
-        static Text CreateText(Transform parent, string content, int size, Color color)
+        internal static Text CreateText(Transform parent, string content, int size, Color color)
         {
             var rect = CreateRect("Text", parent);
             var text = rect.gameObject.AddComponent<Text>();
@@ -495,26 +499,7 @@ namespace Primordia.Editor
             }
         }
 
-        // ---------- Lista de mutaciones en la pausa ----------
-
-        /// <summary>Añade al panel de pausa del prefab GameUI la lista de ranuras si todavía no la tiene.</summary>
-        static void EnsureMutationList()
-        {
-            var root = PrefabUtility.LoadPrefabContents(GameUIPath);
-            try
-            {
-                var pausePanel = root.transform.Find("PausePanel");
-                if (pausePanel == null || pausePanel.GetComponentInChildren<MutationListUI>(true) != null)
-                    return;
-
-                AddMutationList(pausePanel);
-                PrefabUtility.SaveAsPrefabAsset(root, GameUIPath);
-            }
-            finally
-            {
-                PrefabUtility.UnloadPrefabContents(root);
-            }
-        }
+        // ---------- Semilla en la pausa ----------
 
         /// <summary>Añade al panel de pausa la semilla del piso, abajo a la izquierda, si todavía no la tiene.</summary>
         static void EnsureSeedLabel()
@@ -543,55 +528,6 @@ namespace Primordia.Editor
             {
                 PrefabUtility.UnloadPrefabContents(root);
             }
-        }
-
-        /// <summary>Recuadro a la derecha del panel de pausa con las 4 ranuras.</summary>
-        static void AddMutationList(Transform pausePanel)
-        {
-            var list = CreateRect("MutationList", pausePanel);
-            list.anchorMin = list.anchorMax = list.pivot = new Vector2(1f, 0.5f);
-            list.anchoredPosition = new Vector2(-12f, 0f);
-            list.sizeDelta = new Vector2(150f, 0f);
-
-            // Fuera de la columna centrada de botones del panel.
-            list.gameObject.AddComponent<LayoutElement>().ignoreLayout = true;
-            list.gameObject.AddComponent<Image>().color = new Color(0.06f, 0.1f, 0.08f, 0.95f);
-
-            var layout = list.gameObject.AddComponent<VerticalLayoutGroup>();
-            layout.padding = new RectOffset(8, 8, 8, 8);
-            layout.spacing = 2f;
-            layout.childAlignment = TextAnchor.UpperLeft;
-            layout.childControlWidth = layout.childControlHeight = true;
-            layout.childForceExpandWidth = true;
-            layout.childForceExpandHeight = false;
-            list.gameObject.AddComponent<ContentSizeFitter>().verticalFit = ContentSizeFitter.FitMode.PreferredSize;
-
-            var title = CreateText(list, "MUTACIONES", 12, TitleColor);
-            title.alignment = TextAnchor.MiddleLeft;
-            title.gameObject.AddComponent<LayoutElement>().preferredHeight = 18f;
-
-            string[] slotNames = { "Boca", "Extremidades", "Piel", "Órgano especial" };
-            var names = new Text[slotNames.Length];
-            var descriptions = new Text[slotNames.Length];
-
-            for (int i = 0; i < slotNames.Length; i++)
-            {
-                var slotLabel = CreateText(list, slotNames[i].ToUpperInvariant(), 8, new Color(0.6f, 0.7f, 0.65f));
-                slotLabel.alignment = TextAnchor.MiddleLeft;
-                // Un poco de aire antes de cada ranura, salvo la primera.
-                slotLabel.gameObject.AddComponent<LayoutElement>().minHeight = i == 0 ? 10f : 16f;
-
-                names[i] = CreateText(list, "— vacía —", 11, TextColor);
-                names[i].alignment = TextAnchor.MiddleLeft;
-
-                descriptions[i] = CreateText(list, "", 8, TextColor);
-                descriptions[i].alignment = TextAnchor.UpperLeft;
-                descriptions[i].horizontalOverflow = HorizontalWrapMode.Wrap;
-            }
-
-            var listUI = list.gameObject.AddComponent<MutationListUI>();
-            listUI.Configure(names, descriptions);
-            AddListIcons(listUI);
         }
 
         static MutationCard CreateMutationCard(Transform parent)
@@ -632,7 +568,7 @@ namespace Primordia.Editor
 
         // ---------- Iconos de mutación ----------
 
-        /// <summary>Añade los huecos de los iconos a las tarjetas y a la lista de la pausa del prefab GameUI si no los tienen.</summary>
+        /// <summary>Añade los huecos de los iconos a las tarjetas del prefab GameUI si no los tienen.</summary>
         internal static void EnsureMutationIcons()
         {
             var root = PrefabUtility.LoadPrefabContents(GameUIPath);
@@ -641,8 +577,6 @@ namespace Primordia.Editor
                 bool changed = false;
                 foreach (var card in root.GetComponentsInChildren<MutationCard>(true))
                     changed |= AddCardIcons(card);
-                foreach (var list in root.GetComponentsInChildren<MutationListUI>(true))
-                    changed |= AddListIcons(list);
 
                 if (changed)
                     PrefabUtility.SaveAsPrefabAsset(root, GameUIPath);
@@ -675,27 +609,7 @@ namespace Primordia.Editor
             return true;
         }
 
-        /// <summary>Icono de 16×16 a la izquierda del nombre de cada ranura. Devuelve false si ya los tenía.</summary>
-        static bool AddListIcons(MutationListUI list)
-        {
-            var names = list.NameTexts;
-            if (names.Length == 0 || names[0] == null || names[0].transform.parent != list.transform)
-                return false;
-
-            var icons = new Image[names.Length];
-            for (int i = 0; i < names.Length; i++)
-            {
-                var row = CreateRow($"Slot{i}", list.transform, names[i].transform.GetSiblingIndex(), TextAnchor.MiddleLeft);
-                icons[i] = CreateIcon("Icon", row, 16f);
-                names[i].transform.SetParent(row, false);
-                names[i].gameObject.AddComponent<LayoutElement>().flexibleWidth = 1f;
-            }
-
-            list.ConfigureIcons(icons);
-            return true;
-        }
-
-        static RectTransform CreateRow(string name, Transform parent, int siblingIndex, TextAnchor alignment)
+        internal static RectTransform CreateRow(string name, Transform parent, int siblingIndex, TextAnchor alignment)
         {
             var row = CreateRect(name, parent);
             row.SetSiblingIndex(siblingIndex);
@@ -708,7 +622,7 @@ namespace Primordia.Editor
         }
 
         /// <summary>Imagen cuadrada de ese tamaño en píxeles de la interfaz, vacía hasta que se le pone un sprite.</summary>
-        static Image CreateIcon(string name, Transform parent, float size)
+        internal static Image CreateIcon(string name, Transform parent, float size)
         {
             var image = CreateRect(name, parent).gameObject.AddComponent<Image>();
             image.enabled = false;

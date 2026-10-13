@@ -58,6 +58,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Map",
+                    "type": "Button",
+                    "id": "b3f1c2d4-5e6f-4a7b-8c9d-0e1f2a3b4c5d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -179,6 +188,17 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c4a2d3e5-6f7a-4b8c-9d0e-1f2a3b4c5d6e",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Map",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -32,8 +32,12 @@ namespace Primordia.Rooms
             public Vector2 StartPosition;
             public int MissingCells;
 
-            /// <summary>Qué hay en cada celda del piso: sirve para la navegación de los enemigos.</summary>
+            /// <summary>Qué hay en cada celda del piso: sirve para la navegación de los enemigos y para el mapa.</summary>
             public FloorMap Map;
+
+            /// <summary>Salas y pasillos para el mapa, en el mismo orden que <see cref="Rooms"/>.</summary>
+            public readonly List<MapRoom> MapRooms = new();
+            public readonly List<MapCorridor> Corridors = new();
         }
 
         /// <summary>Una sala del plano ya colocada en el mapa.</summary>
@@ -71,12 +75,13 @@ namespace Primordia.Rooms
 
             foreach (var room in placed)
                 Stamp(map, room);
+            var corridorCells = new List<(LayoutRoom from, LayoutRoom to, List<Vector2Int> cells)>();
             foreach (var (from, to) in layout.Links)
             {
                 var direction = to.Cell - from.Cell;
                 OpenDoor(map, byLayout[from], direction);
                 OpenDoor(map, byLayout[to], -direction);
-                DigCorridor(map, byLayout[from], byLayout[to], direction, noDecoration);
+                corridorCells.Add((from, to, DigCorridor(map, byLayout[from], byLayout[to], direction, noDecoration)));
             }
 
             foreach (var room in placed)
@@ -91,15 +96,34 @@ namespace Primordia.Rooms
 
             built.MissingCells = Paint(parent, map, themes, noDecoration, random.Next());
 
+            var mapRooms = new Dictionary<LayoutRoom, MapRoom>();
             foreach (var room in placed)
             {
                 var builtRoom = BuildRoom(parent, room, themes[room.Theme], config, random);
                 built.Rooms.Add(builtRoom);
+                var mapRoom = new MapRoom
+                {
+                    Room = builtRoom,
+                    Rect = room.Rect,
+                    Role = room.Layout.Role,
+                    HasReward = builtRoom.TryGetComponent<MutationReward>(out _),
+                };
+                built.MapRooms.Add(mapRoom);
+                mapRooms[room.Layout] = mapRoom;
 
                 if (room.Layout.Role == RoomRole.Start)
                     built.StartPosition = room.FloorCenter;
                 if (room.Layout.Role == RoomRole.Boss)
                     BuildExit(builtRoom, config);
+            }
+
+            foreach (var (from, to, cells) in corridorCells)
+            {
+                var corridor = new MapCorridor { A = mapRooms[from], B = mapRooms[to] };
+                corridor.Cells.AddRange(cells);
+                built.Corridors.Add(corridor);
+                corridor.A.Neighbors.Add(corridor.B);
+                corridor.B.Neighbors.Add(corridor.A);
             }
 
             return built;
@@ -193,10 +217,12 @@ namespace Primordia.Rooms
         }
 
         /// <summary>Pasillo recto de 2 tiles de ancho entre las puertas de dos salas vecinas.</summary>
-        static void DigCorridor(FloorMap map, PlacedRoom from, PlacedRoom to, Vector2Int direction, HashSet<Vector2Int> corridorCells)
+        /// <summary>Abre el pasillo entre las puertas de dos salas y devuelve sus celdas.</summary>
+        static List<Vector2Int> DigCorridor(FloorMap map, PlacedRoom from, PlacedRoom to, Vector2Int direction, HashSet<Vector2Int> corridorCells)
         {
+            var dug = new List<Vector2Int>();
             if (!from.DoorCells.TryGetValue(direction, out var start) || !to.DoorCells.TryGetValue(-direction, out var end))
-                return;
+                return dug;
 
             foreach (var cell in start)
             {
@@ -206,8 +232,10 @@ namespace Primordia.Rooms
                     map.Set(step, FloorMap.Kind.Floor);
                     map.SetTheme(step, SoupTheme);
                     corridorCells.Add(step);
+                    dug.Add(step);
                 }
             }
+            return dug;
         }
 
         static int Paint(Transform parent, FloorMap map, RoomTheme[] themes, HashSet<Vector2Int> noDecoration, int seed)

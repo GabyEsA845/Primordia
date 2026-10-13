@@ -103,6 +103,7 @@ Controles de teclado y ratón, como Enter the Gungeon. Mando opcional más adela
 | Esquivar | Espacio | Invulnerable durante la esquiva, recarga corta |
 | Habilidad especial | Clic derecho | Lo define el Órgano especial |
 | Pausa | Esc o P | P sirve también en el navegador, donde Esc sale de la pantalla completa |
+| Mapa | TAB | Abre el mapa grande y detiene el juego; TAB o Esc lo cierran. Arriba a la derecha hay siempre un minimapa |
 
 **Reglas de combate:**
 

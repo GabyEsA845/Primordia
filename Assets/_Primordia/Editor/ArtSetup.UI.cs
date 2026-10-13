@@ -10,7 +10,7 @@ namespace Primordia.Editor
     /// <summary>
     /// Objetos e interfaz (docs/multimedia-temp/ui/): corazones, botones, tarjetas, panel de la pausa, iconos de
     /// mutación y de linaje, barra de recarga y las burbujas de mutación que suelta el jefe.
-    /// La biomasa, la mira y las ranuras del HUD se importarán cuando exista su código.
+    /// También la mira y las ranuras del cuerpo del HUD. La biomasa se importará cuando exista su código (con la tienda).
     /// </summary>
     public static partial class ArtSetup
     {
@@ -84,7 +84,10 @@ namespace Primordia.Editor
         static void ApplyUISkin(string prefabPath)
         {
             if (prefabPath == UISetup.GameUIPath)
+            {
                 UISetup.EnsureMutationIcons();
+                UISetup.EnsureHudSlotsAndCrosshair();
+            }
 
             var button = new[]
             {
@@ -103,6 +106,12 @@ namespace Primordia.Editor
             {
                 ImportUISprite("HUD", "UI_Heart_Full"), ImportUISprite("HUD", "UI_Heart_Half"), ImportUISprite("HUD", "UI_Heart_Empty"),
             };
+            var slotFrame = ImportUISprite("HUD", "UI_Slot_Frame");
+            // En el orden de MutationSlotsDisplay: Boca, Extremidades, Piel, Órgano.
+            var emptySlots = System.Array.ConvertAll(new[] { "Mouth", "Limbs", "Skin", "Organ" },
+                slot => ImportUISprite("HUD", $"UI_Slot_{slot}_Empty"));
+            var crosshair = ImportUISprite("HUD", "UI_Crosshair");
+            var crosshairFire = ImportUISheet("HUD", "UI_Crosshair_Fire", cellWidth: 15);
 
             EditPrefab(prefabPath, root =>
             {
@@ -111,6 +120,12 @@ namespace Primordia.Editor
 
                 foreach (var display in root.GetComponentsInChildren<HeartsDisplay>(true))
                     SetFields(display, ("fullHeart", hearts[0]), ("halfHeart", hearts[1]), ("emptyHeart", hearts[2]));
+
+                foreach (var slots in root.GetComponentsInChildren<MutationSlotsDisplay>(true))
+                    slots.ConfigureLook(slotFrame, emptySlots);
+
+                foreach (var cursor in root.GetComponentsInChildren<Crosshair>(true))
+                    cursor.ConfigureLook(crosshair, crosshairFire, 0.04f);
 
                 foreach (var selectable in root.GetComponentsInChildren<Button>(true))
                     SkinButton(selectable, selectable.TryGetComponent<MutationCard>(out _) ? card : button);

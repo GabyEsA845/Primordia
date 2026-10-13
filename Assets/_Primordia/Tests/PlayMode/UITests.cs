@@ -1,8 +1,11 @@
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
+using Primordia.Combat;
 using Primordia.Core;
 using Primordia.Mutations;
+using Primordia.Player;
 using Primordia.UI;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,6 +15,7 @@ namespace Primordia.Tests
 {
     public class UITests
     {
+        readonly List<Object> created = new();
         GameObject root;
         GameManager manager;
 
@@ -22,7 +26,14 @@ namespace Primordia.Tests
                 Object.DestroyImmediate(root);
             if (manager != null)
                 Object.DestroyImmediate(manager.gameObject);
+            foreach (var obj in created)
+            {
+                if (obj != null)
+                    Object.DestroyImmediate(obj);
+            }
+            created.Clear();
             Time.timeScale = 1f;
+            Cursor.visible = true;
         }
 
         [TestCase(6, 0, HeartsDisplay.Fill.Full)]
@@ -140,6 +151,129 @@ namespace Primordia.Tests
             {
                 Object.DestroyImmediate(mutation);
             }
+        }
+
+        [UnityTest]
+        public IEnumerator MutationSlots_ShowIconsOrEmptySilhouettes_AndPopOnChange()
+        {
+            var mutations = CreatePlayer();
+            var empty = new[] { CreateSprite(), CreateSprite(), CreateSprite(), CreateSprite() };
+            root = new GameObject("UI");
+            var display = root.AddComponent<MutationSlotsDisplay>();
+            display.Configure(mutations);
+            display.ConfigureLook(CreateSprite(), empty);
+            yield return null; // Start
+
+            Assert.AreSame(empty[0], display.IconOf(MutationSlot.Mouth).sprite);
+            Assert.AreSame(empty[1], display.IconOf(MutationSlot.Limbs).sprite);
+
+            var fins = Track(ScriptableObject.CreateInstance<StatMutation>());
+            fins.ConfigureBase("Aletas", "", MutationSlot.Limbs, Lineage.Predator, Color.white);
+            var icon = CreateSprite();
+            fins.SetIcons(icon, null);
+            mutations.Equip(fins);
+
+            Assert.AreSame(icon, display.IconOf(MutationSlot.Limbs).sprite);
+            yield return null;
+            Assert.Greater(display.SlotOf(MutationSlot.Limbs).localScale.x, 1f, "Salta al cambiar.");
+            Assert.AreEqual(1f, display.SlotOf(MutationSlot.Mouth).localScale.x);
+
+            yield return new WaitForSecondsRealtime(0.3f);
+            Assert.AreEqual(1f, display.SlotOf(MutationSlot.Limbs).localScale.x);
+
+            mutations.Unequip(MutationSlot.Limbs);
+            Assert.AreSame(empty[1], display.IconOf(MutationSlot.Limbs).sprite);
+        }
+
+        [UnityTest]
+        public IEnumerator OrganSlot_IsShaded_WhileTheAbilityRecharges()
+        {
+            var mutations = CreatePlayer();
+            root = new GameObject("UI");
+            var display = root.AddComponent<MutationSlotsDisplay>();
+            display.Configure(mutations);
+            yield return null; // Start
+
+            var ink = Track(ScriptableObject.CreateInstance<InkCloudMutation>());
+            ink.ConfigureBase("Tinta", "", MutationSlot.Organ, Lineage.Toxic, Color.white);
+            ink.ConfigureAbility(newCooldown: 1f, newEffect: null);
+            ink.SetIcons(CreateSprite(), null);
+            mutations.Equip(ink);
+            yield return null;
+
+            var shade = display.ShadeOf(MutationSlot.Organ);
+            Assert.IsFalse(shade.enabled, "Lista: sin sombra.");
+
+            Assert.IsTrue(mutations.Ability.TryUse());
+            yield return null;
+            Assert.IsTrue(shade.enabled);
+            Assert.Greater(shade.fillAmount, 0.5f, "Recién usada, casi todo oscuro.");
+
+            yield return new WaitForSeconds(1.1f);
+            Assert.IsFalse(shade.enabled);
+        }
+
+        [UnityTest]
+        public IEnumerator Crosshair_ReplacesTheCursor_OnlyWhilePlaying_AndContractsWhenFiring()
+        {
+            manager = new GameObject("GameManager").AddComponent<GameManager>();
+            var mutations = CreatePlayer();
+            var weapon = mutations.GetComponent<Weapon>();
+            var bite = Track(ScriptableObject.CreateInstance<AttackData>());
+            bite.ConfigureMelee(range: 1f, arc: 90f, effect: null);
+            weapon.Attack = bite;
+
+            root = new GameObject("UI", typeof(RectTransform));
+            var crosshairObject = new GameObject("Crosshair", typeof(RectTransform), typeof(Image));
+            crosshairObject.transform.SetParent(root.transform, false);
+            var crosshair = crosshairObject.AddComponent<Crosshair>();
+            crosshair.readPointer = false;
+            crosshair.Configure(weapon);
+            var idle = CreateSprite();
+            var fire = new[] { CreateSprite(), CreateSprite() };
+            crosshair.ConfigureLook(idle, fire, 0.2f);
+            yield return null; // Start
+            yield return null;
+
+            Assert.IsTrue(crosshair.IsShown);
+            Assert.IsFalse(Cursor.visible);
+            Assert.AreSame(idle, crosshair.CurrentSprite);
+
+            weapon.Fire(Vector2.right);
+            yield return null;
+            Assert.IsTrue(crosshair.IsFiring);
+            Assert.Contains(crosshair.CurrentSprite, fire);
+
+            yield return new WaitForSecondsRealtime(0.5f);
+            Assert.AreSame(idle, crosshair.CurrentSprite);
+
+            manager.SetState(GameState.Paused);
+            yield return null;
+            Assert.IsFalse(crosshair.IsShown);
+            Assert.IsTrue(Cursor.visible, "En la pausa vuelve el cursor normal.");
+
+            manager.SetState(GameState.Playing);
+            yield return null;
+            Assert.IsTrue(crosshair.IsShown);
+
+            Object.DestroyImmediate(root);
+            Assert.IsTrue(Cursor.visible, "Al quitar la mira vuelve el cursor.");
+        }
+
+        PlayerMutations CreatePlayer()
+        {
+            var player = Track(new GameObject("Player"));
+            player.AddComponent<Weapon>();
+            player.AddComponent<PlayerController>().readInput = false;
+            var mutations = player.AddComponent<PlayerMutations>();
+            player.AddComponent<PlayerAbility>().readInput = false;
+            return mutations;
+        }
+
+        T Track<T>(T obj) where T : Object
+        {
+            created.Add(obj);
+            return obj;
         }
 
         GameObject CreatePanel(string name)

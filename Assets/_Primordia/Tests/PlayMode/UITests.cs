@@ -260,6 +260,143 @@ namespace Primordia.Tests
             Assert.IsTrue(Cursor.visible, "Al quitar la mira vuelve el cursor.");
         }
 
+        [TestCase(7f, "7")]
+        [TestCase(5.5f, "5,5")]
+        [TestCase(7.8f, "7,8")]
+        [TestCase(6.04f, "6")]
+        public void Stats_FormatDecimalsWithComma(float value, string expected)
+        {
+            Assert.AreEqual(expected, PlayerStatsPanel.FormatDecimal(value));
+        }
+
+        [UnityTest]
+        public IEnumerator Stats_ShowValues_AndArrowsAgainstTheBaseCell()
+        {
+            var mutations = CreatePlayer();
+            yield return null; // Awake y Start del jugador
+
+            root = new GameObject("Stats");
+            root.SetActive(false);
+            var values = new Text[3];
+            var arrows = new Image[3];
+            for (int i = 0; i < 3; i++)
+            {
+                values[i] = new GameObject($"Value{i}").AddComponent<Text>();
+                values[i].transform.SetParent(root.transform);
+                arrows[i] = new GameObject($"Arrow{i}").AddComponent<Image>();
+                arrows[i].transform.SetParent(root.transform);
+            }
+            var up = CreateSprite();
+            var stats = root.AddComponent<PlayerStatsPanel>();
+            stats.Configure(values, arrows, up, CreateSprite());
+
+            var fins = Track(ScriptableObject.CreateInstance<StatMutation>());
+            fins.ConfigureBase("Aletas", "", MutationSlot.Limbs, Lineage.Predator, Color.white);
+            fins.Configure(speedMultiplier: 1.5f, dodgeMultiplier: 1f, healthBonus: 0);
+            mutations.Equip(fins);
+            mutations.Health.TakeDamage(1);
+
+            stats.Refresh(mutations);
+
+            Assert.AreEqual("5/6", stats.ValueText(PlayerStatsPanel.Stat.Health).text);
+            Assert.IsFalse(stats.Arrow(PlayerStatsPanel.Stat.Health).enabled, "La vida máxima es la de la célula.");
+            Assert.AreEqual(PlayerStatsPanel.FormatDecimal(mutations.BaseMoveSpeed * 1.5f), stats.ValueText(PlayerStatsPanel.Stat.Speed).text);
+            Assert.IsTrue(stats.Arrow(PlayerStatsPanel.Stat.Speed).enabled);
+            Assert.AreSame(up, stats.Arrow(PlayerStatsPanel.Stat.Speed).sprite);
+        }
+
+        [UnityTest]
+        public IEnumerator CreaturePanel_DrawsALinePerSlot_AndOpensTheTooltipOnHover()
+        {
+            var mutations = CreatePlayer();
+            yield return null;
+
+            var fins = Track(ScriptableObject.CreateInstance<StatMutation>());
+            fins.ConfigureBase("Aletas", "Más velocidad.", MutationSlot.Limbs, Lineage.Predator, Color.red);
+            fins.SetIcons(CreateSprite(), null);
+            mutations.Equip(fins);
+
+            root = new GameObject("Creature", typeof(RectTransform));
+            root.SetActive(false);
+            var zone = (RectTransform)root.transform;
+            zone.sizeDelta = new Vector2(170f, 164f);
+
+            var portrait = UIChild("Portrait", zone).gameObject.AddComponent<CreaturePortrait>();
+            var lines = UIChild("Lines", zone);
+            var dots = UIChild("Dots", zone);
+
+            var empty = CreateSprite();
+            var positions = new[] { new Vector2(-75f, 72f), new Vector2(-75f, -72f), new Vector2(75f, 72f), new Vector2(75f, -72f) };
+            var callouts = new SlotCallout[4];
+            for (int i = 0; i < 4; i++)
+            {
+                var box = UIChild($"Slot{i}", zone);
+                box.sizeDelta = new Vector2(20f, 20f);
+                box.anchoredPosition = positions[i];
+                var frame = box.gameObject.AddComponent<Image>();
+                var icon = UIChild("Icon", box).gameObject.AddComponent<Image>();
+                callouts[i] = box.gameObject.AddComponent<SlotCallout>();
+                callouts[i].Configure((MutationSlot)i, frame, icon);
+                callouts[i].ConfigureLook(null, null, empty);
+            }
+
+            var tooltipRect = UIChild("Tooltip", zone);
+            Text TooltipText(string name) => UIChild(name, tooltipRect).gameObject.AddComponent<Text>();
+            var tooltip = tooltipRect.gameObject.AddComponent<MutationTooltip>();
+            tooltip.Configure(UIChild("Stripe", tooltipRect).gameObject.AddComponent<Image>(), TooltipText("Title"),
+                UIChild("Lineage", tooltipRect).gameObject.AddComponent<Image>(), TooltipText("Details"), TooltipText("Description"),
+                UIChild("Pointer", tooltipRect));
+
+            var panel = root.AddComponent<CreaturePanel>();
+            panel.Configure(portrait, callouts, tooltip, lines, dots);
+            root.SetActive(true);
+            panel.Refresh(mutations);
+
+            Assert.AreSame(fins.Icon, panel.CalloutOf(MutationSlot.Limbs).Icon.sprite);
+            Assert.AreSame(empty, panel.CalloutOf(MutationSlot.Mouth).Icon.sprite);
+            // Boca y Órgano: 3 tramos por su pasillo; Piel y Extremidades: 2.
+            Assert.AreEqual(10, panel.Lines.Count(l => l.gameObject.activeSelf));
+            Assert.IsFalse(tooltip.IsShown);
+
+            panel.Hover(panel.CalloutOf(MutationSlot.Limbs));
+            Assert.IsTrue(tooltip.IsShown);
+            Assert.IsTrue(panel.CalloutOf(MutationSlot.Limbs).IsHighlighted);
+            Assert.AreEqual("Aletas", tooltip.Title.text);
+            Assert.AreEqual("Extremidades · Depredador", tooltip.Details.text);
+            Assert.AreEqual("Más velocidad.", tooltip.Description.text);
+
+            panel.Hover(panel.CalloutOf(MutationSlot.Mouth));
+            Assert.IsFalse(panel.CalloutOf(MutationSlot.Limbs).IsHighlighted);
+            Assert.AreEqual("Boca", tooltip.Title.text);
+            Assert.AreEqual("Ranura libre", tooltip.Details.text);
+
+            panel.Unhover(panel.CalloutOf(MutationSlot.Mouth));
+            Assert.IsFalse(tooltip.IsShown);
+        }
+
+        [UnityTest]
+        public IEnumerator SpriteAnimation_PlaysOnce_AndDestroysItselfWhenAsked()
+        {
+            root = new GameObject("UI");
+            var bubble = new GameObject("Bubble", typeof(RectTransform), typeof(Image));
+            bubble.transform.SetParent(root.transform);
+            var frames = new[] { CreateSprite(), CreateSprite() };
+            var animation = bubble.AddComponent<UISpriteAnimation>();
+            animation.Configure(frames, 0.05f, newLoop: false, newDestroyWhenDone: true);
+
+            Assert.AreSame(frames[0], bubble.GetComponent<Image>().sprite);
+            yield return new WaitForSecondsRealtime(0.3f);
+
+            Assert.IsTrue(bubble == null, "Se destruye al acabar.");
+        }
+
+        static RectTransform UIChild(string name, Transform parent)
+        {
+            var child = new GameObject(name, typeof(RectTransform));
+            child.transform.SetParent(parent, false);
+            return (RectTransform)child.transform;
+        }
+
         PlayerMutations CreatePlayer()
         {
             var player = Track(new GameObject("Player"));

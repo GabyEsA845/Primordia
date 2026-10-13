@@ -260,35 +260,6 @@ namespace Primordia.Tests
         }
 
         [Test]
-        public void MutationList_ShowsEachSlot()
-        {
-            var fins = CreateStat(MutationSlot.Limbs, 1.3f, 1f, 0);
-            fins.ConfigureBase("Aletas", "Más velocidad.", MutationSlot.Limbs, Lineage.Predator, Color.cyan);
-            mutations.Equip(fins);
-
-            var listObject = Track(new GameObject("List"));
-            var names = new UnityEngine.UI.Text[4];
-            var descriptions = new UnityEngine.UI.Text[4];
-            for (int i = 0; i < 4; i++)
-            {
-                names[i] = new GameObject($"Name{i}").AddComponent<UnityEngine.UI.Text>();
-                descriptions[i] = new GameObject($"Description{i}").AddComponent<UnityEngine.UI.Text>();
-                names[i].transform.SetParent(listObject.transform);
-                descriptions[i].transform.SetParent(listObject.transform);
-            }
-
-            var list = listObject.AddComponent<UI.MutationListUI>();
-            list.Configure(names, descriptions);
-            list.Refresh(mutations);
-
-            Assert.AreEqual("Aletas", names[(int)MutationSlot.Limbs].text);
-            Assert.AreEqual("Más velocidad.", descriptions[(int)MutationSlot.Limbs].text);
-            Assert.AreEqual(Color.cyan, names[(int)MutationSlot.Limbs].color);
-            Assert.AreEqual("— vacía —", names[(int)MutationSlot.Mouth].text);
-            Assert.AreEqual("", descriptions[(int)MutationSlot.Organ].text);
-        }
-
-        [Test]
         public void Pool_OffersFewer_WhenNotEnoughAreLeft()
         {
             var all = Enumerable.Range(0, 2).Select(_ => (MutationData)CreateStat(MutationSlot.Limbs, 1f, 1f, 0)).ToList();

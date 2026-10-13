@@ -34,6 +34,7 @@ Los recursos nuevos (hojas de sprites, GIF de revisión, scripts que los generan
 | Efectos | `docs/multimedia-temp/effects/` (cada hoja con su nombre, sin prefijo común) | Menú **Primordia > Art > Importar efectos**: crea los prefabs de `Prefabs/Effects` (los que no van en bucle se destruyen solos al acabar, con `OneShotEffect`) y los conecta: impactos en los prefabs de proyectil y en la mordida, veneno en el Aguijón, burbujas en los enemigos, estela en el jugador. La tinta y la onda sustituyen al círculo de `Prefabs/Mutations`; `AbilityMutation.effectRadius` indica a qué radio están dibujadas para no agrandarlas. Necesita haber importado antes enemigos y proyectiles. |
 | Piezas de mutación | `docs/multimedia-temp/mutations/<Skin|Mouth|Limbs|Organ>/` (`<Ranura>_<Mutación>_<Animación>.png`) | Menú **Primordia > Art > Importar piezas de mutación**: copia cada mutación a `Art/Mutations/<Mutación>/`, crea sus clips y su controlador y se lo pone a su `Mutation_<Mutación>` (campo *Look*). La Boca se corta con el pivote en su punto de unión (borde izquierdo, a media altura). En las Pieles fija también el radio de colisión (Caparazón 0,55; Piel urticante 0,45) y la distancia de la Boca. Añade al jugador las piezas `Limbs`, `Organ` y `AimPivot/MouthPiece` con `MutationLook`, pone en rojo el destello de daño y borra los `Visual_*` provisionales. Necesita haber importado antes al jugador. |
 | Objetos e interfaz | `docs/multimedia-temp/ui/<Items|Icons|HUD|Panels>/` | Menú **Primordia > Art > Importar objetos e interfaz**: importa los sprites sueltos a `Art/UI/` (los de panel, en 9-slice) y pone a cada `Mutation_<Mutación>` sus iconos de 16 y 32. Viste `GameUI` y `MainMenuUI` (escala 1:1 con 16 px por unidad, corazones, botones y tarjetas con un sprite por estado, franja teñida, iconos de mutación y de linaje en las tarjetas y en la lista de la pausa) la fila de ranuras del cuerpo bajo los corazones (marco, icono de la mutación o silueta de la ranura libre) y la mira (con su animación al disparar), y la barra de recarga del jugador (con destello al quedar lista). Crea `Prefabs/Mutations/MutationPickup` (burbuja del linaje en `Art/Items/`, icono encima, sombra y efecto al reventar) y se lo da al jefe con `MutationDrop`. La biomasa aún no se importa: se programará con la tienda. |
+| Menús de pausa y principal | `docs/multimedia-temp/menus/<Pause|Main>/` | Menú **Primordia > Art > Importar menús**: importa los sprites a `Art/UI/Menus/` (paneles en 9-slice, capas que se desplazan con Wrap Mode = Repeat) y la fuente pixel sin suavizado. **Pausa** (`GameUI`): el título en su cinta, a la izquierda las estadísticas (`PlayerStatsPanel`: vida, daño y velocidad con flecha si cambian respecto a la célula base) y a la derecha la criatura (`CreaturePanel`): lente, retrato animado con sus mutaciones a ×3 o ×2 según quepa (`CreaturePortrait`), líneas en codo hasta los 4 recuadros de ranura (`SlotCallout`) y cuadro de información al pasar el ratón (`MutationTooltip`). Sustituye a la lista de mutaciones anterior. **Menú principal** (`MainMenuUI`): fondo en 4 capas (`ScrollingLayer`, `UISpriteAnimation`), logo con brillo cada 3 s, la célula ×3, botones con marcador y burbuja al pulsar (`MenuSelector`) y la versión. Pone Silkscreen a todos los textos (tamaños 8 y 16). Necesita haber importado antes objetos e interfaz y al jugador. |
 | Escenario | `docs/multimedia-temp/environment/<Soup|Boss>/` (`tiles/`, `deco/`, `Door_*.png`, `Doorway_Top.png`) y, para salas con formas, `docs/multimedia-temp/environment-shapes/<Soup|Boss>/tiles/` | Menú **Primordia > Art > Importar escenario**: crea un tile por imagen (las paredes con colisión), la decoración (algas y burbujas como tiles animados) y un `RoomTheme` por variante en `Art/Environment/`. Después hay que regenerar el piso (**Primordia > UI > Regenerar escena Game**). Las salas son plantillas de texto (`Data/Rooms/`) que un pintor viste con el tema; las celdas sin pieza salen en magenta. |
 
 `.png`, `.aseprite`, `.wav`, `.ogg`, `.mp3`, `.ttf` y `.otf` se guardan con Git LFS (ya configurado en `.gitattributes`).
@@ -112,8 +113,9 @@ Los recursos nuevos (hojas de sprites, GIF de revisión, scripts que los generan
 | Ranuras del cuerpo en el HUD | Boca, Extremidades, Piel, Órgano especial, bajo los corazones. Saltan al cambiar; la del Órgano se oscurece mientras recarga | M | Pendiente |
 | Recarga de habilidad | Indicador del clic derecho | M | Pendiente |
 | Tarjetas "elige 1 de 3" | Fondo para la elección de mutación | M | Pendiente |
-| Logo de *Primordia* | Título del menú principal | M | Pendiente |
-| Fondo del menú principal | | D | Pendiente |
+| Logo de *Primordia* | Título del menú principal, con brillo que lo recorre | M | Listo |
+| Fondo del menú principal | Caldo primordial en 4 capas: agua, rayos de luz, partículas que suben y siluetas que pasan | D | Listo |
+| Menú de pausa | Estadísticas, criatura en una lente con sus ranuras y cuadro de información | M | Listo |
 | Pantallas de victoria y derrota | | M | Pendiente |
 | Iconos de linaje | Depredador, Acorazado, Tóxico | D | Pendiente |
 | Portada para la página de itch.io | 630×500 px, captura o arte promocional | M | Pendiente |
@@ -155,7 +157,7 @@ Los recursos nuevos (hojas de sprites, GIF de revisión, scripts que los generan
 
 | Recurso | Uso | Prioridad | Estado |
 |---------|-----|-----------|--------|
-| Fuente pixel | HUD, menús y textos | M | Pendiente |
+| Fuente pixel | Silkscreen (normal y negrita) en HUD, menús y textos, a tamaño 8 y 16. En `Art/Fonts/` | M | Listo |
 
 ## Registro de licencias
 
@@ -163,4 +165,4 @@ Anotar aquí todo recurso que no sea propio (bancos de sonido, fuentes, etc.) pa
 
 | Recurso | Autor / fuente | Licencia | Enlace |
 |---------|---------------|----------|--------|
-| | | | |
+| Fuente Silkscreen | Jason Kottke (Google Fonts) | SIL Open Font License 1.1 (texto en `Art/Fonts/Silkscreen-OFL.txt`) | https://fonts.google.com/specimen/Silkscreen |

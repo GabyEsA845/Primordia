@@ -79,7 +79,7 @@ namespace Primordia.Editor
 
         /// <summary>
         /// Viste un prefab de interfaz: escala de píxeles 1:1, corazones, botones y tarjetas en 9-slice con un
-        /// sprite por estado, franja e iconos de las tarjetas y fondo de la lista de mutaciones.
+        /// sprite por estado, franja e iconos de las tarjetas.
         /// </summary>
         static void ApplyUISkin(string prefabPath)
         {
@@ -99,7 +99,6 @@ namespace Primordia.Editor
                 ImportUISprite("Panels", "UI_Card_Normal", 12), ImportUISprite("Panels", "UI_Card_Highlighted", 12),
                 ImportUISprite("Panels", "UI_Card_Pressed", 12), ImportUISprite("Panels", "UI_Card_Disabled", 12),
             };
-            var panel = ImportUISprite("Panels", "UI_Panel", 12);
             var stripe = ImportUISprite("Panels", "UI_Card_Stripe", new Vector4(4, 0, 4, 0));
             var lineageIcons = System.Array.ConvertAll(LineageNames, lineage => ImportUISprite("Icons", $"Icon_Lineage_{lineage}"));
             var hearts = new[]
@@ -139,14 +138,6 @@ namespace Primordia.Editor
                         SetSlicedSprite(strip.GetComponent<Image>(), stripe, keepColor: true);
                         strip.GetComponent<LayoutElement>().preferredHeight = stripe.rect.height;
                     }
-                }
-
-                foreach (var list in root.GetComponentsInChildren<MutationListUI>(true))
-                {
-                    if (panel != null && list.TryGetComponent<Image>(out var background))
-                        SetSlicedSprite(background, panel, keepColor: false);
-                    if (list.TryGetComponent<VerticalLayoutGroup>(out var layout))
-                        layout.padding = new RectOffset(10, 10, 10, 10);
                 }
             });
         }

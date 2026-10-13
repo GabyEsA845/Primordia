@@ -28,6 +28,10 @@ namespace Primordia.Mutations
 
         /// <summary>Ataque sin mutación de Boca; se recupera al quitarla.</summary>
         public AttackData DefaultAttack { get; private set; }
+        /// <summary>Vida máxima de la célula sin mutaciones; las estadísticas de la pausa comparan con ella.</summary>
+        public int BaseMaxHealth { get; private set; }
+        /// <summary>Velocidad de la célula sin mutaciones.</summary>
+        public float BaseMoveSpeed { get; private set; }
 
         /// <summary>Se lanza al cambiar una ranura: (ranura, mutación nueva o null si quedó vacía).</summary>
         public event Action<MutationSlot, MutationData> Changed;
@@ -46,6 +50,8 @@ namespace Primordia.Mutations
             Health = GetComponent<Health>();
             Weapon = GetComponent<Weapon>();
             DefaultAttack = Weapon.Attack;
+            BaseMaxHealth = Health.Max;
+            BaseMoveSpeed = Controller.MoveSpeed;
             bodyCollider = GetComponent<CircleCollider2D>();
             if (bodyCollider != null)
                 cellRadius = bodyCollider.radius;

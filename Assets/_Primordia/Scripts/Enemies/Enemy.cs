@@ -33,6 +33,12 @@ namespace Primordia.Enemies
         /// <summary>Se lanza al morir, después de <see cref="ChildSpawned"/> y antes de destruirse.</summary>
         public event Action<Enemy> Died;
 
+        /// <summary>Se lanza al morir cualquier enemigo, a la vez que su <see cref="Died"/> (la Vacuola digestiva cuenta las muertes).</summary>
+        public static event Action<Enemy> AnyDied;
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        static void ResetStatics() => AnyDied = null;
+
         /// <summary>Se lanza por cada enemigo nuevo que nace de este: al dividirse o al ser invocado (jefe).</summary>
         public event Action<Enemy> ChildSpawned;
 
@@ -93,6 +99,7 @@ namespace Primordia.Enemies
             // Primero los hijos: quien cuente enemigos vivos (la sala) los registra antes de recibir Died.
             SpawnSplits();
             Died?.Invoke(this);
+            AnyDied?.Invoke(this);
 
             if (!WillSplit && deathDuration > 0f)
             {
@@ -110,6 +117,7 @@ namespace Primordia.Enemies
             yield return new WaitForSeconds(splitDuration);
             SpawnSplits();
             Died?.Invoke(this);
+            AnyDied?.Invoke(this);
             Destroy(gameObject);
         }
 

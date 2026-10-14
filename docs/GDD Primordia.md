@@ -84,10 +84,10 @@ Un linaje es un animal (Tiburón, Medusa, Tortuga...) que se completa con **4 mu
 | Hifas (nueva) | Extremidades | Moho, Cuesco de lobo | Al moverte dejas un rastro de micelio que ralentiza y daña |
 | Caparazón | Piel | Tiburón, Tortuga | +2 de vida máxima, −10% velocidad |
 | Piel urticante | Piel | Medusa, Moho | Daña a quien te toca |
-| Camuflaje (nueva) | Piel | Calamar, Escorpión, Cuesco de lobo | Si pasas 3 s sin atacar ni recibir golpes, te vuelves casi invisible y tu siguiente ataque hace más daño |
+| Camuflaje (nueva) | Piel | Calamar, Escorpión, Cuesco de lobo | Si pasas 3 s sin atacar ni recibir golpes, te vuelves casi invisible: los enemigos te buscan y tu siguiente ataque hace más daño |
 | Vejiga de tinta | Órgano especial | Calamar, Cuesco de lobo | Nube que ciega a los enemigos 3 s |
 | Glándula de choque | Órgano especial | Tiburón, Medusa | Onda que repele proyectiles |
-| Vacuola digestiva (nueva) | Órgano especial | Tortuga, Escorpión, Moho | Digiere y cura medio corazón, con recarga larga |
+| Vacuola digestiva (nueva) | Órgano especial | Tortuga, Escorpión, Moho | Digiere y cura medio corazón; se recarga matando enemigos |
 
 **Cómo se consiguen:** al limpiar ciertas salas aparece la elección de 1 de 3 mutaciones, y en la tienda se compran con biomasa. Al derrotar al jefe se elige 1 de 3 mutaciones mayores. Cambiar una mutación por otra en la misma ranura la reemplaza para siempre en esa partida.
 
@@ -106,11 +106,10 @@ Referencia: jugador base con velocidad 6, esquiva de 3 unidades, 3 corazones y d
 | Piel urticante | 2 de daño a quien te toca, como máximo cada 0,5 s por enemigo |
 | Vejiga de tinta | Nube de 3 unidades de radio, ciega 3 s; recarga de 8 s |
 | Glándula de choque | Onda de 4 unidades de radio que destruye proyectiles enemigos y empuja; recarga de 6 s |
-| Hifas (propuesta) | Manchas de micelio que duran 3 s; los enemigos encima van un 40 % más lentos y reciben 1 de daño por segundo |
-| Camuflaje (propuesta) | Tras 3 s sin atacar ni recibir golpes: semitransparente, los enemigos dejan de disparar y el siguiente ataque hace el doble de daño |
-| Vacuola digestiva (propuesta) | Cura medio corazón; recarga de 20 s |
+| Hifas | Al moverte, una mancha de micelio cada 0,6 unidades (radio 0,5) que dura 3 s; los enemigos encima van un 40 % más lentos y reciben 1 de daño por segundo (el primero tras un segundo; varias manchas no suman) |
+| Camuflaje | Tras 3 s sin atacar, sin usar la habilidad y sin recibir golpes: casi transparente (30 %) y el siguiente ataque hace el doble de daño. Los enemigos no disparan y te buscan por puntos al azar alrededor de donde te vieron por última vez; si uno pasa 1,5 s a menos de 2,5 unidades, sospecha ("?" sobre su cabeza) y te descubre. Atacar, usar la habilidad, recibir un golpe o ser descubierto te deja a la vista |
+| Vacuola digestiva | Clic derecho: cura medio corazón. Se recarga matando enemigos (cualquier muerte cuenta): cada 4. Con la vida llena no se gasta. La barra de recarga se llena con cada muerte |
 
-Los niveles II y III de Hifas, Camuflaje y Vacuola digestiva se diseñan al implementarlas.
 
 **Niveles y evoluciones**
 
@@ -127,6 +126,9 @@ Cada mutación tiene **3 niveles**. Se sube eligiéndola otra vez en la elecció
 | Piel urticante | Daño al contacto 2 → 3, y además envenena | **Erizo:** al recibir un golpe, disparas 8 púas en círculo (1 de daño más veneno) |
 | Vejiga de tinta | Radio 3 → 4 y recarga 8 → 6 s | **Tinta corrosiva:** los enemigos dentro de la nube reciben 1 de daño por segundo |
 | Glándula de choque | Radio 4 → 6 y recarga 6 → 4,5 s | **Paralizante:** los enemigos que alcanza la onda quedan paralizados 2 s |
+| Hifas | El micelio dura 4,5 s y quita 2 por segundo | **Red micelial:** los enemigos que mueren sobre el micelio sueltan una nube de esporas que envenena a los cercanos (radio 2, 1 por segundo durante 3 s) |
+| Camuflaje | Te ocultas a los 2 s y el ataque desde el camuflaje hace el triple | **Pánico:** matar a un enemigo desde el camuflaje asusta a los demás de la sala 2 s: no atacan y se alejan despacio (gotas de sudor sobre la cabeza) |
+| Vacuola digestiva | Se recarga cada 3 muertes | **Digestión completa:** cura un corazón entero (sigue cada 3 muertes) |
 
 La nube de tinta ahora permanece los 3 s que dura la ceguera (aparece, se mantiene y se disipa), es más transparente y ciega también a quien entra en ella. Los estados de los enemigos se ven con marcas encima de su cabeza: veneno, sangrado, cegado, aturdido y paralizado (este, además, con rayos por el cuerpo).
 
@@ -279,7 +281,6 @@ Objetivo: que añadir una mutación, un enemigo o una sala nueva sea crear un ar
 
 - [ ] Revisar los borradores: criaturas del jugador, enemigos y jefes de los pisos 2 a 6, y las 20 mutaciones nuevas (con sus niveles II y III).
 - [ ] Qué beneficio da cada clase de linaje (y si cada linaje tiene además algo propio).
-- [ ] Valores, niveles II y III y arte de Hifas, Camuflaje y Vacuola digestiva.
 - [ ] Ataques y valores de la ameba gigante y de los segundos jefes de los pisos 2 a 6.
 - [ ] Si el cuerpo crece de un piso a otro (y con él la colisión) o mantiene el tamaño.
 - [ ] Duración total: 6 pisos de 10 a 15 minutos son más de una hora; valorar pisos más cortos en los pisos altos.

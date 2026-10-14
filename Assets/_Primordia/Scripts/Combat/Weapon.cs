@@ -33,8 +33,29 @@ namespace Primordia.Combat
         /// <summary>Se lanza en cada disparo, con la dirección central.</summary>
         public event Action<Vector2> Fired;
 
-        /// <summary>Multiplica el daño de cada disparo o mordisco (la Emboscada de las Aletas). 1 = normal.</summary>
-        public float DamageMultiplier { get; set; } = 1f;
+        /// <summary>
+        /// Multiplica el daño de cada disparo o mordisco (la Emboscada de las Aletas). 1 = normal. Al leerlo incluye
+        /// también los bonus de <see cref="SetDamageBonus"/>; asignarlo solo cambia el multiplicador base.
+        /// </summary>
+        public float DamageMultiplier
+        {
+            get
+            {
+                float total = baseMultiplier;
+                foreach (var bonus in damageBonuses.Values)
+                    total *= bonus;
+                return total;
+            }
+            set => baseMultiplier = value;
+        }
+
+        /// <summary>Multiplicador de daño de una fuente (el Camuflaje); se combina con los demás.</summary>
+        public void SetDamageBonus(object source, float multiplier) => damageBonuses[source] = multiplier;
+
+        public void ClearDamageBonus(object source) => damageBonuses.Remove(source);
+
+        float baseMultiplier = 1f;
+        readonly Dictionary<object, float> damageBonuses = new();
 
         /// <summary>Daño de ese ataque con el multiplicador actual (redondeado hacia arriba).</summary>
         public int DamageOf(AttackData attack) =>

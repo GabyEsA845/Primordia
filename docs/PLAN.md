@@ -47,7 +47,7 @@ Cada módulo vive en su propia carpeta de `Assets/_Primordia/Scripts/` (`Core`, 
 - [ ] `feature/art`: arte del piso 1 (ver [MULTIMEDIA.md](MULTIMEDIA.md))
 - [ ] `feature/audio`: música y efectos
 - [x] `feature/lineages`: linajes nuevos (animales de 4 mutaciones, una por ranura, con su clase), linaje activo en el HUD, linajes de cada mutación en tarjetas, pausa y tienda, y burbujas por ranura. Los beneficios de cada clase, más adelante
-- [ ] `feature/floor1-mutations`: Hifas, Camuflaje y Vacuola digestiva (con sus 3 niveles, iconos y piezas), que completan los linajes del piso 1
+- [x] `feature/floor1-mutations`: Hifas, Camuflaje y Vacuola digestiva (con sus 3 niveles, iconos y piezas), que completan los linajes del piso 1
 - [ ] `feature/floor-transition`: paso al piso siguiente y metamorfosis del jugador según su familia de arma (cuerpo a cuerpo, proyectil, área)
 - [ ] `feature/floor-2`: Océano cámbrico (escenario, enemigos, Anomalocaris, 4 mutaciones y 3 cuerpos del jugador)
 - [ ] `feature/floor-3`: Pantano carbonífero (lo mismo, con el artrópodo gigante); si se retrasa mucho, la v1.0 sale con 2 pisos

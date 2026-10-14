@@ -23,6 +23,15 @@ namespace Primordia.Mutations
         /// <summary>Recarga en ese nivel; por defecto, la del nivel I.</summary>
         public virtual float CooldownAt(int level) => cooldown;
 
+        /// <summary>
+        /// Enemigos que hay que matar para recargarla en ese nivel (la Vacuola digestiva). 0 = se recarga con el
+        /// tiempo (<see cref="CooldownAt"/>).
+        /// </summary>
+        public virtual int KillsToChargeAt(int level) => 0;
+
+        /// <summary>False si ahora no serviría de nada (curar con la vida llena): no se gasta.</summary>
+        public virtual bool CanActivate(PlayerMutations player) => true;
+
         public override void Apply(PlayerMutations player, int level)
         {
             if (player.Ability != null)

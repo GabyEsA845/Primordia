@@ -42,7 +42,7 @@ namespace Primordia.Editor
         };
 
         [MenuItem("Primordia/Mutations/Crear linajes")]
-        static void CreateLineages()
+        internal static void CreateLineages()
         {
             Directory.CreateDirectory(LineagesFolder);
             var missing = new HashSet<string>();

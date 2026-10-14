@@ -31,7 +31,13 @@ namespace Primordia.Enemies
             Blind,
 
             /// <summary>Se para a apuntar justo antes de disparar (solo con aviso de disparo).</summary>
-            Aim
+            Aim,
+
+            /// <summary>El jugador está camuflado: lo busca alrededor del último sitio donde lo vio y no dispara.</summary>
+            Search,
+
+            /// <summary>Asustado (Camuflaje nivel III): no ataca y se aleja despacio del jugador.</summary>
+            Scared
         }
 
         // Margen alrededor de la distancia preferida para que el Shooter no tiemble.
@@ -44,6 +50,13 @@ namespace Primordia.Enemies
         const float SightRadius = 0.15f;
         // Distancia libre que necesita a su espalda para retroceder; si no la tiene, se queda quieto.
         const float RetreatCheckDistance = 1.5f;
+        // Búsqueda del jugador camuflado: velocidad respecto a la normal, radio alrededor del último sitio donde
+        // lo vio y segundos como mucho hacia cada punto.
+        const float SearchSpeedFactor = 0.6f;
+        const float SearchRadius = 3f;
+        const float SearchPointTime = 2f;
+        // Lo que tarda en olvidar la sospecha respecto a lo que tarda en llenarla.
+        const float SuspicionDecay = 0.5f;
         // Separación entre enemigos: radio en el que se apartan y fuerza del empuje respecto a su velocidad.
         const float SeparationRadius = 1.2f;
         const float SeparationWeight = 0.6f;
@@ -76,7 +89,12 @@ namespace Primordia.Enemies
         public bool IsAlert { get; private set; }
         public bool IsStunned => Time.time < stunnedUntil;
         public bool IsBlind => Time.time < blindUntil;
+        public bool IsScared => Time.time < scaredUntil;
+        public bool IsSlowed => Time.time < slowedUntil;
         public bool IsAiming { get; private set; }
+
+        /// <summary>De 0 a 1: cuánto le falta para descubrir al jugador camuflado que tiene cerca.</summary>
+        public float Suspicion { get; private set; }
 
         Enemy enemy;
         Health health;
@@ -87,6 +105,13 @@ namespace Primordia.Enemies
         float stunnedUntil;
         float paralyzedUntil;
         float blindUntil;
+        float scaredUntil;
+        float scaredSpeed;
+        float slowedUntil;
+        float slowFactor = 1f;
+        bool searching;
+        Vector2 searchPoint;
+        float searchPointUntil;
         float fireAt;
         float bodyRadius;
         ContactFilter2D separationFilter;
@@ -158,6 +183,29 @@ namespace Primordia.Enemies
 
         public bool IsParalyzed => Time.time < paralyzedUntil;
 
+        /// <summary>
+        /// Lo asusta (Camuflaje nivel III): durante ese tiempo no ataca y se aleja despacio del objetivo, a esa
+        /// fracción de su velocidad. Muestra su marca encima.
+        /// </summary>
+        public void Scare(float duration, float speedFactor, GameObject marker = null)
+        {
+            scaredUntil = Mathf.Max(scaredUntil, Time.time + duration);
+            scaredSpeed = Mathf.Clamp01(speedFactor);
+            IsAiming = false;
+            Alert();
+            StatusMarkers.Show(this, "Scared", marker, duration);
+        }
+
+        /// <summary>Lo frena a esa fracción de su velocidad durante ese tiempo (el micelio de las Hifas).</summary>
+        public void Slow(float factor, float duration)
+        {
+            if (!IsSlowed || factor < slowFactor)
+                slowFactor = Mathf.Clamp01(factor);
+            slowedUntil = Mathf.Max(slowedUntil, Time.time + duration);
+        }
+
+        float SpeedOf(EnemyData data) => data.MoveSpeed * (IsSlowed ? slowFactor : 1f);
+
         void Update()
         {
             desiredVelocity = Vector2.zero;
@@ -195,6 +243,25 @@ namespace Primordia.Enemies
             Vector2 toTarget = target.position - transform.position;
             float distance = toTarget.magnitude;
 
+            if (IsScared)
+            {
+                IsAiming = false;
+                Current = State.Scared;
+                Vector2 away = distance > 0.0001f ? -toTarget / distance : Vector2.right;
+                float scaredMove = SpeedOf(data) * scaredSpeed;
+                desiredVelocity = HasRoomBehind(away) ? Steer(away * scaredMove, scaredMove) : Vector2.zero;
+                return;
+            }
+
+            if (target.TryGetComponent<IConcealable>(out var concealable) && concealable.IsConcealed)
+            {
+                Search(data, concealable, distance);
+                return;
+            }
+
+            searching = false;
+            Suspicion = 0f;
+
             if (!IsAlert && distance <= data.DetectionRange)
                 Alert();
 
@@ -206,7 +273,7 @@ namespace Primordia.Enemies
 
             Vector2 direction = distance > 0.0001f ? toTarget / distance : Vector2.zero;
             Vector2 targetPosition = target.position;
-            float speed = data.MoveSpeed;
+            float speed = SpeedOf(data);
 
             if (data.Behaviour == EnemyBehaviour.Chaser)
             {
@@ -241,6 +308,58 @@ namespace Primordia.Enemies
             }
 
             UpdateFiring(toTarget, distance);
+        }
+
+        /// <summary>
+        /// El jugador está camuflado: si estaba alerta, lo busca por puntos al azar alrededor del último sitio donde
+        /// lo vio, sin disparar. Si el jugador se le acerca, la sospecha sube (con su marca encima) y al llenarse lo
+        /// descubre; lejos, la sospecha baja despacio.
+        /// </summary>
+        void Search(EnemyData data, IConcealable concealable, float distance)
+        {
+            IsAiming = false;
+
+            if (distance <= concealable.NoticeRange)
+                Suspicion += Time.deltaTime / Mathf.Max(0.01f, concealable.NoticeTime);
+            else
+                Suspicion = Mathf.Max(0f, Suspicion - Time.deltaTime * SuspicionDecay / Mathf.Max(0.01f, concealable.NoticeTime));
+
+            if (Suspicion > 0f)
+                StatusMarkers.Show(this, "Suspect", concealable.SuspectMarker, 0.15f);
+
+            if (Suspicion >= 1f)
+            {
+                Suspicion = 0f;
+                concealable.Reveal();
+                Alert();
+                return;
+            }
+
+            if (!IsAlert)
+            {
+                Current = State.Idle;
+                return;
+            }
+
+            if (!searching)
+            {
+                searching = true;
+                NextSearchPoint(concealable.LastSeenPosition, first: true);
+            }
+            else if (Time.time >= searchPointUntil || (searchPoint - rb.position).sqrMagnitude < 0.36f)
+            {
+                NextSearchPoint(concealable.LastSeenPosition, first: false);
+            }
+
+            Current = State.Search;
+            float speed = SpeedOf(data) * SearchSpeedFactor;
+            desiredVelocity = Steer(PathTo(searchPoint) * speed, speed);
+        }
+
+        void NextSearchPoint(Vector2 lastSeen, bool first)
+        {
+            searchPoint = first ? lastSeen : lastSeen + UnityEngine.Random.insideUnitCircle * SearchRadius;
+            searchPointUntil = Time.time + SearchPointTime;
         }
 
         /// <summary>Dirección hacia ese punto rodeando paredes y columnas (recta si no hay rejilla del piso).</summary>

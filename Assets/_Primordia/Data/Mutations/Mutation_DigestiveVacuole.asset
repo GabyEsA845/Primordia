@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 330c729986c5e764cbcf7e6c37d693fb, type: 3}
+  m_Name: Mutation_DigestiveVacuole
+  m_EditorClassIdentifier: Primordia::Primordia.Mutations.DigestiveVacuoleMutation
+  displayName: Vacuola digestiva
+  description: "Clic derecho: digiere y cura medio coraz\xF3n. Se recarga matando enemigos: cada 4 muertes."
+  slot: 3
+  lineages:
+  - {fileID: 11400000, guid: ddd265ad1c955ba428d4823f0d88badb, type: 2}
+  - {fileID: 11400000, guid: 0ba4444a737dbc64c81151817ed2f2f1, type: 2}
+  - {fileID: 11400000, guid: c835644a936dc8447a78c0aa704d8e42, type: 2}
+  look: {fileID: 9100000, guid: cfc8d5474988ea744af5f65437cf4e2a, type: 2}
+  bodyRadius: 0
+  mouthDistance: 0
+  icon: {fileID: 21300000, guid: 833743cf76cb91649999277ecb983dc9, type: 3}
+  largeIcon: {fileID: 21300000, guid: a0d2615175d5bd94096a108e6d825281, type: 3}
+  color: {r: 0.55, g: 0.9, b: 0.35, a: 1}
+  levelDescriptions:
+  - Se recarga cada 3 muertes.
+  - "Digesti\xF3n completa: cura un coraz\xF3n entero (sigue recarg\xE1ndose cada 3 muertes)."
+  cooldown: 0.5
+  effectPrefab: {fileID: 634519857664457622, guid: e1eb0108d9dbd9641b37f27de094375b, type: 3}
+  effectRadius: 1
+  killsToCharge: 040000000300000003000000i
+  heal: 010000000100000002000000i

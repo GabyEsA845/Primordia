@@ -11,15 +11,8 @@ namespace Primordia.Mutations
         Organ
     }
 
-    public enum Lineage
-    {
-        Predator,
-        Armored,
-        Toxic
-    }
-
     /// <summary>
-    /// Base de todas las mutaciones: nombre, ranura, linaje, aspecto y niveles. Cada tipo de mutación
+    /// Base de todas las mutaciones: nombre, ranura, linajes, aspecto y niveles. Cada tipo de mutación
     /// (estadísticas, ataque, habilidad...) hereda de aquí y aplica su efecto en <see cref="Apply"/> según el nivel
     /// (1 a <see cref="MaxLevel"/>): el II mejora valores y el III desbloquea una evolución. Los cambios que hace
     /// <see cref="Apply"/> los deshace <see cref="Remove"/> con el mismo nivel; los componentes añadidos con
@@ -32,7 +25,8 @@ namespace Primordia.Mutations
         [SerializeField] string displayName;
         [SerializeField, TextArea(2, 4)] string description;
         [SerializeField] MutationSlot slot;
-        [SerializeField] Lineage lineage;
+        [Tooltip("Linajes a los que pertenece (los rellena Primordia > Mutations > Crear linajes a partir de cada LineageData).")]
+        [SerializeField] LineageData[] lineages = System.Array.Empty<LineageData>();
 
         [Tooltip("Animaciones de la pieza (se dibuja con MutationLook). En la Piel sustituye a las del cuerpo, " +
                  "con los mismos estados que el jugador.")]
@@ -45,7 +39,7 @@ namespace Primordia.Mutations
         [SerializeField] Sprite icon;
         [Tooltip("Icono de 32×32: tarjetas de elección. Si falta, se usa el pequeño.")]
         [SerializeField] Sprite largeIcon;
-        [Tooltip("Color de la mutación en la interfaz y en los objetos del suelo.")]
+        [Tooltip("Color de la mutación en la interfaz (el de su ranura).")]
         [SerializeField] Color color = Color.white;
         [Tooltip("Lo que añade cada nivel: el II y el III (evolución).")]
         [SerializeField, TextArea(2, 4)] string[] levelDescriptions = new string[MaxLevel - 1];
@@ -53,7 +47,8 @@ namespace Primordia.Mutations
         public string DisplayName => string.IsNullOrEmpty(displayName) ? name : displayName;
         public string Description => description;
         public MutationSlot Slot => slot;
-        public Lineage Lineage => lineage;
+        public System.Collections.Generic.IReadOnlyList<LineageData> Lineages =>
+            lineages ?? (System.Collections.Generic.IReadOnlyList<LineageData>)System.Array.Empty<LineageData>();
         public RuntimeAnimatorController Look => look;
         public float BodyRadius => bodyRadius;
         public float MouthDistance => mouthDistance;
@@ -78,15 +73,17 @@ namespace Primordia.Mutations
         protected static int UpgradeIndex<T>(T[] upgrades, int level) =>
             upgrades == null || upgrades.Length == 0 || level < 2 ? -1 : Mathf.Min(level - 2, upgrades.Length - 1);
 
-        internal void ConfigureBase(string newName, string newDescription, MutationSlot newSlot, Lineage newLineage,
-            Color newColor)
+        internal void ConfigureBase(string newName, string newDescription, MutationSlot newSlot, Color newColor)
         {
             displayName = newName;
             description = newDescription;
             slot = newSlot;
-            lineage = newLineage;
             color = newColor;
         }
+
+        internal void SetLineages(LineageData[] newLineages) => lineages = newLineages ?? System.Array.Empty<LineageData>();
+
+        internal void SetColor(Color newColor) => color = newColor;
 
         internal void SetLevelDescriptions(params string[] descriptions) => levelDescriptions = descriptions;
 

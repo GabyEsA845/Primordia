@@ -68,7 +68,7 @@ namespace Primordia.Tests
         StatMutation Mutation(string name, MutationSlot slot)
         {
             var mutation = Track(ScriptableObject.CreateInstance<StatMutation>());
-            mutation.ConfigureBase(name, "Base.", slot, Lineage.Predator, Color.white);
+            mutation.ConfigureBase(name, "Base.", slot, Color.white);
             mutation.Configure(1f, 1f, 0);
             mutation.SetLevelDescriptions("Mejora.", "Evolución.");
             return mutation;

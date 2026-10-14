@@ -87,14 +87,16 @@ MonoBehaviour:
   floating: {fileID: 6744320919776002936}
   bubble: {fileID: 6351056302111571720}
   icon: {fileID: 3286579358091175400}
-  lineageBubbles:
-  - {fileID: 9100000, guid: 68d674937e4e5fd4e821c689073d60ee, type: 2}
-  - {fileID: 9100000, guid: 10efb598ca8b88d49a59ca71cb446145, type: 2}
-  - {fileID: 9100000, guid: b16ad902f948f1148a33bec7b0b57038, type: 2}
-  lineageBursts:
-  - {fileID: 213381556681965013, guid: 5370d7b3eca7ede428f7717a5e3da445, type: 3}
-  - {fileID: 7173232687120859228, guid: 5f184d221cfe7a544ab0bc4a2f59f28d, type: 3}
-  - {fileID: 1709151329508429188, guid: 0e77e5f52235b1240ba26815eb60a41f, type: 3}
+  slotBubbles:
+  - {fileID: 9100000, guid: 51f705a77564f3446be57e88648c3780, type: 2}
+  - {fileID: 9100000, guid: 0e6189ce5c89b55408f56b507f51fda4, type: 2}
+  - {fileID: 9100000, guid: fae32180b657aab44a1c93626dbca992, type: 2}
+  - {fileID: 9100000, guid: a9f7331d388ad284e9ce57e87d5e955a, type: 2}
+  slotBursts:
+  - {fileID: 9148562526194343130, guid: 82827412cc15719448d62b1e82325763, type: 3}
+  - {fileID: 6185240096458011271, guid: 79176b8679ffcc641995068fea0412e9, type: 3}
+  - {fileID: 9000682357927912079, guid: 79ff37904de3d3e4282e1affe8da2fdc, type: 3}
+  - {fileID: 9125892492250063347, guid: 188c869da5df0a44ab1f6707e619d27d, type: 3}
   floatHeight: 0.125
   floatPeriod: 1.6
 --- !u!1 &2426469896798163620
@@ -292,7 +294,7 @@ Animator:
   m_GameObject: {fileID: 2633470691023765456}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 68d674937e4e5fd4e821c689073d60ee, type: 2}
+  m_Controller: {fileID: 9100000, guid: 51f705a77564f3446be57e88648c3780, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

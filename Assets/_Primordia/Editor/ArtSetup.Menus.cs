@@ -161,7 +161,7 @@ namespace Primordia.Editor
             // Del HUD y de las tarjetas (Primordia > Art > Importar objetos e interfaz).
             var slotFrame = ImportUISprite("HUD", "UI_Slot_Frame");
             var stripe = ImportUISprite("Panels", "UI_Card_Stripe", new Vector4(4, 0, 4, 0));
-            var lineageIcons = System.Array.ConvertAll(LineageNames, lineage => ImportUISprite("Icons", $"Icon_Lineage_{lineage}"));
+            var slotIcons = System.Array.ConvertAll(SlotNames, slot => ImportUISprite("Icons", $"Icon_Slot_{slot}"));
             var emptyIcons = new[] { "Mouth", "Limbs", "Skin", "Organ" }.ToDictionary(
                 slot => System.Enum.Parse<MutationSlot>(slot), slot => ImportUISprite("HUD", $"UI_Slot_{slot}_Empty"));
 
@@ -203,7 +203,7 @@ namespace Primordia.Editor
                 var dots = CenteredRect("Dots", zone);
 
                 var callouts = CalloutPositions.Select(c => Callout(zone, c.slot, c.position, slotFrame, highlighted, emptyIcons[c.slot])).ToArray();
-                var info = Tooltip(zone, tooltip, pointer, stripe, lineageIcons);
+                var info = Tooltip(zone, tooltip, pointer, stripe, slotIcons);
 
                 var panel = zone.gameObject.AddComponent<CreaturePanel>();
                 panel.Configure(portrait, callouts, info, lines, dots);
@@ -306,7 +306,7 @@ namespace Primordia.Editor
             return callout;
         }
 
-        static MutationTooltip Tooltip(RectTransform zone, Sprite background, Sprite pointerSprite, Sprite stripeSprite, Sprite[] lineageIcons)
+        static MutationTooltip Tooltip(RectTransform zone, Sprite background, Sprite pointerSprite, Sprite stripeSprite, Sprite[] slotIcons)
         {
             var box = CenteredRect("Tooltip", zone);
             box.sizeDelta = new Vector2(TooltipWidth, 0f);
@@ -329,7 +329,7 @@ namespace Primordia.Editor
                 title.font = bold;
 
             var row = UISetup.CreateRow("Info", box, box.childCount, TextAnchor.UpperLeft);
-            var lineageIcon = UISetup.CreateIcon("LineageIcon", row, 12f);
+            var slotIcon = UISetup.CreateIcon("SlotIcon", row, 12f);
             var details = Label(row, "Ranura · Linaje", UISetup.TextColor, TextAnchor.UpperLeft);
             details.horizontalOverflow = HorizontalWrapMode.Wrap;
             details.gameObject.AddComponent<LayoutElement>().flexibleWidth = 1f;
@@ -345,8 +345,8 @@ namespace Primordia.Editor
             pointer.sizeDelta = pointerSprite != null ? pointerSprite.rect.size : new Vector2(6f, 7f);
 
             var tooltip = box.gameObject.AddComponent<MutationTooltip>();
-            tooltip.Configure(stripe, title, lineageIcon, details, description, pointer);
-            tooltip.SetLineageIcons(lineageIcons);
+            tooltip.Configure(stripe, title, slotIcon, details, description, pointer);
+            tooltip.SetSlotIcons(slotIcons);
             box.gameObject.SetActive(false);
             return tooltip;
         }

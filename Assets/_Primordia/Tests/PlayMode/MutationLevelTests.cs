@@ -51,7 +51,7 @@ namespace Primordia.Tests
         T CreateMutation<T>(MutationSlot slot, string name = null) where T : MutationData
         {
             var mutation = Track(ScriptableObject.CreateInstance<T>());
-            mutation.ConfigureBase(name ?? typeof(T).Name, "Base.", slot, Lineage.Predator, Color.white);
+            mutation.ConfigureBase(name ?? typeof(T).Name, "Base.", slot, Color.white);
             mutation.SetLevelDescriptions("Mejora.", "Evolución.");
             return mutation;
         }

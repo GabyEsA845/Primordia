@@ -1,25 +1,26 @@
 using Primordia.Mutations;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Primordia.UI
 {
     /// <summary>
-    /// Cuadro de información de una ranura (pausa): franja del color del linaje, nombre, ranura y linaje con su
-    /// icono, y descripción. Se coloca al lado de su recuadro, hacia el centro del panel, con un piquito que
+    /// Cuadro de información de una ranura (pausa): franja del color de la ranura, nombre, ranura con su icono y
+    /// nivel, descripción y linajes (con cuántas de sus 4 mutaciones lleva el jugador). Se coloca al lado de su recuadro, hacia el centro del panel, con un piquito que
     /// lo señala. Con la ranura libre dice "Ranura libre".
     /// </summary>
     public class MutationTooltip : MonoBehaviour
     {
         [SerializeField] Image stripe;
         [SerializeField] Text title;
-        [SerializeField] Image lineageIcon;
+        [SerializeField, FormerlySerializedAs("lineageIcon")] Image slotIcon;
         [SerializeField] Text details;
         [SerializeField] Text description;
         [Tooltip("Piquito, dibujado apuntando a la izquierda.")]
         [SerializeField] RectTransform pointer;
-        [Tooltip("Iconos de linaje en el orden Depredador, Acorazado, Tóxico.")]
-        [SerializeField] Sprite[] lineageIcons = new Sprite[3];
+        [Tooltip("Iconos de ranura en el orden Boca, Extremidades, Piel, Órgano.")]
+        [SerializeField, FormerlySerializedAs("lineageIcons")] Sprite[] slotIcons = new Sprite[4];
         [Tooltip("Separación entre el recuadro y el cuadro.")]
         [SerializeField] float gap = 4f;
         [SerializeField] Color emptyStripeColor = new(0.45f, 0.52f, 0.5f);
@@ -31,17 +32,20 @@ namespace Primordia.UI
         public Text Details => details;
         public Text Description => description;
 
-        internal void Configure(Image newStripe, Text newTitle, Image newLineageIcon, Text newDetails, Text newDescription, RectTransform newPointer)
+        /// <summary>Jugador del que se cuenta el progreso de los linajes (lo pone <see cref="CreaturePanel"/>).</summary>
+        internal PlayerMutations Player { get; set; }
+
+        internal void Configure(Image newStripe, Text newTitle, Image newSlotIcon, Text newDetails, Text newDescription, RectTransform newPointer)
         {
             stripe = newStripe;
             title = newTitle;
-            lineageIcon = newLineageIcon;
+            slotIcon = newSlotIcon;
             details = newDetails;
             description = newDescription;
             pointer = newPointer;
         }
 
-        internal void SetLineageIcons(Sprite[] sprites) => lineageIcons = sprites;
+        internal void SetSlotIcons(Sprite[] sprites) => slotIcons = sprites;
 
         public void Show(SlotCallout callout)
         {
@@ -49,12 +53,10 @@ namespace Primordia.UI
             if (mutation != null)
             {
                 title.text = mutation.DisplayName;
-                details.text = $"{MutationText.SlotName(mutation.Slot)} · {MutationText.LineageName(mutation.Lineage)} · " +
-                               $"Nivel {MutationText.LevelName(Mathf.Max(1, callout.Level))}";
-                description.text = MutationText.FullDescription(mutation, callout.Level);
+                details.text = $"{MutationText.SlotName(mutation.Slot)} · Nivel {MutationText.LevelName(Mathf.Max(1, callout.Level))}";
+                description.text = MutationText.WithLine(MutationText.FullDescription(mutation, callout.Level),
+                    MutationText.LineageList(mutation, Player));
                 stripe.color = mutation.Color;
-                int lineage = (int)mutation.Lineage;
-                lineageIcon.sprite = lineageIcons != null && lineage < lineageIcons.Length ? lineageIcons[lineage] : null;
             }
             else
             {
@@ -62,11 +64,13 @@ namespace Primordia.UI
                 details.text = "Ranura libre";
                 description.text = "";
                 stripe.color = emptyStripeColor;
-                lineageIcon.sprite = null;
             }
 
-            lineageIcon.enabled = lineageIcon.sprite != null;
-            lineageIcon.gameObject.SetActive(lineageIcon.sprite != null);
+            // El icono de la ranura sale también con la ranura libre.
+            int slot = (int)callout.Slot;
+            slotIcon.sprite = slotIcons != null && slot < slotIcons.Length ? slotIcons[slot] : null;
+            slotIcon.enabled = slotIcon.sprite != null;
+            slotIcon.gameObject.SetActive(slotIcon.sprite != null);
             description.gameObject.SetActive(description.text.Length > 0);
 
             Place(callout.Rect);

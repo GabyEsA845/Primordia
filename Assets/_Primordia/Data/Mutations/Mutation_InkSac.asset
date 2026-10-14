@@ -15,13 +15,15 @@ MonoBehaviour:
   displayName: Vejiga de tinta
   description: 'Clic derecho: nube que ciega 3 s a los enemigos cercanos. Recarga: 8 s.'
   slot: 3
-  lineage: 0
+  lineages:
+  - {fileID: 11400000, guid: 5d6b8548b6b3bff4da6cd1b60a497506, type: 2}
+  - {fileID: 11400000, guid: 50f454cff0455dd40a10c8afa7e3f5b1, type: 2}
   look: {fileID: 9100000, guid: 74dac381f5407874b92b1cc1b5bdce0b, type: 2}
   bodyRadius: 0
   mouthDistance: 0
   icon: {fileID: 21300000, guid: 047dc5f67833af54b861ab2f3dce47aa, type: 3}
   largeIcon: {fileID: 21300000, guid: e7b5841a65b99194b9afa86dc6e5fbd5, type: 3}
-  color: {r: 0.95, g: 0.5, b: 0.35, a: 1}
+  color: {r: 0.55, g: 0.9, b: 0.35, a: 1}
   levelDescriptions:
   - "Nube m\xE1s grande (radio 4) y recarga de 6 s."
   - 'Tinta corrosiva: los enemigos dentro de la nube pierden 1 de vida por segundo.'

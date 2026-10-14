@@ -1,6 +1,6 @@
 namespace Primordia.Mutations
 {
-    /// <summary>Nombres en español de ranuras y linajes, para la interfaz.</summary>
+    /// <summary>Nombres en español de ranuras, niveles y linajes, para la interfaz.</summary>
     public static class MutationText
     {
         public static string SlotName(MutationSlot slot) => slot switch
@@ -37,12 +37,46 @@ namespace Primordia.Mutations
             return text;
         }
 
-        public static string LineageName(Lineage lineage) => lineage switch
+        public static string ClassName(LineageClass lineageClass) => lineageClass switch
         {
-            Lineage.Predator => "Depredador",
-            Lineage.Armored => "Acorazado",
-            Lineage.Toxic => "Tóxico",
-            _ => lineage.ToString()
+            LineageClass.Carnivore => "Carnívoro",
+            LineageClass.Herbivore => "Herbívoro",
+            LineageClass.Venomous => "Venenoso",
+            LineageClass.Fungal => "Hongo",
+            _ => lineageClass.ToString()
         };
+
+        /// <summary>
+        /// "Linajes: Tiburón, Calamar". Con jugador, cuántas de las 4 lleva: "Linajes: Tiburón 3/4, Calamar
+        /// (completo)". Vacío si la mutación no pertenece a ningún linaje.
+        /// </summary>
+        public static string LineageList(MutationData mutation, PlayerMutations player = null)
+        {
+            if (mutation == null || mutation.Lineages.Count == 0)
+                return "";
+
+            var names = new System.Collections.Generic.List<string>();
+            foreach (var lineage in mutation.Lineages)
+            {
+                if (lineage == null)
+                    continue;
+
+                if (player == null)
+                {
+                    names.Add(lineage.DisplayName);
+                    continue;
+                }
+
+                int progress = lineage.Progress(player);
+                names.Add(progress == LineageData.SlotCount
+                    ? $"{lineage.DisplayName} (completo)"
+                    : $"{lineage.DisplayName} {progress}/{LineageData.SlotCount}");
+            }
+            return names.Count > 0 ? "Linajes: " + string.Join(", ", names) : "";
+        }
+
+        /// <summary>Texto con una línea más al final (si no está vacía), separada por una línea en blanco.</summary>
+        public static string WithLine(string text, string line) =>
+            string.IsNullOrEmpty(line) ? text : string.IsNullOrEmpty(text) ? line : $"{text}\n\n{line}";
     }
 }

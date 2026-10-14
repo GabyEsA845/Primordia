@@ -15,13 +15,16 @@ MonoBehaviour:
   displayName: Aletas
   description: "+30 % de velocidad y esquiva un 50 % m\xE1s larga."
   slot: 1
-  lineage: 0
+  lineages:
+  - {fileID: 11400000, guid: d83f9416ce120104c8925c8d121e0df9, type: 2}
+  - {fileID: 11400000, guid: 5d6b8548b6b3bff4da6cd1b60a497506, type: 2}
+  - {fileID: 11400000, guid: 25f4f794ff2f8e3428bd6c3ddcd58858, type: 2}
   look: {fileID: 9100000, guid: c2131abac37bea34d87b993b0dc8085d, type: 2}
   bodyRadius: 0
   mouthDistance: 0
   icon: {fileID: 21300000, guid: 626d99b2c5ecf8342a67a738a928bf8d, type: 3}
   largeIcon: {fileID: 21300000, guid: b1375a22d7e85974e89d0e36c7ab1097, type: 3}
-  color: {r: 0.95, g: 0.5, b: 0.35, a: 1}
+  color: {r: 0.66, g: 0.35, b: 0.82, a: 1}
   levelDescriptions:
   - "+45 % de velocidad y esquivas m\xE1s seguidas (\u221225 % de espera)."
   - "Emboscada: tras esquivar, haces un 50 % m\xE1s de da\xF1o durante 1,5 s."

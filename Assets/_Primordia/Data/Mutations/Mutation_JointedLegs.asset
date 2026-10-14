@@ -15,13 +15,15 @@ MonoBehaviour:
   displayName: Patas articuladas
   description: "Al esquivar contra un enemigo, lo empujas, lo aturdes y le haces 1 de da\xF1o."
   slot: 1
-  lineage: 1
+  lineages:
+  - {fileID: 11400000, guid: ddd265ad1c955ba428d4823f0d88badb, type: 2}
+  - {fileID: 11400000, guid: 0ba4444a737dbc64c81151817ed2f2f1, type: 2}
   look: {fileID: 9100000, guid: 0eaac03a83adc274ca62bda6b23896cf, type: 2}
   bodyRadius: 0
   mouthDistance: 0
   icon: {fileID: 21300000, guid: 9d847d4f4af4eae47a600fb8cd0b1f5a, type: 3}
   largeIcon: {fileID: 21300000, guid: a4d4f3f414d799640b982b1e64ce210a, type: 3}
-  color: {r: 0.55, g: 0.7, b: 0.9, a: 1}
+  color: {r: 0.66, g: 0.35, b: 0.82, a: 1}
   levelDescriptions:
   - "El empuj\xF3n aturde 1 s y hace 2 de da\xF1o."
   - "Pisot\xF3n: al terminar cada esquiva, aturdes a todos los enemigos cercanos."

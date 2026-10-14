@@ -46,13 +46,17 @@ Cada módulo vive en su propia carpeta de `Assets/_Primordia/Scripts/` (`Core`, 
 - [x] `feature/random-rooms`: mapa distinto en cada partida (camino con giros, salas laterales, enemigos por presupuesto) y salas con formas
 - [ ] `feature/art`: arte del piso 1 (ver [MULTIMEDIA.md](MULTIMEDIA.md))
 - [ ] `feature/audio`: música y efectos
-- [ ] `feature/lineages`: bonus de sinergia de linajes (resolver antes el problema de Tóxico)
+- [x] `feature/lineages`: linajes nuevos (animales de 4 mutaciones, una por ranura, con su clase), linaje activo en el HUD, linajes de cada mutación en tarjetas, pausa y tienda, y burbujas por ranura. Los beneficios de cada clase, más adelante
+- [ ] `feature/floor1-mutations`: Hifas, Camuflaje y Vacuola digestiva (con sus 3 niveles, iconos y piezas), que completan los linajes del piso 1
+- [ ] `feature/floor-transition`: paso al piso siguiente y metamorfosis del jugador según su familia de arma (cuerpo a cuerpo, proyectil, área)
+- [ ] `feature/floor-2`: Océano cámbrico (escenario, enemigos, Anomalocaris, 4 mutaciones y 3 cuerpos del jugador)
+- [ ] `feature/floor-3`: Pantano carbonífero (lo mismo, con el artrópodo gigante); si se retrasa mucho, la v1.0 sale con 2 pisos
 - [ ] `feature/balance`: equilibrio de vida, daño y ritmo
 - [ ] Página de itch.io pública → etiqueta **`v1.0`**
 
 ### Fase 3: después de la v1.0
 
-Ideas del GDD para seguir creciendo: pisos 2 y 3, tercer enemigo y salas especiales, tienda con biomasa (hecha en `feature/shop`) y salas secretas, soporte de mando y opciones de audio, desbloqueos permanentes entre partidas.
+Pisos 4 a 6 (desierto pérmico, selva de dinosaurios y Edad de hielo), uno por actualización. Otras ideas del GDD: tercer enemigo y salas especiales en el piso 1, salas secretas, soporte de mando y opciones de audio, desbloqueos permanentes entre partidas.
 
 ## Mejoras a futuro
 

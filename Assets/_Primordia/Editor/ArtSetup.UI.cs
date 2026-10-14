@@ -19,24 +19,29 @@ namespace Primordia.Editor
         const string ItemsArtFolder = "Assets/_Primordia/Art/Items";
         const string MutationPickupPath = MutationPrefabsFolder + "/MutationPickup.prefab";
 
-        // En el orden del enum Lineage.
-        static readonly string[] LineageNames = { "Predator", "Armored", "Toxic" };
+        // En el orden del enum MutationSlot: burbujas, efectos e iconos van por ranura.
+        static readonly string[] SlotNames = { "Mouth", "Limbs", "Skin", "Organ" };
 
         static readonly string[] MutationNames =
             { "Mandibles", "Stinger", "Spores", "Fins", "JointedLegs", "Carapace", "StingingSkin", "InkSac", "ShockGland" };
 
-        // Burbujas de mutación (Item_Mutation_Predator_Idle.png → Predator_Idle): 120 ms por cuadro en reposo, 60 al reventar.
+        // Burbujas de mutación (Item_Mutation_Mouth_Idle.png → Mouth_Idle): 120 ms por cuadro en reposo, 60 al reventar.
+        // Las de los linajes antiguos (Predator, Armored, Toxic) ya no se importan.
         static readonly Character MutationItemsArt = new()
         {
             Name = "Item_Mutation",
             SourceFolder = UISourceFolder + "/Items",
             ArtFolder = ItemsArtFolder,
             ControllerPerClip = true,
-            SkipClips = new System.Collections.Generic.HashSet<string> { "Shadow" },
+            SkipClips = new System.Collections.Generic.HashSet<string>
+            {
+                "Shadow", "Predator_Idle", "Armored_Idle", "Toxic_Idle", "Predator_Collect", "Armored_Collect", "Toxic_Collect",
+            },
             Timings = new[]
             {
-                ("Predator_Idle", 1f / 0.12f, true), ("Armored_Idle", 1f / 0.12f, true), ("Toxic_Idle", 1f / 0.12f, true),
-                ("Predator_Collect", 1f / 0.06f, false), ("Armored_Collect", 1f / 0.06f, false), ("Toxic_Collect", 1f / 0.06f, false),
+                ("Mouth_Idle", 1f / 0.12f, true), ("Limbs_Idle", 1f / 0.12f, true), ("Skin_Idle", 1f / 0.12f, true), ("Organ_Idle", 1f / 0.12f, true),
+                ("Mouth_Collect", 1f / 0.06f, false), ("Limbs_Collect", 1f / 0.06f, false), ("Skin_Collect", 1f / 0.06f, false),
+                ("Organ_Collect", 1f / 0.06f, false),
             },
         };
 
@@ -100,7 +105,7 @@ namespace Primordia.Editor
                 ImportUISprite("Panels", "UI_Card_Pressed", 12), ImportUISprite("Panels", "UI_Card_Disabled", 12),
             };
             var stripe = ImportUISprite("Panels", "UI_Card_Stripe", new Vector4(4, 0, 4, 0));
-            var lineageIcons = System.Array.ConvertAll(LineageNames, lineage => ImportUISprite("Icons", $"Icon_Lineage_{lineage}"));
+            var slotIcons = System.Array.ConvertAll(SlotNames, slot => ImportUISprite("Icons", $"Icon_Slot_{slot}"));
             var hearts = new[]
             {
                 ImportUISprite("HUD", "UI_Heart_Full"), ImportUISprite("HUD", "UI_Heart_Half"), ImportUISprite("HUD", "UI_Heart_Empty"),
@@ -131,7 +136,7 @@ namespace Primordia.Editor
 
                 foreach (var mutationCard in root.GetComponentsInChildren<MutationCard>(true))
                 {
-                    mutationCard.SetLineageIcons(lineageIcons);
+                    mutationCard.SetSlotIcons(slotIcons);
                     var strip = mutationCard.transform.Find("ColorStrip");
                     if (strip != null && stripe != null)
                     {
@@ -215,13 +220,13 @@ namespace Primordia.Editor
             var shadow = ImportSprite($"{UISourceFolder}/Items/Item_Mutation_Shadow.png", $"{ItemsArtFolder}/Item_Mutation_Shadow.png", Vector4.zero);
 
             Directory.CreateDirectory(EffectPrefabsFolder);
-            var bubbles = new RuntimeAnimatorController[LineageNames.Length];
-            var bursts = new GameObject[LineageNames.Length];
-            for (int i = 0; i < LineageNames.Length; i++)
+            var bubbles = new RuntimeAnimatorController[SlotNames.Length];
+            var bursts = new GameObject[SlotNames.Length];
+            for (int i = 0; i < SlotNames.Length; i++)
             {
-                art.Controllers.TryGetValue($"{LineageNames[i]}_Idle", out var idle);
+                art.Controllers.TryGetValue($"{SlotNames[i]}_Idle", out var idle);
                 bubbles[i] = idle;
-                bursts[i] = CreateEffectPrefab($"Effect_MutationBurst_{LineageNames[i]}", art, $"{LineageNames[i]}_Collect", sortingOrder: 12);
+                bursts[i] = CreateEffectPrefab($"Effect_MutationBurst_{SlotNames[i]}", art, $"{SlotNames[i]}_Collect", sortingOrder: 12);
             }
 
             return EditPrefab(MutationPickupPath, root =>
@@ -242,7 +247,7 @@ namespace Primordia.Editor
                 floating.SetParent(root.transform, false);
 
                 var bubble = PickupPart(floating, "Bubble", Vector3.zero, sortingOrder: 6);
-                bubble.sprite = art.FirstSprites.TryGetValue($"{LineageNames[0]}_Idle", out var first) ? first : null;
+                bubble.sprite = art.FirstSprites.TryGetValue($"{SlotNames[0]}_Idle", out var first) ? first : null;
                 var animator = GetOrAdd<Animator>(bubble.gameObject);
                 animator.runtimeAnimatorController = bubbles[0];
 

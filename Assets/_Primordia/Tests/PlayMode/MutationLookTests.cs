@@ -73,7 +73,7 @@ namespace Primordia.Tests
         MutationData Mutation(MutationSlot slot, float mouthDistance = 0f)
         {
             var mutation = Track(ScriptableObject.CreateInstance<StatMutation>());
-            mutation.ConfigureBase(slot.ToString(), "", slot, Lineage.Predator, Color.white);
+            mutation.ConfigureBase(slot.ToString(), "", slot, Color.white);
             mutation.SetLook(CreateController(), newMouthDistance: mouthDistance);
             return mutation;
         }

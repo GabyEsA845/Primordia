@@ -47,10 +47,10 @@ namespace Primordia.Tests
             return obj;
         }
 
-        MutationData Mutation(string name, MutationSlot slot, Lineage lineage = Lineage.Predator)
+        MutationData Mutation(string name, MutationSlot slot)
         {
             var mutation = Track(ScriptableObject.CreateInstance<StatMutation>());
-            mutation.ConfigureBase(name, "", slot, lineage, Color.white);
+            mutation.ConfigureBase(name, "", slot, Color.white);
             return mutation;
         }
 
@@ -108,11 +108,11 @@ namespace Primordia.Tests
         }
 
         [Test]
-        public void Card_ShowsTheMutationAndLineageIcons()
+        public void Card_ShowsTheMutationAndSlotIcons()
         {
             var icon = Sprite.Create(Track(new Texture2D(32, 32)), new Rect(0, 0, 32, 32), Vector2.one / 2f);
-            var toxic = Sprite.Create(Track(new Texture2D(12, 12)), new Rect(0, 0, 12, 12), Vector2.one / 2f);
-            var mutation = Mutation("Esporas", MutationSlot.Mouth, Lineage.Toxic);
+            var limbs = Sprite.Create(Track(new Texture2D(12, 12)), new Rect(0, 0, 12, 12), Vector2.one / 2f);
+            var mutation = Mutation("Aletas", MutationSlot.Limbs);
             mutation.SetIcons(null, icon);
 
             var cardObject = Track(new GameObject("Card", typeof(Button)));
@@ -120,15 +120,15 @@ namespace Primordia.Tests
             Text NewText() => Track(new GameObject("Text")).AddComponent<Text>();
             card.Configure(null, NewText(), NewText(), NewText(), NewText());
             var iconImage = Track(new GameObject("Icon")).AddComponent<Image>();
-            var lineageImage = Track(new GameObject("Lineage")).AddComponent<Image>();
-            card.ConfigureIcons(iconImage, lineageImage);
-            card.SetLineageIcons(new[] { null, null, toxic });
+            var slotImage = Track(new GameObject("Slot")).AddComponent<Image>();
+            card.ConfigureIcons(iconImage, slotImage);
+            card.SetSlotIcons(new[] { null, limbs, null, null });
 
             card.Show(mutation, null);
 
             Assert.AreEqual(icon, iconImage.sprite);
-            Assert.AreEqual(toxic, lineageImage.sprite);
-            Assert.IsTrue(iconImage.enabled && lineageImage.enabled);
+            Assert.AreEqual(limbs, slotImage.sprite);
+            Assert.IsTrue(iconImage.enabled && slotImage.enabled);
         }
     }
 }

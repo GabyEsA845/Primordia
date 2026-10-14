@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec9caba99e4f72f41b76a80ba442218f, type: 3}
+  m_Name: Lineage_Squid
+  m_EditorClassIdentifier: Primordia::Primordia.Mutations.LineageData
+  displayName: Calamar
+  lineageClass: 0
+  mutations:
+  - {fileID: 11400000, guid: 55009d3faf6768c40b83d8d57105fa60, type: 2}
+  - {fileID: 11400000, guid: a196023d09de3bf40a721f52afa26bad, type: 2}
+  - {fileID: 0}
+  - {fileID: 11400000, guid: d181c5b397f860443ae8d6d1a05538c9, type: 2}
+  benefit: 

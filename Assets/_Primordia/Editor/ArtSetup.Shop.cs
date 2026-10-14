@@ -141,8 +141,8 @@ namespace Primordia.Editor
         static ShopRoom CreateShopPrefab(ImportedArt art, ImportedArt items, ImportedArt marks, AnimatorController darwinController,
             Sprite[] keyFrames, GameObject purchase)
         {
-            var bubbles = LineageNames
-                .Select(lineage => AssetDatabase.LoadAssetAtPath<RuntimeAnimatorController>($"{ItemsArtFolder}/Animations/{lineage}_Idle.controller"))
+            var bubbles = SlotNames
+                .Select(slot => AssetDatabase.LoadAssetAtPath<RuntimeAnimatorController>($"{ItemsArtFolder}/Animations/{slot}_Idle.controller"))
                 .ToArray();
             if (bubbles.Any(bubble => bubble == null))
                 Debug.LogWarning("ArtSetup: faltan las burbujas de mutación; ejecuta antes Primordia > Art > Importar objetos e interfaz.");

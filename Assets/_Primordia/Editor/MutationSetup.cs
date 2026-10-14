@@ -30,8 +30,7 @@ namespace Primordia.Editor
         const string PixelSpritePath = "Assets/_Primordia/Art/Placeholder/Pixel.png";
         const string TestScenePath = "Assets/_Primordia/Scenes/Test_Mutations.unity";
 
-        static readonly Color PredatorColor = new(0.95f, 0.5f, 0.35f);
-        static readonly Color ArmoredColor = new(0.55f, 0.7f, 0.9f);
+        // Color de los proyectiles provisionales del Aguijón (el de las mutaciones va por ranura: LineageSetup.SlotColors).
         static readonly Color ToxicColor = new(0.55f, 0.9f, 0.35f);
 
         [MenuItem("Primordia/Mutations/Crear mutaciones y escena de prueba")]
@@ -97,42 +96,42 @@ namespace Primordia.Editor
             {
                 CreateMutation<AttackMutation>("Mutation_Mandibles", "Mandíbulas",
                     "Mordisco corto y potente (3 de daño). Cada 3 enemigos que mates, curas medio corazón.",
-                    MutationSlot.Mouth, Lineage.Predator,
+                    MutationSlot.Mouth,
                     m => m.Configure(mandiblesAttack, newHealEveryKills: 3)),
 
                 CreateMutation<AttackMutation>("Mutation_Stinger", "Aguijón",
                     "Disparo automático y rápido que envenena: 1 de daño por segundo durante 3 s.",
-                    MutationSlot.Mouth, Lineage.Toxic,
+                    MutationSlot.Mouth,
                     m => m.Configure(stingerAttack, newHealEveryKills: 0)),
 
                 CreateMutation<AttackMutation>("Mutation_Spores", "Esporas",
                     "Tres esporas lentas en abanico.",
-                    MutationSlot.Mouth, Lineage.Toxic,
+                    MutationSlot.Mouth,
                     m => m.Configure(sporesAttack, newHealEveryKills: 0)),
 
                 CreateMutation<StatMutation>("Mutation_Fins", "Aletas",
                     "+30 % de velocidad y esquiva un 50 % más larga.",
-                    MutationSlot.Limbs, Lineage.Predator,
+                    MutationSlot.Limbs,
                     m => m.Configure(speedMultiplier: 1.3f, dodgeMultiplier: 1.5f, healthBonus: 0)),
 
                 CreateMutation<DodgePushMutation>("Mutation_JointedLegs", "Patas articuladas",
                     "Al esquivar contra un enemigo, lo empujas, lo aturdes y le haces 1 de daño.",
-                    MutationSlot.Limbs, Lineage.Armored,
+                    MutationSlot.Limbs,
                     m => m.Configure(newPushSpeed: 12f, newStunDuration: 0.5f, newDamage: 1)),
 
                 CreateMutation<StatMutation>("Mutation_Carapace", "Caparazón",
                     "+1 corazón de vida máxima, pero −10 % de velocidad.",
-                    MutationSlot.Skin, Lineage.Armored,
+                    MutationSlot.Skin,
                     m => m.Configure(speedMultiplier: 0.9f, dodgeMultiplier: 1f, healthBonus: 2)),
 
                 CreateMutation<ThornsMutation>("Mutation_StingingSkin", "Piel urticante",
                     "Los enemigos que te tocan reciben 2 de daño.",
-                    MutationSlot.Skin, Lineage.Toxic,
+                    MutationSlot.Skin,
                     m => m.Configure(newDamage: 2, newInterval: 0.5f)),
 
                 CreateMutation<InkCloudMutation>("Mutation_InkSac", "Vejiga de tinta",
                     "Clic derecho: nube que ciega 3 s a los enemigos cercanos. Recarga: 8 s.",
-                    MutationSlot.Organ, Lineage.Predator,
+                    MutationSlot.Organ,
                     m =>
                     {
                         m.ConfigureAbility(newCooldown: 8f, inkEffect);
@@ -141,7 +140,7 @@ namespace Primordia.Editor
 
                 CreateMutation<ShockwaveMutation>("Mutation_ShockGland", "Glándula de choque",
                     "Clic derecho: onda que destruye los proyectiles enemigos y empuja a los enemigos. Recarga: 6 s.",
-                    MutationSlot.Organ, Lineage.Armored,
+                    MutationSlot.Organ,
                     m =>
                     {
                         m.ConfigureAbility(newCooldown: 6f, shockEffect);
@@ -161,15 +160,8 @@ namespace Primordia.Editor
             AssetDatabase.SaveAssets();
         }
 
-        static Color LineageColor(Lineage lineage) => lineage switch
-        {
-            Lineage.Predator => PredatorColor,
-            Lineage.Armored => ArmoredColor,
-            _ => ToxicColor
-        };
-
         static T CreateMutation<T>(string assetName, string displayName, string description, MutationSlot slot,
-            Lineage lineage, Action<T> configure) where T : MutationData
+            Action<T> configure) where T : MutationData
         {
             string path = $"{DataFolder}/{assetName}.asset";
             var existing = AssetDatabase.LoadAssetAtPath<T>(path);
@@ -177,7 +169,7 @@ namespace Primordia.Editor
                 return existing;
 
             var mutation = ScriptableObject.CreateInstance<T>();
-            mutation.ConfigureBase(displayName, description, slot, lineage, LineageColor(lineage));
+            mutation.ConfigureBase(displayName, description, slot, LineageSetup.SlotColors[(int)slot]);
             configure(mutation);
             AssetDatabase.CreateAsset(mutation, path);
             return mutation;

@@ -86,6 +86,8 @@ namespace Primordia.UI
         {
             dirty = false;
             player = newPlayer;
+            if (tooltip != null)
+                tooltip.Player = player;
 
             foreach (var callout in callouts)
             {

@@ -116,6 +116,7 @@ namespace Primordia.Editor
             EnsureMutationIcons();
             EnsureHudSlotsAndCrosshair();
             EnsureBiomassCounter();
+            EnsureLineageLabel();
             CreateMainMenuUIPrefab();
             AssetDatabase.SaveAssets();
         }
@@ -548,6 +549,46 @@ namespace Primordia.Editor
             }
         }
 
+        // ---------- Linaje activo ----------
+
+        /// <summary>Añade al prefab GameUI el rótulo del linaje activo, bajo el contador de biomasa, si todavía no lo tiene.</summary>
+        internal static void EnsureLineageLabel()
+        {
+            var root = PrefabUtility.LoadPrefabContents(GameUIPath);
+            try
+            {
+                if (root.GetComponentInChildren<LineageLabel>(true) != null)
+                    return;
+
+                // Bajo la biomasa (8, -50, 12 de alto), con 2 px de aire. El pivote a la izquierda para que el
+                // saltito crezca hacia la derecha.
+                var label = CreateText(root.transform, "", 8, TextColor);
+                label.name = "Lineage";
+                label.alignment = TextAnchor.MiddleLeft;
+                label.raycastTarget = false;
+                label.enabled = false;
+                var rect = label.rectTransform;
+                rect.anchorMin = rect.anchorMax = new Vector2(0f, 1f);
+                rect.pivot = new Vector2(0f, 0.5f);
+                rect.anchoredPosition = new Vector2(8f, -70f);
+                rect.sizeDelta = new Vector2(160f, 12f);
+                var shadow = label.gameObject.AddComponent<Shadow>();
+                shadow.effectColor = new Color32(0x18, 0x14, 0x25, 0xff);
+                shadow.effectDistance = new Vector2(1f, -1f);
+
+                var biomass = root.GetComponentInChildren<BiomassCounter>(true);
+                if (biomass != null)
+                    rect.SetSiblingIndex(biomass.transform.GetSiblingIndex() + 1);
+
+                label.gameObject.AddComponent<LineageLabel>().Configure(null, label);
+                PrefabUtility.SaveAsPrefabAsset(root, GameUIPath);
+            }
+            finally
+            {
+                PrefabUtility.UnloadPrefabContents(root);
+            }
+        }
+
         // ---------- Semilla en la pausa ----------
 
         /// <summary>Añade al panel de pausa la semilla del piso, abajo a la izquierda, si todavía no la tiene.</summary>
@@ -602,7 +643,7 @@ namespace Primordia.Editor
             strip.gameObject.AddComponent<LayoutElement>().preferredHeight = 4f;
 
             var title = CreateText(card, "Mutación", 14, TitleColor);
-            var details = CreateText(card, "Ranura · Linaje", 9, TextColor);
+            var details = CreateText(card, "Ranura", 9, TextColor);
             var description = CreateText(card, "Descripción", 9, TextColor);
             description.horizontalOverflow = HorizontalWrapMode.Wrap;
             description.alignment = TextAnchor.UpperCenter;
@@ -637,7 +678,7 @@ namespace Primordia.Editor
         }
 
         /// <summary>
-        /// Icono de 32×32 bajo la franja de color, y el icono de linaje a la izquierda de "Ranura · Linaje".
+        /// Icono de 32×32 bajo la franja de color, y el icono de la ranura a la izquierda de su nombre.
         /// Devuelve false si la tarjeta ya los tenía.
         /// </summary>
         static bool AddCardIcons(MutationCard card)
@@ -651,10 +692,10 @@ namespace Primordia.Editor
 
             var details = card.Details;
             var row = CreateRow("Info", card.transform, details.transform.GetSiblingIndex(), TextAnchor.MiddleCenter);
-            var lineageIcon = CreateIcon("LineageIcon", row, 12f);
+            var slotIcon = CreateIcon("SlotIcon", row, 12f);
             details.transform.SetParent(row, false);
 
-            card.ConfigureIcons(icon, lineageIcon);
+            card.ConfigureIcons(icon, slotIcon);
             return true;
         }
 

@@ -285,6 +285,7 @@ GameObject:
   - component: {fileID: 5304406059359759695}
   - component: {fileID: 3020279068946391564}
   - component: {fileID: 1610869096247293023}
+  - component: {fileID: 2748691514855883358}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -561,6 +562,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc6e921084329ed4baf43366e92dddf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Primordia::Primordia.Player.PlayerInteractor
+--- !u!114 &2748691514855883358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2873998751450272095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e20fda34977652479d4d570de47dba8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Primordia::Primordia.Mutations.PlayerLineage
+  activateEffect: {fileID: 1746545796632829951, guid: a752499fb58553a459bb822187f34fd4, type: 3}
 --- !u!1 &4190937158644940233
 GameObject:
   m_ObjectHideFlags: 0

@@ -61,10 +61,10 @@ namespace Primordia.Tests
             return obj;
         }
 
-        T CreateMutation<T>(MutationSlot slot, Lineage lineage = Lineage.Predator) where T : MutationData
+        T CreateMutation<T>(MutationSlot slot) where T : MutationData
         {
             var mutation = Track(ScriptableObject.CreateInstance<T>());
-            mutation.ConfigureBase(typeof(T).Name, "", slot, lineage, Color.white);
+            mutation.ConfigureBase(typeof(T).Name, "", slot, Color.white);
             return mutation;
         }
 

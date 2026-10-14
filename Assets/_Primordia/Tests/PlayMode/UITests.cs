@@ -168,7 +168,7 @@ namespace Primordia.Tests
             Assert.AreSame(empty[1], display.IconOf(MutationSlot.Limbs).sprite);
 
             var fins = Track(ScriptableObject.CreateInstance<StatMutation>());
-            fins.ConfigureBase("Aletas", "", MutationSlot.Limbs, Lineage.Predator, Color.white);
+            fins.ConfigureBase("Aletas", "", MutationSlot.Limbs, Color.white);
             var icon = CreateSprite();
             fins.SetIcons(icon, null);
             mutations.Equip(fins);
@@ -195,7 +195,7 @@ namespace Primordia.Tests
             yield return null; // Start
 
             var ink = Track(ScriptableObject.CreateInstance<InkCloudMutation>());
-            ink.ConfigureBase("Tinta", "", MutationSlot.Organ, Lineage.Toxic, Color.white);
+            ink.ConfigureBase("Tinta", "", MutationSlot.Organ, Color.white);
             ink.ConfigureAbility(newCooldown: 1f, newEffect: null);
             ink.SetIcons(CreateSprite(), null);
             mutations.Equip(ink);
@@ -291,7 +291,7 @@ namespace Primordia.Tests
             stats.Configure(values, arrows, up, CreateSprite());
 
             var fins = Track(ScriptableObject.CreateInstance<StatMutation>());
-            fins.ConfigureBase("Aletas", "", MutationSlot.Limbs, Lineage.Predator, Color.white);
+            fins.ConfigureBase("Aletas", "", MutationSlot.Limbs, Color.white);
             fins.Configure(speedMultiplier: 1.5f, dodgeMultiplier: 1f, healthBonus: 0);
             mutations.Equip(fins);
             mutations.Health.TakeDamage(1);
@@ -312,7 +312,7 @@ namespace Primordia.Tests
             yield return null;
 
             var fins = Track(ScriptableObject.CreateInstance<StatMutation>());
-            fins.ConfigureBase("Aletas", "Más velocidad.", MutationSlot.Limbs, Lineage.Predator, Color.red);
+            fins.ConfigureBase("Aletas", "Más velocidad.", MutationSlot.Limbs, Color.red);
             fins.SetIcons(CreateSprite(), null);
             mutations.Equip(fins);
 
@@ -344,7 +344,7 @@ namespace Primordia.Tests
             Text TooltipText(string name) => UIChild(name, tooltipRect).gameObject.AddComponent<Text>();
             var tooltip = tooltipRect.gameObject.AddComponent<MutationTooltip>();
             tooltip.Configure(UIChild("Stripe", tooltipRect).gameObject.AddComponent<Image>(), TooltipText("Title"),
-                UIChild("Lineage", tooltipRect).gameObject.AddComponent<Image>(), TooltipText("Details"), TooltipText("Description"),
+                UIChild("SlotIcon", tooltipRect).gameObject.AddComponent<Image>(), TooltipText("Details"), TooltipText("Description"),
                 UIChild("Pointer", tooltipRect));
 
             var panel = root.AddComponent<CreaturePanel>();
@@ -362,7 +362,7 @@ namespace Primordia.Tests
             Assert.IsTrue(tooltip.IsShown);
             Assert.IsTrue(panel.CalloutOf(MutationSlot.Limbs).IsHighlighted);
             Assert.AreEqual("Aletas", tooltip.Title.text);
-            Assert.AreEqual("Extremidades · Depredador · Nivel I", tooltip.Details.text);
+            Assert.AreEqual("Extremidades · Nivel I", tooltip.Details.text);
             Assert.AreEqual("Más velocidad.", tooltip.Description.text);
 
             panel.Hover(panel.CalloutOf(MutationSlot.Mouth));

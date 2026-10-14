@@ -1,11 +1,12 @@
 using System;
 using Primordia.Core;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Primordia.Mutations
 {
     /// <summary>
-    /// Mutación en el suelo: una burbuja del color de su linaje con el icono dentro. Al tocarla, el jugador
+    /// Mutación en el suelo: una burbuja del color de su ranura con el icono dentro. Al tocarla, el jugador
     /// la equipa y la burbuja revienta. Burbuja e icono flotan juntos (la sombra se queda en el suelo).
     /// Sin arte de burbuja (escenas de prueba antiguas), tiñe su sprite con el color de la mutación.
     /// </summary>
@@ -19,10 +20,10 @@ namespace Primordia.Mutations
         [SerializeField] Transform floating;
         [SerializeField] Animator bubble;
         [SerializeField] SpriteRenderer icon;
-        [Tooltip("Animación de la burbuja por linaje, en el orden Depredador, Acorazado, Tóxico.")]
-        [SerializeField] RuntimeAnimatorController[] lineageBubbles = new RuntimeAnimatorController[3];
-        [Tooltip("Efecto al reventar por linaje, en el mismo orden.")]
-        [SerializeField] GameObject[] lineageBursts = new GameObject[3];
+        [Tooltip("Animación de la burbuja por ranura, en el orden Boca, Extremidades, Piel, Órgano.")]
+        [SerializeField, FormerlySerializedAs("lineageBubbles")] RuntimeAnimatorController[] slotBubbles = new RuntimeAnimatorController[4];
+        [Tooltip("Efecto al reventar por ranura, en el mismo orden.")]
+        [SerializeField, FormerlySerializedAs("lineageBursts")] GameObject[] slotBursts = new GameObject[4];
         [Tooltip("Altura del vaivén, en unidades (1 px = 0,0625).")]
         [SerializeField, Min(0f)] float floatHeight = 0.125f;
         [Tooltip("Segundos que tarda en subir y bajar.")]
@@ -96,7 +97,7 @@ namespace Primordia.Mutations
 
             burst = true;
             if (mutation != null)
-                OneShotEffect.Spawn(LineageItem(lineageBursts), floating != null ? floating.position : transform.position);
+                OneShotEffect.Spawn(SlotItem(slotBursts), floating != null ? floating.position : transform.position);
             Destroy(gameObject);
         }
 
@@ -112,8 +113,8 @@ namespace Primordia.Mutations
             floating = newFloating;
             bubble = newBubble;
             icon = newIcon;
-            lineageBubbles = newBubbles;
-            lineageBursts = newBursts;
+            slotBubbles = newBubbles;
+            slotBursts = newBursts;
         }
 
         void ApplyLook()
@@ -121,7 +122,7 @@ namespace Primordia.Mutations
             if (mutation == null)
                 return;
 
-            var controller = LineageItem(lineageBubbles);
+            var controller = SlotItem(slotBubbles);
             if (bubble != null && controller != null)
             {
                 bubble.runtimeAnimatorController = controller;
@@ -137,9 +138,9 @@ namespace Primordia.Mutations
             }
         }
 
-        T LineageItem<T>(T[] items) where T : class
+        T SlotItem<T>(T[] items) where T : class
         {
-            int index = (int)mutation.Lineage;
+            int index = (int)mutation.Slot;
             return items != null && index < items.Length ? items[index] : null;
         }
     }

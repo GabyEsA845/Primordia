@@ -8,6 +8,7 @@ using Primordia.Mutations;
 using Primordia.Rooms;
 using Primordia.UI;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Primordia.Shop
 {
@@ -36,8 +37,8 @@ namespace Primordia.Shop
         [SerializeField, Min(0)] int heartContainerPrice = 25;
 
         [Header("Aspecto")]
-        [Tooltip("Burbuja por linaje, en el orden Depredador, Acorazado, Tóxico.")]
-        [SerializeField] RuntimeAnimatorController[] lineageBubbles = new RuntimeAnimatorController[3];
+        [Tooltip("Burbuja por ranura, en el orden Boca, Extremidades, Piel, Órgano.")]
+        [SerializeField, FormerlySerializedAs("lineageBubbles")] RuntimeAnimatorController[] slotBubbles = new RuntimeAnimatorController[4];
         [SerializeField] RuntimeAnimatorController upgradeLook;
         [SerializeField] RuntimeAnimatorController healLook;
         [SerializeField] RuntimeAnimatorController heartContainerLook;
@@ -127,7 +128,7 @@ namespace Primordia.Shop
             RuntimeAnimatorController newHeal, RuntimeAnimatorController newHeartContainer, GameObject newPurchaseEffect,
             RuntimeAnimatorController newSold = null, RuntimeAnimatorController newClosed = null)
         {
-            lineageBubbles = newBubbles;
+            slotBubbles = newBubbles;
             upgradeLook = newUpgrade;
             healLook = newHeal;
             heartContainerLook = newHeartContainer;
@@ -206,8 +207,8 @@ namespace Primordia.Shop
 
         RuntimeAnimatorController LookOf(ShopItemKind kind, MutationData mutation) => kind switch
         {
-            ShopItemKind.Mutation => mutation != null && lineageBubbles != null && (int)mutation.Lineage < lineageBubbles.Length
-                ? lineageBubbles[(int)mutation.Lineage]
+            ShopItemKind.Mutation => mutation != null && slotBubbles != null && (int)mutation.Slot < slotBubbles.Length
+                ? slotBubbles[(int)mutation.Slot]
                 : null,
             ShopItemKind.Upgrade => upgradeLook,
             ShopItemKind.Heal => healLook,
@@ -411,8 +412,8 @@ namespace Primordia.Shop
                     var current = player != null ? player.Get(mutation.Slot) : null;
                     if (current != null)
                         note = $"Reemplaza: {current.DisplayName} (nivel {MutationText.LevelName(player.LevelOf(current.Slot))})";
-                    return (mutation.DisplayName, $"{MutationText.SlotName(mutation.Slot)} · {MutationText.LineageName(mutation.Lineage)}",
-                        mutation.Description, note, mutation.Color);
+                    return (mutation.DisplayName, MutationText.SlotName(mutation.Slot),
+                        MutationText.WithLine(mutation.Description, MutationText.LineageList(mutation, player)), note, mutation.Color);
                 }
                 case ShopItemKind.Upgrade:
                 {

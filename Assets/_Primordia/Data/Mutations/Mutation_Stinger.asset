@@ -15,13 +15,15 @@ MonoBehaviour:
   displayName: "Aguij\xF3n"
   description: "Disparo autom\xE1tico y r\xE1pido que envenena: 1 de da\xF1o por segundo durante 3 s."
   slot: 0
-  lineage: 2
+  lineages:
+  - {fileID: 11400000, guid: 25f4f794ff2f8e3428bd6c3ddcd58858, type: 2}
+  - {fileID: 11400000, guid: 0ba4444a737dbc64c81151817ed2f2f1, type: 2}
   look: {fileID: 9100000, guid: 9bae97a3d9065ba44b138462e97888ad, type: 2}
   bodyRadius: 0
   mouthDistance: 0
   icon: {fileID: 21300000, guid: bb2fc30c172a8f545a0c4233d925c4ce, type: 3}
   largeIcon: {fileID: 21300000, guid: 013588a0ea714da46a8254af9d884b01, type: 3}
-  color: {r: 0.55, g: 0.9, b: 0.35, a: 1}
+  color: {r: 0.95, g: 0.5, b: 0.35, a: 1}
   levelDescriptions:
   - El veneno quita 2 de vida por segundo.
   - 'Contagio: un enemigo envenenado que muere estalla y envenena a los que tenga cerca.'

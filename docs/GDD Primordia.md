@@ -13,14 +13,14 @@ Oct 11, 2026 · @Gaby
 - **Estilo visual:** pixel art muy parecido al de Enter the Gungeon.
 - **Motor:** Unity + C#, 2D con vista cenital.
 - **Equipo:** Gaby en solitario; arte y música con ayuda de Claude más adelante.
-- **Duración de una partida:** objetivo de 10 a 15 minutos por piso.
+- **Duración de una partida:** objetivo de 10 a 15 minutos por piso, en **6 pisos** (de la sopa primordial a la Edad de hielo).
 - **Publicación:** proyecto personal, publicado en itch.io como juego web.
 
 ## Pilares de diseño
 
 La fantasía del jugador es "soy algo diminuto que se vuelve el depredador de la cima". Cada decisión de diseño se revisa contra estos tres pilares:
 
-1. **Eres lo que comes.** Cada mutación se ve en el cuerpo del jugador. Si consigues espinas, se ven las espinas.
+1. **Eres lo que comes.** Cada mutación se ve en el cuerpo del jugador. Si consigues espinas, se ven las espinas. Y en cada piso la criatura entera evoluciona según el arma que lleva.
 2. **Evolucionar es elegir.** Tomar una rama cierra otra. No hay una partida perfecta; hay partidas distintas.
 3. **Acción legible y rápida.** Disparar, esquivar y leer al enemigo de un vistazo, como en Enter the Gungeon. Si algo no se entiende en un segundo, se simplifica.
 
@@ -43,21 +43,51 @@ Propuesta: el cuerpo tiene **4 ranuras** y cada ranura solo admite una mutación
 | Piel | Defensa | Vida máxima, reducción de daño, espinas |
 | Órgano especial | Habilidad con recarga (clic derecho) | Escudo, explosión, invocación |
 
-**Linajes:** cada mutación pertenece a un linaje (por ejemplo *Depredador*, *Acorazado*, *Tóxico*). Tener 3 mutaciones del mismo linaje activa un bonus de sinergia. Esto empuja al jugador a comprometerse con una rama, igual que en Everything is Crab.
+**Linajes**
 
-**Mutaciones de ejemplo (borrador)**
+Un linaje es un animal (Tiburón, Medusa, Tortuga...) que se completa con **4 mutaciones, una por ranura**: el cuerpo entero tiene que coincidir. Al completarlo se activa su beneficio, que se pierde si cambias una de esas 4 mutaciones. Esto empuja al jugador a comprometerse con una rama, igual que en Everything is Crab.
 
-| Mutación | Ranura | Linaje | Efecto |
+- **Una mutación puede pertenecer a varios linajes.** Las Mandíbulas sirven para el Tiburón, el Calamar y la Tortuga; lo que decide el linaje es la combinación de las 4.
+- **Cada linaje pertenece a una clase**, y la clase decide el tipo de beneficio (los beneficios concretos se deciden más adelante):
+
+| Clase | Estilo del beneficio (idea) |
+| --- | --- |
+| Carnívoro | Ataque y caza: más daño, recompensas al matar |
+| Herbívoro | Aguante: vida, curación, resistencia |
+| Venenoso | Daño en el tiempo y estados (veneno, aturdir, cegar) |
+| Hongo | Área y propagación: charcos, nubes, efectos que se contagian |
+
+- **Linajes del piso 1:** 7 linajes con las 12 mutaciones del piso. Cada mutación está en 2 o 3 linajes. El diagrama interactivo de linajes muestra qué mutaciones activan cada uno.
+
+| Linaje | Clase | Boca | Extremidades | Piel | Órgano especial |
+| --- | --- | --- | --- | --- | --- |
+| Tiburón | Carnívoro | Mandíbulas | Aletas | Caparazón (piel de dentículos) | Glándula de choque (electrorrecepción) |
+| Calamar | Carnívoro | Mandíbulas (pico) | Aletas | Camuflaje | Vejiga de tinta |
+| Tortuga | Herbívoro | Mandíbulas (pico) | Patas articuladas | Caparazón | Vacuola digestiva |
+| Medusa | Venenoso | Aguijón | Aletas | Piel urticante | Glándula de choque |
+| Escorpión | Venenoso | Aguijón | Patas articuladas | Camuflaje | Vacuola digestiva (digiere fuera del cuerpo) |
+| Moho | Hongo | Esporas | Hifas | Piel urticante | Vacuola digestiva (descomponedor) |
+| Cuesco de lobo | Hongo | Esporas | Hifas | Camuflaje | Vejiga de tinta (nube de esporas) |
+
+- **Pisos siguientes:** sus mutaciones completan linajes nuevos (Lobo, Raptor, Mamut...) y pueden sumarse a los del piso 1. Ahí entran más herbívoros, que en el piso 1 solo tienen la Tortuga porque la única Boca que tritura son las Mandíbulas.
+- **Interfaz:** las tarjetas de elección y la tienda dicen a qué linajes pertenece cada mutación; en la pausa, el cuadro de cada ranura dice cuántas de las 4 llevas de cada linaje ("Tiburón 3/4"). El linaje activo sale en el HUD, bajo la biomasa, con el color de su clase, y al completarlo hay un destello dorado. Como guía, en la elección de 1 de 3 brilla suavemente la tarjeta que acerca un linaje que ya has empezado más allá del que llevas más avanzado (sin linaje completo no hay brillo que invite a romperlo). Las burbujas y la franja de las tarjetas van ahora del color de la **ranura** (Boca naranja, Extremidades morado, Piel azul, Órgano lima), porque una mutación puede estar en varios linajes.
+
+**Mutaciones del piso 1**
+
+| Mutación | Ranura | Linajes | Efecto |
 | --- | --- | --- | --- |
-| Mandíbulas | Boca | Depredador | Disparo corto y potente, cura un poco al matar |
-| Aguijón | Boca | Tóxico | Proyectil que envenena (daño en el tiempo) |
-| Esporas | Boca | Tóxico | Disparo en abanico de 3 proyectiles lentos |
-| Aletas | Extremidades | Depredador | +30% velocidad, esquiva más larga |
-| Patas articuladas | Extremidades | Acorazado | Esquiva que empuja a los enemigos |
-| Caparazón | Piel | Acorazado | +2 de vida máxima, −10% velocidad |
-| Piel urticante | Piel | Tóxico | Daña a quien te toca |
-| Vejiga de tinta | Órgano especial | Depredador | Nube que ciega a los enemigos 3 s |
-| Glándula de choque | Órgano especial | Acorazado | Onda que repele proyectiles |
+| Mandíbulas | Boca | Tiburón, Calamar, Tortuga | Mordisco corto y potente, cura un poco al matar |
+| Aguijón | Boca | Medusa, Escorpión | Proyectil que envenena (daño en el tiempo) |
+| Esporas | Boca | Moho, Cuesco de lobo | Disparo en abanico de 3 proyectiles lentos |
+| Aletas | Extremidades | Tiburón, Calamar, Medusa | +30% velocidad, esquiva más larga |
+| Patas articuladas | Extremidades | Tortuga, Escorpión | Esquiva que empuja a los enemigos |
+| Hifas (nueva) | Extremidades | Moho, Cuesco de lobo | Al moverte dejas un rastro de micelio que ralentiza y daña |
+| Caparazón | Piel | Tiburón, Tortuga | +2 de vida máxima, −10% velocidad |
+| Piel urticante | Piel | Medusa, Moho | Daña a quien te toca |
+| Camuflaje (nueva) | Piel | Calamar, Escorpión, Cuesco de lobo | Si pasas 3 s sin atacar ni recibir golpes, te vuelves casi invisible y tu siguiente ataque hace más daño |
+| Vejiga de tinta | Órgano especial | Calamar, Cuesco de lobo | Nube que ciega a los enemigos 3 s |
+| Glándula de choque | Órgano especial | Tiburón, Medusa | Onda que repele proyectiles |
+| Vacuola digestiva (nueva) | Órgano especial | Tortuga, Escorpión, Moho | Digiere y cura medio corazón, con recarga larga |
 
 **Cómo se consiguen:** al limpiar ciertas salas aparece la elección de 1 de 3 mutaciones, y en la tienda se compran con biomasa. Al derrotar al jefe se elige 1 de 3 mutaciones mayores. Cambiar una mutación por otra en la misma ranura la reemplaza para siempre en esa partida.
 
@@ -76,6 +106,11 @@ Referencia: jugador base con velocidad 6, esquiva de 3 unidades, 3 corazones y d
 | Piel urticante | 2 de daño a quien te toca, como máximo cada 0,5 s por enemigo |
 | Vejiga de tinta | Nube de 3 unidades de radio, ciega 3 s; recarga de 8 s |
 | Glándula de choque | Onda de 4 unidades de radio que destruye proyectiles enemigos y empuja; recarga de 6 s |
+| Hifas (propuesta) | Manchas de micelio que duran 3 s; los enemigos encima van un 40 % más lentos y reciben 1 de daño por segundo |
+| Camuflaje (propuesta) | Tras 3 s sin atacar ni recibir golpes: semitransparente, los enemigos dejan de disparar y el siguiente ataque hace el doble de daño |
+| Vacuola digestiva (propuesta) | Cura medio corazón; recarga de 20 s |
+
+Los niveles II y III de Hifas, Camuflaje y Vacuola digestiva se diseñan al implementarlas.
 
 **Niveles y evoluciones**
 
@@ -95,19 +130,74 @@ Cada mutación tiene **3 niveles**. Se sube eligiéndola otra vez en la elecció
 
 La nube de tinta ahora permanece los 3 s que dura la ceguera (aparece, se mantiene y se disipa), es más transparente y ciega también a quien entra en ella. Los estados de los enemigos se ven con marcas encima de su cabeza: veneno, sangrado, cegado, aturdido y paralizado (este, además, con rayos por el cuerpo).
 
+**Mutaciones nuevas por piso (borrador)**
+
+Cada piso a partir del 2 trae **4 mutaciones nuevas, una por ranura**, que se suman a las anteriores: en el piso N pueden salir las mutaciones de los pisos 1 a N (32 en total en el piso 6). Las mutaciones y sus niveles se conservan al cambiar de piso. Cada Boca nueva pertenece a una de las 3 **familias de arma**, que deciden la forma del jugador en el piso siguiente (ver "Forma del jugador en cada piso").
+
+| Piso | Mutación | Ranura | Familia | Efecto (idea) |
+| --- | --- | --- | --- | --- |
+| 2 | Cnidocitos | Boca | Proyectil | Arpones urticantes que atraviesan a un enemigo y envenenan |
+| 2 | Cola propulsora | Extremidades | | Dos esquivas seguidas antes de la recarga |
+| 2 | Placas de trilobite | Piel | | +1 corazón; refleja 1 de cada 4 proyectiles que te golpean |
+| 2 | Saco de crías | Órgano especial | | Suelta 2 larvas aliadas que persiguen y muerden durante 10 s |
+| 3 | Escupitajo ácido | Boca | Área | Bola lenta que deja un charco de ácido (daño por segundo) |
+| 3 | Patas de salto | Extremidades | | La esquiva es un salto que pasa por encima de obstáculos y daña al caer |
+| 3 | Piel venenosa | Piel | | Quien te toca queda envenenado y tus esquivas dejan un rastro venenoso |
+| 3 | Croar | Órgano especial | | Onda que aturde 1 s a los enemigos cercanos |
+| 4 | Colmillos | Boca | Cuerpo a cuerpo | Embestida corta con mordisco que atraviesa a varios enemigos en línea |
+| 4 | Patas de carrera | Extremidades | | La velocidad sube mientras te mueves sin parar (hasta +40 %) |
+| 4 | Escamas córneas | Piel | | +1 corazón y más tiempo de invulnerabilidad tras cada golpe |
+| 4 | Saco de veneno | Órgano especial | | Nube venenosa a tu alrededor durante 4 s |
+| 5 | Escupitajo venenoso | Boca | Proyectil | Proyectil que envenena y ciega un instante |
+| 5 | Garras de raptor | Extremidades | | La esquiva salta hacia el cursor y golpea al aterrizar |
+| 5 | Placas óseas | Piel | | Los golpes de un corazón entero solo quitan medio; −15 % de velocidad |
+| 5 | Cresta resonante | Órgano especial | | Bramido en cono que empuja y aturde |
+| 6 | Trompa | Boca | Área | Soplido en cono que daña y empuja |
+| 6 | Pezuñas | Extremidades | | La esquiva es una embestida que atraviesa a los enemigos y los daña |
+| 6 | Pelaje | Piel | | +1 corazón e inmunidad a ralentizar y congelar (suelo helado del piso 6) |
+| 6 | Instinto de manada | Órgano especial | | Invoca 2 lobos aliados durante 10 s |
+
+Sus linajes y sus niveles II y III se diseñan al hacer cada piso.
+
 **Jefe del piso 1 (virus gigante):** 60 de vida, 3×3 unidades, avanza despacio hacia el centro, medio corazón por contacto. Fase 1: espiral de un brazo y ráfaga circular de 12 proyectiles cada 4 s. Fase 2 (desde el 50 %): espiral de dos brazos más rápida, ráfaga de 16 e invoca 2 bacterias cada 8 s (máximo 4 vivas).
+
+**Segundo jefe del piso 1 (ameba gigante, propuesta):** lenta y enorme; engulle los proyectiles que le dan de frente y, al perder vida, se divide en amebas más pequeñas (reaprovecha la división de los enemigos). En la fase 2 se vuelve a juntar y se mueve más rápido. Valores por decidir.
 
 ## Pisos y etapas evolutivas
 
-Primera versión (v1.0): **1 piso muy pulido**, la sopa primordial. Los pisos 2 y 3 quedan diseñados aquí para las versiones siguientes; cada piso es una etapa de la vida en la Tierra.
+El juego completo tiene **6 pisos**, cada uno una etapa de la vida en la Tierra, con enemigos, jefe y 4 mutaciones nuevas propios. La v1.0 sale con los pisos 1 a 3 (ver "Alcance").
 
-| Piso | Etapa | Ambientación | Enemigos | Jefe |
+Cada piso tiene **2 jefes posibles** y en cada partida sale uno al azar.
+
+| Piso | Etapa | Ambientación | Enemigos | Jefes (uno al azar) |
 | --- | --- | --- | --- | --- |
-| 1 | Sopa primordial | Charco microscópico, colores verdes y burbujas | Bacterias que persiguen, amebas que se dividen al morir | Virus gigante que dispara en espiral |
-| 2 | Océano cámbrico | Fondo marino, corales y luz azul | Trilobites que embisten, medusas que flotan y disparan | Anomalocaris (depredador con garras) |
-| 3 | Primeros pasos en tierra | Pantano con helechos gigantes | Insectos gigantes, anfibios que escupen | Artrópodo gigante (estilo Arthropleura) |
+| 1 | Sopa primordial | Charco microscópico, colores verdes y burbujas | Bacterias que persiguen, amebas que se dividen al morir | Virus gigante que dispara en espiral · Ameba gigante que se divide |
+| 2 | Océano cámbrico | Fondo marino, corales y luz azul | Trilobites que embisten, medusas que flotan y disparan | Anomalocaris (depredador con garras) · Euriptérido (escorpión marino gigante) |
+| 3 | Pantano carbonífero | Pantano con helechos gigantes y niebla | Libélulas gigantes que caen en picado, anfibios que escupen | Artrópodo gigante (estilo Arthropleura) · Meganeura (libélula gigante) |
+| 4 | Desierto pérmico | Dunas rojas, rocas y huesos | Lagartos que corren en zigzag, sinápsidos que lanzan rocas | Dimetrodon con vela dorsal que se calienta (fase 2 más rápida) · Scutosaurus (acorazado que embiste) |
+| 5 | Selva de dinosaurios | Selva densa, helechos y volcanes al fondo | Compsognathus en manada, pterosaurios en picado, plantas carnívoras que disparan | Tiranosaurio · Espinosaurio |
+| 6 | Edad de hielo | Tundra nevada, suelo helado que resbala | Lobos en manada, mamuts que embisten, cazadores que lanzan lanzas | Tigre dientes de sable · Tribu de humanos (el último depredador) |
 
-**Extras a futuro:** un piso 4 con dinosaurios o mamíferos, y que los enemigos de cada piso también tengan variantes "mutadas".
+**Forma del jugador en cada piso**
+
+Para que el arte sea abarcable, el cuerpo del jugador **no** combina mutaciones: cada piso tiene su criatura en **3 variantes, una por familia de arma**, y las demás mutaciones siguen siendo piezas sencillas encima del cuerpo.
+
+- **Familias de arma:** *Cuerpo a cuerpo* (Mandíbulas, Colmillos), *Proyectil* (Aguijón, Cnidocitos, Escupitajo venenoso) y *Área* (Esporas, Escupitajo ácido, Trompa). Sin mutación de Boca se usa la variante *Proyectil*, porque el disparo base es un proyectil.
+- **Cuándo cambia:** al pasar de piso, con una pequeña animación de metamorfosis en la transición. Se mira la Boca que llevas en ese momento. Si cambias de Boca a mitad de piso, solo cambia la pieza del arma; el cuerpo nuevo llega en el piso siguiente.
+- **Piso 1:** la célula actual con sus piezas (ya hecha), sin variantes.
+- **Piezas del resto de ranuras:** Extremidades, Piel y Órgano son capas sencillas colocadas en unos pocos puntos fijos de cada cuerpo (lomo, costados, centro). En los pisos 2 a 6 la Piel deja de sustituir al cuerpo y pasa a ser una capa encima (por ejemplo, el caparazón en el lomo).
+- **Arte:** 15 cuerpos nuevos (pisos 2 a 6 × 3 familias), cada uno con las animaciones del jugador (reposo, moverse, esquiva y muerte en 3 direcciones).
+
+| Piso | Cuerpo a cuerpo | Proyectil | Área |
+| --- | --- | --- | --- |
+| 1 | Célula | Célula | Célula |
+| 2 | Pez primitivo con mandíbulas | Medusa | Lirio de mar que suelta nubes |
+| 3 | Anfibio de fauces anchas | Escorpión de pantano | Rana venenosa |
+| 4 | Gorgonopsio (reptil con colmillos de sable) | Lagarto escupidor | Reptil con gola que expulsa polvo |
+| 5 | Raptor | Dilofosaurio | Parasaurolophus (bramido con la cresta) |
+| 6 | Tigre dientes de sable | Puercoespín gigante | Mamut |
+
+**Extras a futuro:** que los enemigos de cada piso también tengan variantes "mutadas".
 
 ## Controles y combate
 
@@ -131,7 +221,7 @@ Controles de teclado y ratón, como Enter the Gungeon. Mando opcional más adela
 
 ## Alcance de la primera versión (v1.0)
 
-La v1.0 es el piso 1 completo y pulido, publicado en itch.io. El orden de trabajo, por módulos y ramas, está en [PLAN.md](PLAN.md).
+La v1.0 tiene los **pisos 1 a 3** completos y pulidos (si el 3 se retrasa mucho, se publica con 2), y se publica en itch.io. Los pisos 4 a 6 llegan en actualizaciones. El orden de trabajo, por módulos y ramas, está en [PLAN.md](PLAN.md).
 
 **Mínimo jugable (hecho en la v0.5)**
 
@@ -142,20 +232,24 @@ La v1.0 es el piso 1 completo y pulido, publicado en itch.io. El orden de trabaj
 - [x] 1 piso completo con 5 a 7 salas y 1 jefe
 - [x] 9 mutaciones repartidas en las 4 ranuras, con elección de 1 entre 3 al limpiar algunas salas
 - [x] Menú principal y pantallas de victoria y derrota
-- [ ] Build web en itch.io
+- [x] Build web en itch.io
 
 **Para la v1.0**
 
 - [x] Mapa distinto en cada partida y salas con formas distintas
-- [ ] Arte del piso 1 y cambio visual del jugador por cada mutación (hecho: jugador, enemigos, jefe, proyectiles, efectos y escenario; falta el aspecto de cada mutación, que aún son marcas provisionales)
+- [x] Arte del piso 1 y cambio visual del jugador por cada mutación (jugador, enemigos, jefe, proyectiles, efectos, escenario y piezas de mutación)
 - [ ] Música y efectos de sonido
 - [ ] Linajes con bonus de sinergia
 - [ ] Más variedad en el piso 1: un tercer enemigo y salas especiales
+- [ ] Paso de un piso al siguiente, con la metamorfosis del jugador según su familia de arma
+- [ ] Piso 2 (Océano cámbrico): escenario, 2 o 3 enemigos, Anomalocaris, 4 mutaciones y los 3 cuerpos del jugador
+- [ ] Piso 3 (Pantano carbonífero): lo mismo, con el artrópodo gigante
+- [x] Tienda con biomasa
 
 **Más adelante**
 
-- [ ] Pisos 2 y 3
-- [ ] Tienda con biomasa (hecha) y salas secretas
+- [ ] Pisos 4 a 6
+- [ ] Salas secretas
 - [ ] Soporte de mando y opciones de audio
 - [ ] Desbloqueos permanentes entre partidas
 
@@ -183,8 +277,12 @@ Objetivo: que añadir una mutación, un enemigo o una sala nueva sea crear un ar
 
 **Pendiente**
 
-- [ ] Diseño de la forma de la criatura en cada piso (antes de hacer el arte).
-- [ ] Cuántas mutaciones tiene cada linaje y qué bonus da cada uno.
+- [ ] Revisar los borradores: criaturas del jugador, enemigos y jefes de los pisos 2 a 6, y las 20 mutaciones nuevas (con sus niveles II y III).
+- [ ] Qué beneficio da cada clase de linaje (y si cada linaje tiene además algo propio).
+- [ ] Valores, niveles II y III y arte de Hifas, Camuflaje y Vacuola digestiva.
+- [ ] Ataques y valores de la ameba gigante y de los segundos jefes de los pisos 2 a 6.
+- [ ] Si el cuerpo crece de un piso a otro (y con él la colisión) o mantiene el tamaño.
+- [ ] Duración total: 6 pisos de 10 a 15 minutos son más de una hora; valorar pisos más cortos en los pisos altos.
 
 **Decidido el 11 de octubre**
 
@@ -210,4 +308,15 @@ Objetivo: que añadir una mutación, un enemigo o una sala nueva sea crear un ar
 | Cursor | Mira dibujada por el juego durante la partida; en la pausa y en la elección de mutación, cursor normal |
 | Jefe del piso 1 | Virus gigante con 2 fases (la segunda desde el 50 % de vida); vencerlo abre la salida y da la victoria |
 
-La evolución entre pisos será **fija**: célula en el piso 1, criatura marina en el 2 y anfibio en el 3.
+**Decidido el 13 de octubre**
+
+| Tema | Decisión |
+| --- | --- |
+| Número de pisos | 6: sopa primordial, océano cámbrico, pantano carbonífero, desierto pérmico, selva de dinosaurios y Edad de hielo |
+| Alcance de la v1.0 | Pisos 1 a 3 (como mínimo 2); los pisos 4 a 6, en actualizaciones. Sustituye a "1 piso muy pulido" |
+| Forma del jugador | Una criatura por piso en 3 variantes según la familia de arma (cuerpo a cuerpo, proyectil, área), elegida al pasar de piso. Se descarta el cuerpo que combinaba las temáticas de varias mutaciones (piloto en la rama `feature/evolving-body`, sin integrar) por la cantidad de arte que exigía |
+| Mutaciones nuevas | 4 por piso, una por ranura, que se suman a las anteriores |
+| Aspecto de las mutaciones | Se mantiene la decisión del 11 de octubre para el piso 1. Desde el piso 2, la Piel es una capa encima del cuerpo en lugar de sustituirlo |
+| Linajes | Sustituyen a Depredador, Acorazado y Tóxico. Un linaje es un animal que se activa con sus 4 mutaciones (una por ranura); una mutación puede estar en varios linajes. Cada linaje pertenece a una clase (Carnívoro, Herbívoro, Venenoso u Hongo), que decide el tipo de beneficio. 7 linajes en el piso 1 |
+| Mutaciones del piso 1 | 12: las 9 de la v0.5 más Hifas, Camuflaje y Vacuola digestiva |
+| Jefes | 2 por piso, uno al azar en cada partida. Piso 1: virus gigante o ameba gigante |

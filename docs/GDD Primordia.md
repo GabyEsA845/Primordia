@@ -69,6 +69,20 @@ Un linaje es un animal (Tiburón, Medusa, Tortuga...) que se completa con **4 mu
 | Moho | Hongo | Esporas | Hifas | Piel urticante | Vacuola digestiva (descomponedor) |
 | Cuesco de lobo | Hongo | Esporas | Hifas | Camuflaje | Vejiga de tinta (nube de esporas) |
 
+**Evolución al completar un linaje**
+
+Al completar un linaje el jugador evoluciona: el juego se congela unos 2 s, la cámara se acerca un poco, la célula brilla, se transforma en la silueta del animal (del color de su clase), sale su nombre y vuelve a ser la célula con las piezas del linaje. Si se completa con un menú abierto (la elección de mutación), la animación espera a volver al juego. Mientras el linaje está activo, sus piezas sustituyen a las de algunas de sus mutaciones (solo el aspecto: la mecánica es la misma; la Piel nunca cambia y los iconos del HUD y de la pausa tampoco). Al perderlo, un pof del color de la clase y vuelven las piezas de las mutaciones.
+
+| Linaje | Pieza que cambia | Queda así |
+| --- | --- | --- |
+| Tiburón | Extremidades (Aletas) | Aleta dorsal y aletas pectorales |
+| Calamar | Extremidades (Aletas) | Tentáculos que ondulan detrás |
+| Tortuga | Boca (Mandíbulas) y Extremidades (Patas) | Pico córneo que muerde y patas escamosas |
+| Medusa | Extremidades (Aletas) | Tentáculos translúcidos colgando |
+| Escorpión | Boca (Aguijón) y Extremidades (Patas) | Cola curvada que dispara desde su punta, y patas con pinzas |
+| Moho | Extremidades (Hifas) | Pelusa de moho alrededor del cuerpo |
+| Cuesco de lobo | Boca (gorrito de Amanita) | Gorrito de cuesco, una bola blanca con motas |
+
 **Toque propio de cada linaje del piso 1**
 
 | Linaje | Toque | Efecto |
@@ -342,4 +356,5 @@ Objetivo: que añadir una mutación, un enemigo o una sala nueva sea crear un ar
 | Ataque de las Esporas | Bocanada que flota: las esporas frenan y flotan como minas que se dispersan despacio hasta desvanecerse (valores en la tabla) |
 | Mordisco con avance | Mandíbulas, desde el nivel II, se lanza un poco hacia delante si no hay nadie a tiro |
 | Beneficio de los linajes | Base por clase (Rematar, Pastar biomasa, Toxina débil, Colonizar la sala) más un toque propio de cada animal. Fijo, sin escalar con los niveles; se pierde al cambiar una de las 4 mutaciones, también en pisos siguientes. Rematar cuenta como herido al enemigo con la mitad de su vida o menos (con el 30 % casi no se notaba en el piso 1). Los aumentos de daño que dan decimales (1 × 1,5) se redondean al azar, para que de media sean exactos |
+| Evolución de los linajes | Al completar un linaje, animación de unos 2 s con el juego congelado y un pequeño zoom (la célula se transforma en el animal) y, mientras dura el linaje, sus piezas sustituyen a las de algunas de sus mutaciones (tabla de la sección de linajes). Se descartó un cuerpo completo por linaje: demasiado arte y chocaba con la forma por piso |
 | Interfaz de los linajes | Cartel breve al completarlo y fila en las estadísticas de la pausa, con el beneficio completo al pasar el ratón; las tarjetas y la tienda solo dicen a qué linajes pertenece cada mutación |

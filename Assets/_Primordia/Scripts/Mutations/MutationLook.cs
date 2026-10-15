@@ -13,6 +13,8 @@ namespace Primordia.Mutations
     /// disparo; el Órgano se activa al usar la habilidad. Una Boca que se lleva en la cabeza (el gorrito de las
     /// Esporas) va como las Extremidades, sobre la cabeza de la Piel, y al atacar el cuerpo se adelanta y el
     /// gorrito se aplasta y se hincha. En la esquiva y al morir solo se ve el cuerpo.
+    /// Con un linaje puesto (<see cref="SetLineageLook"/>), sus piezas sustituyen a las de la Boca y las
+    /// Extremidades de sus mutaciones (la cola del Escorpión, las patas de la Tortuga…).
     /// </summary>
     // Después de PlayerAnimator, que elige la animación del cuerpo en su LateUpdate.
     [DefaultExecutionOrder(10)]
@@ -64,6 +66,7 @@ namespace Primordia.Mutations
         float organBusyUntil;
 
         MutationData mouthMutation;
+        LineageData lineageLook;
         float headHeight;
         Vector3 defaultMuzzle;
         bool hasDefaultMuzzle;
@@ -87,6 +90,37 @@ namespace Primordia.Mutations
 
         /// <summary>True si la Boca equipada se lleva en la cabeza.</summary>
         public bool MouthOnHead => mouthMutation != null && mouthMutation.WornOnHead;
+
+        /// <summary>Linaje cuyas piezas se ven ahora, o null.</summary>
+        public LineageData LineageLook => lineageLook;
+
+        /// <summary>Oculta las piezas (mientras se ve la animación de la evolución).</summary>
+        public bool Hidden { get; set; }
+
+        /// <summary>Animaciones de la pieza de esa ranura que se ven ahora (las del linaje, si las sustituye).</summary>
+        public RuntimeAnimatorController LookOf(MutationSlot slot) => LookFor(slot, mutations.Get(slot));
+
+        /// <summary>
+        /// Pone (o quita, con null) las piezas de un linaje en lugar de las de sus mutaciones. Solo cambian las
+        /// ranuras que el linaje sustituye y que llevan su mutación.
+        /// </summary>
+        public void SetLineageLook(LineageData lineage)
+        {
+            lineageLook = lineage;
+            OnMutationChanged(MutationSlot.Mouth, mutations.Get(MutationSlot.Mouth));
+            OnMutationChanged(MutationSlot.Limbs, mutations.Get(MutationSlot.Limbs));
+        }
+
+        RuntimeAnimatorController LookFor(MutationSlot slot, MutationData mutation)
+        {
+            if (mutation == null)
+                return null;
+            var lineage = LineageOverrides(slot, mutation) ? lineageLook.LookFor(slot) : null;
+            return lineage != null ? lineage : mutation.Look;
+        }
+
+        bool LineageOverrides(MutationSlot slot, MutationData mutation) =>
+            lineageLook != null && mutation != null && lineageLook.MutationFor(slot) == mutation && lineageLook.LookFor(slot) != null;
 
         void Awake()
         {
@@ -141,7 +175,7 @@ namespace Primordia.Mutations
                 Play(organ, IdleState);
             }
 
-            bool shown = !controller.IsDodging;
+            bool shown = !controller.IsDodging && !Hidden;
             Show(limbsRenderer, limbs, shown);
             Show(organRenderer, organ, shown);
             Show(mouthRenderer, mouth, shown);
@@ -200,7 +234,7 @@ namespace Primordia.Mutations
 
         void OnMutationChanged(MutationSlot slot, MutationData mutation)
         {
-            var look = mutation != null ? mutation.Look : null;
+            var look = LookFor(slot, mutation);
             switch (slot)
             {
                 case MutationSlot.Skin:
@@ -256,8 +290,12 @@ namespace Primordia.Mutations
                 hasDefaultMuzzle = true;
             }
 
-            if (mouthMutation != null && !mouthMutation.WornOnHead && mouthMutation.MuzzleDistance > 0f)
-                muzzle.localPosition = new Vector3(MouthDistance + mouthMutation.MuzzleDistance, 0f, 0f);
+            float tip = mouthMutation != null ? mouthMutation.MuzzleDistance : 0f;
+            if (LineageOverrides(MutationSlot.Mouth, mouthMutation) && lineageLook.MouthMuzzleDistance > 0f)
+                tip = lineageLook.MouthMuzzleDistance;
+
+            if (mouthMutation != null && !mouthMutation.WornOnHead && tip > 0f)
+                muzzle.localPosition = new Vector3(MouthDistance + tip, 0f, 0f);
             else
                 muzzle.localPosition = defaultMuzzle;
         }

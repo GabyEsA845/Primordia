@@ -50,6 +50,7 @@ Cada módulo vive en su propia carpeta de `Assets/_Primordia/Scripts/` (`Core`, 
 - [x] `feature/floor1-mutations`: Hifas, Camuflaje y Vacuola digestiva (con sus 3 niveles, iconos y piezas), que completan los linajes del piso 1
 - [x] `feature/mouth-tweaks`: Aguijón más pequeño (los proyectiles salen de su punta), Esporas como gorrito de Amanita con una bocanada de esporas que flotan como minas, y mordisco con avance desde el nivel II de Mandíbulas
 - [x] `feature/lineage-benefits`: beneficios de los linajes (base por clase: Rematar, Pastar biomasa, Toxina débil y Colonizar la sala; y el toque propio de cada uno de los 7 animales del piso 1), cartel al completar un linaje y beneficio en la pausa
+- [x] `feature/lineage-evolution`: al completar un linaje, animación de evolución (el juego se congela, la célula se transforma en el animal) y piezas del linaje en lugar de las de sus mutaciones
 - [ ] `feature/floor-transition`: paso al piso siguiente y metamorfosis del jugador según su familia de arma (cuerpo a cuerpo, proyectil, área)
 - [ ] `feature/floor-2`: Océano cámbrico (escenario, enemigos, Anomalocaris, 4 mutaciones y 3 cuerpos del jugador)
 - [ ] `feature/floor-3`: Pantano carbonífero (lo mismo, con el artrópodo gigante); si se retrasa mucho, la v1.0 sale con 2 pisos

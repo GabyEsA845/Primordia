@@ -39,7 +39,7 @@ namespace Primordia.Mutations
             yield return new WaitForSeconds(delay);
 
             // Con la pausa o el mapa abiertos, espera a que se vuelva al juego.
-            while (GameManager.Instance != null && GameManager.Instance.State is GameState.Paused or GameState.Map)
+            while (GameManager.Instance != null && GameManager.Instance.State is GameState.Paused or GameState.Map or GameState.Evolution)
                 yield return null;
 
             // Si mientras tanto el jugador murió o la partida terminó, ya no hay recompensa.

@@ -14,12 +14,15 @@ namespace Primordia.Core
         Victory,
         Defeat,
         /// <summary>Mapa grande abierto (TAB): el juego está detenido.</summary>
-        Map
+        Map,
+        /// <summary>El jugador evoluciona al completar un linaje: el juego se congela unos segundos, sin menú.</summary>
+        Evolution
     }
 
     /// <summary>
     /// Estado global de la partida. Hay una sola instancia y sobrevive a los cambios de escena.
-    /// Pausa el tiempo en <see cref="GameState.Paused"/>, <see cref="GameState.MutationChoice"/> y <see cref="GameState.Map"/>.
+    /// Pausa el tiempo en <see cref="GameState.Paused"/>, <see cref="GameState.MutationChoice"/>, <see cref="GameState.Map"/> y
+    /// <see cref="GameState.Evolution"/>.
     /// Esc (o P) pausa; TAB abre y cierra el mapa, y Esc también lo cierra.
     /// </summary>
     [DefaultExecutionOrder(-100)]
@@ -155,7 +158,7 @@ namespace Primordia.Core
 
         static void ApplyTimeScale(GameState state)
         {
-            Time.timeScale = state is GameState.Paused or GameState.MutationChoice or GameState.Map ? 0f : 1f;
+            Time.timeScale = state is GameState.Paused or GameState.MutationChoice or GameState.Map or GameState.Evolution ? 0f : 1f;
         }
     }
 }

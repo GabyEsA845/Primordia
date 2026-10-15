@@ -96,7 +96,7 @@ namespace Primordia.UI
 
         void LateUpdate()
         {
-            SetShown(idleSprite != null && (manager == null || manager.State == GameState.Playing));
+            SetShown(idleSprite != null && (manager == null || manager.State is GameState.Playing or GameState.Evolution));
             if (!shown)
                 return;
 

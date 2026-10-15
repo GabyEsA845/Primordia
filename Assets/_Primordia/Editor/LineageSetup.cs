@@ -120,7 +120,8 @@ namespace Primordia.Editor
                 }
 
                 var lineage = root.TryGetComponent<PlayerLineage>(out var existing) ? existing : root.AddComponent<PlayerLineage>();
-                lineage.Configure(Effect("Effect_LevelUp_Gold"));
+                // Con la evolución (Primordia > Art > Importar evolución de linajes) ya no hace falta el destello dorado.
+                lineage.Configure(root.TryGetComponent<LineageEvolution>(out _) ? null : Effect("Effect_LevelUp_Gold"));
 
                 // Los efectos que ya existen; las matas y la estela las pone Primordia > Art > Importar beneficios de linajes.
                 var benefits = lineage.Benefits ?? new LineageBenefitSettings();

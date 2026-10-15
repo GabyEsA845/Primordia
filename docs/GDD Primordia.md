@@ -48,14 +48,14 @@ Propuesta: el cuerpo tiene **4 ranuras** y cada ranura solo admite una mutación
 Un linaje es un animal (Tiburón, Medusa, Tortuga...) que se completa con **4 mutaciones, una por ranura**: el cuerpo entero tiene que coincidir. Al completarlo se activa su beneficio, que se pierde si cambias una de esas 4 mutaciones. Esto empuja al jugador a comprometerse con una rama, igual que en Everything is Crab.
 
 - **Una mutación puede pertenecer a varios linajes.** Las Mandíbulas sirven para el Tiburón, el Calamar y la Tortuga; lo que decide el linaje es la combinación de las 4.
-- **Cada linaje pertenece a una clase**, y la clase decide el tipo de beneficio (los beneficios concretos se deciden más adelante):
+- **Cada linaje pertenece a una clase**, y la clase decide la base de su beneficio. Además, cada animal suma un **toque propio** pequeño que encaja con sus mutaciones. El beneficio es fijo (no crece con los niveles de las mutaciones) y dura mientras lleves las 4, también al cambiar de piso.
 
-| Clase | Estilo del beneficio (idea) |
-| --- | --- |
-| Carnívoro | Ataque y caza: más daño, recompensas al matar |
-| Herbívoro | Aguante: vida, curación, resistencia |
-| Venenoso | Daño en el tiempo y estados (veneno, aturdir, cegar) |
-| Hongo | Área y propagación: charcos, nubes, efectos que se contagian |
+| Clase | Estilo | Beneficio base |
+| --- | --- | --- |
+| Carnívoro | Ataque y caza | **Rematar:** +100 % de daño a los enemigos heridos, los que tienen la mitad de su vida o menos (+50 % contra el jefe) |
+| Herbívoro | Aguante | **Pastar biomasa:** cada 10 de biomasa recogida cura medio corazón. Con la vida llena, da medio corazón verde temporal que absorbe un golpe (como mucho uno a la vez) |
+| Venenoso | Daño en el tiempo y estados | **Toxina débil:** los enemigos envenenados reciben +50 % de daño de cualquier fuente |
+| Hongo | Área y propagación | **Colonizar la sala:** al entrar en una sala de combate brotan 3 matas de hongo al azar en el suelo (radio 1,2) que ralentizan un 40 % y quitan 1 por segundo, como el micelio; desaparecen al limpiar la sala |
 
 - **Linajes del piso 1:** 7 linajes con las 12 mutaciones del piso. Cada mutación está en 2 o 3 linajes. El diagrama interactivo de linajes muestra qué mutaciones activan cada uno.
 
@@ -69,8 +69,20 @@ Un linaje es un animal (Tiburón, Medusa, Tortuga...) que se completa con **4 mu
 | Moho | Hongo | Esporas | Hifas | Piel urticante | Vacuola digestiva (descomponedor) |
 | Cuesco de lobo | Hongo | Esporas | Hifas | Camuflaje | Vejiga de tinta (nube de esporas) |
 
+**Toque propio de cada linaje del piso 1**
+
+| Linaje | Toque | Efecto |
+| --- | --- | --- |
+| Tiburón | Sangre en el agua | Rematar a un enemigo (matarlo cuando está herido) recarga la esquiva al instante |
+| Calamar | Presa a ciegas | Los enemigos cegados cuentan como heridos para Rematar |
+| Tortuga | Retraerse | Al usar la Vacuola digestiva eres invulnerable 1,5 s (te escondes en el caparazón) |
+| Medusa | Estela urticante | Al esquivar dejas un rastro de tentáculos que envenena a quien lo pisa |
+| Escorpión | Picadura oculta | El ataque desde el camuflaje aplica el triple de veneno |
+| Moho | Colonia grande | Brotan 5 matas en vez de 3, y un 30 % más grandes |
+| Cuesco de lobo | Bocanada al golpe | Al recibir un golpe sueltas una nube cegadora a tu alrededor (como mucho cada 6 s) |
+
 - **Pisos siguientes:** sus mutaciones completan linajes nuevos (Lobo, Raptor, Mamut...) y pueden sumarse a los del piso 1. Ahí entran más herbívoros, que en el piso 1 solo tienen la Tortuga porque la única Boca que tritura son las Mandíbulas.
-- **Interfaz:** las tarjetas de elección y la tienda dicen a qué linajes pertenece cada mutación; en la pausa, el cuadro de cada ranura dice cuántas de las 4 llevas de cada linaje ("Tiburón 3/4"). El linaje activo sale en el HUD, bajo la biomasa, con el color de su clase, y al completarlo hay un destello dorado. Como guía, en la elección de 1 de 3 brilla suavemente la tarjeta que acerca un linaje que ya has empezado más allá del que llevas más avanzado (sin linaje completo no hay brillo que invite a romperlo). Las burbujas y la franja de las tarjetas van ahora del color de la **ranura** (Boca naranja, Extremidades morado, Piel azul, Órgano lima), porque una mutación puede estar en varios linajes.
+- **Interfaz:** las tarjetas de elección y la tienda dicen a qué linajes pertenece cada mutación; en la pausa, el cuadro de cada ranura dice cuántas de las 4 llevas de cada linaje ("Tiburón 3/4"). El linaje activo sale en el HUD, bajo la biomasa, con el color de su clase, y al completarlo hay un destello dorado y un cartel breve con su beneficio ("¡Tiburón! Rematar + Sangre en el agua") durante 2 s. En la pausa, el linaje activo es la última fila del panel de estadísticas (animal, clase y nombres de su beneficio); al pasar el ratón, el cuadro de información explica el beneficio completo. El cuadro de cada ranura dice solo lo que hace ahora (la descripción y la mejora de su nivel, sin las anteriores) y sus linajes en una línea ("Tiburón 4/4 · Calamar 3/4"). Como guía, en la elección de 1 de 3 brilla suavemente la tarjeta que acerca un linaje que ya has empezado más allá del que llevas más avanzado (sin linaje completo no hay brillo que invite a romperlo). Las burbujas y la franja de las tarjetas van ahora del color de la **ranura** (Boca naranja, Extremidades morado, Piel azul, Órgano lima), porque una mutación puede estar en varios linajes.
 
 **Mutaciones del piso 1**
 
@@ -241,7 +253,7 @@ La v1.0 tiene los **pisos 1 a 3** completos y pulidos (si el 3 se retrasa mucho,
 - [x] Mapa distinto en cada partida y salas con formas distintas
 - [x] Arte del piso 1 y cambio visual del jugador por cada mutación (jugador, enemigos, jefe, proyectiles, efectos, escenario y piezas de mutación)
 - [ ] Música y efectos de sonido
-- [ ] Linajes con bonus de sinergia
+- [x] Linajes con su beneficio (base por clase y toque de cada animal)
 - [ ] Más variedad en el piso 1: un tercer enemigo y salas especiales
 - [ ] Paso de un piso al siguiente, con la metamorfosis del jugador según su familia de arma
 - [ ] Piso 2 (Océano cámbrico): escenario, 2 o 3 enemigos, Anomalocaris, 4 mutaciones y los 3 cuerpos del jugador
@@ -280,7 +292,6 @@ Objetivo: que añadir una mutación, un enemigo o una sala nueva sea crear un ar
 **Pendiente**
 
 - [ ] Revisar los borradores: criaturas del jugador, enemigos y jefes de los pisos 2 a 6, y las 20 mutaciones nuevas (con sus niveles II y III).
-- [ ] Qué beneficio da cada clase de linaje (y si cada linaje tiene además algo propio).
 - [ ] Ataques y valores de la ameba gigante y de los segundos jefes de los pisos 2 a 6.
 - [ ] Si el cuerpo crece de un piso a otro (y con él la colisión) o mantiene el tamaño.
 - [ ] Duración total: 6 pisos de 10 a 15 minutos son más de una hora; valorar pisos más cortos en los pisos altos.
@@ -330,3 +341,5 @@ Objetivo: que añadir una mutación, un enemigo o una sala nueva sea crear un ar
 | Aspecto de las Esporas | Dejan de ser un arma que gira: son un gorrito de Amanita (rojo con lunares blancos) sobre la cabeza de cualquier Piel, que sigue el balanceo del cuerpo. Al atacar, el cuerpo se adelanta y el gorrito se aplasta y se hincha (por código). Esporas crema con borde rojizo |
 | Ataque de las Esporas | Bocanada que flota: las esporas frenan y flotan como minas que se dispersan despacio hasta desvanecerse (valores en la tabla) |
 | Mordisco con avance | Mandíbulas, desde el nivel II, se lanza un poco hacia delante si no hay nadie a tiro |
+| Beneficio de los linajes | Base por clase (Rematar, Pastar biomasa, Toxina débil, Colonizar la sala) más un toque propio de cada animal. Fijo, sin escalar con los niveles; se pierde al cambiar una de las 4 mutaciones, también en pisos siguientes. Rematar cuenta como herido al enemigo con la mitad de su vida o menos (con el 30 % casi no se notaba en el piso 1). Los aumentos de daño que dan decimales (1 × 1,5) se redondean al azar, para que de media sean exactos |
+| Interfaz de los linajes | Cartel breve al completarlo y fila en las estadísticas de la pausa, con el beneficio completo al pasar el ratón; las tarjetas y la tienda solo dicen a qué linajes pertenece cada mutación |

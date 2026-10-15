@@ -10,7 +10,8 @@ namespace Primordia.Editor
     /// <summary>
     /// Linajes del piso 1 (tabla del GDD): crea un <see cref="LineageData"/> por linaje con sus 4 mutaciones, apunta
     /// en cada mutación los linajes a los que pertenece, pinta cada mutación del color de su ranura, añade
-    /// <see cref="PlayerLineage"/> al jugador y el rótulo del linaje al HUD. Se puede volver a ejecutar: rehace los
+    /// <see cref="PlayerLineage"/> al jugador (con los valores y efectos de los beneficios) y al HUD el rótulo del
+    /// linaje, el cartel al completarlo y su cuadro en la pausa. Se puede volver a ejecutar: rehace los
     /// datos de los linajes a partir de la tabla. Las mutaciones que aún no existen (Hifas, Camuflaje y Vacuola
     /// digestiva) quedan vacías y esos linajes no se pueden completar hasta crearlas.
     /// </summary>
@@ -41,6 +42,18 @@ namespace Primordia.Editor
             ("Puffball", "Cuesco de lobo", LineageClass.Fungal, new[] { "Spores", "Hyphae", "Camouflage", "InkSac" }),
         };
 
+        // Toque propio de cada linaje: nombre y lo que hace (corto: se lee en la pausa).
+        static readonly Dictionary<string, (LineageTouch touch, string name, string description)> Touches = new()
+        {
+            ["Shark"] = (LineageTouch.BloodInTheWater, "Sangre en el agua", "Rematar a un enemigo recarga la esquiva."),
+            ["Squid"] = (LineageTouch.BlindPrey, "Presa a ciegas", "Los enemigos cegados cuentan como heridos."),
+            ["Turtle"] = (LineageTouch.Retract, "Retraerse", "Al usar la Vacuola eres invulnerable 1,5 s."),
+            ["Jellyfish"] = (LineageTouch.StingingTrail, "Estela urticante", "Al esquivar dejas un rastro que envenena."),
+            ["Scorpion"] = (LineageTouch.HiddenSting, "Picadura oculta", "Desde el camuflaje, tu veneno es el triple."),
+            ["Mold"] = (LineageTouch.BigColony, "Colonia grande", "5 matas en vez de 3, y más grandes."),
+            ["Puffball"] = (LineageTouch.PuffOnHit, "Bocanada al golpe", "Al recibir un golpe sueltas una nube que ciega (cada 6 s)."),
+        };
+
         [MenuItem("Primordia/Mutations/Crear linajes")]
         internal static void CreateLineages()
         {
@@ -66,6 +79,8 @@ namespace Primordia.Editor
                     AssetDatabase.CreateAsset(lineage, path);
                 }
                 lineage.Configure(name, lineageClass, mutations, "");
+                if (Touches.TryGetValue(asset, out var touch))
+                    lineage.ConfigureTouch(touch.touch, touch.name, touch.description);
                 EditorUtility.SetDirty(lineage);
                 created.Add(lineage);
             }
@@ -85,6 +100,7 @@ namespace Primordia.Editor
             AssetDatabase.SaveAssets();
             AddLineageToPlayer();
             UISetup.EnsureLineageLabel();
+            UISetup.EnsureLineageBannerAndPanel();
             AssetDatabase.SaveAssets();
 
             if (missing.Count > 0)
@@ -104,13 +120,34 @@ namespace Primordia.Editor
                 }
 
                 var lineage = root.TryGetComponent<PlayerLineage>(out var existing) ? existing : root.AddComponent<PlayerLineage>();
-                lineage.Configure(AssetDatabase.LoadAssetAtPath<GameObject>($"{EffectsFolder}/Effect_LevelUp_Gold.prefab"));
+                lineage.Configure(Effect("Effect_LevelUp_Gold"));
+
+                // Los efectos que ya existen; las matas y la estela las pone Primordia > Art > Importar beneficios de linajes.
+                var benefits = lineage.Benefits ?? new LineageBenefitSettings();
+                benefits.finishEffect = Effect("Effect_LevelUp");
+                benefits.healEffect = Effect("Effect_Heal");
+                benefits.retractEffect = Effect("Effect_Plates");
+                benefits.poisonEffect = Effect("Effect_Poison");
+                benefits.matPrefab = Patch("Effect_FungusMat") ?? benefits.matPrefab;
+                benefits.largeMatPrefab = Patch("Effect_FungusMat_Large") ?? benefits.largeMatPrefab;
+                benefits.trailPrefab = Patch("Effect_StingingTrail") ?? benefits.trailPrefab;
+                lineage.ConfigureBenefits(benefits);
                 PrefabUtility.SaveAsPrefabAsset(root, PlayerSetup.PlayerPath);
             }
             finally
             {
                 PrefabUtility.UnloadPrefabContents(root);
             }
+        }
+
+        static GameObject Effect(string prefabName) =>
+            AssetDatabase.LoadAssetAtPath<GameObject>($"{EffectsFolder}/{prefabName}.prefab");
+
+        static MyceliumPatch Patch(string prefabName)
+        {
+            // TryGetComponent da un null de verdad (no el falso del editor), así funciona con ??.
+            var prefab = Effect(prefabName);
+            return prefab != null && prefab.TryGetComponent<MyceliumPatch>(out var patch) ? patch : null;
         }
     }
 }

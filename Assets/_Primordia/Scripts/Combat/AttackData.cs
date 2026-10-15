@@ -130,18 +130,22 @@ namespace Primordia.Combat
         public float HomingTurnRate => homingTurnRate;
         public float HomingRange => homingRange;
 
-        /// <summary>Envenena (y, con contagio, prepara el estallido) o hace sangrar al objetivo, según el ataque.</summary>
-        public void ApplyStatus(Core.Health target)
+        /// <summary>
+        /// Envenena (y, con contagio, prepara el estallido) o hace sangrar al objetivo, según el ataque.
+        /// <paramref name="poisonMultiplier"/> multiplica el daño del veneno (la Picadura oculta del Escorpión).
+        /// </summary>
+        public void ApplyStatus(Core.Health target, float poisonMultiplier = 1f)
         {
             if (target == null || target.IsDead)
                 return;
 
             if (AppliesPoison)
             {
+                int poison = Mathf.Max(1, Mathf.RoundToInt(poisonDamagePerSecond * poisonMultiplier));
                 if (poisonBurstRadius > 0f)
-                    Poison.ApplyContagious(target, poisonDamagePerSecond, poisonDuration, poisonEffect, poisonBurstRadius, poisonBurstEffect);
+                    Poison.ApplyContagious(target, poison, poisonDuration, poisonEffect, poisonBurstRadius, poisonBurstEffect);
                 else
-                    Poison.Apply(target, poisonDamagePerSecond, poisonDuration, poisonEffect);
+                    Poison.Apply(target, poison, poisonDuration, poisonEffect);
             }
 
             if (AppliesBleed)

@@ -37,6 +37,31 @@ namespace Primordia.Mutations
             return text;
         }
 
+        /// <summary>
+        /// Lo que hace ahora: la descripción y, desde el nivel II, solo la mejora de su nivel ("Nivel III: Desgarro…").
+        /// </summary>
+        public static string CurrentDescription(MutationData mutation, int level)
+        {
+            var text = mutation.Description;
+            var extra = level >= 2 ? mutation.LevelDescription(System.Math.Min(level, MutationData.MaxLevel)) : "";
+            return string.IsNullOrEmpty(extra) ? text : $"{text}\nNivel {LevelName(level)}: {extra}";
+        }
+
+        /// <summary>"Tiburón 4/4 · Calamar 3/4": sus linajes y cuántas de sus 4 mutaciones lleva el jugador.</summary>
+        public static string LineageProgress(MutationData mutation, PlayerMutations player)
+        {
+            if (mutation == null || mutation.Lineages.Count == 0)
+                return "";
+
+            var parts = new System.Collections.Generic.List<string>();
+            foreach (var lineage in mutation.Lineages)
+            {
+                if (lineage != null)
+                    parts.Add(player != null ? $"{lineage.DisplayName} {lineage.Progress(player)}/{LineageData.SlotCount}" : lineage.DisplayName);
+            }
+            return string.Join(" · ", parts);
+        }
+
         public static string ClassName(LineageClass lineageClass) => lineageClass switch
         {
             LineageClass.Carnivore => "Carnívoro",
@@ -45,6 +70,25 @@ namespace Primordia.Mutations
             LineageClass.Fungal => "Hongo",
             _ => lineageClass.ToString()
         };
+
+        /// <summary>Beneficio común de cada clase de linaje: nombre y lo que hace.</summary>
+        public static (string name, string description) ClassBenefit(LineageClass lineageClass) => lineageClass switch
+        {
+            LineageClass.Carnivore => ("Rematar", "+100 % de daño a los enemigos con la mitad de vida o menos (+50 % al jefe)."),
+            LineageClass.Herbivore => ("Pastar biomasa", "Cada 10 de biomasa, medio corazón. Con la vida llena, un corazón verde que para un golpe."),
+            LineageClass.Venomous => ("Toxina débil", "Los enemigos envenenados reciben +50 % de daño."),
+            LineageClass.Fungal => ("Colonizar la sala", "En cada combate brotan matas de hongo que frenan y dañan."),
+            _ => ("", "")
+        };
+
+        /// <summary>"Rematar · Sangre en el agua": el nombre del beneficio de la clase y el del toque propio.</summary>
+        public static string BenefitTitle(LineageData lineage)
+        {
+            if (lineage == null)
+                return "";
+            string classBenefit = ClassBenefit(lineage.Class).name;
+            return string.IsNullOrEmpty(lineage.TouchName) ? classBenefit : $"{classBenefit} · {lineage.TouchName}";
+        }
 
         /// <summary>
         /// "Linajes: Tiburón, Calamar". Con jugador, cuántas de las 4 lleva: "Linajes: Tiburón 3/4, Calamar

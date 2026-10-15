@@ -57,8 +57,25 @@ namespace Primordia.Combat
 
         public void ClearDamageBonus(object source) => damageBonuses.Remove(source);
 
+        /// <summary>Multiplicador del veneno que dejan sus golpes (la Picadura oculta del Escorpión). 1 = normal.</summary>
+        public float PoisonMultiplier
+        {
+            get
+            {
+                float total = 1f;
+                foreach (var bonus in poisonBonuses.Values)
+                    total *= bonus;
+                return total;
+            }
+        }
+
+        public void SetPoisonBonus(object source, float multiplier) => poisonBonuses[source] = multiplier;
+
+        public void ClearPoisonBonus(object source) => poisonBonuses.Remove(source);
+
         float baseMultiplier = 1f;
         readonly Dictionary<object, float> damageBonuses = new();
+        readonly Dictionary<object, float> poisonBonuses = new();
 
         /// <summary>Daño de ese ataque con el multiplicador actual (redondeado hacia arriba).</summary>
         public int DamageOf(AttackData attack) =>
@@ -224,7 +241,7 @@ namespace Primordia.Combat
                     continue;
 
                 OneShotEffect.Spawn(attack.MeleeHitEffect, hit.bounds.center);
-                attack.ApplyStatus(health);
+                attack.ApplyStatus(health, PoisonMultiplier);
                 ReportHit(health);
             }
 

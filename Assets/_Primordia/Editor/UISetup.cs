@@ -589,6 +589,101 @@ namespace Primordia.Editor
             }
         }
 
+        /// <summary>
+        /// Añade al prefab GameUI el cartel que sale al completar un linaje (arriba, en el centro) y la fila del
+        /// linaje al final de las estadísticas de la pausa. Los rehace si ya estaban.
+        /// </summary>
+        internal static void EnsureLineageBannerAndPanel()
+        {
+            var root = PrefabUtility.LoadPrefabContents(GameUIPath);
+            try
+            {
+                var bold = AssetDatabase.LoadAssetAtPath<Font>(BoldFontPath);
+
+                // Cartel del HUD: el animal en grande y su beneficio debajo.
+                var oldBanner = root.transform.Find("LineageBanner");
+                if (oldBanner != null)
+                    Object.DestroyImmediate(oldBanner.gameObject);
+                var banner = CreateRect("LineageBanner", root.transform);
+                banner.anchorMin = banner.anchorMax = banner.pivot = new Vector2(0.5f, 1f);
+                banner.anchoredPosition = new Vector2(0f, -44f);
+                banner.sizeDelta = new Vector2(240f, 30f);
+                banner.gameObject.AddComponent<CanvasGroup>();
+
+                var title = CreateText(banner, "", 16, TitleColor);
+                title.name = "Title";
+                if (bold != null)
+                    title.font = bold;
+                PlaceLine(title.rectTransform, 0f, 18f);
+                var subtitle = CreateText(banner, "", 8, TextColor);
+                subtitle.name = "Benefit";
+                PlaceLine(subtitle.rectTransform, -19f, 10f);
+                foreach (var text in new[] { title, subtitle })
+                {
+                    text.raycastTarget = false;
+                    var shadow = text.gameObject.AddComponent<Shadow>();
+                    shadow.effectColor = new Color32(0x18, 0x14, 0x25, 0xff);
+                    shadow.effectDistance = new Vector2(1f, -1f);
+                }
+                banner.gameObject.AddComponent<LineageBanner>().Configure(null, title, subtitle);
+
+                // Fila del linaje al final del panel de estadísticas de la pausa (ya no hay un cuadro aparte).
+                var pause = root.transform.Find("PausePanel");
+                var oldPanel = pause != null ? pause.Find("Lineage") : null;
+                if (oldPanel != null)
+                    Object.DestroyImmediate(oldPanel.gameObject);
+
+                var stats = pause != null ? pause.Find("Stats") : null;
+                if (stats == null)
+                    Debug.LogWarning("UISetup: la pausa no tiene panel de estadísticas; importa antes los menús. No se añade la fila del linaje.");
+                else
+                {
+                    var oldRow = stats.Find("Row_Lineage");
+                    if (oldRow != null)
+                        Object.DestroyImmediate(oldRow.gameObject);
+
+                    var row = CreateRect("Row_Lineage", stats);
+                    // Transparente, pero recibe el ratón para el cuadro de información.
+                    row.gameObject.AddComponent<Image>().color = Color.clear;
+                    var rowLayout = row.gameObject.AddComponent<VerticalLayoutGroup>();
+                    rowLayout.padding = new RectOffset(3, 3, 4, 1);
+                    rowLayout.spacing = 1f;
+                    rowLayout.childControlWidth = rowLayout.childControlHeight = true;
+                    rowLayout.childForceExpandWidth = true;
+                    rowLayout.childForceExpandHeight = false;
+
+                    var lineageName = CreateText(row, "", 8, TextColor);
+                    lineageName.name = "Name";
+                    lineageName.alignment = TextAnchor.MiddleLeft;
+                    var benefit = CreateText(row, "", 8, new Color(0.7f, 0.78f, 0.72f));
+                    benefit.name = "Benefit";
+                    benefit.alignment = TextAnchor.UpperLeft;
+                    benefit.horizontalOverflow = HorizontalWrapMode.Wrap;
+                    foreach (var text in new[] { lineageName, benefit })
+                        text.raycastTarget = false;
+
+                    var tooltip = pause.GetComponentInChildren<MutationTooltip>(true);
+                    row.gameObject.AddComponent<LineagePanel>().Configure(null, lineageName, benefit, tooltip);
+                }
+
+                PrefabUtility.SaveAsPrefabAsset(root, GameUIPath);
+            }
+            finally
+            {
+                PrefabUtility.UnloadPrefabContents(root);
+            }
+        }
+
+        /// <summary>Una línea a lo ancho de su padre, con su borde de arriba a esa altura.</summary>
+        static void PlaceLine(RectTransform rect, float top, float height)
+        {
+            rect.anchorMin = new Vector2(0f, 1f);
+            rect.anchorMax = new Vector2(1f, 1f);
+            rect.pivot = new Vector2(0.5f, 1f);
+            rect.anchoredPosition = new Vector2(0f, top);
+            rect.sizeDelta = new Vector2(0f, height);
+        }
+
         // ---------- Semilla en la pausa ----------
 
         /// <summary>Añade al panel de pausa la semilla del piso, abajo a la izquierda, si todavía no la tiene.</summary>
@@ -759,7 +854,7 @@ namespace Primordia.Editor
             EditorSceneManager.SaveScene(scene);
         }
 
-        static void CreateEventSystem()
+        internal static void CreateEventSystem()
         {
             // El módulo del Input System nuevo; sin él los botones no reciben el ratón.
             new GameObject("EventSystem", typeof(EventSystem), typeof(InputSystemUIInputModule));

@@ -9,6 +9,8 @@ namespace Primordia.Mutations
     /// <summary>
     /// Mancha de micelio de las Hifas: mientras dura, frena y daña a los enemigos que tiene encima (a través de su
     /// <see cref="MyceliumExposure"/>, para que varias manchas juntas no sumen daño). Se desvanece al final.
+    /// También sirve para las matas de Colonizar la sala (duran hasta que se quitan) y para la estela urticante de
+    /// la Medusa (envenena al tocarla).
     /// </summary>
     public class MyceliumPatch : MonoBehaviour
     {
@@ -25,6 +27,9 @@ namespace Primordia.Mutations
             public float burstPoisonDuration;
             public GameObject burstEffect;
             public GameObject poisonEffect;
+            // Veneno a quien la toca (la estela urticante). 0 = sin veneno.
+            public int touchPoisonDamage;
+            public float touchPoisonDuration;
         }
 
         // Segundos del final en los que se desvanece.

@@ -114,6 +114,7 @@ namespace Primordia.Tests
             Assert.AreEqual(2, shark.Progress(mutations));
             Assert.AreEqual("Linajes: Tiburón 2/4, Tortuga (completo)", MutationText.LineageList(mandibles, mutations));
             Assert.AreEqual("Linajes: Tiburón, Tortuga", MutationText.LineageList(mandibles));
+            Assert.AreEqual("Tiburón 2/4 · Tortuga 4/4", MutationText.LineageProgress(mandibles, mutations));
         }
 
         [Test]

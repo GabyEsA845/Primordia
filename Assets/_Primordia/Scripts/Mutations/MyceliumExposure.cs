@@ -45,8 +45,11 @@ namespace Primordia.Mutations
 
             settings = patch;
             lastTouch = Time.time;
-            if (ai != null)
+            if (ai != null && patch.slowFactor < 1f)
                 ai.Slow(patch.slowFactor, Grace);
+
+            if (patch.touchPoisonDamage > 0)
+                Poison.Apply(enemy.Health, patch.touchPoisonDamage, patch.touchPoisonDuration, patch.poisonEffect);
 
             if (patch.damagePerSecond > 0 && Time.time >= nextDamage)
             {

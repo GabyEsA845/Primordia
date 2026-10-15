@@ -38,6 +38,8 @@ namespace Primordia.Editor
             ImportFonts();
             RemoveOldMutationList();
             BuildPauseMenu();
+            // La pausa se rehace: la fila del linaje vuelve al panel de estadísticas.
+            UISetup.EnsureLineageBannerAndPanel();
             BuildMainMenu();
             ApplyPixelFont(UISetup.GameUIPath);
             ApplyPixelFont(UISetup.MainMenuUIPath);

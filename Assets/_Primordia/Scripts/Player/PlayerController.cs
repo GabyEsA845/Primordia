@@ -204,6 +204,9 @@ namespace Primordia.Player
 
         public void StopLunge() => lungeEndTime = 0f;
 
+        /// <summary>La esquiva queda lista ya (Sangre en el agua del Tiburón).</summary>
+        public void ResetDodgeCooldown() => nextDodgeTime = 0f;
+
         /// <summary>Dirección del movimiento si el jugador se mueve; si no, la del apuntado.</summary>
         public static Vector2 ChooseDodgeDirection(Vector2 move, Vector2 aim)
         {

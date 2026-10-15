@@ -49,10 +49,11 @@ Cada módulo vive en su propia carpeta de `Assets/_Primordia/Scripts/` (`Core`, 
 - [x] `feature/lineages`: linajes nuevos (animales de 4 mutaciones, una por ranura, con su clase), linaje activo en el HUD, linajes de cada mutación en tarjetas, pausa y tienda, y burbujas por ranura. Los beneficios de cada clase, más adelante
 - [x] `feature/floor1-mutations`: Hifas, Camuflaje y Vacuola digestiva (con sus 3 niveles, iconos y piezas), que completan los linajes del piso 1
 - [x] `feature/mouth-tweaks`: Aguijón más pequeño (los proyectiles salen de su punta), Esporas como gorrito de Amanita con una bocanada de esporas que flotan como minas, y mordisco con avance desde el nivel II de Mandíbulas
+- [x] `feature/lineage-benefits`: beneficios de los linajes (base por clase: Rematar, Pastar biomasa, Toxina débil y Colonizar la sala; y el toque propio de cada uno de los 7 animales del piso 1), cartel al completar un linaje y beneficio en la pausa
 - [ ] `feature/floor-transition`: paso al piso siguiente y metamorfosis del jugador según su familia de arma (cuerpo a cuerpo, proyectil, área)
 - [ ] `feature/floor-2`: Océano cámbrico (escenario, enemigos, Anomalocaris, 4 mutaciones y 3 cuerpos del jugador)
 - [ ] `feature/floor-3`: Pantano carbonífero (lo mismo, con el artrópodo gigante); si se retrasa mucho, la v1.0 sale con 2 pisos
-- [ ] `feature/balance`: equilibrio de vida, daño y ritmo
+- [ ] `feature/balance`: equilibrio de vida, daño y ritmo. Idea de Gaby: subir un 50 % o un 75 % la vida de los enemigos del piso 1 (ahora 3, 4 y 1), que también haría notar más Rematar
 - [ ] Página de itch.io pública → etiqueta **`v1.0`**
 
 ### Fase 3: después de la v1.0

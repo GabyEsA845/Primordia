@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using Primordia.Combat;
 using Primordia.Core;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -10,9 +12,10 @@ namespace Primordia.Player
     /// La orientación del sprite la lleva <see cref="PlayerAnimator"/>.
     /// La esquiva va en la dirección del movimiento; si el jugador está quieto, hacia donde apunta.
     /// Solo responde mientras el GameManager está en <see cref="GameState.Playing"/>.
+    /// También hace el pequeño avance del mordisco (<see cref="IMeleeLunger"/>), sin invulnerabilidad.
     /// </summary>
     [RequireComponent(typeof(Rigidbody2D), typeof(Health))]
-    public class PlayerController : MonoBehaviour
+    public class PlayerController : MonoBehaviour, IMeleeLunger
     {
         [Header("Movimiento")]
         [Tooltip("Unidades por segundo (1 unidad = 16 px).")]
@@ -36,6 +39,7 @@ namespace Primordia.Player
         /// <summary>Del jugador al cursor, en unidades (sin normalizar). Lo usa la cámara para adelantarse.</summary>
         public Vector2 AimOffset { get; private set; } = Vector2.right;
         public bool IsDodging { get; private set; }
+        public bool IsLunging => lungeEndTime > 0f;
         public Vector2 DodgeDirection { get; private set; }
         public bool CanDodge => CanAct && !IsDodging && Time.time >= nextDodgeTime;
 
@@ -74,6 +78,12 @@ namespace Primordia.Player
         InputAction dodgeAction;
         float dodgeEndTime;
         float nextDodgeTime;
+        Vector2 lungeVelocity;
+        float lungeEndTime;
+        readonly List<RaycastHit2D> castHits = new();
+
+        // Hueco que se deja al chocar al final del avance.
+        const float LungeSkin = 0.05f;
 
         /// <summary>True si el jugador puede actuar: está vivo y el juego está en curso.</summary>
         public bool CanAct => !health.IsDead && (GameManager.Instance == null || GameManager.Instance.State == GameState.Playing);
@@ -100,6 +110,7 @@ namespace Primordia.Player
         void OnDisable()
         {
             health.Died -= OnDied;
+            StopLunge();
             if (IsDodging)
                 EndDodge();
             rb.linearVelocity = Vector2.zero;
@@ -132,6 +143,17 @@ namespace Primordia.Player
                 EndDodge();
             }
 
+            if (IsLunging)
+            {
+                if (Time.time < lungeEndTime && CanAct)
+                {
+                    rb.linearVelocity = lungeVelocity;
+                    return;
+                }
+
+                StopLunge();
+            }
+
             rb.linearVelocity = CanAct ? MoveInput * moveSpeed : Vector2.zero;
         }
 
@@ -142,6 +164,7 @@ namespace Primordia.Player
                 return false;
 
             DodgeDirection = ChooseDodgeDirection(MoveInput, AimDirection);
+            StopLunge();
             IsDodging = true;
             dodgeEndTime = Time.time + dodgeDuration;
             nextDodgeTime = dodgeEndTime + dodgeCooldown;
@@ -150,6 +173,36 @@ namespace Primordia.Player
             DodgeStarted?.Invoke();
             return true;
         }
+
+        /// <summary>
+        /// Avance corto al morder: recorre la distancia en ese tiempo, o menos si delante hay una pared o un
+        /// cuerpo con el que choca. Devuelve la duración real (0 si no avanza).
+        /// </summary>
+        public float Lunge(Vector2 direction, float distance, float duration)
+        {
+            if (!CanAct || IsDodging || direction.sqrMagnitude < 0.0001f || distance <= 0f || duration <= 0f)
+                return 0f;
+
+            direction.Normalize();
+            var filter = new ContactFilter2D { useTriggers = false };
+            filter.SetLayerMask(Physics2D.GetLayerCollisionMask(gameObject.layer));
+            float free = distance;
+            if (rb.Cast(direction, filter, castHits, distance + LungeSkin) > 0)
+            {
+                foreach (var hit in castHits)
+                    free = Mathf.Min(free, hit.distance - LungeSkin);
+            }
+
+            if (free <= LungeSkin)
+                return 0f;
+
+            float time = duration * free / distance;
+            lungeVelocity = direction * (distance / duration);
+            lungeEndTime = Time.time + time;
+            return time;
+        }
+
+        public void StopLunge() => lungeEndTime = 0f;
 
         /// <summary>Dirección del movimiento si el jugador se mueve; si no, la del apuntado.</summary>
         public static Vector2 ChooseDodgeDirection(Vector2 move, Vector2 aim)

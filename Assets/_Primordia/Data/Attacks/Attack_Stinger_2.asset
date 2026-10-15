@@ -30,8 +30,16 @@ MonoBehaviour:
   bleedEffect: {fileID: 0}
   homingTurnRate: 0
   homingRange: 5
+  brakeTime: 0
+  scatterSpeed: 0
+  speedJitter: 0
+  angleJitter: 0
+  driftSpeed: 0
+  fadeTime: 0
   melee: 0
   meleeRange: 1.5
   meleeArc: 180
   meleeEffect: {fileID: 0}
   meleeHitEffect: {fileID: 0}
+  meleeLunge: 0
+  meleeLungeDuration: 0.1

@@ -205,6 +205,113 @@ namespace Primordia.Tests
             Assert.IsEmpty(ActiveProjectiles(), "El golpe cuerpo a cuerpo no dispara proyectiles.");
         }
 
+        [UnityTest]
+        public IEnumerator FloatingProjectile_Brakes_Floats_AndExpires()
+        {
+            attack.Configure(attack.ProjectilePrefab, fireRate: 2f, damage: 1, speed: 10f, lifetime: 0.6f);
+            attack.ConfigureFloating(brake: 0.2f, speedVariation: 0f, angleVariation: 0f, fade: 0.1f);
+
+            weapon.Fire(Vector2.right);
+            var spore = ActiveProjectiles().Single();
+            yield return new WaitForSeconds(0.35f);
+
+            Assert.IsTrue(spore.isActiveAndEnabled, "Sigue flotando hasta acabar su tiempo.");
+            Assert.AreEqual(Vector2.zero, spore.GetComponent<Rigidbody2D>().linearVelocity);
+            float x = spore.transform.position.x;
+            // Frena de 10 a 0 en 0,2 s: recorre 1 unidad.
+            Assert.AreEqual(1f, x, 0.25f);
+
+            yield return new WaitForSeconds(0.4f);
+            Assert.IsEmpty(ActiveProjectiles());
+        }
+
+        [UnityTest]
+        public IEnumerator FloatingProjectile_WithScatter_KeepsDriftingSlowly()
+        {
+            attack.Configure(attack.ProjectilePrefab, fireRate: 2f, damage: 1, speed: 10f, lifetime: 2f);
+            attack.ConfigureFloating(brake: 0.1f, speedVariation: 0f, angleVariation: 0f, fade: 0f, scatter: 0.5f);
+
+            weapon.Fire(Vector2.right);
+            var spore = ActiveProjectiles().Single();
+            yield return new WaitForSeconds(0.3f);
+            Vector2 before = spore.transform.position;
+            float speed = spore.GetComponent<Rigidbody2D>().linearVelocity.magnitude;
+            yield return new WaitForSeconds(0.4f);
+
+            Assert.AreEqual(0.5f, speed, 0.01f, "Tras frenar se dispersa despacio, sin pararse.");
+            Assert.Greater(Vector2.Distance(before, spore.transform.position), 0.1f);
+        }
+
+        [UnityTest]
+        public IEnumerator FloatingProjectile_WithDrift_ApproachesTheNearestEnemy()
+        {
+            attack.Configure(attack.ProjectilePrefab, fireRate: 2f, damage: 0, speed: 10f, lifetime: 3f);
+            attack.ConfigureFloating(brake: 0.1f, speedVariation: 0f, angleVariation: 0f, fade: 0f);
+            attack.SetDrift(speed: 2f, range: 3f);
+            var enemy = CreateEnemyDummy(new Vector2(0.5f, 2.5f));
+            yield return new WaitForFixedUpdate();
+
+            weapon.Fire(Vector2.right);
+            var spore = ActiveProjectiles().Single();
+            yield return new WaitForSeconds(0.2f);
+            float before = Vector2.Distance(spore.transform.position, enemy.transform.position);
+            yield return new WaitForSeconds(0.3f);
+            float after = Vector2.Distance(spore.transform.position, enemy.transform.position);
+
+            Assert.Less(after, before - 0.3f);
+        }
+
+        [UnityTest]
+        public IEnumerator MeleeLunge_MovesForward_AndBitesAnEnemyThatWasOutOfReach()
+        {
+            var player = CreateLunger();
+            attack.ConfigureMelee(range: 1.5f, arc: 180f, effect: null);
+            attack.ConfigureLunge(distance: 0.6f, duration: 0.1f);
+            var enemy = CreateEnemyDummy(new Vector2(2.1f, 0f));
+            yield return new WaitForFixedUpdate();
+
+            Assert.IsTrue(player.weapon.TryFire(Vector2.right));
+            Assert.AreEqual(enemy.Max, enemy.Current, "Fuera de alcance: primero se lanza.");
+            Assert.IsTrue(player.weapon.IsLunging);
+
+            yield return new WaitForSeconds(0.2f);
+
+            Assert.AreEqual(enemy.Max - 1, enemy.Current);
+            Assert.IsFalse(player.weapon.IsLunging);
+            Assert.Greater(player.body.position.x, 0.2f);
+            Assert.LessOrEqual(player.body.position.x, 0.65f);
+        }
+
+        [UnityTest]
+        public IEnumerator MeleeLunge_BitesAtOnce_WhenSomeoneIsInReach()
+        {
+            var player = CreateLunger();
+            attack.ConfigureMelee(range: 1.5f, arc: 180f, effect: null);
+            attack.ConfigureLunge(distance: 0.6f, duration: 0.1f);
+            var enemy = CreateEnemyDummy(new Vector2(1.2f, 0f));
+            yield return new WaitForFixedUpdate();
+
+            Assert.IsTrue(player.weapon.TryFire(Vector2.right));
+
+            Assert.AreEqual(enemy.Max - 1, enemy.Current);
+            Assert.IsFalse(player.weapon.IsLunging);
+            yield return new WaitForSeconds(0.15f);
+            Assert.AreEqual(0f, player.body.position.x, 0.01f);
+        }
+
+        /// <summary>Un jugador mínimo (se mueve con PlayerController) que comparte el ataque de la prueba.</summary>
+        (Weapon weapon, Rigidbody2D body) CreateLunger()
+        {
+            var lunger = new GameObject("Lunger");
+            lunger.transform.SetParent(shooter.transform, false);
+            var body = lunger.AddComponent<Rigidbody2D>();
+            lunger.AddComponent<CircleCollider2D>().radius = 0.4f;
+            lunger.AddComponent<PlayerController>().readInput = false;
+            var lungerWeapon = lunger.AddComponent<Weapon>();
+            lungerWeapon.Attack = attack;
+            return (lungerWeapon, body);
+        }
+
         Health CreateEnemyDummy(Vector2 position)
         {
             var dummy = new GameObject("EnemyDummy") { layer = LayerMask.NameToLayer(CombatLayers.Enemy) };

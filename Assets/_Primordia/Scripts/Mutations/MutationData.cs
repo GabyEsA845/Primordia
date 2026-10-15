@@ -35,6 +35,17 @@ namespace Primordia.Mutations
         [SerializeField, Min(0f)] float bodyRadius;
         [Tooltip("Solo Piel: distancia del centro al borde del cuerpo, donde se coloca la Boca. 0 = la de la célula.")]
         [SerializeField, Min(0f)] float mouthDistance;
+        [Tooltip("Solo Piel: cuánto más alta (o más baja, negativo) está la cabeza que la de la célula, en unidades. " +
+                 "Ahí se pone la Boca que va en la cabeza (el gorrito de las Esporas).")]
+        [SerializeField] float headHeight;
+        [Tooltip("Solo Boca: va sobre la cabeza y sigue al cuerpo (gorrito de las Esporas) en lugar de girar con el " +
+                 "apuntado. Sus animaciones tienen los estados de las Extremidades (Idle_side, Move_down...).")]
+        [SerializeField] bool wornOnHead;
+        [Tooltip("Solo Boca: distancia de su unión a la punta, de donde salen los proyectiles. 0 = el punto de " +
+                 "disparo del jugador.")]
+        [SerializeField, Min(0f)] float muzzleDistance;
+        [Tooltip("Solo Boca: cuánto se adelanta el cuerpo hacia el cursor al atacar, en unidades (solo se ve).")]
+        [SerializeField, Min(0f)] float attackLean;
         [Tooltip("Icono de 16×16: lista de la pausa y burbuja del suelo.")]
         [SerializeField] Sprite icon;
         [Tooltip("Icono de 32×32: tarjetas de elección. Si falta, se usa el pequeño.")]
@@ -52,6 +63,10 @@ namespace Primordia.Mutations
         public RuntimeAnimatorController Look => look;
         public float BodyRadius => bodyRadius;
         public float MouthDistance => mouthDistance;
+        public float HeadHeight => headHeight;
+        public bool WornOnHead => wornOnHead;
+        public float MuzzleDistance => muzzleDistance;
+        public float AttackLean => attackLean;
         public Sprite Icon => icon;
         public Sprite LargeIcon => largeIcon != null ? largeIcon : icon;
         public Color Color => color;
@@ -99,5 +114,15 @@ namespace Primordia.Mutations
             bodyRadius = Mathf.Max(0f, newBodyRadius);
             mouthDistance = Mathf.Max(0f, newMouthDistance);
         }
+
+        /// <summary>Cómo se lleva una Boca: en la cabeza o girando con el apuntado, su punta y el adelanto al atacar.</summary>
+        internal void SetMouthLook(bool onHead, float newMuzzleDistance, float newAttackLean)
+        {
+            wornOnHead = onHead;
+            muzzleDistance = Mathf.Max(0f, newMuzzleDistance);
+            attackLean = Mathf.Max(0f, newAttackLean);
+        }
+
+        internal void SetHeadHeight(float height) => headHeight = height;
     }
 }

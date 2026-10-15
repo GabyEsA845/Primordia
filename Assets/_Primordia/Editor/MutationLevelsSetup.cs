@@ -27,16 +27,18 @@ namespace Primordia.Editor
 
             Edit<AttackMutation>("Mandibles", m =>
             {
+                // Desde el nivel II el mordisco se lanza 0,6 unidades hacia delante si no hay nadie a tiro.
                 var two = LevelAttack(m.Attack, "Attack_Mandibles_2", a =>
                 {
                     a.SetDamage(4);
                     a.SetMeleeRange(1.5f * 1.15f);
+                    a.ConfigureLunge(0.6f, 0.1f);
                 });
                 var three = LevelAttack(two, "Attack_Mandibles_3", a => a.ConfigureBleed(1, 3f, Effect("Effect_Status_Bleed")));
                 m.ConfigureUpgrades(new AttackMutation.AttackLevel { attack = two, healEveryKills = 3 },
                     new AttackMutation.AttackLevel { attack = three, healEveryKills = 2 });
                 m.SetHealEffect(Effect("Effect_Heal"));
-                m.SetLevelDescriptions("Mordisco más fuerte (4 de daño) y un 15 % más de alcance.",
+                m.SetLevelDescriptions("Mordisco más fuerte (4 de daño), un 15 % más de alcance y te lanzas un poco hacia delante al morder.",
                     "Desgarro: el mordisco hace sangrar (1 de daño por segundo durante 3 s) y curas medio corazón cada 2 enemigos.");
             });
 
@@ -51,11 +53,18 @@ namespace Primordia.Editor
 
             Edit<AttackMutation>("Spores", m =>
             {
-                var two = LevelAttack(m.Attack, "Attack_Spores_2", a => a.SetFan(5, 45f));
-                var three = LevelAttack(two, "Attack_Spores_3", a => a.ConfigureHoming(180f, 5f));
+                // Bocanada que flota (nivel I); el II suelta 7 que flotan 2,5 s y el III las acerca al enemigo.
+                MutationSetup.ConfigureSporesPuff(m.Attack);
+                m.ConfigureBase(m.DisplayName, "Bocanada de 5 esporas lentas que se quedan flotando como minas.", m.Slot, m.Color);
+                var two = LevelAttack(m.Attack, "Attack_Spores_2", a =>
+                {
+                    a.SetFan(7, 75f);
+                    a.SetLifetime(MutationSetup.SporesBrake + 2.5f);
+                });
+                var three = LevelAttack(two, "Attack_Spores_3", a => a.SetDrift(1.5f, 3f));
                 m.ConfigureUpgrades(new AttackMutation.AttackLevel { attack = two }, new AttackMutation.AttackLevel { attack = three });
-                m.SetLevelDescriptions("Cinco esporas en un abanico más abierto.",
-                    "Esporas buscadoras: se curvan hacia el enemigo más cercano.");
+                m.SetLevelDescriptions("Siete esporas que flotan más tiempo (2,5 s).",
+                    "Esporas buscadoras: las que flotan se acercan despacio al enemigo más cercano.");
             });
 
             Edit<StatMutation>("Fins", m =>

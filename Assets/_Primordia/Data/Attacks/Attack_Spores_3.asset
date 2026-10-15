@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: Attack_Spores_3
   m_EditorClassIdentifier: Primordia::Primordia.Combat.AttackData
   projectilePrefab: {fileID: 599055295978589532, guid: 01ebd50bec8da76499d1798c6b0dc600, type: 3}
-  fireRate: 2
+  fireRate: 1.25
   automatic: 0
   damage: 1
-  projectileSpeed: 7
-  lifetime: 2.5
-  projectileCount: 5
-  spreadAngle: 45
+  projectileSpeed: 8
+  lifetime: 3.1
+  projectileCount: 7
+  spreadAngle: 75
   poisonDamagePerSecond: 0
   poisonDuration: 0
   poisonEffect: {fileID: 0}
@@ -28,10 +28,18 @@ MonoBehaviour:
   bleedDamagePerSecond: 0
   bleedDuration: 0
   bleedEffect: {fileID: 0}
-  homingTurnRate: 180
-  homingRange: 5
+  homingTurnRate: 0
+  homingRange: 3
+  brakeTime: 0.6
+  scatterSpeed: 1.5
+  speedJitter: 0.2
+  angleJitter: 10
+  driftSpeed: 1.5
+  fadeTime: 0.3
   melee: 0
   meleeRange: 1.5
   meleeArc: 180
   meleeEffect: {fileID: 0}
   meleeHitEffect: {fileID: 0}
+  meleeLunge: 0
+  meleeLungeDuration: 0.1

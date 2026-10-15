@@ -8,6 +8,7 @@ namespace Primordia.Combat
     /// Proyectil en línea recta. Daña al primer cuerpo con <see cref="Health"/> que toca y desaparece;
     /// también desaparece al chocar con una pared o al acabarse su tiempo de vida.
     /// Si el objetivo no recibe daño (por ejemplo, porque está esquivando), lo atraviesa.
+    /// Con <see cref="AttackData.BrakeTime"/> frena y flota como una mina que se dispersa despacio (las esporas).
     /// </summary>
     [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
     public class Projectile : MonoBehaviour
@@ -25,6 +26,12 @@ namespace Primordia.Combat
         bool launched;
         Transform homingTarget;
         float nextTargetSearch;
+        Vector2 direction;
+        float speed;
+        float launchTime;
+        float wobbleSeed;
+        SpriteRenderer[] renderers;
+        Color[] baseColors;
 
         // Cada cuánto vuelve a buscar el enemigo más cercano un proyectil buscador.
         const float TargetSearchInterval = 0.15f;
@@ -37,6 +44,10 @@ namespace Primordia.Combat
             rb.interpolation = RigidbodyInterpolation2D.Interpolate;
             rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
             GetComponent<Collider2D>().isTrigger = true;
+            renderers = GetComponentsInChildren<SpriteRenderer>(true);
+            baseColors = new Color[renderers.Length];
+            for (int i = 0; i < renderers.Length; i++)
+                baseColors[i] = renderers[i].color;
         }
 
         internal void SetPool(ObjectPool<Projectile> owner) => pool = owner;
@@ -46,13 +57,24 @@ namespace Primordia.Combat
         /// <param name="source">Arma que disparó; recibe el aviso de cada impacto. Puede ser null.</param>
         public void Launch(Vector2 position, Vector2 direction, AttackData attack, int layer, Weapon source)
         {
+            float speed = attack.ProjectileSpeed;
+            if (attack.SpeedJitter > 0f)
+                speed *= Random.Range(1f - attack.SpeedJitter, 1f + attack.SpeedJitter);
+            if (attack.AngleJitter > 0f)
+                direction = Quaternion.Euler(0f, 0f, Random.Range(-attack.AngleJitter, attack.AngleJitter)) * direction;
+
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
             gameObject.layer = layer;
             transform.SetPositionAndRotation(position, Quaternion.Euler(0f, 0f, angle));
             rb.position = position;
             rb.rotation = angle;
-            rb.linearVelocity = direction.normalized * attack.ProjectileSpeed;
+            rb.linearVelocity = direction.normalized * speed;
+            this.direction = direction.normalized;
+            this.speed = speed;
+            launchTime = Time.time;
+            wobbleSeed = Random.value * 100f;
+            SetAlpha(1f);
 
             this.attack = attack;
             this.source = source;
@@ -71,8 +93,62 @@ namespace Primordia.Combat
                 return;
             }
 
-            if (launched && attack.HomingTurnRate > 0f)
+            if (!launched)
+                return;
+
+            if (attack.BrakeTime > 0f)
+                Float();
+            else if (attack.HomingTurnRate > 0f)
                 Steer();
+
+            if (attack.FadeTime > 0f)
+                SetAlpha(Mathf.Clamp01((expireTime - Time.time) / attack.FadeTime));
+        }
+
+        /// <summary>
+        /// Frena en <see cref="AttackData.BrakeTime"/> hasta la velocidad de dispersión y después sigue alejándose
+        /// despacio, con un leve vaivén; con deriva, se acerca al enemigo más cercano si lo hay (Esporas nivel III).
+        /// </summary>
+        void Float()
+        {
+            float scatter = Mathf.Min(attack.ScatterSpeed, speed);
+            float t = (Time.time - launchTime) / attack.BrakeTime;
+            if (t < 1f)
+            {
+                rb.linearVelocity = direction * Mathf.Lerp(speed, scatter, t);
+                return;
+            }
+
+            if (attack.DriftSpeed > 0f)
+            {
+                if (Time.time >= nextTargetSearch)
+                {
+                    nextTargetSearch = Time.time + TargetSearchInterval;
+                    homingTarget = FindTarget();
+                }
+
+                if (homingTarget != null)
+                {
+                    rb.linearVelocity = ((Vector2)homingTarget.position - rb.position).normalized * attack.DriftSpeed;
+                    return;
+                }
+            }
+
+            // Vaivén de hasta ±40° alrededor de su dirección, distinto en cada espora.
+            float wobble = (Mathf.PerlinNoise(wobbleSeed, Time.time * WobbleFrequency) - 0.5f) * 80f;
+            rb.linearVelocity = (Vector2)(Quaternion.Euler(0f, 0f, wobble) * direction) * scatter;
+        }
+
+        const float WobbleFrequency = 0.8f;
+
+        void SetAlpha(float alpha)
+        {
+            for (int i = 0; i < renderers.Length; i++)
+            {
+                var color = baseColors[i];
+                color.a *= alpha;
+                renderers[i].color = color;
+            }
         }
 
         /// <summary>Gira poco a poco hacia el objetivo más cercano del otro equipo (Esporas nivel III).</summary>

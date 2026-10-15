@@ -97,14 +97,24 @@ namespace Primordia.UI
             EnsurePieces();
             var bodyAnimator = player != null && player.TryGetComponent<PlayerAnimator>(out var playerAnimator) ? playerAnimator.BodyAnimator : null;
             float mouthDistance = cellMouthDistance;
-            if (player != null && player.TryGetComponent<MutationLook>(out var look) && look.MouthDistance > 0f)
-                mouthDistance = look.MouthDistance * PixelsPerUnit;
+            float headHeight = 0f;
+            if (player != null && player.TryGetComponent<MutationLook>(out var look))
+            {
+                if (look.MouthDistance > 0f)
+                    mouthDistance = look.MouthDistance * PixelsPerUnit;
+                headHeight = look.HeadHeight * PixelsPerUnit;
+            }
+            var mouth = player != null ? player.Get(MutationSlot.Mouth) : null;
 
             Setup(Part.Body, bodyAnimator != null ? bodyAnimator.runtimeAnimatorController : null, FacingDown, Vector2.zero, 0f);
             Setup(Part.Limbs, LookOf(player, MutationSlot.Limbs), FacingDown, Vector2.zero, 0f);
             Setup(Part.Organ, LookOf(player, MutationSlot.Organ), Idle, Vector2.zero, 0f);
-            // La Boca está dibujada mirando a la derecha: girada −90° apunta hacia abajo.
-            Setup(Part.Mouth, LookOf(player, MutationSlot.Mouth), Idle, new Vector2(0f, -mouthDistance), -90f);
+            // La Boca está dibujada mirando a la derecha: girada −90° apunta hacia abajo. La que va en la cabeza
+            // (el gorrito) se pone sobre la cabeza de la Piel, mirando abajo como el cuerpo.
+            if (mouth != null && mouth.WornOnHead)
+                Setup(Part.Mouth, mouth.Look, FacingDown, new Vector2(0f, headHeight), 0f);
+            else
+                Setup(Part.Mouth, LookOf(player, MutationSlot.Mouth), Idle, new Vector2(0f, -mouthDistance), -90f);
 
             Fit();
             foreach (var piece in pieces)

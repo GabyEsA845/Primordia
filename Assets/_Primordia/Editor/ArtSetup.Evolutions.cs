@@ -106,22 +106,27 @@ namespace Primordia.Editor
             }
         }
 
+        /// <summary>
+        /// Los proyectiles con la púa del Erizo, copiando las hojas de esa carpeta. Se recortan de nuevo todas las de la
+        /// carpeta del proyecto, así que cada una necesita su ancho de celda y su ritmo.
+        /// </summary>
+        static Character ProjectilesWithQuill(string sourceFolder) => new()
+        {
+            Name = ProjectilesArt.Name,
+            SourceFolder = sourceFolder,
+            ArtFolder = ProjectilesArt.ArtFolder,
+            ControllerPerClip = true,
+            CellWidths = new Dictionary<string, int>(ProjectilesArt.CellWidths) { ["Quill"] = 10 },
+            SkipClips = ProjectilesArt.SkipClips,
+            Timings = ProjectilesArt.Timings.Append(("Quill", 1f / 0.08f, true)).ToArray(),
+        };
+
         /// <summary>Proyectil nuevo del Aguijón y la púa del Erizo (crea su prefab si no existe).</summary>
         static void ImportEvolutionProjectiles()
         {
             CombatSetup.CreateProjectilePrefab("Projectile_Quill", new Color(0.6f, 0.35f, 0.8f), new Vector2(0.625f, 0.25f), CoreSetup.CreateSquareSprite());
 
-            var projectiles = new Character
-            {
-                Name = ProjectilesArt.Name,
-                SourceFolder = EvolutionsSourceFolder + "/Projectiles",
-                ArtFolder = ProjectilesArt.ArtFolder,
-                ControllerPerClip = true,
-                CellWidths = new Dictionary<string, int>(ProjectilesArt.CellWidths) { ["Quill"] = 10 },
-                SkipClips = ProjectilesArt.SkipClips,
-                Timings = ProjectilesArt.Timings.Append(("Quill", 1f / 0.08f, true)).ToArray(),
-            };
-            var art = Import(projectiles);
+            var art = Import(ProjectilesWithQuill(EvolutionsSourceFolder + "/Projectiles"));
             if (art == null)
                 return;
 

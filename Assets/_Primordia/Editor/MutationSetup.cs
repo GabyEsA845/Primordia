@@ -67,6 +67,26 @@ namespace Primordia.Editor
             EditorUtility.SetDirty(attack);
         }
 
+        /// <summary>
+        /// Esporas: una bocanada de 5 esporas lentas en abanico de 75° que frenan en 0,6 s (unas 2,8 unidades) y
+        /// flotan 1,5 s más mientras se dispersan (1,5 unidades por segundo, otras 2,2 unidades), desvaneciéndose al
+        /// final; 1 de daño cada una y 1,25 bocanadas por segundo.
+        /// Sirve también para convertir el abanico de versiones anteriores.
+        /// </summary>
+        internal static void ConfigureSporesPuff(AttackData attack)
+        {
+            if (attack == null)
+                return;
+
+            attack.Configure(attack.ProjectilePrefab, fireRate: 1.25f, damage: 1, speed: 8f, lifetime: SporesBrake + 1.5f,
+                count: 5, spread: 75f);
+            attack.ConfigureFloating(SporesBrake, speedVariation: 0.2f, angleVariation: 10f, fade: 0.3f, scatter: 1.5f);
+            EditorUtility.SetDirty(attack);
+        }
+
+        /// <summary>Segundos que tardan las esporas en frenar.</summary>
+        internal const float SporesBrake = 0.6f;
+
         /// <summary>Mutaciones, reserva y mejoras del jugador. Lo guarda todo antes de volver.</summary>
         internal static void CreateAssets(Sprite square)
         {
@@ -86,7 +106,8 @@ namespace Primordia.Editor
             var stingerAttack = CombatSetup.CreateAttack("Attack_Stinger", stingerProjectile,
                 fireRate: 4f, damage: 1, speed: 16f, lifetime: 2f, automatic: true, poisonDamagePerSecond: 1, poisonDuration: 3f);
             var sporesAttack = CombatSetup.CreateAttack("Attack_Spores", sporeProjectile,
-                fireRate: 2f, damage: 1, speed: 7f, lifetime: 2.5f, count: 3, spread: 30f);
+                fireRate: 1.5f, damage: 1, speed: 8f, lifetime: 2.1f, count: 5, spread: 60f);
+            ConfigureSporesPuff(sporesAttack);
 
             // Efectos de las habilidades.
             var inkEffect = CreateEffect("Effect_InkCloud", circle, new Color(0.1f, 0.1f, 0.25f, 0.8f), duration: 1f, endScale: 1.1f);
@@ -105,7 +126,7 @@ namespace Primordia.Editor
                     m => m.Configure(stingerAttack, newHealEveryKills: 0)),
 
                 CreateMutation<AttackMutation>("Mutation_Spores", "Esporas",
-                    "Tres esporas lentas en abanico.",
+                    "Bocanada de 5 esporas lentas que se quedan flotando como minas.",
                     MutationSlot.Mouth,
                     m => m.Configure(sporesAttack, newHealEveryKills: 0)),
 

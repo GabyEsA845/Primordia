@@ -30,7 +30,7 @@ namespace Primordia.Editor
         {
             (MutationSlot.Mouth, "Mandibles", 0f, 0f),
             (MutationSlot.Mouth, "Stinger", 0f, 0f),
-            (MutationSlot.Mouth, "Spores", 0f, 0f),
+            // Las Esporas ya no son una Boca que gira: su gorrito lo importa Primordia > Art > Importar ajustes de las Bocas.
             (MutationSlot.Limbs, "Fins", 0f, 0f),
             (MutationSlot.Limbs, "JointedLegs", 0f, 0f),
             (MutationSlot.Skin, "Carapace", 0.55f, 8.5f),

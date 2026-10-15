@@ -25,6 +25,9 @@ namespace Primordia.Combat
         }
 
         public Team Team => team;
+
+        /// <summary>Punto de salida de los proyectiles (puede ser null).</summary>
+        public Transform Muzzle => muzzle;
         public bool CanFire => attack != null && attack.IsUsable && Time.time >= nextFireTime;
 
         /// <summary>Momento (Time.time) a partir del cual termina la recarga.</summary>
@@ -66,9 +69,35 @@ namespace Primordia.Combat
 
         float nextFireTime;
         int projectileLayer;
-        readonly HashSet<Health> hitThisStrike = new();
+        IMeleeLunger lunger;
+
+        // Mordisco con avance que aún no ha golpeado: golpea al acabar el avance o al tener a alguien a tiro.
+        AttackData pendingAttack;
+        Vector2 pendingDirection;
+        float pendingStrikeTime;
+
+        /// <summary>True mientras se lanza hacia delante antes de morder.</summary>
+        public bool IsLunging => pendingAttack != null;
 
         void Awake() => projectileLayer = CombatLayers.ProjectileLayer(team);
+
+        void OnDisable() => pendingAttack = null;
+
+        void Update()
+        {
+            if (pendingAttack == null)
+                return;
+
+            if (Time.time < pendingStrikeTime && !AnyTargetInReach(pendingDirection, pendingAttack))
+                return;
+
+            var attack = pendingAttack;
+            pendingAttack = null;
+            lunger?.StopLunge();
+            Strike(pendingDirection, MuzzlePosition, attack);
+        }
+
+        Vector2 MuzzlePosition => muzzle != null ? muzzle.position : transform.position;
 
         /// <summary>Dispara si la recarga lo permite. Devuelve false si no disparó.</summary>
         public bool TryFire(Vector2 direction)
@@ -98,7 +127,8 @@ namespace Primordia.Combat
 
             if (attack.IsMelee)
             {
-                Strike(direction, origin, attack);
+                if (!TryLunge(direction, attack))
+                    Strike(direction, origin, attack);
                 Fired?.Invoke(direction);
                 return;
             }
@@ -118,29 +148,76 @@ namespace Primordia.Combat
 
         internal void ReportHit(Health target) => HitTarget?.Invoke(target);
 
+        internal void SetMuzzle(Transform newMuzzle) => muzzle = newMuzzle;
+
         /// <summary>
-        /// Golpe cuerpo a cuerpo: daña una vez a cada objetivo del otro equipo que esté dentro del alcance
-        /// (medido desde el centro del atacante) y del arco delante de él.
+        /// Mordisco con avance: si nadie está a tiro, se lanza hacia delante y deja el golpe para el final del
+        /// avance (o para cuando alguien entre en el alcance). Devuelve false si golpea ya.
         /// </summary>
-        void Strike(Vector2 direction, Vector2 effectPosition, AttackData attack)
+        bool TryLunge(Vector2 direction, AttackData attack)
+        {
+            // Se busca al usarlo: quien se lanza puede añadirse después del arma (pruebas).
+            lunger ??= GetComponentInParent<IMeleeLunger>();
+            if (attack.MeleeLunge <= 0f || lunger == null || AnyTargetInReach(direction, attack))
+                return false;
+
+            float duration = lunger.Lunge(direction, attack.MeleeLunge, attack.MeleeLungeDuration);
+            if (duration <= 0f)
+                return false;
+
+            pendingAttack = attack;
+            pendingDirection = direction;
+            pendingStrikeTime = Time.time + duration;
+            return true;
+        }
+
+        bool AnyTargetInReach(Vector2 direction, AttackData attack)
+        {
+            foreach (var _ in TargetsInReach(direction, attack))
+                return true;
+            return false;
+        }
+
+        /// <summary>
+        /// Objetivos del otro equipo dentro del alcance (medido desde el centro del atacante) y del arco delante
+        /// de él, una vez cada uno.
+        /// </summary>
+        IEnumerable<(Health health, Collider2D collider)> TargetsInReach(Vector2 direction, AttackData attack)
         {
             Vector2 center = transform.position;
             var ownHealth = GetComponentInParent<Health>();
             int targets = LayerMask.GetMask(team == Team.Player ? CombatLayers.Enemy : CombatLayers.Player);
+            var seen = new HashSet<Health>();
 
-            hitThisStrike.Clear();
             foreach (var hit in Physics2D.OverlapCircleAll(center, attack.Range, targets))
             {
                 if (hit.isTrigger)
                     continue;
 
                 var health = hit.GetComponentInParent<Health>();
-                if (health == null || health == ownHealth || !hitThisStrike.Add(health))
+                if (health == null || health == ownHealth || health.IsDead || !seen.Add(health))
                     continue;
 
                 // El punto del colisionador más cercano: así cuenta aunque solo asome dentro del arco.
                 Vector2 toTarget = hit.ClosestPoint(center) - center;
                 if (toTarget.sqrMagnitude > 0.0001f && Vector2.Angle(direction, toTarget) > attack.MeleeArc / 2f)
+                    continue;
+
+                yield return (health, hit);
+            }
+        }
+
+        /// <summary>
+        /// Golpe cuerpo a cuerpo: daña una vez a cada objetivo del otro equipo que esté dentro del alcance
+        /// (medido desde el centro del atacante) y del arco delante de él.
+        /// </summary>
+        void Strike(Vector2 direction, Vector2 effectPosition, AttackData attack)
+        {
+            // Se recogen antes de dañar: una muerte puede cambiar la escena mientras se recorren.
+            var hits = new List<(Health health, Collider2D collider)>(TargetsInReach(direction, attack));
+            foreach (var (health, hit) in hits)
+            {
+                if (health == null)
                     continue;
 
                 if (!health.TakeDamage(DamageOf(attack)))

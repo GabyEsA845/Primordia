@@ -13,20 +13,24 @@ MonoBehaviour:
   m_Name: Mutation_Spores
   m_EditorClassIdentifier: Primordia::Primordia.Mutations.AttackMutation
   displayName: Esporas
-  description: Tres esporas lentas en abanico.
+  description: Bocanada de 5 esporas lentas que se quedan flotando como minas.
   slot: 0
   lineages:
   - {fileID: 11400000, guid: c835644a936dc8447a78c0aa704d8e42, type: 2}
   - {fileID: 11400000, guid: 50f454cff0455dd40a10c8afa7e3f5b1, type: 2}
-  look: {fileID: 9100000, guid: 51c93d48e3303174fa9e433f92c863ca, type: 2}
+  look: {fileID: 9100000, guid: 70f5f3363c47c3d4789dfe0692aad2a8, type: 2}
   bodyRadius: 0
   mouthDistance: 0
+  headHeight: 0
+  wornOnHead: 1
+  muzzleDistance: 0
+  attackLean: 0.15625
   icon: {fileID: 21300000, guid: 7552ff376f3877540b79d6ef6b6c2ce5, type: 3}
   largeIcon: {fileID: 21300000, guid: 808fbffc1845f2f448aa1911948cae4e, type: 3}
   color: {r: 0.95, g: 0.5, b: 0.35, a: 1}
   levelDescriptions:
-  - "Cinco esporas en un abanico m\xE1s abierto."
-  - "Esporas buscadoras: se curvan hacia el enemigo m\xE1s cercano."
+  - "Siete esporas que flotan m\xE1s tiempo (2,5 s)."
+  - "Esporas buscadoras: las que flotan se acercan despacio al enemigo m\xE1s cercano."
   attack: {fileID: 11400000, guid: 30b703fc6d1697d47a0e24871476e1d7, type: 2}
   healEveryKills: 0
   upgrades:

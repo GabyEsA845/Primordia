@@ -58,6 +58,21 @@ namespace Primordia.Combat
         [Tooltip("Distancia a la que el proyectil busca objetivo.")]
         [SerializeField, Min(0f)] float homingRange = 5f;
 
+        [Header("Proyectiles que frenan y flotan")]
+        [Tooltip("Segundos que tarda el proyectil en frenar; después flota hasta acabar su Lifetime (las esporas). " +
+                 "0 = vuela recto todo el tiempo.")]
+        [SerializeField, Min(0f)] float brakeTime;
+        [Tooltip("Velocidad a la que sigue alejándose, con un leve vaivén, después de frenar (se dispersa). 0 = quieto.")]
+        [SerializeField, Min(0f)] float scatterSpeed;
+        [Tooltip("Variación al azar de la velocidad de cada proyectil (0,2 = ±20 %).")]
+        [SerializeField, Range(0f, 1f)] float speedJitter;
+        [Tooltip("Variación al azar de la dirección de cada proyectil, en grados (±).")]
+        [SerializeField, Min(0f)] float angleJitter;
+        [Tooltip("Mientras flota, velocidad a la que se acerca al enemigo más cercano dentro de Homing Range. 0 = quieto.")]
+        [SerializeField, Min(0f)] float driftSpeed;
+        [Tooltip("Segundos finales en los que el proyectil se desvanece antes de desaparecer.")]
+        [SerializeField, Min(0f)] float fadeTime;
+
         [Header("Cuerpo a cuerpo")]
         [Tooltip("Activo: no dispara proyectiles; daña a todo lo que hay en un arco delante (mordisco de Mandíbulas).")]
         [SerializeField] bool melee;
@@ -69,6 +84,11 @@ namespace Primordia.Combat
         [SerializeField] GameObject meleeEffect;
         [Tooltip("Efecto sobre cada objetivo alcanzado por el golpe.")]
         [SerializeField] GameObject meleeHitEffect;
+        [Tooltip("Si no hay nadie a tiro, el atacante se lanza esta distancia hacia delante y golpea al llegar " +
+                 "(Mandíbulas desde el nivel II). 0 = sin avance.")]
+        [SerializeField, Min(0f)] float meleeLunge;
+        [Tooltip("Segundos que dura el avance.")]
+        [SerializeField, Min(0.01f)] float meleeLungeDuration = 0.1f;
 
         public Projectile ProjectilePrefab => projectilePrefab;
         public bool IsMelee => melee;
@@ -85,7 +105,17 @@ namespace Primordia.Combat
         public int Damage => damage;
         public float ProjectileSpeed => projectileSpeed;
         public float Lifetime => lifetime;
-        public float Range => melee ? meleeRange : projectileSpeed * lifetime;
+        public float Range => melee ? meleeRange
+            : brakeTime > 0f ? projectileSpeed * Mathf.Min(brakeTime, lifetime) / 2f
+            : projectileSpeed * lifetime;
+        public float BrakeTime => brakeTime;
+        public float ScatterSpeed => scatterSpeed;
+        public float SpeedJitter => speedJitter;
+        public float AngleJitter => angleJitter;
+        public float DriftSpeed => driftSpeed;
+        public float FadeTime => fadeTime;
+        public float MeleeLunge => meleeLunge;
+        public float MeleeLungeDuration => meleeLungeDuration;
         public int ProjectileCount => projectileCount;
         public float SpreadAngle => spreadAngle;
         public int PoisonDamagePerSecond => poisonDamagePerSecond;
@@ -167,6 +197,37 @@ namespace Primordia.Combat
         {
             homingTurnRate = Mathf.Max(0f, turnRate);
             homingRange = Mathf.Max(0f, range);
+        }
+
+        /// <summary>
+        /// Proyectiles que frenan y flotan (las esporas): después de frenar se dispersan despacio y, con deriva, se
+        /// acercan al enemigo.
+        /// </summary>
+        internal void ConfigureFloating(float brake, float speedVariation, float angleVariation, float fade, float drift = 0f,
+            float scatter = 0f)
+        {
+            scatterSpeed = Mathf.Max(0f, scatter);
+            brakeTime = Mathf.Max(0f, brake);
+            speedJitter = Mathf.Clamp01(speedVariation);
+            angleJitter = Mathf.Max(0f, angleVariation);
+            fadeTime = Mathf.Max(0f, fade);
+            driftSpeed = Mathf.Max(0f, drift);
+        }
+
+        internal void SetDrift(float speed, float range)
+        {
+            driftSpeed = Mathf.Max(0f, speed);
+            homingRange = Mathf.Max(0f, range);
+        }
+
+        internal void SetLifetime(float seconds) => lifetime = Mathf.Max(0.05f, seconds);
+
+        internal void SetFireRate(float rate) => fireRate = Mathf.Max(0.1f, rate);
+
+        internal void ConfigureLunge(float distance, float duration)
+        {
+            meleeLunge = Mathf.Max(0f, distance);
+            meleeLungeDuration = Mathf.Max(0.01f, duration);
         }
 
         internal void SetDamage(int newDamage) => damage = Mathf.Max(0, newDamage);

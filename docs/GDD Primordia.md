@@ -78,7 +78,7 @@ Un linaje es un animal (Tiburón, Medusa, Tortuga...) que se completa con **4 mu
 | --- | --- | --- | --- |
 | Mandíbulas | Boca | Tiburón, Calamar, Tortuga | Mordisco corto y potente, cura un poco al matar |
 | Aguijón | Boca | Medusa, Escorpión | Proyectil que envenena (daño en el tiempo) |
-| Esporas | Boca | Moho, Cuesco de lobo | Disparo en abanico de 3 proyectiles lentos |
+| Esporas | Boca | Moho, Cuesco de lobo | Bocanada de esporas lentas que se quedan flotando como minas |
 | Aletas | Extremidades | Tiburón, Calamar, Medusa | +30% velocidad, esquiva más larga |
 | Patas articuladas | Extremidades | Tortuga, Escorpión | Esquiva que empuja a los enemigos |
 | Hifas (nueva) | Extremidades | Moho, Cuesco de lobo | Al moverte dejas un rastro de micelio que ralentiza y daña |
@@ -99,7 +99,7 @@ Referencia: jugador base con velocidad 6, esquiva de 3 unidades, 3 corazones y d
 | --- | --- |
 | Mandíbulas | Mordisco de unas 4 unidades de alcance, 3 de daño, 2,5 por segundo. Cada 3 enemigos matados cura medio corazón |
 | Aguijón | Automático, 4 por segundo, 1 de daño + veneno de 1 por segundo durante 3 s |
-| Esporas | 3 proyectiles lentos en abanico de 30°, 1 de daño cada uno, 2 disparos por segundo |
+| Esporas | Bocanada de 5 esporas en abanico de 75° (con algo de variación al azar), 1,25 por segundo. Frenan en 0,6 s (unas 2,8 unidades) y siguen flotando 1,5 s más mientras se dispersan (1,5 unidades por segundo, con un leve vaivén, otras 2,2 unidades) hasta desvanecerse; 1 de daño cada una al tocar. Al soltarlas, el cuerpo se adelanta un poco y el gorrito se aplasta y se hincha |
 | Aletas | +30 % de velocidad, esquiva un 50 % más larga |
 | Patas articuladas | Al esquivar contra un enemigo: empujón, aturdimiento de 0,5 s y 1 de daño |
 | Caparazón | +1 corazón de vida máxima (y lo cura), −10 % de velocidad |
@@ -117,9 +117,9 @@ Cada mutación tiene **3 niveles**. Se sube eligiéndola otra vez en la elecció
 
 | Mutación | Nivel II (valores) | Nivel III: evolución |
 | --- | --- | --- |
-| Mandíbulas | Daño 3 → 4 y alcance +15 % | **Desgarro:** el mordisco hace sangrar (1 por segundo durante 3 s) y cura medio corazón cada 2 muertes |
+| Mandíbulas | Daño 3 → 4, alcance +15 % y avance: si nadie está a tiro, te lanzas 0,6 unidades hacia el cursor (0,1 s, sin invulnerabilidad, se frena contra paredes y cuerpos) y muerdes al llegar o en cuanto alguien entra en el alcance | **Desgarro:** el mordisco hace sangrar (1 por segundo durante 3 s) y cura medio corazón cada 2 muertes |
 | Aguijón | Veneno de 1 → 2 por segundo | **Contagio:** un enemigo envenenado que muere estalla y envenena a los cercanos (radio 2) |
-| Esporas | 3 → 5 esporas, abanico de 30° → 45° | **Esporas buscadoras:** se curvan hacia el enemigo más cercano |
+| Esporas | 5 → 7 esporas, que flotan 2,5 s | **Esporas buscadoras:** las que flotan se acercan despacio (1,5 unidades por segundo) al enemigo más cercano en un radio de 3; si no hay ninguno, se dispersan como las demás |
 | Aletas | Velocidad +45 % y recarga de la esquiva −25 % | **Emboscada:** tras esquivar, +50 % de daño durante 1,5 s (con aura visible) |
 | Patas articuladas | Aturdimiento 0,5 → 1 s y daño 1 → 2 | **Pisotón:** al acabar cada esquiva, una onda de radio 2 aturde a los que haya alrededor |
 | Caparazón | +2 corazones en total y velocidad −10 % → −5 % | **Placas:** anula el primer golpe que recibes en cada sala (se recarga al entrar en la siguiente) |
@@ -321,3 +321,12 @@ Objetivo: que añadir una mutación, un enemigo o una sala nueva sea crear un ar
 | Linajes | Sustituyen a Depredador, Acorazado y Tóxico. Un linaje es un animal que se activa con sus 4 mutaciones (una por ranura); una mutación puede estar en varios linajes. Cada linaje pertenece a una clase (Carnívoro, Herbívoro, Venenoso u Hongo), que decide el tipo de beneficio. 7 linajes en el piso 1 |
 | Mutaciones del piso 1 | 12: las 9 de la v0.5 más Hifas, Camuflaje y Vacuola digestiva |
 | Jefes | 2 por piso, uno al azar en cada partida. Piso 1: virus gigante o ameba gigante |
+
+**Decidido el 15 de octubre**
+
+| Tema | Decisión |
+| --- | --- |
+| Aspecto del Aguijón | A 2/3 de su tamaño (unos 13 px de la unión a la punta); los proyectiles salen de la punta |
+| Aspecto de las Esporas | Dejan de ser un arma que gira: son un gorrito de Amanita (rojo con lunares blancos) sobre la cabeza de cualquier Piel, que sigue el balanceo del cuerpo. Al atacar, el cuerpo se adelanta y el gorrito se aplasta y se hincha (por código). Esporas crema con borde rojizo |
+| Ataque de las Esporas | Bocanada que flota: las esporas frenan y flotan como minas que se dispersan despacio hasta desvanecerse (valores en la tabla) |
+| Mordisco con avance | Mandíbulas, desde el nivel II, se lanza un poco hacia delante si no hay nadie a tiro |

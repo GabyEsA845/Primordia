@@ -6,7 +6,8 @@ using UnityEngine.UI;
 namespace Primordia.UI
 {
     /// <summary>
-    /// Muestra la vida del jugador en corazones: cada corazón son 2 puntos de vida.
+    /// Muestra la vida del jugador en corazones: cada corazón son 2 puntos de vida. Detrás, un medio corazón verde
+    /// por cada golpe que para la barrera (<see cref="Health.Barrier"/>, el Pastar biomasa del Herbívoro).
     /// Crea sus propios iconos como hijos; conviene ponerlo en un objeto con HorizontalLayoutGroup.
     /// </summary>
     public class HeartsDisplay : MonoBehaviour
@@ -23,12 +24,30 @@ namespace Primordia.UI
         [SerializeField] Sprite fullHeart;
         [SerializeField] Sprite halfHeart;
         [SerializeField] Sprite emptyHeart;
+        [Tooltip("Medio corazón verde de la barrera.")]
+        [SerializeField] Sprite barrierHeart;
         [Tooltip("Tamaño de cada corazón en píxeles de la interfaz.")]
         [SerializeField] Vector2 heartSize = new(16f, 16f);
 
         readonly List<Image> hearts = new();
+        readonly List<Image> barrierHearts = new();
 
         public IReadOnlyList<Image> Hearts => hearts;
+
+        /// <summary>Medios corazones verdes que se ven ahora.</summary>
+        public int BarrierShown
+        {
+            get
+            {
+                int shown = 0;
+                foreach (var heart in barrierHearts)
+                {
+                    if (heart.gameObject.activeSelf)
+                        shown++;
+                }
+                return shown;
+            }
+        }
 
         void Start()
         {
@@ -51,6 +70,8 @@ namespace Primordia.UI
             if (health != null)
                 health.Changed -= OnHealthChanged;
         }
+
+        internal void SetBarrierSprite(Sprite sprite) => barrierHeart = sprite;
 
         internal void Configure(Health newHealth, Sprite full, Sprite half, Sprite empty)
         {
@@ -82,6 +103,20 @@ namespace Primordia.UI
                 hearts[i].gameObject.SetActive(visible);
                 if (visible)
                     hearts[i].sprite = SpriteFor(HeartFill(health.Current, i));
+            }
+
+            // Los verdes van detrás de los rojos (los hijos se crean en orden).
+            while (barrierHearts.Count < health.Barrier)
+            {
+                var heart = CreateHeart();
+                heart.name = "BarrierHeart";
+                barrierHearts.Add(heart);
+            }
+            for (int i = 0; i < barrierHearts.Count; i++)
+            {
+                barrierHearts[i].sprite = barrierHeart != null ? barrierHeart : halfHeart;
+                barrierHearts[i].transform.SetAsLastSibling();
+                barrierHearts[i].gameObject.SetActive(i < health.Barrier);
             }
         }
 

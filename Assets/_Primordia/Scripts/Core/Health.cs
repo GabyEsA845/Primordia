@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Primordia.Core
@@ -30,6 +31,23 @@ namespace Primordia.Core
 
         public bool CanTakeDamage => !IsDead && !IsInvulnerable && Time.time >= invulnerableUntil;
 
+        /// <summary>
+        /// Barrera (el medio corazón verde del Herbívoro): anula un golpe entero antes que los escudos y que la vida.
+        /// Se ve en el HUD, así que al cambiar avisa con <see cref="Changed"/>.
+        /// </summary>
+        public int Barrier
+        {
+            get => barrier;
+            set
+            {
+                int clamped = Mathf.Max(0, value);
+                if (clamped == barrier)
+                    return;
+                barrier = clamped;
+                Changed?.Invoke(Current, maxHealth);
+            }
+        }
+
         /// <summary>Golpes que se anulan enteros antes de quitar vida (las Placas del Caparazón).</summary>
         public int Shields
         {
@@ -48,8 +66,51 @@ namespace Primordia.Core
         /// <summary>Se lanza cuando un escudo anula un golpe.</summary>
         public event Action ShieldBlocked;
 
+        /// <summary>Se lanza cuando la barrera anula un golpe.</summary>
+        public event Action BarrierBlocked;
+
         float invulnerableUntil;
         int shields;
+        int barrier;
+
+        /// <summary>
+        /// Cambian el daño que recibe cualquier <see cref="Health"/> según quién lo recibe (los beneficios de los
+        /// linajes: Rematar, Toxina débil). Reciben el objetivo y el daño, y devuelven el daño nuevo.
+        /// </summary>
+        static readonly List<Func<Health, int, int>> damageModifiers = new();
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        static void ResetStatics() => damageModifiers.Clear();
+
+        public static void AddDamageModifier(Func<Health, int, int> modifier)
+        {
+            if (modifier != null && !damageModifiers.Contains(modifier))
+                damageModifiers.Add(modifier);
+        }
+
+        public static void RemoveDamageModifier(Func<Health, int, int> modifier) => damageModifiers.Remove(modifier);
+
+        /// <summary>
+        /// Multiplica un daño entero con redondeo al azar: 1 × 1,5 da 1 o 2 con la misma probabilidad, así de media
+        /// es exactamente un 50 % más (redondear siempre hacia arriba lo doblaría).
+        /// </summary>
+        public static int ScaleDamage(int amount, float multiplier)
+        {
+            float scaled = amount * multiplier;
+            int whole = Mathf.FloorToInt(scaled);
+            return whole + (UnityEngine.Random.value < scaled - whole ? 1 : 0);
+        }
+
+        /// <summary>Daño que haría ese golpe a este objetivo después de los modificadores.</summary>
+        public int ModifiedDamage(int amount)
+        {
+            // Copia: un modificador puede quitarse a sí mismo (o a otro) mientras se recorren.
+            if (damageModifiers.Count == 0)
+                return amount;
+            foreach (var modifier in damageModifiers.ToArray())
+                amount = modifier(this, amount);
+            return amount;
+        }
 
         void Awake()
         {
@@ -62,7 +123,19 @@ namespace Primordia.Core
             if (amount <= 0 || !CanTakeDamage)
                 return false;
 
-            // El escudo para el golpe entero; cuenta como golpe (da la invulnerabilidad de después).
+            amount = ModifiedDamage(amount);
+            if (amount <= 0)
+                return false;
+
+            // La barrera y el escudo paran el golpe entero; cuentan como golpe (dan la invulnerabilidad de después).
+            if (barrier > 0)
+            {
+                Barrier = barrier - 1;
+                invulnerableUntil = Time.time + invulnerabilityAfterHit;
+                BarrierBlocked?.Invoke();
+                return true;
+            }
+
             if (shields > 0)
             {
                 shields--;
@@ -85,6 +158,9 @@ namespace Primordia.Core
 
             return true;
         }
+
+        /// <summary>Invulnerable durante esos segundos (sin tocar <see cref="IsInvulnerable"/>, que lleva la esquiva).</summary>
+        public void MakeInvulnerable(float seconds) => invulnerableUntil = Mathf.Max(invulnerableUntil, Time.time + seconds);
 
         public void Heal(int amount)
         {

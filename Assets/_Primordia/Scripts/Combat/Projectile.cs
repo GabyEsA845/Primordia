@@ -18,6 +18,9 @@ namespace Primordia.Combat
 
         public int Damage { get; private set; }
 
+        /// <summary>Multiplicador del veneno del arma al lanzarlo (como el daño, se guarda al salir).</summary>
+        public float PoisonMultiplier { get; private set; } = 1f;
+
         Rigidbody2D rb;
         ObjectPool<Projectile> pool;
         AttackData attack;
@@ -79,6 +82,7 @@ namespace Primordia.Combat
             this.attack = attack;
             this.source = source;
             Damage = source != null ? source.DamageOf(attack) : attack.Damage;
+            PoisonMultiplier = source != null ? source.PoisonMultiplier : 1f;
             nextTargetSearch = 0f;
             homingTarget = null;
             expireTime = Time.time + attack.Lifetime;
@@ -215,7 +219,7 @@ namespace Primordia.Combat
                 return;
 
             OneShotEffect.Spawn(impactEffect, transform.position);
-            attack.ApplyStatus(health);
+            attack.ApplyStatus(health, PoisonMultiplier);
 
             // El arma puede haberse destruido (enemigo muerto) mientras el proyectil volaba.
             if (source != null)

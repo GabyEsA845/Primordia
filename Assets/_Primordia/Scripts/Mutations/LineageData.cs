@@ -12,11 +12,26 @@ namespace Primordia.Mutations
     }
 
     /// <summary>
+    /// Toque propio de cada linaje, que se suma al beneficio de su clase. None = solo el de la clase.
+    /// </summary>
+    public enum LineageTouch
+    {
+        None,
+        BloodInTheWater, // Tiburón: rematar recarga la esquiva
+        BlindPrey,       // Calamar: los cegados cuentan como heridos para Rematar
+        Retract,         // Tortuga: usar la Vacuola da invulnerabilidad
+        StingingTrail,   // Medusa: la esquiva deja un rastro que envenena
+        HiddenSting,     // Escorpión: el ataque desde el camuflaje envenena el triple
+        BigColony,       // Moho: más matas y más grandes
+        PuffOnHit,       // Cuesco de lobo: al recibir un golpe, nube que ciega
+    }
+
+    /// <summary>
     /// Linaje: un animal (Tiburón, Medusa...) que se completa con 4 mutaciones, una por ranura. Se activa cuando
     /// el jugador lleva las 4 a la vez (en cualquier nivel) y se pierde al cambiar una. Una mutación puede estar en
     /// varios linajes; cada mutación guarda los suyos en <see cref="MutationData.Lineages"/> para la interfaz.
-    /// El beneficio se aplica en <see cref="Apply"/> y se deshace en <see cref="Remove"/>; de momento no hace nada
-    /// (los beneficios por clase se decidirán más adelante).
+    /// El beneficio es el de su clase (<see cref="MutationText.ClassBenefit"/>) más su toque propio; los pone y los
+    /// quita <see cref="PlayerLineage"/>.
     /// </summary>
     [CreateAssetMenu(menuName = "Primordia/Mutations/Lineage", fileName = "Lineage_")]
     public class LineageData : ScriptableObject
@@ -25,11 +40,17 @@ namespace Primordia.Mutations
         [SerializeField] LineageClass lineageClass;
         [Tooltip("Las 4 mutaciones del linaje, en el orden de las ranuras: Boca, Extremidades, Piel y Órgano.")]
         [SerializeField] MutationData[] mutations = new MutationData[4];
-        [Tooltip("Lo que da al completarse (se muestra en la interfaz).")]
+        [Tooltip("Toque propio, que se suma al beneficio de la clase.")]
+        [SerializeField] LineageTouch touch;
+        [Tooltip("Nombre del toque propio (\"Sangre en el agua\").")]
+        [SerializeField] string touchName;
+        [Tooltip("Lo que hace el toque propio (se muestra en la pausa).")]
         [SerializeField, TextArea(2, 4)] string benefit;
 
         public string DisplayName => string.IsNullOrEmpty(displayName) ? name : displayName;
         public LineageClass Class => lineageClass;
+        public LineageTouch Touch => touch;
+        public string TouchName => touchName;
         public string Benefit => benefit;
 
         /// <summary>Mutación de esa ranura (null si falta).</summary>
@@ -91,17 +112,18 @@ namespace Primordia.Mutations
             return false;
         }
 
-        /// <summary>Aplica el beneficio del linaje. Todavía sin efecto.</summary>
-        public virtual void Apply(PlayerMutations player) { }
-
-        /// <summary>Deshace <see cref="Apply"/>.</summary>
-        public virtual void Remove(PlayerMutations player) { }
-
         internal void Configure(string newName, LineageClass newClass, MutationData[] newMutations, string newBenefit)
         {
             displayName = newName;
             lineageClass = newClass;
             mutations = newMutations;
+            benefit = newBenefit;
+        }
+
+        internal void ConfigureTouch(LineageTouch newTouch, string newTouchName, string newBenefit)
+        {
+            touch = newTouch;
+            touchName = newTouchName;
             benefit = newBenefit;
         }
     }

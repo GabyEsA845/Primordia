@@ -7,8 +7,9 @@ namespace Primordia.UI
 {
     /// <summary>
     /// Cuadro de información de una ranura (pausa): franja del color de la ranura, nombre, ranura con su icono y
-    /// nivel, descripción y linajes (con cuántas de sus 4 mutaciones lleva el jugador). Se coloca al lado de su recuadro, hacia el centro del panel, con un piquito que
-    /// lo señala. Con la ranura libre dice "Ranura libre".
+    /// nivel, lo que hace ahora (la descripción y solo la mejora de su nivel) y sus linajes en una línea corta. Se
+    /// coloca al lado de su recuadro, hacia el centro del panel, con un piquito que lo señala. Con la ranura libre
+    /// dice "Ranura libre". También lo usa la fila del linaje de las estadísticas, con su propio texto.
     /// </summary>
     public class MutationTooltip : MonoBehaviour
     {
@@ -54,8 +55,8 @@ namespace Primordia.UI
             {
                 title.text = mutation.DisplayName;
                 details.text = $"{MutationText.SlotName(mutation.Slot)} · Nivel {MutationText.LevelName(Mathf.Max(1, callout.Level))}";
-                description.text = MutationText.WithLine(MutationText.FullDescription(mutation, callout.Level),
-                    MutationText.LineageList(mutation, Player));
+                description.text = MutationText.WithLine(MutationText.CurrentDescription(mutation, callout.Level),
+                    MutationText.LineageProgress(mutation, Player));
                 stripe.color = mutation.Color;
             }
             else
@@ -78,6 +79,21 @@ namespace Primordia.UI
             transform.SetAsLastSibling();
         }
 
+        /// <summary>Muestra un texto cualquiera al lado de ese elemento (la fila del linaje de las estadísticas).</summary>
+        public void Show(string newTitle, string newDetails, string newDescription, Color stripeColor, RectTransform box)
+        {
+            title.text = newTitle;
+            details.text = newDetails;
+            description.text = newDescription;
+            stripe.color = stripeColor;
+            slotIcon.gameObject.SetActive(false);
+            description.gameObject.SetActive(!string.IsNullOrEmpty(newDescription));
+
+            Place(box);
+            gameObject.SetActive(true);
+            transform.SetAsLastSibling();
+        }
+
         public void Hide() => gameObject.SetActive(false);
 
         /// <summary>
@@ -86,7 +102,10 @@ namespace Primordia.UI
         /// </summary>
         void Place(RectTransform box)
         {
-            Vector2 center = box.anchoredPosition;
+            // El centro del elemento en el espacio del panel del cuadro, venga de donde venga.
+            var parent = (RectTransform)transform.parent;
+            Vector2 center = parent.InverseTransformPoint(box.TransformPoint(box.rect.center));
+            center -= parent.rect.center;
             Vector2 half = box.rect.size / 2f;
             bool opensRight = center.x < 0f;
             bool alignTop = center.y > 0f;

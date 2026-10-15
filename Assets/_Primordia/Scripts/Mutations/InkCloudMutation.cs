@@ -68,14 +68,26 @@ namespace Primordia.Mutations
                 ? SpawnEffect(upgrade.effect, upgrade.effectRadius, center, levelRadius)
                 : SpawnEffect(center, levelRadius);
 
+            Blind(cloud, center, levelRadius, DamagePerSecondAt(level));
+        }
+
+        /// <summary>
+        /// Una nube de tinta del nivel I de ese radio, que ciega igual que la de la habilidad (la Bocanada al golpe
+        /// del Cuesco de lobo).
+        /// </summary>
+        public void SpawnCloud(Vector2 center, float cloudRadius) =>
+            Blind(SpawnEffect(center, cloudRadius), center, cloudRadius, damagePerSecond: 0);
+
+        void Blind(GameObject cloud, Vector2 center, float cloudRadius, int damagePerSecond)
+        {
             if (cloud != null && cloud.TryGetComponent<InkCloudArea>(out var area))
             {
-                area.Configure(levelRadius, blindDuration, DamagePerSecondAt(level), blindMarker);
+                area.Configure(cloudRadius, blindDuration, damagePerSecond, blindMarker);
                 return;
             }
 
             // Sin nube que dure (efecto provisional): ciega al momento a los que alcanza.
-            foreach (var hit in Physics2D.OverlapCircleAll(center, levelRadius, LayerMask.GetMask(CombatLayers.Enemy)))
+            foreach (var hit in Physics2D.OverlapCircleAll(center, cloudRadius, LayerMask.GetMask(CombatLayers.Enemy)))
             {
                 var body = hit.attachedRigidbody;
                 if (body != null && body.TryGetComponent<EnemyAI>(out var enemy))

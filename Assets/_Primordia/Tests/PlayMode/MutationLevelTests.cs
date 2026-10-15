@@ -282,6 +282,8 @@ namespace Primordia.Tests
         {
             var fins = CreateFins();
             Assert.AreEqual("Base.", MutationText.FullDescription(fins, 1));
+            Assert.AreEqual("Base.\nNivel II: Mejora.", MutationText.CurrentDescription(fins, 2));
+            Assert.AreEqual("Base.\nNivel III: Evolución.", MutationText.CurrentDescription(fins, 3));
             Assert.AreEqual("Base.\nNivel II: Mejora.\nNivel III: Evolución.", MutationText.FullDescription(fins, 3));
         }
     }

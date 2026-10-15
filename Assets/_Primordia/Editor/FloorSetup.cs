@@ -139,9 +139,10 @@ namespace Primordia.Editor
         /// Coloca en la escena el jugador, el punto que sigue la cámara y el generador del piso. El piso no
         /// existe en el editor: se monta al empezar cada partida.
         /// </summary>
-        internal static void BuildFloor(Scene scene, GameObject rig, GameObject playerPrefab, MutationPool rewardPool = null)
+        internal static void BuildFloor(Scene scene, GameObject rig, GameObject playerPrefab, MutationPool rewardPool = null,
+            FloorConfig floorConfig = null)
         {
-            var config = AssetDatabase.LoadAssetAtPath<FloorConfig>(FloorConfigPath);
+            var config = floorConfig != null ? floorConfig : AssetDatabase.LoadAssetAtPath<FloorConfig>(FloorConfigPath);
             if (config == null)
             {
                 Debug.LogError($"FloorSetup: falta {FloorConfigPath}.");

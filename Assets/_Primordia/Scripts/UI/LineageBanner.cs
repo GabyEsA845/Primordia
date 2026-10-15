@@ -7,7 +7,8 @@ namespace Primordia.UI
     /// <summary>
     /// Cartel del HUD al completar un linaje: el animal en grande, del color de su clase, y debajo su beneficio
     /// ("Rematar · Sangre en el agua"). Da un saltito, se queda un momento y se desvanece. El tiempo se para con el
-    /// juego, así no se pierde mientras sigue abierta la elección de mutación que lo ha completado.
+    /// juego, así no se pierde mientras sigue abierta la elección de mutación que lo ha completado. Con la
+    /// evolución (<see cref="LineageEvolution"/>), sale cuando empieza su animación.
     /// </summary>
     [RequireComponent(typeof(CanvasGroup))]
     public class LineageBanner : MonoBehaviour
@@ -28,6 +29,7 @@ namespace Primordia.UI
         [SerializeField, Min(0.01f)] float popDuration = 0.25f;
 
         CanvasGroup group;
+        LineageEvolution evolution;
         float shownFor = -1f;
         float popStart;
 
@@ -52,13 +54,20 @@ namespace Primordia.UI
                     lineage = player.GetComponent<PlayerLineage>();
             }
 
-            if (lineage != null)
+            if (lineage == null)
+                return;
+
+            if (lineage.TryGetComponent(out evolution))
+                evolution.Evolving += Show;
+            else
                 lineage.ActiveChanged += OnActiveChanged;
         }
 
         void OnDestroy()
         {
-            if (lineage != null)
+            if (evolution != null)
+                evolution.Evolving -= Show;
+            else if (lineage != null)
                 lineage.ActiveChanged -= OnActiveChanged;
         }
 

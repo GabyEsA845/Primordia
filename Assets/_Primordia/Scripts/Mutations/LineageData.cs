@@ -47,11 +47,32 @@ namespace Primordia.Mutations
         [Tooltip("Lo que hace el toque propio (se muestra en la pausa).")]
         [SerializeField, TextArea(2, 4)] string benefit;
 
+        [Header("Aspecto")]
+        [Tooltip("Animaciones que sustituyen a las de la Boca mientras el linaje está activo (vacío = la de la mutación). " +
+                 "Mismos estados que la pieza a la que sustituye.")]
+        [SerializeField] RuntimeAnimatorController mouthLook;
+        [Tooltip("Distancia de la unión a la punta de esa Boca, de donde salen los proyectiles. 0 = la de la mutación.")]
+        [SerializeField, Min(0f)] float mouthMuzzleDistance;
+        [Tooltip("Animaciones que sustituyen a las de las Extremidades mientras el linaje está activo (vacío = las de la mutación).")]
+        [SerializeField] RuntimeAnimatorController limbsLook;
+        [Tooltip("Animación de la evolución al completarlo: la célula se transforma en el animal y vuelve.")]
+        [SerializeField] GameObject evolutionEffect;
+
         public string DisplayName => string.IsNullOrEmpty(displayName) ? name : displayName;
         public LineageClass Class => lineageClass;
         public LineageTouch Touch => touch;
         public string TouchName => touchName;
         public string Benefit => benefit;
+        public float MouthMuzzleDistance => mouthMuzzleDistance;
+        public GameObject EvolutionEffect => evolutionEffect;
+
+        /// <summary>Aspecto con el que el linaje sustituye a la pieza de esa ranura, o null si no la cambia (la Piel nunca).</summary>
+        public RuntimeAnimatorController LookFor(MutationSlot slot) => slot switch
+        {
+            MutationSlot.Mouth => mouthLook,
+            MutationSlot.Limbs => limbsLook,
+            _ => null
+        };
 
         /// <summary>Mutación de esa ranura (null si falta).</summary>
         public MutationData MutationFor(MutationSlot slot)
@@ -118,6 +139,15 @@ namespace Primordia.Mutations
             lineageClass = newClass;
             mutations = newMutations;
             benefit = newBenefit;
+        }
+
+        internal void ConfigureLook(RuntimeAnimatorController newMouthLook, float newMouthMuzzleDistance,
+            RuntimeAnimatorController newLimbsLook, GameObject newEvolutionEffect)
+        {
+            mouthLook = newMouthLook;
+            mouthMuzzleDistance = Mathf.Max(0f, newMouthMuzzleDistance);
+            limbsLook = newLimbsLook;
+            evolutionEffect = newEvolutionEffect;
         }
 
         internal void ConfigureTouch(LineageTouch newTouch, string newTouchName, string newBenefit)

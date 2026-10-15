@@ -112,7 +112,7 @@ namespace Primordia.UI
             // La Boca está dibujada mirando a la derecha: girada −90° apunta hacia abajo. La que va en la cabeza
             // (el gorrito) se pone sobre la cabeza de la Piel, mirando abajo como el cuerpo.
             if (mouth != null && mouth.WornOnHead)
-                Setup(Part.Mouth, mouth.Look, FacingDown, new Vector2(0f, headHeight), 0f);
+                Setup(Part.Mouth, LookOf(player, MutationSlot.Mouth), FacingDown, new Vector2(0f, headHeight), 0f);
             else
                 Setup(Part.Mouth, LookOf(player, MutationSlot.Mouth), Idle, new Vector2(0f, -mouthDistance), -90f);
 
@@ -122,8 +122,11 @@ namespace Primordia.UI
             Rebuilt?.Invoke();
         }
 
+        /// <summary>Lo que se ve en el jugador: con un linaje, sus piezas en lugar de las de la mutación.</summary>
         static RuntimeAnimatorController LookOf(PlayerMutations player, MutationSlot slot)
         {
+            if (player != null && player.TryGetComponent<MutationLook>(out var look))
+                return look.LookOf(slot);
             var mutation = player != null ? player.Get(slot) : null;
             return mutation != null ? mutation.Look : null;
         }

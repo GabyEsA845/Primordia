@@ -286,6 +286,7 @@ GameObject:
   - component: {fileID: 3020279068946391564}
   - component: {fileID: 1610869096247293023}
   - component: {fileID: 2748691514855883358}
+  - component: {fileID: 5838238025805843107}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -579,7 +580,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e20fda34977652479d4d570de47dba8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Primordia::Primordia.Mutations.PlayerLineage
-  activateEffect: {fileID: 1746545796632829951, guid: a752499fb58553a459bb822187f34fd4, type: 3}
+  activateEffect: {fileID: 0}
   benefits:
     woundedThreshold: 0.5
     finisherMultiplier: 2
@@ -608,6 +609,27 @@ MonoBehaviour:
     hiddenStingMultiplier: 3
     puffRadius: 2
     puffCooldown: 6
+--- !u!114 &5838238025805843107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2873998751450272095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 111cd8ee21760f440af1979f5be78148, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Primordia::Primordia.Mutations.LineageEvolution
+  lostEffect: {fileID: 6128216296131881919, guid: 840b96d9bd73eec49b6bd14ba00cbdac, type: 3}
+  zoom: 0.8
+  zoomTime: 0.35
+  fallbackDuration: 1
+  classColors:
+  - {r: 0.95, g: 0.45, b: 0.4, a: 1}
+  - {r: 0.55, g: 0.9, b: 0.45, a: 1}
+  - {r: 0.8, g: 0.6, b: 0.95, a: 1}
+  - {r: 0.95, g: 0.75, b: 0.4, a: 1}
 --- !u!1 &4085585908593312559
 GameObject:
   m_ObjectHideFlags: 0

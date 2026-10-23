@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Primordia.Audio;
 using Primordia.Combat;
 using Primordia.Core;
 using Primordia.Enemies;
@@ -87,6 +88,7 @@ namespace Primordia.Mutations
 
             Vector2 away = (body.position - (Vector2)transform.position).normalized;
             enemy.Knockback(away * pushSpeed, stunDuration, stunMarker);
+            Sfx.Play(Sounds.LegsPush);
 
             if (damage > 0 && body.TryGetComponent<Health>(out var health))
                 health.TakeDamage(damage);

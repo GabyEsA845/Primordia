@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Primordia.Audio;
 using Primordia.Combat;
 using Primordia.Core;
 using Primordia.Enemies;
@@ -103,10 +104,16 @@ namespace Primordia.Mutations
             LastSeenPosition = transform.position;
             weapon.SetDamageBonus(this, damageMultiplier);
             OneShotEffect.Spawn(hideEffect, transform.position, parent: transform);
+            Sfx.Play(Sounds.CamoOn);
         }
 
         /// <summary>Un enemigo lo ha descubierto: vuelve a verse y la cuenta empieza de nuevo.</summary>
-        public void Reveal() => Expose();
+        public void Reveal()
+        {
+            if (IsConcealed)
+                Sfx.Play(Sounds.Discovered);
+            Expose();
+        }
 
         void Expose()
         {
@@ -116,13 +123,17 @@ namespace Primordia.Mutations
 
             IsConcealed = false;
             weapon.ClearDamageBonus(this);
+            Sfx.Play(Sounds.CamoOff);
         }
 
         void OnFired(Vector2 _)
         {
             // El daño ya se calculó con el bonus al lanzar; a partir de aquí, a la vista.
             if (IsConcealed)
+            {
                 ambushUntil = Time.time + AmbushWindow;
+                Sfx.Play(Sounds.CamoStrike);
+            }
             Expose();
         }
 

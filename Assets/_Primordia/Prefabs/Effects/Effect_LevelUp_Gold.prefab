@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3775545174891458689}
   - component: {fileID: 5253474167019837001}
   - component: {fileID: 2801327922689433794}
+  - component: {fileID: 6390023337345030084}
   m_Layer: 0
   m_Name: Effect_LevelUp_Gold
   m_TagString: Untagged
@@ -129,3 +130,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Primordia::Primordia.Core.OneShotEffect
   duration: 0.48999998
+--- !u!114 &6390023337345030084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1746545796632829951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10e032ce63bd4d441bb2e32084dfb091, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Primordia::Primordia.Audio.EffectSound
+  sound: Mutation_LevelUp_Gold
+  volume: 1

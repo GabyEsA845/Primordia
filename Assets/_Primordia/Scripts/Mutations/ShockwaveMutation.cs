@@ -1,4 +1,5 @@
 using System;
+using Primordia.Audio;
 using Primordia.Combat;
 using Primordia.Enemies;
 using UnityEngine;
@@ -67,12 +68,14 @@ namespace Primordia.Mutations
             else
                 SpawnEffect(center, levelRadius);
 
+            Sfx.Play(Sounds.Shockwave);
             int mask = LayerMask.GetMask(CombatLayers.Enemy, CombatLayers.EnemyProjectile);
             foreach (var hit in Physics2D.OverlapCircleAll(center, levelRadius, mask))
             {
                 if (hit.TryGetComponent<Projectile>(out var projectile))
                 {
                     projectile.Despawn();
+                    Sfx.Play(Sounds.ShockwaveProjectileBreak);
                     continue;
                 }
 

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Primordia.Audio;
 using Primordia.Enemies;
 using UnityEngine;
 
@@ -50,6 +51,8 @@ namespace Primordia.Mutations
             var options = pool.PickOffer(count, player);
 
             Vector2 center = TryGetComponent<IBoss>(out var boss) ? boss.ArenaCenter : (Vector2)transform.position;
+            if (options.Count > 0)
+                Sfx.Play(Sounds.MutationBubbleSpawn);
             for (int i = 0; i < options.Count; i++)
             {
                 float x = (i - (options.Count - 1) / 2f) * spacing;

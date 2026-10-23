@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Primordia.Audio;
 using Primordia.Combat;
 using Primordia.Core;
 using UnityEngine;
@@ -58,9 +59,24 @@ namespace Primordia.Enemies
                 ApplyData();
         }
 
-        void OnEnable() => Health.Died += OnDied;
+        void OnEnable()
+        {
+            Health.Died += OnDied;
+            Health.Damaged += OnDamaged;
+        }
 
-        void OnDisable() => Health.Died -= OnDied;
+        void OnDisable()
+        {
+            Health.Died -= OnDied;
+            Health.Damaged -= OnDamaged;
+        }
+
+        // El golpe que lo mata suena con su muerte.
+        void OnDamaged(int _)
+        {
+            if (data != null && Health.Current > 0)
+                Sfx.Play(data.HurtSound);
+        }
 
         internal void SetData(EnemyData newData)
         {
@@ -88,6 +104,9 @@ namespace Primordia.Enemies
 
         void OnDied()
         {
+            if (data != null)
+                Sfx.Play(WillSplit && !string.IsNullOrEmpty(data.SplitSound) ? data.SplitSound : data.DeathSound);
+
             if (WillSplit && splitDuration > 0f)
             {
                 // Died llega al final: la sala sigue en combate hasta que nacen las crías.

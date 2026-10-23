@@ -50,6 +50,16 @@ namespace Primordia.Enemies
         [Tooltip("Biomasa fija que suelta siempre, además de la tirada (el jefe).")]
         [SerializeField, Min(0)] int fixedBiomass;
 
+        [Header("Sonido (nombres de la SoundLibrary; vacío = sin sonido)")]
+        [SerializeField] string hurtSound;
+        [SerializeField] string deathSound;
+        [Tooltip("En lugar del de muerte, si se divide.")]
+        [SerializeField] string splitSound;
+        [Tooltip("Al darse cuenta del jugador.")]
+        [SerializeField] string alertSound;
+        [Tooltip("Al empezar el aviso antes de disparar.")]
+        [SerializeField] string aimSound;
+
         public int MaxHealth => maxHealth;
         public float MoveSpeed => moveSpeed;
         public EnemyBehaviour Behaviour => behaviour;
@@ -62,6 +72,11 @@ namespace Primordia.Enemies
         public float SmallBiomassChance => smallBiomassChance;
         public float BigBiomassChance => bigBiomassChance;
         public int FixedBiomass => fixedBiomass;
+        public string HurtSound => hurtSound;
+        public string DeathSound => deathSound;
+        public string SplitSound => splitSound;
+        public string AlertSound => alertSound;
+        public string AimSound => aimSound;
 
         internal void Configure(EnemyBehaviour behaviour, int maxHealth, float moveSpeed, float detectionRange,
             int contactDamage, float preferredDistance = 6f, AttackData attack = null,
@@ -76,6 +91,15 @@ namespace Primordia.Enemies
             this.attack = attack;
             this.splitPrefab = splitPrefab;
             this.splitCount = Mathf.Max(0, splitCount);
+        }
+
+        internal void ConfigureSounds(string hurt, string death, string split = null, string alert = null, string aim = null)
+        {
+            hurtSound = hurt;
+            deathSound = death;
+            splitSound = split;
+            alertSound = alert;
+            aimSound = aim;
         }
 
         internal void ConfigureBiomass(float smallChance, float bigChance, int fixedValue = 0)

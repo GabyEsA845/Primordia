@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Primordia.Audio;
 using Primordia.Core;
 using UnityEngine;
 using UnityEngine.Pool;
@@ -236,6 +237,7 @@ namespace Primordia.Combat
             if (health == null)
             {
                 OneShotEffect.Spawn(impactEffect, transform.position);
+                Sfx.Play(attack.ImpactSound);
                 Despawn();
                 return;
             }
@@ -244,6 +246,7 @@ namespace Primordia.Combat
                 return;
 
             OneShotEffect.Spawn(impactEffect, transform.position);
+            Sfx.Play(attack.ImpactSound);
             attack.ApplyStatus(health, PoisonMultiplier);
 
             // El arma puede haberse destruido (enemigo muerto) mientras el proyectil volaba.

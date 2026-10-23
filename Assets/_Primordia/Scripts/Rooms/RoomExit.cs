@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using Primordia.Core;
 using UnityEngine;
 
@@ -47,7 +48,11 @@ namespace Primordia.Rooms
             SetOpen(room.State == Room.RoomState.Cleared);
         }
 
-        void OnRoomCleared(Room _) => SetOpen(true);
+        void OnRoomCleared(Room _)
+        {
+            SetOpen(true);
+            Sfx.Play(Sounds.RoomExit);
+        }
 
         void SetOpen(bool open)
         {

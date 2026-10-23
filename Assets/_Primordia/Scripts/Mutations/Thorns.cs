@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Primordia.Audio;
 using Primordia.Combat;
 using Primordia.Core;
 using UnityEngine;
@@ -54,6 +55,7 @@ namespace Primordia.Mutations
 
             nextHitTime[health] = Time.time + interval;
             health.TakeDamage(damage);
+            Sfx.Play(Sounds.Thorns);
 
             if (poisonDamagePerSecond > 0 && poisonDuration > 0f && !health.IsDead)
                 Poison.Apply(health, poisonDamagePerSecond, poisonDuration, poisonEffect);

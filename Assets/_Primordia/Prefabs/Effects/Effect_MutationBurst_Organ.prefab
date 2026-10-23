@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 323378059147772004}
   - component: {fileID: 8261639351216154756}
   - component: {fileID: 2687504417175105642}
+  - component: {fileID: 5588091334786803138}
   m_Layer: 0
   m_Name: Effect_MutationBurst_Organ
   m_TagString: Untagged
@@ -129,3 +130,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Primordia::Primordia.Core.OneShotEffect
   duration: 0.35999998
+--- !u!114 &5588091334786803138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9125892492250063347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10e032ce63bd4d441bb2e32084dfb091, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Primordia::Primordia.Audio.EffectSound
+  sound: Mutation_Bubble_Burst
+  volume: 1

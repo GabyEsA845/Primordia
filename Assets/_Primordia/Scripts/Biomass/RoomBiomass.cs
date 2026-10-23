@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Primordia.Audio;
 using Primordia.Enemies;
 using Primordia.Rooms;
 using UnityEngine;
@@ -128,11 +129,16 @@ namespace Primordia.Biomass
             if (attractDelay > 0f)
                 yield return new WaitForSeconds(attractDelay);
 
+            bool any = false;
             foreach (var pickup in dropped)
             {
-                if (pickup != null)
-                    pickup.Attract();
+                if (pickup == null)
+                    continue;
+                pickup.Attract();
+                any = true;
             }
+            if (any)
+                Sfx.Play(Sounds.BiomassMagnet);
         }
     }
 }

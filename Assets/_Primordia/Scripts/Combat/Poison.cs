@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using Primordia.Core;
 using UnityEngine;
 
@@ -58,6 +59,7 @@ namespace Primordia.Combat
 
             Vector2 center = transform.position;
             OneShotEffect.Spawn(burstEffect, center);
+            Sfx.Play(Sounds.PoisonBurst);
 
             // Contagia a los de la misma capa (enemigos con enemigos), sin contar al que estalla.
             int mask = 1 << gameObject.layer;

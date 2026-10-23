@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using Primordia.Core;
 using UnityEngine;
 
@@ -26,6 +27,7 @@ namespace Primordia.Mutations
         void OnUsed()
         {
             health.MakeInvulnerable(duration);
+            Sfx.Play(Sounds.LineageRetract);
             if (effect != null)
                 Destroy(effect);
             if (effectPrefab != null)

@@ -31,6 +31,7 @@ MonoBehaviour:
   homingTurnRate: 0
   homingRange: 5
   brakeTime: 0
+  scatterSpeed: 0
   speedJitter: 0
   angleJitter: 0
   driftSpeed: 0
@@ -42,3 +43,7 @@ MonoBehaviour:
   meleeHitEffect: {fileID: 4614783711616770725, guid: fe29d096a61be9f4b9ba88133856bdb0, type: 3}
   meleeLunge: 0
   meleeLungeDuration: 0.1
+  fireSound: Mouth_Mandibles_Bite
+  hitSound: Mouth_Mandibles_BiteHit
+  lungeSound: Mouth_Mandibles_Lunge
+  impactSound: 

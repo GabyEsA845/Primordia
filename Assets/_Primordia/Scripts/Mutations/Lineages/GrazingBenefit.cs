@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using Primordia.Biomass;
 using Primordia.Core;
 using UnityEngine;
@@ -54,6 +55,7 @@ namespace Primordia.Mutations
             {
                 health.Barrier = 1;
                 grantedBarrier = true;
+                Sfx.Play(Sounds.LineageBarrier);
             }
             else
                 return;

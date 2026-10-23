@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5535679062252930798}
   - component: {fileID: 8437192537335149196}
   - component: {fileID: 4615349538994470186}
+  - component: {fileID: 1541823156961105529}
   m_Layer: 0
   m_Name: Effect_LevelUp
   m_TagString: Untagged
@@ -129,3 +130,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Primordia::Primordia.Core.OneShotEffect
   duration: 0.48999998
+--- !u!114 &1541823156961105529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7444110892727214283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10e032ce63bd4d441bb2e32084dfb091, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Primordia::Primordia.Audio.EffectSound
+  sound: Mutation_LevelUp
+  volume: 1

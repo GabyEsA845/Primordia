@@ -40,6 +40,8 @@ namespace Primordia.Editor
             BuildPauseMenu();
             // La pausa se rehace: la fila del linaje vuelve al panel de estadísticas.
             UISetup.EnsureLineageBannerAndPanel();
+            // El panel de estadísticas se rehízo: el del volumen cuelga de él.
+            AddVolumeToPause();
             BuildMainMenu();
             ApplyPixelFont(UISetup.GameUIPath);
             ApplyPixelFont(UISetup.MainMenuUIPath);

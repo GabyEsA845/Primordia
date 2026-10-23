@@ -69,6 +69,9 @@ namespace Primordia.Core
         /// <summary>Se lanza cuando la barrera anula un golpe.</summary>
         public event Action BarrierBlocked;
 
+        /// <summary>Se lanza cuando un golpe no hace nada porque es invulnerable (la ameba gigante en su escena final).</summary>
+        public event Action Deflected;
+
         float invulnerableUntil;
         int shields;
         int barrier;
@@ -121,7 +124,11 @@ namespace Primordia.Core
         public bool TakeDamage(int amount)
         {
             if (amount <= 0 || !CanTakeDamage)
+            {
+                if (amount > 0 && !IsDead && IsInvulnerable)
+                    Deflected?.Invoke();
                 return false;
+            }
 
             amount = ModifiedDamage(amount);
             if (amount <= 0)

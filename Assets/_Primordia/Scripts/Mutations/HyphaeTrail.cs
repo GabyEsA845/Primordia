@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using UnityEngine;
 
 namespace Primordia.Mutations
@@ -34,6 +35,9 @@ namespace Primordia.Mutations
         void Spawn(Vector2 position)
         {
             Spawned++;
+            // Una mancha de cada tres cruje: con todas sería un ruido continuo.
+            if (Spawned % 3 == 1)
+                Sfx.Play(Sounds.HyphaeTrail);
             // Sin prefab (pruebas, o antes de importar el arte) la mancha funciona igual, sin dibujo.
             var patch = patchPrefab != null
                 ? Instantiate(patchPrefab, position, Quaternion.identity)

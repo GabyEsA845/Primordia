@@ -18,6 +18,21 @@ namespace Primordia.Player
 
         public PlayerController Player => player;
 
+        /// <summary>Punto al que se desvía la cámara (escenas de los jefes) y cuánto: 0 = sigue al jugador, 1 = el punto.</summary>
+        public Vector2 FocusPoint { get; private set; }
+        public float FocusWeight { get; private set; }
+
+        Vector3 lastNormal;
+
+        /// <summary>Desvía la cámara hacia ese punto; con peso 0 vuelve a seguir al jugador.</summary>
+        public void SetFocus(Vector2 point, float weight)
+        {
+            FocusPoint = point;
+            FocusWeight = Mathf.Clamp01(weight);
+        }
+
+        public void ClearFocus() => FocusWeight = 0f;
+
         internal void Configure(PlayerController newPlayer, float newFraction = 0.25f, float newMaxDistance = 3f)
         {
             player = newPlayer;
@@ -32,7 +47,10 @@ namespace Primordia.Player
         {
             // En pausa no sigue al ratón: la cámara se queda quieta mientras se usan los menús.
             if (player != null && Time.timeScale > 0f)
-                transform.position = Target(player.transform.position, player.AimOffset, fraction, maxDistance);
+                lastNormal = Target(player.transform.position, player.AimOffset, fraction, maxDistance);
+
+            if (player != null)
+                transform.position = Vector3.Lerp(lastNormal, new Vector3(FocusPoint.x, FocusPoint.y, lastNormal.z), FocusWeight);
         }
 
         /// <summary>Posición del punto: el jugador más una parte del camino al cursor, sin pasar del máximo.</summary>
@@ -43,7 +61,7 @@ namespace Primordia.Player
         void Snap()
         {
             if (player != null)
-                transform.position = player.transform.position;
+                transform.position = lastNormal = player.transform.position;
         }
     }
 }

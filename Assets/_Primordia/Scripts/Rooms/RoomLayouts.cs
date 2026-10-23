@@ -18,6 +18,10 @@ namespace Primordia.Rooms
         public const string Pillars = "Room_Pillars";
         public const string Cross = "Room_Cross";
         public const string LShape = "Room_L";
+        public const string BossCircle = "Room_BossCircle";
+
+        /// <summary>Diámetro del suelo de la sala circular de la ameba gigante, en tiles.</summary>
+        public const int BossCircleDiameter = 30;
 
         public static readonly IReadOnlyDictionary<string, string> All = new Dictionary<string, string>
         {
@@ -40,11 +44,37 @@ namespace Primordia.Rooms
             // L de 28×20: banda inferior de 26×8 y brazo superior izquierdo de 12×8.
             [LShape] = new Builder(28, 20).Floor(1, 1, 26, 8).Floor(1, 9, 12, 16)
                 .Door('^', 6, 19).Door('v', 6, 0).Door('<', 0, 4).Door('>', 27, 4).ToString(),
+
+            // Círculo de 30 tiles de diámetro (32×34 con las paredes): la sala de la ameba gigante, vacía.
+            [BossCircle] = Circle(BossCircleDiameter),
         };
 
         /// <summary>Sala rectangular con un hueco de 2 tiles centrado en cada lado.</summary>
         public static string Rectangle(int width, int height) =>
             new Builder(width, height).Floor(1, 1, width - 2, height - 4).CenteredDoors().ToString();
+
+        /// <summary>
+        /// Sala circular con el borde escalonado y una puerta en cada punto cardinal. Pared de 3 filas arriba y de 1 en
+        /// los demás lados, como las rectangulares; al ser convexa, las reglas de paredes tienen pieza para cada celda.
+        /// </summary>
+        public static string Circle(int diameter)
+        {
+            int width = diameter + 2;
+            int height = diameter + 4;
+            var builder = new Builder(width, height);
+            float center = (diameter + 1) / 2f;
+            float radius = diameter / 2f;
+            for (int x = 1; x <= diameter; x++)
+            {
+                for (int y = 1; y <= diameter; y++)
+                {
+                    float dx = x - center, dy = y - center;
+                    if (dx * dx + dy * dy <= radius * radius)
+                        builder.Floor(x, y, x, y);
+                }
+            }
+            return builder.CenteredDoors().ToString();
+        }
 
         /// <summary>Monta una plantilla en una rejilla con y hacia arriba (fila 0 = abajo).</summary>
         sealed class Builder

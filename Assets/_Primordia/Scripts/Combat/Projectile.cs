@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Primordia.Core;
 using UnityEngine;
 using UnityEngine.Pool;
@@ -39,6 +40,26 @@ namespace Primordia.Combat
         // Cada cuánto vuelve a buscar el enemigo más cercano un proyectil buscador.
         const float TargetSearchInterval = 0.15f;
 
+        // Proyectiles en vuelo, para poder quitarlos todos de golpe (escenas de los jefes).
+        static readonly List<Projectile> active = new();
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        static void ResetStatics() => active.Clear();
+
+        /// <summary>Proyectiles en vuelo ahora mismo, de los dos equipos.</summary>
+        public static int ActiveCount => active.Count;
+
+        /// <summary>Quita todos los proyectiles en vuelo, de los dos equipos, sin efecto de impacto.</summary>
+        public static void DespawnAll()
+        {
+            foreach (var projectile in active.ToArray())
+            {
+                if (projectile != null)
+                    projectile.Despawn();
+            }
+            active.Clear();
+        }
+
         void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
@@ -52,6 +73,9 @@ namespace Primordia.Combat
             for (int i = 0; i < renderers.Length; i++)
                 baseColors[i] = renderers[i].color;
         }
+
+        // Al descargar la escena se destruyen sin pasar por Despawn.
+        void OnDestroy() => active.Remove(this);
 
         internal void SetPool(ObjectPool<Projectile> owner) => pool = owner;
 
@@ -87,6 +111,7 @@ namespace Primordia.Combat
             homingTarget = null;
             expireTime = Time.time + attack.Lifetime;
             launched = true;
+            active.Add(this);
         }
 
         void FixedUpdate()
@@ -234,6 +259,7 @@ namespace Primordia.Combat
                 return;
 
             launched = false;
+            active.Remove(this);
             source = null;
             rb.linearVelocity = Vector2.zero;
 

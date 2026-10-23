@@ -47,7 +47,8 @@ namespace Primordia.Editor
             if (!CoreSetup.TryCreateSceneFromTemplate(ScenePath, cameraRig, gameManager, out var scene, out var rig))
                 return;
 
-            FloorSetup.BuildFloor(scene, rig, player, floorConfig: config);
+            // Se vuelve a cargar: al abrir la escena nueva Unity descarga los assets sin usar, y la copia de antes ya no vale.
+            FloorSetup.BuildFloor(scene, rig, player, floorConfig: AssetDatabase.LoadAssetAtPath<FloorConfig>(ConfigPath));
             PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath<GameObject>(UISetup.GameUIPath), scene);
             UISetup.CreateEventSystem();
 

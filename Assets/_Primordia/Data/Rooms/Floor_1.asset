@@ -40,6 +40,15 @@ MonoBehaviour:
   referenceFloorArea: 312
   boss: {fileID: 1183084727335379411, guid: 1fc20f23b26e1e14aa8e7a669d298cfb, type: 3}
   bossOffset: {x: 0, y: 2.5}
+  bosses:
+  - prefab: {fileID: 1183084727335379411, guid: 1fc20f23b26e1e14aa8e7a669d298cfb, type: 3}
+    room: {fileID: 11400000, guid: fc6ceb4b1ee497742babf0fa9f360cd1, type: 2}
+    theme: {fileID: 11400000, guid: 0ab89510c4bdea14ab8e629038e4cb6d, type: 2}
+    offset: {x: 0, y: 2.5}
+  - prefab: {fileID: 3929587759750360350, guid: 02aaf85b190558f41bcb733e7eb43441, type: 3}
+    room: {fileID: 11400000, guid: f9b0d20321107444684957c4e1e2f3c7, type: 2}
+    theme: {fileID: 11400000, guid: 1c83c3469c0ded745b4b509570355cd3, type: 2}
+    offset: {x: 0, y: 0}
   rewardPool: {fileID: 11400000, guid: 44d7ff0aa2725894b8aa5e92ff4b83a8, type: 2}
   rewardOptions: 3
   rewardAfter: 0200000004000000i

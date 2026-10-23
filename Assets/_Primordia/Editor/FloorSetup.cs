@@ -142,6 +142,13 @@ namespace Primordia.Editor
         internal static void BuildFloor(Scene scene, GameObject rig, GameObject playerPrefab, MutationPool rewardPool = null,
             FloorConfig floorConfig = null)
         {
+            // Una configuración ya descargada (al abrir otra escena Unity descarga los assets sin usar) parece null:
+            // mejor avisar que montar la escena con Floor_1 sin decir nada.
+            if (!ReferenceEquals(floorConfig, null) && floorConfig == null)
+            {
+                Debug.LogError("FloorSetup: la configuración del piso se descargó al abrir la escena; vuelve a cargarla con AssetDatabase.");
+                return;
+            }
             var config = floorConfig != null ? floorConfig : AssetDatabase.LoadAssetAtPath<FloorConfig>(FloorConfigPath);
             if (config == null)
             {

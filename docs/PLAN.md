@@ -51,10 +51,11 @@ Cada módulo vive en su propia carpeta de `Assets/_Primordia/Scripts/` (`Core`, 
 - [x] `feature/mouth-tweaks`: Aguijón más pequeño (los proyectiles salen de su punta), Esporas como gorrito de Amanita con una bocanada de esporas que flotan como minas, y mordisco con avance desde el nivel II de Mandíbulas
 - [x] `feature/lineage-benefits`: beneficios de los linajes (base por clase: Rematar, Pastar biomasa, Toxina débil y Colonizar la sala; y el toque propio de cada uno de los 7 animales del piso 1), cartel al completar un linaje y beneficio en la pausa
 - [x] `feature/lineage-evolution`: al completar un linaje, animación de evolución (el juego se congela, la célula se transforma en el animal) y piezas del linaje en lugar de las de sus mutaciones
+- [x] `feature/boss-amoeba`: ameba gigante, segundo jefe del piso 1 (sale ella o el virus, al 50 %): sala redonda, embestidas, división en dos con la vida compartida, escena final con lluvia de proyectiles de 30 s y agotamiento. Escena de cinemática (franjas, HUD oculto, cámara) reutilizable para otros jefes. Vida de los enemigos y del virus del piso 1 al doble
 - [ ] `feature/floor-transition`: paso al piso siguiente y metamorfosis del jugador según su familia de arma (cuerpo a cuerpo, proyectil, área)
 - [ ] `feature/floor-2`: Océano cámbrico (escenario, enemigos, Anomalocaris, 4 mutaciones y 3 cuerpos del jugador)
 - [ ] `feature/floor-3`: Pantano carbonífero (lo mismo, con el artrópodo gigante); si se retrasa mucho, la v1.0 sale con 2 pisos
-- [ ] `feature/balance`: equilibrio de vida, daño y ritmo. Idea de Gaby: subir un 50 % o un 75 % la vida de los enemigos del piso 1 (ahora 3, 4 y 1), que también haría notar más Rematar
+- [ ] `feature/balance`: equilibrio de vida, daño y ritmo. La vida de los enemigos del piso 1 ya se dobló en `feature/boss-amoeba` (6, 8 y 2; virus 120), que también hace notar más Rematar
 - [ ] Página de itch.io pública → etiqueta **`v1.0`**
 
 ### Fase 3: después de la v1.0

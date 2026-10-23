@@ -39,8 +39,16 @@ namespace Primordia.Mutations
         void OnDisable()
         {
             mutations.Changed -= OnChanged;
+            Disabling = true;
             SetActive(null);
+            Disabling = false;
         }
+
+        /// <summary>
+        /// True mientras quita el linaje porque el jugador se desactiva (al cerrar la escena): no es que se haya
+        /// perdido jugando, así que no hay que crear efectos.
+        /// </summary>
+        public bool Disabling { get; private set; }
 
         internal void Configure(GameObject newActivateEffect) => activateEffect = newActivateEffect;
 

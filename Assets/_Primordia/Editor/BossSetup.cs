@@ -53,7 +53,7 @@ namespace Primordia.Editor
             var burstAttack = CombatSetup.CreateAttack("Attack_BossBurst", burstProjectile, fireRate: 1f, damage: 1, speed: 4f, lifetime: 8f);
 
             var data = EnemySetup.CreateData("Enemy_VirusBoss", d => d.Configure(EnemyBehaviour.Chaser,
-                maxHealth: 60, moveSpeed: 1.5f, detectionRange: 0f, contactDamage: 1));
+                maxHealth: 120, moveSpeed: 1.5f, detectionRange: 0f, contactDamage: 1));
 
             AssetDatabase.SaveAssets();
             CreateBossPrefab(square, data, spiralAttack, burstAttack, EnemySetup.LoadPrefab("Enemy_Chaser"));

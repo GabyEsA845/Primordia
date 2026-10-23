@@ -51,6 +51,9 @@ namespace Primordia.Rooms
         public readonly List<LayoutRoom> Rooms = new();
         public readonly List<(LayoutRoom from, LayoutRoom to)> Links = new();
 
+        /// <summary>Jefe de esta partida, con su sala y su tileset.</summary>
+        public FloorConfig.BossEntry BossChoice;
+
         public LayoutRoom Start => Rooms.First(room => room.Role == RoomRole.Start);
         public LayoutRoom Boss => Rooms.First(room => room.Role == RoomRole.Boss);
 
@@ -74,6 +77,8 @@ namespace Primordia.Rooms
 
         public static FloorLayout Generate(FloorConfig config, System.Random random)
         {
+            // El jefe primero: su sala decide el tamaño de la última celda del camino.
+            var boss = config.ChooseBoss(random);
             int combatCount = RandomRange(random, config.MainCombatRooms);
             int sideCount = RandomRange(random, config.SideRoomCount);
 
@@ -95,13 +100,13 @@ namespace Primordia.Rooms
                         continue;
                 }
 
-                return Build(config, random, path, sides, shop);
+                return BuildWithBoss(boss, config, random, path, sides, shop);
             }
 
             // Muy improbable: sin sitio para las laterales tras muchos intentos. Camino recto, sin laterales.
             var straight = Enumerable.Range(0, combatCount + 2).Select(i => new Vector2Int(i, 0)).ToList();
             var none = new List<(int, Vector2Int)>();
-            return Build(config, random, straight, none, config.HasShop ? ShopCell(random, straight, none) : null);
+            return BuildWithBoss(boss, config, random, straight, none, config.HasShop ? ShopCell(random, straight, none) : null);
         }
 
         /// <summary>
@@ -172,8 +177,16 @@ namespace Primordia.Rooms
             return result.Count == count ? result : null;
         }
 
+        static FloorLayout BuildWithBoss(FloorConfig.BossEntry boss, FloorConfig config, System.Random random, List<Vector2Int> path,
+            List<(int parent, Vector2Int cell)> sides, (int parent, Vector2Int cell)? shop)
+        {
+            var layout = Build(config, random, path, sides, shop, boss.room);
+            layout.BossChoice = boss;
+            return layout;
+        }
+
         static FloorLayout Build(FloorConfig config, System.Random random, List<Vector2Int> path, List<(int parent, Vector2Int cell)> sides,
-            (int parent, Vector2Int cell)? shop)
+            (int parent, Vector2Int cell)? shop, RoomTemplate bossRoom)
         {
             var layout = new FloorLayout();
             var rewardAfter = new HashSet<int>(config.RewardAfter ?? new int[0]);
@@ -187,7 +200,7 @@ namespace Primordia.Rooms
                 if (role == RoomRole.Start)
                     room.Template = config.StartRoom;
                 else if (role == RoomRole.Boss)
-                    room.Template = config.BossRoom;
+                    room.Template = bossRoom;
                 else
                 {
                     // Dos salas seguidas del camino no repiten forma, si hay donde elegir.

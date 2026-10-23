@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Primordia.Audio;
 using Primordia.Core;
 using UnityEngine;
 
@@ -147,6 +148,7 @@ namespace Primordia.Combat
                 if (!TryLunge(direction, attack))
                     Strike(direction, origin, attack);
                 Fired?.Invoke(direction);
+                Sfx.Play(attack.FireSound);
                 return;
             }
 
@@ -161,6 +163,7 @@ namespace Primordia.Combat
             }
 
             Fired?.Invoke(direction);
+            Sfx.Play(attack.FireSound);
         }
 
         internal void ReportHit(Health target) => HitTarget?.Invoke(target);
@@ -185,6 +188,7 @@ namespace Primordia.Combat
             pendingAttack = attack;
             pendingDirection = direction;
             pendingStrikeTime = Time.time + duration;
+            Sfx.Play(attack.LungeSound);
             return true;
         }
 
@@ -232,6 +236,7 @@ namespace Primordia.Combat
         {
             // Se recogen antes de dañar: una muerte puede cambiar la escena mientras se recorren.
             var hits = new List<(Health health, Collider2D collider)>(TargetsInReach(direction, attack));
+            bool landed = false;
             foreach (var (health, hit) in hits)
             {
                 if (health == null)
@@ -240,10 +245,15 @@ namespace Primordia.Combat
                 if (!health.TakeDamage(DamageOf(attack)))
                     continue;
 
+                landed = true;
+
                 OneShotEffect.Spawn(attack.MeleeHitEffect, hit.bounds.center);
                 attack.ApplyStatus(health, PoisonMultiplier);
                 ReportHit(health);
             }
+
+            if (landed)
+                Sfx.Play(attack.HitSound);
 
             if (attack.MeleeEffect != null)
             {

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7126661780456874207}
   - component: {fileID: 3602510922904251330}
   - component: {fileID: 2807659513579006378}
+  - component: {fileID: 1701562211037655380}
   m_Layer: 0
   m_Name: Effect_Status_Paralyzed
   m_TagString: Untagged
@@ -115,3 +116,17 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1701562211037655380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4071086763907210616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10e032ce63bd4d441bb2e32084dfb091, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Primordia::Primordia.Audio.EffectSound
+  sound: Organ_Shockwave_Paralyze
+  volume: 1

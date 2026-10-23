@@ -54,8 +54,13 @@ namespace Primordia.Mutations
         [SerializeField] Color color = Color.white;
         [Tooltip("Lo que añade cada nivel: el II y el III (evolución).")]
         [SerializeField, TextArea(2, 4)] string[] levelDescriptions = new string[MaxLevel - 1];
+        [Tooltip("Extremidades: sonido de la esquiva con esta mutación (SoundLibrary). Vacío = el normal.")]
+        [SerializeField] string dodgeSound;
 
         public string DisplayName => string.IsNullOrEmpty(displayName) ? name : displayName;
+
+        /// <summary>Extremidades: sonido de la esquiva con esta mutación (las Aletas). Vacío = el normal.</summary>
+        public string DodgeSound => dodgeSound;
         public string Description => description;
         public MutationSlot Slot => slot;
         public System.Collections.Generic.IReadOnlyList<LineageData> Lineages =>
@@ -99,6 +104,8 @@ namespace Primordia.Mutations
         internal void SetLineages(LineageData[] newLineages) => lineages = newLineages ?? System.Array.Empty<LineageData>();
 
         internal void SetColor(Color newColor) => color = newColor;
+
+        internal void SetDodgeSound(string sound) => dodgeSound = sound;
 
         internal void SetLevelDescriptions(params string[] descriptions) => levelDescriptions = descriptions;
 

@@ -1,4 +1,5 @@
 using System;
+using Primordia.Audio;
 using Primordia.Core;
 using Primordia.Enemies;
 using Primordia.Player;
@@ -55,6 +56,7 @@ namespace Primordia.Mutations
                 return amount;
 
             int damage = Health.ScaleDamage(amount, target.TryGetComponent<IBoss>(out _) ? bossMultiplier : multiplier);
+            Sfx.Play(Sounds.LineageFinisher);
 
             // El modificador se aplica justo antes de quitar la vida: si llega a 0, este golpe es el remate (aunque
             // la muerte se anuncie más tarde, como la de la ameba que se divide).
@@ -70,6 +72,7 @@ namespace Primordia.Mutations
 
             controller.ResetDodgeCooldown();
             DodgeRefills++;
+            Sfx.Play(Sounds.PlayerDodgeReady);
             OneShotEffect.Spawn(finishEffect, controller.transform.position, parent: controller.transform);
         }
 

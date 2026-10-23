@@ -90,7 +90,21 @@ namespace Primordia.Combat
         [Tooltip("Segundos que dura el avance.")]
         [SerializeField, Min(0.01f)] float meleeLungeDuration = 0.1f;
 
+        [Header("Sonido")]
+        [Tooltip("Sonido de cada disparo o mordisco (nombre de la SoundLibrary). Vacío = sin sonido.")]
+        [SerializeField] string fireSound;
+        [Tooltip("Cuerpo a cuerpo: sonido cuando el golpe alcanza a alguien.")]
+        [SerializeField] string hitSound;
+        [Tooltip("Cuerpo a cuerpo: sonido del avance.")]
+        [SerializeField] string lungeSound;
+        [Tooltip("Proyectiles: sonido al chocar con algo.")]
+        [SerializeField] string impactSound;
+
         public Projectile ProjectilePrefab => projectilePrefab;
+        public string FireSound => fireSound;
+        public string HitSound => hitSound;
+        public string LungeSound => lungeSound;
+        public string ImpactSound => impactSound;
         public bool IsMelee => melee;
         public float MeleeArc => meleeArc;
         public GameObject MeleeEffect => meleeEffect;
@@ -252,5 +266,13 @@ namespace Primordia.Combat
 
         /// <summary>Copia todos los valores de otro ataque (para crear el de un nivel a partir del anterior).</summary>
         internal void CopyFrom(AttackData other) => JsonUtility.FromJsonOverwrite(JsonUtility.ToJson(other), this);
+
+        internal void ConfigureSounds(string newFire, string newHit = null, string newLunge = null, string newImpact = null)
+        {
+            fireSound = newFire;
+            hitSound = newHit;
+            lungeSound = newLunge;
+            impactSound = newImpact;
+        }
     }
 }

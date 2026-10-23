@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using Primordia.Player;
 using UnityEngine;
 
@@ -49,6 +50,7 @@ namespace Primordia.Mutations
         {
             lastSpawn = position;
             Spawned++;
+            Sfx.Play(Sounds.LineageStingingTrail);
             var patch = patchPrefab != null
                 ? Instantiate(patchPrefab, position, Quaternion.identity)
                 : new GameObject("StingingTrail").AddComponent<MyceliumPatch>();

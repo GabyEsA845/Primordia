@@ -1,4 +1,5 @@
 using System;
+using Primordia.Audio;
 using Primordia.Enemies;
 using Primordia.Player;
 using UnityEngine;
@@ -38,6 +39,9 @@ namespace Primordia.Mutations
 
         public event Action Used;
 
+        /// <summary>Se lanza al intentar usarla mientras aún se recarga.</summary>
+        public event Action Refused;
+
         PlayerController controller;
         PlayerMutations mutations;
         InputAction specialAction;
@@ -62,7 +66,10 @@ namespace Primordia.Mutations
         void OnEnemyDied(Enemy enemy)
         {
             if (UsesKills && kills < KillsNeeded)
+            {
                 kills++;
+                Sfx.Play(Sounds.VacuoleCharge);
+            }
         }
 
         void Update()
@@ -80,7 +87,11 @@ namespace Primordia.Mutations
         public bool TryUse()
         {
             if (!IsReady || !controller.CanAct || !Ability.CanActivate(mutations))
+            {
+                if (Ability != null && !IsReady && controller.CanAct)
+                    Refused?.Invoke();
                 return false;
+            }
 
             currentCooldown = Ability.CooldownAt(Mathf.Max(1, mutations.LevelOf(Ability.Slot)));
             readyTime = Time.time + currentCooldown;

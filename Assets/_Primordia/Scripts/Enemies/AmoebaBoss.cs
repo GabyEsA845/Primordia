@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Primordia.Audio;
 using Primordia.Combat;
 using Primordia.Core;
 using Primordia.Player;
@@ -264,6 +265,7 @@ namespace Primordia.Enemies
             FindPlayer();
             Health.AddDamageModifier(ModifyDamage);
             Health.Damaged += OnDamaged;
+            Health.Deflected += OnDeflected;
             enemy.Died += OnDied;
             barrage.SegmentStarted += OnSegmentStarted;
             barrage.Finished += OnBarrageFinished;
@@ -280,7 +282,9 @@ namespace Primordia.Enemies
             ActiveBoss.Clear(this);
             Health.RemoveDamageModifier(ModifyDamage);
             Health.Damaged -= OnDamaged;
+            Health.Deflected -= OnDeflected;
             enemy.Died -= OnDied;
+            Sfx.StopLoop(Sounds.AmoebaExhaustedLoop);
             barrage.SegmentStarted -= OnSegmentStarted;
             barrage.Finished -= OnBarrageFinished;
             // Si se va a mitad de la escena (otra escena, reinicio), la cámara y el juego vuelven a la normalidad.
@@ -342,6 +346,9 @@ namespace Primordia.Enemies
             }
         }
 
+        // Inmune (escena final y lluvia de proyectiles): el golpe rebota.
+        void OnDeflected() => Sfx.Play(Sounds.AmoebaImmune);
+
         void PlayHurt(AmoebaBody body, string hurt)
         {
             if (body == null || !body.gameObject.activeInHierarchy)
@@ -372,6 +379,7 @@ namespace Primordia.Enemies
         {
             StopTransition();
             barrage.Stop();
+            Sfx.StopLoop(Sounds.AmoebaExhaustedLoop);
             ReleaseCamera();
             foreach (var body in AllBodies())
             {
@@ -449,6 +457,7 @@ namespace Primordia.Enemies
         {
             Stop(main);
             mainBody.Play(EnrageState, restart: true);
+            Sfx.Play(Sounds.AmoebaEnrage);
             yield return new WaitForSeconds(Length(mainBody, EnrageState));
 
             SetStage(Stage.Angry);
@@ -462,6 +471,7 @@ namespace Primordia.Enemies
         {
             Stop(main);
             mainBody.Play(SplitState, restart: true);
+            Sfx.Play(Sounds.AmoebaSplit);
             yield return new WaitForSeconds(Length(mainBody, SplitState));
 
             // Las medianas aparecen a los lados de la grande, sin meterse en la pared.
@@ -551,12 +561,14 @@ namespace Primordia.Enemies
             if (wasSplit)
             {
                 mainBody.Play(MergeState, restart: true);
+                Sfx.Play(Sounds.AmoebaMerge);
                 yield return new WaitForSeconds(mergeTime);
             }
 
             // 3. Se enfurece.
             mainBody.Play(RageState, restart: true);
             mainBody.Shake(shakeAmount * 0.6f);
+            Sfx.Play(Sounds.AmoebaFury);
             yield return new WaitForSeconds(rageTime);
             mainBody.Shake(0f);
 
@@ -577,6 +589,8 @@ namespace Primordia.Enemies
             zoom.Set(1f);
 
             yield return new WaitForSeconds(Mathf.Max(0f, barrageGrace - zoomTime));
+            // Su pista dura lo mismo que la lluvia (30 s) y acaba en seco cuando queda agotada.
+            Music.Play(Sounds.MusicBossAmoebaFinal, 0.1f);
             barrage.Begin(player);
             transition = null;
         }
@@ -611,6 +625,7 @@ namespace Primordia.Enemies
             mainBody.ContactDamage = 0;
 
             mainBody.Play(ExhaustState, restart: true);
+            Sfx.StartLoop(Sounds.AmoebaExhaustedLoop);
 
             // La cámara vuelve al jugador y a su tamaño.
             for (float t = 0f; t < zoomTime; t += Time.deltaTime)
@@ -678,6 +693,8 @@ namespace Primordia.Enemies
                     // Aviso: tiembla y mira hacia donde va a salir (al jugador, que puede moverse mientras tanto).
                     if (!charger.Aiming || towardsPlayer)
                         charger.Direction = towardsPlayer ? DirectionToPlayer(body, charger.Predicts, speed) : RandomDirection(body);
+                    if (!charger.Aiming)
+                        Sfx.Play(Sounds.AmoebaWarning);
                     charger.Aiming = true;
                     body.Shake(shakeAmount);
                     PlayAim(body, charger.Direction, calm: !towardsPlayer);
@@ -698,6 +715,7 @@ namespace Primordia.Enemies
                 charger.Slides = 0;
                 body.Shake(0f);
                 PlayMove(body);
+                Sfx.Play(Sounds.AmoebaLaunch);
             }
 
             body.SetStretch(charger.Direction, chargeStretch);
@@ -724,6 +742,7 @@ namespace Primordia.Enemies
                 charger.ExtraRest = 0f;
                 body.SetStretch(charger.Direction, 0f);
                 body.Impact(normal);
+                Sfx.Play(Sounds.AmoebaWallSlam);
             }
         }
 
@@ -767,10 +786,19 @@ namespace Primordia.Enemies
 
                     Vector2 normal = delta.sqrMagnitude > 0.0001f ? delta.normalized : Vector2.right;
                     // Solo rebota la que va hacia la otra; la que está parada sigue esperando.
+                    bool bounced = false;
                     if (a.Charging && Vector2.Dot(a.Direction, normal) > 0f)
+                    {
                         a.Direction = Vector2.Reflect(a.Direction, normal);
+                        bounced = true;
+                    }
                     if (b.Charging && Vector2.Dot(b.Direction, -normal) > 0f)
+                    {
                         b.Direction = Vector2.Reflect(b.Direction, -normal);
+                        bounced = true;
+                    }
+                    if (bounced)
+                        Sfx.Play(Sounds.AmoebaBounce);
                 }
             }
         }

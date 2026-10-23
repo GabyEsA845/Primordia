@@ -14,8 +14,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: Primordia::Primordia.Combat.AttackData
   projectilePrefab: {fileID: 5933335123236361503, guid: 65280129bcbaeca4fa01786c9ce2263d, type: 3}
   fireRate: 0.6
+  automatic: 0
   damage: 1
   projectileSpeed: 5
   lifetime: 4
   projectileCount: 3
   spreadAngle: 40
+  poisonDamagePerSecond: 0
+  poisonDuration: 0
+  poisonEffect: {fileID: 0}
+  poisonBurstRadius: 0
+  poisonBurstEffect: {fileID: 0}
+  bleedDamagePerSecond: 0
+  bleedDuration: 0
+  bleedEffect: {fileID: 0}
+  homingTurnRate: 0
+  homingRange: 5
+  brakeTime: 0
+  scatterSpeed: 0
+  speedJitter: 0
+  angleJitter: 0
+  driftSpeed: 0
+  fadeTime: 0
+  melee: 0
+  meleeRange: 1.5
+  meleeArc: 180
+  meleeEffect: {fileID: 0}
+  meleeHitEffect: {fileID: 0}
+  meleeLunge: 0
+  meleeLungeDuration: 0.1
+  fireSound: Enemy_Amoeba_Shot
+  hitSound: 
+  lungeSound: 
+  impactSound: Projectile_Impact

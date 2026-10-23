@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using Primordia.Combat;
 using Primordia.Core;
 using Primordia.Enemies;
@@ -64,6 +65,7 @@ namespace Primordia.Mutations
                 return;
 
             OneShotEffect.Spawn(settings.burstEffect, transform.position);
+            Sfx.Play(Sounds.SporeCloud);
             foreach (var hit in Physics2D.OverlapCircleAll(transform.position, settings.burstRadius, LayerMask.GetMask(CombatLayers.Enemy)))
             {
                 var other = hit.GetComponentInParent<Enemy>();

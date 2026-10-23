@@ -1,4 +1,5 @@
 using System;
+using Primordia.Audio;
 using Primordia.Combat;
 using Primordia.Enemies;
 using UnityEngine;
@@ -69,14 +70,18 @@ namespace Primordia.Mutations
                 : SpawnEffect(center, levelRadius);
 
             Blind(cloud, center, levelRadius, DamagePerSecondAt(level));
+            Sfx.Play(Sounds.Ink);
         }
 
         /// <summary>
         /// Una nube de tinta del nivel I de ese radio, que ciega igual que la de la habilidad (la Bocanada al golpe
         /// del Cuesco de lobo).
         /// </summary>
-        public void SpawnCloud(Vector2 center, float cloudRadius) =>
+        public void SpawnCloud(Vector2 center, float cloudRadius)
+        {
             Blind(SpawnEffect(center, cloudRadius), center, cloudRadius, damagePerSecond: 0);
+            Sfx.Play(Sounds.LineagePuffOnHit);
+        }
 
         void Blind(GameObject cloud, Vector2 center, float cloudRadius, int damagePerSecond)
         {

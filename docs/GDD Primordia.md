@@ -270,7 +270,7 @@ La v1.0 tiene los **pisos 1 a 3** completos y pulidos (si el 3 se retrasa mucho,
 
 - [x] Mapa distinto en cada partida y salas con formas distintas
 - [x] Arte del piso 1 y cambio visual del jugador por cada mutación (jugador, enemigos, jefe, proyectiles, efectos, escenario y piezas de mutación)
-- [ ] Música y efectos de sonido
+- [x] Música y efectos de sonido
 - [x] Linajes con su beneficio (base por clase y toque de cada animal)
 - [ ] Más variedad en el piso 1: un tercer enemigo y salas especiales
 - [ ] Paso de un piso al siguiente, con la metamorfosis del jugador según su familia de arma

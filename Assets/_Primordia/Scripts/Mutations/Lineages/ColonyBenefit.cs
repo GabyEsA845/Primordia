@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Primordia.Audio;
 using Primordia.Rooms;
 using UnityEngine;
 
@@ -66,6 +67,7 @@ namespace Primordia.Mutations
         public void Colonize(Room room)
         {
             ClearMats();
+            Sfx.Play(Sounds.LineageColonize);
             var bounds = room.TryGetComponent<Collider2D>(out var area) ? area.bounds : new Bounds(room.transform.position, Vector3.one * 8f);
             float spacing = settings.radius * 2f;
 

@@ -1,4 +1,5 @@
 using System;
+using Primordia.Audio;
 using Primordia.Core;
 using UnityEngine;
 
@@ -38,6 +39,20 @@ namespace Primordia.Biomass
 
         /// <summary>Se lanza al recogerla (antes de destruirse).</summary>
         public event Action<BiomassPickup> Collected;
+
+        // Al recoger varias seguidas, cada una suena un poco más aguda (hasta un tope), como una escala.
+        const float ChainWindow = 0.45f;
+        const int MaxChain = 8;
+        const float ChainPitchStep = 0.045f;
+        static float lastCollectTime = -1f;
+        static int chain;
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        static void ResetStatics()
+        {
+            lastCollectTime = -1f;
+            chain = 0;
+        }
 
         Transform player;
         PlayerBiomass wallet;
@@ -148,6 +163,13 @@ namespace Primordia.Biomass
                 Collect();
         }
 
+        void PlayCollectSound()
+        {
+            chain = lastCollectTime >= 0f && Time.time - lastCollectTime <= ChainWindow ? Mathf.Min(chain + 1, MaxChain) : 0;
+            lastCollectTime = Time.time;
+            Sfx.Play(value >= 5 ? Sounds.BiomassBig : Sounds.BiomassSmall, pitch: 1f + chain * ChainPitchStep);
+        }
+
         /// <summary>Se suma a la biomasa del jugador, deja su efecto y desaparece.</summary>
         internal void Collect()
         {
@@ -157,6 +179,7 @@ namespace Primordia.Biomass
             collected = true;
             wallet.Add(value);
             OneShotEffect.Spawn(collectEffect, transform.position);
+            PlayCollectSound();
             Collected?.Invoke(this);
             Destroy(gameObject);
         }

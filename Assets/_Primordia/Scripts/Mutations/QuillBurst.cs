@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using Primordia.Combat;
 using Primordia.Core;
 using UnityEngine;
@@ -37,6 +38,7 @@ namespace Primordia.Mutations
                 return;
 
             Bursts++;
+            Sfx.Play(Sounds.Quills);
             int layer = CombatLayers.ProjectileLayer(Team.Player);
             Vector2 origin = transform.position;
             for (int i = 0; i < count; i++)

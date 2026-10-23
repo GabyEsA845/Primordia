@@ -42,6 +42,7 @@ Los recursos nuevos (hojas de sprites, GIF de revisión, scripts que los generan
 | Ajustes de las Bocas | `docs/multimedia-temp/mouth-tweaks/` (`generar_bocas.py`: `Mouth/`, `Cap/`, `Projectiles/`, `Icons/`) | Menú **Primordia > Art > Importar ajustes de las Bocas**: el Aguijón pequeño (el script lo copia también a `evolutions/Mouth/`) con su punto de disparo en la punta, el gorrito de las Esporas en `Art/Mutations/Spores/` (`Cap_Spores.controller`, pieza `Cap` del jugador, orden 13) con sus iconos, la altura de la cabeza de cada Piel y la espora crema. Al final ejecuta **Configurar niveles y evoluciones** (bocanada que flota de las Esporas y avance del mordisco). El script copia la espora y los iconos también a `projectiles/` y `ui/Icons/`, así los menús antiguos no vuelven a poner los de antes. |
 | Beneficios de linajes | `docs/multimedia-temp/lineages/` (`generar_linajes.py`: `HUD/UI_Heart_Barrier`, `Effects/FungusMat`, `FungusMat_Large`, `StingingTrail`) | Menú **Primordia > Art > Importar beneficios de linajes**: el medio corazón verde de la barrera en los corazones del HUD, y los prefabs `Effect_FungusMat` (anillo de hadas, radio 1,2), `Effect_FungusMat_Large` (radio 1,56) y `Effect_StingingTrail` (radio 0,45) con `MyceliumPatch`, en el suelo (orden 3 y 4). Al final ejecuta **Primordia > Mutations > Crear linajes**, que pone al jugador los valores y efectos de los beneficios, y al HUD el cartel del linaje y su cuadro en la pausa. |
 | Evolución de linajes | `docs/multimedia-temp/lineage-evolution/` (`generar_evolucion_linajes.py`: `Limbs/`, `Mouth/`, `Cap/`, `Evolution/`, `Effects/LineageLost`) | Menú **Primordia > Art > Importar evolución de linajes** (después de Crear linajes): las piezas de cada linaje en `Art/Lineages/<Linaje>/` (Extremidades 32×32 con los estados del jugador, Bocas 24×24 con la unión en el borde izquierdo, gorrito del Cuesco 24×24), la animación de la evolución de cada uno (`Prefabs/Effects/Effect_Evolution_<Linaje>`, 48×48, 12 cuadros en unos 2 s) y el pof al perderlo (`Effect_LineageLost`, blanco: el juego lo tiñe). Pone a cada `Lineage_<Linaje>` su aspecto (la cola del Escorpión dispara a 15,6 px de la unión) y al jugador `LineageEvolution`. |
+| Audio | `docs/multimedia-temp/audio/` (`generar_audio.py` con `sintesis.py`, `efectos.py` y `musica.py`: `SFX/*.wav`, `Music/*.ogg`, `sonidos.json` y `muestrario.html`; encargo en `PROMPT.md`) | Menú **Primordia > Audio > Importar audio**: copia los archivos a `Audio/SFX` (mono, ADPCM, Decompress On Load; los bucles en Vorbis) y `Audio/Music` (Vorbis, Streaming), crea `Audio/Resources/SoundLibrary` con el volumen y el grupo de cada sonido (de `sonidos.json`), cuántas veces seguidas puede sonar y su variación de tono, y conecta los sonidos que van en los datos: disparo, golpe, avance e impacto de cada `Attack_*`, daño, muerte, división, alerta y aviso de cada `Enemy_*`, la esquiva de `Mutation_Fins` y un `EffectSound` en los efectos que suenan al aparecer (pisotón, placas, subida de nivel, compra, marcas de estado, burbujas que revientan...). El `AudioManager` se crea solo al empezar si existe la biblioteca, pone sonido a los botones y al jugador de cada escena, y su `MusicDirector` elige la música. Se puede repetir cada vez que cambie el audio. |
 | Escenario | `docs/multimedia-temp/environment/<Soup|Boss>/` (`tiles/`, `deco/`, `Door_*.png`, `Doorway_Top.png`) y, para salas con formas, `docs/multimedia-temp/environment-shapes/<Soup|Boss>/tiles/` | Menú **Primordia > Art > Importar escenario**: crea un tile por imagen (las paredes con colisión), la decoración (algas y burbujas como tiles animados) y un `RoomTheme` por variante en `Art/Environment/`. Después hay que regenerar el piso (**Primordia > UI > Regenerar escena Game**). Las salas son plantillas de texto (`Data/Rooms/`) que un pintor viste con el tema; las celdas sin pieza salen en magenta. |
 
 `.png`, `.aseprite`, `.wav`, `.ogg`, `.mp3`, `.ttf` y `.otf` se guardan con Git LFS (ya configurado en `.gitattributes`).
@@ -125,42 +126,40 @@ Los recursos nuevos (hojas de sprites, GIF de revisión, scripts que los generan
 | Fondo del menú principal | Caldo primordial en 4 capas: agua, rayos de luz, partículas que suben y siluetas que pasan | D | Listo |
 | Minimapa y mapa grande | Minimapa en el HUD y mapa con TAB: marco, panel de vidrio, paleta del plano e iconos (jugador, jefe, recompensa) | M | Listo |
 | Menú de pausa | Estadísticas, criatura en una lente con sus ranuras y cuadro de información | M | Listo |
+| Volumen en la pausa | Panel "AUDIO" bajo las estadísticas: barras de música (nota) y efectos (altavoz) con su porcentaje. Piezas de `generar_volumen.py` en `docs/multimedia-temp/menus/Pause/` (`UI_Slider_Track`, `UI_Slider_Fill`, `UI_Slider_Knob`, `UI_Stat_Music`, `UI_Stat_Sfx`); lo monta **Primordia > Audio > Añadir volumen a la pausa** (y también Importar menús) | M | Listo |
 | Pantallas de victoria y derrota | | M | Pendiente |
 | Iconos de linaje | Depredador, Acorazado, Tóxico | D | Pendiente |
 | Portada para la página de itch.io | 630×500 px, captura o arte promocional | M | Pendiente |
 
 ## Música
 
-| Pista | Uso | Ambiente | Prioridad | Estado |
-|-------|-----|----------|-----------|--------|
-| Menú principal | Bucle | Calmado y orgánico | D | Pendiente |
-| Piso 1: sopa primordial | Bucle en salas | Acuático, burbujeante, con ritmo | D | Pendiente |
-| Jefe: virus gigante | Bucle en la sala del jefe | Intenso | D | Pendiente |
-| Victoria | Fragmento corto | | D | Pendiente |
-| Derrota | Fragmento corto | | D | Pendiente |
+Once pistas en `docs/multimedia-temp/audio/Music/`, todas en re menor (la tienda, en su relativo fa mayor) y sintetizadas por `generar_audio.py`. La lista completa, con su duración y su ambiente, está en `docs/multimedia-temp/audio/PROMPT.md`. Las elige el `MusicDirector`:
+
+| Pista | Cuándo suena | Prioridad | Estado |
+|-------|-------------|-----------|--------|
+| `Music_MainMenu` | Menú principal (bucle) | D | Listo |
+| `Music_Floor1_Explore` + `Music_Floor1_Combat` | Piso 1: suenan a la vez y en sincronía; con las puertas cerradas se funde al combate | D | Listo |
+| `Music_Shop` | Tienda de Darwin | D | Listo |
+| `Music_Boss_Virus` / `Music_Boss_Amoeba` | Sala de cada jefe, tras el fragmento `Music_Sting_BossIntro` | D | Listo |
+| `Music_Boss_Amoeba_Final` | Lluvia de proyectiles de la ameba (30 s, sin bucle; la pone `AmoebaBoss`) | D | Listo |
+| `Music_Sting_LineageEvolution` | Evolución al completar un linaje (tapa la música 2 s) | D | Listo |
+| `Music_Sting_Victory` / `Music_Sting_Defeat` | Pantallas de victoria y derrota | D | Listo |
+
+La pausa, el mapa y la elección de mutación bajan la música. El jugador elige en la pausa el volumen de la música y el de los efectos (la interfaz va con los efectos); `AudioVolumes` lo guarda en PlayerPrefs (en la web, en el navegador) con un 80 % de fábrica. Debajo suena el ambiente del piso (`Amb_Floor1_Loop`) o el de la sala del jefe (`Amb_BossRoom_Loop`).
 
 ## Efectos de sonido
 
-| Efecto | Cuándo suena | Prioridad | Estado |
-|--------|-------------|-----------|--------|
-| Disparo base | Clic izquierdo sin mutación | D | Pendiente |
-| Disparo: Mandíbulas | Mordida | D | Pendiente |
-| Disparo: Aguijón | | D | Pendiente |
-| Disparo: Esporas | | D | Pendiente |
-| Esquiva | Espacio | D | Pendiente |
-| Jugador recibe daño | | D | Pendiente |
-| Jugador muere | | D | Pendiente |
-| Enemigo recibe daño | | D | Pendiente |
-| Enemigo muere | | D | Pendiente |
-| Ameba se divide | | D | Pendiente |
-| Disparo enemigo | | D | Pendiente |
-| Ataque en espiral del jefe | | D | Pendiente |
-| Puertas se cierran / se abren | Al entrar y al limpiar una sala | D | Pendiente |
-| Recoger biomasa | | D | Pendiente |
-| Obtener mutación | | D | Pendiente |
-| Habilidad: Vejiga de tinta | Clic derecho | D | Pendiente |
-| Habilidad: Glándula de choque | Clic derecho | D | Pendiente |
-| Interfaz: navegar y confirmar | Menús | D | Pendiente |
+113 efectos (157 archivos con sus variantes) en `docs/multimedia-temp/audio/SFX/`, con la lista completa en `PROMPT.md` (qué evento dispara cada uno) y el `muestrario.html` para escucharlos. Cómo llegan al juego:
+
+| Origen | Ejemplos | Dónde se decide |
+|--------|----------|-----------------|
+| Datos | Disparo, mordisco e impacto de cada ataque; daño, muerte, división, alerta y aviso de cada enemigo; esquiva de las Aletas | Campos de sonido de `AttackData`, `EnemyData` y `MutationData` (los pone el menú) |
+| Efectos visuales | Pisotón, Placas, subida de nivel, compra, marcas de estado (veneno, sangrado, cegado, aturdido, paralizado, asustado, sospecha), burbujas que revientan, linaje perdido | `EffectSound` en el prefab del efecto (lo pone el menú) |
+| Jugador | Daño, muerte, curación, latido con poca vida, esquiva, barrera, mutación nueva, habilidad lista o aún recargando, linaje completado | `PlayerAudio`, que el `AudioManager` pone al jugador |
+| Interfaz | Pasar por un botón, pulsar, elegir tarjeta, Saltar, Jugar; abrir la pausa y el mapa | `ButtonSounds` (en cada botón al cargar la escena) y `MusicDirector` |
+| Código | Salas y puertas, biomasa, jefes, tienda, camuflaje, habilidades del Órgano, beneficios de los linajes | Llamadas a `Sfx.Play` con los nombres de `Sounds` |
+
+Los sonidos que se piden muchos a la vez (doce proyectiles de una ráfaga, cinco enemigos cegados) suenan una sola vez (`minInterval` en la biblioteca), y la biomasa sube de tono al recoger varias seguidas.
 
 ## Fuentes
 

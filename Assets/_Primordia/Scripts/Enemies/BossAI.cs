@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Primordia.Audio;
 using Primordia.Combat;
 using Primordia.Core;
 using UnityEngine;
@@ -198,6 +199,7 @@ namespace Primordia.Enemies
             burstAnnounced = false;
             nextBurst = Mathf.Max(nextBurst, transitionUntil + burstWindup);
             PhaseChanged?.Invoke(Phase);
+            Sfx.Play(Sounds.VirusPhase2);
         }
 
         void UpdateSpiral()
@@ -222,6 +224,7 @@ namespace Primordia.Enemies
             {
                 burstAnnounced = true;
                 BurstStarting?.Invoke();
+                Sfx.Play(Sounds.VirusBurstWindup);
             }
 
             if (Time.time < nextBurst)
@@ -248,7 +251,10 @@ namespace Primordia.Enemies
                 minions.RemoveAll(m => m == null);
                 // Sin hueco para más invocaciones no hay aviso.
                 if (summonCount > 0 && minions.Count < maxMinions)
+                {
                     SummonStarting?.Invoke();
+                    Sfx.Play(Sounds.VirusSummonWindup);
+                }
             }
 
             if (Time.time < nextSummon)
@@ -259,6 +265,8 @@ namespace Primordia.Enemies
             minions.RemoveAll(m => m == null);
 
             int toSpawn = Mathf.Min(summonCount, maxMinions - minions.Count);
+            if (toSpawn > 0)
+                Sfx.Play(Sounds.VirusSummon);
             for (int i = 0; i < toSpawn; i++)
             {
                 Vector2 offset = Direction(i * 360f / Mathf.Max(1, toSpawn) + spiralAngle) * 2f;

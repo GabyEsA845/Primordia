@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Primordia.Audio;
 using Primordia.Combat;
 using Primordia.Core;
 using Primordia.Rooms;
@@ -144,7 +145,14 @@ namespace Primordia.Enemies
         void OnDisable() => health.Damaged -= OnDamaged;
 
         /// <summary>Despierta al enemigo aunque el jugador esté fuera de su alcance.</summary>
-        public void Alert() => IsAlert = true;
+        public void Alert()
+        {
+            if (IsAlert)
+                return;
+            IsAlert = true;
+            if (enemy != null && enemy.Data != null)
+                Sfx.Play(enemy.Data.AlertSound);
+        }
 
         void OnDamaged(int _) => Alert();
 
@@ -437,6 +445,7 @@ namespace Primordia.Enemies
                 Current = State.Aim;
                 desiredVelocity = Vector2.zero;
                 AimStarted?.Invoke();
+                Sfx.Play(enemy.Data.AimSound);
             }
         }
 

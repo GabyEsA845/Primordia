@@ -1,4 +1,5 @@
 using System;
+using Primordia.Audio;
 using Primordia.Core;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -84,6 +85,7 @@ namespace Primordia.Mutations
                 return;
 
             player.Equip(mutation);
+            Sfx.Play(Sounds.MutationBubblePickup);
             Debug.Log($"Mutación equipada: {mutation.DisplayName} ({MutationText.SlotName(mutation.Slot)})", this);
             PickedUp?.Invoke(this);
             Burst();

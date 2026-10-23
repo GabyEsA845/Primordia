@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Primordia.Audio;
 using Primordia.Biomass;
 using Primordia.Core;
 using Primordia.Mutations;
@@ -328,6 +329,7 @@ namespace Primordia.Shop
             if (!IsUsable(pedestal, player) || wallet == null || !wallet.TrySpend(price))
             {
                 pedestal.Shake();
+                Sfx.Play(Sounds.ShopCantAfford);
                 return false;
             }
 
@@ -362,12 +364,14 @@ namespace Primordia.Shop
                 case ShopItemKind.HeartContainer:
                     // Un corazón son 2 puntos de vida; llega lleno.
                     health.SetMax(health.Max + 2, healDifference: true);
+                    Sfx.Play(Sounds.ShopHeartContainer);
                     break;
             }
         }
 
         void Celebrate()
         {
+            Sfx.Play(Sounds.ShopDarwinCheer);
             if (darwin == null || !darwin.isActiveAndEnabled)
                 return;
 
@@ -394,6 +398,8 @@ namespace Primordia.Shop
                 tooltip.Hide();
                 return;
             }
+
+            Sfx.Play(Sounds.ShopApproach);
 
             var (title, details, description, note, color) = Describe(pedestal, player != null ? player.GetComponent<PlayerMutations>() : null);
             tooltip.Show(title, details, description, note, color);

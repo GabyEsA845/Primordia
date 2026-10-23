@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using Primordia.Core;
 using UnityEngine;
 
@@ -25,6 +26,7 @@ namespace Primordia.Mutations
         public override void Activate(PlayerMutations player)
         {
             player.Health.Heal(HealAt(Mathf.Max(1, player.LevelOf(Slot))));
+            Sfx.Play(Sounds.Vacuole);
             if (EffectPrefab != null)
                 OneShotEffect.Spawn(EffectPrefab, player.transform.position, parent: player.transform);
         }

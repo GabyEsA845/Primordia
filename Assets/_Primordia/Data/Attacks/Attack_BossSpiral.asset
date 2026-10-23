@@ -22,3 +22,28 @@ MonoBehaviour:
   spreadAngle: 0
   poisonDamagePerSecond: 0
   poisonDuration: 0
+  poisonEffect: {fileID: 0}
+  poisonBurstRadius: 0
+  poisonBurstEffect: {fileID: 0}
+  bleedDamagePerSecond: 0
+  bleedDuration: 0
+  bleedEffect: {fileID: 0}
+  homingTurnRate: 0
+  homingRange: 5
+  brakeTime: 0
+  scatterSpeed: 0
+  speedJitter: 0
+  angleJitter: 0
+  driftSpeed: 0
+  fadeTime: 0
+  melee: 0
+  meleeRange: 1.5
+  meleeArc: 180
+  meleeEffect: {fileID: 0}
+  meleeHitEffect: {fileID: 0}
+  meleeLunge: 0
+  meleeLungeDuration: 0.1
+  fireSound: Boss_Virus_Spiral
+  hitSound: 
+  lungeSound: 
+  impactSound: Projectile_Impact

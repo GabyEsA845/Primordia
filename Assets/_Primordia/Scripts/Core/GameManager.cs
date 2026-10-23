@@ -16,7 +16,12 @@ namespace Primordia.Core
         /// <summary>Mapa grande abierto (TAB): el juego está detenido.</summary>
         Map,
         /// <summary>El jugador evoluciona al completar un linaje: el juego se congela unos segundos, sin menú.</summary>
-        Evolution
+        Evolution,
+        /// <summary>
+        /// Escena de un jefe: el tiempo sigue corriendo, pero el jugador no puede hacer nada; se ocultan el HUD
+        /// del jugador y salen franjas de cine.
+        /// </summary>
+        Cinematic
     }
 
     /// <summary>

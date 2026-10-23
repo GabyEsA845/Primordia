@@ -22,7 +22,7 @@ namespace Primordia.Editor
         const string MissingTilePath = EnvironmentArtFolder + "/Tile_Missing.asset";
         const float DecorationChance = 0.05f;
 
-        static readonly string[] Themes = { "Soup", "Boss" };
+        static readonly string[] Themes = { "Soup", "Boss", AmoebaThemeName };
 
         // Decoración animada, en cuadros por segundo (README del arte: burbujas ~400 ms, algas ~200 ms).
         static readonly Dictionary<string, float> AnimatedDecorations = new() { ["Deco_Bubbles"] = 2.5f, ["Deco_Algae"] = 5f };

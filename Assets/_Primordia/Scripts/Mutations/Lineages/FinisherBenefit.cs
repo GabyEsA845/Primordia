@@ -54,7 +54,7 @@ namespace Primordia.Mutations
             if (!target.TryGetComponent<Enemy>(out _) || !IsWounded(target))
                 return amount;
 
-            int damage = Health.ScaleDamage(amount, target.TryGetComponent<BossAI>(out _) ? bossMultiplier : multiplier);
+            int damage = Health.ScaleDamage(amount, target.TryGetComponent<IBoss>(out _) ? bossMultiplier : multiplier);
 
             // El modificador se aplica justo antes de quitar la vida: si llega a 0, este golpe es el remate (aunque
             // la muerte se anuncie más tarde, como la de la ameba que se divide).

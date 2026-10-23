@@ -14,7 +14,7 @@ namespace Primordia.Enemies
     /// No le afectan los empujones ni la ceguera: no tiene <see cref="EnemyAI"/>.
     /// </summary>
     [RequireComponent(typeof(Enemy), typeof(Weapon))]
-    public class BossAI : MonoBehaviour
+    public class BossAI : MonoBehaviour, IBoss
     {
         /// <summary>Jefe activo ahora mismo, para la barra de vida. Null si no hay ninguno.</summary>
         public static BossAI Current { get; private set; }
@@ -68,6 +68,7 @@ namespace Primordia.Enemies
         public int Phase { get; private set; } = 1;
         public Health Health { get; private set; }
         public IReadOnlyList<Enemy> Minions => minions;
+        public BossBarStyle BarStyle => Phase == 2 ? BossBarStyle.Enraged : BossBarStyle.Normal;
 
         /// <summary>True durante la pausa del cambio a la fase 2.</summary>
         public bool IsTransitioning => Time.time < transitionUntil;
@@ -113,6 +114,7 @@ namespace Primordia.Enemies
         {
             // Se activa cuando el jugador entra en su sala (la sala oculta a sus enemigos hasta entonces).
             Current = this;
+            ActiveBoss.Set(this);
             home = arenaCenter != null ? (Vector2)arenaCenter.position : (Vector2)transform.position;
             activeSince = Time.time;
             nextSpiral = Time.time + startDelay;
@@ -125,6 +127,7 @@ namespace Primordia.Enemies
         {
             if (Current == this)
                 Current = null;
+            ActiveBoss.Clear(this);
             enemy.Died -= OnDied;
         }
 
@@ -152,7 +155,9 @@ namespace Primordia.Enemies
 
         internal void SetArenaCenter(Transform center) => arenaCenter = center;
 
-        /// <summary>Centro de su sala (o donde apareció, si no tiene): ahí deja caer su recompensa.</summary>
+        // Orbita alrededor del centro; el tamaño de la sala no le hace falta.
+        public void SetArena(Transform center, Vector2 size) => SetArenaCenter(center);
+
         public Vector2 ArenaCenter => arenaCenter != null ? (Vector2)arenaCenter.position : home;
 
         void Update()

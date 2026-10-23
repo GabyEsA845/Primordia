@@ -70,7 +70,9 @@ namespace Primordia.Rooms
         public static BuiltFloor Build(FloorLayout layout, FloorConfig config, Transform parent, System.Random random)
         {
             var built = new BuiltFloor();
-            var themes = new[] { config.Theme, config.BossTheme != null ? config.BossTheme : config.Theme };
+            var boss = layout.BossChoice.IsValid ? layout.BossChoice : config.BossOptions()[0];
+            var bossTheme = boss.theme != null ? boss.theme : config.BossTheme != null ? config.BossTheme : config.Theme;
+            var themes = new[] { config.Theme, bossTheme };
             var placed = Place(layout);
             var byLayout = placed.ToDictionary(room => room.Layout);
 
@@ -104,7 +106,7 @@ namespace Primordia.Rooms
             var mapRooms = new Dictionary<LayoutRoom, MapRoom>();
             foreach (var room in placed)
             {
-                var builtRoom = BuildRoom(parent, room, themes[room.Theme], config, random);
+                var builtRoom = BuildRoom(parent, room, themes[room.Theme], config, boss, random);
                 built.Rooms.Add(builtRoom);
                 var mapRoom = new MapRoom
                 {
@@ -275,7 +277,8 @@ namespace Primordia.Rooms
             return layer.GetComponent<Tilemap>();
         }
 
-        static Room BuildRoom(Transform parent, PlacedRoom placed, RoomTheme theme, FloorConfig config, System.Random random)
+        static Room BuildRoom(Transform parent, PlacedRoom placed, RoomTheme theme, FloorConfig config, FloorConfig.BossEntry boss,
+            System.Random random)
         {
             var center = placed.FloorCenter;
             var floorBounds = placed.Template.FloorBounds();
@@ -299,7 +302,7 @@ namespace Primordia.Rooms
             var enemiesRoot = new GameObject("Enemies").transform;
             enemiesRoot.SetParent(roomObject.transform, false);
             enemiesRoot.gameObject.SetActive(false);
-            SpawnEnemies(placed, enemiesRoot, config, random);
+            SpawnEnemies(placed, enemiesRoot, config, boss, random);
 
             var room = roomObject.AddComponent<Room>();
             room.Configure(enemiesRoot, doors.ToArray());
@@ -322,7 +325,8 @@ namespace Primordia.Rooms
             return room;
         }
 
-        static void SpawnEnemies(PlacedRoom placed, Transform enemiesRoot, FloorConfig config, System.Random random)
+        static void SpawnEnemies(PlacedRoom placed, Transform enemiesRoot, FloorConfig config, FloorConfig.BossEntry bossEntry,
+            System.Random random)
         {
             switch (placed.Layout.Role)
             {
@@ -331,12 +335,13 @@ namespace Primordia.Rooms
                     return;
 
                 case RoomRole.Boss:
-                    if (config.Boss == null)
+                    if (bossEntry.prefab == null)
                         return;
-                    var boss = Object.Instantiate(config.Boss, placed.FloorCenter + config.BossOffset, Quaternion.identity, enemiesRoot);
-                    // El jefe orbita alrededor del centro de su sala.
-                    if (boss.TryGetComponent<BossAI>(out var bossAI))
-                        bossAI.SetArenaCenter(enemiesRoot.parent);
+                    var boss = Object.Instantiate(bossEntry.prefab, placed.FloorCenter + bossEntry.offset, Quaternion.identity, enemiesRoot);
+                    // El jefe conoce su sala: el virus orbita alrededor del centro, la ameba se junta allí y la cámara
+                    // se aleja hasta verla entera.
+                    if (boss.TryGetComponent<IBoss>(out var bossAI))
+                        bossAI.SetArena(enemiesRoot.parent, new Vector2(placed.Template.Width, placed.Template.Height));
                     return;
             }
 

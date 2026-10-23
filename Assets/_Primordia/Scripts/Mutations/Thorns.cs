@@ -37,7 +37,15 @@ namespace Primordia.Mutations
             if (collision.gameObject.layer != enemyLayer)
                 return;
 
-            var health = collision.gameObject.GetComponentInParent<Health>();
+            HurtAttacker(collision.gameObject.GetComponentInParent<Health>());
+        }
+
+        /// <summary>
+        /// Pincha a un enemigo que toca al jugador. Lo llaman los choques y también quien detecta el contacto por su
+        /// cuenta (la ameba gigante no choca con el jugador: lo atraviesa y le hace daño al tocarlo).
+        /// </summary>
+        public void HurtAttacker(Health health)
+        {
             if (health == null || health.IsDead)
                 return;
 

@@ -31,6 +31,27 @@ namespace Primordia.Rooms
             }
         }
 
+        /// <summary>Un jefe posible del piso, con su sala y su tileset. En cada partida sale uno al azar.</summary>
+        [Serializable]
+        public struct BossEntry
+        {
+            public Enemy prefab;
+            public RoomTemplate room;
+            public RoomTheme theme;
+            [Tooltip("Posición del jefe respecto al centro del suelo de su sala.")]
+            public Vector2 offset;
+
+            public BossEntry(Enemy prefab, RoomTemplate room, RoomTheme theme, Vector2 offset)
+            {
+                this.prefab = prefab;
+                this.room = room;
+                this.theme = theme;
+                this.offset = offset;
+            }
+
+            public bool IsValid => prefab != null && room != null;
+        }
+
         [Header("Salas")]
         [SerializeField] RoomTemplate startRoom;
         [SerializeField] RoomTemplate bossRoom;
@@ -58,6 +79,9 @@ namespace Primordia.Rooms
         [SerializeField] Enemy boss;
         [Tooltip("Posición del jefe respecto al centro del suelo de su sala.")]
         [SerializeField] Vector2 bossOffset = new(0f, 2.5f);
+        [Tooltip("Jefes posibles, cada uno con su sala y su tileset; en cada partida sale uno al azar, todos con la misma "
+            + "probabilidad. Vacío: el jefe, la sala y el tileset de arriba.")]
+        [SerializeField] BossEntry[] bosses = Array.Empty<BossEntry>();
 
         [Header("Recompensas")]
         [SerializeField] MutationPool rewardPool;
@@ -95,6 +119,23 @@ namespace Primordia.Rooms
         public int ReferenceFloorArea => referenceFloorArea;
         public Enemy Boss => boss;
         public Vector2 BossOffset => bossOffset;
+        public BossEntry[] Bosses => bosses;
+
+        /// <summary>Los jefes posibles; si no hay lista, el jefe de siempre con su sala y su tileset.</summary>
+        public BossEntry[] BossOptions()
+        {
+            var valid = Array.FindAll(bosses ?? Array.Empty<BossEntry>(), entry => entry.IsValid);
+            if (valid.Length > 0)
+                return valid;
+            return new[] { new BossEntry(boss, bossRoom, bossTheme, bossOffset) };
+        }
+
+        /// <summary>Elige el jefe de la partida, todos con la misma probabilidad.</summary>
+        public BossEntry ChooseBoss(System.Random random)
+        {
+            var options = BossOptions();
+            return options[random.Next(options.Length)];
+        }
         public MutationPool RewardPool => rewardPool;
         public int RewardOptions => rewardOptions;
         public int[] RewardAfter => rewardAfter;
@@ -132,6 +173,8 @@ namespace Primordia.Rooms
             baseBudget = newBaseBudget;
             budgetPerRoom = newBudgetPerRoom;
         }
+
+        internal void ConfigureBosses(BossEntry[] newBosses) => bosses = newBosses ?? Array.Empty<BossEntry>();
 
         internal void ConfigureBiomass(BiomassPickup newSmall, BiomassPickup newBig, int newMinimum = 2)
         {

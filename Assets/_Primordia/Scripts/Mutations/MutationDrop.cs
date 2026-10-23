@@ -49,7 +49,7 @@ namespace Primordia.Mutations
             var player = playerObject != null ? playerObject.GetComponent<PlayerMutations>() : null;
             var options = pool.PickOffer(count, player);
 
-            Vector2 center = TryGetComponent<BossAI>(out var boss) ? boss.ArenaCenter : (Vector2)transform.position;
+            Vector2 center = TryGetComponent<IBoss>(out var boss) ? boss.ArenaCenter : (Vector2)transform.position;
             for (int i = 0; i < options.Count; i++)
             {
                 float x = (i - (options.Count - 1) / 2f) * spacing;

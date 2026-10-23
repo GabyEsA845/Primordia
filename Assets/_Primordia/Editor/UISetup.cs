@@ -113,6 +113,7 @@ namespace Primordia.Editor
             EnsureMutationChoice();
             EnsureSeedLabel();
             EnsureBossBar();
+            EnsureCinematicOverlay();
             EnsureMutationIcons();
             EnsureHudSlotsAndCrosshair();
             EnsureBiomassCounter();
@@ -403,6 +404,48 @@ namespace Primordia.Editor
 
                 AddBossBar(root);
                 PrefabUtility.SaveAsPrefabAsset(root, GameUIPath);
+            }
+            finally
+            {
+                PrefabUtility.UnloadPrefabContents(root);
+            }
+        }
+
+        /// <summary>
+        /// Añade al prefab GameUI las franjas de cine (<see cref="CinematicOverlay"/>) y el candado de la barra del jefe,
+        /// si todavía no los tiene. El sprite del candado lo pone el menú de la ameba gigante.
+        /// </summary>
+        internal static void EnsureCinematicOverlay()
+        {
+            var root = PrefabUtility.LoadPrefabContents(GameUIPath);
+            try
+            {
+                bool changed = false;
+                if (root.GetComponent<CinematicOverlay>() == null)
+                {
+                    root.AddComponent<CinematicOverlay>();
+                    changed = true;
+                }
+
+                var bar = root.GetComponent<BossHealthBar>();
+                if (bar != null && bar.Root != null && bar.Root.transform.Find("Lock") == null)
+                {
+                    // A la izquierda de la barra, a su altura.
+                    var lockIcon = CreateRect("Lock", bar.Root.transform);
+                    lockIcon.anchorMin = lockIcon.anchorMax = Vector2.zero;
+                    lockIcon.pivot = new Vector2(1f, 0f);
+                    lockIcon.anchoredPosition = new Vector2(-3f, 0f);
+                    lockIcon.sizeDelta = new Vector2(8f, 10f);
+                    var image = lockIcon.gameObject.AddComponent<Image>();
+                    image.raycastTarget = false;
+                    image.enabled = false;
+                    bar.ConfigureLock(image);
+                    EditorUtility.SetDirty(bar);
+                    changed = true;
+                }
+
+                if (changed)
+                    PrefabUtility.SaveAsPrefabAsset(root, GameUIPath);
             }
             finally
             {

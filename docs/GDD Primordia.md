@@ -187,9 +187,13 @@ Cada piso a partir del 2 trae **4 mutaciones nuevas, una por ranura**, que se su
 
 Sus linajes y sus niveles II y III se diseñan al hacer cada piso.
 
-**Jefe del piso 1 (virus gigante):** 60 de vida, 3×3 unidades, avanza despacio hacia el centro, medio corazón por contacto. Fase 1: espiral de un brazo y ráfaga circular de 12 proyectiles cada 4 s. Fase 2 (desde el 50 %): espiral de dos brazos más rápida, ráfaga de 16 e invoca 2 bacterias cada 8 s (máximo 4 vivas).
+**Jefe del piso 1 (virus gigante):** 120 de vida, 3×3 unidades, avanza despacio hacia el centro, medio corazón por contacto. Fase 1: espiral de un brazo y ráfaga circular de 12 proyectiles cada 4 s. Fase 2 (desde el 50 %): espiral de dos brazos más rápida, ráfaga de 16 e invoca 2 bacterias cada 8 s (máximo 4 vivas).
 
-**Segundo jefe del piso 1 (ameba gigante, propuesta):** lenta y enorme; engulle los proyectiles que le dan de frente y, al perder vida, se divide en amebas más pequeñas (reaprovecha la división de los enemigos). En la fase 2 se vuelve a juntar y se mueve más rápido. Valores por decidir.
+**Segundo jefe del piso 1 (ameba gigante):** 180 de vida, unas 4,3 unidades (más grande que el virus), rosa pálido, medio corazón por contacto en todas las fases salvo agotada. En cada partida sale el virus o la ameba, al 50 %. Su sala es redonda (30 tiles de diámetro, borde escalonado), vacía y en azul marino para que contraste con ella. En las fases 1 y 2 no dispara: embiste en línea recta hasta chocar con una pared (se aplasta contra ella) y se queda quieta. Antes de volver a salir avisa durante 0,6 s: tiembla y mira hacia donde irá (la cara entera se desplaza hacia allí); al final se encoge para coger impulso y sale disparada ya a toda velocidad, en la dirección fijada al acabar el aviso. No empuja al jugador: lo atraviesa y le quita medio corazón al tocarlo.
+- **Calma (100–80 %):** 1,2 u/s, sale hacia cualquier lado y para 1,5 s. Parece inofensiva.
+- **Enojo (80–50 %):** pequeña animación de enfado; desde entonces sale hacia el jugador a 6 u/s (el triple, tan rápida como el jugador) y para 1 s.
+- **División (50–10 %):** se parte en dos amebas medianas (60 % del tamaño) que comparten una sola barra de vida. Nada más nacer salen disparadas hacia lados opuestos de la sala; después embisten a 10 u/s: una va directa al jugador y la otra le anticipa (apunta adonde estará cuando llegue, según su dirección y velocidad). Si chocan entre sí, rebotan.
+- **Final (10 %):** antes de ese golpe la vida no baja del 10 %. Escena en la que el jugador no puede hacer nada (franjas de cine, sin HUD salvo la barra del jefe, proyectiles fuera): la cámara va despacio al centro de la sala (2 s), las medianas se juntan allí (3 s) y la ameba se enfurece (2 s). Después, inmune (barra gris con candado), llena la sala de proyectiles durante 30 s con la cámara alejada para ver la sala entera, en 3 tramos de 10 s: anillos densos con un hueco que gira; brazos que giran en los dos sentidos y forman una red; y anillos más brazos más abanicos apuntados al jugador. No hay contador: el avance se nota en su animación. Al acabar queda agotada en el centro (pálida, barra roja que palpita) y cae de dos golpes.
 
 ## Pisos y etapas evolutivas
 
@@ -306,7 +310,7 @@ Objetivo: que añadir una mutación, un enemigo o una sala nueva sea crear un ar
 **Pendiente**
 
 - [ ] Revisar los borradores: criaturas del jugador, enemigos y jefes de los pisos 2 a 6, y las 20 mutaciones nuevas (con sus niveles II y III).
-- [ ] Ataques y valores de la ameba gigante y de los segundos jefes de los pisos 2 a 6.
+- [ ] Ataques y valores de los segundos jefes de los pisos 2 a 6.
 - [ ] Si el cuerpo crece de un piso a otro (y con él la colisión) o mantiene el tamaño.
 - [ ] Duración total: 6 pisos de 10 a 15 minutos son más de una hora; valorar pisos más cortos en los pisos altos.
 

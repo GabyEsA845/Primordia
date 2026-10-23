@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using Primordia.Core;
 using Primordia.Player;
-using Unity.Cinemachine;
 using UnityEngine;
 
 namespace Primordia.Mutations
@@ -88,9 +87,11 @@ namespace Primordia.Mutations
                     pending = null;
                 else if (look != null && look.LineageLook == old)
                 {
-                    // Se pierde: vuelven las piezas de las mutaciones, con un pof.
+                    // Se pierde: vuelven las piezas de las mutaciones, con un pof. Sin pof si es que el jugador se
+                    // desactiva (al cerrar la escena): crear objetos entonces deja restos en la escena siguiente.
                     look.SetLineageLook(null);
-                    Puff(old);
+                    if (!lineage.Disabling)
+                        Puff(old);
                 }
             }
 
@@ -186,80 +187,6 @@ namespace Primordia.Mutations
             {
                 foreach (var sprite in puff.GetComponentsInChildren<SpriteRenderer>())
                     sprite.color = classColors[index];
-            }
-        }
-
-        /// <summary>
-        /// Acerca la cámara con el juego congelado. La Pixel Perfect Camera solo admite acercamientos enteros, así que
-        /// mientras dura se desactiva su ajuste y se cambia el tamaño de la lente poco a poco; al acabar se restaura.
-        /// </summary>
-        sealed class CameraZoom
-        {
-            readonly CinemachineCamera virtualCamera;
-            readonly CinemachineBrain brain;
-            readonly Behaviour pixelPerfect;
-            readonly Behaviour cinemachinePixelPerfect;
-            readonly float baseSize;
-            readonly float lensSize;
-            readonly float zoom;
-            bool restored;
-            readonly bool brainIgnoredTimeScale;
-            readonly bool pixelPerfectWasOn;
-            readonly bool cinemachinePixelPerfectWasOn;
-
-            public CameraZoom(float zoom)
-            {
-                this.zoom = zoom;
-                virtualCamera = UnityEngine.Object.FindAnyObjectByType<CinemachineCamera>();
-                brain = UnityEngine.Object.FindAnyObjectByType<CinemachineBrain>();
-                if (virtualCamera == null)
-                    return;
-
-                var camera = brain != null ? brain.GetComponent<Camera>() : Camera.main;
-                // Por nombre: así no hace falta que el código dependa del paquete de 2D de URP.
-                pixelPerfect = camera != null ? camera.GetComponent("PixelPerfectCamera") as Behaviour : null;
-                cinemachinePixelPerfect = virtualCamera.GetComponent<CinemachinePixelPerfect>();
-
-                // El tamaño real de ahora (el que fija la Pixel Perfect Camera), no el de la lente sin ajustar.
-                lensSize = virtualCamera.Lens.OrthographicSize;
-                baseSize = camera != null ? camera.orthographicSize : lensSize;
-                if (brain != null)
-                {
-                    brainIgnoredTimeScale = brain.IgnoreTimeScale;
-                    brain.IgnoreTimeScale = true;
-                }
-                pixelPerfectWasOn = pixelPerfect != null && pixelPerfect.enabled;
-                cinemachinePixelPerfectWasOn = cinemachinePixelPerfect != null && cinemachinePixelPerfect.enabled;
-                if (pixelPerfect != null)
-                    pixelPerfect.enabled = false;
-                if (cinemachinePixelPerfect != null)
-                    cinemachinePixelPerfect.enabled = false;
-            }
-
-            /// <summary>0 = tamaño normal, 1 = acercada del todo.</summary>
-            public void Set(float amount)
-            {
-                if (virtualCamera == null)
-                    return;
-                var lens = virtualCamera.Lens;
-                lens.OrthographicSize = baseSize * Mathf.Lerp(1f, zoom, amount);
-                virtualCamera.Lens = lens;
-            }
-
-            public void Restore()
-            {
-                if (virtualCamera == null || restored)
-                    return;
-                restored = true;
-                var lens = virtualCamera.Lens;
-                lens.OrthographicSize = lensSize;
-                virtualCamera.Lens = lens;
-                if (pixelPerfect != null)
-                    pixelPerfect.enabled = pixelPerfectWasOn;
-                if (cinemachinePixelPerfect != null)
-                    cinemachinePixelPerfect.enabled = cinemachinePixelPerfectWasOn;
-                if (brain != null)
-                    brain.IgnoreTimeScale = brainIgnoredTimeScale;
             }
         }
     }

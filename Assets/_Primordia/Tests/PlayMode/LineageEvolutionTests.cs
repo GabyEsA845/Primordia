@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using NUnit.Framework;
 using Primordia.Combat;
 using Primordia.Core;
@@ -162,6 +163,27 @@ namespace Primordia.Tests
             Assert.IsNull(lineage.Active);
             Assert.IsNull(look.LineageLook);
             Assert.AreSame(parts[1].Look, limbs.runtimeAnimatorController);
+        }
+
+        [UnityTest]
+        public IEnumerator DisablingThePlayer_RemovesTheLineage_WithoutThePuff()
+        {
+            var puff = Track(new GameObject("LostPuff"));
+            puff.SetActive(false);
+            evolution.Configure(puff);
+            var (data, parts, _) = Lineage();
+            foreach (var part in parts)
+                mutations.Equip(part);
+            yield return null;
+            yield return new WaitForSecondsRealtime(1.3f);
+            Assert.AreSame(data, look.LineageLook);
+
+            // Al cerrar la escena el jugador se desactiva: crear el pof entonces deja restos en la escena siguiente.
+            playerObject.SetActive(false);
+
+            Assert.IsNull(lineage.Active);
+            Assert.IsFalse(Object.FindObjectsByType<Transform>(FindObjectsInactive.Include)
+                .Any(t => t.name.StartsWith("LostPuff(Clone)")), "No se crea el pof al desactivarse.");
         }
 
         [UnityTest]

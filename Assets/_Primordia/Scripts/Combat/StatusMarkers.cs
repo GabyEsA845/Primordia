@@ -5,6 +5,19 @@ using UnityEngine;
 namespace Primordia.Combat
 {
     /// <summary>
+    /// Para objetivos cuyo cuerpo no está donde está su vida (la ameba gigante: la vida en un objeto quieto y los
+    /// cuerpos moviéndose como hijos): dice dónde van sus marcas de estado.
+    /// </summary>
+    public interface IStatusAnchor
+    {
+        /// <summary>Centro del cuerpo que lleva las marcas, en el mundo.</summary>
+        Vector3 MarkerOrigin { get; }
+
+        /// <summary>Altura de la parte de arriba de ese cuerpo sobre su centro.</summary>
+        float MarkerTop { get; }
+    }
+
+    /// <summary>
     /// Marcas de estado de un objetivo (veneno, sangrado, cegado, aturdido, paralizado): efectos en bucle encima de
     /// su cabeza, una al lado de la otra, mientras dura cada estado. También efectos sobre todo el cuerpo (los
     /// rayos de la parálisis), centrados. Se añade solo al objetivo la primera vez que se muestra una marca.
@@ -28,6 +41,8 @@ namespace Primordia.Combat
         readonly List<string> expired = new();
         Health health;
         Collider2D body;
+        IStatusAnchor anchor;
+        Transform holder;
 
         public int Count => markers.Count;
 
@@ -58,6 +73,12 @@ namespace Primordia.Combat
         void Awake()
         {
             health = GetComponent<Health>();
+            holder = transform;
+            if (TryGetComponent(out anchor))
+            {
+                holder = new GameObject("StatusMarkers").transform;
+                holder.SetParent(transform, false);
+            }
             foreach (var candidate in GetComponentsInChildren<Collider2D>())
             {
                 if (!candidate.isTrigger)
@@ -77,7 +98,7 @@ namespace Primordia.Combat
                 return marker.Effect;
             }
 
-            var effect = Instantiate(prefab, transform);
+            var effect = Instantiate(prefab, holder);
             markers[key] = new Marker { Effect = effect, Until = until, Overhead = overhead };
             Arrange();
             return effect;
@@ -106,12 +127,19 @@ namespace Primordia.Combat
 
             foreach (var key in expired)
                 Remove(key);
+
+            // Las marcas siguen al cuerpo, que se mueve por su cuenta (y cambia de tamaño al dividirse).
+            if (anchor != null && markers.Count > 0)
+            {
+                holder.position = anchor.MarkerOrigin;
+                Arrange();
+            }
         }
 
         /// <summary>Las marcas de encima, centradas en fila sobre la cabeza; las del cuerpo, en el centro.</summary>
         void Arrange()
         {
-            float top = body != null ? body.bounds.max.y - transform.position.y : DefaultTop;
+            float top = anchor != null ? anchor.MarkerTop : body != null ? body.bounds.max.y - transform.position.y : DefaultTop;
             int overheadCount = 0;
             foreach (var marker in markers.Values)
             {

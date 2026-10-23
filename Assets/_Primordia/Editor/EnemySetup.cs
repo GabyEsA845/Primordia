@@ -48,17 +48,17 @@ namespace Primordia.Editor
 
             // Perseguidor genérico (bacteria): poca vida, rápido, daña al tocar.
             var chaserData = CreateData("Enemy_Chaser", data => data.Configure(EnemyBehaviour.Chaser,
-                maxHealth: 3, moveSpeed: 3.5f, detectionRange: 9f, contactDamage: 1));
+                maxHealth: 6, moveSpeed: 3.5f, detectionRange: 9f, contactDamage: 1));
             CreatePrefab("Enemy_Chaser", chaserData, square, ChaserColor, scale: 1f, withWeapon: false);
 
             // Versión pequeña que aparece al dividirse un tirador.
             var smallData = CreateData("Enemy_Small", data => data.Configure(EnemyBehaviour.Chaser,
-                maxHealth: 1, moveSpeed: 4.5f, detectionRange: 12f, contactDamage: 1));
+                maxHealth: 2, moveSpeed: 4.5f, detectionRange: 12f, contactDamage: 1));
             var smallPrefab = CreatePrefab("Enemy_Small", smallData, square, SmallColor, scale: 0.625f, withWeapon: false);
 
             // Tirador genérico (ameba): mantiene la distancia, dispara y se divide en 2 al morir.
             var shooterData = CreateData("Enemy_Shooter", data => data.Configure(EnemyBehaviour.Shooter,
-                maxHealth: 4, moveSpeed: 2f, detectionRange: 10f, contactDamage: 1, preferredDistance: 6f,
+                maxHealth: 8, moveSpeed: 2f, detectionRange: 10f, contactDamage: 1, preferredDistance: 6f,
                 attack: CombatSetup.LoadAttack("Attack_EnemyBasic"), splitPrefab: smallPrefab, splitCount: 2));
             CreatePrefab("Enemy_Shooter", shooterData, square, ShooterColor, scale: 1f, withWeapon: true);
 

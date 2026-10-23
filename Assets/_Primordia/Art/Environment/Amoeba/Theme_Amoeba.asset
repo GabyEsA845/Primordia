@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e1209f1fc89bf44e913fd5d9be7da6d, type: 3}
+  m_Name: Theme_Amoeba
+  m_EditorClassIdentifier: Primordia::Primordia.Rooms.RoomTheme
+  floor: {fileID: 11400000, guid: 5c1c76bd25196554cbbefdab60036f73, type: 2}
+  floorVariants:
+  - {fileID: 11400000, guid: a30ecbd234479404f8a7f084d5884d2c, type: 2}
+  - {fileID: 11400000, guid: 67e996b0fe431c248b58fb832b81374d, type: 2}
+  - {fileID: 11400000, guid: 9748d0b7e090a4c4489ec54f3a9811f3, type: 2}
+  - {fileID: 11400000, guid: 360e8a62f9e4e774cb8fd0a87c6dfc03, type: 2}
+  - {fileID: 11400000, guid: 9012218e22a21414ea89d23ea6f7bd90, type: 2}
+  floorShadow:
+  - {fileID: 11400000, guid: 23d27da06d570754e95d64c6ea30deb8, type: 2}
+  - {fileID: 11400000, guid: a766c62ff4a72fa42965da51fd03de3c, type: 2}
+  cap: {fileID: 11400000, guid: fafa934b1bb5f78468e803d9b65acb54, type: 2}
+  faceUpper:
+  - {fileID: 11400000, guid: adc63330a021dc246902565bc34e31fc, type: 2}
+  - {fileID: 11400000, guid: b82590eb418cea84399e755751a20ed8, type: 2}
+  faceLower:
+  - {fileID: 11400000, guid: c1d04cec2fccebc45a538f4a46268876, type: 2}
+  - {fileID: 11400000, guid: 903b1eee6e3491a4f89d5fb2f16689ae, type: 2}
+  edgeLeft: {fileID: 11400000, guid: a4dc87e1dde742845bc751abd7a0464b, type: 2}
+  edgeRight: {fileID: 11400000, guid: b707ea8a0064ac945910098fe0b0cc64, type: 2}
+  edgeBottom: {fileID: 11400000, guid: 5b9f772cb1e877344905d57fe7c060dc, type: 2}
+  cornerBottomLeft: {fileID: 11400000, guid: a5eca101755c94741b1438180244ebd7, type: 2}
+  cornerBottomRight: {fileID: 11400000, guid: c891e16c5f00d3b47b2b8491ca9aea6a, type: 2}
+  faceUpperEndLeft: {fileID: 11400000, guid: 2d40d6f67f0cd774caac5dc49979611d, type: 2}
+  faceUpperEndRight: {fileID: 11400000, guid: 3db805d59944cb2419a791c81b7d87b6, type: 2}
+  faceLowerEndLeft: {fileID: 11400000, guid: b9a147995bf163a458c68adaccf08938, type: 2}
+  faceLowerEndRight: {fileID: 11400000, guid: b15f1345aec485146a2342bcd35928de, type: 2}
+  outerTopLeft: {fileID: 11400000, guid: b855a6ca9e6650847980eb582a1ba2a2, type: 2}
+  outerTopRight: {fileID: 11400000, guid: 0ef10c51ec025d841a865030557c6dea, type: 2}
+  missing: {fileID: 11400000, guid: 3724e1c7198527a4dbb54cfc33c72bc0, type: 2}
+  decorations:
+  - {fileID: 11400000, guid: 6e37902413d9e9d4cb46b355cff387dd, type: 2}
+  - {fileID: 11400000, guid: 400e2f8f9c2c26d45a9a55a3e2e69977, type: 2}
+  - {fileID: 11400000, guid: a0dec8b817ae4c04faf2cf1b94fece0d, type: 2}
+  - {fileID: 11400000, guid: 6186e3447cd5bac4d9f739a9da710408, type: 2}
+  decorationChance: 0.05
+  doorway: {fileID: 21300000, guid: 7619a8f1c032e51408d0beba69a4a9fc, type: 3}
+  doorTop:
+  - {fileID: -4726084969364474711, guid: 3262b097477be114a9c97ff65f8ff01a, type: 3}
+  - {fileID: 7882788377717311415, guid: 3262b097477be114a9c97ff65f8ff01a, type: 3}
+  - {fileID: -3210073630453367736, guid: 3262b097477be114a9c97ff65f8ff01a, type: 3}
+  - {fileID: 3655857327411036885, guid: 3262b097477be114a9c97ff65f8ff01a, type: 3}
+  - {fileID: 1259432042, guid: 3262b097477be114a9c97ff65f8ff01a, type: 3}
+  doorBottom:
+  - {fileID: 4412323245247173732, guid: 50766c69e810d5642b9882db39816890, type: 3}
+  - {fileID: -8706010961058034423, guid: 50766c69e810d5642b9882db39816890, type: 3}
+  - {fileID: 6217852109785172600, guid: 50766c69e810d5642b9882db39816890, type: 3}
+  - {fileID: -6029196064136099725, guid: 50766c69e810d5642b9882db39816890, type: 3}
+  - {fileID: 1692923424, guid: 50766c69e810d5642b9882db39816890, type: 3}
+  doorSide:
+  - {fileID: 6552830017699425608, guid: e5d040a5d360ce64fa6fd11466db31b4, type: 3}
+  - {fileID: 7088500420569395820, guid: e5d040a5d360ce64fa6fd11466db31b4, type: 3}
+  - {fileID: 1422942707524771534, guid: e5d040a5d360ce64fa6fd11466db31b4, type: 3}
+  - {fileID: 3227117808192725293, guid: e5d040a5d360ce64fa6fd11466db31b4, type: 3}
+  - {fileID: -1557087290, guid: e5d040a5d360ce64fa6fd11466db31b4, type: 3}

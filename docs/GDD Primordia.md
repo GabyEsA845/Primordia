@@ -48,7 +48,7 @@ Propuesta: el cuerpo tiene **4 ranuras** y cada ranura solo admite una mutación
 Un linaje es un animal (Tiburón, Medusa, Tortuga...) que se completa con **4 mutaciones, una por ranura**: el cuerpo entero tiene que coincidir. Al completarlo se activa su beneficio, que se pierde si cambias una de esas 4 mutaciones. Esto empuja al jugador a comprometerse con una rama, igual que en Everything is Crab.
 
 - **Una mutación puede pertenecer a varios linajes.** Las Mandíbulas sirven para el Tiburón, el Calamar y la Tortuga; lo que decide el linaje es la combinación de las 4.
-- **Cada linaje pertenece a una clase**, y la clase decide la base de su beneficio. Además, cada animal suma un **toque propio** pequeño que encaja con sus mutaciones. El beneficio es fijo (no crece con los niveles de las mutaciones) y dura mientras lleves las 4, también al cambiar de piso.
+- **Cada linaje pertenece a una clase**, y la clase decide la base de su beneficio. Además, cada animal suma un **toque propio** pequeño que encaja con sus mutaciones. El beneficio es fijo (no crece con los niveles de las mutaciones) y dura mientras lleves las 4. Como cada piso tiene sus propias mutaciones y la Boca nueva es obligatoria al pasar de piso, los linajes de un piso se rompen al llegar al siguiente: en cada piso se empieza de cero con sus propios animales.
 
 | Clase | Estilo | Beneficio base |
 | --- | --- | --- |
@@ -56,6 +56,8 @@ Un linaje es un animal (Tiburón, Medusa, Tortuga...) que se completa con **4 mu
 | Herbívoro | Aguante | **Pastar biomasa:** cada 10 de biomasa recogida cura medio corazón. Con la vida llena, da medio corazón verde temporal que absorbe un golpe (como mucho uno a la vez) |
 | Venenoso | Daño en el tiempo y estados | **Toxina débil:** los enemigos envenenados reciben +50 % de daño de cualquier fuente |
 | Hongo | Área y propagación | **Colonizar la sala:** al entrar en una sala de combate brotan 3 matas de hongo al azar en el suelo (radio 1,2) que ralentizan un 40 % y quitan 1 por segundo, como el micelio; desaparecen al limpiar la sala |
+
+- **Clases entre pisos (decidido el 24 de octubre):** las clases son un catálogo que atraviesa toda la partida, y los animales (linajes) son propios de cada piso. En cada piso hay 4 clases activas: las que no encajan con el ambiente duermen y vuelven más tarde (Hongo duerme en el océano y vuelve en el pantano carbonífero), las que siguen se remodelan (su beneficio base se ajusta al piso) y cada piso trae al menos una clase nueva. La tabla de arriba es la del piso 1; la del piso 2 está en "Linajes del piso 2".
 
 - **Linajes del piso 1:** 7 linajes con las 12 mutaciones del piso. Cada mutación está en 2 o 3 linajes. El diagrama interactivo de linajes muestra qué mutaciones activan cada uno.
 
@@ -95,7 +97,41 @@ Al completar un linaje el jugador evoluciona: el juego se congela unos 2 s, la c
 | Moho | Colonia grande | Brotan 5 matas en vez de 3, y un 30 % más grandes |
 | Cuesco de lobo | Bocanada al golpe | Al recibir un golpe sueltas una nube cegadora a tu alrededor (como mucho cada 6 s) |
 
-- **Pisos siguientes:** sus mutaciones completan linajes nuevos (Lobo, Raptor, Mamut...) y pueden sumarse a los del piso 1. Ahí entran más herbívoros, que en el piso 1 solo tienen la Tortuga porque la única Boca que tritura son las Mandíbulas.
+**Linajes del piso 2 (decidido el 24 de octubre)**
+
+Carnívoro, Herbívoro y Venenoso se remodelan, Hongo duerme y entra el **Carroñero**, clase nueva (color marrón arena). Son 8 animales del Cámbrico, dos por clase, hechos con las 9 mutaciones del piso. No hay dos linajes con las mismas 4 mutaciones, cada clase tiene un animal de Boca cuerpo a cuerpo y otro de proyectil o de área, y cada toque hace combo con alguna mutación del propio animal.
+
+| Clase | Beneficio base en el piso 2 |
+| --- | --- |
+| Carnívoro | **Rematar:** +100 % de daño a los heridos (la mitad de su vida o menos; +50 % contra el jefe). Nuevo: los aturdidos y los que tienen Quebrar también cuentan como heridos |
+| Herbívoro | **Pastar biomasa:** cada 12 de biomasa recogida cura medio corazón. Nuevo: con la vida llena puedes guardar hasta 2 medios corazones verdes |
+| Venenoso | **Toxina débil:** los envenenados reciben +50 % de daño. Nuevo: además se mueven un 20 % más lentos |
+| Carroñero (nueva) | **Carroña:** cada enemigo que muere deja sus restos durante 4 s; al tocarlos ganas +20 % de daño durante 5 s, acumulable hasta 3 veces. Premia moverse con agresividad entre los enemigos que vas matando |
+
+| Linaje | Clase | Boca | Extremidades | Piel | Órgano especial |
+| --- | --- | --- | --- | --- | --- |
+| Placodermo | Carnívoro | Placas mandibulares | Cola propulsora | Placas de trilobite (coraza) | Ojos compuestos |
+| Opabinia | Carnívoro | Placas mandibulares (garra de la trompa) | Espinas de Hallucigenia | Escleritos de Wiwaxia | Ojos compuestos (sus cinco ojos) |
+| Burgessomedusa | Venenoso | Cnidocitos | Cola propulsora | Escleritos de Wiwaxia | Saco de crías (pólipos) |
+| Anémona | Venenoso | Cnidocitos | Espinas de Hallucigenia | Placas de trilobite | Saco de crías |
+| Lirio de mar | Herbívoro | Corona de brazos | Cola propulsora | Placas de trilobite (cáliz) | Saco de crías |
+| Wiwaxia | Herbívoro | Placas mandibulares (rádula que raspa) | Cola propulsora | Escleritos de Wiwaxia | Saco de crías |
+| Trilobite | Carroñero | Placas mandibulares | Espinas de Hallucigenia (patas) | Placas de trilobite | Ojos compuestos (ojos de cristal de calcita) |
+| Hallucigenia | Carroñero | Corona de brazos | Espinas de Hallucigenia | Escleritos de Wiwaxia | Ojos compuestos |
+
+| Linaje | Toque | Efecto |
+| --- | --- | --- |
+| Placodermo | Festín | Rematar con un mordisco cura medio corazón (como mucho uno cada 6 s) |
+| Opabinia | Cinco ojos | Los Ojos compuestos duran 1 s más, y cada remate mientras duran los alarga 0,5 s |
+| Burgessomedusa | Pólipos urticantes | Las larvas envenenan al morder |
+| Anémona | Lecho urticante | Quien pisa tus púas queda envenenado |
+| Lirio de mar | Corriente nutritiva | El remolino atrae también la biomasa del suelo |
+| Wiwaxia | Cosecha | Cada tanda de escleritos que alcanza a 3 o más enemigos da medio corazón verde |
+| Trilobite | Coraza de carroña | Al tocar unos restos, el siguiente proyectil que te alcance rebota |
+| Hallucigenia | Doble ración | Las púas que matan a un enemigo dejan restos dobles (cuentan como dos) |
+
+- **Evolución:** como en el piso 1, al completar un linaje el juego se congela unos 2 s y el cuerpo brilla y se transforma en la silueta del animal, del color de su clase. Parte del cuerpo que da la Boca del linaje (pez acorazado, medusa o lirio de mar), y las siluetas son de 64×64 (48×48 en el piso 1). Por ahora los linajes del piso 2 no cambian piezas del cuerpo.
+- **Pisos siguientes:** cada piso tiene sus propios linajes, hechos con sus mutaciones (más adelante Lobo, Raptor, Mamut...).
 - **Interfaz:** las tarjetas de elección y la tienda dicen a qué linajes pertenece cada mutación; en la pausa, el cuadro de cada ranura dice cuántas de las 4 llevas de cada linaje ("Tiburón 3/4"). El linaje activo sale en el HUD, bajo la biomasa, con el color de su clase, y al completarlo hay un destello dorado y un cartel breve con su beneficio ("¡Tiburón! Rematar + Sangre en el agua") durante 2 s. En la pausa, el linaje activo es la última fila del panel de estadísticas (animal, clase y nombres de su beneficio); al pasar el ratón, el cuadro de información explica el beneficio completo. El cuadro de cada ranura dice solo lo que hace ahora (la descripción y la mejora de su nivel, sin las anteriores) y sus linajes en una línea ("Tiburón 4/4 · Calamar 3/4"). Como guía, en la elección de 1 de 3 brilla suavemente la tarjeta que acerca un linaje que ya has empezado más allá del que llevas más avanzado (sin linaje completo no hay brillo que invite a romperlo). Las burbujas y la franja de las tarjetas van ahora del color de la **ranura** (Boca naranja, Extremidades morado, Piel azul, Órgano lima), porque una mutación puede estar en varios linajes.
 
 **Mutaciones del piso 1**
@@ -163,21 +199,16 @@ La nube de tinta ahora permanece los 3 s que dura la ceguera (aparece, se mantie
 Como en *Enter the Gungeon*, cada piso es más duro que el anterior y trae mutaciones más fuertes que empujan a dejar atrás las viejas:
 
 - **Cada piso tiene sus propias mutaciones y sus propios linajes.** Desde el piso 2, las elecciones de 1 de 3, la tienda y las burbujas del jefe solo ofrecen mutaciones de ese piso (y las mejoras de las que lleves). Las mutaciones de pisos anteriores se conservan con su nivel mientras no las cambies. Los linajes nunca se actualizan: los del piso 1 usan mutaciones del piso 1 y los del piso 2, las suyas.
-- **Cuántas:** 8 por piso por ahora (2 por ranura, con sus linajes); la idea es llegar a 12 (3 por ranura) cuando el arte lo permita. Con 3 Bocas por piso hay una por familia de arma.
+- **Cuántas:** 8 o 9 por piso por ahora (2 por ranura y 2 o 3 Bocas, con sus linajes); el piso 2 tiene 9, con sus 3 Bocas. La idea es llegar a 12 (3 por ranura) cuando el arte lo permita. Con 3 Bocas por piso hay una por familia de arma.
 - **Escalones de poder:** el nivel I de una mutación del piso N+1 vale como el nivel II de una del piso N (del III del piso N al III del piso N+1 se gana un escalón).
 - **Dificultad:** la vida de los enemigos sube ×1,5–2 por piso. El resto de la dificultad viene de más enemigos por sala y patrones más exigentes, no de esponjas de vida.
-- **Linajes entre pisos:** un linaje debe seguir funcionando un piso por encima del suyo y quedarse flojo dos pisos por encima (los del piso 1 sirven en el 2, pero rinden mucho menos en el 3). Al cambiar de piso pueden ajustarse los valores de mutaciones y linajes, sin cambiar nada visual.
-- **Pendiente** (en "Mejoras a futuro" del plan): cómo seguir consiguiendo mejoras de las mutaciones del piso 1 en pisos posteriores.
+- **Linajes entre pisos:** los linajes de un piso no siguen activos en el siguiente, porque la Boca nueva es obligatoria y todos los linajes usan una Boca de su piso. Sustituye a la regla anterior de que un linaje servía un piso por encima del suyo (decidido el 24 de octubre).
+- **Mejoras de las mutaciones de pisos anteriores** (resuelto el 24 de octubre): las elecciones, la tienda y las burbujas del jefe ofrecen mejoras de cualquier mutación que lleves, y con la regla de escalones una mutación del piso anterior al III sigue siendo útil, pero compensa cambiarla.
 
-Borrador de ideas para los pisos 2 a 6 (una por ranura; faltan las demás hasta llegar a 8 por piso). Cada Boca pertenece a una de las 3 **familias de arma**, que deciden la forma del jugador en ese piso (ver "Forma del jugador en cada piso").
+Borrador de ideas para los pisos 3 a 6 (una por ranura; faltan las demás hasta llegar a 8 por piso). El piso 2 ya está diseñado: ver "Mutaciones del piso 2". Cada Boca pertenece a una de las 3 **familias de arma**, que deciden la forma del jugador en ese piso (ver "Forma del jugador en cada piso").
 
 | Piso | Mutación | Ranura | Familia | Efecto (idea) |
 | --- | --- | --- | --- | --- |
-| 2 | Cnidocitos | Boca | Proyectil | Arpones urticantes que atraviesan a un enemigo y envenenan |
-| 2 | Placas mandibulares | Boca | Cuerpo a cuerpo | Mordisco de guillotina, lento y fuerte, que quiebra la coraza (valores abajo) |
-| 2 | Cola propulsora | Extremidades | | Dos esquivas seguidas antes de la recarga |
-| 2 | Placas de trilobite | Piel | | +1 corazón; refleja 1 de cada 4 proyectiles que te golpean |
-| 2 | Saco de crías | Órgano especial | | Suelta 2 larvas aliadas que persiguen y muerden durante 10 s |
 | 3 | Escupitajo ácido | Boca | Área | Bola lenta que deja un charco de ácido (daño por segundo) |
 | 3 | Patas de salto | Extremidades | | La esquiva es un salto que pasa por encima de obstáculos y daña al caer |
 | 3 | Piel venenosa | Piel | | Quien te toca queda envenenado y tus esquivas dejan un rastro venenoso |
@@ -197,11 +228,26 @@ Borrador de ideas para los pisos 2 a 6 (una por ranura; faltan las demás hasta 
 
 Sus linajes y sus niveles II y III se diseñan al hacer cada piso.
 
-**Placas mandibulares (piso 2, cuerpo a cuerpo, aprobada el 23 de octubre):** inspirada en *Dunkleosteus*, un pez acorazado que no tenía dientes y cortaba con placas de hueso afiladas. Frente a Mandíbulas, muerde menos veces pero más fuerte y en un arco más ancho.
-- **Nivel I** (vale como Mandíbulas II): arco de 110°, unas 4,6 unidades de alcance, 5 de daño, 2 mordiscos por segundo y un pequeño empujón. **Quebrar:** el enemigo mordido recibe un 25 % más de daño de todo durante 2 s.
-- **Nivel II:** daño 5 → 6 y Quebrar dura 3 s.
-- **Nivel III, evolución *Guillotina*:** cada cuarto mordisco es doble, hace el triple de daño y aturde 0,5 s.
-- **Aspecto:** placas óseas oscuras en la cabeza del pez primitivo, que se abren y se cierran de golpe al morder.
+**Mutaciones del piso 2 (decidido el 24 de octubre)**
+
+Nueve mutaciones: 3 Bocas, una por familia de arma, y 2 por cada otra ranura. El nivel I vale como el nivel II de una mutación del piso 1. Todos los animales en que se inspiran son del Cámbrico.
+
+| Mutación | Ranura | Familia | Nivel I | Nivel II | Nivel III: evolución |
+| --- | --- | --- | --- | --- | --- |
+| Cnidocitos | Boca | Proyectil → medusa | Arpón que atraviesa a 1 enemigo: 2 de daño, 3 por segundo, veneno de 1 por segundo durante 3 s | Atraviesa a 2 enemigos y el veneno sube a 2 por segundo | **Ramillete:** cada cuarto disparo son 3 arpones en abanico |
+| Placas mandibulares | Boca | Cuerpo a cuerpo → pez acorazado | Arco de 110°, unas 4,6 unidades de alcance, 5 de daño, 2 mordiscos por segundo y un pequeño empujón. **Quebrar:** el enemigo mordido recibe un 25 % más de daño de todo durante 2 s | Daño 5 → 6 y Quebrar dura 3 s | **Guillotina:** cada cuarto mordisco es doble, hace el triple de daño y aturde 0,5 s |
+| Corona de brazos | Boca | Área → lirio de mar | El clic lanza un remolino donde está el cursor (como mucho a 6 u): dura 2 s, radio 1,6 u, atrae a los enemigos al centro y hace 1 de daño cada 0,4 s. Un remolino por segundo | Radio 2 u, dura 2,5 s y daña cada 0,3 s | **Marea:** al acabar, el remolino estalla, empuja a todos hacia fuera y hace 4 de daño |
+| Cola propulsora | Extremidades | | Dos esquivas seguidas antes de la recarga | La segunda esquiva deja 3 burbujas que hacen 2 de daño y empujan | **Torbellino:** las dos esquivas dejan 5 burbujas de 3 de daño |
+| Espinas de Hallucigenia | Extremidades | | Al esquivar dejas 2 púas en el suelo durante 4 s; quien las pisa recibe 2 de daño | 3 púas que duran 6 s | **Erizo:** al desaparecer, cada púa sale disparada hacia el enemigo más cercano |
+| Placas de trilobite | Piel | | +1 corazón; 1 de cada 4 proyectiles que te alcanzan rebota sin hacerte daño | Rebota 1 de cada 3 | **Enrollarse:** durante la esquiva rebotas todos los proyectiles |
+| Escleritos de Wiwaxia | Piel | | Cada 9 s sueltas 3 escamas hacia los enemigos cercanos (2 de daño cada una) | Cada 7 s, 5 escamas | **Órbita:** antes de salir disparadas, las escamas giran 2 s a tu alrededor y destruyen los proyectiles enemigos que tocan. Es la única forma del piso de protegerse sin esquivar |
+| Saco de crías | Órgano especial | | Clic derecho: 2 larvas aliadas que persiguen y muerden durante 8 s; recarga de 14 s | 3 larvas (8 s) | **Enjambre:** la larva que mata a un enemigo se divide en dos (también 8 s) |
+| Ojos compuestos | Órgano especial | | Clic derecho: durante 3 s todo va al 60 % de velocidad salvo tú; recarga de 12 s | Dura 4 s | **Visión total:** mientras dura, tus ataques hacen un 30 % más de daño |
+
+- **Placas mandibulares** se inspira en *Dunkleosteus*, un pez acorazado sin dientes que cortaba con placas de hueso afiladas. Frente a Mandíbulas, muerde menos veces pero más fuerte y en un arco más ancho. Sus placas óseas se abren y se cierran de golpe al morder.
+- **Corona de brazos:** los lirios de mar se alimentan agitando los brazos para crear corrientes. Es la Boca de área del piso y agrupa a los enemigos (las Esporas dejan minas y el Escupitajo ácido del piso 3 dejará charcos). Combina con las Espinas de Hallucigenia y los Ojos compuestos.
+- **Espinas de Hallucigenia** convierte la esquiva en una forma de poner trampas (Hifas deja un rastro al moverse). **Escleritos de Wiwaxia** devuelve los golpes a distancia (la Piel urticante solo daña al contacto). **Ojos compuestos:** los ojos complejos aparecieron en el Cámbrico.
+- **Órganos:** no tienen pieza en el cuerpo, pero sí efectos de activación vistosos (por ejemplo, un destello que tiñe la pantalla durante los Ojos compuestos, o el saco que se abre y suelta las larvas).
 
 **Jefe del piso 1 (virus gigante):** 120 de vida, 3×3 unidades, avanza despacio hacia el centro, medio corazón por contacto. Fase 1: espiral de un brazo y ráfaga circular de 12 proyectiles cada 4 s. Fase 2 (desde el 50 %): espiral de dos brazos más rápida, ráfaga de 16 e invoca 2 bacterias cada 8 s (máximo 4 vivas).
 
@@ -222,11 +268,48 @@ Cada piso tiene **2 jefes posibles** y en cada partida sale uno al azar.
 | Piso | Etapa | Ambientación | Enemigos | Jefes (uno al azar) |
 | --- | --- | --- | --- | --- |
 | 1 | Sopa primordial | Charco microscópico, colores verdes y burbujas | Bacterias que persiguen, amebas que se dividen al morir | Virus gigante que dispara en espiral · Ameba gigante que se divide |
-| 2 | Océano cámbrico | Fondo marino, corales y luz azul | Trilobites que embisten, medusas que flotan y disparan | Anomalocaris (depredador con garras) · Euriptérido (escorpión marino gigante) |
+| 2 | Océano cámbrico | Fondo marino en tres franjas de profundidad, de las aguas someras al abismo | Trilobites que embisten, medusas que disparan anillos, gusanos Ottoia enterrados, esponjas que curan y cardúmenes de Pikaia | Anomalocaris (depredador con garras) · Euriptérido (escorpión marino gigante) |
 | 3 | Pantano carbonífero | Pantano con helechos gigantes y niebla | Libélulas gigantes que caen en picado, anfibios que escupen | Artrópodo gigante (estilo Arthropleura) · Meganeura (libélula gigante) |
 | 4 | Desierto pérmico | Dunas rojas, rocas y huesos | Lagartos que corren en zigzag, sinápsidos que lanzan rocas | Dimetrodon con vela dorsal que se calienta (fase 2 más rápida) · Scutosaurus (acorazado que embiste) |
 | 5 | Selva de dinosaurios | Selva densa, helechos y volcanes al fondo | Compsognathus en manada, pterosaurios en picado, plantas carnívoras que disparan | Tiranosaurio · Espinosaurio |
 | 6 | Edad de hielo | Tundra nevada, suelo helado que resbala | Lobos en manada, mamuts que embisten, cazadores que lanzan lanzas | Tigre dientes de sable · Tribu de humanos (el último depredador) |
+
+**Piso 2: océano cámbrico (decidido el 24 de octubre)**
+
+En el piso 1 casi todo se resolvía disparando a lo que se acercaba. En el piso 2 la dificultad viene de leer avisos, posicionarse y elegir a quién atacar primero, además de más vida (×1,5–2) y más enemigos por sala.
+
+- **Números:** 8–10 salas de combate en el camino. Presupuesto de enemigos de 4 en la primera sala, que sube 1,6 por sala (en el piso 1, 3 y 1,4). Recompensa de mutación al limpiar las salas 2, 4, 6 y 8, de 2 a 3 salas laterales, la tienda y la sala de cambio. Unos 15–20 minutos por partida en el piso.
+- **Tres franjas de profundidad** según el avance por el camino, cada una con su tileset y su decoración:
+  - **Someras** (primeras salas): arena turquesa y mucha luz, con cáusticas que ondulan sobre el suelo y rayos diagonales que entran desde arriba. Hierba marina, conchas y arrecifes de arqueociatos como cobertura.
+  - **Arrecife** (salas del medio): el tema Cambrian de la sala de paso, con esponjas, corales, lirios de mar y conchas de trilobite.
+  - **Abismo** (últimas salas y jefe): casi negro pero sin tapar la vista. La bioluminiscencia (plumas de mar, medusas peine, líquenes) da ambiente con luces 2D suaves. La oscuridad de verdad se reserva para la sala del Anomalocaris.
+  - Los pasillos y las salas de transición mezclan las franjas, como la sala de paso. La **nieve marina** (partículas que caen despacio) es más densa cuanto más hondo. El generador hace que el camino tienda a bajar en la cuadrícula (abajo a menudo, a los lados a veces, casi nunca hacia arriba), así el minimapa baja hacia el jefe.
+- **Cuevas generadas en cada partida:** la forma de cada sala sale de la semilla del piso con el método de la sala de paso (mancha orgánica con ruido, cuellos de las puertas y reparación automática de las celdas que el arte no puede dibujar), con formaciones de roca o coral dentro como cobertura. Si una cueva no pasa la comprobación, se usa una forma de un catálogo hecho a mano. La tienda, la sala de cambio y las de los jefes son formas hechas a mano. Las salas del piso 1 siguen rectangulares.
+- **Puertas de losas de roca:** dos losas de la misma piedra que la pared salen de dentro y se juntan; en la costura dentada se completa un sello del color de las vetas de cada franja. Cerrar y abrir son animaciones distintas: al cerrar chocan con polvo y burbujas, y al abrir el sello se enciende y las losas se retiran. El piso 1 conserva la membrana.
+- **Música y sonido:** exploración y combate del océano y una pista por jefe, con el mismo sistema del piso 1; el ambiente podría ganar graves con la profundidad. Se hacen más adelante.
+
+| Enemigo | Papel | Comportamiento | Lo que exige al jugador | Vida | Coste · desde |
+| --- | --- | --- | --- | --- | --- |
+| Trilobite | Embestida | Ronda por la sala. Al verte avisa 0,6 s rascando el suelo con los ojos rojos y embiste en línea recta muy rápido. Si choca con una pared queda aturdido 1 s, panza arriba. Su cabeza blindada reduce a la mitad el daño que le entra de frente | Esquivar en el último momento y castigar el aturdimiento, o rodearlo | 14 | 2 · sala 1 |
+| Medusa azul | Tiradora de área | Flota despacio, a impulsos. Cada 3 s se contrae y suelta un anillo de 8 proyectiles lentos; con cada anillo gira un poco el hueco por donde pasar. Hace daño si la tocas. Es azul translúcida para no confundirla con la medusa del jugador, que es rosa | Leer el hueco del anillo y no quedarse quieto | 10 | 2 · sala 2 |
+| Ottoia (gusano de las arenas) | Emboscada | Enterrada solo se ve una onda en la arena que se acerca a ti, y no recibe daño. Avisa con un círculo de 0,8 s, sale, muerde y vuelve a hundirse | Apartarse al ver el círculo y golpearla cuando asoma | 9 | 3 · sala 2 |
+| Esponja Vauxia | Apoyo | No se mueve ni ataca. Cada 3 s emite un pulso que cura 2 de vida a los enemigos a 4 u y les da un leve escudo. Como mucho una por sala | Decidir si ir a por ella primero, aunque haya que cruzar el combate | 16 | 3 · sala 3 |
+| Cardumen de Pikaia | Enjambre | 5 peces pequeños y rápidos (de los primeros cordados) que nadan en formación, te rodean y hacen pasadas rápidas por turnos | Gestionar varios objetivos a la vez; aquí brillan las Bocas de área y las Espinas | 3 cada uno | 2 · sala 1 |
+
+Cada uno pide una habilidad distinta (reflejos, lectura de patrones, saber esperar, prioridad de objetivos y control de grupos), y juntos crean salas difíciles sin que nadie sea una esponja de vida (salvo la Esponja literal, que no ataca).
+
+**Jefes del piso 2:** 300 de vida cada uno, uno al azar en cada partida. Sus fases cambian la forma de pelear más que la cantidad de daño.
+
+**Anomalocaris:** el gran depredador del Cámbrico, con dos apéndices delante de la boca. Unas 4,7 u de largo. Sala muy grande (unos 36×26) y en penumbra: se ve, pero poco. Plantas luminosas repartidas (luces 2D) iluminan algo a su alrededor, y columnas de algas tapan la vista sin bloquear el paso. Pide esquivar en el momento justo y castigar la pausa tras cada zarpazo.
+- **Acecho (100–60 %):** nada deprisa en círculos junto a las paredes y deja una estela de burbujas lentas. Zarpazo: avisa 0,7 s echándose atrás con los ojos rojos y los apéndices abiertos, golpea en un cono por delante y se queda 1 s quieto y vulnerable.
+- **Cerco (60–25 %):** nada en espiral a tu alrededor, cerrándose y dejando un muro de burbujas, y termina el cerco con un zarpazo.
+- **Escena al 25 %:** franjas de cine y las plantas se apagan un instante; solo se ven sus ojos nadando en la oscuridad, cruzan la sala y se oye un rugido. Es inmune durante la escena.
+- **Frenesí (25–0 %):** se queda quieto y hace un sonido de carga inconfundible. En el suelo aparecen el área y la trayectoria de sus dos zarpazos (franjas rojizas con forma de flecha) durante 0,8 s al empezar la fase, y unos 0,5 s cuando le queda poca vida. Luego lanza los dos zarpazos demasiado rápido para reaccionar: hay que salir de las zonas marcadas mientras se ven. Después, una pausa corta en la que se le puede castigar.
+
+**Euriptérido:** escorpión marino gigante con pinzas y una cola con púa. Unas 5,6 u de largo. Sala: cueva rocosa con rocas de cobertura. Pide posicionarse y usar la cobertura.
+- **Acorazado (100–50 %):** avanza y ataca con las pinzas si estás cerca (golpe corto con aviso). Cada pocos segundos las púas de su caparazón se erizan, se cargan de veneno y suelta un abanico de 3 púas venenosas hacia ti (la cola no se usa en esta fase). Su coraza reduce a la mitad el daño que le entra de frente, como al Trilobite.
+- **Escena de la muda (50 %, unos 3 s):** franjas de cine; se queda quieto, le salen grietas, el caparazón se abre y sale un cuerpo nuevo, rosado y blando. La muda vacía se queda en la sala como cobertura y bloquea proyectiles, los suyos y los tuyos. Es inmune durante la escena.
+- **Blando y furioso (50–0 %):** recibe un 25 % más de daño y va el doble de rápido. Estrena la cola: barrido de 180° con estela venenosa, con aviso (la punta se enciende en verde). Sus pinzas encadenan dos golpes.
 
 **Paso al piso siguiente**
 
@@ -270,17 +353,17 @@ Para que el arte sea abarcable, el cuerpo del jugador **no** combina mutaciones:
 
 - **Familias de arma:** *Cuerpo a cuerpo* (Mandíbulas, Colmillos), *Proyectil* (Aguijón, Cnidocitos, Escupitajo venenoso) y *Área* (Esporas, Escupitajo ácido, Trompa). Sin mutación de Boca se usa la variante *Proyectil*, porque el disparo base es un proyectil.
 - **Cuándo cambia:** al elegir la Boca en la sala de paso tras el jefe (ver "Paso al piso siguiente"), con una cinemática de metamorfosis. En el piso siguiente no se ofrecen Bocas, así que el cuerpo y el arma siempre se corresponden. La única forma de cambiar de Boca es la sala de cambio; si la nueva es de otra familia, hay otra metamorfosis y cambia el cuerpo (si es de la misma, solo cambia la pieza del arma).
-- **Mientras un piso tenga 2 Bocas** (8 mutaciones), solo hay 2 familias y 2 cuerpos en ese piso; el tercero llega con la tercera Boca. En el piso 2: Cnidocitos (proyectil → medusa) y Placas mandibulares (cuerpo a cuerpo → pez primitivo acorazado); el lirio de mar (área) llegará con la tercera.
+- **En el piso 2 hay 3 Bocas y 3 cuerpos:** Cnidocitos (proyectil → medusa), Placas mandibulares (cuerpo a cuerpo → pez acorazado) y Corona de brazos (área → lirio de mar). Un piso con solo 2 Bocas tendría solo 2 cuerpos.
 - **Piso 1:** la célula actual con sus piezas (ya hecha), sin variantes.
 - **La Boca va en el cuerpo (desde el piso 2):** como en cada piso hay una Boca por familia, cuerpo y Boca siempre van juntos. La Boca se dibuja dentro del cuerpo y cada cuerpo tiene su **animación de ataque propia y trabajada** en las 3 direcciones (preparación, golpe y recuperación), en lugar de la pieza de 3 cuadros que gira hacia el cursor en el piso 1. El efecto del golpe (el arco del mordisco, el destello del disparo) sí gira hacia el cursor.
-- **Tamaño:** los cuerpos desde el piso 2 se dibujan en unos 20×20 píxeles (la célula ocupa 16×16) para que se note la evolución, pero la zona de choque es la misma que la de la célula, así que la dificultad no cambia.
-- **Piezas del resto de ranuras:** Extremidades, Piel y Órgano son capas sencillas colocadas en unos pocos puntos fijos de cada cuerpo (lomo, costados, centro). En los pisos 2 a 6 la Piel deja de sustituir al cuerpo y pasa a ser una capa encima (por ejemplo, el caparazón en el lomo).
+- **Tamaño (decidido el 24 de octubre):** todo el juego usa 16 píxeles por unidad y nunca se mezclan tamaños de píxel; el detalle viene de que **las criaturas crecen piso a piso**, como la vida se vuelve más compleja: la célula ocupa 16×16, los cuerpos del océano unos 20 dentro de un lienzo de 24, y los de los pisos siguientes unos 32 (los jefes son más grandes). El resto del detalle sale de paletas más ricas, más cuadros de animación, efectos e iluminación 2D. La zona de choque sigue siendo la de la célula, así que la dificultad no cambia.
+- **Piezas del resto de ranuras:** Extremidades y Piel son capas sencillas colocadas en unos pocos puntos fijos de cada cuerpo (costados para las extremidades, lomo para la piel). En los pisos 2 a 6 la Piel deja de sustituir al cuerpo y pasa a ser una capa encima (por ejemplo, el caparazón en el lomo). Desde el piso 2 (decidido el 24 de octubre): 4 mutaciones con pieza × 3 cuerpos = 12 capas por piso; el Órgano no tiene pieza, solo efectos de activación vistosos; y las mutaciones de pisos anteriores no se dibujan sobre el cuerpo nuevo (solo salen en el HUD y en la pausa).
 - **Arte:** 15 cuerpos nuevos (pisos 2 a 6 × 3 familias), cada uno con las animaciones del jugador (reposo, moverse, esquiva y muerte en 3 direcciones).
 
 | Piso | Cuerpo a cuerpo | Proyectil | Área |
 | --- | --- | --- | --- |
 | 1 | Célula | Célula | Célula |
-| 2 | Pez primitivo con mandíbulas | Medusa | Lirio de mar que suelta nubes |
+| 2 | Pez acorazado (placodermo) | Medusa | Lirio de mar con remolino |
 | 3 | Anfibio de fauces anchas | Escorpión de pantano | Rana venenosa |
 | 4 | Gorgonopsio (reptil con colmillos de sable) | Lagarto escupidor | Reptil con gola que expulsa polvo |
 | 5 | Raptor | Dilofosaurio | Parasaurolophus (bramido con la cresta) |
@@ -332,7 +415,7 @@ La v1.0 tiene los **pisos 1 a 3** completos y pulidos (si el 3 se retrasa mucho,
 - [ ] Más variedad en el piso 1: un tercer enemigo y salas especiales
 - [ ] Paso de un piso al siguiente: sala de paso con la elección de Boca y la metamorfosis del jugador según su familia de arma
 - [ ] Sala de cambio (el laboratorio de Darwin), desde el piso 2
-- [ ] Piso 2 (Océano cámbrico): escenario, 2 o 3 enemigos, Anomalocaris, 4 mutaciones y los 3 cuerpos del jugador
+- [ ] Piso 2 (Océano cámbrico): 3 franjas de escenario con cuevas generadas, 5 enemigos, Anomalocaris y Euriptérido, 9 mutaciones, 8 linajes y los 3 cuerpos del jugador
 - [ ] Piso 3 (Pantano carbonífero): lo mismo, con el artrópodo gigante
 - [x] Tienda con biomasa
 
@@ -361,15 +444,14 @@ Objetivo: que añadir una mutación, un enemigo o una sala nueva sea crear un ar
 
 **Herramientas:** Unity 6 (6000.6.2f1) con plantilla 2D (URP), Tilemap para salas, Cinemachine para la cámara (sigue al jugador, adelantada hacia el cursor), interfaz con uGUI (TextMeshPro cuando haya fuente pixel) y Git con un `.gitignore` de Unity y Git LFS para el arte.
 
-**Pixel art:** sprites de 16 px por unidad (personajes de 16×16 a 32×32), filtro *Point* sin compresión y la *Pixel Perfect Camera* de URP para que los píxeles no se deformen.
+**Pixel art:** sprites de 16 px por unidad en todo el juego (la célula de 16×16; las criaturas crecen piso a piso: unos 24 en el océano y unos 32 después; los jefes, más grandes), filtro *Point* sin compresión y la *Pixel Perfect Camera* de URP para que los píxeles no se deformen.
 
 ## Preguntas abiertas y decisiones
 
 **Pendiente**
 
-- [ ] Revisar los borradores: criaturas del jugador, enemigos y jefes de los pisos 2 a 6, y las 20 mutaciones nuevas (con sus niveles II y III).
-- [ ] Ataques y valores de los segundos jefes de los pisos 2 a 6.
-- [ ] Si el cuerpo crece de un piso a otro (y con él la colisión) o mantiene el tamaño.
+- [ ] Revisar los borradores: criaturas del jugador, enemigos y jefes de los pisos 3 a 6, y sus mutaciones nuevas (con sus niveles II y III). El piso 2 se cerró el 24 de octubre.
+- [ ] Ataques y valores de los segundos jefes de los pisos 3 a 6.
 - [ ] Duración total: 6 pisos de 10 a 15 minutos son más de una hora; valorar pisos más cortos en los pisos altos.
 
 **Decidido el 11 de octubre**
@@ -432,3 +514,16 @@ Objetivo: que añadir una mutación, un enemigo o una sala nueva sea crear un ar
 | Beneficio de los linajes | Base por clase (Rematar, Pastar biomasa, Toxina débil, Colonizar la sala) más un toque propio de cada animal. Fijo, sin escalar con los niveles; se pierde al cambiar una de las 4 mutaciones, también en pisos siguientes. Rematar cuenta como herido al enemigo con la mitad de su vida o menos (con el 30 % casi no se notaba en el piso 1). Los aumentos de daño que dan decimales (1 × 1,5) se redondean al azar, para que de media sean exactos |
 | Evolución de los linajes | Al completar un linaje, animación de unos 2 s con el juego congelado y un pequeño zoom (la célula se transforma en el animal) y, mientras dura el linaje, sus piezas sustituyen a las de algunas de sus mutaciones (tabla de la sección de linajes). Se descartó un cuerpo completo por linaje: demasiado arte y chocaba con la forma por piso |
 | Interfaz de los linajes | Cartel breve al completarlo y fila en las estadísticas de la pausa, con el beneficio completo al pasar el ratón; las tarjetas y la tienda solo dicen a qué linajes pertenece cada mutación |
+
+**Decidido el 24 de octubre (diseño del piso 2)**
+
+| Tema | Decisión |
+| --- | --- |
+| Mutaciones del piso 2 | 9: Cnidocitos, Placas mandibulares y Corona de brazos (las 3 Bocas), Cola propulsora, Espinas de Hallucigenia, Placas de trilobite, Escleritos de Wiwaxia, Saco de crías y Ojos compuestos, con sus niveles (tabla "Mutaciones del piso 2") |
+| Clases y linajes | Las clases atraviesan la partida (duermen, vuelven y se remodelan; al menos una nueva por piso) y los animales son de cada piso. Los linajes de un piso no siguen en el siguiente. Piso 2: Carnívoro, Herbívoro y Venenoso remodelados, Carroñero nueva y Hongo dormido; 8 linajes. Sustituye a "útiles un piso por encima" |
+| Enemigos del piso 2 | Trilobite, Medusa azul, Ottoia, Esponja Vauxia y Cardumen de Pikaia, cada uno con un papel distinto |
+| Jefes del piso 2 | Anomalocaris (sala oscura, escena de los ojos al 25 %, frenesí con marcadores) y Euriptérido (púas del caparazón, escena de la muda al 50 % que deja cobertura, cola en la fase 2), 300 de vida, uno al azar |
+| Salas del piso 2 | 8–10 de combate en tres franjas de profundidad (Someras, Arrecife, Abismo), cuevas generadas por semilla con catálogo de reserva, nieve marina, camino que baja y puertas de losas de roca. El Abismo es oscuro sin tapar la vista |
+| Escala del arte | 16 px por unidad en todo el juego; las criaturas crecen piso a piso (16, 24, unos 32). Nunca se mezclan tamaños de píxel |
+| Piezas sobre los cuerpos | Boca dibujada en el cuerpo; Extremidades y Piel como capas (12 por piso); Órgano sin pieza, con efectos de activación; las mutaciones de pisos anteriores no se dibujan |
+| Mejoras de pisos anteriores | Resuelto con las reglas actuales (cualquier mutación que lleves se puede mejorar; la regla de escalones hace que compense cambiarla). Sale de "Mejoras a futuro" |

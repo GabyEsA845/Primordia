@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4ba12a379f398148bd08d9c95bcf113, type: 3}
+  m_Name: Floor_TransitionTest
+  m_EditorClassIdentifier: Primordia::Primordia.Rooms.FloorConfig
+  startRoom: {fileID: 11400000, guid: dd2524ff606d8904f8886c9aebe37fdd, type: 2}
+  bossRoom: {fileID: 11400000, guid: fc6ceb4b1ee497742babf0fa9f360cd1, type: 2}
+  combatRooms:
+  - {fileID: 11400000, guid: fc6ceb4b1ee497742babf0fa9f360cd1, type: 2}
+  sideRooms: []
+  mainCombatRooms: {x: 0, y: 0}
+  sideRoomCount: {x: 0, y: 0}
+  theme: {fileID: 11400000, guid: 7c54322dcfdb63b4bbbe9343ed987b9d, type: 2}
+  bossTheme: {fileID: 11400000, guid: 0ab89510c4bdea14ab8e629038e4cb6d, type: 2}
+  enemies:
+  - prefab: {fileID: 8882603238870742745, guid: a55174d84ea389f4ea3dbe2ad2e34d19, type: 3}
+    cost: 1
+    minDepth: 1
+  - prefab: {fileID: 6360368782889849989, guid: 6a0b1fdfb44e57542b2abcce354082ca, type: 3}
+    cost: 2
+    minDepth: 2
+  baseBudget: 3
+  budgetPerRoom: 1.4
+  referenceFloorArea: 312
+  boss: {fileID: 1183084727335379411, guid: 1fc20f23b26e1e14aa8e7a669d298cfb, type: 3}
+  bossOffset: {x: 0, y: 2.5}
+  bosses:
+  - prefab: {fileID: 8882603238870742745, guid: a55174d84ea389f4ea3dbe2ad2e34d19, type: 3}
+    room: {fileID: 11400000, guid: fc6ceb4b1ee497742babf0fa9f360cd1, type: 2}
+    theme: {fileID: 11400000, guid: 0ab89510c4bdea14ab8e629038e4cb6d, type: 2}
+    offset: {x: 0, y: 0}
+  rewardPool: {fileID: 11400000, guid: 44d7ff0aa2725894b8aa5e92ff4b83a8, type: 2}
+  rewardOptions: 3
+  rewardAfter: 
+  smallBiomass: {fileID: 4954268908327209968, guid: 16d5cda47065aed4886ec380894bf996, type: 3}
+  bigBiomass: {fileID: 7081711356301279898, guid: 51db4ac02edeee84c91ac030d6494999, type: 3}
+  minimumBiomassPerRoom: 2
+  shopRoom: {fileID: 0}
+  shopPrefab: {fileID: 0}
+  transitionRoom: {fileID: 11400000, guid: a1cc0837e3579584189ff066928ff179, type: 2}
+  transitionPit: {fileID: 3569420486088721647, guid: 8b10ac4d06826994fac52a004c267678, type: 3}
+  transitionMidTheme: {fileID: 11400000, guid: 7c52fb05cf14a8840b29b17042546fb5, type: 2}
+  nextFloorTheme: {fileID: 11400000, guid: ee040b95e788e5649887a36125ca76dc, type: 2}
+  exitSprite: {fileID: 21300000, guid: bc9bd159743ed944e9321a5b368508a5, type: 3}
+  exitColor: {r: 0.3, g: 0.95, b: 0.8, a: 1}

@@ -14,7 +14,7 @@ namespace Primordia.Editor
     /// inicio con unas burbujas de mutación, un "jefe" de prueba (un perseguidor en una sala normal) y la sala de paso.
     /// Se puede volver a ejecutar: actualiza el arte, el prefab y la escena; la plantilla no la sobrescribe.
     /// </summary>
-    public static class FloorTransitionSetup
+    public static partial class FloorTransitionSetup
     {
         const string RoomsFolder = "Assets/_Primordia/Data/Rooms";
         const string PrefabsFolder = "Assets/_Primordia/Prefabs/Rooms";
@@ -51,10 +51,12 @@ namespace Primordia.Editor
 
             var pit = CreatePitPrefab(square);
             ArtSetup.ApplyTransitionMapIcon();
-            AddToFloor(cave, pit, mid, next);
+            var mouths = CreateFloor2Mouths();
+            EnsureMouthChoice();
+            AddToFloor(cave, pit, mid, next, mouths);
             AssetDatabase.SaveAssets();
 
-            CreateTestScene(cameraRig, gameManager, player, cave, pit, mid, next);
+            CreateTestScene(cameraRig, gameManager, player, cave, pit, mid, next, mouths);
         }
 
         internal static TransitionPit LoadPitPrefab() => AssetDatabase.LoadAssetAtPath<TransitionPit>(PitPrefabPath);
@@ -136,7 +138,7 @@ namespace Primordia.Editor
         }
 
         /// <summary>La sala de paso en Floor_1: el jefe deja de soltar la salida y el piso se deja por la fosa.</summary>
-        static void AddToFloor(RoomTemplate cave, TransitionPit pit, RoomTheme mid, RoomTheme next)
+        static void AddToFloor(RoomTemplate cave, TransitionPit pit, RoomTheme mid, RoomTheme next, MutationData[] mouths)
         {
             var config = AssetDatabase.LoadAssetAtPath<FloorConfig>(FloorSetup.FloorConfigPath);
             if (config == null)
@@ -146,13 +148,14 @@ namespace Primordia.Editor
             }
 
             config.ConfigureTransition(cave, pit, mid, next);
+            config.ConfigureNextFloor(mouths, NextFloorName);
             EditorUtility.SetDirty(config);
         }
 
         static void CreateTestScene(GameObject cameraRig, GameObject gameManager, GameObject player, RoomTemplate cave,
-            TransitionPit pit, RoomTheme mid, RoomTheme next)
+            TransitionPit pit, RoomTheme mid, RoomTheme next, MutationData[] mouths)
         {
-            var config = CreateTestConfig(cave, pit, mid, next);
+            var config = CreateTestConfig(cave, pit, mid, next, mouths);
             if (config == null)
                 return;
 
@@ -167,14 +170,14 @@ namespace Primordia.Editor
             PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath<GameObject>(UISetup.GameUIPath), scene);
             UISetup.CreateEventSystem();
 
-            // Unas burbujas en el inicio: si se dejan sin coger, la fosa avisa de que te dejas mutaciones.
-            var mutations = AssetDatabase.FindAssets("t:MutationData", new[] { MutationsFolder })
-                .Select(guid => AssetDatabase.LoadAssetAtPath<MutationData>(AssetDatabase.GUIDToAssetPath(guid)))
+            // Burbujas en el inicio para probar el reparto (Mandíbulas hasta el III y otras para recibir los niveles) y,
+            // si se dejan sin coger, el aviso de la fosa de que te dejas mutaciones.
+            var mutations = new[] { "Mutation_Mandibles", "Mutation_Fins", "Mutation_Carapace", "Mutation_InkSac" }
+                .Select(name => AssetDatabase.LoadAssetAtPath<MutationData>($"{MutationsFolder}/{name}.asset"))
                 .Where(m => m != null)
-                .Take(4)
                 .ToArray();
             var bench = new GameObject("MutationBench").AddComponent<MutationBench>();
-            bench.Configure(AssetDatabase.LoadAssetAtPath<MutationPickup>(PickupPath), mutations, newCopies: 1);
+            bench.Configure(AssetDatabase.LoadAssetAtPath<MutationPickup>(PickupPath), mutations, newCopies: 3);
 
             EditorSceneManager.SaveScene(scene);
             AssetDatabase.SaveAssets();
@@ -182,7 +185,7 @@ namespace Primordia.Editor
         }
 
         /// <summary>Copia de Floor_1 con el camino inicio → "jefe" (un perseguidor) → sala de paso, sin más salas.</summary>
-        static FloorConfig CreateTestConfig(RoomTemplate cave, TransitionPit pit, RoomTheme mid, RoomTheme next)
+        static FloorConfig CreateTestConfig(RoomTemplate cave, TransitionPit pit, RoomTheme mid, RoomTheme next, MutationData[] mouths)
         {
             var floor = AssetDatabase.LoadAssetAtPath<FloorConfig>(FloorSetup.FloorConfigPath);
             var normal = AssetDatabase.LoadAssetAtPath<RoomTemplate>($"{RoomsFolder}/{RoomLayouts.Normal}.asset");
@@ -204,6 +207,7 @@ namespace Primordia.Editor
             config.ConfigureRewards(floor.RewardPool, System.Array.Empty<int>());
             config.ConfigureBosses(new[] { new FloorConfig.BossEntry(chaser, normal, floor.BossTheme, Vector2.zero) });
             config.ConfigureTransition(cave, pit, mid, next);
+            config.ConfigureNextFloor(mouths, NextFloorName);
 
             EditorUtility.SetDirty(config);
             AssetDatabase.SaveAssets();

@@ -439,7 +439,10 @@ namespace Primordia.Rooms
             }
 
             if (placed.Layout.Role == RoomRole.Transition && config.TransitionPit != null)
-                Object.Instantiate(config.TransitionPit, placed.FloorCenter, Quaternion.identity, roomObject.transform);
+            {
+                var pit = Object.Instantiate(config.TransitionPit, placed.FloorCenter, Quaternion.identity, roomObject.transform);
+                pit.SetNextFloor(config.NextFloorMouths, config.NextFloorName);
+            }
 
             return room;
         }

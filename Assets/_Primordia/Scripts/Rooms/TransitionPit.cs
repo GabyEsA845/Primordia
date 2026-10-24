@@ -12,8 +12,9 @@ namespace Primordia.Rooms
     /// <summary>
     /// Fosa de la sala de paso: un agujero sólido (no se cae en él andando ni esquivando) con una luz que late y
     /// burbujas que suben. Desde cualquier punto del borde se pulsa Interactuar (E): la tecla aparece en el punto del
-    /// borde más cercano al jugador, que salta hacia el centro y cae. Mientras no exista el piso siguiente, la caída
-    /// lleva a la victoria.
+    /// borde más cercano al jugador, que salta hacia el centro. En el aire, sobre la fosa, se queda congelado y hay que
+    /// elegir una de las Bocas del piso siguiente (<see cref="MouthChoiceUI"/>); luego cae. Mientras no exista el piso
+    /// siguiente, la caída lleva a la victoria.
     /// </summary>
     [RequireComponent(typeof(Collider2D))]
     public class TransitionPit : Interactable
@@ -44,11 +45,19 @@ namespace Primordia.Rooms
         [SerializeField, Min(0.05f)] float jumpDuration = 0.55f;
         [SerializeField, Min(0f)] float jumpHeight = 1.4f;
         [SerializeField, Min(0.05f)] float fallDuration = 0.7f;
+        [Tooltip("Momento del salto (0 a 1) en que se congela en el aire para elegir la Boca.")]
+        [SerializeField, Range(0f, 1f)] float choiceAt = 0.75f;
 
         public const string TooltipTitle = "Saltar al piso siguiente";
         public const string TooltipWarning = "Te dejas mutaciones del jefe";
 
         public bool Used { get; private set; }
+
+        /// <summary>Bocas del piso siguiente, entre las que hay que elegir al saltar (las pone el generador del piso).</summary>
+        public IReadOnlyList<MutationData> NextFloorMouths => nextFloorMouths;
+
+        MutationData[] nextFloorMouths = System.Array.Empty<MutationData>();
+        string nextFloorName = "";
         public Vector2 EdgeRadii => edgeRadii;
 
         /// <summary>El jugador ha saltado a la fosa (al empezar el salto).</summary>
@@ -93,6 +102,12 @@ namespace Primordia.Rooms
             keyPrompt = newKeyPrompt;
             keyFrames = newKeyFrames ?? System.Array.Empty<Sprite>();
             edgeRadii = newEdgeRadii;
+        }
+
+        internal void SetNextFloor(MutationData[] mouths, string floorName)
+        {
+            nextFloorMouths = mouths ?? System.Array.Empty<MutationData>();
+            nextFloorName = floorName ?? "";
         }
 
         internal void ConfigureJump(float newJumpDuration, float newFallDuration)
@@ -246,15 +261,27 @@ namespace Primordia.Rooms
             Vector2 center = transform.position;
             var baseScale = visual.localScale;
 
-            // Salto en arco hasta el centro, algo estirado en el aire.
+            // Salto en arco hasta el centro, algo estirado en el aire. Casi al final, sobre la fosa, se congela para
+            // elegir la Boca del piso siguiente.
+            bool chose = false;
             for (float t = 0f; t < jumpDuration; t += Time.deltaTime)
             {
                 float k = t / jumpDuration;
                 visual.position = Vector2.Lerp(start, center, k) + Vector2.up * (Mathf.Sin(k * Mathf.PI) * jumpHeight);
                 float stretch = 1f + Mathf.Sin(k * Mathf.PI) * 0.15f;
                 visual.localScale = new Vector3(baseScale.x / stretch, baseScale.y * stretch, baseScale.z);
+
+                if (!chose && k >= choiceAt)
+                {
+                    chose = true;
+                    yield return ChooseMouth(jumper);
+                    if (manager != null)
+                        manager.SetState(GameState.Cinematic);
+                }
                 yield return null;
             }
+            if (!chose)
+                yield return ChooseMouth(jumper);
 
             // Cae: se hunde y se hace pequeño hacia el fondo de la fosa.
             Sfx.Play(Sounds.TransitionFall);
@@ -270,6 +297,20 @@ namespace Primordia.Rooms
             // De momento no hay piso siguiente: la caída da la victoria.
             if (manager != null)
                 manager.SetState(GameState.Victory);
+        }
+
+        /// <summary>Abre la ventana de Bocas y espera a que acabe el reparto. Sin Bocas o sin ventana, no hace nada.</summary>
+        IEnumerator ChooseMouth(GameObject jumper)
+        {
+            var mutations = jumper.GetComponent<PlayerMutations>();
+            var window = FindAnyObjectByType<MouthChoiceUI>(FindObjectsInactive.Include);
+            if (nextFloorMouths.Length == 0 || mutations == null || window == null)
+                yield break;
+
+            bool done = false;
+            window.Show(nextFloorMouths, mutations, nextFloorName, () => done = true);
+            while (!done)
+                yield return null;
         }
     }
 }

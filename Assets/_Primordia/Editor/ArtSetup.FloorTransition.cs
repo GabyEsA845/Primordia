@@ -1,7 +1,9 @@
+using System.Linq;
 using Primordia.Rooms;
 using Primordia.UI;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Primordia.Editor
 {
@@ -62,6 +64,78 @@ namespace Primordia.Editor
                     ? SliceSheet(keyPath, KeyCellWidth, new Vector2(0.5f, 0f))
                     : System.Array.Empty<Sprite>(),
             };
+        }
+
+        // Cuerpos e iconos del piso 2 (docs/multimedia-temp/floor2-bodies: generar_cuerpos_piso2.py y generar_iconos_piso2.py).
+        const string Floor2BodiesSourceFolder = "docs/multimedia-temp/floor2-bodies";
+        const string Floor2BodiesArtFolder = CharactersFolder + "/Player/Floor2";
+        const int Floor2BodyCellWidth = 24;
+
+        /// <summary>Arte de una Boca del piso 2: sus iconos y la criatura de la vista previa (de lado).</summary>
+        internal sealed class MouthArt
+        {
+            public Sprite Icon;
+            public Sprite LargeIcon;
+            public Sprite[] Idle;
+            public Sprite[] Attack;
+        }
+
+        internal sealed class Floor2MouthArt
+        {
+            public MouthArt Cnidocytes;
+            public MouthArt JawPlates;
+        }
+
+        internal static Floor2MouthArt ImportFloor2MouthArt() => new()
+        {
+            Cnidocytes = ImportMouthArt("Cnidocytes", "Jellyfish"),
+            JawPlates = ImportMouthArt("JawPlates", "Placoderm"),
+        };
+
+        static MouthArt ImportMouthArt(string icon, string body)
+        {
+            Sprite Icon(int size) => ImportSprite($"{Floor2BodiesSourceFolder}/Icons/Icon_{icon}_{size}.png",
+                $"{UIArtFolder}/Icon_{icon}_{size}.png", Vector4.zero);
+
+            Sprite[] Sheet(string animation)
+            {
+                string file = $"Player_{body}_{animation}.png";
+                string target = $"{Floor2BodiesArtFolder}/{body}/{file}";
+                return CopyArt($"{Floor2BodiesSourceFolder}/{body}/{file}", target)
+                    ? SliceSheet(target, Floor2BodyCellWidth)
+                    : System.Array.Empty<Sprite>();
+            }
+
+            return new MouthArt { Icon = Icon(16), LargeIcon = Icon(32), Idle = Sheet("Idle_side"), Attack = Sheet("Attack_side") };
+        }
+
+        /// <summary>Viste la ventana de Bocas: cartas como las de elección de mutación, franja e insignias de nivel.</summary>
+        internal static void ApplyMouthChoiceSkin()
+        {
+            var card = new[]
+            {
+                ImportUISprite("Panels", "UI_Card_Normal", 12), ImportUISprite("Panels", "UI_Card_Highlighted", 12),
+                ImportUISprite("Panels", "UI_Card_Pressed", 12), ImportUISprite("Panels", "UI_Card_Disabled", 12),
+            };
+            var stripe = ImportUISprite("Panels", "UI_Card_Stripe", new Vector4(4, 0, 4, 0));
+            var badges = new[] { 1, 2, 3 }.Select(level => AssetDatabase.LoadAssetAtPath<Sprite>($"{UIArtFolder}/UI_Level_{level}.png"))
+                .ToArray();
+
+            EditPrefab(UISetup.GameUIPath, root =>
+            {
+                foreach (var window in root.GetComponentsInChildren<MouthChoiceUI>(true))
+                    window.SetLevelBadges(badges);
+                foreach (var mouthCard in root.GetComponentsInChildren<MouthCard>(true))
+                {
+                    SkinButton(mouthCard.Button, card);
+                    var strip = mouthCard.transform.Find("ColorStrip");
+                    if (strip != null && stripe != null)
+                    {
+                        SetSlicedSprite(strip.GetComponent<Image>(), stripe, keepColor: true);
+                        strip.GetComponent<LayoutElement>().preferredHeight = stripe.rect.height;
+                    }
+                }
+            });
         }
 
         /// <summary>Pone el icono de la sala de paso (UI_Map_Transition) en el minimapa y el mapa grande.</summary>

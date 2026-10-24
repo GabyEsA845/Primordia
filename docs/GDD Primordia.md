@@ -248,8 +248,8 @@ Cada piso tiene **2 jefes posibles** y en cada partida sale uno al azar.
 **Secuencia del salto**
 
 1. **Salto:** el jugador da un pequeño salto hacia el centro de la fosa.
-2. **Elección de Boca:** a mitad de la caída se queda congelado en el aire, la pantalla se oscurece y aparece la ventana de Bocas del piso siguiente, sin botón para cerrarla.
-3. **Reparto de niveles:** tras elegir, la propia ventana enseña cómo los niveles extra de la Boca anterior vuelan a otras ranuras ("+1 Aletas"), o se pierden si no caben.
+2. **Elección de Boca:** casi al final del salto, sobre la fosa, se queda congelado en el aire, la pantalla se oscurece (dejando ver a la criatura) y aparece la ventana "Elige tu Boca" con las Bocas del piso siguiente, sin botón para cerrarla ni Esc. Cada Boca es una carta grande con la criatura en que te convertirás, en reposo; con el ratón encima la carta crece un poco y la criatura hace su ataque en bucle. Debajo, icono, nombre, familia y lo que hace en el nivel I. Bajo las cartas, un aviso de lo que pasará con los niveles de tu Boca actual.
+3. **Reparto de niveles:** tras elegir, la otra carta se desvanece y aparece una fila con tus ranuras: la Boca vieja deja su sitio a la nueva (nivel I) y cada nivel extra sale de ella como un "+1" que vuela a la mutación que lo recibe (su insignia sube) o, si no cabe en ninguna, se convierte en "Perdido" y se desvanece.
 4. **Metamorfosis (unos 4 s):** durante la caída, con franjas de cine como en el final de la ameba y en el estilo de la animación de evolución de linajes. La criatura se envuelve en una membrana que brilla, tiembla y revienta, y deja ver el cuerpo nuevo de su familia. La membrana, el brillo y las partículas son comunes; solo cambia el cuerpo final.
 5. **Llegada:** fundido al piso siguiente. Mientras no exista el piso 2, fundido a la pantalla de victoria con el cuerpo nuevo.
 

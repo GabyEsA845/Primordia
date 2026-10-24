@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ae6dfe8bf811cd4aa9de30d1d03b937, type: 3}
+  m_Name: Mutation_JawPlates
+  m_EditorClassIdentifier: Primordia::Primordia.Mutations.AttackMutation
+  displayName: Placas mandibulares
+  description: "Mordisco de guillotina en un arco ancho (5 de da\xF1o). El enemigo mordido recibe un 25 % m\xE1s de da\xF1o durante 2 s."
+  slot: 0
+  lineages: []
+  look: {fileID: 0}
+  bodyRadius: 0
+  mouthDistance: 0
+  headHeight: 0
+  wornOnHead: 0
+  muzzleDistance: 0
+  attackLean: 0
+  icon: {fileID: 21300000, guid: f22ead8016ec5b148921686a787a9faf, type: 3}
+  largeIcon: {fileID: 21300000, guid: 3a6e58c271c1dc24c851a6bdf9f911d0, type: 3}
+  color: {r: 0.95, g: 0.5, b: 0.35, a: 1}
+  levelDescriptions:
+  - "Da\xF1o 5 \u2192 6 y Quebrar dura 3 s."
+  - "Guillotina: cada cuarto mordisco es doble, hace el triple de da\xF1o y aturde 0,5 s."
+  dodgeSound: 
+  floor: 2
+  family: 1
+  creatureIdleFrames:
+  - {fileID: 5901538501798726616, guid: 318117f6d462d694985768a076cdf527, type: 3}
+  - {fileID: -8643578923260725887, guid: 318117f6d462d694985768a076cdf527, type: 3}
+  - {fileID: 8025827270909353249, guid: 318117f6d462d694985768a076cdf527, type: 3}
+  - {fileID: -4834265600868652354, guid: 318117f6d462d694985768a076cdf527, type: 3}
+  creatureAttackFrames:
+  - {fileID: -4590257573480902851, guid: ed842dcfc80d4da49a5e3f86f066334f, type: 3}
+  - {fileID: 7539342510373865187, guid: ed842dcfc80d4da49a5e3f86f066334f, type: 3}
+  - {fileID: -6929804297142289338, guid: ed842dcfc80d4da49a5e3f86f066334f, type: 3}
+  - {fileID: 2397182774351880528, guid: ed842dcfc80d4da49a5e3f86f066334f, type: 3}
+  - {fileID: 4717754548834805718, guid: ed842dcfc80d4da49a5e3f86f066334f, type: 3}
+  - {fileID: 2732893681263161484, guid: ed842dcfc80d4da49a5e3f86f066334f, type: 3}
+  attack: {fileID: 11400000, guid: 2dea36bdb5aa9ba49ab5eaa57e026bc4, type: 2}
+  healEveryKills: 0
+  upgrades: []
+  healEffect: {fileID: 0}

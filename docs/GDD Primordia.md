@@ -115,7 +115,7 @@ Al completar un linaje el jugador evoluciona: el juego se congela unos 2 s, la c
 | Glándula de choque | Órgano especial | Tiburón, Medusa | Onda que repele proyectiles |
 | Vacuola digestiva (nueva) | Órgano especial | Tortuga, Escorpión, Moho | Digiere y cura medio corazón; se recarga matando enemigos |
 
-**Cómo se consiguen:** al limpiar ciertas salas aparece la elección de 1 de 3 mutaciones, y en la tienda se compran con biomasa. Al derrotar al jefe se elige 1 de 3 mutaciones mayores. Cambiar una mutación por otra en la misma ranura la reemplaza para siempre en esa partida.
+**Cómo se consiguen:** al limpiar ciertas salas aparece la elección de 1 de 3 mutaciones, y en la tienda se compran con biomasa. Al derrotar al jefe caen burbujas de mutación de las otras ranuras (nunca Bocas), y una de ellas es la mejora de una mutación que ya llevas. La Boca del piso siguiente se elige en la sala de paso (ver "Paso al piso siguiente"). Cambiar una mutación por otra en la misma ranura la reemplaza para siempre en esa partida. Desde el piso 2 solo salen las mutaciones de ese piso.
 
 **Valores de las mutaciones (versión actual)**
 
@@ -158,9 +158,18 @@ Cada mutación tiene **3 niveles**. Se sube eligiéndola otra vez en la elecció
 
 La nube de tinta ahora permanece los 3 s que dura la ceguera (aparece, se mantiene y se disipa), es más transparente y ciega también a quien entra en ella. Los estados de los enemigos se ven con marcas encima de su cabeza: veneno, sangrado, cegado, aturdido y paralizado (este, además, con rayos por el cuerpo).
 
-**Mutaciones nuevas por piso (borrador)**
+**Mutaciones de cada piso (rediseño del 23 de octubre)**
 
-Cada piso a partir del 2 trae **4 mutaciones nuevas, una por ranura**, que se suman a las anteriores: en el piso N pueden salir las mutaciones de los pisos 1 a N (32 en total en el piso 6). Las mutaciones y sus niveles se conservan al cambiar de piso. Cada Boca nueva pertenece a una de las 3 **familias de arma**, que deciden la forma del jugador en el piso siguiente (ver "Forma del jugador en cada piso").
+Como en *Enter the Gungeon*, cada piso es más duro que el anterior y trae mutaciones más fuertes que empujan a dejar atrás las viejas:
+
+- **Cada piso tiene sus propias mutaciones y sus propios linajes.** Desde el piso 2, las elecciones de 1 de 3, la tienda y las burbujas del jefe solo ofrecen mutaciones de ese piso (y las mejoras de las que lleves). Las mutaciones de pisos anteriores se conservan con su nivel mientras no las cambies. Los linajes nunca se actualizan: los del piso 1 usan mutaciones del piso 1 y los del piso 2, las suyas.
+- **Cuántas:** 8 por piso por ahora (2 por ranura, con sus linajes); la idea es llegar a 12 (3 por ranura) cuando el arte lo permita. Con 3 Bocas por piso hay una por familia de arma.
+- **Escalones de poder:** el nivel I de una mutación del piso N+1 vale como el nivel II de una del piso N (del III del piso N al III del piso N+1 se gana un escalón).
+- **Dificultad:** la vida de los enemigos sube ×1,5–2 por piso. El resto de la dificultad viene de más enemigos por sala y patrones más exigentes, no de esponjas de vida.
+- **Linajes entre pisos:** un linaje debe seguir funcionando un piso por encima del suyo y quedarse flojo dos pisos por encima (los del piso 1 sirven en el 2, pero rinden mucho menos en el 3). Al cambiar de piso pueden ajustarse los valores de mutaciones y linajes, sin cambiar nada visual.
+- **Pendiente** (en "Mejoras a futuro" del plan): cómo seguir consiguiendo mejoras de las mutaciones del piso 1 en pisos posteriores.
+
+Borrador de ideas para los pisos 2 a 6 (una por ranura; faltan las demás hasta llegar a 8 por piso). Cada Boca pertenece a una de las 3 **familias de arma**, que deciden la forma del jugador en ese piso (ver "Forma del jugador en cada piso").
 
 | Piso | Mutación | Ranura | Familia | Efecto (idea) |
 | --- | --- | --- | --- | --- |
@@ -197,7 +206,9 @@ Sus linajes y sus niveles II y III se diseñan al hacer cada piso.
 
 ## Pisos y etapas evolutivas
 
-El juego completo tiene **6 pisos**, cada uno una etapa de la vida en la Tierra, con enemigos, jefe y 4 mutaciones nuevas propios. La v1.0 sale con los pisos 1 a 3 (ver "Alcance").
+El juego completo tiene **6 pisos**, cada uno una etapa de la vida en la Tierra, con enemigos, jefe y mutaciones propios. La v1.0 sale con los pisos 1 a 3 (ver "Alcance").
+
+**Tamaño de los pisos:** las partidas pueden durar de 40 minutos a 1 hora, como en *Enter the Gungeon*. El piso 1 sigue con 4–5 salas de combate y 1–2 laterales; desde el piso 2, 8–10 salas de combate en el camino (más las laterales, la tienda y la sala de cambio).
 
 Cada piso tiene **2 jefes posibles** y en cada partida sale uno al azar.
 
@@ -210,12 +221,30 @@ Cada piso tiene **2 jefes posibles** y en cada partida sale uno al azar.
 | 5 | Selva de dinosaurios | Selva densa, helechos y volcanes al fondo | Compsognathus en manada, pterosaurios en picado, plantas carnívoras que disparan | Tiranosaurio · Espinosaurio |
 | 6 | Edad de hielo | Tundra nevada, suelo helado que resbala | Lobos en manada, mamuts que embisten, cazadores que lanzan lanzas | Tigre dientes de sable · Tribu de humanos (el último depredador) |
 
+**Paso al piso siguiente**
+
+1. **Burbujas del jefe:** al morir, el jefe deja burbujas de mutación de las ranuras que no son la Boca; una de ellas es siempre la mejora de una mutación equipada.
+2. **Sala de paso:** junto a la sala del jefe hay otra que solo se abre al vencerlo. En ella está el paso al piso siguiente. Al usarlo se abre una ventana, más vistosa que la elección de mutación, con las Bocas del piso siguiente (una por familia), y elegir una es obligatorio: nadie llega al piso siguiente sin Boca.
+3. **Nivel de la Boca nueva:** empieza en el nivel I. Para no castigar a quien subió su Boca, los niveles que tenía por encima del I se reparten al azar, uno a uno, entre las demás mutaciones equipadas que aún puedan subir. Los que no quepan en ninguna se pierden (no vuelven a la Boca): así no compensa llegar al jefe con solo la Boca mejorada.
+4. **Metamorfosis:** cinemática en la que el jugador se transforma en la criatura del piso siguiente según la familia de la Boca elegida, y el juego pasa al piso nuevo.
+5. **En el piso siguiente** no se ofrecen otras Bocas (ni en las elecciones ni en la tienda), pero sí las mejoras de la que llevas.
+
+**Sala de cambio (el laboratorio de Darwin)**
+
+Una por piso desde el piso 2, siempre pegada a la tienda (así es fácil de encontrar). En el centro hay una cápsula llena de líquido; al acercarse y pulsar E se abre su propia interfaz, distinta de las demás:
+
+- Muestra al jugador y lo que lleva en cada ranura, como el panel de la criatura de la pausa.
+- Al elegir la mutación de una ranura, aparecen las mutaciones del piso actual de esa ranura por las que se puede cambiar, cada una con su dibujo y su descripción, **al mismo nivel** que la que entregas. Se elige una y se confirma con Aceptar: la tuya desaparece y la nueva entra con ese nivel.
+- **Gratis y solo un cambio por piso**, así que hay que pensarlo bien. Es la única forma de cambiar de Boca (y de cuerpo, si cambia la familia; ver "Forma del jugador en cada piso").
+- No existe en el piso 1, donde las Bocas salen en las recompensas normales.
+
 **Forma del jugador en cada piso**
 
 Para que el arte sea abarcable, el cuerpo del jugador **no** combina mutaciones: cada piso tiene su criatura en **3 variantes, una por familia de arma**, y las demás mutaciones siguen siendo piezas sencillas encima del cuerpo.
 
 - **Familias de arma:** *Cuerpo a cuerpo* (Mandíbulas, Colmillos), *Proyectil* (Aguijón, Cnidocitos, Escupitajo venenoso) y *Área* (Esporas, Escupitajo ácido, Trompa). Sin mutación de Boca se usa la variante *Proyectil*, porque el disparo base es un proyectil.
-- **Cuándo cambia:** al pasar de piso, con una pequeña animación de metamorfosis en la transición. Se mira la Boca que llevas en ese momento. Si cambias de Boca a mitad de piso, solo cambia la pieza del arma; el cuerpo nuevo llega en el piso siguiente.
+- **Cuándo cambia:** al elegir la Boca en la sala de paso tras el jefe (ver "Paso al piso siguiente"), con una cinemática de metamorfosis. En el piso siguiente no se ofrecen Bocas, así que el cuerpo y el arma siempre se corresponden. La única forma de cambiar de Boca es la sala de cambio; si la nueva es de otra familia, hay otra metamorfosis y cambia el cuerpo (si es de la misma, solo cambia la pieza del arma).
+- **Mientras un piso tenga 2 Bocas** (8 mutaciones), solo hay 2 familias y 2 cuerpos en ese piso; el tercero llega con la tercera Boca. En el piso 2: Cnidocitos (proyectil → medusa) y una Boca cuerpo a cuerpo por diseñar (→ pez primitivo con mandíbulas); el lirio de mar (área) llegará con la tercera.
 - **Piso 1:** la célula actual con sus piezas (ya hecha), sin variantes.
 - **Piezas del resto de ranuras:** Extremidades, Piel y Órgano son capas sencillas colocadas en unos pocos puntos fijos de cada cuerpo (lomo, costados, centro). En los pisos 2 a 6 la Piel deja de sustituir al cuerpo y pasa a ser una capa encima (por ejemplo, el caparazón en el lomo).
 - **Arte:** 15 cuerpos nuevos (pisos 2 a 6 × 3 familias), cada uno con las animaciones del jugador (reposo, moverse, esquiva y muerte en 3 direcciones).
@@ -273,7 +302,8 @@ La v1.0 tiene los **pisos 1 a 3** completos y pulidos (si el 3 se retrasa mucho,
 - [x] Música y efectos de sonido
 - [x] Linajes con su beneficio (base por clase y toque de cada animal)
 - [ ] Más variedad en el piso 1: un tercer enemigo y salas especiales
-- [ ] Paso de un piso al siguiente, con la metamorfosis del jugador según su familia de arma
+- [ ] Paso de un piso al siguiente: sala de paso con la elección de Boca y la metamorfosis del jugador según su familia de arma
+- [ ] Sala de cambio (el laboratorio de Darwin), desde el piso 2
 - [ ] Piso 2 (Océano cámbrico): escenario, 2 o 3 enemigos, Anomalocaris, 4 mutaciones y los 3 cuerpos del jugador
 - [ ] Piso 3 (Pantano carbonífero): lo mismo, con el artrópodo gigante
 - [x] Tienda con biomasa
@@ -350,6 +380,17 @@ Objetivo: que añadir una mutación, un enemigo o una sala nueva sea crear un ar
 | Linajes | Sustituyen a Depredador, Acorazado y Tóxico. Un linaje es un animal que se activa con sus 4 mutaciones (una por ranura); una mutación puede estar en varios linajes. Cada linaje pertenece a una clase (Carnívoro, Herbívoro, Venenoso u Hongo), que decide el tipo de beneficio. 7 linajes en el piso 1 |
 | Mutaciones del piso 1 | 12: las 9 de la v0.5 más Hifas, Camuflaje y Vacuola digestiva |
 | Jefes | 2 por piso, uno al azar en cada partida. Piso 1: virus gigante o ameba gigante |
+
+**Decidido el 23 de octubre**
+
+| Tema | Decisión |
+| --- | --- |
+| Mutaciones por piso | Cada piso tiene sus propias mutaciones (8 por ahora, 12 más adelante) y sus propios linajes. Desde el piso 2 solo se ofrecen las de ese piso. Sustituye a "4 mutaciones por piso que se suman a las anteriores" |
+| Dificultad | Vida de los enemigos ×1,5–2 por piso, más densidad y patrones; el nivel I del piso N+1 vale como el II del piso N |
+| Linajes entre pisos | Útiles un piso por encima del suyo, flojos dos pisos por encima; se ajustan valores al cambiar de piso, nada visual |
+| Boca y cuerpo | La Boca del piso siguiente se elige obligatoriamente en la sala de paso tras el jefe y decide el cuerpo, con una metamorfosis. En el piso siguiente no se ofrecen Bocas; solo la sala de cambio cambia la Boca |
+| Sala de cambio | Una por piso desde el piso 2, junto a la tienda, gratis, un solo cambio: das una mutación y recibes otra de la misma ranura y el mismo nivel |
+| Tamaño de los pisos | Piso 1: 4–5 salas de combate y 1–2 laterales. Desde el piso 2: 8–10 de combate. Partidas de 40–60 minutos |
 
 **Decidido el 15 de octubre**
 

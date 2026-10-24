@@ -19,6 +19,7 @@ namespace Primordia.Rooms
         public const string Cross = "Room_Cross";
         public const string LShape = "Room_L";
         public const string BossCircle = "Room_BossCircle";
+        public const string TransitionCave = "Room_TransitionCave";
 
         /// <summary>Diámetro del suelo de la sala circular de la ameba gigante, en tiles.</summary>
         public const int BossCircleDiameter = 30;
@@ -47,7 +48,52 @@ namespace Primordia.Rooms
 
             // Círculo de 30 tiles de diámetro (32×34 con las paredes): la sala de la ameba gigante, vacía.
             [BossCircle] = Circle(BossCircleDiameter),
+
+            // Cueva orgánica de 34×29 para la sala de paso, con la fosa en el centro y una puerta en cada lado.
+            [TransitionCave] = Cave(),
         };
+
+        /// <summary>
+        /// Cueva de la sala de paso, dibujada a mano y comprobada con las reglas de paredes: borde irregular, entrantes
+        /// de roca abajo y los cuellos de las cuatro puertas (arriba y abajo en las columnas 16-17; a los lados, en las
+        /// filas 12-13 contando desde abajo).
+        /// </summary>
+        static string Cave()
+        {
+            var rows = new[]
+            {
+                "################^^################",
+                "##################################",
+                "##################################",
+                "###############.....##############",
+                "##############.......#############",
+                "#############.........############",
+                "#######...............############",
+                "######................############",
+                "######................############",
+                "######.......................#####",
+                "#####.........................####",
+                "#####.........................####",
+                "####...........................###",
+                "####............................##",
+                "####.............................#",
+                "<................................>",
+                "<................................>",
+                "###..............................#",
+                "###..............................#",
+                "###..............................#",
+                "###.............................##",
+                "####...........................###",
+                "####...........................###",
+                "#####........................#####",
+                "#####....................#########",
+                "#####...................##########",
+                "######.......###........##########",
+                "######.....#####..###.############",
+                "################vv################",
+            };
+            return string.Join("\n", rows) + "\n";
+        }
 
         /// <summary>Sala rectangular con un hueco de 2 tiles centrado en cada lado.</summary>
         public static string Rectangle(int width, int height) =>

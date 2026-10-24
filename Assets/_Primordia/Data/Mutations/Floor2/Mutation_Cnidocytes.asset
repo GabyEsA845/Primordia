@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ae6dfe8bf811cd4aa9de30d1d03b937, type: 3}
+  m_Name: Mutation_Cnidocytes
+  m_EditorClassIdentifier: Primordia::Primordia.Mutations.AttackMutation
+  displayName: Cnidocitos
+  description: Arpones urticantes que atraviesan a un enemigo y lo envenenan.
+  slot: 0
+  lineages: []
+  look: {fileID: 0}
+  bodyRadius: 0
+  mouthDistance: 0
+  headHeight: 0
+  wornOnHead: 0
+  muzzleDistance: 0
+  attackLean: 0
+  icon: {fileID: 21300000, guid: 91d68b12a73e4d64e9c439eebcd7fbb0, type: 3}
+  largeIcon: {fileID: 21300000, guid: 563bb8c8de7e74e4a8655e17716eec1c, type: 3}
+  color: {r: 0.95, g: 0.5, b: 0.35, a: 1}
+  levelDescriptions:
+  - 
+  - 
+  dodgeSound: 
+  floor: 2
+  family: 0
+  creatureIdleFrames:
+  - {fileID: 6344908649535744163, guid: 245ca6817a141454880bc14e7221411c, type: 3}
+  - {fileID: -3490793647170328848, guid: 245ca6817a141454880bc14e7221411c, type: 3}
+  - {fileID: 5090463878462888834, guid: 245ca6817a141454880bc14e7221411c, type: 3}
+  - {fileID: -3649157074061235095, guid: 245ca6817a141454880bc14e7221411c, type: 3}
+  creatureAttackFrames:
+  - {fileID: -1189293537396146040, guid: 08b39a779193e9a458e9dd4b8a7feb09, type: 3}
+  - {fileID: -5556800183599352415, guid: 08b39a779193e9a458e9dd4b8a7feb09, type: 3}
+  - {fileID: 4324795199152835869, guid: 08b39a779193e9a458e9dd4b8a7feb09, type: 3}
+  - {fileID: -7404127510771553032, guid: 08b39a779193e9a458e9dd4b8a7feb09, type: 3}
+  - {fileID: 2414722972721512475, guid: 08b39a779193e9a458e9dd4b8a7feb09, type: 3}
+  - {fileID: -3230314704043606289, guid: 08b39a779193e9a458e9dd4b8a7feb09, type: 3}
+  creatureBody: {fileID: 9100000, guid: 5c4ed1232e5e4c14a9ea4801bceeb8b0, type: 2}
+  morphFrames:
+  - {fileID: -1609282909594631881, guid: aed4f866b26e425429accf8cddac9ef2, type: 3}
+  - {fileID: 2047464158327799277, guid: aed4f866b26e425429accf8cddac9ef2, type: 3}
+  - {fileID: -4041087012725080972, guid: aed4f866b26e425429accf8cddac9ef2, type: 3}
+  - {fileID: -5963964577157043208, guid: aed4f866b26e425429accf8cddac9ef2, type: 3}
+  - {fileID: -2356428645597120061, guid: aed4f866b26e425429accf8cddac9ef2, type: 3}
+  - {fileID: 1523297368252795078, guid: aed4f866b26e425429accf8cddac9ef2, type: 3}
+  - {fileID: 1853760898705348363, guid: aed4f866b26e425429accf8cddac9ef2, type: 3}
+  - {fileID: -8221442703567841720, guid: aed4f866b26e425429accf8cddac9ef2, type: 3}
+  - {fileID: 8816439965345445864, guid: aed4f866b26e425429accf8cddac9ef2, type: 3}
+  - {fileID: 288000326673295235, guid: aed4f866b26e425429accf8cddac9ef2, type: 3}
+  - {fileID: 7949988067925999563, guid: aed4f866b26e425429accf8cddac9ef2, type: 3}
+  - {fileID: -7200997487025410241, guid: aed4f866b26e425429accf8cddac9ef2, type: 3}
+  revealFrames:
+  - {fileID: -7518145383224793447, guid: b68df15c95696e94583f56593377bb07, type: 3}
+  - {fileID: 5219409096750720850, guid: b68df15c95696e94583f56593377bb07, type: 3}
+  - {fileID: 6945872411459002675, guid: b68df15c95696e94583f56593377bb07, type: 3}
+  - {fileID: -4686499123767007208, guid: b68df15c95696e94583f56593377bb07, type: 3}
+  - {fileID: 2182347238908803520, guid: b68df15c95696e94583f56593377bb07, type: 3}
+  - {fileID: -6367851024615084837, guid: b68df15c95696e94583f56593377bb07, type: 3}
+  attack: {fileID: 11400000, guid: b6c3f22c0110a2548b95eda6f2d352df, type: 2}
+  healEveryKills: 0
+  upgrades: []
+  healEffect: {fileID: 0}

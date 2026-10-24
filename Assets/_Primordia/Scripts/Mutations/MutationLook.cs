@@ -97,6 +97,35 @@ namespace Primordia.Mutations
         /// <summary>Oculta las piezas (mientras se ve la animación de la evolución).</summary>
         public bool Hidden { get; set; }
 
+        /// <summary>
+        /// True con el cuerpo de una criatura (Boca del piso 2 en adelante): manda sobre la célula y la Piel, y las piezas
+        /// de las demás ranuras no se dibujan hasta que tengan sus capas para ese cuerpo.
+        /// </summary>
+        public bool CreatureForm { get; private set; }
+
+        /// <summary>
+        /// Mientras es true, cambiar de Boca no cambia todavía la forma: la metamorfosis la retiene hasta revelarla
+        /// (<see cref="ReleaseForm"/>).
+        /// </summary>
+        public bool FormHeld { get; private set; }
+
+        /// <summary>Retiene la forma actual aunque cambie la Boca (ver <see cref="FormHeld"/>).</summary>
+        public void HoldForm() => FormHeld = true;
+
+        /// <summary>Deja de retener la forma y pone la de la Boca que se lleva ahora.</summary>
+        public void ReleaseForm()
+        {
+            FormHeld = false;
+            ApplyCreatureForm(mutations.Get(MutationSlot.Mouth));
+        }
+
+        void ApplyCreatureForm(MutationData newMouth)
+        {
+            var creature = newMouth != null ? newMouth.CreatureBody : null;
+            CreatureForm = creature != null;
+            playerAnimator.SetCreatureController(creature);
+        }
+
         /// <summary>Animaciones de la pieza de esa ranura que se ven ahora (las del linaje, si las sustituye).</summary>
         public RuntimeAnimatorController LookOf(MutationSlot slot) => LookFor(slot, mutations.Get(slot));
 
@@ -175,7 +204,7 @@ namespace Primordia.Mutations
                 Play(organ, IdleState);
             }
 
-            bool shown = !controller.IsDodging && !Hidden;
+            bool shown = !controller.IsDodging && !Hidden && !CreatureForm;
             Show(limbsRenderer, limbs, shown);
             Show(organRenderer, organ, shown);
             Show(mouthRenderer, mouth, shown);
@@ -264,6 +293,8 @@ namespace Primordia.Mutations
                 case MutationSlot.Mouth:
                     mouthBusyUntil = 0f;
                     mouthMutation = mutation;
+                    if (!FormHeld)
+                        ApplyCreatureForm(mutation);
                     bool onHead = MouthOnHead;
                     if (SetLook(mouth, onHead ? null : look))
                         Play(mouth, IdleState);

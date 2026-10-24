@@ -41,6 +41,7 @@ namespace Primordia.Audio
         float layerSpeed = 1f;
         float duck = 1f;
         float duckTarget = 1f;
+        float distanceGain = 1f;
         float stingerGain = 1f;
         float stingerUntil = -1f;
         float stingerVolume;
@@ -166,6 +167,14 @@ namespace Primordia.Audio
         /// <summary>Música más baja (pausa, mapa, elección de mutación).</summary>
         public void SetDucked(bool ducked) => duckTarget = ducked ? DuckedLevel : 1f;
 
+        /// <summary>
+        /// Volumen de la música según dónde está el jugador (1 = normal, 0 = callada): junto a la fosa de la sala de
+        /// paso se apaga. Sin fundido propio, porque la distancia ya cambia poco a poco. No afecta a los fragmentos.
+        /// </summary>
+        public void SetDistanceGain(float gain) => distanceGain = Mathf.Clamp01(gain);
+
+        public float DistanceGain => distanceGain;
+
         static float SpeedFor(float fade) => fade > 0f ? 1f / fade : float.PositiveInfinity;
 
         internal void Update(float dt)
@@ -196,7 +205,7 @@ namespace Primordia.Audio
 
         void Apply()
         {
-            float common = duck * stingerGain * manager.MusicVolume;
+            float common = duck * stingerGain * distanceGain * manager.MusicVolume;
             stinger.volume = stingerVolume * manager.MusicVolume;
             // Fundido de igual potencia entre la pista y su capa: a mitad no baja el volumen.
             float angle = layer * Mathf.PI / 2f;

@@ -174,6 +174,7 @@ Borrador de ideas para los pisos 2 a 6 (una por ranura; faltan las demás hasta 
 | Piso | Mutación | Ranura | Familia | Efecto (idea) |
 | --- | --- | --- | --- | --- |
 | 2 | Cnidocitos | Boca | Proyectil | Arpones urticantes que atraviesan a un enemigo y envenenan |
+| 2 | Placas mandibulares | Boca | Cuerpo a cuerpo | Mordisco de guillotina, lento y fuerte, que quiebra la coraza (valores abajo) |
 | 2 | Cola propulsora | Extremidades | | Dos esquivas seguidas antes de la recarga |
 | 2 | Placas de trilobite | Piel | | +1 corazón; refleja 1 de cada 4 proyectiles que te golpean |
 | 2 | Saco de crías | Órgano especial | | Suelta 2 larvas aliadas que persiguen y muerden durante 10 s |
@@ -195,6 +196,12 @@ Borrador de ideas para los pisos 2 a 6 (una por ranura; faltan las demás hasta 
 | 6 | Instinto de manada | Órgano especial | | Invoca 2 lobos aliados durante 10 s |
 
 Sus linajes y sus niveles II y III se diseñan al hacer cada piso.
+
+**Placas mandibulares (piso 2, cuerpo a cuerpo, aprobada el 23 de octubre):** inspirada en *Dunkleosteus*, un pez acorazado que no tenía dientes y cortaba con placas de hueso afiladas. Frente a Mandíbulas, muerde menos veces pero más fuerte y en un arco más ancho.
+- **Nivel I** (vale como Mandíbulas II): arco de 110°, unas 4,6 unidades de alcance, 5 de daño, 2 mordiscos por segundo y un pequeño empujón. **Quebrar:** el enemigo mordido recibe un 25 % más de daño de todo durante 2 s.
+- **Nivel II:** daño 5 → 6 y Quebrar dura 3 s.
+- **Nivel III, evolución *Guillotina*:** cada cuarto mordisco es doble, hace el triple de daño y aturde 0,5 s.
+- **Aspecto:** placas óseas oscuras en la cabeza del pez primitivo, que se abren y se cierran de golpe al morder.
 
 **Jefe del piso 1 (virus gigante):** 120 de vida, 3×3 unidades, avanza despacio hacia el centro, medio corazón por contacto. Fase 1: espiral de un brazo y ráfaga circular de 12 proyectiles cada 4 s. Fase 2 (desde el 50 %): espiral de dos brazos más rápida, ráfaga de 16 e invoca 2 bacterias cada 8 s (máximo 4 vivas).
 
@@ -229,6 +236,25 @@ Cada piso tiene **2 jefes posibles** y en cada partida sale uno al azar.
 4. **Metamorfosis:** cinemática en la que el jugador se transforma en la criatura del piso siguiente según la familia de la Boca elegida, y el juego pasa al piso nuevo.
 5. **En el piso siguiente** no se ofrecen otras Bocas (ni en las elecciones ni en la tienda), pero sí las mejoras de la que llevas.
 
+**Cómo es la sala de paso**
+
+- **Forma:** una cueva orgánica de borde irregular, distinta de todas las demás salas. Se engancha a la sala del jefe que toque (virus o ameba) y sale en el minimapa con un icono propio cuando se abre.
+- **Del piso actual al siguiente:** la entrada todavía parece del piso actual, y hacia la fosa el suelo, las paredes, la luz y la decoración pasan poco a poco a la paleta y la ambientación del piso siguiente (para el piso 2: esponjas, corales primitivos, algas, conchas de trilobite y tallos de lirio de mar, que luego se reutilizan en el piso 2).
+- **La fosa:** en el centro hay una fosa profunda y tiene que verse a simple vista que hay que saltar en ella. Tiene un borde con un saliente claro, el interior oscuro, una luz azulada que sube del fondo y burbujas o partículas que ascienden. Es un obstáculo sólido: no se puede caer en ella andando ni esquivando.
+- **Pasillo largo:** el pasillo del jefe a la sala de paso mide 14 tiles (los demás, unos 4), para que dé tiempo a notar el cambio de sonido.
+- **Sonido:** desde la entrada del pasillo (a unas 30 unidades de la fosa) hasta su borde, la música y el ambiente del piso actual se van apagando y crece el ambiente del piso siguiente (para el piso 2, mar profundo con oleaje lento, burbujas grandes y un fondo grave que respira). Durante un combate no cambia. El salto y la caída tienen sus propios efectos (impulso que sube; silbido que baja y un "bloop" grave al llegar al fondo).
+- **Activación:** acercándose a cualquier punto del borde aparece la tecla E en el punto más cercano, con el texto "Saltar al piso siguiente" (o "Te dejas mutaciones" si quedan burbujas del jefe sin coger). Al pulsar E no hay vuelta atrás.
+
+**Secuencia del salto**
+
+1. **Salto:** el jugador da un pequeño salto hacia el centro de la fosa.
+2. **Elección de Boca:** casi al final del salto, sobre la fosa, se queda congelado en el aire, la pantalla se oscurece (dejando ver a la criatura) y aparece la ventana "Elige tu Boca" con las Bocas del piso siguiente, sin botón para cerrarla ni Esc. Cada Boca es una carta grande con la criatura en que te convertirás, en reposo; con el ratón encima la carta crece un poco y la criatura hace su ataque en bucle. Debajo, icono, nombre, familia y lo que hace en el nivel I. Bajo las cartas, un aviso de lo que pasará con los niveles de tu Boca actual.
+3. **Reparto de niveles:** tras elegir, la otra carta se desvanece y aparece una fila con tus ranuras: la Boca vieja deja su sitio a la nueva (nivel I) y cada nivel extra sale de ella como un "+1" que vuela a la mutación que lo recibe (su insignia sube) o, si no cabe en ninguna, se convierte en "Perdido" y se desvanece.
+4. **Metamorfosis (unos 6 s, decidida el 23 de octubre):** con franjas de cine y sin HUD. Fundido a un abismo por el que la criatura cae con su aspecto real (degradado azul muy profundo, burbujas y motas que suben deprisa, rayos de luz tenues desde arriba). Empieza a brillar como en la evolución de los linajes, pero **del color de la familia de la Boca elegida** (rosa para proyectil, naranja para cuerpo a cuerpo, lima para área): el aura crece, la silueta se vuelve blanca y las piezas se funden en la luz. La silueta cambia despacio de la célula a la criatura nueva, un estallido de luz la revela con sus colores y hace una vez su ataque como pose de presentación. Fundido a negro.
+   - **Saltarla:** desde que se ha visto entera una vez (se guarda entre partidas), Interactuar (E) la salta; mientras se puede, un aviso abajo a la derecha lo dice ("E: saltar escena").
+   - **Cambio de cuerpo:** al revelarse, el jugador pasa a tener el cuerpo de la criatura (sus animaciones de reposo, moverse, esquiva, ataque, daño y muerte), que manda sobre la célula y la Piel. Hasta que se diseñen sus capas en el piso 2, las piezas de las demás ranuras no se dibujan sobre el cuerpo de la criatura.
+5. **Llegada:** fundido al piso siguiente. Mientras no exista el piso 2, la pantalla de victoria, que enseña la criatura nueva en reposo.
+
 **Sala de cambio (el laboratorio de Darwin)**
 
 Una por piso desde el piso 2, siempre pegada a la tienda (así es fácil de encontrar). En el centro hay una cápsula llena de líquido; al acercarse y pulsar E se abre su propia interfaz, distinta de las demás:
@@ -244,8 +270,10 @@ Para que el arte sea abarcable, el cuerpo del jugador **no** combina mutaciones:
 
 - **Familias de arma:** *Cuerpo a cuerpo* (Mandíbulas, Colmillos), *Proyectil* (Aguijón, Cnidocitos, Escupitajo venenoso) y *Área* (Esporas, Escupitajo ácido, Trompa). Sin mutación de Boca se usa la variante *Proyectil*, porque el disparo base es un proyectil.
 - **Cuándo cambia:** al elegir la Boca en la sala de paso tras el jefe (ver "Paso al piso siguiente"), con una cinemática de metamorfosis. En el piso siguiente no se ofrecen Bocas, así que el cuerpo y el arma siempre se corresponden. La única forma de cambiar de Boca es la sala de cambio; si la nueva es de otra familia, hay otra metamorfosis y cambia el cuerpo (si es de la misma, solo cambia la pieza del arma).
-- **Mientras un piso tenga 2 Bocas** (8 mutaciones), solo hay 2 familias y 2 cuerpos en ese piso; el tercero llega con la tercera Boca. En el piso 2: Cnidocitos (proyectil → medusa) y una Boca cuerpo a cuerpo por diseñar (→ pez primitivo con mandíbulas); el lirio de mar (área) llegará con la tercera.
+- **Mientras un piso tenga 2 Bocas** (8 mutaciones), solo hay 2 familias y 2 cuerpos en ese piso; el tercero llega con la tercera Boca. En el piso 2: Cnidocitos (proyectil → medusa) y Placas mandibulares (cuerpo a cuerpo → pez primitivo acorazado); el lirio de mar (área) llegará con la tercera.
 - **Piso 1:** la célula actual con sus piezas (ya hecha), sin variantes.
+- **La Boca va en el cuerpo (desde el piso 2):** como en cada piso hay una Boca por familia, cuerpo y Boca siempre van juntos. La Boca se dibuja dentro del cuerpo y cada cuerpo tiene su **animación de ataque propia y trabajada** en las 3 direcciones (preparación, golpe y recuperación), en lugar de la pieza de 3 cuadros que gira hacia el cursor en el piso 1. El efecto del golpe (el arco del mordisco, el destello del disparo) sí gira hacia el cursor.
+- **Tamaño:** los cuerpos desde el piso 2 se dibujan en unos 20×20 píxeles (la célula ocupa 16×16) para que se note la evolución, pero la zona de choque es la misma que la de la célula, así que la dificultad no cambia.
 - **Piezas del resto de ranuras:** Extremidades, Piel y Órgano son capas sencillas colocadas en unos pocos puntos fijos de cada cuerpo (lomo, costados, centro). En los pisos 2 a 6 la Piel deja de sustituir al cuerpo y pasa a ser una capa encima (por ejemplo, el caparazón en el lomo).
 - **Arte:** 15 cuerpos nuevos (pisos 2 a 6 × 3 familias), cada uno con las animaciones del jugador (reposo, moverse, esquiva y muerte en 3 direcciones).
 
@@ -391,6 +419,7 @@ Objetivo: que añadir una mutación, un enemigo o una sala nueva sea crear un ar
 | Boca y cuerpo | La Boca del piso siguiente se elige obligatoriamente en la sala de paso tras el jefe y decide el cuerpo, con una metamorfosis. En el piso siguiente no se ofrecen Bocas; solo la sala de cambio cambia la Boca |
 | Sala de cambio | Una por piso desde el piso 2, junto a la tienda, gratis, un solo cambio: das una mutación y recibes otra de la misma ranura y el mismo nivel |
 | Tamaño de los pisos | Piso 1: 4–5 salas de combate y 1–2 laterales. Desde el piso 2: 8–10 de combate. Partidas de 40–60 minutos |
+| Sala de paso | Cueva orgánica que pasa poco a poco del piso actual al siguiente (paleta, decoración y sonido) con una fosa en el centro. E en el borde: salto, elección de Boca con el jugador congelado en el aire, reparto de niveles visible en la ventana y metamorfosis durante la caída (membrana que revienta). Antes de la sala se hacen el arte de los cuerpos del piso 2 y el diseño de su Boca cuerpo a cuerpo |
 
 **Decidido el 15 de octubre**
 

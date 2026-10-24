@@ -12,6 +12,42 @@ namespace Primordia.Mutations
             _ => slot.ToString()
         };
 
+        public static string FamilyName(WeaponFamily family) => family switch
+        {
+            WeaponFamily.Melee => "Cuerpo a cuerpo",
+            WeaponFamily.Projectile => "Proyectil",
+            WeaponFamily.Area => "Área",
+            _ => family.ToString()
+        };
+
+        /// <summary>
+        /// Aviso de la ventana de elección de Boca: qué pasa con los niveles de la Boca actual. Vacío si no hay Boca.
+        /// </summary>
+        public static string MouthChangeNote(PlayerMutations player)
+        {
+            var old = player != null ? player.Get(MutationSlot.Mouth) : null;
+            if (old == null)
+                return "";
+
+            int extra = MouthChange.ExtraLevels(player);
+            string current = $"Tu {old.DisplayName} {LevelName(player.LevelOf(MutationSlot.Mouth))}";
+            if (extra <= 0)
+                return $"{current} se queda atrás.";
+
+            int room = 0;
+            foreach (var slot in new[] { MutationSlot.Limbs, MutationSlot.Skin, MutationSlot.Organ })
+            {
+                if (player.Get(slot) != null)
+                    room += MutationData.MaxLevel - player.LevelOf(slot);
+            }
+
+            string levels = extra == 1 ? "1 nivel" : $"{extra} niveles";
+            if (room == 0)
+                return $"{current}: {levels} se perderá{(extra == 1 ? "" : "n")}, tus otras mutaciones ya están al máximo.";
+            string spread = $"{current}: {levels} se repartirá{(extra == 1 ? "" : "n")} entre tus otras mutaciones";
+            return room < extra ? $"{spread}; los que no quepan se perderán." : $"{spread}.";
+        }
+
         /// <summary>Nivel en números romanos: I, II, III.</summary>
         public static string LevelName(int level) => level switch
         {

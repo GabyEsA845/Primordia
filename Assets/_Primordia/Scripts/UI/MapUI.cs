@@ -23,6 +23,7 @@ namespace Primordia.UI
         [SerializeField] Sprite bossIcon;
         [SerializeField] Sprite rewardIcon;
         [SerializeField] Sprite shopIcon;
+        [SerializeField] Sprite transitionIcon;
 
         [Header("Minimapa")]
         [Tooltip("Raíz del minimapa (marco y fondo); se oculta si no hay piso.")]
@@ -44,6 +45,7 @@ namespace Primordia.UI
             public Image Player;
             public Image Boss;
             public Image Shop;
+            public Image Transition;
             public readonly List<Image> Rewards = new();
         }
 
@@ -77,6 +79,8 @@ namespace Primordia.UI
         }
 
         internal void SetShopIcon(Sprite newShopIcon) => shopIcon = newShopIcon;
+
+        internal void SetTransitionIcon(Sprite newTransitionIcon) => transitionIcon = newTransitionIcon;
 
         /// <summary>La tienda se marca al entrar en ella o al limpiar una sala vecina (la de la que cuelga).</summary>
         public static bool ShopDiscovered(MapRoom room)
@@ -203,6 +207,13 @@ namespace Primordia.UI
                     SetIcon(minimap.Shop, discovered, painter.MarkerPosition(room));
                     SetIcon(bigMap.Shop, discovered, painter.MarkerPosition(room));
                 }
+                else if (room.Role == RoomRole.Transition)
+                {
+                    // Como la tienda: se marca al limpiar la sala de la que cuelga, que es la del jefe.
+                    bool open = ShopDiscovered(room);
+                    SetIcon(minimap.Transition, open, painter.MarkerPosition(room));
+                    SetIcon(bigMap.Transition, open, painter.MarkerPosition(room));
+                }
             }
 
             int reward = 0;
@@ -306,6 +317,8 @@ namespace Primordia.UI
             {
                 if (room.Role == RoomRole.Shop)
                     view.Shop = CreateMarker(content, shopIcon);
+                else if (room.Role == RoomRole.Transition)
+                    view.Transition = CreateMarker(content, transitionIcon);
             }
             foreach (var room in rooms)
             {

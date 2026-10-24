@@ -12,6 +12,17 @@ namespace Primordia.Mutations
     }
 
     /// <summary>
+    /// Familia de arma de una Boca: decide la forma del jugador desde el piso 2 (una criatura por familia en cada piso).
+    /// Sin Boca se usa la de proyectil, porque el disparo base es un proyectil.
+    /// </summary>
+    public enum WeaponFamily
+    {
+        Projectile,
+        Melee,
+        Area
+    }
+
+    /// <summary>
     /// Base de todas las mutaciones: nombre, ranura, linajes, aspecto y niveles. Cada tipo de mutación
     /// (estadísticas, ataque, habilidad...) hereda de aquí y aplica su efecto en <see cref="Apply"/> según el nivel
     /// (1 a <see cref="MaxLevel"/>): el II mejora valores y el III desbloquea una evolución. Los cambios que hace
@@ -57,6 +68,23 @@ namespace Primordia.Mutations
         [Tooltip("Extremidades: sonido de la esquiva con esta mutación (SoundLibrary). Vacío = el normal.")]
         [SerializeField] string dodgeSound;
 
+        [Header("Piso")]
+        [Tooltip("Piso al que pertenece: desde el piso 2, cada piso solo ofrece las suyas.")]
+        [SerializeField, Min(1)] int floor = 1;
+        [Tooltip("Solo Boca: familia de arma, que decide la criatura del jugador desde el piso 2.")]
+        [SerializeField] WeaponFamily family;
+        [Tooltip("Solo Boca desde el piso 2: la criatura en que se convierte el jugador, en reposo y atacando (de lado). "
+            + "Se ve en la ventana de elección de Boca de la sala de paso.")]
+        [SerializeField] Sprite[] creatureIdleFrames = System.Array.Empty<Sprite>();
+        [SerializeField] Sprite[] creatureAttackFrames = System.Array.Empty<Sprite>();
+        [Tooltip("Solo Boca desde el piso 2: animaciones del cuerpo de la criatura, con los estados del jugador más "
+            + "Attack_side/down/up. Sustituyen a la célula y a la Piel.")]
+        [SerializeField] RuntimeAnimatorController creatureBody;
+        [Tooltip("Solo Boca desde el piso 2: metamorfosis, la silueta blanca que pasa de la célula a la criatura.")]
+        [SerializeField] Sprite[] morphFrames = System.Array.Empty<Sprite>();
+        [Tooltip("Solo Boca desde el piso 2: de la silueta blanca a los colores de la criatura, al final de la metamorfosis.")]
+        [SerializeField] Sprite[] revealFrames = System.Array.Empty<Sprite>();
+
         public string DisplayName => string.IsNullOrEmpty(displayName) ? name : displayName;
 
         /// <summary>Extremidades: sonido de la esquiva con esta mutación (las Aletas). Vacío = el normal.</summary>
@@ -75,6 +103,13 @@ namespace Primordia.Mutations
         public Sprite Icon => icon;
         public Sprite LargeIcon => largeIcon != null ? largeIcon : icon;
         public Color Color => color;
+        public int Floor => floor;
+        public WeaponFamily Family => family;
+        public Sprite[] CreatureIdleFrames => creatureIdleFrames ?? System.Array.Empty<Sprite>();
+        public Sprite[] CreatureAttackFrames => creatureAttackFrames ?? System.Array.Empty<Sprite>();
+        public RuntimeAnimatorController CreatureBody => creatureBody;
+        public Sprite[] MorphFrames => morphFrames ?? System.Array.Empty<Sprite>();
+        public Sprite[] RevealFrames => revealFrames ?? System.Array.Empty<Sprite>();
 
         /// <summary>Lo que añade ese nivel (2 o 3); vacío en el nivel 1 o si no está escrito.</summary>
         public string LevelDescription(int level)
@@ -131,5 +166,24 @@ namespace Primordia.Mutations
         }
 
         internal void SetHeadHeight(float height) => headHeight = height;
+
+        internal void SetFloor(int newFloor, WeaponFamily newFamily = WeaponFamily.Projectile)
+        {
+            floor = Mathf.Max(1, newFloor);
+            family = newFamily;
+        }
+
+        internal void SetCreatureFrames(Sprite[] idle, Sprite[] attack)
+        {
+            creatureIdleFrames = idle ?? System.Array.Empty<Sprite>();
+            creatureAttackFrames = attack ?? System.Array.Empty<Sprite>();
+        }
+
+        internal void SetCreature(RuntimeAnimatorController body, Sprite[] morph, Sprite[] reveal)
+        {
+            creatureBody = body;
+            morphFrames = morph ?? System.Array.Empty<Sprite>();
+            revealFrames = reveal ?? System.Array.Empty<Sprite>();
+        }
     }
 }

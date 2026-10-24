@@ -19,6 +19,12 @@ namespace Primordia.Rooms
         /// <summary>Pasillo más corto entre dos salas vecinas; si una sala es más pequeña que su celda, crece.</summary>
         public const int CorridorLength = 4;
 
+        /// <summary>
+        /// Pasillo del jefe a la sala de paso: largo, para que dé tiempo a oír cómo se apaga la música del piso y sube
+        /// el ambiente del siguiente.
+        /// </summary>
+        public const int TransitionCorridorLength = 14;
+
         // Relleno de pared alrededor: media vista (15×8,5) más el adelanto de la cámara (3), con holgura.
         const int Margin = 20;
         // Sin decoración tan cerca de una puerta, para que no tape el paso.
@@ -29,6 +35,19 @@ namespace Primordia.Rooms
 
         const int SoupTheme = 0;
         const int BossTheme = 1;
+        // Sala de paso: zona intermedia y zona del piso siguiente (la de la fosa).
+        const int MidTheme = 2;
+        const int NextTheme = 3;
+
+        // Tramos de la sala de paso, en fracción de la distancia de su puerta a la fosa: hasta aquí, tema del piso actual;
+        // luego el intermedio, y desde el segundo, el del piso siguiente. Un poco de ruido para que el corte no sea recto.
+        const float MidThemeFrom = 0.4f;
+        const float NextThemeFrom = 0.75f;
+        const float ThemeNoise = 0.12f;
+        // Relleno de pared alrededor de la sala de paso que se pinta con sus temas (lo que se ve desde dentro).
+        const int TransitionThemePadding = 16;
+        // Sin decoración bajo la fosa ni pegada a su borde.
+        const float PitClearance = 1.5f;
 
         /// <summary>Resultado de montar el piso.</summary>
         public class BuiltFloor
@@ -72,7 +91,12 @@ namespace Primordia.Rooms
             var built = new BuiltFloor();
             var boss = layout.BossChoice.IsValid ? layout.BossChoice : config.BossOptions()[0];
             var bossTheme = boss.theme != null ? boss.theme : config.BossTheme != null ? config.BossTheme : config.Theme;
-            var themes = new[] { config.Theme, bossTheme };
+            var themes = new[]
+            {
+                config.Theme, bossTheme,
+                config.TransitionMidTheme != null ? config.TransitionMidTheme : config.Theme,
+                config.NextFloorTheme != null ? config.NextFloorTheme : config.Theme
+            };
             var placed = Place(layout);
             var byLayout = placed.ToDictionary(room => room.Layout);
 
@@ -89,6 +113,13 @@ namespace Primordia.Rooms
                 OpenDoor(map, byLayout[from], direction);
                 OpenDoor(map, byLayout[to], -direction);
                 corridorCells.Add((from, to, DigCorridor(map, byLayout[from], byLayout[to], direction, noDecoration)));
+            }
+
+            foreach (var room in placed.Where(room => room.Layout.Role == RoomRole.Transition))
+            {
+                ThemeTransition(map, room, placed);
+                foreach (var cell in PitCells(room, config))
+                    noDecoration.Add(cell);
             }
 
             foreach (var room in placed)
@@ -120,7 +151,8 @@ namespace Primordia.Rooms
 
                 if (room.Layout.Role == RoomRole.Start)
                     built.StartPosition = room.FloorCenter;
-                if (room.Layout.Role == RoomRole.Boss)
+                // Con sala de paso, el piso se deja por su fosa; si no, por la salida de siempre en la sala del jefe.
+                if (room.Layout.Role == RoomRole.Boss && !config.HasTransition)
                     BuildExit(builtRoom, config);
             }
 
@@ -143,8 +175,20 @@ namespace Primordia.Rooms
         /// </summary>
         static List<PlacedRoom> Place(FloorLayout layout)
         {
-            var anchorX = Anchors(layout.Rooms, room => room.Cell.x, room => room.Template.Anchor.x, room => room.Template.Width);
-            var anchorY = Anchors(layout.Rooms, room => room.Cell.y, room => room.Template.Anchor.y, room => room.Template.Height);
+            // El pasillo de la sala de paso sale más largo: se ensancha el hueco entre la columna (o fila) del jefe y la suya.
+            int? longGapX = null, longGapY = null;
+            if (layout.Transition != null)
+            {
+                var from = layout.Boss.Cell;
+                var to = layout.Transition.Cell;
+                if (from.x != to.x)
+                    longGapX = Mathf.Min(from.x, to.x);
+                else
+                    longGapY = Mathf.Min(from.y, to.y);
+            }
+
+            var anchorX = Anchors(layout.Rooms, room => room.Cell.x, room => room.Template.Anchor.x, room => room.Template.Width, longGapX);
+            var anchorY = Anchors(layout.Rooms, room => room.Cell.y, room => room.Template.Anchor.y, room => room.Template.Height, longGapY);
 
             return layout.Rooms.Select(room => new PlacedRoom
             {
@@ -153,8 +197,9 @@ namespace Primordia.Rooms
             }).ToList();
         }
 
+        /// <param name="longGap">Índice de la columna o fila tras la que el hueco es el del pasillo largo de la sala de paso.</param>
         static Dictionary<int, int> Anchors(List<LayoutRoom> rooms, System.Func<LayoutRoom, int> index,
-            System.Func<LayoutRoom, int> anchor, System.Func<LayoutRoom, int> size)
+            System.Func<LayoutRoom, int> anchor, System.Func<LayoutRoom, int> size, int? longGap)
         {
             var result = new Dictionary<int, int>();
             int next = 0;
@@ -163,9 +208,80 @@ namespace Primordia.Rooms
                 int before = group.Max(anchor);
                 int after = group.Max(room => size(room) - anchor(room));
                 result[group.Key] = next + before;
-                next += before + after + CorridorLength;
+                next += before + after + (group.Key == longGap ? TransitionCorridorLength : CorridorLength);
             }
             return result;
+        }
+
+        /// <summary>
+        /// Temas de la sala de paso por celda: el del piso actual junto a su puerta, el intermedio a medio camino y el del
+        /// piso siguiente alrededor de la fosa y más allá. También el relleno de pared de alrededor que queda más cerca de
+        /// esta sala que de las demás, para que desde dentro no se vea el corte.
+        /// </summary>
+        static void ThemeTransition(FloorMap map, PlacedRoom room, List<PlacedRoom> placed)
+        {
+            var entry = room.DoorCells.Values.FirstOrDefault();
+            if (entry == null || entry.Count == 0)
+                return;
+
+            var door = new Vector2((float)entry.Average(cell => cell.x), (float)entry.Average(cell => cell.y)) + Vector2.one * 0.5f;
+            float span = Mathf.Max(1f, Vector2.Distance(door, room.FloorCenter));
+            var others = placed.Where(other => other != room).Select(other => other.Rect).ToList();
+            var area = room.Rect;
+            area.SetMinMax(area.min - Vector2Int.one * TransitionThemePadding, area.max + Vector2Int.one * TransitionThemePadding);
+
+            foreach (var cell in area.allPositionsWithin)
+            {
+                if (!room.Rect.Contains(cell))
+                {
+                    // Fuera de la plantilla, solo el relleno de pared que no está más cerca de otra sala.
+                    if (map.Get(cell) != FloorMap.Kind.Wall)
+                        continue;
+                    float own = Distance(room.Rect, cell);
+                    if (others.Any(other => Distance(other, cell) <= own))
+                        continue;
+                }
+
+                float t = Vector2.Distance(cell + Vector2.one * 0.5f, door) / span
+                    + ((CellNoise(cell) & 1023) / 1023f * 2f - 1f) * ThemeNoise;
+                map.SetTheme(cell, t < MidThemeFrom ? SoupTheme : t < NextThemeFrom ? MidTheme : NextTheme);
+            }
+        }
+
+        static float Distance(RectInt rect, Vector2Int cell)
+        {
+            int dx = Mathf.Max(rect.xMin - cell.x, 0, cell.x - (rect.xMax - 1));
+            int dy = Mathf.Max(rect.yMin - cell.y, 0, cell.y - (rect.yMax - 1));
+            return Mathf.Sqrt(dx * dx + dy * dy);
+        }
+
+        static int CellNoise(Vector2Int cell)
+        {
+            unchecked
+            {
+                int hash = cell.x * 92837111 ^ cell.y * 689287499;
+                hash ^= hash >> 15;
+                return (hash * 1103515245) & int.MaxValue;
+            }
+        }
+
+        /// <summary>Celdas bajo la fosa de la sala de paso y junto a su borde.</summary>
+        static IEnumerable<Vector2Int> PitCells(PlacedRoom room, FloorConfig config)
+        {
+            if (config.TransitionPit == null)
+                yield break;
+
+            var radii = config.TransitionPit.EdgeRadii + Vector2.one * PitClearance;
+            var center = room.FloorCenter;
+            for (int y = Mathf.FloorToInt(center.y - radii.y); y <= Mathf.CeilToInt(center.y + radii.y); y++)
+            {
+                for (int x = Mathf.FloorToInt(center.x - radii.x); x <= Mathf.CeilToInt(center.x + radii.x); x++)
+                {
+                    float nx = (x + 0.5f - center.x) / radii.x, ny = (y + 0.5f - center.y) / radii.y;
+                    if (nx * nx + ny * ny <= 1f)
+                        yield return new Vector2Int(x, y);
+                }
+            }
         }
 
         static RectInt MapBounds(List<PlacedRoom> rooms)
@@ -307,8 +423,8 @@ namespace Primordia.Rooms
             var room = roomObject.AddComponent<Room>();
             room.Configure(enemiesRoot, doors.ToArray());
 
-            // La de inicio y la tienda no tienen enemigos, así que no sueltan nada.
-            if (placed.Layout.Role is not (RoomRole.Start or RoomRole.Shop) && config.SmallBiomass != null)
+            // La de inicio, la tienda y la sala de paso no tienen enemigos, así que no sueltan nada.
+            if (placed.Layout.Role is not (RoomRole.Start or RoomRole.Shop or RoomRole.Transition) && config.SmallBiomass != null)
                 roomObject.AddComponent<RoomBiomass>().Configure(config.SmallBiomass, config.BigBiomass, config.MinimumBiomassPerRoom);
 
             if (placed.Layout.Reward && config.RewardPool != null)
@@ -322,6 +438,12 @@ namespace Primordia.Rooms
                     shop.MoveCounter(-(placed.Template.FloorBounds().width / 2f) + ShopCounterMargin);
             }
 
+            if (placed.Layout.Role == RoomRole.Transition && config.TransitionPit != null)
+            {
+                var pit = Object.Instantiate(config.TransitionPit, placed.FloorCenter, Quaternion.identity, roomObject.transform);
+                pit.SetNextFloor(config.NextFloorMouths, config.NextFloorName);
+            }
+
             return room;
         }
 
@@ -332,6 +454,7 @@ namespace Primordia.Rooms
             {
                 case RoomRole.Start:
                 case RoomRole.Shop:
+                case RoomRole.Transition:
                     return;
 
                 case RoomRole.Boss:

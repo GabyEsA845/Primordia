@@ -73,6 +73,8 @@ namespace Primordia.Audio
         public const string DoorsOpen = "Room_DoorsOpen";
         public const string RoomCleared = "Room_Cleared";
         public const string RoomExit = "Room_Exit";
+        public const string TransitionJump = "Transition_Jump";
+        public const string TransitionFall = "Transition_Fall";
         public const string BiomassSmall = "Biomass_Pickup_Small";
         public const string BiomassBig = "Biomass_Pickup_Big";
         public const string BiomassMagnet = "Biomass_Magnet";
@@ -100,6 +102,7 @@ namespace Primordia.Audio
         // Ambiente
         public const string AmbFloor1 = "Amb_Floor1_Loop";
         public const string AmbBossRoom = "Amb_BossRoom_Loop";
+        public const string AmbFloor2 = "Amb_Floor2_Loop";
 
         // Música
         public const string MusicMainMenu = "Music_MainMenu";

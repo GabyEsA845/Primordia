@@ -13,7 +13,9 @@ namespace Primordia.Rooms
         Side,
         Boss,
         /// <summary>Tienda: sala sin salida y sin enemigos que cuelga de una sala de combate de la segunda mitad del camino.</summary>
-        Shop
+        Shop,
+        /// <summary>Sala de paso: cueva sin enemigos pegada a la del jefe, con la fosa que lleva al piso siguiente.</summary>
+        Transition
     }
 
     /// <summary>Una sala del plano: su celda en la rejilla, su forma y hacia dónde tiene puertas.</summary>
@@ -38,6 +40,7 @@ namespace Primordia.Rooms
             RoomRole.Boss => "Room_Boss",
             RoomRole.Side => $"Room_{Depth}_Side",
             RoomRole.Shop => "Room_Shop",
+            RoomRole.Transition => "Room_Transition",
             _ => $"Room_{Depth}"
         };
     }
@@ -57,6 +60,9 @@ namespace Primordia.Rooms
         public LayoutRoom Start => Rooms.First(room => room.Role == RoomRole.Start);
         public LayoutRoom Boss => Rooms.First(room => room.Role == RoomRole.Boss);
 
+        /// <summary>La sala de paso, o null si el piso no tiene (el jefe da la victoria).</summary>
+        public LayoutRoom Transition => Rooms.FirstOrDefault(room => room.Role == RoomRole.Transition);
+
         public void Link(LayoutRoom from, LayoutRoom to)
         {
             Links.Add((from, to));
@@ -68,7 +74,8 @@ namespace Primordia.Rooms
     /// <summary>
     /// Genera el plano de un piso: un camino con giros al azar desde el inicio hasta el jefe, unas pocas
     /// salas laterales sin salida colgadas de salas de combate y, si el piso tiene tienda, una sala más para ella
-    /// colgada de la segunda mitad del camino. Con la misma semilla sale siempre el mismo plano.
+    /// colgada de la segunda mitad del camino. Si el piso tiene sala de paso, el camino sigue una celda más allá del
+    /// jefe para ella. Con la misma semilla sale siempre el mismo plano.
     /// </summary>
     public static class FloorLayoutGenerator
     {
@@ -81,42 +88,45 @@ namespace Primordia.Rooms
             var boss = config.ChooseBoss(random);
             int combatCount = RandomRange(random, config.MainCombatRooms);
             int sideCount = RandomRange(random, config.SideRoomCount);
+            // Inicio, combates, jefe y, si la hay, la sala de paso al final.
+            int length = combatCount + 2 + (config.HasTransition ? 1 : 0);
 
             for (int attempt = 0; attempt < MaxAttempts; attempt++)
             {
-                var path = RandomPath(random, combatCount + 2);
+                var path = RandomPath(random, length);
                 if (path == null)
                     continue;
 
-                var sides = SideCells(random, path, sideCount);
+                var sides = SideCells(random, path, combatCount, sideCount);
                 if (sides == null)
                     continue;
 
                 (int parent, Vector2Int cell)? shop = null;
                 if (config.HasShop)
                 {
-                    shop = ShopCell(random, path, sides);
+                    shop = ShopCell(random, path, combatCount, sides);
                     if (shop == null)
                         continue;
                 }
 
-                return BuildWithBoss(boss, config, random, path, sides, shop);
+                return BuildWithBoss(boss, config, random, path, combatCount, sides, shop);
             }
 
             // Muy improbable: sin sitio para las laterales tras muchos intentos. Camino recto, sin laterales.
-            var straight = Enumerable.Range(0, combatCount + 2).Select(i => new Vector2Int(i, 0)).ToList();
+            var straight = Enumerable.Range(0, length).Select(i => new Vector2Int(i, 0)).ToList();
             var none = new List<(int, Vector2Int)>();
-            return BuildWithBoss(boss, config, random, straight, none, config.HasShop ? ShopCell(random, straight, none) : null);
+            return BuildWithBoss(boss, config, random, straight, combatCount, none,
+                config.HasShop ? ShopCell(random, straight, combatCount, none) : null);
         }
 
         /// <summary>
         /// Celda libre para la tienda, vecina de una sala de combate de la segunda mitad del camino (para llegar
         /// con biomasa). Null si no cabe.
         /// </summary>
-        static (int parent, Vector2Int cell)? ShopCell(System.Random random, List<Vector2Int> path, List<(int parent, Vector2Int cell)> sides)
+        static (int parent, Vector2Int cell)? ShopCell(System.Random random, List<Vector2Int> path, int combatCount,
+            List<(int parent, Vector2Int cell)> sides)
         {
             var used = new HashSet<Vector2Int>(path.Concat(sides.Select(side => side.cell)));
-            int combatCount = path.Count - 2;
             var parents = Enumerable.Range(combatCount / 2 + 1, combatCount - combatCount / 2).OrderBy(_ => random.Next()).ToList();
 
             foreach (int parent in parents)
@@ -151,13 +161,13 @@ namespace Primordia.Rooms
         }
 
         /// <summary>
-        /// Celdas libres para las salas laterales, vecinas de salas de combate distintas (ni el inicio ni el jefe).
-        /// Cada una se devuelve con el índice de la sala del camino de la que cuelga. Null si no caben.
+        /// Celdas libres para las salas laterales, vecinas de salas de combate distintas (ni el inicio, ni el jefe,
+        /// ni la sala de paso). Cada una se devuelve con el índice de la sala del camino de la que cuelga. Null si no caben.
         /// </summary>
-        static List<(int parent, Vector2Int cell)> SideCells(System.Random random, List<Vector2Int> path, int count)
+        static List<(int parent, Vector2Int cell)> SideCells(System.Random random, List<Vector2Int> path, int combatCount, int count)
         {
             var used = new HashSet<Vector2Int>(path);
-            var parents = Enumerable.Range(1, path.Count - 2).OrderBy(_ => random.Next()).ToList();
+            var parents = Enumerable.Range(1, combatCount).OrderBy(_ => random.Next()).ToList();
             var result = new List<(int, Vector2Int)>();
 
             foreach (int parent in parents)
@@ -178,15 +188,15 @@ namespace Primordia.Rooms
         }
 
         static FloorLayout BuildWithBoss(FloorConfig.BossEntry boss, FloorConfig config, System.Random random, List<Vector2Int> path,
-            List<(int parent, Vector2Int cell)> sides, (int parent, Vector2Int cell)? shop)
+            int combatCount, List<(int parent, Vector2Int cell)> sides, (int parent, Vector2Int cell)? shop)
         {
-            var layout = Build(config, random, path, sides, shop, boss.room);
+            var layout = Build(config, random, path, combatCount, sides, shop, boss.room);
             layout.BossChoice = boss;
             return layout;
         }
 
-        static FloorLayout Build(FloorConfig config, System.Random random, List<Vector2Int> path, List<(int parent, Vector2Int cell)> sides,
-            (int parent, Vector2Int cell)? shop, RoomTemplate bossRoom)
+        static FloorLayout Build(FloorConfig config, System.Random random, List<Vector2Int> path, int combatCount,
+            List<(int parent, Vector2Int cell)> sides, (int parent, Vector2Int cell)? shop, RoomTemplate bossRoom)
         {
             var layout = new FloorLayout();
             var rewardAfter = new HashSet<int>(config.RewardAfter ?? new int[0]);
@@ -194,13 +204,18 @@ namespace Primordia.Rooms
 
             for (int i = 0; i < path.Count; i++)
             {
-                var role = i == 0 ? RoomRole.Start : i == path.Count - 1 ? RoomRole.Boss : RoomRole.Combat;
+                var role = i == 0 ? RoomRole.Start
+                    : i <= combatCount ? RoomRole.Combat
+                    : i == combatCount + 1 ? RoomRole.Boss
+                    : RoomRole.Transition;
                 var room = new LayoutRoom { Cell = path[i], Role = role, Depth = i };
 
                 if (role == RoomRole.Start)
                     room.Template = config.StartRoom;
                 else if (role == RoomRole.Boss)
                     room.Template = bossRoom;
+                else if (role == RoomRole.Transition)
+                    room.Template = config.TransitionRoom;
                 else
                 {
                     // Dos salas seguidas del camino no repiten forma, si hay donde elegir.

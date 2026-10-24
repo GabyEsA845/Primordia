@@ -1,12 +1,15 @@
+using System.Collections.Generic;
+using Primordia.Combat;
 using Primordia.Core;
 using UnityEngine;
 
 namespace Primordia.Player
 {
     /// <summary>
-    /// Elige la animación del cuerpo según lo que hace el jugador: reposo, moverse, esquivar,
+    /// Elige la animación del cuerpo según lo que hace el jugador: reposo, moverse, esquivar, atacar,
     /// recibir daño o morir. Reposo y moverse miran hacia el cursor; la esquiva, hacia donde rueda.
     /// Los estados del Animator se llaman como los clips: <c>Idle_side</c>, <c>Move_up</c>, <c>Hurt</c>…
+    /// Los cuerpos de las criaturas (desde el piso 2) tienen además <c>Attack_side/down/up</c>, que suenan al disparar.
     /// </summary>
     [RequireComponent(typeof(PlayerController), typeof(Health))]
     public class PlayerAnimator : MonoBehaviour
@@ -22,19 +25,37 @@ namespace Primordia.Player
         [SerializeField, Min(0f)] float hurtDuration = 0.2f;
 
         static readonly int HurtState = Animator.StringToHash("Hurt");
+        static readonly int[] AttackStates =
+        {
+            Animator.StringToHash("Attack_side"), Animator.StringToHash("Attack_down"), Animator.StringToHash("Attack_up"),
+        };
         static readonly int DeathState = Animator.StringToHash("Death");
         static readonly int[,] States = BuildStates();
 
         PlayerController controller;
         Health health;
+        Weapon weapon;
         float hurtUntil;
+        float attackUntil;
         int currentState;
+        readonly Dictionary<(RuntimeAnimatorController, Facing), float> attackLengths = new();
 
         public Facing CurrentFacing { get; private set; } = Facing.Down;
         public Action CurrentAction { get; private set; } = Action.Idle;
         public bool IsHurt => !health.IsDead && Time.time < hurtUntil;
         public Animator BodyAnimator => animator;
         public SpriteRenderer Body => body;
+
+        /// <summary>True mientras el cuerpo hace su animación de ataque.</summary>
+        public bool IsAttacking => attackUntil > Time.time;
+
+        /// <summary>Animaciones de la criatura que sustituyen a la célula y a la Piel (null = ninguna).</summary>
+        public RuntimeAnimatorController CreatureController => creatureController;
+
+        /// <summary>
+        /// Orientación fija (escenas): el cuerpo mira hacia ahí aunque se mueva el cursor. Null = la de siempre.
+        /// </summary>
+        public Facing? FacingOverride { get; set; }
 
         /// <summary>
         /// Se lanza cuando el cuerpo empieza (o vuelve a empezar) una animación de reposo, moverse o esquiva.
@@ -43,24 +64,31 @@ namespace Primordia.Player
         public event System.Action<Action, Facing> StateChanged;
 
         RuntimeAnimatorController cellController;
+        RuntimeAnimatorController skinController;
+        RuntimeAnimatorController creatureController;
         bool hasCellController;
 
         void Awake()
         {
             controller = GetComponent<PlayerController>();
             health = GetComponent<Health>();
+            weapon = GetComponent<Weapon>();
         }
 
         void OnEnable()
         {
             health.Damaged += OnDamaged;
             health.Died += OnDied;
+            if (weapon != null)
+                weapon.Fired += OnFired;
         }
 
         void OnDisable()
         {
             health.Damaged -= OnDamaged;
             health.Died -= OnDied;
+            if (weapon != null)
+                weapon.Fired -= OnFired;
         }
 
         void LateUpdate()
@@ -81,14 +109,15 @@ namespace Primordia.Player
                 direction = controller.AimDirection;
             }
 
-            CurrentFacing = ChooseFacing(direction);
+            CurrentFacing = FacingOverride ?? ChooseFacing(direction);
 
             // La hoja Hurt es de perfil: se voltea igual que la vista lateral.
             if (body != null)
-                body.flipX = (CurrentFacing == Facing.Side || IsHurt) && direction.x < 0f;
+                body.flipX = FacingOverride == null && (CurrentFacing == Facing.Side || IsHurt) && direction.x < 0f;
 
-            if (CurrentAction != Action.Dodge && IsHurt)
+            if (CurrentAction != Action.Dodge && (IsHurt || IsAttacking))
                 return;
+            attackUntil = 0f;
 
             if (Play(States[(int)CurrentAction, (int)CurrentFacing]))
                 StateChanged?.Invoke(CurrentAction, CurrentFacing);
@@ -108,9 +137,63 @@ namespace Primordia.Player
 
         /// <summary>
         /// Cambia las animaciones del cuerpo (la Piel sustituye a la célula); null vuelve a las de la célula.
-        /// El controlador nuevo debe tener los mismos estados que el del jugador.
+        /// El controlador nuevo debe tener los mismos estados que el del jugador. Con una criatura puesta
+        /// (<see cref="SetCreatureController"/>) se guarda para cuando se quite.
         /// </summary>
         public void SetBodyController(RuntimeAnimatorController controller)
+        {
+            skinController = controller;
+            ApplyController();
+        }
+
+        /// <summary>
+        /// Pone las animaciones de la criatura de la Boca (desde el piso 2), que mandan sobre la célula y la Piel;
+        /// null las quita.
+        /// </summary>
+        public void SetCreatureController(RuntimeAnimatorController controller)
+        {
+            creatureController = controller;
+            ApplyController();
+        }
+
+        /// <summary>El cuerpo hace una vez su ataque en esa orientación (si tiene), como pose de presentación.</summary>
+        public bool PlayAttack(Facing facing)
+        {
+            int state = AttackStates[(int)facing];
+            if (animator == null || animator.runtimeAnimatorController == null || !animator.HasState(0, state))
+                return false;
+
+            attackUntil = Time.time + AttackLength(facing);
+            Play(state, restart: true);
+            return true;
+        }
+
+        void OnFired(Vector2 direction)
+        {
+            if (health.IsDead || controller.IsDodging)
+                return;
+            PlayAttack(FacingOverride ?? ChooseFacing(direction));
+        }
+
+        float AttackLength(Facing facing)
+        {
+            var current = animator.runtimeAnimatorController;
+            var key = (current, facing);
+            if (attackLengths.TryGetValue(key, out float length))
+                return length;
+
+            length = 0.4f;
+            string name = $"Attack_{facing.ToString().ToLowerInvariant()}";
+            foreach (var clip in current.animationClips)
+            {
+                if (clip != null && clip.name.EndsWith(name))
+                    length = clip.length;
+            }
+            attackLengths[key] = length;
+            return length;
+        }
+
+        void ApplyController()
         {
             if (animator == null)
                 return;
@@ -121,7 +204,10 @@ namespace Primordia.Player
                 hasCellController = true;
             }
 
-            animator.runtimeAnimatorController = controller != null ? controller : cellController;
+            animator.runtimeAnimatorController = creatureController != null ? creatureController
+                : skinController != null ? skinController
+                : cellController;
+            attackUntil = 0f;
 
             // El controlador nuevo empieza en su estado por defecto: se vuelve a elegir el que toca.
             currentState = 0;

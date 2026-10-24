@@ -1,12 +1,15 @@
 using System.Collections;
 using Primordia.Core;
+using Primordia.Mutations;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Primordia.UI
 {
     /// <summary>
     /// Muestra el panel que toca según el estado del juego: pausa, derrota o victoria.
-    /// La derrota espera un momento para que se vea el golpe final.
+    /// La derrota espera un momento para que se vea el golpe final. En la victoria, si la Boca que se lleva tiene
+    /// criatura (desde el piso 2), se ve la criatura en reposo.
     /// </summary>
     public class GameUI : MonoBehaviour
     {
@@ -15,6 +18,8 @@ namespace Primordia.UI
         [SerializeField] GameObject victoryPanel;
         [Tooltip("Segundos (tiempo real) entre la muerte del jugador y la pantalla de derrota.")]
         [SerializeField, Min(0f)] float defeatDelay = 1f;
+        [Tooltip("Criatura del jugador en el panel de victoria (oculta si su Boca no tiene).")]
+        [SerializeField] Image victoryCreature;
 
         GameManager manager;
         Coroutine defeatRoutine;
@@ -43,12 +48,16 @@ namespace Primordia.UI
             defeatDelay = delay;
         }
 
+        internal void SetVictoryCreature(Image image) => victoryCreature = image;
+
         void OnStateChanged(GameState previous, GameState current) => Show(current);
 
         void Show(GameState state)
         {
             SetActive(pausePanel, state == GameState.Paused);
             SetActive(victoryPanel, state == GameState.Victory);
+            if (state == GameState.Victory)
+                ShowVictoryCreature();
 
             if (defeatRoutine != null)
             {
@@ -60,6 +69,25 @@ namespace Primordia.UI
                 defeatRoutine = StartCoroutine(ShowDefeatAfterDelay());
             else
                 SetActive(defeatPanel, state == GameState.Defeat);
+        }
+
+        void ShowVictoryCreature()
+        {
+            if (victoryCreature == null)
+                return;
+
+            var player = GameObject.FindWithTag("Player");
+            var mouth = player != null && player.TryGetComponent<PlayerMutations>(out var mutations)
+                ? mutations.Get(MutationSlot.Mouth)
+                : null;
+            var frames = mouth != null ? mouth.CreatureIdleFrames : System.Array.Empty<Sprite>();
+            victoryCreature.gameObject.SetActive(frames.Length > 0);
+            if (frames.Length == 0)
+                return;
+
+            if (!victoryCreature.TryGetComponent<UISpriteAnimation>(out var animation))
+                animation = victoryCreature.gameObject.AddComponent<UISpriteAnimation>();
+            animation.Configure(frames, 0.18f, newLoop: true);
         }
 
         IEnumerator ShowDefeatAfterDelay()

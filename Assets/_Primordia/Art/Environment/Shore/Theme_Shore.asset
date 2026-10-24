@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e1209f1fc89bf44e913fd5d9be7da6d, type: 3}
+  m_Name: Theme_Shore
+  m_EditorClassIdentifier: Primordia::Primordia.Rooms.RoomTheme
+  floor: {fileID: 11400000, guid: 767410c1f20386b4a890bb3d982228e8, type: 2}
+  floorVariants:
+  - {fileID: 11400000, guid: 194a8ddd93e78854baeb9da243d85f33, type: 2}
+  - {fileID: 11400000, guid: cb2cdd75fdbcbc645aaecd1d04abde66, type: 2}
+  - {fileID: 11400000, guid: 5b1101a3a807fa843bc915e8029b544c, type: 2}
+  - {fileID: 11400000, guid: fd3907931487ea740b52fa3cb0323b54, type: 2}
+  - {fileID: 11400000, guid: 9cdf33243809ac64aaa88ead8e19d06e, type: 2}
+  floorShadow:
+  - {fileID: 11400000, guid: 19f35b45d964b6a4291acca59a9785b9, type: 2}
+  - {fileID: 11400000, guid: bc7a0b67dffbc5848bd4384c08237226, type: 2}
+  cap: {fileID: 11400000, guid: 6047442038992fb41bed4bb20f44d243, type: 2}
+  faceUpper:
+  - {fileID: 11400000, guid: 8c89e428713dd4c4a976871f53b8e839, type: 2}
+  - {fileID: 11400000, guid: 4770edc8495ff2d44b3cda29c7a6cd32, type: 2}
+  faceLower:
+  - {fileID: 11400000, guid: 62872953bf9320e409f078c9afa25aec, type: 2}
+  - {fileID: 11400000, guid: 8dab5bb94d5d31746ba5644e4c21a93b, type: 2}
+  edgeLeft: {fileID: 11400000, guid: 8d27e5efc47379c44982459b13dd24bf, type: 2}
+  edgeRight: {fileID: 11400000, guid: e6dd352f2f2ec0747a311f223423c3c9, type: 2}
+  edgeBottom: {fileID: 11400000, guid: 8ec773c6a54e765448d63e81762491e1, type: 2}
+  cornerBottomLeft: {fileID: 11400000, guid: 4433550094adb77478913c553fec96b9, type: 2}
+  cornerBottomRight: {fileID: 11400000, guid: 4cf41996b09498b47a7ffe128f286ee7, type: 2}
+  faceUpperEndLeft: {fileID: 11400000, guid: 0b0a6d118ff6d9c449e188e73948a2cc, type: 2}
+  faceUpperEndRight: {fileID: 11400000, guid: 94a428b975a5c4a47b3dac7567ae2a9d, type: 2}
+  faceLowerEndLeft: {fileID: 11400000, guid: 437c6ace243039b4297c245ad1e2f6d0, type: 2}
+  faceLowerEndRight: {fileID: 11400000, guid: 34c1ee59a35d2e94988b12c9644eadc1, type: 2}
+  outerTopLeft: {fileID: 11400000, guid: 059e1c88b3d46324cab354e5c8035155, type: 2}
+  outerTopRight: {fileID: 11400000, guid: f37cb37a5b0bdb54da85aae82eff7745, type: 2}
+  missing: {fileID: 11400000, guid: 3724e1c7198527a4dbb54cfc33c72bc0, type: 2}
+  decorations:
+  - {fileID: 11400000, guid: d8c51aff423150f4b83604e379af252e, type: 2}
+  - {fileID: 11400000, guid: 49d59105980e7b74dbcbfa177b006d28, type: 2}
+  - {fileID: 11400000, guid: 7b51fcd1739f4cd4889681e5f6720067, type: 2}
+  - {fileID: 11400000, guid: e39b089556be3bb438982b5cc257cfe1, type: 2}
+  - {fileID: 11400000, guid: 4997fe810692cb946b15f2128c2e366a, type: 2}
+  - {fileID: 11400000, guid: b06e8f170db2c8949b65d6859f3bfdca, type: 2}
+  - {fileID: 11400000, guid: 5848fcc9d03c57a49baba36371aac62e, type: 2}
+  decorationChance: 0.06
+  doorway: {fileID: 21300000, guid: 6134ca622086414479cb98ca4ff3fc0b, type: 3}
+  doorTop:
+  - {fileID: -4726084969364474711, guid: d8a392a22f45b254f8a2e2a66a586a41, type: 3}
+  - {fileID: 7882788377717311415, guid: d8a392a22f45b254f8a2e2a66a586a41, type: 3}
+  - {fileID: -3210073630453367736, guid: d8a392a22f45b254f8a2e2a66a586a41, type: 3}
+  - {fileID: 3655857327411036885, guid: d8a392a22f45b254f8a2e2a66a586a41, type: 3}
+  - {fileID: 1645031889, guid: d8a392a22f45b254f8a2e2a66a586a41, type: 3}
+  doorBottom:
+  - {fileID: 4412323245247173732, guid: c4be024ab31d26142875075b4ff25ca1, type: 3}
+  - {fileID: -8706010961058034423, guid: c4be024ab31d26142875075b4ff25ca1, type: 3}
+  - {fileID: 6217852109785172600, guid: c4be024ab31d26142875075b4ff25ca1, type: 3}
+  - {fileID: -6029196064136099725, guid: c4be024ab31d26142875075b4ff25ca1, type: 3}
+  - {fileID: -475393443, guid: c4be024ab31d26142875075b4ff25ca1, type: 3}
+  doorSide:
+  - {fileID: 6552830017699425608, guid: 758f3ecd39ba2cb48ad5c9187b26541d, type: 3}
+  - {fileID: 7088500420569395820, guid: 758f3ecd39ba2cb48ad5c9187b26541d, type: 3}
+  - {fileID: 1422942707524771534, guid: 758f3ecd39ba2cb48ad5c9187b26541d, type: 3}
+  - {fileID: 3227117808192725293, guid: 758f3ecd39ba2cb48ad5c9187b26541d, type: 3}
+  - {fileID: -1755935351, guid: 758f3ecd39ba2cb48ad5c9187b26541d, type: 3}

@@ -101,6 +101,19 @@ namespace Primordia.Rooms
         [SerializeField] RoomTemplate shopRoom;
         [SerializeField] ShopRoom shopPrefab;
 
+        [Header("Sala de paso")]
+        [Tooltip("Forma de la sala de paso, pegada a la del jefe. Vacío (o sin fosa): el jefe deja la salida de siempre.")]
+        [SerializeField] RoomTemplate transitionRoom;
+        [SerializeField] TransitionPit transitionPit;
+        [Tooltip("Tileset de la zona intermedia de la sala de paso, a medio camino entre este piso y el siguiente.")]
+        [SerializeField] RoomTheme transitionMidTheme;
+        [Tooltip("Tileset del piso siguiente: el de la zona de la fosa.")]
+        [SerializeField] RoomTheme nextFloorTheme;
+        [Tooltip("Bocas del piso siguiente (una por familia): al saltar a la fosa hay que elegir una.")]
+        [SerializeField] MutationData[] nextFloorMouths = Array.Empty<MutationData>();
+        [Tooltip("Nombre del piso siguiente, para la ventana de elección de Boca (\"Así llegarás al …\").")]
+        [SerializeField] string nextFloorName = "océano cámbrico";
+
         [Header("Salida")]
         [SerializeField] Sprite exitSprite;
         [SerializeField] Color exitColor = new(0.3f, 0.95f, 0.8f);
@@ -145,6 +158,13 @@ namespace Primordia.Rooms
         public RoomTemplate ShopTemplate => shopRoom;
         public ShopRoom ShopPrefab => shopPrefab;
         public bool HasShop => shopRoom != null && shopPrefab != null;
+        public RoomTemplate TransitionRoom => transitionRoom;
+        public TransitionPit TransitionPit => transitionPit;
+        public RoomTheme TransitionMidTheme => transitionMidTheme;
+        public RoomTheme NextFloorTheme => nextFloorTheme;
+        public bool HasTransition => transitionRoom != null && transitionPit != null;
+        public MutationData[] NextFloorMouths => nextFloorMouths ?? Array.Empty<MutationData>();
+        public string NextFloorName => nextFloorName;
         public Sprite ExitSprite => exitSprite;
         public Color ExitColor => exitColor;
 
@@ -187,6 +207,20 @@ namespace Primordia.Rooms
         {
             shopRoom = newShopRoom;
             shopPrefab = newShopPrefab;
+        }
+
+        internal void ConfigureTransition(RoomTemplate newRoom, TransitionPit newPit, RoomTheme newMidTheme, RoomTheme newNextTheme)
+        {
+            transitionRoom = newRoom;
+            transitionPit = newPit;
+            transitionMidTheme = newMidTheme;
+            nextFloorTheme = newNextTheme;
+        }
+
+        internal void ConfigureNextFloor(MutationData[] newMouths, string newName)
+        {
+            nextFloorMouths = newMouths ?? Array.Empty<MutationData>();
+            nextFloorName = newName;
         }
 
         internal void ConfigureRewards(MutationPool newPool, int[] newRewardAfter)

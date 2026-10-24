@@ -19,6 +19,12 @@ namespace Primordia.Rooms
         /// <summary>Pasillo más corto entre dos salas vecinas; si una sala es más pequeña que su celda, crece.</summary>
         public const int CorridorLength = 4;
 
+        /// <summary>
+        /// Pasillo del jefe a la sala de paso: largo, para que dé tiempo a oír cómo se apaga la música del piso y sube
+        /// el ambiente del siguiente.
+        /// </summary>
+        public const int TransitionCorridorLength = 14;
+
         // Relleno de pared alrededor: media vista (15×8,5) más el adelanto de la cámara (3), con holgura.
         const int Margin = 20;
         // Sin decoración tan cerca de una puerta, para que no tape el paso.
@@ -169,8 +175,20 @@ namespace Primordia.Rooms
         /// </summary>
         static List<PlacedRoom> Place(FloorLayout layout)
         {
-            var anchorX = Anchors(layout.Rooms, room => room.Cell.x, room => room.Template.Anchor.x, room => room.Template.Width);
-            var anchorY = Anchors(layout.Rooms, room => room.Cell.y, room => room.Template.Anchor.y, room => room.Template.Height);
+            // El pasillo de la sala de paso sale más largo: se ensancha el hueco entre la columna (o fila) del jefe y la suya.
+            int? longGapX = null, longGapY = null;
+            if (layout.Transition != null)
+            {
+                var from = layout.Boss.Cell;
+                var to = layout.Transition.Cell;
+                if (from.x != to.x)
+                    longGapX = Mathf.Min(from.x, to.x);
+                else
+                    longGapY = Mathf.Min(from.y, to.y);
+            }
+
+            var anchorX = Anchors(layout.Rooms, room => room.Cell.x, room => room.Template.Anchor.x, room => room.Template.Width, longGapX);
+            var anchorY = Anchors(layout.Rooms, room => room.Cell.y, room => room.Template.Anchor.y, room => room.Template.Height, longGapY);
 
             return layout.Rooms.Select(room => new PlacedRoom
             {
@@ -179,8 +197,9 @@ namespace Primordia.Rooms
             }).ToList();
         }
 
+        /// <param name="longGap">Índice de la columna o fila tras la que el hueco es el del pasillo largo de la sala de paso.</param>
         static Dictionary<int, int> Anchors(List<LayoutRoom> rooms, System.Func<LayoutRoom, int> index,
-            System.Func<LayoutRoom, int> anchor, System.Func<LayoutRoom, int> size)
+            System.Func<LayoutRoom, int> anchor, System.Func<LayoutRoom, int> size, int? longGap)
         {
             var result = new Dictionary<int, int>();
             int next = 0;
@@ -189,7 +208,7 @@ namespace Primordia.Rooms
                 int before = group.Max(anchor);
                 int after = group.Max(room => size(room) - anchor(room));
                 result[group.Key] = next + before;
-                next += before + after + CorridorLength;
+                next += before + after + (group.Key == longGap ? TransitionCorridorLength : CorridorLength);
             }
             return result;
         }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Primordia.Audio;
 using Primordia.Core;
 using Primordia.Mutations;
 using Primordia.Player;
@@ -53,6 +54,9 @@ namespace Primordia.Rooms
         /// <summary>El jugador ha saltado a la fosa (al empezar el salto).</summary>
         public static event System.Action<TransitionPit> Jumped;
 
+        /// <summary>La fosa del piso actual (null si no hay): la música se apaga al acercarse a ella.</summary>
+        public static TransitionPit Current { get; private set; }
+
         readonly List<(SpriteRenderer renderer, float born)> bubbles = new();
         readonly Stack<SpriteRenderer> bubblePool = new();
         Transform player;
@@ -61,7 +65,24 @@ namespace Primordia.Rooms
         float nextBubble;
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-        static void ResetJumped() => Jumped = null;
+        static void ResetStatics()
+        {
+            Jumped = null;
+            Current = null;
+        }
+
+        protected override void OnEnable()
+        {
+            base.OnEnable();
+            Current = this;
+        }
+
+        protected override void OnDisable()
+        {
+            base.OnDisable();
+            if (Current == this)
+                Current = null;
+        }
 
         internal void Configure(SpriteRenderer newPitRenderer, Sprite[] newPitFrames, Sprite[] newBubbleFrames,
             SpriteRenderer newKeyPrompt, Sprite[] newKeyFrames, Vector2 newEdgeRadii)
@@ -210,6 +231,7 @@ namespace Primordia.Rooms
             var manager = GameManager.Instance;
             if (manager != null)
                 manager.SetState(GameState.Cinematic);
+            Sfx.Play(Sounds.TransitionJump);
 
             // Sin física mientras salta: así cruza el borde sólido de la fosa.
             var body = jumper.GetComponent<Rigidbody2D>();
@@ -235,6 +257,7 @@ namespace Primordia.Rooms
             }
 
             // Cae: se hunde y se hace pequeño hacia el fondo de la fosa.
+            Sfx.Play(Sounds.TransitionFall);
             for (float t = 0f; t < fallDuration; t += Time.deltaTime)
             {
                 float k = t / fallDuration;

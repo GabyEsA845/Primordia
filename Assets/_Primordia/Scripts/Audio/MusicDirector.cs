@@ -13,13 +13,23 @@ namespace Primordia.Audio
     /// - Piso: exploración y combate a la vez, en sincronía; con las puertas cerradas suena el combate.
     /// - Tienda: su vals. Sala del jefe: aviso y la pista de ese jefe (la ameba pone ella misma la de su escena final).
     /// - Pausa, mapa y elección de mutación: la música baja. Evolución, victoria y derrota: sus fragmentos.
+    /// - Sala de paso: al acercarse a la fosa, la música y el ambiente del piso se apagan poco a poco y sube el ambiente
+    ///   del océano (el del piso siguiente), desde el pasillo que llega del jefe hasta el borde de la fosa.
     /// También hace sonar los cambios de estado de la interfaz (abrir la pausa, el mapa, las franjas de cine) y el
     /// ambiente del piso o de la sala del jefe.
     /// </summary>
     [RequireComponent(typeof(AudioManager))]
     public class MusicDirector : MonoBehaviour
     {
+        /// <summary>Distancia a la fosa (en unidades) a la que empieza el cambio: más o menos la entrada del pasillo.</summary>
+        public const float TransitionFadeFrom = 30f;
+
+        /// <summary>Distancia a la fosa a la que ya solo suena el océano: el borde.</summary>
+        public const float TransitionFadeTo = 4.5f;
+
         AudioManager manager;
+        Transform player;
+        float transitionBlend;
         GameManager game;
         Room currentRoom;
         Room bossRoomStarted;
@@ -53,7 +63,50 @@ namespace Primordia.Audio
             // El GameManager se crea con cada escena (el de la nueva se destruye si ya hay uno): se sigue al que quede.
             if (game != GameManager.Instance)
                 Watch(GameManager.Instance);
+
+            UpdateTransition();
         }
+
+        /// <summary>
+        /// Mezcla del piso actual con el océano según la distancia a la fosa (0 = lejos, 1 = en el borde o ya saltando).
+        /// Durante un combate no cambia nada: el jefe puede pelear cerca de la puerta del pasillo.
+        /// </summary>
+        void UpdateTransition()
+        {
+            float blend = 0f;
+            var pit = inFloor ? TransitionPit.Current : null;
+            if (pit != null)
+            {
+                if (player == null)
+                {
+                    var found = GameObject.FindWithTag("Player");
+                    player = found != null ? found.transform : null;
+                }
+
+                if (pit.Used)
+                    blend = 1f;
+                else if (player != null && (currentRoom == null || currentRoom.State != Room.RoomState.Combat))
+                {
+                    float distance = Vector2.Distance(player.position, pit.transform.position);
+                    blend = Mathf.SmoothStep(0f, 1f, Mathf.InverseLerp(TransitionFadeFrom, TransitionFadeTo, distance));
+                }
+            }
+
+            if (Mathf.Approximately(blend, transitionBlend))
+                return;
+            transitionBlend = blend;
+
+            manager.Music.SetDistanceGain(1f - blend);
+            if (manager.IsLoopPlaying(Sounds.AmbFloor1))
+                manager.StartLoop(Sounds.AmbFloor1, 1f - blend);
+            if (blend > 0f)
+                manager.StartLoop(Sounds.AmbFloor2, blend);
+            else
+                manager.StopLoop(Sounds.AmbFloor2);
+        }
+
+        /// <summary>Cuánto suena ya el océano de la sala de paso (0 = nada, 1 = solo él).</summary>
+        public float TransitionBlend => transitionBlend;
 
         void Watch(GameManager newGame)
         {
@@ -71,6 +124,10 @@ namespace Primordia.Audio
         {
             currentRoom = null;
             bossRoomStarted = null;
+            player = null;
+            transitionBlend = 0f;
+            manager.Music.SetDistanceGain(1f);
+            manager.StopLoop(Sounds.AmbFloor2);
             inFloor = scene.name != SceneNames.MainMenu;
             if (!inFloor)
             {
@@ -192,6 +249,7 @@ namespace Primordia.Audio
         {
             manager.StopLoop(Sounds.AmbFloor1, 1f);
             manager.StopLoop(Sounds.AmbBossRoom, 1f);
+            manager.StopLoop(Sounds.AmbFloor2, 1f);
         }
 
         static bool IsDucked(GameState state) => state is GameState.Paused or GameState.Map or GameState.MutationChoice;

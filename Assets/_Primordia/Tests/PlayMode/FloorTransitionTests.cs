@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
+using Primordia.Audio;
 using Primordia.Core;
 using Primordia.Rooms;
 using UnityEngine;
@@ -135,6 +136,63 @@ namespace Primordia.Tests
             var boss = built.MapRooms.Single(room => room.Role == RoomRole.Boss);
             Assert.IsNull(boss.Room.transform.Find("Exit"), "Con sala de paso, el jefe no deja la salida de siempre.");
         }
+
+        [Test]
+        public void Build_TheCorridorToTheTransitionRoom_IsLong()
+        {
+            for (int seed = 1; seed <= 20; seed++)
+            {
+                var parent = Track(new GameObject("Floor")).transform;
+                var layout = FloorLayoutGenerator.Generate(config, new System.Random(seed));
+                var built = FloorBuilder.Build(layout, config, parent, new System.Random(seed));
+
+                var corridor = built.Corridors.Single(c => c.A.Role == RoomRole.Transition || c.B.Role == RoomRole.Transition);
+                // Dos carriles de ancho: cada uno mide al menos el pasillo largo.
+                Assert.That(corridor.Cells.Count / 2, Is.GreaterThanOrEqualTo(FloorBuilder.TransitionCorridorLength), $"semilla {seed}");
+                foreach (var other in built.Corridors.Where(c => c != corridor))
+                    Assert.That(other.Cells.Count / 2, Is.LessThan(FloorBuilder.TransitionCorridorLength + 20), $"semilla {seed}");
+                Object.DestroyImmediate(parent.gameObject);
+            }
+        }
+
+        [UnityTest]
+        public IEnumerator Music_FadesOut_AndTheOceanFadesIn_NearThePit()
+        {
+            if (AudioManager.Instance != null)
+                Object.DestroyImmediate(AudioManager.Instance.gameObject);
+            var library = Track(ScriptableObject.CreateInstance<SoundLibrary>());
+            library.Configure(new[]
+            {
+                new SoundLibrary.Sound { id = Sounds.AmbFloor1, clips = new[] { Clip("Floor1") }, volume = 1f, loop = true },
+                new SoundLibrary.Sound { id = Sounds.AmbFloor2, clips = new[] { Clip("Floor2") }, volume = 1f, loop = true },
+            }, System.Array.Empty<SoundLibrary.Track>());
+            var audio = AudioManager.Create(library);
+            Track(audio.gameObject);
+            var director = audio.GetComponent<MusicDirector>();
+
+            var player = Track(new GameObject("Player") { tag = "Player" });
+            player.transform.position = new Vector3(100f, 0f, 0f);
+            CreatePit(Vector2.zero);
+            yield return null;
+            yield return null;
+
+            Assert.AreEqual(0f, director.TransitionBlend, "Lejos de la fosa, el piso suena como siempre.");
+            Assert.AreEqual(1f, audio.Music.DistanceGain);
+            Assert.IsFalse(audio.IsLoopPlaying(Sounds.AmbFloor2));
+
+            player.transform.position = new Vector3((MusicDirector.TransitionFadeFrom + MusicDirector.TransitionFadeTo) / 2f, 0f, 0f);
+            yield return null;
+            Assert.That(director.TransitionBlend, Is.InRange(0.2f, 0.8f), "A medio camino, mezcla de los dos.");
+            Assert.That(audio.Music.DistanceGain, Is.InRange(0.2f, 0.8f));
+            Assert.IsTrue(audio.IsLoopPlaying(Sounds.AmbFloor2));
+
+            player.transform.position = new Vector3(MusicDirector.TransitionFadeTo - 1f, 0f, 0f);
+            yield return null;
+            Assert.AreEqual(1f, director.TransitionBlend, "En el borde solo suena el océano.");
+            Assert.AreEqual(0f, audio.Music.DistanceGain);
+        }
+
+        static AudioClip Clip(string name) => AudioClip.Create(name, 44100, 1, 44100, false);
 
         [Test]
         public void EdgePoint_IsOnTheRim_TowardsThePlayer()

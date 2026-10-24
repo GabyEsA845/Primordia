@@ -774,6 +774,22 @@ MonoBehaviour:
     minInterval: 0.03
     pitchJitter: 0
     loop: 0
+  - id: Transition_Jump
+    clips:
+    - {fileID: 8300000, guid: 8a8f580480d27da418f9b53f332e50db, type: 3}
+    volume: 0.55
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Transition_Fall
+    clips:
+    - {fileID: 8300000, guid: ce6505c276dbc8648be863782298fb14, type: 3}
+    volume: 0.65
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
   - id: Biomass_Pickup_Small
     clips:
     - {fileID: 8300000, guid: 4acf4081cfef89044b30403e87715143, type: 3}
@@ -956,6 +972,14 @@ MonoBehaviour:
   - id: Amb_BossRoom_Loop
     clips:
     - {fileID: 8300000, guid: 0b82b1fa07121d34d9d746374ea84213, type: 3}
+    volume: 0.3
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0
+    loop: 1
+  - id: Amb_Floor2_Loop
+    clips:
+    - {fileID: 8300000, guid: b54910e90db09114a8f6754fecc60e55, type: 3}
     volume: 0.3
     group: 1
     minInterval: 0.03

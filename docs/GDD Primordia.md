@@ -241,7 +241,8 @@ Cada piso tiene **2 jefes posibles** y en cada partida sale uno al azar.
 - **Forma:** una cueva orgánica de borde irregular, distinta de todas las demás salas. Se engancha a la sala del jefe que toque (virus o ameba) y sale en el minimapa con un icono propio cuando se abre.
 - **Del piso actual al siguiente:** la entrada todavía parece del piso actual, y hacia la fosa el suelo, las paredes, la luz y la decoración pasan poco a poco a la paleta y la ambientación del piso siguiente (para el piso 2: esponjas, corales primitivos, algas, conchas de trilobite y tallos de lirio de mar, que luego se reutilizan en el piso 2).
 - **La fosa:** en el centro hay una fosa profunda y tiene que verse a simple vista que hay que saltar en ella. Tiene un borde con un saliente claro, el interior oscuro, una luz azulada que sube del fondo y burbujas o partículas que ascienden. Es un obstáculo sólido: no se puede caer en ella andando ni esquivando.
-- **Sonido:** al acercarse a la fosa, la música del piso actual se va apagando y crece el ambiente del piso siguiente (para el piso 2, agua y burbujas graves).
+- **Pasillo largo:** el pasillo del jefe a la sala de paso mide 14 tiles (los demás, unos 4), para que dé tiempo a notar el cambio de sonido.
+- **Sonido:** desde la entrada del pasillo (a unas 30 unidades de la fosa) hasta su borde, la música y el ambiente del piso actual se van apagando y crece el ambiente del piso siguiente (para el piso 2, mar profundo con oleaje lento, burbujas grandes y un fondo grave que respira). Durante un combate no cambia. El salto y la caída tienen sus propios efectos (impulso que sube; silbido que baja y un "bloop" grave al llegar al fondo).
 - **Activación:** acercándose a cualquier punto del borde aparece la tecla E en el punto más cercano, con el texto "Saltar al piso siguiente" (o "Te dejas mutaciones" si quedan burbujas del jefe sin coger). Al pulsar E no hay vuelta atrás.
 
 **Secuencia del salto**

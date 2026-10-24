@@ -13,8 +13,9 @@ namespace Primordia.Rooms
     /// Fosa de la sala de paso: un agujero sólido (no se cae en él andando ni esquivando) con una luz que late y
     /// burbujas que suben. Desde cualquier punto del borde se pulsa Interactuar (E): la tecla aparece en el punto del
     /// borde más cercano al jugador, que salta hacia el centro. En el aire, sobre la fosa, se queda congelado y hay que
-    /// elegir una de las Bocas del piso siguiente (<see cref="MouthChoiceUI"/>); luego cae. Mientras no exista el piso
-    /// siguiente, la caída lleva a la victoria.
+    /// elegir una de las Bocas del piso siguiente (<see cref="MouthChoiceUI"/>); luego cae y, si la fosa tiene
+    /// <see cref="Metamorphosis"/>, se transforma en la criatura de esa Boca. Mientras no exista el piso siguiente, se
+    /// acaba en la victoria.
     /// </summary>
     [RequireComponent(typeof(Collider2D))]
     public class TransitionPit : Interactable
@@ -58,6 +59,10 @@ namespace Primordia.Rooms
 
         MutationData[] nextFloorMouths = System.Array.Empty<MutationData>();
         string nextFloorName = "";
+        MutationData chosenMouth;
+
+        /// <summary>La Boca elegida al saltar (null hasta elegir).</summary>
+        public MutationData ChosenMouth => chosenMouth;
         public Vector2 EdgeRadii => edgeRadii;
 
         /// <summary>El jugador ha saltado a la fosa (al empezar el salto).</summary>
@@ -237,6 +242,9 @@ namespace Primordia.Rooms
 
             Used = true;
             SetFocused(false, jumper);
+            // La forma nueva no se ve hasta la metamorfosis, aunque la Boca se cambie al elegirla.
+            if (jumper.TryGetComponent<MutationLook>(out var look))
+                look.HoldForm();
             Jumped?.Invoke(this);
             StartCoroutine(Jump(jumper));
         }
@@ -283,6 +291,19 @@ namespace Primordia.Rooms
             if (!chose)
                 yield return ChooseMouth(jumper);
 
+            var metamorphosis = GetComponent<Metamorphosis>();
+            if (metamorphosis != null && chosenMouth != null)
+            {
+                visual.localScale = baseScale;
+                yield return metamorphosis.Play(jumper, chosenMouth);
+                if (manager != null)
+                    manager.SetState(GameState.Victory);
+                yield break;
+            }
+
+            if (jumper.TryGetComponent<MutationLook>(out var look))
+                look.ReleaseForm();
+
             // Cae: se hunde y se hace pequeño hacia el fondo de la fosa.
             Sfx.Play(Sounds.TransitionFall);
             for (float t = 0f; t < fallDuration; t += Time.deltaTime)
@@ -311,6 +332,7 @@ namespace Primordia.Rooms
             window.Show(nextFloorMouths, mutations, nextFloorName, () => done = true);
             while (!done)
                 yield return null;
+            chosenMouth = window.Chosen;
         }
     }
 }

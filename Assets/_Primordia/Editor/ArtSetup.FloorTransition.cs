@@ -71,14 +71,49 @@ namespace Primordia.Editor
         const string Floor2BodiesArtFolder = CharactersFolder + "/Player/Floor2";
         const int Floor2BodyCellWidth = 24;
 
-        /// <summary>Arte de una Boca del piso 2: sus iconos y la criatura de la vista previa (de lado).</summary>
+        // Metamorfosis (docs/multimedia-temp/metamorphosis: generar_metamorfosis.py).
+        const string MetamorphosisSourceFolder = "docs/multimedia-temp/metamorphosis";
+        const string MetamorphosisArtFolder = "Assets/_Primordia/Art/Metamorphosis";
+
+        /// <summary>
+        /// Arte de una Boca del piso 2: sus iconos, la criatura de la vista previa (de lado), las animaciones del cuerpo y
+        /// la silueta de su metamorfosis.
+        /// </summary>
         internal sealed class MouthArt
         {
             public Sprite Icon;
             public Sprite LargeIcon;
             public Sprite[] Idle;
             public Sprite[] Attack;
+            public RuntimeAnimatorController Body;
+            public Sprite[] Morph;
+            public Sprite[] Reveal;
         }
+
+        /// <summary>El abismo y la luz de la metamorfosis.</summary>
+        internal sealed class MetamorphosisArt
+        {
+            public Sprite Background;
+            public Sprite Rays;
+            public Sprite[] Motes;
+            public Sprite[] Aura;
+            public Sprite[] Burst;
+        }
+
+        // Cuerpo de criatura del piso 2: los estados del jugador más el ataque. Esquiva de 5 cuadros en 0,25 s, como la
+        // célula; ataque de 6 cuadros en unos 0,43 s (el golpe, en el tercero o el cuarto).
+        static Character Floor2Body(string body) => new()
+        {
+            Name = $"Player_{body}",
+            SourceFolder = $"{Floor2BodiesSourceFolder}/{body}",
+            ArtFolder = $"{Floor2BodiesArtFolder}/{body}",
+            DefaultState = "Idle_down",
+            Timings = new[]
+            {
+                ("Idle", 6f, true), ("Move", 10f, true), ("Dodge", 20f, false), ("Attack", 14f, false), ("Hurt", 10f, false),
+                ("Death", 10f, false),
+            },
+        };
 
         internal sealed class Floor2MouthArt
         {
@@ -106,7 +141,69 @@ namespace Primordia.Editor
                     : System.Array.Empty<Sprite>();
             }
 
-            return new MouthArt { Icon = Icon(16), LargeIcon = Icon(32), Idle = Sheet("Idle_side"), Attack = Sheet("Attack_side") };
+            Sprite[] Metamorphosis(string kind)
+            {
+                string file = $"{kind}_{body}.png";
+                string target = $"{MetamorphosisArtFolder}/{file}";
+                return CopyArt($"{MetamorphosisSourceFolder}/{file}", target) ? SliceSheet(target, 32) : System.Array.Empty<Sprite>();
+            }
+
+            var animations = Import(Floor2Body(body));
+            return new MouthArt
+            {
+                Icon = Icon(16), LargeIcon = Icon(32), Idle = Sheet("Idle_side"), Attack = Sheet("Attack_side"),
+                Body = animations != null ? animations.Controller : null,
+                Morph = Metamorphosis("Morph"), Reveal = Metamorphosis("Reveal"),
+            };
+        }
+
+        internal static MetamorphosisArt ImportMetamorphosisArt()
+        {
+            Sprite[] Sheet(string file, int width)
+            {
+                string target = $"{MetamorphosisArtFolder}/{file}.png";
+                return CopyArt($"{MetamorphosisSourceFolder}/{file}.png", target) ? SliceSheet(target, width) : System.Array.Empty<Sprite>();
+            }
+
+            Sprite Single(string file) =>
+                ImportSprite($"{MetamorphosisSourceFolder}/{file}.png", $"{MetamorphosisArtFolder}/{file}.png", Vector4.zero);
+
+            return new MetamorphosisArt
+            {
+                Background = Single("Abyss_Background"),
+                Rays = Single("Abyss_Rays"),
+                Motes = Sheet("Abyss_Mote", 4),
+                Aura = Sheet("Metamorphosis_Aura", 64),
+                Burst = Sheet("Metamorphosis_Burst", 96),
+            };
+        }
+
+        /// <summary>Hueco para la criatura del jugador en el panel de victoria, bajo el título.</summary>
+        internal static void EnsureVictoryCreature()
+        {
+            EditPrefab(UISetup.GameUIPath, root =>
+            {
+                var gameUI = root.GetComponent<GameUI>();
+                var panel = root.transform.Find("VictoryPanel");
+                if (gameUI == null || panel == null)
+                    return;
+
+                var creature = panel.Find("Creature");
+                Image image;
+                if (creature == null)
+                {
+                    image = UISetup.CreateIcon("Creature", panel, 72f);
+                    image.preserveAspect = true;
+                    image.enabled = true;
+                    image.transform.SetSiblingIndex(Mathf.Min(1, panel.childCount - 1));
+                    image.gameObject.SetActive(false);
+                }
+                else
+                {
+                    image = creature.GetComponent<Image>();
+                }
+                gameUI.SetVictoryCreature(image);
+            });
         }
 
         /// <summary>Viste la ventana de Bocas: cartas como las de elección de mutación, franja e insignias de nivel.</summary>

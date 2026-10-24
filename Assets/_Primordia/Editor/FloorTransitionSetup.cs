@@ -9,8 +9,9 @@ using UnityEngine;
 namespace Primordia.Editor
 {
     /// <summary>
-    /// Sala de paso: la plantilla de la cueva, los temas Shore y Cambrian, el prefab de la fosa y su icono del mapa, y
-    /// la añade a Floor_1 (pegada a la sala del jefe, se abre al vencerlo). También crea la escena Test_FloorTransition:
+    /// Sala de paso: la plantilla de la cueva, los temas Shore y Cambrian, el prefab de la fosa (con su metamorfosis) y
+    /// su icono del mapa, las Bocas del piso 2 con sus criaturas, la ventana de elección de Boca y la criatura en la
+    /// victoria, y la añade a Floor_1 (pegada a la sala del jefe, se abre al vencerlo). También crea la escena Test_FloorTransition:
     /// inicio con unas burbujas de mutación, un "jefe" de prueba (un perseguidor en una sala normal) y la sala de paso.
     /// Se puede volver a ejecutar: actualiza el arte, el prefab y la escena; la plantilla no la sobrescribe.
     /// </summary>
@@ -53,6 +54,7 @@ namespace Primordia.Editor
             ArtSetup.ApplyTransitionMapIcon();
             var mouths = CreateFloor2Mouths();
             EnsureMouthChoice();
+            ArtSetup.EnsureVictoryCreature();
             AddToFloor(cave, pit, mid, next, mouths);
             AssetDatabase.SaveAssets();
 
@@ -111,6 +113,14 @@ namespace Primordia.Editor
                     pit = root.AddComponent<TransitionPit>();
                 pit.Configure(pitRenderer, art?.Pit, art?.Bubble, key, art?.Key, EdgeRadii);
                 pit.SetRadius(InteractRadius);
+
+                var meta = ArtSetup.ImportMetamorphosisArt();
+                if (!root.TryGetComponent<Metamorphosis>(out var metamorphosis))
+                    metamorphosis = root.AddComponent<Metamorphosis>();
+                metamorphosis.Configure(meta.Background, meta.Rays, meta.Motes, art?.Bubble, meta.Aura, meta.Burst);
+                if (meta.Aura.Length == 0)
+                    Debug.LogWarning("FloorTransitionSetup: falta el arte de la metamorfosis (docs/multimedia-temp/metamorphosis, "
+                        + "generar_metamorfosis.py).");
 
                 PrefabUtility.SaveAsPrefabAsset(root, PitPrefabPath);
             }

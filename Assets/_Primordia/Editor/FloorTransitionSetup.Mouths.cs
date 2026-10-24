@@ -75,6 +75,7 @@ namespace Primordia.Editor
             if (art.Icon != null)
                 mutation.SetIcons(art.Icon, art.LargeIcon);
             mutation.SetCreatureFrames(art.Idle, art.Attack);
+            mutation.SetCreature(art.Body, art.Morph, art.Reveal);
             EditorUtility.SetDirty(mutation);
         }
 

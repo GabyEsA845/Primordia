@@ -17,9 +17,12 @@ namespace Primordia.UI
         [Tooltip("Segundos que tardan en entrar y salir las franjas y el HUD.")]
         [SerializeField, Min(0.01f)] float fadeTime = 0.4f;
         [SerializeField] Color barColor = Color.black;
+        [Tooltip("Aviso de que la escena se puede saltar, abajo a la derecha sobre la franja.")]
+        [SerializeField] string skipHintText = "E: saltar escena";
 
         RectTransform topBar;
         RectTransform bottomBar;
+        Text skipHint;
         GameManager manager;
         // Transparencia que tenía cada elemento oculto: algunos llevan la suya (el cartel del linaje está a 0 cuando no se ve).
         readonly Dictionary<CanvasGroup, float> hidden = new();
@@ -30,6 +33,18 @@ namespace Primordia.UI
         public float Amount => amount;
 
         public bool Showing { get; private set; }
+
+        /// <summary>True si se ve el aviso de saltar la escena.</summary>
+        public bool SkipHintShown => skipHint != null && skipHint.gameObject.activeSelf;
+
+        /// <summary>Enseña u oculta el aviso de que la escena se puede saltar (la metamorfosis, desde la segunda vez).</summary>
+        public void SetSkipHint(bool show)
+        {
+            if (show && skipHint == null)
+                skipHint = CreateSkipHint();
+            if (skipHint != null)
+                skipHint.gameObject.SetActive(show);
+        }
 
         void Awake()
         {
@@ -71,7 +86,8 @@ namespace Primordia.UI
 
             foreach (Transform child in transform)
             {
-                if (child == topBar || child == bottomBar || !child.gameObject.activeSelf || keep.Contains(child.gameObject))
+                if (child == topBar || child == bottomBar || (skipHint != null && child == skipHint.transform)
+                    || !child.gameObject.activeSelf || keep.Contains(child.gameObject))
                     continue;
                 if (!child.TryGetComponent<CanvasGroup>(out var group))
                     group = child.gameObject.AddComponent<CanvasGroup>();
@@ -102,6 +118,27 @@ namespace Primordia.UI
                 if (group != null)
                     group.alpha = alpha * (1f - eased);
             }
+        }
+
+        Text CreateSkipHint()
+        {
+            var text = new GameObject("SkipHint", typeof(RectTransform), typeof(Text)).GetComponent<Text>();
+            var rect = text.rectTransform;
+            rect.SetParent(transform, false);
+            rect.SetAsLastSibling();
+            rect.anchorMin = rect.anchorMax = rect.pivot = new Vector2(1f, 0f);
+            rect.anchoredPosition = new Vector2(-8f, 7f);
+            rect.sizeDelta = new Vector2(160f, 14f);
+            // La misma fuente pixel que el resto de la interfaz.
+            var sample = GetComponentInChildren<Text>(true);
+            if (sample != null && sample != text)
+                text.font = sample.font;
+            text.fontSize = 9;
+            text.alignment = TextAnchor.LowerRight;
+            text.color = new Color(1f, 1f, 1f, 0.85f);
+            text.raycastTarget = false;
+            text.text = skipHintText;
+            return text;
         }
 
         RectTransform CreateBar(string barName, float anchorY)

@@ -77,6 +77,13 @@ namespace Primordia.Mutations
             + "Se ve en la ventana de elección de Boca de la sala de paso.")]
         [SerializeField] Sprite[] creatureIdleFrames = System.Array.Empty<Sprite>();
         [SerializeField] Sprite[] creatureAttackFrames = System.Array.Empty<Sprite>();
+        [Tooltip("Solo Boca desde el piso 2: animaciones del cuerpo de la criatura, con los estados del jugador más "
+            + "Attack_side/down/up. Sustituyen a la célula y a la Piel.")]
+        [SerializeField] RuntimeAnimatorController creatureBody;
+        [Tooltip("Solo Boca desde el piso 2: metamorfosis, la silueta blanca que pasa de la célula a la criatura.")]
+        [SerializeField] Sprite[] morphFrames = System.Array.Empty<Sprite>();
+        [Tooltip("Solo Boca desde el piso 2: de la silueta blanca a los colores de la criatura, al final de la metamorfosis.")]
+        [SerializeField] Sprite[] revealFrames = System.Array.Empty<Sprite>();
 
         public string DisplayName => string.IsNullOrEmpty(displayName) ? name : displayName;
 
@@ -100,6 +107,9 @@ namespace Primordia.Mutations
         public WeaponFamily Family => family;
         public Sprite[] CreatureIdleFrames => creatureIdleFrames ?? System.Array.Empty<Sprite>();
         public Sprite[] CreatureAttackFrames => creatureAttackFrames ?? System.Array.Empty<Sprite>();
+        public RuntimeAnimatorController CreatureBody => creatureBody;
+        public Sprite[] MorphFrames => morphFrames ?? System.Array.Empty<Sprite>();
+        public Sprite[] RevealFrames => revealFrames ?? System.Array.Empty<Sprite>();
 
         /// <summary>Lo que añade ese nivel (2 o 3); vacío en el nivel 1 o si no está escrito.</summary>
         public string LevelDescription(int level)
@@ -167,6 +177,13 @@ namespace Primordia.Mutations
         {
             creatureIdleFrames = idle ?? System.Array.Empty<Sprite>();
             creatureAttackFrames = attack ?? System.Array.Empty<Sprite>();
+        }
+
+        internal void SetCreature(RuntimeAnimatorController body, Sprite[] morph, Sprite[] reveal)
+        {
+            creatureBody = body;
+            morphFrames = morph ?? System.Array.Empty<Sprite>();
+            revealFrames = reveal ?? System.Array.Empty<Sprite>();
         }
     }
 }

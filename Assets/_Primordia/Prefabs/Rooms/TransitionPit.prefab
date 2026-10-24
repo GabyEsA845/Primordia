@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4340570855729045037}
   - component: {fileID: 1376566341915262746}
   - component: {fileID: 3569420486088721647}
+  - component: {fileID: 7136541962475786111}
   m_Layer: 0
   m_Name: TransitionPit
   m_TagString: Untagged
@@ -108,6 +109,52 @@ MonoBehaviour:
   jumpHeight: 1.4
   fallDuration: 0.7
   choiceAt: 0.75
+--- !u!114 &7136541962475786111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7852799684999088888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca2f3c2530e40074eac4f4e46fe20a53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Primordia::Primordia.Rooms.Metamorphosis
+  background: {fileID: 21300000, guid: 7990fa3c1a605854fa7ef6efa48fed35, type: 3}
+  rays: {fileID: 21300000, guid: 63194c29d0a1af948b253fd6f141e3ef, type: 3}
+  moteFrames:
+  - {fileID: -6289170414974797285, guid: 6b3568936be79a5409efcb52a20dcfc4, type: 3}
+  - {fileID: -2074337543, guid: 6b3568936be79a5409efcb52a20dcfc4, type: 3}
+  bubbleFrames:
+  - {fileID: -1143601122301345916, guid: 46b5fa044ea473f40a5babeeae264809, type: 3}
+  - {fileID: 993640649303027417, guid: 46b5fa044ea473f40a5babeeae264809, type: 3}
+  auraFrames:
+  - {fileID: -2212351259095751215, guid: b7febda4aa002a44e957a6fc624e0ba6, type: 3}
+  - {fileID: -8007157607368916326, guid: b7febda4aa002a44e957a6fc624e0ba6, type: 3}
+  - {fileID: -7861913963056329492, guid: b7febda4aa002a44e957a6fc624e0ba6, type: 3}
+  - {fileID: 1872088299026254997, guid: b7febda4aa002a44e957a6fc624e0ba6, type: 3}
+  burstFrames:
+  - {fileID: -7524562153770960409, guid: e49bf3c706ae8ac40b43c1843f1b666a, type: 3}
+  - {fileID: -1437560916265270199, guid: e49bf3c706ae8ac40b43c1843f1b666a, type: 3}
+  - {fileID: 7593695190819454565, guid: e49bf3c706ae8ac40b43c1843f1b666a, type: 3}
+  - {fileID: 2302550465765879814, guid: e49bf3c706ae8ac40b43c1843f1b666a, type: 3}
+  - {fileID: 7651972549471440947, guid: e49bf3c706ae8ac40b43c1843f1b666a, type: 3}
+  - {fileID: -1845122839103228867, guid: e49bf3c706ae8ac40b43c1843f1b666a, type: 3}
+  familyColors:
+  - {r: 1, g: 0.55, b: 0.86, a: 1}
+  - {r: 1, g: 0.62, b: 0.3, a: 1}
+  - {r: 0.7, g: 0.95, b: 0.4, a: 1}
+  fadeOut: 0.35
+  fadeIn: 0.45
+  fall: 1
+  glow: 1.5
+  morph: 1.5
+  reveal: 0.7
+  pose: 1.3
+  endFade: 0.6
+  stageOffset: {x: 0, y: -400}
+  zoom: 0.7
 --- !u!1 &8459028325472992947
 GameObject:
   m_ObjectHideFlags: 0

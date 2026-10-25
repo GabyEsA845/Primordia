@@ -29,6 +29,7 @@ namespace Primordia.Editor
                 ("Angry_Transition", 8f, false), ("Angry", 8f, true), ("Idle", 6f, true), ("Hurt", 10f, false), ("Aim", 8f, true),
                 ("Split", 8f, false), ("Merge", 8f, false), ("Rage", 4f, true), ("Cast_1", 8f, true), ("Cast_2", 10f, true),
                 ("Cast_3", 12f, true), ("Exhaust", 8f, false), ("Tired", 4f, true), ("Death", 10f, false),
+                ("Intro", IntroPoseFps, false),
             },
         };
 

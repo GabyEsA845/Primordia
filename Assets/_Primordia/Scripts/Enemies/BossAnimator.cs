@@ -14,6 +14,7 @@ namespace Primordia.Enemies
         public const string TransitionState = "Phase2_Transition";
         public const string SummonState = "Summon_P2";
         public const string DeathState = "Death";
+        public const string IntroState = "Intro";
 
         // Índice 0 para la fase 1 y 1 para la fase 2.
         static readonly string[] IdleStates = { "Idle_P1", "Idle_P2" };
@@ -69,6 +70,15 @@ namespace Primordia.Enemies
                 return;
 
             states.Play(IdleStates[PhaseIndex]);
+        }
+
+        /// <summary>Pose de la presentación; el último cuadro se queda hasta que pasan <paramref name="hold"/> segundos.</summary>
+        internal void PlayIntro(float hold)
+        {
+            if (states == null || !states.Has(IntroState))
+                return;
+            states.Play(IntroState, restart: true);
+            lockedUntil = actionUntil = Time.time + Mathf.Max(hold, states.Length(IntroState));
         }
 
         void OnBurstStarting() => ShowAction(BurstStates[PhaseIndex]);

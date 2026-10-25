@@ -157,7 +157,7 @@ namespace Primordia.Editor
             return amoebaBody;
         }
 
-        static void ApplyArt(ArtSetup.AmoebaArt art)
+        internal static void ApplyArt(ArtSetup.AmoebaArt art)
         {
             var root = PrefabUtility.LoadPrefabContents(PrefabPath);
             try

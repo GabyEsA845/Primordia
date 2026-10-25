@@ -133,6 +133,7 @@ GameObject:
   - component: {fileID: 6893796967039342331}
   - component: {fileID: 4785260781329424427}
   - component: {fileID: 276029270050615252}
+  - component: {fileID: 5530954927465508505}
   m_Layer: 7
   m_Name: Boss_Virus
   m_TagString: Untagged
@@ -277,7 +278,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Primordia::Primordia.Enemies.Enemy
   data: {fileID: 11400000, guid: 6fe0c5992b3636f41a76c2b51cd1c2a2, type: 2}
-  deathDuration: 1.1
+  deathDuration: 1.1000001
   splitDuration: 0
 --- !u!114 &6893796967039342331
 MonoBehaviour:
@@ -345,3 +346,20 @@ MonoBehaviour:
   count: 3
   spacing: 2.5
   height: 3
+--- !u!114 &5530954927465508505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5535523149205059272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0f72950862b78c4dae7c086cbbd21fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Primordia::Primordia.Enemies.BossIntro
+  data: {fileID: 11400000, guid: 6874b9d3a0aa97d49936a15d96b064a6, type: 2}
+  panTime: 0.6
+  bannerAt: 1
+  bannerUntil: 3.2
+  skipText: '[E] Saltar'

@@ -83,6 +83,12 @@ namespace Primordia.Mutations
         [Tooltip("Solo Boca desde el piso 2: animaciones del cuerpo de la criatura, con los estados del jugador más "
             + "Attack_side/down/up. Sustituyen a la célula y a la Piel.")]
         [SerializeField] RuntimeAnimatorController creatureBody;
+        [Tooltip("Solo Boca desde el piso 2: segundos desde que empieza la animación de ataque del cuerpo hasta su cuadro "
+            + "del golpe, cuando sale el proyectil o muerde. 0 = al instante.")]
+        [SerializeField, Min(0f)] float attackHitTime;
+        [Tooltip("Solo Piel desde el piso 2: su capa encima de cada cuerpo de criatura (las animaciones del cuerpo y las de "
+            + "la capa, con los mismos estados).")]
+        [SerializeField] CreatureLayer[] creatureLayers = System.Array.Empty<CreatureLayer>();
         [Tooltip("Solo Boca desde el piso 2: metamorfosis, la silueta blanca que pasa de la célula a la criatura.")]
         [SerializeField] Sprite[] morphFrames = System.Array.Empty<Sprite>();
         [Tooltip("Solo Boca desde el piso 2: de la silueta blanca a los colores de la criatura, al final de la metamorfosis.")]
@@ -113,6 +119,30 @@ namespace Primordia.Mutations
         public Sprite[] CreatureIdleFrames => creatureIdleFrames ?? System.Array.Empty<Sprite>();
         public Sprite[] CreatureAttackFrames => creatureAttackFrames ?? System.Array.Empty<Sprite>();
         public RuntimeAnimatorController CreatureBody => creatureBody;
+        /// <summary>Capa de una Piel sobre un cuerpo de criatura: las animaciones del cuerpo y las de la capa.</summary>
+        [System.Serializable]
+        public struct CreatureLayer
+        {
+            public RuntimeAnimatorController body;
+            public RuntimeAnimatorController layer;
+        }
+
+        /// <summary>Solo Boca: segundos hasta el cuadro del golpe de la animación de ataque de su criatura.</summary>
+        public float AttackHitTime => attackHitTime;
+
+        /// <summary>Solo Piel: animaciones de su capa sobre ese cuerpo de criatura, o null si no tiene.</summary>
+        public RuntimeAnimatorController CreatureLayerFor(RuntimeAnimatorController body)
+        {
+            if (body == null || creatureLayers == null)
+                return null;
+            foreach (var layer in creatureLayers)
+            {
+                if (layer.body == body)
+                    return layer.layer;
+            }
+            return null;
+        }
+
         public Sprite[] MorphFrames => morphFrames ?? System.Array.Empty<Sprite>();
         public Sprite[] RevealFrames => revealFrames ?? System.Array.Empty<Sprite>();
 
@@ -179,6 +209,10 @@ namespace Primordia.Mutations
         }
 
         internal void SetSpecial(bool newSpecial) => special = newSpecial;
+
+        internal void SetAttackHitTime(float seconds) => attackHitTime = Mathf.Max(0f, seconds);
+
+        internal void SetCreatureLayers(params CreatureLayer[] layers) => creatureLayers = layers ?? System.Array.Empty<CreatureLayer>();
 
         internal void SetCreatureFrames(Sprite[] idle, Sprite[] attack)
         {

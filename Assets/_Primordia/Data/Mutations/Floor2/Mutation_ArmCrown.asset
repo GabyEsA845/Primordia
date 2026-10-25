@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ae6dfe8bf811cd4aa9de30d1d03b937, type: 3}
+  m_Name: Mutation_ArmCrown
+  m_EditorClassIdentifier: Primordia::Primordia.Mutations.AttackMutation
+  displayName: Corona de brazos
+  description: "Remolino donde est\xE1 el cursor (como mucho a 6 u): dura 2 s, radio 1,6 u, atrae a los enemigos al centro y hace 1 de da\xF1o cada 0,4 s. Uno por segundo."
+  slot: 0
+  lineages: []
+  look: {fileID: 0}
+  bodyRadius: 0
+  mouthDistance: 0
+  headHeight: 0
+  wornOnHead: 0
+  muzzleDistance: 0
+  attackLean: 0
+  icon: {fileID: 21300000, guid: ccd2471114d56a3479029deeb5feb50a, type: 3}
+  largeIcon: {fileID: 21300000, guid: 7c49729353a0e2745974528f9de9d688, type: 3}
+  color: {r: 0.95, g: 0.5, b: 0.35, a: 1}
+  levelDescriptions:
+  - "Radio de 2 u, dura 2,5 s y da\xF1a cada 0,3 s."
+  - "Marea: al acabar, el remolino estalla, empuja a todos hacia fuera y hace 4 de da\xF1o."
+  dodgeSound: 
+  floor: 2
+  special: 0
+  family: 2
+  creatureIdleFrames:
+  - {fileID: -2258974958026451097, guid: 59ef0cbe7a9d28449a2a6c04856560bb, type: 3}
+  - {fileID: 2601068183223539099, guid: 59ef0cbe7a9d28449a2a6c04856560bb, type: 3}
+  - {fileID: 2864512375187627547, guid: 59ef0cbe7a9d28449a2a6c04856560bb, type: 3}
+  - {fileID: 626586843, guid: 59ef0cbe7a9d28449a2a6c04856560bb, type: 3}
+  creatureAttackFrames:
+  - {fileID: 3638876579883276332, guid: cad2708c9e0b6264d8975fda46a55a05, type: 3}
+  - {fileID: -5478520677858897368, guid: cad2708c9e0b6264d8975fda46a55a05, type: 3}
+  - {fileID: 5299984769268146548, guid: cad2708c9e0b6264d8975fda46a55a05, type: 3}
+  - {fileID: -1640606311, guid: cad2708c9e0b6264d8975fda46a55a05, type: 3}
+  - {fileID: 1989638574, guid: cad2708c9e0b6264d8975fda46a55a05, type: 3}
+  - {fileID: -376660756, guid: cad2708c9e0b6264d8975fda46a55a05, type: 3}
+  creatureBody: {fileID: 9100000, guid: feb82a28b3107fc4b986b41b1d879747, type: 2}
+  attackHitTime: 0.14285715
+  creatureLayers: []
+  morphFrames:
+  - {fileID: -2691607645031426501, guid: ac9ccb743d837bf46a65f24e3b959014, type: 3}
+  - {fileID: -4003062020903479099, guid: ac9ccb743d837bf46a65f24e3b959014, type: 3}
+  - {fileID: -4073321275221804462, guid: ac9ccb743d837bf46a65f24e3b959014, type: 3}
+  - {fileID: 388601782160694902, guid: ac9ccb743d837bf46a65f24e3b959014, type: 3}
+  - {fileID: -3173020084567751140, guid: ac9ccb743d837bf46a65f24e3b959014, type: 3}
+  - {fileID: 3561353309042643846, guid: ac9ccb743d837bf46a65f24e3b959014, type: 3}
+  - {fileID: 3952909514548610838, guid: ac9ccb743d837bf46a65f24e3b959014, type: 3}
+  - {fileID: -4580871745914997467, guid: ac9ccb743d837bf46a65f24e3b959014, type: 3}
+  - {fileID: 378891214483865999, guid: ac9ccb743d837bf46a65f24e3b959014, type: 3}
+  - {fileID: -1831731501900750134, guid: ac9ccb743d837bf46a65f24e3b959014, type: 3}
+  - {fileID: -1942336533013613210, guid: ac9ccb743d837bf46a65f24e3b959014, type: 3}
+  - {fileID: 7138285700472544157, guid: ac9ccb743d837bf46a65f24e3b959014, type: 3}
+  revealFrames:
+  - {fileID: 386420814075175949, guid: 3161ac969e7ceff479371ec8979eccc5, type: 3}
+  - {fileID: 7410085946608213706, guid: 3161ac969e7ceff479371ec8979eccc5, type: 3}
+  - {fileID: 5355812176778753750, guid: 3161ac969e7ceff479371ec8979eccc5, type: 3}
+  - {fileID: -5046477392575829486, guid: 3161ac969e7ceff479371ec8979eccc5, type: 3}
+  - {fileID: -849353992453107547, guid: 3161ac969e7ceff479371ec8979eccc5, type: 3}
+  - {fileID: 5838543992927223208, guid: 3161ac969e7ceff479371ec8979eccc5, type: 3}
+  attack: {fileID: 11400000, guid: 13804181271916448befa76bd738cab2, type: 2}
+  healEveryKills: 0
+  upgrades:
+  - attack: {fileID: 11400000, guid: 6313fc8a85055ed4bb03d98e06e3477e, type: 2}
+    healEveryKills: 0
+  - attack: {fileID: 11400000, guid: c8e3370633fdfed4f9b9b3529a7079d4, type: 2}
+    healEveryKills: 0
+  healEffect: {fileID: 0}

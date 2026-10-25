@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Mutation_JawPlates
   m_EditorClassIdentifier: Primordia::Primordia.Mutations.AttackMutation
   displayName: Placas mandibulares
-  description: "Mordisco de guillotina en un arco ancho (5 de da\xF1o). El enemigo mordido recibe un 25 % m\xE1s de da\xF1o durante 2 s."
+  description: "Mordisco en arco de 110\xB0: 5 de da\xF1o, 2 por segundo y un peque\xF1o empuj\xF3n. Quebrar: el enemigo mordido recibe un 25 % m\xE1s de da\xF1o de todo durante 2 s."
   slot: 0
   lineages: []
   look: {fileID: 0}
@@ -27,10 +27,11 @@ MonoBehaviour:
   largeIcon: {fileID: 21300000, guid: 3a6e58c271c1dc24c851a6bdf9f911d0, type: 3}
   color: {r: 0.95, g: 0.5, b: 0.35, a: 1}
   levelDescriptions:
-  - "Da\xF1o 5 \u2192 6 y Quebrar dura 3 s."
-  - "Guillotina: cada cuarto mordisco es doble, hace el triple de da\xF1o y aturde 0,5 s."
+  - "6 de da\xF1o y Quebrar dura 3 s."
+  - "Guillotina: cada cuarto mordisco va seguido de una segunda dentellada m\xE1s grande, que llega m\xE1s lejos."
   dodgeSound: 
   floor: 2
+  special: 0
   family: 1
   creatureIdleFrames:
   - {fileID: 5901538501798726616, guid: 318117f6d462d694985768a076cdf527, type: 3}
@@ -45,6 +46,8 @@ MonoBehaviour:
   - {fileID: 4717754548834805718, guid: ed842dcfc80d4da49a5e3f86f066334f, type: 3}
   - {fileID: 2732893681263161484, guid: ed842dcfc80d4da49a5e3f86f066334f, type: 3}
   creatureBody: {fileID: 9100000, guid: 4c5ea57aa6bffee4eb43b77aeb938993, type: 2}
+  attackHitTime: 0.21428572
+  creatureLayers: []
   morphFrames:
   - {fileID: 4144295673252415180, guid: 08725d80de2e6eb45a472d28a8a5ee93, type: 3}
   - {fileID: -8171808255333429520, guid: 08725d80de2e6eb45a472d28a8a5ee93, type: 3}
@@ -65,7 +68,11 @@ MonoBehaviour:
   - {fileID: 2483823378315617240, guid: 0ea84158abcde3140a5cc3025845033e, type: 3}
   - {fileID: 565980959800326375, guid: 0ea84158abcde3140a5cc3025845033e, type: 3}
   - {fileID: -1214073155870248145, guid: 0ea84158abcde3140a5cc3025845033e, type: 3}
-  attack: {fileID: 11400000, guid: 2dea36bdb5aa9ba49ab5eaa57e026bc4, type: 2}
+  attack: {fileID: 11400000, guid: 57189526036d449468e43176c2274ee5, type: 2}
   healEveryKills: 0
-  upgrades: []
+  upgrades:
+  - attack: {fileID: 11400000, guid: 396bf5eceac57eb48a27c0ac7e0a3d29, type: 2}
+    healEveryKills: 0
+  - attack: {fileID: 11400000, guid: 3c522cf84e976b5419ee769cd35e9efa, type: 2}
+    healEveryKills: 0
   healEffect: {fileID: 0}

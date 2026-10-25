@@ -119,12 +119,14 @@ namespace Primordia.Editor
         {
             public MouthArt Cnidocytes;
             public MouthArt JawPlates;
+            public MouthArt ArmCrown;
         }
 
         internal static Floor2MouthArt ImportFloor2MouthArt() => new()
         {
             Cnidocytes = ImportMouthArt("Cnidocytes", "Jellyfish"),
             JawPlates = ImportMouthArt("JawPlates", "Placoderm"),
+            ArmCrown = ImportMouthArt("ArmCrown", "Crinoid"),
         };
 
         static MouthArt ImportMouthArt(string icon, string body)

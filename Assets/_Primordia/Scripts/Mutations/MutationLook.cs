@@ -124,6 +124,30 @@ namespace Primordia.Mutations
             var creature = newMouth != null ? newMouth.CreatureBody : null;
             CreatureForm = creature != null;
             playerAnimator.SetCreatureController(creature);
+            // El golpe sale en el cuadro de la animación de ataque de la criatura.
+            if (weapon != null)
+                weapon.Windup = CreatureForm ? newMouth.AttackHitTime : 0f;
+        }
+
+        CreatureLayerMirror skinLayer;
+
+        /// <summary>Capa de la Piel sobre el cuerpo de la criatura que se ve ahora (null si no hay).</summary>
+        public RuntimeAnimatorController CreatureSkinLayer => skinLayer != null ? skinLayer.Controller : null;
+
+        /// <summary>Pone o quita la capa de la Piel sobre el cuerpo de la criatura (la Cutícula de Marrella).</summary>
+        void UpdateCreatureLayer()
+        {
+            var skin = mutations.Get(MutationSlot.Skin);
+            var layer = CreatureForm && skin != null ? skin.CreatureLayerFor(playerAnimator.CreatureController) : null;
+            if (layer == null && skinLayer == null)
+                return;
+            if (skinLayer == null && playerAnimator.Body != null)
+                skinLayer = CreatureLayerMirror.Create(playerAnimator.BodyAnimator, playerAnimator.Body);
+            if (skinLayer != null)
+            {
+                skinLayer.Controller = layer;
+                skinLayer.Hidden = Hidden;
+            }
         }
 
         /// <summary>Animaciones de la pieza de esa ranura que se ven ahora (las del linaje, si las sustituye).</summary>
@@ -203,6 +227,8 @@ namespace Primordia.Mutations
                 organBusyUntil = 0f;
                 Play(organ, IdleState);
             }
+
+            UpdateCreatureLayer();
 
             bool shown = !controller.IsDodging && !Hidden && !CreatureForm;
             Show(limbsRenderer, limbs, shown);

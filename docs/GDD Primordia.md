@@ -235,7 +235,7 @@ Nueve mutaciones: 3 Bocas, una por familia de arma, y 2 por cada otra ranura. El
 | Mutación | Ranura | Familia | Nivel I | Nivel II | Nivel III: evolución |
 | --- | --- | --- | --- | --- | --- |
 | Cnidocitos | Boca | Proyectil → medusa | Arpón que atraviesa a 1 enemigo: 2 de daño, 3 por segundo, veneno de 1 por segundo durante 3 s | Atraviesa a 2 enemigos y el veneno sube a 2 por segundo | **Ramillete:** cada cuarto disparo son 3 arpones en abanico |
-| Placas mandibulares | Boca | Cuerpo a cuerpo → pez acorazado | Arco de 110°, unas 4,6 unidades de alcance, 5 de daño, 2 mordiscos por segundo y un pequeño empujón. **Quebrar:** el enemigo mordido recibe un 25 % más de daño de todo durante 2 s | Daño 5 → 6 y Quebrar dura 3 s | **Guillotina:** cada cuarto mordisco es doble, hace el triple de daño y aturde 0,5 s |
+| Placas mandibulares | Boca | Cuerpo a cuerpo → pez acorazado | Arco de 110° desde la boca, tan largo como el mordisco dibujado (unas 1,9 unidades), 5 de daño, 2 mordiscos por segundo y un pequeño empujón. **Quebrar:** el enemigo mordido recibe un 25 % más de daño de todo durante 2 s, con una marca encima (una placa que se agrieta) | Daño 5 → 6 y Quebrar dura 3 s | **Guillotina:** cada cuarto mordisco va seguido de una segunda dentellada más grande (su propia animación, con el filo al rojo) que llega más lejos (unas 3,25 unidades), con el daño normal |
 | Corona de brazos | Boca | Área → lirio de mar | El clic lanza un remolino donde está el cursor (como mucho a 6 u): dura 2 s, radio 1,6 u, atrae a los enemigos al centro y hace 1 de daño cada 0,4 s. Un remolino por segundo | Radio 2 u, dura 2,5 s y daña cada 0,3 s | **Marea:** al acabar, el remolino estalla, empuja a todos hacia fuera y hace 4 de daño |
 | Cola propulsora | Extremidades | | Dos esquivas seguidas antes de la recarga | La segunda esquiva deja 3 burbujas que hacen 2 de daño y empujan | **Torbellino:** las dos esquivas dejan 5 burbujas de 3 de daño |
 | Espinas de Hallucigenia | Extremidades | | Al esquivar dejas 2 púas en el suelo durante 4 s; quien las pisa recibe 2 de daño | 3 púas que duran 6 s | **Erizo:** al desaparecer, cada púa sale disparada hacia el enemigo más cercano |
@@ -595,6 +595,15 @@ Objetivo: que añadir una mutación, un enemigo o una sala nueva sea crear un ar
 | Salas especiales | Catálogo de 10 hechas a mano, de 2 a 4 por partida, con contorno de cueva fijo. La del corazón morado sale siempre en el Abismo; el corazón para un golpe, se conserva entre pisos y abrirá una sala secreta del piso 3 |
 | Pasillos, tienda y jefes | Túneles irregulares sin enemigos; tienda a mitad del piso con la sala de cambio detrás; antesala antes de cada jefe; sala del Anomalocaris sin fosas y con la luz que baja al entrar; en la del Euriptérido se derrumban 2 rocas con la muda |
 | Presentación de los jefes | Unos 3 s al entrar, siempre, se salta con E: pose, rótulo con nombre (Jersey 10, color por piso), título y retrato de 176 px. Para los 4 jefes de los pisos 1 y 2 |
+
+**Decidido el 25 de octubre (Placas mandibulares, tras probarlas)**
+
+| Tema | Decisión |
+| --- | --- |
+| Alcance del mordisco | Solo lo que se ve: el arco se mide desde la boca y llega hasta la punta de las placas dibujadas (unas 1,9 u en lugar de 4,6) |
+| Guillotina | Sin triple de daño ni aturdimiento: cada cuarto mordisco sale una segunda dentellada más grande, con su animación, que llega más lejos (unas 3,25 u) |
+| Quebrar | Lleva una marca sobre el enemigo mientras dura |
+| Arte del mordisco | Rehecho: dos placas de hueso con la punta en gancho, como la mandíbula de *Dunkleosteus* |
 
 **Decidido el 25 de octubre (almejas y mutaciones especiales)**
 

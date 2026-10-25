@@ -38,6 +38,37 @@ namespace Primordia.Combat
         public event Action<Vector2> Fired;
 
         /// <summary>
+        /// Se lanza al empezar un ataque, antes de la preparación (<see cref="Windup"/>): ahí arranca la animación de ataque
+        /// del cuerpo. Sin preparación, justo antes de <see cref="Fired"/>.
+        /// </summary>
+        public event Action<Vector2> Started;
+
+        /// <summary>
+        /// Segundos desde que se ataca hasta que sale el golpe o el proyectil: el cuadro del golpe de la animación de ataque
+        /// del cuerpo de la criatura (la medusa suelta el arpón en el tercero, el pez cierra las placas en el cuarto).
+        /// 0 = al instante.
+        /// </summary>
+        public float Windup
+        {
+            get => windup;
+            set => windup = Mathf.Max(0f, value);
+        }
+
+        /// <summary>
+        /// Punto al que se apunta (el cursor del jugador, el enemigo de la copia de la Yema): ahí aparece el remolino de un
+        /// ataque de área, como mucho a su alcance. Null = a todo el alcance en la dirección del ataque.
+        /// </summary>
+        public Vector2? AimPoint { get; set; }
+
+        /// <summary>True mientras prepara un ataque que aún no ha salido.</summary>
+        public bool IsWindingUp => windupAttack != null;
+
+        float windup;
+        AttackData windupAttack;
+        Vector2 windupDirection;
+        float windupUntil;
+
+        /// <summary>
         /// Multiplica el daño de cada disparo o mordisco (la Emboscada de las Aletas). 1 = normal. Al leerlo incluye
         /// también los bonus de <see cref="SetDamageBonus"/>; asignarlo solo cambia el multiplicador base.
         /// </summary>
@@ -87,6 +118,17 @@ namespace Primordia.Combat
 
         float nextFireTime;
         int projectileLayer;
+        // Disparos para el Ramillete (cada N, un abanico) y golpes cuerpo a cuerpo para la Guillotina (cada N, uno doble).
+        int shots;
+        int strikes;
+
+        /// <summary>Segundos que aturde el empujón normal del golpe (lo justo para que se note).</summary>
+        const float PushStun = 0.15f;
+        /// <summary>Segundos entre la dentellada normal y la segunda de la Guillotina.</summary>
+        internal const float GuillotineGap = 0.18f;
+
+        /// <summary>Se lanza cuando la Guillotina prepara su segunda dentellada.</summary>
+        public event Action Guillotined;
         IMeleeLunger lunger;
 
         // Mordisco con avance que aún no ha golpeado: golpea al acabar el avance o al tener a alguien a tiro.
@@ -99,10 +141,21 @@ namespace Primordia.Combat
 
         void Awake() => projectileLayer = CombatLayers.ProjectileLayer(team);
 
-        void OnDisable() => pendingAttack = null;
+        void OnDisable()
+        {
+            pendingAttack = null;
+            windupAttack = null;
+        }
 
         void Update()
         {
+            if (windupAttack != null && Time.time >= windupUntil)
+            {
+                var prepared = windupAttack;
+                windupAttack = null;
+                Fire(windupDirection, prepared);
+            }
+
             if (pendingAttack == null)
                 return;
 
@@ -112,7 +165,7 @@ namespace Primordia.Combat
             var attack = pendingAttack;
             pendingAttack = null;
             lunger?.StopLunge();
-            Strike(pendingDirection, MuzzlePosition, attack);
+            Bite(pendingDirection, attack);
         }
 
         Vector2 MuzzlePosition => muzzle != null ? muzzle.position : transform.position;
@@ -124,12 +177,28 @@ namespace Primordia.Combat
                 return false;
 
             nextFireTime = Time.time + attack.Cooldown;
-            Fire(direction);
+            Started?.Invoke(direction.normalized);
+            if (windup > 0f)
+            {
+                // Sale en el cuadro del golpe de la animación, hacia donde se apuntó al atacar.
+                windupAttack = attack;
+                windupDirection = direction;
+                windupUntil = Time.time + windup;
+            }
+            else
+            {
+                Fire(direction, attack);
+            }
             return true;
         }
 
-        /// <summary>Dispara ya, sin mirar la recarga.</summary>
-        public void Fire(Vector2 direction) => Fire(direction, attack);
+        /// <summary>Dispara ya, sin mirar la recarga ni la preparación.</summary>
+        public void Fire(Vector2 direction)
+        {
+            if (direction.sqrMagnitude > 0.0001f)
+                Started?.Invoke(direction.normalized);
+            Fire(direction, attack);
+        }
 
         /// <summary>
         /// Dispara otro ataque desde esta arma, sin mirar la recarga ni cambiar el ataque actual.
@@ -143,18 +212,32 @@ namespace Primordia.Combat
             direction.Normalize();
             Vector2 origin = muzzle != null ? muzzle.position : transform.position;
 
+            if (attack.IsArea)
+            {
+                Whirlpool.Spawn(attack, this, AreaPoint(direction, attack));
+                Fired?.Invoke(direction);
+                Sfx.Play(attack.FireSound);
+                return;
+            }
+
             if (attack.IsMelee)
             {
                 if (!TryLunge(direction, attack))
-                    Strike(direction, origin, attack);
+                    Bite(direction, attack);
                 Fired?.Invoke(direction);
                 Sfx.Play(attack.FireSound);
                 return;
             }
 
             int count = attack.ProjectileCount;
-            float step = count > 1 ? attack.SpreadAngle / (count - 1) : 0f;
-            float firstAngle = count > 1 ? -attack.SpreadAngle / 2f : 0f;
+            float spread = attack.SpreadAngle;
+            if (attack.VolleyEvery > 0 && ++shots % attack.VolleyEvery == 0)
+            {
+                count = Mathf.Max(count, attack.VolleyCount);
+                spread = attack.VolleySpread;
+            }
+            float step = count > 1 ? spread / (count - 1) : 0f;
+            float firstAngle = count > 1 ? -spread / 2f : 0f;
 
             for (int i = 0; i < count; i++)
             {
@@ -162,9 +245,27 @@ namespace Primordia.Combat
                 ProjectilePool.Get(attack.ProjectilePrefab).Launch(origin, projectileDirection, attack, projectileLayer, this);
             }
 
+            if (attack.MuzzleEffect != null)
+            {
+                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                OneShotEffect.Spawn(attack.MuzzleEffect, origin, angle, muzzle != null ? muzzle : transform);
+            }
+
             Fired?.Invoke(direction);
             Sfx.Play(attack.FireSound);
         }
+
+        /// <summary>Dónde aparece el remolino: en el punto apuntado, como mucho a su alcance del atacante.</summary>
+        Vector2 AreaPoint(Vector2 direction, AttackData attack)
+        {
+            Vector2 center = transform.position;
+            Vector2 point = AimPoint ?? center + direction * attack.AreaRange;
+            Vector2 offset = point - center;
+            return offset.magnitude > attack.AreaRange ? center + offset.normalized * attack.AreaRange : point;
+        }
+
+        /// <summary>Disparos hechos con esta arma (cuenta el Ramillete).</summary>
+        public int Shots => shots;
 
         internal void ReportHit(Health target) => HitTarget?.Invoke(target);
 
@@ -200,23 +301,25 @@ namespace Primordia.Combat
 
         bool AnyTargetInReach(Vector2 direction, AttackData attack)
         {
-            foreach (var _ in TargetsInReach(direction, attack))
+            foreach (var _ in TargetsInReach(direction, attack, ReachCenter(attack), attack.Range))
                 return true;
             return false;
         }
 
+        /// <summary>Desde dónde se mide el alcance: la boca (si el ataque lo pide) o el centro del atacante.</summary>
+        Vector2 ReachCenter(AttackData attack) => attack.MeleeFromMuzzle ? MuzzlePosition : (Vector2)transform.position;
+
         /// <summary>
-        /// Objetivos del otro equipo dentro del alcance (medido desde el centro del atacante) y del arco delante
-        /// de él, una vez cada uno.
+        /// Objetivos del otro equipo dentro del alcance (medido desde <paramref name="center"/>) y del arco delante de él,
+        /// una vez cada uno.
         /// </summary>
-        IEnumerable<(Health health, Collider2D collider)> TargetsInReach(Vector2 direction, AttackData attack)
+        IEnumerable<(Health health, Collider2D collider)> TargetsInReach(Vector2 direction, AttackData attack, Vector2 center, float range)
         {
-            Vector2 center = transform.position;
             var ownHealth = GetComponentInParent<Health>();
             int targets = LayerMask.GetMask(team == Team.Player ? CombatLayers.Enemy : CombatLayers.Player);
             var seen = new HashSet<Health>();
 
-            foreach (var hit in Physics2D.OverlapCircleAll(center, attack.Range, targets))
+            foreach (var hit in Physics2D.OverlapCircleAll(center, range, targets))
             {
                 if (hit.isTrigger)
                     continue;
@@ -234,15 +337,36 @@ namespace Primordia.Combat
             }
         }
 
-        /// <summary>
-        /// Golpe cuerpo a cuerpo: daña una vez a cada objetivo del otro equipo que esté dentro del alcance
-        /// (medido desde el centro del atacante) y del arco delante de él.
-        /// </summary>
-        void Strike(Vector2 direction, Vector2 effectPosition, AttackData attack)
+        /// <summary>Un mordisco y, si toca la Guillotina, la segunda dentellada más grande un momento después.</summary>
+        void Bite(Vector2 direction, AttackData attack)
         {
+            Strike(direction, attack, attack.Range, attack.MeleeEffect);
+            if (attack.GuillotineEvery > 0 && ++strikes % attack.GuillotineEvery == 0)
+            {
+                Guillotined?.Invoke();
+                if (isActiveAndEnabled)
+                    StartCoroutine(SecondBite(direction, attack));
+            }
+        }
+
+        System.Collections.IEnumerator SecondBite(Vector2 direction, AttackData attack)
+        {
+            yield return new WaitForSeconds(GuillotineGap);
+            Strike(direction, attack, attack.GuillotineRange, attack.GuillotineEffect != null ? attack.GuillotineEffect : attack.MeleeEffect);
+        }
+
+        /// <summary>
+        /// Golpe cuerpo a cuerpo: daña una vez a cada objetivo del otro equipo que esté dentro de ese alcance (desde la boca
+        /// o desde el centro, según el ataque) y del arco delante del atacante.
+        /// </summary>
+        void Strike(Vector2 direction, AttackData attack, float range, GameObject effectPrefab)
+        {
+            Vector2 effectPosition = MuzzlePosition;
+            Vector2 center = ReachCenter(attack);
             // Se recogen antes de dañar: una muerte puede cambiar la escena mientras se recorren.
-            var hits = new List<(Health health, Collider2D collider)>(TargetsInReach(direction, attack));
+            var hits = new List<(Health health, Collider2D collider)>(TargetsInReach(direction, attack, center, range));
             bool landed = false;
+            int damage = DamageOf(attack);
             foreach (var (health, hit) in hits)
             {
                 if (health == null)
@@ -256,27 +380,43 @@ namespace Primordia.Combat
                         continue;
                 }
 
-                if (!health.TakeDamage(DamageOf(attack)))
+                if (!health.TakeDamage(damage))
                     continue;
 
                 landed = true;
 
                 OneShotEffect.Spawn(attack.MeleeHitEffect, hit.bounds.center);
                 attack.ApplyStatus(health, PoisonMultiplier);
+                Push(health, hit, center, attack);
                 ReportHit(health);
             }
 
             if (landed)
                 Sfx.Play(attack.HitSound);
 
-            if (attack.MeleeEffect != null)
+            if (effectPrefab != null)
             {
-                // Cuelga del mismo padre que la boca, así sigue al jugador mientras dura.
+                // Cuelga del mismo padre que la boca, así sigue al jugador mientras dura. Los efectos de cuadros se
+                // destruyen solos al acabar; los demás, al acabar el Lifetime del ataque.
                 var parent = muzzle != null ? muzzle.parent : transform;
                 float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-                var effect = Instantiate(attack.MeleeEffect, effectPosition, Quaternion.Euler(0f, 0f, angle), parent);
-                Destroy(effect, attack.Lifetime);
+                var effect = Instantiate(effectPrefab, effectPosition, Quaternion.Euler(0f, 0f, angle), parent);
+                if (!effect.TryGetComponent<FrameEffect>(out _))
+                    Destroy(effect, attack.Lifetime);
             }
+        }
+
+        /// <summary>El empujón del golpe (Placas mandibulares), hacia fuera de donde se mide el mordisco.</summary>
+        static void Push(Health health, Collider2D hit, Vector2 from, AttackData attack)
+        {
+            if (health.IsDead || attack.MeleePush <= 0f)
+                return;
+            var pushable = hit.GetComponentInParent<IPushable>();
+            if (pushable == null)
+                return;
+            Vector2 away = (Vector2)hit.bounds.center - from;
+            away = away.sqrMagnitude > 0.0001f ? away.normalized : Vector2.right;
+            pushable.Knockback(away * attack.MeleePush, PushStun);
         }
 
         static Vector2 Rotate(Vector2 vector, float degrees) => Quaternion.Euler(0f, 0f, degrees) * vector;

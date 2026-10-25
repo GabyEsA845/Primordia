@@ -36,6 +36,9 @@ namespace Primordia.Combat
         float expireTime;
         bool launched;
         Transform homingTarget;
+        // Atravesar: enemigos que aún puede atravesar y los ya alcanzados (no les vuelve a dar).
+        int piercesLeft;
+        readonly HashSet<Health> struck = new();
         // Objetivo fijo de un proyectil buscador (el reflejado de la Cutícula vuelve a quien lo lanzó).
         Transform fixedTarget;
         float nextTargetSearch;
@@ -129,6 +132,8 @@ namespace Primordia.Combat
             nextTargetSearch = 0f;
             homingTarget = null;
             fixedTarget = null;
+            piercesLeft = attack.Pierce;
+            struck.Clear();
             expireTime = Time.time + attack.Lifetime;
             launched = true;
             active.Add(this);
@@ -276,9 +281,14 @@ namespace Primordia.Combat
                 }
             }
 
+            // Al atravesar, no vuelve a dar al mismo.
+            if (struck.Contains(health))
+                return;
+
             if (!health.TakeDamage(Damage))
                 return;
 
+            struck.Add(health);
             OneShotEffect.Spawn(impactEffect, transform.position);
             Sfx.Play(attack.ImpactSound);
             attack.ApplyStatus(health, PoisonMultiplier);
@@ -287,6 +297,11 @@ namespace Primordia.Combat
             if (source != null)
                 source.ReportHit(health);
 
+            if (piercesLeft > 0)
+            {
+                piercesLeft--;
+                return;
+            }
             Despawn();
         }
 

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Mutation_Cnidocytes
   m_EditorClassIdentifier: Primordia::Primordia.Mutations.AttackMutation
   displayName: Cnidocitos
-  description: Arpones urticantes que atraviesan a un enemigo y lo envenenan.
+  description: "Arp\xF3n urticante que atraviesa a 1 enemigo: 2 de da\xF1o, 3 por segundo y veneno de 1 por segundo durante 3 s."
   slot: 0
   lineages: []
   look: {fileID: 0}
@@ -27,10 +27,11 @@ MonoBehaviour:
   largeIcon: {fileID: 21300000, guid: 563bb8c8de7e74e4a8655e17716eec1c, type: 3}
   color: {r: 0.95, g: 0.5, b: 0.35, a: 1}
   levelDescriptions:
-  - 
-  - 
+  - Atraviesa a 2 enemigos y el veneno sube a 2 por segundo.
+  - 'Ramillete: cada cuarto disparo son 3 arpones en abanico.'
   dodgeSound: 
   floor: 2
+  special: 0
   family: 0
   creatureIdleFrames:
   - {fileID: 6344908649535744163, guid: 245ca6817a141454880bc14e7221411c, type: 3}
@@ -45,6 +46,8 @@ MonoBehaviour:
   - {fileID: 2414722972721512475, guid: 08b39a779193e9a458e9dd4b8a7feb09, type: 3}
   - {fileID: -3230314704043606289, guid: 08b39a779193e9a458e9dd4b8a7feb09, type: 3}
   creatureBody: {fileID: 9100000, guid: 5c4ed1232e5e4c14a9ea4801bceeb8b0, type: 2}
+  attackHitTime: 0.14285715
+  creatureLayers: []
   morphFrames:
   - {fileID: -1609282909594631881, guid: aed4f866b26e425429accf8cddac9ef2, type: 3}
   - {fileID: 2047464158327799277, guid: aed4f866b26e425429accf8cddac9ef2, type: 3}
@@ -65,7 +68,11 @@ MonoBehaviour:
   - {fileID: -4686499123767007208, guid: b68df15c95696e94583f56593377bb07, type: 3}
   - {fileID: 2182347238908803520, guid: b68df15c95696e94583f56593377bb07, type: 3}
   - {fileID: -6367851024615084837, guid: b68df15c95696e94583f56593377bb07, type: 3}
-  attack: {fileID: 11400000, guid: b6c3f22c0110a2548b95eda6f2d352df, type: 2}
+  attack: {fileID: 11400000, guid: fea3bb71d8f7668408502efea44415ab, type: 2}
   healEveryKills: 0
-  upgrades: []
+  upgrades:
+  - attack: {fileID: 11400000, guid: 87f025e5cbedcbb41a6c84784d380a5c, type: 2}
+    healEveryKills: 0
+  - attack: {fileID: 11400000, guid: 053dbe2e105ed164ca8098f6d2d09255, type: 2}
+    healEveryKills: 0
   healEffect: {fileID: 0}

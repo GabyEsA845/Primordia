@@ -39,6 +39,8 @@ namespace Primordia.Player
             bool automatic = weapon.Attack != null && weapon.Attack.Automatic;
             bool wantsToFire = automatic ? attackHeld : attackPressed;
 
+            // El remolino de la Corona de brazos aparece en el cursor.
+            weapon.AimPoint = (Vector2)transform.position + controller.AimOffset;
             if (wantsToFire && controller.CanAct && !controller.IsDodging)
                 weapon.TryFire(controller.AimDirection);
 

@@ -52,6 +52,41 @@ namespace Primordia.Combat
         [Tooltip("Marca en bucle sobre el objetivo mientras sangra.")]
         [SerializeField] GameObject bleedEffect;
 
+        [Header("Área (Corona de brazos)")]
+        [Tooltip("Remolino que aparece donde se apunta (con Whirlpool). Vacío = no es un ataque de área.")]
+        [SerializeField] GameObject areaPrefab;
+        [Tooltip("Distancia máxima desde el atacante a la que aparece.")]
+        [SerializeField, Min(0.5f)] float areaRange = 6f;
+        [SerializeField, Min(0.1f)] float areaRadius = 1.6f;
+        [Tooltip("Segundos que dura.")]
+        [SerializeField, Min(0.1f)] float areaDuration = 2f;
+        [Tooltip("Segundos entre dos daños.")]
+        [SerializeField, Min(0.05f)] float areaTick = 0.4f;
+        [Tooltip("Velocidad con la que atrae a los enemigos al centro.")]
+        [SerializeField, Min(0f)] float areaPull = 3f;
+        [Tooltip("Marea: radio del estallido al acabar. 0 = sin Marea.")]
+        [SerializeField, Min(0f)] float tideRadius;
+        [SerializeField, Min(0)] int tideDamage = 4;
+        [Tooltip("Velocidad del empujón hacia fuera.")]
+        [SerializeField, Min(0f)] float tidePush = 10f;
+        [SerializeField] GameObject tideEffect;
+
+        [Header("Atravesar")]
+        [Tooltip("Enemigos que atraviesa cada proyectil antes de desaparecer (los arpones de los Cnidocitos). 0 = se queda en el primero.")]
+        [SerializeField, Min(0)] int pierce;
+
+        [Header("Ramillete")]
+        [Tooltip("Cada cuántos disparos sale un abanico (los Cnidocitos nivel III). 0 = nunca.")]
+        [SerializeField, Min(0)] int volleyEvery;
+        [Tooltip("Proyectiles del abanico.")]
+        [SerializeField, Min(1)] int volleyCount = 3;
+        [Tooltip("Apertura del abanico en grados.")]
+        [SerializeField, Range(0f, 360f)] float volleySpread = 30f;
+
+        [Header("Disparo")]
+        [Tooltip("Destello en la boca al disparar (proyectiles), girado hacia donde sale.")]
+        [SerializeField] GameObject muzzleEffect;
+
         [Header("Proyectiles buscadores")]
         [Tooltip("Grados por segundo que gira el proyectil hacia el enemigo más cercano. 0 = recto.")]
         [SerializeField, Min(0f)] float homingTurnRate;
@@ -90,6 +125,24 @@ namespace Primordia.Combat
         [Tooltip("Segundos que dura el avance.")]
         [SerializeField, Min(0.01f)] float meleeLungeDuration = 0.1f;
 
+        [Header("Placas mandibulares")]
+        [Tooltip("Cuerpo a cuerpo: velocidad del empujón a quien alcanza el golpe (aturde un instante). 0 = sin empujón.")]
+        [SerializeField, Min(0f)] float meleePush;
+        [Tooltip("Quebrar: segundos que el objetivo recibe más daño de todo. 0 = sin Quebrar.")]
+        [SerializeField, Min(0f)] float shatterDuration;
+        [Tooltip("Quebrar: multiplicador del daño que recibe (1,25 = un 25 % más).")]
+        [SerializeField, Min(1f)] float shatterMultiplier = 1.25f;
+        [Tooltip("Marca de Quebrar sobre el enemigo mientras dura.")]
+        [SerializeField] GameObject shatterMarker;
+        [Tooltip("Cuerpo a cuerpo: el alcance se mide desde la boca (lo dibujado en el efecto) en lugar de desde el centro.")]
+        [SerializeField] bool meleeFromMuzzle;
+        [Tooltip("Guillotina: cada cuántos golpes cuerpo a cuerpo sale una segunda dentellada, más grande. 0 = nunca.")]
+        [SerializeField, Min(0)] int guillotineEvery;
+        [Tooltip("Guillotina: alcance de la segunda dentellada.")]
+        [SerializeField, Min(0.1f)] float guillotineRange = 3f;
+        [Tooltip("Guillotina: efecto de la segunda dentellada.")]
+        [SerializeField] GameObject guillotineEffect;
+
         [Header("Sonido")]
         [Tooltip("Sonido de cada disparo o mordisco (nombre de la SoundLibrary). Vacío = sin sonido.")]
         [SerializeField] string fireSound;
@@ -111,15 +164,28 @@ namespace Primordia.Combat
         public GameObject MeleeHitEffect => meleeHitEffect;
         public GameObject PoisonEffect => poisonEffect;
 
-        /// <summary>True si con estos datos se puede atacar: tiene proyectil o es cuerpo a cuerpo.</summary>
-        public bool IsUsable => melee || projectilePrefab != null;
+        /// <summary>True si con estos datos se puede atacar: tiene proyectil, es cuerpo a cuerpo o de área.</summary>
+        public bool IsUsable => melee || projectilePrefab != null || IsArea;
+
+        /// <summary>True si es un remolino de área (la Corona de brazos).</summary>
+        public bool IsArea => areaPrefab != null;
+        public GameObject AreaPrefab => areaPrefab;
+        public float AreaRange => areaRange;
+        public float AreaRadius => areaRadius;
+        public float AreaDuration => areaDuration;
+        public float AreaTick => areaTick;
+        public float AreaPull => areaPull;
+        public float TideRadius => tideRadius;
+        public int TideDamage => tideDamage;
+        public float TidePush => tidePush;
+        public GameObject TideEffect => tideEffect;
         public float FireRate => fireRate;
         public float Cooldown => 1f / fireRate;
         public bool Automatic => automatic;
         public int Damage => damage;
         public float ProjectileSpeed => projectileSpeed;
         public float Lifetime => lifetime;
-        public float Range => melee ? meleeRange
+        public float Range => IsArea ? areaRange : melee ? meleeRange
             : brakeTime > 0f ? projectileSpeed * Mathf.Min(brakeTime, lifetime) / 2f
             : projectileSpeed * lifetime;
         public float BrakeTime => brakeTime;
@@ -141,6 +207,19 @@ namespace Primordia.Combat
         public float BleedDuration => bleedDuration;
         public GameObject BleedEffect => bleedEffect;
         public bool AppliesBleed => bleedDamagePerSecond > 0 && bleedDuration > 0f;
+        public float MeleePush => meleePush;
+        public float ShatterDuration => shatterDuration;
+        public float ShatterMultiplier => shatterMultiplier;
+        public GameObject ShatterMarker => shatterMarker;
+        public bool MeleeFromMuzzle => meleeFromMuzzle;
+        public int GuillotineEvery => guillotineEvery;
+        public float GuillotineRange => guillotineRange;
+        public GameObject GuillotineEffect => guillotineEffect;
+        public int Pierce => pierce;
+        public int VolleyEvery => volleyEvery;
+        public int VolleyCount => volleyCount;
+        public float VolleySpread => volleySpread;
+        public GameObject MuzzleEffect => muzzleEffect;
         public float HomingTurnRate => homingTurnRate;
         public float HomingRange => homingRange;
 
@@ -164,6 +243,9 @@ namespace Primordia.Combat
 
             if (AppliesBleed)
                 Bleed.Apply(target, bleedDamagePerSecond, bleedDuration, bleedEffect);
+
+            if (shatterDuration > 0f)
+                Shatter.Apply(target, shatterDuration, shatterMultiplier, shatterMarker);
         }
 
         internal void Configure(Projectile prefab, float fireRate, int damage, float speed, float lifetime,
@@ -195,6 +277,62 @@ namespace Primordia.Combat
         }
 
         internal void SetMeleeHitEffect(GameObject effect) => meleeHitEffect = effect;
+
+        /// <summary>Empujón del golpe y Quebrar (segundos y multiplicador; 0 segundos = sin Quebrar).</summary>
+        internal void ConfigureJaws(float push, float newShatterDuration, float newShatterMultiplier)
+        {
+            meleePush = Mathf.Max(0f, push);
+            shatterDuration = Mathf.Max(0f, newShatterDuration);
+            shatterMultiplier = Mathf.Max(1f, newShatterMultiplier);
+        }
+
+        /// <summary>
+        /// Guillotina: cada <paramref name="every"/> golpes, una segunda dentellada con ese alcance y ese efecto (0 = nunca).
+        /// </summary>
+        internal void ConfigureGuillotine(int every, float range, GameObject effect)
+        {
+            guillotineEvery = Mathf.Max(0, every);
+            guillotineRange = Mathf.Max(0.1f, range);
+            guillotineEffect = effect;
+        }
+
+        internal void SetShatterMarker(GameObject marker) => shatterMarker = marker;
+
+        internal void SetMeleeFromMuzzle(bool fromMuzzle) => meleeFromMuzzle = fromMuzzle;
+
+        /// <summary>Lo convierte en un remolino de área, sin proyectil.</summary>
+        internal void ConfigureArea(GameObject prefab, float range, float radius, float duration, float tick, float pull)
+        {
+            melee = false;
+            projectilePrefab = null;
+            areaPrefab = prefab;
+            areaRange = Mathf.Max(0.5f, range);
+            areaRadius = Mathf.Max(0.1f, radius);
+            areaDuration = Mathf.Max(0.1f, duration);
+            areaTick = Mathf.Max(0.05f, tick);
+            areaPull = Mathf.Max(0f, pull);
+        }
+
+        /// <summary>Marea: al acabar el remolino estalla con ese radio, daño y empujón (radio 0 = sin Marea).</summary>
+        internal void ConfigureTide(float radius, int damage, float push, GameObject effect)
+        {
+            tideRadius = Mathf.Max(0f, radius);
+            tideDamage = Mathf.Max(0, damage);
+            tidePush = Mathf.Max(0f, push);
+            tideEffect = effect;
+        }
+
+        internal void SetPierce(int enemies) => pierce = Mathf.Max(0, enemies);
+
+        /// <summary>Cada <paramref name="every"/> disparos, un abanico de <paramref name="count"/> (0 = nunca).</summary>
+        internal void ConfigureVolley(int every, int count, float spread)
+        {
+            volleyEvery = Mathf.Max(0, every);
+            volleyCount = Mathf.Max(1, count);
+            volleySpread = Mathf.Clamp(spread, 0f, 360f);
+        }
+
+        internal void SetMuzzleEffect(GameObject effect) => muzzleEffect = effect;
 
         internal void SetPoisonEffect(GameObject effect) => poisonEffect = effect;
 

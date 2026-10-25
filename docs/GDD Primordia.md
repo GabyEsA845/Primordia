@@ -261,9 +261,21 @@ Nueve mutaciones: 3 Bocas, una por familia de arma, y 2 por cada otra ranura. El
 
 El juego completo tiene **6 pisos**, cada uno una etapa de la vida en la Tierra, con enemigos, jefe y mutaciones propios. La v1.0 sale con los pisos 1 a 3 (ver "Alcance").
 
-**Tamaño de los pisos:** las partidas pueden durar de 40 minutos a 1 hora, como en *Enter the Gungeon*. El piso 1 sigue con 4–5 salas de combate y 1–2 laterales; desde el piso 2, 8–10 salas de combate en el camino (más las laterales, la tienda y la sala de cambio).
+**Tamaño de los pisos:** las partidas pueden durar de 40 minutos a 1 hora, como en *Enter the Gungeon*. El piso 1 sigue con 4–5 salas de combate y 1–2 laterales; desde el piso 2, 10–12 salas de combate en el camino, de 2 a 4 salas especiales, las laterales, la tienda y la sala de cambio.
 
 Cada piso tiene **2 jefes posibles** y en cada partida sale uno al azar.
+
+**Presentación de los jefes (decidida el 24 de octubre):** al entrar en la sala de cualquier jefe hay una presentación de unos 3 s, como en *Enter the Gungeon*. Sale siempre y se salta con E (un recordatorio pequeño abajo a la derecha: "[E] Saltar").
+
+1. La puerta se cierra y el jugador queda quieto e invulnerable.
+2. La cámara va al jefe, que hace su **pose de presentación** (animación propia de unos 8 cuadros; el último se mantiene).
+3. Entra un **rótulo**: una banda diagonal oscura de lado a lado con un filo de color, el **nombre** del jefe a la izquierda, su **título** debajo y su **retrato** a la derecha, por encima de la banda.
+4. El rótulo sale y la cámara vuelve al jugador; empieza la pelea.
+
+- **Retrato:** una ilustración nueva de cada jefe de 176×176 (un cuarto de la pantalla, más o menos), a la misma escala de píxel que el juego.
+- **Letra:** el nombre va en Jersey 10 (licencia OFL), la misma en todos los pisos; lo que cambia por piso es el color: relleno lima y banda granate con filo rosa en el piso 1, relleno turquesa y banda azul en el piso 2. El título va en Silkscreen.
+- **Títulos:** Virus gigante, *Plaga primigenia*; Ameba gigante, *La que todo lo engulle*; Anomalocaris, *Terror del Cámbrico*; Euriptérido, *Escorpión de los mares*.
+- En la sala del Anomalocaris, la presentación es el momento en que baja la luz.
 
 | Piso | Etapa | Ambientación | Enemigos | Jefes (uno al azar) |
 | --- | --- | --- | --- | --- |
@@ -278,13 +290,38 @@ Cada piso tiene **2 jefes posibles** y en cada partida sale uno al azar.
 
 En el piso 1 casi todo se resolvía disparando a lo que se acercaba. En el piso 2 la dificultad viene de leer avisos, posicionarse y elegir a quién atacar primero, además de más vida (×1,5–2) y más enemigos por sala.
 
-- **Números:** 8–10 salas de combate en el camino. Presupuesto de enemigos de 4 en la primera sala, que sube 1,6 por sala (en el piso 1, 3 y 1,4). Recompensa de mutación al limpiar las salas 2, 4, 6 y 8, de 2 a 3 salas laterales, la tienda y la sala de cambio. Unos 15–20 minutos por partida en el piso.
-- **Tres franjas de profundidad** según el avance por el camino, cada una con su tileset y su decoración:
+- **Números:** 10–12 salas de combate en el camino (las salas especiales con combate cuentan entre ellas). Presupuesto de enemigos de 4 en la primera sala, que sube 1,4 por sala, igual que en el piso 1 (que empieza en 3). Recompensa de mutación al limpiar las salas 2, 4, 6, 8 y 10, de 2 a 3 salas laterales, de 2 a 4 salas especiales, la tienda y la sala de cambio. Unos 15–20 minutos por partida en el piso.
+- **Tres franjas de profundidad** según el avance por el camino, por tercios (con 12 salas: 1–4 Someras, 5–8 Arrecife, 9–12 Abismo), cada una con su tileset y su decoración:
   - **Someras** (primeras salas): arena turquesa y mucha luz, con cáusticas que ondulan sobre el suelo y rayos diagonales que entran desde arriba. Hierba marina, conchas y arrecifes de arqueociatos como cobertura.
   - **Arrecife** (salas del medio): el tema Cambrian de la sala de paso, con esponjas, corales, lirios de mar y conchas de trilobite.
   - **Abismo** (últimas salas y jefe): casi negro pero sin tapar la vista. La bioluminiscencia (plumas de mar, medusas peine, líquenes) da ambiente con luces 2D suaves. La oscuridad de verdad se reserva para la sala del Anomalocaris.
   - Los pasillos y las salas de transición mezclan las franjas, como la sala de paso. La **nieve marina** (partículas que caen despacio) es más densa cuanto más hondo. El generador hace que el camino tienda a bajar en la cuadrícula (abajo a menudo, a los lados a veces, casi nunca hacia arriba), así el minimapa baja hacia el jefe.
 - **Cuevas generadas en cada partida:** la forma de cada sala sale de la semilla del piso con el método de la sala de paso (mancha orgánica con ruido, cuellos de las puertas y reparación automática de las celdas que el arte no puede dibujar), con formaciones de roca o coral dentro como cobertura. Si una cueva no pasa la comprobación, se usa una forma de un catálogo hecho a mano. La tienda, la sala de cambio y las de los jefes son formas hechas a mano. Las salas del piso 1 siguen rectangulares.
+- **Pasillos:** túneles irregulares de 4 a 6 tiles de largo y 3 o 4 de ancho, con borde de cueva. Sin enemigos, con conchas, algas y nieve marina; cuando unen dos franjas, el suelo y la luz pasan de una a otra a lo largo del túnel.
+- **Tienda y sala de cambio:** la tienda sale siempre a mitad del piso, en el Arrecife, como sala lateral; la sala de cambio va detrás, en un fondo de saco (camino → tienda → sala de cambio).
+- **Fosas:** grietas y simas del fondo marino, de al menos 2×2 tiles, que salen en las salas especiales (y más adelante en las cuevas).
+  - **Andando** sobre una fosa, el jugador cae: animación corta (por código: encoge, se oscurece y suelta burbujas), −½ corazón y vuelve al último suelo firme que pisó.
+  - **Esquivando** la cruza: la esquiva recorre 3 u, así que los huecos que se pueden saltar miden 2 tiles como mucho. Si la esquiva termina encima de la fosa, también cae. La Cola propulsora (doble esquiva) deja cruzar huecos más anchos o encadenar dos.
+  - Los enemigos que **nadan** (medusa azul, cardumen de Pikaia, Anomalocaris) pasan por encima: flotan con vaivén y su sombra queda separada del cuerpo. Los que **andan** (trilobite, Ottoia, Euriptérido) llevan la sombra pegada y las rodean.
+  - Un enemigo **empujado** a una fosa muere al instante (las burbujas de la Cola propulsora y el estallido de Marea de la Corona sirven para eso). Los jefes no caen.
+  - Los **proyectiles** pasan por encima.
+  - Arte: tiles de 16×16 en la vista 3/4 de las paredes (se ve la pared del fondo que cae a la oscuridad), uno por combinación de vecinos que son suelo, más las esquinas de dentro y motas que suben del fondo.
+- **Salas especiales:** salas hechas a mano que salen al azar entre las cuevas, como las salas fijas de *Enter the Gungeon*. Un catálogo de 10 para el piso 2; sirven para cualquier franja y la mecánica sigue en los pisos siguientes. En cada partida salen de 2 a 4, sorteadas entre 9 (la del corazón morado sale siempre). Nunca en las dos primeras salas ni en la que va justo antes del jefe. Las grandes ocupan dos casillas de la rejilla del generador. Tienen la misma forma en cada partida, con su contorno de cueva (fijo, de una semilla que respeta las reglas del arte y el alcance).
+
+  | Sala | Dónde | Qué tiene |
+  | --- | --- | --- |
+  | Parkour | Camino, 2 casillas en vertical, sin enemigos (no cuenta como sala de combate) | Se entra siempre por arriba y se sale por abajo. El interior es una fosa gigante con columnas de suelo: se baja saltando de una a otra con la esquiva. Al final, una almeja con 5–15 de biomasa |
+  | Corazón morado | Lateral, **siempre en el Abismo del piso 2**, opcional | El doble de enemigos, más fosas y más decoración. En el centro, rodeado de fosa, un coral con un **corazón morado**: para un golpe entero, como el medio corazón verde del Herbívoro, y se gasta con el primero. **Se conserva entre pisos**: abrirá una sala secreta del piso 3 |
+  | Anillo de la sima | Camino | Sima redonda con un anillo de suelo; en el centro, una isla con una almeja a la que solo se llega esquivando |
+  | Puente roto | Camino | Una grieta de 3 tiles, demasiado ancha para la esquiva, con dos puentes. Los enemigos llegan en oleadas desde la otra orilla |
+  | Bosque de coral | Camino | Columnas de roca de adorno y corales grandes que tapan la vista; llena de Ottoias |
+  | Fósil gigante | Camino | El esqueleto de un pez acorazado gigante: la columna y las costillas son cobertura. Al limpiarla deja restos de Carroña y biomasa extra |
+  | Jardín de esponjas | Camino | Sala en U con un estanque. Rompe el límite de una esponja por sala: hay 3 (una en un islote) y matarlas da un premio |
+  | Sala sellada | Camino | Amplia y con pocas coberturas; las puertas se cierran y llegan tres oleadas seguidas. Al final, una recompensa de mutación |
+  | Islas | Camino | Plataformas unidas por puentes de un tile sobre la fosa; un enemigo empujado fuera de su isla cae |
+  | Gruta escondida | Lateral, sin enemigos | Pequeña, con un laberinto de grietas; en el centro, una almeja grande con biomasa |
+
+  Los **cofres** del piso 2 son almejas gigantes (vieiras) que al abrirse sueltan la biomasa. Las **entradas de oleadas** son grietas del suelo que se abren, brillan en rojo y burbujean al salir los enemigos.
 - **Puertas de losas de roca:** dos losas de la misma piedra que la pared salen de dentro y se juntan; en la costura dentada se completa un sello del color de las vetas de cada franja. Cerrar y abrir son animaciones distintas: al cerrar chocan con polvo y burbujas, y al abrir el sello se enciende y las losas se retiran. El piso 1 conserva la membrana.
 - **Música y sonido:** exploración y combate del océano y una pista por jefe, con el mismo sistema del piso 1; el ambiente podría ganar graves con la profundidad. Se hacen más adelante.
 
@@ -300,16 +337,18 @@ Cada uno pide una habilidad distinta (reflejos, lectura de patrones, saber esper
 
 **Jefes del piso 2:** 300 de vida cada uno, uno al azar en cada partida. Sus fases cambian la forma de pelear más que la cantidad de daño.
 
-**Anomalocaris:** el gran depredador del Cámbrico, con dos apéndices delante de la boca. Unas 4,7 u de largo. Sala muy grande (unos 36×26) y en penumbra: se ve, pero poco. Plantas luminosas repartidas (luces 2D) iluminan algo a su alrededor, y columnas de algas tapan la vista sin bloquear el paso. Pide esquivar en el momento justo y castigar la pausa tras cada zarpazo.
+**Anomalocaris:** el gran depredador del Cámbrico, con dos apéndices delante de la boca. Unas 4,7 u de largo. Sala muy grande (cueva ovalada de unos 36×26, sin fosas: en el frenesí hace falta todo el suelo). Al entrar baja la luz y queda en penumbra: se ve, pero poco. Las plantas luminosas, repartidas por los bordes y alguna en el centro (luces 2D), dan casi todo el brillo, y 4–6 columnas de algas tapan la vista sin bloquear el paso. Pide esquivar en el momento justo y castigar la pausa tras cada zarpazo.
 - **Acecho (100–60 %):** nada deprisa en círculos junto a las paredes y deja una estela de burbujas lentas. Zarpazo: avisa 0,7 s echándose atrás con los ojos rojos y los apéndices abiertos, golpea en un cono por delante y se queda 1 s quieto y vulnerable.
 - **Cerco (60–25 %):** nada en espiral a tu alrededor, cerrándose y dejando un muro de burbujas, y termina el cerco con un zarpazo.
 - **Escena al 25 %:** franjas de cine y las plantas se apagan un instante; solo se ven sus ojos nadando en la oscuridad, cruzan la sala y se oye un rugido. Es inmune durante la escena.
 - **Frenesí (25–0 %):** se queda quieto y hace un sonido de carga inconfundible. En el suelo aparecen el área y la trayectoria de sus dos zarpazos (franjas rojizas con forma de flecha) durante 0,8 s al empezar la fase, y unos 0,5 s cuando le queda poca vida. Luego lanza los dos zarpazos demasiado rápido para reaccionar: hay que salir de las zonas marcadas mientras se ven. Después, una pausa corta en la que se le puede castigar.
 
-**Euriptérido:** escorpión marino gigante con pinzas y una cola con púa. Unas 5,6 u de largo. Sala: cueva rocosa con rocas de cobertura. Pide posicionarse y usar la cobertura.
+**Euriptérido:** escorpión marino gigante con pinzas y una cola con púa. Unas 5,6 u de largo. Sala: cueva de unos 30×22 con 5–6 rocas de cobertura y grietas solo en los bordes, que en la fase 2 obligan a no pegarse a las paredes. Pide posicionarse y usar la cobertura.
 - **Acorazado (100–50 %):** avanza y ataca con las pinzas si estás cerca (golpe corto con aviso). Cada pocos segundos las púas de su caparazón se erizan, se cargan de veneno y suelta un abanico de 3 púas venenosas hacia ti (la cola no se usa en esta fase). Su coraza reduce a la mitad el daño que le entra de frente, como al Trilobite.
-- **Escena de la muda (50 %, unos 3 s):** franjas de cine; se queda quieto, le salen grietas, el caparazón se abre y sale un cuerpo nuevo, rosado y blando. La muda vacía se queda en la sala como cobertura y bloquea proyectiles, los suyos y los tuyos. Es inmune durante la escena.
+- **Escena de la muda (50 %, unos 3 s):** franjas de cine; se queda quieto, le salen grietas, el caparazón se abre y sale un cuerpo nuevo, rosado y blando. La muda vacía se queda en la sala como cobertura y bloquea proyectiles, los suyos y los tuyos; a la vez se derrumban 2 de las rocas, para que la fase 2 no sea más fácil. Es inmune durante la escena.
 - **Blando y furioso (50–0 %):** recibe un 25 % más de daño y va el doble de rápido. Estrena la cola: barrido de 180° con estela venenosa, con aviso (la punta se enciende en verde). Sus pinzas encadenan dos golpes.
+
+**Salas de los jefes:** antes de cada una hay una **antesala**, un túnel más largo que acaba en una puerta de losas grande con el sello encendido. Las dos están hechas a mano y los jefes no caen en las fosas.
 
 **Paso al piso siguiente**
 
@@ -415,14 +454,15 @@ La v1.0 tiene los **pisos 1 a 3** completos y pulidos (si el 3 se retrasa mucho,
 - [ ] Más variedad en el piso 1: un tercer enemigo y salas especiales
 - [ ] Paso de un piso al siguiente: sala de paso con la elección de Boca y la metamorfosis del jugador según su familia de arma
 - [ ] Sala de cambio (el laboratorio de Darwin), desde el piso 2
-- [ ] Piso 2 (Océano cámbrico): 3 franjas de escenario con cuevas generadas, 5 enemigos, Anomalocaris y Euriptérido, 9 mutaciones, 8 linajes y los 3 cuerpos del jugador
+- [ ] Piso 2 (Océano cámbrico): 3 franjas de escenario con cuevas generadas, fosas y 10 salas especiales, 5 enemigos, Anomalocaris y Euriptérido, 9 mutaciones, 8 linajes y los 3 cuerpos del jugador
+- [ ] Presentación de los jefes al entrar en su sala (los 4 jefes de los pisos 1 y 2)
 - [ ] Piso 3 (Pantano carbonífero): lo mismo, con el artrópodo gigante
 - [x] Tienda con biomasa
 
 **Más adelante**
 
 - [ ] Pisos 4 a 6
-- [ ] Salas secretas
+- [ ] Salas secretas (la primera, en el piso 3, se abre con el corazón morado del piso 2)
 - [ ] Soporte de mando y opciones de audio
 - [ ] Desbloqueos permanentes entre partidas
 
@@ -527,3 +567,13 @@ Objetivo: que añadir una mutación, un enemigo o una sala nueva sea crear un ar
 | Escala del arte | 16 px por unidad en todo el juego; las criaturas crecen piso a piso (16, 24, unos 32). Nunca se mezclan tamaños de píxel |
 | Piezas sobre los cuerpos | Boca dibujada en el cuerpo; Extremidades y Piel como capas (12 por piso); Órgano sin pieza, con efectos de activación; las mutaciones de pisos anteriores no se dibujan |
 | Mejoras de pisos anteriores | Resuelto con las reglas actuales (cualquier mutación que lleves se puede mejorar; la regla de escalones hace que compense cambiarla). Sale de "Mejoras a futuro" |
+
+**Decidido el 24 de octubre (salas del piso 2)**
+
+| Tema | Decisión |
+| --- | --- |
+| Números | 10–12 salas de combate (las especiales con combate cuentan), recompensas tras las salas 2, 4, 6, 8 y 10, presupuesto 4 + 1,4 por sala, franjas por tercios. Sustituye a "8–10 salas" y "1,6 por sala" |
+| Fosas | Andando caes (−½ corazón, vuelves al último suelo firme), esquivando las cruzas (huecos de 2 tiles como mucho). Los que nadan pasan por encima y los que andan las rodean; los enemigos empujados mueren; los jefes no caen; los proyectiles pasan |
+| Salas especiales | Catálogo de 10 hechas a mano, de 2 a 4 por partida, con contorno de cueva fijo. La del corazón morado sale siempre en el Abismo; el corazón para un golpe, se conserva entre pisos y abrirá una sala secreta del piso 3 |
+| Pasillos, tienda y jefes | Túneles irregulares sin enemigos; tienda a mitad del piso con la sala de cambio detrás; antesala antes de cada jefe; sala del Anomalocaris sin fosas y con la luz que baja al entrar; en la del Euriptérido se derrumban 2 rocas con la muda |
+| Presentación de los jefes | Unos 3 s al entrar, siempre, se salta con E: pose, rótulo con nombre (Jersey 10, color por piso), título y retrato de 176 px. Para los 4 jefes de los pisos 1 y 2 |

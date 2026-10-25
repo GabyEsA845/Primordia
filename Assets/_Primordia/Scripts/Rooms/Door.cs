@@ -5,8 +5,9 @@ namespace Primordia.Rooms
 {
     /// <summary>
     /// Puerta de una sala. Cerrada, bloquea el paso y se ve; abierta, deja pasar y se oculta.
-    /// Con cuadros de animación (membrana de abierta a cerrada), se anima al cerrarse y al abrirse.
-    /// El paso se bloquea o se libera en el acto; la animación es solo visual.
+    /// Con cuadros de animación (membrana de abierta a cerrada), se anima al cerrarse y al abrirse con los mismos cuadros
+    /// al revés. Con una <see cref="DoorAnimation"/> (losas del piso 2), cerrar y abrir tienen cuadros propios y cada cuadro
+    /// su duración. El paso se bloquea o se libera en el acto; la animación es solo visual.
     /// </summary>
     public class Door : MonoBehaviour
     {
@@ -17,6 +18,8 @@ namespace Primordia.Rooms
         [Tooltip("Cuadros de la membrana, de abierta (0) a cerrada (último). Vacío = sin animación.")]
         [SerializeField] Sprite[] frames;
         [SerializeField, Min(0.01f)] float frameDuration = 0.08f;
+        [Tooltip("Cerrar y abrir con cuadros y duraciones propios. Si es válida, sustituye a los cuadros de arriba.")]
+        [SerializeField] DoorAnimation ownAnimation;
 
         public bool IsOpen { get; private set; }
 
@@ -24,6 +27,8 @@ namespace Primordia.Rooms
         public bool IsAnimating => animationRoutine != null;
 
         Coroutine animationRoutine;
+
+        bool HasOwnAnimation => ownAnimation != null && ownAnimation.IsValid;
 
         void Awake()
         {
@@ -48,6 +53,13 @@ namespace Primordia.Rooms
             frameDuration = Mathf.Max(0.01f, newFrameDuration);
         }
 
+        internal void Configure(Collider2D newBlocker, SpriteRenderer newClosedSprite, DoorAnimation newAnimation)
+        {
+            blocker = newBlocker;
+            closedSprite = newClosedSprite;
+            ownAnimation = newAnimation;
+        }
+
         void SetOpen(bool open, bool animate)
         {
             IsOpen = open;
@@ -62,14 +74,16 @@ namespace Primordia.Rooms
                 animationRoutine = null;
             }
 
-            bool hasFrames = frames != null && frames.Length > 0;
+            bool hasFrames = HasOwnAnimation || (frames != null && frames.Length > 0);
             if (animate && hasFrames && isActiveAndEnabled)
             {
-                animationRoutine = StartCoroutine(Animate(open));
+                animationRoutine = StartCoroutine(HasOwnAnimation ? AnimateOwn(open) : Animate(open));
                 return;
             }
 
-            if (hasFrames)
+            if (HasOwnAnimation)
+                closedSprite.sprite = ownAnimation.close[^1];
+            else if (hasFrames)
                 closedSprite.sprite = frames[open ? 0 : frames.Length - 1];
             closedSprite.enabled = !open;
         }
@@ -83,6 +97,24 @@ namespace Primordia.Rooms
                 yield return new WaitForSeconds(frameDuration);
             }
 
+            closedSprite.enabled = !open;
+            animationRoutine = null;
+        }
+
+        IEnumerator AnimateOwn(bool open)
+        {
+            var sprites = open ? ownAnimation.open : ownAnimation.close;
+            var durations = open ? ownAnimation.openDurations : ownAnimation.closeDurations;
+            closedSprite.enabled = true;
+            for (int i = 0; i < sprites.Length; i++)
+            {
+                closedSprite.sprite = sprites[i];
+                float duration = durations != null && durations.Length > 0 ? durations[Mathf.Min(i, durations.Length - 1)] : frameDuration;
+                yield return new WaitForSeconds(Mathf.Max(0.01f, duration));
+            }
+
+            // Cerrada se queda en su último cuadro; abierta se oculta y deja preparada la cerrada.
+            closedSprite.sprite = ownAnimation.close[^1];
             closedSprite.enabled = !open;
             animationRoutine = null;
         }

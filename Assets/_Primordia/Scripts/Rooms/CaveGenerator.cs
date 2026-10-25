@@ -8,8 +8,9 @@ namespace Primordia.Rooms
     /// Forma de cueva para una sala, sacada de la semilla del piso con el método de la sala de paso: una mancha orgánica
     /// con ruido dentro del rectángulo de la plantilla, los cuellos de las cuatro puertas (que llegan hasta el centro, así
     /// todas quedan unidas) y una reparación automática de las celdas que el arte no puede dibujar. La roca que queda
-    /// suelta dentro de la mancha sirve de cobertura. Si tras varios intentos ninguna forma pasa la comprobación, devuelve
-    /// null y el generador del piso usa una del catálogo hecho a mano.
+    /// suelta dentro de la mancha sirve de cobertura, y además se reparten obstáculos de 1×1 (<c>o</c>) y de 2×2 (<c>O</c>)
+    /// fuera de los cuellos, cada uno con un anillo de suelo libre alrededor para que nunca cierren el paso. Si tras varios
+    /// intentos ninguna forma pasa la comprobación, devuelve null y el generador del piso usa una del catálogo hecho a mano.
     /// </summary>
     public static class CaveGenerator
     {
@@ -31,6 +32,11 @@ namespace Primordia.Rooms
         // Lo que tiene que quedar de suelo, en fracción del interior (sin las paredes del borde).
         const float MinFill = 0.5f;
 
+        // Obstáculos de cobertura: uno grande por cada tantos tiles de suelo, y uno pequeño por cada tantos.
+        const int FloorPerBigObstacle = 170;
+        const int FloorPerSmallObstacle = 120;
+        const int CoverTries = 60;
+
         const int Attempts = 8;
         const int RepairPasses = 60;
 
@@ -38,12 +44,13 @@ namespace Primordia.Rooms
         /// Forma de cueva de <paramref name="size"/> tiles (paredes incluidas) como texto para <see cref="RoomTemplate"/>,
         /// con un hueco de puerta en cada lado. Null si ningún intento pasa la comprobación.
         /// </summary>
-        public static string Generate(Vector2Int size, System.Random random)
+        /// <param name="cover">Con obstáculos de cobertura dentro.</param>
+        public static string Generate(Vector2Int size, System.Random random, bool cover = true)
         {
             size = Vector2Int.Max(size, MinSize);
             for (int attempt = 0; attempt < Attempts; attempt++)
             {
-                var layout = TryGenerate(size, random);
+                var layout = TryGenerate(size, random, cover);
                 if (layout != null)
                     return layout;
             }
@@ -67,6 +74,7 @@ namespace Primordia.Rooms
 
             // Con y hacia arriba, como RoomTemplate.
             var floor = new bool[width, height];
+            var cover = new char[width, height];
             var doors = new Dictionary<char, List<Vector2Int>> { ['^'] = new(), ['v'] = new(), ['<'] = new(), ['>'] = new() };
             for (int row = 0; row < height; row++)
             {
@@ -76,7 +84,9 @@ namespace Primordia.Rooms
                 {
                     char c = x < lines[row].Length ? lines[row][x] : '#';
                     int y = height - 1 - row;
-                    floor[x, y] = c == '.';
+                    floor[x, y] = c is '.' or 'o' or 'O';
+                    if (c is 'o' or 'O')
+                        cover[x, y] = c;
                     if (doors.TryGetValue(c, out var cells))
                         cells.Add(new Vector2Int(x, y));
                 }
@@ -98,18 +108,40 @@ namespace Primordia.Rooms
             if (problems.Count > 0)
                 return problems;
 
-            var map = ToMap(floor, width, height, doorX, doorY);
+            var map = ToMap(floor, cover, width, height, doorX, doorY);
             foreach (var cell in map.Bounds.allPositionsWithin)
             {
                 if (WallRules.Classify(map, cell) == Piece.Missing)
                     problems.Add($"La celda ({cell.x}, {cell.y}) no se puede dibujar.");
             }
 
+            // Los obstáculos grandes, en bloques completos de 2×2.
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    if (cover[x, y] != 'O')
+                        continue;
+                    bool inBlock = false;
+                    for (int dy = -1; dy <= 0 && !inBlock; dy++)
+                        for (int dx = -1; dx <= 0 && !inBlock; dx++)
+                            inBlock = IsBigBlock(cover, x + dx, y + dy);
+                    if (!inBlock)
+                        problems.Add($"El obstáculo grande en ({x}, {y}) no forma un bloque de 2×2.");
+                }
+            }
+
+            // Lo que se pisa: el suelo sin obstáculo.
+            var walk = new bool[width, height];
+            for (int y = 0; y < height; y++)
+                for (int x = 0; x < width; x++)
+                    walk[x, y] = floor[x, y] && cover[x, y] == 0;
+
             var inner = new List<Vector2Int>();
             foreach (var (mark, cells) in doors)
             {
                 var inward = mark == '^' ? Vector2Int.down : mark == 'v' ? Vector2Int.up : mark == '<' ? Vector2Int.right : Vector2Int.left;
-                var cell = InnerCell(floor, cells[0], inward);
+                var cell = InnerCell(walk, cells[0], inward);
                 if (cell == null)
                     problems.Add($"La puerta {mark} no da a ningún suelo.");
                 else
@@ -118,13 +150,13 @@ namespace Primordia.Rooms
 
             if (inner.Count > 0)
             {
-                var reached = Reach(floor, inner[0]);
+                var reached = Reach(walk, inner[0]);
                 int total = 0, lost = 0;
                 for (int y = 0; y < height; y++)
                 {
                     for (int x = 0; x < width; x++)
                     {
-                        if (!floor[x, y])
+                        if (!walk[x, y])
                             continue;
                         total++;
                         if (!reached[x, y])
@@ -146,7 +178,7 @@ namespace Primordia.Rooms
             return problems;
         }
 
-        static string TryGenerate(Vector2Int size, System.Random random)
+        static string TryGenerate(Vector2Int size, System.Random random, bool withCover)
         {
             int width = size.x, height = size.y;
             // Interior: lo que no es pared del borde (x de 1 a width - 2, y de 1 a height - 4, con y hacia arriba).
@@ -166,7 +198,11 @@ namespace Primordia.Rooms
             if (!Repair(floor, neck, width, height, doorX, doorY, minX, maxX, minY, maxY))
                 return null;
 
-            var layout = ToLayout(floor, width, height, doorX, doorY);
+            var cover = new char[width, height];
+            if (withCover)
+                PlaceCover(floor, neck, cover, minX, maxX, minY, maxY, random);
+
+            var layout = ToLayout(floor, cover, width, height, doorX, doorY);
             return Check(layout).Count == 0 ? layout : null;
         }
 
@@ -275,7 +311,7 @@ namespace Primordia.Rooms
             for (int pass = 0; pass < RepairPasses; pass++)
             {
                 bool changed = false;
-                var map = ToMap(floor, width, height, doorX, doorY);
+                var map = ToMap(floor, null, width, height, doorX, doorY);
                 for (int y = minY; y <= maxY; y++)
                 {
                     for (int x = minX; x <= maxX; x++)
@@ -309,12 +345,13 @@ namespace Primordia.Rooms
         }
 
         /// <summary>La forma como mapa con las cuatro puertas abiertas, como lo comprueba <see cref="RoomTemplate.Validate"/>.</summary>
-        static FloorMap ToMap(bool[,] floor, int width, int height, int doorX, int doorY)
+        static FloorMap ToMap(bool[,] floor, char[,] cover, int width, int height, int doorX, int doorY)
         {
             var map = new FloorMap(new RectInt(0, 0, width, height));
             for (int y = 0; y < height; y++)
                 for (int x = 0; x < width; x++)
-                    map.Set(new Vector2Int(x, y), floor[x, y] ? FloorMap.Kind.Floor : FloorMap.Kind.Wall);
+                    map.Set(new Vector2Int(x, y), !floor[x, y] ? FloorMap.Kind.Wall
+                        : cover != null && cover[x, y] != 0 ? FloorMap.Kind.Obstacle : FloorMap.Kind.Floor);
 
             for (int i = 0; i < 2; i++)
             {
@@ -328,7 +365,69 @@ namespace Primordia.Rooms
             return map;
         }
 
-        static string ToLayout(bool[,] floor, int width, int height, int doorX, int doorY)
+        /// <summary>
+        /// Obstáculos de cobertura: cada uno en un hueco con todo suelo alrededor (un anillo de 1 tile libre, sin tocar otros
+        /// obstáculos ni paredes) y nunca sobre los cuellos, así no cortan el paso entre las puertas ni dejan suelo encerrado.
+        /// </summary>
+        static void PlaceCover(bool[,] floor, bool[,] neck, char[,] cover, int minX, int maxX, int minY, int maxY, System.Random random)
+        {
+            int area = 0;
+            for (int y = minY; y <= maxY; y++)
+                for (int x = minX; x <= maxX; x++)
+                    if (floor[x, y])
+                        area++;
+
+            int big = Mathf.RoundToInt(area / (float)FloorPerBigObstacle * (0.7f + (float)random.NextDouble() * 0.6f));
+            int small = Mathf.RoundToInt(area / (float)FloorPerSmallObstacle * (0.7f + (float)random.NextDouble() * 0.6f));
+            Scatter(2, 'O', big);
+            Scatter(1, 'o', small);
+
+            void Scatter(int size, char mark, int count)
+            {
+                for (int placed = 0, tries = 0; placed < count && tries < CoverTries * Mathf.Max(1, count); tries++)
+                {
+                    int x = random.Next(minX + 1, maxX - size + 1), y = random.Next(minY + 1, maxY - size + 1);
+                    if (!Fits(x, y, size))
+                        continue;
+                    for (int dy = 0; dy < size; dy++)
+                        for (int dx = 0; dx < size; dx++)
+                            cover[x + dx, y + dy] = mark;
+                    placed++;
+                }
+            }
+
+            // Suelo libre de 1 tile alrededor, y al menos 2 tiles entre dos obstáculos.
+            bool Fits(int x, int y, int size)
+            {
+                for (int dy = -2; dy <= size + 1; dy++)
+                {
+                    for (int dx = -2; dx <= size + 1; dx++)
+                    {
+                        int cx = x + dx, cy = y + dy;
+                        bool ring = dx >= -1 && dy >= -1 && dx <= size && dy <= size;
+                        bool outside = cx < minX || cy < minY || cx > maxX || cy > maxY;
+                        if (ring && (outside || !floor[cx, cy]))
+                            return false;
+                        if (!outside && cover[cx, cy] != 0)
+                            return false;
+                        bool inside = dx >= 0 && dy >= 0 && dx < size && dy < size;
+                        if (inside && neck[cx, cy])
+                            return false;
+                    }
+                }
+                return true;
+            }
+        }
+
+        static bool IsBigBlock(char[,] cover, int x, int y)
+        {
+            int width = cover.GetLength(0), height = cover.GetLength(1);
+            if (x < 0 || y < 0 || x + 1 >= width || y + 1 >= height)
+                return false;
+            return cover[x, y] == 'O' && cover[x + 1, y] == 'O' && cover[x, y + 1] == 'O' && cover[x + 1, y + 1] == 'O';
+        }
+
+        static string ToLayout(bool[,] floor, char[,] cover, int width, int height, int doorX, int doorY)
         {
             var text = new StringBuilder();
             for (int y = height - 1; y >= 0; y--)
@@ -337,7 +436,7 @@ namespace Primordia.Rooms
                 {
                     bool doorColumn = x == doorX || x == doorX + 1;
                     bool doorRow = y == doorY || y == doorY + 1;
-                    char c = floor[x, y] ? '.'
+                    char c = floor[x, y] ? (cover[x, y] != 0 ? cover[x, y] : '.')
                         : y == height - 1 && doorColumn ? '^'
                         : y == 0 && doorColumn ? 'v'
                         : x == 0 && doorRow ? '<'

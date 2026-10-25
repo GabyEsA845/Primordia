@@ -22,7 +22,10 @@ namespace Primordia.Rooms
             DoorGap,
 
             /// <summary>Arco de puerta de arriba, sobre la cara de la pared: sin tile, lo dibuja el arco.</summary>
-            DoorArch
+            DoorArch,
+
+            /// <summary>Suelo con un obstáculo de cobertura encima: para las paredes cuenta como suelo, pero no se pisa.</summary>
+            Obstacle
         }
 
         readonly Kind[,] kinds;
@@ -57,11 +60,11 @@ namespace Primordia.Rooms
                 themes[cell.x - Bounds.xMin, cell.y - Bounds.yMin] = theme;
         }
 
-        /// <summary>Suelo por el que se camina y que deja ver los bordes de las paredes vecinas.</summary>
+        /// <summary>Suelo (también bajo un obstáculo) que deja ver los bordes de las paredes vecinas.</summary>
         public bool IsOpen(int x, int y)
         {
             var kind = Get(x, y);
-            return kind == Kind.Floor || kind == Kind.Passage;
+            return kind == Kind.Floor || kind == Kind.Passage || kind == Kind.Obstacle;
         }
 
         bool Contains(int x, int y) =>

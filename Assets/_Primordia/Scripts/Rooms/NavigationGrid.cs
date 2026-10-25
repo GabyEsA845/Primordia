@@ -39,7 +39,7 @@ namespace Primordia.Rooms
         public RectInt Bounds => bounds;
 
         /// <summary>Se puede caminar por todo lo que no es pared (suelo, pasillos y huecos de puerta).</summary>
-        public NavigationGrid(FloorMap map) : this(map.Bounds, cell => map.Get(cell) != FloorMap.Kind.Wall)
+        public NavigationGrid(FloorMap map) : this(map.Bounds, cell => map.Get(cell) is not (FloorMap.Kind.Wall or FloorMap.Kind.Obstacle))
         {
         }
 

@@ -11,8 +11,11 @@ namespace Primordia.Rooms
     public static class RoomPainter
     {
         /// <summary>Celdas que no se pueden dibujar con el arte del tema (pieza que falta o forma imposible).</summary>
+        /// <param name="overlay">Capa de las cáusticas, sobre el suelo de los temas que las tienen. Null: sin cáusticas.</param>
+        /// <param name="placedDecorations">Si no es null, recibe cada decoración puesta con su celda (para sus luces).</param>
         public static List<Vector2Int> Paint(FloorMap map, IReadOnlyList<RoomTheme> themes,
-            Tilemap floor, Tilemap decoration, Tilemap walls, ISet<Vector2Int> decorationFree = null, int seed = 0)
+            Tilemap floor, Tilemap decoration, Tilemap walls, ISet<Vector2Int> decorationFree = null, int seed = 0,
+            Tilemap overlay = null, List<(Vector2Int cell, TileBase tile)> placedDecorations = null)
         {
             var missing = new List<Vector2Int>();
             var random = new System.Random(seed);
@@ -38,16 +41,26 @@ namespace Primordia.Rooms
 
                 floor.SetTile(cell, tile);
 
+                // Cáusticas en mosaico de 4×4 tiles sobre todo el suelo del tema (también bajo sombras y obstáculos).
+                if (overlay != null && theme.HasCaustics)
+                    overlay.SetTile(cell, theme.Caustics[Mod(position.x, 4) + 4 * Mod(position.y, 4)]);
+
                 // Decoración solo en suelo de las salas, sin sombra y lejos de las puertas.
                 bool free = piece == Piece.Floor && map.Get(position) == FloorMap.Kind.Floor
                     && (decorationFree == null || !decorationFree.Contains(position));
                 if (free && theme.Decorations != null && theme.Decorations.Length > 0
                     && random.NextDouble() < theme.DecorationChance)
-                    decoration.SetTile(cell, theme.Decorations[random.Next(theme.Decorations.Length)]);
+                {
+                    var decorationTile = theme.Decorations[random.Next(theme.Decorations.Length)];
+                    decoration.SetTile(cell, decorationTile);
+                    placedDecorations?.Add((position, decorationTile));
+                }
             }
 
             return missing;
         }
+
+        static int Mod(int value, int divisor) => ((value % divisor) + divisor) % divisor;
 
         // Variante estable por celda: el mismo piso se dibuja siempre igual.
         static int CellHash(Vector2Int cell)

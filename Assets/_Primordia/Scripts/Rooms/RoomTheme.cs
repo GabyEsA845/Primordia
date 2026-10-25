@@ -50,6 +50,35 @@ namespace Primordia.Rooms
         [Tooltip("Dibujada para la pared izquierda; en la derecha se voltea.")]
         [SerializeField] Sprite[] doorSide;
 
+        [Header("Puertas de losas (piso 2, opcionales)")]
+        [Tooltip("Cerrar: del cuadro vacío a la puerta cerrada (último). Si están, sustituyen a la membrana.")]
+        [SerializeField] DoorAnimation slabTop;
+        [SerializeField] DoorAnimation slabBottom;
+        [Tooltip("Dibujada para la pared izquierda; en la derecha se voltea.")]
+        [SerializeField] DoorAnimation slabSide;
+
+        [Header("Obstáculos de cobertura (bloquean)")]
+        [Tooltip("De 1×1 tile (marca o de las plantillas).")]
+        [SerializeField] Sprite[] smallObstacles;
+        [Tooltip("De 2×2 tiles (marca O de las plantillas).")]
+        [SerializeField] Sprite[] bigObstacles;
+        [Tooltip("Contorno blanco de 1 px de cada obstáculo (mismo orden que arriba), para que se note que cubren.")]
+        [SerializeField] Sprite[] smallObstacleOutlines;
+        [SerializeField] Sprite[] bigObstacleOutlines;
+        [Tooltip("Color del contorno de los obstáculos.")]
+        [SerializeField] Color obstacleOutline = new(0.95f, 0.77f, 0.35f, 0.85f);
+
+        [Header("Ambiente (piso 2, opcional)")]
+        [Tooltip("Cáusticas sobre el suelo: 16 tiles animados, uno por celda de un mosaico de 4×4 (índice x % 4 + 4 · (y % 4)).")]
+        [SerializeField] TileBase[] caustics;
+        [Tooltip("Rayos de luz que cuelgan de la pared de arriba (cuadros de la animación).")]
+        [SerializeField] Sprite[] lightRay;
+        [SerializeField, Min(0.01f)] float lightRayFrameDuration = 0.25f;
+        [Tooltip("Copos de nieve marina en una sala normal (26×12 de suelo); crece con el área.")]
+        [SerializeField, Min(0)] int marineSnow;
+        [Tooltip("Luces 2D de la decoración y los obstáculos que brillan.")]
+        [SerializeField] Glow[] glows = System.Array.Empty<Glow>();
+
         public TileBase MissingTile => missing;
         public TileBase[] Decorations => decorations;
         public float DecorationChance => decorationChance;
@@ -57,6 +86,46 @@ namespace Primordia.Rooms
         public Sprite[] DoorTop => doorTop;
         public Sprite[] DoorBottom => doorBottom;
         public Sprite[] DoorSide => doorSide;
+        public DoorAnimation SlabTop => slabTop;
+        public DoorAnimation SlabBottom => slabBottom;
+        public DoorAnimation SlabSide => slabSide;
+        public Sprite[] SmallObstacles => smallObstacles ?? System.Array.Empty<Sprite>();
+        public Sprite[] BigObstacles => bigObstacles ?? System.Array.Empty<Sprite>();
+        public Color ObstacleOutline => obstacleOutline;
+
+        /// <summary>Contorno del sprite de un obstáculo, o null si no tiene.</summary>
+        public Sprite OutlineOf(Sprite obstacle)
+        {
+            if (obstacle == null)
+                return null;
+            int small = System.Array.IndexOf(SmallObstacles, obstacle);
+            if (small >= 0 && smallObstacleOutlines != null && small < smallObstacleOutlines.Length)
+                return smallObstacleOutlines[small];
+            int big = System.Array.IndexOf(BigObstacles, obstacle);
+            if (big >= 0 && bigObstacleOutlines != null && big < bigObstacleOutlines.Length)
+                return bigObstacleOutlines[big];
+            return null;
+        }
+
+        public TileBase[] Caustics => caustics;
+        public bool HasCaustics => caustics != null && caustics.Length == 16;
+        public Sprite[] LightRay => lightRay ?? System.Array.Empty<Sprite>();
+        public float LightRayFrameDuration => lightRayFrameDuration;
+        public int MarineSnow => marineSnow;
+        public Glow[] Glows => glows ?? System.Array.Empty<Glow>();
+
+        /// <summary>Luz 2D de lo que se ve con este tile o este sprite, o null si no brilla.</summary>
+        public Glow? GlowOf(Object source)
+        {
+            if (source == null)
+                return null;
+            foreach (var glow in Glows)
+            {
+                if (glow.source == source)
+                    return glow;
+            }
+            return null;
+        }
 
         /// <summary>
         /// Tile de una pieza. <paramref name="hash"/> elige variante de forma estable para cada celda.
@@ -132,6 +201,84 @@ namespace Primordia.Rooms
             doorTop = newDoorTop;
             doorBottom = newDoorBottom;
             doorSide = newDoorSide;
+        }
+
+        internal void ConfigureSlabs(DoorAnimation newTop, DoorAnimation newBottom, DoorAnimation newSide)
+        {
+            slabTop = newTop;
+            slabBottom = newBottom;
+            slabSide = newSide;
+        }
+
+        internal void ConfigureObstacles(Sprite[] newSmall, Sprite[] newBig, Sprite[] newSmallOutlines = null, Sprite[] newBigOutlines = null)
+        {
+            smallObstacles = newSmall;
+            bigObstacles = newBig;
+            smallObstacleOutlines = newSmallOutlines;
+            bigObstacleOutlines = newBigOutlines;
+        }
+
+        internal void ConfigureObstacleOutline(Color newColor) => obstacleOutline = newColor;
+
+        internal void ConfigureAmbience(TileBase[] newCaustics, Sprite[] newLightRay, float newLightRayFrameDuration, int newMarineSnow,
+            Glow[] newGlows)
+        {
+            caustics = newCaustics;
+            lightRay = newLightRay;
+            lightRayFrameDuration = Mathf.Max(0.01f, newLightRayFrameDuration);
+            marineSnow = Mathf.Max(0, newMarineSnow);
+            glows = newGlows ?? System.Array.Empty<Glow>();
+        }
+    }
+
+    /// <summary>
+    /// Animaciones de una puerta con cuadros distintos para cerrar y para abrir, cada cuadro con su duración (las losas del
+    /// piso 2: al cerrar chocan, al abrir se enciende el sello y se retiran).
+    /// </summary>
+    [System.Serializable]
+    public class DoorAnimation
+    {
+        [Tooltip("De vacía (0) a cerrada (último).")]
+        public Sprite[] close = System.Array.Empty<Sprite>();
+        [Tooltip("Duración de cada cuadro de cerrar, en segundos.")]
+        public float[] closeDurations = System.Array.Empty<float>();
+        [Tooltip("De cerrada (0) a vacía (último).")]
+        public Sprite[] open = System.Array.Empty<Sprite>();
+        public float[] openDurations = System.Array.Empty<float>();
+
+        public bool IsValid => close is { Length: > 0 } && open is { Length: > 0 };
+
+        public DoorAnimation() { }
+
+        public DoorAnimation(Sprite[] close, float[] closeDurations, Sprite[] open, float[] openDurations)
+        {
+            this.close = close ?? System.Array.Empty<Sprite>();
+            this.closeDurations = closeDurations ?? System.Array.Empty<float>();
+            this.open = open ?? System.Array.Empty<Sprite>();
+            this.openDurations = openDurations ?? System.Array.Empty<float>();
+        }
+    }
+
+    /// <summary>Luz 2D suave de una pieza que brilla (bioluminiscencia del Abismo), con un latido opcional.</summary>
+    [System.Serializable]
+    public struct Glow
+    {
+        [Tooltip("Tile de decoración o sprite de obstáculo que lleva la luz.")]
+        public Object source;
+        public Color color;
+        [Min(0.1f)] public float radius;
+        [Tooltip("Intensidad mínima y máxima; iguales, sin latido.")]
+        public Vector2 intensity;
+        [Tooltip("Segundos de un latido completo (0: sin latido).")]
+        [Min(0f)] public float period;
+
+        public Glow(Object source, Color color, float radius, Vector2 intensity, float period)
+        {
+            this.source = source;
+            this.color = color;
+            this.radius = radius;
+            this.intensity = intensity;
+            this.period = period;
         }
     }
 }

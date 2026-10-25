@@ -10,6 +10,7 @@ namespace Primordia.Rooms
     /// <c>#</c> pared, <c>.</c> suelo, y los huecos posibles para puertas, que se marcan sobre la pared:
     /// <c>^</c> arriba (en la fila superior; el arco ocupa la cara que hay debajo), <c>v</c> abajo,
     /// <c>&lt;</c> izquierda y <c>&gt;</c> derecha, de 2 tiles cada uno. Los huecos que no se usan quedan como pared.
+    /// Obstáculos de cobertura sobre el suelo: <c>o</c> de 1×1 y <c>O</c> de 2×2 (bloques completos).
     /// La pared de arriba debe tener 3 filas (tapa y dos de cara) y las demás 1, como el arte del escenario.
     /// </summary>
     [CreateAssetMenu(menuName = "Primordia/Rooms/Room Template", fileName = "Room_")]
@@ -22,10 +23,14 @@ namespace Primordia.Rooms
             DoorUp,
             DoorDown,
             DoorLeft,
-            DoorRight
+            DoorRight,
+            /// <summary>Obstáculo de 1×1 sobre el suelo: bloquea el paso y los proyectiles.</summary>
+            Obstacle,
+            /// <summary>Parte de un obstáculo de 2×2.</summary>
+            BigObstacle
         }
 
-        [Tooltip("Una fila por línea, de arriba abajo. # pared, . suelo, ^ v < > huecos de puerta.")]
+        [Tooltip("Una fila por línea, de arriba abajo. # pared, . suelo, ^ v < > huecos de puerta, o obstáculo 1×1, O obstáculo 2×2.")]
         [SerializeField, TextArea(16, 40)] string layout;
 
         Mark[,] cells;
@@ -146,6 +151,7 @@ namespace Primordia.Rooms
                 {
                     var mark = Get(x, y);
                     var kind = mark == Mark.Floor ? FloorMap.Kind.Floor
+                        : IsObstacle(mark) ? FloorMap.Kind.Obstacle
                         : !openDoors || mark == Mark.Wall ? FloorMap.Kind.Wall
                         : mark == Mark.DoorUp ? FloorMap.Kind.Passage
                         : FloorMap.Kind.DoorGap;
@@ -163,6 +169,31 @@ namespace Primordia.Rooms
             }
 
             return map;
+        }
+
+        public static bool IsObstacle(Mark mark) => mark is Mark.Obstacle or Mark.BigObstacle;
+
+        /// <summary>Esquinas de abajo a la izquierda de los obstáculos de 2×2.</summary>
+        public List<Vector2Int> BigObstacleCorners()
+        {
+            var result = new List<Vector2Int>();
+            var taken = new HashSet<Vector2Int>();
+            for (int y = 0; y < Height; y++)
+            {
+                for (int x = 0; x < Width; x++)
+                {
+                    var cell = new Vector2Int(x, y);
+                    if (taken.Contains(cell) || Get(x, y) != Mark.BigObstacle || Get(x + 1, y) != Mark.BigObstacle
+                        || Get(x, y + 1) != Mark.BigObstacle || Get(x + 1, y + 1) != Mark.BigObstacle)
+                        continue;
+                    result.Add(cell);
+                    taken.Add(cell);
+                    taken.Add(cell + Vector2Int.right);
+                    taken.Add(cell + Vector2Int.up);
+                    taken.Add(cell + Vector2Int.one);
+                }
+            }
+            return result;
         }
 
         public static Mark DoorMark(Vector2Int direction)
@@ -209,6 +240,8 @@ namespace Primordia.Rooms
                         'v' => Mark.DoorDown,
                         '<' => Mark.DoorLeft,
                         '>' => Mark.DoorRight,
+                        'o' => Mark.Obstacle,
+                        'O' => Mark.BigObstacle,
                         _ => Mark.Wall
                     };
                 }

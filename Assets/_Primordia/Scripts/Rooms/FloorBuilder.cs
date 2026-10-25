@@ -148,12 +148,22 @@ namespace Primordia.Rooms
                 }
             }
 
-            built.MissingCells = Paint(parent, map, themes, noDecoration, random.Next());
+            var decorations = new List<(Vector2Int cell, TileBase tile)>();
+            built.MissingCells = Paint(parent, map, themes, noDecoration, random.Next(), decorations);
+
+            // Luces de la bioluminiscencia: de la decoración que brilla y, más abajo, de los obstáculos.
+            var glows = new List<(Vector2 position, Glow glow)>();
+            foreach (var (cell, tile) in decorations)
+            {
+                var glow = themes[Mathf.Clamp(map.GetTheme(cell), 0, themes.Length - 1)].GlowOf(tile);
+                if (glow.HasValue)
+                    glows.Add((cell + Vector2.one * 0.5f, glow.Value));
+            }
 
             var mapRooms = new Dictionary<LayoutRoom, MapRoom>();
             foreach (var room in placed)
             {
-                var builtRoom = BuildRoom(parent, room, themes[room.Theme], config, boss, random);
+                var builtRoom = BuildRoom(parent, room, themes[room.Theme], config, boss, random, glows);
                 built.Rooms.Add(builtRoom);
                 var mapRoom = new MapRoom
                 {
@@ -170,6 +180,15 @@ namespace Primordia.Rooms
                 // Con sala de paso, el piso se deja por su fosa; si no, por la salida de siempre en la sala del jefe.
                 if (room.Layout.Role == RoomRole.Boss && !config.HasTransition)
                     BuildExit(builtRoom, config);
+            }
+
+            if (glows.Count > 0)
+            {
+                var lights = new GameObject("Lights").transform;
+                lights.SetParent(parent, false);
+                Ambience.CreateGlobalLight(lights);
+                foreach (var (position, glow) in glows)
+                    Ambience.CreateGlow(lights, position, glow, (float)random.NextDouble() * Mathf.Max(0.1f, glow.period));
             }
 
             foreach (var (from, to, cells) in corridorCells)
@@ -389,7 +408,10 @@ namespace Primordia.Rooms
                 for (int x = 0; x < room.Template.Width; x++)
                 {
                     var cell = room.Origin + new Vector2Int(x, y);
-                    map.Set(cell, room.Template.Get(x, y) == RoomTemplate.Mark.Floor ? FloorMap.Kind.Floor : FloorMap.Kind.Wall);
+                    var mark = room.Template.Get(x, y);
+                    map.Set(cell, mark == RoomTemplate.Mark.Floor ? FloorMap.Kind.Floor
+                        : RoomTemplate.IsObstacle(mark) ? FloorMap.Kind.Obstacle
+                        : FloorMap.Kind.Wall);
                     map.SetTheme(cell, room.Theme);
                 }
             }
@@ -578,16 +600,19 @@ namespace Primordia.Rooms
             }
         }
 
-        static int Paint(Transform parent, FloorMap map, RoomTheme[] themes, HashSet<Vector2Int> noDecoration, int seed)
+        static int Paint(Transform parent, FloorMap map, RoomTheme[] themes, HashSet<Vector2Int> noDecoration, int seed,
+            List<(Vector2Int cell, TileBase tile)> decorations)
         {
             var grid = new GameObject("Level", typeof(Grid));
             grid.transform.SetParent(parent, false);
 
             var floor = CreateTilemap(grid.transform, "Ground", -20);
             var decoration = CreateTilemap(grid.transform, "Decoration", -15);
+            // Cáusticas: luz que ondula sobre el suelo y la decoración, por debajo de paredes y personajes.
+            var overlay = themes.Any(theme => theme != null && theme.HasCaustics) ? CreateTilemap(grid.transform, "Caustics", -14) : null;
             var walls = CreateTilemap(grid.transform, "Walls", -10);
 
-            var missing = RoomPainter.Paint(map, themes, floor, decoration, walls, noDecoration, seed);
+            var missing = RoomPainter.Paint(map, themes, floor, decoration, walls, noDecoration, seed, overlay, decorations);
             if (missing.Count > 0)
                 Debug.LogWarning($"FloorBuilder: {missing.Count} celdas sin pieza de arte (en magenta), por ejemplo {string.Join(", ", missing.Take(5))}.");
 
@@ -611,7 +636,7 @@ namespace Primordia.Rooms
         }
 
         static Room BuildRoom(Transform parent, PlacedRoom placed, RoomTheme theme, FloorConfig config, FloorConfig.BossEntry boss,
-            System.Random random)
+            System.Random random, List<(Vector2 position, Glow glow)> glows)
         {
             var center = placed.FloorCenter;
             var floorBounds = placed.Template.FloorBounds();
@@ -630,6 +655,9 @@ namespace Primordia.Rooms
                 var doorCells = direction == Vector2Int.up ? placed.ArchCells[direction] : cells;
                 doors.Add(BuildDoor(roomObject.transform, theme, direction, doorCells));
             }
+
+            BuildObstacles(roomObject.transform, placed, theme, random, glows);
+            BuildAmbience(roomObject.transform, placed, theme, config, random);
 
             // Los enemigos esperan desactivados hasta que el jugador entra.
             var enemiesRoot = new GameObject("Enemies").transform;
@@ -665,6 +693,120 @@ namespace Primordia.Rooms
             }
 
             return room;
+        }
+
+        // Los obstáculos van por encima de las paredes y por debajo de los personajes, como las columnas.
+        const int ObstacleOrder = -5;
+        // Rayos de luz: entre 2 y 3 por sala, con al menos esta separación (en tiles) entre ellos.
+        const int MinLightRays = 2;
+        const int MaxLightRays = 3;
+        const int LightRaySpacing = 6;
+
+        /// <summary>
+        /// Obstáculos de cobertura de la plantilla (o de 1×1, O de 2×2): un sprite del tileset con su colisión, que también
+        /// para los proyectiles. Los que brillan dejan su luz en <paramref name="glows"/>.
+        /// </summary>
+        static void BuildObstacles(Transform roomObject, PlacedRoom placed, RoomTheme theme, System.Random random,
+            List<(Vector2 position, Glow glow)> glows)
+        {
+            var template = placed.Template;
+            var small = new List<Vector2Int>();
+            for (int y = 0; y < template.Height; y++)
+                for (int x = 0; x < template.Width; x++)
+                    if (template.Get(x, y) == RoomTemplate.Mark.Obstacle)
+                        small.Add(new Vector2Int(x, y));
+            var big = template.BigObstacleCorners();
+            if (small.Count == 0 && big.Count == 0)
+                return;
+
+            var root = new GameObject("Obstacles").transform;
+            root.SetParent(roomObject, false);
+            foreach (var cell in small)
+                Obstacle(cell, 1, theme.SmallObstacles);
+            foreach (var cell in big)
+                Obstacle(cell, 2, theme.BigObstacles);
+
+            void Obstacle(Vector2Int cell, int size, Sprite[] sprites)
+            {
+                var obstacle = new GameObject(size == 1 ? "Obstacle" : "ObstacleBig");
+                obstacle.transform.SetParent(root, false);
+                var position = (Vector2)(placed.Origin + cell) + Vector2.one * (size / 2f);
+                obstacle.transform.position = position;
+
+                var renderer = obstacle.AddComponent<SpriteRenderer>();
+                renderer.sortingOrder = ObstacleOrder;
+                if (sprites.Length > 0)
+                    renderer.sprite = sprites[random.Next(sprites.Length)];
+                obstacle.AddComponent<BoxCollider2D>().size = Vector2.one * size;
+
+                // Contorno de color (1 px alrededor de la silueta): que se note que sirve de cobertura y no se pierda en el fondo.
+                var outlineSprite = theme.OutlineOf(renderer.sprite);
+                if (outlineSprite != null)
+                {
+                    var outline = new GameObject("Outline");
+                    outline.transform.SetParent(obstacle.transform, false);
+                    var outlineRenderer = outline.AddComponent<SpriteRenderer>();
+                    outlineRenderer.sprite = outlineSprite;
+                    outlineRenderer.color = theme.ObstacleOutline;
+                    outlineRenderer.sortingOrder = ObstacleOrder - 1;
+                }
+
+                var glow = theme.GlowOf(renderer.sprite);
+                if (glow.HasValue)
+                    glows.Add((position, glow.Value));
+            }
+        }
+
+        /// <summary>Rayos de luz colgando de la pared de arriba y nieve marina, según el tileset de la sala.</summary>
+        static void BuildAmbience(Transform roomObject, PlacedRoom placed, RoomTheme theme, FloorConfig config, System.Random random)
+        {
+            var template = placed.Template;
+            var floor = template.FloorBounds();
+            if (floor.width <= 0)
+                return;
+
+            if (theme.LightRay.Length > 0)
+            {
+                // Columnas cuyo suelo más alto toca la cara de la pared de arriba (sin los huecos de las puertas).
+                var tops = new List<(int x, int y)>();
+                for (int x = floor.xMin; x < floor.xMax; x++)
+                {
+                    for (int y = floor.yMax - 1; y >= floor.yMin; y--)
+                    {
+                        if (template.Get(x, y) == RoomTemplate.Mark.Floor && template.Get(x, y + 1) == RoomTemplate.Mark.Wall
+                            && template.Get(x, y + 2) == RoomTemplate.Mark.Wall && template.Get(x, y + 3) == RoomTemplate.Mark.Wall)
+                        {
+                            tops.Add((x, y));
+                            break;
+                        }
+                        if (template.Get(x, y) != RoomTemplate.Mark.Wall)
+                            break;
+                    }
+                }
+
+                int count = random.Next(MinLightRays, MaxLightRays + 1);
+                var chosen = new List<int>();
+                foreach (var (x, y) in tops.OrderBy(_ => random.Next()))
+                {
+                    if (chosen.Count >= count)
+                        break;
+                    if (chosen.Any(other => Mathf.Abs(other - x) < LightRaySpacing))
+                        continue;
+                    chosen.Add(x);
+                    // Arriba de la cara de la pared (dos filas por encima del suelo).
+                    var top = (Vector2)(placed.Origin + new Vector2Int(x, y + 3)) + new Vector2(0.5f, 0f);
+                    Ambience.CreateLightRay(roomObject, top, theme.LightRay, theme.LightRayFrameDuration,
+                        (float)random.NextDouble() * theme.LightRayFrameDuration * theme.LightRay.Length);
+                }
+            }
+
+            if (theme.MarineSnow > 0 && config.MarineSnowMaterial != null && config.MarineSnowFlakes.Length > 0)
+            {
+                // Más copos cuanto más suelo, con la sala normal como referencia.
+                int count = Mathf.Max(1, Mathf.RoundToInt(theme.MarineSnow * floor.width * floor.height / (float)config.ReferenceFloorArea));
+                var area = new Rect(placed.Origin + floor.position, floor.size);
+                Ambience.CreateMarineSnow(roomObject, area, count, config.MarineSnowFlakes, config.MarineSnowMaterial);
+            }
         }
 
         static void SpawnEnemies(PlacedRoom placed, Transform enemiesRoot, FloorConfig config, FloorConfig.BossEntry bossEntry,
@@ -727,8 +869,11 @@ namespace Primordia.Rooms
             doorObject.transform.position = position;
 
             var frames = direction == Vector2Int.up ? theme.DoorTop : direction == Vector2Int.down ? theme.DoorBottom : theme.DoorSide;
+            // Losas del piso 2: cerrar y abrir con sus cuadros; si el tileset no las tiene, la membrana de siempre.
+            var slabs = direction == Vector2Int.up ? theme.SlabTop : direction == Vector2Int.down ? theme.SlabBottom : theme.SlabSide;
+            bool useSlabs = slabs != null && slabs.IsValid;
             var renderer = doorObject.AddComponent<SpriteRenderer>();
-            renderer.sprite = frames != null && frames.Length > 0 ? frames[^1] : null;
+            renderer.sprite = useSlabs ? slabs.close[^1] : frames != null && frames.Length > 0 ? frames[^1] : null;
             renderer.sortingOrder = -8;
             renderer.flipX = direction == Vector2Int.right;
 
@@ -736,7 +881,10 @@ namespace Primordia.Rooms
             blocker.size = size;
 
             var door = doorObject.AddComponent<Door>();
-            door.Configure(blocker, renderer, frames);
+            if (useSlabs)
+                door.Configure(blocker, renderer, slabs);
+            else
+                door.Configure(blocker, renderer, frames);
             return door;
         }
 

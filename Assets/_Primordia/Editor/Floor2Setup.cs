@@ -133,6 +133,11 @@ namespace Primordia.Editor
                 config.ConfigureCorridors(new Vector2Int(4, 6), new Vector2Int(3, 4), FloorConfig.PathWeights.Descending);
             }
 
+            // Ambiente (entrega 1c): nieve marina y luces 2D que se vean también en WebGL.
+            var (flakes, snowMaterial) = ArtSetup.ImportMarineSnow();
+            config.ConfigureMarineSnow(flakes, snowMaterial);
+            AllowBrightLights();
+
             config.ConfigureFloor(2, config.NextFloor);
             config.ConfigureArt(reef, floor1.BossTheme, floor1.ExitSprite);
             config.ConfigureBands(fallbackBands);
@@ -146,6 +151,31 @@ namespace Primordia.Editor
             EditorUtility.SetDirty(config);
             AssetDatabase.SaveAssets();
             return config;
+        }
+
+        const string Renderer2DPath = "Assets/Settings/Renderer2D.asset";
+        const float HdrEmulationScale = 2f;
+
+        /// <summary>
+        /// Las luces de la bioluminiscencia suman sobre la luz global (intensidad 1). Donde la textura de luces no admite
+        /// valores mayores que 1 (WebGL sin texturas de coma flotante) se recortarían; con la emulación de HDR a 2 se ven igual.
+        /// </summary>
+        static void AllowBrightLights()
+        {
+            var renderer = AssetDatabase.LoadMainAssetAtPath(Renderer2DPath);
+            if (renderer == null)
+            {
+                Debug.LogWarning($"Floor2Setup: no encuentro {Renderer2DPath}; las luces del Abismo pueden verse más apagadas.");
+                return;
+            }
+            var serialized = new SerializedObject(renderer);
+            var scale = serialized.FindProperty("m_HDREmulationScale");
+            if (scale != null && scale.floatValue < HdrEmulationScale)
+            {
+                scale.floatValue = HdrEmulationScale;
+                serialized.ApplyModifiedProperties();
+                EditorUtility.SetDirty(renderer);
+            }
         }
 
         /// <summary>

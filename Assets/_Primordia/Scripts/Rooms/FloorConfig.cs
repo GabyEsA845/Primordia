@@ -112,6 +112,12 @@ namespace Primordia.Rooms
         [Tooltip("Peso de cada dirección al trazar el camino: abajo, cada lado y arriba. Iguales: giros al azar, como en el piso 1.")]
         [SerializeField] PathWeights pathWeights = PathWeights.Even;
 
+        [Header("Ambiente")]
+        [Tooltip("Copos de nieve marina (variantes). La cantidad por sala la da el tileset de su franja.")]
+        [SerializeField] Sprite[] marineSnowFlakes = Array.Empty<Sprite>();
+        [Tooltip("Material de las partículas de nieve. Vacío: sin nieve.")]
+        [SerializeField] Material marineSnowMaterial;
+
         [Header("Tileset")]
         [SerializeField] RoomTheme theme;
         [SerializeField] RoomTheme bossTheme;
@@ -189,6 +195,8 @@ namespace Primordia.Rooms
         public Vector2Int CorridorLength => corridorLength;
         public Vector2Int CorridorWidth => corridorWidth;
         public PathWeights Path => pathWeights;
+        public Sprite[] MarineSnowFlakes => marineSnowFlakes ?? Array.Empty<Sprite>();
+        public Material MarineSnowMaterial => marineSnowMaterial;
         public RoomTheme Theme => theme;
         public RoomTheme BossTheme => bossTheme;
         public EnemyEntry[] Enemies => enemies;
@@ -299,6 +307,12 @@ namespace Primordia.Rooms
             generateCaves = generate;
             caveSizes = newCaveSizes ?? Array.Empty<Vector2Int>();
             smallCaveSizes = newSmallCaveSizes ?? Array.Empty<Vector2Int>();
+        }
+
+        internal void ConfigureMarineSnow(Sprite[] newFlakes, Material newMaterial)
+        {
+            marineSnowFlakes = newFlakes ?? Array.Empty<Sprite>();
+            marineSnowMaterial = newMaterial;
         }
 
         internal void ConfigureCorridors(Vector2Int newLength, Vector2Int newWidth, PathWeights newPath)

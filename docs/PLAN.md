@@ -79,6 +79,14 @@ Cada módulo vive en su propia carpeta de `Assets/_Primordia/Scripts/` (`Core`, 
   3. Golpe sincronizado con el cuadro de la animación de ataque de cada cuerpo, y la capa de la Cutícula de Marrella sobre los cuerpos (hecho)
   4. Corona de brazos y lirio de mar (remolino, Marea, metamorfosis del lirio) y los Flagelos de Leanchoilia con el remolino (hecho)
 - [ ] `feature/floor2-enemies`: Trilobite, Medusa azul, Ottoia, Esponja Vauxia y Cardumen de Pikaia, con su arte, sus avisos y su comportamiento
+
+  Pasos:
+  1. Base (cerebros de enemigo, EnemyBrain) y Trilobite: ronda, aviso, embestida, aturdido al chocar y cabeza blindada (menú Primordia > Enemies > Crear enemigos del piso 2) (hecho)
+  2. Medusa azul: flota a impulsos y suelta un anillo de 8 con un hueco que gira
+  3. Ottoia: enterrada e inmune, aviso con círculo, sale, muerde y se hunde
+  4. Esponja Vauxia: pulso que cura y escuda, una como mucho por sala
+  5. Cardumen de Pikaia: 5 peces en formación que rodean y hacen pasadas por turnos
+  6. Cierre: costes y sala de inicio en Floor_2 y fuera los enemigos provisionales
 - [ ] `feature/floor2-mutations`: las otras 6 mutaciones del piso 2 y sus 8 linajes (beneficios remodelados, Carroñero y su sprite de restos, toques y evoluciones). Incluye el arte que falta: las capas de Extremidades y Piel sobre los 3 cuerpos (12), los efectos de activación de los Órganos, las larvas, las burbujas de la Cola, las púas de Hallucigenia y las escamas de Wiwaxia
 - [ ] `feature/boss-anomalocaris`: cueva ovalada muy grande sin fosas, en la que baja la luz al entrar, con plantas luminosas (luces 2D) y columnas de algas; acecho, cerco, escena de los ojos al 25 % y frenesí con los marcadores del zarpazo
 - [ ] `feature/boss-eurypterid`: cueva de unos 30×22 con 5–6 rocas y grietas en los bordes, pinzas y púas del caparazón, escena de la muda al 50 % (la muda vacía queda como cobertura y se derrumban 2 rocas) y fase blanda con la cola

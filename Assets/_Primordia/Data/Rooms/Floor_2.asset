@@ -222,12 +222,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ee040b95e788e5649887a36125ca76dc, type: 2}
   - {fileID: 11400000, guid: 2a8ae0b84c247aa4380d009839c9d15e, type: 2}
   enemies:
-  - prefab: {fileID: 8882603238870742745, guid: a55174d84ea389f4ea3dbe2ad2e34d19, type: 3}
-    cost: 1
-    minDepth: 1
-  - prefab: {fileID: 6360368782889849989, guid: 6a0b1fdfb44e57542b2abcce354082ca, type: 3}
+  - prefab: {fileID: 8460756809369041511, guid: 8e9430812d0190e4e9227da5e973e588, type: 3}
     cost: 2
-    minDepth: 2
+    minDepth: 1
   baseBudget: 4
   budgetPerRoom: 1.4
   referenceFloorArea: 312

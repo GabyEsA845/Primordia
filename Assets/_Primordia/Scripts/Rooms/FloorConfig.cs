@@ -374,6 +374,9 @@ namespace Primordia.Rooms
             budgetPerRoom = newBudgetPerRoom;
         }
 
+        /// <summary>Cambia solo los enemigos (el jefe y el presupuesto se quedan).</summary>
+        internal void SetEnemies(EnemyEntry[] newEnemies) => enemies = newEnemies ?? Array.Empty<EnemyEntry>();
+
         internal void ConfigureBosses(BossEntry[] newBosses) => bosses = newBosses ?? Array.Empty<BossEntry>();
 
         internal void ConfigureBiomass(BiomassPickup newSmall, BiomassPickup newBig, int newMinimum = 2)

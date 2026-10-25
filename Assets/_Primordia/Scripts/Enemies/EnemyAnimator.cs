@@ -26,6 +26,7 @@ namespace Primordia.Enemies
         Enemy enemy;
         Health health;
         EnemyAI ai;
+        EnemyBrain brain;
         Rigidbody2D rb;
         AnimatorStates states;
         float lockedUntil;
@@ -42,6 +43,8 @@ namespace Primordia.Enemies
             TryGetComponent(out ai);
             states = new AnimatorStates(animator);
         }
+
+        void Start() => TryGetComponent(out brain);
 
         void OnEnable()
         {
@@ -75,7 +78,27 @@ namespace Primordia.Enemies
             UpdateFlip();
 
             if (Time.time >= lockedUntil)
-                states.Play(MoveState);
+                states.Play(brain != null && brain.AnimationState != null ? brain.AnimationState : MoveState);
+        }
+
+        /// <summary>Muestra una vez esa animación (la del cerebro: aviso, ataque…) y devuelve lo que dura; 0 si no la tiene.</summary>
+        public float PlayOnce(string state)
+        {
+            if (!states.Has(state))
+                return 0f;
+            Show(state);
+            actionUntil = lockedUntil;
+            return states.Length(state);
+        }
+
+        /// <summary>Cuánto dura esa animación (0 si no la tiene).</summary>
+        public float LengthOf(string state) => states.Has(state) ? states.Length(state) : 0f;
+
+        /// <summary>Corta la animación de una vez que se esté viendo (la del cerebro manda enseguida).</summary>
+        public void Unlock()
+        {
+            lockedUntil = 0f;
+            actionUntil = 0f;
         }
 
         void UpdateFlip()
@@ -83,8 +106,8 @@ namespace Primordia.Enemies
             if (body == null)
                 return;
 
-            Vector2 direction = ai != null && ai.IsAlert && ai.Target != null
-                ? ai.Target.position - transform.position
+            Vector2 direction = brain != null && brain.Facing.HasValue ? brain.Facing.Value
+                : ai != null && ai.IsAlert && ai.Target != null ? ai.Target.position - transform.position
                 : rb.linearVelocity;
 
             if (Mathf.Abs(direction.x) > 0.05f)
@@ -99,8 +122,8 @@ namespace Primordia.Enemies
 
         void OnDamaged(int _)
         {
-            // El golpe no interrumpe el disparo.
-            if (health.IsDead || Time.time < actionUntil)
+            // El golpe no interrumpe el disparo ni lo que haga el cerebro (enterrado, embistiendo…).
+            if (health.IsDead || Time.time < actionUntil || (brain != null && !brain.ShowsHurt))
                 return;
 
             Show(HurtState);

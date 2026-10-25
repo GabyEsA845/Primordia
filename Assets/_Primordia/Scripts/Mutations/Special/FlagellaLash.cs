@@ -70,7 +70,7 @@ namespace Primordia.Mutations
                 return;
 
             readyShown = true;
-            FlagellumStrike.PlayOnce("FlagellaReady", settings.readyFrames, settings.readyFrameDuration, transform, SortingOrder);
+            FrameEffect.Play("FlagellaReady", settings.readyFrames, settings.readyFrameDuration, SortingOrder, transform);
         }
 
         /// <summary>Daño del latigazo con la Boca de ahora: el daño de cada golpe por los golpes por segundo.</summary>

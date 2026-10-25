@@ -170,6 +170,12 @@ namespace Primordia.Combat
 
         internal void SetMuzzle(Transform newMuzzle) => muzzle = newMuzzle;
 
+        internal void SetTeam(Team newTeam)
+        {
+            team = newTeam;
+            projectileLayer = CombatLayers.ProjectileLayer(team);
+        }
+
         /// <summary>
         /// Mordisco con avance: si nadie está a tiro, se lanza hacia delante y deja el golpe para el final del
         /// avance (o para cuando alguien entre en el alcance). Devuelve false si golpea ya.
@@ -241,6 +247,14 @@ namespace Primordia.Combat
             {
                 if (health == null)
                     continue;
+
+                // El mordisco de un enemigo a un jugador que hace la esquiva justa (Cutícula) se le devuelve.
+                if (team != Team.Player)
+                {
+                    var reflector = hit.GetComponentInParent<IHitReflector>();
+                    if (reflector != null && reflector.TryReflect(GetComponentInParent<Health>()))
+                        continue;
+                }
 
                 if (!health.TakeDamage(DamageOf(attack)))
                     continue;

@@ -215,6 +215,12 @@ namespace Primordia.Enemies
                 var target = touching[i].GetComponentInParent<Health>();
                 if (target == null || target == health)
                     continue;
+
+                // La esquiva justa de la Cutícula le devuelve el golpe.
+                var reflector = touching[i].GetComponentInParent<IHitReflector>();
+                if (reflector != null && reflector.TryReflect(health))
+                    continue;
+
                 target.TakeDamage(contactDamage);
 
                 // Las Espinas pinchan a quien toca al jugador, aunque no haya choque.

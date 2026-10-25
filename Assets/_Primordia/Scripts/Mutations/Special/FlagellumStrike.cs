@@ -7,7 +7,7 @@ namespace Primordia.Mutations
     /// <summary>
     /// Un latigazo de <see cref="FlagellaLash"/>: reproduce una vez sus cuadros siguiendo al enemigo y, a los
     /// <c>strikeDelay</c> segundos, llama a quien lo lanzó para que haga el daño (que puede cambiar de enemigo si murió).
-    /// Sin cuadros (pruebas o arte sin importar) el daño entra igual. También sirve para el destello de listo, sin daño.
+    /// Sin cuadros (pruebas o arte sin importar) el daño entra igual.
     /// </summary>
     public class FlagellumStrike : MonoBehaviour
     {
@@ -32,15 +32,6 @@ namespace Primordia.Mutations
             strike.strikeDelay = strikeDelay;
             strike.onStrike = onStrike;
             return strike;
-        }
-
-        /// <summary>Cuadros una vez, colgando de ese padre (el destello sobre el jugador). Sin cuadros no crea nada.</summary>
-        internal static void PlayOnce(string name, Sprite[] frames, float frameDuration, Transform parent, int sortingOrder)
-        {
-            if (frames == null || frames.Length == 0)
-                return;
-            var strike = Create(name, frames, frameDuration, sortingOrder, parent);
-            strike.struck = true;
         }
 
         static FlagellumStrike Create(string name, Sprite[] frames, float frameDuration, int sortingOrder, Transform parent)
@@ -71,7 +62,7 @@ namespace Primordia.Mutations
             return collider != null ? (Vector2)collider.bounds.center : (Vector2)health.transform.position;
         }
 
-        float Length => Mathf.Max(frames.Length * frameDuration, struck ? 0f : strikeDelay);
+        float Length => Mathf.Max(frames.Length * frameDuration, strikeDelay);
 
         void Update()
         {

@@ -35,8 +35,15 @@ namespace Primordia.Combat
                 return;
 
             var health = other.GetComponentInParent<Health>();
-            if (health != null)
-                health.TakeDamage(damage);
+            if (health == null)
+                return;
+
+            // La esquiva justa de la Cutícula devuelve el golpe al que toca.
+            var reflector = other.GetComponentInParent<IHitReflector>();
+            if (reflector != null && reflector.TryReflect(GetComponentInParent<Health>()))
+                return;
+
+            health.TakeDamage(damage);
         }
     }
 }

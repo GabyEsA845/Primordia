@@ -1,5 +1,6 @@
 using System.IO;
 using System.Linq;
+using Primordia.Combat;
 using Primordia.Mutations;
 using Primordia.Rooms;
 using Primordia.UI;
@@ -42,7 +43,7 @@ namespace Primordia.Editor
             // Para probarlas en Test_Floor2 hace falta el HUD (las escenas viejas no lo traían).
             Floor2Setup.EnsureTestSceneHUD();
             Debug.Log("SpecialMutationsSetup: Flagelos de Leanchoilia, Cutícula de Marrella y Yema clonal creadas y en las almejas grandes del piso 2. "
-                + "Los Flagelos ya azotan; la Cutícula y la Yema llegan en los pasos 3 y 4 (de momento solo cuentan como especiales).");
+                + "Los Flagelos azotan y la Cutícula refleja; la Yema llega en el paso 4 (de momento solo cuenta como especial).");
         }
 
         /// <summary>Las especiales que existen (para las almejas del piso 2), en orden.</summary>
@@ -69,6 +70,9 @@ namespace Primordia.Editor
                 MutationSlot.Skin);
             cuticle.SetLevelDescriptions("8 de daño el proyectil y 4 el destello, que aturde 1,5 s.",
                 "Prisma: cada proyectil reflejado se divide en 3 en abanico.");
+            cuticle.ConfigureLevels(new MarrellaCuticleMutation.CuticleLevel { projectileDamage = 6, contactDamage = 3, stunDuration = 1f },
+                new MarrellaCuticleMutation.CuticleLevel { projectileDamage = 8, contactDamage = 4, stunDuration = 1.5f },
+                new MarrellaCuticleMutation.CuticleLevel { projectileDamage = 8, contactDamage = 4, stunDuration = 1.5f, prismCount = 3 });
 
             var bud = Create<ClonalBudMutation>(AssetNames[2], "Yema clonal",
                 "Clic derecho: brota una copia translúcida de ti durante 6 s que ataca sola con tu Boca y la mitad de tu daño. "
@@ -118,13 +122,18 @@ namespace Primordia.Editor
             }
         }
 
-        /// <summary>Latigazo (48×48, 12 cuadros) y destello de listo (32×32, 5 cuadros) de los Flagelos.</summary>
+        /// <summary>
+        /// Latigazo (48×48, 12 cuadros) y destello de listo (32×32, 5 cuadros) de los Flagelos; anillo del reflejo, destello
+        /// que aturde y proyectil reflejado de la Cutícula, con su prefab y su ataque.
+        /// </summary>
         static void ImportEffects(MutationData[] specials)
         {
+            Directory.CreateDirectory(EffectsArtFolder);
+            if (specials[1] is MarrellaCuticleMutation cuticle)
+                ImportCuticle(cuticle);
             if (specials[0] is not LeanchoiliaFlagellaMutation flagella)
                 return;
 
-            Directory.CreateDirectory(EffectsArtFolder);
             var lash = ArtSetup.ImportLooseSheet($"{SourceFolder}/Effects/Fx_LeanchoiliaFlagella_Lash.png",
                 $"{EffectsArtFolder}/Fx_LeanchoiliaFlagella_Lash.png", 48);
             var ready = ArtSetup.ImportLooseSheet($"{SourceFolder}/Effects/Fx_LeanchoiliaFlagella_Ready.png",
@@ -133,6 +142,58 @@ namespace Primordia.Editor
                 Debug.LogWarning("SpecialMutationsSetup: falta Fx_LeanchoiliaFlagella_Lash.png; el latigazo hará daño sin verse.");
             flagella.SetArt(lash, ready);
             EditorUtility.SetDirty(flagella);
+        }
+
+        static void ImportCuticle(MarrellaCuticleMutation cuticle)
+        {
+            Sprite[] Sheet(string name, int cell) =>
+                ArtSetup.ImportLooseSheet($"{SourceFolder}/Effects/{name}.png", $"{EffectsArtFolder}/{name}.png", cell);
+
+            var reflect = Sheet("Fx_MarrellaCuticle_Reflect", 32);
+            var stun = Sheet("Fx_MarrellaCuticle_Stun", 32);
+            var projectileFrames = Sheet("Proj_MarrellaCuticle_Reflected", 12);
+            var marker = AssetDatabase.LoadAssetAtPath<GameObject>($"{EffectPrefabsFolder}/Effect_Status_Stun.prefab");
+            cuticle.SetArt(reflect, stun, marker);
+
+            var projectile = CreateReflectedProjectile(projectileFrames);
+            var attack = CombatSetup.CreateAttack(ReflectedAttackName, projectile, fireRate: 1f, damage: 6, speed: 11f, lifetime: 1.6f);
+            attack.Configure(projectile, 1f, 6, 11f, 1.6f);
+            // Gira deprisa hacia quien lo lanzó; los del Prisma sin objetivo buscan al enemigo más cercano.
+            attack.ConfigureHoming(540f, 10f);
+            EditorUtility.SetDirty(attack);
+            cuticle.SetReflectedAttack(attack);
+            EditorUtility.SetDirty(cuticle);
+        }
+
+        const string ReflectedAttackName = "Attack_CuticleReflected";
+        const string EffectPrefabsFolder = "Assets/_Primordia/Prefabs/Effects";
+        const string ProjectilePrefabPath = "Assets/_Primordia/Prefabs/Combat/Projectile_CuticleReflected.prefab";
+
+        /// <summary>Proyectil iridiscente de 12×12 animado (4 cuadros), con el impacto lima del jugador. Se rehace.</summary>
+        static Projectile CreateReflectedProjectile(Sprite[] frames)
+        {
+            var root = new GameObject("Projectile_CuticleReflected");
+            try
+            {
+                var renderer = root.AddComponent<SpriteRenderer>();
+                renderer.sprite = frames.Length > 0 ? frames[0] : null;
+                renderer.sortingOrder = 20;
+                if (frames.Length > 1)
+                    root.AddComponent<SpriteLoop>().Configure(renderer, frames, 0.08f, 0f);
+
+                var collider = root.AddComponent<CircleCollider2D>();
+                collider.isTrigger = true;
+                collider.radius = 0.22f;
+                root.AddComponent<Rigidbody2D>().gravityScale = 0f;
+
+                var projectile = root.AddComponent<Projectile>();
+                projectile.SetImpactEffect(AssetDatabase.LoadAssetAtPath<GameObject>($"{EffectPrefabsFolder}/Effect_Impact_Player.prefab"));
+                return PrefabUtility.SaveAsPrefabAsset(root, ProjectilePrefabPath).GetComponent<Projectile>();
+            }
+            finally
+            {
+                Object.DestroyImmediate(root);
+            }
         }
 
         internal struct UIArt

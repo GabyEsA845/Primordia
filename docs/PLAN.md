@@ -69,7 +69,7 @@ Cada módulo vive en su propia carpeta de `Assets/_Primordia/Scripts/` (`Core`, 
   Pasos:
   1. Sala de la almeja y lo común de las especiales: precio Inestable (daño extra por golpe, corazones dorados y fila en la pausa con cuadro de información), comodín de linaje con cartel para elegir y cambio desde la pausa, gema dorada en los iconos, almejas que no repiten especial y atajo F5 (hecho)
   2. Flagelos de Leanchoilia: latigazo junto al enemigo con el daño de 1 s de la Boca y sus efectos, recarga, destello de listo y cadena en el nivel III (hecho; con la Corona de brazos, cuando exista esa Boca)
-  3. Cutícula de Marrella
+  3. Cutícula de Marrella: esquiva justa que devuelve los proyectiles a quien los lanzó y aturde a quien te golpea, Prisma en el nivel III (hecho; la capa del cuerpo, con los cuerpos del piso 2)
   4. Yema clonal
 - [ ] `feature/floor2-mouths`: Cnidocitos, Placas mandibulares (Quebrar y Guillotina) y Corona de brazos (remolino y Marea), con los 3 cuerpos del jugador (medusa, pez acorazado, lirio de mar) y el golpe sincronizado con el cuadro de la animación de ataque
 - [ ] `feature/floor2-enemies`: Trilobite, Medusa azul, Ottoia, Esponja Vauxia y Cardumen de Pikaia, con su arte, sus avisos y su comportamiento

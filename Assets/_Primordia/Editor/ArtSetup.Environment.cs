@@ -120,6 +120,7 @@ namespace Primordia.Editor
             CopyFiles($"{source}/deco", $"{target}/Obstacles", "Obstacle_*.png");
             CopyFiles($"{source}/deco", $"{target}/Ambience", "Overlay_*.png");
             CopyFiles(source, $"{target}/Doors", "Door*.png");
+            CopyFiles($"{source}/pits", $"{target}/Pits", "Pit_*.png");
 
             if (!Directory.Exists($"{target}/Tiles"))
             {
@@ -198,6 +199,8 @@ namespace Primordia.Editor
             theme.ConfigureObstacles(smallNames.Select(name => obstacles[name]).ToArray(), bigNames.Select(name => obstacles[name]).ToArray(),
                 smallNames.Select(name => outlines[name]).ToArray(), bigNames.Select(name => outlines[name]).ToArray());
 
+            ImportPits(theme, $"{target}/Pits", tileAssets);
+
             var caustics = ImportCaustics($"{target}/Ambience/Overlay_Caustics.png", tileAssets);
             string rayPath = $"{target}/Ambience/Overlay_LightRay.png";
             var lightRay = File.Exists(rayPath) ? SliceSheet(rayPath, EnvironmentCellWidths["Overlay_LightRay"]) : null;
@@ -210,6 +213,33 @@ namespace Primordia.Editor
             Debug.Log($"ArtSetup: tema {themeName}: {tiles.Count} tiles, {decorations.Count} decoraciones, {doors.Count} hojas de puertas, "
                 + $"{obstacles.Count} obstáculos{(caustics != null ? ", cáusticas" : "")}{(lightRay != null ? ", rayos" : "")}.");
             return true;
+        }
+
+        // Esquinas de dentro de las fosas, en el orden de RoomTheme (NE, NO, SE, SO), y motas a ~6 cuadros por segundo.
+        static readonly string[] PitCorners = { "NE", "NO", "SE", "SO" };
+        const float PitMotesFps = 6f;
+
+        /// <summary>
+        /// Fosas del tema (README de las salas especiales): 16 tiles por máscara de vecinos, las esquinas de dentro y las motas
+        /// que suben. Si el tema no las tiene, se quedan vacías.
+        /// </summary>
+        static void ImportPits(RoomTheme theme, string folder, string tileAssets)
+        {
+            if (!File.Exists($"{folder}/Pit_0.png"))
+            {
+                theme.ConfigurePits(null, null, null);
+                return;
+            }
+
+            TileBase Single(string name) =>
+                File.Exists($"{folder}/{name}.png") ? CreateTile($"{tileAssets}/{name}.asset", ImportSingleSprite($"{folder}/{name}.png"), collides: false) : null;
+
+            var tiles = Enumerable.Range(0, 16).Select(mask => Single($"Pit_{mask}")).ToArray();
+            var corners = PitCorners.Select(corner => Single($"Pit_Corner_{corner}")).ToArray();
+            TileBase motes = null;
+            if (File.Exists($"{folder}/Pit_Motes.png"))
+                motes = CreateAnimatedTile($"{tileAssets}/Pit_Motes.asset", SliceSheet($"{folder}/Pit_Motes.png", 16), PitMotesFps);
+            theme.ConfigurePits(tiles, corners, motes);
         }
 
         /// <summary>

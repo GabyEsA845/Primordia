@@ -68,6 +68,15 @@ namespace Primordia.Rooms
         [Tooltip("Color del contorno de los obstáculos.")]
         [SerializeField] Color obstacleOutline = new(0.95f, 0.77f, 0.35f, 0.85f);
 
+        [Header("Fosas (piso 2, opcional)")]
+        [Tooltip("16 tiles por máscara: suma de los vecinos que NO son fosa (N=1, E=2, S=4, O=8).")]
+        [SerializeField] TileBase[] pitTiles;
+        [Tooltip("Esquinas de dentro, encima del tile: NE, NO, SE, SO.")]
+        [SerializeField] TileBase[] pitCorners;
+        [Tooltip("Motas que suben del fondo, en algunas celdas de fosa.")]
+        [SerializeField] TileBase pitMotes;
+        [SerializeField, Range(0f, 1f)] float pitMotesChance = 0.12f;
+
         [Header("Ambiente (piso 2, opcional)")]
         [Tooltip("Cáusticas sobre el suelo: 16 tiles animados, uno por celda de un mosaico de 4×4 (índice x % 4 + 4 · (y % 4)).")]
         [SerializeField] TileBase[] caustics;
@@ -92,6 +101,11 @@ namespace Primordia.Rooms
         public Sprite[] SmallObstacles => smallObstacles ?? System.Array.Empty<Sprite>();
         public Sprite[] BigObstacles => bigObstacles ?? System.Array.Empty<Sprite>();
         public Color ObstacleOutline => obstacleOutline;
+        public bool HasPits => pitTiles != null && pitTiles.Length == 16;
+        public TileBase PitTile(int mask) => HasPits ? pitTiles[mask & 15] : null;
+        public TileBase PitCorner(int index) => pitCorners != null && index < pitCorners.Length ? pitCorners[index] : null;
+        public TileBase PitMotes => pitMotes;
+        public float PitMotesChance => pitMotesChance;
 
         /// <summary>Contorno del sprite de un obstáculo, o null si no tiene.</summary>
         public Sprite OutlineOf(Sprite obstacle)
@@ -219,6 +233,13 @@ namespace Primordia.Rooms
         }
 
         internal void ConfigureObstacleOutline(Color newColor) => obstacleOutline = newColor;
+
+        internal void ConfigurePits(TileBase[] newTiles, TileBase[] newCorners, TileBase newMotes)
+        {
+            pitTiles = newTiles;
+            pitCorners = newCorners;
+            pitMotes = newMotes;
+        }
 
         internal void ConfigureAmbience(TileBase[] newCaustics, Sprite[] newLightRay, float newLightRayFrameDuration, int newMarineSnow,
             Glow[] newGlows)

@@ -41,6 +41,87 @@ MonoBehaviour:
     down: 6
     side: 2
     up: 0.3
+  specialRooms:
+  - template: {fileID: 11400000, guid: da1ac41ae54a4b648a35c80dc8820aff, type: 2}
+    placement: 0
+    countsAsCombat: 0
+    enemyMultiplier: 0
+    always: 0
+    band: -1
+    tall: 1
+  - template: {fileID: 11400000, guid: fd484ca93881d52419dfb17194968032, type: 2}
+    placement: 1
+    countsAsCombat: 0
+    enemyMultiplier: 2
+    always: 1
+    band: 2
+    tall: 0
+  - template: {fileID: 11400000, guid: 3b5e717a6e5b25747a640786071e8489, type: 2}
+    placement: 0
+    countsAsCombat: 1
+    enemyMultiplier: 1
+    always: 0
+    band: -1
+    tall: 0
+  - template: {fileID: 11400000, guid: 8cdaddf20e897b94280f9f1f21b93993, type: 2}
+    placement: 0
+    countsAsCombat: 1
+    enemyMultiplier: 1
+    always: 0
+    band: -1
+    tall: 0
+  - template: {fileID: 11400000, guid: 50806b46d01c1394aa5472d5a7a763b4, type: 2}
+    placement: 0
+    countsAsCombat: 1
+    enemyMultiplier: 1
+    always: 0
+    band: -1
+    tall: 0
+  - template: {fileID: 11400000, guid: c71f5fd2bc750a0499c64c0484728109, type: 2}
+    placement: 0
+    countsAsCombat: 1
+    enemyMultiplier: 1
+    always: 0
+    band: -1
+    tall: 0
+  - template: {fileID: 11400000, guid: 987987dd53d64f14c98dcf88802a920a, type: 2}
+    placement: 0
+    countsAsCombat: 1
+    enemyMultiplier: 1
+    always: 0
+    band: -1
+    tall: 0
+  - template: {fileID: 11400000, guid: 74f67418f96ab4f4bb2107cd71e93df2, type: 2}
+    placement: 0
+    countsAsCombat: 1
+    enemyMultiplier: 1
+    always: 0
+    band: -1
+    tall: 0
+  - template: {fileID: 11400000, guid: 037f01a2aec2e2f47b1706d7611a392b, type: 2}
+    placement: 0
+    countsAsCombat: 1
+    enemyMultiplier: 1
+    always: 0
+    band: -1
+    tall: 0
+  - template: {fileID: 11400000, guid: ac1312af0f5836d46ad5dbd897823440, type: 2}
+    placement: 1
+    countsAsCombat: 0
+    enemyMultiplier: 0
+    always: 0
+    band: -1
+    tall: 0
+  specialRoomCount: {x: 2, y: 4}
+  exchangeRoom: {fileID: 11400000, guid: 5b2f86552c2f4024fa62b3277af9db01, type: 2}
+  antechamberVertical: {fileID: 11400000, guid: 937596f4d6c8bec4eb3c1a0a6105722b, type: 2}
+  antechamberHorizontal: {fileID: 11400000, guid: 471aaca2545726540ad08bd2c2e25456, type: 2}
+  pieces:
+    fossil: {fileID: 21300000, guid: c1ce46ac2bc0f634a83eeedc57af9239, type: 3}
+    clamSmall: {fileID: -5809682167455628230, guid: 6a97c7a640583af4183f57c490821b48, type: 3}
+    clamBig: {fileID: -212588564201205427, guid: 07cc3b68e0da5a1459497fb498aa71d8, type: 3}
+    heartCoral: {fileID: 11138241249908429, guid: 3a549ab3d6981c24497cec425995e1b9, type: 3}
+    waveVent: {fileID: 4641803925102896901, guid: f9a2936972b2a5d4a9ca74eadb93d977, type: 3}
   marineSnowFlakes:
   - {fileID: 3590211974270708202, guid: d671fc68d187a86458f4ff6d7523cee3, type: 3}
   - {fileID: 286594514, guid: d671fc68d187a86458f4ff6d7523cee3, type: 3}
@@ -67,12 +148,12 @@ MonoBehaviour:
   bossOffset: {x: 0, y: 2.5}
   bosses:
   - prefab: {fileID: 1183084727335379411, guid: 1fc20f23b26e1e14aa8e7a669d298cfb, type: 3}
-    room: {fileID: 11400000, guid: fc6ceb4b1ee497742babf0fa9f360cd1, type: 2}
-    theme: {fileID: 11400000, guid: 0ab89510c4bdea14ab8e629038e4cb6d, type: 2}
+    room: {fileID: 11400000, guid: 4af04b5e8f20e0f4c8a44358faf5e4cb, type: 2}
+    theme: {fileID: 11400000, guid: 2a8ae0b84c247aa4380d009839c9d15e, type: 2}
     offset: {x: 0, y: 2.5}
   - prefab: {fileID: 3929587759750360350, guid: 02aaf85b190558f41bcb733e7eb43441, type: 3}
-    room: {fileID: 11400000, guid: f9b0d20321107444684957c4e1e2f3c7, type: 2}
-    theme: {fileID: 11400000, guid: 1c83c3469c0ded745b4b509570355cd3, type: 2}
+    room: {fileID: 11400000, guid: 0b0a7e04a606095479317b364d288a26, type: 2}
+    theme: {fileID: 11400000, guid: 2a8ae0b84c247aa4380d009839c9d15e, type: 2}
     offset: {x: 0, y: 0}
   rewardPool: {fileID: 11400000, guid: 6b6074ae5cec706419cf9114349db3e3, type: 2}
   rewardOptions: 3
@@ -80,7 +161,7 @@ MonoBehaviour:
   smallBiomass: {fileID: 4954268908327209968, guid: 16d5cda47065aed4886ec380894bf996, type: 3}
   bigBiomass: {fileID: 7081711356301279898, guid: 51db4ac02edeee84c91ac030d6494999, type: 3}
   minimumBiomassPerRoom: 2
-  shopRoom: {fileID: 11400000, guid: dd2524ff606d8904f8886c9aebe37fdd, type: 2}
+  shopRoom: {fileID: 11400000, guid: a354de1ad3b3fa147ba4313226063111, type: 2}
   shopPrefab: {fileID: 2843019761843824620, guid: ef69c3942d3bba648adfcf2885fa7fd4, type: 3}
   shopDepth: {x: 0.33333334, y: 0.6666667}
   transitionRoom: {fileID: 0}

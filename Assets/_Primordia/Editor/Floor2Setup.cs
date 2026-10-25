@@ -148,9 +148,103 @@ namespace Primordia.Editor
             // El piso 2 todavía no tiene sala de paso: su jefe deja la salida de siempre, que da la victoria.
             config.ConfigureTransition(null, null, null, null);
 
+            // Paso 2: salas especiales y fijas (tienda, sala de cambio, antesala y salas de los jefes) hechas a mano.
+            ConfigureHandmadeRooms(config, floor1, fallbackBands);
+
             EditorUtility.SetDirty(config);
             AssetDatabase.SaveAssets();
             return config;
+        }
+
+        const string LayoutsSourceFolder = "docs/multimedia-temp/floor2-rooms/Layouts";
+        const string Floor2RoomsFolder = RoomsFolder + "/Floor2";
+
+        // Las 10 salas especiales (GDD, "Salas especiales"): dónde salen, si cuentan como combate, cuántos enemigos llevan
+        // respecto a una sala normal, si salen siempre, en qué franja y si ocupan dos casillas.
+        static readonly (string name, FloorConfig.SpecialPlacement placement, bool combat, float enemies, bool always, int band, bool tall)[] Specials =
+        {
+            ("Parkour", FloorConfig.SpecialPlacement.Path, false, 0f, false, -1, true),
+            ("CorazonMorado", FloorConfig.SpecialPlacement.Side, false, 2f, true, 2, false),
+            ("AnilloSima", FloorConfig.SpecialPlacement.Path, true, 1f, false, -1, false),
+            ("PuenteRoto", FloorConfig.SpecialPlacement.Path, true, 1f, false, -1, false),
+            ("BosqueCoral", FloorConfig.SpecialPlacement.Path, true, 1f, false, -1, false),
+            ("FosilGigante", FloorConfig.SpecialPlacement.Path, true, 1f, false, -1, false),
+            ("JardinEsponjas", FloorConfig.SpecialPlacement.Path, true, 1f, false, -1, false),
+            ("SalaSellada", FloorConfig.SpecialPlacement.Path, true, 1f, false, -1, false),
+            ("Islas", FloorConfig.SpecialPlacement.Path, true, 1f, false, -1, false),
+            ("GrutaEscondida", FloorConfig.SpecialPlacement.Side, false, 0f, false, -1, false),
+        };
+
+        // Salas de los jefes del piso 2, por orden de la lista de jefes (hasta que lleguen el Anomalocaris y el Euriptérido,
+        // los jefes del piso 1 pelean en ellas).
+        static readonly string[] BossRooms = { "Room_Boss_Anomalocaris", "Room_Boss_Eurypterid" };
+
+        /// <summary>
+        /// Planos hechos a mano del piso 2 (docs/multimedia-temp/floor2-rooms/Layouts, de generar_salas_especiales.py y
+        /// generar_salas_fijas.py) como plantillas en Data/Rooms/Floor2, y su configuración: las 10 salas especiales (de 2 a 4
+        /// por partida), la tienda con la sala de cambio detrás, la antesala de los jefes, sus salas (en el Abismo) y las piezas.
+        /// No sobrescribe las plantillas que ya existen (se pueden retocar a mano).
+        /// </summary>
+        static void ConfigureHandmadeRooms(FloorConfig config, FloorConfig floor1, RoomTheme[] bands)
+        {
+            var templates = ImportLayouts();
+            RoomTemplate Named(string name) => templates.TryGetValue(name, out var template) ? template : null;
+
+            var specials = Specials
+                .Select(s => new FloorConfig.SpecialRoom
+                {
+                    template = Named($"Room_Special_{s.name}"),
+                    placement = s.placement,
+                    countsAsCombat = s.combat,
+                    enemyMultiplier = s.enemies,
+                    always = s.always,
+                    band = s.band,
+                    tall = s.tall,
+                })
+                .Where(s => s.IsValid).ToArray();
+            config.ConfigureSpecialRooms(specials, new Vector2Int(2, 4));
+
+            if (Named("Room_Shop_Floor2") != null)
+                config.ConfigureShop(Named("Room_Shop_Floor2"), floor1.ShopPrefab);
+            config.ConfigureFixedRooms(Named("Room_Exchange"), Named("Room_Antechamber_Vertical"), Named("Room_Antechamber_Horizontal"));
+
+            var abyss = bands.Length > 2 ? bands[2] : null;
+            var bosses = floor1.BossOptions().Select((boss, i) =>
+                new FloorConfig.BossEntry(boss.prefab, Named(BossRooms[i % BossRooms.Length]) ?? boss.room, abyss ?? boss.theme, boss.offset)).ToArray();
+            config.ConfigureBosses(bosses);
+
+            config.ConfigurePieces(ArtSetup.ImportRoomPieces());
+        }
+
+        static System.Collections.Generic.Dictionary<string, RoomTemplate> ImportLayouts()
+        {
+            var result = new System.Collections.Generic.Dictionary<string, RoomTemplate>();
+            if (!System.IO.Directory.Exists(LayoutsSourceFolder))
+            {
+                Debug.LogWarning($"Floor2Setup: no encuentro los planos en {LayoutsSourceFolder}; el piso 2 sale sin salas especiales.");
+                return result;
+            }
+
+            System.IO.Directory.CreateDirectory(Floor2RoomsFolder);
+            foreach (var file in System.IO.Directory.GetFiles(LayoutsSourceFolder, "Room_*.txt"))
+            {
+                string name = System.IO.Path.GetFileNameWithoutExtension(file);
+                string path = $"{Floor2RoomsFolder}/{name}.asset";
+                var template = AssetDatabase.LoadAssetAtPath<RoomTemplate>(path);
+                if (template == null)
+                {
+                    template = ScriptableObject.CreateInstance<RoomTemplate>();
+                    template.SetLayout(System.IO.File.ReadAllText(file));
+                    AssetDatabase.CreateAsset(template, path);
+                }
+
+                var problems = template.Validate();
+                if (problems.Count > 0)
+                    Debug.LogWarning($"Floor2Setup: la plantilla {name} tiene problemas:\n{string.Join("\n", problems)}");
+                result[name] = template;
+            }
+            AssetDatabase.SaveAssets();
+            return result;
         }
 
         const string Renderer2DPath = "Assets/Settings/Renderer2D.asset";

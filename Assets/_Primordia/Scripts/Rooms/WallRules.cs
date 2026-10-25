@@ -65,6 +65,7 @@ namespace Primordia.Rooms
                 case FloorMap.Kind.Floor:
                 case FloorMap.Kind.Passage:
                 case FloorMap.Kind.Obstacle:
+                case FloorMap.Kind.Pit:
                     return HasWallAbove(map, x, y) ? Piece.FloorShadow : Piece.Floor;
             }
 

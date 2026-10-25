@@ -79,6 +79,45 @@ namespace Primordia.Rooms
                 direction == Vector2Int.down ? down : direction == Vector2Int.up ? up : side;
         }
 
+        /// <summary>Dónde sale una sala especial: en el camino principal o colgando de él.</summary>
+        public enum SpecialPlacement
+        {
+            Path,
+            Side
+        }
+
+        /// <summary>Una sala especial hecha a mano (piso 2: Parkour, Corazón morado, Anillo de la sima…).</summary>
+        [Serializable]
+        public struct SpecialRoom
+        {
+            public RoomTemplate template;
+            public SpecialPlacement placement;
+            [Tooltip("En el camino, cuenta como una de las salas de combate (con su recompensa si le toca). Si no, se añade aparte.")]
+            public bool countsAsCombat;
+            [Tooltip("Enemigos respecto a una sala normal: 1 igual, 2 el doble, 0 ninguno.")]
+            [Min(0f)] public float enemyMultiplier;
+            [Tooltip("Sale en todas las partidas (el Corazón morado); las demás se sortean.")]
+            public bool always;
+            [Tooltip("Franja de profundidad en la que tiene que salir (0 Someras, 1 Arrecife, 2 Abismo; -1 cualquiera).")]
+            public int band;
+            [Tooltip("Ocupa dos casillas en vertical: se entra por arriba y se sale por abajo (Parkour).")]
+            public bool tall;
+
+            public bool IsValid => template != null;
+        }
+
+        /// <summary>Sprites de las piezas de las salas especiales (huesos, almejas, coral, entradas de oleadas).</summary>
+        [Serializable]
+        public struct RoomPieces
+        {
+            [Tooltip("Esqueleto del Fósil gigante, con el origen en la esquina de arriba a la izquierda de la sala.")]
+            public Sprite fossil;
+            public Sprite clamSmall;
+            public Sprite clamBig;
+            public Sprite heartCoral;
+            public Sprite waveVent;
+        }
+
         [Header("Piso")]
         [Tooltip("Número del piso (1 = sopa primordial, 2 = océano cámbrico…).")]
         [SerializeField, Min(1)] int floorNumber = 1;
@@ -111,6 +150,18 @@ namespace Primordia.Rooms
         [SerializeField] Vector2Int corridorWidth = new(2, 2);
         [Tooltip("Peso de cada dirección al trazar el camino: abajo, cada lado y arriba. Iguales: giros al azar, como en el piso 1.")]
         [SerializeField] PathWeights pathWeights = PathWeights.Even;
+
+        [Header("Salas especiales y fijas (piso 2)")]
+        [SerializeField] SpecialRoom[] specialRooms = Array.Empty<SpecialRoom>();
+        [Tooltip("Salas especiales por partida, contando las que salen siempre (mínimo y máximo).")]
+        [SerializeField] Vector2Int specialRoomCount = new(2, 4);
+        [Tooltip("Sala de cambio (laboratorio de Darwin), en fondo de saco detrás de la tienda. Vacío: no hay.")]
+        [SerializeField] RoomTemplate exchangeRoom;
+        [Tooltip("Antesala del jefe, en línea recta con él: el túnel vertical (puertas arriba y abajo). Vacío: sin antesala.")]
+        [SerializeField] RoomTemplate antechamberVertical;
+        [Tooltip("El túnel horizontal (puertas a izquierda y derecha).")]
+        [SerializeField] RoomTemplate antechamberHorizontal;
+        [SerializeField] RoomPieces pieces;
 
         [Header("Ambiente")]
         [Tooltip("Copos de nieve marina (variantes). La cantidad por sala la da el tileset de su franja.")]
@@ -195,6 +246,14 @@ namespace Primordia.Rooms
         public Vector2Int CorridorLength => corridorLength;
         public Vector2Int CorridorWidth => corridorWidth;
         public PathWeights Path => pathWeights;
+        public SpecialRoom[] SpecialRooms => Array.FindAll(specialRooms ?? Array.Empty<SpecialRoom>(), room => room.IsValid);
+        public Vector2Int SpecialRoomCount => specialRoomCount;
+        public RoomTemplate ExchangeRoom => exchangeRoom;
+        public bool HasExchange => exchangeRoom != null && HasShop;
+        public RoomTemplate AntechamberVertical => antechamberVertical;
+        public RoomTemplate AntechamberHorizontal => antechamberHorizontal;
+        public bool HasAntechamber => antechamberVertical != null && antechamberHorizontal != null;
+        public RoomPieces Pieces => pieces;
         public Sprite[] MarineSnowFlakes => marineSnowFlakes ?? Array.Empty<Sprite>();
         public Material MarineSnowMaterial => marineSnowMaterial;
         public RoomTheme Theme => theme;
@@ -308,6 +367,21 @@ namespace Primordia.Rooms
             caveSizes = newCaveSizes ?? Array.Empty<Vector2Int>();
             smallCaveSizes = newSmallCaveSizes ?? Array.Empty<Vector2Int>();
         }
+
+        internal void ConfigureSpecialRooms(SpecialRoom[] newRooms, Vector2Int newCount)
+        {
+            specialRooms = newRooms ?? Array.Empty<SpecialRoom>();
+            specialRoomCount = newCount;
+        }
+
+        internal void ConfigureFixedRooms(RoomTemplate newExchange, RoomTemplate newAntechamberVertical, RoomTemplate newAntechamberHorizontal)
+        {
+            exchangeRoom = newExchange;
+            antechamberVertical = newAntechamberVertical;
+            antechamberHorizontal = newAntechamberHorizontal;
+        }
+
+        internal void ConfigurePieces(RoomPieces newPieces) => pieces = newPieces;
 
         internal void ConfigureMarineSnow(Sprite[] newFlakes, Material newMaterial)
         {

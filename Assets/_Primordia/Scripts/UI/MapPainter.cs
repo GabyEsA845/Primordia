@@ -212,8 +212,8 @@ namespace Primordia.UI
                 var kind = map.Get(cell);
                 if (kind == FloorMap.Kind.Floor)
                     Set(cell, ColorOf(floor));
-                else if (kind == FloorMap.Kind.Obstacle)
-                    // Los obstáculos de cobertura, como las columnas.
+                else if (kind is FloorMap.Kind.Obstacle or FloorMap.Kind.Pit)
+                    // Los obstáculos de cobertura y las fosas, como las columnas.
                     Set(cell, ColorOf(visited ? Swatch.Wall : Swatch.UnexploredWall));
                 else if (kind != FloorMap.Kind.Wall)
                     // Huecos y arcos de puerta.

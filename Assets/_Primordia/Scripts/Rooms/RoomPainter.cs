@@ -27,6 +27,18 @@ namespace Primordia.Rooms
                 var tile = theme.Get(piece, CellHash(position));
                 var cell = new Vector3Int(position.x, position.y, 0);
 
+                // Fosa: el tile según qué vecinos no son fosa y, encima, las esquinas de dentro o unas motas que suben.
+                if (map.Get(position) == FloorMap.Kind.Pit && theme.HasPits)
+                {
+                    floor.SetTile(cell, theme.PitTile(PitMask(map, position)));
+                    var corner = PitCorner(map, position, theme);
+                    if (corner != null)
+                        decoration.SetTile(cell, corner);
+                    else if (theme.PitMotes != null && random.NextDouble() < theme.PitMotesChance)
+                        decoration.SetTile(cell, theme.PitMotes);
+                    continue;
+                }
+
                 if (piece == Piece.Missing || (piece != Piece.None && (tile == null || tile == theme.MissingTile)))
                     missing.Add(position);
 
@@ -61,6 +73,29 @@ namespace Primordia.Rooms
         }
 
         static int Mod(int value, int divisor) => ((value % divisor) + divisor) % divisor;
+
+        static bool IsPit(FloorMap map, int x, int y) => map.Get(x, y) == FloorMap.Kind.Pit;
+
+        /// <summary>Máscara del tile de fosa: suma de los vecinos que no son fosa (N=1, E=2, S=4, O=8).</summary>
+        internal static int PitMask(FloorMap map, Vector2Int cell)
+        {
+            int x = cell.x, y = cell.y;
+            return (IsPit(map, x, y + 1) ? 0 : 1) | (IsPit(map, x + 1, y) ? 0 : 2) | (IsPit(map, x, y - 1) ? 0 : 4) | (IsPit(map, x - 1, y) ? 0 : 8);
+        }
+
+        // Esquina de dentro: los dos vecinos de ese lado son fosa y la diagonal no. Orden del tema: NE, NO, SE, SO.
+        static TileBase PitCorner(FloorMap map, Vector2Int cell, RoomTheme theme)
+        {
+            int x = cell.x, y = cell.y;
+            var corners = new[] { (1, 1), (-1, 1), (1, -1), (-1, -1) };
+            for (int i = 0; i < corners.Length; i++)
+            {
+                var (dx, dy) = corners[i];
+                if (IsPit(map, x + dx, y) && IsPit(map, x, y + dy) && !IsPit(map, x + dx, y + dy))
+                    return theme.PitCorner(i);
+            }
+            return null;
+        }
 
         // Variante estable por celda: el mismo piso se dibuja siempre igual.
         static int CellHash(Vector2Int cell)

@@ -10,7 +10,10 @@ namespace Primordia.Rooms
     /// <c>#</c> pared, <c>.</c> suelo, y los huecos posibles para puertas, que se marcan sobre la pared:
     /// <c>^</c> arriba (en la fila superior; el arco ocupa la cara que hay debajo), <c>v</c> abajo,
     /// <c>&lt;</c> izquierda y <c>&gt;</c> derecha, de 2 tiles cada uno. Los huecos que no se usan quedan como pared.
-    /// Obstáculos de cobertura sobre el suelo: <c>o</c> de 1×1 y <c>O</c> de 2×2 (bloques completos).
+    /// Obstáculos de cobertura sobre el suelo: <c>o</c> de 1×1 y <c>O</c> de 2×2 (bloques completos). Piezas de las salas
+    /// especiales y de las fijas del piso 2: <c>~</c> fosa, <c>F</c> hueso del fósil, <c>S</c> esponja, <c>C</c> almeja,
+    /// <c>H</c> coral del corazón morado (2×2), <c>E</c> entrada de oleadas, <c>A</c> columna de algas, <c>L</c> planta
+    /// luminosa, <c>K</c> cápsula de Darwin (2×2) y <c>R</c> roca que se derrumba con la muda (2×2).
     /// La pared de arriba debe tener 3 filas (tapa y dos de cara) y las demás 1, como el arte del escenario.
     /// </summary>
     [CreateAssetMenu(menuName = "Primordia/Rooms/Room Template", fileName = "Room_")]
@@ -27,10 +30,32 @@ namespace Primordia.Rooms
             /// <summary>Obstáculo de 1×1 sobre el suelo: bloquea el paso y los proyectiles.</summary>
             Obstacle,
             /// <summary>Parte de un obstáculo de 2×2.</summary>
-            BigObstacle
+            BigObstacle,
+            /// <summary>Fosa: grieta del fondo marino (bloques de al menos 2×2).</summary>
+            Pit,
+            /// <summary>Hueso del esqueleto del Fósil gigante: bloquea.</summary>
+            Fossil,
+            /// <summary>Sitio de una esponja Vauxia (enemigo fijo).</summary>
+            Sponge,
+            /// <summary>Almeja con biomasa (cofre): bloquea. Dos seguidas en horizontal, la almeja grande.</summary>
+            Chest,
+            /// <summary>Coral del corazón morado (2×2): bloquea.</summary>
+            HeartCoral,
+            /// <summary>Entrada de oleadas: suelo.</summary>
+            WaveVent,
+            /// <summary>Columna de algas: suelo; tapa la vista sin bloquear.</summary>
+            Algae,
+            /// <summary>Planta luminosa: suelo, con luz.</summary>
+            LightPlant,
+            /// <summary>Cápsula del laboratorio de Darwin (2×2).</summary>
+            Capsule,
+            /// <summary>Roca de 2×2 que se derrumba con la muda del Euriptérido: bloquea hasta entonces.</summary>
+            CollapsingRock
         }
 
-        [Tooltip("Una fila por línea, de arriba abajo. # pared, . suelo, ^ v < > huecos de puerta, o obstáculo 1×1, O obstáculo 2×2.")]
+        [Tooltip("Una fila por línea, de arriba abajo. # pared, . suelo, ^ v < > huecos de puerta, o obstáculo 1×1, O obstáculo 2×2, "
+            + "~ fosa, F hueso, S esponja, C almeja, H coral del corazón, E entrada de oleadas, A algas, L planta luminosa, K cápsula, "
+            + "R roca que se derrumba.")]
         [SerializeField, TextArea(16, 40)] string layout;
 
         Mark[,] cells;
@@ -72,7 +97,7 @@ namespace Primordia.Rooms
             {
                 for (int x = 0; x < Width; x++)
                 {
-                    if (Get(x, y) != Mark.Floor)
+                    if (!IsInterior(Get(x, y)))
                         continue;
                     minX = Mathf.Min(minX, x);
                     minY = Mathf.Min(minY, y);
@@ -152,6 +177,8 @@ namespace Primordia.Rooms
                     var mark = Get(x, y);
                     var kind = mark == Mark.Floor ? FloorMap.Kind.Floor
                         : IsObstacle(mark) ? FloorMap.Kind.Obstacle
+                        : mark == Mark.Pit ? FloorMap.Kind.Pit
+                        : IsInterior(mark) ? FloorMap.Kind.Floor
                         : !openDoors || mark == Mark.Wall ? FloorMap.Kind.Wall
                         : mark == Mark.DoorUp ? FloorMap.Kind.Passage
                         : FloorMap.Kind.DoorGap;
@@ -171,10 +198,30 @@ namespace Primordia.Rooms
             return map;
         }
 
-        public static bool IsObstacle(Mark mark) => mark is Mark.Obstacle or Mark.BigObstacle;
+        /// <summary>Lo que bloquea el paso y los proyectiles: obstáculos, huesos, almejas, el coral del corazón y las rocas que se derrumban.</summary>
+        public static bool IsObstacle(Mark mark) =>
+            mark is Mark.Obstacle or Mark.BigObstacle or Mark.Fossil or Mark.Chest or Mark.HeartCoral or Mark.CollapsingRock;
+
+        /// <summary>Lo que está dentro de la sala: todo menos la pared y los huecos de puerta.</summary>
+        public static bool IsInterior(Mark mark) =>
+            mark is not (Mark.Wall or Mark.DoorUp or Mark.DoorDown or Mark.DoorLeft or Mark.DoorRight);
 
         /// <summary>Esquinas de abajo a la izquierda de los obstáculos de 2×2.</summary>
-        public List<Vector2Int> BigObstacleCorners()
+        public List<Vector2Int> BigObstacleCorners() => BlockCorners(Mark.BigObstacle);
+
+        /// <summary>Celdas con esa marca.</summary>
+        public List<Vector2Int> CellsOf(Mark mark)
+        {
+            var result = new List<Vector2Int>();
+            for (int y = 0; y < Height; y++)
+                for (int x = 0; x < Width; x++)
+                    if (Get(x, y) == mark)
+                        result.Add(new Vector2Int(x, y));
+            return result;
+        }
+
+        /// <summary>Esquinas de abajo a la izquierda de los bloques de 2×2 con esa marca.</summary>
+        public List<Vector2Int> BlockCorners(Mark mark)
         {
             var result = new List<Vector2Int>();
             var taken = new HashSet<Vector2Int>();
@@ -183,8 +230,8 @@ namespace Primordia.Rooms
                 for (int x = 0; x < Width; x++)
                 {
                     var cell = new Vector2Int(x, y);
-                    if (taken.Contains(cell) || Get(x, y) != Mark.BigObstacle || Get(x + 1, y) != Mark.BigObstacle
-                        || Get(x, y + 1) != Mark.BigObstacle || Get(x + 1, y + 1) != Mark.BigObstacle)
+                    if (taken.Contains(cell) || Get(x, y) != mark || Get(x + 1, y) != mark
+                        || Get(x, y + 1) != mark || Get(x + 1, y + 1) != mark)
                         continue;
                     result.Add(cell);
                     taken.Add(cell);
@@ -242,6 +289,16 @@ namespace Primordia.Rooms
                         '>' => Mark.DoorRight,
                         'o' => Mark.Obstacle,
                         'O' => Mark.BigObstacle,
+                        '~' => Mark.Pit,
+                        'F' => Mark.Fossil,
+                        'S' => Mark.Sponge,
+                        'C' => Mark.Chest,
+                        'H' => Mark.HeartCoral,
+                        'E' => Mark.WaveVent,
+                        'A' => Mark.Algae,
+                        'L' => Mark.LightPlant,
+                        'K' => Mark.Capsule,
+                        'R' => Mark.CollapsingRock,
                         _ => Mark.Wall
                     };
                 }

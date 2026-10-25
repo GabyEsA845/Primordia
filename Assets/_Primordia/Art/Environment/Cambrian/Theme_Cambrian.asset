@@ -175,6 +175,30 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 864f19f1e021afe4bbb883e5493d8c2d, type: 3}
   - {fileID: 21300000, guid: 0779681e2b1423f48b7000c46bc34385, type: 3}
   obstacleOutline: {r: 0.95, g: 0.77, b: 0.35, a: 0.85}
+  pitTiles:
+  - {fileID: 11400000, guid: 50f0d174e9010f3489ac32170692c46d, type: 2}
+  - {fileID: 11400000, guid: d4490cde5e9def3498580f861ac6a076, type: 2}
+  - {fileID: 11400000, guid: 27fa5966ad837444799c9fc44839357c, type: 2}
+  - {fileID: 11400000, guid: 3f3c0fda5f0f42543bb260af7601118a, type: 2}
+  - {fileID: 11400000, guid: 2620e3a7d77388d468be134ecad66e8f, type: 2}
+  - {fileID: 11400000, guid: 613a660012262cb41838e9a634528bbe, type: 2}
+  - {fileID: 11400000, guid: ee0dc3207eb252746ae2317f210894bb, type: 2}
+  - {fileID: 11400000, guid: 68b0a24748e98cd4faddbb1d56fcca28, type: 2}
+  - {fileID: 11400000, guid: 5bba811e4cb733548b148d26f961207c, type: 2}
+  - {fileID: 11400000, guid: 48001c2e8ef8e8940bc67086b71a0d85, type: 2}
+  - {fileID: 11400000, guid: 304eee170232b5643adee055ba07b37e, type: 2}
+  - {fileID: 11400000, guid: b29557434fe5bdf499e17658e0138ea3, type: 2}
+  - {fileID: 11400000, guid: 56f32136a0d16e249bab3fe9b6246c1d, type: 2}
+  - {fileID: 11400000, guid: a0e0b6797ef42da4d86769d9b923ca8c, type: 2}
+  - {fileID: 11400000, guid: 158b7f7f81a424b419d388dec7aba8da, type: 2}
+  - {fileID: 11400000, guid: 608138a659546c74e9ad31a832e49522, type: 2}
+  pitCorners:
+  - {fileID: 11400000, guid: d18d90acc94032e4cab288aa14f9aff3, type: 2}
+  - {fileID: 11400000, guid: a8ece92cd4cb2fd45adec8bea591b1b1, type: 2}
+  - {fileID: 11400000, guid: f245181a0031ac844a4d0e3375739282, type: 2}
+  - {fileID: 11400000, guid: d82b935c6a9131b4f8817fb9cc3e8b0a, type: 2}
+  pitMotes: {fileID: 11400000, guid: 701ff28100e5fbc4fa79fd28f889ee14, type: 2}
+  pitMotesChance: 0.12
   caustics: []
   lightRay: []
   lightRayFrameDuration: 0.25

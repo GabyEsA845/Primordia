@@ -114,9 +114,10 @@ namespace Primordia.Rooms
             var corridorCells = new List<(LayoutRoom from, LayoutRoom to, List<Vector2Int> cells)>();
             var widened = new HashSet<Vector2Int>();
             var roomRects = placed.Select(room => room.Rect).ToList();
-            foreach (var (from, to) in layout.Links)
+            for (int link = 0; link < layout.Links.Count; link++)
             {
-                var direction = to.Cell - from.Cell;
+                var (from, to) = layout.Links[link];
+                var direction = layout.Direction(link);
                 OpenDoor(map, byLayout[from], direction);
                 OpenDoor(map, byLayout[to], -direction);
                 var (fromTheme, toTheme) = CorridorThemes(byLayout[from], byLayout[to], config);
@@ -295,31 +296,56 @@ namespace Primordia.Rooms
                     longGapY = Mathf.Min(from.y, to.y);
             }
 
-            var anchorX = Anchors(layout.Rooms, room => room.Cell.x, room => room.Template.Anchor.x, room => room.Template.Width, longGapX, gap);
-            var anchorY = Anchors(layout.Rooms, room => room.Cell.y, room => room.Template.Anchor.y, room => room.Template.Height, longGapY, gap);
+            var (anchorX, _) = Anchors(layout.Rooms, room => room.Cell.x, room => room.Template.Anchor.x, room => room.Template.Width,
+                _ => 1, longGapX, gap);
+            var (anchorY, bottomY) = Anchors(layout.Rooms, room => room.Cell.y, room => room.Template.Anchor.y, room => room.Template.Height,
+                room => room.Tall ? 2 : 1, longGapY, gap);
 
             return layout.Rooms.Select(room => new PlacedRoom
             {
                 Layout = room,
-                Origin = new Vector2Int(anchorX[room.Cell.x], anchorY[room.Cell.y]) - room.Template.Anchor
+                // Las de dos casillas (Parkour) se apoyan en lo más bajo de su fila de abajo; solo tienen puertas arriba y abajo.
+                Origin = room.Tall
+                    ? new Vector2Int(anchorX[room.Cell.x] - room.Template.Anchor.x, bottomY[room.Cell.y])
+                    : new Vector2Int(anchorX[room.Cell.x], anchorY[room.Cell.y]) - room.Template.Anchor
             }).ToList();
         }
 
+        /// <summary>
+        /// Coordenada del anclaje de cada columna (o fila) y la de su borde de abajo (o izquierdo). Cada una mide lo que su sala
+        /// más grande de una casilla, más el pasillo mínimo. Las salas de dos casillas (<paramref name="span"/> 2) no cuentan
+        /// en ninguna de sus dos filas, pero si no caben entre el borde de abajo de la primera y el de arriba de la segunda,
+        /// la segunda se aparta lo que falte.
+        /// </summary>
         /// <param name="longGap">Índice de la columna o fila tras la que el hueco es el del pasillo largo de la sala de paso.</param>
         /// <param name="gap">Pasillo mínimo tras la columna o fila de ese índice.</param>
-        static Dictionary<int, int> Anchors(List<LayoutRoom> rooms, System.Func<LayoutRoom, int> index,
-            System.Func<LayoutRoom, int> anchor, System.Func<LayoutRoom, int> size, int? longGap, System.Func<int, int> gap)
+        static (Dictionary<int, int> anchors, Dictionary<int, int> lower) Anchors(List<LayoutRoom> rooms, System.Func<LayoutRoom, int> index,
+            System.Func<LayoutRoom, int> anchor, System.Func<LayoutRoom, int> size, System.Func<LayoutRoom, int> span, int? longGap,
+            System.Func<int, int> gap)
         {
             var result = new Dictionary<int, int>();
+            var lower = new Dictionary<int, int>();
+            var keys = rooms.SelectMany(room => Enumerable.Range(index(room), span(room))).Distinct().OrderBy(key => key);
             int next = 0;
-            foreach (var group in rooms.GroupBy(index).OrderBy(g => g.Key))
+            foreach (int key in keys)
             {
-                int before = group.Max(anchor);
-                int after = group.Max(room => size(room) - anchor(room));
-                result[group.Key] = next + before;
-                next += before + after + (group.Key == longGap ? TransitionCorridorLength : gap(group.Key));
+                var group = rooms.Where(room => span(room) == 1 && index(room) == key).ToList();
+                int before = group.Count > 0 ? group.Max(anchor) : 0;
+                int after = group.Count > 0 ? group.Max(room => size(room) - anchor(room)) : 0;
+                int at = next + before;
+
+                foreach (var tall in rooms.Where(room => span(room) == 2 && index(room) + 1 == key))
+                {
+                    int have = at + after - lower[key - 1];
+                    if (have < size(tall))
+                        at += size(tall) - have;
+                }
+
+                result[key] = at;
+                lower[key] = at - before;
+                next = at + after + (key == longGap ? TransitionCorridorLength : gap(key));
             }
-            return result;
+            return (result, lower);
         }
 
         /// <summary>
@@ -409,8 +435,9 @@ namespace Primordia.Rooms
                 {
                     var cell = room.Origin + new Vector2Int(x, y);
                     var mark = room.Template.Get(x, y);
-                    map.Set(cell, mark == RoomTemplate.Mark.Floor ? FloorMap.Kind.Floor
-                        : RoomTemplate.IsObstacle(mark) ? FloorMap.Kind.Obstacle
+                    map.Set(cell, RoomTemplate.IsObstacle(mark) ? FloorMap.Kind.Obstacle
+                        : mark == RoomTemplate.Mark.Pit ? FloorMap.Kind.Pit
+                        : RoomTemplate.IsInterior(mark) ? FloorMap.Kind.Floor
                         : FloorMap.Kind.Wall);
                     map.SetTheme(cell, room.Theme);
                 }
@@ -657,6 +684,7 @@ namespace Primordia.Rooms
             }
 
             BuildObstacles(roomObject.transform, placed, theme, random, glows);
+            BuildPieces(roomObject.transform, placed, config);
             BuildAmbience(roomObject.transform, placed, theme, config, random);
 
             // Los enemigos esperan desactivados hasta que el jugador entra.
@@ -669,7 +697,7 @@ namespace Primordia.Rooms
             room.Configure(enemiesRoot, doors.ToArray());
 
             // La de inicio, la tienda y la sala de paso no tienen enemigos, así que no sueltan nada.
-            if (placed.Layout.Role is not (RoomRole.Start or RoomRole.Shop or RoomRole.Transition) && config.SmallBiomass != null)
+            if (HasEnemies(placed.Layout) && config.SmallBiomass != null)
                 roomObject.AddComponent<RoomBiomass>().Configure(config.SmallBiomass, config.BigBiomass, config.MinimumBiomassPerRoom);
 
             if (placed.Layout.Reward && config.RewardPool != null)
@@ -716,19 +744,23 @@ namespace Primordia.Rooms
                     if (template.Get(x, y) == RoomTemplate.Mark.Obstacle)
                         small.Add(new Vector2Int(x, y));
             var big = template.BigObstacleCorners();
-            if (small.Count == 0 && big.Count == 0)
+            // Rocas del Euriptérido que se derrumban con la muda: de momento, rocas grandes normales.
+            var collapsing = template.BlockCorners(RoomTemplate.Mark.CollapsingRock);
+            if (small.Count == 0 && big.Count == 0 && collapsing.Count == 0)
                 return;
 
             var root = new GameObject("Obstacles").transform;
             root.SetParent(roomObject, false);
             foreach (var cell in small)
-                Obstacle(cell, 1, theme.SmallObstacles);
+                Obstacle(cell, 1, theme.SmallObstacles, "Obstacle");
             foreach (var cell in big)
-                Obstacle(cell, 2, theme.BigObstacles);
+                Obstacle(cell, 2, theme.BigObstacles, "ObstacleBig");
+            foreach (var cell in collapsing)
+                Obstacle(cell, 2, theme.BigObstacles, "ObstacleCollapsing");
 
-            void Obstacle(Vector2Int cell, int size, Sprite[] sprites)
+            void Obstacle(Vector2Int cell, int size, Sprite[] sprites, string name)
             {
-                var obstacle = new GameObject(size == 1 ? "Obstacle" : "ObstacleBig");
+                var obstacle = new GameObject(name);
                 obstacle.transform.SetParent(root, false);
                 var position = (Vector2)(placed.Origin + cell) + Vector2.one * (size / 2f);
                 obstacle.transform.position = position;
@@ -756,6 +788,80 @@ namespace Primordia.Rooms
                     glows.Add((position, glow.Value));
             }
         }
+
+        /// <summary>
+        /// Piezas de las salas especiales: el esqueleto del Fósil gigante (con un bloque de colisión por hueso), las almejas
+        /// (dos C seguidas, la grande), el coral del corazón morado y las entradas de oleadas. De momento solo se ven y
+        /// bloquean; abrirlas, cogerlas y las oleadas llegan en el paso 4.
+        /// </summary>
+        static void BuildPieces(Transform roomObject, PlacedRoom placed, FloorConfig config)
+        {
+            var template = placed.Template;
+            var pieces = config.Pieces;
+            var fossil = template.CellsOf(RoomTemplate.Mark.Fossil);
+            var chests = template.CellsOf(RoomTemplate.Mark.Chest);
+            var hearts = template.BlockCorners(RoomTemplate.Mark.HeartCoral);
+            var vents = template.CellsOf(RoomTemplate.Mark.WaveVent);
+            if (fossil.Count == 0 && chests.Count == 0 && hearts.Count == 0 && vents.Count == 0)
+                return;
+
+            var root = new GameObject("Pieces").transform;
+            root.SetParent(roomObject, false);
+
+            if (fossil.Count > 0)
+            {
+                // El esqueleto se dibuja entero desde la esquina de arriba a la izquierda de la sala.
+                var skeleton = Piece("Fossil", pieces.fossil, (Vector2)placed.Origin + new Vector2(0f, template.Height), Vector2.zero);
+                skeleton.GetComponent<SpriteRenderer>().sortingOrder = ObstacleOrder;
+                foreach (var cell in fossil)
+                {
+                    var bone = new GameObject("Bone");
+                    bone.transform.SetParent(skeleton.transform, false);
+                    bone.transform.position = (Vector2)(placed.Origin + cell) + Vector2.one * 0.5f;
+                    bone.AddComponent<BoxCollider2D>().size = Vector2.one;
+                }
+            }
+
+            var taken = new HashSet<Vector2Int>();
+            foreach (var cell in chests)
+            {
+                if (taken.Contains(cell))
+                    continue;
+                bool big = chests.Contains(cell + Vector2Int.right);
+                if (big)
+                    taken.Add(cell + Vector2Int.right);
+                var size = big ? new Vector2(2f, 1f) : Vector2.one;
+                Piece(big ? "ClamBig" : "Clam", big ? pieces.clamBig : pieces.clamSmall, (Vector2)(placed.Origin + cell) + size / 2f, size);
+            }
+
+            foreach (var cell in hearts)
+                Piece("HeartCoral", pieces.heartCoral, (Vector2)(placed.Origin + cell) + Vector2.one, Vector2.one * 2f);
+
+            foreach (var cell in vents)
+            {
+                var vent = Piece("WaveVent", pieces.waveVent, (Vector2)(placed.Origin + cell) + Vector2.one * 0.5f, Vector2.zero);
+                // Grieta del suelo: por debajo de todo lo que se mueve.
+                vent.GetComponent<SpriteRenderer>().sortingOrder = -14;
+            }
+
+            // Pieza con su sprite y, si bloquea (tamaño no nulo), su colisión.
+            GameObject Piece(string name, Sprite sprite, Vector2 position, Vector2 size)
+            {
+                var piece = new GameObject(name);
+                piece.transform.SetParent(root, false);
+                piece.transform.position = position;
+                var renderer = piece.AddComponent<SpriteRenderer>();
+                renderer.sprite = sprite;
+                renderer.sortingOrder = ObstacleOrder;
+                if (size != Vector2.zero)
+                    piece.AddComponent<BoxCollider2D>().size = size;
+                return piece;
+            }
+        }
+
+        /// <summary>Salas con enemigos (y biomasa al limpiarlas): las de combate, las laterales y la del jefe, salvo las especiales sin enemigos.</summary>
+        static bool HasEnemies(LayoutRoom room) =>
+            room.Role is (RoomRole.Combat or RoomRole.Side or RoomRole.Boss) && room.EnemyMultiplier > 0f;
 
         /// <summary>Rayos de luz colgando de la pared de arriba y nieve marina, según el tileset de la sala.</summary>
         static void BuildAmbience(Transform roomObject, PlacedRoom placed, RoomTheme theme, FloorConfig config, System.Random random)
@@ -817,6 +923,9 @@ namespace Primordia.Rooms
                 case RoomRole.Start:
                 case RoomRole.Shop:
                 case RoomRole.Transition:
+                case RoomRole.Exchange:
+                case RoomRole.Antechamber:
+                case RoomRole.Special:
                     return;
 
                 case RoomRole.Boss:
@@ -833,7 +942,10 @@ namespace Primordia.Rooms
             var template = placed.Template;
             var floorArea = Enumerable.Range(0, template.Width * template.Height)
                 .Count(i => template.Get(i % template.Width, i / template.Width) == RoomTemplate.Mark.Floor);
-            int budget = EncounterPlanner.Budget(config, placed.Layout.Depth, floorArea);
+            if (!HasEnemies(placed.Layout))
+                return;
+            // Las especiales cambian la cantidad (el Corazón morado, el doble).
+            int budget = Mathf.RoundToInt(EncounterPlanner.Budget(config, placed.Layout.Depth, floorArea) * placed.Layout.EnemyMultiplier);
             var enemies = EncounterPlanner.PickEnemies(config, placed.Layout.Depth, budget, random);
 
             var doorCells = placed.DoorCells.Values.SelectMany(cells => cells).Select(cell => cell - placed.Origin);

@@ -27,8 +27,9 @@ namespace Primordia.Editor
         {
             Directory.CreateDirectory(ArtFolder);
             CreateCnidocytes();
+            CreateJawPlates();
             AssetDatabase.SaveAssets();
-            Debug.Log("Floor2MouthsSetup: Cnidocitos con su arpón, veneno y Ramillete. Placas mandibulares y Corona de brazos, en los pasos siguientes.");
+            Debug.Log("Floor2MouthsSetup: Cnidocitos (arpón, veneno y Ramillete) y Placas mandibulares (mordisco, Quebrar y Guillotina). La Corona de brazos, en el paso 4.");
         }
 
         // ---------- Cnidocitos ----------
@@ -72,6 +73,65 @@ namespace Primordia.Editor
                 MutationSlot.Mouth, mutation.Color);
             mutation.SetLevelDescriptions("Atraviesa a 2 enemigos y el veneno sube a 2 por segundo.",
                 "Ramillete: cada cuarto disparo son 3 arpones en abanico.");
+            mutation.Configure(one, newHealEveryKills: 0);
+            mutation.ConfigureUpgrades(new AttackMutation.AttackLevel { attack = two }, new AttackMutation.AttackLevel { attack = three });
+            EditorUtility.SetDirty(mutation);
+        }
+
+        // ---------- Placas mandibulares ----------
+
+        /// <summary>Alcance del mordisco desde la boca: lo dibujado (30 px de la unión a la punta, a 16 px por unidad).</summary>
+        const float JawReach = 30f / 16f;
+        /// <summary>Alcance de la segunda dentellada de la Guillotina: 52 px.</summary>
+        const float GuillotineReach = 52f / 16f;
+
+        static void CreateJawPlates()
+        {
+            var mutation = AssetDatabase.LoadAssetAtPath<AttackMutation>($"{MutationsFolder}/Mutation_JawPlates.asset");
+            if (mutation == null)
+            {
+                Debug.LogWarning("Floor2MouthsSetup: no existe Mutation_JawPlates; créala antes con Primordia > Floor transition > Crear sala de paso y escena de prueba.");
+                return;
+            }
+
+            // Dos placas de hueso dibujadas hacia la derecha con la unión en el borde izquierdo: el pivote ahí, a escala 1.
+            var bite = CreateFrameEffect("Effect_JawPlates_Bite",
+                ArtSetup.ImportLooseSheet($"{SourceFolder}/Fx_JawPlates_Bite.png", $"{ArtFolder}/Fx_JawPlates_Bite.png", 32, new Vector2(1f / 32f, 0.5f)),
+                0.05f, sortingOrder: 12);
+            var guillotine = CreateFrameEffect("Effect_JawPlates_Guillotine",
+                ArtSetup.ImportLooseSheet($"{SourceFolder}/Fx_JawPlates_Guillotine.png", $"{ArtFolder}/Fx_JawPlates_Guillotine.png", 56, new Vector2(1f / 56f, 0.5f)),
+                0.05f, sortingOrder: 12);
+            var marker = CreateLoopEffect("Effect_Status_Shatter",
+                ArtSetup.ImportLooseSheet($"{SourceFolder}/Status_Shatter.png", $"{ArtFolder}/Status_Shatter.png", 12), 0.15f, sortingOrder: 22);
+            var mandibles = CombatSetup.LoadAttack("Attack_Mandibles");
+
+            // Nivel I: arco de 110° tan largo como lo dibujado, 5 de daño, 2 por segundo, empujón y Quebrar (+25 % de daño
+            // durante 2 s, con su marca).
+            var one = Attack("Attack_JawPlates", mandibles, a =>
+            {
+                a.Configure(null, fireRate: 2f, damage: 5, speed: 12f, lifetime: 0.25f);
+                a.ConfigureMelee(JawReach, 110f, bite);
+                a.SetMeleeFromMuzzle(true);
+                a.ConfigureLunge(0f, 0.1f);
+                a.ConfigureBleed(0, 0f, null);
+                a.ConfigureJaws(push: 6f, newShatterDuration: 2f, newShatterMultiplier: 1.25f);
+                a.SetShatterMarker(marker);
+                a.ConfigureGuillotine(0, GuillotineReach, guillotine);
+            });
+            // Nivel II: 6 de daño y Quebrar dura 3 s.
+            var two = Attack("Attack_JawPlates_2", one, a =>
+            {
+                a.SetDamage(6);
+                a.ConfigureJaws(6f, 3f, 1.25f);
+            });
+            // Nivel III, Guillotina: cada cuarto mordisco, una segunda dentellada más grande que llega más lejos.
+            var three = Attack("Attack_JawPlates_3", two, a => a.ConfigureGuillotine(4, GuillotineReach, guillotine));
+
+            mutation.ConfigureBase(mutation.DisplayName,
+                "Mordisco en arco de 110°: 5 de daño, 2 por segundo y un pequeño empujón. Quebrar: el enemigo mordido recibe un 25 % más de daño de todo durante 2 s.",
+                MutationSlot.Mouth, mutation.Color);
+            mutation.SetLevelDescriptions("6 de daño y Quebrar dura 3 s.",
+                "Guillotina: cada cuarto mordisco va seguido de una segunda dentellada más grande, que llega más lejos.");
             mutation.Configure(one, newHealEveryKills: 0);
             mutation.ConfigureUpgrades(new AttackMutation.AttackLevel { attack = two }, new AttackMutation.AttackLevel { attack = three });
             EditorUtility.SetDirty(mutation);
@@ -122,13 +182,36 @@ namespace Primordia.Editor
             }
         }
 
-        /// <summary>Efecto de cuadros que se reproduce una vez y se destruye (<see cref="FrameEffect"/>). Se rehace.</summary>
-        static GameObject CreateFrameEffect(string prefabName, Sprite[] frames, float frameDuration, int sortingOrder = 21)
+        /// <summary>Efecto en bucle (marcas de estado: las quita quien las pone). Se rehace.</summary>
+        static GameObject CreateLoopEffect(string prefabName, Sprite[] frames, float frameDuration, int sortingOrder)
         {
             if (frames.Length == 0)
                 return null;
 
             var root = new GameObject(prefabName);
+            try
+            {
+                var renderer = root.AddComponent<SpriteRenderer>();
+                renderer.sprite = frames[0];
+                renderer.sortingOrder = sortingOrder;
+                root.AddComponent<SpriteLoop>().Configure(renderer, frames, frameDuration, 0f);
+                Directory.CreateDirectory(EffectsFolder);
+                return PrefabUtility.SaveAsPrefabAsset(root, $"{EffectsFolder}/{prefabName}.prefab");
+            }
+            finally
+            {
+                Object.DestroyImmediate(root);
+            }
+        }
+
+        /// <summary>Efecto de cuadros que se reproduce una vez y se destruye (<see cref="FrameEffect"/>). Se rehace.</summary>
+        static GameObject CreateFrameEffect(string prefabName, Sprite[] frames, float frameDuration, int sortingOrder = 21, float scale = 1f)
+        {
+            if (frames.Length == 0)
+                return null;
+
+            var root = new GameObject(prefabName);
+            root.transform.localScale = Vector3.one * scale;
             try
             {
                 var renderer = root.AddComponent<SpriteRenderer>();

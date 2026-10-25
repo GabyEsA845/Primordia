@@ -16,7 +16,7 @@ namespace Primordia.Enemies
     /// dispara con línea de visión; sin ella, van en línea recta. Además se apartan unos de otros.
     /// </summary>
     [RequireComponent(typeof(Enemy))]
-    public class EnemyAI : MonoBehaviour
+    public class EnemyAI : MonoBehaviour, IPushable
     {
         public enum State
         {

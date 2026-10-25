@@ -10,7 +10,9 @@ namespace Primordia.Tests
 {
     /// <summary>
     /// Bocas del piso 2. Cnidocitos: el arpón atraviesa a tantos enemigos como diga el ataque (sin dar dos veces al mismo) y
-    /// el Ramillete dispara un abanico cada N disparos.
+    /// el Ramillete dispara un abanico cada N disparos. Placas mandibulares: Quebrar (+25 % de daño de todo durante unos
+    /// segundos, con su marca), el empujón, el alcance medido desde la boca y la Guillotina (cada cuarto mordisco, una
+    /// segunda dentellada que llega más lejos, sin daño extra).
     /// </summary>
     public class Floor2MouthsTests
     {
@@ -100,6 +102,98 @@ namespace Primordia.Tests
 
             Assert.AreEqual(98, first.Current);
             Assert.AreEqual(100, second.Current);
+        }
+
+        /// <summary>Recoge los empujones que recibe (en lugar de un EnemyAI).</summary>
+        class PushProbe : MonoBehaviour, IPushable
+        {
+            public readonly List<(Vector2 velocity, float stun)> Pushes = new();
+
+            public void Knockback(Vector2 velocity, float stunDuration, GameObject stunMarker = null) =>
+                Pushes.Add((velocity, stunDuration));
+        }
+
+        AttackData Jaws()
+        {
+            attack.Configure(null, fireRate: 2f, damage: 4, speed: 12f, lifetime: 0.25f);
+            attack.ConfigureMelee(4.6f, 110f, null);
+            attack.ConfigureJaws(6f, 2f, 1.25f);
+            return attack;
+        }
+
+        [Test]
+        public void Shatter_MakesTheEnemyTakeAQuarterMoreDamage_ForAWhile()
+        {
+            var enemy = Enemy(new Vector2(2f, 0f));
+            Shatter.Apply(enemy, 2f, 1.25f);
+            enemy.TakeDamage(4);
+            Assert.AreEqual(95, enemy.Current, "4 × 1,25 = 5.");
+
+            Object.DestroyImmediate(enemy.GetComponent<Shatter>());
+            enemy.TakeDamage(4);
+            Assert.AreEqual(91, enemy.Current, "Sin Quebrar, daño normal.");
+        }
+
+        [Test]
+        public void Bite_Shatters_AndPushesAway()
+        {
+            Jaws();
+            var enemy = Enemy(new Vector2(2f, 0f));
+            var probe = enemy.gameObject.AddComponent<PushProbe>();
+            Physics2D.SyncTransforms();
+
+            weapon.Fire(Vector2.right);
+            Assert.AreEqual(96, enemy.Current);
+            Assert.IsTrue(enemy.GetComponent<Shatter>().IsActive, "Queda quebrado.");
+            Assert.AreEqual(1, probe.Pushes.Count);
+            Assert.Greater(probe.Pushes[0].velocity.x, 0f, "Hacia fuera del que muerde.");
+
+            weapon.Fire(Vector2.right);
+            Assert.AreEqual(91, enemy.Current, "Quebrado recibe 5 en lugar de 4.");
+        }
+
+        [UnityTest]
+        public IEnumerator Guillotine_EveryFourthBite_BitesAgainFurther()
+        {
+            Jaws();
+            attack.ConfigureMelee(1.9f, 110f, null);
+            attack.ConfigureGuillotine(4, 3.3f, null);
+            var near = Enemy(new Vector2(1.2f, 0f));
+            var far = Enemy(new Vector2(3f, 0f));
+            Physics2D.SyncTransforms();
+            int guillotines = 0;
+            weapon.Guillotined += () => guillotines++;
+
+            for (int i = 0; i < 3; i++)
+                weapon.Fire(Vector2.right);
+            Assert.AreEqual(0, guillotines);
+            Assert.AreEqual(100, far.Current, "El mordisco normal no llega tan lejos.");
+
+            int nearBefore = near.Current;
+            weapon.Fire(Vector2.right);
+            Assert.AreEqual(1, guillotines);
+            yield return new WaitForSeconds(Weapon.GuillotineGap + 0.05f);
+            Assert.AreEqual(96, far.Current, "La segunda dentellada llega más lejos, con el daño normal.");
+            Assert.AreEqual(10, nearBefore - near.Current, "Al cercano le dan las dos dentelladas, quebrado: 5 + 5.");
+        }
+
+        [Test]
+        public void Reach_FromTheMouth_IsOnlyWhatIsDrawn()
+        {
+            Jaws();
+            attack.ConfigureMelee(1.9f, 110f, null);
+            attack.SetMeleeFromMuzzle(true);
+            var mouth = new GameObject("Mouth").transform;
+            mouth.SetParent(weapon.transform, false);
+            mouth.localPosition = new Vector3(0.5f, 0f, 0f);
+            weapon.SetMuzzle(mouth);
+            var inside = Enemy(new Vector2(2.2f, 0f));
+            var outside = Enemy(new Vector2(3.2f, 0f));
+            Physics2D.SyncTransforms();
+
+            weapon.Fire(Vector2.right);
+            Assert.AreEqual(96, inside.Current);
+            Assert.AreEqual(100, outside.Current);
         }
 
         [Test]

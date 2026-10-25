@@ -48,6 +48,14 @@ MonoBehaviour:
   meleeHitEffect: {fileID: 0}
   meleeLunge: 0
   meleeLungeDuration: 0.1
+  meleePush: 0
+  shatterDuration: 0
+  shatterMultiplier: 1.25
+  shatterMarker: {fileID: 0}
+  meleeFromMuzzle: 0
+  guillotineEvery: 0
+  guillotineRange: 3
+  guillotineEffect: {fileID: 0}
   fireSound: Mouth_Stinger_Shot
   hitSound: 
   lungeSound: 

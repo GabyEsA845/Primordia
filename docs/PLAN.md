@@ -75,7 +75,7 @@ Cada módulo vive en su propia carpeta de `Assets/_Primordia/Scripts/` (`Core`, 
 
   Pasos:
   1. Cnidocitos: arpón que atraviesa, veneno, Ramillete, proyectil y destello de su arte (menú Primordia > Mutations > Crear Bocas del piso 2) y atajo F6 para cambiar de Boca (hecho)
-  2. Placas mandibulares: arco de 110°, empujón, Quebrar y Guillotina, con el efecto del mordisco
+  2. Placas mandibulares: mordisco en arco de 110° con el alcance de lo dibujado, empujón, Quebrar con su marca y Guillotina (segunda dentellada más grande), con el arte del mordisco rehecho (hecho)
   3. Golpe sincronizado con el cuadro de la animación de ataque de cada cuerpo, y la capa de la Cutícula de Marrella sobre los cuerpos
   4. Corona de brazos y lirio de mar (remolino, Marea, metamorfosis del lirio) y los Flagelos de Leanchoilia con el remolino
 - [ ] `feature/floor2-enemies`: Trilobite, Medusa azul, Ottoia, Esponja Vauxia y Cardumen de Pikaia, con su arte, sus avisos y su comportamiento

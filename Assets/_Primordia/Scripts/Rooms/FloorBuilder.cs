@@ -101,7 +101,7 @@ namespace Primordia.Rooms
                 config.TransitionMidTheme != null ? config.TransitionMidTheme : config.Theme,
                 config.NextFloorTheme != null ? config.NextFloorTheme : config.Theme
             }.Concat(config.BandThemes.Select(band => band != null ? band : config.Theme)).ToArray();
-            var placed = Place(layout);
+            var placed = Place(layout, config, random);
             AssignThemes(placed, config);
             var byLayout = placed.ToDictionary(room => room.Layout);
 
@@ -112,13 +112,24 @@ namespace Primordia.Rooms
             foreach (var room in placed)
                 Stamp(map, room);
             var corridorCells = new List<(LayoutRoom from, LayoutRoom to, List<Vector2Int> cells)>();
+            var widened = new HashSet<Vector2Int>();
+            var roomRects = placed.Select(room => room.Rect).ToList();
             foreach (var (from, to) in layout.Links)
             {
                 var direction = to.Cell - from.Cell;
                 OpenDoor(map, byLayout[from], direction);
                 OpenDoor(map, byLayout[to], -direction);
-                corridorCells.Add((from, to, DigCorridor(map, byLayout[from], byLayout[to], direction, noDecoration, CorridorTheme(byLayout[from], byLayout[to], config))));
+                var (fromTheme, toTheme) = CorridorThemes(byLayout[from], byLayout[to], config);
+                var cells = DigCorridor(map, byLayout[from], byLayout[to], direction, noDecoration, fromTheme, toTheme);
+                if (config.CorridorWidth.y > 2)
+                    Widen(map, cells, direction, config.CorridorWidth, roomRects, widened, noDecoration, random);
+                corridorCells.Add((from, to, cells));
             }
+            if (widened.Count > 0)
+                RepairCorridors(map, widened, corridorCells.Select(corridor => corridor.cells).ToList(), noDecoration);
+
+            if (config.HasBands)
+                ThemeFiller(map, placed);
 
             foreach (var room in placed.Where(room => room.Layout.Role == RoomRole.Transition))
             {
@@ -193,14 +204,44 @@ namespace Primordia.Rooms
         }
 
         /// <summary>
-        /// Tileset de un pasillo: sin franjas, el del piso (también el que entra a la sala del jefe); con franjas, el de la sala
-        /// a la que llega, salvo la del jefe (el pasillo sigue con el de la sala de la que sale).
+        /// Tileset de un pasillo, en su salida y en su llegada: sin franjas, el del piso (también el que entra a la sala del
+        /// jefe); con franjas, pasa a lo largo del túnel del de la sala de la que sale al de la sala a la que llega, salvo la
+        /// del jefe (el pasillo sigue con el de la sala de la que sale).
         /// </summary>
-        static int CorridorTheme(PlacedRoom from, PlacedRoom to, FloorConfig config)
+        static (int from, int to) CorridorThemes(PlacedRoom from, PlacedRoom to, FloorConfig config)
         {
             if (!config.HasBands)
-                return SoupTheme;
-            return to.Theme == BossTheme ? from.Theme : to.Theme;
+                return (SoupTheme, SoupTheme);
+            if (to.Theme == BossTheme)
+                return (from.Theme, from.Theme);
+            return (from.Theme == BossTheme ? to.Theme : from.Theme, to.Theme);
+        }
+
+        /// <summary>
+        /// Con franjas, el relleno de pared que no es de ninguna sala lleva el tileset de la sala más cercana: así desde dentro
+        /// de cada sala (y a lo largo de los pasillos) no se ve pared de otra franja.
+        /// </summary>
+        static void ThemeFiller(FloorMap map, List<PlacedRoom> placed)
+        {
+            foreach (var cell in map.Bounds.allPositionsWithin)
+            {
+                if (map.Get(cell) != FloorMap.Kind.Wall || placed.Any(room => room.Rect.Contains(cell)))
+                    continue;
+
+                PlacedRoom nearest = null;
+                float best = float.MaxValue;
+                foreach (var room in placed)
+                {
+                    float distance = Distance(room.Rect, cell);
+                    if (distance < best)
+                    {
+                        best = distance;
+                        nearest = room;
+                    }
+                }
+                if (nearest != null)
+                    map.SetTheme(cell, nearest.Theme);
+            }
         }
 
         /// <summary>Franja de la sala de combate número <paramref name="depth"/> (1 = la primera) de <paramref name="deepest"/>.</summary>
@@ -216,8 +257,13 @@ namespace Primordia.Rooms
         /// las puertas de salas vecinas quedan enfrentadas aunque tengan tamaños distintos, y el pasillo es recto.
         /// Cada columna mide lo que su sala más ancha y cada fila lo que su sala más alta, más el pasillo mínimo.
         /// </summary>
-        static List<PlacedRoom> Place(FloorLayout layout)
+        static List<PlacedRoom> Place(FloorLayout layout, FloorConfig config, System.Random random)
         {
+            // Pasillo mínimo de cada hueco entre columnas (o filas): fijo en el piso 1, al azar en su tramo en el piso 2.
+            var length = config.CorridorLength;
+            int minLength = Mathf.Max(1, Mathf.Min(length.x, length.y)), maxLength = Mathf.Max(minLength, Mathf.Max(length.x, length.y));
+            System.Func<int, int> gap = minLength == maxLength ? _ => minLength : _ => random.Next(minLength, maxLength + 1);
+
             // El pasillo de la sala de paso sale más largo: se ensancha el hueco entre la columna (o fila) del jefe y la suya.
             int? longGapX = null, longGapY = null;
             if (layout.Transition != null)
@@ -230,8 +276,8 @@ namespace Primordia.Rooms
                     longGapY = Mathf.Min(from.y, to.y);
             }
 
-            var anchorX = Anchors(layout.Rooms, room => room.Cell.x, room => room.Template.Anchor.x, room => room.Template.Width, longGapX);
-            var anchorY = Anchors(layout.Rooms, room => room.Cell.y, room => room.Template.Anchor.y, room => room.Template.Height, longGapY);
+            var anchorX = Anchors(layout.Rooms, room => room.Cell.x, room => room.Template.Anchor.x, room => room.Template.Width, longGapX, gap);
+            var anchorY = Anchors(layout.Rooms, room => room.Cell.y, room => room.Template.Anchor.y, room => room.Template.Height, longGapY, gap);
 
             return layout.Rooms.Select(room => new PlacedRoom
             {
@@ -241,8 +287,9 @@ namespace Primordia.Rooms
         }
 
         /// <param name="longGap">Índice de la columna o fila tras la que el hueco es el del pasillo largo de la sala de paso.</param>
+        /// <param name="gap">Pasillo mínimo tras la columna o fila de ese índice.</param>
         static Dictionary<int, int> Anchors(List<LayoutRoom> rooms, System.Func<LayoutRoom, int> index,
-            System.Func<LayoutRoom, int> anchor, System.Func<LayoutRoom, int> size, int? longGap)
+            System.Func<LayoutRoom, int> anchor, System.Func<LayoutRoom, int> size, int? longGap, System.Func<int, int> gap)
         {
             var result = new Dictionary<int, int>();
             int next = 0;
@@ -251,7 +298,7 @@ namespace Primordia.Rooms
                 int before = group.Max(anchor);
                 int after = group.Max(room => size(room) - anchor(room));
                 result[group.Key] = next + before;
-                next += before + after + (group.Key == longGap ? TransitionCorridorLength : CorridorLength);
+                next += before + after + (group.Key == longGap ? TransitionCorridorLength : gap(group.Key));
             }
             return result;
         }
@@ -383,11 +430,12 @@ namespace Primordia.Rooms
         }
 
         /// <summary>
-        /// Abre el pasillo recto de 2 tiles de ancho entre las puertas de dos salas vecinas y devuelve sus celdas. Lleva
-        /// el tileset de la sala a la que llega (la siguiente del camino, o la lateral).
+        /// Abre el pasillo recto de 2 tiles de ancho entre las puertas de dos salas vecinas y devuelve sus celdas. Lleva el
+        /// tileset <paramref name="fromTheme"/> en la primera mitad y <paramref name="toTheme"/> en la segunda, con un corte
+        /// irregular (iguales salvo entre dos franjas).
         /// </summary>
         static List<Vector2Int> DigCorridor(FloorMap map, PlacedRoom from, PlacedRoom to, Vector2Int direction, HashSet<Vector2Int> corridorCells,
-            int theme)
+            int fromTheme, int toTheme)
         {
             var dug = new List<Vector2Int>();
             if (!from.DoorCells.TryGetValue(direction, out var start) || !to.DoorCells.TryGetValue(-direction, out var end))
@@ -399,12 +447,135 @@ namespace Primordia.Rooms
                 for (var step = cell + direction; !end.Contains(step) && map.Get(step) == FloorMap.Kind.Wall; step += direction)
                 {
                     map.Set(step, FloorMap.Kind.Floor);
-                    map.SetTheme(step, theme);
                     corridorCells.Add(step);
                     dug.Add(step);
                 }
             }
+
+            int length = Mathf.Max(1, dug.Count / Mathf.Max(1, start.Count));
+            var origin = start[0];
+            foreach (var cell in dug)
+                map.SetTheme(cell, CorridorThemeAt(cell, origin, direction, length, fromTheme, toTheme));
             return dug;
+        }
+
+        /// <summary>Tileset de una celda del pasillo según lo que ha avanzado desde la primera puerta.</summary>
+        static int CorridorThemeAt(Vector2Int cell, Vector2Int origin, Vector2Int direction, int length, int fromTheme, int toTheme)
+        {
+            if (fromTheme == toTheme)
+                return fromTheme;
+            var offset = cell - origin;
+            int along = offset.x * direction.x + offset.y * direction.y;
+            float t = (along - 0.5f) / length + ((CellNoise(cell) & 1023) / 1023f * 2f - 1f) * 0.2f;
+            return t < 0.5f ? fromTheme : toTheme;
+        }
+
+        /// <summary>
+        /// Ensancha el pasillo recto a un túnel de cueva de <paramref name="width"/> tiles (mínimo y máximo): a cada paso el
+        /// ancho y el lado hacia el que crece cambian como mucho en 1, y junto a las puertas se queda en 2. Solo cava relleno
+        /// de pared fuera de las salas; lo que el arte no pueda dibujar lo deshace <see cref="RepairCorridors"/>.
+        /// </summary>
+        static void Widen(FloorMap map, List<Vector2Int> dug, Vector2Int direction, Vector2Int width, List<RectInt> roomRects,
+            HashSet<Vector2Int> widened, HashSet<Vector2Int> corridorCells, System.Random random)
+        {
+            if (dug.Count == 0)
+                return;
+
+            var across = direction.x != 0 ? Vector2Int.up : Vector2Int.right;
+            int Along(Vector2Int cell) => cell.x * direction.x + cell.y * direction.y;
+            int Across(Vector2Int cell) => cell.x * across.x + cell.y * across.y;
+
+            int lowLane = dug.Min(Across), highLane = dug.Max(Across);
+            var steps = dug.GroupBy(Along).OrderBy(group => group.Key).ToList();
+            if (steps.Count < 3)
+                return;
+
+            int minWidth = Mathf.Max(2, Mathf.Min(width.x, width.y)), maxWidth = Mathf.Max(minWidth, Mathf.Max(width.x, width.y));
+            int current = random.Next(minWidth, maxWidth + 1);
+            int low = random.Next(0, current - 1);
+            var theme = map.GetTheme(dug[0]);
+
+            // Sin el primer ni el último paso: el túnel se estrecha a 2 junto a cada puerta.
+            for (int i = 1; i < steps.Count - 1; i++)
+            {
+                if (random.NextDouble() < 0.45)
+                    current = Mathf.Clamp(current + (random.Next(2) == 0 ? -1 : 1), minWidth, maxWidth);
+                if (random.NextDouble() < 0.45)
+                    low += random.Next(2) == 0 ? -1 : 1;
+                low = Mathf.Clamp(low, 0, current - 2);
+                int high = current - 2 - low;
+
+                foreach (var cell in steps[i])
+                {
+                    theme = map.GetTheme(cell);
+                    if (Across(cell) == lowLane)
+                        for (int k = 1; k <= low; k++)
+                            Dig(cell - across * k);
+                    if (Across(cell) == highLane)
+                        for (int k = 1; k <= high; k++)
+                            Dig(cell + across * k);
+                }
+            }
+
+            void Dig(Vector2Int cell)
+            {
+                if (map.Get(cell) != FloorMap.Kind.Wall || roomRects.Any(rect => rect.Contains(cell)))
+                    return;
+                map.Set(cell, FloorMap.Kind.Floor);
+                map.SetTheme(cell, theme);
+                widened.Add(cell);
+                corridorCells.Add(cell);
+                dug.Add(cell);
+            }
+        }
+
+        // Celdas abiertas que deciden si una pared se puede dibujar (WallRules.Classify): encima, a los lados y las dos de debajo.
+        static readonly Vector2Int[] ClassifyNeighbors = { Vector2Int.up, Vector2Int.left, Vector2Int.right, Vector2Int.down, Vector2Int.down * 2 };
+
+        /// <summary>
+        /// Vuelve a cerrar las celdas ensanchadas de los túneles que dejan alguna pared imposible de dibujar (de 1 tile entre
+        /// el túnel y una sala, una cara sin pared encima…), hasta que no quede ninguna. En el peor caso el pasillo vuelve a
+        /// ser el recto de 2 tiles, que siempre se puede dibujar.
+        /// </summary>
+        static void RepairCorridors(FloorMap map, HashSet<Vector2Int> widened, List<List<Vector2Int>> corridors, HashSet<Vector2Int> corridorCells)
+        {
+            var check = new HashSet<Vector2Int>();
+            foreach (var cell in widened)
+                foreach (var neighbor in ClassifyNeighbors)
+                    check.Add(cell - neighbor);
+
+            while (check.Count > 0)
+            {
+                var closed = new HashSet<Vector2Int>();
+                foreach (var cell in check)
+                {
+                    if (WallRules.Classify(map, cell) != Piece.Missing)
+                        continue;
+                    foreach (var neighbor in ClassifyNeighbors)
+                    {
+                        var open = cell + neighbor;
+                        if (widened.Remove(open))
+                        {
+                            map.Set(open, FloorMap.Kind.Wall);
+                            closed.Add(open);
+                        }
+                    }
+                }
+
+                check.Clear();
+                foreach (var cell in closed)
+                {
+                    corridorCells.Remove(cell);
+                    foreach (var corridor in corridors)
+                        corridor.Remove(cell);
+                    check.Add(cell);
+                    foreach (var neighbor in ClassifyNeighbors)
+                    {
+                        check.Add(cell - neighbor);
+                        check.Add(cell + neighbor);
+                    }
+                }
+            }
         }
 
         static int Paint(Transform parent, FloorMap map, RoomTheme[] themes, HashSet<Vector2Int> noDecoration, int seed)

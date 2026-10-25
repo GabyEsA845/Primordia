@@ -67,6 +67,8 @@ namespace Primordia.Rooms
         {
             if (navigation != null && NavigationGrid.Current == navigation)
                 NavigationGrid.Current = null;
+            // Las formas de cueva de la partida son objetos creados en memoria: se van con el piso.
+            Layout?.ReleaseGenerated();
         }
 
         void Awake()
@@ -185,6 +187,7 @@ namespace Primordia.Rooms
                 Destroy(pickup.gameObject);
             if (navigation != null && NavigationGrid.Current == navigation)
                 NavigationGrid.Current = null;
+            Layout?.ReleaseGenerated();
             Built = null;
             Layout = null;
         }

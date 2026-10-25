@@ -28,6 +28,15 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 70d3cab0851ea9740b05e39d6f377b89, type: 2}
   mainCombatRooms: {x: 4, y: 5}
   sideRoomCount: {x: 1, y: 2}
+  generateCaves: 0
+  caveSizes: []
+  smallCaveSizes: []
+  corridorLength: {x: 4, y: 4}
+  corridorWidth: {x: 2, y: 2}
+  pathWeights:
+    down: 1
+    side: 1
+    up: 1
   theme: {fileID: 11400000, guid: 7c54322dcfdb63b4bbbe9343ed987b9d, type: 2}
   bossTheme: {fileID: 11400000, guid: 0ab89510c4bdea14ab8e629038e4cb6d, type: 2}
   bandThemes: []

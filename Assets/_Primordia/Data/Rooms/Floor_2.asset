@@ -14,20 +14,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: Primordia::Primordia.Rooms.FloorConfig
   floorNumber: 2
   nextFloor: {fileID: 0}
-  startRoom: {fileID: 11400000, guid: dd2524ff606d8904f8886c9aebe37fdd, type: 2}
+  startRoom: {fileID: 11400000, guid: 5a91f2a6a2141e44cabf083bf34d0f67, type: 2}
   bossRoom: {fileID: 11400000, guid: fc6ceb4b1ee497742babf0fa9f360cd1, type: 2}
   combatRooms:
-  - {fileID: 11400000, guid: fc6ceb4b1ee497742babf0fa9f360cd1, type: 2}
-  - {fileID: 11400000, guid: 70d3cab0851ea9740b05e39d6f377b89, type: 2}
-  - {fileID: 11400000, guid: f4120cba3e38b7b44a79c63ba3d46094, type: 2}
-  - {fileID: 11400000, guid: 154f4b23e96cb6549a0633fb6240c0d1, type: 2}
-  - {fileID: 11400000, guid: 5a1fa54b79fcebf4995570731a1d6ff9, type: 2}
+  - {fileID: 11400000, guid: 910987259a6c8f5478a4c569e75eaa40, type: 2}
+  - {fileID: 11400000, guid: 6a4ab8b7b37ec3640aff31633e069e1a, type: 2}
+  - {fileID: 11400000, guid: ad5b083a9888c1d4ca39372a232ae321, type: 2}
   sideRooms:
-  - {fileID: 11400000, guid: dd2524ff606d8904f8886c9aebe37fdd, type: 2}
-  - {fileID: 11400000, guid: fc6ceb4b1ee497742babf0fa9f360cd1, type: 2}
-  - {fileID: 11400000, guid: 70d3cab0851ea9740b05e39d6f377b89, type: 2}
+  - {fileID: 11400000, guid: 5a91f2a6a2141e44cabf083bf34d0f67, type: 2}
+  - {fileID: 11400000, guid: c89f5a290d442bb409144e7fccb99cba, type: 2}
   mainCombatRooms: {x: 10, y: 12}
   sideRoomCount: {x: 2, y: 3}
+  generateCaves: 1
+  caveSizes:
+  - {x: 30, y: 20}
+  - {x: 34, y: 22}
+  - {x: 38, y: 24}
+  - {x: 44, y: 26}
+  smallCaveSizes:
+  - {x: 26, y: 18}
+  - {x: 28, y: 19}
+  - {x: 30, y: 20}
+  corridorLength: {x: 4, y: 6}
+  corridorWidth: {x: 3, y: 4}
+  pathWeights:
+    down: 6
+    side: 2
+    up: 0.3
   theme: {fileID: 11400000, guid: ee040b95e788e5649887a36125ca76dc, type: 2}
   bossTheme: {fileID: 11400000, guid: 0ab89510c4bdea14ab8e629038e4cb6d, type: 2}
   bandThemes:

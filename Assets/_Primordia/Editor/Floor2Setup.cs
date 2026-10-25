@@ -11,8 +11,9 @@ namespace Primordia.Editor
     /// Piso 2 (océano cámbrico), primera entrega de feature/floor-2-structure: el <see cref="FloorConfig"/> del piso 2
     /// (10–12 salas de combate, presupuesto 4 + 1,4, recompensas tras las salas 2, 4, 6, 8 y 10, tienda en el tercio del
     /// medio), sus tres franjas (Someras, Arrecife, Abismo), una reserva de mutaciones que no ofrece Bocas nuevas, el
-    /// enlace desde el piso 1 (la fosa lleva al piso 2) y una escena de prueba que empieza en él. Mientras no lleguen sus
-    /// ramas, el piso 2 usa las salas rectangulares, los enemigos, los jefes y las mutaciones (sin Bocas) del piso 1.
+    /// enlace desde el piso 1 (la fosa lleva al piso 2) y una escena de prueba que empieza en él. Desde la segunda entrega,
+    /// cuevas generadas con un catálogo de reserva, túneles irregulares y un camino que tiende a bajar. Mientras no lleguen
+    /// sus ramas, el piso 2 usa los enemigos, los jefes y las mutaciones (sin Bocas) del piso 1.
     /// </summary>
     public static class Floor2Setup
     {
@@ -23,6 +24,24 @@ namespace Primordia.Editor
         const string TestScenePath = "Assets/_Primordia/Scenes/Test_Floor2.unity";
 
         static readonly int[] RewardAfter = { 2, 4, 6, 8, 10 };
+
+        // Tamaños de las cuevas generadas (paredes incluidas). La vista es de 30×16,9: las de combate son algo más grandes
+        // que la pantalla, la de inicio y las laterales caben casi enteras.
+        static readonly Vector2Int[] CaveSizes = { new(30, 20), new(34, 22), new(38, 24), new(44, 26) };
+        static readonly Vector2Int[] SmallCaveSizes = { new(26, 18), new(28, 19), new(30, 20) };
+
+        // Catálogo de reserva: cuevas fijas (de una semilla) que se guardan como plantillas y se pueden retocar a mano.
+        static readonly (string name, Vector2Int size, int seed)[] CombatCatalog =
+        {
+            ("Room_Cave_1", new Vector2Int(34, 22), 101),
+            ("Room_Cave_2", new Vector2Int(38, 24), 202),
+            ("Room_Cave_3", new Vector2Int(30, 20), 303),
+        };
+        static readonly (string name, Vector2Int size, int seed)[] SmallCatalog =
+        {
+            ("Room_CaveSmall_1", new Vector2Int(26, 18), 404),
+            ("Room_CaveSmall_2", new Vector2Int(28, 19), 505),
+        };
 
         [MenuItem("Primordia/Rooms/Crear piso 2 y escena de prueba")]
         static void CreateAll()
@@ -103,6 +122,17 @@ namespace Primordia.Editor
                 config.ConfigureShopDepth(new Vector2(1f / 3f, 2f / 3f));
             }
 
+            // Cuevas, túneles y camino que baja (entrega 1b): se ponen la primera vez; luego se pueden ajustar a mano.
+            if (!config.GeneratesCaves)
+            {
+                var combat = CreateCatalog(CombatCatalog);
+                var small = CreateCatalog(SmallCatalog);
+                if (combat.Length > 0 && small.Length > 0)
+                    config.ConfigureRooms(small[0], config.BossRoom, combat, small, config.MainCombatRooms, config.SideRoomCount);
+                config.ConfigureCaves(true, CaveSizes, SmallCaveSizes);
+                config.ConfigureCorridors(new Vector2Int(4, 6), new Vector2Int(3, 4), FloorConfig.PathWeights.Descending);
+            }
+
             config.ConfigureFloor(2, config.NextFloor);
             config.ConfigureArt(reef, floor1.BossTheme, floor1.ExitSprite);
             config.ConfigureBands(fallbackBands);
@@ -116,6 +146,39 @@ namespace Primordia.Editor
             EditorUtility.SetDirty(config);
             AssetDatabase.SaveAssets();
             return config;
+        }
+
+        /// <summary>
+        /// Plantillas del catálogo de reserva de cuevas, sacadas del generador con una semilla fija. No sobrescribe las que ya
+        /// existen (se pueden retocar a mano); avisa si alguna no pasa la comprobación.
+        /// </summary>
+        static RoomTemplate[] CreateCatalog((string name, Vector2Int size, int seed)[] entries)
+        {
+            var result = new System.Collections.Generic.List<RoomTemplate>();
+            foreach (var (name, size, seed) in entries)
+            {
+                string path = $"{RoomsFolder}/{name}.asset";
+                var template = AssetDatabase.LoadAssetAtPath<RoomTemplate>(path);
+                if (template == null)
+                {
+                    var layout = CaveGenerator.Generate(size, new System.Random(seed));
+                    if (layout == null)
+                    {
+                        Debug.LogWarning($"Floor2Setup: no salió ninguna cueva para {name}; prueba con otra semilla.");
+                        continue;
+                    }
+                    template = ScriptableObject.CreateInstance<RoomTemplate>();
+                    template.SetLayout(layout);
+                    AssetDatabase.CreateAsset(template, path);
+                }
+
+                var problems = template.Validate();
+                if (problems.Count > 0)
+                    Debug.LogWarning($"Floor2Setup: la plantilla {name} tiene problemas:\n{string.Join("\n", problems)}");
+                result.Add(template);
+            }
+            AssetDatabase.SaveAssets();
+            return result.ToArray();
         }
 
         /// <summary>Escena que empieza en el piso 2, con el jugador del piso 1 (sin Boca del océano).</summary>

@@ -63,6 +63,24 @@ namespace Primordia.Rooms
         /// <summary>La sala de paso, o null si el piso no tiene (el jefe da la victoria).</summary>
         public LayoutRoom Transition => Rooms.FirstOrDefault(room => room.Role == RoomRole.Transition);
 
+        /// <summary>Formas de cueva creadas para esta partida: se destruyen con el piso (<see cref="ReleaseGenerated"/>).</summary>
+        public readonly List<RoomTemplate> GeneratedTemplates = new();
+
+        /// <summary>Destruye las formas de cueva de esta partida.</summary>
+        public void ReleaseGenerated()
+        {
+            foreach (var template in GeneratedTemplates)
+            {
+                if (template == null)
+                    continue;
+                if (Application.isPlaying)
+                    Object.Destroy(template);
+                else
+                    Object.DestroyImmediate(template);
+            }
+            GeneratedTemplates.Clear();
+        }
+
         public void Link(LayoutRoom from, LayoutRoom to)
         {
             Links.Add((from, to));
@@ -93,7 +111,7 @@ namespace Primordia.Rooms
 
             for (int attempt = 0; attempt < MaxAttempts; attempt++)
             {
-                var path = RandomPath(random, length);
+                var path = RandomPath(random, length, config.Path);
                 if (path == null)
                     continue;
 
@@ -143,8 +161,11 @@ namespace Primordia.Rooms
             return null;
         }
 
-        /// <summary>Camino que no se cruza consigo mismo, con giros al azar. Null si se encierra.</summary>
-        static List<Vector2Int> RandomPath(System.Random random, int length)
+        /// <summary>
+        /// Camino que no se cruza consigo mismo, con giros al azar. Con pesos distintos por dirección (piso 2), cada paso
+        /// elige según ellos, así el camino tiende a bajar. Null si se encierra.
+        /// </summary>
+        static List<Vector2Int> RandomPath(System.Random random, int length, FloorConfig.PathWeights weights)
         {
             var path = new List<Vector2Int> { Vector2Int.zero };
             var used = new HashSet<Vector2Int> { Vector2Int.zero };
@@ -156,12 +177,28 @@ namespace Primordia.Rooms
                 if (options.Count == 0)
                     return null;
 
-                var next = options[random.Next(options.Count)];
+                var next = weights.IsEven ? options[random.Next(options.Count)] : Weighted(random, options, current, weights);
                 path.Add(next);
                 used.Add(next);
             }
 
             return path;
+        }
+
+        static Vector2Int Weighted(System.Random random, List<Vector2Int> options, Vector2Int current, FloorConfig.PathWeights weights)
+        {
+            float total = options.Sum(cell => weights.For(cell - current));
+            if (total <= 0f)
+                return options[random.Next(options.Count)];
+
+            float roll = (float)random.NextDouble() * total;
+            foreach (var cell in options)
+            {
+                roll -= weights.For(cell - current);
+                if (roll < 0f)
+                    return cell;
+            }
+            return options[^1];
         }
 
         /// <summary>
@@ -215,7 +252,7 @@ namespace Primordia.Rooms
                 var room = new LayoutRoom { Cell = path[i], Role = role, Depth = i };
 
                 if (role == RoomRole.Start)
-                    room.Template = config.StartRoom;
+                    room.Template = config.GeneratesCaves ? Cave(layout, random, config.SmallCaveSizes, config.StartRoom, room) : config.StartRoom;
                 else if (role == RoomRole.Boss)
                     room.Template = bossRoom;
                 else if (role == RoomRole.Transition)
@@ -223,8 +260,9 @@ namespace Primordia.Rooms
                 else
                 {
                     // Dos salas seguidas del camino no repiten forma, si hay donde elegir.
-                    room.Template = Pick(random, config.CombatRooms, previousCombat);
-                    previousCombat = room.Template;
+                    var shape = Pick(random, config.CombatRooms, previousCombat);
+                    room.Template = config.GeneratesCaves ? Cave(layout, random, config.CaveSizes, shape, room) : shape;
+                    previousCombat = shape;
                     room.Reward = rewardAfter.Contains(i);
                 }
 
@@ -241,8 +279,9 @@ namespace Primordia.Rooms
                     Role = RoomRole.Side,
                     Depth = layout.Rooms[parent].Depth,
                     Reward = true,
-                    Template = Pick(random, config.SideRooms, null)
                 };
+                var sideShape = Pick(random, config.SideRooms, null);
+                side.Template = config.GeneratesCaves ? Cave(layout, random, config.SmallCaveSizes, sideShape, side) : sideShape;
                 layout.Rooms.Add(side);
                 layout.Link(layout.Rooms[parent], side);
             }
@@ -262,6 +301,29 @@ namespace Primordia.Rooms
             }
 
             return layout;
+        }
+
+        /// <summary>
+        /// Cueva generada para la sala, de uno de los tamaños posibles. Si no sale ninguna que pase la comprobación, la forma
+        /// de reserva del catálogo (<paramref name="fallback"/>).
+        /// </summary>
+        static RoomTemplate Cave(FloorLayout layout, System.Random random, Vector2Int[] sizes, RoomTemplate fallback, LayoutRoom room)
+        {
+            if (sizes.Length == 0)
+                return fallback;
+
+            var text = CaveGenerator.Generate(sizes[random.Next(sizes.Length)], random);
+            if (text == null)
+            {
+                Debug.LogWarning($"FloorLayoutGenerator: ninguna cueva pasó la comprobación para {room.Name}; se usa {(fallback != null ? fallback.name : "nada")}.");
+                return fallback;
+            }
+
+            var template = ScriptableObject.CreateInstance<RoomTemplate>();
+            template.name = $"Cave_{room.Name}";
+            template.SetLayout(text);
+            layout.GeneratedTemplates.Add(template);
+            return template;
         }
 
         static RoomTemplate Pick(System.Random random, RoomTemplate[] options, RoomTemplate avoid)

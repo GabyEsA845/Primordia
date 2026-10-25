@@ -52,6 +52,33 @@ namespace Primordia.Rooms
             public bool IsValid => prefab != null && room != null;
         }
 
+        /// <summary>Peso de cada dirección al trazar el camino principal en la rejilla.</summary>
+        [Serializable]
+        public struct PathWeights
+        {
+            [Min(0f)] public float down;
+            [Tooltip("Peso de la izquierda y, por separado, el de la derecha.")]
+            [Min(0f)] public float side;
+            [Min(0f)] public float up;
+
+            public PathWeights(float down, float side, float up)
+            {
+                this.down = down;
+                this.side = side;
+                this.up = up;
+            }
+
+            public static PathWeights Even => new(1f, 1f, 1f);
+
+            /// <summary>El camino del piso 2: abajo a menudo, a los lados a veces, casi nunca hacia arriba.</summary>
+            public static PathWeights Descending => new(6f, 2f, 0.3f);
+
+            public bool IsEven => Mathf.Approximately(down, side) && Mathf.Approximately(side, up);
+
+            public float For(Vector2Int direction) =>
+                direction == Vector2Int.down ? down : direction == Vector2Int.up ? up : side;
+        }
+
         [Header("Piso")]
         [Tooltip("Número del piso (1 = sopa primordial, 2 = océano cámbrico…).")]
         [SerializeField, Min(1)] int floorNumber = 1;
@@ -69,6 +96,21 @@ namespace Primordia.Rooms
         [SerializeField] Vector2Int mainCombatRooms = new(4, 5);
         [Tooltip("Salas laterales que cuelgan del camino (mínimo y máximo).")]
         [SerializeField] Vector2Int sideRoomCount = new(1, 2);
+
+        [Header("Cuevas y pasillos")]
+        [Tooltip("Las salas de inicio, de combate y laterales son cuevas generadas con la semilla del piso (CaveGenerator). "
+            + "Si una no pasa la comprobación, se usa una de las formas de arriba como catálogo de reserva.")]
+        [SerializeField] bool generateCaves;
+        [Tooltip("Tamaños posibles (paredes incluidas) de las cuevas de combate; se elige uno al azar por sala.")]
+        [SerializeField] Vector2Int[] caveSizes = Array.Empty<Vector2Int>();
+        [Tooltip("Tamaños posibles de las cuevas de inicio y laterales.")]
+        [SerializeField] Vector2Int[] smallCaveSizes = Array.Empty<Vector2Int>();
+        [Tooltip("Largo mínimo del pasillo entre salas vecinas, en tiles (mínimo y máximo; uno al azar por hueco de la rejilla).")]
+        [SerializeField] Vector2Int corridorLength = new(4, 4);
+        [Tooltip("Ancho de los pasillos (mínimo y máximo). Con más de 2, túneles irregulares que se estrechan a 2 junto a las puertas.")]
+        [SerializeField] Vector2Int corridorWidth = new(2, 2);
+        [Tooltip("Peso de cada dirección al trazar el camino: abajo, cada lado y arriba. Iguales: giros al azar, como en el piso 1.")]
+        [SerializeField] PathWeights pathWeights = PathWeights.Even;
 
         [Header("Tileset")]
         [SerializeField] RoomTheme theme;
@@ -141,6 +183,12 @@ namespace Primordia.Rooms
         public RoomTemplate[] SideRooms => sideRooms;
         public Vector2Int MainCombatRooms => mainCombatRooms;
         public Vector2Int SideRoomCount => sideRoomCount;
+        public bool GeneratesCaves => generateCaves;
+        public Vector2Int[] CaveSizes => caveSizes ?? Array.Empty<Vector2Int>();
+        public Vector2Int[] SmallCaveSizes => smallCaveSizes is { Length: > 0 } ? smallCaveSizes : CaveSizes;
+        public Vector2Int CorridorLength => corridorLength;
+        public Vector2Int CorridorWidth => corridorWidth;
+        public PathWeights Path => pathWeights;
         public RoomTheme Theme => theme;
         public RoomTheme BossTheme => bossTheme;
         public EnemyEntry[] Enemies => enemies;
@@ -244,6 +292,20 @@ namespace Primordia.Rooms
         {
             floorNumber = Mathf.Max(1, newNumber);
             nextFloor = newNext;
+        }
+
+        internal void ConfigureCaves(bool generate, Vector2Int[] newCaveSizes, Vector2Int[] newSmallCaveSizes)
+        {
+            generateCaves = generate;
+            caveSizes = newCaveSizes ?? Array.Empty<Vector2Int>();
+            smallCaveSizes = newSmallCaveSizes ?? Array.Empty<Vector2Int>();
+        }
+
+        internal void ConfigureCorridors(Vector2Int newLength, Vector2Int newWidth, PathWeights newPath)
+        {
+            corridorLength = newLength;
+            corridorWidth = newWidth;
+            pathWeights = newPath;
         }
 
         internal void ConfigureBands(RoomTheme[] newBands) => bandThemes = newBands ?? Array.Empty<RoomTheme>();

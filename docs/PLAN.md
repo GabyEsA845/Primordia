@@ -72,6 +72,12 @@ Cada módulo vive en su propia carpeta de `Assets/_Primordia/Scripts/` (`Core`, 
   3. Cutícula de Marrella: esquiva justa que devuelve los proyectiles a quien los lanzó y aturde a quien te golpea, Prisma en el nivel III (hecho; la capa del cuerpo, con los cuerpos del piso 2)
   4. Yema clonal: copia translúcida que ataca sola con la Boca y una parte del daño, señuelo para los enemigos, recarga desde que desaparece y Gemación en el nivel III (hecho)
 - [ ] `feature/floor2-mouths`: Cnidocitos, Placas mandibulares (Quebrar y Guillotina) y Corona de brazos (remolino y Marea), con los 3 cuerpos del jugador (medusa, pez acorazado, lirio de mar) y el golpe sincronizado con el cuadro de la animación de ataque
+
+  Pasos:
+  1. Cnidocitos: arpón que atraviesa, veneno, Ramillete, proyectil y destello de su arte (menú Primordia > Mutations > Crear Bocas del piso 2) y atajo F6 para cambiar de Boca (hecho)
+  2. Placas mandibulares: arco de 110°, empujón, Quebrar y Guillotina, con el efecto del mordisco
+  3. Golpe sincronizado con el cuadro de la animación de ataque de cada cuerpo, y la capa de la Cutícula de Marrella sobre los cuerpos
+  4. Corona de brazos y lirio de mar (remolino, Marea, metamorfosis del lirio) y los Flagelos de Leanchoilia con el remolino
 - [ ] `feature/floor2-enemies`: Trilobite, Medusa azul, Ottoia, Esponja Vauxia y Cardumen de Pikaia, con su arte, sus avisos y su comportamiento
 - [ ] `feature/floor2-mutations`: las otras 6 mutaciones del piso 2 y sus 8 linajes (beneficios remodelados, Carroñero y su sprite de restos, toques y evoluciones). Incluye el arte que falta: las capas de Extremidades y Piel sobre los 3 cuerpos (12), los efectos de activación de los Órganos, las larvas, las burbujas de la Cola, las púas de Hallucigenia y las escamas de Wiwaxia
 - [ ] `feature/boss-anomalocaris`: cueva ovalada muy grande sin fosas, en la que baja la luz al entrar, con plantas luminosas (luces 2D) y columnas de algas; acecho, cerco, escena de los ojos al 25 % y frenesí con los marcadores del zarpazo

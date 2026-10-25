@@ -10,8 +10,9 @@ namespace Primordia.Core
     /// <summary>
     /// Atajos para probar (solo en el editor y en compilaciones de desarrollo; la build de itch.io no los lleva):
     /// F1 invulnerable, F2 daño ×5, F3 vacía la sala en combate, F4 da una mutación al azar de la reserva del piso (o
-    /// sube de nivel una que ya se lleva) y F5 una mutación especial de las almejas (o sube una que ya se lleva). Arriba a
-    /// la izquierda se ve qué está activo.
+    /// sube de nivel una que ya se lleva), F5 una mutación especial de las almejas (o sube una que ya se lleva) y F6 cambia a
+    /// la siguiente Boca del piso, con el mismo nivel (para probar las Bocas del piso 2 en Test_Floor2). Arriba a la
+    /// izquierda se ve qué está activo.
     /// </summary>
     public class DebugCheats : MonoBehaviour
     {
@@ -71,6 +72,8 @@ namespace Primordia.Core
                 GiveMutation();
             if (keyboard.f5Key.wasPressedThisFrame)
                 GiveSpecial();
+            if (keyboard.f6Key.wasPressedThisFrame)
+                NextMouth();
 
             // La esquiva enciende y apaga la invulnerabilidad: aquí se renueva cada cuadro sin tocarla.
             if (invulnerable && player.Health != null)
@@ -143,6 +146,47 @@ namespace Primordia.Core
             var mutation = list[Random.Range(0, list.Count)];
             player.Equip(mutation);
             Say(free.Count > 0 ? $"{mutation.name} equipada (especial)" : $"{mutation.name} sube a nivel {player.LevelOf(mutation.Slot)}");
+        }
+
+        /// <summary>Cambia a la siguiente Boca del piso actual (en orden de nombre) y la deja al nivel de la que se llevaba.</summary>
+        void NextMouth()
+        {
+            var mouths = FloorMouths(Mathf.Max(1, FloorGenerator.CurrentFloor));
+            if (mouths.Count == 0)
+            {
+                Say("Este piso no tiene Bocas");
+                return;
+            }
+
+            var current = player.Get(MutationSlot.Mouth);
+            int level = Mathf.Max(1, player.LevelOf(MutationSlot.Mouth));
+            var next = mouths[(mouths.IndexOf(current) + 1) % mouths.Count];
+            if (current != null)
+                player.Unequip(MutationSlot.Mouth);
+            player.Equip(next);
+            while (player.LevelOf(MutationSlot.Mouth) < level && player.LevelUp(MutationSlot.Mouth))
+            {
+            }
+            Say($"Boca: {next.DisplayName} (nivel {player.LevelOf(MutationSlot.Mouth)})");
+        }
+
+        /// <summary>Las Bocas de ese piso que no son especiales: en el editor, todas las del proyecto; si no, las cargadas.</summary>
+        static System.Collections.Generic.List<MutationData> FloorMouths(int floor)
+        {
+#if UNITY_EDITOR
+            var all = new System.Collections.Generic.List<MutationData>();
+            foreach (var guid in UnityEditor.AssetDatabase.FindAssets("t:MutationData"))
+            {
+                var mutation = UnityEditor.AssetDatabase.LoadAssetAtPath<MutationData>(UnityEditor.AssetDatabase.GUIDToAssetPath(guid));
+                if (mutation != null)
+                    all.Add(mutation);
+            }
+#else
+            var all = new System.Collections.Generic.List<MutationData>(Resources.FindObjectsOfTypeAll<MutationData>());
+#endif
+            all.RemoveAll(m => m.Slot != MutationSlot.Mouth || m.Floor != floor || m.IsSpecial);
+            all.Sort((a, b) => string.CompareOrdinal(a.name, b.name));
+            return all;
         }
 
         void Say(string text)

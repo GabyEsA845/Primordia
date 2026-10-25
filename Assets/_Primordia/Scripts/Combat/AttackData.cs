@@ -52,6 +52,22 @@ namespace Primordia.Combat
         [Tooltip("Marca en bucle sobre el objetivo mientras sangra.")]
         [SerializeField] GameObject bleedEffect;
 
+        [Header("Atravesar")]
+        [Tooltip("Enemigos que atraviesa cada proyectil antes de desaparecer (los arpones de los Cnidocitos). 0 = se queda en el primero.")]
+        [SerializeField, Min(0)] int pierce;
+
+        [Header("Ramillete")]
+        [Tooltip("Cada cuántos disparos sale un abanico (los Cnidocitos nivel III). 0 = nunca.")]
+        [SerializeField, Min(0)] int volleyEvery;
+        [Tooltip("Proyectiles del abanico.")]
+        [SerializeField, Min(1)] int volleyCount = 3;
+        [Tooltip("Apertura del abanico en grados.")]
+        [SerializeField, Range(0f, 360f)] float volleySpread = 30f;
+
+        [Header("Disparo")]
+        [Tooltip("Destello en la boca al disparar (proyectiles), girado hacia donde sale.")]
+        [SerializeField] GameObject muzzleEffect;
+
         [Header("Proyectiles buscadores")]
         [Tooltip("Grados por segundo que gira el proyectil hacia el enemigo más cercano. 0 = recto.")]
         [SerializeField, Min(0f)] float homingTurnRate;
@@ -141,6 +157,11 @@ namespace Primordia.Combat
         public float BleedDuration => bleedDuration;
         public GameObject BleedEffect => bleedEffect;
         public bool AppliesBleed => bleedDamagePerSecond > 0 && bleedDuration > 0f;
+        public int Pierce => pierce;
+        public int VolleyEvery => volleyEvery;
+        public int VolleyCount => volleyCount;
+        public float VolleySpread => volleySpread;
+        public GameObject MuzzleEffect => muzzleEffect;
         public float HomingTurnRate => homingTurnRate;
         public float HomingRange => homingRange;
 
@@ -195,6 +216,18 @@ namespace Primordia.Combat
         }
 
         internal void SetMeleeHitEffect(GameObject effect) => meleeHitEffect = effect;
+
+        internal void SetPierce(int enemies) => pierce = Mathf.Max(0, enemies);
+
+        /// <summary>Cada <paramref name="every"/> disparos, un abanico de <paramref name="count"/> (0 = nunca).</summary>
+        internal void ConfigureVolley(int every, int count, float spread)
+        {
+            volleyEvery = Mathf.Max(0, every);
+            volleyCount = Mathf.Max(1, count);
+            volleySpread = Mathf.Clamp(spread, 0f, 360f);
+        }
+
+        internal void SetMuzzleEffect(GameObject effect) => muzzleEffect = effect;
 
         internal void SetPoisonEffect(GameObject effect) => poisonEffect = effect;
 

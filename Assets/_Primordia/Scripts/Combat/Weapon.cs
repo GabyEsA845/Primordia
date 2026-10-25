@@ -87,6 +87,8 @@ namespace Primordia.Combat
 
         float nextFireTime;
         int projectileLayer;
+        // Disparos para el Ramillete (cada N, un abanico).
+        int shots;
         IMeleeLunger lunger;
 
         // Mordisco con avance que aún no ha golpeado: golpea al acabar el avance o al tener a alguien a tiro.
@@ -153,8 +155,14 @@ namespace Primordia.Combat
             }
 
             int count = attack.ProjectileCount;
-            float step = count > 1 ? attack.SpreadAngle / (count - 1) : 0f;
-            float firstAngle = count > 1 ? -attack.SpreadAngle / 2f : 0f;
+            float spread = attack.SpreadAngle;
+            if (attack.VolleyEvery > 0 && ++shots % attack.VolleyEvery == 0)
+            {
+                count = Mathf.Max(count, attack.VolleyCount);
+                spread = attack.VolleySpread;
+            }
+            float step = count > 1 ? spread / (count - 1) : 0f;
+            float firstAngle = count > 1 ? -spread / 2f : 0f;
 
             for (int i = 0; i < count; i++)
             {
@@ -162,9 +170,18 @@ namespace Primordia.Combat
                 ProjectilePool.Get(attack.ProjectilePrefab).Launch(origin, projectileDirection, attack, projectileLayer, this);
             }
 
+            if (attack.MuzzleEffect != null)
+            {
+                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                OneShotEffect.Spawn(attack.MuzzleEffect, origin, angle, muzzle != null ? muzzle : transform);
+            }
+
             Fired?.Invoke(direction);
             Sfx.Play(attack.FireSound);
         }
+
+        /// <summary>Disparos hechos con esta arma (cuenta el Ramillete).</summary>
+        public int Shots => shots;
 
         internal void ReportHit(Health target) => HitTarget?.Invoke(target);
 

@@ -16,9 +16,18 @@ namespace Primordia.Rooms
         /// <summary>Medio corazón.</summary>
         public const int FallDamage = 1;
 
-        // Para guardar el último suelo firme, el jugador tiene que estar al menos a esta distancia de cualquier fosa.
+        // Para guardar el último suelo firme, los pies tienen que estar al menos a esta distancia de cualquier fosa.
         const float SafeMargin = 0.45f;
         const float InvulnerabilityAfterFall = 1f;
+
+        [Tooltip("Dónde están los pies respecto al centro del cuerpo: la caída se mide ahí, no en el centro.")]
+        [SerializeField] Vector2 footOffset = new(0f, -0.3f);
+        [Tooltip("Cuánto tienen que entrar los pies en la fosa (por todos los lados) para caer: asomarse al borde no hace caer.")]
+        [SerializeField, Min(0f)] float edgeGrace = 0.25f;
+        [Tooltip("Segundos sobre la fosa antes de caer (perdona pasar rozando).")]
+        [SerializeField, Min(0f)] float coyoteTime = 0.08f;
+
+        float overPitSince = -1f;
 
         PlayerController controller;
         Rigidbody2D body;
@@ -46,18 +55,28 @@ namespace Primordia.Rooms
                 return;
 
             var position = body != null ? body.position : (Vector2)transform.position;
+            var feet = position + footOffset;
             // Esquivando (y en las embestidas) se pasa por encima.
             if (controller.IsDodging || controller.IsLunging)
-                return;
-
-            if (Pits.IsPit(position))
             {
-                if (health == null || !health.IsDead)
-                    StartCoroutine(Fall());
+                overPitSince = -1f;
                 return;
             }
 
-            if (Pits.IsSafe(position, SafeMargin))
+            if (Pits.IsDeepInPit(feet, edgeGrace))
+            {
+                if (overPitSince < 0f)
+                    overPitSince = Time.time;
+                if (Time.time - overPitSince >= coyoteTime && (health == null || !health.IsDead))
+                {
+                    overPitSince = -1f;
+                    StartCoroutine(Fall());
+                }
+                return;
+            }
+            overPitSince = -1f;
+
+            if (Pits.IsSafe(feet, SafeMargin))
             {
                 lastSafe = position;
                 hasSafe = true;

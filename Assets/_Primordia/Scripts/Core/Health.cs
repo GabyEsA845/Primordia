@@ -48,6 +48,33 @@ namespace Primordia.Core
             }
         }
 
+        /// <summary>
+        /// Corazones morados (el del coral de la sala del Corazón morado): cada uno anula un golpe entero, antes que la barrera,
+        /// los escudos y la vida, y se gasta con él. El jugador los conserva entre pisos. Se ven en el HUD.
+        /// </summary>
+        public int PurpleHearts
+        {
+            get => purpleHearts;
+            set
+            {
+                int clamped = Mathf.Max(0, value);
+                if (clamped == purpleHearts)
+                    return;
+                purpleHearts = clamped;
+                Changed?.Invoke(Current, maxHealth);
+            }
+        }
+
+        /// <summary>True si alguna vez cogió un corazón morado (aunque ya lo haya gastado): abrirá una sala secreta del piso 3.</summary>
+        public bool PurpleHeartFound { get; private set; }
+
+        /// <summary>Suma un corazón morado y recuerda que lo encontró.</summary>
+        public void AddPurpleHeart()
+        {
+            PurpleHeartFound = true;
+            PurpleHearts++;
+        }
+
         /// <summary>Golpes que se anulan enteros antes de quitar vida (las Placas del Caparazón).</summary>
         public int Shields
         {
@@ -69,12 +96,16 @@ namespace Primordia.Core
         /// <summary>Se lanza cuando la barrera anula un golpe.</summary>
         public event Action BarrierBlocked;
 
+        /// <summary>Un corazón morado ha parado un golpe.</summary>
+        public event Action PurpleBlocked;
+
         /// <summary>Se lanza cuando un golpe no hace nada porque es invulnerable (la ameba gigante en su escena final).</summary>
         public event Action Deflected;
 
         float invulnerableUntil;
         int shields;
         int barrier;
+        int purpleHearts;
 
         /// <summary>
         /// Cambian el daño que recibe cualquier <see cref="Health"/> según quién lo recibe (los beneficios de los
@@ -134,7 +165,15 @@ namespace Primordia.Core
             if (amount <= 0)
                 return false;
 
-            // La barrera y el escudo paran el golpe entero; cuentan como golpe (dan la invulnerabilidad de después).
+            // El corazón morado, la barrera y el escudo paran el golpe entero; cuentan como golpe (dan la invulnerabilidad de después).
+            if (purpleHearts > 0)
+            {
+                PurpleHearts = purpleHearts - 1;
+                invulnerableUntil = Time.time + invulnerabilityAfterHit;
+                PurpleBlocked?.Invoke();
+                return true;
+            }
+
             if (barrier > 0)
             {
                 Barrier = barrier - 1;

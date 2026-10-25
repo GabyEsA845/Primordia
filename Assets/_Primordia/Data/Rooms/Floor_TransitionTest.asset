@@ -41,6 +41,22 @@ MonoBehaviour:
     clamBig: {fileID: 0}
     heartCoral: {fileID: 0}
     waveVent: {fileID: 0}
+    clamSmallIdle: []
+    clamSmallOpen: []
+    clamSmallOpened: {fileID: 0}
+    clamBigIdle: []
+    clamBigOpen: []
+    clamBigOpened: {fileID: 0}
+    heartCoralIdle: []
+    heartCoralTaken: {fileID: 0}
+    waveVentIdle: []
+    waveVentActive: []
+    keyPrompt: []
+  clams:
+    smallBiomass: {x: 5, y: 15}
+    bigBiomass: {x: 15, y: 25}
+    bigMutations: []
+    mutationPickup: {fileID: 0}
   marineSnowFlakes: []
   marineSnowMaterial: {fileID: 0}
   theme: {fileID: 11400000, guid: 7c54322dcfdb63b4bbbe9343ed987b9d, type: 2}

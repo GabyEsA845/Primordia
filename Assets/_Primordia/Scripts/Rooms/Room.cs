@@ -23,11 +23,26 @@ namespace Primordia.Rooms
         [Tooltip("Padre de los enemigos de la sala. Se activa al entrar el jugador.")]
         [SerializeField] Transform enemiesRoot;
         [SerializeField] Door[] doors = Array.Empty<Door>();
+        [Tooltip("Oleadas que llegan después de la primera (los enemigos de arriba), cada una al morir la anterior. Vacío: sin oleadas.")]
+        [SerializeField] Transform[] laterWaves = Array.Empty<Transform>();
+        [Tooltip("Entradas de oleadas: se abren al llegar cada oleada.")]
+        [SerializeField] WaveVent[] vents = Array.Empty<WaveVent>();
+
+        int nextWave;
+
+        /// <summary>Oleadas que quedan por llegar.</summary>
+        public int PendingWaves => laterWaves.Length - nextWave;
+
+        /// <summary>Oleada en curso (1 = la primera).</summary>
+        public int CurrentWave => nextWave + 1;
 
         public RoomState State { get; private set; }
         public int AliveEnemies { get; private set; }
 
         public event Action<Room> Entered;
+
+        /// <summary>Ha llegado una oleada (con el número de oleada, desde la segunda).</summary>
+        public event Action<Room, int> WaveStarted;
         public event Action<Room> Cleared;
 
         /// <summary>
@@ -69,6 +84,18 @@ namespace Primordia.Rooms
             HideEnemies();
         }
 
+        /// <summary>Oleadas que llegan después de la primera y las entradas por las que salen.</summary>
+        internal void ConfigureWaves(Transform[] newLaterWaves, WaveVent[] newVents)
+        {
+            laterWaves = newLaterWaves ?? Array.Empty<Transform>();
+            vents = newVents ?? Array.Empty<WaveVent>();
+            foreach (var wave in laterWaves)
+            {
+                if (wave != null)
+                    wave.gameObject.SetActive(false);
+            }
+        }
+
         void HideEnemies()
         {
             if (State == RoomState.Waiting && enemiesRoot != null)
@@ -103,7 +130,7 @@ namespace Primordia.Rooms
                 enemiesRoot.gameObject.SetActive(true);
 
             var enemies = enemiesRoot != null ? enemiesRoot.GetComponentsInChildren<Enemy>() : Array.Empty<Enemy>();
-            if (enemies.Length == 0)
+            if (enemies.Length == 0 && PendingWaves == 0)
             {
                 Clear();
                 return;
@@ -116,11 +143,59 @@ namespace Primordia.Rooms
                 Sfx.Play(Sounds.DoorsClose);
             CombatStartedAny?.Invoke(this);
 
+            OpenVents();
             foreach (var enemy in enemies)
             {
                 Register(enemy);
                 if (enemy.TryGetComponent<EnemyAI>(out var ai))
                     ai.Alert();
+            }
+            if (enemies.Length == 0)
+                StartCoroutine(NextWave());
+        }
+
+        void OpenVents()
+        {
+            foreach (var vent in vents)
+            {
+                if (vent != null)
+                    vent.Activate();
+            }
+        }
+
+        /// <summary>Las entradas se abren y, al poco, sale la siguiente oleada.</summary>
+        System.Collections.IEnumerator NextWave()
+        {
+            OpenVents();
+            float wait = 0.3f;
+            foreach (var vent in vents)
+            {
+                if (vent != null)
+                    wait = Mathf.Max(wait, vent.OpenDuration * 0.5f);
+            }
+            yield return new WaitForSeconds(wait);
+
+            var wave = laterWaves[nextWave++];
+            var enemies = Array.Empty<Enemy>();
+            if (wave != null)
+            {
+                wave.gameObject.SetActive(true);
+                enemies = wave.GetComponentsInChildren<Enemy>();
+            }
+            foreach (var enemy in enemies)
+            {
+                Register(enemy);
+                if (enemy.TryGetComponent<EnemyAI>(out var ai))
+                    ai.Alert();
+            }
+            WaveStarted?.Invoke(this, CurrentWave);
+
+            if (enemies.Length == 0)
+            {
+                if (PendingWaves > 0)
+                    StartCoroutine(NextWave());
+                else
+                    Clear();
             }
         }
 
@@ -139,7 +214,12 @@ namespace Primordia.Rooms
             AliveEnemies--;
             EnemyDied?.Invoke(this, enemy);
             if (AliveEnemies == 0 && State == RoomState.Combat)
-                Clear();
+            {
+                if (PendingWaves > 0)
+                    StartCoroutine(NextWave());
+                else
+                    Clear();
+            }
         }
 
         void Clear()

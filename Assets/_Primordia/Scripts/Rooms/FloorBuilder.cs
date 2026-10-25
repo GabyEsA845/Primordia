@@ -684,17 +684,23 @@ namespace Primordia.Rooms
             }
 
             BuildObstacles(roomObject.transform, placed, theme, random, glows);
-            BuildPieces(roomObject.transform, placed, config);
+            var vents = BuildPieces(roomObject.transform, placed, config, random);
             BuildAmbience(roomObject.transform, placed, theme, config, random);
 
             // Los enemigos esperan desactivados hasta que el jugador entra.
             var enemiesRoot = new GameObject("Enemies").transform;
             enemiesRoot.SetParent(roomObject.transform, false);
             enemiesRoot.gameObject.SetActive(false);
-            SpawnEnemies(placed, enemiesRoot, config, boss, random);
+            var special = placed.Layout.Special;
+            var laterWaves = System.Array.Empty<Transform>();
+            if (special.HasValue && special.Value.waves > 0 && vents.Count > 0)
+                laterWaves = SpawnWaves(placed, roomObject.transform, enemiesRoot, config, random, vents, special.Value.waves);
+            else
+                SpawnEnemies(placed, enemiesRoot, config, boss, random);
 
             var room = roomObject.AddComponent<Room>();
             room.Configure(enemiesRoot, doors.ToArray());
+            room.ConfigureWaves(laterWaves, vents.ToArray());
 
             // La de inicio, la tienda y la sala de paso no tienen enemigos, así que no sueltan nada.
             if (HasEnemies(placed.Layout) && config.SmallBiomass != null)
@@ -794,8 +800,12 @@ namespace Primordia.Rooms
         /// (dos C seguidas, la grande), el coral del corazón morado y las entradas de oleadas. De momento solo se ven y
         /// bloquean; abrirlas, cogerlas y las oleadas llegan en el paso 4.
         /// </summary>
-        static void BuildPieces(Transform roomObject, PlacedRoom placed, FloorConfig config)
+        static readonly Color ClamGlow = new(1f, 0.85f, 0.55f);
+        static readonly Color HeartGlow = new(0.75f, 0.45f, 1f);
+
+        static List<WaveVent> BuildPieces(Transform roomObject, PlacedRoom placed, FloorConfig config, System.Random random)
         {
+            var builtVents = new List<WaveVent>();
             var template = placed.Template;
             var pieces = config.Pieces;
             var fossil = template.CellsOf(RoomTemplate.Mark.Fossil);
@@ -803,7 +813,7 @@ namespace Primordia.Rooms
             var hearts = template.BlockCorners(RoomTemplate.Mark.HeartCoral);
             var vents = template.CellsOf(RoomTemplate.Mark.WaveVent);
             if (fossil.Count == 0 && chests.Count == 0 && hearts.Count == 0 && vents.Count == 0)
-                return;
+                return builtVents;
 
             var root = new GameObject("Pieces").transform;
             root.SetParent(roomObject, false);
@@ -822,6 +832,9 @@ namespace Primordia.Rooms
                 }
             }
 
+            var clams = config.Clams;
+            var player = GameObject.FindWithTag("Player");
+            var playerMutations = player != null ? player.GetComponent<PlayerMutations>() : null;
             var taken = new HashSet<Vector2Int>();
             foreach (var cell in chests)
             {
@@ -831,17 +844,41 @@ namespace Primordia.Rooms
                 if (big)
                     taken.Add(cell + Vector2Int.right);
                 var size = big ? new Vector2(2f, 1f) : Vector2.one;
-                Piece(big ? "ClamBig" : "Clam", big ? pieces.clamBig : pieces.clamSmall, (Vector2)(placed.Origin + cell) + size / 2f, size);
+                var position = (Vector2)(placed.Origin + cell) + size / 2f;
+                var piece = Piece(big ? "ClamBig" : "Clam", big ? pieces.clamBig : pieces.clamSmall, position, size);
+                var clam = piece.AddComponent<Clam>();
+                // La grande guarda, además, una mutación especial si el piso tiene alguna (solo salen en almejas).
+                var mutation = big && clams.bigMutations is { Length: > 0 } ? Clam.PickMutation(clams.bigMutations, playerMutations, random) : null;
+                clam.Configure(piece.GetComponent<SpriteRenderer>(), big ? pieces.clamBigIdle : pieces.clamSmallIdle,
+                    big ? pieces.clamBigOpen : pieces.clamSmallOpen, big ? pieces.clamBigOpened : pieces.clamSmallOpened, big,
+                    big ? clams.bigBiomass : clams.smallBiomass, mutation, clams.mutationPickup, config.SmallBiomass, config.BigBiomass);
+                clam.ConfigurePrompt(pieces.keyPrompt, big ? 1.4f : 1f);
+                clam.SetRadius(big ? 1.8f : 1.3f);
+                // Un brillo suave para que no se pase por alto.
+                Ambience.CreateGlobalLight(roomObject);
+                clam.SetGlow(Ambience.CreateGlow(piece.transform, position, new Glow(null, ClamGlow, big ? 2f : 1.4f, new Vector2(0.35f, 0.7f), 1.6f), 0f));
             }
 
             foreach (var cell in hearts)
-                Piece("HeartCoral", pieces.heartCoral, (Vector2)(placed.Origin + cell) + Vector2.one, Vector2.one * 2f);
+            {
+                var position = (Vector2)(placed.Origin + cell) + Vector2.one;
+                var piece = Piece("HeartCoral", pieces.heartCoral, position, Vector2.one * 2f);
+                var coral = piece.AddComponent<HeartCoral>();
+                coral.Configure(piece.GetComponent<SpriteRenderer>(), pieces.heartCoralIdle, pieces.heartCoralTaken);
+                coral.ConfigurePrompt(pieces.keyPrompt, 1.6f);
+                coral.SetRadius(1.8f);
+                Ambience.CreateGlobalLight(roomObject);
+                coral.SetGlow(Ambience.CreateGlow(piece.transform, position, new Glow(null, HeartGlow, 2.2f, new Vector2(0.4f, 0.8f), 1.2f), 0f));
+            }
 
             foreach (var cell in vents)
             {
-                var vent = Piece("WaveVent", pieces.waveVent, (Vector2)(placed.Origin + cell) + Vector2.one * 0.5f, Vector2.zero);
+                var piece = Piece("WaveVent", pieces.waveVent, (Vector2)(placed.Origin + cell) + Vector2.one * 0.5f, Vector2.zero);
                 // Grieta del suelo: por debajo de todo lo que se mueve.
-                vent.GetComponent<SpriteRenderer>().sortingOrder = -14;
+                piece.GetComponent<SpriteRenderer>().sortingOrder = -14;
+                var vent = piece.AddComponent<WaveVent>();
+                vent.Configure(piece.GetComponent<SpriteRenderer>(), pieces.waveVentIdle, pieces.waveVentActive);
+                builtVents.Add(vent);
             }
 
             // Pieza con su sprite y, si bloquea (tamaño no nulo), su colisión.
@@ -857,6 +894,8 @@ namespace Primordia.Rooms
                     piece.AddComponent<BoxCollider2D>().size = size;
                 return piece;
             }
+
+            return builtVents;
         }
 
         /// <summary>Salas con enemigos (y biomasa al limpiarlas): las de combate, las laterales y la del jefe, salvo las especiales sin enemigos.</summary>
@@ -913,6 +952,49 @@ namespace Primordia.Rooms
                 var area = new Rect(placed.Origin + floor.position, floor.size);
                 Ambience.CreateMarineSnow(roomObject, area, count, config.MarineSnowFlakes, config.MarineSnowMaterial);
             }
+        }
+
+        // Distancia a una entrada de oleadas a la que pueden aparecer sus enemigos.
+        const float WaveSpawnRadius = 3.5f;
+
+        /// <summary>
+        /// Oleadas de una sala con entradas de oleadas (Sala sellada, Puente roto): cada una con los enemigos de una sala normal
+        /// por el multiplicador de la especial, junto a las entradas. La primera va en <paramref name="firstWave"/>; devuelve
+        /// las demás, que esperan desactivadas.
+        /// </summary>
+        static Transform[] SpawnWaves(PlacedRoom placed, Transform roomObject, Transform firstWave, FloorConfig config, System.Random random,
+            List<WaveVent> vents, int waves)
+        {
+            var template = placed.Template;
+            var floorArea = Enumerable.Range(0, template.Width * template.Height)
+                .Count(i => template.Get(i % template.Width, i / template.Width) == RoomTemplate.Mark.Floor);
+            int budget = Mathf.Max(1, Mathf.RoundToInt(EncounterPlanner.Budget(config, placed.Layout.Depth, floorArea) * placed.Layout.EnemyMultiplier));
+
+            // Salen por las entradas: sitios de aparición a poca distancia de alguna.
+            var ventCells = vents.Select(vent => (Vector2)vent.transform.position - placed.Origin).ToList();
+            var doorCells = placed.DoorCells.Values.SelectMany(cells => cells).Select(cell => cell - placed.Origin);
+            var all = EncounterPlanner.SpawnCells(template, doorCells);
+            var near = all.Where(cell => ventCells.Any(vent => Vector2.Distance(cell + Vector2.one * 0.5f, vent) <= WaveSpawnRadius)).ToList();
+            var candidates = near.Count > 0 ? near : all;
+
+            var later = new List<Transform>();
+            for (int wave = 0; wave < waves; wave++)
+            {
+                var root = firstWave;
+                if (wave > 0)
+                {
+                    root = new GameObject($"Wave_{wave + 1}").transform;
+                    root.SetParent(roomObject, false);
+                    root.gameObject.SetActive(false);
+                    later.Add(root);
+                }
+
+                var enemies = EncounterPlanner.PickEnemies(config, placed.Layout.Depth, budget, random);
+                var positions = EncounterPlanner.Positions(candidates, enemies.Count, random);
+                for (int i = 0; i < positions.Count; i++)
+                    Object.Instantiate(enemies[i], placed.Origin + positions[i], Quaternion.identity, root);
+            }
+            return later.ToArray();
         }
 
         static void SpawnEnemies(PlacedRoom placed, Transform enemiesRoot, FloorConfig config, FloorConfig.BossEntry bossEntry,

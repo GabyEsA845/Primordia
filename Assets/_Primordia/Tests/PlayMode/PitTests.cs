@@ -98,15 +98,35 @@ namespace Primordia.Tests
             yield return new WaitForFixedUpdate();
 
             body.position = new Vector2(6.5f, 2.5f);
-            yield return new WaitForFixedUpdate();
-            yield return new WaitForFixedUpdate();
-            Assert.IsTrue(fall.IsFalling, "Cae al pisar la fosa.");
+            yield return new WaitForSeconds(0.15f);
+            Assert.IsTrue(fall.IsFalling, "Cae al pisar la fosa (tras la tolerancia de 0,08 s).");
 
             yield return new WaitForSeconds(PitFallEffect.Duration + 0.2f);
             Assert.IsFalse(fall.IsFalling);
             Assert.AreEqual(3.5f, body.position.x, 0.05f, "Vuelve al último suelo firme.");
             Assert.AreEqual(6 - PlayerPitFall.FallDamage, health.Current, "Medio corazón menos.");
             Assert.AreEqual(Vector3.one, fall.transform.localScale, "Vuelve a su tamaño.");
+        }
+
+        [UnityTest]
+        public IEnumerator Player_LeaningOverTheEdge_DoesNotFall()
+        {
+            // Fosa horizontal: filas 3 y 4 en las columnas 10–15, con suelo debajo. El centro del cuerpo ya está sobre la
+            // fosa, pero los pies (0,3 por debajo) apenas la rozan.
+            for (int x = 10; x < 16; x++)
+                for (int y = 3; y < 5; y++)
+                    map.Set(new Vector2Int(x, y), FloorMap.Kind.Pit);
+            var (_, fall, health, body) = CreatePlayer(new Vector2(12.5f, 1.5f));
+            yield return new WaitForFixedUpdate();
+
+            body.position = new Vector2(12.5f, 3.35f);
+            yield return new WaitForSeconds(0.3f);
+            Assert.IsFalse(fall.IsFalling, "Asomarse por abajo no hace caer: los pies apenas pisan el borde.");
+
+            body.position = new Vector2(10.1f, 4f);
+            yield return new WaitForSeconds(0.3f);
+            Assert.IsFalse(fall.IsFalling, "Ni rozar el borde lateral.");
+            Assert.AreEqual(6, health.Current);
         }
 
         [UnityTest]
@@ -155,6 +175,30 @@ namespace Primordia.Tests
             Assert.IsNotNull(look);
             Assert.IsNotNull(look.Shadow, "Sombra separada.");
             Assert.Greater(enemy.transform.Find("Body").localPosition.y, 0.2f, "El cuerpo flota por encima de su sombra.");
+        }
+
+        [UnityTest]
+        public IEnumerator WalkingEnemy_WithNoWayToThePlayer_WaitsAtTheEdge()
+        {
+            // La fosa (x = 6 y 7) corta el suelo de arriba abajo: no hay camino andando hasta el jugador, al otro lado.
+            NavigationGrid.Current = new NavigationGrid(map);
+            NavigationGrid.Swimming = NavigationGrid.ForSwimmers(map);
+            var target = Track(new GameObject("Target"));
+            target.transform.position = new Vector2(10.5f, 2.5f);
+
+            var data = Track(ScriptableObject.CreateInstance<EnemyData>());
+            data.Configure(EnemyBehaviour.Chaser, 5, moveSpeed: 4f, detectionRange: 20f, contactDamage: 1);
+            var go = new GameObject("Enemy");
+            go.transform.position = new Vector2(2.5f, 2.5f);
+            new GameObject("Body").transform.SetParent(go.transform, false);
+            var enemy = go.AddComponent<Enemy>();
+            go.AddComponent<EnemyAI>().Target = target.transform;
+            enemy.SetData(data);
+
+            yield return new WaitForSeconds(2f);
+            Assert.IsFalse(enemy.Health.IsDead, "No se tira a la fosa.");
+            Assert.Less(enemy.transform.position.x, 6f, "Espera en la orilla.");
+            Assert.Greater(enemy.transform.position.x, 4.5f, "Pero se acerca hasta ella.");
         }
 
         [Test]

@@ -160,20 +160,26 @@ namespace Primordia.Editor
         const string Floor2RoomsFolder = RoomsFolder + "/Floor2";
 
         // Las 10 salas especiales (GDD, "Salas especiales"): dónde salen, si cuentan como combate, cuántos enemigos llevan
-        // respecto a una sala normal, si salen siempre, en qué franja y si ocupan dos casillas.
-        static readonly (string name, FloorConfig.SpecialPlacement placement, bool combat, float enemies, bool always, int band, bool tall)[] Specials =
+        // respecto a una sala normal (en las de oleadas, cada oleada), si salen siempre, en qué franja, si ocupan dos casillas,
+        // cuántas oleadas llegan por sus entradas y si ofrecen mutación al final.
+        static readonly (string name, FloorConfig.SpecialPlacement placement, bool combat, float enemies, bool always, int band, bool tall,
+            int waves, bool reward)[] Specials =
         {
-            ("Parkour", FloorConfig.SpecialPlacement.Path, false, 0f, false, -1, true),
-            ("CorazonMorado", FloorConfig.SpecialPlacement.Side, false, 2f, true, 2, false),
-            ("AnilloSima", FloorConfig.SpecialPlacement.Path, true, 1f, false, -1, false),
-            ("PuenteRoto", FloorConfig.SpecialPlacement.Path, true, 1f, false, -1, false),
-            ("BosqueCoral", FloorConfig.SpecialPlacement.Path, true, 1f, false, -1, false),
-            ("FosilGigante", FloorConfig.SpecialPlacement.Path, true, 1f, false, -1, false),
-            ("JardinEsponjas", FloorConfig.SpecialPlacement.Path, true, 1f, false, -1, false),
-            ("SalaSellada", FloorConfig.SpecialPlacement.Path, true, 1f, false, -1, false),
-            ("Islas", FloorConfig.SpecialPlacement.Path, true, 1f, false, -1, false),
-            ("GrutaEscondida", FloorConfig.SpecialPlacement.Side, false, 0f, false, -1, false),
+            ("Parkour", FloorConfig.SpecialPlacement.Path, false, 0f, false, -1, true, 0, false),
+            ("CorazonMorado", FloorConfig.SpecialPlacement.Side, false, 2f, true, 2, false, 0, false),
+            ("AnilloSima", FloorConfig.SpecialPlacement.Path, true, 1f, false, -1, false, 0, false),
+            // Desde la otra orilla, en 2 oleadas.
+            ("PuenteRoto", FloorConfig.SpecialPlacement.Path, true, 0.7f, false, -1, false, 2, false),
+            ("BosqueCoral", FloorConfig.SpecialPlacement.Path, true, 1f, false, -1, false, 0, false),
+            ("FosilGigante", FloorConfig.SpecialPlacement.Path, true, 1f, false, -1, false, 0, false),
+            ("JardinEsponjas", FloorConfig.SpecialPlacement.Path, true, 1f, false, -1, false, 0, false),
+            // Tres oleadas seguidas desde las esquinas y una mutación al final.
+            ("SalaSellada", FloorConfig.SpecialPlacement.Path, true, 0.6f, false, -1, false, 3, true),
+            ("Islas", FloorConfig.SpecialPlacement.Path, true, 1f, false, -1, false, 0, false),
+            ("GrutaEscondida", FloorConfig.SpecialPlacement.Side, false, 0f, false, -1, false, 0, false),
         };
+
+        const string MutationPickupPath = "Assets/_Primordia/Prefabs/Mutations/MutationPickup.prefab";
 
         // Salas de los jefes del piso 2, por orden de la lista de jefes (hasta que lleguen el Anomalocaris y el Euriptérido,
         // los jefes del piso 1 pelean en ellas).
@@ -200,6 +206,8 @@ namespace Primordia.Editor
                     always = s.always,
                     band = s.band,
                     tall = s.tall,
+                    waves = s.waves,
+                    rewardAtEnd = s.reward,
                 })
                 .Where(s => s.IsValid).ToArray();
             config.ConfigureSpecialRooms(specials, new Vector2Int(2, 4));
@@ -214,6 +222,13 @@ namespace Primordia.Editor
             config.ConfigureBosses(bosses);
 
             config.ConfigurePieces(ArtSetup.ImportRoomPieces());
+
+            // Almejas: biomasa y, la grande, una mutación especial (aún no hay: llegarán con su diseño).
+            var clams = config.Clams;
+            if (clams.smallBiomass == Vector2Int.zero)
+                clams = FloorConfig.ClamContents.Default;
+            clams.mutationPickup = AssetDatabase.LoadAssetAtPath<MutationPickup>(MutationPickupPath);
+            config.ConfigureClams(clams);
         }
 
         static System.Collections.Generic.Dictionary<string, RoomTemplate> ImportLayouts()

@@ -102,6 +102,11 @@ namespace Primordia.Rooms
             public int band;
             [Tooltip("Ocupa dos casillas en vertical: se entra por arriba y se sale por abajo (Parkour).")]
             public bool tall;
+            [Tooltip("Oleadas de enemigos que salen por las entradas de oleadas (E), una tras otra (0: los enemigos de siempre). "
+                + "Cada oleada lleva los enemigos de una sala normal por el multiplicador de arriba.")]
+            [Min(0)] public int waves;
+            [Tooltip("Ofrece una mutación al limpiarla, toque o no por su número (la Sala sellada).")]
+            public bool rewardAtEnd;
 
             public bool IsValid => template != null;
         }
@@ -116,6 +121,44 @@ namespace Primordia.Rooms
             public Sprite clamBig;
             public Sprite heartCoral;
             public Sprite waveVent;
+
+            [Tooltip("Almeja pequeña: respira (bucle), se abre (una vez) y abierta.")]
+            public Sprite[] clamSmallIdle;
+            public Sprite[] clamSmallOpen;
+            public Sprite clamSmallOpened;
+            [Tooltip("Almeja grande (32×24, sobresale 8 px por arriba de sus dos celdas).")]
+            public Sprite[] clamBigIdle;
+            public Sprite[] clamBigOpen;
+            public Sprite clamBigOpened;
+            [Tooltip("Coral con el corazón morado latiendo, y el coral sin él.")]
+            public Sprite[] heartCoralIdle;
+            public Sprite heartCoralTaken;
+            [Tooltip("Entrada de oleadas: en reposo (bucle) y activa (se abre, brilla en rojo y burbujea).")]
+            public Sprite[] waveVentIdle;
+            public Sprite[] waveVentActive;
+            [Tooltip("Tecla E normal y pulsada, sobre lo que se puede usar.")]
+            public Sprite[] keyPrompt;
+        }
+
+        /// <summary>Lo que guardan las almejas: biomasa siempre y, la grande, una mutación especial si las hay.</summary>
+        [Serializable]
+        public struct ClamContents
+        {
+            [Tooltip("Biomasa de la almeja pequeña (mínimo y máximo).")]
+            public Vector2Int smallBiomass;
+            [Tooltip("Biomasa de la almeja grande (mínimo y máximo).")]
+            public Vector2Int bigBiomass;
+            [Tooltip("Mutaciones especiales que solo salen en almejas grandes (una al azar que no se lleve). Vacío: solo biomasa.")]
+            public MutationData[] bigMutations;
+            [Tooltip("Burbuja de mutación que suelta la almeja grande.")]
+            public MutationPickup mutationPickup;
+
+            public static ClamContents Default => new()
+            {
+                smallBiomass = new Vector2Int(5, 15),
+                bigBiomass = new Vector2Int(15, 25),
+                bigMutations = Array.Empty<MutationData>(),
+            };
         }
 
         [Header("Piso")]
@@ -162,6 +205,7 @@ namespace Primordia.Rooms
         [Tooltip("El túnel horizontal (puertas a izquierda y derecha).")]
         [SerializeField] RoomTemplate antechamberHorizontal;
         [SerializeField] RoomPieces pieces;
+        [SerializeField] ClamContents clams = ClamContents.Default;
 
         [Header("Ambiente")]
         [Tooltip("Copos de nieve marina (variantes). La cantidad por sala la da el tileset de su franja.")]
@@ -254,6 +298,7 @@ namespace Primordia.Rooms
         public RoomTemplate AntechamberHorizontal => antechamberHorizontal;
         public bool HasAntechamber => antechamberVertical != null && antechamberHorizontal != null;
         public RoomPieces Pieces => pieces;
+        public ClamContents Clams => clams;
         public Sprite[] MarineSnowFlakes => marineSnowFlakes ?? Array.Empty<Sprite>();
         public Material MarineSnowMaterial => marineSnowMaterial;
         public RoomTheme Theme => theme;
@@ -382,6 +427,8 @@ namespace Primordia.Rooms
         }
 
         internal void ConfigurePieces(RoomPieces newPieces) => pieces = newPieces;
+
+        internal void ConfigureClams(ClamContents newClams) => clams = newClams;
 
         internal void ConfigureMarineSnow(Sprite[] newFlakes, Material newMaterial)
         {

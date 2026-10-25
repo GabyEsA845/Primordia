@@ -537,7 +537,7 @@ namespace Primordia.Rooms
                             room.Template = config.GeneratesCaves ? Cave(layout, random, config.CaveSizes, shape, room) : shape;
                             previousCombat = shape;
                         }
-                        room.Reward = rewardAfter.Contains(slot.Depth);
+                        room.Reward = rewardAfter.Contains(slot.Depth) || (slot.Special.HasValue && slot.Special.Value.rewardAtEnd);
                         break;
                 }
 

@@ -463,11 +463,44 @@ namespace Primordia.Enemies
 
         void FixedUpdate()
         {
-            rb.linearVelocity = desiredVelocity;
+            // Los que andan no se meten solos en una fosa (si no hay camino hasta el jugador, esperan en la orilla); los
+            // empujones (aturdido) sí pueden tirarlos.
+            rb.linearVelocity = !IsStunned && !fallingIntoPit && Pits.Map != null && CanFall()
+                ? AvoidPits(desiredVelocity)
+                : desiredVelocity;
 
             // Los que andan caen si acaban encima de una fosa (empujados); los que nadan y los jefes, nunca.
-            if (!fallingIntoPit && !health.IsDead && Pits.IsPit(rb.position) && CanFall())
+            if (!fallingIntoPit && !health.IsDead && Pits.IsDeepInPit(rb.position, PitEdgeGrace) && CanFall())
                 StartCoroutine(FallIntoPit());
+        }
+
+        // Como el jugador: hay que entrar un poco en la fosa para caer, no basta con rozar el borde.
+        const float PitEdgeGrace = 0.2f;
+
+        // Lo que mira por delante (además de su radio) para no pisar una fosa.
+        const float PitLookAhead = 0.2f;
+
+        /// <summary>
+        /// La velocidad sin lo que le metería en una fosa: si de frente hay fosa, se desliza por el borde (solo en x o solo en
+        /// y); si tampoco puede, se queda quieto en la orilla.
+        /// </summary>
+        Vector2 AvoidPits(Vector2 velocity)
+        {
+            if (velocity.sqrMagnitude < 0.0001f)
+                return velocity;
+
+            float reach = bodyRadius + PitLookAhead;
+            bool Blocked(Vector2 direction) => Pits.IsPit(rb.position + direction.normalized * reach);
+
+            if (!Blocked(velocity))
+                return velocity;
+            var alongX = new Vector2(velocity.x, 0f);
+            var alongY = new Vector2(0f, velocity.y);
+            if (alongX.sqrMagnitude > 0.01f && !Blocked(alongX))
+                return alongX;
+            if (alongY.sqrMagnitude > 0.01f && !Blocked(alongY))
+                return alongY;
+            return Vector2.zero;
         }
 
         bool CanFall() => enemy.Data != null && !enemy.Data.Swims && !TryGetComponent<IBoss>(out _);

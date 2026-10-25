@@ -318,7 +318,38 @@ namespace Primordia.Editor
             // Al abrir la escena Unity descarga los assets sin usar: se vuelve a cargar la configuración.
             var config = AssetDatabase.LoadAssetAtPath<FloorConfig>(Floor2ConfigPath);
             FloorSetup.BuildFloor(scene, rig, player, floorConfig: config);
+            AddTestLoadout(scene, AssetDatabase.LoadAssetAtPath<FloorConfig>(FloorSetup.FloorConfigPath));
             EditorSceneManager.SaveScene(scene);
+        }
+
+        /// <summary>
+        /// El jugador de la escena de prueba empieza como si llegara del piso 1: con una Boca del piso 2 y una mutación del
+        /// piso 1 en cada otra ranura, todas a nivel II.
+        /// </summary>
+        static void AddTestLoadout(UnityEngine.SceneManagement.Scene scene, FloorConfig floor1)
+        {
+            var player = scene.GetRootGameObjects().Select(root => root.GetComponentInChildren<PlayerMutations>()).FirstOrDefault(p => p != null);
+            if (player == null || floor1 == null)
+                return;
+
+            var mouth = floor1.NextFloorMouths.FirstOrDefault(m => m != null);
+            var others = (floor1.RewardPool != null ? floor1.RewardPool.Mutations : System.Array.Empty<MutationData>())
+                .Where(m => m != null && m.Slot != MutationSlot.Mouth)
+                .GroupBy(m => m.Slot).Select(group => group.First());
+            var loadout = new[] { mouth }.Where(m => m != null).Concat(others).ToArray();
+
+            // Sin ??: en el editor GetComponent devuelve un null de Unity que ?? no ve como null.
+            var component = player.GetComponent<TestLoadout>();
+            if (component == null)
+                component = player.gameObject.AddComponent<TestLoadout>();
+            var serialized = new SerializedObject(component);
+            var list = serialized.FindProperty("mutations");
+            list.arraySize = loadout.Length;
+            for (int i = 0; i < loadout.Length; i++)
+                list.GetArrayElementAtIndex(i).objectReferenceValue = loadout[i];
+            serialized.FindProperty("level").intValue = 2;
+            serialized.ApplyModifiedProperties();
+            Debug.Log($"Floor2Setup: Test_Floor2 empieza con {string.Join(", ", loadout.Select(m => m.name))} a nivel II.");
         }
     }
 }

@@ -29,7 +29,10 @@ namespace Primordia.Enemies
         public bool DropsBiomass { get; internal set; } = true;
 
         /// <summary>True si al morir se divide en otros enemigos.</summary>
-        public bool WillSplit => data != null && data.SplitCount > 0 && data.SplitPrefab != null;
+        public bool WillSplit => data != null && data.SplitCount > 0 && data.SplitPrefab != null && !FellIntoPit;
+
+        /// <summary>Cayó a una fosa: muere sin dividirse ni soltar biomasa.</summary>
+        public bool FellIntoPit { get; internal set; }
 
         /// <summary>Se lanza al morir, después de <see cref="ChildSpawned"/> y antes de destruirse.</summary>
         public event Action<Enemy> Died;
@@ -94,6 +97,10 @@ namespace Primordia.Enemies
 
             if (TryGetComponent<ContactDamage>(out var contact))
                 contact.Damage = data.ContactDamage;
+
+            // Los que nadan flotan con vaivén y su sombra se queda en el suelo, separada del cuerpo.
+            if (data.Swims && !TryGetComponent<SwimmerLook>(out _))
+                gameObject.AddComponent<SwimmerLook>().Configure(data.SwimShadow);
         }
 
         internal void SetAnimationTimings(float newDeathDuration, float newSplitDuration)
@@ -150,7 +157,7 @@ namespace Primordia.Enemies
 
         void SpawnSplits()
         {
-            if (data == null || data.SplitCount == 0)
+            if (data == null || data.SplitCount == 0 || FellIntoPit)
                 return;
 
             var target = TryGetComponent<EnemyAI>(out var ai) ? ai.Target : null;

@@ -166,6 +166,19 @@ namespace Primordia.Core
             return true;
         }
 
+        /// <summary>Muerte inmediata aunque sea invulnerable, sin barrera ni escudos (caer en una fosa).</summary>
+        public void Kill()
+        {
+            if (IsDead)
+                return;
+            int lost = Current;
+            Current = 0;
+            Damaged?.Invoke(lost);
+            Changed?.Invoke(Current, maxHealth);
+            IsDead = true;
+            Died?.Invoke();
+        }
+
         /// <summary>Invulnerable durante esos segundos (sin tocar <see cref="IsInvulnerable"/>, que lleva la esquiva).</summary>
         public void MakeInvulnerable(float seconds) => invulnerableUntil = Mathf.Max(invulnerableUntil, Time.time + seconds);
 

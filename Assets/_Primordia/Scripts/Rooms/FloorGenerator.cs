@@ -52,6 +52,7 @@ namespace Primordia.Rooms
         public FloorBuilder.BuiltFloor Built { get; private set; }
 
         NavigationGrid navigation;
+        NavigationGrid swimming;
 
         // El proyecto entra en Play sin recargar el dominio, así que los static hay que limpiarlos a mano.
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
@@ -67,6 +68,10 @@ namespace Primordia.Rooms
         {
             if (navigation != null && NavigationGrid.Current == navigation)
                 NavigationGrid.Current = null;
+            if (swimming != null && NavigationGrid.Swimming == swimming)
+                NavigationGrid.Swimming = null;
+            if (Built != null && Pits.Map == Built.Map)
+                Pits.Map = null;
             // Las formas de cueva de la partida son objetos creados en memoria: se van con el piso.
             Layout?.ReleaseGenerated();
         }
@@ -115,6 +120,13 @@ namespace Primordia.Rooms
             Built = FloorBuilder.Build(Layout, config, transform, random);
             navigation = new NavigationGrid(Built.Map);
             NavigationGrid.Current = navigation;
+            swimming = NavigationGrid.ForSwimmers(Built.Map);
+            NavigationGrid.Swimming = swimming;
+            Pits.Map = Built.Map;
+
+            // El jugador cae en las fosas (se le añade aquí para no tocar su prefab).
+            if (player != null && !player.TryGetComponent<PlayerPitFall>(out _))
+                player.gameObject.AddComponent<PlayerPitFall>();
 
             Vector3 start = Built.StartPosition;
             if (player != null)
@@ -187,6 +199,10 @@ namespace Primordia.Rooms
                 Destroy(pickup.gameObject);
             if (navigation != null && NavigationGrid.Current == navigation)
                 NavigationGrid.Current = null;
+            if (swimming != null && NavigationGrid.Swimming == swimming)
+                NavigationGrid.Swimming = null;
+            if (Built != null && Pits.Map == Built.Map)
+                Pits.Map = null;
             Layout?.ReleaseGenerated();
             Built = null;
             Layout = null;

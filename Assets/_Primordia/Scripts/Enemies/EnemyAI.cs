@@ -100,6 +100,10 @@ namespace Primordia.Enemies
         Enemy enemy;
         Health health;
         Rigidbody2D rb;
+        bool fallingIntoPit;
+
+        /// <summary>True mientras cae a una fosa (ya no hace nada más).</summary>
+        public bool IsFallingIntoPit => fallingIntoPit;
         Weapon weapon;
         Vector2 desiredVelocity;
         Vector2 knockbackVelocity;
@@ -218,6 +222,9 @@ namespace Primordia.Enemies
         {
             desiredVelocity = Vector2.zero;
             var data = enemy.Data;
+
+            if (fallingIntoPit)
+                return;
 
             if (data == null || !CanAct())
             {
@@ -370,24 +377,29 @@ namespace Primordia.Enemies
             searchPointUntil = Time.time + SearchPointTime;
         }
 
+        /// <summary>Rejilla con la que se mueve: los que nadan cruzan las fosas; los demás las rodean.</summary>
+        NavigationGrid MoveGrid => enemy.Data != null && enemy.Data.Swims && NavigationGrid.Swimming != null
+            ? NavigationGrid.Swimming
+            : NavigationGrid.Current;
+
         /// <summary>Dirección hacia ese punto rodeando paredes y columnas (recta si no hay rejilla del piso).</summary>
         Vector2 PathTo(Vector2 point)
         {
-            var grid = NavigationGrid.Current;
+            var grid = MoveGrid;
             return grid == null ? (point - rb.position).normalized : grid.DirectionTo(rb.position, point, bodyRadius * 0.9f);
         }
 
-        /// <summary>True si no hay pared entre el enemigo y ese punto (siempre, si no hay rejilla del piso).</summary>
+        /// <summary>True si no hay pared entre el enemigo y ese punto (siempre, si no hay rejilla del piso). Las fosas no tapan.</summary>
         bool CanSee(Vector2 point)
         {
-            var grid = NavigationGrid.Current;
+            var grid = NavigationGrid.Swimming ?? NavigationGrid.Current;
             return grid == null || grid.HasLineOfSight(rb.position, point, SightRadius);
         }
 
         /// <summary>True si puede retroceder en esa dirección sin chocar enseguida con una pared.</summary>
         bool HasRoomBehind(Vector2 away)
         {
-            var grid = NavigationGrid.Current;
+            var grid = MoveGrid;
             return grid == null || grid.HasLineOfSight(rb.position, rb.position + away * RetreatCheckDistance, bodyRadius * 0.9f);
         }
 
@@ -449,7 +461,28 @@ namespace Primordia.Enemies
             }
         }
 
-        void FixedUpdate() => rb.linearVelocity = desiredVelocity;
+        void FixedUpdate()
+        {
+            rb.linearVelocity = desiredVelocity;
+
+            // Los que andan caen si acaban encima de una fosa (empujados); los que nadan y los jefes, nunca.
+            if (!fallingIntoPit && !health.IsDead && Pits.IsPit(rb.position) && CanFall())
+                StartCoroutine(FallIntoPit());
+        }
+
+        bool CanFall() => enemy.Data != null && !enemy.Data.Swims && !TryGetComponent<IBoss>(out _);
+
+        System.Collections.IEnumerator FallIntoPit()
+        {
+            fallingIntoPit = true;
+            desiredVelocity = Vector2.zero;
+            rb.linearVelocity = Vector2.zero;
+            // Lo que llevaba se pierde en el fondo.
+            enemy.DropsBiomass = false;
+            enemy.FellIntoPit = true;
+            yield return PitFallEffect.Play(transform);
+            health.Kill();
+        }
 
         bool CanAct() =>
             !health.IsDead && (GameManager.Instance == null || GameManager.Instance.State == GameState.Playing);

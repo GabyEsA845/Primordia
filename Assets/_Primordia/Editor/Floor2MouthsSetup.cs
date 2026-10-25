@@ -29,6 +29,9 @@ namespace Primordia.Editor
             CreateCnidocytes();
             CreateJawPlates();
             AssetDatabase.SaveAssets();
+            // Con los cuerpos de las Bocas, la capa de la Cutícula de Marrella sobre cada uno.
+            SpecialMutationsSetup.ApplyCuticleLayers();
+            AssetDatabase.SaveAssets();
             Debug.Log("Floor2MouthsSetup: Cnidocitos (arpón, veneno y Ramillete) y Placas mandibulares (mordisco, Quebrar y Guillotina). La Corona de brazos, en el paso 4.");
         }
 
@@ -75,8 +78,13 @@ namespace Primordia.Editor
                 "Ramillete: cada cuarto disparo son 3 arpones en abanico.");
             mutation.Configure(one, newHealEveryKills: 0);
             mutation.ConfigureUpgrades(new AttackMutation.AttackLevel { attack = two }, new AttackMutation.AttackLevel { attack = three });
+            // La medusa suelta el arpón en el tercer cuadro de su ataque (14 por segundo).
+            mutation.SetAttackHitTime(2f / AttackFps);
             EditorUtility.SetDirty(mutation);
         }
+
+        /// <summary>Cuadros por segundo de la animación de ataque de los cuerpos (ArtSetup.Floor2Body).</summary>
+        const float AttackFps = 14f;
 
         // ---------- Placas mandibulares ----------
 
@@ -134,6 +142,8 @@ namespace Primordia.Editor
                 "Guillotina: cada cuarto mordisco va seguido de una segunda dentellada más grande, que llega más lejos.");
             mutation.Configure(one, newHealEveryKills: 0);
             mutation.ConfigureUpgrades(new AttackMutation.AttackLevel { attack = two }, new AttackMutation.AttackLevel { attack = three });
+            // El pez cierra las placas en el cuarto cuadro de su ataque.
+            mutation.SetAttackHitTime(3f / AttackFps);
             EditorUtility.SetDirty(mutation);
         }
 

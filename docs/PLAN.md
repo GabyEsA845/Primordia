@@ -76,7 +76,7 @@ Cada módulo vive en su propia carpeta de `Assets/_Primordia/Scripts/` (`Core`, 
   Pasos:
   1. Cnidocitos: arpón que atraviesa, veneno, Ramillete, proyectil y destello de su arte (menú Primordia > Mutations > Crear Bocas del piso 2) y atajo F6 para cambiar de Boca (hecho)
   2. Placas mandibulares: mordisco en arco de 110° con el alcance de lo dibujado, empujón, Quebrar con su marca y Guillotina (segunda dentellada más grande), con el arte del mordisco rehecho (hecho)
-  3. Golpe sincronizado con el cuadro de la animación de ataque de cada cuerpo, y la capa de la Cutícula de Marrella sobre los cuerpos
+  3. Golpe sincronizado con el cuadro de la animación de ataque de cada cuerpo, y la capa de la Cutícula de Marrella sobre los cuerpos (hecho)
   4. Corona de brazos y lirio de mar (remolino, Marea, metamorfosis del lirio) y los Flagelos de Leanchoilia con el remolino
 - [ ] `feature/floor2-enemies`: Trilobite, Medusa azul, Ottoia, Esponja Vauxia y Cardumen de Pikaia, con su arte, sus avisos y su comportamiento
 - [ ] `feature/floor2-mutations`: las otras 6 mutaciones del piso 2 y sus 8 linajes (beneficios remodelados, Carroñero y su sprite de restos, toques y evoluciones). Incluye el arte que falta: las capas de Extremidades y Piel sobre los 3 cuerpos (12), los efectos de activación de los Órganos, las larvas, las burbujas de la Cola, las púas de Hallucigenia y las escamas de Wiwaxia

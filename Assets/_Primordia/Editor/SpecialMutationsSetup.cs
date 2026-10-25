@@ -159,6 +159,7 @@ namespace Primordia.Editor
             var projectileFrames = Sheet("Proj_MarrellaCuticle_Reflected", 12);
             var marker = AssetDatabase.LoadAssetAtPath<GameObject>($"{EffectPrefabsFolder}/Effect_Status_Stun.prefab");
             cuticle.SetArt(reflect, stun, marker);
+            ApplyCuticleLayers(cuticle);
 
             var projectile = CreateReflectedProjectile(projectileFrames);
             var attack = CombatSetup.CreateAttack(ReflectedAttackName, projectile, fireRate: 1f, damage: 6, speed: 11f, lifetime: 1.6f);
@@ -196,6 +197,34 @@ namespace Primordia.Editor
 
             bud.SetArt(material, sprout, dissolve);
             EditorUtility.SetDirty(bud);
+        }
+
+        const string CuticleLayersArtFolder = "Assets/_Primordia/Art/Characters/Player/Floor2/Cuticle";
+
+        /// <summary>
+        /// La capa de la Cutícula sobre cada cuerpo de criatura que ya existe (el de cada Boca del piso 2): sus hojas son
+        /// <c>Skin_MarrellaCuticle_{cuerpo}_*</c> y el cuerpo sale del nombre de las animaciones de la Boca (Player_{cuerpo}).
+        /// </summary>
+        internal static void ApplyCuticleLayers(MarrellaCuticleMutation cuticle = null)
+        {
+            cuticle ??= AssetDatabase.LoadAssetAtPath<MarrellaCuticleMutation>($"{DataFolder}/{AssetNames[1]}.asset");
+            if (cuticle == null)
+                return;
+
+            var layers = new System.Collections.Generic.List<MutationData.CreatureLayer>();
+            foreach (var guid in AssetDatabase.FindAssets("t:MutationData", new[] { DataFolder }))
+            {
+                var mouth = AssetDatabase.LoadAssetAtPath<MutationData>(AssetDatabase.GUIDToAssetPath(guid));
+                if (mouth == null || mouth.Slot != MutationSlot.Mouth || mouth.CreatureBody == null)
+                    continue;
+                string body = mouth.CreatureBody.name.Replace("Player_", "");
+                var layer = ArtSetup.ImportCreatureLayer($"Skin_MarrellaCuticle_{body}", $"{SourceFolder}/Skin", $"{CuticleLayersArtFolder}/{body}");
+                if (layer != null)
+                    layers.Add(new MutationData.CreatureLayer { body = mouth.CreatureBody, layer = layer });
+            }
+            cuticle.SetCreatureLayers(layers.ToArray());
+            EditorUtility.SetDirty(cuticle);
+            Debug.Log($"SpecialMutationsSetup: capa de la Cutícula sobre {layers.Count} cuerpos de criatura.");
         }
 
         const string ReflectedAttackName = "Attack_CuticleReflected";

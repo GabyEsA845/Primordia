@@ -38,6 +38,31 @@ namespace Primordia.Combat
         public event Action<Vector2> Fired;
 
         /// <summary>
+        /// Se lanza al empezar un ataque, antes de la preparación (<see cref="Windup"/>): ahí arranca la animación de ataque
+        /// del cuerpo. Sin preparación, justo antes de <see cref="Fired"/>.
+        /// </summary>
+        public event Action<Vector2> Started;
+
+        /// <summary>
+        /// Segundos desde que se ataca hasta que sale el golpe o el proyectil: el cuadro del golpe de la animación de ataque
+        /// del cuerpo de la criatura (la medusa suelta el arpón en el tercero, el pez cierra las placas en el cuarto).
+        /// 0 = al instante.
+        /// </summary>
+        public float Windup
+        {
+            get => windup;
+            set => windup = Mathf.Max(0f, value);
+        }
+
+        /// <summary>True mientras prepara un ataque que aún no ha salido.</summary>
+        public bool IsWindingUp => windupAttack != null;
+
+        float windup;
+        AttackData windupAttack;
+        Vector2 windupDirection;
+        float windupUntil;
+
+        /// <summary>
         /// Multiplica el daño de cada disparo o mordisco (la Emboscada de las Aletas). 1 = normal. Al leerlo incluye
         /// también los bonus de <see cref="SetDamageBonus"/>; asignarlo solo cambia el multiplicador base.
         /// </summary>
@@ -110,10 +135,21 @@ namespace Primordia.Combat
 
         void Awake() => projectileLayer = CombatLayers.ProjectileLayer(team);
 
-        void OnDisable() => pendingAttack = null;
+        void OnDisable()
+        {
+            pendingAttack = null;
+            windupAttack = null;
+        }
 
         void Update()
         {
+            if (windupAttack != null && Time.time >= windupUntil)
+            {
+                var prepared = windupAttack;
+                windupAttack = null;
+                Fire(windupDirection, prepared);
+            }
+
             if (pendingAttack == null)
                 return;
 
@@ -135,12 +171,28 @@ namespace Primordia.Combat
                 return false;
 
             nextFireTime = Time.time + attack.Cooldown;
-            Fire(direction);
+            Started?.Invoke(direction.normalized);
+            if (windup > 0f)
+            {
+                // Sale en el cuadro del golpe de la animación, hacia donde se apuntó al atacar.
+                windupAttack = attack;
+                windupDirection = direction;
+                windupUntil = Time.time + windup;
+            }
+            else
+            {
+                Fire(direction, attack);
+            }
             return true;
         }
 
-        /// <summary>Dispara ya, sin mirar la recarga.</summary>
-        public void Fire(Vector2 direction) => Fire(direction, attack);
+        /// <summary>Dispara ya, sin mirar la recarga ni la preparación.</summary>
+        public void Fire(Vector2 direction)
+        {
+            if (direction.sqrMagnitude > 0.0001f)
+                Started?.Invoke(direction.normalized);
+            Fire(direction, attack);
+        }
 
         /// <summary>
         /// Dispara otro ataque desde esta arma, sin mirar la recarga ni cambiar el ataque actual.

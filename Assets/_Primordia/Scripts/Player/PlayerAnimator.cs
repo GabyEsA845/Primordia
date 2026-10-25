@@ -80,7 +80,7 @@ namespace Primordia.Player
             health.Damaged += OnDamaged;
             health.Died += OnDied;
             if (weapon != null)
-                weapon.Fired += OnFired;
+                weapon.Started += OnAttackStarted;
         }
 
         void OnDisable()
@@ -88,7 +88,7 @@ namespace Primordia.Player
             health.Damaged -= OnDamaged;
             health.Died -= OnDied;
             if (weapon != null)
-                weapon.Fired -= OnFired;
+                weapon.Started -= OnAttackStarted;
         }
 
         void LateUpdate()
@@ -168,7 +168,7 @@ namespace Primordia.Player
             return true;
         }
 
-        void OnFired(Vector2 direction)
+        void OnAttackStarted(Vector2 direction)
         {
             if (health.IsDead || controller.IsDodging)
                 return;

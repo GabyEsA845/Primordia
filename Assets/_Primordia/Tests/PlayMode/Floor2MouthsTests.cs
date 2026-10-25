@@ -196,6 +196,26 @@ namespace Primordia.Tests
             Assert.AreEqual(100, outside.Current);
         }
 
+        [UnityTest]
+        public IEnumerator Windup_StartsTheAttackAtOnce_ButTheShotLeavesOnTheHitFrame()
+        {
+            weapon.Windup = 2f / 14f;
+            int started = 0, fired = 0;
+            weapon.Started += _ => started++;
+            weapon.Fired += _ => fired++;
+
+            Assert.IsTrue(weapon.TryFire(Vector2.right));
+            Assert.AreEqual(1, started, "La animación de ataque empieza al atacar.");
+            Assert.AreEqual(0, fired);
+            Assert.AreEqual(0, Flying(), "El arpón aún no ha salido.");
+            Assert.IsTrue(weapon.IsWindingUp);
+
+            yield return new WaitForSeconds(0.2f);
+            Assert.AreEqual(1, fired, "Sale en el cuadro del golpe.");
+            Assert.AreEqual(1, Flying());
+            Assert.IsFalse(weapon.IsWindingUp);
+        }
+
         [Test]
         public void Volley_EveryFourthShot_FiresAFanOfThree()
         {

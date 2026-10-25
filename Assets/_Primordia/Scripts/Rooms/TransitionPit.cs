@@ -296,8 +296,7 @@ namespace Primordia.Rooms
             {
                 visual.localScale = baseScale;
                 yield return metamorphosis.Play(jumper, chosenMouth);
-                if (manager != null)
-                    manager.SetState(GameState.Victory);
+                LeaveFloor(manager);
                 yield break;
             }
 
@@ -315,8 +314,19 @@ namespace Primordia.Rooms
             }
             visual.localScale = Vector3.zero;
 
-            // De momento no hay piso siguiente: la caída da la victoria.
-            if (manager != null)
+            LeaveFloor(manager);
+        }
+
+        /// <summary>
+        /// Al piso siguiente, que el generador monta en esta misma escena (esta fosa se borra con el piso); si no hay
+        /// piso siguiente, la victoria.
+        /// </summary>
+        static void LeaveFloor(GameManager manager)
+        {
+            var generator = FindAnyObjectByType<FloorGenerator>();
+            if (generator != null && generator.HasNextFloor)
+                generator.GoToNextFloor();
+            else if (manager != null)
                 manager.SetState(GameState.Victory);
         }
 

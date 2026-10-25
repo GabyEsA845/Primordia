@@ -62,6 +62,19 @@ namespace Primordia.UI
         public MapRoom CurrentRoom => current;
         public bool BigMapShown => bigMapShown;
 
+        void OnEnable() => FloorGenerator.FloorChanged += OnFloorChanged;
+
+        void OnDisable() => FloorGenerator.FloorChanged -= OnFloorChanged;
+
+        // Piso nuevo en la misma escena (al saltar a la fosa): el mapa vuelve a empezar con él.
+        void OnFloorChanged(int floor)
+        {
+            if (generator == null)
+                generator = FindAnyObjectByType<FloorGenerator>();
+            if (generator != null && generator.Built != null)
+                Initialize(generator.Built);
+        }
+
         void Start()
         {
             generator = FindAnyObjectByType<FloorGenerator>();
@@ -110,7 +123,20 @@ namespace Primordia.UI
             if (newPlayer != null)
                 player = newPlayer;
 
+            // El mapa del piso anterior, si lo había.
+            foreach (var old in new[] { minimap, bigMap })
+            {
+                if (old != null && old.Content != null)
+                    Destroy(old.Content.gameObject);
+            }
+            minimap = bigMap = null;
+            current = null;
+            if (painter != null)
+                Destroy(painter.Texture);
+            painter = null;
+
             bool hasFloor = floor != null && floor.Map != null;
+            enabled = hasFloor;
             if (minimapRoot != null)
                 minimapRoot.SetActive(hasFloor);
             SetBigMap(false);

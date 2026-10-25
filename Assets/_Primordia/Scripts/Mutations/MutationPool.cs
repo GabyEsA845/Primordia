@@ -9,8 +9,12 @@ namespace Primordia.Mutations
     public class MutationPool : ScriptableObject
     {
         [SerializeField] List<MutationData> mutations = new();
+        [Tooltip("Desmarcado (desde el piso 2): no se ofrecen Bocas nuevas, solo las mejoras de la que lleva el jugador. "
+            + "La Boca se elige en la sala de paso y solo se cambia en la sala de cambio.")]
+        [SerializeField] bool offersNewMouths = true;
 
         public IReadOnlyList<MutationData> Mutations => mutations;
+        public bool OffersNewMouths => offersNewMouths;
 
         /// <summary>
         /// Oferta para ese jugador: mutaciones nuevas (las que no lleva) y mejoras (las que lleva y aún pueden
@@ -22,7 +26,8 @@ namespace Primordia.Mutations
             if (player == null)
                 return PickOffer(count, (IEnumerable<MutationData>)null);
 
-            var candidates = mutations.Where(m => m != null && (!player.IsEquipped(m) || player.CanLevelUp(m))).Distinct().ToList();
+            var candidates = mutations.Where(m => m != null && (!player.IsEquipped(m) || player.CanLevelUp(m))
+                && (offersNewMouths || m.Slot != MutationSlot.Mouth || player.IsEquipped(m))).Distinct().ToList();
             var upgrades = candidates.Where(player.IsEquipped).ToList();
             Shuffle(candidates);
 
@@ -49,11 +54,15 @@ namespace Primordia.Mutations
             }
         }
 
-        /// <summary>Hasta <paramref name="count"/> mutaciones distintas al azar, sin las de <paramref name="exclude"/>.</summary>
+        /// <summary>
+        /// Hasta <paramref name="count"/> mutaciones distintas al azar, sin las de <paramref name="exclude"/> (ni Bocas, si
+        /// la reserva no ofrece Bocas nuevas).
+        /// </summary>
         public List<MutationData> PickOffer(int count, IEnumerable<MutationData> exclude)
         {
             var excluded = new HashSet<MutationData>(exclude ?? Enumerable.Empty<MutationData>());
-            var candidates = mutations.Where(m => m != null && !excluded.Contains(m)).Distinct().ToList();
+            var candidates = mutations.Where(m => m != null && !excluded.Contains(m)
+                && (offersNewMouths || m.Slot != MutationSlot.Mouth)).Distinct().ToList();
 
             // Fisher-Yates: baraja y se queda con las primeras.
             for (int i = candidates.Count - 1; i > 0; i--)
@@ -65,6 +74,10 @@ namespace Primordia.Mutations
             return candidates.Take(count).ToList();
         }
 
-        internal void Configure(IEnumerable<MutationData> newMutations) => mutations = newMutations.ToList();
+        internal void Configure(IEnumerable<MutationData> newMutations, bool newOffersNewMouths = true)
+        {
+            mutations = newMutations.ToList();
+            offersNewMouths = newOffersNewMouths;
+        }
     }
 }

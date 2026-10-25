@@ -23,6 +23,11 @@ namespace Primordia.Enemies
         [SerializeField, Min(1)] int maxHealth = 3;
         [Tooltip("Unidades por segundo. El jugador va a 6.")]
         [SerializeField, Min(0f)] float moveSpeed = 3f;
+        [Tooltip("Nada por encima del fondo (medusa, Pikaia, Anomalocaris): cruza las fosas sin caer. Los que andan las rodean "
+            + "y, si acaban encima (empujados), caen.")]
+        [SerializeField] bool swims;
+        [Tooltip("Sombra separada de los que nadan (Shadow_Swim_S/M/L). Vacía: una elipse oscura.")]
+        [SerializeField] Sprite swimShadow;
 
         [Header("Comportamiento")]
         [SerializeField] EnemyBehaviour behaviour;
@@ -61,6 +66,8 @@ namespace Primordia.Enemies
         [SerializeField] string aimSound;
 
         public int MaxHealth => maxHealth;
+        public bool Swims => swims;
+        public Sprite SwimShadow => swimShadow;
         public float MoveSpeed => moveSpeed;
         public EnemyBehaviour Behaviour => behaviour;
         public float DetectionRange => detectionRange;
@@ -91,6 +98,12 @@ namespace Primordia.Enemies
             this.attack = attack;
             this.splitPrefab = splitPrefab;
             this.splitCount = Mathf.Max(0, splitCount);
+        }
+
+        internal void ConfigureSwimming(bool newSwims, Sprite newShadow = null)
+        {
+            swims = newSwims;
+            swimShadow = newShadow;
         }
 
         internal void ConfigureSounds(string hurt, string death, string split = null, string alert = null, string aim = null)

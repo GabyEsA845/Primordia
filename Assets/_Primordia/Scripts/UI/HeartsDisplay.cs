@@ -26,11 +26,16 @@ namespace Primordia.UI
         [SerializeField] Sprite emptyHeart;
         [Tooltip("Medio corazón verde de la barrera.")]
         [SerializeField] Sprite barrierHeart;
+        [Tooltip("Corazón morado (para un golpe entero y se conserva entre pisos).")]
+        [SerializeField] Sprite purpleHeart;
+        [Tooltip("Capas del corazón morado sobre cada corazón: contorno morado y grietas (variantes).")]
+        [SerializeField] Sprite[] purpleInlays;
         [Tooltip("Tamaño de cada corazón en píxeles de la interfaz.")]
         [SerializeField] Vector2 heartSize = new(16f, 16f);
 
         readonly List<Image> hearts = new();
         readonly List<Image> barrierHearts = new();
+        readonly List<Image> purpleHearts = new();
 
         public IReadOnlyList<Image> Hearts => hearts;
 
@@ -118,7 +123,63 @@ namespace Primordia.UI
                 barrierHearts[i].transform.SetAsLastSibling();
                 barrierHearts[i].gameObject.SetActive(i < health.Barrier);
             }
+
+            // Con el corazón morado, el morado se incrusta en los corazones: contorno morado y grietas (una variante por corazón).
+            bool inlaid = health.PurpleHearts > 0 && purpleInlays != null && purpleInlays.Length > 0;
+            for (int i = 0; i < hearts.Count; i++)
+            {
+                var overlay = InlayOf(hearts[i]);
+                overlay.gameObject.SetActive(inlaid && hearts[i].gameObject.activeSelf);
+                if (inlaid)
+                    overlay.sprite = purpleInlays[i % purpleInlays.Length];
+            }
+
+            // Sin el arte de las grietas, el corazón morado se ve como un corazón más al final.
+            int icons = inlaid ? 0 : health.PurpleHearts;
+            while (purpleHearts.Count < icons)
+            {
+                var heart = CreateHeart();
+                heart.name = "PurpleHeart";
+                purpleHearts.Add(heart);
+            }
+            for (int i = 0; i < purpleHearts.Count; i++)
+            {
+                purpleHearts[i].sprite = purpleHeart != null ? purpleHeart : fullHeart;
+                purpleHearts[i].color = purpleHeart != null ? Color.white : new Color(0.75f, 0.45f, 1f);
+                purpleHearts[i].transform.SetAsLastSibling();
+                purpleHearts[i].gameObject.SetActive(i < icons);
+            }
         }
+
+        /// <summary>Capa morada de un corazón (se crea la primera vez).</summary>
+        Image InlayOf(Image heart)
+        {
+            var existing = heart.transform.Find("PurpleInlay");
+            if (existing != null)
+                return existing.GetComponent<Image>();
+
+            var inlay = new GameObject("PurpleInlay", typeof(RectTransform), typeof(Image));
+            var rect = (RectTransform)inlay.transform;
+            rect.SetParent(heart.transform, false);
+            rect.anchorMin = Vector2.zero;
+            rect.anchorMax = Vector2.one;
+            rect.offsetMin = Vector2.zero;
+            rect.offsetMax = Vector2.zero;
+            var image = inlay.GetComponent<Image>();
+            image.raycastTarget = false;
+            inlay.SetActive(false);
+            return image;
+        }
+
+        /// <summary>Corazones morados que se ven ahora como icono suelto (sin el arte de las grietas).</summary>
+        public int PurpleShown => purpleHearts.FindAll(heart => heart.gameObject.activeSelf).Count;
+
+        /// <summary>Corazones que llevan ahora la capa morada.</summary>
+        public int InlaidShown => hearts.FindAll(heart => heart.gameObject.activeSelf && InlayOf(heart).gameObject.activeSelf).Count;
+
+        internal void SetPurpleSprite(Sprite sprite) => purpleHeart = sprite;
+
+        internal void SetPurpleInlays(Sprite[] sprites) => purpleInlays = sprites;
 
         Image CreateHeart()
         {

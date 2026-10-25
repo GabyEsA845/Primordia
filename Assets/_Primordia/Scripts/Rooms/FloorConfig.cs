@@ -52,6 +52,121 @@ namespace Primordia.Rooms
             public bool IsValid => prefab != null && room != null;
         }
 
+        /// <summary>Peso de cada dirección al trazar el camino principal en la rejilla.</summary>
+        [Serializable]
+        public struct PathWeights
+        {
+            [Min(0f)] public float down;
+            [Tooltip("Peso de la izquierda y, por separado, el de la derecha.")]
+            [Min(0f)] public float side;
+            [Min(0f)] public float up;
+
+            public PathWeights(float down, float side, float up)
+            {
+                this.down = down;
+                this.side = side;
+                this.up = up;
+            }
+
+            public static PathWeights Even => new(1f, 1f, 1f);
+
+            /// <summary>El camino del piso 2: abajo a menudo, a los lados a veces, casi nunca hacia arriba.</summary>
+            public static PathWeights Descending => new(6f, 2f, 0.3f);
+
+            public bool IsEven => Mathf.Approximately(down, side) && Mathf.Approximately(side, up);
+
+            public float For(Vector2Int direction) =>
+                direction == Vector2Int.down ? down : direction == Vector2Int.up ? up : side;
+        }
+
+        /// <summary>Dónde sale una sala especial: en el camino principal o colgando de él.</summary>
+        public enum SpecialPlacement
+        {
+            Path,
+            Side
+        }
+
+        /// <summary>Una sala especial hecha a mano (piso 2: Parkour, Corazón morado, Anillo de la sima…).</summary>
+        [Serializable]
+        public struct SpecialRoom
+        {
+            public RoomTemplate template;
+            public SpecialPlacement placement;
+            [Tooltip("En el camino, cuenta como una de las salas de combate (con su recompensa si le toca). Si no, se añade aparte.")]
+            public bool countsAsCombat;
+            [Tooltip("Enemigos respecto a una sala normal: 1 igual, 2 el doble, 0 ninguno.")]
+            [Min(0f)] public float enemyMultiplier;
+            [Tooltip("Sale en todas las partidas (el Corazón morado); las demás se sortean.")]
+            public bool always;
+            [Tooltip("Franja de profundidad en la que tiene que salir (0 Someras, 1 Arrecife, 2 Abismo; -1 cualquiera).")]
+            public int band;
+            [Tooltip("Ocupa dos casillas en vertical: se entra por arriba y se sale por abajo (Parkour).")]
+            public bool tall;
+            [Tooltip("Oleadas de enemigos que salen por las entradas de oleadas (E), una tras otra (0: los enemigos de siempre). "
+                + "Cada oleada lleva los enemigos de una sala normal por el multiplicador de arriba.")]
+            [Min(0)] public int waves;
+            [Tooltip("Ofrece una mutación al limpiarla, toque o no por su número (la Sala sellada).")]
+            public bool rewardAtEnd;
+
+            public bool IsValid => template != null;
+        }
+
+        /// <summary>Sprites de las piezas de las salas especiales (huesos, almejas, coral, entradas de oleadas).</summary>
+        [Serializable]
+        public struct RoomPieces
+        {
+            [Tooltip("Esqueleto del Fósil gigante, con el origen en la esquina de arriba a la izquierda de la sala.")]
+            public Sprite fossil;
+            public Sprite clamSmall;
+            public Sprite clamBig;
+            public Sprite heartCoral;
+            public Sprite waveVent;
+
+            [Tooltip("Almeja pequeña: respira (bucle), se abre (una vez) y abierta.")]
+            public Sprite[] clamSmallIdle;
+            public Sprite[] clamSmallOpen;
+            public Sprite clamSmallOpened;
+            [Tooltip("Almeja grande (32×24, sobresale 8 px por arriba de sus dos celdas).")]
+            public Sprite[] clamBigIdle;
+            public Sprite[] clamBigOpen;
+            public Sprite clamBigOpened;
+            [Tooltip("Coral con el corazón morado latiendo, y el coral sin él.")]
+            public Sprite[] heartCoralIdle;
+            public Sprite heartCoralTaken;
+            [Tooltip("Entrada de oleadas: en reposo (bucle) y activa (se abre, brilla en rojo y burbujea).")]
+            public Sprite[] waveVentIdle;
+            public Sprite[] waveVentActive;
+            [Tooltip("Tecla E normal y pulsada, sobre lo que se puede usar.")]
+            public Sprite[] keyPrompt;
+        }
+
+        /// <summary>Lo que guardan las almejas: biomasa siempre y, la grande, una mutación especial si las hay.</summary>
+        [Serializable]
+        public struct ClamContents
+        {
+            [Tooltip("Biomasa de la almeja pequeña (mínimo y máximo).")]
+            public Vector2Int smallBiomass;
+            [Tooltip("Biomasa de la almeja grande (mínimo y máximo).")]
+            public Vector2Int bigBiomass;
+            [Tooltip("Mutaciones especiales que solo salen en almejas grandes (una al azar que no se lleve). Vacío: solo biomasa.")]
+            public MutationData[] bigMutations;
+            [Tooltip("Burbuja de mutación que suelta la almeja grande.")]
+            public MutationPickup mutationPickup;
+
+            public static ClamContents Default => new()
+            {
+                smallBiomass = new Vector2Int(5, 15),
+                bigBiomass = new Vector2Int(15, 25),
+                bigMutations = Array.Empty<MutationData>(),
+            };
+        }
+
+        [Header("Piso")]
+        [Tooltip("Número del piso (1 = sopa primordial, 2 = océano cámbrico…).")]
+        [SerializeField, Min(1)] int floorNumber = 1;
+        [Tooltip("Piso al que lleva la fosa de la sala de paso. Vacío: la fosa (o la salida) da la victoria.")]
+        [SerializeField] FloorConfig nextFloor;
+
         [Header("Salas")]
         [SerializeField] RoomTemplate startRoom;
         [SerializeField] RoomTemplate bossRoom;
@@ -64,9 +179,46 @@ namespace Primordia.Rooms
         [Tooltip("Salas laterales que cuelgan del camino (mínimo y máximo).")]
         [SerializeField] Vector2Int sideRoomCount = new(1, 2);
 
+        [Header("Cuevas y pasillos")]
+        [Tooltip("Las salas de inicio, de combate y laterales son cuevas generadas con la semilla del piso (CaveGenerator). "
+            + "Si una no pasa la comprobación, se usa una de las formas de arriba como catálogo de reserva.")]
+        [SerializeField] bool generateCaves;
+        [Tooltip("Tamaños posibles (paredes incluidas) de las cuevas de combate; se elige uno al azar por sala.")]
+        [SerializeField] Vector2Int[] caveSizes = Array.Empty<Vector2Int>();
+        [Tooltip("Tamaños posibles de las cuevas de inicio y laterales.")]
+        [SerializeField] Vector2Int[] smallCaveSizes = Array.Empty<Vector2Int>();
+        [Tooltip("Largo mínimo del pasillo entre salas vecinas, en tiles (mínimo y máximo; uno al azar por hueco de la rejilla).")]
+        [SerializeField] Vector2Int corridorLength = new(4, 4);
+        [Tooltip("Ancho de los pasillos (mínimo y máximo). Con más de 2, túneles irregulares que se estrechan a 2 junto a las puertas.")]
+        [SerializeField] Vector2Int corridorWidth = new(2, 2);
+        [Tooltip("Peso de cada dirección al trazar el camino: abajo, cada lado y arriba. Iguales: giros al azar, como en el piso 1.")]
+        [SerializeField] PathWeights pathWeights = PathWeights.Even;
+
+        [Header("Salas especiales y fijas (piso 2)")]
+        [SerializeField] SpecialRoom[] specialRooms = Array.Empty<SpecialRoom>();
+        [Tooltip("Salas especiales por partida, contando las que salen siempre (mínimo y máximo).")]
+        [SerializeField] Vector2Int specialRoomCount = new(2, 4);
+        [Tooltip("Sala de cambio (laboratorio de Darwin), en fondo de saco detrás de la tienda. Vacío: no hay.")]
+        [SerializeField] RoomTemplate exchangeRoom;
+        [Tooltip("Antesala del jefe, en línea recta con él: el túnel vertical (puertas arriba y abajo). Vacío: sin antesala.")]
+        [SerializeField] RoomTemplate antechamberVertical;
+        [Tooltip("El túnel horizontal (puertas a izquierda y derecha).")]
+        [SerializeField] RoomTemplate antechamberHorizontal;
+        [SerializeField] RoomPieces pieces;
+        [SerializeField] ClamContents clams = ClamContents.Default;
+
+        [Header("Ambiente")]
+        [Tooltip("Copos de nieve marina (variantes). La cantidad por sala la da el tileset de su franja.")]
+        [SerializeField] Sprite[] marineSnowFlakes = Array.Empty<Sprite>();
+        [Tooltip("Material de las partículas de nieve. Vacío: sin nieve.")]
+        [SerializeField] Material marineSnowMaterial;
+
         [Header("Tileset")]
         [SerializeField] RoomTheme theme;
         [SerializeField] RoomTheme bossTheme;
+        [Tooltip("Franjas de profundidad por tercios del camino (de la primera sala a la última), cada una con su tileset. "
+            + "Vacío: todas las salas con el tileset de arriba.")]
+        [SerializeField] RoomTheme[] bandThemes = Array.Empty<RoomTheme>();
 
         [Header("Enemigos")]
         [SerializeField] EnemyEntry[] enemies = Array.Empty<EnemyEntry>();
@@ -100,6 +252,9 @@ namespace Primordia.Rooms
         [Tooltip("Forma de la sala de la tienda. Vacío (o sin prefab): el piso no tiene tienda.")]
         [SerializeField] RoomTemplate shopRoom;
         [SerializeField] ShopRoom shopPrefab;
+        [Tooltip("Tramo del camino en el que puede colgar la tienda, en fracción de las salas de combate (0 = la primera, "
+            + "1 = la última). Piso 1: la segunda mitad; piso 2: el tercio del medio.")]
+        [SerializeField] Vector2 shopDepth = new(0.5f, 1f);
 
         [Header("Sala de paso")]
         [Tooltip("Forma de la sala de paso, pegada a la del jefe. Vacío (o sin fosa): el jefe deja la salida de siempre.")]
@@ -118,12 +273,34 @@ namespace Primordia.Rooms
         [SerializeField] Sprite exitSprite;
         [SerializeField] Color exitColor = new(0.3f, 0.95f, 0.8f);
 
+        public int FloorNumber => floorNumber;
+        public FloorConfig NextFloor => nextFloor;
+        public RoomTheme[] BandThemes => bandThemes ?? Array.Empty<RoomTheme>();
+        public bool HasBands => Array.Exists(BandThemes, band => band != null);
+        public Vector2 ShopDepth => shopDepth;
         public RoomTemplate StartRoom => startRoom;
         public RoomTemplate BossRoom => bossRoom;
         public RoomTemplate[] CombatRooms => combatRooms;
         public RoomTemplate[] SideRooms => sideRooms;
         public Vector2Int MainCombatRooms => mainCombatRooms;
         public Vector2Int SideRoomCount => sideRoomCount;
+        public bool GeneratesCaves => generateCaves;
+        public Vector2Int[] CaveSizes => caveSizes ?? Array.Empty<Vector2Int>();
+        public Vector2Int[] SmallCaveSizes => smallCaveSizes is { Length: > 0 } ? smallCaveSizes : CaveSizes;
+        public Vector2Int CorridorLength => corridorLength;
+        public Vector2Int CorridorWidth => corridorWidth;
+        public PathWeights Path => pathWeights;
+        public SpecialRoom[] SpecialRooms => Array.FindAll(specialRooms ?? Array.Empty<SpecialRoom>(), room => room.IsValid);
+        public Vector2Int SpecialRoomCount => specialRoomCount;
+        public RoomTemplate ExchangeRoom => exchangeRoom;
+        public bool HasExchange => exchangeRoom != null && HasShop;
+        public RoomTemplate AntechamberVertical => antechamberVertical;
+        public RoomTemplate AntechamberHorizontal => antechamberHorizontal;
+        public bool HasAntechamber => antechamberVertical != null && antechamberHorizontal != null;
+        public RoomPieces Pieces => pieces;
+        public ClamContents Clams => clams;
+        public Sprite[] MarineSnowFlakes => marineSnowFlakes ?? Array.Empty<Sprite>();
+        public Material MarineSnowMaterial => marineSnowMaterial;
         public RoomTheme Theme => theme;
         public RoomTheme BossTheme => bossTheme;
         public EnemyEntry[] Enemies => enemies;
@@ -222,6 +399,53 @@ namespace Primordia.Rooms
             nextFloorMouths = newMouths ?? Array.Empty<MutationData>();
             nextFloorName = newName;
         }
+
+        internal void ConfigureFloor(int newNumber, FloorConfig newNext)
+        {
+            floorNumber = Mathf.Max(1, newNumber);
+            nextFloor = newNext;
+        }
+
+        internal void ConfigureCaves(bool generate, Vector2Int[] newCaveSizes, Vector2Int[] newSmallCaveSizes)
+        {
+            generateCaves = generate;
+            caveSizes = newCaveSizes ?? Array.Empty<Vector2Int>();
+            smallCaveSizes = newSmallCaveSizes ?? Array.Empty<Vector2Int>();
+        }
+
+        internal void ConfigureSpecialRooms(SpecialRoom[] newRooms, Vector2Int newCount)
+        {
+            specialRooms = newRooms ?? Array.Empty<SpecialRoom>();
+            specialRoomCount = newCount;
+        }
+
+        internal void ConfigureFixedRooms(RoomTemplate newExchange, RoomTemplate newAntechamberVertical, RoomTemplate newAntechamberHorizontal)
+        {
+            exchangeRoom = newExchange;
+            antechamberVertical = newAntechamberVertical;
+            antechamberHorizontal = newAntechamberHorizontal;
+        }
+
+        internal void ConfigurePieces(RoomPieces newPieces) => pieces = newPieces;
+
+        internal void ConfigureClams(ClamContents newClams) => clams = newClams;
+
+        internal void ConfigureMarineSnow(Sprite[] newFlakes, Material newMaterial)
+        {
+            marineSnowFlakes = newFlakes ?? Array.Empty<Sprite>();
+            marineSnowMaterial = newMaterial;
+        }
+
+        internal void ConfigureCorridors(Vector2Int newLength, Vector2Int newWidth, PathWeights newPath)
+        {
+            corridorLength = newLength;
+            corridorWidth = newWidth;
+            pathWeights = newPath;
+        }
+
+        internal void ConfigureBands(RoomTheme[] newBands) => bandThemes = newBands ?? Array.Empty<RoomTheme>();
+
+        internal void ConfigureShopDepth(Vector2 newDepth) => shopDepth = newDepth;
 
         internal void ConfigureRewards(MutationPool newPool, int[] newRewardAfter)
         {

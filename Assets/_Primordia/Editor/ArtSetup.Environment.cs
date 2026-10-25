@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using Primordia.Rooms;
 using UnityEditor;
+using UnityEditor.U2D.Sprites;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -23,18 +24,25 @@ namespace Primordia.Editor
         const string MissingTilePath = EnvironmentArtFolder + "/Tile_Missing.asset";
         const float DecorationChance = 0.05f;
 
-        static readonly string[] Themes = { "Soup", "Boss", AmoebaThemeName, ShoreThemeName, CambrianThemeName };
+        // Franjas del piso 2: Someras, Arrecife (el tema Cambrian de la sala de paso) y Abismo.
+        internal const string ShallowsThemeName = "Shallows";
+        internal const string AbyssThemeName = "Abyss";
+
+        static readonly string[] Themes =
+            { "Soup", "Boss", AmoebaThemeName, ShoreThemeName, CambrianThemeName, ShallowsThemeName, AbyssThemeName };
 
         // Decoración animada, en cuadros por segundo (README del arte: burbujas ~400 ms, algas ~200 ms).
         static readonly Dictionary<string, float> AnimatedDecorations = new()
         {
             ["Deco_Bubbles"] = 2.5f, ["Deco_Algae"] = 5f, ["Deco_Crinoid"] = 4f,
+            // Piso 2 (README del escenario): hierba marina ~200 ms, pluma de mar ~250 ms, medusa peine ~150 ms, motas ~300 ms.
+            ["Deco_Seagrass"] = 5f, ["Deco_SeaPen"] = 4f, ["Deco_Ctenophore"] = 1f / 0.15f, ["Deco_GlowMotes"] = 1f / 0.3f,
         };
 
         // El fondo marino va más poblado que la sopa: así se nota el cambio al acercarse a la fosa.
         static readonly Dictionary<string, float> ThemeDecorationChances = new()
         {
-            [ShoreThemeName] = 0.06f, [CambrianThemeName] = 0.09f,
+            [ShoreThemeName] = 0.06f, [CambrianThemeName] = 0.09f, [ShallowsThemeName] = 0.09f, [AbyssThemeName] = 0.08f,
         };
 
         // Hojas cuyas celdas no son cuadradas (ancho en píxeles).
@@ -43,7 +51,47 @@ namespace Primordia.Editor
             ["Deco_Goo"] = 32,
             ["Door_Bottom"] = 32,
             ["Door_Side"] = 16,
+            ["Door_Bottom_Close"] = 32,
+            ["Door_Bottom_Open"] = 32,
+            ["Door_Side_Close"] = 16,
+            ["Door_Side_Open"] = 16,
+            ["Overlay_LightRay"] = 48,
         };
+
+        // Puertas de losas (README del escenario): duración de cada cuadro de cerrar y de abrir, en milisegundos.
+        static readonly float[] SlabCloseDurations = { 0.07f, 0.06f, 0.06f, 0.06f, 0.06f, 0.11f, 0.14f };
+        static readonly float[] SlabOpenDurations = { 0.13f, 0.09f, 0.06f, 0.06f, 0.06f, 0.06f };
+
+        // Ambiente del piso 2: cáusticas a ~180 ms por cuadro (mosaico de 64 px), rayos a ~250 ms y copos por sala normal.
+        const float CausticsFrameSeconds = 0.18f;
+        const int CausticsPeriod = 64;
+        const float LightRayFrameSeconds = 0.25f;
+        static readonly Dictionary<string, int> MarineSnowPerTheme = new()
+        {
+            [ShallowsThemeName] = 10, [CambrianThemeName] = 30, [AbyssThemeName] = 70,
+        };
+
+        // Bioluminiscencia del Abismo (README): pieza, color, radio, intensidad mínima y máxima y latido en segundos.
+        static readonly (string piece, string color, float radius, Vector2 intensity, float period)[] AbyssGlows =
+        {
+            ("Deco_SeaPen", "#6ae8f0", 1.5f, new Vector2(0.4f, 0.7f), 1f),
+            ("Deco_Ctenophore", "#a0c8ff", 1f, new Vector2(0.3f, 0.3f), 0f),
+            ("Obstacle_Spire", "#6ae8f0", 2f, new Vector2(0.3f, 0.3f), 0f),
+        };
+
+        const string OceanArtFolder = EnvironmentArtFolder + "/Ocean";
+        const string MarineSnowMaterialPath = OceanArtFolder + "/Mat_MarineSnow.mat";
+
+        /// <summary>Importa las tres franjas del piso 2 (Someras, Arrecife, Abismo). Las que no tengan tiles salen null.</summary>
+        internal static RoomTheme[] ImportFloor2Themes()
+        {
+            Directory.CreateDirectory(EnvironmentArtFolder);
+            var missing = CreateMissingTile();
+            var names = new[] { ShallowsThemeName, CambrianThemeName, AbyssThemeName };
+            var imported = names.Select(name => ImportTheme(name, missing)).ToArray();
+            AssetDatabase.SaveAssets();
+            return names.Select((name, i) => imported[i] ? LoadTheme(name) : null).ToArray();
+        }
 
         [MenuItem("Primordia/Art/Importar escenario")]
         static void ImportEnvironment()
@@ -69,7 +117,10 @@ namespace Primordia.Editor
             CopyFiles($"{source}/tiles", $"{target}/Tiles", "*.png");
             CopyFiles($"{EnvironmentShapesSourceFolder}/{themeName}/tiles", $"{target}/Tiles", "*.png");
             CopyFiles($"{source}/deco", $"{target}/Deco", "Deco_*.png");
+            CopyFiles($"{source}/deco", $"{target}/Obstacles", "Obstacle_*.png");
+            CopyFiles($"{source}/deco", $"{target}/Ambience", "Overlay_*.png");
             CopyFiles(source, $"{target}/Doors", "Door*.png");
+            CopyFiles($"{source}/pits", $"{target}/Pits", "Pit_*.png");
 
             if (!Directory.Exists($"{target}/Tiles"))
             {
@@ -132,10 +183,195 @@ namespace Primordia.Editor
             theme.ConfigureDecorations(decorations.ToArray(), ThemeDecorationChances.GetValueOrDefault(themeName, DecorationChance));
             theme.ConfigureDoors(doors.TryGetValue("Doorway_Top", out var doorway) ? doorway[0] : null,
                 doors.GetValueOrDefault("Door_Top"), doors.GetValueOrDefault("Door_Bottom"), doors.GetValueOrDefault("Door_Side"));
+
+            DoorAnimation Slab(string side) =>
+                doors.TryGetValue($"Door_{side}_Close", out var close) && doors.TryGetValue($"Door_{side}_Open", out var open)
+                    ? new DoorAnimation(close, SlabCloseDurations, open, SlabOpenDurations)
+                    : null;
+            theme.ConfigureSlabs(Slab("Top"), Slab("Bottom"), Slab("Side"));
+
+            // Obstáculos: la roca pequeña de 1×1; las grandes (roca y las propias del tema) de 2×2.
+            var obstacles = AssetPaths($"{target}/Obstacles", "Obstacle_*.png")
+                .ToDictionary(path => Path.GetFileNameWithoutExtension(path), ImportSingleSprite);
+            var outlines = obstacles.Keys.ToDictionary(name => name, name => CreateOutline($"{target}/Obstacles/{name}.png", $"{target}/Obstacles/Outlines"));
+            var smallNames = obstacles.Keys.Where(name => name == "Obstacle_Rock").ToArray();
+            var bigNames = obstacles.Keys.Where(name => name != "Obstacle_Rock").ToArray();
+            theme.ConfigureObstacles(smallNames.Select(name => obstacles[name]).ToArray(), bigNames.Select(name => obstacles[name]).ToArray(),
+                smallNames.Select(name => outlines[name]).ToArray(), bigNames.Select(name => outlines[name]).ToArray());
+
+            ImportPits(theme, $"{target}/Pits", tileAssets);
+
+            var caustics = ImportCaustics($"{target}/Ambience/Overlay_Caustics.png", tileAssets);
+            string rayPath = $"{target}/Ambience/Overlay_LightRay.png";
+            var lightRay = File.Exists(rayPath) ? SliceSheet(rayPath, EnvironmentCellWidths["Overlay_LightRay"]) : null;
+            var glows = themeName == AbyssThemeName
+                ? AbyssGlows.Select(entry => Glow(entry, decorations, obstacles)).Where(glow => glow.source != null).ToArray()
+                : null;
+            theme.ConfigureAmbience(caustics, lightRay, LightRayFrameSeconds, MarineSnowPerTheme.GetValueOrDefault(themeName), glows);
             EditorUtility.SetDirty(theme);
 
-            Debug.Log($"ArtSetup: tema {themeName}: {tiles.Count} tiles, {decorations.Count} decoraciones, {doors.Count} hojas de puertas.");
+            Debug.Log($"ArtSetup: tema {themeName}: {tiles.Count} tiles, {decorations.Count} decoraciones, {doors.Count} hojas de puertas, "
+                + $"{obstacles.Count} obstáculos{(caustics != null ? ", cáusticas" : "")}{(lightRay != null ? ", rayos" : "")}.");
             return true;
+        }
+
+        // Esquinas de dentro de las fosas, en el orden de RoomTheme (NE, NO, SE, SO), y motas a ~6 cuadros por segundo.
+        static readonly string[] PitCorners = { "NE", "NO", "SE", "SO" };
+        const float PitMotesFps = 6f;
+
+        /// <summary>
+        /// Fosas del tema (README de las salas especiales): 16 tiles por máscara de vecinos, las esquinas de dentro y las motas
+        /// que suben. Si el tema no las tiene, se quedan vacías.
+        /// </summary>
+        static void ImportPits(RoomTheme theme, string folder, string tileAssets)
+        {
+            if (!File.Exists($"{folder}/Pit_0.png"))
+            {
+                theme.ConfigurePits(null, null, null);
+                return;
+            }
+
+            TileBase Single(string name) =>
+                File.Exists($"{folder}/{name}.png") ? CreateTile($"{tileAssets}/{name}.asset", ImportSingleSprite($"{folder}/{name}.png"), collides: false) : null;
+
+            var tiles = Enumerable.Range(0, 16).Select(mask => Single($"Pit_{mask}")).ToArray();
+            var corners = PitCorners.Select(corner => Single($"Pit_Corner_{corner}")).ToArray();
+            TileBase motes = null;
+            if (File.Exists($"{folder}/Pit_Motes.png"))
+                motes = CreateAnimatedTile($"{tileAssets}/Pit_Motes.asset", SliceSheet($"{folder}/Pit_Motes.png", 16), PitMotesFps);
+            theme.ConfigurePits(tiles, corners, motes);
+        }
+
+        /// <summary>
+        /// Contorno blanco de 1 px alrededor de la silueta de un sprite (lo que es transparente y toca un píxel opaco por un
+        /// lado), 2 px más ancho y más alto para que quede centrado sobre él. Se tiñe con el color del tileset.
+        /// </summary>
+        static Sprite CreateOutline(string spritePath, string folder)
+        {
+            var source = new Texture2D(2, 2);
+            if (!source.LoadImage(File.ReadAllBytes(spritePath)))
+                return null;
+
+            int width = source.width, height = source.height;
+            bool Opaque(int x, int y) => x >= 0 && y >= 0 && x < width && y < height && source.GetPixel(x, y).a > 0.1f;
+
+            var outline = new Texture2D(width + 2, height + 2, TextureFormat.RGBA32, false);
+            for (int y = 0; y < height + 2; y++)
+            {
+                for (int x = 0; x < width + 2; x++)
+                {
+                    int sx = x - 1, sy = y - 1;
+                    bool edge = !Opaque(sx, sy) && (Opaque(sx - 1, sy) || Opaque(sx + 1, sy) || Opaque(sx, sy - 1) || Opaque(sx, sy + 1));
+                    outline.SetPixel(x, y, edge ? Color.white : Color.clear);
+                }
+            }
+
+            Directory.CreateDirectory(folder);
+            string path = $"{folder}/{Path.GetFileNameWithoutExtension(spritePath)}_Outline.png";
+            File.WriteAllBytes(path, outline.EncodeToPNG());
+            Object.DestroyImmediate(source);
+            Object.DestroyImmediate(outline);
+            AssetDatabase.ImportAsset(path, ImportAssetOptions.ForceUpdate);
+            return ImportSingleSprite(path);
+        }
+
+        static Glow Glow((string piece, string color, float radius, Vector2 intensity, float period) entry,
+            List<TileBase> decorations, Dictionary<string, Sprite> obstacles)
+        {
+            Object source = obstacles.TryGetValue(entry.piece, out var sprite) ? sprite
+                : decorations.FirstOrDefault(tile => tile != null && tile.name == entry.piece);
+            ColorUtility.TryParseHtmlString(entry.color, out var color);
+            return new Glow(source, color, entry.radius, entry.intensity, entry.period);
+        }
+
+        /// <summary>
+        /// Cáusticas: la hoja de 4 cuadros de 64×64 se corta en tiles de 16 y se hace un tile animado por cada celda del
+        /// mosaico de 4×4 (índice x + 4 · y, con y desde abajo). Null si el tema no tiene cáusticas.
+        /// </summary>
+        static TileBase[] ImportCaustics(string path, string tileAssets)
+        {
+            if (!File.Exists(path))
+                return null;
+
+            const int cell = 16, cells = CausticsPeriod / cell;
+            var importer = (TextureImporter)AssetImporter.GetAtPath(path);
+            importer.textureType = TextureImporterType.Sprite;
+            importer.spriteImportMode = SpriteImportMode.Multiple;
+            importer.spritePixelsPerUnit = PixelsPerUnit;
+            importer.filterMode = FilterMode.Point;
+            importer.textureCompression = TextureImporterCompression.Uncompressed;
+            importer.mipmapEnabled = false;
+            importer.alphaIsTransparency = true;
+            importer.SaveAndReimport();
+            importer.GetSourceTextureWidthAndHeight(out int width, out _);
+            int frames = width / CausticsPeriod;
+
+            var factory = new SpriteDataProviderFactories();
+            factory.Init();
+            var provider = factory.GetSpriteEditorDataProviderFromObject(importer);
+            provider.InitSpriteEditorDataProvider();
+            var previousIds = provider.GetSpriteRects().ToDictionary(rect => rect.name, rect => rect.spriteID);
+
+            var rects = new List<SpriteRect>();
+            for (int frame = 0; frame < frames; frame++)
+            {
+                for (int y = 0; y < cells; y++)
+                {
+                    for (int x = 0; x < cells; x++)
+                    {
+                        string name = $"Overlay_Caustics_{frame}_{x}_{y}";
+                        rects.Add(new SpriteRect
+                        {
+                            name = name,
+                            rect = new Rect(frame * CausticsPeriod + x * cell, y * cell, cell, cell),
+                            alignment = SpriteAlignment.Center,
+                            pivot = new Vector2(0.5f, 0.5f),
+                            spriteID = previousIds.TryGetValue(name, out var id) ? id : GUID.Generate(),
+                        });
+                    }
+                }
+            }
+            provider.SetSpriteRects(rects.ToArray());
+            provider.GetDataProvider<ISpriteNameFileIdDataProvider>()?
+                .SetNameFileIdPairs(rects.Select(r => new SpriteNameFileIdPair(r.name, r.spriteID)));
+            provider.Apply();
+            importer.SaveAndReimport();
+
+            var sprites = AssetDatabase.LoadAllAssetsAtPath(path).OfType<Sprite>().ToDictionary(sprite => sprite.name);
+            var result = new TileBase[cells * cells];
+            for (int y = 0; y < cells; y++)
+            {
+                for (int x = 0; x < cells; x++)
+                {
+                    var animation = Enumerable.Range(0, frames).Select(frame => sprites[$"Overlay_Caustics_{frame}_{x}_{y}"]).ToArray();
+                    result[x + cells * y] = CreateAnimatedTile($"{tileAssets}/Overlay_Caustics_{x}_{y}.asset", animation, 1f / CausticsFrameSeconds);
+                }
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// Copos de nieve marina (docs/multimedia-temp/environment/Ocean) y el material de sus partículas. Nulls si no hay arte.
+        /// </summary>
+        internal static (Sprite[] flakes, Material material) ImportMarineSnow()
+        {
+            CopyFiles($"{EnvironmentSourceFolder}/Ocean", OceanArtFolder, "Particle_*.png");
+            string path = $"{OceanArtFolder}/Particle_MarineSnow.png";
+            if (!File.Exists(path))
+                return (null, null);
+
+            var flakes = SliceSheet(path, 8);
+            var material = AssetDatabase.LoadAssetAtPath<Material>(MarineSnowMaterialPath);
+            if (material == null)
+            {
+                var shader = Shader.Find("Universal Render Pipeline/2D/Sprite-Unlit-Default") ?? Shader.Find("Sprites/Default");
+                material = new Material(shader);
+                AssetDatabase.CreateAsset(material, MarineSnowMaterialPath);
+            }
+            material.mainTexture = flakes.Length > 0 ? flakes[0].texture : null;
+            EditorUtility.SetDirty(material);
+            AssetDatabase.SaveAssets();
+            return (flakes, material);
         }
 
         static void CopyFiles(string sourceFolder, string targetFolder, string pattern)

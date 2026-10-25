@@ -8,19 +8,27 @@ namespace Primordia.Rooms
     public enum RoomRole
     {
         Start,
+        /// <summary>Sala de combate del camino (también las especiales que cuentan como combate).</summary>
         Combat,
-        /// <summary>Sala de combate sin salida que cuelga del camino principal.</summary>
+        /// <summary>Sala sin salida que cuelga del camino principal (también las especiales laterales).</summary>
         Side,
         Boss,
-        /// <summary>Tienda: sala sin salida y sin enemigos que cuelga de una sala de combate de la segunda mitad del camino.</summary>
+        /// <summary>Tienda: sala sin salida y sin enemigos que cuelga de una sala de combate de un tramo del camino.</summary>
         Shop,
         /// <summary>Sala de paso: cueva sin enemigos pegada a la del jefe, con la fosa que lleva al piso siguiente.</summary>
-        Transition
+        Transition,
+        /// <summary>Sala de cambio (laboratorio de Darwin): en fondo de saco detrás de la tienda.</summary>
+        Exchange,
+        /// <summary>Antesala del jefe: túnel sin enemigos justo antes de su sala, en línea recta con ella.</summary>
+        Antechamber,
+        /// <summary>Sala especial del camino que no es de combate (el Parkour).</summary>
+        Special
     }
 
     /// <summary>Una sala del plano: su celda en la rejilla, su forma y hacia dónde tiene puertas.</summary>
     public class LayoutRoom
     {
+        /// <summary>Su casilla; si ocupa dos en vertical (<see cref="Tall"/>), la de abajo.</summary>
         public Vector2Int Cell;
         public RoomRole Role;
 
@@ -34,13 +42,41 @@ namespace Primordia.Rooms
         public RoomTemplate Template;
         public readonly List<Vector2Int> Doors = new();
 
+        /// <summary>Sala especial hecha a mano, si lo es.</summary>
+        public FloorConfig.SpecialRoom? Special;
+
+        /// <summary>Ocupa dos casillas en vertical: <see cref="Cell"/> y la de encima.</summary>
+        public bool Tall;
+
+        public IEnumerable<Vector2Int> Cells
+        {
+            get
+            {
+                yield return Cell;
+                if (Tall)
+                    yield return Cell + Vector2Int.up;
+            }
+        }
+
+        /// <summary>Enemigos respecto a una sala normal (el Corazón morado lleva el doble; el Parkour y la Gruta, ninguno).</summary>
+        public float EnemyMultiplier => Special.HasValue ? Special.Value.enemyMultiplier : 1f;
+
+        string SpecialName => Special.HasValue && Special.Value.template != null
+            ? Special.Value.template.name.Replace("Room_Special_", "")
+            : "Special";
+
         public string Name => Role switch
         {
             RoomRole.Start => "Room_Start",
             RoomRole.Boss => "Room_Boss",
+            RoomRole.Side when Special.HasValue => $"Room_{Depth}_Side_{SpecialName}",
             RoomRole.Side => $"Room_{Depth}_Side",
             RoomRole.Shop => "Room_Shop",
             RoomRole.Transition => "Room_Transition",
+            RoomRole.Exchange => "Room_Exchange",
+            RoomRole.Antechamber => "Room_Antechamber",
+            RoomRole.Special => $"Room_{Depth}_{SpecialName}",
+            _ when Special.HasValue => $"Room_{Depth}_{SpecialName}",
             _ => $"Room_{Depth}"
         };
     }
@@ -53,6 +89,7 @@ namespace Primordia.Rooms
     {
         public readonly List<LayoutRoom> Rooms = new();
         public readonly List<(LayoutRoom from, LayoutRoom to)> Links = new();
+        readonly List<Vector2Int> linkDirections = new();
 
         /// <summary>Jefe de esta partida, con su sala y su tileset.</summary>
         public FloorConfig.BossEntry BossChoice;
@@ -63,24 +100,64 @@ namespace Primordia.Rooms
         /// <summary>La sala de paso, o null si el piso no tiene (el jefe da la victoria).</summary>
         public LayoutRoom Transition => Rooms.FirstOrDefault(room => room.Role == RoomRole.Transition);
 
-        public void Link(LayoutRoom from, LayoutRoom to)
+        /// <summary>Formas de cueva creadas para esta partida: se destruyen con el piso (<see cref="ReleaseGenerated"/>).</summary>
+        public readonly List<RoomTemplate> GeneratedTemplates = new();
+
+        /// <summary>Destruye las formas de cueva de esta partida.</summary>
+        public void ReleaseGenerated()
+        {
+            foreach (var template in GeneratedTemplates)
+            {
+                if (template == null)
+                    continue;
+                if (Application.isPlaying)
+                    Object.Destroy(template);
+                else
+                    Object.DestroyImmediate(template);
+            }
+            GeneratedTemplates.Clear();
+        }
+
+        /// <summary>Dirección del pasillo del enlace <paramref name="index"/>, de la primera sala a la segunda.</summary>
+        public Vector2Int Direction(int index) => linkDirections[index];
+
+        public void Link(LayoutRoom from, LayoutRoom to) => Link(from, to, to.Cell - from.Cell);
+
+        /// <summary>Une dos salas por las casillas vecinas que dan una a la otra (hace falta con las de dos casillas).</summary>
+        public void Link(LayoutRoom from, LayoutRoom to, Vector2Int direction)
         {
             Links.Add((from, to));
-            from.Doors.Add(to.Cell - from.Cell);
-            to.Doors.Add(from.Cell - to.Cell);
+            linkDirections.Add(direction);
+            from.Doors.Add(direction);
+            to.Doors.Add(-direction);
         }
     }
 
     /// <summary>
     /// Genera el plano de un piso: un camino con giros al azar desde el inicio hasta el jefe, unas pocas
     /// salas laterales sin salida colgadas de salas de combate y, si el piso tiene tienda, una sala más para ella
-    /// colgada de la segunda mitad del camino. Si el piso tiene sala de paso, el camino sigue una celda más allá del
-    /// jefe para ella. Con la misma semilla sale siempre el mismo plano.
+    /// colgada de un tramo del camino (con la sala de cambio detrás, si la hay). Si el piso tiene sala de paso, el camino
+    /// sigue una celda más allá del jefe para ella. Desde el piso 2, además, salas especiales sorteadas y la antesala del
+    /// jefe, en línea recta con él. Con la misma semilla sale siempre el mismo plano.
     /// </summary>
     public static class FloorLayoutGenerator
     {
         static readonly Vector2Int[] Directions = { Vector2Int.up, Vector2Int.down, Vector2Int.left, Vector2Int.right };
         const int MaxAttempts = 200;
+
+        // Las especiales nunca en las dos primeras salas de combate ni en la última antes del jefe.
+        const int FirstSpecialDepth = 3;
+
+        /// <summary>Un hueco del camino principal, en orden: inicio, combates, especiales, antesala, jefe y sala de paso.</summary>
+        class Slot
+        {
+            public RoomRole Role;
+            public int Depth;
+            public FloorConfig.SpecialRoom? Special;
+            public bool Tall => Special.HasValue && Special.Value.tall;
+            /// <summary>Índice de su primera casilla en el camino.</summary>
+            public int PathIndex;
+        }
 
         public static FloorLayout Generate(FloorConfig config, System.Random random)
         {
@@ -88,50 +165,183 @@ namespace Primordia.Rooms
             var boss = config.ChooseBoss(random);
             int combatCount = RandomRange(random, config.MainCombatRooms);
             int sideCount = RandomRange(random, config.SideRoomCount);
-            // Inicio, combates, jefe y, si la hay, la sala de paso al final.
-            int length = combatCount + 2 + (config.HasTransition ? 1 : 0);
+
+            var specials = PickSpecials(config, random);
+            var slots = Slots(config, combatCount, specials.Where(s => s.placement == FloorConfig.SpecialPlacement.Path).ToList(), random);
+            var sideSpecials = specials.Where(s => s.placement == FloorConfig.SpecialPlacement.Side).ToList();
+            int length = slots.Sum(slot => slot.Tall ? 2 : 1);
+            var (required, sameAsBefore) = Constraints(slots, length);
+            bool constrained = required.Any(d => d.HasValue) || sameAsBefore.Any(same => same);
 
             for (int attempt = 0; attempt < MaxAttempts; attempt++)
             {
-                var path = RandomPath(random, length);
+                var path = RandomPath(random, length, config.Path, required, sameAsBefore);
                 if (path == null)
                     continue;
 
-                var sides = SideCells(random, path, combatCount, sideCount);
+                var combatSlots = CombatSlots(slots);
+                var sides = SideCells(random, slots, path, combatSlots, sideCount);
                 if (sides == null)
                     continue;
 
+                var used = new HashSet<Vector2Int>(path.Concat(sides.Select(side => side.cell)));
+                var specialSides = SpecialSideCells(random, config, slots, path, sideSpecials, used, combatCount);
+                if (specialSides == null)
+                    continue;
+
                 (int parent, Vector2Int cell)? shop = null;
+                Vector2Int? exchange = null;
                 if (config.HasShop)
                 {
-                    shop = ShopCell(random, path, combatCount, sides);
+                    shop = ShopCell(random, slots, path, combatSlots, used, config.ShopDepth, combatCount);
                     if (shop == null)
                         continue;
+                    if (config.HasExchange)
+                    {
+                        used.Add(shop.Value.cell);
+                        exchange = ExchangeCell(random, path[slots[shop.Value.parent].PathIndex], shop.Value.cell, used);
+                        if (exchange == null)
+                            continue;
+                    }
                 }
 
-                return BuildWithBoss(boss, config, random, path, combatCount, sides, shop);
+                return BuildWithBoss(boss, config, random, slots, path, sides, specialSides, shop, exchange);
             }
 
-            // Muy improbable: sin sitio para las laterales tras muchos intentos. Camino recto, sin laterales.
-            var straight = Enumerable.Range(0, length).Select(i => new Vector2Int(i, 0)).ToList();
+            // Muy improbable: sin sitio tras muchos intentos. Camino recto (hacia abajo si hay salas que lo piden), sin laterales.
+            var straight = Enumerable.Range(0, length).Select(i => constrained ? new Vector2Int(0, -i) : new Vector2Int(i, 0)).ToList();
             var none = new List<(int, Vector2Int)>();
-            return BuildWithBoss(boss, config, random, straight, combatCount, none,
-                config.HasShop ? ShopCell(random, straight, combatCount, none) : null);
+            var noneSet = new HashSet<Vector2Int>(straight);
+            // Las especiales laterales también (el Corazón morado sale siempre): en un camino recto siempre hay sitio a los lados.
+            var straightSpecials = SpecialSideCells(random, config, slots, straight, sideSpecials, noneSet, combatCount)
+                ?? new List<(FloorConfig.SpecialRoom, int, Vector2Int)>();
+            var straightShop = config.HasShop ? ShopCell(random, slots, straight, CombatSlots(slots), noneSet, config.ShopDepth, combatCount) : null;
+            Vector2Int? straightExchange = null;
+            if (straightShop.HasValue && config.HasExchange)
+            {
+                noneSet.Add(straightShop.Value.cell);
+                straightExchange = ExchangeCell(random, straight[slots[straightShop.Value.parent].PathIndex], straightShop.Value.cell, noneSet);
+            }
+            return BuildWithBoss(boss, config, random, slots, straight, none, straightSpecials, straightShop, straightExchange);
+        }
+
+        /// <summary>Salas especiales de la partida: las que salen siempre y, hasta el número sorteado, otras al azar.</summary>
+        static List<FloorConfig.SpecialRoom> PickSpecials(FloorConfig config, System.Random random)
+        {
+            var all = config.SpecialRooms;
+            if (all.Length == 0)
+                return new List<FloorConfig.SpecialRoom>();
+
+            var always = all.Where(room => room.always).ToList();
+            int total = Mathf.Max(always.Count, RandomRange(random, config.SpecialRoomCount));
+            var others = all.Where(room => !room.always).OrderBy(_ => random.Next()).Take(total - always.Count);
+            return always.Concat(others).ToList();
         }
 
         /// <summary>
-        /// Celda libre para la tienda, vecina de una sala de combate de la segunda mitad del camino (para llegar
-        /// con biomasa). Null si no cabe.
+        /// Huecos del camino: inicio, combates (las especiales que cuentan como combate ocupan uno, nunca de las salas 1–2 ni
+        /// de la última), las especiales que no son de combate entre dos combates, antesala, jefe y sala de paso.
         /// </summary>
-        static (int parent, Vector2Int cell)? ShopCell(System.Random random, List<Vector2Int> path, int combatCount,
-            List<(int parent, Vector2Int cell)> sides)
+        static List<Slot> Slots(FloorConfig config, int combatCount, List<FloorConfig.SpecialRoom> pathSpecials, System.Random random)
         {
-            var used = new HashSet<Vector2Int>(path.Concat(sides.Select(side => side.cell)));
-            var parents = Enumerable.Range(combatCount / 2 + 1, combatCount - combatCount / 2).OrderBy(_ => random.Next()).ToList();
+            var slots = new List<Slot> { new() { Role = RoomRole.Start, Depth = 0 } };
+
+            // Especiales de combate: en salas de combate al azar de las permitidas (sin sorteo si no hay: el piso 1 no gasta azar).
+            var combatSpecials = new Dictionary<int, FloorConfig.SpecialRoom>();
+            var asCombat = pathSpecials.Where(s => s.countsAsCombat).ToList();
+            if (asCombat.Count > 0)
+            {
+                var free = Enumerable.Range(FirstSpecialDepth, Mathf.Max(0, combatCount - FirstSpecialDepth)).OrderBy(_ => random.Next()).ToList();
+                foreach (var special in asCombat.Take(free.Count))
+                {
+                    combatSpecials[free[0]] = special;
+                    free.RemoveAt(0);
+                }
+            }
+
+            // Las demás (Parkour): entre la sala d y la d + 1, sin pasar de la penúltima.
+            var between = new Dictionary<int, FloorConfig.SpecialRoom>();
+            var passages = pathSpecials.Where(s => !s.countsAsCombat).ToList();
+            if (passages.Count > 0)
+            {
+                var gaps = Enumerable.Range(FirstSpecialDepth - 1, Mathf.Max(0, combatCount - FirstSpecialDepth)).OrderBy(_ => random.Next()).ToList();
+                foreach (var special in passages.Take(gaps.Count))
+                {
+                    between[gaps[0]] = special;
+                    gaps.RemoveAt(0);
+                }
+            }
+
+            for (int depth = 1; depth <= combatCount; depth++)
+            {
+                slots.Add(new Slot
+                {
+                    Role = RoomRole.Combat,
+                    Depth = depth,
+                    Special = combatSpecials.TryGetValue(depth, out var special) ? special : null
+                });
+                if (between.TryGetValue(depth, out var passage))
+                    slots.Add(new Slot { Role = RoomRole.Special, Depth = depth, Special = passage });
+            }
+
+            if (config.HasAntechamber)
+                slots.Add(new Slot { Role = RoomRole.Antechamber, Depth = combatCount });
+            slots.Add(new Slot { Role = RoomRole.Boss, Depth = combatCount + 1 });
+            if (config.HasTransition)
+                slots.Add(new Slot { Role = RoomRole.Transition, Depth = combatCount + 2 });
+
+            int index = 0;
+            foreach (var slot in slots)
+            {
+                slot.PathIndex = index;
+                index += slot.Tall ? 2 : 1;
+            }
+            return slots;
+        }
+
+        /// <summary>
+        /// Direcciones obligadas del camino: las salas altas (Parkour) se recorren de arriba abajo, y del hueco de la antesala
+        /// al jefe se sigue en la misma dirección con la que se llegó a la antesala.
+        /// </summary>
+        static (Vector2Int?[] required, bool[] sameAsBefore) Constraints(List<Slot> slots, int length)
+        {
+            var required = new Vector2Int?[length];
+            var same = new bool[length];
+            foreach (var slot in slots)
+            {
+                if (slot.Tall)
+                {
+                    for (int i = slot.PathIndex; i <= slot.PathIndex + 2 && i < length; i++)
+                        required[i] = Vector2Int.down;
+                }
+                if (slot.Role == RoomRole.Antechamber && slot.PathIndex + 1 < length)
+                    same[slot.PathIndex + 1] = true;
+            }
+            return (required, same);
+        }
+
+        /// <summary>Huecos de combate normales (sin especial), de los que cuelgan laterales y tienda.</summary>
+        static List<int> CombatSlots(List<Slot> slots) =>
+            Enumerable.Range(0, slots.Count).Where(i => slots[i].Role == RoomRole.Combat && !slots[i].Special.HasValue).ToList();
+
+        /// <summary>
+        /// Celda libre para la tienda, vecina de una sala de combate del tramo <paramref name="depth"/> del camino (en
+        /// fracción de las salas de combate: la segunda mitad en el piso 1, para llegar con biomasa; el tercio del medio en
+        /// el piso 2). Null si no cabe.
+        /// </summary>
+        static (int parent, Vector2Int cell)? ShopCell(System.Random random, List<Slot> slots, List<Vector2Int> path, List<int> combatSlots,
+            HashSet<Vector2Int> used, Vector2 depth, int combatCount)
+        {
+            float from = Mathf.Min(depth.x, depth.y), to = Mathf.Max(depth.x, depth.y);
+            var parents = combatSlots
+                .Where(i => combatCount <= 1 || ((slots[i].Depth - 1f) / (combatCount - 1f) >= from - 0.001f
+                    && (slots[i].Depth - 1f) / (combatCount - 1f) <= to + 0.001f))
+                .OrderBy(_ => random.Next()).ToList();
 
             foreach (int parent in parents)
             {
-                var free = Directions.Select(d => path[parent] + d).Where(cell => !used.Contains(cell)).ToList();
+                var cell = path[slots[parent].PathIndex];
+                var free = Directions.Select(d => cell + d).Where(c => !used.Contains(c)).ToList();
                 if (free.Count > 0)
                     return (parent, free[random.Next(free.Count)]);
             }
@@ -139,20 +349,42 @@ namespace Primordia.Rooms
             return null;
         }
 
-        /// <summary>Camino que no se cruza consigo mismo, con giros al azar. Null si se encierra.</summary>
-        static List<Vector2Int> RandomPath(System.Random random, int length)
+        /// <summary>
+        /// Celda de la sala de cambio, en fondo de saco detrás de la tienda: la de enfrente de la entrada de la tienda si está
+        /// libre; si no, otra vecina libre. Null si no hay.
+        /// </summary>
+        static Vector2Int? ExchangeCell(System.Random random, Vector2Int parentCell, Vector2Int shopCell, HashSet<Vector2Int> used)
+        {
+            var ahead = shopCell + (shopCell - parentCell);
+            if (!used.Contains(ahead))
+                return ahead;
+            var free = Directions.Select(d => shopCell + d).Where(c => !used.Contains(c)).ToList();
+            return free.Count > 0 ? free[random.Next(free.Count)] : null;
+        }
+
+        /// <summary>
+        /// Camino que no se cruza consigo mismo, con giros al azar. Con pesos distintos por dirección (piso 2), cada paso
+        /// elige según ellos, así el camino tiende a bajar. Respeta las direcciones obligadas. Null si se encierra.
+        /// </summary>
+        static List<Vector2Int> RandomPath(System.Random random, int length, FloorConfig.PathWeights weights,
+            Vector2Int?[] required, bool[] sameAsBefore)
         {
             var path = new List<Vector2Int> { Vector2Int.zero };
             var used = new HashSet<Vector2Int> { Vector2Int.zero };
 
             while (path.Count < length)
             {
+                int index = path.Count;
                 var current = path[^1];
                 var options = Directions.Select(d => current + d).Where(cell => !used.Contains(cell)).ToList();
+                if (required[index].HasValue)
+                    options = options.Where(cell => cell - current == required[index].Value).ToList();
+                if (sameAsBefore[index] && index >= 2)
+                    options = options.Where(cell => cell - current == current - path[index - 2]).ToList();
                 if (options.Count == 0)
                     return null;
 
-                var next = options[random.Next(options.Count)];
+                var next = weights.IsEven ? options[random.Next(options.Count)] : Weighted(random, options, current, weights);
                 path.Add(next);
                 used.Add(next);
             }
@@ -160,14 +392,31 @@ namespace Primordia.Rooms
             return path;
         }
 
+        static Vector2Int Weighted(System.Random random, List<Vector2Int> options, Vector2Int current, FloorConfig.PathWeights weights)
+        {
+            float total = options.Sum(cell => weights.For(cell - current));
+            if (total <= 0f)
+                return options[random.Next(options.Count)];
+
+            float roll = (float)random.NextDouble() * total;
+            foreach (var cell in options)
+            {
+                roll -= weights.For(cell - current);
+                if (roll < 0f)
+                    return cell;
+            }
+            return options[^1];
+        }
+
         /// <summary>
         /// Celdas libres para las salas laterales, vecinas de salas de combate distintas (ni el inicio, ni el jefe,
-        /// ni la sala de paso). Cada una se devuelve con el índice de la sala del camino de la que cuelga. Null si no caben.
+        /// ni la sala de paso). Cada una se devuelve con el hueco del camino del que cuelga. Null si no caben.
         /// </summary>
-        static List<(int parent, Vector2Int cell)> SideCells(System.Random random, List<Vector2Int> path, int combatCount, int count)
+        static List<(int parent, Vector2Int cell)> SideCells(System.Random random, List<Slot> slots, List<Vector2Int> path,
+            List<int> combatSlots, int count)
         {
             var used = new HashSet<Vector2Int>(path);
-            var parents = Enumerable.Range(1, combatCount).OrderBy(_ => random.Next()).ToList();
+            var parents = combatSlots.OrderBy(_ => random.Next()).ToList();
             var result = new List<(int, Vector2Int)>();
 
             foreach (int parent in parents)
@@ -175,58 +424,131 @@ namespace Primordia.Rooms
                 if (result.Count == count)
                     break;
 
-                var free = Directions.Select(d => path[parent] + d).Where(cell => !used.Contains(cell)).ToList();
+                var cell = path[slots[parent].PathIndex];
+                var free = Directions.Select(d => cell + d).Where(c => !used.Contains(c)).ToList();
                 if (free.Count == 0)
                     continue;
 
-                var cell = free[random.Next(free.Count)];
-                used.Add(cell);
-                result.Add((parent, cell));
+                var chosen = free[random.Next(free.Count)];
+                used.Add(chosen);
+                result.Add((parent, chosen));
             }
 
             return result.Count == count ? result : null;
         }
 
-        static FloorLayout BuildWithBoss(FloorConfig.BossEntry boss, FloorConfig config, System.Random random, List<Vector2Int> path,
-            int combatCount, List<(int parent, Vector2Int cell)> sides, (int parent, Vector2Int cell)? shop)
+        /// <summary>
+        /// Celdas de las especiales laterales (Corazón morado, Gruta escondida): colgando de salas de combate que no son ni las
+        /// dos primeras ni la última, en su franja si la piden. Null si alguna no cabe.
+        /// </summary>
+        static List<(FloorConfig.SpecialRoom special, int parent, Vector2Int cell)> SpecialSideCells(System.Random random, FloorConfig config,
+            List<Slot> slots, List<Vector2Int> path, List<FloorConfig.SpecialRoom> specials, HashSet<Vector2Int> used, int combatCount)
         {
-            var layout = Build(config, random, path, combatCount, sides, shop, boss.room);
+            var result = new List<(FloorConfig.SpecialRoom, int, Vector2Int)>();
+            int bands = config.HasBands ? config.BandThemes.Length : 0;
+            var taken = new HashSet<int>();
+            foreach (var special in specials)
+            {
+                // De cualquier sala de combate, también de las especiales: si no, con las especiales de combate en las salas del
+                // Abismo, el Corazón morado podría quedarse sin sitio.
+                var parents = Enumerable.Range(0, slots.Count).Where(i => slots[i].Role == RoomRole.Combat)
+                    .Where(i => slots[i].Depth >= FirstSpecialDepth && slots[i].Depth < combatCount && !taken.Contains(i))
+                    .Where(i => special.band < 0 || bands == 0 || FloorBuilder.BandOf(slots[i].Depth, combatCount, bands) == special.band)
+                    .OrderBy(_ => random.Next()).ToList();
+
+                bool placed = false;
+                foreach (int parent in parents)
+                {
+                    var cell = path[slots[parent].PathIndex];
+                    var free = Directions.Select(d => cell + d).Where(c => !used.Contains(c)).ToList();
+                    if (free.Count == 0)
+                        continue;
+                    var chosen = free[random.Next(free.Count)];
+                    used.Add(chosen);
+                    taken.Add(parent);
+                    result.Add((special, parent, chosen));
+                    placed = true;
+                    break;
+                }
+                if (!placed)
+                    return null;
+            }
+            return result;
+        }
+
+        static FloorLayout BuildWithBoss(FloorConfig.BossEntry boss, FloorConfig config, System.Random random, List<Slot> slots,
+            List<Vector2Int> path, List<(int parent, Vector2Int cell)> sides,
+            List<(FloorConfig.SpecialRoom special, int parent, Vector2Int cell)> specialSides,
+            (int parent, Vector2Int cell)? shop, Vector2Int? exchange)
+        {
+            var layout = Build(config, random, slots, path, sides, specialSides, shop, exchange, boss.room);
             layout.BossChoice = boss;
             return layout;
         }
 
-        static FloorLayout Build(FloorConfig config, System.Random random, List<Vector2Int> path, int combatCount,
-            List<(int parent, Vector2Int cell)> sides, (int parent, Vector2Int cell)? shop, RoomTemplate bossRoom)
+        static FloorLayout Build(FloorConfig config, System.Random random, List<Slot> slots, List<Vector2Int> path,
+            List<(int parent, Vector2Int cell)> sides, List<(FloorConfig.SpecialRoom special, int parent, Vector2Int cell)> specialSides,
+            (int parent, Vector2Int cell)? shop, Vector2Int? exchange, RoomTemplate bossRoom)
         {
             var layout = new FloorLayout();
             var rewardAfter = new HashSet<int>(config.RewardAfter ?? new int[0]);
             RoomTemplate previousCombat = null;
+            var bySlot = new LayoutRoom[slots.Count];
 
-            for (int i = 0; i < path.Count; i++)
+            for (int s = 0; s < slots.Count; s++)
             {
-                var role = i == 0 ? RoomRole.Start
-                    : i <= combatCount ? RoomRole.Combat
-                    : i == combatCount + 1 ? RoomRole.Boss
-                    : RoomRole.Transition;
-                var room = new LayoutRoom { Cell = path[i], Role = role, Depth = i };
-
-                if (role == RoomRole.Start)
-                    room.Template = config.StartRoom;
-                else if (role == RoomRole.Boss)
-                    room.Template = bossRoom;
-                else if (role == RoomRole.Transition)
-                    room.Template = config.TransitionRoom;
-                else
+                var slot = slots[s];
+                int first = slot.PathIndex, last = slot.PathIndex + (slot.Tall ? 1 : 0);
+                var room = new LayoutRoom
                 {
-                    // Dos salas seguidas del camino no repiten forma, si hay donde elegir.
-                    room.Template = Pick(random, config.CombatRooms, previousCombat);
-                    previousCombat = room.Template;
-                    room.Reward = rewardAfter.Contains(i);
+                    Cell = path[last],
+                    Role = slot.Role,
+                    Depth = slot.Depth,
+                    Special = slot.Special,
+                    Tall = slot.Tall,
+                };
+
+                switch (slot.Role)
+                {
+                    case RoomRole.Start:
+                        room.Template = config.GeneratesCaves ? Cave(layout, random, config.SmallCaveSizes, config.StartRoom, room) : config.StartRoom;
+                        break;
+                    case RoomRole.Boss:
+                        room.Template = bossRoom;
+                        break;
+                    case RoomRole.Transition:
+                        room.Template = config.TransitionRoom;
+                        break;
+                    case RoomRole.Antechamber:
+                        // En línea con el jefe: el túnel vertical si se llega de arriba o de abajo, el horizontal si no.
+                        var into = path[first] - path[first - 1];
+                        room.Template = into.x == 0 ? config.AntechamberVertical : config.AntechamberHorizontal;
+                        break;
+                    case RoomRole.Special:
+                        room.Template = slot.Special.Value.template;
+                        break;
+                    default:
+                        if (slot.Special.HasValue)
+                            room.Template = slot.Special.Value.template;
+                        else
+                        {
+                            // Dos salas seguidas del camino no repiten forma, si hay donde elegir.
+                            var shape = Pick(random, config.CombatRooms, previousCombat);
+                            room.Template = config.GeneratesCaves ? Cave(layout, random, config.CaveSizes, shape, room) : shape;
+                            previousCombat = shape;
+                        }
+                        room.Reward = rewardAfter.Contains(slot.Depth) || (slot.Special.HasValue && slot.Special.Value.rewardAtEnd);
+                        break;
                 }
 
                 layout.Rooms.Add(room);
-                if (i > 0)
-                    layout.Link(layout.Rooms[i - 1], room);
+                bySlot[s] = room;
+                if (s > 0)
+                {
+                    var previous = slots[s - 1];
+                    var exit = path[previous.PathIndex + (previous.Tall ? 1 : 0)];
+                    layout.Link(bySlot[s - 1], room, path[first] - exit);
+                }
             }
 
             foreach (var (parent, cell) in sides)
@@ -235,12 +557,21 @@ namespace Primordia.Rooms
                 {
                     Cell = cell,
                     Role = RoomRole.Side,
-                    Depth = layout.Rooms[parent].Depth,
+                    Depth = bySlot[parent].Depth,
                     Reward = true,
-                    Template = Pick(random, config.SideRooms, null)
                 };
+                var sideShape = Pick(random, config.SideRooms, null);
+                side.Template = config.GeneratesCaves ? Cave(layout, random, config.SmallCaveSizes, sideShape, side) : sideShape;
                 layout.Rooms.Add(side);
-                layout.Link(layout.Rooms[parent], side);
+                layout.Link(bySlot[parent], side);
+            }
+
+            foreach (var (special, parent, cell) in specialSides)
+            {
+                // Su premio es lo que tiene dentro (el corazón morado, la almeja), no una elección de mutación.
+                var side = new LayoutRoom { Cell = cell, Role = RoomRole.Side, Depth = bySlot[parent].Depth, Special = special, Template = special.template };
+                layout.Rooms.Add(side);
+                layout.Link(bySlot[parent], side);
             }
 
             if (shop.HasValue)
@@ -250,14 +581,50 @@ namespace Primordia.Rooms
                 {
                     Cell = shopCell,
                     Role = RoomRole.Shop,
-                    Depth = layout.Rooms[shopParent].Depth,
+                    Depth = bySlot[shopParent].Depth,
                     Template = config.ShopTemplate,
                 };
                 layout.Rooms.Add(shopRoom);
-                layout.Link(layout.Rooms[shopParent], shopRoom);
+                layout.Link(bySlot[shopParent], shopRoom);
+
+                if (exchange.HasValue)
+                {
+                    var exchangeRoom = new LayoutRoom
+                    {
+                        Cell = exchange.Value,
+                        Role = RoomRole.Exchange,
+                        Depth = shopRoom.Depth,
+                        Template = config.ExchangeRoom,
+                    };
+                    layout.Rooms.Add(exchangeRoom);
+                    layout.Link(shopRoom, exchangeRoom);
+                }
             }
 
             return layout;
+        }
+
+        /// <summary>
+        /// Cueva generada para la sala, de uno de los tamaños posibles. Si no sale ninguna que pase la comprobación, la forma
+        /// de reserva del catálogo (<paramref name="fallback"/>).
+        /// </summary>
+        static RoomTemplate Cave(FloorLayout layout, System.Random random, Vector2Int[] sizes, RoomTemplate fallback, LayoutRoom room)
+        {
+            if (sizes.Length == 0)
+                return fallback;
+
+            var text = CaveGenerator.Generate(sizes[random.Next(sizes.Length)], random);
+            if (text == null)
+            {
+                Debug.LogWarning($"FloorLayoutGenerator: ninguna cueva pasó la comprobación para {room.Name}; se usa {(fallback != null ? fallback.name : "nada")}.");
+                return fallback;
+            }
+
+            var template = ScriptableObject.CreateInstance<RoomTemplate>();
+            template.name = $"Cave_{room.Name}";
+            template.SetLayout(text);
+            layout.GeneratedTemplates.Add(template);
+            return template;
         }
 
         static RoomTemplate Pick(System.Random random, RoomTemplate[] options, RoomTemplate avoid)

@@ -15,9 +15,19 @@ namespace Primordia.Rooms
         /// <summary>Rejilla del piso actual. Null si no hay piso generado (escenas de prueba): se va en línea recta.</summary>
         public static NavigationGrid Current { get; set; }
 
+        /// <summary>
+        /// Rejilla del piso actual en la que las fosas se cruzan: la de los enemigos que nadan, y la de la línea de visión de
+        /// todos (se ve y se dispara por encima de una fosa). Null si no hay piso generado.
+        /// </summary>
+        public static NavigationGrid Swimming { get; set; }
+
         // El proyecto entra en Play sin recargar el dominio, así que los static hay que limpiarlos a mano.
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-        static void ResetStatics() => Current = null;
+        static void ResetStatics()
+        {
+            Current = null;
+            Swimming = null;
+        }
 
         const int Unreachable = int.MaxValue;
         // Paso al comprobar la línea de visión, en unidades.
@@ -38,10 +48,14 @@ namespace Primordia.Rooms
 
         public RectInt Bounds => bounds;
 
-        /// <summary>Se puede caminar por todo lo que no es pared (suelo, pasillos y huecos de puerta).</summary>
-        public NavigationGrid(FloorMap map) : this(map.Bounds, cell => map.Get(cell) != FloorMap.Kind.Wall)
+        /// <summary>Se puede caminar por todo lo que no es pared, obstáculo ni fosa (suelo, pasillos y huecos de puerta).</summary>
+        public NavigationGrid(FloorMap map) : this(map.Bounds, cell => map.Get(cell) is not (FloorMap.Kind.Wall or FloorMap.Kind.Obstacle or FloorMap.Kind.Pit))
         {
         }
+
+        /// <summary>Para los que nadan: como la normal, pero las fosas se cruzan por encima.</summary>
+        public static NavigationGrid ForSwimmers(FloorMap map) =>
+            new(map.Bounds, cell => map.Get(cell) is not (FloorMap.Kind.Wall or FloorMap.Kind.Obstacle));
 
         public NavigationGrid(RectInt bounds, Func<Vector2Int, bool> isWalkable)
         {

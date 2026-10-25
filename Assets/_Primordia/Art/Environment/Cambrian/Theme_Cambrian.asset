@@ -69,3 +69,138 @@ MonoBehaviour:
   - {fileID: 1422942707524771534, guid: 7250a781f19e54c4ead4dc67aa70eb25, type: 3}
   - {fileID: 3227117808192725293, guid: 7250a781f19e54c4ead4dc67aa70eb25, type: 3}
   - {fileID: -1402304035, guid: 7250a781f19e54c4ead4dc67aa70eb25, type: 3}
+  slabTop:
+    close:
+    - {fileID: 2940678948360422728, guid: edfe69e3920d8554583071e84b9dabf4, type: 3}
+    - {fileID: 8281394206316478311, guid: edfe69e3920d8554583071e84b9dabf4, type: 3}
+    - {fileID: -383657821441966866, guid: edfe69e3920d8554583071e84b9dabf4, type: 3}
+    - {fileID: 7761846175403427611, guid: edfe69e3920d8554583071e84b9dabf4, type: 3}
+    - {fileID: -4664970391861656495, guid: edfe69e3920d8554583071e84b9dabf4, type: 3}
+    - {fileID: -3250884835730625889, guid: edfe69e3920d8554583071e84b9dabf4, type: 3}
+    - {fileID: 585120191, guid: edfe69e3920d8554583071e84b9dabf4, type: 3}
+    closeDurations:
+    - 0.07
+    - 0.06
+    - 0.06
+    - 0.06
+    - 0.06
+    - 0.11
+    - 0.14
+    open:
+    - {fileID: 2775528229245011154, guid: 2a4e830db1e69434d99e9b7e0a6a5f91, type: 3}
+    - {fileID: 2147576139413206256, guid: 2a4e830db1e69434d99e9b7e0a6a5f91, type: 3}
+    - {fileID: 4376699073831917504, guid: 2a4e830db1e69434d99e9b7e0a6a5f91, type: 3}
+    - {fileID: -7341122349605837377, guid: 2a4e830db1e69434d99e9b7e0a6a5f91, type: 3}
+    - {fileID: 5404845763991561328, guid: 2a4e830db1e69434d99e9b7e0a6a5f91, type: 3}
+    - {fileID: 5641276085312224492, guid: 2a4e830db1e69434d99e9b7e0a6a5f91, type: 3}
+    openDurations:
+    - 0.13
+    - 0.09
+    - 0.06
+    - 0.06
+    - 0.06
+    - 0.06
+  slabBottom:
+    close:
+    - {fileID: -2291608439173651073, guid: 2a0904c40eb23e04ca2f77e2d3e551a0, type: 3}
+    - {fileID: -8871045316677345073, guid: 2a0904c40eb23e04ca2f77e2d3e551a0, type: 3}
+    - {fileID: 274471711049949296, guid: 2a0904c40eb23e04ca2f77e2d3e551a0, type: 3}
+    - {fileID: -2410265758952890229, guid: 2a0904c40eb23e04ca2f77e2d3e551a0, type: 3}
+    - {fileID: 353147564, guid: 2a0904c40eb23e04ca2f77e2d3e551a0, type: 3}
+    - {fileID: -1531729553, guid: 2a0904c40eb23e04ca2f77e2d3e551a0, type: 3}
+    - {fileID: 46584392, guid: 2a0904c40eb23e04ca2f77e2d3e551a0, type: 3}
+    closeDurations:
+    - 0.07
+    - 0.06
+    - 0.06
+    - 0.06
+    - 0.06
+    - 0.11
+    - 0.14
+    open:
+    - {fileID: -1108958873402442804, guid: 8559075e211b5e845a88ce652656eda7, type: 3}
+    - {fileID: -4154147268522818445, guid: 8559075e211b5e845a88ce652656eda7, type: 3}
+    - {fileID: 7575877774000014712, guid: 8559075e211b5e845a88ce652656eda7, type: 3}
+    - {fileID: -1705507096926049510, guid: 8559075e211b5e845a88ce652656eda7, type: 3}
+    - {fileID: 1203447591, guid: 8559075e211b5e845a88ce652656eda7, type: 3}
+    - {fileID: -1935330470, guid: 8559075e211b5e845a88ce652656eda7, type: 3}
+    openDurations:
+    - 0.13
+    - 0.09
+    - 0.06
+    - 0.06
+    - 0.06
+    - 0.06
+  slabSide:
+    close:
+    - {fileID: 4598102263114594384, guid: 47753fe9969b7644288452028af7d245, type: 3}
+    - {fileID: -50970483, guid: 47753fe9969b7644288452028af7d245, type: 3}
+    - {fileID: -2083891274, guid: 47753fe9969b7644288452028af7d245, type: 3}
+    - {fileID: 781370226, guid: 47753fe9969b7644288452028af7d245, type: 3}
+    - {fileID: 1179876338, guid: 47753fe9969b7644288452028af7d245, type: 3}
+    - {fileID: 1248218143, guid: 47753fe9969b7644288452028af7d245, type: 3}
+    - {fileID: -1817381178, guid: 47753fe9969b7644288452028af7d245, type: 3}
+    closeDurations:
+    - 0.07
+    - 0.06
+    - 0.06
+    - 0.06
+    - 0.06
+    - 0.11
+    - 0.14
+    open:
+    - {fileID: -3715851365911302985, guid: 639eead2ac2e140459f676a66f7f7e70, type: 3}
+    - {fileID: 77302121, guid: 639eead2ac2e140459f676a66f7f7e70, type: 3}
+    - {fileID: -1674171320, guid: 639eead2ac2e140459f676a66f7f7e70, type: 3}
+    - {fileID: 1026841974, guid: 639eead2ac2e140459f676a66f7f7e70, type: 3}
+    - {fileID: -249885335, guid: 639eead2ac2e140459f676a66f7f7e70, type: 3}
+    - {fileID: -997633948, guid: 639eead2ac2e140459f676a66f7f7e70, type: 3}
+    openDurations:
+    - 0.13
+    - 0.09
+    - 0.06
+    - 0.06
+    - 0.06
+    - 0.06
+  smallObstacles:
+  - {fileID: 21300000, guid: 25e67139c4befa94fa05bb06acbee339, type: 3}
+  bigObstacles:
+  - {fileID: 21300000, guid: 4b3de661cee69f74fb23dbfb87ad38b0, type: 3}
+  - {fileID: 21300000, guid: aebb42bbae525d24fbdfe327c0fbaed3, type: 3}
+  - {fileID: 21300000, guid: feb79cc2cca0907408f168e4445d14cb, type: 3}
+  smallObstacleOutlines:
+  - {fileID: 21300000, guid: e1c890e1ccb607848a61a364be4a231c, type: 3}
+  bigObstacleOutlines:
+  - {fileID: 21300000, guid: b7ddb1f99cfe8fb48ac22775ad2d5a93, type: 3}
+  - {fileID: 21300000, guid: 864f19f1e021afe4bbb883e5493d8c2d, type: 3}
+  - {fileID: 21300000, guid: 0779681e2b1423f48b7000c46bc34385, type: 3}
+  obstacleOutline: {r: 0.95, g: 0.77, b: 0.35, a: 0.85}
+  pitTiles:
+  - {fileID: 11400000, guid: 50f0d174e9010f3489ac32170692c46d, type: 2}
+  - {fileID: 11400000, guid: d4490cde5e9def3498580f861ac6a076, type: 2}
+  - {fileID: 11400000, guid: 27fa5966ad837444799c9fc44839357c, type: 2}
+  - {fileID: 11400000, guid: 3f3c0fda5f0f42543bb260af7601118a, type: 2}
+  - {fileID: 11400000, guid: 2620e3a7d77388d468be134ecad66e8f, type: 2}
+  - {fileID: 11400000, guid: 613a660012262cb41838e9a634528bbe, type: 2}
+  - {fileID: 11400000, guid: ee0dc3207eb252746ae2317f210894bb, type: 2}
+  - {fileID: 11400000, guid: 68b0a24748e98cd4faddbb1d56fcca28, type: 2}
+  - {fileID: 11400000, guid: 5bba811e4cb733548b148d26f961207c, type: 2}
+  - {fileID: 11400000, guid: 48001c2e8ef8e8940bc67086b71a0d85, type: 2}
+  - {fileID: 11400000, guid: 304eee170232b5643adee055ba07b37e, type: 2}
+  - {fileID: 11400000, guid: b29557434fe5bdf499e17658e0138ea3, type: 2}
+  - {fileID: 11400000, guid: 56f32136a0d16e249bab3fe9b6246c1d, type: 2}
+  - {fileID: 11400000, guid: a0e0b6797ef42da4d86769d9b923ca8c, type: 2}
+  - {fileID: 11400000, guid: 158b7f7f81a424b419d388dec7aba8da, type: 2}
+  - {fileID: 11400000, guid: 608138a659546c74e9ad31a832e49522, type: 2}
+  pitCorners:
+  - {fileID: 11400000, guid: d18d90acc94032e4cab288aa14f9aff3, type: 2}
+  - {fileID: 11400000, guid: a8ece92cd4cb2fd45adec8bea591b1b1, type: 2}
+  - {fileID: 11400000, guid: f245181a0031ac844a4d0e3375739282, type: 2}
+  - {fileID: 11400000, guid: d82b935c6a9131b4f8817fb9cc3e8b0a, type: 2}
+  pitMotes: {fileID: 11400000, guid: 701ff28100e5fbc4fa79fd28f889ee14, type: 2}
+  pitMotesChance: 0.12
+  caustics: []
+  lightRay: []
+  lightRayFrameDuration: 0.25
+  marineSnow: 30
+  glows: []

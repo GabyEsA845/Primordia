@@ -34,6 +34,11 @@ namespace Primordia.Audio
         Room currentRoom;
         Room bossRoomStarted;
         bool inFloor;
+        int floorNumber = 1;
+
+        // Ambiente de cada piso: la sopa en el primero y el océano desde el segundo (su música llega con floor2-audio;
+        // mientras, suena la del piso 1).
+        string FloorAmbience => floorNumber >= 2 ? Sounds.AmbFloor2 : Sounds.AmbFloor1;
 
         void Awake() => manager = GetComponent<AudioManager>();
 
@@ -44,6 +49,7 @@ namespace Primordia.Audio
             Room.PlayerExitedAny += OnPlayerExited;
             Room.CombatStartedAny += OnCombatStarted;
             Room.ClearedAny += OnCleared;
+            FloorGenerator.FloorChanged += OnFloorChanged;
         }
 
         void OnDisable()
@@ -53,6 +59,7 @@ namespace Primordia.Audio
             Room.PlayerExitedAny -= OnPlayerExited;
             Room.CombatStartedAny -= OnCombatStarted;
             Room.ClearedAny -= OnCleared;
+            FloorGenerator.FloorChanged -= OnFloorChanged;
             Watch(null);
         }
 
@@ -97,7 +104,7 @@ namespace Primordia.Audio
             transitionBlend = blend;
 
             manager.Music.SetDistanceGain(1f - blend);
-            if (manager.IsLoopPlaying(Sounds.AmbFloor1))
+            if (floorNumber == 1 && manager.IsLoopPlaying(Sounds.AmbFloor1))
                 manager.StartLoop(Sounds.AmbFloor1, 1f - blend);
             if (blend > 0f)
                 manager.StartLoop(Sounds.AmbFloor2, blend);
@@ -129,6 +136,7 @@ namespace Primordia.Audio
             manager.Music.SetDistanceGain(1f);
             manager.StopLoop(Sounds.AmbFloor2);
             inFloor = scene.name != SceneNames.MainMenu;
+            floorNumber = 1;
             if (!inFloor)
             {
                 manager.StopLoop(Sounds.AmbFloor1);
@@ -144,7 +152,22 @@ namespace Primordia.Audio
         {
             manager.Music.Play(Sounds.MusicFloor1Explore, Sounds.MusicFloor1Combat, fade);
             manager.StopLoop(Sounds.AmbBossRoom);
-            manager.StartLoop(Sounds.AmbFloor1);
+            if (FloorAmbience != Sounds.AmbFloor1)
+                manager.StopLoop(Sounds.AmbFloor1);
+            manager.StartLoop(FloorAmbience);
+        }
+
+        // Piso nuevo en la misma escena (tras la fosa): se olvida el anterior y suena el nuevo.
+        void OnFloorChanged(int floor)
+        {
+            if (floor == floorNumber)
+                return;
+            floorNumber = floor;
+            currentRoom = null;
+            bossRoomStarted = null;
+            transitionBlend = 0f;
+            manager.Music.SetDistanceGain(1f);
+            PlayFloor(fade: 2f);
         }
 
         void OnPlayerEntered(Room room)
@@ -180,7 +203,7 @@ namespace Primordia.Audio
             manager.Music.Play(amoeba ? Sounds.MusicBossAmoeba : Sounds.MusicBossVirus, 0.3f);
             manager.Music.Stinger(Sounds.StingBossIntro, resume: true);
             manager.PlaySound(amoeba ? Sounds.AmoebaIntro : Sounds.VirusIntro);
-            manager.StopLoop(Sounds.AmbFloor1);
+            manager.StopLoop(FloorAmbience);
             manager.StartLoop(Sounds.AmbBossRoom);
         }
 

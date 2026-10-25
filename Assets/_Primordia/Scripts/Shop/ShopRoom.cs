@@ -111,6 +111,13 @@ namespace Primordia.Shop
                 tooltip.Hide();
         }
 
+        /// <summary>Las mutaciones que vende: las del piso en que está (el prefab trae las del piso 1).</summary>
+        internal void SetPool(MutationPool newPool)
+        {
+            if (newPool != null)
+                pool = newPool;
+        }
+
         internal void Configure(MutationPool newPool, ShopPedestal[] newPedestals, Transform newCounter, Animator newDarwin, float newBuyDuration)
         {
             pool = newPool;

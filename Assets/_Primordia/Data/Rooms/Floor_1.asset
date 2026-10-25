@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4ba12a379f398148bd08d9c95bcf113, type: 3}
   m_Name: Floor_1
   m_EditorClassIdentifier: Primordia::Primordia.Rooms.FloorConfig
+  floorNumber: 1
+  nextFloor: {fileID: 11400000, guid: a97c0e3b944f10f4ca32f922906733e7, type: 2}
   startRoom: {fileID: 11400000, guid: dd2524ff606d8904f8886c9aebe37fdd, type: 2}
   bossRoom: {fileID: 11400000, guid: fc6ceb4b1ee497742babf0fa9f360cd1, type: 2}
   combatRooms:
@@ -28,6 +30,7 @@ MonoBehaviour:
   sideRoomCount: {x: 1, y: 2}
   theme: {fileID: 11400000, guid: 7c54322dcfdb63b4bbbe9343ed987b9d, type: 2}
   bossTheme: {fileID: 11400000, guid: 0ab89510c4bdea14ab8e629038e4cb6d, type: 2}
+  bandThemes: []
   enemies:
   - prefab: {fileID: 8882603238870742745, guid: a55174d84ea389f4ea3dbe2ad2e34d19, type: 3}
     cost: 1
@@ -57,6 +60,7 @@ MonoBehaviour:
   minimumBiomassPerRoom: 2
   shopRoom: {fileID: 11400000, guid: dd2524ff606d8904f8886c9aebe37fdd, type: 2}
   shopPrefab: {fileID: 2843019761843824620, guid: ef69c3942d3bba648adfcf2885fa7fd4, type: 3}
+  shopDepth: {x: 0.5, y: 1}
   transitionRoom: {fileID: 11400000, guid: a1cc0837e3579584189ff066928ff179, type: 2}
   transitionPit: {fileID: 3569420486088721647, guid: 8b10ac4d06826994fac52a004c267678, type: 3}
   transitionMidTheme: {fileID: 11400000, guid: 7c52fb05cf14a8840b29b17042546fb5, type: 2}

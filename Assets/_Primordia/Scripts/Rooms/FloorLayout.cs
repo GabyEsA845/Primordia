@@ -104,7 +104,7 @@ namespace Primordia.Rooms
                 (int parent, Vector2Int cell)? shop = null;
                 if (config.HasShop)
                 {
-                    shop = ShopCell(random, path, combatCount, sides);
+                    shop = ShopCell(random, path, combatCount, sides, config.ShopDepth);
                     if (shop == null)
                         continue;
                 }
@@ -116,18 +116,22 @@ namespace Primordia.Rooms
             var straight = Enumerable.Range(0, length).Select(i => new Vector2Int(i, 0)).ToList();
             var none = new List<(int, Vector2Int)>();
             return BuildWithBoss(boss, config, random, straight, combatCount, none,
-                config.HasShop ? ShopCell(random, straight, combatCount, none) : null);
+                config.HasShop ? ShopCell(random, straight, combatCount, none, config.ShopDepth) : null);
         }
 
         /// <summary>
-        /// Celda libre para la tienda, vecina de una sala de combate de la segunda mitad del camino (para llegar
-        /// con biomasa). Null si no cabe.
+        /// Celda libre para la tienda, vecina de una sala de combate del tramo <paramref name="depth"/> del camino (en
+        /// fracción de las salas de combate: la segunda mitad en el piso 1, para llegar con biomasa; el tercio del medio en
+        /// el piso 2). Null si no cabe.
         /// </summary>
         static (int parent, Vector2Int cell)? ShopCell(System.Random random, List<Vector2Int> path, int combatCount,
-            List<(int parent, Vector2Int cell)> sides)
+            List<(int parent, Vector2Int cell)> sides, Vector2 depth)
         {
             var used = new HashSet<Vector2Int>(path.Concat(sides.Select(side => side.cell)));
-            var parents = Enumerable.Range(combatCount / 2 + 1, combatCount - combatCount / 2).OrderBy(_ => random.Next()).ToList();
+            float from = Mathf.Min(depth.x, depth.y), to = Mathf.Max(depth.x, depth.y);
+            var parents = Enumerable.Range(1, combatCount)
+                .Where(i => combatCount <= 1 || ((i - 1f) / (combatCount - 1f) >= from - 0.001f && (i - 1f) / (combatCount - 1f) <= to + 0.001f))
+                .OrderBy(_ => random.Next()).ToList();
 
             foreach (int parent in parents)
             {

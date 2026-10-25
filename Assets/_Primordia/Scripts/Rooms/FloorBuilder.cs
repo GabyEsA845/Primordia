@@ -38,6 +38,8 @@ namespace Primordia.Rooms
         // Sala de paso: zona intermedia y zona del piso siguiente (la de la fosa).
         const int MidTheme = 2;
         const int NextTheme = 3;
+        // Franjas de profundidad (piso 2): sus tilesets van a continuación de los anteriores.
+        const int FirstBandTheme = 4;
 
         // Tramos de la sala de paso, en fracción de la distancia de su puerta a la fosa: hasta aquí, tema del piso actual;
         // luego el intermedio, y desde el segundo, el del piso siguiente. Un poco de ruido para que el corte no sea recto.
@@ -73,7 +75,9 @@ namespace Primordia.Rooms
             public readonly Dictionary<Vector2Int, List<Vector2Int>> ArchCells = new();
 
             public RoomTemplate Template => Layout.Template;
-            public int Theme => Layout.Role == RoomRole.Boss ? BossTheme : SoupTheme;
+
+            /// <summary>Índice de su tileset: el del piso, el del jefe o el de su franja de profundidad.</summary>
+            public int Theme;
             public RectInt Rect => new(Origin, new Vector2Int(Template.Width, Template.Height));
 
             public Vector2 FloorCenter
@@ -96,8 +100,9 @@ namespace Primordia.Rooms
                 config.Theme, bossTheme,
                 config.TransitionMidTheme != null ? config.TransitionMidTheme : config.Theme,
                 config.NextFloorTheme != null ? config.NextFloorTheme : config.Theme
-            };
+            }.Concat(config.BandThemes.Select(band => band != null ? band : config.Theme)).ToArray();
             var placed = Place(layout);
+            AssignThemes(placed, config);
             var byLayout = placed.ToDictionary(room => room.Layout);
 
             var map = new FloorMap(MapBounds(placed));
@@ -112,7 +117,7 @@ namespace Primordia.Rooms
                 var direction = to.Cell - from.Cell;
                 OpenDoor(map, byLayout[from], direction);
                 OpenDoor(map, byLayout[to], -direction);
-                corridorCells.Add((from, to, DigCorridor(map, byLayout[from], byLayout[to], direction, noDecoration)));
+                corridorCells.Add((from, to, DigCorridor(map, byLayout[from], byLayout[to], direction, noDecoration, CorridorTheme(byLayout[from], byLayout[to], config))));
             }
 
             foreach (var room in placed.Where(room => room.Layout.Role == RoomRole.Transition))
@@ -166,6 +171,44 @@ namespace Primordia.Rooms
             }
 
             return built;
+        }
+
+        /// <summary>
+        /// Tileset de cada sala: el del jefe en la suya; con franjas de profundidad, la de su tercio del camino (las
+        /// laterales y la tienda, la de la sala de la que cuelgan; el inicio, la primera); si no, el del piso.
+        /// </summary>
+        static void AssignThemes(List<PlacedRoom> placed, FloorConfig config)
+        {
+            int bands = config.HasBands ? config.BandThemes.Length : 0;
+            int deepest = placed.Where(room => room.Layout.Role == RoomRole.Combat).Select(room => room.Layout.Depth).DefaultIfEmpty(1).Max();
+            foreach (var room in placed)
+            {
+                if (room.Layout.Role == RoomRole.Boss)
+                    room.Theme = BossTheme;
+                else if (bands == 0)
+                    room.Theme = SoupTheme;
+                else
+                    room.Theme = FirstBandTheme + BandOf(room.Layout.Depth, deepest, bands);
+            }
+        }
+
+        /// <summary>
+        /// Tileset de un pasillo: sin franjas, el del piso (también el que entra a la sala del jefe); con franjas, el de la sala
+        /// a la que llega, salvo la del jefe (el pasillo sigue con el de la sala de la que sale).
+        /// </summary>
+        static int CorridorTheme(PlacedRoom from, PlacedRoom to, FloorConfig config)
+        {
+            if (!config.HasBands)
+                return SoupTheme;
+            return to.Theme == BossTheme ? from.Theme : to.Theme;
+        }
+
+        /// <summary>Franja de la sala de combate número <paramref name="depth"/> (1 = la primera) de <paramref name="deepest"/>.</summary>
+        internal static int BandOf(int depth, int deepest, int bands)
+        {
+            if (depth <= 1 || deepest <= 1)
+                return 0;
+            return Mathf.Clamp((depth - 1) * bands / deepest, 0, bands - 1);
         }
 
         /// <summary>
@@ -339,9 +382,12 @@ namespace Primordia.Rooms
             room.ArchCells[direction] = arch;
         }
 
-        /// <summary>Pasillo recto de 2 tiles de ancho entre las puertas de dos salas vecinas.</summary>
-        /// <summary>Abre el pasillo entre las puertas de dos salas y devuelve sus celdas.</summary>
-        static List<Vector2Int> DigCorridor(FloorMap map, PlacedRoom from, PlacedRoom to, Vector2Int direction, HashSet<Vector2Int> corridorCells)
+        /// <summary>
+        /// Abre el pasillo recto de 2 tiles de ancho entre las puertas de dos salas vecinas y devuelve sus celdas. Lleva
+        /// el tileset de la sala a la que llega (la siguiente del camino, o la lateral).
+        /// </summary>
+        static List<Vector2Int> DigCorridor(FloorMap map, PlacedRoom from, PlacedRoom to, Vector2Int direction, HashSet<Vector2Int> corridorCells,
+            int theme)
         {
             var dug = new List<Vector2Int>();
             if (!from.DoorCells.TryGetValue(direction, out var start) || !to.DoorCells.TryGetValue(-direction, out var end))
@@ -353,7 +399,7 @@ namespace Primordia.Rooms
                 for (var step = cell + direction; !end.Contains(step) && map.Get(step) == FloorMap.Kind.Wall; step += direction)
                 {
                     map.Set(step, FloorMap.Kind.Floor);
-                    map.SetTheme(step, SoupTheme);
+                    map.SetTheme(step, theme);
                     corridorCells.Add(step);
                     dug.Add(step);
                 }
@@ -433,6 +479,9 @@ namespace Primordia.Rooms
             if (placed.Layout.Role == RoomRole.Shop && config.ShopPrefab != null)
             {
                 var shop = Object.Instantiate(config.ShopPrefab, placed.FloorCenter, Quaternion.identity, roomObject.transform);
+                // Cada piso vende sus mutaciones (el prefab trae las del piso 1).
+                if (config.FloorNumber > 1)
+                    shop.SetPool(config.RewardPool);
                 // El mostrador va arriba en el centro; si la puerta está arriba, se aparta para no taparla.
                 if (placed.DoorCells.ContainsKey(Vector2Int.up))
                     shop.MoveCounter(-(placed.Template.FloorBounds().width / 2f) + ShopCounterMargin);

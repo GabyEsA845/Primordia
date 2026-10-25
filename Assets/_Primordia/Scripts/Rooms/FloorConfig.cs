@@ -52,6 +52,12 @@ namespace Primordia.Rooms
             public bool IsValid => prefab != null && room != null;
         }
 
+        [Header("Piso")]
+        [Tooltip("Número del piso (1 = sopa primordial, 2 = océano cámbrico…).")]
+        [SerializeField, Min(1)] int floorNumber = 1;
+        [Tooltip("Piso al que lleva la fosa de la sala de paso. Vacío: la fosa (o la salida) da la victoria.")]
+        [SerializeField] FloorConfig nextFloor;
+
         [Header("Salas")]
         [SerializeField] RoomTemplate startRoom;
         [SerializeField] RoomTemplate bossRoom;
@@ -67,6 +73,9 @@ namespace Primordia.Rooms
         [Header("Tileset")]
         [SerializeField] RoomTheme theme;
         [SerializeField] RoomTheme bossTheme;
+        [Tooltip("Franjas de profundidad por tercios del camino (de la primera sala a la última), cada una con su tileset. "
+            + "Vacío: todas las salas con el tileset de arriba.")]
+        [SerializeField] RoomTheme[] bandThemes = Array.Empty<RoomTheme>();
 
         [Header("Enemigos")]
         [SerializeField] EnemyEntry[] enemies = Array.Empty<EnemyEntry>();
@@ -100,6 +109,9 @@ namespace Primordia.Rooms
         [Tooltip("Forma de la sala de la tienda. Vacío (o sin prefab): el piso no tiene tienda.")]
         [SerializeField] RoomTemplate shopRoom;
         [SerializeField] ShopRoom shopPrefab;
+        [Tooltip("Tramo del camino en el que puede colgar la tienda, en fracción de las salas de combate (0 = la primera, "
+            + "1 = la última). Piso 1: la segunda mitad; piso 2: el tercio del medio.")]
+        [SerializeField] Vector2 shopDepth = new(0.5f, 1f);
 
         [Header("Sala de paso")]
         [Tooltip("Forma de la sala de paso, pegada a la del jefe. Vacío (o sin fosa): el jefe deja la salida de siempre.")]
@@ -118,6 +130,11 @@ namespace Primordia.Rooms
         [SerializeField] Sprite exitSprite;
         [SerializeField] Color exitColor = new(0.3f, 0.95f, 0.8f);
 
+        public int FloorNumber => floorNumber;
+        public FloorConfig NextFloor => nextFloor;
+        public RoomTheme[] BandThemes => bandThemes ?? Array.Empty<RoomTheme>();
+        public bool HasBands => Array.Exists(BandThemes, band => band != null);
+        public Vector2 ShopDepth => shopDepth;
         public RoomTemplate StartRoom => startRoom;
         public RoomTemplate BossRoom => bossRoom;
         public RoomTemplate[] CombatRooms => combatRooms;
@@ -222,6 +239,16 @@ namespace Primordia.Rooms
             nextFloorMouths = newMouths ?? Array.Empty<MutationData>();
             nextFloorName = newName;
         }
+
+        internal void ConfigureFloor(int newNumber, FloorConfig newNext)
+        {
+            floorNumber = Mathf.Max(1, newNumber);
+            nextFloor = newNext;
+        }
+
+        internal void ConfigureBands(RoomTheme[] newBands) => bandThemes = newBands ?? Array.Empty<RoomTheme>();
+
+        internal void ConfigureShopDepth(Vector2 newDepth) => shopDepth = newDepth;
 
         internal void ConfigureRewards(MutationPool newPool, int[] newRewardAfter)
         {

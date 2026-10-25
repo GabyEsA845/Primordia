@@ -23,18 +23,25 @@ namespace Primordia.Editor
         const string MissingTilePath = EnvironmentArtFolder + "/Tile_Missing.asset";
         const float DecorationChance = 0.05f;
 
-        static readonly string[] Themes = { "Soup", "Boss", AmoebaThemeName, ShoreThemeName, CambrianThemeName };
+        // Franjas del piso 2: Someras, Arrecife (el tema Cambrian de la sala de paso) y Abismo.
+        internal const string ShallowsThemeName = "Shallows";
+        internal const string AbyssThemeName = "Abyss";
+
+        static readonly string[] Themes =
+            { "Soup", "Boss", AmoebaThemeName, ShoreThemeName, CambrianThemeName, ShallowsThemeName, AbyssThemeName };
 
         // Decoración animada, en cuadros por segundo (README del arte: burbujas ~400 ms, algas ~200 ms).
         static readonly Dictionary<string, float> AnimatedDecorations = new()
         {
             ["Deco_Bubbles"] = 2.5f, ["Deco_Algae"] = 5f, ["Deco_Crinoid"] = 4f,
+            // Piso 2 (README del escenario): hierba marina ~200 ms, pluma de mar ~250 ms, medusa peine ~150 ms, motas ~300 ms.
+            ["Deco_Seagrass"] = 5f, ["Deco_SeaPen"] = 4f, ["Deco_Ctenophore"] = 1f / 0.15f, ["Deco_GlowMotes"] = 1f / 0.3f,
         };
 
         // El fondo marino va más poblado que la sopa: así se nota el cambio al acercarse a la fosa.
         static readonly Dictionary<string, float> ThemeDecorationChances = new()
         {
-            [ShoreThemeName] = 0.06f, [CambrianThemeName] = 0.09f,
+            [ShoreThemeName] = 0.06f, [CambrianThemeName] = 0.09f, [ShallowsThemeName] = 0.09f, [AbyssThemeName] = 0.08f,
         };
 
         // Hojas cuyas celdas no son cuadradas (ancho en píxeles).
@@ -44,6 +51,17 @@ namespace Primordia.Editor
             ["Door_Bottom"] = 32,
             ["Door_Side"] = 16,
         };
+
+        /// <summary>Importa las tres franjas del piso 2 (Someras, Arrecife, Abismo). Las que no tengan tiles salen null.</summary>
+        internal static RoomTheme[] ImportFloor2Themes()
+        {
+            Directory.CreateDirectory(EnvironmentArtFolder);
+            var missing = CreateMissingTile();
+            var names = new[] { ShallowsThemeName, CambrianThemeName, AbyssThemeName };
+            var imported = names.Select(name => ImportTheme(name, missing)).ToArray();
+            AssetDatabase.SaveAssets();
+            return names.Select((name, i) => imported[i] ? LoadTheme(name) : null).ToArray();
+        }
 
         [MenuItem("Primordia/Art/Importar escenario")]
         static void ImportEnvironment()

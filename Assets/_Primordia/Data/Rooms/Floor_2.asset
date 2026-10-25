@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4ba12a379f398148bd08d9c95bcf113, type: 3}
+  m_Name: Floor_2
+  m_EditorClassIdentifier: Primordia::Primordia.Rooms.FloorConfig
+  floorNumber: 2
+  nextFloor: {fileID: 0}
+  startRoom: {fileID: 11400000, guid: dd2524ff606d8904f8886c9aebe37fdd, type: 2}
+  bossRoom: {fileID: 11400000, guid: fc6ceb4b1ee497742babf0fa9f360cd1, type: 2}
+  combatRooms:
+  - {fileID: 11400000, guid: fc6ceb4b1ee497742babf0fa9f360cd1, type: 2}
+  - {fileID: 11400000, guid: 70d3cab0851ea9740b05e39d6f377b89, type: 2}
+  - {fileID: 11400000, guid: f4120cba3e38b7b44a79c63ba3d46094, type: 2}
+  - {fileID: 11400000, guid: 154f4b23e96cb6549a0633fb6240c0d1, type: 2}
+  - {fileID: 11400000, guid: 5a1fa54b79fcebf4995570731a1d6ff9, type: 2}
+  sideRooms:
+  - {fileID: 11400000, guid: dd2524ff606d8904f8886c9aebe37fdd, type: 2}
+  - {fileID: 11400000, guid: fc6ceb4b1ee497742babf0fa9f360cd1, type: 2}
+  - {fileID: 11400000, guid: 70d3cab0851ea9740b05e39d6f377b89, type: 2}
+  mainCombatRooms: {x: 10, y: 12}
+  sideRoomCount: {x: 2, y: 3}
+  theme: {fileID: 11400000, guid: ee040b95e788e5649887a36125ca76dc, type: 2}
+  bossTheme: {fileID: 11400000, guid: 0ab89510c4bdea14ab8e629038e4cb6d, type: 2}
+  bandThemes:
+  - {fileID: 11400000, guid: cedc9dc4e61866747a3d64a4731160c4, type: 2}
+  - {fileID: 11400000, guid: ee040b95e788e5649887a36125ca76dc, type: 2}
+  - {fileID: 11400000, guid: 2a8ae0b84c247aa4380d009839c9d15e, type: 2}
+  enemies:
+  - prefab: {fileID: 8882603238870742745, guid: a55174d84ea389f4ea3dbe2ad2e34d19, type: 3}
+    cost: 1
+    minDepth: 1
+  - prefab: {fileID: 6360368782889849989, guid: 6a0b1fdfb44e57542b2abcce354082ca, type: 3}
+    cost: 2
+    minDepth: 2
+  baseBudget: 4
+  budgetPerRoom: 1.4
+  referenceFloorArea: 312
+  boss: {fileID: 1183084727335379411, guid: 1fc20f23b26e1e14aa8e7a669d298cfb, type: 3}
+  bossOffset: {x: 0, y: 2.5}
+  bosses:
+  - prefab: {fileID: 1183084727335379411, guid: 1fc20f23b26e1e14aa8e7a669d298cfb, type: 3}
+    room: {fileID: 11400000, guid: fc6ceb4b1ee497742babf0fa9f360cd1, type: 2}
+    theme: {fileID: 11400000, guid: 0ab89510c4bdea14ab8e629038e4cb6d, type: 2}
+    offset: {x: 0, y: 2.5}
+  - prefab: {fileID: 3929587759750360350, guid: 02aaf85b190558f41bcb733e7eb43441, type: 3}
+    room: {fileID: 11400000, guid: f9b0d20321107444684957c4e1e2f3c7, type: 2}
+    theme: {fileID: 11400000, guid: 1c83c3469c0ded745b4b509570355cd3, type: 2}
+    offset: {x: 0, y: 0}
+  rewardPool: {fileID: 11400000, guid: 6b6074ae5cec706419cf9114349db3e3, type: 2}
+  rewardOptions: 3
+  rewardAfter: 020000000400000006000000080000000a000000i
+  smallBiomass: {fileID: 4954268908327209968, guid: 16d5cda47065aed4886ec380894bf996, type: 3}
+  bigBiomass: {fileID: 7081711356301279898, guid: 51db4ac02edeee84c91ac030d6494999, type: 3}
+  minimumBiomassPerRoom: 2
+  shopRoom: {fileID: 11400000, guid: dd2524ff606d8904f8886c9aebe37fdd, type: 2}
+  shopPrefab: {fileID: 2843019761843824620, guid: ef69c3942d3bba648adfcf2885fa7fd4, type: 3}
+  shopDepth: {x: 0.33333334, y: 0.6666667}
+  transitionRoom: {fileID: 0}
+  transitionPit: {fileID: 0}
+  transitionMidTheme: {fileID: 0}
+  nextFloorTheme: {fileID: 0}
+  nextFloorMouths: []
+  nextFloorName: "oc\xE9ano c\xE1mbrico"
+  exitSprite: {fileID: 21300000, guid: bc9bd159743ed944e9321a5b368508a5, type: 3}
+  exitColor: {r: 0.3, g: 0.95, b: 0.8, a: 1}

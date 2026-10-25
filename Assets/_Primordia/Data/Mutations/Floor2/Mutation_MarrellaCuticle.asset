@@ -38,6 +38,8 @@ MonoBehaviour:
   creatureBody: {fileID: 0}
   attackHitTime: 0
   creatureLayers:
+  - body: {fileID: 9100000, guid: feb82a28b3107fc4b986b41b1d879747, type: 2}
+    layer: {fileID: 9100000, guid: 599f42139920a1343bf726756d844dd7, type: 2}
   - body: {fileID: 9100000, guid: 5c4ed1232e5e4c14a9ea4801bceeb8b0, type: 2}
     layer: {fileID: 9100000, guid: 0fe16d9f0f0625e47b2b4e57ade6149a, type: 2}
   - body: {fileID: 9100000, guid: 4c5ea57aa6bffee4eb43b77aeb938993, type: 2}

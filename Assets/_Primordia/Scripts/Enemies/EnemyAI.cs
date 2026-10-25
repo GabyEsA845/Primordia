@@ -16,7 +16,7 @@ namespace Primordia.Enemies
     /// dispara con línea de visión; sin ella, van en línea recta. Además se apartan unos de otros.
     /// </summary>
     [RequireComponent(typeof(Enemy))]
-    public class EnemyAI : MonoBehaviour, IPushable
+    public class EnemyAI : MonoBehaviour, IPushable, IPullable
     {
         public enum State
         {
@@ -463,6 +463,20 @@ namespace Primordia.Enemies
             }
         }
 
+        // Arrastre de una corriente (el remolino de la Corona de brazos): se suma mientras se renueve.
+        Vector2 pullVelocity;
+        float pullUntil;
+        const float PullHold = 0.12f;
+
+        /// <summary>True mientras lo arrastra una corriente.</summary>
+        public bool IsPulled => Time.time < pullUntil;
+
+        public void Pull(Vector2 velocity)
+        {
+            pullVelocity = velocity;
+            pullUntil = Time.time + PullHold;
+        }
+
         void FixedUpdate()
         {
             // Los que andan no se meten solos en una fosa (si no hay camino hasta el jugador, esperan en la orilla); los
@@ -470,6 +484,9 @@ namespace Primordia.Enemies
             rb.linearVelocity = !IsStunned && !fallingIntoPit && Pits.Map != null && CanFall()
                 ? AvoidPits(desiredVelocity)
                 : desiredVelocity;
+            // La corriente sí puede arrastrarlos a una fosa.
+            if (IsPulled && !fallingIntoPit)
+                rb.linearVelocity += pullVelocity;
 
             // Los que andan caen si acaban encima de una fosa (empujados); los que nadan y los jefes, nunca.
             if (!fallingIntoPit && !health.IsDead && Pits.IsDeepInPit(rb.position, PitEdgeGrace) && CanFall())

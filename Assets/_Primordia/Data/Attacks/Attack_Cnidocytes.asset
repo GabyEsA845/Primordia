@@ -28,6 +28,16 @@ MonoBehaviour:
   bleedDamagePerSecond: 0
   bleedDuration: 0
   bleedEffect: {fileID: 0}
+  areaPrefab: {fileID: 0}
+  areaRange: 6
+  areaRadius: 1.6
+  areaDuration: 2
+  areaTick: 0.4
+  areaPull: 3
+  tideRadius: 0
+  tideDamage: 4
+  tidePush: 10
+  tideEffect: {fileID: 0}
   pierce: 1
   volleyEvery: 0
   volleyCount: 3

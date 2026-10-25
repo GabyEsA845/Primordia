@@ -54,6 +54,12 @@ namespace Primordia.Combat
             set => windup = Mathf.Max(0f, value);
         }
 
+        /// <summary>
+        /// Punto al que se apunta (el cursor del jugador, el enemigo de la copia de la Yema): ahí aparece el remolino de un
+        /// ataque de área, como mucho a su alcance. Null = a todo el alcance en la dirección del ataque.
+        /// </summary>
+        public Vector2? AimPoint { get; set; }
+
         /// <summary>True mientras prepara un ataque que aún no ha salido.</summary>
         public bool IsWindingUp => windupAttack != null;
 
@@ -206,6 +212,14 @@ namespace Primordia.Combat
             direction.Normalize();
             Vector2 origin = muzzle != null ? muzzle.position : transform.position;
 
+            if (attack.IsArea)
+            {
+                Whirlpool.Spawn(attack, this, AreaPoint(direction, attack));
+                Fired?.Invoke(direction);
+                Sfx.Play(attack.FireSound);
+                return;
+            }
+
             if (attack.IsMelee)
             {
                 if (!TryLunge(direction, attack))
@@ -239,6 +253,15 @@ namespace Primordia.Combat
 
             Fired?.Invoke(direction);
             Sfx.Play(attack.FireSound);
+        }
+
+        /// <summary>Dónde aparece el remolino: en el punto apuntado, como mucho a su alcance del atacante.</summary>
+        Vector2 AreaPoint(Vector2 direction, AttackData attack)
+        {
+            Vector2 center = transform.position;
+            Vector2 point = AimPoint ?? center + direction * attack.AreaRange;
+            Vector2 offset = point - center;
+            return offset.magnitude > attack.AreaRange ? center + offset.normalized * attack.AreaRange : point;
         }
 
         /// <summary>Disparos hechos con esta arma (cuenta el Ramillete).</summary>

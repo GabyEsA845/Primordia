@@ -26,13 +26,18 @@ namespace Primordia.Editor
         internal static void CreateAll()
         {
             Directory.CreateDirectory(ArtFolder);
+            // La Corona de brazos (y el lirio de mar) se crean aquí si aún no existen.
+            if (AssetDatabase.LoadAssetAtPath<AttackMutation>($"{MutationsFolder}/Mutation_ArmCrown.asset") == null)
+                FloorTransitionSetup.CreateFloor2Mouths();
             CreateCnidocytes();
             CreateJawPlates();
+            CreateArmCrown();
             AssetDatabase.SaveAssets();
+            AddToFloors();
             // Con los cuerpos de las Bocas, la capa de la Cutícula de Marrella sobre cada uno.
             SpecialMutationsSetup.ApplyCuticleLayers();
             AssetDatabase.SaveAssets();
-            Debug.Log("Floor2MouthsSetup: Cnidocitos (arpón, veneno y Ramillete) y Placas mandibulares (mordisco, Quebrar y Guillotina). La Corona de brazos, en el paso 4.");
+            Debug.Log("Floor2MouthsSetup: Cnidocitos (arpón, veneno y Ramillete), Placas mandibulares (mordisco, Quebrar y Guillotina) y Corona de brazos (remolino y Marea).");
         }
 
         // ---------- Cnidocitos ----------
@@ -146,6 +151,99 @@ namespace Primordia.Editor
             mutation.SetAttackHitTime(3f / AttackFps);
             EditorUtility.SetDirty(mutation);
         }
+
+        // ---------- Corona de brazos ----------
+
+        static void CreateArmCrown()
+        {
+            var mutation = AssetDatabase.LoadAssetAtPath<AttackMutation>($"{MutationsFolder}/Mutation_ArmCrown.asset");
+            if (mutation == null)
+            {
+                Debug.LogWarning("Floor2MouthsSetup: no se pudo crear Mutation_ArmCrown.");
+                return;
+            }
+
+            // El remolino dibujado mide 48 px (radio 1,5 u); Whirlpool lo escala al radio del ataque.
+            var whirl = CreateLoopEffect("Effect_ArmCrown_Whirl",
+                ArtSetup.ImportLooseSheet($"{SourceFolder}/Fx_ArmCrown_Whirl.png", $"{ArtFolder}/Fx_ArmCrown_Whirl.png", 48), 0.1f, sortingOrder: 5);
+            if (whirl != null)
+            {
+                var root = PrefabUtility.LoadPrefabContents(AssetDatabase.GetAssetPath(whirl));
+                try
+                {
+                    if (!root.TryGetComponent<Whirlpool>(out _))
+                        root.AddComponent<Whirlpool>();
+                    whirl = PrefabUtility.SaveAsPrefabAsset(root, AssetDatabase.GetAssetPath(whirl));
+                }
+                finally
+                {
+                    PrefabUtility.UnloadPrefabContents(root);
+                }
+            }
+            var tide = CreateFrameEffect("Effect_ArmCrown_Tide",
+                ArtSetup.ImportLooseSheet($"{SourceFolder}/Fx_ArmCrown_Tide.png", $"{ArtFolder}/Fx_ArmCrown_Tide.png", 64), 0.06f, sortingOrder: 12);
+            var spores = CombatSetup.LoadAttack("Attack_Spores");
+
+            // Nivel I: un remolino por segundo donde está el cursor (como mucho a 6 u): 2 s, radio 1,6 u, atrae al centro y
+            // hace 1 de daño cada 0,4 s.
+            var one = Attack("Attack_ArmCrown", spores, a =>
+            {
+                a.Configure(null, fireRate: 1f, damage: 1, speed: 1f, lifetime: 2f);
+                a.ConfigureFloating(0f, 0f, 0f, 0f);
+                a.ConfigureArea(whirl, range: 6f, radius: 1.6f, duration: 2f, tick: 0.4f, pull: 3f);
+                a.ConfigureTide(0f, 4, 10f, tide);
+            });
+            // Nivel II: radio de 2 u, dura 2,5 s y daña cada 0,3 s.
+            var two = Attack("Attack_ArmCrown_2", one, a => a.ConfigureArea(whirl, 6f, 2f, 2.5f, 0.3f, 3f));
+            // Nivel III, Marea: al acabar, el remolino estalla, empuja a todos hacia fuera y hace 4 de daño.
+            var three = Attack("Attack_ArmCrown_3", two, a => a.ConfigureTide(2.5f, 4, 10f, tide));
+
+            mutation.ConfigureBase(mutation.DisplayName,
+                "Remolino donde está el cursor (como mucho a 6 u): dura 2 s, radio 1,6 u, atrae a los enemigos al centro y hace 1 de daño cada 0,4 s. Uno por segundo.",
+                MutationSlot.Mouth, mutation.Color);
+            mutation.SetLevelDescriptions("Radio de 2 u, dura 2,5 s y daña cada 0,3 s.",
+                "Marea: al acabar, el remolino estalla, empuja a todos hacia fuera y hace 4 de daño.");
+            mutation.Configure(one, newHealEveryKills: 0);
+            mutation.ConfigureUpgrades(new AttackMutation.AttackLevel { attack = two }, new AttackMutation.AttackLevel { attack = three });
+            // El lirio agita la corona en el tercer cuadro de su ataque.
+            mutation.SetAttackHitTime(2f / AttackFps);
+            EditorUtility.SetDirty(mutation);
+        }
+
+        /// <summary>
+        /// Las 3 Bocas en la ventana de la sala de paso del piso 1 y en la reserva del piso 2 (para sus mejoras), sin tener
+        /// que relanzar los menús del paso y del piso 2.
+        /// </summary>
+        static void AddToFloors()
+        {
+            var mouths = new MutationData[3];
+            string[] names = { "Mutation_Cnidocytes", "Mutation_JawPlates", "Mutation_ArmCrown" };
+            for (int i = 0; i < names.Length; i++)
+                mouths[i] = AssetDatabase.LoadAssetAtPath<MutationData>($"{MutationsFolder}/{names[i]}.asset");
+
+            var floor1 = AssetDatabase.LoadAssetAtPath<FloorConfig>(FloorSetup.FloorConfigPath);
+            if (floor1 != null)
+            {
+                floor1.ConfigureNextFloor(System.Array.FindAll(mouths, m => m != null), FloorTransitionSetup.NextFloorName);
+                EditorUtility.SetDirty(floor1);
+            }
+
+            var pool = AssetDatabase.LoadAssetAtPath<MutationPool>(Floor2PoolPath);
+            if (pool != null)
+            {
+                var list = new System.Collections.Generic.List<MutationData>(pool.Mutations);
+                foreach (var mouth in mouths)
+                {
+                    if (mouth != null && !list.Contains(mouth))
+                        list.Add(mouth);
+                }
+                pool.Configure(list, pool.OffersNewMouths);
+                EditorUtility.SetDirty(pool);
+            }
+            AssetDatabase.SaveAssets();
+        }
+
+        const string Floor2PoolPath = "Assets/_Primordia/Data/Mutations/MutationPool_Floor2.asset";
 
         // ---------- Ayudas ----------
 

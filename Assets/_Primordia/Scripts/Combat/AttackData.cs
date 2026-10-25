@@ -52,6 +52,25 @@ namespace Primordia.Combat
         [Tooltip("Marca en bucle sobre el objetivo mientras sangra.")]
         [SerializeField] GameObject bleedEffect;
 
+        [Header("Área (Corona de brazos)")]
+        [Tooltip("Remolino que aparece donde se apunta (con Whirlpool). Vacío = no es un ataque de área.")]
+        [SerializeField] GameObject areaPrefab;
+        [Tooltip("Distancia máxima desde el atacante a la que aparece.")]
+        [SerializeField, Min(0.5f)] float areaRange = 6f;
+        [SerializeField, Min(0.1f)] float areaRadius = 1.6f;
+        [Tooltip("Segundos que dura.")]
+        [SerializeField, Min(0.1f)] float areaDuration = 2f;
+        [Tooltip("Segundos entre dos daños.")]
+        [SerializeField, Min(0.05f)] float areaTick = 0.4f;
+        [Tooltip("Velocidad con la que atrae a los enemigos al centro.")]
+        [SerializeField, Min(0f)] float areaPull = 3f;
+        [Tooltip("Marea: radio del estallido al acabar. 0 = sin Marea.")]
+        [SerializeField, Min(0f)] float tideRadius;
+        [SerializeField, Min(0)] int tideDamage = 4;
+        [Tooltip("Velocidad del empujón hacia fuera.")]
+        [SerializeField, Min(0f)] float tidePush = 10f;
+        [SerializeField] GameObject tideEffect;
+
         [Header("Atravesar")]
         [Tooltip("Enemigos que atraviesa cada proyectil antes de desaparecer (los arpones de los Cnidocitos). 0 = se queda en el primero.")]
         [SerializeField, Min(0)] int pierce;
@@ -145,15 +164,28 @@ namespace Primordia.Combat
         public GameObject MeleeHitEffect => meleeHitEffect;
         public GameObject PoisonEffect => poisonEffect;
 
-        /// <summary>True si con estos datos se puede atacar: tiene proyectil o es cuerpo a cuerpo.</summary>
-        public bool IsUsable => melee || projectilePrefab != null;
+        /// <summary>True si con estos datos se puede atacar: tiene proyectil, es cuerpo a cuerpo o de área.</summary>
+        public bool IsUsable => melee || projectilePrefab != null || IsArea;
+
+        /// <summary>True si es un remolino de área (la Corona de brazos).</summary>
+        public bool IsArea => areaPrefab != null;
+        public GameObject AreaPrefab => areaPrefab;
+        public float AreaRange => areaRange;
+        public float AreaRadius => areaRadius;
+        public float AreaDuration => areaDuration;
+        public float AreaTick => areaTick;
+        public float AreaPull => areaPull;
+        public float TideRadius => tideRadius;
+        public int TideDamage => tideDamage;
+        public float TidePush => tidePush;
+        public GameObject TideEffect => tideEffect;
         public float FireRate => fireRate;
         public float Cooldown => 1f / fireRate;
         public bool Automatic => automatic;
         public int Damage => damage;
         public float ProjectileSpeed => projectileSpeed;
         public float Lifetime => lifetime;
-        public float Range => melee ? meleeRange
+        public float Range => IsArea ? areaRange : melee ? meleeRange
             : brakeTime > 0f ? projectileSpeed * Mathf.Min(brakeTime, lifetime) / 2f
             : projectileSpeed * lifetime;
         public float BrakeTime => brakeTime;
@@ -267,6 +299,28 @@ namespace Primordia.Combat
         internal void SetShatterMarker(GameObject marker) => shatterMarker = marker;
 
         internal void SetMeleeFromMuzzle(bool fromMuzzle) => meleeFromMuzzle = fromMuzzle;
+
+        /// <summary>Lo convierte en un remolino de área, sin proyectil.</summary>
+        internal void ConfigureArea(GameObject prefab, float range, float radius, float duration, float tick, float pull)
+        {
+            melee = false;
+            projectilePrefab = null;
+            areaPrefab = prefab;
+            areaRange = Mathf.Max(0.5f, range);
+            areaRadius = Mathf.Max(0.1f, radius);
+            areaDuration = Mathf.Max(0.1f, duration);
+            areaTick = Mathf.Max(0.05f, tick);
+            areaPull = Mathf.Max(0f, pull);
+        }
+
+        /// <summary>Marea: al acabar el remolino estalla con ese radio, daño y empujón (radio 0 = sin Marea).</summary>
+        internal void ConfigureTide(float radius, int damage, float push, GameObject effect)
+        {
+            tideRadius = Mathf.Max(0f, radius);
+            tideDamage = Mathf.Max(0, damage);
+            tidePush = Mathf.Max(0f, push);
+            tideEffect = effect;
+        }
 
         internal void SetPierce(int enemies) => pierce = Mathf.Max(0, enemies);
 

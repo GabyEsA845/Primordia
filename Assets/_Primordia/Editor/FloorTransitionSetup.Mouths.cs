@@ -24,10 +24,11 @@ namespace Primordia.Editor
         static readonly Color NoteColor = new(1f, 0.8f, 0.5f);
 
         /// <summary>
-        /// Las Bocas del piso 2. Su ataque es provisional (el de Mandíbulas y el del Aguijón) hasta feature/floor-2: de
-        /// momento, tras elegirlas llega la victoria. No están en la reserva del piso 1, así que allí no salen.
+        /// Las 3 Bocas del piso 2, con su criatura y su metamorfosis. Al crearlas llevan un ataque provisional (el del
+        /// Aguijón, el de Mandíbulas y el de las Esporas); los de verdad los pone Primordia > Mutations > Crear Bocas del piso 2
+        /// sin que este menú los vuelva a pisar. No están en la reserva del piso 1, así que allí no salen.
         /// </summary>
-        static MutationData[] CreateFloor2Mouths()
+        internal static MutationData[] CreateFloor2Mouths()
         {
             Directory.CreateDirectory(Floor2MutationsFolder);
             var color = LineageSetup.SlotColors[(int)MutationSlot.Mouth];
@@ -43,11 +44,16 @@ namespace Primordia.Editor
                 "Guillotina: cada cuarto mordisco es doble, hace el triple de daño y aturde 0,5 s.");
             EditorUtility.SetDirty(jawPlates);
 
+            var armCrown = CreateMouth("Mutation_ArmCrown", "Corona de brazos",
+                "Remolino donde está el cursor que atrae a los enemigos al centro y les hace daño.",
+                WeaponFamily.Area, CombatSetup.LoadAttack("Attack_Spores"), color);
+
             var art = ArtSetup.ImportFloor2MouthArt();
             ApplyArt(cnidocytes, art.Cnidocytes);
             ApplyArt(jawPlates, art.JawPlates);
+            ApplyArt(armCrown, art.ArmCrown);
             AssetDatabase.SaveAssets();
-            return new[] { cnidocytes, jawPlates };
+            return new[] { cnidocytes, jawPlates, armCrown };
         }
 
         static AttackMutation CreateMouth(string assetName, string displayName, string description, WeaponFamily family,

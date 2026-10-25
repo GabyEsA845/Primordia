@@ -200,7 +200,11 @@ namespace Primordia.Mutations
                 bool inReach = distance <= attack.Range + (attack.IsMelee ? 0.3f : 0f);
                 var grid = Grid;
                 if (inReach && (grid == null || grid.HasLineOfSight(transform.position, targetPosition, 0.1f)))
+                {
+                    // Con la Corona de brazos, el remolino sobre su enemigo.
+                    weapon.AimPoint = targetPosition;
                     weapon.TryFire(direction);
+                }
             }
             else
             {

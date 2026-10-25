@@ -79,8 +79,9 @@ namespace Primordia.Mutations
             var attack = weapon != null ? weapon.Attack : null;
             if (attack == null)
                 return 0;
-            float perSecond = weapon.DamageOf(attack) * attack.FireRate;
-            return Mathf.Max(1, Mathf.RoundToInt(perSecond * settings.damageMultiplier));
+            // Con la Corona de brazos, lo que hace el remolino en 1 s (1 cada 0,4 s: 2,5).
+            float perSecond = attack.IsArea ? weapon.DamageOf(attack) / attack.AreaTick : weapon.DamageOf(attack) * attack.FireRate;
+            return Mathf.Max(1, Mathf.CeilToInt(perSecond * settings.damageMultiplier - 0.001f));
         }
 
         void OnHitTarget(Health target)
@@ -99,7 +100,19 @@ namespace Primordia.Mutations
             readyAt = Time.time + settings.cooldown;
             readyShown = false;
             Lashes++;
-            Launch(target, LashDamage(), weapon.Attack, chain: settings.chainTargets);
+            int damage = LashDamage();
+            Launch(target, damage, weapon.Attack, chain: settings.chainTargets);
+
+            // Con la Corona de brazos, azota también a todos los que hay dentro del remolino.
+            var whirlpool = weapon.Attack != null && weapon.Attack.IsArea ? Whirlpool.Containing(target, weapon) : null;
+            if (whirlpool != null)
+            {
+                foreach (var other in whirlpool.Inside(whirlpool.Radius))
+                {
+                    if (other != target)
+                        Launch(other, damage, weapon.Attack, chain: 0);
+                }
+            }
         }
 
         void Launch(Health target, int damage, AttackData attack, int chain)

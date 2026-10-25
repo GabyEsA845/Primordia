@@ -12,7 +12,8 @@ namespace Primordia.Tests
     /// Bocas del piso 2. Cnidocitos: el arpón atraviesa a tantos enemigos como diga el ataque (sin dar dos veces al mismo) y
     /// el Ramillete dispara un abanico cada N disparos. Placas mandibulares: Quebrar (+25 % de daño de todo durante unos
     /// segundos, con su marca), el empujón, el alcance medido desde la boca y la Guillotina (cada cuarto mordisco, una
-    /// segunda dentellada que llega más lejos, sin daño extra).
+    /// segunda dentellada que llega más lejos, sin daño extra). Corona de brazos: el remolino aparece en el punto apuntado
+    /// (como mucho a su alcance), daña y atrae a los de dentro, y con la Marea estalla al acabar.
     /// </summary>
     public class Floor2MouthsTests
     {
@@ -214,6 +215,88 @@ namespace Primordia.Tests
             Assert.AreEqual(1, fired, "Sale en el cuadro del golpe.");
             Assert.AreEqual(1, Flying());
             Assert.IsFalse(weapon.IsWindingUp);
+        }
+
+        /// <summary>Recoge los tirones de la corriente (en lugar de un EnemyAI).</summary>
+        class PullProbe : MonoBehaviour, IPullable
+        {
+            public readonly List<Vector2> Pulls = new();
+
+            public void Pull(Vector2 velocity) => Pulls.Add(velocity);
+        }
+
+        AttackData Crown(float duration = 2f)
+        {
+            var template = Track(new GameObject("WhirlTemplate"));
+            template.transform.position = new Vector2(100f, 100f);
+            template.AddComponent<Whirlpool>();
+            attack.Configure(null, fireRate: 1f, damage: 1, speed: 1f, lifetime: 2f);
+            attack.ConfigureArea(template, range: 6f, radius: 1.6f, duration: duration, tick: 0.4f, pull: 3f);
+            return attack;
+        }
+
+        static Whirlpool Spawned()
+        {
+            foreach (var whirlpool in Whirlpool.Active)
+                if (whirlpool != null && whirlpool.Radius > 0f)
+                    return whirlpool;
+            return null;
+        }
+
+        [Test]
+        public void Crown_AppearsAtTheAim_UpToItsRange()
+        {
+            Crown();
+            weapon.AimPoint = new Vector2(3f, 1f);
+            weapon.Fire(Vector2.right);
+            Assert.AreEqual(new Vector2(3f, 1f), (Vector2)Spawned().transform.position);
+            Object.DestroyImmediate(Spawned().gameObject);
+
+            weapon.AimPoint = new Vector2(20f, 0f);
+            weapon.Fire(Vector2.right);
+            Assert.AreEqual(new Vector2(6f, 0f), (Vector2)Spawned().transform.position, "Como mucho a 6 u.");
+            Object.DestroyImmediate(Spawned().gameObject);
+        }
+
+        [UnityTest]
+        public IEnumerator Whirl_HurtsAndPullsThoseInside_ButNotOutside()
+        {
+            Crown();
+            var inside = Enemy(new Vector2(4f, 0f));
+            var probe = inside.gameObject.AddComponent<PullProbe>();
+            var outside = Enemy(new Vector2(8f, 0f));
+            Physics2D.SyncTransforms();
+            int hits = 0;
+            weapon.HitTarget += _ => hits++;
+
+            weapon.AimPoint = new Vector2(3f, 0f);
+            weapon.Fire(Vector2.right);
+            yield return new WaitForSeconds(0.7f);
+
+            Assert.AreEqual(98, inside.Current, "1 de daño a los 0,2 s y otro a los 0,6 s.");
+            Assert.AreEqual(100, outside.Current);
+            Assert.AreEqual(2, hits, "Cuenta como golpe del arma (Flagelos, curarse al matar...).");
+            Assert.Greater(probe.Pulls.Count, 0);
+            Assert.Less(probe.Pulls[0].x, 0f, "Tira hacia el centro.");
+            Object.DestroyImmediate(Spawned().gameObject);
+        }
+
+        [UnityTest]
+        public IEnumerator Tide_BurstsAtTheEnd_PushingOutAndHurting()
+        {
+            Crown(duration: 0.3f).ConfigureTide(2.5f, 4, 10f, null);
+            var enemy = Enemy(new Vector2(4f, 0f));
+            var probe = enemy.gameObject.AddComponent<PushProbe>();
+            Physics2D.SyncTransforms();
+
+            weapon.AimPoint = new Vector2(3f, 0f);
+            weapon.Fire(Vector2.right);
+            yield return new WaitForSeconds(0.5f);
+
+            Assert.IsNull(Spawned(), "Al acabar desaparece.");
+            Assert.AreEqual(95, enemy.Current, "1 del remolino y 4 de la Marea.");
+            Assert.AreEqual(1, probe.Pushes.Count);
+            Assert.Greater(probe.Pushes[0].velocity.x, 0f, "Hacia fuera.");
         }
 
         [Test]

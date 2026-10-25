@@ -86,6 +86,8 @@ namespace Primordia.Mutations
         /// <summary>"Tiburón 4/4 · Calamar 3/4": sus linajes y cuántas de sus 4 mutaciones lleva el jugador.</summary>
         public static string LineageProgress(MutationData mutation, PlayerMutations player)
         {
+            if (mutation != null && mutation.IsSpecial)
+                return SpecialLine;
             if (mutation == null || mutation.Lineages.Count == 0)
                 return "";
 
@@ -132,6 +134,8 @@ namespace Primordia.Mutations
         /// </summary>
         public static string LineageList(MutationData mutation, PlayerMutations player = null)
         {
+            if (mutation != null && mutation.IsSpecial)
+                return SpecialLine;
             if (mutation == null || mutation.Lineages.Count == 0)
                 return "";
 
@@ -153,6 +157,18 @@ namespace Primordia.Mutations
                     : $"{lineage.DisplayName} {progress}/{LineageData.SlotCount}");
             }
             return names.Count > 0 ? "Linajes: " + string.Join(", ", names) : "";
+        }
+
+        /// <summary>Lo que tienen en común las mutaciones especiales de las almejas, en lugar de su lista de linajes.</summary>
+        public const string SpecialLine =
+            "Especial: completa cualquier linaje del que lleves las otras 3. Inestable: cada golpe te quita medio corazón más.";
+
+        /// <summary>"+½", "+1", "+1½": medios corazones de más por golpe (precio Inestable).</summary>
+        public static string HalfHearts(int halves)
+        {
+            int whole = halves / 2;
+            bool half = halves % 2 == 1;
+            return whole == 0 ? (half ? "+½" : "0") : half ? $"+{whole}½" : $"+{whole}";
         }
 
         /// <summary>Texto con una línea más al final (si no está vacía), separada por una línea en blanco.</summary>

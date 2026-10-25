@@ -71,6 +71,9 @@ namespace Primordia.Mutations
         [Header("Piso")]
         [Tooltip("Piso al que pertenece: desde el piso 2, cada piso solo ofrece las suyas.")]
         [SerializeField, Min(1)] int floor = 1;
+        [Tooltip("Mutación especial: solo sale de las almejas grandes, completa cualquier linaje del que se lleven las otras 3 "
+            + "(comodín) y, mientras se lleva, cada golpe quita medio corazón más (Inestable). No está en la reserva.")]
+        [SerializeField] bool special;
         [Tooltip("Solo Boca: familia de arma, que decide la criatura del jugador desde el piso 2.")]
         [SerializeField] WeaponFamily family;
         [Tooltip("Solo Boca desde el piso 2: la criatura en que se convierte el jugador, en reposo y atacando (de lado). "
@@ -104,6 +107,8 @@ namespace Primordia.Mutations
         public Sprite LargeIcon => largeIcon != null ? largeIcon : icon;
         public Color Color => color;
         public int Floor => floor;
+        /// <summary>Mutación especial de las almejas: comodín de linaje y precio Inestable.</summary>
+        public bool IsSpecial => special;
         public WeaponFamily Family => family;
         public Sprite[] CreatureIdleFrames => creatureIdleFrames ?? System.Array.Empty<Sprite>();
         public Sprite[] CreatureAttackFrames => creatureAttackFrames ?? System.Array.Empty<Sprite>();
@@ -172,6 +177,8 @@ namespace Primordia.Mutations
             floor = Mathf.Max(1, newFloor);
             family = newFamily;
         }
+
+        internal void SetSpecial(bool newSpecial) => special = newSpecial;
 
         internal void SetCreatureFrames(Sprite[] idle, Sprite[] attack)
         {

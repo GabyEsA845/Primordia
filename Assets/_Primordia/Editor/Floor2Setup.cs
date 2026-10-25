@@ -161,22 +161,23 @@ namespace Primordia.Editor
 
         // Las 10 salas especiales (GDD, "Salas especiales"): dónde salen, si cuentan como combate, cuántos enemigos llevan
         // respecto a una sala normal (en las de oleadas, cada oleada), si salen siempre, en qué franja, si ocupan dos casillas,
-        // cuántas oleadas llegan por sus entradas y si ofrecen mutación al final.
+        // cuántas oleadas llegan por sus entradas, si ofrecen mutación al final y si son candidatas a la sala de la almeja
+        // (llevan almeja grande y cada partida sale una de ellas aparte del sorteo).
         static readonly (string name, FloorConfig.SpecialPlacement placement, bool combat, float enemies, bool always, int band, bool tall,
-            int waves, bool reward)[] Specials =
+            int waves, bool reward, bool clam)[] Specials =
         {
-            ("Parkour", FloorConfig.SpecialPlacement.Path, false, 0f, false, -1, true, 0, false),
-            ("CorazonMorado", FloorConfig.SpecialPlacement.Side, false, 2f, true, 2, false, 0, false),
-            ("AnilloSima", FloorConfig.SpecialPlacement.Path, true, 1f, false, -1, false, 0, false),
+            ("Parkour", FloorConfig.SpecialPlacement.Path, false, 0f, false, -1, true, 0, false, false),
+            ("CorazonMorado", FloorConfig.SpecialPlacement.Side, false, 2f, true, 2, false, 0, false, false),
+            ("AnilloSima", FloorConfig.SpecialPlacement.Path, true, 1f, false, -1, false, 0, false, true),
             // Desde la otra orilla, en 2 oleadas.
-            ("PuenteRoto", FloorConfig.SpecialPlacement.Path, true, 0.7f, false, -1, false, 2, false),
-            ("BosqueCoral", FloorConfig.SpecialPlacement.Path, true, 1f, false, -1, false, 0, false),
-            ("FosilGigante", FloorConfig.SpecialPlacement.Path, true, 1f, false, -1, false, 0, false),
-            ("JardinEsponjas", FloorConfig.SpecialPlacement.Path, true, 1f, false, -1, false, 0, false),
+            ("PuenteRoto", FloorConfig.SpecialPlacement.Path, true, 0.7f, false, -1, false, 2, false, false),
+            ("BosqueCoral", FloorConfig.SpecialPlacement.Path, true, 1f, false, -1, false, 0, false, false),
+            ("FosilGigante", FloorConfig.SpecialPlacement.Path, true, 1f, false, -1, false, 0, false, false),
+            ("JardinEsponjas", FloorConfig.SpecialPlacement.Path, true, 1f, false, -1, false, 0, false, true),
             // Tres oleadas seguidas desde las esquinas y una mutación al final.
-            ("SalaSellada", FloorConfig.SpecialPlacement.Path, true, 0.6f, false, -1, false, 3, true),
-            ("Islas", FloorConfig.SpecialPlacement.Path, true, 1f, false, -1, false, 0, false),
-            ("GrutaEscondida", FloorConfig.SpecialPlacement.Side, false, 0f, false, -1, false, 0, false),
+            ("SalaSellada", FloorConfig.SpecialPlacement.Path, true, 0.6f, false, -1, false, 3, true, false),
+            ("Islas", FloorConfig.SpecialPlacement.Path, true, 1f, false, -1, false, 0, false, false),
+            ("GrutaEscondida", FloorConfig.SpecialPlacement.Side, false, 0f, false, -1, false, 0, false, true),
         };
 
         const string MutationPickupPath = "Assets/_Primordia/Prefabs/Mutations/MutationPickup.prefab";
@@ -208,6 +209,7 @@ namespace Primordia.Editor
                     tall = s.tall,
                     waves = s.waves,
                     rewardAtEnd = s.reward,
+                    clamRoom = s.clam,
                 })
                 .Where(s => s.IsValid).ToArray();
             config.ConfigureSpecialRooms(specials, new Vector2Int(2, 4));
@@ -223,10 +225,12 @@ namespace Primordia.Editor
 
             config.ConfigurePieces(ArtSetup.ImportRoomPieces());
 
-            // Almejas: biomasa y, la grande, una mutación especial (aún no hay: llegarán con su diseño).
+            // Almejas: biomasa y, la grande, una mutación especial (Primordia > Mutations > Crear mutaciones especiales).
             var clams = config.Clams;
             if (clams.smallBiomass == Vector2Int.zero)
                 clams = FloorConfig.ClamContents.Default;
+            if (clams.bigMutations == null || clams.bigMutations.Length == 0)
+                clams.bigMutations = SpecialMutationsSetup.LoadAll();
             clams.mutationPickup = AssetDatabase.LoadAssetAtPath<MutationPickup>(MutationPickupPath);
             config.ConfigureClams(clams);
         }
@@ -334,7 +338,33 @@ namespace Primordia.Editor
             var config = AssetDatabase.LoadAssetAtPath<FloorConfig>(Floor2ConfigPath);
             FloorSetup.BuildFloor(scene, rig, player, floorConfig: config);
             AddTestLoadout(scene, AssetDatabase.LoadAssetAtPath<FloorConfig>(FloorSetup.FloorConfigPath));
+            AddHUD(scene);
             EditorSceneManager.SaveScene(scene);
+        }
+
+        /// <summary>
+        /// Pone el HUD (corazones, ranuras, pausa…) en Test_Floor2 si no lo tiene: las escenas hechas antes del 25 de octubre
+        /// no lo llevaban. Abre la escena (pidiendo antes guardar la actual) y la guarda.
+        /// </summary>
+        internal static void EnsureTestSceneHUD()
+        {
+            if (!System.IO.File.Exists(TestScenePath) || !EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo())
+                return;
+            var scene = EditorSceneManager.OpenScene(TestScenePath);
+            if (AddHUD(scene))
+                EditorSceneManager.SaveScene(scene);
+        }
+
+        /// <summary>El prefab GameUI y su EventSystem, si la escena aún no tiene HUD. True si lo ha añadido.</summary>
+        static bool AddHUD(UnityEngine.SceneManagement.Scene scene)
+        {
+            bool hasHUD = scene.GetRootGameObjects().Any(root => root.GetComponentInChildren<UI.HeartsDisplay>(true) != null);
+            if (hasHUD)
+                return false;
+            PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath<GameObject>(UISetup.GameUIPath), scene);
+            if (!scene.GetRootGameObjects().Any(root => root.GetComponentInChildren<UnityEngine.EventSystems.EventSystem>(true) != null))
+                UISetup.CreateEventSystem();
+            return true;
         }
 
         /// <summary>

@@ -28,6 +28,8 @@ namespace Primordia.Mutations
 
             var candidates = mutations.Where(m => m != null && (!player.IsEquipped(m) || player.CanLevelUp(m))
                 && (offersNewMouths || m.Slot != MutationSlot.Mouth || player.IsEquipped(m))).Distinct().ToList();
+            // Las especiales no están en la reserva (solo salen de las almejas), pero una vez equipadas sus mejoras sí se ofrecen.
+            candidates.AddRange(player.Equipped.Where(m => m != null && m.IsSpecial && player.CanLevelUp(m) && !candidates.Contains(m)));
             var upgrades = candidates.Where(player.IsEquipped).ToList();
             Shuffle(candidates);
 

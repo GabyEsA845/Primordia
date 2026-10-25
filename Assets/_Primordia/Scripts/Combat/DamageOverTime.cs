@@ -53,7 +53,7 @@ namespace Primordia.Combat
 
             tickTimer -= 1f;
             ticksLeft--;
-            health.TakeDamage(damagePerTick);
+            health.TakeDamage(damagePerTick, DamageKind.Tick);
 
             if (ticksLeft <= 0)
                 Destroy(this);

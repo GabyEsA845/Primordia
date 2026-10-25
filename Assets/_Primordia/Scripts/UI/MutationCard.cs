@@ -25,6 +25,8 @@ namespace Primordia.UI
         [SerializeField, FormerlySerializedAs("lineageIcons")] Sprite[] slotIcons = new Sprite[4];
         [Tooltip("Insignias de nivel para el icono grande, de nivel 1 a 3.")]
         [SerializeField] Sprite[] levelBadges = new Sprite[3];
+        [Tooltip("Gema dorada de mutación especial (esquina del icono).")]
+        [SerializeField] Sprite specialBadge;
         [Tooltip("Flechita junto a \"Nivel I > II\" en las mejoras.")]
         [SerializeField] Sprite upgradeArrow;
 
@@ -82,6 +84,7 @@ namespace Primordia.UI
             if (icon != null && badge == null)
                 badge = LevelBadge.Create(icon, new Vector2(18f, 26f));
             LevelBadge.Show(badge, levelBadges, icon != null && icon.enabled ? level : 0);
+            LevelBadge.ShowSpecial(icon, specialBadge, mutation.IsSpecial);
             ShowArrow(IsUpgrade);
             ShowGlow(lineageHint && !IsUpgrade);
         }
@@ -177,6 +180,8 @@ namespace Primordia.UI
         }
 
         internal void SetSlotIcons(Sprite[] sprites) => slotIcons = sprites;
+
+        internal void SetSpecialBadge(Sprite sprite) => specialBadge = sprite;
 
         internal void SetLevelSprites(Sprite[] badges, Sprite arrowSprite)
         {

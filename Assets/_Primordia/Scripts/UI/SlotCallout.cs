@@ -20,6 +20,8 @@ namespace Primordia.UI
         [SerializeField] Sprite emptyIcon;
         [Tooltip("Insignias de nivel para los iconos de 16, de nivel 1 a 3.")]
         [SerializeField] Sprite[] levelBadges = new Sprite[3];
+        [Tooltip("Gema dorada de mutación especial (esquina del icono).")]
+        [SerializeField] Sprite specialBadge;
 
         Image badge;
 
@@ -58,9 +60,12 @@ namespace Primordia.UI
             if (badge == null)
                 badge = LevelBadge.Create(icon, new Vector2(8f, 12f));
             LevelBadge.Show(badge, levelBadges, Level);
+            LevelBadge.ShowSpecial(icon, specialBadge, mutation != null && mutation.IsSpecial);
         }
 
         internal void SetLevelBadges(Sprite[] badges) => levelBadges = badges;
+
+        internal void SetSpecialBadge(Sprite sprite) => specialBadge = sprite;
 
         public void SetHighlighted(bool highlighted)
         {

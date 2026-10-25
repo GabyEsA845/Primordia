@@ -9,8 +9,9 @@ namespace Primordia.Core
 {
     /// <summary>
     /// Atajos para probar (solo en el editor y en compilaciones de desarrollo; la build de itch.io no los lleva):
-    /// F1 invulnerable, F2 daño ×5, F3 vacía la sala en combate y F4 da una mutación al azar de la reserva del piso (o
-    /// sube de nivel una que ya se lleva). Arriba a la izquierda se ve qué está activo.
+    /// F1 invulnerable, F2 daño ×5, F3 vacía la sala en combate, F4 da una mutación al azar de la reserva del piso (o
+    /// sube de nivel una que ya se lleva) y F5 una mutación especial de las almejas (o sube una que ya se lleva). Arriba a
+    /// la izquierda se ve qué está activo.
     /// </summary>
     public class DebugCheats : MonoBehaviour
     {
@@ -68,6 +69,8 @@ namespace Primordia.Core
                 ClearRoom();
             if (keyboard.f4Key.wasPressedThisFrame)
                 GiveMutation();
+            if (keyboard.f5Key.wasPressedThisFrame)
+                GiveSpecial();
 
             // La esquiva enciende y apaga la invulnerabilidad: aquí se renueva cada cuadro sin tocarla.
             if (invulnerable && player.Health != null)
@@ -113,6 +116,33 @@ namespace Primordia.Core
                 player.Equip(mutation);
                 Say($"{mutation.name} equipada");
             }
+        }
+
+        void GiveSpecial()
+        {
+            var generator = FindAnyObjectByType<FloorGenerator>();
+            var specials = generator != null && generator.Config != null ? generator.Config.Clams.bigMutations : null;
+            var free = new System.Collections.Generic.List<MutationData>();
+            var upgradable = new System.Collections.Generic.List<MutationData>();
+            foreach (var special in specials ?? System.Array.Empty<MutationData>())
+            {
+                if (special == null)
+                    continue;
+                if (!player.IsEquipped(special))
+                    free.Add(special);
+                else if (player.CanLevelUp(special))
+                    upgradable.Add(special);
+            }
+
+            var list = free.Count > 0 ? free : upgradable;
+            if (list.Count == 0)
+            {
+                Say("No quedan especiales que dar en este piso");
+                return;
+            }
+            var mutation = list[Random.Range(0, list.Count)];
+            player.Equip(mutation);
+            Say(free.Count > 0 ? $"{mutation.name} equipada (especial)" : $"{mutation.name} sube a nivel {player.LevelOf(mutation.Slot)}");
         }
 
         void Say(string text)

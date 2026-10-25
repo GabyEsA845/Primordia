@@ -64,6 +64,13 @@ Cada módulo vive en su propia carpeta de `Assets/_Primordia/Scripts/` (`Core`, 
   4. Piezas: almejas con biomasa, entradas de oleadas, coral del corazón morado y el corazón que para un golpe y se conserva entre pisos (icono morado en el HUD)
 
   Enemigos provisionales hasta `feature/floor2-enemies`
+- [ ] `feature/clam-room`: sala de la almeja garantizada en cada piso, aparte del sorteo de especiales (una al azar entre Gruta escondida, Anillo de la sima y Jardín de esponjas, las tres con almeja grande). Después, las 3 mutaciones especiales que solo salen en almejas grandes (diseño cerrado en el GDD, "Mutaciones especiales de las almejas"): Flagelos de Leanchoilia, Cutícula de Marrella y Yema clonal, el comodín de linaje con cartel para elegir, el precio Inestable en el daño y el HUD, y su arte (iconos, 6 capas y efectos)
+
+  Pasos:
+  1. Sala de la almeja y lo común de las especiales: precio Inestable (daño extra por golpe, corazones dorados y fila en la pausa con cuadro de información), comodín de linaje con cartel para elegir y cambio desde la pausa, gema dorada en los iconos, almejas que no repiten especial y atajo F5 (hecho)
+  2. Flagelos de Leanchoilia
+  3. Cutícula de Marrella
+  4. Yema clonal
 - [ ] `feature/floor2-mouths`: Cnidocitos, Placas mandibulares (Quebrar y Guillotina) y Corona de brazos (remolino y Marea), con los 3 cuerpos del jugador (medusa, pez acorazado, lirio de mar) y el golpe sincronizado con el cuadro de la animación de ataque
 - [ ] `feature/floor2-enemies`: Trilobite, Medusa azul, Ottoia, Esponja Vauxia y Cardumen de Pikaia, con su arte, sus avisos y su comportamiento
 - [ ] `feature/floor2-mutations`: las otras 6 mutaciones del piso 2 y sus 8 linajes (beneficios remodelados, Carroñero y su sprite de restos, toques y evoluciones). Incluye el arte que falta: las capas de Extremidades y Piel sobre los 3 cuerpos (12), los efectos de activación de los Órganos, las larvas, las burbujas de la Cola, las púas de Hallucigenia y las escamas de Wiwaxia

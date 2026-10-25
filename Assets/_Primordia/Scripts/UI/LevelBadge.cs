@@ -24,6 +24,37 @@ namespace Primordia.UI
             return badge;
         }
 
+        /// <summary>
+        /// Gema dorada de mutación especial en la esquina de arriba a la derecha del icono (sobresale un poco). Se crea la
+        /// primera vez como hija del icono; sin sprite o si no es especial, se oculta.
+        /// </summary>
+        public static void ShowSpecial(Image icon, Sprite sprite, bool special)
+        {
+            if (icon == null)
+                return;
+
+            var existing = icon.transform.Find("SpecialBadge");
+            Image badge;
+            if (existing != null)
+                badge = existing.GetComponent<Image>();
+            else
+            {
+                if (!special || sprite == null)
+                    return;
+                badge = Create(icon, Vector2.zero);
+                badge.name = "SpecialBadge";
+                var rect = badge.rectTransform;
+                // Esquina de arriba a la derecha: sobresale 2 px hacia fuera.
+                rect.anchorMin = rect.anchorMax = rect.pivot = new Vector2(1f, 1f);
+                rect.anchoredPosition = new Vector2(2f, 2f);
+            }
+
+            badge.sprite = sprite;
+            badge.enabled = special && sprite != null && icon.enabled;
+            if (sprite != null)
+                badge.rectTransform.sizeDelta = sprite.rect.size;
+        }
+
         /// <summary>Pone el sprite de ese nivel (1 a 3) de la lista; nivel 0 o sin sprite, la oculta.</summary>
         public static void Show(Image badge, Sprite[] sprites, int level)
         {

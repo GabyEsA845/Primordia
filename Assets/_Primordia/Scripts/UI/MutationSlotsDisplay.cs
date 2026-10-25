@@ -23,6 +23,8 @@ namespace Primordia.UI
         [SerializeField] Sprite[] emptySprites = new Sprite[4];
         [Tooltip("Insignias de nivel para los iconos de 16, de nivel 1 a 3.")]
         [SerializeField] Sprite[] levelBadges = new Sprite[3];
+        [Tooltip("Gema dorada de mutación especial (esquina del icono).")]
+        [SerializeField] Sprite specialBadge;
         [SerializeField] Vector2 slotSize = new(20f, 20f);
         [SerializeField] Vector2 iconSize = new(16f, 16f);
         [Tooltip("Color que oscurece el icono del Órgano mientras se recarga.")]
@@ -86,6 +88,8 @@ namespace Primordia.UI
 
         internal void SetLevelBadges(Sprite[] badges) => levelBadges = badges;
 
+        internal void SetSpecialBadge(Sprite sprite) => specialBadge = sprite;
+
         void OnChanged(MutationSlot slot, MutationData mutation)
         {
             Refresh(slot);
@@ -108,6 +112,7 @@ namespace Primordia.UI
             s.Icon.enabled = sprite != null;
             s.Shade.sprite = sprite;
             LevelBadge.Show(s.Badge, levelBadges, mutation != null ? player.LevelOf(slot) : 0);
+            LevelBadge.ShowSpecial(s.Icon, specialBadge, mutation != null && mutation.IsSpecial);
         }
 
         void LateUpdate()

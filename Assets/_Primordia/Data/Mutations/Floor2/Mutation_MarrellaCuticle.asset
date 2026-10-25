@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67642e84c84887647a93883692c551bb, type: 3}
+  m_Name: Mutation_MarrellaCuticle
+  m_EditorClassIdentifier: Primordia::Primordia.Mutations.MarrellaCuticleMutation
+  displayName: "Cut\xEDcula de Marrella"
+  description: "Esquiva justa: si un ataque te alcanza mientras esquivas, tu piel lo refleja. El proyectil vuelve a quien lo lanz\xF3 y le hace 6 de da\xF1o; un golpe cuerpo a cuerpo aturde 1 s al atacante y le hace 3."
+  slot: 2
+  lineages: []
+  look: {fileID: 0}
+  bodyRadius: 0
+  mouthDistance: 0
+  headHeight: 0
+  wornOnHead: 0
+  muzzleDistance: 0
+  attackLean: 0
+  icon: {fileID: 21300000, guid: c86c30dab7b99fe44a3b9cae91269691, type: 3}
+  largeIcon: {fileID: 21300000, guid: 4b37e6afb7177f14eb4d248eea5ab034, type: 3}
+  color: {r: 0.55, g: 0.7, b: 0.9, a: 1}
+  levelDescriptions:
+  - "8 de da\xF1o el proyectil y 4 el destello, que aturde 1,5 s."
+  - 'Prisma: cada proyectil reflejado se divide en 3 en abanico.'
+  dodgeSound: 
+  floor: 2
+  special: 1
+  family: 0
+  creatureIdleFrames: []
+  creatureAttackFrames: []
+  creatureBody: {fileID: 0}
+  morphFrames: []
+  revealFrames: []

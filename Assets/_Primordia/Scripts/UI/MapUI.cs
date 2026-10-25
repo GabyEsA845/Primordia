@@ -2,13 +2,15 @@ using System.Collections.Generic;
 using Primordia.Core;
 using Primordia.Rooms;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 namespace Primordia.UI
 {
     /// <summary>
     /// Minimapa del HUD (arriba a la derecha, centrado en el jugador y recortado por su recuadro) y mapa grande
-    /// (TAB, con el juego detenido: todo lo descubierto, ×2 o ×1 si no cabe). Los dos muestran la misma textura
+    /// (TAB, con el juego detenido: todo lo descubierto, ×2 o ×1 si no cabe; si ni así cabe, se abre centrado en el jugador y
+    /// se mueve arrastrando con el clic derecho). El minimapa se oculta en la pausa. Los dos muestran la misma textura
     /// de <see cref="MapPainter"/>, que se repinta al cambiar de sala o al cambiar el estado de alguna sala.
     /// Marcas: jugador, sala del jefe, salas con mutación aún sin limpiar y la tienda (cuando se descubre: al limpiar
     /// la sala de la que cuelga); los iconos no se amplían con el mapa.
@@ -57,10 +59,18 @@ namespace Primordia.UI
         MapRoom current;
         Room.RoomState[] states;
         bool bigMapShown;
+        bool hasFloor;
+        bool minimapHidden;
+        // Desplazamiento del mapa grande arrastrado con el clic derecho (unidades de la interfaz), y si ya se centró en el
+        // jugador al abrirlo.
+        Vector2 bigMapPan;
+        bool bigMapPanReady;
+        Canvas canvas;
 
         public MapPainter Painter => painter;
         public MapRoom CurrentRoom => current;
         public bool BigMapShown => bigMapShown;
+        public Vector2 BigMapPan => bigMapPan;
 
         void OnEnable() => FloorGenerator.FloorChanged += OnFloorChanged;
 
@@ -135,7 +145,8 @@ namespace Primordia.UI
                 Destroy(painter.Texture);
             painter = null;
 
-            bool hasFloor = floor != null && floor.Map != null;
+            hasFloor = floor != null && floor.Map != null;
+            minimapHidden = false;
             enabled = hasFloor;
             if (minimapRoot != null)
                 minimapRoot.SetActive(hasFloor);
@@ -173,6 +184,11 @@ namespace Primordia.UI
             }
 
             UpdateMinimap();
+
+            // En la pausa tapaba el menú: se oculta hasta volver a jugar.
+            bool hide = GameManager.Instance != null && GameManager.Instance.State == GameState.Paused;
+            if (hide != minimapHidden)
+                SetMinimapHidden(hide);
 
             bool show = GameManager.Instance != null && GameManager.Instance.State == GameState.Map;
             if (show != bigMapShown)
@@ -294,10 +310,48 @@ namespace Primordia.UI
             var texture = painter.Texture;
             bigMap.Image.uvRect = new Rect((float)area.x / texture.width, (float)area.y / texture.height,
                 (float)area.width / texture.width, (float)area.height / texture.height);
-            bigMap.Image.rectTransform.sizeDelta = (Vector2)area.size * scale;
-            // Centrado en la ventana, en píxeles enteros.
-            bigMap.Content.anchoredPosition = -Round((Vector2)area.size * scale / 2f);
+            Vector2 size = (Vector2)area.size * scale;
+            bigMap.Image.rectTransform.sizeDelta = size;
+
+            // Si no cabe (el piso 2 entero), se abre centrado en el jugador y se arrastra con el clic derecho.
+            if (!bigMapPanReady)
+            {
+                bigMapPanReady = true;
+                Vector2 playerPixel = (Floor(painter.ToPixel(PlayerFloorPosition())) - area.position) * scale;
+                bigMapPan = size / 2f - playerPixel;
+            }
+            var mouse = Mouse.current;
+            if (mouse != null && mouse.rightButton.isPressed)
+                bigMapPan += mouse.delta.ReadValue() / CanvasScale();
+            bigMapPan = ClampPan(bigMapPan, size, room);
+
+            // Centrado en la ventana (más lo arrastrado), en píxeles enteros.
+            bigMap.Content.anchoredPosition = -Round(size / 2f) + Round(bigMapPan);
             PlaceMarkers(bigMap, area.position, scale, PlayerFloorPosition());
+        }
+
+        /// <summary>
+        /// Lo que se puede mover el plano en cada eje: nada si cabe; si no, hasta que su borde llega al de la ventana.
+        /// </summary>
+        internal static Vector2 ClampPan(Vector2 pan, Vector2 content, Vector2 viewport)
+        {
+            Vector2 slack = Vector2.Max(Vector2.zero, content - viewport) / 2f;
+            return new Vector2(Mathf.Clamp(pan.x, -slack.x, slack.x), Mathf.Clamp(pan.y, -slack.y, slack.y));
+        }
+
+        float CanvasScale()
+        {
+            if (canvas == null)
+                canvas = GetComponentInParent<Canvas>();
+            float factor = canvas != null ? canvas.rootCanvas.scaleFactor : 1f;
+            return factor > 0f ? factor : 1f;
+        }
+
+        void SetMinimapHidden(bool hide)
+        {
+            minimapHidden = hide;
+            if (minimapRoot != null)
+                minimapRoot.SetActive(hasFloor && !hide);
         }
 
         /// <summary>Coloca las marcas de una vista: el plano empieza en <paramref name="origin"/> (píxeles de la textura).</summary>
@@ -318,6 +372,8 @@ namespace Primordia.UI
         void SetBigMap(bool show)
         {
             bigMapShown = show;
+            // Cada vez que se abre vuelve a centrarse en el jugador.
+            bigMapPanReady = false;
             if (bigMapRoot != null)
                 bigMapRoot.SetActive(show);
         }

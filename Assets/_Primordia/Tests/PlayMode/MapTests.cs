@@ -137,6 +137,17 @@ namespace Primordia.Tests
                     Assert.AreEqual(FloorMap.Kind.Floor, map.Get(cell + new Vector2Int(dx, dy)), $"Casilla {cell} demasiado cerca de una pared.");
         }
 
+        [Test]
+        public void BigMap_OnlyPans_WhenThePlanDoesNotFit()
+        {
+            var viewport = new Vector2(376f, 196f);
+            Assert.AreEqual(Vector2.zero, MapUI.ClampPan(new Vector2(50f, -30f), new Vector2(200f, 100f), viewport),
+                "Si cabe, se queda centrado.");
+            Assert.AreEqual(new Vector2(62f, 0f), MapUI.ClampPan(new Vector2(500f, 40f), new Vector2(500f, 150f), viewport),
+                "Si no cabe a lo ancho, se mueve hasta que el borde llega al de la ventana.");
+            Assert.AreEqual(new Vector2(-62f, -22f), MapUI.ClampPan(new Vector2(-500f, -500f), new Vector2(500f, 240f), viewport));
+        }
+
         MapRoom CreateRoom(FloorMap map, RectInt rect)
         {
             for (int y = rect.yMin + 1; y < rect.yMax - 1; y++)

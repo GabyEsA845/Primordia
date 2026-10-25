@@ -339,6 +339,75 @@ namespace Primordia.Editor
             return button;
         }
 
+        // ---------- Elección de linaje (comodín de las mutaciones especiales) ----------
+
+        /// <summary>
+        /// Cartel "elige tu linaje" del comodín: fondo oscuro, título y dos botones anchos con el animal (del color de su
+        /// clase) y su beneficio. Lo rehace si ya estaba.
+        /// </summary>
+        internal static void AddLineageChoice(GameObject canvas)
+        {
+            var old = canvas.transform.Find("LineageChoicePanel");
+            if (old != null)
+                Object.DestroyImmediate(old.gameObject);
+            var oldUI = canvas.GetComponent<LineageChoiceUI>();
+            if (oldUI != null)
+                Object.DestroyImmediate(oldUI);
+
+            var panel = CreateRect("LineageChoicePanel", canvas.transform);
+            Stretch(panel);
+            panel.gameObject.AddComponent<Image>().color = OverlayColor;
+
+            var layout = panel.gameObject.AddComponent<VerticalLayoutGroup>();
+            layout.childAlignment = TextAnchor.MiddleCenter;
+            layout.spacing = 6f;
+            layout.childControlWidth = layout.childControlHeight = true;
+            layout.childForceExpandWidth = layout.childForceExpandHeight = false;
+
+            var title = CreateText(panel, "ELIGE TU LINAJE", 20, TitleColor);
+            title.gameObject.AddComponent<LayoutElement>().preferredHeight = 26f;
+            var subtitle = CreateText(panel, "Tu mutación especial completa dos linajes a la vez. Podrás cambiarlo en la pausa.", 8, TextColor);
+            subtitle.gameObject.AddComponent<LayoutElement>().preferredHeight = 14f;
+
+            var bold = AssetDatabase.LoadAssetAtPath<Font>(BoldFontPath);
+            var buttons = new Button[2];
+            var names = new Text[2];
+            var benefits = new Text[2];
+            for (int i = 0; i < buttons.Length; i++)
+            {
+                var rect = CreateRect($"Option_{i}", panel);
+                var image = rect.gameObject.AddComponent<Image>();
+                image.color = ButtonColor;
+                buttons[i] = rect.gameObject.AddComponent<Button>();
+                buttons[i].targetGraphic = image;
+                var element = rect.gameObject.AddComponent<LayoutElement>();
+                element.preferredWidth = 300f;
+                element.preferredHeight = 58f;
+
+                var inner = rect.gameObject.AddComponent<VerticalLayoutGroup>();
+                inner.padding = new RectOffset(8, 8, 6, 6);
+                inner.spacing = 3f;
+                inner.childControlWidth = inner.childControlHeight = true;
+                inner.childForceExpandWidth = true;
+                inner.childForceExpandHeight = false;
+
+                names[i] = CreateText(rect, "Linaje · Clase", 12, TitleColor);
+                names[i].name = "Name";
+                names[i].alignment = TextAnchor.MiddleLeft;
+                if (bold != null)
+                    names[i].font = bold;
+                benefits[i] = CreateText(rect, "Beneficio", 8, TextColor);
+                benefits[i].name = "Benefit";
+                benefits[i].alignment = TextAnchor.UpperLeft;
+                benefits[i].horizontalOverflow = HorizontalWrapMode.Wrap;
+                foreach (var text in new[] { names[i], benefits[i] })
+                    text.raycastTarget = false;
+            }
+
+            canvas.AddComponent<LineageChoiceUI>().Configure(panel.gameObject, buttons, names, benefits);
+            panel.gameObject.SetActive(false);
+        }
+
         // ---------- Elección de mutación ----------
 
         /// <summary>Añade la pantalla "elige 1 de 3" al prefab GameUI si todavía no la tiene.</summary>

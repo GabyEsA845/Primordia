@@ -244,6 +244,18 @@ namespace Primordia.Mutations
             CacheRenderers();
         }
 
+        /// <summary>Sprites de las piezas que se ven ahora (Extremidades, Órgano, Boca y gorrito), para la copia de la Yema clonal.</summary>
+        internal System.Collections.Generic.IEnumerable<SpriteRenderer> PieceRenderers
+        {
+            get
+            {
+                if (limbsRenderer != null) yield return limbsRenderer;
+                if (organRenderer != null) yield return organRenderer;
+                if (mouthRenderer != null) yield return mouthRenderer;
+                if (capRenderer != null) yield return capRenderer;
+            }
+        }
+
         void CacheRenderers()
         {
             limbsRenderer = limbs != null ? limbs.GetComponent<SpriteRenderer>() : null;

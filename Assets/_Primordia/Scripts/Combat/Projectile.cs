@@ -20,6 +20,12 @@ namespace Primordia.Combat
 
         public int Damage { get; private set; }
 
+        /// <summary>Arma que lo disparó (puede ser null o haberse destruido).</summary>
+        public Weapon Source => source;
+
+        /// <summary>Velocidad actual.</summary>
+        public Vector2 Velocity => rb != null ? rb.linearVelocity : Vector2.zero;
+
         /// <summary>Multiplicador del veneno del arma al lanzarlo (como el daño, se guarda al salir).</summary>
         public float PoisonMultiplier { get; private set; } = 1f;
 
@@ -30,6 +36,8 @@ namespace Primordia.Combat
         float expireTime;
         bool launched;
         Transform homingTarget;
+        // Objetivo fijo de un proyectil buscador (el reflejado de la Cutícula vuelve a quien lo lanzó).
+        Transform fixedTarget;
         float nextTargetSearch;
         Vector2 direction;
         float speed;
@@ -82,6 +90,16 @@ namespace Primordia.Combat
 
         internal void SetImpactEffect(GameObject effect) => impactEffect = effect;
 
+        /// <summary>
+        /// Después de <see cref="Launch"/>: otro daño y, si el ataque es buscador, ese objetivo en lugar del más cercano
+        /// (el proyectil reflejado de la Cutícula, que vuelve a quien lo lanzó).
+        /// </summary>
+        public void Redirect(int damage, Transform target)
+        {
+            Damage = Mathf.Max(0, damage);
+            fixedTarget = target;
+        }
+
         /// <param name="source">Arma que disparó; recibe el aviso de cada impacto. Puede ser null.</param>
         public void Launch(Vector2 position, Vector2 direction, AttackData attack, int layer, Weapon source)
         {
@@ -110,6 +128,7 @@ namespace Primordia.Combat
             PoisonMultiplier = source != null ? source.PoisonMultiplier : 1f;
             nextTargetSearch = 0f;
             homingTarget = null;
+            fixedTarget = null;
             expireTime = Time.time + attack.Lifetime;
             launched = true;
             active.Add(this);
@@ -184,7 +203,11 @@ namespace Primordia.Combat
         /// <summary>Gira poco a poco hacia el objetivo más cercano del otro equipo (Esporas nivel III).</summary>
         void Steer()
         {
-            if (Time.time >= nextTargetSearch)
+            if (fixedTarget != null)
+            {
+                homingTarget = fixedTarget;
+            }
+            else if (Time.time >= nextTargetSearch)
             {
                 nextTargetSearch = Time.time + TargetSearchInterval;
                 homingTarget = FindTarget();
@@ -240,6 +263,17 @@ namespace Primordia.Combat
                 Sfx.Play(attack.ImpactSound);
                 Despawn();
                 return;
+            }
+
+            // La esquiva justa de la Cutícula lo devuelve antes de que haga daño.
+            if (gameObject.layer != CombatLayers.ProjectileLayer(Team.Player))
+            {
+                var reflector = other.GetComponentInParent<IHitReflector>();
+                if (reflector != null && reflector.TryReflect(this))
+                {
+                    Despawn();
+                    return;
+                }
             }
 
             if (!health.TakeDamage(Damage))

@@ -225,7 +225,10 @@ namespace Primordia.Rooms
             return BuildWithBoss(boss, config, random, slots, straight, none, straightSpecials, straightShop, straightExchange);
         }
 
-        /// <summary>Salas especiales de la partida: las que salen siempre y, hasta el número sorteado, otras al azar.</summary>
+        /// <summary>
+        /// Salas especiales de la partida: las que salen siempre y, hasta el número sorteado, otras al azar. Aparte, sin
+        /// contar en ese número, la sala de la almeja: una de las candidatas, para que cada piso tenga una almeja grande.
+        /// </summary>
         static List<FloorConfig.SpecialRoom> PickSpecials(FloorConfig config, System.Random random)
         {
             var all = config.SpecialRooms;
@@ -233,9 +236,16 @@ namespace Primordia.Rooms
                 return new List<FloorConfig.SpecialRoom>();
 
             var always = all.Where(room => room.always).ToList();
+            var candidates = all.Where(room => room.clamRoom && !room.always).ToList();
+            var clamRoom = candidates.Count > 0 ? candidates[random.Next(candidates.Count)] : (FloorConfig.SpecialRoom?)null;
+            var pool = all.Where(room => !room.always && (!clamRoom.HasValue || room.template != clamRoom.Value.template)).ToList();
+
             int total = Mathf.Max(always.Count, RandomRange(random, config.SpecialRoomCount));
-            var others = all.Where(room => !room.always).OrderBy(_ => random.Next()).Take(total - always.Count);
-            return always.Concat(others).ToList();
+            var others = pool.OrderBy(_ => random.Next()).Take(total - always.Count);
+            var picked = always.Concat(others).ToList();
+            if (clamRoom.HasValue)
+                picked.Add(clamRoom.Value);
+            return picked;
         }
 
         /// <summary>

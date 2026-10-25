@@ -10,7 +10,8 @@ namespace Primordia.Tests
 {
     /// <summary>
     /// Piso 2, paso 2: salas especiales (de 2 a 4, el Corazón morado siempre en el Abismo, nunca en las salas 1–2 ni en la
-    /// última), el Parkour de dos casillas, la tienda con la sala de cambio detrás, la antesala en línea con el jefe y las fosas.
+    /// última), la sala de la almeja aparte, el Parkour de dos casillas, la tienda con la sala de cambio detrás, la antesala
+    /// en línea con el jefe y las fosas.
     /// </summary>
     public class Floor2RoomsTests
     {
@@ -19,6 +20,7 @@ namespace Primordia.Tests
         readonly List<Object> created = new();
         FloorConfig floor2;
         RoomTemplate parkour, heart, grotto, exchange, shop;
+        readonly List<RoomTemplate> clamRooms = new();
 
         [SetUp]
         public void SetUp()
@@ -48,10 +50,17 @@ namespace Primordia.Tests
             {
                 Special(parkour, FloorConfig.SpecialPlacement.Path, false, 0f, tall: true),
                 Special(heart, FloorConfig.SpecialPlacement.Side, false, 2f, always: true, band: 2),
-                Special(grotto, FloorConfig.SpecialPlacement.Side, false, 0f),
+                Special(grotto, FloorConfig.SpecialPlacement.Side, false, 0f, clam: true),
             };
             foreach (var name in new[] { "AnilloSima", "PuenteRoto", "BosqueCoral", "FosilGigante", "JardinEsponjas", "SalaSellada", "Islas" })
-                specials.Add(Special(Rectangle($"Room_Special_{name}", 32, 20), FloorConfig.SpecialPlacement.Path, true, 1f));
+            {
+                var template = Rectangle($"Room_Special_{name}", 32, 20);
+                bool clam = name is "AnilloSima" or "JardinEsponjas";
+                if (clam)
+                    clamRooms.Add(template);
+                specials.Add(Special(template, FloorConfig.SpecialPlacement.Path, true, 1f, clam: clam));
+            }
+            clamRooms.Add(grotto);
             floor2.ConfigureSpecialRooms(specials.ToArray(), new Vector2Int(2, 4));
             floor2.ConfigureFloor(2, null);
         }
@@ -65,6 +74,7 @@ namespace Primordia.Tests
                     Object.DestroyImmediate(obj);
             }
             created.Clear();
+            clamRooms.Clear();
         }
 
         T Track<T>(T obj) where T : Object
@@ -82,7 +92,7 @@ namespace Primordia.Tests
         }
 
         static FloorConfig.SpecialRoom Special(RoomTemplate template, FloorConfig.SpecialPlacement placement, bool combat, float enemies,
-            bool always = false, int band = -1, bool tall = false) => new()
+            bool always = false, int band = -1, bool tall = false, bool clam = false) => new()
         {
             template = template,
             placement = placement,
@@ -91,17 +101,18 @@ namespace Primordia.Tests
             always = always,
             band = band,
             tall = tall,
+            clamRoom = clam,
         };
 
         [Test]
-        public void Layout_HasTwoToFourSpecials_AlwaysTheHeart_NeverInTheFirstTwoNorTheLast()
+        public void Layout_HasTwoToFourSpecialsPlusTheClamRoom_AlwaysTheHeart_NeverInTheFirstTwoNorTheLast()
         {
             for (int seed = 1; seed <= 150; seed++)
             {
                 var layout = FloorLayoutGenerator.Generate(floor2, new System.Random(seed));
                 string context = $"semilla {seed}";
                 var specials = layout.Rooms.Where(r => r.Special.HasValue).ToList();
-                Assert.That(specials.Count, Is.InRange(2, 4), context);
+                Assert.That(specials.Count, Is.InRange(3, 5), $"De 2 a 4 más la sala de la almeja ({context}).");
                 int combat = layout.Rooms.Count(r => r.Role == RoomRole.Combat);
                 Assert.That(combat, Is.InRange(10, 12), $"Las especiales de combate cuentan entre las 10–12 ({context}).");
 
@@ -118,6 +129,22 @@ namespace Primordia.Tests
                         Assert.GreaterOrEqual(room.Depth, 3, $"{room.Name} ({context}).");
                 }
             }
+        }
+
+        [Test]
+        public void ClamRoom_AlwaysOneCandidate_OnTopOfTheDraw_AndEachCandidateComesUp()
+        {
+            var seen = new HashSet<RoomTemplate>();
+            for (int seed = 1; seed <= 150; seed++)
+            {
+                var layout = FloorLayoutGenerator.Generate(floor2, new System.Random(seed));
+                var specials = layout.Rooms.Where(r => r.Special.HasValue).Select(r => r.Template).ToList();
+                var clams = specials.Where(clamRooms.Contains).ToList();
+                Assert.That(clams.Count, Is.GreaterThanOrEqualTo(1), $"semilla {seed}: siempre hay una sala con almeja grande.");
+                Assert.AreEqual(specials.Count, specials.Distinct().Count(), $"semilla {seed}: ninguna especial se repite.");
+                seen.UnionWith(clams);
+            }
+            CollectionAssert.AreEquivalent(clamRooms, seen, "Las tres candidatas salen en alguna partida.");
         }
 
         [Test]
@@ -250,6 +277,10 @@ namespace Primordia.Tests
             Assert.AreEqual(2, parkourLayout.DoorCells(Vector2Int.down).Count);
             Assert.IsEmpty(parkourLayout.DoorCells(Vector2Int.left), "El Parkour solo tiene puertas arriba y abajo.");
             Assert.Greater(parkourLayout.CellsOf(RoomTemplate.Mark.Pit).Count, 100);
+
+            // Las candidatas a la sala de la almeja llevan almeja grande (dos cofres seguidos).
+            foreach (var name in new[] { "GrutaEscondida", "AnilloSima", "JardinEsponjas" })
+                StringAssert.Contains("CC", File.ReadAllText($"{LayoutsFolder}/Room_Special_{name}.txt"), $"{name}: almeja grande.");
         }
 
         static IEnumerable<Vector2Int> Cells(RectInt rect)

@@ -30,6 +30,13 @@ namespace Primordia.UI
         [SerializeField] Sprite purpleHeart;
         [Tooltip("Capas del corazón morado sobre cada corazón: contorno morado y grietas (variantes).")]
         [SerializeField] Sprite[] purpleInlays;
+        [Tooltip("Precio Inestable (mutaciones especiales): borde dorado agrietado sobre cada corazón (variantes).")]
+        [SerializeField] Sprite[] unstableInlays;
+        [Tooltip("Inestable con el corazón morado a la vez: solo las grietas doradas (el contorno se queda morado).")]
+        [SerializeField] Sprite[] unstableCracks;
+        [Tooltip("El medio corazón extra de Inestable se rompe: esquirlas doradas (24×24, centrado en el corazón).")]
+        [SerializeField] Sprite[] unstableBreak;
+        [SerializeField, Min(0.01f)] float unstableBreakFrameDuration = 0.06f;
         [Tooltip("Tamaño de cada corazón en píxeles de la interfaz.")]
         [SerializeField] Vector2 heartSize = new(16f, 16f);
 
@@ -67,13 +74,42 @@ namespace Primordia.UI
                 return;
 
             health.Changed += OnHealthChanged;
+            health.ExtraDamageTaken += OnExtraDamage;
             Refresh();
         }
 
         void OnDestroy()
         {
             if (health != null)
+            {
                 health.Changed -= OnHealthChanged;
+                health.ExtraDamageTaken -= OnExtraDamage;
+            }
+        }
+
+        /// <summary>Esquirlas doradas en el corazón que perdió el medio corazón de más (el último que se vació).</summary>
+        void OnExtraDamage(int extra)
+        {
+            if (unstableBreak == null || unstableBreak.Length == 0 || hearts.Count == 0)
+                return;
+
+            int index = Mathf.Clamp(health.Current / 2, 0, hearts.Count - 1);
+            var shards = new GameObject("UnstableBreak", typeof(RectTransform), typeof(Image));
+            var rect = (RectTransform)shards.transform;
+            rect.SetParent(hearts[index].transform, false);
+            rect.sizeDelta = unstableBreak[0].rect.size;
+            shards.GetComponent<Image>().raycastTarget = false;
+            shards.AddComponent<UISpriteAnimation>().Configure(unstableBreak, unstableBreakFrameDuration, false, newDestroyWhenDone: true);
+        }
+
+        /// <summary>Corazones que llevan ahora la capa dorada de Inestable.</summary>
+        public int UnstableShown => hearts.FindAll(heart => heart.gameObject.activeSelf && LayerOf(heart, "UnstableInlay").gameObject.activeSelf).Count;
+
+        internal void SetUnstableArt(Sprite[] inlays, Sprite[] cracks, Sprite[] breakFrames)
+        {
+            unstableInlays = inlays;
+            unstableCracks = cracks;
+            unstableBreak = breakFrames;
         }
 
         internal void SetBarrierSprite(Sprite sprite) => barrierHeart = sprite;
@@ -134,6 +170,19 @@ namespace Primordia.UI
                     overlay.sprite = purpleInlays[i % purpleInlays.Length];
             }
 
+            // Con mutaciones especiales (Inestable), borde dorado agrietado; si también está el morado, el contorno se queda
+            // morado y el dorado va solo en las grietas. Encima de la capa morada.
+            bool unstable = health.ExtraHitDamage > 0 && unstableInlays != null && unstableInlays.Length > 0;
+            var goldArt = inlaid && unstableCracks != null && unstableCracks.Length > 0 ? unstableCracks : unstableInlays;
+            for (int i = 0; i < hearts.Count; i++)
+            {
+                var overlay = LayerOf(hearts[i], "UnstableInlay");
+                overlay.transform.SetSiblingIndex(InlayOf(hearts[i]).transform.GetSiblingIndex() + 1);
+                overlay.gameObject.SetActive(unstable && hearts[i].gameObject.activeSelf);
+                if (unstable)
+                    overlay.sprite = goldArt[i % goldArt.Length];
+            }
+
             // Sin el arte de las grietas, el corazón morado se ve como un corazón más al final.
             int icons = inlaid ? 0 : health.PurpleHearts;
             while (purpleHearts.Count < icons)
@@ -152,13 +201,16 @@ namespace Primordia.UI
         }
 
         /// <summary>Capa morada de un corazón (se crea la primera vez).</summary>
-        Image InlayOf(Image heart)
+        Image InlayOf(Image heart) => LayerOf(heart, "PurpleInlay");
+
+        /// <summary>Capa con ese nombre sobre un corazón, del mismo tamaño (se crea oculta la primera vez).</summary>
+        static Image LayerOf(Image heart, string name)
         {
-            var existing = heart.transform.Find("PurpleInlay");
+            var existing = heart.transform.Find(name);
             if (existing != null)
                 return existing.GetComponent<Image>();
 
-            var inlay = new GameObject("PurpleInlay", typeof(RectTransform), typeof(Image));
+            var inlay = new GameObject(name, typeof(RectTransform), typeof(Image));
             var rect = (RectTransform)inlay.transform;
             rect.SetParent(heart.transform, false);
             rect.anchorMin = Vector2.zero;

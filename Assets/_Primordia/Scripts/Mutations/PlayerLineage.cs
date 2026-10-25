@@ -21,6 +21,8 @@ namespace Primordia.Mutations
 
         PlayerMutations mutations;
         readonly List<Component> benefitComponents = new();
+        readonly List<LineageData> candidates = new();
+        LineageData preferred;
 
         /// <summary>Linaje completo ahora mismo, o null.</summary>
         public LineageData Active { get; private set; }
@@ -69,24 +71,60 @@ namespace Primordia.Mutations
 
         void OnChanged(MutationSlot slot, MutationData mutation) => Refresh();
 
-        /// <summary>Busca el primer linaje completo entre los de las mutaciones equipadas.</summary>
+        /// <summary>
+        /// Busca los linajes completos entre los de las mutaciones equipadas. Sin comodín solo puede haber uno; con una
+        /// mutación especial puede haber dos (los linajes que solo se diferencian en esa ranura): entonces sigue el que ya
+        /// estaba activo o el que eligió antes, y si no, el jugador elige (<see cref="ChoiceNeeded"/>).
+        /// </summary>
         public void Refresh()
         {
-            LineageData found = null;
+            candidates.Clear();
             foreach (var mutation in mutations.Equipped)
             {
                 foreach (var lineage in mutation.Lineages)
                 {
-                    if (lineage != null && lineage.IsComplete(mutations))
-                    {
-                        found = lineage;
-                        break;
-                    }
+                    if (lineage != null && !candidates.Contains(lineage) && lineage.IsComplete(mutations))
+                        candidates.Add(lineage);
                 }
-                if (found != null)
-                    break;
             }
-            SetActive(found);
+
+            AwaitingChoice = false;
+            if (candidates.Count == 0)
+                SetActive(null);
+            else if (candidates.Count == 1)
+                SetActive(candidates[0]);
+            else if (Active != null && candidates.Contains(Active))
+                SetActive(Active);
+            else if (preferred != null && candidates.Contains(preferred))
+                SetActive(preferred);
+            else if (ChoiceNeeded == null)
+                // Sin cartel que pregunte (pruebas, escenas sin interfaz): el primero.
+                SetActive(candidates[0]);
+            else
+            {
+                SetActive(null);
+                AwaitingChoice = true;
+                ChoiceNeeded.Invoke(candidates);
+            }
+        }
+
+        /// <summary>Linajes completos ahora mismo (dos si el comodín completa dos a la vez).</summary>
+        public IReadOnlyList<LineageData> Candidates => candidates;
+
+        /// <summary>True si hay dos linajes completos y el jugador aún no ha elegido.</summary>
+        public bool AwaitingChoice { get; private set; }
+
+        /// <summary>El comodín completa dos linajes a la vez y hay que elegir uno: se lanza con los dos.</summary>
+        public event Action<IReadOnlyList<LineageData>> ChoiceNeeded;
+
+        /// <summary>Activa ese linaje de los completos (el cartel al completarlos o el cambio desde la pausa) y lo recuerda.</summary>
+        public void Choose(LineageData lineage)
+        {
+            if (lineage == null || !candidates.Contains(lineage))
+                return;
+            preferred = lineage;
+            AwaitingChoice = false;
+            SetActive(lineage);
         }
 
         void SetActive(LineageData lineage)

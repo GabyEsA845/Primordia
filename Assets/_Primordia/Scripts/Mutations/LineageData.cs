@@ -81,19 +81,43 @@ namespace Primordia.Mutations
             return mutations != null && index < mutations.Length ? mutations[index] : null;
         }
 
-        /// <summary>Cuántas de sus 4 mutaciones lleva el jugador ahora.</summary>
+        /// <summary>
+        /// Cuántas de sus 4 mutaciones lleva el jugador ahora. Una mutación especial en una ranura que le falta cuenta como
+        /// la suya (comodín), pero solo una: el comodín completa el linaje si se llevan las otras 3.
+        /// </summary>
         public int Progress(PlayerMutations player)
         {
             if (player == null || mutations == null)
                 return 0;
 
             int count = 0;
+            bool wildcard = false;
+            for (int slot = 0; slot < mutations.Length; slot++)
+            {
+                var mutation = mutations[slot];
+                if (mutation != null && player.IsEquipped(mutation))
+                {
+                    count++;
+                    continue;
+                }
+                var worn = player.Get((MutationSlot)slot);
+                if (worn != null && worn.IsSpecial)
+                    wildcard = true;
+            }
+            return count + (wildcard ? 1 : 0);
+        }
+
+        /// <summary>True si lo completa una mutación especial (comodín) en lugar de la suya.</summary>
+        public bool CompletedByWildcard(PlayerMutations player)
+        {
+            if (!IsComplete(player))
+                return false;
             foreach (var mutation in mutations)
             {
-                if (mutation != null && player.IsEquipped(mutation))
-                    count++;
+                if (mutation != null && !player.IsEquipped(mutation))
+                    return true;
             }
-            return count;
+            return false;
         }
 
         public bool IsComplete(PlayerMutations player) => Progress(player) == SlotCount;

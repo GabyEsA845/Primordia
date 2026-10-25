@@ -848,7 +848,9 @@ namespace Primordia.Rooms
                 var piece = Piece(big ? "ClamBig" : "Clam", big ? pieces.clamBig : pieces.clamSmall, position, size);
                 var clam = piece.AddComponent<Clam>();
                 // La grande guarda, además, una mutación especial si el piso tiene alguna (solo salen en almejas).
-                var mutation = big && clams.bigMutations is { Length: > 0 } ? Clam.PickMutation(clams.bigMutations, playerMutations, random) : null;
+                var mutation = big && clams.bigMutations is { Length: > 0 }
+                    ? Clam.PickMutation(clams.bigMutations, playerMutations, random, Clam.AssignedMutations())
+                    : null;
                 clam.Configure(piece.GetComponent<SpriteRenderer>(), big ? pieces.clamBigIdle : pieces.clamSmallIdle,
                     big ? pieces.clamBigOpen : pieces.clamSmallOpen, big ? pieces.clamBigOpened : pieces.clamSmallOpened, big,
                     big ? clams.bigBiomass : clams.smallBiomass, mutation, clams.mutationPickup, config.SmallBiomass, config.BigBiomass);

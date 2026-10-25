@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a5ab933dd4c06a4bacc753fd2114c2a, type: 3}
+  m_Name: Mutation_LeanchoiliaFlagella
+  m_EditorClassIdentifier: Primordia::Primordia.Mutations.LeanchoiliaFlagellaMutation
+  displayName: Flagelos de Leanchoilia
+  description: "Cuando tu ataque alcanza a un enemigo, unos flagelos aparecen junto a \xE9l y lo azotan con el da\xF1o de 1 s de tu Boca y sus efectos (con la Corona de brazos, a todos los del remolino). Uno cada 3 s."
+  slot: 1
+  lineages: []
+  look: {fileID: 0}
+  bodyRadius: 0
+  mouthDistance: 0
+  headHeight: 0
+  wornOnHead: 0
+  muzzleDistance: 0
+  attackLean: 0
+  icon: {fileID: 21300000, guid: 37ed9b98d624e0d40a7d48973bfa9333, type: 3}
+  largeIcon: {fileID: 21300000, guid: 8d51bc75a0cc6fb468d71a90d34a5748, type: 3}
+  color: {r: 0.66, g: 0.35, b: 0.82, a: 1}
+  levelDescriptions:
+  - "Uno cada 2,5 s y un 25 % m\xE1s de da\xF1o."
+  - "Latigazo en cadena: el latigazo salta a los 2 enemigos m\xE1s cercanos con el mismo da\xF1o."
+  dodgeSound: 
+  floor: 2
+  special: 1
+  family: 0
+  creatureIdleFrames: []
+  creatureAttackFrames: []
+  creatureBody: {fileID: 0}
+  morphFrames: []
+  revealFrames: []
+  values:
+    cooldown: 3
+    damageMultiplier: 1
+    chainTargets: 0
+  upgrades:
+  - cooldown: 2.5
+    damageMultiplier: 1.25
+    chainTargets: 0
+  - cooldown: 2.5
+    damageMultiplier: 1.25
+    chainTargets: 2
+  strikeDelay: 0.4
+  retargetRadius: 2
+  chainRadius: 4
+  lashFrames:
+  - {fileID: -8742577241274520126, guid: 40d5b5b3747e88f45b509c7235177993, type: 3}
+  - {fileID: 1654948800890906969, guid: 40d5b5b3747e88f45b509c7235177993, type: 3}
+  - {fileID: -7538925190816260177, guid: 40d5b5b3747e88f45b509c7235177993, type: 3}
+  - {fileID: -8330796470142168844, guid: 40d5b5b3747e88f45b509c7235177993, type: 3}
+  - {fileID: -1017322589375247587, guid: 40d5b5b3747e88f45b509c7235177993, type: 3}
+  - {fileID: 3841210815363860978, guid: 40d5b5b3747e88f45b509c7235177993, type: 3}
+  - {fileID: 4429217185927147083, guid: 40d5b5b3747e88f45b509c7235177993, type: 3}
+  - {fileID: 1895464808482687134, guid: 40d5b5b3747e88f45b509c7235177993, type: 3}
+  - {fileID: 3234082034178606306, guid: 40d5b5b3747e88f45b509c7235177993, type: 3}
+  - {fileID: -4312792488749304173, guid: 40d5b5b3747e88f45b509c7235177993, type: 3}
+  - {fileID: -8946750357141540125, guid: 40d5b5b3747e88f45b509c7235177993, type: 3}
+  - {fileID: -7651468189081148143, guid: 40d5b5b3747e88f45b509c7235177993, type: 3}
+  lashFrameDuration: 0.1
+  readyFrames:
+  - {fileID: -3267919376673458197, guid: cfc8cbe21f9d5634b86a4f62b43faadd, type: 3}
+  - {fileID: 5600828697697841335, guid: cfc8cbe21f9d5634b86a4f62b43faadd, type: 3}
+  - {fileID: 9054608690646916489, guid: cfc8cbe21f9d5634b86a4f62b43faadd, type: 3}
+  - {fileID: 5344414573754953307, guid: cfc8cbe21f9d5634b86a4f62b43faadd, type: 3}
+  - {fileID: 8859557619655953136, guid: cfc8cbe21f9d5634b86a4f62b43faadd, type: 3}
+  readyFrameDuration: 0.07

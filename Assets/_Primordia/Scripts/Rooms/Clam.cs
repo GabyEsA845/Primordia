@@ -113,16 +113,64 @@ namespace Primordia.Rooms
 
             if (mutation != null && mutationPickup != null)
             {
-                var bubble = Instantiate(mutationPickup, origin + Vector2.up * 1.2f, Quaternion.identity, transform.parent);
+                var bubble = Instantiate(mutationPickup, origin, Quaternion.identity, transform.parent);
                 bubble.SetMutation(mutation);
+                StartCoroutine(Drop(bubble, DropTarget(player)));
             }
         }
 
-        /// <summary>Mutación especial para una almeja grande: una al azar de la lista que el jugador no lleve. Null si no hay.</summary>
-        public static MutationData PickMutation(MutationData[] options, PlayerMutations player, System.Random random)
+        const float DropDistance = 1.2f;
+        const float DropDuration = 0.45f;
+        const float DropArc = 0.9f;
+
+        /// <summary>
+        /// Dónde cae la burbuja: delante de la almeja, hacia el jugador que la abrió (normalmente abajo). Ese lado es suelo que
+        /// pisa (en el Anillo de la sima, la isla), y como queda casi encima de él, la coge sin buscarla. Sin jugador, abajo.
+        /// </summary>
+        Vector2 DropTarget(GameObject player)
+        {
+            var toPlayer = player != null ? (Vector2)player.transform.position - Position : Vector2.down;
+            var direction = toPlayer.sqrMagnitude > 0.01f ? toPlayer.normalized : Vector2.down;
+            return Position + direction * Mathf.Min(DropDistance, Mathf.Max(0.6f, toPlayer.magnitude));
+        }
+
+        /// <summary>La burbuja salta de la almeja en un arco corto y no se puede coger hasta que cae.</summary>
+        IEnumerator Drop(MutationPickup bubble, Vector2 target)
+        {
+            var trigger = bubble.GetComponent<Collider2D>();
+            if (trigger != null)
+                trigger.enabled = false;
+
+            Vector2 start = bubble.transform.position;
+            for (float t = 0f; t < 1f && bubble != null; t += Time.deltaTime / DropDuration)
+            {
+                var position = Vector2.Lerp(start, target, t) + Vector2.up * (4f * DropArc * t * (1f - t));
+                bubble.transform.position = position;
+                yield return null;
+            }
+
+            if (bubble == null)
+                yield break;
+            bubble.transform.position = target;
+            if (trigger != null)
+                trigger.enabled = true;
+        }
+
+        /// <summary>
+        /// Mutación especial para una almeja grande: una al azar de la lista que el jugador no lleve y que no guarde ya otra
+        /// almeja del piso (<paramref name="assigned"/>); si ya están todas repartidas, puede repetir. Null si no hay.
+        /// </summary>
+        public static MutationData PickMutation(MutationData[] options, PlayerMutations player, System.Random random,
+            System.Collections.Generic.ICollection<MutationData> assigned = null)
         {
             var free = (options ?? System.Array.Empty<MutationData>()).Where(m => m != null && (player == null || !player.IsEquipped(m))).ToList();
-            return free.Count > 0 ? free[random.Next(free.Count)] : null;
+            var fresh = assigned == null ? free : free.Where(m => !assigned.Contains(m)).ToList();
+            var pool = fresh.Count > 0 ? fresh : free;
+            return pool.Count > 0 ? pool[random.Next(pool.Count)] : null;
         }
+
+        /// <summary>Mutaciones especiales que guardan las almejas que hay ya en la escena (las del piso que se está montando).</summary>
+        public static System.Collections.Generic.HashSet<MutationData> AssignedMutations() =>
+            new(FindObjectsByType<Clam>(FindObjectsSortMode.None).Select(c => c.Mutation).Where(m => m != null));
     }
 }

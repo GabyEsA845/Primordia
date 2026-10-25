@@ -8,9 +8,10 @@ namespace Primordia.UI
     /// <summary>
     /// Fila del linaje en el panel de estadísticas de la pausa: el animal y su clase (del color de la clase) y debajo
     /// los nombres de su beneficio ("Rematar · Sangre en el agua"). Al pasar el ratón, el cuadro de información
-    /// (<see cref="MutationTooltip"/>) explica el beneficio entero. Sin linaje completo dice "Ninguno".
+    /// (<see cref="MutationTooltip"/>) explica el beneficio entero. Sin linaje completo dice "Ninguno". Si una mutación
+    /// especial completa dos linajes a la vez, un clic cambia al otro.
     /// </summary>
-    public class LineagePanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+    public class LineagePanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
     {
         [Tooltip("Linaje a mostrar. Si está vacío, usa el del objeto con la etiqueta Player.")]
         [SerializeField] PlayerLineage lineage;
@@ -75,9 +76,36 @@ namespace Primordia.UI
 
             if (benefitLabel != null)
             {
-                benefitLabel.text = MutationText.BenefitTitle(active);
+                var other = Other;
+                benefitLabel.text = MutationText.BenefitTitle(active) + (other != null ? $"\nClic: cambiar a {other.DisplayName}" : "");
                 benefitLabel.gameObject.SetActive(active != null);
             }
+        }
+
+        /// <summary>El otro linaje completo cuando el comodín completa dos (null si no).</summary>
+        LineageData Other
+        {
+            get
+            {
+                if (lineage == null || lineage.Candidates.Count < 2)
+                    return null;
+                foreach (var candidate in lineage.Candidates)
+                {
+                    if (candidate != lineage.Active)
+                        return candidate;
+                }
+                return null;
+            }
+        }
+
+        public void OnPointerClick(PointerEventData eventData)
+        {
+            var other = Active != null ? Other : null;
+            if (other == null)
+                return;
+            lineage.Choose(other);
+            Refresh();
+            OnPointerEnter(eventData);
         }
 
         public void OnPointerEnter(PointerEventData eventData)

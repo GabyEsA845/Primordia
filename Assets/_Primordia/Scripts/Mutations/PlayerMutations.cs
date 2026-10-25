@@ -48,6 +48,21 @@ namespace Primordia.Mutations
 
         public IEnumerable<MutationData> Equipped => equipped.Values;
 
+        /// <summary>Mutaciones especiales que lleva: cada una suma medio corazón a cada golpe (precio Inestable).</summary>
+        public int SpecialCount
+        {
+            get
+            {
+                int count = 0;
+                foreach (var mutation in equipped.Values)
+                {
+                    if (mutation != null && mutation.IsSpecial)
+                        count++;
+                }
+                return count;
+            }
+        }
+
         CircleCollider2D bodyCollider;
         float cellRadius;
 
@@ -105,6 +120,7 @@ namespace Primordia.Mutations
             levels[mutation.Slot] = 1;
             mutation.Apply(this, 1);
             UpdateBodyRadius();
+            UpdateUnstable();
 
             Changed?.Invoke(mutation.Slot, mutation);
         }
@@ -159,7 +175,15 @@ namespace Primordia.Mutations
             levels.Remove(slot);
 
             UpdateBodyRadius();
+            UpdateUnstable();
             return true;
+        }
+
+        /// <summary>Precio Inestable: medio corazón más por golpe por cada especial equipada (se acumula).</summary>
+        void UpdateUnstable()
+        {
+            if (Health != null)
+                Health.ExtraHitDamage = SpecialCount;
         }
 
         /// <summary>Deshace el efecto de la mutación en ese nivel y quita sus componentes (al momento, para que no se dupliquen al subir de nivel).</summary>

@@ -51,6 +51,7 @@ MonoBehaviour:
     tall: 1
     waves: 0
     rewardAtEnd: 0
+    clamRoom: 0
   - template: {fileID: 11400000, guid: fd484ca93881d52419dfb17194968032, type: 2}
     placement: 1
     countsAsCombat: 0
@@ -60,6 +61,7 @@ MonoBehaviour:
     tall: 0
     waves: 0
     rewardAtEnd: 0
+    clamRoom: 0
   - template: {fileID: 11400000, guid: 3b5e717a6e5b25747a640786071e8489, type: 2}
     placement: 0
     countsAsCombat: 1
@@ -69,6 +71,7 @@ MonoBehaviour:
     tall: 0
     waves: 0
     rewardAtEnd: 0
+    clamRoom: 1
   - template: {fileID: 11400000, guid: 8cdaddf20e897b94280f9f1f21b93993, type: 2}
     placement: 0
     countsAsCombat: 1
@@ -78,6 +81,7 @@ MonoBehaviour:
     tall: 0
     waves: 2
     rewardAtEnd: 0
+    clamRoom: 0
   - template: {fileID: 11400000, guid: 50806b46d01c1394aa5472d5a7a763b4, type: 2}
     placement: 0
     countsAsCombat: 1
@@ -87,6 +91,7 @@ MonoBehaviour:
     tall: 0
     waves: 0
     rewardAtEnd: 0
+    clamRoom: 0
   - template: {fileID: 11400000, guid: c71f5fd2bc750a0499c64c0484728109, type: 2}
     placement: 0
     countsAsCombat: 1
@@ -96,6 +101,7 @@ MonoBehaviour:
     tall: 0
     waves: 0
     rewardAtEnd: 0
+    clamRoom: 0
   - template: {fileID: 11400000, guid: 987987dd53d64f14c98dcf88802a920a, type: 2}
     placement: 0
     countsAsCombat: 1
@@ -105,6 +111,7 @@ MonoBehaviour:
     tall: 0
     waves: 0
     rewardAtEnd: 0
+    clamRoom: 1
   - template: {fileID: 11400000, guid: 74f67418f96ab4f4bb2107cd71e93df2, type: 2}
     placement: 0
     countsAsCombat: 1
@@ -114,6 +121,7 @@ MonoBehaviour:
     tall: 0
     waves: 3
     rewardAtEnd: 1
+    clamRoom: 0
   - template: {fileID: 11400000, guid: 037f01a2aec2e2f47b1706d7611a392b, type: 2}
     placement: 0
     countsAsCombat: 1
@@ -123,6 +131,7 @@ MonoBehaviour:
     tall: 0
     waves: 0
     rewardAtEnd: 0
+    clamRoom: 0
   - template: {fileID: 11400000, guid: ac1312af0f5836d46ad5dbd897823440, type: 2}
     placement: 1
     countsAsCombat: 0
@@ -132,6 +141,7 @@ MonoBehaviour:
     tall: 0
     waves: 0
     rewardAtEnd: 0
+    clamRoom: 1
   specialRoomCount: {x: 2, y: 4}
   exchangeRoom: {fileID: 11400000, guid: 5b2f86552c2f4024fa62b3277af9db01, type: 2}
   antechamberVertical: {fileID: 11400000, guid: 937596f4d6c8bec4eb3c1a0a6105722b, type: 2}
@@ -194,7 +204,10 @@ MonoBehaviour:
   clams:
     smallBiomass: {x: 5, y: 15}
     bigBiomass: {x: 15, y: 25}
-    bigMutations: []
+    bigMutations:
+    - {fileID: 11400000, guid: 289afe24f25af604d8034efff1cfcd83, type: 2}
+    - {fileID: 11400000, guid: 13f434cb895f86246a9cf4816f366c35, type: 2}
+    - {fileID: 11400000, guid: 456c6f6a064add5408c20c84f638ba30, type: 2}
     mutationPickup: {fileID: 6509183854426299438, guid: 5eefc55d350cd944f9aa74a25824635e, type: 3}
   marineSnowFlakes:
   - {fileID: 3590211974270708202, guid: d671fc68d187a86458f4ff6d7523cee3, type: 3}

@@ -109,7 +109,7 @@ namespace Primordia.Rooms
 
             if (health != null)
             {
-                health.TakeDamage(FallDamage);
+                health.TakeDamage(FallDamage, DamageKind.Fall);
                 health.MakeInvulnerable(InvulnerabilityAfterFall);
             }
         }

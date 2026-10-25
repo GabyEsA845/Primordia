@@ -4,6 +4,17 @@ using UnityEngine;
 
 namespace Primordia.Core
 {
+    /// <summary>De dónde viene un daño: el precio Inestable de las mutaciones especiales solo se suma a los golpes.</summary>
+    public enum DamageKind
+    {
+        /// <summary>Golpe de un enemigo, un proyectil o un jefe.</summary>
+        Hit,
+        /// <summary>Cada tick de un daño continuo (veneno, sangrado).</summary>
+        Tick,
+        /// <summary>Caída a una fosa.</summary>
+        Fall
+    }
+
     /// <summary>
     /// Vida, daño y muerte. Sirve para el jugador, los enemigos y el jefe.
     /// En el jugador, 1 punto equivale a medio corazón (6 puntos = 3 corazones).
@@ -75,6 +86,26 @@ namespace Primordia.Core
             PurpleHearts++;
         }
 
+        /// <summary>
+        /// Daño que se suma a cada golpe (<see cref="DamageKind.Hit"/>): el precio Inestable, medio corazón por cada mutación
+        /// especial que lleva el jugador. Lo que para un golpe entero para también este extra.
+        /// </summary>
+        public int ExtraHitDamage
+        {
+            get => extraHitDamage;
+            set
+            {
+                int clamped = Mathf.Max(0, value);
+                if (clamped == extraHitDamage)
+                    return;
+                extraHitDamage = clamped;
+                Changed?.Invoke(Current, maxHealth);
+            }
+        }
+
+        /// <summary>Se lanza cuando un golpe quita vida de más por <see cref="ExtraHitDamage"/>, con lo que quitó de más.</summary>
+        public event Action<int> ExtraDamageTaken;
+
         /// <summary>Golpes que se anulan enteros antes de quitar vida (las Placas del Caparazón).</summary>
         public int Shields
         {
@@ -106,6 +137,7 @@ namespace Primordia.Core
         int shields;
         int barrier;
         int purpleHearts;
+        int extraHitDamage;
 
         /// <summary>
         /// Cambian el daño que recibe cualquier <see cref="Health"/> según quién lo recibe (los beneficios de los
@@ -152,7 +184,8 @@ namespace Primordia.Core
         }
 
         /// <summary>Aplica daño. Devuelve false si el golpe no tuvo efecto.</summary>
-        public bool TakeDamage(int amount)
+        /// <param name="kind">De dónde viene: solo los golpes llevan el extra de <see cref="ExtraHitDamage"/>.</param>
+        public bool TakeDamage(int amount, DamageKind kind = DamageKind.Hit)
         {
             if (amount <= 0 || !CanTakeDamage)
             {
@@ -190,10 +223,16 @@ namespace Primordia.Core
                 return true;
             }
 
-            Current = Mathf.Max(0, Current - amount);
+            int extra = kind == DamageKind.Hit ? extraHitDamage : 0;
+            int before = Current;
+            Current = Mathf.Max(0, Current - amount - extra);
             invulnerableUntil = Time.time + invulnerabilityAfterHit;
 
-            Damaged?.Invoke(amount);
+            // Lo que quitó de más el precio Inestable (el HUD rompe ese medio corazón con un destello dorado).
+            int extraTaken = Mathf.Clamp(before - amount, 0, extra);
+            if (extraTaken > 0)
+                ExtraDamageTaken?.Invoke(extraTaken);
+            Damaged?.Invoke(amount + extra);
             Changed?.Invoke(Current, maxHealth);
 
             if (Current == 0)

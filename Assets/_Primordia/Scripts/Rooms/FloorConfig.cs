@@ -107,6 +107,9 @@ namespace Primordia.Rooms
             [Min(0)] public int waves;
             [Tooltip("Ofrece una mutación al limpiarla, toque o no por su número (la Sala sellada).")]
             public bool rewardAtEnd;
+            [Tooltip("Candidata a la sala de la almeja: lleva almeja grande y en cada partida sale una de las candidatas aparte "
+                + "del sorteo de especiales (Gruta escondida, Anillo de la sima, Jardín de esponjas).")]
+            public bool clamRoom;
 
             public bool IsValid => template != null;
         }

@@ -54,6 +54,8 @@ Los recursos nuevos (hojas de sprites, GIF de revisión, scripts que los generan
 | Jefes | `docs/multimedia-temp/floor2-bosses/` (`base_piso2.py`, `generar_anomalocaris.py`, `generar_euripterido.py`) | Anomalocaris (112×112) y Euriptérido (128×128) con todas sus fases y escenas, la muda vacía, burbujas, marcadores del zarpazo, púa y barrido de cola |
 | Evolución de linajes | `docs/multimedia-temp/floor2-lineages/` (`generar_evolucion_piso2.py`) | Las 8 evoluciones (64×64, 12 cuadros, unos 2 s), que parten del cuerpo de la Boca de cada linaje |
 | Escenario | `docs/multimedia-temp/environment/<Shallows|Cambrian|Abyss>/` y `Ocean/` (`generar_temas_piso2.py`, `generar_puertas_piso2.py`), formas en `environment-shapes/<Shallows|Abyss>/tiles/` | Temas de Someras y Abismo (el Arrecife es `Cambrian`), decoración, obstáculos de cobertura de las tres franjas, cáusticas y rayos de luz, nieve marina y puertas de losas (`Door_<Top|Side|Bottom>_<Close|Open>`) |
+| Salas especiales y fosas | `docs/multimedia-temp/floor2-rooms/` (`generar_salas_especiales.py`, `generar_fosas.py`, `generar_piezas.py`), fosas en `environment/<Shallows|Cambrian|Abyss>/pits/` | Los 10 planos en formato de `RoomTemplate` con su comprobación y vistas previas; fosas de las tres franjas (16 tiles por vecinos, esquinas de dentro y motas); almejas pequeña y grande (cofres), coral del corazón morado y su icono del HUD, entradas de oleadas, esqueleto del fósil y sombras de los que nadan |
+| Presentación de los jefes | `docs/multimedia-temp/boss-intros/` (`generar_presentaciones.py`) | Retratos de 176×176, poses de presentación (8 cuadros) y nombres rotulados de los 4 jefes de los pisos 1 y 2, con maquetas del rótulo; fuente Jersey 10 en `fuentes/` |
 
 `.png`, `.aseprite`, `.wav`, `.ogg`, `.mp3`, `.ttf` y `.otf` se guardan con Git LFS (ya configurado en `.gitattributes`).
 
@@ -176,6 +178,7 @@ Los sonidos que se piden muchos a la vez (doce proyectiles de una ráfaga, cinco
 | Recurso | Uso | Prioridad | Estado |
 |---------|-----|-----------|--------|
 | Fuente pixel | Silkscreen (normal y negrita) en HUD, menús y textos, a tamaño 8 y 16. En `Art/Fonts/` | M | Listo |
+| Fuente de los rótulos de jefe | Jersey 10 a 40 px, sin suavizado, con relleno del color del piso. Copiarla de `docs/multimedia-temp/boss-intros/fuentes/` a `Art/Fonts/` con su licencia en `feature/boss-intro` | M | Elegida |
 
 ## Registro de licencias
 
@@ -184,3 +187,4 @@ Anotar aquí todo recurso que no sea propio (bancos de sonido, fuentes, etc.) pa
 | Recurso | Autor / fuente | Licencia | Enlace |
 |---------|---------------|----------|--------|
 | Fuente Silkscreen | Jason Kottke (Google Fonts) | SIL Open Font License 1.1 (texto en `Art/Fonts/Silkscreen-OFL.txt`) | https://fonts.google.com/specimen/Silkscreen |
+| Fuente Jersey 10 | The Soft Type Project Authors, Sarah Cadigan-Fried (Google Fonts) | SIL Open Font License 1.1 (texto en `Jersey10-OFL.txt`) | https://fonts.google.com/specimen/Jersey+10 |

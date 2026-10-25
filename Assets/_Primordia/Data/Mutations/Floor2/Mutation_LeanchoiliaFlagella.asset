@@ -38,3 +38,38 @@ MonoBehaviour:
   creatureBody: {fileID: 0}
   morphFrames: []
   revealFrames: []
+  values:
+    cooldown: 3
+    damageMultiplier: 1
+    chainTargets: 0
+  upgrades:
+  - cooldown: 2.5
+    damageMultiplier: 1.25
+    chainTargets: 0
+  - cooldown: 2.5
+    damageMultiplier: 1.25
+    chainTargets: 2
+  strikeDelay: 0.4
+  retargetRadius: 2
+  chainRadius: 4
+  lashFrames:
+  - {fileID: -8742577241274520126, guid: 40d5b5b3747e88f45b509c7235177993, type: 3}
+  - {fileID: 1654948800890906969, guid: 40d5b5b3747e88f45b509c7235177993, type: 3}
+  - {fileID: -7538925190816260177, guid: 40d5b5b3747e88f45b509c7235177993, type: 3}
+  - {fileID: -8330796470142168844, guid: 40d5b5b3747e88f45b509c7235177993, type: 3}
+  - {fileID: -1017322589375247587, guid: 40d5b5b3747e88f45b509c7235177993, type: 3}
+  - {fileID: 3841210815363860978, guid: 40d5b5b3747e88f45b509c7235177993, type: 3}
+  - {fileID: 4429217185927147083, guid: 40d5b5b3747e88f45b509c7235177993, type: 3}
+  - {fileID: 1895464808482687134, guid: 40d5b5b3747e88f45b509c7235177993, type: 3}
+  - {fileID: 3234082034178606306, guid: 40d5b5b3747e88f45b509c7235177993, type: 3}
+  - {fileID: -4312792488749304173, guid: 40d5b5b3747e88f45b509c7235177993, type: 3}
+  - {fileID: -8946750357141540125, guid: 40d5b5b3747e88f45b509c7235177993, type: 3}
+  - {fileID: -7651468189081148143, guid: 40d5b5b3747e88f45b509c7235177993, type: 3}
+  lashFrameDuration: 0.1
+  readyFrames:
+  - {fileID: -3267919376673458197, guid: cfc8cbe21f9d5634b86a4f62b43faadd, type: 3}
+  - {fileID: 5600828697697841335, guid: cfc8cbe21f9d5634b86a4f62b43faadd, type: 3}
+  - {fileID: 9054608690646916489, guid: cfc8cbe21f9d5634b86a4f62b43faadd, type: 3}
+  - {fileID: 5344414573754953307, guid: cfc8cbe21f9d5634b86a4f62b43faadd, type: 3}
+  - {fileID: 8859557619655953136, guid: cfc8cbe21f9d5634b86a4f62b43faadd, type: 3}
+  readyFrameDuration: 0.07

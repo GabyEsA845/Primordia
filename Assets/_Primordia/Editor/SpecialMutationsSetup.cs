@@ -22,6 +22,7 @@ namespace Primordia.Editor
         const string SourceFolder = "docs/multimedia-temp/clam-mutations";
         const string UIArtFolder = "Assets/_Primordia/Art/UI";
         const string IconsArtFolder = "Assets/_Primordia/Art/UI/Special";
+        const string EffectsArtFolder = "Assets/_Primordia/Art/Effects/Special";
 
         internal static readonly string[] AssetNames = { "Mutation_LeanchoiliaFlagella", "Mutation_MarrellaCuticle", "Mutation_ClonalBud" };
 
@@ -32,6 +33,7 @@ namespace Primordia.Editor
             AssetDatabase.SaveAssets();
 
             ImportIcons(specials);
+            ImportEffects(specials);
             var art = ImportUIArt();
             ConfigureGameUI(art);
             PutInClams(specials);
@@ -40,7 +42,7 @@ namespace Primordia.Editor
             // Para probarlas en Test_Floor2 hace falta el HUD (las escenas viejas no lo traían).
             Floor2Setup.EnsureTestSceneHUD();
             Debug.Log("SpecialMutationsSetup: Flagelos de Leanchoilia, Cutícula de Marrella y Yema clonal creadas y en las almejas grandes del piso 2. "
-                + "Sus efectos llegan en los pasos 2 a 4; de momento cuentan como especiales (comodín de linaje y precio Inestable).");
+                + "Los Flagelos ya azotan; la Cutícula y la Yema llegan en los pasos 3 y 4 (de momento solo cuentan como especiales).");
         }
 
         /// <summary>Las especiales que existen (para las almejas del piso 2), en orden.</summary>
@@ -57,6 +59,9 @@ namespace Primordia.Editor
                 MutationSlot.Limbs);
             flagella.SetLevelDescriptions("Uno cada 2,5 s y un 25 % más de daño.",
                 "Latigazo en cadena: el latigazo salta a los 2 enemigos más cercanos con el mismo daño.");
+            flagella.ConfigureLevels(new LeanchoiliaFlagellaMutation.FlagellaLevel { cooldown = 3f, damageMultiplier = 1f },
+                new LeanchoiliaFlagellaMutation.FlagellaLevel { cooldown = 2.5f, damageMultiplier = 1.25f },
+                new LeanchoiliaFlagellaMutation.FlagellaLevel { cooldown = 2.5f, damageMultiplier = 1.25f, chainTargets = 2 });
 
             var cuticle = Create<MarrellaCuticleMutation>(AssetNames[1], "Cutícula de Marrella",
                 "Esquiva justa: si un ataque te alcanza mientras esquivas, tu piel lo refleja. El proyectil vuelve a quien lo lanzó "
@@ -111,6 +116,23 @@ namespace Primordia.Editor
                     EditorUtility.SetDirty(specials[i]);
                 }
             }
+        }
+
+        /// <summary>Latigazo (48×48, 12 cuadros) y destello de listo (32×32, 5 cuadros) de los Flagelos.</summary>
+        static void ImportEffects(MutationData[] specials)
+        {
+            if (specials[0] is not LeanchoiliaFlagellaMutation flagella)
+                return;
+
+            Directory.CreateDirectory(EffectsArtFolder);
+            var lash = ArtSetup.ImportLooseSheet($"{SourceFolder}/Effects/Fx_LeanchoiliaFlagella_Lash.png",
+                $"{EffectsArtFolder}/Fx_LeanchoiliaFlagella_Lash.png", 48);
+            var ready = ArtSetup.ImportLooseSheet($"{SourceFolder}/Effects/Fx_LeanchoiliaFlagella_Ready.png",
+                $"{EffectsArtFolder}/Fx_LeanchoiliaFlagella_Ready.png", 32);
+            if (lash.Length == 0)
+                Debug.LogWarning("SpecialMutationsSetup: falta Fx_LeanchoiliaFlagella_Lash.png; el latigazo hará daño sin verse.");
+            flagella.SetArt(lash, ready);
+            EditorUtility.SetDirty(flagella);
         }
 
         internal struct UIArt

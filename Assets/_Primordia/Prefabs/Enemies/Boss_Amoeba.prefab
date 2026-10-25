@@ -118,6 +118,8 @@ MonoBehaviour:
   contactDamage: 1
   impactSquash: 0.3
   impactTime: 0.2
+  flashColor: {r: 1, g: 0.35, b: 0.35, a: 1}
+  flashTime: 0.1
 --- !u!1 &2148913960350522645
 GameObject:
   m_ObjectHideFlags: 0
@@ -236,6 +238,8 @@ MonoBehaviour:
   contactDamage: 1
   impactSquash: 0.3
   impactTime: 0.2
+  flashColor: {r: 1, g: 0.35, b: 0.35, a: 1}
+  flashTime: 0.1
 --- !u!1 &4056355461911535045
 GameObject:
   m_ObjectHideFlags: 0
@@ -469,6 +473,8 @@ MonoBehaviour:
   contactDamage: 1
   impactSquash: 0.3
   impactTime: 0.2
+  flashColor: {r: 1, g: 0.35, b: 0.35, a: 1}
+  flashTime: 0.1
 --- !u!1 &5792867587902988640
 GameObject:
   m_ObjectHideFlags: 0
@@ -715,6 +721,7 @@ GameObject:
   - component: {fileID: 1487162335321814025}
   - component: {fileID: 3697515200071381330}
   - component: {fileID: 8989976524719612329}
+  - component: {fileID: 448545272302574322}
   m_Layer: 7
   m_Name: Boss_Amoeba
   m_TagString: Untagged
@@ -893,7 +900,10 @@ MonoBehaviour:
   shakeAmount: 0.12
   minCalmRun: 4
   startDelay: 0.6
+  slideAngle: 35
+  maxSlides: 3
   halfSpacing: 1.4
+  maxLead: 1.2
   fallbackTransition: 1
   cameraPanTime: 2
   mergeGlideTime: 2
@@ -902,6 +912,7 @@ MonoBehaviour:
   zoomTime: 1
   zoomMargin: 1
   barrageGrace: 1
+  logCharges: 0
   exhaustedHits: 2
 --- !u!114 &8989976524719612329
 MonoBehaviour:
@@ -920,3 +931,20 @@ MonoBehaviour:
   count: 3
   spacing: 2.5
   height: 3
+--- !u!114 &448545272302574322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7973110040563744348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0f72950862b78c4dae7c086cbbd21fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Primordia::Primordia.Enemies.BossIntro
+  data: {fileID: 11400000, guid: 74453c9aa48773e4d8b54cdc965984c5, type: 2}
+  panTime: 0.6
+  bannerAt: 1
+  bannerUntil: 3.2
+  skipText: '[E] Saltar'

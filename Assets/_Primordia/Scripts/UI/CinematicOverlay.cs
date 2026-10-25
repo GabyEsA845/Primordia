@@ -7,7 +7,8 @@ namespace Primordia.UI
 {
     /// <summary>
     /// Durante una escena (<see cref="GameState.Cinematic"/>) bajan dos franjas negras de cine, arriba y abajo, y se
-    /// desvanece el HUD del jugador: todo lo que cuelga del lienzo salvo la barra del jefe. Al acabar, todo vuelve.
+    /// desvanece el HUD del jugador: todo lo que cuelga del lienzo salvo la barra del jefe y el rótulo de su
+    /// presentación. Al acabar, todo vuelve.
     /// Las franjas las crea el propio componente, detrás de lo demás.
     /// </summary>
     public class CinematicOverlay : MonoBehaviour
@@ -37,13 +38,19 @@ namespace Primordia.UI
         /// <summary>True si se ve el aviso de saltar la escena.</summary>
         public bool SkipHintShown => skipHint != null && skipHint.gameObject.activeSelf;
 
-        /// <summary>Enseña u oculta el aviso de que la escena se puede saltar (la metamorfosis, desde la segunda vez).</summary>
-        public void SetSkipHint(bool show)
+        /// <summary>
+        /// Enseña u oculta el aviso de que la escena se puede saltar (la metamorfosis desde la segunda vez, las
+        /// presentaciones de los jefes siempre), con su texto o el de por defecto.
+        /// </summary>
+        public void SetSkipHint(bool show, string text = null)
         {
             if (show && skipHint == null)
                 skipHint = CreateSkipHint();
-            if (skipHint != null)
-                skipHint.gameObject.SetActive(show);
+            if (skipHint == null)
+                return;
+            skipHint.gameObject.SetActive(show);
+            if (show)
+                skipHint.text = text ?? skipHintText;
         }
 
         void Awake()
@@ -87,7 +94,8 @@ namespace Primordia.UI
             foreach (Transform child in transform)
             {
                 if (child == topBar || child == bottomBar || (skipHint != null && child == skipHint.transform)
-                    || !child.gameObject.activeSelf || keep.Contains(child.gameObject))
+                    || !child.gameObject.activeSelf || keep.Contains(child.gameObject)
+                    || child.GetComponent<BossIntroBanner>() != null)
                     continue;
                 if (!child.TryGetComponent<CanvasGroup>(out var group))
                     group = child.gameObject.AddComponent<CanvasGroup>();

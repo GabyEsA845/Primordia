@@ -161,6 +161,19 @@ namespace Primordia.Enemies
 
         public Vector2 ArenaCenter => arenaCenter != null ? (Vector2)arenaCenter.position : home;
 
+        public void PlayIntroPose(float hold)
+        {
+            if (TryGetComponent<BossAnimator>(out var animator))
+                animator.PlayIntro(hold);
+        }
+
+        public void BeginFight()
+        {
+            activeSince = Time.time;
+            nextSpiral = Time.time + startDelay;
+            nextBurst = nextSpiral + burstWindup;
+        }
+
         void Update()
         {
             if (!CanAct() || Time.time < activeSince + startDelay)

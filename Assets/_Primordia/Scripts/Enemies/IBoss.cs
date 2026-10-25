@@ -30,6 +30,15 @@ namespace Primordia.Enemies
 
         /// <summary>Centro y tamaño (en unidades) del suelo de su sala.</summary>
         void SetArena(Transform center, Vector2 size);
+
+        /// <summary>
+        /// Pose de la presentación (estado "Intro" de su Animator, si lo tiene). El último cuadro se queda hasta que
+        /// pasan <paramref name="hold"/> segundos.
+        /// </summary>
+        void PlayIntroPose(float hold);
+
+        /// <summary>Acaba la presentación: su espera antes del primer ataque empieza a contar ahora.</summary>
+        void BeginFight();
     }
 
     /// <summary>Jefe activo ahora mismo, para la barra de vida. Null si no hay ninguno.</summary>

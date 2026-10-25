@@ -113,7 +113,7 @@ namespace Primordia.Editor
             Timings = new[]
             {
                 ("Idle_P1", 6f, true), ("Idle_P2", 10f, true), ("Burst", 10f, false), ("Summon", 10f, false),
-                ("Hurt", 10f, false), ("Phase2_Transition", 8f, false), ("Death", 10f, false),
+                ("Hurt", 10f, false), ("Phase2_Transition", 8f, false), ("Death", 10f, false), ("Intro", IntroPoseFps, false),
             },
         };
 

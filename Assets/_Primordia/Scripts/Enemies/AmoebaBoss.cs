@@ -60,6 +60,7 @@ namespace Primordia.Enemies
         public const string TiredState = "Tired";
         public const string HurtTiredState = "Hurt_Tired";
         public const string DeathState = "Death";
+        public const string IntroState = "Intro";
         public const string HalfMoveState = "Move";
         public const string HalfHurtState = "Hurt";
         /// <summary>Mirando hacia donde va a salir: Aim_0 (derecha) a Aim_7, en sentido antihorario cada 45°.</summary>
@@ -255,6 +256,21 @@ namespace Primordia.Enemies
         {
             arenaCenter = center;
             arenaSize = size;
+        }
+
+        public void PlayIntroPose(float hold)
+        {
+            // Durante la presentación la ameba no actúa (no es su escena), así que nadie le cambia la animación.
+            if (mainBody != null && mainBody.States.Has(IntroState))
+                mainBody.Play(IntroState, restart: true);
+        }
+
+        public void BeginFight()
+        {
+            if (mainBody != null)
+                mainBody.Play(IdleStateFor(CurrentStage));
+            if (main != null)
+                main.RestUntil = Time.time + startDelay;
         }
 
         void OnEnable()

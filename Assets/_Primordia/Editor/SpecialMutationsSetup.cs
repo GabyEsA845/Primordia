@@ -43,7 +43,7 @@ namespace Primordia.Editor
             // Para probarlas en Test_Floor2 hace falta el HUD (las escenas viejas no lo traían).
             Floor2Setup.EnsureTestSceneHUD();
             Debug.Log("SpecialMutationsSetup: Flagelos de Leanchoilia, Cutícula de Marrella y Yema clonal creadas y en las almejas grandes del piso 2. "
-                + "Los Flagelos azotan y la Cutícula refleja; la Yema llega en el paso 4 (de momento solo cuenta como especial).");
+                + "Los Flagelos azotan, la Cutícula refleja y la Yema brota su copia.");
         }
 
         /// <summary>Las especiales que existen (para las almejas del piso 2), en orden.</summary>
@@ -80,6 +80,9 @@ namespace Primordia.Editor
                 MutationSlot.Organ);
             bud.SetLevelDescriptions("Dura 7 s y hace el 65 % de tu daño.", "Gemación: brotan dos copias.");
             bud.ConfigureAbility(newCooldown: 15f, null);
+            bud.ConfigureLevels(new ClonalBudMutation.BudLevel { duration = 6f, damageFraction = 0.5f },
+                new ClonalBudMutation.BudLevel { duration = 7f, damageFraction = 0.65f },
+                new ClonalBudMutation.BudLevel { duration = 7f, damageFraction = 0.65f, copies = 2 });
 
             var all = new MutationData[] { flagella, cuticle, bud };
             foreach (var mutation in all)
@@ -131,6 +134,8 @@ namespace Primordia.Editor
             Directory.CreateDirectory(EffectsArtFolder);
             if (specials[1] is MarrellaCuticleMutation cuticle)
                 ImportCuticle(cuticle);
+            if (specials[2] is ClonalBudMutation bud)
+                ImportClonalBud(bud);
             if (specials[0] is not LeanchoiliaFlagellaMutation flagella)
                 return;
 
@@ -163,6 +168,34 @@ namespace Primordia.Editor
             EditorUtility.SetDirty(attack);
             cuticle.SetReflectedAttack(attack);
             EditorUtility.SetDirty(cuticle);
+        }
+
+        const string CopyShaderName = "Primordia/ClonalBud";
+        const string CopyMaterialPath = "Assets/_Primordia/Art/Effects/Special/Mat_ClonalBud.mat";
+
+        /// <summary>Brote y disolución de la copia (32×32, 8 cuadros cada uno) y el material verde agua de la copia.</summary>
+        static void ImportClonalBud(ClonalBudMutation bud)
+        {
+            var sprout = ArtSetup.ImportLooseSheet($"{SourceFolder}/Effects/Fx_ClonalBud_Sprout.png", $"{EffectsArtFolder}/Fx_ClonalBud_Sprout.png", 32);
+            var dissolve = ArtSetup.ImportLooseSheet($"{SourceFolder}/Effects/Fx_ClonalBud_Dissolve.png", $"{EffectsArtFolder}/Fx_ClonalBud_Dissolve.png", 32);
+
+            var material = AssetDatabase.LoadAssetAtPath<Material>(CopyMaterialPath);
+            var shader = Shader.Find(CopyShaderName);
+            if (shader == null)
+                Debug.LogWarning($"SpecialMutationsSetup: no se encuentra el shader {CopyShaderName}; la copia saldrá teñida.");
+            else if (material == null)
+            {
+                material = new Material(shader);
+                AssetDatabase.CreateAsset(material, CopyMaterialPath);
+            }
+            else
+            {
+                material.shader = shader;
+                EditorUtility.SetDirty(material);
+            }
+
+            bud.SetArt(material, sprout, dissolve);
+            EditorUtility.SetDirty(bud);
         }
 
         const string ReflectedAttackName = "Attack_CuticleReflected";

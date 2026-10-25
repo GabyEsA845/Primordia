@@ -49,6 +49,7 @@ namespace Primordia.Mutations
         // Recarga de la última vez que se usó (depende del nivel del Órgano).
         float currentCooldown = 1f;
         int kills;
+        bool running;
 
         int KillsNeeded => Ability != null ? Ability.KillsToChargeAt(Mathf.Max(1, mutations.LevelOf(Ability.Slot))) : 0;
 
@@ -74,6 +75,15 @@ namespace Primordia.Mutations
 
         void Update()
         {
+            // Mientras dura su efecto, la recarga espera (empieza cuando acaba).
+            if (running && Ability != null && !UsesKills)
+            {
+                if (Ability.IsRunning(mutations))
+                    readyTime = Time.time + currentCooldown;
+                else
+                    running = false;
+            }
+
             if (readInput)
                 specialPressed = specialAction != null && specialAction.WasPressedThisFrame();
 
@@ -97,6 +107,7 @@ namespace Primordia.Mutations
             readyTime = Time.time + currentCooldown;
             kills = 0;
             Ability.Activate(mutations);
+            running = Ability.IsRunning(mutations);
             Used?.Invoke();
             return true;
         }
@@ -105,6 +116,7 @@ namespace Primordia.Mutations
         internal void SetAbility(AbilityMutation ability)
         {
             Ability = ability;
+            running = false;
             readyTime = 0f;
             kills = int.MaxValue / 2;
         }

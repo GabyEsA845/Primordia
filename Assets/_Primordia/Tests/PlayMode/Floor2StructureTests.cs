@@ -237,7 +237,8 @@ namespace Primordia.Tests
             Assert.AreSame(floor2, generator.Config);
             Assert.IsTrue(oldRooms.All(room => room == null), "Las salas del piso 1 ya no existen.");
             Assert.That(generator.Built.Rooms.Count(r => r.name.StartsWith("Room_") && char.IsDigit(r.name[5])), Is.GreaterThanOrEqualTo(10));
-            Assert.AreEqual((Vector2)generator.Built.StartPosition, (Vector2)player.position, "El jugador empieza en la sala de inicio del piso 2.");
+            // Con margen: al volver la física, el choque con lo que tiene cerca lo mueve una fracción de píxel.
+            Assert.Less(Vector2.Distance(generator.Built.StartPosition, player.position), 0.1f, "El jugador empieza en la sala de inicio del piso 2.");
             Assert.IsTrue(player.GetComponent<Rigidbody2D>().simulated, "Vuelve a tener física.");
             Assert.AreEqual(GameState.Playing, manager.State);
             Assert.IsFalse(generator.HasNextFloor);

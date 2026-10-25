@@ -29,6 +29,11 @@ namespace Primordia.Mutations
         /// </summary>
         public virtual int KillsToChargeAt(int level) => 0;
 
+        /// <summary>
+        /// True mientras su efecto sigue en marcha (las copias de la Yema clonal): la recarga no empieza hasta que acaba.
+        /// </summary>
+        public virtual bool IsRunning(PlayerMutations player) => false;
+
         /// <summary>False si ahora no serviría de nada (curar con la vida llena): no se gasta.</summary>
         public virtual bool CanActivate(PlayerMutations player) => true;
 

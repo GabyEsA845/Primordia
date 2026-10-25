@@ -248,14 +248,16 @@ namespace Primordia.Enemies
                 return;
             }
 
-            if (target == null || !target.gameObject.activeInHierarchy)
+            // Las copias de la Yema clonal son señuelos: va a por el más cercano.
+            var aim = Decoys.Choose(transform.position, target);
+            if (aim == null || !aim.gameObject.activeInHierarchy)
             {
                 IsAiming = false;
                 Current = State.Idle;
                 return;
             }
 
-            Vector2 toTarget = target.position - transform.position;
+            Vector2 toTarget = aim.position - transform.position;
             float distance = toTarget.magnitude;
 
             if (IsScared)
@@ -268,7 +270,7 @@ namespace Primordia.Enemies
                 return;
             }
 
-            if (target.TryGetComponent<IConcealable>(out var concealable) && concealable.IsConcealed)
+            if (aim.TryGetComponent<IConcealable>(out var concealable) && concealable.IsConcealed)
             {
                 Search(data, concealable, distance);
                 return;
@@ -287,7 +289,7 @@ namespace Primordia.Enemies
             }
 
             Vector2 direction = distance > 0.0001f ? toTarget / distance : Vector2.zero;
-            Vector2 targetPosition = target.position;
+            Vector2 targetPosition = aim.position;
             float speed = SpeedOf(data);
 
             if (data.Behaviour == EnemyBehaviour.Chaser)

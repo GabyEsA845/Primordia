@@ -41,3 +41,36 @@ MonoBehaviour:
   cooldown: 15
   effectPrefab: {fileID: 0}
   effectRadius: 1
+  values:
+    duration: 6
+    damageFraction: 0.5
+    copies: 1
+  upgrades:
+  - duration: 7
+    damageFraction: 0.65
+    copies: 1
+  - duration: 7
+    damageFraction: 0.65
+    copies: 2
+  sproutDistance: 0.9
+  copyMaterial: {fileID: 2100000, guid: 2f35b1b220d14474aade31e8e7b120dd, type: 2}
+  sproutFrames:
+  - {fileID: 7105498287110210854, guid: 91b1a92e4b08a9f4799fd7de131dc16b, type: 3}
+  - {fileID: -6981519477695434210, guid: 91b1a92e4b08a9f4799fd7de131dc16b, type: 3}
+  - {fileID: -3297284418529564799, guid: 91b1a92e4b08a9f4799fd7de131dc16b, type: 3}
+  - {fileID: -5023323743524272397, guid: 91b1a92e4b08a9f4799fd7de131dc16b, type: 3}
+  - {fileID: -4574897152515579491, guid: 91b1a92e4b08a9f4799fd7de131dc16b, type: 3}
+  - {fileID: -4648012186383556433, guid: 91b1a92e4b08a9f4799fd7de131dc16b, type: 3}
+  - {fileID: -7894830739634651519, guid: 91b1a92e4b08a9f4799fd7de131dc16b, type: 3}
+  - {fileID: -1219324498, guid: 91b1a92e4b08a9f4799fd7de131dc16b, type: 3}
+  appearFrame: 5
+  dissolveFrames:
+  - {fileID: -6242258962310503713, guid: 891dfc07e3f275044a52528aee21e506, type: 3}
+  - {fileID: -64282900, guid: 891dfc07e3f275044a52528aee21e506, type: 3}
+  - {fileID: -1092263276, guid: 891dfc07e3f275044a52528aee21e506, type: 3}
+  - {fileID: 578339718, guid: 891dfc07e3f275044a52528aee21e506, type: 3}
+  - {fileID: 169636063, guid: 891dfc07e3f275044a52528aee21e506, type: 3}
+  - {fileID: 481578070, guid: 891dfc07e3f275044a52528aee21e506, type: 3}
+  - {fileID: 1281212549, guid: 891dfc07e3f275044a52528aee21e506, type: 3}
+  - {fileID: -1267679173, guid: 891dfc07e3f275044a52528aee21e506, type: 3}
+  frameDuration: 0.06

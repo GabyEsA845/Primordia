@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18623045b9b9a5944b64ce825a149580, type: 3}
+  m_Name: Mutation_CompoundEyes
+  m_EditorClassIdentifier: Primordia::Primordia.Mutations.CompoundEyesMutation
+  displayName: Ojos compuestos
+  description: "Clic derecho: durante 3 s todo va al 60 % de velocidad salvo t\xFA. Recarga de 12 s."
+  slot: 3
+  lineages: []
+  look: {fileID: 0}
+  bodyRadius: 0
+  mouthDistance: 0
+  headHeight: 0
+  wornOnHead: 0
+  muzzleDistance: 0
+  attackLean: 0
+  icon: {fileID: 21300000, guid: 6cc0bddf6a2947948be317d862a6b93b, type: 3}
+  largeIcon: {fileID: 21300000, guid: 24bac519e3852f347b6471b9e025ba38, type: 3}
+  color: {r: 0.55, g: 0.9, b: 0.35, a: 1}
+  levelDescriptions:
+  - Dura 4 s.
+  - "Visi\xF3n total: mientras dura, tus ataques hacen un 30 % m\xE1s de da\xF1o."
+  dodgeSound: 
+  floor: 2
+  special: 0
+  family: 0
+  creatureIdleFrames: []
+  creatureAttackFrames: []
+  creatureBody: {fileID: 0}
+  attackHitTime: 0
+  creatureLayers: []
+  morphFrames: []
+  revealFrames: []
+  cooldown: 12
+  effectPrefab: {fileID: 0}
+  effectRadius: 1
+  durations:
+  - 3
+  - 4
+  - 4
+  worldSpeed: 0.6
+  totalVisionDamage: 1.3
+  flashFrames:
+  - {fileID: 3011289595412427804, guid: eb6a208bf42faaf47b4fba5e09d0d604, type: 3}
+  - {fileID: -5867888013208666259, guid: eb6a208bf42faaf47b4fba5e09d0d604, type: 3}
+  - {fileID: 4790792801766842559, guid: eb6a208bf42faaf47b4fba5e09d0d604, type: 3}
+  - {fileID: 8984563549753233863, guid: eb6a208bf42faaf47b4fba5e09d0d604, type: 3}
+  - {fileID: -5777661103449117726, guid: eb6a208bf42faaf47b4fba5e09d0d604, type: 3}
+  - {fileID: 4897900886570525511, guid: eb6a208bf42faaf47b4fba5e09d0d604, type: 3}
+  vignetteColor: {r: 1, g: 0.85, b: 0.55, a: 1}
+  totalVisionColor: {r: 1, g: 0.55, b: 0.4, a: 1}

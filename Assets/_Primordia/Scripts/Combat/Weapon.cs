@@ -176,14 +176,16 @@ namespace Primordia.Combat
             if (!CanFire || direction.sqrMagnitude < 0.0001f)
                 return false;
 
-            nextFireTime = Time.time + attack.Cooldown;
+            // El jugador no se frena en la cámara lenta: su cadencia va en su tiempo (ver TimeWarp).
+            float warp = team == Team.Player ? TimeWarp.Scale : 1f;
+            nextFireTime = Time.time + attack.Cooldown * warp;
             Started?.Invoke(direction.normalized);
             if (windup > 0f)
             {
                 // Sale en el cuadro del golpe de la animación, hacia donde se apuntó al atacar.
                 windupAttack = attack;
                 windupDirection = direction;
-                windupUntil = Time.time + windup;
+                windupUntil = Time.time + windup * warp;
             }
             else
             {

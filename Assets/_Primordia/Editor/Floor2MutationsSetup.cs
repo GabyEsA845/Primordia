@@ -3,14 +3,17 @@ using System.IO;
 using Primordia.Combat;
 using Primordia.Mutations;
 using Primordia.Rooms;
+using Primordia.UI;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Primordia.Editor
 {
     /// <summary>
-    /// Las 6 mutaciones del piso 2 que no son Bocas (GDD, tabla de mutaciones del piso 2), por pasos: de momento las
-    /// Extremidades (Cola propulsora y Espinas de Hallucigenia) y la Piel (Placas de trilobite y Escleritos de Wiwaxia). Importa su arte (docs/multimedia-temp/floor2-mutations),
+    /// Las 6 mutaciones del piso 2 que no son Bocas (GDD, tabla de mutaciones del piso 2): las Extremidades (Cola
+    /// propulsora y Espinas de Hallucigenia), la Piel (Placas de trilobite y Escleritos de Wiwaxia) y los Órganos (Saco de
+    /// crías y Ojos compuestos, con el marco de facetas de la pantalla en GameUI). Importa su arte (docs/multimedia-temp/floor2-mutations),
     /// crea sus datos con textos y valores, sus capas sobre los cuerpos de las Bocas del piso, sus efectos y prefabs, y las
     /// mete en la reserva del piso 2. Rehace los textos, los efectos y las capas cada vez.
     /// </summary>
@@ -43,10 +46,13 @@ namespace Primordia.Editor
                 CreateHallucigeniaSpines(),
                 CreateTrilobitePlates(),
                 CreateWiwaxiaSclerites(),
+                CreateBroodSac(),
+                CreateCompoundEyes(),
             };
+            AddVignette();
             AssetDatabase.SaveAssets();
             AddToPool(created);
-            Debug.Log("Floor2MutationsSetup: Cola propulsora, Espinas de Hallucigenia, Placas de trilobite y Escleritos de Wiwaxia creadas, con sus capas, y en la reserva del piso 2.");
+            Debug.Log("Floor2MutationsSetup: las 6 mutaciones del piso 2 (Extremidades, Piel y Órganos) creadas, con sus capas y efectos, y en la reserva del piso 2.");
         }
 
         // ---------- Cola propulsora ----------
@@ -174,6 +180,88 @@ namespace Primordia.Editor
             sclerites.ConfigureLook(attack, scaleFrames, Effect("Fx_WiwaxiaSclerites_Release", 24), Effect("Fx_WiwaxiaSclerite_Block", 12));
             EditorUtility.SetDirty(sclerites);
             return sclerites;
+        }
+
+        // ---------- Saco de crías ----------
+
+        const int LarvaOrder = 7;
+
+        static MutationData CreateBroodSac()
+        {
+            var sac = Mutation<BroodSacMutation>("Mutation_BroodSac", "Saco de crías",
+                "Clic derecho: 2 larvas aliadas que persiguen y muerden durante 8 s. Recarga de 14 s.", MutationSlot.Organ,
+                "3 larvas (8 s).",
+                "Enjambre: la larva que mata a un enemigo se divide en dos (también 8 s).");
+            SetIcons(sac, "BroodSac");
+            sac.ConfigureAbility(14f, null);
+
+            var open = Floor2MouthsSetup.CreateFrameEffect("Effect_BroodSac_Open", Effect("Fx_BroodSac_Open", 32), 0.07f);
+            var splitEffect = Floor2MouthsSetup.CreateFrameEffect("Effect_BroodSac_Split", Effect("Fx_BroodSac_Split", 16), 0.06f);
+            sac.ConfigureLook(CreateLarva(splitEffect), open);
+            EditorUtility.SetDirty(sac);
+            return sac;
+        }
+
+        static Larva CreateLarva(GameObject splitEffect)
+        {
+            Sprite[] Sheet(string name) =>
+                ArtSetup.ImportLooseSheet($"{SourceFolder}/Larva/{name}.png", $"{EffectsArtFolder}/{name}.png", 16);
+            var swim = Sheet("Larva_Swim");
+            var root = new GameObject("Larva");
+            try
+            {
+                var renderer = root.AddComponent<SpriteRenderer>();
+                renderer.sprite = swim.Length > 0 ? swim[0] : null;
+                renderer.sortingOrder = LarvaOrder;
+                var larva = root.AddComponent<Larva>();
+                larva.Configure(renderer, swim, Sheet("Larva_Bite"), Sheet("Larva_Death"), splitEffect);
+                return PrefabUtility.SaveAsPrefabAsset(root, $"{PrefabsFolder}/Larva.prefab").GetComponent<Larva>();
+            }
+            finally
+            {
+                Object.DestroyImmediate(root);
+            }
+        }
+
+        // ---------- Ojos compuestos ----------
+
+        static MutationData CreateCompoundEyes()
+        {
+            var eyes = Mutation<CompoundEyesMutation>("Mutation_CompoundEyes", "Ojos compuestos",
+                "Clic derecho: durante 3 s todo va al 60 % de velocidad salvo tú. Recarga de 12 s.", MutationSlot.Organ,
+                "Dura 4 s.",
+                "Visión total: mientras dura, tus ataques hacen un 30 % más de daño.");
+            SetIcons(eyes, "CompoundEyes");
+            eyes.ConfigureAbility(12f, null);
+            eyes.ConfigureLook(Effect("Fx_CompoundEyes_Flash", 32));
+            EditorUtility.SetDirty(eyes);
+            return eyes;
+        }
+
+        /// <summary>El marco de facetas de los Ojos compuestos en GameUI: a pantalla completa, detrás del resto de la interfaz.</summary>
+        static void AddVignette()
+        {
+            var sprite = ArtSetup.ImportLooseSprite($"{SourceFolder}/UI/UI_CompoundEyes_Vignette.png", $"{UIArtFolder}/UI_CompoundEyes_Vignette.png");
+            var root = PrefabUtility.LoadPrefabContents(UISetup.GameUIPath);
+            try
+            {
+                var old = root.transform.Find("ScreenVignette");
+                if (old != null)
+                    Object.DestroyImmediate(old.gameObject);
+                var rect = UISetup.CreateRect("ScreenVignette", root.transform);
+                UISetup.Stretch(rect);
+                rect.SetAsFirstSibling();
+                var image = rect.gameObject.AddComponent<Image>();
+                image.sprite = sprite;
+                image.raycastTarget = false;
+                image.enabled = false;
+                rect.gameObject.AddComponent<ScreenVignette>();
+                PrefabUtility.SaveAsPrefabAsset(root, UISetup.GameUIPath);
+            }
+            finally
+            {
+                PrefabUtility.UnloadPrefabContents(root);
+            }
         }
 
         // ---------- Ayudas ----------

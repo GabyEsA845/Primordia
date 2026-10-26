@@ -15,7 +15,8 @@ namespace Primordia.Tests
     /// burbujas que dañan y empujan. Espinas de Hallucigenia: al esquivar dejas púas que dañan una vez a quien las pisa y,
     /// con el Erizo, salen disparadas al desaparecer. Placas de trilobite: +1 corazón y rebota 1 de cada 4 proyectiles (todos
     /// con Enrollarse, destruye los que toca al esquivar). Escleritos de Wiwaxia: tandas de escamas hacia los enemigos cercanos; con la Órbita,
-    /// antes giran y destruyen proyectiles.
+    /// antes giran y destruyen proyectiles. Saco de crías: larvas aliadas que muerden y, con el Enjambre, se dividen al matar.
+    /// Ojos compuestos: cámara lenta de 3 s en la que el jugador sigue a su ritmo.
     /// </summary>
     public class Floor2MutationsTests
     {
@@ -48,6 +49,10 @@ namespace Primordia.Tests
                 Object.DestroyImmediate(bubble.gameObject);
             foreach (var spine in Object.FindObjectsByType<GroundSpine>(FindObjectsSortMode.None))
                 Object.DestroyImmediate(spine.gameObject);
+            foreach (var larva in Object.FindObjectsByType<Larva>(FindObjectsSortMode.None))
+                Object.DestroyImmediate(larva.gameObject);
+            TimeWarp.Clear();
+            Time.timeScale = 1f;
             foreach (var projectile in Object.FindObjectsByType<Projectile>(FindObjectsInactive.Include, FindObjectsSortMode.None))
                 Object.DestroyImmediate(projectile.gameObject);
             ProjectilePool.Clear();
@@ -299,6 +304,105 @@ namespace Primordia.Tests
 
             Assert.GreaterOrEqual(bounce.Bounced, 1, "Enrollado, destruye lo que hay dentro de la bola.");
             Assert.IsFalse(incoming.isActiveAndEnabled);
+        }
+
+        static Larva.Settings LarvaSettings(bool splits = false) => new()
+        {
+            lifetime = 8f, speed = 5.5f, range = 9f, biteDamage = 2, biteInterval = 0.7f, biteReach = 0.55f, splits = splits,
+        };
+
+        [UnityTest]
+        public IEnumerator BroodSac_ReleasesTwoLarvae_ThreeAtLevelII()
+        {
+            var sac = Mutation<BroodSacMutation>(MutationSlot.Organ);
+            EquipAt(sac, 1);
+            sac.Activate(player);
+            yield return null;
+            Assert.AreEqual(2, Larva.CountOf(player));
+
+            foreach (var larva in Object.FindObjectsByType<Larva>(FindObjectsSortMode.None))
+                Object.DestroyImmediate(larva.gameObject);
+            player.LevelUp(MutationSlot.Organ);
+            sac.Activate(player);
+            yield return null;
+            Assert.AreEqual(3, Larva.CountOf(player));
+        }
+
+        [UnityTest]
+        public IEnumerator Larva_ChasesAndBitesTheNearestEnemy()
+        {
+            player.transform.position = new Vector2(110f, 0f);
+            var enemy = Enemy(new Vector2(112f, 0f));
+            var larva = Larva.Spawn(null, new Vector2(110f, 0f), LarvaSettings(), player);
+            yield return new WaitForSeconds(0.8f);
+
+            Assert.AreSame(enemy, larva.Target);
+            Assert.Less(enemy.Current, 20, "Lo alcanza y lo muerde.");
+        }
+
+        [UnityTest]
+        public IEnumerator Larva_Swarm_SplitsWhenItKills()
+        {
+            player.transform.position = new Vector2(130f, 0f);
+            Enemy(new Vector2(130.4f, 0f), health: 2);
+            Larva.Spawn(null, new Vector2(130f, 0f), LarvaSettings(splits: true), player);
+            yield return new WaitForSeconds(0.5f);
+
+            Assert.AreEqual(2, Larva.CountOf(player), "La que mata se divide en dos.");
+        }
+
+        [UnityTest]
+        public IEnumerator CompoundEyes_SlowTheWorld_ForTheirDuration_AndTotalVisionAddsDamage()
+        {
+            var eyes = Mutation<CompoundEyesMutation>(MutationSlot.Organ);
+            EquipAt(eyes, 3);
+            float damage = player.Weapon.DamageMultiplier;
+            eyes.Activate(player);
+
+            Assert.AreEqual(0.6f, TimeWarp.Scale, 0.001f);
+            Assert.AreEqual(0.6f, Time.timeScale, 0.001f);
+            Assert.IsTrue(eyes.IsRunning(player), "La recarga espera mientras dura.");
+            Assert.AreEqual(damage * 1.3f, player.Weapon.DamageMultiplier, 0.001f, "Visión total: +30 % de daño.");
+
+            // Nivel III: 4 s en tiempo real.
+            yield return new WaitForSecondsRealtime(4.3f);
+            Assert.AreEqual(1f, TimeWarp.Scale);
+            Assert.AreEqual(1f, Time.timeScale);
+            Assert.IsFalse(eyes.IsRunning(player));
+            Assert.AreEqual(damage, player.Weapon.DamageMultiplier, 0.001f);
+        }
+
+        [UnityTest]
+        public IEnumerator TimeWarp_PlayerDodgeCoversTheSameDistance()
+        {
+            player.transform.position = new Vector2(150f, 0f);
+            controller.SetInput(Vector2.right, Vector2.right);
+            TimeWarp.Set(0.5f);
+            Assert.IsTrue(controller.TryDodge());
+            // Solo la esquiva: después se queda quieto.
+            controller.SetInput(Vector2.zero, Vector2.right);
+            yield return new WaitForSecondsRealtime(0.6f);
+
+            Assert.AreEqual(3f, player.transform.position.x - 150f, 0.35f, "A mitad de velocidad, la esquiva recorre lo de siempre.");
+        }
+
+        [UnityTest]
+        public IEnumerator Larvae_SpreadAroundTheirTarget_InsteadOfPilingUp()
+        {
+            player.transform.position = new Vector2(170f, -3f);
+            Enemy(new Vector2(170f, 0f), health: 1000);
+            var larvae = new List<Larva>();
+            for (int i = 0; i < 3; i++)
+                larvae.Add(Larva.Spawn(null, new Vector2(170f, -2f), LarvaSettings(), player));
+            yield return new WaitForSeconds(1f);
+
+            float closest = float.MaxValue;
+            for (int i = 0; i < larvae.Count; i++)
+                for (int j = i + 1; j < larvae.Count; j++)
+                    closest = Mathf.Min(closest, Vector2.Distance(larvae[i].transform.position, larvae[j].transform.position));
+            Assert.Greater(closest, 0.3f, "Cada una ataca desde su lado.");
+            foreach (var larva in larvae)
+                Assert.LessOrEqual(Vector2.Distance(larva.transform.position, new Vector2(170f, 0f)), 0.6f, "Todas a distancia de mordisco.");
         }
     }
 }

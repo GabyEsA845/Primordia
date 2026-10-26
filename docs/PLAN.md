@@ -98,7 +98,7 @@ Cada módulo vive en su propia carpeta de `Assets/_Primordia/Scripts/` (`Core`, 
   Pasos (cada uno con su arte primero, en docs/multimedia-temp/floor2-mutations):
   1. Extremidades: Cola propulsora (doble esquiva, burbujas, Torbellino) y Espinas de Hallucigenia (púas al esquivar, Erizo), con sus capas sobre los 3 cuerpos (hecho)
   2. Piel: Placas de trilobite (+1 corazón, rebote, Enrollarse) y Escleritos de Wiwaxia (escamas, Órbita), con sus capas (hecho)
-  3. Órganos: Saco de crías (larvas, Enjambre) y Ojos compuestos (cámara lenta, Visión total), con sus efectos de activación
+  3. Órganos: Saco de crías (larvas, Enjambre) y Ojos compuestos (cámara lenta, Visión total), con sus efectos de activación (hecho)
   4. Linajes del piso 2: beneficios remodelados, Carroñero y sus restos, los 8 toques y las evoluciones
   5. Las mutaciones en Floor_2 (reserva, tienda y sala de cambio), documento del piso 2 y cierre
 - [ ] `feature/boss-anomalocaris`: cueva ovalada muy grande sin fosas, en la que baja la luz al entrar, con plantas luminosas (luces 2D) y columnas de algas; acecho, cerco, escena de los ojos al 25 % y frenesí con los marcadores del zarpazo

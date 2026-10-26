@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df5bb76f2d0e6c3499894ff7652f2133, type: 3}
+  m_Name: Mutation_BroodSac
+  m_EditorClassIdentifier: Primordia::Primordia.Mutations.BroodSacMutation
+  displayName: "Saco de cr\xEDas"
+  description: 'Clic derecho: 2 larvas aliadas que persiguen y muerden durante 8 s. Recarga de 14 s.'
+  slot: 3
+  lineages: []
+  look: {fileID: 0}
+  bodyRadius: 0
+  mouthDistance: 0
+  headHeight: 0
+  wornOnHead: 0
+  muzzleDistance: 0
+  attackLean: 0
+  icon: {fileID: 21300000, guid: db7c2b281b2ddd54580b9fb00fdaec7a, type: 3}
+  largeIcon: {fileID: 21300000, guid: 4a0fe474315934a4a8102a557c03cb79, type: 3}
+  color: {r: 0.55, g: 0.9, b: 0.35, a: 1}
+  levelDescriptions:
+  - 3 larvas (8 s).
+  - "Enjambre: la larva que mata a un enemigo se divide en dos (tambi\xE9n 8 s)."
+  dodgeSound: 
+  floor: 2
+  special: 0
+  family: 0
+  creatureIdleFrames: []
+  creatureAttackFrames: []
+  creatureBody: {fileID: 0}
+  attackHitTime: 0
+  creatureLayers: []
+  morphFrames: []
+  revealFrames: []
+  cooldown: 14
+  effectPrefab: {fileID: 0}
+  effectRadius: 1
+  counts: 020000000300000003000000i
+  larvaPrefab: {fileID: 6403706914925850192, guid: 97153e98e32d07c478d06d59832a7502, type: 3}
+  larva:
+    lifetime: 8
+    speed: 5.5
+    range: 9
+    biteDamage: 2
+    biteInterval: 0.7
+    biteReach: 0.55
+  spread: 0.7
+  openEffect: {fileID: 7666846727011138988, guid: 84f85374445c9c04da31ce45a9595358, type: 3}

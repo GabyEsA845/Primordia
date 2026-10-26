@@ -163,7 +163,8 @@ namespace Primordia.Core
 
         static void ApplyTimeScale(GameState state)
         {
-            Time.timeScale = state is GameState.Paused or GameState.MutationChoice or GameState.Map or GameState.Evolution ? 0f : 1f;
+            // Cuando el juego corre, a la escala de la cámara lenta (1 sin ella).
+            Time.timeScale = state is GameState.Paused or GameState.MutationChoice or GameState.Map or GameState.Evolution ? 0f : TimeWarp.Scale;
         }
     }
 }

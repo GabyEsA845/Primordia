@@ -94,6 +94,13 @@ Cada módulo vive en su propia carpeta de `Assets/_Primordia/Scripts/` (`Core`, 
   5. Cardumen de Pikaia: 5 peces en formación que rodean y hacen pasadas por turnos (hecho)
   6. Cierre: costes y sala de inicio en Floor_2 y fuera los enemigos provisionales (hecho)
 - [ ] `feature/floor2-mutations`: las otras 6 mutaciones del piso 2 y sus 8 linajes (beneficios remodelados, Carroñero y su sprite de restos, toques y evoluciones). Incluye el arte que falta: las capas de Extremidades y Piel sobre los 3 cuerpos (12), los efectos de activación de los Órganos, las larvas, las burbujas de la Cola, las púas de Hallucigenia y las escamas de Wiwaxia
+
+  Pasos (cada uno con su arte primero, en docs/multimedia-temp/floor2-mutations):
+  1. Extremidades: Cola propulsora (doble esquiva, burbujas, Torbellino) y Espinas de Hallucigenia (púas al esquivar, Erizo), con sus capas sobre los 3 cuerpos (hecho)
+  2. Piel: Placas de trilobite (+1 corazón, rebote, Enrollarse) y Escleritos de Wiwaxia (escamas, Órbita), con sus capas
+  3. Órganos: Saco de crías (larvas, Enjambre) y Ojos compuestos (cámara lenta, Visión total), con sus efectos de activación
+  4. Linajes del piso 2: beneficios remodelados, Carroñero y sus restos, los 8 toques y las evoluciones
+  5. Las mutaciones en Floor_2 (reserva, tienda y sala de cambio), documento del piso 2 y cierre
 - [ ] `feature/boss-anomalocaris`: cueva ovalada muy grande sin fosas, en la que baja la luz al entrar, con plantas luminosas (luces 2D) y columnas de algas; acecho, cerco, escena de los ojos al 25 % y frenesí con los marcadores del zarpazo
 - [ ] `feature/boss-eurypterid`: cueva de unos 30×22 con 5–6 rocas y grietas en los bordes, pinzas y púas del caparazón, escena de la muda al 50 % (la muda vacía queda como cobertura y se derrumban 2 rocas) y fase blanda con la cola
 - [ ] `feature/floor2-audio`: música (exploración, combate y una pista por jefe) y sonidos del piso 2, con el sistema del piso 1

@@ -41,7 +41,20 @@ namespace Primordia.Player
         public bool IsDodging { get; private set; }
         public bool IsLunging => lungeEndTime > 0f;
         public Vector2 DodgeDirection { get; private set; }
-        public bool CanDodge => CanAct && !IsDodging && Time.time >= nextDodgeTime;
+        public bool CanDodge => CanAct && !IsDodging && (Time.time >= nextDodgeTime || DodgeInChain <= ExtraDodges);
+
+        /// <summary>
+        /// Esquivas que se pueden encadenar después de la primera sin esperar la recarga (la Cola propulsora da 1). Pasada la
+        /// recarga, la cadena empieza de nuevo.
+        /// </summary>
+        public int ExtraDodges
+        {
+            get => extraDodges;
+            set => extraDodges = Mathf.Max(0, value);
+        }
+
+        /// <summary>Qué esquiva de la cadena es la actual (o la última): 1 la primera, 2 la segunda encadenada…</summary>
+        public int DodgeInChain { get; private set; }
 
         /// <summary>Velocidad de movimiento; las mutaciones de Extremidades la modifican.</summary>
         public float MoveSpeed
@@ -66,6 +79,8 @@ namespace Primordia.Player
 
         public event Action DodgeStarted;
         public event Action DodgeEnded;
+
+        int extraDodges;
 
         // Las pruebas lo desactivan para dar la entrada con SetInput.
         internal bool readInput = true;
@@ -163,6 +178,8 @@ namespace Primordia.Player
             if (!CanDodge)
                 return false;
 
+            // Pasada la recarga, empieza una cadena nueva; si no, es una esquiva encadenada.
+            DodgeInChain = Time.time >= nextDodgeTime ? 1 : DodgeInChain + 1;
             DodgeDirection = ChooseDodgeDirection(MoveInput, AimDirection);
             StopLunge();
             IsDodging = true;

@@ -40,7 +40,7 @@ namespace Primordia.Editor
             ("Hallucigenia", "Hallucigenia", LineageClass.Scavenger, new[] { "ArmCrown", "HallucigeniaSpines", "WiwaxiaSclerites", "CompoundEyes" }),
         };
 
-        // Toque propio de cada linaje: nombre y lo que hace (corto: se lee en la pausa). Su efecto llega en el paso 4b.
+        // Toque propio de cada linaje: nombre y lo que hace (corto: se lee en la pausa).
         static readonly Dictionary<string, (LineageTouch touch, string name, string description)> Touches = new()
         {
             ["Placoderm"] = (LineageTouch.Feast, "Festín", "Rematar con un mordisco cura medio corazón (como mucho cada 6 s)."),

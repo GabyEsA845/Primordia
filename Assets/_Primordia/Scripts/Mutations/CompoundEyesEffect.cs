@@ -28,6 +28,12 @@ namespace Primordia.Mutations
         public event Action Started;
         public event Action Ended;
 
+        /// <summary>Al empezar cualquiera (el componente se crea la primera vez que se activan los ojos).</summary>
+        public static event Action<CompoundEyesEffect> AnyStarted;
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        static void ResetStatics() => AnyStarted = null;
+
         public void Begin(PlayerMutations newPlayer, float duration, float worldSpeed, float newDamageBonus, Sprite[] flashFrames,
             Color vignetteColor)
         {
@@ -49,6 +55,7 @@ namespace Primordia.Mutations
                 vignette.Show(vignetteColor);
             Sfx.Play(Sounds.PlayerAbilityReady);
             Started?.Invoke();
+            AnyStarted?.Invoke(this);
         }
 
         /// <summary>Alarga lo que queda (los Cinco ojos de la Opabinia).</summary>

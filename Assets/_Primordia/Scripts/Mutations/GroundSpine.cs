@@ -36,6 +36,19 @@ namespace Primordia.Mutations
         /// <summary>Se lanza al hacer daño a un enemigo, con su vida (el Lecho urticante de la Anémona envenena aquí).</summary>
         public event Action<Health> Struck;
 
+        /// <summary>Lo mismo para cualquier púa (el Lecho urticante de la Anémona).</summary>
+        public static event Action<GroundSpine, Health> AnyStruck;
+
+        /// <summary>Púa que está quitando vida ahora mismo, o null (la Doble ración: los restos de quien mata una púa).</summary>
+        public static GroundSpine Striking { get; private set; }
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        static void ResetStatics()
+        {
+            AnyStruck = null;
+            Striking = null;
+        }
+
         public static GroundSpine Spawn(GroundSpine prefab, Vector2 position, int damage, float duration, AttackData shot,
             float shotRange, Weapon source)
         {
@@ -88,8 +101,11 @@ namespace Primordia.Mutations
                 var health = hits[i].GetComponentInParent<Health>();
                 if (health == null || health.IsDead || !struck.Add(health))
                     continue;
-                health.TakeDamage(damage);
+                Striking = this;
+                try { health.TakeDamage(damage); }
+                finally { Striking = null; }
                 Struck?.Invoke(health);
+                AnyStruck?.Invoke(this, health);
             }
         }
 

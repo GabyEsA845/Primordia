@@ -113,6 +113,15 @@ namespace Primordia.Combat
         public int DamageOf(AttackData attack) =>
             Mathf.Max(0, Mathf.CeilToInt(attack.Damage * DamageMultiplier - 0.001f));
 
+        /// <summary>
+        /// Arma que está dando un golpe cuerpo a cuerpo ahora mismo (mientras quita la vida), o null: así un modificador de
+        /// daño o una muerte saben que fue un mordisco (el Festín del Placodermo).
+        /// </summary>
+        public static Weapon Striking { get; private set; }
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        static void ResetStriking() => Striking = null;
+
         /// <summary>Se lanza cuando un proyectil de esta arma hace daño. Si el objetivo murió, su IsDead es true.</summary>
         public event Action<Health> HitTarget;
 
@@ -382,7 +391,11 @@ namespace Primordia.Combat
                         continue;
                 }
 
-                if (!health.TakeDamage(damage))
+                Striking = this;
+                bool damaged;
+                try { damaged = health.TakeDamage(damage); }
+                finally { Striking = null; }
+                if (!damaged)
                     continue;
 
                 landed = true;

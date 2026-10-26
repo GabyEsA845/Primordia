@@ -36,6 +36,16 @@ namespace Primordia.Tests
         {
             foreach (var remains in Object.FindObjectsByType<CarrionRemains>(FindObjectsInactive.Include, FindObjectsSortMode.None))
                 Object.DestroyImmediate(remains.gameObject);
+            foreach (var spine in Object.FindObjectsByType<GroundSpine>(FindObjectsSortMode.None))
+                Object.DestroyImmediate(spine.gameObject);
+            foreach (var larva in Object.FindObjectsByType<Larva>(FindObjectsSortMode.None))
+                Object.DestroyImmediate(larva.gameObject);
+            foreach (var projectile in Object.FindObjectsByType<Projectile>(FindObjectsInactive.Include, FindObjectsSortMode.None))
+                Object.DestroyImmediate(projectile.gameObject);
+            ProjectilePool.Clear();
+            if (player != null && player.TryGetComponent<CompoundEyesEffect>(out var eyes))
+                eyes.End();
+            TimeWarp.Set(1f);
             foreach (var obj in created)
             {
                 if (obj != null)
@@ -60,7 +70,7 @@ namespace Primordia.Tests
         }
 
         /// <summary>Completa un linaje de esa clase con 4 mutaciones sin efecto de ese piso.</summary>
-        LineageData Complete(LineageClass lineageClass, int floor = 2)
+        LineageData Complete(LineageClass lineageClass, int floor = 2, LineageTouch touch = LineageTouch.None)
         {
             var parts = new MutationData[]
             {
@@ -69,6 +79,7 @@ namespace Primordia.Tests
             };
             var data = Track(ScriptableObject.CreateInstance<LineageData>());
             data.Configure(lineageClass.ToString(), lineageClass, parts, "");
+            data.ConfigureTouch(touch, touch.ToString(), "");
             foreach (var part in parts)
             {
                 part.SetLineages(new[] { data });
@@ -256,6 +267,138 @@ namespace Primordia.Tests
             yield return null;
             Assert.IsNull(lineage.BenefitOf<CarrionBenefit>());
             Assert.AreEqual(0, Object.FindObjectsByType<CarrionRemains>(FindObjectsSortMode.None).Length, "Al perder el linaje se van los restos.");
+        }
+
+        // ---------- Toques del piso 2 ----------
+
+        [UnityTest]
+        public IEnumerator Feast_FinishingWithABite_HealsHalfAHeart()
+        {
+            var health = mutations.Health;
+            health.SetMax(6);
+            health.TakeDamage(2);
+            Complete(LineageClass.Carnivore, touch: LineageTouch.Feast);
+            var weapon = player.GetComponent<Weapon>();
+            weapon.Attack.ConfigureMelee(range: 1.5f, arc: 180f, effect: null);
+
+            var first = CreateEnemy(4, new Vector2(1f, 0f));
+            first.Health.TakeDamage(2);
+            yield return new WaitForFixedUpdate();
+            Assert.IsTrue(weapon.TryFire(Vector2.right));
+            Assert.IsTrue(first.Health.IsDead, "El mordisco al herido lo remata.");
+            Assert.AreEqual(5, health.Current, "Rematar con un mordisco cura medio corazón.");
+            Assert.AreEqual(1, player.GetComponent<FeastTouch>().Feasts);
+
+            var second = CreateEnemy(4, new Vector2(-20f, 0f));
+            second.Health.TakeDamage(2);
+            second.Health.TakeDamage(2);
+            Assert.IsTrue(second.Health.IsDead);
+            Assert.AreEqual(1, player.GetComponent<FeastTouch>().Feasts, "Un remate que no es mordisco no cura.");
+        }
+
+        [UnityTest]
+        public IEnumerator FiveEyes_EyesLastOneMoreSecond_AndFinishesExtendThem()
+        {
+            Complete(LineageClass.Carnivore, touch: LineageTouch.FiveEyes);
+            var eyes = player.AddComponent<CompoundEyesEffect>();
+            eyes.Begin(mutations, 3f, 1f, 1f, System.Array.Empty<Sprite>(), Color.white);
+            Assert.AreEqual(4f, eyes.Remaining, 0.01f, "Un segundo más.");
+
+            var enemy = CreateEnemy(4);
+            enemy.Health.TakeDamage(2);
+            enemy.Health.TakeDamage(1);
+            Assert.IsTrue(enemy.Health.IsDead);
+            Assert.AreEqual(4.5f, eyes.Remaining, 0.05f, "Cada remate los alarga medio segundo.");
+            yield return null;
+        }
+
+        [UnityTest]
+        public IEnumerator StingingBed_SpinesPoisonWhoStepsOnThem()
+        {
+            Complete(LineageClass.Venomous, touch: LineageTouch.StingingBed);
+            var enemy = CreateEnemy(30, new Vector2(20f, 0f));
+            yield return new WaitForFixedUpdate();
+            GroundSpine.Spawn(null, new Vector2(20f, 0f), 1, 1f, null, 0f, player.GetComponent<Weapon>());
+            yield return new WaitForSeconds(0.3f);
+            Assert.IsTrue(enemy.TryGetComponent<Poison>(out _), "Quien pisa la púa queda envenenado.");
+        }
+
+        [UnityTest]
+        public IEnumerator StingingPolyps_LarvaBitesPoison()
+        {
+            Complete(LineageClass.Venomous, touch: LineageTouch.StingingPolyps);
+            player.transform.position = new Vector3(40f, 0f, 0f);
+            var enemy = CreateEnemy(30, new Vector2(42f, 0f));
+            Larva.Spawn(null, new Vector2(40f, 0f), new Larva.Settings
+            {
+                lifetime = 8f, speed = 5.5f, range = 9f, biteDamage = 1, biteInterval = 0.7f, biteReach = 0.55f,
+            }, mutations);
+            yield return new WaitForSeconds(0.8f);
+            Assert.Less(enemy.Health.Current, 30, "La larva muerde.");
+            Assert.IsTrue(enemy.TryGetComponent<Poison>(out _), "Y envenena.");
+        }
+
+        [UnityTest]
+        public IEnumerator DoubleServing_SpineKillsLeaveDoubleRemains()
+        {
+            var settings = new LineageBenefitSettings { remainsPrefab = RemainsPrefab(), doubleRemainsPrefab = RemainsPrefab(2) };
+            lineage.ConfigureBenefits(settings);
+            Complete(LineageClass.Scavenger, touch: LineageTouch.DoubleServing);
+            var carrion = lineage.BenefitOf<CarrionBenefit>();
+
+            CreateEnemy(1, new Vector2(60f, 0f)).Health.TakeDamage(1);
+            yield return null;
+            Assert.AreEqual(1, carrion.Spawned[0].Value, "Sin púa, restos normales.");
+
+            CreateEnemy(1, new Vector2(64f, 0f));
+            yield return new WaitForFixedUpdate();
+            GroundSpine.Spawn(null, new Vector2(64f, 0f), 1, 1f, null, 0f, player.GetComponent<Weapon>());
+            yield return new WaitForSeconds(0.3f);
+            Assert.AreEqual(2, carrion.Spawned.Count);
+            Assert.AreEqual(2, carrion.Spawned[1].Value, "La púa que mata deja restos dobles.");
+        }
+
+        [UnityTest]
+        public IEnumerator CarrionArmor_EatingRemainsReadiesThePlates()
+        {
+            ConfigureCarrion(RemainsPrefab());
+            Complete(LineageClass.Scavenger, touch: LineageTouch.CarrionArmor);
+            player.AddComponent<PlatesBounce>();
+            var carrion = lineage.BenefitOf<CarrionBenefit>();
+
+            CreateEnemy(1, new Vector2(3f, 0f)).Health.TakeDamage(1);
+            yield return null;
+            player.transform.position = new Vector3(3f, 0f, 0f);
+            yield return null;
+            Assert.AreEqual(1, carrion.Stacks);
+            Assert.AreEqual(1, player.GetComponent<CarrionTouch>().Armored, "Comer restos prepara las placas.");
+        }
+
+        [UnityTest]
+        public IEnumerator Harvest_AVolleyHittingThreeEnemies_GivesAGreenHeart()
+        {
+            Complete(LineageClass.Herbivore, touch: LineageTouch.Harvest);
+            var template = Track(new GameObject("ScaleTemplate"));
+            template.SetActive(false);
+            template.AddComponent<Rigidbody2D>().gravityScale = 0f;
+            var collider = template.AddComponent<CircleCollider2D>();
+            collider.radius = 0.1f;
+            collider.isTrigger = true;
+            var attack = Track(ScriptableObject.CreateInstance<AttackData>());
+            attack.Configure(template.AddComponent<Projectile>(), 1f, 1, 14f, 1f);
+
+            player.transform.position = new Vector3(80f, 0f, 0f);
+            var volley = player.AddComponent<ScleriteVolley>();
+            volley.Configure(player.GetComponent<Weapon>(), new ScleriteVolley.Settings { attack = attack, count = 3, interval = 99f, range = 7f });
+            CreateEnemy(30, new Vector2(82f, 1.5f));
+            CreateEnemy(30, new Vector2(82.5f, 0f));
+            CreateEnemy(30, new Vector2(82f, -1.5f));
+            yield return new WaitForFixedUpdate();
+            volley.Ready();
+            yield return new WaitForSeconds(0.5f);
+
+            Assert.AreEqual(1, player.GetComponent<HarvestTouch>().Harvests, "3 enemigos alcanzados: medio corazón verde.");
+            Assert.AreEqual(1, mutations.Health.Barrier);
         }
     }
 }

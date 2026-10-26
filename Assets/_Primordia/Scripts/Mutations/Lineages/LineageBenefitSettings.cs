@@ -46,6 +46,19 @@ namespace Primordia.Mutations
         [Tooltip("Marca sobre el jugador con 1, 2 y 3 colmillos.")]
         public GameObject[] carrionMarkers = new GameObject[3];
 
+        [Header("Toques del piso 2")]
+        [Tooltip("Festín (Placodermo): vida que cura rematar con un mordisco (1 = medio corazón) y cada cuánto como mucho.")]
+        [Min(1)] public int feastHeal = 1;
+        [Min(0f)] public float feastCooldown = 6f;
+        [Tooltip("Cinco ojos (Opabinia): segundos de más de los Ojos compuestos, y cuánto los alarga cada remate.")]
+        [Min(0f)] public float fiveEyesBonus = 1f;
+        [Min(0f)] public float fiveEyesPerFinish = 0.5f;
+        [Tooltip("Pólipos urticantes y Lecho urticante: veneno de las larvas y de las púas (daño por segundo y segundos).")]
+        [Min(1)] public int touchPoisonDamage = 1;
+        [Min(0.1f)] public float touchPoisonDuration = 3f;
+        [Tooltip("Cosecha (Wiwaxia): enemigos distintos que tiene que alcanzar una tanda de escleritos.")]
+        [Min(1)] public int harvestTargets = 3;
+
         [Header("Hongo: Colonizar la sala")]
         public MyceliumPatch matPrefab;
         [Tooltip("Colonia grande (Moho): la mata grande.")]

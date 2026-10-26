@@ -26,6 +26,9 @@ namespace Primordia.Mutations
         PlayerController controller;
         Func<Health, int, int> modifier;
 
+        /// <summary>Se lanza con cada remate (el golpe que mata a un herido): los toques del Placodermo y la Opabinia.</summary>
+        public event Action<Health> Finished;
+
         /// <summary>Remates que recargaron la esquiva (para las pruebas).</summary>
         public int DodgeRefills { get; private set; }
 
@@ -72,7 +75,10 @@ namespace Primordia.Mutations
             // El modificador se aplica justo antes de quitar la vida: si llega a 0, este golpe es el remate (aunque
             // la muerte se anuncie más tarde, como la de la ameba que se divide).
             if (damage >= target.Current)
+            {
                 OnFinished();
+                Finished?.Invoke(target);
+            }
             return damage;
         }
 

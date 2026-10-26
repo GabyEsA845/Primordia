@@ -58,7 +58,14 @@ namespace Primordia.Combat
         static readonly List<Projectile> active = new();
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-        static void ResetStatics() => active.Clear();
+        static void ResetStatics()
+        {
+            active.Clear();
+            AnyHit = null;
+        }
+
+        /// <summary>Se lanza cuando cualquier proyectil hace daño, con el proyectil y la vida (la Cosecha de la Wiwaxia).</summary>
+        public static event System.Action<Projectile, Health> AnyHit;
 
         /// <summary>Proyectiles en vuelo ahora mismo, de los dos equipos.</summary>
         public static int ActiveCount => active.Count;
@@ -311,6 +318,7 @@ namespace Primordia.Combat
             // El arma puede haberse destruido (enemigo muerto) mientras el proyectil volaba.
             if (source != null)
                 source.ReportHit(health);
+            AnyHit?.Invoke(this, health);
 
             if (piercesLeft > 0)
             {

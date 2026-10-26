@@ -215,6 +215,40 @@ namespace Primordia.Mutations
                 case LineageTouch.PuffOnHit:
                     Add<PuffOnHitTouch>().Configure(mutations, b.puffRadius, b.puffCooldown);
                     break;
+
+                // Piso 2: trabajan sobre el beneficio de la clase, que ya está puesto.
+                case LineageTouch.Feast:
+                    Add<FeastTouch>().Configure(BenefitOf<FinisherBenefit>(), mutations.Weapon, mutations.Health, b.feastHeal,
+                        b.feastCooldown, b.healEffect);
+                    break;
+
+                case LineageTouch.FiveEyes:
+                    Add<FiveEyesTouch>().Configure(BenefitOf<FinisherBenefit>(), b.fiveEyesBonus, b.fiveEyesPerFinish);
+                    break;
+
+                case LineageTouch.StingingPolyps:
+                    Add<StingingTouch>().Configure(StingingTouch.Source.Larvae, b.touchPoisonDamage, b.touchPoisonDuration, b.poisonEffect);
+                    break;
+
+                case LineageTouch.StingingBed:
+                    Add<StingingTouch>().Configure(StingingTouch.Source.Spines, b.touchPoisonDamage, b.touchPoisonDuration, b.poisonEffect);
+                    break;
+
+                case LineageTouch.NutrientCurrent:
+                    Add<NutrientCurrentTouch>().Configure(mutations.Weapon);
+                    break;
+
+                case LineageTouch.Harvest:
+                    Add<HarvestTouch>().Configure(mutations.Health, b.harvestTargets, b.maxBarrierFloor2, b.healEffect);
+                    break;
+
+                case LineageTouch.CarrionArmor:
+                    Add<CarrionTouch>().Configure(BenefitOf<CarrionBenefit>(), CarrionTouch.Kind.Armor, null);
+                    break;
+
+                case LineageTouch.DoubleServing:
+                    Add<CarrionTouch>().Configure(BenefitOf<CarrionBenefit>(), CarrionTouch.Kind.DoubleServing, b.doubleRemainsPrefab);
+                    break;
             }
         }
 

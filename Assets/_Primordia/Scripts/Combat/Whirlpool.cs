@@ -38,6 +38,9 @@ namespace Primordia.Combat
         Color[] baseColors;
 
         public float Radius => attack != null ? attack.AreaRadius : 0f;
+
+        /// <summary>Arma que lo creó (la Corriente nutritiva del Lirio de mar solo atrae con los remolinos del jugador).</summary>
+        public Weapon Source => source;
         public int Ticks { get; private set; }
 
         /// <summary>Remolinos que hay ahora.</summary>

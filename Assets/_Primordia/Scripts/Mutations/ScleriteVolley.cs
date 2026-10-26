@@ -49,6 +49,12 @@ namespace Primordia.Mutations
         /// <summary>Se lanza al salir cada tanda, con las escamas lanzadas (la Cosecha de la Wiwaxia cuenta a quién dan).</summary>
         public event Action<IReadOnlyList<Projectile>> Released;
 
+        /// <summary>Lo mismo para cualquier tanda (la Cosecha no depende de qué componente la suelta).</summary>
+        public static event Action<ScleriteVolley, IReadOnlyList<Projectile>> AnyReleased;
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        static void ResetStatics() => AnyReleased = null;
+
         internal void Configure(Weapon newWeapon, Settings newSettings)
         {
             weapon = newWeapon;
@@ -95,6 +101,7 @@ namespace Primordia.Mutations
             if (settings.attack == null || settings.attack.ProjectilePrefab == null || targets.Count == 0)
             {
                 Released?.Invoke(launched);
+                AnyReleased?.Invoke(this, launched);
                 return;
             }
             int layer = CombatLayers.ProjectileLayer(Team.Player);
@@ -110,6 +117,7 @@ namespace Primordia.Mutations
                 launched.Add(projectile);
             }
             Released?.Invoke(launched);
+            AnyReleased?.Invoke(this, launched);
         }
 
         /// <summary>Órbita: las escamas giran a su alrededor destruyendo proyectiles enemigos y luego salen.</summary>

@@ -22,3 +22,5 @@ Build web: menú Primordia > Build > Build WebGL (itch.io) ya funcionó; zip en 
 **How to apply:** leer docs/PLAN.md, docs/GDD Primordia.md y docs/MULTIMEDIA.md al empezar; seguir el flujo de [[primordia-workflow]] y los avisos técnicos de [[primordia-unity-gotchas]].
 
 **Actualización 2026-10-25:** en main también feature/clam-room (merge bace4a2: sala de la almeja y 3 mutaciones especiales; minimapa oculto en pausa y arrastrable) y feature/floor2-mouths (merge 9420dbf: Cnidocitos, Placas mandibulares, Corona de brazos). En curso feature/floor2-enemies (paso 1 hecho, cb26155): ver [[primordia-floor2-enemies]]. Pendientes del PLAN para el piso 2 después: exchange-room, floor2-mutations, boss-anomalocaris, boss-eurypterid, floor2-audio.
+
+**Actualización 2026-10-26:** en main feature/floor2-mutations (merge d5680b5): las 6 mutaciones de Extremidades, Piel y Órganos del piso 2, los 8 linajes con el Carroñero y sus toques, reserva del piso 2 solo con sus mutaciones (más mejoras de lo que se trae) y atajo F8. También en main la skill primordia-sprites y docs/multimedia-temp en git. Siguiente: [[primordia-boss-anomalocaris]].

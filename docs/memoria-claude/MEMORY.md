@@ -1,4 +1,4 @@
-- [Estado de Primordia](primordia-project-status.md) — proyecto personal para itch.io; piso 1 completo en main; estructura del piso 2 en main (59f633c, 2026-10-25); clam-room (bace4a2) y floor2-mouths (9420dbf) en main; floor2-enemies en main (95e1189); exchange-room en main (4ff7147); en curso floor2-mutations (ver primordia-floor2-mutations)
+- [Estado de Primordia](primordia-project-status.md) — proyecto personal para itch.io; piso 1 completo en main; piso 2: estructura, Bocas, enemigos, sala de cambio y mutaciones/linajes en main (floor2-mutations d5680b5, 2026-10-26); SIGUIENTE: jefe Anomalocaris (ver primordia-boss-anomalocaris)
 - [Sprites: estado](primordia-sprites-next.md) — personajes, mutaciones e interfaz en main; HUD completo; menús en main; minimapa en main; evoluciones en main; biomasa en main; arte de tienda entregado e importado por menú
 - [Flujo de trabajo](primordia-workflow.md) — español, rama por módulo, menús de editor, commit solo tras confirmar
 - [Trampas técnicas de Unity](primordia-unity-gotchas.md) — Unity abierto, logs, statics, CRLF, zips, referencias perdidas
@@ -21,4 +21,6 @@
 - [Bocas del piso 2](primordia-floor2-mouths.md) — las 3 Bocas en main (merge 9420dbf); documento del piso 2 v4
 - [Enemigos del piso 2](primordia-floor2-enemies.md) — terminada y en main (merge 95e1189, 2026-10-25): 5 enemigos con EnemyBrain, tope por sala, grupos; cómo se hizo cada uno
 - [Sala de cambio](primordia-exchange-room.md) — terminada y en main (merge 4ff7147, 2026-10-25): reglas (piso anterior = un nivel menos, sin especiales), cápsula, ventana y metamorfosis en la cápsula
-- [Mutaciones del piso 2](primordia-floor2-mutations.md) — EN PAUSA feature/floor2-mutations: pasos 1-3 con commit; paso 4 (linajes) con arte de la Carroña esperando aprobación y plan 4a/4b propuesto
+- [Mutaciones del piso 2](primordia-floor2-mutations.md) — terminada y en main (merge d5680b5, 2026-10-26): mutaciones, 8 linajes, Carroña, toques, reserva del piso, F8
+- [Skill primordia-sprites](primordia-sprites-skill.md) — skill propia de pixel art en .claude/skills (en main desde d5680b5); usarla en todo arte nuevo
+- [Jefe Anomalocaris (siguiente)](primordia-boss-anomalocaris.md) — próxima rama feature/boss-anomalocaris: diseño cerrado, arte del jefe aprobado; faltan algas/plantas luminosas, luz, IA por fases, escena de los ojos

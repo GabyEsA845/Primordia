@@ -1,5 +1,7 @@
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Primordia.Mutations;
 using Primordia.Rooms;
 using Primordia.UI;
 using UnityEditor;
@@ -26,6 +28,16 @@ namespace Primordia.Editor
         static readonly Vector2 BottomCenter = new(0.5f, 0f);
         const int CapsuleCell = 40;
         const int CapsuleOrder = -4;
+        const int MorphCell = 32;
+        // Centro del vidrio respecto al centro del bloque: el apoyo del dibujo está 1 u por debajo y el centro del vidrio,
+        // 24,5 px por encima del borde de abajo del dibujo.
+        static readonly Vector2 GlassCenter = new(0f, -1f + 24.5f / 16f);
+
+        // Cuerpo de cada familia en el piso 2 (el de las hojas Morph_<A>_<B>).
+        static readonly (string body, WeaponFamily family)[] Bodies =
+        {
+            ("Jellyfish", WeaponFamily.Projectile), ("Placoderm", WeaponFamily.Melee), ("Crinoid", WeaponFamily.Area),
+        };
 
         // Medidas de la ventana, en píxeles de la interfaz (480×270).
         const int CardCount = 2;
@@ -65,6 +77,18 @@ namespace Primordia.Editor
             Directory.CreateDirectory(PrefabsFolder);
             var idle = Sheet("Capsule_Idle");
             var used = Sheet("Capsule_Used");
+            var glowFrames = Sheet("Capsule_Glow");
+            var flashFrames = Sheet("Capsule_Flash");
+            var morphs = new List<ExchangeCapsule.Morph>();
+            foreach (var (from, fromFamily) in Bodies)
+                foreach (var (to, toFamily) in Bodies)
+                {
+                    if (from == to)
+                        continue;
+                    var frames = ArtSetup.ImportLooseSheet($"{SourceFolder}/Morph_{from}_{to}.png", $"{ArtFolder}/Morph_{from}_{to}.png", MorphCell);
+                    if (frames.Length > 0)
+                        morphs.Add(new ExchangeCapsule.Morph(fromFamily, toFamily, frames));
+                }
             if (idle.Length == 0)
             {
                 Debug.LogWarning($"ExchangeRoomSetup: falta el arte de la cápsula en {SourceFolder} (python generar_sala_cambio.py).");
@@ -85,9 +109,24 @@ namespace Primordia.Editor
                 renderer.sprite = idle[0];
                 renderer.sortingOrder = CapsuleOrder;
 
+                // Encima del cuerpo: el brillo (mismo dibujo y apoyo) y la silueta de la criatura en el centro del vidrio.
+                var glow = new GameObject("Glow");
+                glow.transform.SetParent(root.transform, false);
+                glow.transform.localPosition = body.transform.localPosition;
+                var glowRenderer = glow.AddComponent<SpriteRenderer>();
+                glowRenderer.sortingOrder = CapsuleOrder + 1;
+                glowRenderer.enabled = false;
+                var silhouette = new GameObject("Silhouette");
+                silhouette.transform.SetParent(root.transform, false);
+                silhouette.transform.localPosition = GlassCenter;
+                var silhouetteRenderer = silhouette.AddComponent<SpriteRenderer>();
+                silhouetteRenderer.sortingOrder = CapsuleOrder + 2;
+                silhouetteRenderer.enabled = false;
+
                 root.AddComponent<BoxCollider2D>().size = new Vector2(2f, 2f);
                 var capsule = root.AddComponent<ExchangeCapsule>();
                 capsule.Configure(renderer, idle, used);
+                capsule.ConfigureMetamorphosis(glowRenderer, silhouetteRenderer, glowFrames, flashFrames, morphs.ToArray());
                 capsule.ConfigurePrompt(keyPrompt, 2.4f);
                 capsule.SetRadius(2.2f);
                 return PrefabUtility.SaveAsPrefabAsset(root, CapsulePrefabPath).GetComponent<ExchangeCapsule>();

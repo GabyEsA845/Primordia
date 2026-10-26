@@ -401,7 +401,10 @@ Una por piso desde el piso 2, siempre pegada a la tienda (así es fácil de enco
 
 - Muestra al jugador y lo que lleva en cada ranura, como el panel de la criatura de la pausa.
 - Al elegir la mutación de una ranura, aparecen las mutaciones del piso actual de esa ranura por las que se puede cambiar, cada una con su dibujo y su descripción, **al mismo nivel** que la que entregas. Se elige una y se confirma con Aceptar: la tuya desaparece y la nueva entra con ese nivel.
-- **Gratis y solo un cambio por piso**, así que hay que pensarlo bien. Es la única forma de cambiar de Boca (y de cuerpo, si cambia la familia; ver "Forma del jugador en cada piso").
+- **Gratis y solo un cambio por piso**, así que hay que pensarlo bien. Es la única forma de cambiar de Boca (y de cuerpo, si cambia la familia; ver "Forma del jugador en cada piso"). Después el líquido de la cápsula baja y se apaga.
+- **Mutaciones de un piso anterior:** también se pueden entregar, pero la nueva entra **un nivel por debajo** (como mínimo I), porque el nivel I de un piso vale como el II del anterior.
+- **Especiales:** las mutaciones especiales de las almejas ni se entregan ni se reciben.
+- **Metamorfosis en la cápsula:** si la Boca nueva cambia el cuerpo, la criatura entra en la cápsula, el líquido brilla del color de la familia nueva, la silueta del cuerpo viejo cambia al nuevo, se revela con sus colores y sale delante con un destello (unos 3 s, con las franjas de cine). Si no cambia el cuerpo, el líquido solo brilla un momento.
 - No existe en el piso 1, donde las Bocas salen en las recompensas normales.
 
 **Forma del jugador en cada piso**
@@ -471,7 +474,7 @@ La v1.0 tiene los **pisos 1 a 3** completos y pulidos (si el 3 se retrasa mucho,
 - [x] Linajes con su beneficio (base por clase y toque de cada animal)
 - [ ] Más variedad en el piso 1: un tercer enemigo y salas especiales
 - [ ] Paso de un piso al siguiente: sala de paso con la elección de Boca y la metamorfosis del jugador según su familia de arma
-- [ ] Sala de cambio (el laboratorio de Darwin), desde el piso 2
+- [x] Sala de cambio (el laboratorio de Darwin), desde el piso 2
 - [ ] Piso 2 (Océano cámbrico): 3 franjas de escenario con cuevas generadas, fosas y 10 salas especiales, 5 enemigos, Anomalocaris y Euriptérido, 9 mutaciones, 8 linajes y los 3 cuerpos del jugador
 - [ ] Presentación de los jefes al entrar en su sala (los 4 jefes de los pisos 1 y 2)
 - [ ] Piso 3 (Pantano carbonífero): lo mismo, con el artrópodo gigante

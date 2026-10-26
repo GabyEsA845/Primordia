@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using NUnit.Framework;
 using Primordia.Combat;
@@ -5,13 +6,15 @@ using Primordia.Mutations;
 using Primordia.Player;
 using Primordia.Rooms;
 using UnityEngine;
+using UnityEngine.TestTools;
 
 namespace Primordia.Tests
 {
     /// <summary>
     /// Sala de cambio (el laboratorio de Darwin): entregas la mutación de una ranura y recibes otra del piso de esa ranura,
     /// al mismo nivel (uno menos si la entregada es de un piso anterior); las especiales ni se dan ni se reciben, y la
-    /// cápsula solo se usa una vez.
+    /// cápsula solo se usa una vez. Si cambia el cuerpo, el jugador entra en la cápsula y sale delante con la forma nueva;
+    /// si no, solo brilla.
     /// </summary>
     public class ExchangeTests
     {
@@ -25,6 +28,7 @@ namespace Primordia.Tests
             playerObject.AddComponent<Weapon>();
             playerObject.AddComponent<PlayerController>().readInput = false;
             player = playerObject.AddComponent<PlayerMutations>();
+            playerObject.GetComponent<Rigidbody2D>().gravityScale = 0f;
         }
 
         [TearDown]
@@ -163,6 +167,55 @@ namespace Primordia.Tests
 
             capsule.Exchange(player, crown);
             Assert.AreSame(fish, player.Get(MutationSlot.Mouth), "Solo un cambio por piso.");
+        }
+
+        ExchangeCapsule Capsule(MutationPool pool)
+        {
+            var capsule = Track(new GameObject("Capsule")).AddComponent<ExchangeCapsule>();
+            capsule.SetFloor(pool, 2);
+            return capsule;
+        }
+
+        [UnityTest]
+        public IEnumerator NewBody_PlayerEntersTheCapsule_AndComesOutInFront()
+        {
+            var jelly = Mutation("Cnidocitos", MutationSlot.Mouth, 2, WeaponFamily.Projectile);
+            var fish = Mutation("Placas", MutationSlot.Mouth, 2, WeaponFamily.Melee);
+            EquipAt(jelly, 1);
+            player.transform.position = new Vector2(0f, -3f);
+            var capsule = Capsule(Pool(jelly, fish));
+            yield return null;
+
+            capsule.Exchange(player, fish);
+            Assert.IsTrue(capsule.IsPlaying, "Empieza la metamorfosis.");
+            yield return new WaitForSeconds(0.5f);
+            Assert.IsFalse(player.GetComponent<Rigidbody2D>().simulated, "Dentro de la cápsula, sin física.");
+
+            for (float t = 0f; t < 5f && capsule.IsPlaying; t += Time.deltaTime)
+                yield return null;
+
+            Assert.IsFalse(capsule.IsPlaying);
+            Assert.Less(Vector2.Distance(player.transform.position, new Vector2(0f, -1.7f)), 0.01f, "Sale delante de la cápsula.");
+            Assert.IsTrue(player.GetComponent<Rigidbody2D>().simulated);
+        }
+
+        [UnityTest]
+        public IEnumerator SameBody_OnlyShines_AndThePlayerStaysPut()
+        {
+            var jelly = Mutation("Cnidocitos", MutationSlot.Mouth, 2, WeaponFamily.Projectile);
+            var spit = Mutation("Escupitajo", MutationSlot.Mouth, 2, WeaponFamily.Projectile);
+            EquipAt(jelly, 1);
+            player.transform.position = new Vector2(0f, -3f);
+            var capsule = Capsule(Pool(jelly, spit));
+            yield return null;
+
+            capsule.Exchange(player, spit);
+            for (float t = 0f; t < 2f && capsule.IsPlaying; t += Time.deltaTime)
+                yield return null;
+
+            Assert.IsFalse(capsule.IsPlaying);
+            Assert.AreEqual(new Vector2(0f, -3f), (Vector2)player.transform.position);
+            Assert.AreSame(spit, player.Get(MutationSlot.Mouth));
         }
     }
 }

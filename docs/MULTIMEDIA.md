@@ -24,7 +24,9 @@ Lista viva de sprites, música, efectos y fuentes que necesita el juego. Se actu
 
 ### Carpeta temporal: `docs/multimedia-temp/`
 
-Los recursos nuevos (hojas de sprites, GIF de revisión, scripts que los generan) se dejan primero en `docs/multimedia-temp/<recurso>/`. Esa carpeta **no se sube al repositorio** (está en `.gitignore`); lo que se sube es lo que Unity importa a `Assets/_Primordia/Art/`.
+Los recursos nuevos (hojas de sprites, GIF de revisión, scripts que los generan) se dejan primero en `docs/multimedia-temp/<recurso>/` y desde ahí los importan a `Assets/_Primordia/Art/` los menús de Unity. La carpeta se sube al repositorio (los PNG por Git LFS) salvo los GIF y las cachés de Python, para poder regenerar el arte desde cualquier equipo.
+
+**Cómo se hace el arte:** con la skill de Claude Code `primordia-sprites` (`.claude/skills/primordia-sprites/`): reglas del estilo y de cada piso, la biblioteca común `pixel.py` (lienzo, rampas con el tono desplazado, sombra, hojas, vistas previas y GIF), una plantilla de generador y `lint_sprites.py`, que revisa las hojas (dibujo cortado, píxeles huérfanos, contorno grueso, colores de más) antes de enseñarlas.
 
 | Recurso | Carpeta temporal | Cómo se importa |
 |---------|------------------|-----------------|

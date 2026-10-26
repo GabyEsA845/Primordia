@@ -10,15 +10,29 @@ using UnityEngine;
 namespace Primordia.Editor
 {
     /// <summary>
-    /// Enemigos del piso 2 (GDD, tabla de enemigos del océano cámbrico), por pasos: el Trilobite, la Medusa azul, la Ottoia, la Esponja Vauxia y el Cardumen de Pikaia. Importa su arte
-    /// (docs/multimedia-temp/floor2-enemies, ritmos de su README), crea sus datos y su prefab con su cerebro
-    /// (<see cref="EnemyBrain"/>) y los pone en Floor_2 con su coste y la sala desde la que salen. Rehace el prefab cada vez.
+    /// Enemigos del piso 2 (GDD, tabla de enemigos del océano cámbrico): Trilobite, Medusa azul, Ottoia, Esponja Vauxia y
+    /// Cardumen de Pikaia. Importa su arte (docs/multimedia-temp/floor2-enemies, ritmos de su README), crea sus datos y su
+    /// prefab con su cerebro (<see cref="EnemyBrain"/>) y los pone en Floor_2 con su coste y la sala desde la que salen
+    /// (<see cref="Floor2Roster"/>). Rehace el prefab cada vez.
     /// </summary>
     public static partial class ArtSetup
     {
         const string Floor2EnemiesSourceFolder = "docs/multimedia-temp/floor2-enemies";
         const string Floor2EnemiesArtFolder = CharactersFolder + "/Enemies/Floor2";
         const string Floor2EnemyDataFolder = "Assets/_Primordia/Data/Enemies/Floor2";
+
+        /// <summary>
+        /// Los enemigos del piso 2 en Floor_2 (tabla de enemigos del GDD): prefab, coste, sala de combate desde la que salen,
+        /// tope por sala (0 = sin tope) y cuántos salen juntos.
+        /// </summary>
+        static readonly (string prefab, int cost, int minDepth, int maxPerRoom, int groupSize)[] Floor2Roster =
+        {
+            ("Enemy_Trilobite", 2, 1, 0, 1),
+            ("Enemy_BlueJelly", 2, 2, 0, 1),
+            ("Enemy_Ottoia", 3, 2, 0, 1),
+            ("Enemy_Vauxia", 3, 3, 1, 1),
+            ("Enemy_Pikaia", 2, 1, 0, 5),
+        };
 
         /// <summary>Cuadros por segundo a partir de los milisegundos por cuadro del README.</summary>
         static float Fps(float ms) => 1000f / ms;
@@ -29,26 +43,32 @@ namespace Primordia.Editor
             Directory.CreateDirectory(Floor2EnemyDataFolder);
             Directory.CreateDirectory(EnemyPrefabsFolder);
 
-            var entries = new List<FloorConfig.EnemyEntry>();
-            var trilobite = CreateTrilobite();
-            if (trilobite != null)
-                entries.Add(new FloorConfig.EnemyEntry(trilobite, cost: 2, minDepth: 1));
-            var jelly = CreateBlueJelly();
-            if (jelly != null)
-                entries.Add(new FloorConfig.EnemyEntry(jelly, cost: 2, minDepth: 2));
-            var ottoia = CreateOttoia();
-            if (ottoia != null)
-                entries.Add(new FloorConfig.EnemyEntry(ottoia, cost: 3, minDepth: 2));
-            var vauxia = CreateVauxia();
-            if (vauxia != null)
-                entries.Add(new FloorConfig.EnemyEntry(vauxia, cost: 3, minDepth: 3, maxPerRoom: 1));
-            var pikaia = CreatePikaia();
-            if (pikaia != null)
-                entries.Add(new FloorConfig.EnemyEntry(pikaia, cost: 2, minDepth: 1, groupSize: 5));
+            CreateTrilobite();
+            CreateBlueJelly();
+            CreateOttoia();
+            CreateVauxia();
+            CreatePikaia();
 
             AssetDatabase.SaveAssets();
+            var entries = Floor2EnemyEntries();
             PutInFloor2(entries);
-            Debug.Log($"ArtSetup: {entries.Count} enemigos del piso 2 creados y puestos en Floor_2.");
+            Debug.Log($"ArtSetup: {entries.Length} enemigos del piso 2 creados y puestos en Floor_2.");
+        }
+
+        /// <summary>
+        /// Las entradas de enemigos del piso 2 con los prefabs que ya existen (vacío si aún no se han creado). Las usa también
+        /// el menú del piso 2 al crear Floor_2 de cero, para que no vuelvan los enemigos del piso 1.
+        /// </summary>
+        internal static FloorConfig.EnemyEntry[] Floor2EnemyEntries()
+        {
+            var entries = new List<FloorConfig.EnemyEntry>();
+            foreach (var (prefab, cost, minDepth, maxPerRoom, groupSize) in Floor2Roster)
+            {
+                var enemy = AssetDatabase.LoadAssetAtPath<Enemy>($"{EnemyPrefabsFolder}/{prefab}.prefab");
+                if (enemy != null)
+                    entries.Add(new FloorConfig.EnemyEntry(enemy, cost, minDepth, maxPerRoom, groupSize));
+            }
+            return entries.ToArray();
         }
 
         // ---------- Trilobite ----------
@@ -289,7 +309,7 @@ namespace Primordia.Editor
         }
 
         /// <summary>Los enemigos de Floor_2 pasan a ser estos (los provisionales del piso 1 salen).</summary>
-        static void PutInFloor2(List<FloorConfig.EnemyEntry> entries)
+        static void PutInFloor2(FloorConfig.EnemyEntry[] entries)
         {
             var config = AssetDatabase.LoadAssetAtPath<FloorConfig>(Floor2Setup.Floor2ConfigPath);
             if (config == null)
@@ -297,9 +317,9 @@ namespace Primordia.Editor
                 Debug.LogWarning("ArtSetup: no existe Floor_2; créalo con Primordia > Rooms > Crear piso 2 y escena de prueba.");
                 return;
             }
-            if (entries.Count == 0)
+            if (entries.Length == 0)
                 return;
-            config.SetEnemies(entries.ToArray());
+            config.SetEnemies(entries);
             EditorUtility.SetDirty(config);
             AssetDatabase.SaveAssets();
         }

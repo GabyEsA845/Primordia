@@ -41,6 +41,11 @@ namespace Primordia.Tests
                     Object.DestroyImmediate(obj);
             }
             created.Clear();
+
+            // Las cargas de la medusa siguen volando al acabar su prueba y alcanzarían al jugador de la siguiente.
+            foreach (var projectile in Object.FindObjectsByType<Projectile>(FindObjectsInactive.Include, FindObjectsSortMode.None))
+                Object.DestroyImmediate(projectile.gameObject);
+            ProjectilePool.Clear();
         }
 
         T Track<T>(T obj) where T : Object

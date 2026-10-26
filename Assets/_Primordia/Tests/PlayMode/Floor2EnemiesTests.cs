@@ -15,7 +15,8 @@ namespace Primordia.Tests
     /// quieta y suelta un anillo de 8 con un hueco que gira de un anillo al siguiente; si no te ve, no dispara. Ottoia:
     /// enterrada es inmune y no choca; se pone debajo de ti, avisa, muerde a quien siga en el círculo, queda vulnerable
     /// un momento y se vuelve a hundir. Esponja Vauxia: su pulso cura y escuda a los demás enemigos cercanos (no a sí
-    /// misma ni a los lejanos) y nada la mueve.
+    /// misma ni a los lejanos) y nada la mueve. Pikaia: los que nacen juntos forman un cardumen, te rodean y hacen las
+    /// pasadas de uno en uno.
     /// </summary>
     public class Floor2EnemiesTests
     {
@@ -329,5 +330,67 @@ namespace Primordia.Tests
             Assert.Less(Vector2.Distance(vauxia.transform.position, Vector2.zero), 0.01f);
         }
 
+        List<PikaiaBrain> CreateShoal(Vector2 center, int count = 5)
+        {
+            var fish = new List<PikaiaBrain>();
+            for (int i = 0; i < count; i++)
+            {
+                var offset = (Vector2)(Quaternion.Euler(0f, 0f, 360f * i / count) * Vector2.right) * 0.7f;
+                var brain = CreateEnemy<PikaiaBrain>(Data(3), center + offset);
+                brain.GetComponent<CircleCollider2D>().radius = 0.3f;
+                fish.Add(brain);
+            }
+            return fish;
+        }
+
+        [UnityTest]
+        public IEnumerator Pikaia_BornTogether_FormOneShoal()
+        {
+            player.transform.position = new Vector2(40f, 0f);
+            var shoal = CreateShoal(Vector2.zero);
+            var loner = CreateEnemy<PikaiaBrain>(Data(3), new Vector2(-15f, 0f));
+            yield return null;
+
+            Assert.IsNotNull(shoal[0].Shoal);
+            Assert.AreEqual(5, shoal[0].Shoal.Members.Count);
+            Assert.IsTrue(shoal.TrueForAll(fish => fish.Shoal == shoal[0].Shoal), "Los cinco son un mismo cardumen.");
+            Assert.AreNotSame(shoal[0].Shoal, loner.Shoal, "Uno lejano va por su cuenta.");
+        }
+
+        [UnityTest]
+        public IEnumerator Pikaia_SurroundYou_AndDashOneAtATime()
+        {
+            var shoal = CreateShoal(Vector2.zero);
+            int dashes = 0;
+            int mostAtOnce = 0;
+            var dashing = new HashSet<PikaiaBrain>();
+            float fastest = 0f;
+            for (float t = 0f; t < 5f && dashes < 2; t += Time.deltaTime)
+            {
+                int now = 0;
+                foreach (var fish in shoal)
+                {
+                    bool busy = fish.Current is PikaiaBrain.Phase.Aim or PikaiaBrain.Phase.Dash;
+                    if (busy)
+                        now++;
+                    if (fish.Current == PikaiaBrain.Phase.Dash)
+                    {
+                        if (dashing.Add(fish))
+                            dashes++;
+                        fastest = Mathf.Max(fastest, fish.GetComponent<Rigidbody2D>().linearVelocity.magnitude);
+                    }
+                    else
+                    {
+                        dashing.Remove(fish);
+                    }
+                }
+                mostAtOnce = Mathf.Max(mostAtOnce, now);
+                yield return null;
+            }
+
+            Assert.GreaterOrEqual(dashes, 2, "Hacen pasadas por turnos.");
+            Assert.AreEqual(1, mostAtOnce, "De una en una.");
+            Assert.Greater(fastest, 8f, "La pasada es muy rápida.");
+        }
     }
 }

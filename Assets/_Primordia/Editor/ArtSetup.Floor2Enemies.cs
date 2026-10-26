@@ -10,7 +10,7 @@ using UnityEngine;
 namespace Primordia.Editor
 {
     /// <summary>
-    /// Enemigos del piso 2 (GDD, tabla de enemigos del océano cámbrico), por pasos: de momento el Trilobite, la Medusa azul, la Ottoia y la Esponja Vauxia. Importa su arte
+    /// Enemigos del piso 2 (GDD, tabla de enemigos del océano cámbrico), por pasos: el Trilobite, la Medusa azul, la Ottoia, la Esponja Vauxia y el Cardumen de Pikaia. Importa su arte
     /// (docs/multimedia-temp/floor2-enemies, ritmos de su README), crea sus datos y su prefab con su cerebro
     /// (<see cref="EnemyBrain"/>) y los pone en Floor_2 con su coste y la sala desde la que salen. Rehace el prefab cada vez.
     /// </summary>
@@ -42,6 +42,9 @@ namespace Primordia.Editor
             var vauxia = CreateVauxia();
             if (vauxia != null)
                 entries.Add(new FloorConfig.EnemyEntry(vauxia, cost: 3, minDepth: 3, maxPerRoom: 1));
+            var pikaia = CreatePikaia();
+            if (pikaia != null)
+                entries.Add(new FloorConfig.EnemyEntry(pikaia, cost: 2, minDepth: 1, groupSize: 5));
 
             AssetDatabase.SaveAssets();
             PutInFloor2(entries);
@@ -155,6 +158,27 @@ namespace Primordia.Editor
                 maxHealth: 16, moveSpeed: 0f, detectionRange: 10f, contactDamage: 0));
             return BuildFloor2Enemy("Enemy_Vauxia", data, art, colliderRadius: 0.7f,
                 root => root.AddComponent<VauxiaBrain>().Configure(pulse, shield, motes, thread));
+        }
+
+        // ---------- Cardumen de Pikaia ----------
+
+        static Enemy CreatePikaia()
+        {
+            var character = Floor2Enemy("Pikaia",
+                ("Swim", Fps(110), true), ("Dash", Fps(60), true), ("Hurt", Fps(90), false), ("Death", Fps(120), false));
+            character.DefaultState = "Swim";
+            var art = Import(character);
+            if (art == null)
+                return null;
+
+            // Cada pez: 3 de vida, rápido, te ve a 9 u y hace medio corazón al tocarte (también en la pasada). Nada por
+            // encima de las fosas. La entrada del piso los crea de 5 en 5.
+            var data = Floor2EnemyData("Enemy_Pikaia", d =>
+            {
+                d.Configure(EnemyBehaviour.Chaser, maxHealth: 3, moveSpeed: 4f, detectionRange: 9f, contactDamage: 1);
+                d.ConfigureSwimming(true);
+            });
+            return BuildFloor2Enemy("Enemy_Pikaia", data, art, colliderRadius: 0.3f, root => root.AddComponent<PikaiaBrain>());
         }
 
         // ---------- Ayudas ----------

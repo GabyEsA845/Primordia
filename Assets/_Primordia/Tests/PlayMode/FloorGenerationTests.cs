@@ -172,6 +172,24 @@ namespace Primordia.Tests
         }
 
         [Test]
+        public void Spawn_GroupEntries_CreateTheWholeGroup_ForOneCost()
+        {
+            var fish = CreateEnemyTemplate("Fish");
+            config.ConfigureEnemies(new[] { new FloorConfig.EnemyEntry(fish, cost: 2, groupSize: 5) }, null);
+
+            var picked = EncounterPlanner.PickEnemies(config, depth: 1, budget: 3, new System.Random(1));
+            Assert.AreEqual(1, picked.Count, "El grupo cuesta 2 una sola vez.");
+
+            var parent = Track(new GameObject("Enemies")).transform;
+            var spawned = EncounterPlanner.Spawn(config, picked[0], new Vector2(10f, 5f), parent);
+            foreach (var enemy in spawned)
+                Track(enemy.gameObject);
+            Assert.AreEqual(5, spawned.Count);
+            Assert.IsTrue(spawned.All(e => Vector2.Distance(e.transform.position, new Vector2(10f, 5f)) < 1f), "Juntos, en corro.");
+            Assert.IsTrue(spawned.All(e => e.transform.parent == parent));
+        }
+
+        [Test]
         public void SpawnCells_AvoidDoorsAndWalls_AndPositionsAreSpacedOut()
         {
             var template = Template(RoomLayouts.Normal);

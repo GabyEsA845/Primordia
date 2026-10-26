@@ -16,6 +16,8 @@ namespace Primordia.Rooms
         const float DoorDistance = 5f;
         // Separación mínima entre enemigos al aparecer.
         const float EnemySpacing = 2f;
+        // Radio del corro en que aparece un grupo (el cardumen): cabe en la celda libre de alrededor del sitio elegido.
+        const float GroupRadius = 0.7f;
 
         /// <summary>
         /// Presupuesto de una sala: el base más lo que sube por cada sala anterior, escalado con la raíz del
@@ -51,6 +53,32 @@ namespace Primordia.Rooms
                 result.Add(entries[index].prefab);
                 picked[index]++;
                 budget -= entries[index].cost;
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// Crea el enemigo elegido en esa posición; si su entrada sale en grupo (el cardumen), crea el grupo entero en un
+        /// corro pequeño alrededor. Devuelve los creados.
+        /// </summary>
+        public static List<Enemy> Spawn(FloorConfig config, Enemy prefab, Vector2 position, Transform parent)
+        {
+            int size = 1;
+            foreach (var entry in config.Enemies)
+            {
+                if (entry.prefab == prefab)
+                {
+                    size = entry.GroupSize;
+                    break;
+                }
+            }
+
+            var result = new List<Enemy>();
+            for (int i = 0; i < size; i++)
+            {
+                var offset = size == 1 ? Vector2.zero
+                    : (Vector2)(Quaternion.Euler(0f, 0f, 360f * i / size) * Vector2.right) * GroupRadius;
+                result.Add(Object.Instantiate(prefab, position + offset, Quaternion.identity, parent));
             }
             return result;
         }

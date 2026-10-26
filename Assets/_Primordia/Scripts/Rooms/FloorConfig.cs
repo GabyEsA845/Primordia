@@ -24,14 +24,20 @@ namespace Primordia.Rooms
             [Min(1)] public int minDepth;
             [Tooltip("Cuántos de este enemigo puede haber como mucho en una sala (la Esponja Vauxia, una). 0 = sin tope.")]
             [Min(0)] public int maxPerRoom;
+            [Tooltip("Cuántos salen juntos cada vez que se elige (el cardumen de Pikaia, 5); el coste es por grupo. 0 o 1 = uno.")]
+            [Min(0)] public int groupSize;
 
-            public EnemyEntry(Enemy prefab, int cost, int minDepth = 1, int maxPerRoom = 0)
+            public EnemyEntry(Enemy prefab, int cost, int minDepth = 1, int maxPerRoom = 0, int groupSize = 1)
             {
                 this.prefab = prefab;
                 this.cost = cost;
                 this.minDepth = minDepth;
                 this.maxPerRoom = maxPerRoom;
+                this.groupSize = groupSize;
             }
+
+            /// <summary>Cuántos salen juntos (al menos 1).</summary>
+            public int GroupSize => Mathf.Max(1, groupSize);
         }
 
         /// <summary>Un jefe posible del piso, con su sala y su tileset. En cada partida sale uno al azar.</summary>

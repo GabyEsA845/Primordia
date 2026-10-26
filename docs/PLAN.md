@@ -85,7 +85,7 @@ Cada módulo vive en su propia carpeta de `Assets/_Primordia/Scripts/` (`Core`, 
   2. Medusa azul: flota a impulsos y suelta un anillo de 8 con un hueco que gira (hecho)
   3. Ottoia: enterrada e inmune, aviso con círculo, sale, muerde y se hunde (hecho)
   4. Esponja Vauxia: pulso que cura y escuda, una como mucho por sala (hecho)
-  5. Cardumen de Pikaia: 5 peces en formación que rodean y hacen pasadas por turnos
+  5. Cardumen de Pikaia: 5 peces en formación que rodean y hacen pasadas por turnos (hecho)
   6. Cierre: costes y sala de inicio en Floor_2 y fuera los enemigos provisionales
 - [ ] `feature/floor2-mutations`: las otras 6 mutaciones del piso 2 y sus 8 linajes (beneficios remodelados, Carroñero y su sprite de restos, toques y evoluciones). Incluye el arte que falta: las capas de Extremidades y Piel sobre los 3 cuerpos (12), los efectos de activación de los Órganos, las larvas, las burbujas de la Cola, las púas de Hallucigenia y las escamas de Wiwaxia
 - [ ] `feature/boss-anomalocaris`: cueva ovalada muy grande sin fosas, en la que baja la luz al entrar, con plantas luminosas (luces 2D) y columnas de algas; acecho, cerco, escena de los ojos al 25 % y frenesí con los marcadores del zarpazo

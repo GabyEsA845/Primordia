@@ -291,7 +291,7 @@ namespace Primordia.Editor
         }
 
         /// <summary>Efecto en bucle (marcas de estado: las quita quien las pone). Se rehace.</summary>
-        static GameObject CreateLoopEffect(string prefabName, Sprite[] frames, float frameDuration, int sortingOrder)
+        internal static GameObject CreateLoopEffect(string prefabName, Sprite[] frames, float frameDuration, int sortingOrder)
         {
             if (frames.Length == 0)
                 return null;
@@ -313,7 +313,7 @@ namespace Primordia.Editor
         }
 
         /// <summary>Efecto de cuadros que se reproduce una vez y se destruye (<see cref="FrameEffect"/>). Se rehace.</summary>
-        static GameObject CreateFrameEffect(string prefabName, Sprite[] frames, float frameDuration, int sortingOrder = 21, float scale = 1f)
+        internal static GameObject CreateFrameEffect(string prefabName, Sprite[] frames, float frameDuration, int sortingOrder = 21, float scale = 1f)
         {
             if (frames.Length == 0)
                 return null;

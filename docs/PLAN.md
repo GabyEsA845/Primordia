@@ -82,7 +82,7 @@ Cada módulo vive en su propia carpeta de `Assets/_Primordia/Scripts/` (`Core`, 
 
   Pasos:
   1. Base (cerebros de enemigo, EnemyBrain) y Trilobite: ronda, aviso, embestida, aturdido al chocar y cabeza blindada (menú Primordia > Enemies > Crear enemigos del piso 2) (hecho)
-  2. Medusa azul: flota a impulsos y suelta un anillo de 8 con un hueco que gira
+  2. Medusa azul: flota a impulsos y suelta un anillo de 8 con un hueco que gira (hecho)
   3. Ottoia: enterrada e inmune, aviso con círculo, sale, muerde y se hunde
   4. Esponja Vauxia: pulso que cura y escuda, una como mucho por sala
   5. Cardumen de Pikaia: 5 peces en formación que rodean y hacen pasadas por turnos

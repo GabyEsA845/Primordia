@@ -10,7 +10,7 @@ using UnityEngine;
 namespace Primordia.Editor
 {
     /// <summary>
-    /// Enemigos del piso 2 (GDD, tabla de enemigos del océano cámbrico), por pasos: de momento el Trilobite. Importa su arte
+    /// Enemigos del piso 2 (GDD, tabla de enemigos del océano cámbrico), por pasos: de momento el Trilobite y la Medusa azul. Importa su arte
     /// (docs/multimedia-temp/floor2-enemies, ritmos de su README), crea sus datos y su prefab con su cerebro
     /// (<see cref="EnemyBrain"/>) y los pone en Floor_2 con su coste y la sala desde la que salen. Rehace el prefab cada vez.
     /// </summary>
@@ -33,6 +33,9 @@ namespace Primordia.Editor
             var trilobite = CreateTrilobite();
             if (trilobite != null)
                 entries.Add(new FloorConfig.EnemyEntry(trilobite, cost: 2, minDepth: 1));
+            var jelly = CreateBlueJelly();
+            if (jelly != null)
+                entries.Add(new FloorConfig.EnemyEntry(jelly, cost: 2, minDepth: 2));
 
             AssetDatabase.SaveAssets();
             PutInFloor2(entries);
@@ -55,7 +58,71 @@ namespace Primordia.Editor
             return BuildFloor2Enemy("Enemy_Trilobite", data, art, colliderRadius: 0.5f, root => root.AddComponent<TrilobiteBrain>());
         }
 
+        // ---------- Medusa azul ----------
+
+        static Enemy CreateBlueJelly()
+        {
+            var art = Import(Floor2Enemy("BlueJelly",
+                ("Move", Fps(120), true), ("Warn", Fps(150), false), ("Shoot", Fps(80), false), ("Hurt", Fps(90), false),
+                ("Death", Fps(120), false)));
+            if (art == null)
+                return null;
+
+            // Carga lenta y redonda: medio corazón, 3,5 u/s durante 3 s; al chocar, su salpicadura azul.
+            string effects = $"{Floor2EnemiesArtFolder}/Effects";
+            Directory.CreateDirectory(effects);
+            var impact = Floor2MouthsSetup.CreateFrameEffect("Effect_BlueJelly_Impact",
+                ImportLooseSheet($"{Floor2EnemiesSourceFolder}/Effects/Fx_BlueJelly_Impact.png", $"{effects}/Fx_BlueJelly_Impact.png", 16), 0.06f);
+            var projectile = CreateEnemyProjectile("Projectile_BlueJelly",
+                ImportLooseSheet($"{Floor2EnemiesSourceFolder}/Effects/Proj_BlueJelly.png", $"{effects}/Proj_BlueJelly.png", 8),
+                radius: 0.2f, impact);
+            var attack = CombatSetup.LoadAttack("Attack_BlueJelly");
+            if (attack == null)
+                attack = CombatSetup.CreateAttack("Attack_BlueJelly", projectile, 1f, 1, 3.5f, 3f);
+            attack.Configure(projectile, fireRate: 1f / 3f, damage: 1, speed: 3.5f, lifetime: 3f);
+            EditorUtility.SetDirty(attack);
+
+            // 10 de vida, nada despacio por encima de las fosas, te ve a 9 u y hace medio corazón al tocarla.
+            var data = Floor2EnemyData("Enemy_BlueJelly", d =>
+            {
+                d.Configure(EnemyBehaviour.Chaser, maxHealth: 10, moveSpeed: 1.6f, detectionRange: 9f, contactDamage: 1);
+                d.ConfigureSwimming(true);
+            });
+            return BuildFloor2Enemy("Enemy_BlueJelly", data, art, colliderRadius: 0.45f, root =>
+            {
+                CombatSetup.ConfigureWeapon(root.AddComponent<Weapon>(), attack, Team.Enemy, null);
+                root.AddComponent<BlueJellyBrain>();
+            });
+        }
+
         // ---------- Ayudas ----------
+
+        /// <summary>Proyectil enemigo animado en bucle, con su efecto al chocar. Se rehace (conserva el GUID).</summary>
+        static Projectile CreateEnemyProjectile(string prefabName, Sprite[] frames, float radius, GameObject impact)
+        {
+            var root = new GameObject(prefabName);
+            try
+            {
+                var renderer = root.AddComponent<SpriteRenderer>();
+                renderer.sprite = frames.Length > 0 ? frames[0] : null;
+                renderer.sortingOrder = 20;
+                if (frames.Length > 1)
+                    root.AddComponent<SpriteLoop>().Configure(renderer, frames, 0.12f, 0f);
+
+                var collider = root.AddComponent<CircleCollider2D>();
+                collider.isTrigger = true;
+                collider.radius = radius;
+                root.AddComponent<Rigidbody2D>().gravityScale = 0f;
+
+                var projectile = root.AddComponent<Projectile>();
+                projectile.SetImpactEffect(impact);
+                return PrefabUtility.SaveAsPrefabAsset(root, $"{ProjectilePrefabsFolder}/{prefabName}.prefab").GetComponent<Projectile>();
+            }
+            finally
+            {
+                Object.DestroyImmediate(root);
+            }
+        }
 
         static Character Floor2Enemy(string name, params (string, float, bool)[] timings) => new()
         {

@@ -11,7 +11,8 @@ namespace Primordia.Tests
 {
     /// <summary>
     /// Enemigos del piso 2. Trilobite: al ver al jugador avisa y embiste en línea recta; si choca, se da la vuelta y queda
-    /// aturdido; su cabeza blindada para la mitad del daño de frente, pero no panza arriba.
+    /// aturdido; su cabeza blindada para la mitad del daño de frente, pero no panza arriba. Medusa azul: si te ve, avisa
+    /// quieta y suelta un anillo de 8 con un hueco que gira de un anillo al siguiente; si no te ve, no dispara.
     /// </summary>
     public class Floor2EnemiesTests
     {
@@ -111,6 +112,74 @@ namespace Primordia.Tests
 
             player.transform.position = new Vector2(-6f, 0f);
             Assert.IsFalse(trilobite.Shields(player.transform.position), "Por detrás no.");
+        }
+
+        BlueJellyBrain CreateJelly(Vector2 position)
+        {
+            var template = Track(new GameObject("ProjectileTemplate"));
+            template.SetActive(false);
+            template.AddComponent<Rigidbody2D>();
+            template.AddComponent<CircleCollider2D>().radius = 0.1f;
+            var attack = Track(ScriptableObject.CreateInstance<AttackData>());
+            attack.Configure(template.AddComponent<Projectile>(), fireRate: 1f / 3f, damage: 1, speed: 3.5f, lifetime: 3f);
+
+            var jelly = CreateEnemy<BlueJellyBrain>(Data(10), position);
+            var weapon = jelly.GetComponent<Weapon>();
+            weapon.SetTeam(Team.Enemy);
+            weapon.Attack = attack;
+            return jelly;
+        }
+
+        [UnityTest]
+        public IEnumerator BlueJelly_Warns_ThenFiresARingOf8_WithARotatingGap()
+        {
+            var jelly = CreateJelly(Vector2.zero);
+            var angles = new List<float>();
+            jelly.GetComponent<Weapon>().Fired += direction => angles.Add(Vector2.SignedAngle(Vector2.right, direction));
+            float warnStart = -1f;
+            float firstGap = 0f;
+            for (float t = 0f; t < 3f && angles.Count == 0; t += Time.deltaTime)
+            {
+                if (jelly.Current == BlueJellyBrain.Phase.Warn)
+                {
+                    if (warnStart < 0f)
+                        warnStart = Time.time;
+                    firstGap = jelly.GapAngle;
+                    // La velocidad se aplica en FixedUpdate: tras un par de pasos de física ya está quieta.
+                    if (Time.time - warnStart > Time.fixedDeltaTime * 3f)
+                        Assert.Less(jelly.GetComponent<Rigidbody2D>().linearVelocity.magnitude, 0.01f, "Quieta mientras avisa.");
+                }
+                yield return null;
+            }
+
+            Assert.GreaterOrEqual(warnStart, 0f, "Avisa antes de disparar.");
+            Assert.AreEqual(8, angles.Count, "Un anillo de 8 proyectiles.");
+
+            // Entre dos proyectiles vecinos hay 36°, salvo en el hueco (72° + 36°).
+            angles.Sort();
+            float widest = 0f;
+            for (int i = 0; i < angles.Count; i++)
+            {
+                float gap = Mathf.Repeat(angles[(i + 1) % angles.Count] - angles[i], 360f);
+                widest = Mathf.Max(widest, gap);
+                if (gap < 90f)
+                    Assert.AreEqual(36f, gap, 0.5f);
+            }
+            Assert.AreEqual(108f, widest, 0.5f, "Deja un hueco por donde pasar.");
+            Assert.AreNotEqual(firstGap, jelly.GapAngle, "El hueco gira para el siguiente anillo.");
+        }
+
+        [UnityTest]
+        public IEnumerator BlueJelly_DoesNotShoot_IfItDoesNotSeeYou()
+        {
+            player.transform.position = new Vector2(30f, 0f);
+            var jelly = CreateJelly(Vector2.zero);
+            int fired = 0;
+            jelly.GetComponent<Weapon>().Fired += _ => fired++;
+            yield return new WaitForSeconds(2.5f);
+
+            Assert.AreEqual(0, fired);
+            Assert.AreEqual(BlueJellyBrain.Phase.Drift, jelly.Current);
         }
     }
 }

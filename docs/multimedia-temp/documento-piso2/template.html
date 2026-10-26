@@ -388,6 +388,7 @@ tr.picked th::before { content: "▸ "; }
     <h2 id="mu-t">Mutaciones</h2>
     <p class="muted">El nivel I de una mutación del piso 2 vale como el nivel II de una del piso 1. Coger otra vez la misma la sube de nivel, hasta el III. Desde este piso la Boca va dibujada en el cuerpo: hay tres cuerpos, uno por familia de ataque. El golpe sale en el cuadro justo de su animación de ataque: la medusa suelta el arpón al contraer la campana, el pez muerde al cerrar las placas y el lirio lanza el remolino al girar la corona. Al saltar a la fosa, la célula se transforma en el cuerpo de la Boca elegida.</p>
     <div class="bodies" id="bodies"></div>
+    <div class="bodies" id="mutart" role="group" aria-label="Cómo se ven las Extremidades, la Piel y los Órganos"></div>
     <div class="filter" id="filter" role="group" aria-label="Filtrar por ranura"></div>
     <div class="tablebox panel"><table id="mutations"></table></div>
   </section>
@@ -511,8 +512,9 @@ const CLASSES = {
           delta: 'Nuevo en el piso 2: con la vida llena guardas hasta 2 medios corazones verdes.' },
   ven: { name: 'Venenoso', base: 'Toxina débil', desc: 'Los enemigos envenenados reciben +50 % de daño de cualquier fuente.',
          delta: 'Nuevo en el piso 2: además se mueven un 20 % más lentos.' },
-  carr: { name: 'Carroñero', base: 'Carroña', isNew: true, desc: 'Cada enemigo que muere deja sus restos 4 s. Al tocarlos ganas +20 % de daño durante 5 s, acumulable hasta 3 veces.',
-          delta: 'Premia moverse con agresividad entre los enemigos que vas matando.' },
+  carr: { name: 'Carroñero', base: 'Carroña', isNew: true, desc: 'Cada enemigo que muere (también los jefes) deja sus restos 4 s; parpadean el último segundo. Al pasar por encima ganas +20 % de daño durante 5 s, acumulable hasta 3 veces; cada vez renueva los 5 s. Una marca de colmillos sobre ti dice cuántas llevas.',
+          delta: 'Premia moverse con agresividad entre los enemigos que vas matando.',
+          sprites: [['carr_remains', 'Restos', 3, 0.6], ['carr_double', 'Restos dobles', 3, 0.6], ['carr_eat', 'Al comerlos', 2, 0.3], ['carr_mark', 'Colmillos ×3', 3, 0.5]] },
 };
 const SLOTS = ['Boca', 'Extremidades', 'Piel', 'Órgano especial'];
 const SLOT_ICONS = ['slot_mouth', 'slot_limbs', 'slot_skin', 'slot_organ'];
@@ -561,7 +563,7 @@ const MUTATIONS = [
 ];
 const LINEAGES = [
   { id: 'placodermo', name: 'Placodermo', cls: 'carn', art: 'Placoderm', muts: ['plac', 'cola', 'tril', 'ojos'],
-    touch: 'Festín', tdesc: 'Rematar con un mordisco cura medio corazón (como mucho uno cada 6 s).' },
+    touch: 'Festín', tdesc: 'Rematar con un mordisco cura medio corazón (como mucho uno cada 6 s). También cuenta la segunda dentellada de la Guillotina.' },
   { id: 'opabinia', name: 'Opabinia', cls: 'carn', art: 'Opabinia', muts: ['plac', 'hall', 'wiwa', 'ojos'],
     touch: 'Cinco ojos', tdesc: 'Los Ojos compuestos duran 1 s más, y cada remate mientras duran los alarga 0,5 s.' },
   { id: 'burgesso', name: 'Burgessomedusa', cls: 'ven', art: 'Burgessomedusa', muts: ['cnid', 'cola', 'wiwa', 'saco'],
@@ -571,11 +573,11 @@ const LINEAGES = [
   { id: 'lirio', name: 'Lirio de mar', cls: 'herb', art: 'Crinoid', muts: ['coro', 'cola', 'tril', 'saco'],
     touch: 'Corriente nutritiva', tdesc: 'El remolino atrae también la biomasa del suelo.' },
   { id: 'wiwaxia', name: 'Wiwaxia', cls: 'herb', art: 'Wiwaxia', muts: ['plac', 'cola', 'wiwa', 'saco'],
-    touch: 'Cosecha', tdesc: 'Cada tanda de escleritos que alcanza a 3 o más enemigos da medio corazón verde.' },
+    touch: 'Cosecha', tdesc: 'Cada tanda de escleritos que alcanza a 3 o más enemigos distintos da medio corazón verde (hasta 2, como el Pastar; se pierden con el linaje).' },
   { id: 'trilobite', name: 'Trilobite', cls: 'carr', art: 'Trilobite', muts: ['plac', 'hall', 'tril', 'ojos'],
     touch: 'Coraza de carroña', tdesc: 'Al tocar unos restos, el siguiente proyectil que te alcance se deshace contra tus placas.' },
   { id: 'hallu', name: 'Hallucigenia', cls: 'carr', art: 'Hallucigenia', muts: ['coro', 'hall', 'wiwa', 'ojos'],
-    touch: 'Doble ración', tdesc: 'Las púas que matan a un enemigo dejan restos dobles (cuentan como dos).' },
+    touch: 'Doble ración', tdesc: 'Las púas del suelo que matan a un enemigo dejan restos dobles, dorados, que cuentan como dos (las que dispara el Erizo no).' },
 ];
 
 // Enemigos. Animaciones: [clave, nombre, escala, segundos por vuelta]
@@ -720,6 +722,8 @@ for (const [k, c] of Object.entries(CLASSES)) {
   classesBox.append(el('article', { class: 'klass panel', style: `--c:${color(k)}` },
     el('div', { class: 'klass-head' }, el('h3', {}, c.name), c.isNew ? el('span', { class: 'new' }, 'Clase nueva') : el('span', { class: 'label' }, 'Remodelada')),
     el('div', { class: 'base' }, el('b', {}, c.base), el('span', {}, c.desc), el('span', { class: 'delta' }, c.delta)),
+    c.sprites ? el('div', { class: 'anims', style: `--tiles:url(${ART.floor_cambrian})` }, ...c.sprites.map(([key, n, sc, d]) =>
+      el('div', { class: 'anim' }, sprite(key, sc, d, `${c.base}: ${n}`), el('span', { class: 'label' }, n)))) : null,
     el('span', { class: 'label' }, 'Toque de cada animal'),
     touches));
 }
@@ -831,6 +835,26 @@ MUTATIONS.filter(m => m.slot === 0).forEach(m => {
       sprite(`mo_morph_${m.body}`, 2, 2.4, `Metamorfosis en ${b.name.toLowerCase()}`)),
     el('b', {}, b.name), el('span', { class: 'note' }, `${b.fam} · ${m.name}`),
     el('div', { class: 'anims' }, ...MOUTH_FX[m.body].map(([k, n, sc, d]) =>
+      el('div', { class: 'anim' }, sprite(k, sc, d, `${m.name}: ${n}`), el('span', { class: 'label' }, n))))));
+});
+
+// Extremidades y Piel: su capa sobre los 3 cuerpos; Órganos: sus efectos. [hoja, nombre, escala, segundos]
+const MUT_ART = {
+  cola: { layer: 'TailPropulsor', note: 'Aleta turquesa detrás del cuerpo', fx: [['mf_bubble', 'Burbuja', 3, 0.36], ['mf_bubbleBig', 'Torbellino', 3, 0.48], ['mf_pop', 'Revienta', 3, 0.24]] },
+  hall: { layer: 'HallucigeniaSpines', note: 'Púas en el lomo, detrás del cuerpo', fx: [['mf_spine', 'Púa en el suelo', 3, 0.8]] },
+  tril: { layer: 'TrilobitePlates', note: 'Placas delante, la cara a la vista', fx: [['mf_bounce', 'Rebote', 3, 0.3], ['mf_roll', 'Enrollarse', 2, 0.4]] },
+  wiwa: { layer: 'WiwaxiaSclerites', note: 'Escamas delante, la cara a la vista', fx: [['mf_release', 'Tanda', 2, 0.42], ['mf_block', 'Órbita: bloqueo', 3, 0.3]] },
+  saco: { note: 'Se abre y suelta las larvas', fx: [['mf_sac', 'Se abre', 2, 0.6], ['mf_larva', 'Larva', 3, 0.44], ['mf_larvaBite', 'Mordisco', 3, 0.32], ['mf_split', 'Enjambre', 3, 0.24]] },
+  ojos: { note: 'Ojo de facetas sobre el jugador y marco ámbar en la pantalla', fx: [['mf_eyes', 'Destello', 2, 0.42]] },
+};
+const mutArtBox = document.getElementById('mutart');
+MUTATIONS.filter(m => MUT_ART[m.id]).forEach(m => {
+  const a = MUT_ART[m.id];
+  mutArtBox.append(el('div', { class: 'bodycard panel', style: `--tiles:url(${ART.floor_cambrian})` },
+    a.layer ? el('div', { class: 'pair', style: 'flex-wrap:wrap' }, ...Object.entries(BODIES).map(([body, b]) =>
+      sprite(`ml_${a.layer}_${body}`, 2, 0.72, `${m.name} sobre ${b.name.toLowerCase()}`))) : null,
+    el('b', {}, m.name), el('span', { class: 'note' }, `${SLOTS[m.slot]} · ${a.note}`),
+    el('div', { class: 'anims' }, ...a.fx.map(([k, n, sc, d]) =>
       el('div', { class: 'anim' }, sprite(k, sc, d, `${m.name}: ${n}`), el('span', { class: 'label' }, n))))));
 });
 

@@ -106,7 +106,7 @@ Carnívoro, Herbívoro y Venenoso se remodelan, Hongo duerme y entra el **Carro�
 | Carnívoro | **Rematar:** +100 % de daño a los heridos (la mitad de su vida o menos; +50 % contra el jefe). Nuevo: los aturdidos y los que tienen Quebrar también cuentan como heridos |
 | Herbívoro | **Pastar biomasa:** cada 12 de biomasa recogida cura medio corazón. Nuevo: con la vida llena puedes guardar hasta 2 medios corazones verdes |
 | Venenoso | **Toxina débil:** los envenenados reciben +50 % de daño. Nuevo: además se mueven un 20 % más lentos |
-| Carroñero (nueva) | **Carroña:** cada enemigo que muere deja sus restos durante 4 s; al tocarlos ganas +20 % de daño durante 5 s, acumulable hasta 3 veces. Premia moverse con agresividad entre los enemigos que vas matando |
+| Carroñero (nueva) | **Carroña:** cada enemigo que muere (también los jefes) deja sus restos durante 4 s, que parpadean el último segundo; al pasar por encima ganas +20 % de daño durante 5 s, acumulable hasta 3 veces (cada vez renueva los 5 s), con una marca de colmillos sobre el jugador. Premia moverse con agresividad entre los enemigos que vas matando |
 
 | Linaje | Clase | Boca | Extremidades | Piel | Órgano especial |
 | --- | --- | --- | --- | --- | --- |
@@ -121,14 +121,14 @@ Carnívoro, Herbívoro y Venenoso se remodelan, Hongo duerme y entra el **Carro�
 
 | Linaje | Toque | Efecto |
 | --- | --- | --- |
-| Placodermo | Festín | Rematar con un mordisco cura medio corazón (como mucho uno cada 6 s) |
+| Placodermo | Festín | Rematar con un mordisco cura medio corazón (como mucho uno cada 6 s); también cuenta la segunda dentellada de la Guillotina |
 | Opabinia | Cinco ojos | Los Ojos compuestos duran 1 s más, y cada remate mientras duran los alarga 0,5 s |
 | Burgessomedusa | Pólipos urticantes | Las larvas envenenan al morder |
 | Anémona | Lecho urticante | Quien pisa tus púas queda envenenado |
 | Lirio de mar | Corriente nutritiva | El remolino atrae también la biomasa del suelo |
-| Wiwaxia | Cosecha | Cada tanda de escleritos que alcanza a 3 o más enemigos da medio corazón verde |
+| Wiwaxia | Cosecha | Cada tanda de escleritos que alcanza a 3 o más enemigos distintos da medio corazón verde (hasta 2, como el Pastar; se pierden con el linaje) |
 | Trilobite | Coraza de carroña | Al tocar unos restos, el siguiente proyectil que te alcance se deshace contra tus placas |
-| Hallucigenia | Doble ración | Las púas que matan a un enemigo dejan restos dobles (cuentan como dos) |
+| Hallucigenia | Doble ración | Las púas del suelo que matan a un enemigo dejan restos dobles, dorados (cuentan como dos); las que dispara el Erizo no |
 
 - **Evolución:** como en el piso 1, al completar un linaje el juego se congela unos 2 s y el cuerpo brilla y se transforma en la silueta del animal, del color de su clase. Parte del cuerpo que da la Boca del linaje (pez acorazado, medusa o lirio de mar), y las siluetas son de 64×64 (48×48 en el piso 1). Por ahora los linajes del piso 2 no cambian piezas del cuerpo.
 - **Pisos siguientes:** cada piso tiene sus propios linajes, hechos con sus mutaciones (más adelante Lobo, Raptor, Mamut...).

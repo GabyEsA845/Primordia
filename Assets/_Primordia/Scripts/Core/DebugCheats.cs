@@ -11,8 +11,9 @@ namespace Primordia.Core
     /// Atajos para probar (solo en el editor y en compilaciones de desarrollo; la build de itch.io no los lleva):
     /// F1 invulnerable, F2 daño ×5, F3 vacía la sala en combate, F4 da una mutación al azar de la reserva del piso (o
     /// sube de nivel una que ya se lleva), F5 una mutación especial de las almejas (o sube una que ya se lleva) y F6 cambia a
-    /// la siguiente Boca del piso, con el mismo nivel (para probar las Bocas del piso 2 en Test_Floor2) y F7 lleva junto a
-    /// la cápsula de la sala de cambio. Arriba a la izquierda se ve qué está activo.
+    /// la siguiente Boca del piso, con el mismo nivel (para probar las Bocas del piso 2 en Test_Floor2), F7 lleva junto a
+    /// la cápsula de la sala de cambio y F8 completa el siguiente linaje del piso (equipa sus 4 mutaciones, para probar
+    /// beneficios, toques y evoluciones). Arriba a la izquierda se ve qué está activo.
     /// </summary>
     public class DebugCheats : MonoBehaviour
     {
@@ -76,6 +77,8 @@ namespace Primordia.Core
                 NextMouth();
             if (keyboard.f7Key.wasPressedThisFrame)
                 GoToExchange();
+            if (keyboard.f8Key.wasPressedThisFrame)
+                NextLineage();
 
             // La esquiva enciende y apaga la invulnerabilidad: aquí se renueva cada cuadro sin tocarla.
             if (invulnerable && player.Health != null)
@@ -188,21 +191,61 @@ namespace Primordia.Core
             Say($"Boca: {next.DisplayName} (nivel {player.LevelOf(MutationSlot.Mouth)})");
         }
 
-        /// <summary>Las Bocas de ese piso que no son especiales: en el editor, todas las del proyecto; si no, las cargadas.</summary>
+        /// <summary>
+        /// Completa el siguiente linaje del piso actual (en orden de nombre, después del que está activo): cambia cada ranura
+        /// por la mutación del linaje, a nivel I. La evolución salta como al completarlo jugando.
+        /// </summary>
+        void NextLineage()
+        {
+            int floor = Mathf.Max(1, FloorGenerator.CurrentFloor);
+            var lineages = AllAssets<LineageData>();
+            lineages.RemoveAll(l => l.Floor != floor);
+            if (lineages.Count == 0)
+            {
+                Say("Este piso no tiene linajes");
+                return;
+            }
+
+            var active = player.TryGetComponent<PlayerLineage>(out var playerLineage) ? playerLineage.Active : null;
+            var next = lineages[(lineages.IndexOf(active) + 1) % lineages.Count];
+            // Primero se quita lo que sobra y luego se equipa: así no se completa otro linaje a medio camino.
+            for (int slot = 0; slot < LineageData.SlotCount; slot++)
+            {
+                var mutation = next.MutationFor((MutationSlot)slot);
+                if (mutation != null && !player.IsEquipped(mutation) && player.Get((MutationSlot)slot) != null)
+                    player.Unequip((MutationSlot)slot);
+            }
+            for (int slot = 0; slot < LineageData.SlotCount; slot++)
+            {
+                var mutation = next.MutationFor((MutationSlot)slot);
+                if (mutation != null && !player.IsEquipped(mutation))
+                    player.Equip(mutation);
+            }
+            Say($"Linaje: {next.DisplayName} ({MutationText.ClassName(next.Class)})");
+        }
+
+        /// <summary>Las Bocas de ese piso que no son especiales.</summary>
         static System.Collections.Generic.List<MutationData> FloorMouths(int floor)
         {
+            var all = AllAssets<MutationData>();
+            all.RemoveAll(m => m.Slot != MutationSlot.Mouth || m.Floor != floor || m.IsSpecial);
+            return all;
+        }
+
+        /// <summary>En el editor, todos los de ese tipo del proyecto; si no, los cargados. En orden de nombre.</summary>
+        static System.Collections.Generic.List<T> AllAssets<T>() where T : Object
+        {
 #if UNITY_EDITOR
-            var all = new System.Collections.Generic.List<MutationData>();
-            foreach (var guid in UnityEditor.AssetDatabase.FindAssets("t:MutationData"))
+            var all = new System.Collections.Generic.List<T>();
+            foreach (var guid in UnityEditor.AssetDatabase.FindAssets("t:" + typeof(T).Name))
             {
-                var mutation = UnityEditor.AssetDatabase.LoadAssetAtPath<MutationData>(UnityEditor.AssetDatabase.GUIDToAssetPath(guid));
-                if (mutation != null)
-                    all.Add(mutation);
+                var asset = UnityEditor.AssetDatabase.LoadAssetAtPath<T>(UnityEditor.AssetDatabase.GUIDToAssetPath(guid));
+                if (asset != null)
+                    all.Add(asset);
             }
 #else
-            var all = new System.Collections.Generic.List<MutationData>(Resources.FindObjectsOfTypeAll<MutationData>());
+            var all = new System.Collections.Generic.List<T>(Resources.FindObjectsOfTypeAll<T>());
 #endif
-            all.RemoveAll(m => m.Slot != MutationSlot.Mouth || m.Floor != floor || m.IsSpecial);
             all.Sort((a, b) => string.CompareOrdinal(a.name, b.name));
             return all;
         }

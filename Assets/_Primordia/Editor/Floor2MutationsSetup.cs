@@ -322,7 +322,17 @@ namespace Primordia.Editor
             serialized.ApplyModifiedPropertiesWithoutUndo();
         }
 
-        /// <summary>Las mete en la reserva del piso 2 (elecciones, tienda y sala de cambio) si no están.</summary>
+        /// <summary>
+        /// Deja en la reserva del piso 2 solo mutaciones del piso 2 que no sean especiales: quita las del piso 1 que tenía de
+        /// relleno. Las mejoras de lo que se trae del piso 1 se siguen ofreciendo (MutationPool.PickOffer).
+        /// </summary>
+        [MenuItem("Primordia/Mutations/Limpiar reserva del piso 2")]
+        static void CleanPool() => AddToPool(System.Array.Empty<MutationData>());
+
+        /// <summary>
+        /// Las mete en la reserva del piso 2 (elecciones, tienda y sala de cambio) si no están, y quita las que no son del
+        /// piso 2 o son especiales.
+        /// </summary>
         static void AddToPool(IEnumerable<MutationData> mutations)
         {
             var pool = AssetDatabase.LoadAssetAtPath<MutationPool>(Floor2PoolPath);
@@ -337,9 +347,13 @@ namespace Primordia.Editor
                 if (mutation != null && !list.Contains(mutation))
                     list.Add(mutation);
             }
+            int before = list.Count;
+            list.RemoveAll(m => m == null || m.Floor < 2 || m.IsSpecial);
             pool.Configure(list, pool.OffersNewMouths);
             EditorUtility.SetDirty(pool);
             AssetDatabase.SaveAssets();
+            if (list.Count < before)
+                Debug.Log($"Floor2MutationsSetup: quitadas {before - list.Count} mutaciones de otros pisos de la reserva del piso 2; quedan {list.Count}.");
         }
     }
 }

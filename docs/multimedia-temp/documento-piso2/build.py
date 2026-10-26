@@ -285,6 +285,27 @@ for body in ('Placoderm', 'Jellyfish', 'Crinoid'):
     seq = frames(rf'{MM}\Morph_{body}.png', 32) + frames(rf'{MM}\Reveal_{body}.png', 32)
     strip('mo_morph_' + body, seq + [seq[-1]] * 6)
 
+# Mutaciones de Extremidades, Piel y Órganos (../floor2-mutations): capa sobre cada cuerpo y efectos
+MU = rf'{TEMP}\floor2-mutations'
+for layer, behind in (('TailPropulsor', True), ('HallucigeniaSpines', True), ('TrilobitePlates', False), ('WiwaxiaSclerites', False)):
+    folder = 'Limbs' if behind else 'Skin'
+    for body in ('Placoderm', 'Jellyfish', 'Crinoid'):
+        bf = frames(rf'{TEMP}\floor2-bodies\{body}\Player_{body}_Idle_side.png')
+        lf = frames(rf'{MU}\{folder}\{folder}_{layer}_{body}_Idle_side.png')
+        seq = [centered(48, lf[i], bf[i]) if behind else centered(48, bf[i], lf[i]) for i in range(min(len(bf), len(lf)))]
+        strip(f'ml_{layer}_{body}', seq)
+for key, rel, cell in (('mf_bubble', r'Effects\Fx_TailPropulsor_Bubble', None), ('mf_bubbleBig', r'Effects\Fx_TailPropulsor_BubbleBig', None),
+                       ('mf_pop', r'Effects\Fx_TailPropulsor_Pop', None), ('mf_spine', r'Effects\Fx_HallucigeniaSpine_Ground', None),
+                       ('mf_bounce', r'Effects\Fx_TrilobitePlates_Bounce', None), ('mf_roll', r'Effects\Fx_TrilobitePlates_Roll', None),
+                       ('mf_release', r'Effects\Fx_WiwaxiaSclerites_Release', None), ('mf_block', r'Effects\Fx_WiwaxiaSclerite_Block', None),
+                       ('mf_sac', r'Effects\Fx_BroodSac_Open', None), ('mf_split', r'Effects\Fx_BroodSac_Split', None),
+                       ('mf_larva', r'Larva\Larva_Swim', None), ('mf_larvaBite', r'Larva\Larva_Bite', None),
+                       ('mf_eyes', r'Effects\Fx_CompoundEyes_Flash', None),
+                       ('carr_remains', r'Effects\Fx_Carrion_Remains', None), ('carr_double', r'Effects\Fx_Carrion_RemainsDouble', None),
+                       ('carr_eat', r'Effects\Fx_Carrion_Eat', None)):
+    strip(key, frames(rf'{MU}\{rel}.png', cell))
+strip('carr_mark', [centered(12, f) for f in frames(rf'{MU}\Effects\Status_Carrion_3.png', 12)])
+
 with open(os.path.join(HERE, 'template.html'), encoding='utf-8') as f:
     page = f.read()
 page = page.replace('/*ASSETS*/{}', json.dumps(assets))

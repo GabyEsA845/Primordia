@@ -15,7 +15,11 @@ MonoBehaviour:
   displayName: Cola propulsora
   description: Dos esquivas seguidas antes de la recarga.
   slot: 1
-  lineages: []
+  lineages:
+  - {fileID: 11400000, guid: 9161695a04a5025448d45afe710f6d7a, type: 2}
+  - {fileID: 11400000, guid: f1a34d49a344ee040810035defc90315, type: 2}
+  - {fileID: 11400000, guid: b9023916b2b77894f8227d809ae27d8c, type: 2}
+  - {fileID: 11400000, guid: b77c0f65a5cd6694893bcdf5c6e53d5c, type: 2}
   look: {fileID: 0}
   bodyRadius: 0
   mouthDistance: 0

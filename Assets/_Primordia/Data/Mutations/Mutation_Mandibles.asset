@@ -32,6 +32,17 @@ MonoBehaviour:
   levelDescriptions:
   - "Mordisco m\xE1s fuerte (4 de da\xF1o), un 15 % m\xE1s de alcance y te lanzas un poco hacia delante al morder."
   - "Desgarro: el mordisco hace sangrar (1 de da\xF1o por segundo durante 3 s) y curas medio coraz\xF3n cada 2 enemigos."
+  dodgeSound: 
+  floor: 1
+  special: 0
+  family: 0
+  creatureIdleFrames: []
+  creatureAttackFrames: []
+  creatureBody: {fileID: 0}
+  attackHitTime: 0
+  creatureLayers: []
+  morphFrames: []
+  revealFrames: []
   attack: {fileID: 11400000, guid: 2dea36bdb5aa9ba49ab5eaa57e026bc4, type: 2}
   healEveryKills: 3
   upgrades:

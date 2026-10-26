@@ -1,5 +1,6 @@
 using System;
 using Primordia.Audio;
+using Primordia.Combat;
 using Primordia.Core;
 using Primordia.Enemies;
 using Primordia.Player;
@@ -10,7 +11,8 @@ namespace Primordia.Mutations
     /// <summary>
     /// Rematar (Carnívoro): más daño a los enemigos heridos, los que tienen la mitad de la vida o menos. Con
     /// Presa a ciegas (Calamar) los cegados cuentan como heridos; con Sangre en el agua (Tiburón), rematar a un
-    /// enemigo recarga la esquiva al instante.
+    /// enemigo recarga la esquiva al instante. En el piso 2 también cuentan como heridos los aturdidos y los quebrados
+    /// (<see cref="SetStunnedCount"/>).
     /// </summary>
     public class FinisherBenefit : MonoBehaviour
     {
@@ -18,6 +20,7 @@ namespace Primordia.Mutations
         float multiplier = 2f;
         float bossMultiplier = 1.5f;
         bool blindCounts;
+        bool stunnedCount;
         bool dodgeOnFinish;
         GameObject finishEffect;
         PlayerController controller;
@@ -42,12 +45,20 @@ namespace Primordia.Mutations
             Health.AddDamageModifier(modifier);
         }
 
+        /// <summary>Piso 2: los aturdidos y los que tienen Quebrar también cuentan como heridos.</summary>
+        public void SetStunnedCount(bool value) => stunnedCount = value;
+
         /// <summary>True si ese objetivo cuenta como herido.</summary>
         public bool IsWounded(Health target)
         {
             if (target.Current <= target.Max * threshold)
                 return true;
-            return blindCounts && target.TryGetComponent<EnemyAI>(out var ai) && ai.IsBlind;
+            bool hasAI = target.TryGetComponent<EnemyAI>(out var ai);
+            if (blindCounts && hasAI && ai.IsBlind)
+                return true;
+            if (!stunnedCount)
+                return false;
+            return (hasAI && ai.IsStunned) || (target.TryGetComponent<Shatter>(out var shatter) && shatter.IsActive);
         }
 
         int Modify(Health target, int amount)

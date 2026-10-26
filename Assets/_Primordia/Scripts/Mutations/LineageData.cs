@@ -8,7 +8,8 @@ namespace Primordia.Mutations
         Carnivore,
         Herbivore,
         Venomous,
-        Fungal
+        Fungal,
+        Scavenger // Carroñero (piso 2)
     }
 
     /// <summary>
@@ -24,6 +25,15 @@ namespace Primordia.Mutations
         HiddenSting,     // Escorpión: el ataque desde el camuflaje envenena el triple
         BigColony,       // Moho: más matas y más grandes
         PuffOnHit,       // Cuesco de lobo: al recibir un golpe, nube que ciega
+        // Piso 2
+        Feast,           // Placodermo: rematar con un mordisco cura medio corazón
+        FiveEyes,        // Opabinia: los Ojos compuestos duran más y los remates los alargan
+        StingingPolyps,  // Burgessomedusa: las larvas envenenan al morder
+        StingingBed,     // Anémona: quien pisa tus púas queda envenenado
+        NutrientCurrent, // Lirio de mar: el remolino atrae la biomasa
+        Harvest,         // Wiwaxia: una tanda de escleritos que alcanza a 3 da medio corazón verde
+        CarrionArmor,    // Trilobite: tras comer restos, el siguiente proyectil se deshace en las placas
+        DoubleServing,   // Hallucigenia: las púas que matan dejan restos dobles
     }
 
     /// <summary>
@@ -60,6 +70,27 @@ namespace Primordia.Mutations
 
         public string DisplayName => string.IsNullOrEmpty(displayName) ? name : displayName;
         public LineageClass Class => lineageClass;
+
+        /// <summary>
+        /// Piso del linaje, el de sus mutaciones (el mayor). Los beneficios de las clases se remodelan en cada piso
+        /// (<see cref="PlayerLineage"/>, <see cref="MutationText.ClassBenefit"/>).
+        /// </summary>
+        public int Floor
+        {
+            get
+            {
+                int floor = 1;
+                if (mutations != null)
+                {
+                    foreach (var mutation in mutations)
+                    {
+                        if (mutation != null)
+                            floor = Mathf.Max(floor, mutation.Floor);
+                    }
+                }
+                return floor;
+            }
+        }
         public LineageTouch Touch => touch;
         public string TouchName => touchName;
         public string Benefit => benefit;

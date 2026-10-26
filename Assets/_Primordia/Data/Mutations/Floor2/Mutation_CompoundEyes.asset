@@ -15,7 +15,11 @@ MonoBehaviour:
   displayName: Ojos compuestos
   description: "Clic derecho: durante 3 s todo va al 60 % de velocidad salvo t\xFA. Recarga de 12 s."
   slot: 3
-  lineages: []
+  lineages:
+  - {fileID: 11400000, guid: 9606c82fda93ba047b31d0bafc7132c4, type: 2}
+  - {fileID: 11400000, guid: 384fc8566a9fe0343add5baa85ab8d83, type: 2}
+  - {fileID: 11400000, guid: b9023916b2b77894f8227d809ae27d8c, type: 2}
+  - {fileID: 11400000, guid: 30de4cf987e571d408e1c8e33ccb0cb9, type: 2}
   look: {fileID: 0}
   bodyRadius: 0
   mouthDistance: 0

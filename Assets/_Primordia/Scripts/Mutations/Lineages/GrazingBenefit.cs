@@ -7,7 +7,7 @@ namespace Primordia.Mutations
 {
     /// <summary>
     /// Pastar biomasa (Herbívoro): cada cierta biomasa recogida cura medio corazón; con la vida llena da un medio
-    /// corazón verde (<see cref="Health.Barrier"/>) que para un golpe, como mucho uno a la vez.
+    /// corazón verde (<see cref="Health.Barrier"/>) que para un golpe, como mucho uno a la vez (dos en el piso 2).
     /// </summary>
     public class GrazingBenefit : MonoBehaviour
     {
@@ -16,13 +16,16 @@ namespace Primordia.Mutations
         int biomassPerHeal = 10;
         GameObject healEffect;
         int grazed;
-        bool grantedBarrier;
+        int maxBarrier = 1;
+        int granted;
 
         /// <summary>Biomasa recogida que aún no ha curado.</summary>
         public int Grazed => grazed;
 
-        public void Configure(PlayerBiomass newBiomass, Health newHealth, int newBiomassPerHeal, GameObject newHealEffect)
+        public void Configure(PlayerBiomass newBiomass, Health newHealth, int newBiomassPerHeal, GameObject newHealEffect,
+            int newMaxBarrier = 1)
         {
+            maxBarrier = Mathf.Max(1, newMaxBarrier);
             Unsubscribe();
             biomass = newBiomass;
             health = newHealth;
@@ -51,10 +54,10 @@ namespace Primordia.Mutations
         {
             if (health.Current < health.Max)
                 health.Heal(1);
-            else if (health.Barrier == 0)
+            else if (health.Barrier < maxBarrier)
             {
-                health.Barrier = 1;
-                grantedBarrier = true;
+                health.Barrier++;
+                granted++;
                 Sfx.Play(Sounds.LineageBarrier);
             }
             else
@@ -63,11 +66,7 @@ namespace Primordia.Mutations
             OneShotEffect.Spawn(healEffect, transform.position, parent: transform);
         }
 
-        void OnBarrierBlocked()
-        {
-            if (health.Barrier == 0)
-                grantedBarrier = false;
-        }
+        void OnBarrierBlocked() => granted = Mathf.Min(granted, health.Barrier);
 
         void Unsubscribe()
         {
@@ -80,9 +79,9 @@ namespace Primordia.Mutations
         void OnDestroy()
         {
             Unsubscribe();
-            // Al perder el linaje se pierde también el corazón verde que dio.
-            if (grantedBarrier && health != null)
-                health.Barrier = 0;
+            // Al perder el linaje se pierden también los corazones verdes que dio.
+            if (granted > 0 && health != null)
+                health.Barrier = Mathf.Max(0, health.Barrier - granted);
         }
     }
 }

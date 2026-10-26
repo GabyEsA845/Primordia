@@ -15,7 +15,11 @@ MonoBehaviour:
   displayName: Placas de trilobite
   description: "+1 coraz\xF3n. 1 de cada 4 proyectiles que te alcanzan se deshace contra tus placas sin hacerte da\xF1o."
   slot: 2
-  lineages: []
+  lineages:
+  - {fileID: 11400000, guid: 9858ce86882df2943983411620bec8c7, type: 2}
+  - {fileID: 11400000, guid: f1a34d49a344ee040810035defc90315, type: 2}
+  - {fileID: 11400000, guid: b9023916b2b77894f8227d809ae27d8c, type: 2}
+  - {fileID: 11400000, guid: 30de4cf987e571d408e1c8e33ccb0cb9, type: 2}
   look: {fileID: 0}
   bodyRadius: 0
   mouthDistance: 0

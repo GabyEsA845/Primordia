@@ -31,6 +31,17 @@ MonoBehaviour:
   levelDescriptions:
   - El veneno quita 2 de vida por segundo.
   - 'Contagio: un enemigo envenenado que muere estalla y envenena a los que tenga cerca.'
+  dodgeSound: 
+  floor: 1
+  special: 0
+  family: 0
+  creatureIdleFrames: []
+  creatureAttackFrames: []
+  creatureBody: {fileID: 0}
+  attackHitTime: 0
+  creatureLayers: []
+  morphFrames: []
+  revealFrames: []
   attack: {fileID: 11400000, guid: b6c3f22c0110a2548b95eda6f2d352df, type: 2}
   healEveryKills: 0
   upgrades:

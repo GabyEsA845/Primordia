@@ -150,19 +150,29 @@ namespace Primordia.Mutations
         {
             var b = benefits;
             var touch = lineage.Touch;
+            // Las clases se remodelan en cada piso: el piso es el de las mutaciones del linaje.
+            bool floor2 = lineage.Floor >= 2;
             switch (lineage.Class)
             {
                 case LineageClass.Carnivore:
-                    Add<FinisherBenefit>().Configure(mutations.Controller, b.woundedThreshold, b.finisherMultiplier,
+                    var finisher = Add<FinisherBenefit>();
+                    finisher.Configure(mutations.Controller, b.woundedThreshold, b.finisherMultiplier,
                         b.bossFinisherMultiplier, touch == LineageTouch.BlindPrey, touch == LineageTouch.BloodInTheWater, b.finishEffect);
+                    finisher.SetStunnedCount(floor2);
                     break;
 
                 case LineageClass.Herbivore:
-                    Add<GrazingBenefit>().Configure(GetComponent<PlayerBiomass>(), mutations.Health, b.biomassPerHeal, b.healEffect);
+                    Add<GrazingBenefit>().Configure(GetComponent<PlayerBiomass>(), mutations.Health,
+                        floor2 ? b.biomassPerHealFloor2 : b.biomassPerHeal, b.healEffect, floor2 ? b.maxBarrierFloor2 : 1);
                     break;
 
                 case LineageClass.Venomous:
-                    Add<ToxinBenefit>().Configure(b.toxinMultiplier);
+                    Add<ToxinBenefit>().Configure(b.toxinMultiplier, floor2 ? b.toxinSlowFactor : 1f);
+                    break;
+
+                case LineageClass.Scavenger:
+                    Add<CarrionBenefit>().Configure(b.remainsPrefab, b.remainsDuration, b.carrionBonusPerStack, b.carrionDuration,
+                        b.carrionMaxStacks, b.eatEffect, b.carrionMarkers);
                     break;
 
                 case LineageClass.Fungal:

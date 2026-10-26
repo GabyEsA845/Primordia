@@ -24,10 +24,10 @@ namespace Primordia.Mutations
         [SerializeField, Min(0.01f)] float zoomTime = 0.35f;
         [Tooltip("Duración si el linaje no tiene animación.")]
         [SerializeField, Min(0f)] float fallbackDuration = 1f;
-        [Tooltip("Colores por clase, en el orden Carnívoro, Herbívoro, Venenoso, Hongo (los del rótulo del HUD).")]
+        [Tooltip("Colores por clase, en el orden Carnívoro, Herbívoro, Venenoso, Hongo, Carroñero (los del rótulo del HUD).")]
         [SerializeField] Color[] classColors =
         {
-            new(0.95f, 0.45f, 0.4f), new(0.55f, 0.9f, 0.45f), new(0.8f, 0.6f, 0.95f), new(0.95f, 0.75f, 0.4f),
+            new(0.95f, 0.45f, 0.4f), new(0.55f, 0.9f, 0.45f), new(0.8f, 0.6f, 0.95f), new(0.95f, 0.75f, 0.4f), new(0.78f, 0.64f, 0.42f),
         };
 
         PlayerLineage lineage;
@@ -182,11 +182,11 @@ namespace Primordia.Mutations
                 return;
 
             var puff = OneShotEffect.Spawn(lostEffect, transform.position, parent: transform);
-            int index = (int)old.Class;
-            if (puff != null && classColors != null && index < classColors.Length)
+            if (puff != null)
             {
+                var color = MutationText.ClassColor(old.Class, classColors);
                 foreach (var sprite in puff.GetComponentsInChildren<SpriteRenderer>())
-                    sprite.color = classColors[index];
+                    sprite.color = color;
             }
         }
     }

@@ -15,7 +15,11 @@ MonoBehaviour:
   displayName: Escleritos de Wiwaxia
   description: "Cada 9 s sueltas 3 escamas hacia los enemigos cercanos (2 de da\xF1o cada una)."
   slot: 2
-  lineages: []
+  lineages:
+  - {fileID: 11400000, guid: 9161695a04a5025448d45afe710f6d7a, type: 2}
+  - {fileID: 11400000, guid: 9606c82fda93ba047b31d0bafc7132c4, type: 2}
+  - {fileID: 11400000, guid: 384fc8566a9fe0343add5baa85ab8d83, type: 2}
+  - {fileID: 11400000, guid: b77c0f65a5cd6694893bcdf5c6e53d5c, type: 2}
   look: {fileID: 0}
   bodyRadius: 0
   mouthDistance: 0

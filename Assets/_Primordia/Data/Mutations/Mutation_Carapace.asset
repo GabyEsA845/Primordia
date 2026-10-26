@@ -31,6 +31,17 @@ MonoBehaviour:
   levelDescriptions:
   - "+2 corazones en total y solo \u22125 % de velocidad."
   - 'Placas: anulan el primer golpe que recibes en cada sala.'
+  dodgeSound: 
+  floor: 1
+  special: 0
+  family: 0
+  creatureIdleFrames: []
+  creatureAttackFrames: []
+  creatureBody: {fileID: 0}
+  attackHitTime: 0
+  creatureLayers: []
+  morphFrames: []
+  revealFrames: []
   moveSpeedMultiplier: 0.9
   dodgeDistanceMultiplier: 1
   maxHealthBonus: 2

@@ -15,7 +15,11 @@ MonoBehaviour:
   displayName: "Saco de cr\xEDas"
   description: 'Clic derecho: 2 larvas aliadas que persiguen y muerden durante 8 s. Recarga de 14 s.'
   slot: 3
-  lineages: []
+  lineages:
+  - {fileID: 11400000, guid: 9858ce86882df2943983411620bec8c7, type: 2}
+  - {fileID: 11400000, guid: 9161695a04a5025448d45afe710f6d7a, type: 2}
+  - {fileID: 11400000, guid: f1a34d49a344ee040810035defc90315, type: 2}
+  - {fileID: 11400000, guid: b77c0f65a5cd6694893bcdf5c6e53d5c, type: 2}
   look: {fileID: 0}
   bodyRadius: 0
   mouthDistance: 0

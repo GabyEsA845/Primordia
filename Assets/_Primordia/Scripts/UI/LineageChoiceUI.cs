@@ -20,7 +20,7 @@ namespace Primordia.UI
         [Tooltip("Colores por clase, en el orden de LineageClass (los del rótulo del HUD).")]
         [SerializeField] Color[] classColors =
         {
-            new(0.95f, 0.45f, 0.4f), new(0.55f, 0.9f, 0.45f), new(0.8f, 0.6f, 0.95f), new(0.95f, 0.75f, 0.4f),
+            new(0.95f, 0.45f, 0.4f), new(0.55f, 0.9f, 0.45f), new(0.8f, 0.6f, 0.95f), new(0.95f, 0.75f, 0.4f), new(0.78f, 0.64f, 0.42f),
             new(0.78f, 0.64f, 0.42f),
         };
         [Tooltip("Segundos (reales) en que los botones no aceptan clics al abrirse, para no elegir por error.")]
@@ -99,8 +99,7 @@ namespace Primordia.UI
                 if (i < names.Length && names[i] != null)
                 {
                     names[i].text = $"{option.DisplayName} · {MutationText.ClassName(option.Class)}";
-                    int c = (int)option.Class;
-                    names[i].color = c >= 0 && c < classColors.Length ? classColors[c] : Color.white;
+                    names[i].color = MutationText.ClassColor(option.Class, classColors);
                 }
                 if (i < benefits.Length && benefits[i] != null)
                     benefits[i].text = LineagePanel.Describe(option);

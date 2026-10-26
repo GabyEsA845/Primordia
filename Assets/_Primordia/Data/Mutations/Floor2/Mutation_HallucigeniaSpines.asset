@@ -15,7 +15,11 @@ MonoBehaviour:
   displayName: Espinas de Hallucigenia
   description: "Al esquivar dejas 2 p\xFAas en el suelo durante 4 s; quien las pisa recibe 2 de da\xF1o."
   slot: 1
-  lineages: []
+  lineages:
+  - {fileID: 11400000, guid: 9858ce86882df2943983411620bec8c7, type: 2}
+  - {fileID: 11400000, guid: 9606c82fda93ba047b31d0bafc7132c4, type: 2}
+  - {fileID: 11400000, guid: 384fc8566a9fe0343add5baa85ab8d83, type: 2}
+  - {fileID: 11400000, guid: 30de4cf987e571d408e1c8e33ccb0cb9, type: 2}
   look: {fileID: 0}
   bodyRadius: 0
   mouthDistance: 0

@@ -23,6 +23,29 @@ namespace Primordia.Mutations
         [Header("Venenoso: Toxina débil")]
         [Min(1f)] public float toxinMultiplier = 1.5f;
 
+        [Header("Piso 2: clases remodeladas")]
+        [Tooltip("Pastar biomasa en el piso 2: biomasa por medio corazón.")]
+        [Min(1)] public int biomassPerHealFloor2 = 12;
+        [Tooltip("Pastar biomasa en el piso 2: medios corazones verdes que se pueden guardar.")]
+        [Min(1)] public int maxBarrierFloor2 = 2;
+        [Tooltip("Toxina débil en el piso 2: velocidad de los envenenados (0,8 = un 20 % más lentos).")]
+        [Range(0.05f, 1f)] public float toxinSlowFactor = 0.8f;
+
+        [Header("Carroñero: Carroña (piso 2)")]
+        [Tooltip("Restos que deja cada enemigo al morir.")]
+        public CarrionRemains remainsPrefab;
+        [Tooltip("Restos dobles (Doble ración de la Hallucigenia).")]
+        public CarrionRemains doubleRemainsPrefab;
+        [Min(0.1f)] public float remainsDuration = 4f;
+        [Tooltip("Daño de más por cada vez acumulada (0,2 = +20 %).")]
+        [Min(0f)] public float carrionBonusPerStack = 0.2f;
+        [Min(0.1f)] public float carrionDuration = 5f;
+        [Min(1)] public int carrionMaxStacks = 3;
+        [Tooltip("Al comer unos restos: los trozos suben hacia el jugador.")]
+        public GameObject eatEffect;
+        [Tooltip("Marca sobre el jugador con 1, 2 y 3 colmillos.")]
+        public GameObject[] carrionMarkers = new GameObject[3];
+
         [Header("Hongo: Colonizar la sala")]
         public MyceliumPatch matPrefab;
         [Tooltip("Colonia grande (Moho): la mata grande.")]

@@ -267,6 +267,8 @@ namespace Primordia.Rooms
         [Tooltip("Tramo del camino en el que puede colgar la tienda, en fracción de las salas de combate (0 = la primera, "
             + "1 = la última). Piso 1: la segunda mitad; piso 2: el tercio del medio.")]
         [SerializeField] Vector2 shopDepth = new(0.5f, 1f);
+        [Tooltip("Cápsula del laboratorio de Darwin, en la K de la sala de cambio. Vacío: la sala de cambio sale vacía.")]
+        [SerializeField] ExchangeCapsule exchangeCapsule;
 
         [Header("Sala de paso")]
         [Tooltip("Forma de la sala de paso, pegada a la del jefe. Vacío (o sin fosa): el jefe deja la salida de siempre.")]
@@ -346,6 +348,7 @@ namespace Primordia.Rooms
         public int MinimumBiomassPerRoom => minimumBiomassPerRoom;
         public RoomTemplate ShopTemplate => shopRoom;
         public ShopRoom ShopPrefab => shopPrefab;
+        public ExchangeCapsule ExchangeCapsule => exchangeCapsule;
         public bool HasShop => shopRoom != null && shopPrefab != null;
         public RoomTemplate TransitionRoom => transitionRoom;
         public TransitionPit TransitionPit => transitionPit;
@@ -400,6 +403,8 @@ namespace Primordia.Rooms
             shopRoom = newShopRoom;
             shopPrefab = newShopPrefab;
         }
+
+        internal void SetExchangeCapsule(ExchangeCapsule newCapsule) => exchangeCapsule = newCapsule;
 
         internal void ConfigureTransition(RoomTemplate newRoom, TransitionPit newPit, RoomTheme newMidTheme, RoomTheme newNextTheme)
         {

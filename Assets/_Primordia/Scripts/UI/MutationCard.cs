@@ -89,6 +89,47 @@ namespace Primordia.UI
             ShowGlow(lineageHint && !IsUpgrade);
         }
 
+        /// <summary>Tamaño mínimo de letra al que se encoge la descripción de las tarjetas de la sala de cambio.</summary>
+        const int ExchangeMinFontSize = 6;
+
+        /// <summary>
+        /// Tarjeta de la sala de cambio: la mutación que recibirías con lo que hace en el nivel con el que entra (la
+        /// descripción y solo la mejora de ese nivel, como las tarjetas de mejora), ese nivel en la insignia y, abajo,
+        /// <paramref name="note"/> (por cuál la cambias). Si aun así no cabe, la descripción encoge la letra.
+        /// </summary>
+        public void ShowExchange(MutationData mutation, int level, string note)
+        {
+            IsUpgrade = false;
+            if (colorStrip != null)
+                colorStrip.color = mutation.Color;
+            title.text = mutation.DisplayName;
+            details.text = MutationText.SlotName(mutation.Slot);
+            description.text = MutationText.WithLine(MutationText.CurrentDescription(mutation, level), MutationText.LineageList(mutation));
+            description.horizontalOverflow = HorizontalWrapMode.Wrap;
+            description.verticalOverflow = VerticalWrapMode.Truncate;
+            description.resizeTextMaxSize = description.fontSize;
+            description.resizeTextMinSize = Mathf.Min(ExchangeMinFontSize, description.fontSize);
+            description.resizeTextForBestFit = true;
+            // Ocupa solo el hueco que dejan el título, el icono y la nota (si pidiera su alto entero, la tarjeta aplastaría
+            // a los demás); dentro de ese hueco, la letra encoge lo que haga falta.
+            if (description.TryGetComponent<LayoutElement>(out var element))
+            {
+                element.preferredHeight = 1f;
+                element.flexibleHeight = 1f;
+            }
+            replaces.text = note ?? "";
+
+            SetSprite(icon, mutation.LargeIcon);
+            int slot = (int)mutation.Slot;
+            SetSprite(slotIcon, slotIcons != null && slot < slotIcons.Length ? slotIcons[slot] : null);
+            if (icon != null && badge == null)
+                badge = LevelBadge.Create(icon, new Vector2(18f, 26f));
+            LevelBadge.Show(badge, levelBadges, icon != null && icon.enabled ? level : 0);
+            LevelBadge.ShowSpecial(icon, specialBadge, false);
+            ShowArrow(false);
+            ShowGlow(false);
+        }
+
         /// <summary>
         /// Capa del mismo sprite que el fondo de la tarjeta, teñida de dorado y un poco más grande, que late por
         /// encima del fondo y por debajo del contenido.

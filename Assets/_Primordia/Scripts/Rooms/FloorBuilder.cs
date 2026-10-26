@@ -720,6 +720,18 @@ namespace Primordia.Rooms
                     shop.MoveCounter(-(placed.Template.FloorBounds().width / 2f) + ShopCounterMargin);
             }
 
+            if (placed.Layout.Role == RoomRole.Exchange && config.ExchangeCapsule != null)
+            {
+                // En el centro de la K de 2×2 del plano (o en el del suelo si el plano no la tiene).
+                var corners = placed.Template.BlockCorners(RoomTemplate.Mark.Capsule);
+                var position = corners.Count > 0 ? (Vector2)(placed.Origin + corners[0]) + Vector2.one : placed.FloorCenter;
+                var capsule = Object.Instantiate(config.ExchangeCapsule, position, Quaternion.identity, roomObject.transform);
+                capsule.SetFloor(config.RewardPool, config.FloorNumber);
+                // El líquido da una luz verde suave.
+                Ambience.CreateGlobalLight(roomObject.transform);
+                Ambience.CreateGlow(capsule.transform, position + Vector2.up, new Glow(null, CapsuleGlow, 2.4f, new Vector2(0.45f, 0.8f), 1.4f), 0f);
+            }
+
             if (placed.Layout.Role == RoomRole.Transition && config.TransitionPit != null)
             {
                 var pit = Object.Instantiate(config.TransitionPit, placed.FloorCenter, Quaternion.identity, roomObject.transform);
@@ -802,6 +814,7 @@ namespace Primordia.Rooms
         /// </summary>
         static readonly Color ClamGlow = new(1f, 0.85f, 0.55f);
         static readonly Color HeartGlow = new(0.75f, 0.45f, 1f);
+        static readonly Color CapsuleGlow = new(0.45f, 0.95f, 0.65f);
 
         static List<WaveVent> BuildPieces(Transform roomObject, PlacedRoom placed, FloorConfig config, System.Random random)
         {

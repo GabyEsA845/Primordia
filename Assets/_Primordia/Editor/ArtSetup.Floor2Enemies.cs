@@ -10,7 +10,7 @@ using UnityEngine;
 namespace Primordia.Editor
 {
     /// <summary>
-    /// Enemigos del piso 2 (GDD, tabla de enemigos del océano cámbrico), por pasos: de momento el Trilobite y la Medusa azul. Importa su arte
+    /// Enemigos del piso 2 (GDD, tabla de enemigos del océano cámbrico), por pasos: de momento el Trilobite, la Medusa azul y la Ottoia. Importa su arte
     /// (docs/multimedia-temp/floor2-enemies, ritmos de su README), crea sus datos y su prefab con su cerebro
     /// (<see cref="EnemyBrain"/>) y los pone en Floor_2 con su coste y la sala desde la que salen. Rehace el prefab cada vez.
     /// </summary>
@@ -36,6 +36,9 @@ namespace Primordia.Editor
             var jelly = CreateBlueJelly();
             if (jelly != null)
                 entries.Add(new FloorConfig.EnemyEntry(jelly, cost: 2, minDepth: 2));
+            var ottoia = CreateOttoia();
+            if (ottoia != null)
+                entries.Add(new FloorConfig.EnemyEntry(ottoia, cost: 3, minDepth: 2));
 
             AssetDatabase.SaveAssets();
             PutInFloor2(entries);
@@ -93,6 +96,29 @@ namespace Primordia.Editor
                 CombatSetup.ConfigureWeapon(root.AddComponent<Weapon>(), attack, Team.Enemy, null);
                 root.AddComponent<BlueJellyBrain>();
             });
+        }
+
+        // ---------- Ottoia ----------
+
+        static Enemy CreateOttoia()
+        {
+            // El agujero está en (16, 24) del lienzo de 32: el pivote, para que salga del punto donde está.
+            var character = Floor2Enemy("Ottoia",
+                ("Burrowed", Fps(160), true), ("Warn", Fps(200), false), ("Attack", Fps(70), false), ("Sink", Fps(90), false),
+                ("Hurt", Fps(90), false), ("Death", Fps(120), false));
+            character.DefaultState = "Burrowed";
+            character.Pivot = new Vector2(0.5f, 0.25f);
+            var art = Import(character);
+            if (art == null)
+                return null;
+
+            // 9 de vida; enterrada avanza algo más despacio que el jugador y te ve a 9 u. Solo daña con el mordisco (un
+            // corazón): tocarla asomada no hace daño, para poder ir a golpearla.
+            var data = Floor2EnemyData("Enemy_Ottoia", d => d.Configure(EnemyBehaviour.Chaser,
+                maxHealth: 9, moveSpeed: 2.8f, detectionRange: 9f, contactDamage: 0));
+            // Asomada, el cuerpo queda por encima del agujero.
+            return BuildFloor2Enemy("Enemy_Ottoia", data, art, colliderRadius: 0.4f, root => root.AddComponent<OttoiaBrain>(),
+                colliderOffset: new Vector2(0f, 0.4f));
         }
 
         // ---------- Ayudas ----------
@@ -153,7 +179,7 @@ namespace Primordia.Editor
         /// contacto, IA con su cerebro y el cuerpo animado.
         /// </summary>
         static Enemy BuildFloor2Enemy(string prefabName, EnemyData data, ImportedArt art, float colliderRadius,
-            System.Action<GameObject> addBrain)
+            System.Action<GameObject> addBrain, Vector2 colliderOffset = default)
         {
             var root = new GameObject(prefabName) { layer = LayerMask.NameToLayer(CombatLayers.Enemy) };
             try
@@ -169,7 +195,9 @@ namespace Primordia.Editor
                 var rigidbody = root.AddComponent<Rigidbody2D>();
                 rigidbody.gravityScale = 0f;
                 rigidbody.freezeRotation = true;
-                root.AddComponent<CircleCollider2D>().radius = colliderRadius;
+                var collider = root.AddComponent<CircleCollider2D>();
+                collider.radius = colliderRadius;
+                collider.offset = colliderOffset;
                 root.AddComponent<Health>();
 
                 var contact = root.AddComponent<ContactDamage>();

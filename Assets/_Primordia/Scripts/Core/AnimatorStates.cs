@@ -32,7 +32,8 @@ namespace Primordia.Core
         public float Length(string state) => lengths.TryGetValue(state, out var length) ? length : 0f;
 
         /// <summary>Cambia al estado. Si ya está en él, no hace nada salvo que se pida reiniciarlo.</summary>
-        public void Play(string state, bool restart = false)
+        /// <param name="normalizedTime">Desde dónde empieza (0 = el principio, casi 1 = el último cuadro).</param>
+        public void Play(string state, bool restart = false, float normalizedTime = 0f)
         {
             if (state == Current && !restart)
                 return;
@@ -42,7 +43,7 @@ namespace Primordia.Core
                 // Con el objeto desactivado no se puede reproducir; se volverá a pedir en el siguiente cuadro.
                 if (!animator.isActiveAndEnabled)
                     return;
-                animator.Play(state, 0, 0f);
+                animator.Play(state, 0, normalizedTime);
             }
 
             Current = state;

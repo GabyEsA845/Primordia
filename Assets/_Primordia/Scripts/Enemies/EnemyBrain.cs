@@ -1,4 +1,5 @@
 using Primordia.Core;
+using Primordia.Rooms;
 using UnityEngine;
 
 namespace Primordia.Enemies
@@ -41,5 +42,29 @@ namespace Primordia.Enemies
 
         /// <summary>False mientras no debe verse la animación de daño (enterrado, en mitad de una embestida…).</summary>
         public virtual bool ShowsHurt => true;
+
+        /// <summary>
+        /// True mientras su animación se queda en el último cuadro (la Ottoia asomada tras morder): si la corta el daño,
+        /// vuelve a ese cuadro en lugar de repetirla desde el principio.
+        /// </summary>
+        public virtual bool HoldsAnimationEnd => false;
+
+        Vector2 wanderPoint;
+        float wanderUntil;
+
+        /// <summary>Pasea sin rumbo: va a un punto cercano a la vista y, al llegar o pasado un rato, elige otro.</summary>
+        protected Vector2 Wander(Vector2 position, float speed)
+        {
+            if (Time.time >= wanderUntil || (wanderPoint - position).sqrMagnitude < 0.2f)
+            {
+                wanderPoint = position + Random.insideUnitCircle * 3f;
+                var grid = NavigationGrid.Current;
+                if (grid != null && !grid.HasLineOfSight(position, wanderPoint, AI.BodyRadius))
+                    wanderPoint = position;
+                wanderUntil = Time.time + Random.Range(1.5f, 3f);
+            }
+            Vector2 to = wanderPoint - position;
+            return to.sqrMagnitude > 0.04f ? AI.Separated(to.normalized * speed, speed) : Vector2.zero;
+        }
     }
 }

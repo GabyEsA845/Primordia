@@ -77,8 +77,10 @@ namespace Primordia.Enemies
 
             UpdateFlip();
 
+            // Si el cerebro lo pide, al volver a su animación (tras el daño) se ve su último cuadro, no desde el principio.
             if (Time.time >= lockedUntil)
-                states.Play(brain != null && brain.AnimationState != null ? brain.AnimationState : MoveState);
+                states.Play(brain != null && brain.AnimationState != null ? brain.AnimationState : MoveState,
+                    normalizedTime: brain != null && brain.HoldsAnimationEnd ? 0.99f : 0f);
         }
 
         /// <summary>Muestra una vez esa animación (la del cerebro: aviso, ataque…) y devuelve lo que dura; 0 si no la tiene.</summary>

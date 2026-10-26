@@ -37,8 +37,6 @@ namespace Primordia.Enemies
 
         float phaseUntil;
         float phaseStart;
-        Vector2 roamPoint;
-        float roamUntil;
         Transform player;
 
         public override string AnimationState => Current switch
@@ -151,20 +149,6 @@ namespace Primordia.Enemies
                     return AI.Separated(AI.DirectionTo(target.position) * speed * roamFactor, speed);
             }
             return Wander(position, speed * roamFactor);
-        }
-
-        Vector2 Wander(Vector2 position, float speed)
-        {
-            if (Time.time >= roamUntil || (roamPoint - position).sqrMagnitude < 0.2f)
-            {
-                roamPoint = position + Random.insideUnitCircle * 3f;
-                var grid = NavigationGrid.Current;
-                if (grid != null && !grid.HasLineOfSight(position, roamPoint, AI.BodyRadius))
-                    roamPoint = position;
-                roamUntil = Time.time + Random.Range(1.5f, 3f);
-            }
-            Vector2 to = roamPoint - position;
-            return to.sqrMagnitude > 0.04f ? AI.Separated(to.normalized * speed, speed) : Vector2.zero;
         }
 
         /// <summary>True si justo delante hay pared u obstáculo (las fosas no cuentan: anda, y las rodea).</summary>

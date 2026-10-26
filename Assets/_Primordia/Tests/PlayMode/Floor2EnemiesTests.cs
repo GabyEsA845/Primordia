@@ -12,7 +12,9 @@ namespace Primordia.Tests
     /// <summary>
     /// Enemigos del piso 2. Trilobite: al ver al jugador avisa y embiste en línea recta; si choca, se da la vuelta y queda
     /// aturdido; su cabeza blindada para la mitad del daño de frente, pero no panza arriba. Medusa azul: si te ve, avisa
-    /// quieta y suelta un anillo de 8 con un hueco que gira de un anillo al siguiente; si no te ve, no dispara.
+    /// quieta y suelta un anillo de 8 con un hueco que gira de un anillo al siguiente; si no te ve, no dispara. Ottoia:
+    /// enterrada es inmune y no choca; se pone debajo de ti, avisa, muerde a quien siga en el círculo, queda vulnerable
+    /// un momento y se vuelve a hundir.
     /// </summary>
     public class Floor2EnemiesTests
     {
@@ -45,10 +47,10 @@ namespace Primordia.Tests
             return obj;
         }
 
-        EnemyData Data(int health, float detection = 10f)
+        EnemyData Data(int health, float detection = 10f, int contactDamage = 1)
         {
             var data = Track(ScriptableObject.CreateInstance<EnemyData>());
-            data.Configure(EnemyBehaviour.Chaser, maxHealth: health, moveSpeed: 3f, detectionRange: detection, contactDamage: 1);
+            data.Configure(EnemyBehaviour.Chaser, maxHealth: health, moveSpeed: 3f, detectionRange: detection, contactDamage: contactDamage);
             return data;
         }
 
@@ -180,6 +182,87 @@ namespace Primordia.Tests
 
             Assert.AreEqual(0, fired);
             Assert.AreEqual(BlueJellyBrain.Phase.Drift, jelly.Current);
+        }
+
+        OttoiaBrain CreateOttoia(Vector2 position)
+        {
+            // El mordisco busca colisionadores en la capa del jugador.
+            player.AddComponent<CircleCollider2D>().radius = 0.4f;
+            // Como en el juego, sin daño por contacto: solo muerde.
+            return CreateEnemy<OttoiaBrain>(Data(9, contactDamage: 0), position);
+        }
+
+        [UnityTest]
+        public IEnumerator Ottoia_Burrowed_IsImmune_AndCreepsUnderYou()
+        {
+            player.transform.position = new Vector2(3f, 0f);
+            var ottoia = CreateOttoia(Vector2.zero);
+            var health = ottoia.GetComponent<Health>();
+            yield return null;
+            yield return null;
+
+            Assert.IsTrue(ottoia.IsBurrowed);
+            Assert.IsFalse(health.TakeDamage(5), "Enterrada no recibe daño.");
+            Assert.IsFalse(ottoia.GetComponent<Collider2D>().enabled, "Enterrada no choca con nada.");
+
+            for (float t = 0f; t < 3f && ottoia.Current == OttoiaBrain.Phase.Burrowed; t += Time.deltaTime)
+                yield return null;
+
+            Assert.AreEqual(OttoiaBrain.Phase.Warn, ottoia.Current, "Al llegar debajo de ti, avisa.");
+            Assert.Less(Vector2.Distance(ottoia.transform.position, player.transform.position), 0.8f);
+        }
+
+        [UnityTest]
+        public IEnumerator Ottoia_BitesWhoStaysInTheCircle_IsVulnerableOutside_ThenSinks()
+        {
+            player.transform.position = new Vector2(0.3f, 0f);
+            var playerHealth = player.GetComponent<Health>();
+            var ottoia = CreateOttoia(Vector2.zero);
+            var health = ottoia.GetComponent<Health>();
+            Health bitten = null;
+            bool bit = false;
+            ottoia.Bit += target => { bit = true; bitten = target; };
+            int before = playerHealth.Current;
+
+            for (float t = 0f; t < 2f && !bit; t += Time.deltaTime)
+                yield return null;
+
+            Assert.IsTrue(bit, "Sale y muerde.");
+            Assert.AreSame(playerHealth, bitten);
+            Assert.AreEqual(2, before - playerHealth.Current, "El mordisco quita un corazón.");
+            Assert.IsFalse(ottoia.IsBurrowed);
+            Assert.IsTrue(health.TakeDamage(1), "Asomada sí recibe daño.");
+            Assert.IsTrue(ottoia.GetComponent<Collider2D>().enabled);
+
+            for (float t = 0f; t < 2.5f && ottoia.Current != OttoiaBrain.Phase.Burrowed; t += Time.deltaTime)
+                yield return null;
+
+            Assert.IsTrue(ottoia.IsBurrowed, "Se vuelve a hundir.");
+            Assert.IsFalse(health.TakeDamage(1), "Y vuelve a ser inmune.");
+        }
+
+        [UnityTest]
+        public IEnumerator Ottoia_DoesNotBite_IfYouLeaveTheCircle()
+        {
+            player.transform.position = new Vector2(0.3f, 0f);
+            var playerHealth = player.GetComponent<Health>();
+            var ottoia = CreateOttoia(Vector2.zero);
+            bool bit = false;
+            Health bitten = null;
+            ottoia.Bit += target => { bit = true; bitten = target; };
+            int before = playerHealth.Current;
+
+            for (float t = 0f; t < 1f && ottoia.Current != OttoiaBrain.Phase.Warn; t += Time.deltaTime)
+                yield return null;
+            Assert.AreEqual(OttoiaBrain.Phase.Warn, ottoia.Current);
+            player.transform.position = new Vector2(3f, 0f);
+
+            for (float t = 0f; t < 2f && !bit; t += Time.deltaTime)
+                yield return null;
+
+            Assert.IsTrue(bit);
+            Assert.IsNull(bitten, "Al ver el círculo te apartas y no te alcanza.");
+            Assert.AreEqual(before, playerHealth.Current);
         }
     }
 }

@@ -10,7 +10,7 @@ using UnityEngine;
 namespace Primordia.Editor
 {
     /// <summary>
-    /// Enemigos del piso 2 (GDD, tabla de enemigos del océano cámbrico), por pasos: de momento el Trilobite, la Medusa azul y la Ottoia. Importa su arte
+    /// Enemigos del piso 2 (GDD, tabla de enemigos del océano cámbrico), por pasos: de momento el Trilobite, la Medusa azul, la Ottoia y la Esponja Vauxia. Importa su arte
     /// (docs/multimedia-temp/floor2-enemies, ritmos de su README), crea sus datos y su prefab con su cerebro
     /// (<see cref="EnemyBrain"/>) y los pone en Floor_2 con su coste y la sala desde la que salen. Rehace el prefab cada vez.
     /// </summary>
@@ -39,6 +39,9 @@ namespace Primordia.Editor
             var ottoia = CreateOttoia();
             if (ottoia != null)
                 entries.Add(new FloorConfig.EnemyEntry(ottoia, cost: 3, minDepth: 2));
+            var vauxia = CreateVauxia();
+            if (vauxia != null)
+                entries.Add(new FloorConfig.EnemyEntry(vauxia, cost: 3, minDepth: 3, maxPerRoom: 1));
 
             AssetDatabase.SaveAssets();
             PutInFloor2(entries);
@@ -119,6 +122,39 @@ namespace Primordia.Editor
             // Asomada, el cuerpo queda por encima del agujero.
             return BuildFloor2Enemy("Enemy_Ottoia", data, art, colliderRadius: 0.4f, root => root.AddComponent<OttoiaBrain>(),
                 colliderOffset: new Vector2(0f, 0.4f));
+        }
+
+        // ---------- Esponja Vauxia ----------
+
+        static Enemy CreateVauxia()
+        {
+            var character = Floor2Enemy("Vauxia",
+                ("Idle", Fps(180), true), ("Heal", Fps(110), false), ("Hurt", Fps(90), false), ("Death", Fps(120), false));
+            character.DefaultState = "Idle";
+            var art = Import(character);
+            if (art == null)
+                return null;
+
+            // La onda (83 px de radio = 5,2 u) va por el suelo, bajo los enemigos; el escudo, sobre su cuerpo; las cruces, encima.
+            string effects = $"{Floor2EnemiesArtFolder}/Effects";
+            Directory.CreateDirectory(effects);
+            var pulse = Floor2MouthsSetup.CreateFrameEffect("Effect_Vauxia_HealPulse",
+                ImportLooseSheet($"{Floor2EnemiesSourceFolder}/Effects/Fx_Vauxia_HealPulse.png", $"{effects}/Fx_Vauxia_HealPulse.png", 168),
+                0.08f, sortingOrder: 4);
+            var shield = Floor2MouthsSetup.CreateLoopEffect("Effect_Vauxia_Shield",
+                ImportLooseSheet($"{Floor2EnemiesSourceFolder}/Effects/Fx_Vauxia_Shield.png", $"{effects}/Fx_Vauxia_Shield.png", 32),
+                0.1f, sortingOrder: 6);
+            var motes = Floor2MouthsSetup.CreateFrameEffect("Effect_Vauxia_HealMotes",
+                ImportLooseSheet($"{Floor2EnemiesSourceFolder}/Effects/Fx_Vauxia_HealMotes.png", $"{effects}/Fx_Vauxia_HealMotes.png", 16),
+                0.08f, sortingOrder: 22);
+
+            var thread = ImportLooseSheet($"{Floor2EnemiesSourceFolder}/Effects/Fx_Vauxia_Thread.png", $"{effects}/Fx_Vauxia_Thread.png", 8);
+
+            // 16 de vida, inmóvil, despierta al verte a 10 u y no hace daño al tocarla.
+            var data = Floor2EnemyData("Enemy_Vauxia", d => d.Configure(EnemyBehaviour.Chaser,
+                maxHealth: 16, moveSpeed: 0f, detectionRange: 10f, contactDamage: 0));
+            return BuildFloor2Enemy("Enemy_Vauxia", data, art, colliderRadius: 0.7f,
+                root => root.AddComponent<VauxiaBrain>().Configure(pulse, shield, motes, thread));
         }
 
         // ---------- Ayudas ----------

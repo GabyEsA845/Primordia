@@ -151,6 +151,27 @@ namespace Primordia.Tests
         }
 
         [Test]
+        public void PickEnemies_RespectsMaxPerRoom()
+        {
+            var sponge = CreateEnemyTemplate("Sponge");
+            config.ConfigureEnemies(new[]
+            {
+                new FloorConfig.EnemyEntry(sponge, cost: 1, maxPerRoom: 1),
+                new FloorConfig.EnemyEntry(shooter, cost: 2)
+            }, null);
+
+            for (int seed = 1; seed <= 50; seed++)
+            {
+                var picked = EncounterPlanner.PickEnemies(config, depth: 3, budget: 9, new System.Random(seed));
+                Assert.LessOrEqual(picked.Count(e => e == sponge), 1, $"semilla {seed}");
+            }
+
+            // Con solo la esponja, sale una aunque sobre presupuesto.
+            config.ConfigureEnemies(new[] { new FloorConfig.EnemyEntry(sponge, cost: 1, maxPerRoom: 1) }, null);
+            Assert.AreEqual(1, EncounterPlanner.PickEnemies(config, depth: 3, budget: 9, new System.Random(1)).Count);
+        }
+
+        [Test]
         public void SpawnCells_AvoidDoorsAndWalls_AndPositionsAreSpacedOut()
         {
             var template = Template(RoomLayouts.Normal);

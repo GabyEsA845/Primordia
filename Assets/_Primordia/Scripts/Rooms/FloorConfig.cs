@@ -22,12 +22,15 @@ namespace Primordia.Rooms
             [Min(1)] public int cost;
             [Tooltip("A partir de qué sala de combate del camino puede salir (1 = desde la primera).")]
             [Min(1)] public int minDepth;
+            [Tooltip("Cuántos de este enemigo puede haber como mucho en una sala (la Esponja Vauxia, una). 0 = sin tope.")]
+            [Min(0)] public int maxPerRoom;
 
-            public EnemyEntry(Enemy prefab, int cost, int minDepth = 1)
+            public EnemyEntry(Enemy prefab, int cost, int minDepth = 1, int maxPerRoom = 0)
             {
                 this.prefab = prefab;
                 this.cost = cost;
                 this.minDepth = minDepth;
+                this.maxPerRoom = maxPerRoom;
             }
         }
 

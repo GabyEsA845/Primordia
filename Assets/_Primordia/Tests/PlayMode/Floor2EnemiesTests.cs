@@ -14,7 +14,8 @@ namespace Primordia.Tests
     /// aturdido; su cabeza blindada para la mitad del daño de frente, pero no panza arriba. Medusa azul: si te ve, avisa
     /// quieta y suelta un anillo de 8 con un hueco que gira de un anillo al siguiente; si no te ve, no dispara. Ottoia:
     /// enterrada es inmune y no choca; se pone debajo de ti, avisa, muerde a quien siga en el círculo, queda vulnerable
-    /// un momento y se vuelve a hundir.
+    /// un momento y se vuelve a hundir. Esponja Vauxia: su pulso cura y escuda a los demás enemigos cercanos (no a sí
+    /// misma ni a los lejanos) y nada la mueve.
     /// </summary>
     public class Floor2EnemiesTests
     {
@@ -264,5 +265,69 @@ namespace Primordia.Tests
             Assert.IsNull(bitten, "Al ver el círculo te apartas y no te alcanza.");
             Assert.AreEqual(before, playerHealth.Current);
         }
+
+        /// <summary>Enemigo quieto, sin IA ni cerebro (sin blindaje ni paseos que estropeen las cuentas).</summary>
+        Enemy CreateDummy(Vector2 position)
+        {
+            var go = Track(new GameObject("Dummy"));
+            go.layer = LayerMask.NameToLayer(CombatLayers.Enemy);
+            go.transform.position = position;
+            go.AddComponent<CircleCollider2D>().radius = 0.5f;
+            var enemy = go.AddComponent<Enemy>();
+            enemy.SetData(Data(14));
+            if (go.TryGetComponent<Rigidbody2D>(out var body))
+                body.gravityScale = 0f;
+            return enemy;
+        }
+
+        [UnityTest]
+        public IEnumerator Vauxia_Pulse_HealsAndShieldsNearbyEnemies_NotItselfNorFarOnes()
+        {
+            var vauxia = CreateEnemy<VauxiaBrain>(Data(16), Vector2.zero);
+            var near = CreateDummy(new Vector2(2f, 1f));
+            var far = CreateDummy(new Vector2(-7f, 0f));
+            var vauxiaHealth = vauxia.GetComponent<Health>();
+            var nearHealth = near.GetComponent<Health>();
+            var farHealth = far.GetComponent<Health>();
+            yield return null;
+            vauxiaHealth.TakeDamage(5);
+            nearHealth.TakeDamage(5);
+            farHealth.TakeDamage(5);
+            int vauxiaBefore = vauxiaHealth.Current, nearBefore = nearHealth.Current, farBefore = farHealth.Current;
+
+            bool pulsed = false;
+            vauxia.Pulsed += _ => pulsed = true;
+            for (float t = 0f; t < 2.5f && !pulsed; t += Time.deltaTime)
+                yield return null;
+
+            Assert.IsTrue(pulsed, "Al haber combate, emite su pulso.");
+            Assert.AreEqual(nearBefore + 2, nearHealth.Current, "Cura 2 a los cercanos.");
+            Assert.AreEqual(farBefore, farHealth.Current, "No llega a los lejanos.");
+            Assert.AreEqual(vauxiaBefore, vauxiaHealth.Current, "No se cura a sí misma.");
+
+            // El escudo leve se come los 2 primeros puntos de daño.
+            var shield = near.GetComponent<VauxiaShield>();
+            Assert.IsNotNull(shield);
+            Assert.AreEqual(2, shield.Points);
+            int beforeHit = nearHealth.Current;
+            nearHealth.TakeDamage(3);
+            Assert.AreEqual(1, beforeHit - nearHealth.Current, "El escudo absorbe 2 de los 3.");
+            Assert.AreEqual(0, shield.Points, "Y se rompe.");
+            Assert.IsNull(far.GetComponent<VauxiaShield>());
+            Assert.IsNotNull(near.GetComponent<HealGlow>(), "El curado destella en verde.");
+            Assert.IsNull(far.GetComponent<HealGlow>());
+        }
+
+        [UnityTest]
+        public IEnumerator Vauxia_CannotBeMoved()
+        {
+            var vauxia = CreateEnemy<VauxiaBrain>(Data(16), Vector2.zero);
+            yield return null;
+            vauxia.GetComponent<EnemyAI>().Knockback(new Vector2(10f, 0f), 0.3f);
+            yield return new WaitForSeconds(0.2f);
+
+            Assert.Less(Vector2.Distance(vauxia.transform.position, Vector2.zero), 0.01f);
+        }
+
     }
 }

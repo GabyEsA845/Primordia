@@ -1,0 +1,24 @@
+- [Estado de Primordia](primordia-project-status.md) — proyecto personal para itch.io; piso 1 completo en main; estructura del piso 2 en main (59f633c, 2026-10-25); clam-room (bace4a2) y floor2-mouths (9420dbf) en main; floor2-enemies en main (95e1189); exchange-room en main (4ff7147); en curso floor2-mutations (ver primordia-floor2-mutations)
+- [Sprites: estado](primordia-sprites-next.md) — personajes, mutaciones e interfaz en main; HUD completo; menús en main; minimapa en main; evoluciones en main; biomasa en main; arte de tienda entregado e importado por menú
+- [Flujo de trabajo](primordia-workflow.md) — español, rama por módulo, menús de editor, commit solo tras confirmar
+- [Trampas técnicas de Unity](primordia-unity-gotchas.md) — Unity abierto, logs, statics, CRLF, zips, referencias perdidas
+- [Carpeta multimedia temporal](primordia-multimedia-temp.md) — arte, audio y generadores en docs/multimedia-temp/ (en git desde 2026-10-26, salvo GIF), se importan con menús Primordia
+- [Niveles de mutaciones](primordia-mutation-levels.md) — diseño aprobado de 3 niveles y evoluciones; en main (merge b751d48)
+- [Biomasa y tienda](primordia-biomass-shop.md) — biomasa (7a506ad) y tienda (ccba8b0) en main
+- [Cuerpo evolutivo (descartado)](primordia-evolving-body.md) — sistema combinado descartado 2026-10-13; guardado en rama feature/evolving-body y stash, no integrar
+- [Diseño de pisos](primordia-floors-design.md) — 6 pisos, criatura por piso × familia de arma, v1.0 con pisos 1-3 (lo de "4 mutaciones por piso" lo sustituye la progresión por pisos); linajes en main; Hifas, Camuflaje, Vacuola y ameba gigante en main
+- [Beneficios de linajes](primordia-lineage-benefits.md) — aprobados 2026-10-15: base por clase (Rematar, Pastar, Toxina débil, Colonizar) + toque por animal; en main (merge 33bcb1d)
+- [Esporas y Aguijón](primordia-spores-stinger.md) — aprobado 2026-10-15: Aguijón a 2/3, Esporas = gorrito Amanita + bocanada que flota, Mandíbulas II+ avanzan 0,6 u; en main (merge 189834f)
+- [Evolución de linajes](primordia-lineage-evolution.md) — aprobado 2026-10-15: animación de 2 s al completar + piezas que cambian por linaje; en main (merge bb1560d)
+- [Audio del piso 1](primordia-audio.md) — música, efectos y volumen en la pausa en main (merge ef052ce, 2026-10-23); probado en itch.io, funciona
+- [Progresión por pisos](primordia-floor-progression.md) — 2026-10-23, en main (3c9c9a1): mutaciones y linajes por piso, sala de paso con Boca obligatoria y metamorfosis, sala de cambio; sala de paso, Bocas del piso 2 y metamorfosis en main (merge 1e25a7a); SIGUIENTE: piso 2
+- [Ameba gigante](primordia-boss-amoeba.md) — segundo jefe del piso 1 en main (merge 22eec23, 2026-10-23); vida del piso 1 al doble
+- [Diseño del piso 2](primordia-floor2-design.md) — 2026-10-24: diseño cerrado (9 mutaciones, linajes con clase Carroñero, 5 enemigos, 2 jefes, escala 16 px); arte completo; en GDD/PLAN (merge d798aa3)
+- [Salas del piso 2](primordia-floor2-rooms.md) — diseño cerrado y en el GDD (fosas, 10 salas especiales con planos y arte aprobados, corazón morado → secreto del piso 3); presentación de jefes en main (f948d02); documentos interactivos actualizados
+- [Estructura del piso 2](primordia-floor2-structure.md) — en main (merge 59f633c, 2026-10-25); menú, atajos F1–F4, qué es provisional
+- [Mutaciones de las almejas](primordia-clam-mutations.md) — terminadas y en main (merge bace4a2); pendientes que dependen de floor2-mouths y de los cuerpos
+- [Documentos por piso](primordia-floor-docs.md) — cada piso tiene su documento interactivo; añadir los cambios relevantes al terminarlos
+- [Bocas del piso 2](primordia-floor2-mouths.md) — las 3 Bocas en main (merge 9420dbf); documento del piso 2 v4
+- [Enemigos del piso 2](primordia-floor2-enemies.md) — terminada y en main (merge 95e1189, 2026-10-25): 5 enemigos con EnemyBrain, tope por sala, grupos; cómo se hizo cada uno
+- [Sala de cambio](primordia-exchange-room.md) — terminada y en main (merge 4ff7147, 2026-10-25): reglas (piso anterior = un nivel menos, sin especiales), cápsula, ventana y metamorfosis en la cápsula
+- [Mutaciones del piso 2](primordia-floor2-mutations.md) — EN PAUSA feature/floor2-mutations: pasos 1-3 con commit; paso 4 (linajes) con arte de la Carroña esperando aprobación y plan 4a/4b propuesto

@@ -1,0 +1,30 @@
+---
+name: primordia-floor2-mouths
+description: "feature/floor2-mouths TERMINADA y en main (merge 9420dbf, 2026-10-25): Cnidocitos, Placas mandibulares, Corona de brazos, golpe en el cuadro de la animación, capa de la Cutícula; documento del piso 2 actualizado (v4)"
+metadata:
+  type: project
+---
+
+Rama **`feature/floor2-mouths`** (sale de main bace4a2, 2026-10-25). Pasos en PLAN.md: 1 Cnidocitos · 2 Placas mandibulares · 3 golpe sincronizado con el cuadro de ataque · 4 Corona de brazos + lirio de mar (+ Flagelos con el remolino).
+
+Punto de partida: Mutation_Cnidocytes y Mutation_JawPlates ya existían (FloorTransitionSetup.Mouths, ataques provisionales del Aguijón y Mandíbulas, cuerpos medusa y pez con su metamorfosis). La Corona no existe. Arte en docs/multimedia-temp/floor2-bodies (Crinoid/ y Effects/Fx_ArmCrown_Whirl.png ya hechos, el README no los cita). **Falta arte**: Morph/Reveal del lirio (docs/multimedia-temp/metamorphosis solo tiene medusa y pez) y el estallido de Marea; enseñarlo al usuario antes de usarlo. Cuadro del golpe: medusa índice 2, pez índice 3 (README).
+
+**Paso 1 (commit 30ff0e5, probado por el usuario):** AttackData.pierce, volleyEvery/Count/Spread (Ramillete en Weapon.Fire con contador shots), muzzleEffect (OneShotEffect.Spawn en la boca); Projectile atraviesa (piercesLeft + HashSet struck); FrameEffect sirve como prefab (campos serializados + Configure). Editor/Floor2MouthsSetup.cs, menú **Primordia > Mutations > Crear Bocas del piso 2**: Projectile_Cnidocyte (SpriteLoop), Effect_Cnidocyte_Muzzle (FrameEffect), Attack_Cnidocytes/_2/_3 copiados del Aguijón (3/s, 2 daño, 15 u/s, 0,8 s, automático, atraviesa 1 → 2, veneno 1 → 2 /s 3 s, III Ramillete cada 4, 3 en 30°). Floor2MouthsTests (3). Atajo **F6** (DebugCheats.NextMouth) para cambiar de Boca en Test_Floor2.
+
+Ver [[primordia-floor2-design]], [[primordia-floor-progression]], [[primordia-clam-mutations]], [[primordia-workflow]].
+
+**Paso 2, Placas mandibulares (2026-10-25, compila, sin probar ni commit):** Combat/Shatter (Quebrar: modificador de daño de Health mientras haya quebrados; lo aplica AttackData.ApplyStatus, así que los Flagelos también quiebran), Combat/IPushable (EnemyAI lo implementa), AttackData.meleePush/shatter*/guillotine*/stunMarker, Weapon.Strike: empujón (aturde 0,15 s), Guillotina cada N golpes (×3, aturde, segundo mordisco visual a 0,12 s, evento Guillotined). Menú: Effect_JawPlates_Bite (FrameEffect, pivote en la unión (0, 0,5), escala 4,6/3), Attack_JawPlates/_2/_3 copiados de Mandíbulas (2/s, 5 → 6, alcance 4,6 del GDD, arco 110°, Quebrar 2 → 3 s, III Guillotina). Sin marca visual de Quebrar (no hay arte). 3 tests más en Floor2MouthsTests.
+
+El usuario notó que la Cutícula no se ve en el cuerpo: decidido meter la capa de la Cutícula sobre los cuerpos en el paso 3.
+
+**Ajustes del paso 2 tras la prueba del usuario (2026-10-25, compila, sin probar):** alcance = lo dibujado y medido desde la boca (AttackData.meleeFromMuzzle, 30/16 u); arte nuevo con docs/multimedia-temp/floor2-bodies/generar_mordiscos.py (Bite 32×32 ×5, Guillotine 56×56 ×6, Status_Shatter 12×12 ×4); Guillotina sin ×3 ni aturdir: cada 4 mordiscos, segunda dentellada a 0,18 s con alcance 52/16 u y su efecto (AttackData.guillotineRange/Effect, Weapon.Bite/SecondBite); Quebrar con marca (Effect_Status_Shatter vía StatusMarkers). GDD actualizado (tabla y decisiones del 25 de octubre). Pendiente al cerrar la rama: actualizar la fila de las Placas en el documento del piso 2.
+
+**Paso 2 cerrado:** commit f6385df, el usuario aprobó el mordisco nuevo.
+
+**Paso 3 (2026-10-25, compila, sin probar ni commit):** Weapon.Windup + evento Started (TryFire lanza Started y, con preparación, el disparo sale a los Windup s hacia la dirección del clic; Fire(dir) público también lanza Started). PlayerAnimator arranca el ataque con Started (antes Fired). MutationData.attackHitTime (Bocas: medusa 2/14 s, pez 3/14 s; ataque a 14 fps) y MutationLook.ApplyCreatureForm pone weapon.Windup. Capa de Piel sobre criaturas: MutationData.CreatureLayer[] (cuerpo → capa), CreatureLayerMirror (hijo del cuerpo, DefaultExecutionOrder 100, copia estado y normalizedTime, se oculta en estados que no tiene), MutationLook.UpdateCreatureLayer. ArtSetup.ImportCreatureLayer + SpecialMutationsSetup.ApplyCuticleLayers (busca las Bocas del piso 2 con CreatureBody; cuerpo = nombre del controlador sin "Player_"), llamado también desde el menú de las Bocas. Test de la preparación en Floor2MouthsTests.
+
+**Paso 3 cerrado:** commit c17ae6e (tests verdes según el usuario).
+
+**Paso 4, Corona de brazos (2026-10-25, compila, sin probar ni commit):** arte nuevo: Morph/Reveal_Crinoid (generar_metamorfosis.py con Crinoid y color de familia verde) y Fx_ArmCrown_Tide (generar_marea.py). Combat/Whirlpool (aparece en Weapon.AimPoint, lo pone PlayerAttack con el cursor y la copia de la Yema con su enemigo; como mucho a areaRange; tick de daño con ApplyStatus + ReportHit; tira con IPullable, que EnemyAI implementa sumando la velocidad 0,12 s; Marea al acabar: daño, IPushable y efecto). AttackData área (areaPrefab, areaRange/Radius/Duration/Tick/Pull, tide*). FlagellaLash: con área, daño = DamageOf/AreaTick y azota a todos los del remolino (Whirlpool.Containing); redondeo hacia arriba. Editor: FloorTransitionSetup.CreateFloor2Mouths (internal) crea Mutation_ArmCrown con el lirio; Floor2MouthsSetup crea efectos (Effect_ArmCrown_Whirl con SpriteLoop + Whirlpool, Effect_ArmCrown_Tide), Attack_ArmCrown/_2/_3 (I 2 s r 1,6 cada 0,4; II r 2, 2,5 s, cada 0,3; III Marea r 2,5, 4 de daño), hit 2/14 s, y AddToFloors (las 3 Bocas en Floor_1.nextFloorMouths y en MutationPool_Floor2). 3 tests más.
+
+**Cierre (2026-10-25):** probado por el usuario; commit a2d5df4, merge 9420dbf en main, push de main y de la rama, casilla del PLAN marcada. Documento del piso 2 versión 4: cada cuerpo con su ataque, su metamorfosis y los efectos (arpón, destello, mordisco, Guillotina, Quebrar, remolino, Marea), textos de las Bocas como quedaron y Flagelos con la Corona.

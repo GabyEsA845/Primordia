@@ -150,19 +150,29 @@ namespace Primordia.Mutations
         {
             var b = benefits;
             var touch = lineage.Touch;
+            // Las clases se remodelan en cada piso: el piso es el de las mutaciones del linaje.
+            bool floor2 = lineage.Floor >= 2;
             switch (lineage.Class)
             {
                 case LineageClass.Carnivore:
-                    Add<FinisherBenefit>().Configure(mutations.Controller, b.woundedThreshold, b.finisherMultiplier,
+                    var finisher = Add<FinisherBenefit>();
+                    finisher.Configure(mutations.Controller, b.woundedThreshold, b.finisherMultiplier,
                         b.bossFinisherMultiplier, touch == LineageTouch.BlindPrey, touch == LineageTouch.BloodInTheWater, b.finishEffect);
+                    finisher.SetStunnedCount(floor2);
                     break;
 
                 case LineageClass.Herbivore:
-                    Add<GrazingBenefit>().Configure(GetComponent<PlayerBiomass>(), mutations.Health, b.biomassPerHeal, b.healEffect);
+                    Add<GrazingBenefit>().Configure(GetComponent<PlayerBiomass>(), mutations.Health,
+                        floor2 ? b.biomassPerHealFloor2 : b.biomassPerHeal, b.healEffect, floor2 ? b.maxBarrierFloor2 : 1);
                     break;
 
                 case LineageClass.Venomous:
-                    Add<ToxinBenefit>().Configure(b.toxinMultiplier);
+                    Add<ToxinBenefit>().Configure(b.toxinMultiplier, floor2 ? b.toxinSlowFactor : 1f);
+                    break;
+
+                case LineageClass.Scavenger:
+                    Add<CarrionBenefit>().Configure(b.remainsPrefab, b.remainsDuration, b.carrionBonusPerStack, b.carrionDuration,
+                        b.carrionMaxStacks, b.eatEffect, b.carrionMarkers);
                     break;
 
                 case LineageClass.Fungal:
@@ -204,6 +214,40 @@ namespace Primordia.Mutations
 
                 case LineageTouch.PuffOnHit:
                     Add<PuffOnHitTouch>().Configure(mutations, b.puffRadius, b.puffCooldown);
+                    break;
+
+                // Piso 2: trabajan sobre el beneficio de la clase, que ya está puesto.
+                case LineageTouch.Feast:
+                    Add<FeastTouch>().Configure(BenefitOf<FinisherBenefit>(), mutations.Weapon, mutations.Health, b.feastHeal,
+                        b.feastCooldown, b.healEffect);
+                    break;
+
+                case LineageTouch.FiveEyes:
+                    Add<FiveEyesTouch>().Configure(BenefitOf<FinisherBenefit>(), b.fiveEyesBonus, b.fiveEyesPerFinish);
+                    break;
+
+                case LineageTouch.StingingPolyps:
+                    Add<StingingTouch>().Configure(StingingTouch.Source.Larvae, b.touchPoisonDamage, b.touchPoisonDuration, b.poisonEffect);
+                    break;
+
+                case LineageTouch.StingingBed:
+                    Add<StingingTouch>().Configure(StingingTouch.Source.Spines, b.touchPoisonDamage, b.touchPoisonDuration, b.poisonEffect);
+                    break;
+
+                case LineageTouch.NutrientCurrent:
+                    Add<NutrientCurrentTouch>().Configure(mutations.Weapon);
+                    break;
+
+                case LineageTouch.Harvest:
+                    Add<HarvestTouch>().Configure(mutations.Health, b.harvestTargets, b.maxBarrierFloor2, b.healEffect);
+                    break;
+
+                case LineageTouch.CarrionArmor:
+                    Add<CarrionTouch>().Configure(BenefitOf<CarrionBenefit>(), CarrionTouch.Kind.Armor, null);
+                    break;
+
+                case LineageTouch.DoubleServing:
+                    Add<CarrionTouch>().Configure(BenefitOf<CarrionBenefit>(), CarrionTouch.Kind.DoubleServing, b.doubleRemainsPrefab);
                     break;
             }
         }

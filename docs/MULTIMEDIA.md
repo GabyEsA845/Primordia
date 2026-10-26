@@ -24,7 +24,9 @@ Lista viva de sprites, música, efectos y fuentes que necesita el juego. Se actu
 
 ### Carpeta temporal: `docs/multimedia-temp/`
 
-Los recursos nuevos (hojas de sprites, GIF de revisión, scripts que los generan) se dejan primero en `docs/multimedia-temp/<recurso>/`. Esa carpeta **no se sube al repositorio** (está en `.gitignore`); lo que se sube es lo que Unity importa a `Assets/_Primordia/Art/`.
+Los recursos nuevos (hojas de sprites, GIF de revisión, scripts que los generan) se dejan primero en `docs/multimedia-temp/<recurso>/` y desde ahí los importan a `Assets/_Primordia/Art/` los menús de Unity. La carpeta se sube al repositorio (los PNG por Git LFS) salvo los GIF y las cachés de Python, para poder regenerar el arte desde cualquier equipo.
+
+**Cómo se hace el arte:** con la skill de Claude Code `primordia-sprites` (`.claude/skills/primordia-sprites/`): reglas del estilo y de cada piso, la biblioteca común `pixel.py` (lienzo, rampas con el tono desplazado, sombra, hojas, vistas previas y GIF), una plantilla de generador y `lint_sprites.py`, que revisa las hojas (dibujo cortado, píxeles huérfanos, contorno grueso, colores de más) antes de enseñarlas.
 
 | Recurso | Carpeta temporal | Cómo se importa |
 |---------|------------------|-----------------|
@@ -53,6 +55,7 @@ Los recursos nuevos (hojas de sprites, GIF de revisión, scripts que los generan
 | Enemigos | `docs/multimedia-temp/floor2-enemies/` (`generar_enemigos_piso2.py`) | Trilobite, Medusa azul, Ottoia (pivote 0,5; 0,25), Esponja Vauxia y Pikaia con moverse, aviso, ataque, daño y muerte; carga de la medusa y efectos de curación y escudo de la esponja |
 | Jefes | `docs/multimedia-temp/floor2-bosses/` (`base_piso2.py`, `generar_anomalocaris.py`, `generar_euripterido.py`) | Anomalocaris (112×112) y Euriptérido (128×128) con todas sus fases y escenas, la muda vacía, burbujas, marcadores del zarpazo, púa y barrido de cola |
 | Evolución de linajes | `docs/multimedia-temp/floor2-lineages/` (`generar_evolucion_piso2.py`) | Las 8 evoluciones (64×64, 12 cuadros, unos 2 s), que parten del cuerpo de la Boca de cada linaje |
+| Carroña (Carroñero) | `docs/multimedia-temp/floor2-mutations/Effects/` (`generar_carrona.py`) | Restos (16×16, bucle), restos dobles dorados, trozos al comerlos (24×24) y marca de 1-3 colmillos (12×8). Los importa, con las 8 evoluciones, el menú **Primordia > Mutations > Crear linajes del piso 2**: prefabs `CarrionRemains`, `CarrionRemains_Double`, `Effect_Carrion_Eat`, `Effect_Status_Carrion_1/2/3` y `Effect_Evolution_<Linaje>` |
 | Escenario | `docs/multimedia-temp/environment/<Shallows|Cambrian|Abyss>/` y `Ocean/` (`generar_temas_piso2.py`, `generar_puertas_piso2.py`), formas en `environment-shapes/<Shallows|Abyss>/tiles/` | Temas de Someras y Abismo (el Arrecife es `Cambrian`), decoración, obstáculos de cobertura de las tres franjas, cáusticas y rayos de luz, nieve marina y puertas de losas (`Door_<Top|Side|Bottom>_<Close|Open>`) |
 | Salas especiales y fosas | `docs/multimedia-temp/floor2-rooms/` (`generar_salas_especiales.py`, `generar_fosas.py`, `generar_piezas.py`), fosas en `environment/<Shallows|Cambrian|Abyss>/pits/` | Los 10 planos en formato de `RoomTemplate` con su comprobación y vistas previas; fosas de las tres franjas (16 tiles por vecinos, esquinas de dentro y motas); almejas pequeña y grande (cofres), coral del corazón morado y su icono del HUD, entradas de oleadas, esqueleto del fósil y sombras de los que nadan |
 | Presentación de los jefes | `docs/multimedia-temp/boss-intros/` (`generar_presentaciones.py`) | Retratos de 176×176, poses de presentación (8 cuadros) y nombres rotulados de los 4 jefes de los pisos 1 y 2, con maquetas del rótulo; fuente Jersey 10 en `fuentes/` |

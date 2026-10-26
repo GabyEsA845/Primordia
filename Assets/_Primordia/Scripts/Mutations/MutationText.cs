@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace Primordia.Mutations
 {
     /// <summary>Nombres en español de ranuras, niveles y linajes, para la interfaz.</summary>
@@ -106,11 +108,45 @@ namespace Primordia.Mutations
             LineageClass.Herbivore => "Herbívoro",
             LineageClass.Venomous => "Venenoso",
             LineageClass.Fungal => "Hongo",
+            LineageClass.Scavenger => "Carroñero",
             _ => lineageClass.ToString()
         };
 
-        /// <summary>Beneficio común de cada clase de linaje: nombre y lo que hace.</summary>
-        public static (string name, string description) ClassBenefit(LineageClass lineageClass) => lineageClass switch
+        /// <summary>
+        /// Color de cada clase (rótulo del HUD, cartel, pausa, evolución). Lo usan las interfaces cuando su lista de
+        /// colores no llega a esa clase (las hechas antes del Carroñero).
+        /// </summary>
+        public static Color ClassColor(LineageClass lineageClass) => lineageClass switch
+        {
+            LineageClass.Carnivore => new Color(0.95f, 0.45f, 0.4f),
+            LineageClass.Herbivore => new Color(0.55f, 0.9f, 0.45f),
+            LineageClass.Venomous => new Color(0.8f, 0.6f, 0.95f),
+            LineageClass.Fungal => new Color(0.95f, 0.75f, 0.4f),
+            LineageClass.Scavenger => new Color(0.78f, 0.64f, 0.42f),
+            _ => Color.white
+        };
+
+        /// <summary>Color de la clase en esa lista (la de cada interfaz) o, si no llega, el de <see cref="ClassColor"/>.</summary>
+        public static Color ClassColor(LineageClass lineageClass, Color[] colors)
+        {
+            int index = (int)lineageClass;
+            return colors != null && index >= 0 && index < colors.Length ? colors[index] : ClassColor(lineageClass);
+        }
+
+        /// <summary>Beneficio común de cada clase de linaje en ese piso: nombre y lo que hace.</summary>
+        public static (string name, string description) ClassBenefit(LineageClass lineageClass, int floor = 1) =>
+            floor >= 2 ? ClassBenefitFloor2(lineageClass) : ClassBenefitFloor1(lineageClass);
+
+        static (string name, string description) ClassBenefitFloor2(LineageClass lineageClass) => lineageClass switch
+        {
+            LineageClass.Carnivore => ("Rematar", "+100 % de daño a los heridos (+50 % al jefe). Los aturdidos y los quebrados cuentan como heridos."),
+            LineageClass.Herbivore => ("Pastar biomasa", "Cada 12 de biomasa, medio corazón. Con la vida llena, hasta 2 corazones verdes que paran un golpe."),
+            LineageClass.Venomous => ("Toxina débil", "Los enemigos envenenados reciben +50 % de daño y van un 20 % más lentos."),
+            LineageClass.Scavenger => ("Carroña", "Los enemigos dejan restos 4 s; al comerlos, +20 % de daño durante 5 s (hasta 3 veces)."),
+            _ => ClassBenefitFloor1(lineageClass)
+        };
+
+        static (string name, string description) ClassBenefitFloor1(LineageClass lineageClass) => lineageClass switch
         {
             LineageClass.Carnivore => ("Rematar", "+100 % de daño a los enemigos con la mitad de vida o menos (+50 % al jefe)."),
             LineageClass.Herbivore => ("Pastar biomasa", "Cada 10 de biomasa, medio corazón. Con la vida llena, un corazón verde que para un golpe."),
@@ -124,7 +160,7 @@ namespace Primordia.Mutations
         {
             if (lineage == null)
                 return "";
-            string classBenefit = ClassBenefit(lineage.Class).name;
+            string classBenefit = ClassBenefit(lineage.Class, lineage.Floor).name;
             return string.IsNullOrEmpty(lineage.TouchName) ? classBenefit : $"{classBenefit} · {lineage.TouchName}";
         }
 

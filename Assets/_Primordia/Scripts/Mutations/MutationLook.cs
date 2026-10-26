@@ -130,23 +130,36 @@ namespace Primordia.Mutations
         }
 
         CreatureLayerMirror skinLayer;
+        CreatureLayerMirror limbsLayer;
 
         /// <summary>Capa de la Piel sobre el cuerpo de la criatura que se ve ahora (null si no hay).</summary>
         public RuntimeAnimatorController CreatureSkinLayer => skinLayer != null ? skinLayer.Controller : null;
 
-        /// <summary>Pone o quita la capa de la Piel sobre el cuerpo de la criatura (la Cutícula de Marrella).</summary>
+        /// <summary>Capa de las Extremidades detrás del cuerpo de la criatura que se ve ahora (null si no hay).</summary>
+        public RuntimeAnimatorController CreatureLimbsLayer => limbsLayer != null ? limbsLayer.Controller : null;
+
+        /// <summary>
+        /// Pone o quita las capas sobre el cuerpo de la criatura: la de la Piel delante (la Cutícula de Marrella, las Placas
+        /// de trilobite) y la de las Extremidades detrás (la Cola propulsora, las Espinas de Hallucigenia).
+        /// </summary>
         void UpdateCreatureLayer()
         {
-            var skin = mutations.Get(MutationSlot.Skin);
-            var layer = CreatureForm && skin != null ? skin.CreatureLayerFor(playerAnimator.CreatureController) : null;
-            if (layer == null && skinLayer == null)
+            UpdateLayer(ref skinLayer, MutationSlot.Skin, "CreatureSkinLayer", 1);
+            UpdateLayer(ref limbsLayer, MutationSlot.Limbs, "CreatureLimbsLayer", -1);
+        }
+
+        void UpdateLayer(ref CreatureLayerMirror mirror, MutationSlot slot, string name, int orderOffset)
+        {
+            var mutation = mutations.Get(slot);
+            var layer = CreatureForm && mutation != null ? mutation.CreatureLayerFor(playerAnimator.CreatureController) : null;
+            if (layer == null && mirror == null)
                 return;
-            if (skinLayer == null && playerAnimator.Body != null)
-                skinLayer = CreatureLayerMirror.Create(playerAnimator.BodyAnimator, playerAnimator.Body);
-            if (skinLayer != null)
+            if (mirror == null && playerAnimator.Body != null)
+                mirror = CreatureLayerMirror.Create(playerAnimator.BodyAnimator, playerAnimator.Body, name, orderOffset);
+            if (mirror != null)
             {
-                skinLayer.Controller = layer;
-                skinLayer.Hidden = Hidden;
+                mirror.Controller = layer;
+                mirror.Hidden = Hidden;
             }
         }
 

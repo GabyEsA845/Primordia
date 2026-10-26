@@ -15,7 +15,9 @@ MonoBehaviour:
   displayName: Corona de brazos
   description: "Remolino donde est\xE1 el cursor (como mucho a 6 u): dura 2 s, radio 1,6 u, atrae a los enemigos al centro y hace 1 de da\xF1o cada 0,4 s. Uno por segundo."
   slot: 0
-  lineages: []
+  lineages:
+  - {fileID: 11400000, guid: f1a34d49a344ee040810035defc90315, type: 2}
+  - {fileID: 11400000, guid: 9606c82fda93ba047b31d0bafc7132c4, type: 2}
   look: {fileID: 0}
   bodyRadius: 0
   mouthDistance: 0

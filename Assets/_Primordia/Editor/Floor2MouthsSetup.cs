@@ -264,7 +264,7 @@ namespace Primordia.Editor
         }
 
         /// <summary>Proyectil animado en bucle (los cuadros miran a la derecha), con el impacto lima del jugador. Se rehace.</summary>
-        static Projectile CreateProjectile(string prefabName, Sprite[] frames, float radius)
+        internal static Projectile CreateProjectile(string prefabName, Sprite[] frames, float radius)
         {
             var root = new GameObject(prefabName);
             try

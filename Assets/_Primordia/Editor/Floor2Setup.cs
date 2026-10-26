@@ -81,8 +81,9 @@ namespace Primordia.Editor
         }
 
         /// <summary>
-        /// Reserva del piso 2: hasta feature/floor2-mutations, las mutaciones del piso 1 sin sus Bocas, más las 3 Bocas del
-        /// piso 2 (solo se ofrece la mejora de la que se lleva).
+        /// Reserva del piso 2: solo mutaciones del piso 2 (las 3 Bocas y las que ya tenga de Primordia > Mutations > Crear
+        /// mutaciones del piso 2); de las Bocas solo se ofrece la mejora de la que se lleva. Las mejoras de lo que se trae
+        /// del piso 1 se ofrecen aunque no estén aquí (<see cref="MutationPool.PickOffer(int, PlayerMutations)"/>).
         /// </summary>
         static MutationPool CreatePool(FloorConfig floor1)
         {
@@ -93,8 +94,9 @@ namespace Primordia.Editor
                 AssetDatabase.CreateAsset(pool, PoolPath);
             }
 
-            var floor1Pool = floor1.RewardPool != null ? floor1.RewardPool.Mutations : System.Array.Empty<MutationData>();
-            var mutations = floor1Pool.Where(m => m != null && m.Slot != MutationSlot.Mouth).Concat(floor1.NextFloorMouths.Where(m => m != null));
+            var mutations = pool.Mutations.Where(m => m != null && m.Floor >= 2 && !m.IsSpecial)
+                .Concat(floor1.NextFloorMouths.Where(m => m != null))
+                .Distinct();
             pool.Configure(mutations, newOffersNewMouths: false);
             EditorUtility.SetDirty(pool);
             return pool;

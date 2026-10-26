@@ -3,8 +3,8 @@ using UnityEngine;
 namespace Primordia.Mutations
 {
     /// <summary>
-    /// Capa de una Piel sobre el cuerpo de una criatura (la Cutícula de Marrella sobre la medusa, el pez o el lirio): un
-    /// sprite delante del cuerpo con sus propias animaciones, que en cada cuadro va al mismo estado y al mismo momento que
+    /// Capa de una mutación sobre el cuerpo de una criatura (la Cutícula de Marrella sobre la medusa, el pez o el lirio; la
+    /// Cola propulsora detrás de ellos): un sprite delante (Piel) o detrás (Extremidades) del cuerpo con sus propias animaciones, que en cada cuadro va al mismo estado y al mismo momento que
     /// el cuerpo y se voltea con él. En los estados que la capa no tiene (esquiva, daño, muerte) no se ve.
     /// Va después de <c>PlayerAnimator</c> para copiar el estado de este cuadro.
     /// </summary>
@@ -16,6 +16,7 @@ namespace Primordia.Mutations
         Animator animator;
         SpriteRenderer spriteRenderer;
         RuntimeAnimatorController controller;
+        int orderOffset = 1;
 
         /// <summary>Animaciones de la capa; null la oculta.</summary>
         public RuntimeAnimatorController Controller
@@ -35,12 +36,14 @@ namespace Primordia.Mutations
 
         public bool IsShown => spriteRenderer.enabled;
 
-        /// <summary>Crea la capa como hija del cuerpo, delante de él.</summary>
-        internal static CreatureLayerMirror Create(Animator bodyAnimator, SpriteRenderer body)
+        /// <summary>Crea la capa como hija del cuerpo: delante (+1, la Piel) o detrás (-1, las Extremidades).</summary>
+        internal static CreatureLayerMirror Create(Animator bodyAnimator, SpriteRenderer body, string name = "CreatureSkinLayer",
+            int orderOffset = 1)
         {
-            var go = new GameObject("CreatureSkinLayer");
+            var go = new GameObject(name);
             go.transform.SetParent(body.transform, false);
             var mirror = go.AddComponent<CreatureLayerMirror>();
+            mirror.orderOffset = orderOffset;
             mirror.source = bodyAnimator;
             mirror.sourceRenderer = body;
             mirror.spriteRenderer = go.AddComponent<SpriteRenderer>();
@@ -69,7 +72,7 @@ namespace Primordia.Mutations
                 return;
             spriteRenderer.flipX = sourceRenderer.flipX;
             spriteRenderer.sortingLayerID = sourceRenderer.sortingLayerID;
-            spriteRenderer.sortingOrder = sourceRenderer.sortingOrder + 1;
+            spriteRenderer.sortingOrder = sourceRenderer.sortingOrder + orderOffset;
             spriteRenderer.color = sourceRenderer.color;
         }
     }

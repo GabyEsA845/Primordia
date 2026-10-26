@@ -19,10 +19,10 @@ namespace Primordia.UI
         [SerializeField] Text benefitLabel;
         [Tooltip("Cuadro de información de la pausa, el de las ranuras.")]
         [SerializeField] MutationTooltip tooltip;
-        [Tooltip("Colores por clase, en el orden Carnívoro, Herbívoro, Venenoso, Hongo (los del rótulo del HUD).")]
+        [Tooltip("Colores por clase, en el orden Carnívoro, Herbívoro, Venenoso, Hongo, Carroñero (los del rótulo del HUD).")]
         [SerializeField] Color[] classColors =
         {
-            new(0.95f, 0.45f, 0.4f), new(0.55f, 0.9f, 0.45f), new(0.8f, 0.6f, 0.95f), new(0.95f, 0.75f, 0.4f),
+            new(0.95f, 0.45f, 0.4f), new(0.55f, 0.9f, 0.45f), new(0.8f, 0.6f, 0.95f), new(0.95f, 0.75f, 0.4f), new(0.78f, 0.64f, 0.42f),
         };
         [SerializeField] Color emptyColor = new(0.6f, 0.65f, 0.6f);
 
@@ -61,8 +61,7 @@ namespace Primordia.UI
 
         Color ColorOf(LineageData active)
         {
-            int index = active != null ? (int)active.Class : -1;
-            return index >= 0 && classColors != null && index < classColors.Length ? classColors[index] : emptyColor;
+            return active != null ? MutationText.ClassColor(active.Class, classColors) : emptyColor;
         }
 
         public void Refresh()
@@ -130,7 +129,7 @@ namespace Primordia.UI
         /// <summary>"Rematar: … \n Sangre en el agua: …".</summary>
         public static string Describe(LineageData active)
         {
-            var (name, description) = MutationText.ClassBenefit(active.Class);
+            var (name, description) = MutationText.ClassBenefit(active.Class, active.Floor);
             string text = $"{name}: {description}";
             if (!string.IsNullOrEmpty(active.TouchName))
                 text += $"\n{active.TouchName}: {active.Benefit}";

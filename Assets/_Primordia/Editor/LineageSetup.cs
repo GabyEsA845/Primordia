@@ -85,19 +85,8 @@ namespace Primordia.Editor
                 created.Add(lineage);
             }
 
-            // Cada mutación apunta a sus linajes y toma el color de su ranura.
-            foreach (var guid in AssetDatabase.FindAssets("t:MutationData", new[] { MutationsFolder }))
-            {
-                var mutation = AssetDatabase.LoadAssetAtPath<MutationData>(AssetDatabase.GUIDToAssetPath(guid));
-                if (mutation == null)
-                    continue;
-
-                mutation.SetLineages(created.Where(l => l.MutationFor(mutation.Slot) == mutation).ToArray());
-                mutation.SetColor(SlotColors[(int)mutation.Slot]);
-                EditorUtility.SetDirty(mutation);
-            }
-
             AssetDatabase.SaveAssets();
+            LinkMutations();
             AddLineageToPlayer();
             UISetup.EnsureLineageLabel();
             UISetup.EnsureLineageBannerAndPanel();
@@ -108,7 +97,31 @@ namespace Primordia.Editor
             Debug.Log($"LineageSetup: {created.Count} linajes creados en {LineagesFolder}.");
         }
 
-        static void AddLineageToPlayer()
+        /// <summary>
+        /// Cada mutación apunta a sus linajes (los de todos los pisos, para no borrar los de otro piso) y toma el color de
+        /// su ranura.
+        /// </summary>
+        internal static void LinkMutations()
+        {
+            var all = AssetDatabase.FindAssets("t:LineageData", new[] { MutationsFolder })
+                .Select(guid => AssetDatabase.LoadAssetAtPath<LineageData>(AssetDatabase.GUIDToAssetPath(guid)))
+                .Where(l => l != null)
+                .ToArray();
+
+            foreach (var guid in AssetDatabase.FindAssets("t:MutationData", new[] { MutationsFolder }))
+            {
+                var mutation = AssetDatabase.LoadAssetAtPath<MutationData>(AssetDatabase.GUIDToAssetPath(guid));
+                if (mutation == null)
+                    continue;
+
+                mutation.SetLineages(all.Where(l => l.MutationFor(mutation.Slot) == mutation).ToArray());
+                mutation.SetColor(SlotColors[(int)mutation.Slot]);
+                EditorUtility.SetDirty(mutation);
+            }
+            AssetDatabase.SaveAssets();
+        }
+
+        internal static void AddLineageToPlayer()
         {
             var root = PrefabUtility.LoadPrefabContents(PlayerSetup.PlayerPath);
             try

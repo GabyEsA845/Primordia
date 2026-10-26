@@ -33,7 +33,10 @@ namespace Primordia.Combat
         ObjectPool<Projectile> pool;
         AttackData attack;
         Weapon source;
-        float expireTime;
+        // Lo que ha vivido, en su tiempo: los del jugador no se frenan en la cámara lenta (ver TimeWarp).
+        float age;
+        float warpAtLaunch = 1f;
+        bool playerShot;
         bool launched;
         Transform homingTarget;
         // Atravesar: enemigos que aún puede atravesar y los ya alcanzados (no les vuelve a dar).
@@ -44,7 +47,6 @@ namespace Primordia.Combat
         float nextTargetSearch;
         Vector2 direction;
         float speed;
-        float launchTime;
         float wobbleSeed;
         SpriteRenderer[] renderers;
         Color[] baseColors;
@@ -56,7 +58,14 @@ namespace Primordia.Combat
         static readonly List<Projectile> active = new();
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-        static void ResetStatics() => active.Clear();
+        static void ResetStatics()
+        {
+            active.Clear();
+            AnyHit = null;
+        }
+
+        /// <summary>Se lanza cuando cualquier proyectil hace daño, con el proyectil y la vida (la Cosecha de la Wiwaxia).</summary>
+        public static event System.Action<Projectile, Health> AnyHit;
 
         /// <summary>Proyectiles en vuelo ahora mismo, de los dos equipos.</summary>
         public static int ActiveCount => active.Count;
@@ -107,6 +116,9 @@ namespace Primordia.Combat
         public void Launch(Vector2 position, Vector2 direction, AttackData attack, int layer, Weapon source)
         {
             float speed = attack.ProjectileSpeed;
+            playerShot = layer == CombatLayers.ProjectileLayer(Team.Player);
+            warpAtLaunch = playerShot ? TimeWarp.Scale : 1f;
+            speed /= warpAtLaunch;
             if (attack.SpeedJitter > 0f)
                 speed *= Random.Range(1f - attack.SpeedJitter, 1f + attack.SpeedJitter);
             if (attack.AngleJitter > 0f)
@@ -121,7 +133,7 @@ namespace Primordia.Combat
             rb.linearVelocity = direction.normalized * speed;
             this.direction = direction.normalized;
             this.speed = speed;
-            launchTime = Time.time;
+            age = 0f;
             wobbleSeed = Random.value * 100f;
             SetAlpha(1f);
 
@@ -134,21 +146,31 @@ namespace Primordia.Combat
             fixedTarget = null;
             piercesLeft = attack.Pierce;
             struck.Clear();
-            expireTime = Time.time + attack.Lifetime;
+
             launched = true;
             active.Add(this);
         }
 
         void FixedUpdate()
         {
-            if (launched && Time.time >= expireTime)
+            if (!launched)
+                return;
+
+            // Si la cámara lenta empieza o acaba en pleno vuelo, el del jugador corrige su velocidad.
+            if (playerShot && !Mathf.Approximately(warpAtLaunch, TimeWarp.Scale))
+            {
+                float correction = warpAtLaunch / TimeWarp.Scale;
+                rb.linearVelocity *= correction;
+                speed *= correction;
+                warpAtLaunch = TimeWarp.Scale;
+            }
+
+            age += Time.fixedDeltaTime * (playerShot ? TimeWarp.PlayerSpeed : 1f);
+            if (age >= attack.Lifetime)
             {
                 Despawn();
                 return;
             }
-
-            if (!launched)
-                return;
 
             if (attack.BrakeTime > 0f)
                 Float();
@@ -156,7 +178,7 @@ namespace Primordia.Combat
                 Steer();
 
             if (attack.FadeTime > 0f)
-                SetAlpha(Mathf.Clamp01((expireTime - Time.time) / attack.FadeTime));
+                SetAlpha(Mathf.Clamp01((attack.Lifetime - age) / attack.FadeTime));
         }
 
         /// <summary>
@@ -166,7 +188,7 @@ namespace Primordia.Combat
         void Float()
         {
             float scatter = Mathf.Min(attack.ScatterSpeed, speed);
-            float t = (Time.time - launchTime) / attack.BrakeTime;
+            float t = age / attack.BrakeTime;
             if (t < 1f)
             {
                 rb.linearVelocity = direction * Mathf.Lerp(speed, scatter, t);
@@ -296,6 +318,7 @@ namespace Primordia.Combat
             // El arma puede haberse destruido (enemigo muerto) mientras el proyectil volaba.
             if (source != null)
                 source.ReportHit(health);
+            AnyHit?.Invoke(this, health);
 
             if (piercesLeft > 0)
             {

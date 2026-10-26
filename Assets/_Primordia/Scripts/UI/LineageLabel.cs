@@ -13,10 +13,10 @@ namespace Primordia.UI
         [Tooltip("Linaje a mostrar. Si está vacío, usa el del objeto con la etiqueta Player.")]
         [SerializeField] PlayerLineage lineage;
         [SerializeField] Text label;
-        [Tooltip("Colores por clase, en el orden Carnívoro, Herbívoro, Venenoso, Hongo.")]
+        [Tooltip("Colores por clase, en el orden Carnívoro, Herbívoro, Venenoso, Hongo, Carroñero.")]
         [SerializeField] Color[] classColors =
         {
-            new(0.95f, 0.45f, 0.4f), new(0.55f, 0.9f, 0.45f), new(0.8f, 0.6f, 0.95f), new(0.95f, 0.75f, 0.4f),
+            new(0.95f, 0.45f, 0.4f), new(0.55f, 0.9f, 0.45f), new(0.8f, 0.6f, 0.95f), new(0.95f, 0.75f, 0.4f), new(0.78f, 0.64f, 0.42f),
         };
         [Tooltip("Tamaño al empezar el salto; vuelve a 1 en popDuration segundos (tiempo real).")]
         [SerializeField, Min(1f)] float popScale = 1.4f;
@@ -76,9 +76,7 @@ namespace Primordia.UI
                 return;
 
             label.text = $"{active.DisplayName} · {MutationText.ClassName(active.Class)}";
-            int index = (int)active.Class;
-            if (classColors != null && index < classColors.Length)
-                label.color = classColors[index];
+            label.color = MutationText.ClassColor(active.Class, classColors);
         }
 
         void Update()

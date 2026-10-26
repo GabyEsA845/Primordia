@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63b91562c3fdc1f4ca592b69d386d9e5, type: 3}
+  m_Name: Mutation_TrilobitePlates
+  m_EditorClassIdentifier: Primordia::Primordia.Mutations.TrilobitePlatesMutation
+  displayName: Placas de trilobite
+  description: "+1 coraz\xF3n. 1 de cada 4 proyectiles que te alcanzan se deshace contra tus placas sin hacerte da\xF1o."
+  slot: 2
+  lineages:
+  - {fileID: 11400000, guid: 9858ce86882df2943983411620bec8c7, type: 2}
+  - {fileID: 11400000, guid: f1a34d49a344ee040810035defc90315, type: 2}
+  - {fileID: 11400000, guid: b9023916b2b77894f8227d809ae27d8c, type: 2}
+  - {fileID: 11400000, guid: 30de4cf987e571d408e1c8e33ccb0cb9, type: 2}
+  look: {fileID: 0}
+  bodyRadius: 0
+  mouthDistance: 0
+  headHeight: 0
+  wornOnHead: 0
+  muzzleDistance: 0
+  attackLean: 0
+  icon: {fileID: 21300000, guid: 45f9084465995b64bb27488f3d621c87, type: 3}
+  largeIcon: {fileID: 21300000, guid: a1d3a9f04b034ef47be51549ca032549, type: 3}
+  color: {r: 0.55, g: 0.7, b: 0.9, a: 1}
+  levelDescriptions:
+  - Se deshace 1 de cada 3.
+  - 'Enrollarse: te enrollas al esquivar y destruyes los proyectiles contra los que esquivas.'
+  dodgeSound: 
+  floor: 2
+  special: 0
+  family: 0
+  creatureIdleFrames: []
+  creatureAttackFrames: []
+  creatureBody: {fileID: 0}
+  attackHitTime: 0
+  creatureLayers:
+  - body: {fileID: 9100000, guid: feb82a28b3107fc4b986b41b1d879747, type: 2}
+    layer: {fileID: 9100000, guid: 4c343ab67e0096943b3e2c676be025ad, type: 2}
+  - body: {fileID: 9100000, guid: 5c4ed1232e5e4c14a9ea4801bceeb8b0, type: 2}
+    layer: {fileID: 9100000, guid: 30a2a701c77c6c743afdc3594c0e2103, type: 2}
+  - body: {fileID: 9100000, guid: 4c5ea57aa6bffee4eb43b77aeb938993, type: 2}
+    layer: {fileID: 9100000, guid: 9a4d700163f01da4ab7611040294a8fc, type: 2}
+  morphFrames: []
+  revealFrames: []
+  healthBonus: 2
+  bounceEvery: 040000000300000003000000i
+  bounceFrames:
+  - {fileID: 901338561987594747, guid: 4fbce8b34e6d2cf4b890c9a4d51a37b3, type: 3}
+  - {fileID: -1298616458, guid: 4fbce8b34e6d2cf4b890c9a4d51a37b3, type: 3}
+  - {fileID: 1705976114, guid: 4fbce8b34e6d2cf4b890c9a4d51a37b3, type: 3}
+  - {fileID: 574127019, guid: 4fbce8b34e6d2cf4b890c9a4d51a37b3, type: 3}
+  - {fileID: 1822681864, guid: 4fbce8b34e6d2cf4b890c9a4d51a37b3, type: 3}
+  rollFrames:
+  - {fileID: 9022672594552657161, guid: 8c2697a525d45a14183b1e5501af9e57, type: 3}
+  - {fileID: -7016681053462364333, guid: 8c2697a525d45a14183b1e5501af9e57, type: 3}
+  - {fileID: -7025889350963004263, guid: 8c2697a525d45a14183b1e5501af9e57, type: 3}
+  - {fileID: 1333800464975991153, guid: 8c2697a525d45a14183b1e5501af9e57, type: 3}
+  frameDuration: 0.06

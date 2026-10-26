@@ -188,6 +188,30 @@ namespace Primordia.Tests
             CollectionAssert.Contains(pool.PickOffer(2, System.Array.Empty<MutationData>()), mouth);
         }
 
+        [Test]
+        public void Pool_OfFloor2_OffersUpgradesOfFloor1Mutations_ButNotNewOnes()
+        {
+            var oldSkin = Mutation(MutationSlot.Skin);
+            var otherOld = Mutation(MutationSlot.Organ);
+            var newLimbs = Mutation(MutationSlot.Limbs);
+            var pool = Track(ScriptableObject.CreateInstance<MutationPool>());
+            pool.Configure(new[] { newLimbs }, newOffersNewMouths: false);
+
+            var playerObject = Track(new GameObject("Player"));
+            playerObject.AddComponent<Combat.Weapon>();
+            playerObject.AddComponent<Player.PlayerController>().readInput = false;
+            var player = playerObject.AddComponent<PlayerMutations>();
+            player.Equip(oldSkin);
+
+            for (int i = 0; i < 10; i++)
+            {
+                var offer = pool.PickOffer(3, player);
+                CollectionAssert.Contains(offer, oldSkin, "La mejora de lo que se trae del piso 1 se ofrece aunque no esté en la reserva.");
+                CollectionAssert.Contains(offer, newLimbs);
+                CollectionAssert.DoesNotContain(offer, otherOld, "Mutaciones nuevas, solo las de la reserva del piso.");
+            }
+        }
+
         MutationData Mutation(MutationSlot slot)
         {
             var mutation = Track(ScriptableObject.CreateInstance<StatMutation>());

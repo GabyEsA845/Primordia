@@ -16,9 +16,9 @@ MonoBehaviour:
   description: "Clic derecho: digiere y cura medio coraz\xF3n. Se recarga matando enemigos: cada 4 muertes."
   slot: 3
   lineages:
-  - {fileID: 11400000, guid: ddd265ad1c955ba428d4823f0d88badb, type: 2}
-  - {fileID: 11400000, guid: 0ba4444a737dbc64c81151817ed2f2f1, type: 2}
   - {fileID: 11400000, guid: c835644a936dc8447a78c0aa704d8e42, type: 2}
+  - {fileID: 11400000, guid: 0ba4444a737dbc64c81151817ed2f2f1, type: 2}
+  - {fileID: 11400000, guid: ddd265ad1c955ba428d4823f0d88badb, type: 2}
   look: {fileID: 9100000, guid: cfc8d5474988ea744af5f65437cf4e2a, type: 2}
   bodyRadius: 0
   mouthDistance: 0
@@ -32,6 +32,17 @@ MonoBehaviour:
   levelDescriptions:
   - Se recarga cada 3 muertes.
   - "Digesti\xF3n completa: cura un coraz\xF3n entero (sigue recarg\xE1ndose cada 3 muertes)."
+  dodgeSound: 
+  floor: 1
+  special: 0
+  family: 0
+  creatureIdleFrames: []
+  creatureAttackFrames: []
+  creatureBody: {fileID: 0}
+  attackHitTime: 0
+  creatureLayers: []
+  morphFrames: []
+  revealFrames: []
   cooldown: 0.5
   effectPrefab: {fileID: 634519857664457622, guid: e1eb0108d9dbd9641b37f27de094375b, type: 3}
   effectRadius: 1

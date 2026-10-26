@@ -49,5 +49,9 @@ Thumbs.db
 # Unity 6 solution files
 *.slnx
 
-# Multimedia temporal (sprites y animaciones antes de importarlos a Unity)
-/docs/multimedia-temp/
+# Multimedia temporal (generadores, arte y audio antes de importarlos a Unity): se sube (los PNG, WAV y OGG
+# van por Git LFS) para poder trabajar desde otro equipo; los menús de Unity importan desde aquí. Solo se dejan
+# fuera las vistas previas animadas y las cachés de Python.
+/docs/multimedia-temp/**/*.gif
+__pycache__/
+*.pyc

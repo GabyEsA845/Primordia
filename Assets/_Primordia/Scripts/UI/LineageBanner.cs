@@ -17,10 +17,10 @@ namespace Primordia.UI
         [SerializeField] PlayerLineage lineage;
         [SerializeField] Text title;
         [SerializeField] Text subtitle;
-        [Tooltip("Colores por clase, en el orden Carnívoro, Herbívoro, Venenoso, Hongo (los del rótulo del HUD).")]
+        [Tooltip("Colores por clase, en el orden Carnívoro, Herbívoro, Venenoso, Hongo, Carroñero (los del rótulo del HUD).")]
         [SerializeField] Color[] classColors =
         {
-            new(0.95f, 0.45f, 0.4f), new(0.55f, 0.9f, 0.45f), new(0.8f, 0.6f, 0.95f), new(0.95f, 0.75f, 0.4f),
+            new(0.95f, 0.45f, 0.4f), new(0.55f, 0.9f, 0.45f), new(0.8f, 0.6f, 0.95f), new(0.95f, 0.75f, 0.4f), new(0.78f, 0.64f, 0.42f),
         };
         [Tooltip("Segundos que se ve entero y que tarda en desvanecerse.")]
         [SerializeField, Min(0f)] float holdTime = 2f;
@@ -90,9 +90,7 @@ namespace Primordia.UI
             if (title != null)
             {
                 title.text = active.DisplayName.ToUpperInvariant();
-                int index = (int)active.Class;
-                if (classColors != null && index < classColors.Length)
-                    title.color = classColors[index];
+                title.color = MutationText.ClassColor(active.Class, classColors);
             }
             if (subtitle != null)
                 subtitle.text = MutationText.BenefitTitle(active);

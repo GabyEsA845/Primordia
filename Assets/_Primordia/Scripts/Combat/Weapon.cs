@@ -113,6 +113,15 @@ namespace Primordia.Combat
         public int DamageOf(AttackData attack) =>
             Mathf.Max(0, Mathf.CeilToInt(attack.Damage * DamageMultiplier - 0.001f));
 
+        /// <summary>
+        /// Arma que está dando un golpe cuerpo a cuerpo ahora mismo (mientras quita la vida), o null: así un modificador de
+        /// daño o una muerte saben que fue un mordisco (el Festín del Placodermo).
+        /// </summary>
+        public static Weapon Striking { get; private set; }
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        static void ResetStriking() => Striking = null;
+
         /// <summary>Se lanza cuando un proyectil de esta arma hace daño. Si el objetivo murió, su IsDead es true.</summary>
         public event Action<Health> HitTarget;
 
@@ -176,14 +185,16 @@ namespace Primordia.Combat
             if (!CanFire || direction.sqrMagnitude < 0.0001f)
                 return false;
 
-            nextFireTime = Time.time + attack.Cooldown;
+            // El jugador no se frena en la cámara lenta: su cadencia va en su tiempo (ver TimeWarp).
+            float warp = team == Team.Player ? TimeWarp.Scale : 1f;
+            nextFireTime = Time.time + attack.Cooldown * warp;
             Started?.Invoke(direction.normalized);
             if (windup > 0f)
             {
                 // Sale en el cuadro del golpe de la animación, hacia donde se apuntó al atacar.
                 windupAttack = attack;
                 windupDirection = direction;
-                windupUntil = Time.time + windup;
+                windupUntil = Time.time + windup * warp;
             }
             else
             {
@@ -380,7 +391,11 @@ namespace Primordia.Combat
                         continue;
                 }
 
-                if (!health.TakeDamage(damage))
+                Striking = this;
+                bool damaged;
+                try { damaged = health.TakeDamage(damage); }
+                finally { Striking = null; }
+                if (!damaged)
                     continue;
 
                 landed = true;

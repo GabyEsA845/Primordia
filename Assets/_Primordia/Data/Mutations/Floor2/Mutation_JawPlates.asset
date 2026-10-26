@@ -15,7 +15,11 @@ MonoBehaviour:
   displayName: Placas mandibulares
   description: "Mordisco en arco de 110\xB0: 5 de da\xF1o, 2 por segundo y un peque\xF1o empuj\xF3n. Quebrar: el enemigo mordido recibe un 25 % m\xE1s de da\xF1o de todo durante 2 s."
   slot: 0
-  lineages: []
+  lineages:
+  - {fileID: 11400000, guid: 384fc8566a9fe0343add5baa85ab8d83, type: 2}
+  - {fileID: 11400000, guid: b9023916b2b77894f8227d809ae27d8c, type: 2}
+  - {fileID: 11400000, guid: 30de4cf987e571d408e1c8e33ccb0cb9, type: 2}
+  - {fileID: 11400000, guid: b77c0f65a5cd6694893bcdf5c6e53d5c, type: 2}
   look: {fileID: 0}
   bodyRadius: 0
   mouthDistance: 0

@@ -15,7 +15,9 @@ MonoBehaviour:
   displayName: Cnidocitos
   description: "Arp\xF3n urticante que atraviesa a 1 enemigo: 2 de da\xF1o, 3 por segundo y veneno de 1 por segundo durante 3 s."
   slot: 0
-  lineages: []
+  lineages:
+  - {fileID: 11400000, guid: 9858ce86882df2943983411620bec8c7, type: 2}
+  - {fileID: 11400000, guid: 9161695a04a5025448d45afe710f6d7a, type: 2}
   look: {fileID: 0}
   bodyRadius: 0
   mouthDistance: 0

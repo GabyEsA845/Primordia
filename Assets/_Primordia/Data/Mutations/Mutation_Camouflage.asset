@@ -16,9 +16,9 @@ MonoBehaviour:
   description: "Tras 3 s sin atacar ni recibir golpes te vuelves casi invisible: los enemigos te buscan sin verte y tu siguiente ataque hace el doble de da\xF1o. Si te acercas demasiado, acabar\xE1n descubri\xE9ndote."
   slot: 2
   lineages:
-  - {fileID: 11400000, guid: 5d6b8548b6b3bff4da6cd1b60a497506, type: 2}
-  - {fileID: 11400000, guid: 0ba4444a737dbc64c81151817ed2f2f1, type: 2}
   - {fileID: 11400000, guid: 50f454cff0455dd40a10c8afa7e3f5b1, type: 2}
+  - {fileID: 11400000, guid: 0ba4444a737dbc64c81151817ed2f2f1, type: 2}
+  - {fileID: 11400000, guid: 5d6b8548b6b3bff4da6cd1b60a497506, type: 2}
   look: {fileID: 9100000, guid: 258d289a9a983c743b1b017c89901b31, type: 2}
   bodyRadius: 0.45
   mouthDistance: 0.4375
@@ -32,6 +32,17 @@ MonoBehaviour:
   levelDescriptions:
   - "Te ocultas a los 2 s y el ataque desde el camuflaje hace el triple de da\xF1o."
   - "P\xE1nico: si matas a un enemigo desde el camuflaje, los dem\xE1s de la sala se asustan 2 s (no atacan y se alejan despacio)."
+  dodgeSound: 
+  floor: 1
+  special: 0
+  family: 0
+  creatureIdleFrames: []
+  creatureAttackFrames: []
+  creatureBody: {fileID: 0}
+  attackHitTime: 0
+  creatureLayers: []
+  morphFrames: []
+  revealFrames: []
   delays:
   - 3
   - 2

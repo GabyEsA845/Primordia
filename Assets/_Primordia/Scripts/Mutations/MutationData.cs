@@ -119,7 +119,7 @@ namespace Primordia.Mutations
         public Sprite[] CreatureIdleFrames => creatureIdleFrames ?? System.Array.Empty<Sprite>();
         public Sprite[] CreatureAttackFrames => creatureAttackFrames ?? System.Array.Empty<Sprite>();
         public RuntimeAnimatorController CreatureBody => creatureBody;
-        /// <summary>Capa de una Piel sobre un cuerpo de criatura: las animaciones del cuerpo y las de la capa.</summary>
+        /// <summary>Capa de una Piel o unas Extremidades sobre un cuerpo de criatura: las animaciones del cuerpo y las de la capa.</summary>
         [System.Serializable]
         public struct CreatureLayer
         {
@@ -130,7 +130,7 @@ namespace Primordia.Mutations
         /// <summary>Solo Boca: segundos hasta el cuadro del golpe de la animación de ataque de su criatura.</summary>
         public float AttackHitTime => attackHitTime;
 
-        /// <summary>Solo Piel: animaciones de su capa sobre ese cuerpo de criatura, o null si no tiene.</summary>
+        /// <summary>Piel y Extremidades: animaciones de su capa sobre ese cuerpo de criatura, o null si no tiene.</summary>
         public RuntimeAnimatorController CreatureLayerFor(RuntimeAnimatorController body)
         {
             if (body == null || creatureLayers == null)

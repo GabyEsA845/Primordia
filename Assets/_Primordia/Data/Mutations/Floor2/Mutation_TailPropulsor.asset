@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 142e0d8c8ad555445ab90c9cce37449f, type: 3}
+  m_Name: Mutation_TailPropulsor
+  m_EditorClassIdentifier: Primordia::Primordia.Mutations.TailPropulsorMutation
+  displayName: Cola propulsora
+  description: Dos esquivas seguidas antes de la recarga.
+  slot: 1
+  lineages:
+  - {fileID: 11400000, guid: 9161695a04a5025448d45afe710f6d7a, type: 2}
+  - {fileID: 11400000, guid: f1a34d49a344ee040810035defc90315, type: 2}
+  - {fileID: 11400000, guid: b9023916b2b77894f8227d809ae27d8c, type: 2}
+  - {fileID: 11400000, guid: b77c0f65a5cd6694893bcdf5c6e53d5c, type: 2}
+  look: {fileID: 0}
+  bodyRadius: 0
+  mouthDistance: 0
+  headHeight: 0
+  wornOnHead: 0
+  muzzleDistance: 0
+  attackLean: 0
+  icon: {fileID: 21300000, guid: f0e01761ccd4c0a4198db44fcab09ec9, type: 3}
+  largeIcon: {fileID: 21300000, guid: 05ed99ec0051b0d4eab5902b72f8b194, type: 3}
+  color: {r: 0.66, g: 0.35, b: 0.82, a: 1}
+  levelDescriptions:
+  - "La segunda esquiva deja 3 burbujas que hacen 2 de da\xF1o y empujan."
+  - "Torbellino: las dos esquivas dejan 5 burbujas de 3 de da\xF1o."
+  dodgeSound: 
+  floor: 2
+  special: 0
+  family: 0
+  creatureIdleFrames: []
+  creatureAttackFrames: []
+  creatureBody: {fileID: 0}
+  attackHitTime: 0
+  creatureLayers:
+  - body: {fileID: 9100000, guid: feb82a28b3107fc4b986b41b1d879747, type: 2}
+    layer: {fileID: 9100000, guid: 49ed046263b2c084a9ed2023938d0a57, type: 2}
+  - body: {fileID: 9100000, guid: 5c4ed1232e5e4c14a9ea4801bceeb8b0, type: 2}
+    layer: {fileID: 9100000, guid: d2d79a226b899564485dcce19f43abf6, type: 2}
+  - body: {fileID: 9100000, guid: 4c5ea57aa6bffee4eb43b77aeb938993, type: 2}
+    layer: {fileID: 9100000, guid: c48edb56a25f2ec41b33c77369308ea5, type: 2}
+  morphFrames: []
+  revealFrames: []
+  extraDodges: 1
+  bubbleCounts: 000000000300000005000000i
+  bubbleDamage: 000000000200000003000000i
+  bubblePrefab: {fileID: 3365167252253216428, guid: 85fdc8ee313e79b4b841fa5878eab0f9, type: 3}
+  bigBubblePrefab: {fileID: 2837450108269539044, guid: a45b12ab37058214fbb673d0ee911129, type: 3}
+  bubbleLifetime: 3
+  bubblePush: 6
+  ringRadius: 0.8

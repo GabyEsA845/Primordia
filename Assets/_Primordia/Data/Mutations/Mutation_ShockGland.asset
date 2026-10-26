@@ -16,8 +16,8 @@ MonoBehaviour:
   description: 'Clic derecho: onda que destruye los proyectiles enemigos y empuja a los enemigos. Recarga: 6 s.'
   slot: 3
   lineages:
-  - {fileID: 11400000, guid: d83f9416ce120104c8925c8d121e0df9, type: 2}
   - {fileID: 11400000, guid: 25f4f794ff2f8e3428bd6c3ddcd58858, type: 2}
+  - {fileID: 11400000, guid: d83f9416ce120104c8925c8d121e0df9, type: 2}
   look: {fileID: 9100000, guid: 6b5f9226d70f5924abcbcf7f65fc9db5, type: 2}
   bodyRadius: 0
   mouthDistance: 0
@@ -31,6 +31,17 @@ MonoBehaviour:
   levelDescriptions:
   - "Onda mucho m\xE1s grande (radio 6) y recarga de 4,5 s."
   - 'Paralizante: los enemigos que alcanza la onda quedan paralizados 2 s.'
+  dodgeSound: 
+  floor: 1
+  special: 0
+  family: 0
+  creatureIdleFrames: []
+  creatureAttackFrames: []
+  creatureBody: {fileID: 0}
+  attackHitTime: 0
+  creatureLayers: []
+  morphFrames: []
+  revealFrames: []
   cooldown: 6
   effectPrefab: {fileID: 5147786757589481648, guid: f5b4fb2c036ef9548a927b7cdefef551, type: 3}
   effectRadius: 4

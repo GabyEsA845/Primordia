@@ -589,6 +589,27 @@ MonoBehaviour:
     biomassPerHeal: 10
     healEffect: {fileID: 634519857664457622, guid: e1eb0108d9dbd9641b37f27de094375b, type: 3}
     toxinMultiplier: 1.5
+    biomassPerHealFloor2: 12
+    maxBarrierFloor2: 2
+    toxinSlowFactor: 0.8
+    remainsPrefab: {fileID: 525992177475457799, guid: 6b4a2e655f6d65341932285f1bf78d63, type: 3}
+    doubleRemainsPrefab: {fileID: 7000452240200386903, guid: c27a87ffa2456cb45a187a7a45b2bff8, type: 3}
+    remainsDuration: 4
+    carrionBonusPerStack: 0.2
+    carrionDuration: 5
+    carrionMaxStacks: 3
+    eatEffect: {fileID: 6563885508181598468, guid: 204d246be39634545ab5d4ef518e9244, type: 3}
+    carrionMarkers:
+    - {fileID: 4733597006396688755, guid: 1a1ccf100ec3fc5428880785dfe8e9f0, type: 3}
+    - {fileID: 4752962310218321683, guid: e472d22724cba774582b81413cd8a8a7, type: 3}
+    - {fileID: 1903925669969525811, guid: a397e57a10665c44ca139e584bcad814, type: 3}
+    feastHeal: 1
+    feastCooldown: 6
+    fiveEyesBonus: 1
+    fiveEyesPerFinish: 0.5
+    touchPoisonDamage: 1
+    touchPoisonDuration: 3
+    harvestTargets: 3
     matPrefab: {fileID: 4460552468310333563, guid: 220de248ae4a43046b482777e6f9a353, type: 3}
     largeMatPrefab: {fileID: 8310661517033200844, guid: 30fa7e3063c0719459c5854c9bbc7b27, type: 3}
     matCount: 3

@@ -1,0 +1,1163 @@
+<title>Océano cámbrico de Primordia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=Pixelify+Sans:wght@500;700&family=Libre+Franklin:wght@400;600;700&display=swap">
+<style>
+/* Layout: como una sala del piso 2. Arriba la pared de roca azul del arrecife; la cabecera es el menú del juego teñido de océano; el resto, paneles del juego (bordes pixelados) sobre la arena del fondo marino. Un solo aspecto oscuro, el del juego. */
+:root {
+  color-scheme: dark;
+  --sea: #16344a;
+  --deep: #081422;
+  --ink: #e6f4fa;
+  --muted: #9cc0d4;
+  --line: #2a5772;
+  --title: #8ce6f2;
+  --lime: #d9f26a;
+  --cyan: #6fdcc6;
+  --carn: #ff8a7a;
+  --herb: #9ce680;
+  --ven: #cfa2f2;
+  --carr: #e0b87a;
+  --s-mouth: #f2805a;
+  --s-limbs: #b979e0;
+  --s-skin: #8cb3e6;
+  --s-organ: #8ce65a;
+  --anom: #ff8f7a;
+  --eury: #a8d48a;
+  --enemy: #8cd8f2;
+  --hp: #ff6f80;
+  --abyss: #6f86d6;
+  --chip: rgba(6, 16, 28, .6);
+  --display: "Silkscreen", "Pixelify Sans", "Courier New", monospace;
+  --body: "Libre Franklin", "Segoe UI", system-ui, sans-serif;
+}
+* { box-sizing: border-box; }
+body { background: var(--sea); color: var(--ink); font-family: var(--body); font-size: 15px; line-height: 1.55; }
+body { background-image: var(--floor); background-size: 384px 384px; image-rendering: pixelated; }
+.pixel, .sprite, .wallband, .stage, .thumb, .logo, .room img, .ball, .sil { image-rendering: pixelated; image-rendering: crisp-edges; }
+
+.wallband { height: 128px; background-image: var(--wall); background-size: 128px 128px; background-repeat: repeat-x; }
+.wrap { max-width: 1080px; margin: -24px auto 0; padding-inline: 16px; padding-block: 0 56px; display: grid; gap: 40px; position: relative; }
+
+h1, h2, h3, h4 { font-family: var(--display); font-weight: 700; text-wrap: balance; margin: 0; letter-spacing: .02em; line-height: 1.15; }
+h1 { font-size: 1.7rem; color: var(--ink); }
+h2 { font-size: 1.45rem; color: var(--title); text-shadow: 2px 2px 0 var(--deep); }
+h3 { font-size: 1.1rem; }
+h4 { font-size: .95rem; }
+p { margin: 0; max-width: 68ch; }
+ul { margin: 0; padding-left: 1.1rem; display: grid; gap: 5px; }
+.muted { color: var(--muted); }
+.label { font-family: var(--display); font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; font-weight: 400; color: var(--muted); }
+section { display: grid; gap: 14px; scroll-margin-top: 16px; }
+section > p.muted { text-shadow: 1px 1px 0 var(--deep); }
+
+/* Paneles del juego (9-slice de 12 px dibujado a ×2) */
+.panel { border: 24px solid transparent; border-image: var(--card) 12 fill / 24px stretch; image-rendering: pixelated; }
+.btn { font: inherit; color: var(--ink); cursor: pointer; border: 14px solid transparent; border-image: var(--button) 7 fill / 14px stretch; image-rendering: pixelated; background: none; }
+.btn:hover { border-image-source: var(--button-hi); }
+.btn[aria-pressed="true"] { border-image-source: var(--button-hi); color: var(--lime); }
+
+/* Cabecera */
+.lead { display: grid; gap: 14px; border: 24px solid transparent; border-image: var(--panel) 12 / 24px stretch; image-rendering: pixelated; position: relative; isolation: isolate; }
+.lead::before { content: ""; position: absolute; inset: -16px; z-index: -1; background: var(--menu) center / cover no-repeat; }
+.logo { width: 400px; max-width: 100%; height: auto; display: block; filter: drop-shadow(3px 3px 0 var(--deep)); }
+.lead .intro { display: grid; gap: 10px; }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 18px; }
+.legend span { display: inline-flex; align-items: center; gap: 7px; font-size: .9rem; }
+.dot { width: 12px; height: 12px; background: var(--c); flex: none; box-shadow: 0 0 0 2px var(--deep); }
+.toc { display: flex; flex-wrap: wrap; gap: 6px; }
+.toc a { font-family: var(--display); font-size: .85rem; text-decoration: none; color: var(--ink); border: 14px solid transparent; border-image: var(--button) 7 fill / 14px stretch; image-rendering: pixelated; padding: 0 4px; margin: -6px 0; }
+.toc a:hover { border-image-source: var(--button-hi); color: var(--lime); }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--lime); outline-offset: 2px; }
+.news { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: .88rem; }
+.news b { color: var(--lime); font-weight: 600; }
+
+/* Beneficios por clase */
+.classes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+@media (max-width: 720px) { .classes { grid-template-columns: 1fr; } }
+.klass { display: grid; gap: 10px; align-content: start; min-width: 0; }
+.klass-head { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.klass-head h3 { color: var(--c); }
+.new { font-family: var(--display); font-size: .66rem; color: var(--deep); background: var(--c); padding: 0 6px; }
+.base { display: grid; gap: 2px; padding: 8px 10px; background: color-mix(in srgb, var(--c) 14%, transparent); box-shadow: inset 3px 0 0 var(--c); }
+.base b { font-weight: 700; color: var(--c); }
+.base .delta { font-size: .85rem; color: var(--muted); }
+.touches { display: grid; gap: 10px; }
+.touch { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 2px 12px; align-items: center; }
+.sil { width: 64px; height: 64px; grid-row: span 3; background: var(--chip); box-shadow: inset 0 0 0 2px var(--line); }
+.touch .who { font-weight: 700; }
+.touch .what b { font-weight: 600; }
+.recipe { font-size: .8rem; color: var(--muted); }
+
+/* Simulador */
+.sim { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 18px; align-items: start; }
+@media (max-width: 760px) { .sim { grid-template-columns: 1fr; } }
+.slots { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+@media (max-width: 460px) { .slots { grid-template-columns: 1fr; } }
+.slot { display: grid; gap: 8px; align-content: start; min-width: 0; }
+.slot .label { color: var(--c); }
+.opts { display: grid; gap: 4px; }
+.opt { text-align: left; display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: 2px 8px; align-items: center; padding: 0; }
+.opt img { width: 28px; height: 28px; grid-row: span 2; align-self: start; image-rendering: pixelated; }
+.opt .name { font-weight: 600; }
+.opt[aria-pressed="true"] .name { color: var(--lime); }
+.tags { display: flex; flex-wrap: wrap; gap: 4px; }
+.tag { font-size: .72rem; padding: 0 5px; border: 2px solid var(--c); color: var(--c); line-height: 1.45; white-space: nowrap; background: var(--chip); }
+
+.result { display: grid; gap: 12px; position: sticky; top: calc(env(safe-area-inset-top, 0px) + 12px); min-width: 0; }
+.result-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.reset { font-size: .82rem; padding: 0 4px; margin: -6px 0; font-family: var(--display); }
+.done { padding: 10px 12px; background: color-mix(in srgb, var(--c) 16%, transparent); box-shadow: inset 0 0 0 2px var(--c); display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 6px 12px; align-items: center; }
+.done .evo { grid-row: span 3; background: var(--deep); box-shadow: inset 0 0 0 2px var(--line); }
+.done b.big { font-family: var(--display); font-size: 1.3rem; color: var(--c); }
+.done .gives { display: grid; gap: 4px; font-size: .9rem; grid-column: 1 / -1; }
+.body-now { display: flex; align-items: center; gap: 10px; font-size: .88rem; color: var(--muted); }
+.body-now .sprite { background-color: var(--deep); box-shadow: inset 0 0 0 2px var(--line); }
+.list { display: grid; gap: 6px; }
+.lin { font: inherit; text-align: left; cursor: pointer; background: var(--chip); color: var(--ink); border: 2px solid var(--line); padding: 7px 10px; display: grid; gap: 4px; }
+.lin:hover { border-color: var(--c); }
+.lin-top { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.lin-top .nm { font-weight: 700; }
+.lin-top .cls { font-size: .78rem; color: var(--c); }
+.lin-top .score { margin-left: auto; font-family: var(--display); font-size: .9rem; }
+.pips { display: flex; gap: 3px; }
+.pip { width: 9px; height: 9px; border: 2px solid var(--c); }
+.pip.on { background: var(--c); }
+.miss { font-size: .84rem; color: var(--muted); }
+
+/* Tablas */
+.tablebox { overflow-x: auto; min-width: 0; }
+table { border-collapse: collapse; width: 100%; font-size: .9rem; }
+#matrix { min-width: 760px; }
+th, td { padding: 7px 8px; border-bottom: 2px solid var(--line); text-align: center; }
+tbody tr:last-child th, tbody tr:last-child td { border-bottom: 0; }
+tbody th { text-align: left; font-weight: 600; white-space: nowrap; }
+thead th { vertical-align: bottom; border-bottom: 2px solid var(--cyan); }
+th button { font: inherit; background: none; border: 0; color: var(--c); cursor: pointer; display: grid; gap: 2px; justify-items: center; padding: 2px 4px; width: 100%; }
+th button .nm { font-weight: 700; color: var(--ink); }
+th button .cls { font-size: .72rem; color: var(--c); font-weight: 600; }
+.slotrow th { text-align: left; font-family: var(--display); font-size: .74rem; text-transform: uppercase; letter-spacing: .08em; color: var(--c); background: var(--chip); padding-block: 5px; }
+.cell { display: inline-block; width: 14px; height: 14px; background: var(--c); box-shadow: 0 0 0 2px var(--deep); }
+td.count { font-family: var(--display); color: var(--muted); }
+.hl { background: color-mix(in srgb, var(--c) 16%, transparent); }
+tr.picked th { color: var(--lime); }
+tr.picked th::before { content: "▸ "; }
+.note { font-size: .88rem; color: var(--muted); }
+
+/* Cuerpos y tabla de mutaciones */
+.bodies { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+@media (max-width: 640px) { .bodies { grid-template-columns: 1fr; } }
+.bodycard { display: grid; gap: 8px; justify-items: start; min-width: 0; }
+.bodycard .pair { display: flex; gap: 6px; background: var(--deep); padding: 6px; box-shadow: inset 0 0 0 2px var(--line); }
+.bodycard b { font-family: var(--display); font-size: .9rem; }
+.bodycard .anims { width: 100%; justify-content: center; align-items: end; }
+.filter { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter button { font-family: var(--display); font-size: .82rem; padding: 0 4px; margin: -6px 0; display: inline-flex; align-items: center; gap: 6px; }
+.filter button img { width: 16px; height: 16px; image-rendering: pixelated; }
+#mutations { min-width: 900px; }
+#mutations th, #mutations td { text-align: left; vertical-align: top; padding: 10px 10px; }
+#mutations thead th { font-family: var(--display); font-size: .74rem; font-weight: 400; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+#mutations tbody th { white-space: normal; }
+#mutations .mname { display: grid; grid-template-columns: 32px minmax(0, 1fr); gap: 2px 10px; align-items: center; width: 14rem; }
+#mutations .mname img { width: 32px; height: 32px; grid-row: span 3; image-rendering: pixelated; }
+#mutations .mname b { font-family: var(--display); font-size: .9rem; font-weight: 700; line-height: 1.2; }
+#mutations .slotname { font-size: .78rem; color: var(--c); }
+#mutations .fam { font-size: .74rem; color: var(--muted); }
+#mutations td.lv { width: 24%; }
+#mutations td.lv .lvn { display: inline-block; font-family: var(--display); font-size: .78rem; color: var(--lime); margin-right: 4px; }
+#mutations td.lins { min-width: 9rem; }
+#mutations tbody tr:nth-child(even) { background: var(--chip); }
+
+/* Mutaciones especiales de las almejas */
+:root { --gold: #f2c14e; }
+.specials { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+@media (max-width: 900px) { .specials { grid-template-columns: 1fr; } }
+.special { display: grid; gap: 10px; align-content: start; min-width: 0; }
+.special-head { display: grid; grid-template-columns: 54px minmax(0, 1fr); gap: 2px 12px; align-items: center; }
+.special-head img { width: 54px; height: 54px; grid-row: span 2; image-rendering: pixelated; }
+.special-head h3 { color: var(--gold); font-size: 1.05rem; }
+.special-head .slotname { font-size: .8rem; color: var(--c); }
+.special .anims { justify-content: center; }
+.special .lvs { display: grid; gap: 6px; font-size: .9rem; }
+.special .lvs div { display: grid; grid-template-columns: 2.2rem minmax(0, 1fr); gap: 8px; }
+.special .lvs .lvn { font-family: var(--display); font-size: .78rem; color: var(--lime); padding-top: 2px; }
+.special .lvs div:last-child .lvn { color: var(--gold); }
+.price { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+@media (max-width: 760px) { .price { grid-template-columns: 1fr; } }
+.price article { display: grid; gap: 10px; align-content: start; min-width: 0; }
+.price article.wide { grid-column: 1 / -1; }
+.price h3 { color: var(--gold); font-size: 1rem; }
+.price p b { color: var(--gold); font-weight: 600; }
+.heartrow { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center; background: var(--deep); padding: 10px 12px; box-shadow: inset 0 0 0 2px var(--line); }
+.heartrow figure { margin: 0; display: grid; gap: 4px; justify-items: center; }
+.heartrow figcaption { font-size: .74rem; color: var(--muted); }
+.cases { display: grid; gap: 6px; font-size: .9rem; }
+.case { padding: 6px 10px; background: var(--chip); box-shadow: inset 3px 0 0 var(--gold); }
+.case b { color: var(--gold); font-weight: 600; }
+
+/* Enemigos */
+.enemies { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+@media (max-width: 820px) { .enemies { grid-template-columns: 1fr; } }
+.enemy { display: grid; gap: 10px; align-content: start; min-width: 0; --c: var(--enemy); }
+.enemy.wide { grid-column: 1 / -1; }
+.enemy-head { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.enemy-head h3 { color: var(--c); font-size: 1.2rem; }
+.role { font-family: var(--display); font-size: .7rem; padding: 0 6px; border: 2px solid var(--c); color: var(--c); }
+.anims { display: flex; flex-wrap: wrap; gap: 6px; background: var(--deep) var(--tiles) 0 0 / 96px 96px; padding: 8px; box-shadow: inset 0 0 0 2px var(--deep), inset 0 0 24px rgba(0, 0, 0, .45); }
+.anim { display: grid; gap: 2px; justify-items: center; }
+.anim .label { font-size: .62rem; color: var(--ink); text-shadow: 1px 1px 0 var(--deep); }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(7.5rem, 1fr)); gap: 8px; }
+.stat { background: var(--chip); padding: 6px 10px; display: grid; box-shadow: inset 0 0 0 2px var(--line); }
+.stat b { font-family: var(--display); font-size: 1rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+.asks { padding: 8px 10px; background: color-mix(in srgb, var(--c) 12%, transparent); box-shadow: inset 3px 0 0 var(--c); font-size: .9rem; }
+.asks b { color: var(--c); }
+
+/* Bestiario */
+.beasts { display: grid; gap: 28px; }
+.beast { display: grid; gap: 0; min-width: 0; }
+.beast-top { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 20px; padding-bottom: 16px; align-items: center; border-bottom: 2px solid var(--line); }
+@media (max-width: 640px) { .beast-top { grid-template-columns: 1fr; } }
+.stage { background: var(--deep) var(--tiles) 0 0 / 144px 144px; display: grid; place-items: center; padding: 10px; min-width: 220px; min-height: 220px; box-shadow: inset 0 0 0 3px var(--deep), inset 0 0 40px rgba(0, 0, 0, .55); overflow: hidden; }
+@media (max-width: 640px) { .stage { min-width: 0; } }
+.beast-id { display: grid; gap: 10px; min-width: 0; }
+.beast-id h3 { font-size: 1.6rem; color: var(--c); text-shadow: 2px 2px 0 var(--deep); }
+.hpbar { display: grid; gap: 4px; }
+.hpbar .track { display: flex; height: 20px; overflow: hidden; border: 2px solid var(--deep); box-shadow: 0 0 0 2px var(--line); }
+.hpbar .seg { flex: var(--w) 1 0; background: color-mix(in srgb, var(--hp) var(--k), var(--deep)); display: grid; place-items: center; font-family: var(--display); font-size: .62rem; color: var(--ink); border-right: 2px solid var(--deep); white-space: nowrap; overflow: hidden; text-shadow: 1px 1px 0 var(--deep); }
+.hpbar .seg:last-child { border-right: 0; }
+.hpbar .ticks { display: flex; font-family: var(--display); font-size: .66rem; color: var(--muted); }
+.hpbar .ticks span { flex: var(--w) 1 0; }
+.phases { display: grid; }
+.phase { display: grid; grid-template-columns: var(--artw, 16rem) minmax(0, 1fr); gap: 18px; padding-block: 16px; border-bottom: 2px solid var(--line); align-items: start; }
+@media (max-width: 820px) { .phase { grid-template-columns: minmax(0, 1fr); } }
+.phase-art { display: grid; gap: 6px; justify-items: start; min-width: 0; }
+.phase-art .thumb { background: var(--deep) var(--tiles) 0 0 / 96px 96px; padding: 6px; display: flex; flex-wrap: wrap; gap: 4px; align-items: center; max-width: 100%; box-shadow: inset 0 0 0 2px var(--deep), inset 0 0 24px rgba(0, 0, 0, .55); }
+.phase-hp { font-family: var(--display); font-size: .9rem; color: var(--c); }
+.phase-body { display: grid; gap: 6px; min-width: 0; }
+.phase-body h4 { color: var(--c); }
+.extras { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; padding-top: 16px; }
+@media (max-width: 720px) { .extras { grid-template-columns: 1fr; } }
+.extras > div { display: grid; gap: 8px; align-content: start; min-width: 0; }
+.projs { display: grid; gap: 8px; }
+.proj { display: grid; grid-template-columns: 72px minmax(0, 1fr); gap: 10px; align-items: center; }
+.proj .ball { background: var(--deep); width: 72px; height: 72px; display: grid; place-items: center; box-shadow: inset 0 0 0 2px var(--line); overflow: hidden; }
+.room { background: var(--deep); padding: 8px; display: grid; place-items: center; box-shadow: inset 0 0 0 2px var(--line); }
+.room img { max-width: 100%; height: auto; max-height: 280px; }
+
+/* El océano */
+.bands { display: grid; gap: 14px; }
+.band { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 18px; align-items: center; }
+@media (max-width: 760px) { .band { grid-template-columns: 1fr; } }
+.band .room img { max-height: none; width: 100%; }
+.band-txt { display: grid; gap: 8px; min-width: 0; }
+.band-txt h3 { color: var(--c); }
+.doors { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+@media (max-width: 760px) { .doors { grid-template-columns: 1fr; } }
+.doorcard { display: grid; gap: 6px; justify-items: center; min-width: 0; }
+
+/* Presentación del jefe: la pantalla del juego (480 × 270 px de referencia) a escala; --u es un píxel del juego */
+.intro { display: grid; gap: 10px; padding-block: 16px; border-bottom: 2px solid var(--line); }
+.intro-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; }
+.intro-head h4 { color: var(--c); }
+.is-box { container-type: inline-size; width: 100%; max-width: 760px; }
+.is-screen { --u: calc(100cqw / 480); position: relative; width: 100%; aspect-ratio: 16 / 9; overflow: hidden; background: var(--deep) var(--tiles) 0 0 / calc(96 * var(--u)) calc(96 * var(--u)); box-shadow: inset 0 0 0 2px var(--deep); image-rendering: pixelated; }
+.is-screen > * { position: absolute; }
+.is-shade { inset: 0; background: var(--shade, rgba(0, 0, 0, .25)); }
+.is-pose { background-repeat: no-repeat; background-size: calc(var(--f) * var(--sw)) var(--sw); image-rendering: pixelated; }
+.is-dim { inset: 0; background: rgba(0, 0, 0, .35); }
+.is-edge, .is-band { inset: 0; }
+.is-edge { background: var(--acc); clip-path: polygon(0 calc(162 * var(--u)), 100% calc(134 * var(--u)), 100% calc(202 * var(--u)), 0 calc(230 * var(--u))); }
+.is-band { background: var(--band); opacity: .94; clip-path: polygon(0 calc(164 * var(--u)), 100% calc(136 * var(--u)), 100% calc(200 * var(--u)), 0 calc(228 * var(--u))); }
+.is-name, .is-portrait { height: auto; max-width: none; image-rendering: pixelated; }
+.is-sub, .is-skip { font-family: "Silkscreen", "Courier New", monospace; font-size: calc(8 * var(--u)); line-height: 1; white-space: nowrap; text-transform: uppercase; }
+.is-sub { color: var(--acc); }
+.is-skip { right: calc(8 * var(--u)); bottom: calc(6 * var(--u)); color: #c8c8d2; opacity: .8; }
+@media (prefers-reduced-motion: no-preference) {
+  .play .is-pose { animation-name: is-pose; animation-fill-mode: both; animation-delay: .2s; }
+  .play .is-dim { animation: is-fade-in .3s ease-out 1s both, is-fade-out .3s ease-in 5.9s forwards; }
+  .play .is-edge, .play .is-band { animation: is-slide-l .35s cubic-bezier(.2, .8, .2, 1) 1.1s both, is-out-l .3s ease-in 5.9s forwards; }
+  .play .is-name { animation: is-slide-l .35s cubic-bezier(.2, .8, .2, 1) 1.3s both, is-out-l .3s ease-in 5.9s forwards; }
+  .play .is-sub { animation: is-fade-in .3s ease-out 1.6s both, is-fade-out .2s ease-in 5.9s forwards; }
+  .play .is-portrait { animation: is-slide-r .4s cubic-bezier(.2, .8, .2, 1) 1.25s both, is-out-r .3s ease-in 5.9s forwards; }
+}
+@keyframes is-pose { from { background-position: 0 0; } to { background-position: calc((var(--f) - 1) * var(--sw) * -1) 0; } }
+@keyframes is-fade-in { from { opacity: 0; } }
+@keyframes is-fade-out { to { opacity: 0; } }
+@keyframes is-slide-l { from { transform: translateX(-100%); } to { transform: none; } }
+@keyframes is-out-l { from { transform: none; } to { transform: translateX(-110%); } }
+@keyframes is-slide-r { from { transform: translateX(60%); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes is-out-r { from { transform: none; opacity: 1; } to { transform: translateX(60%); opacity: 0; } }
+
+/* Salas: plano de ejemplo, fosas y catálogo de salas especiales */
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); gap: 8px; }
+.fact { background: var(--chip); padding: 8px 12px; display: grid; gap: 2px; box-shadow: inset 0 0 0 2px var(--line); }
+.fact b { font-family: var(--display); font-size: 1.15rem; color: var(--lime); font-variant-numeric: tabular-nums; }
+.fact span:last-child { font-size: .84rem; color: var(--muted); }
+.plan { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 18px; align-items: start; }
+@media (max-width: 820px) { .plan { grid-template-columns: 1fr; } }
+.plan svg { width: 100%; height: auto; display: block; background: var(--deep); }
+.plan svg text { font-family: var(--display); }
+.keys { display: grid; gap: 6px; font-size: .88rem; }
+.key { display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: 10px; align-items: center; }
+.key i { width: 22px; height: 22px; display: grid; place-items: center; font-style: normal; font-family: var(--display); font-size: .7rem; color: var(--deep); background: var(--k); box-shadow: inset 0 0 0 2px var(--deep); }
+.key i.ring { background: var(--chip); box-shadow: inset 0 0 0 2px var(--k); color: var(--k); }
+.pits { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 18px; align-items: center; }
+@media (max-width: 760px) { .pits { grid-template-columns: 1fr; } }
+.pits svg { width: 100%; height: auto; display: block; background: var(--deep); }
+.pits svg text { font-family: var(--display); }
+.rooms { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+@media (max-width: 760px) { .rooms { grid-template-columns: 1fr; } }
+.rcard { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 14px; align-items: start; min-width: 0; --c: var(--title); }
+.rcard.always { --c: var(--ven); }
+@media (max-width: 460px) { .rcard { grid-template-columns: 1fr; } }
+.rmap { background: var(--deep); padding: 6px; box-shadow: inset 0 0 0 2px var(--line); justify-self: start; }
+.rmap canvas { display: block; image-rendering: pixelated; max-width: 100%; height: auto; }
+.rtxt { display: grid; gap: 6px; min-width: 0; align-content: start; }
+.rtxt h3 { color: var(--c); font-size: 1rem; }
+.rtags { display: flex; flex-wrap: wrap; gap: 4px; }
+.rtxt .extra b { color: var(--c); font-weight: 600; }
+.maplegend { text-shadow: 1px 1px 0 var(--deep); display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: .84rem; color: var(--muted); }
+.maplegend span { display: inline-flex; align-items: center; gap: 6px; }
+.maplegend i { width: 12px; height: 12px; background: var(--k); box-shadow: 0 0 0 1px var(--deep); }
+.handmade { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+@media (max-width: 820px) { .handmade { grid-template-columns: 1fr; } }
+.handmade article { display: grid; gap: 8px; align-content: start; min-width: 0; }
+.handmade h3 { color: var(--title); font-size: 1rem; }
+
+/* Sprites animados: hoja horizontal de --f cuadros de --w × --h px (ya escalados) */
+.sprite { width: var(--w); height: var(--h); background-repeat: no-repeat; background-size: calc(var(--f) * var(--w)) var(--h); animation: sheet var(--d) steps(var(--f)) infinite; max-width: 100%; flex: none; }
+@keyframes sheet { from { background-position: 0 0; } to { background-position: calc(var(--f) * var(--w) * -1) 0; } }
+@media (prefers-reduced-motion: reduce) { .sprite { animation: none; } }
+@media (prefers-reduced-motion: no-preference) { .lin { transition: border-color .12s; } }
+</style>
+
+<div class="wallband" aria-hidden="true"></div>
+<div class="wrap">
+  <header class="lead">
+    <img class="logo" id="logo" alt="Primordia" width="400" height="96">
+    <div class="intro">
+    <span class="label">Piso 2 · Océano cámbrico</span>
+    <h1>Linajes, mutaciones, enemigos y jefes</h1>
+    <p class="muted">Al saltar a la fosa la célula se convierte en una criatura del océano, y la Boca que eliges decide su cuerpo. Como en el piso 1, un linaje se activa con 4 mutaciones, una por ranura, y da el beneficio de su clase más un toque del animal. Los linajes son de cada piso: los del piso 1 se rompen al cambiar de Boca, así que aquí se empieza de cero.</p>
+    <div class="news"><span><b>9 mutaciones</b> (3 Bocas)</span><span><b>8 linajes</b></span><span><b>Carroñero</b>, clase nueva</span><span><b>5 enemigos</b></span><span><b>2 jefes</b> de 300 de vida</span><span><b>3 mutaciones especiales</b> en las almejas</span><span><b>10 salas especiales</b> y fosas</span><span><b>Sala de cambio</b> con su cápsula</span></div>
+    </div>
+    <div class="legend" id="legend"></div>
+    <nav class="toc" aria-label="Secciones">
+      <a href="#beneficios">Beneficios</a>
+      <a href="#cuerpo">Arma un cuerpo</a>
+      <a href="#matriz">Matriz</a>
+      <a href="#mutaciones">Mutaciones</a>
+      <a href="#especiales">Especiales</a>
+      <a href="#enemigos">Enemigos</a>
+      <a href="#bestiario">Bestiario</a>
+      <a href="#oceano">El océano</a>
+      <a href="#salas">Salas</a>
+    </nav>
+  </header>
+
+  <section id="beneficios" aria-labelledby="ben-t">
+    <h2 id="ben-t">Beneficios</h2>
+    <p class="muted">Las clases atraviesan la partida: en cada piso unas duermen y vuelven más tarde, y las que siguen se remodelan. Hongo duerme en el océano (vuelve en el pantano) y entra el Carroñero. Al completar un linaje, el cuerpo se transforma un momento en la silueta del animal.</p>
+    <div class="classes" id="classes"></div>
+  </section>
+
+  <section id="cuerpo" aria-labelledby="sim-t">
+    <h2 id="sim-t">Arma un cuerpo</h2>
+    <p class="muted">Elige una mutación por ranura y mira qué linajes completas o cuánto te falta. Pulsa un linaje para montarlo entero.</p>
+    <div class="sim">
+      <div class="slots" id="slots"></div>
+      <aside class="result panel" aria-live="polite">
+        <div class="result-head">
+          <span class="label">Resultado</span>
+          <button class="reset btn" id="reset" type="button">Vaciar</button>
+        </div>
+        <div class="body-now" id="bodynow"></div>
+        <div id="done"></div>
+        <div class="list" id="ranking"></div>
+      </aside>
+    </div>
+  </section>
+
+  <section id="matriz" aria-labelledby="mx-t">
+    <h2 id="mx-t">Matriz de mutaciones y linajes</h2>
+    <p class="muted">Cada fila es una mutación y cada columna un linaje. Pulsa la cabecera de un linaje para resaltar sus 4 mutaciones.</p>
+    <div class="tablebox panel"><table id="matrix"></table></div>
+    <p class="note">No hay dos linajes con las mismas 4 mutaciones. Cada clase tiene un animal de Boca cuerpo a cuerpo y otro de proyectil o de área, y cada toque hace combo con alguna mutación del propio animal.</p>
+  </section>
+
+  <section id="mutaciones" aria-labelledby="mu-t">
+    <h2 id="mu-t">Mutaciones</h2>
+    <p class="muted">El nivel I de una mutación del piso 2 vale como el nivel II de una del piso 1. Coger otra vez la misma la sube de nivel, hasta el III. Desde este piso la Boca va dibujada en el cuerpo: hay tres cuerpos, uno por familia de ataque. El golpe sale en el cuadro justo de su animación de ataque: la medusa suelta el arpón al contraer la campana, el pez muerde al cerrar las placas y el lirio lanza el remolino al girar la corona. Al saltar a la fosa, la célula se transforma en el cuerpo de la Boca elegida.</p>
+    <div class="bodies" id="bodies"></div>
+    <div class="bodies" id="mutart" role="group" aria-label="Cómo se ven las Extremidades, la Piel y los Órganos"></div>
+    <div class="filter" id="filter" role="group" aria-label="Filtrar por ranura"></div>
+    <div class="tablebox panel"><table id="mutations"></table></div>
+  </section>
+
+  <section id="especiales" aria-labelledby="es-t">
+    <h2 id="es-t">Mutaciones especiales</h2>
+    <p class="muted">Tres mutaciones que solo salen de las almejas grandes: una de Extremidades, una de Piel y una de Órgano especial. Son bastante más fuertes que las demás y suben de nivel como cualquier otra. Una vez equipadas, sus mejoras salen en las elecciones y en la tienda, pero la especial en sí nunca se vende. Sus iconos llevan una gema dorada en la esquina.</p>
+    <div class="specials" id="specials"></div>
+    <div class="price">
+      <article class="panel">
+        <h3>Dónde salen: la sala de la almeja</h3>
+        <div class="anims" id="clam" style="justify-content:center"></div>
+        <p>En cada partida sale, aparte del sorteo de salas especiales, una sala de la almeja: una al azar entre la Gruta escondida, el Anillo de la sima y el Jardín de esponjas, las tres con una almeja grande. Así cada piso tiene al menos una. Al abrirla suelta su biomasa y una burbuja con una especial al azar que no lleves, que salta hacia ti. Dos almejas no guardan la misma.</p>
+      </article>
+      <article class="panel">
+        <h3>El precio: Inestable</h3>
+        <div class="heartrow" id="hearts"></div>
+        <p>Con especiales equipadas, cada golpe que recibes quita <b>medio corazón más por cada especial</b>: con una, un golpe de medio corazón quita uno entero. Solo cuentan los golpes de enemigos, proyectiles y jefes, no el veneno ni las caídas a las fosas. Lo que para un golpe entero (el corazón morado o el verde del Herbívoro) para también el extra. Las especiales no dan corazones ni escudos, para que el precio no se anule. En la pausa, la fila «Inestable» bajo la vida dice cuánto daño extra recibes al pasar el ratón.</p>
+      </article>
+      <article class="panel wide">
+        <h3>Comodín de linaje</h3>
+        <p>Una especial cuenta como la mutación de su ranura de cualquier linaje del que lleves las otras 3. Solo hay dos casos en los que completa dos linajes a la vez: entonces sale un cartel para elegir uno, y en la pausa se puede cambiar con un clic en la fila del linaje.</p>
+        <div class="cases">
+          <div class="case"><b>Extremidad especial</b> con Placas mandibulares, Placas de trilobite y Ojos compuestos: Placodermo o Trilobite.</div>
+          <div class="case"><b>Piel especial</b> con Placas mandibulares, Espinas de Hallucigenia y Ojos compuestos: Opabinia o Trilobite.</div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="enemigos" aria-labelledby="en-t">
+    <h2 id="en-t">Enemigos</h2>
+    <p class="muted">En el piso 1 casi todo se resolvía disparando a lo que se acercaba. Aquí cada enemigo pide algo distinto: reflejos, leer patrones, saber esperar, elegir a quién atacar primero y controlar grupos. Cada sala tiene un presupuesto de enemigos de 4 en la primera, que sube 1,4 por sala.</p>
+    <div class="enemies" id="enemies"></div>
+  </section>
+
+  <section id="bestiario" aria-labelledby="be-t">
+    <h2 id="be-t">Bestiario</h2>
+    <p class="muted">Los jefes del piso 2. En cada partida sale uno de los dos al azar, con 300 de vida cada uno. Sus fases cambian la forma de pelear más que la cantidad de daño. Al entrar en su sala, cada jefe se presenta con un rótulo, como en Enter the Gungeon.</p>
+    <div class="beasts" id="beasts"></div>
+  </section>
+
+  <section id="oceano" aria-labelledby="oc-t">
+    <h2 id="oc-t">El océano</h2>
+    <p class="muted">El camino baja: de 10 a 12 salas de combate en tres franjas de profundidad, con pasillos que mezclan las franjas para que el cambio sea gradual. Las salas son cuevas irregulares generadas con la semilla del piso, más las salas especiales hechas a mano (ver Salas). La nieve marina cae más densa cuanto más hondo estás.</p>
+    <div class="bands" id="bands"></div>
+    <h3>Puertas de losas</h3>
+    <p class="muted">Dos losas de la misma piedra que la pared salen de dentro y se juntan; en la costura se completa un sello con el color de las vetas de cada franja. Al abrirse, el sello se enciende y las losas se retiran.</p>
+    <div class="doors" id="doors"></div>
+  </section>
+
+  <section id="salas" aria-labelledby="sa-t">
+    <h2 id="sa-t">Salas</h2>
+    <p class="muted">Desde el piso 2 el camino mezcla dos tipos de sala: cuevas generadas con la semilla del piso y salas especiales hechas a mano que salen al azar, como las salas fijas de Enter the Gungeon. El catálogo de salas especiales sirve para cualquier franja y para los pisos siguientes. El piso 1 sigue con sus salas rectangulares.</p>
+    <div class="facts" id="facts"></div>
+    <div class="plan panel">
+      <div id="planmap"></div>
+      <div class="keys" id="plankeys"></div>
+    </div>
+    <p class="note muted">Un piso de ejemplo. Las salas especiales con combate cuentan como salas de combate; la de parkour, la Gruta escondida y la del corazón morado son extra. Nunca salen en las dos primeras salas ni en la que va justo antes del jefe. Las salas grandes ocupan dos casillas de la rejilla del generador.</p>
+
+    <h3>Fosas</h3>
+    <div class="pits panel">
+      <div id="pitfig"></div>
+      <ul>
+        <li>Andando sobre una fosa, caes: una animación corta, −½ corazón y vuelves al último suelo firme que pisaste.</li>
+        <li>Esquivando la cruzas, porque la esquiva recorre 3 u. Si la esquiva termina encima de la fosa, también caes. Por eso los huecos miden 2 tiles como mucho.</li>
+        <li>La Cola propulsora (doble esquiva) deja cruzar huecos más anchos o encadenar dos.</li>
+        <li>Los que nadan (medusa azul, cardumen de Pikaia, Anomalocaris) pasan por encima: flotan con vaivén y su sombra queda separada del cuerpo. Los que andan (trilobite, Ottoia, Euriptérido) llevan la sombra pegada y rodean las fosas.</li>
+        <li>Un enemigo empujado a una fosa muere al instante: las burbujas de la Cola propulsora y el estallido de Marea de la Corona de brazos sirven para eso. Los jefes no caen.</li>
+        <li>Los proyectiles, tuyos y de los enemigos, pasan por encima.</li>
+      </ul>
+    </div>
+
+    <h3>Salas especiales</h3>
+    <p class="muted">Un catálogo de 10 salas hechas a mano. En cada partida salen de 2 a 4, sorteadas entre 9: la del corazón morado sale siempre. Aparte sale siempre una sala de la almeja, una al azar entre las tres que llevan almeja grande (ver Especiales). No son salas genéricas llenas de enemigos: cada una tiene algo más.</p>
+    <div class="maplegend" id="maplegend"></div>
+    <div class="rooms" id="rooms"></div>
+
+    <h3>Pasillos y salas hechas a mano</h3>
+    <div class="handmade">
+      <article class="panel"><h3>Pasillos</h3><p>Túneles irregulares de 4 a 6 tiles de largo y 3 o 4 de ancho, con borde de cueva. Sin enemigos, con conchas, algas y nieve marina. Cuando unen dos franjas, el suelo y la luz pasan de una a otra a lo largo del túnel.</p></article>
+      <article class="panel"><h3>Tienda y sala de cambio</h3><p>La tienda sale siempre a mitad del piso, en el Arrecife, como sala lateral: llegas con biomasa y te queda medio piso para aprovechar lo que compres. La sala de cambio va detrás, en un fondo de saco (ver abajo).</p></article>
+      <article class="panel"><h3>Salas de los jefes</h3><p>Antes del jefe hay una antesala: un túnel más largo que acaba en una puerta de losas grande con el sello encendido. Las dos salas están hechas a mano (detalles en el Bestiario) y en ninguna se puede tirar al jefe a una fosa.</p></article>
+    </div>
+
+    <h3>Sala de cambio: el laboratorio de Darwin</h3>
+    <div class="price">
+      <article class="panel">
+        <h3>La cápsula</h3>
+        <div class="anims" id="exchange" style="justify-content:center"></div>
+        <p>En el centro de la sala hay una cápsula de vidrio llena de líquido. Al acercarte y pulsar E se abre su ventana: tu criatura con sus ranuras a la izquierda, como en la pausa, y a la derecha las mutaciones del piso de la ranura que elijas, cada una con su icono, el nivel con el que entraría y lo que hace. Aceptar hace el cambio; Salir o Esc cierra sin cambiar nada.</p>
+      </article>
+      <article class="panel">
+        <h3>Las reglas</h3>
+        <div class="cases">
+          <div class="case"><b>Gratis y una vez por piso.</b> Después el líquido baja y se apaga. Es la única forma de cambiar de Boca.</div>
+          <div class="case"><b>Mismo nivel.</b> Entregas la mutación de una ranura y recibes otra del piso de esa ranura con su nivel. Si la que entregas es de un piso anterior, la nueva entra un nivel por debajo (como mínimo I), porque el nivel I de este piso vale como el II del anterior.</div>
+          <div class="case"><b>Sin especiales.</b> Las mutaciones especiales de las almejas ni se entregan ni se reciben.</div>
+          <div class="case"><b>Cuerpo nuevo.</b> Si la Boca nueva es de otra familia, la criatura entra en la cápsula, el líquido brilla del color de la familia, la silueta cambia de cuerpo y sale delante con un destello. Si no cambia el cuerpo, el líquido solo brilla un momento.</div>
+        </div>
+      </article>
+    </div>
+  </section>
+</div>
+
+<script>
+const ART = /*ASSETS*/{};
+
+const rootStyle = document.documentElement.style;
+for (const [v, key] of [['--floor', 'floor_cambrian'], ['--wall', 'wall'], ['--card', 'ui_card'], ['--panel', 'ui_panel'],
+  ['--button', 'ui_button'], ['--button-hi', 'ui_button_hi'], ['--menu', 'menu_bg']])
+  rootStyle.setProperty(v, `url(${ART[key]})`);
+document.getElementById('logo').src = ART.logo;
+const SLOT_COLORS = ['var(--s-mouth)', 'var(--s-limbs)', 'var(--s-skin)', 'var(--s-organ)'];
+
+const CLASSES = {
+  carn: { name: 'Carnívoro', base: 'Rematar', desc: '+100 % de daño a los enemigos heridos, los que tienen la mitad de su vida o menos (+50 % contra el jefe).',
+          delta: 'Nuevo en el piso 2: los aturdidos y los que tienen Quebrar también cuentan como heridos.' },
+  herb: { name: 'Herbívoro', base: 'Pastar biomasa', desc: 'Cada 12 de biomasa recogida cura medio corazón.',
+          delta: 'Nuevo en el piso 2: con la vida llena guardas hasta 2 medios corazones verdes.' },
+  ven: { name: 'Venenoso', base: 'Toxina débil', desc: 'Los enemigos envenenados reciben +50 % de daño de cualquier fuente.',
+         delta: 'Nuevo en el piso 2: además se mueven un 20 % más lentos.' },
+  carr: { name: 'Carroñero', base: 'Carroña', isNew: true, desc: 'Cada enemigo que muere (también los jefes) deja sus restos 4 s; parpadean el último segundo. Al pasar por encima ganas +20 % de daño durante 5 s, acumulable hasta 3 veces; cada vez renueva los 5 s. Una marca de colmillos sobre ti dice cuántas llevas.',
+          delta: 'Premia moverse con agresividad entre los enemigos que vas matando.',
+          sprites: [['carr_remains', 'Restos', 3, 0.6], ['carr_double', 'Restos dobles', 3, 0.6], ['carr_eat', 'Al comerlos', 2, 0.3], ['carr_mark', 'Colmillos ×3', 3, 0.5]] },
+};
+const SLOTS = ['Boca', 'Extremidades', 'Piel', 'Órgano especial'];
+const SLOT_ICONS = ['slot_mouth', 'slot_limbs', 'slot_skin', 'slot_organ'];
+const BODIES = {
+  Jellyfish: { name: 'Medusa', fam: 'Proyectil' },
+  Placoderm: { name: 'Pez acorazado', fam: 'Cuerpo a cuerpo' },
+  Crinoid: { name: 'Lirio de mar', fam: 'Área' },
+};
+const MUTATIONS = [
+  { id: 'cnid', name: 'Cnidocitos', slot: 0, icon: 'Cnidocytes', body: 'Jellyfish',
+    lv: ['Arpón que atraviesa a 1 enemigo sin darle dos veces: 2 de daño, 3 disparos por segundo y veneno de 1 por segundo durante 3 s.',
+         'Atraviesa a 2 enemigos y el veneno sube a 2 por segundo.',
+         'Ramillete: cada cuarto disparo son 3 arpones en abanico.'] },
+  { id: 'plac', name: 'Placas mandibulares', slot: 0, icon: 'JawPlates', body: 'Placoderm',
+    lv: ['Mordisco en arco de 110°, tan largo como las placas dibujadas (unas 1,9 u desde la boca): 5 de daño, 2 por segundo y un pequeño empujón. Quebrar: el enemigo recibe +25 % de daño de todo durante 2 s, con una marca encima.',
+         '6 de daño y Quebrar dura 3 s.',
+         'Guillotina: cada cuarto mordisco va seguido de una segunda dentellada más grande, con el filo al rojo, que llega más lejos (unas 3,25 u).'] },
+  { id: 'coro', name: 'Corona de brazos', slot: 0, icon: 'ArmCrown', body: 'Crinoid',
+    lv: ['Remolino donde está el cursor (como mucho a 6 u): dura 2 s, radio 1,6 u, atrae a los enemigos al centro (sin dejarlos quietos, y puede arrastrarlos a una fosa) y hace 1 de daño cada 0,4 s. Uno por segundo.',
+         'Radio de 2 u, dura 2,5 s y daña cada 0,3 s.',
+         'Marea: al acabar, el remolino estalla, empuja a todos hacia fuera y hace 4 de daño.'] },
+  { id: 'cola', name: 'Cola propulsora', slot: 1, icon: 'TailPropulsor',
+    lv: ['Dos esquivas seguidas antes de la recarga.',
+         'La segunda esquiva deja 3 burbujas que hacen 2 de daño y empujan.',
+         'Torbellino: las dos esquivas dejan 5 burbujas de 3 de daño.'] },
+  { id: 'hall', name: 'Espinas de Hallucigenia', slot: 1, icon: 'HallucigeniaSpines',
+    lv: ['Al esquivar dejas 2 púas en el suelo durante 4 s; quien las pisa recibe 2 de daño.',
+         '3 púas que duran 6 s.',
+         'Erizo: al desaparecer, cada púa sale disparada hacia el enemigo más cercano.'] },
+  { id: 'tril', name: 'Placas de trilobite', slot: 2, icon: 'TrilobitePlates',
+    lv: ['+1 corazón. 1 de cada 4 proyectiles que te alcanzan se deshace contra tus placas sin hacerte daño.',
+         'Se deshace 1 de cada 3.',
+         'Enrollarse: te enrollas al esquivar y destruyes los proyectiles contra los que esquivas.'] },
+  { id: 'wiwa', name: 'Escleritos de Wiwaxia', slot: 2, icon: 'WiwaxiaSclerites',
+    lv: ['Cada 9 s sueltas 3 escamas hacia los enemigos cercanos (2 de daño cada una).',
+         'Cada 7 s, 5 escamas.',
+         'Órbita: antes de salir, las escamas giran 2 s a tu alrededor y destruyen los proyectiles que tocan. La mejor defensa del piso sin esquivar.'] },
+  { id: 'saco', name: 'Saco de crías', slot: 3, icon: 'BroodSac',
+    lv: ['Clic derecho: 2 larvas aliadas que persiguen y muerden durante 8 s. Recarga: 14 s.',
+         '3 larvas (8 s).',
+         'Enjambre: la larva que mata a un enemigo se divide en dos (también 8 s).'] },
+  { id: 'ojos', name: 'Ojos compuestos', slot: 3, icon: 'CompoundEyes',
+    lv: ['Clic derecho: durante 3 s todo va al 60 % de velocidad salvo tú. Recarga: 12 s.',
+         'Dura 4 s.',
+         'Visión total: mientras dura, tus ataques hacen un 30 % más de daño.'] },
+];
+const LINEAGES = [
+  { id: 'placodermo', name: 'Placodermo', cls: 'carn', art: 'Placoderm', muts: ['plac', 'cola', 'tril', 'ojos'],
+    touch: 'Festín', tdesc: 'Rematar con un mordisco cura medio corazón (como mucho uno cada 6 s). También cuenta la segunda dentellada de la Guillotina.' },
+  { id: 'opabinia', name: 'Opabinia', cls: 'carn', art: 'Opabinia', muts: ['plac', 'hall', 'wiwa', 'ojos'],
+    touch: 'Cinco ojos', tdesc: 'Los Ojos compuestos duran 1 s más, y cada remate mientras duran los alarga 0,5 s.' },
+  { id: 'burgesso', name: 'Burgessomedusa', cls: 'ven', art: 'Burgessomedusa', muts: ['cnid', 'cola', 'wiwa', 'saco'],
+    touch: 'Pólipos urticantes', tdesc: 'Las larvas envenenan al morder.' },
+  { id: 'anemona', name: 'Anémona', cls: 'ven', art: 'Anemone', muts: ['cnid', 'hall', 'tril', 'saco'],
+    touch: 'Lecho urticante', tdesc: 'Quien pisa tus púas queda envenenado.' },
+  { id: 'lirio', name: 'Lirio de mar', cls: 'herb', art: 'Crinoid', muts: ['coro', 'cola', 'tril', 'saco'],
+    touch: 'Corriente nutritiva', tdesc: 'El remolino atrae también la biomasa del suelo.' },
+  { id: 'wiwaxia', name: 'Wiwaxia', cls: 'herb', art: 'Wiwaxia', muts: ['plac', 'cola', 'wiwa', 'saco'],
+    touch: 'Cosecha', tdesc: 'Cada tanda de escleritos que alcanza a 3 o más enemigos distintos da medio corazón verde (hasta 2, como el Pastar; se pierden con el linaje).' },
+  { id: 'trilobite', name: 'Trilobite', cls: 'carr', art: 'Trilobite', muts: ['plac', 'hall', 'tril', 'ojos'],
+    touch: 'Coraza de carroña', tdesc: 'Al tocar unos restos, el siguiente proyectil que te alcance se deshace contra tus placas.' },
+  { id: 'hallu', name: 'Hallucigenia', cls: 'carr', art: 'Hallucigenia', muts: ['coro', 'hall', 'wiwa', 'ojos'],
+    touch: 'Doble ración', tdesc: 'Las púas del suelo que matan a un enemigo dejan restos dobles, dorados, que cuentan como dos (las que dispara el Erizo no).' },
+];
+
+// Enemigos. Animaciones: [clave, nombre, escala, segundos por vuelta]
+const ENEMIES = [
+  { id: 'trilobite', name: 'Trilobite', role: 'Embestida', tiles: 'floor_cambrian',
+    anims: [['en_Trilobite_Move', 'Andar', 3, 0.5], ['en_Trilobite_Warn', 'Aviso', 3, 0.6], ['en_Trilobite_Charge', 'Embestida', 3, 0.21],
+            ['en_Trilobite_Stunned', 'Aturdido', 3, 0.5], ['en_Trilobite_Death', 'Muerte', 2, 0.84]],
+    stats: [['Vida', '14'], ['Coste', '2'], ['Sale desde', 'sala 1']],
+    text: 'Ronda por la sala. Al verte avisa 0,6 s rascando el suelo con los ojos rojos y embiste en línea recta muy rápido. Si choca con una pared queda aturdido 1 s, panza arriba. Su cabeza blindada reduce a la mitad el daño que le entra de frente.',
+    asks: 'Esquivar en el último momento y castigar el aturdimiento, o rodearlo.' },
+  { id: 'jelly', name: 'Medusa azul', role: 'Tiradora de área', tiles: 'floor_cambrian',
+    anims: [['en_BlueJelly_Move', 'Flotar', 3, 0.5], ['en_BlueJelly_Warn', 'Aviso', 2, 0.6], ['en_BlueJelly_Shoot', 'Anillo', 2, 0.32],
+            ['en_BlueJelly_Death', 'Muerte', 2, 0.72], ['en_Proj_BlueJelly', 'Carga', 6, 0.3]],
+    stats: [['Vida', '10'], ['Coste', '2'], ['Sale desde', 'sala 2']],
+    text: 'Flota despacio, a impulsos, como latiendo, y se queda a entre 3,5 y 6 u de ti: si te acercas se aparta y si te alejas te sigue. Cada 3 s, si te ve, se llena con las 8 cargas encendidas (el aviso) y al contraerse suelta el anillo: 8 cargas lentas con un hueco de 72° por donde pasar, que gira 50° de un anillo al siguiente. Pasa por encima de las fosas y hace daño si la tocas. Es azul translúcida para no confundirla con tu medusa, que es rosa.',
+    asks: 'Leer el hueco del anillo y no quedarse quieto.' },
+  { id: 'ottoia', name: 'Ottoia', role: 'Emboscada', tiles: 'floor_cambrian',
+    anims: [['en_Ottoia_Burrowed', 'Enterrada', 2, 0.64], ['en_Ottoia_Warn', 'Aviso', 2, 0.8], ['en_Ottoia_Attack', 'Mordisco', 2, 0.42],
+            ['en_Ottoia_Sink', 'Se hunde', 2, 0.36], ['en_Ottoia_Death', 'Muerte', 2, 0.72]],
+    stats: [['Vida', '9'], ['Mordisco', '1 corazón'], ['Coste', '3'], ['Sale desde', 'sala 2']],
+    text: 'Un gusano de las arenas. Enterrada solo se ve una onda en la arena que se acerca a ti; no recibe daño ni choca con nada (los proyectiles y los remolinos le pasan por encima). Al llegar debajo de ti avisa con un círculo rojo de 0,8 s, sale y muerde a quien siga dentro: un corazón entero. Se queda 1 s asomada y vulnerable, se hunde y descansa un poco. Tocarla no hace daño, para que ir a golpearla cuando asoma (también con un mordisco) no se castigue.',
+    asks: 'Apartarse al ver el círculo y golpearla en el momento en que asoma.' },
+  { id: 'vauxia', name: 'Esponja Vauxia', role: 'Apoyo', tiles: 'floor_cambrian',
+    anims: [['en_Vauxia_Idle', 'Reposo', 2, 0.72], ['en_Vauxia_Heal', 'Cura', 2, 0.55], ['en_Fx_Vauxia_Shield', 'Escudo', 2, 0.6],
+            ['en_Fx_Vauxia_Thread', 'Hilo', 6, 0.24], ['en_Fx_Vauxia_HealMotes', 'Curado', 3, 0.5], ['en_Vauxia_Death', 'Muerte', 2, 0.72]],
+    stats: [['Vida', '16'], ['Alcance', '5,2 u'], ['Coste', '3'], ['Sale desde', 'sala 3'], ['Por sala', 'como mucho 1']],
+    text: 'No se mueve ni ataca, y nada la mueve: ni empujones, ni remolinos, ni tú. Cuando hay combate, cada 3 s emite un pulso verde que cura 2 de vida a los demás enemigos a 5,2 u (a sí misma no) y les da un escudo leve que absorbe 2 de daño durante 3,5 s. Para que se vea a quién cura, un hilo de cuentas de luz la une con cada curado y su cuerpo destella en verde.',
+    asks: 'Decidir si ir a por ella primero, aunque haya que cruzar el combate.' },
+  { id: 'pikaia', name: 'Cardumen de Pikaia', role: 'Enjambre', tiles: 'floor_cambrian', wide: true,
+    anims: [['en_Pikaia_Swim', 'Nadar', 4, 0.44], ['en_Pikaia_Dash', 'Pasada', 3, 0.18], ['en_Pikaia_Death', 'Muerte', 4, 0.6]],
+    stats: [['Vida', '3 cada uno'], ['Grupo', '5 peces'], ['Coste', '2'], ['Sale desde', 'sala 1']],
+    text: 'Cinco peces pequeños y rápidos, de los primeros cordados, que salen juntos y cuestan como uno. Nadan en grupo; al verte te rodean en un corro de 3,5 u que gira a tu alrededor y, de uno en uno, cada poco más de un segundo, uno se para un instante apuntándote y hace una pasada muy rápida que te atraviesa hasta el otro lado del corro. Si caen peces, los que quedan se reparten el corro. Pasan por encima de las fosas.',
+    asks: 'Gestionar varios objetivos a la vez. Aquí brillan la Corona de brazos y las Espinas de Hallucigenia.' },
+];
+
+// Jefes. Sprites: [clave, escala, segundos por vuelta]
+const BOSSES = [
+  {
+    id: 'anom', name: 'Anomalocaris', color: 'var(--anom)', tiles: 'floor_abyss', artWidth: '16rem', hero: ['bo_Anomalocaris_Swim', 2, 0.66],
+    blurb: 'El gran depredador del Cámbrico, con dos apéndices delante de la boca. Pelea en una sala muy grande y en penumbra: se ve, pero poco. Las plantas luminosas iluminan algo a su alrededor y las columnas de algas tapan la vista sin bloquear el paso.',
+    stats: [['Vida', '300'], ['Largo', '≈ 4,7 u'], ['Sala', '≈ 36 × 26, oscura']],
+    hp: [['Acecho', 40, 35], ['Cerco', 35, 60], ['Frenesí', 25, 90]], ticks: ['100 %', '60 %', '25 %', '0'],
+    phases: [
+      { hp: '100–60 %', title: 'Acecho', art: [['bo_Anomalocaris_ClawWarn', 1, 0.7], ['bo_Anomalocaris_ClawStrike', 1, 0.3], ['bo_Anomalocaris_Vulnerable', 1, 1]],
+        items: ['Nada deprisa en círculos junto a las paredes y deja una estela de burbujas lentas que hay que esquivar.',
+                'Zarpazo: avisa 0,7 s echándose atrás con los ojos rojos y los apéndices abiertos, golpea en un cono por delante y se queda 1 s quieto y vulnerable.'] },
+      { hp: '60–25 %', title: 'Cerco', art: [['bo_Anomalocaris_SwimFast', 1, 0.28]],
+        items: ['Nada en espiral a tu alrededor, cerrándose y dejando un muro de burbujas, y termina el cerco con un zarpazo.'] },
+      { hp: '25 %', title: 'Escena: ojos en la oscuridad', art: [['bo_Anomalocaris_EyesDark', 1, 0.88]],
+        items: ['Franjas de cine y las plantas se apagan un instante. Solo se ven sus ojos nadando en la oscuridad; cruzan la sala y se oye un rugido.',
+                'Es inmune mientras dura la escena.'] },
+      { hp: '25–0 %', title: 'Frenesí', art: [['bo_Anomalocaris_Charge', 1, 0.36], ['bo_Anomalocaris_ClawStrike', 1, 0.3]],
+        items: ['Se queda quieto y hace un sonido de carga inconfundible.',
+                'En el suelo aparece el área y la trayectoria de sus dos zarpazos: 0,8 s al empezar la fase, unos 0,5 s cuando le queda poca vida.',
+                'Los dos zarpazos salen demasiado rápido para reaccionar: hay que salir de las zonas marcadas mientras se ven. Después hace una pausa corta en la que se le puede castigar.'] },
+    ],
+    projectiles: [['bo_Fx_Anomalocaris_Bubbles', 'Estela de burbujas', 'Burbujas lentas que suelta al nadar.', 4, 0.5],
+                  ['bo_Fx_Anomalocaris_ClawArea', 'Marcador del zarpazo', 'Zona de 2 u donde caerá cada zarpazo de la fase 3, con la trayectoria en flechas.', 1, 0.5]],
+    room: ['room_Abyss', 'Cueva ovalada de unas 36 × 26, sin fosas: en la fase 3 hace falta todo el suelo. Al entrar baja la luz de la sala y las plantas luminosas, repartidas por los bordes y alguna en el centro, dan casi todo el brillo; 4–6 columnas de algas tapan la vista sin bloquear. Aquí, una sala de muestra del Abismo.'],
+    intro: { key: 'intro_Anomalocaris', sub: 'Terror del Cámbrico', x: 150, y: 94, band: '#08101e', accent: '#78dcd2', shade: 'rgba(0, 0, 0, .55)',
+      text: 'La puerta se cierra y baja la luz de la sala: desde ahí, las plantas luminosas dan casi todo el brillo. El Anomalocaris se acerca nadando, abre los apéndices con los ojos encendidos y entra el rótulo.' },
+    tips: ['Tras cada zarpazo de la fase 1 tienes 1 s para castigarlo.', 'En el frenesí no intentes reaccionar a los zarpazos: muévete en cuanto veas las marcas.'],
+  },
+  {
+    id: 'eury', name: 'Euriptérido', color: 'var(--eury)', tiles: 'floor_cambrian', artWidth: '18rem', hero: ['bo_Eurypterid_Walk', 2, 0.6],
+    blurb: 'Un escorpión marino gigante con pinzas y cola de púa. Pelea en una cueva con rocas que sirven de cobertura. En la mitad de la pelea muda: la fase 1 ataca con su armadura y la fase 2 estrena la cola.',
+    stats: [['Vida', '300'], ['Largo', '≈ 5,6 u'], ['Sala', 'Cueva con rocas']],
+    hp: [['Acorazado', 50, 40], ['Blando y furioso', 50, 85]], ticks: ['100 %', '50 %', '0'],
+    phases: [
+      { hp: '100–50 %', title: 'Acorazado', art: [['bo_Eurypterid_PincerStrike', 1, 0.24], ['bo_Eurypterid_SpineWarn', 1, 0.6], ['bo_Eurypterid_SpineShoot', 1, 0.24]],
+        items: ['Avanza y ataca con las pinzas si estás cerca (golpe corto con aviso).',
+                'Cada pocos segundos las púas de su caparazón se erizan, se cargan de veneno y suelta un abanico de 3 púas venenosas hacia ti.',
+                'Su coraza reduce a la mitad el daño que le entra de frente, como al Trilobite.'] },
+      { hp: '50 %', title: 'Escena: la muda', art: [['bo_Eurypterid_Molt', 1, 3], ['bo_Eurypterid_Exuvia', 1, 1]],
+        items: ['Unos 3 s con franjas de cine: tiembla, se le raja el escudo y sale un cuerpo nuevo, rosado y blando.',
+                'La muda vacía se queda en la sala como cobertura: bloquea proyectiles, los suyos y los tuyos.',
+                'A la vez se derrumban 2 de las rocas de cobertura, para que la fase 2 no sea más fácil.',
+                'Es inmune mientras dura la escena.'] },
+      { hp: '50–0 %', title: 'Blando y furioso', art: [['bo_Eurypterid_Walk_Soft', 1, 0.36], ['bo_Eurypterid_TailSweep', 1, 0.25], ['bo_Eurypterid_DoublePincer', 1, 0.42]],
+        items: ['Recibe un 25 % más de daño y va el doble de rápido.',
+                'Barrido de cola de 180° con estela venenosa, con aviso: la punta de la cola se enciende en verde.',
+                'Sus pinzas encadenan dos golpes, una y luego la otra.'] },
+    ],
+    projectiles: [['bo_Proj_EurypteridSpine', 'Púa venenosa', 'Sale en abanicos de 3 desde su caparazón en la fase 1.', 4, 0.3],
+                  ['bo_Fx_Eurypterid_TailSweep', 'Barrido de cola', 'Media luna venenosa de unas 3 u alrededor del jefe.', 0.5, 0.35]],
+    room: ['room_Cambrian', 'Cueva de unas 30 × 22 con 5–6 rocas de cobertura y grietas solo en los bordes, que en la fase 2 obligan a no pegarse a las paredes. Aquí, una sala de muestra del Arrecife.'],
+    intro: { key: 'intro_Eurypterid', sub: 'Escorpión de los mares', x: 150, y: 92, band: '#08101e', accent: '#78dcd2',
+      text: 'La puerta se cierra y la cámara va al Euriptérido, que levanta y abre las pinzas, eriza las púas del caparazón y se le ponen rojos los ojos mientras entra el rótulo.' },
+    tips: ['En la fase 1 rodéalo: por detrás no tiene coraza.', 'En la fase 2 usa la muda como escudo contra el barrido y las púas.'],
+  },
+];
+
+const BANDS = [
+  { id: 'Shallows', name: 'Someras', where: 'Primeras salas', c: 'var(--cyan)',
+    text: 'Arena turquesa y mucha luz: cáusticas que ondulan sobre el suelo y rayos que entran desde arriba. Hierba marina, conchas y arrecifes de arqueociatos como cobertura.' },
+  { id: 'Cambrian', name: 'Arrecife', where: 'Salas del medio', c: 'var(--s-skin)',
+    text: 'Roca azul con vetas de coral. Esponjas, corales, lirios de mar y conchas de trilobite; corales grandes y grupos de esponjas como cobertura.' },
+  { id: 'Abyss', name: 'Abismo', where: 'Últimas salas y jefe', c: 'var(--title)',
+    text: 'Casi negro, pero sin tapar la vista. Plumas de mar, medusas peine y motas que brillan con luces 2D suaves, y agujas de roca con líquenes. La oscuridad de verdad se reserva para la sala del Anomalocaris.' },
+];
+
+const byId = Object.fromEntries(MUTATIONS.map(m => [m.id, m]));
+const color = cls => `var(--${cls})`;
+const linsOf = mid => LINEAGES.filter(l => l.muts.includes(mid));
+const recipe = l => l.muts.map(m => byId[m].name).join(' + ');
+const icon = m => ART['icon_' + m.icon];
+const pick = [null, null, null, null];
+let focusLin = null;
+
+function el(tag, attrs = {}, ...kids) {
+  const e = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs)) {
+    if (k === 'style') e.style.cssText = v; else if (k.startsWith('on')) e.addEventListener(k.slice(2), v); else e.setAttribute(k, v);
+  }
+  for (const k of kids) if (k != null) e.append(k);
+  return e;
+}
+function img(src, alt, size, cls = 'pixel') {
+  return el('img', { src, alt, width: String(size), height: String(size), class: cls });
+}
+// Sprite animado a partir de una hoja horizontal (cuadros, alto y ancho del cuadro vienen con el arte)
+function sprite(key, scale, seconds, alt) {
+  const f = ART[key + '_f'], h = ART[key + '_s'], w = ART[key + '_w'] || h;
+  return el('div', { class: 'sprite', role: 'img', 'aria-label': alt,
+    style: `--f:${f};--w:${w * scale}px;--h:${h * scale}px;--d:${seconds}s;background-image:url(${ART[key]})` });
+}
+
+// Leyenda
+const legend = document.getElementById('legend');
+for (const [k, c] of Object.entries(CLASSES))
+  legend.append(el('span', {}, el('i', { class: 'dot', style: `--c:${color(k)}` }), `${c.name}: ${c.base}`));
+
+// Beneficios por clase
+const classesBox = document.getElementById('classes');
+for (const [k, c] of Object.entries(CLASSES)) {
+  const touches = el('div', { class: 'touches' }, ...LINEAGES.filter(l => l.cls === k).map(l =>
+    el('div', { class: 'touch' },
+      img(ART['sil_' + l.art], `Silueta: ${l.name}`, 64, 'sil'),
+      el('span', { class: 'who' }, l.name),
+      el('span', { class: 'what' }, el('b', {}, l.touch + ': '), l.tdesc),
+      el('span', { class: 'recipe' }, recipe(l)))));
+  classesBox.append(el('article', { class: 'klass panel', style: `--c:${color(k)}` },
+    el('div', { class: 'klass-head' }, el('h3', {}, c.name), c.isNew ? el('span', { class: 'new' }, 'Clase nueva') : el('span', { class: 'label' }, 'Remodelada')),
+    el('div', { class: 'base' }, el('b', {}, c.base), el('span', {}, c.desc), el('span', { class: 'delta' }, c.delta)),
+    c.sprites ? el('div', { class: 'anims', style: `--tiles:url(${ART.floor_cambrian})` }, ...c.sprites.map(([key, n, sc, d]) =>
+      el('div', { class: 'anim' }, sprite(key, sc, d, `${c.base}: ${n}`), el('span', { class: 'label' }, n)))) : null,
+    el('span', { class: 'label' }, 'Toque de cada animal'),
+    touches));
+}
+
+// Ranuras del simulador
+const slotsBox = document.getElementById('slots');
+const optButtons = {};
+SLOTS.forEach((s, i) => {
+  const opts = el('div', { class: 'opts' });
+  MUTATIONS.filter(m => m.slot === i).forEach(m => {
+    const tags = el('div', { class: 'tags' }, ...linsOf(m.id).map(l => el('span', { class: 'tag', style: `--c:${color(l.cls)}` }, l.name)));
+    const b = el('button', { class: 'opt btn', type: 'button', 'aria-pressed': 'false', onclick: () => { pick[i] = pick[i] === m.id ? null : m.id; focusLin = null; render(); } },
+      img(icon(m), '', 24), el('span', { class: 'name' }, m.name), tags);
+    optButtons[m.id] = b;
+    opts.append(b);
+  });
+  slotsBox.append(el('div', { class: 'slot panel', style: `--c:${SLOT_COLORS[i]}` }, el('span', { class: 'label' }, s), opts));
+});
+function setLineage(l) {
+  l.muts.forEach(mid => { pick[byId[mid].slot] = mid; });
+  focusLin = l.id;
+  render();
+}
+document.getElementById('reset').addEventListener('click', () => { pick.fill(null); focusLin = null; render(); });
+
+// Matriz
+const table = document.getElementById('matrix');
+(function buildMatrix() {
+  const head = el('tr', {}, el('th', { scope: 'col' }, el('span', { class: 'label' }, 'Mutación')));
+  LINEAGES.forEach(l => head.append(el('th', { scope: 'col', 'data-lin': l.id, style: `--c:${color(l.cls)}` },
+    el('button', { type: 'button', title: `${CLASSES[l.cls].base} · ${l.touch}`, onclick: () => { focusLin = focusLin === l.id ? null : l.id; render(); } },
+      el('span', { class: 'nm' }, l.name), el('span', { class: 'cls' }, CLASSES[l.cls].name)))));
+  head.append(el('th', { scope: 'col' }, el('span', { class: 'label' }, 'Linajes')));
+  const tbody = el('tbody');
+  SLOTS.forEach((s, i) => {
+    tbody.append(el('tr', { class: 'slotrow', style: `--c:${SLOT_COLORS[i]}` }, el('th', { colspan: String(LINEAGES.length + 2) }, s)));
+    MUTATIONS.filter(m => m.slot === i).forEach(m => {
+      const tr = el('tr', { 'data-mut': m.id }, el('th', { scope: 'row' }, m.name));
+      LINEAGES.forEach(l => tr.append(el('td', { 'data-lin': l.id, style: `--c:${color(l.cls)}` },
+        l.muts.includes(m.id) ? el('span', { class: 'cell', title: `${m.name} · ${l.name}` }) : '')));
+      tr.append(el('td', { class: 'count' }, String(linsOf(m.id).length)));
+      tbody.append(tr);
+    });
+  });
+  table.append(el('thead', {}, head), tbody);
+})();
+
+function render() {
+  for (const [id, b] of Object.entries(optButtons)) b.setAttribute('aria-pressed', String(pick.includes(id)));
+  const done = document.getElementById('done');
+  const ranking = document.getElementById('ranking');
+  const bodyNow = document.getElementById('bodynow');
+  done.replaceChildren(); ranking.replaceChildren(); bodyNow.replaceChildren();
+  const mouth = pick[0] && byId[pick[0]];
+  if (mouth) bodyNow.append(sprite(`body_${mouth.body}_idle`, 2, 0.72, BODIES[mouth.body].name),
+    el('span', {}, `Cuerpo: ${BODIES[mouth.body].name} (${BODIES[mouth.body].fam.toLowerCase()}), por la Boca elegida.`));
+  else bodyNow.append(el('span', {}, 'Sin Boca elegida todavía: la Boca decide el cuerpo.'));
+  const chosen = pick.filter(Boolean);
+  const scored = LINEAGES.map(l => ({ l, hit: l.muts.filter(m => pick.includes(m)).length }))
+    .sort((a, b) => b.hit - a.hit || LINEAGES.indexOf(a.l) - LINEAGES.indexOf(b.l));
+  const full = scored.filter(s => s.hit === 4);
+  if (full.length) {
+    full.forEach(({ l }) => {
+      const c = CLASSES[l.cls];
+      const evo = sprite('evo_' + l.art, 1, 2.2, `Evolución: ${l.name}`); evo.classList.add('evo');
+      done.append(el('div', { class: 'done', style: `--c:${color(l.cls)}` },
+        evo,
+        el('span', { class: 'label' }, `Linaje activo · ${c.name}`),
+        el('b', { class: 'big' }, l.name),
+        el('span', { class: 'muted' }, 'Así evoluciona al completarlo.'),
+        el('div', { class: 'gives' },
+          el('span', {}, el('b', {}, c.base + ': '), c.desc),
+          el('span', {}, el('b', {}, l.touch + ': '), l.tdesc))));
+    });
+  } else if (!chosen.length) {
+    done.append(el('p', { class: 'muted' }, 'Aún no has elegido nada. Así quedan los 8 linajes del piso 2:'));
+  } else {
+    done.append(el('p', { class: 'muted' }, 'Ningún linaje completo todavía. Los más cercanos:'));
+  }
+  scored.filter(s => s.hit < 4).forEach(({ l, hit }) => {
+    const missing = l.muts.filter(m => !pick.includes(m));
+    const blocked = missing.filter(m => pick[byId[m].slot]);
+    const pips = el('span', { class: 'pips', 'aria-hidden': 'true' }, ...l.muts.map(m => el('i', { class: 'pip' + (pick.includes(m) ? ' on' : '') })));
+    const txt = chosen.length
+      ? 'Te falta: ' + missing.map(m => byId[m].name).join(', ') + (blocked.length ? ` (cambiando ${blocked.map(m => SLOTS[byId[m].slot].toLowerCase()).join(' y ')})` : '')
+      : recipe(l);
+    ranking.append(el('button', { class: 'lin', type: 'button', style: `--c:${color(l.cls)}`, onclick: () => setLineage(l) },
+      el('span', { class: 'lin-top' }, pips, el('span', { class: 'nm' }, l.name),
+        el('span', { class: 'cls' }, `${CLASSES[l.cls].base} · ${l.touch}`), el('span', { class: 'score' }, `${hit}/4`)),
+      el('span', { class: 'miss' }, txt)));
+  });
+  table.querySelectorAll('[data-lin]').forEach(c => c.classList.toggle('hl', c.dataset.lin === focusLin));
+  table.querySelectorAll('tr[data-mut]').forEach(r => r.classList.toggle('picked', pick.includes(r.dataset.mut)));
+}
+render();
+
+// Cuerpos (uno por Boca)
+const bodiesBox = document.getElementById('bodies');
+// Lo que se ve de cada Boca al atacar: [hoja, nombre, escala, segundos]
+const MOUTH_FX = {
+  Jellyfish: [['mo_harpoon', 'Arpón', 3, 0.16], ['mo_muzzle', 'Destello', 3, 0.24]],
+  Placoderm: [['mo_bite', 'Mordisco', 2, 0.42], ['mo_guillotine', 'Guillotina', 1.5, 0.48], ['mo_shatter', 'Quebrar', 3, 0.6]],
+  Crinoid: [['mo_whirl', 'Remolino', 1.5, 0.4], ['mo_tide', 'Marea', 1.5, 0.48]],
+};
+MUTATIONS.filter(m => m.slot === 0).forEach(m => {
+  const b = BODIES[m.body];
+  bodiesBox.append(el('div', { class: 'bodycard panel', style: `--tiles:url(${ART.floor_cambrian})` },
+    el('div', { class: 'pair' }, sprite(`body_${m.body}_idle`, 3, 0.72, `${b.name} en reposo`), sprite(`body_${m.body}_atk`, 3, 0.42, `${b.name} atacando`),
+      sprite(`mo_morph_${m.body}`, 2, 2.4, `Metamorfosis en ${b.name.toLowerCase()}`)),
+    el('b', {}, b.name), el('span', { class: 'note' }, `${b.fam} · ${m.name}`),
+    el('div', { class: 'anims' }, ...MOUTH_FX[m.body].map(([k, n, sc, d]) =>
+      el('div', { class: 'anim' }, sprite(k, sc, d, `${m.name}: ${n}`), el('span', { class: 'label' }, n))))));
+});
+
+// Extremidades y Piel: su capa sobre los 3 cuerpos; Órganos: sus efectos. [hoja, nombre, escala, segundos]
+const MUT_ART = {
+  cola: { layer: 'TailPropulsor', note: 'Aleta turquesa detrás del cuerpo', fx: [['mf_bubble', 'Burbuja', 3, 0.36], ['mf_bubbleBig', 'Torbellino', 3, 0.48], ['mf_pop', 'Revienta', 3, 0.24]] },
+  hall: { layer: 'HallucigeniaSpines', note: 'Púas en el lomo, detrás del cuerpo', fx: [['mf_spine', 'Púa en el suelo', 3, 0.8]] },
+  tril: { layer: 'TrilobitePlates', note: 'Placas delante, la cara a la vista', fx: [['mf_bounce', 'Rebote', 3, 0.3], ['mf_roll', 'Enrollarse', 2, 0.4]] },
+  wiwa: { layer: 'WiwaxiaSclerites', note: 'Escamas delante, la cara a la vista', fx: [['mf_release', 'Tanda', 2, 0.42], ['mf_block', 'Órbita: bloqueo', 3, 0.3]] },
+  saco: { note: 'Se abre y suelta las larvas', fx: [['mf_sac', 'Se abre', 2, 0.6], ['mf_larva', 'Larva', 3, 0.44], ['mf_larvaBite', 'Mordisco', 3, 0.32], ['mf_split', 'Enjambre', 3, 0.24]] },
+  ojos: { note: 'Ojo de facetas sobre el jugador y marco ámbar en la pantalla', fx: [['mf_eyes', 'Destello', 2, 0.42]] },
+};
+const mutArtBox = document.getElementById('mutart');
+MUTATIONS.filter(m => MUT_ART[m.id]).forEach(m => {
+  const a = MUT_ART[m.id];
+  mutArtBox.append(el('div', { class: 'bodycard panel', style: `--tiles:url(${ART.floor_cambrian})` },
+    a.layer ? el('div', { class: 'pair', style: 'flex-wrap:wrap' }, ...Object.entries(BODIES).map(([body, b]) =>
+      sprite(`ml_${a.layer}_${body}`, 2, 0.72, `${m.name} sobre ${b.name.toLowerCase()}`))) : null,
+    el('b', {}, m.name), el('span', { class: 'note' }, `${SLOTS[m.slot]} · ${a.note}`),
+    el('div', { class: 'anims' }, ...a.fx.map(([k, n, sc, d]) =>
+      el('div', { class: 'anim' }, sprite(k, sc, d, `${m.name}: ${n}`), el('span', { class: 'label' }, n))))));
+});
+
+// Tabla de mutaciones, con filtro por ranura
+let slotFilter = -1;
+const mutTable = document.getElementById('mutations');
+const filterBox = document.getElementById('filter');
+const filterButtons = [];
+[-1, 0, 1, 2, 3].forEach(i => {
+  const b = el('button', { class: 'btn', type: 'button', 'aria-pressed': String(i === slotFilter), onclick: () => { slotFilter = i; renderMutations(); } },
+    i >= 0 ? img(ART[SLOT_ICONS[i]], '', 16) : null, i >= 0 ? SLOTS[i] : 'Todas');
+  filterButtons.push([i, b]);
+  filterBox.append(b);
+});
+function renderMutations() {
+  filterButtons.forEach(([i, b]) => b.setAttribute('aria-pressed', String(i === slotFilter)));
+  const head = el('tr', {}, el('th', { scope: 'col' }, 'Mutación'), el('th', { scope: 'col' }, 'Nivel I'),
+    el('th', { scope: 'col' }, 'Nivel II'), el('th', { scope: 'col' }, 'Nivel III (evolución)'), el('th', { scope: 'col' }, 'Linajes'));
+  const body = el('tbody');
+  MUTATIONS.filter(m => slotFilter < 0 || m.slot === slotFilter).forEach(m => {
+    body.append(el('tr', {},
+      el('th', { scope: 'row' }, el('div', { class: 'mname' }, img(icon(m), '', 32), el('b', {}, m.name),
+        el('span', { class: 'slotname', style: `--c:${SLOT_COLORS[m.slot]}` }, SLOTS[m.slot]),
+        m.body ? el('span', { class: 'fam' }, `${BODIES[m.body].fam} → ${BODIES[m.body].name.toLowerCase()}`) : null)),
+      ...m.lv.map((t, i) => el('td', { class: 'lv' }, el('span', { class: 'lvn' }, ['I', 'II', 'III'][i]), t)),
+      el('td', { class: 'lins' }, el('div', { class: 'tags' }, ...linsOf(m.id).map(l => el('span', { class: 'tag', style: `--c:${color(l.cls)}` }, l.name))))));
+  });
+  mutTable.replaceChildren(el('thead', {}, head), body);
+}
+renderMutations();
+
+// Mutaciones especiales de las almejas
+const SPECIALS = [
+  { name: 'Flagelos de Leanchoilia', slot: 1, icon: 'LeanchoiliaFlagella',
+    anims: [['sp_lash', 'Latigazo', 2, 1.2], ['sp_ready', 'Listo', 2, 0.64]],
+    note: 'Leanchoilia era un artrópodo con dos grandes apéndices delante de la cabeza acabados en largos flagelos. No se dibujan en el cuerpo: solo se ven en el latigazo y en el destello de listo.',
+    lv: ['Cuando tu ataque alcanza a un enemigo, unos flagelos aparecen junto a él y lo azotan a los 0,4 s con el daño de 1 s de tu Boca y sus efectos (Quebrar, veneno). Con la Corona de brazos, azotan a todos los que hay dentro del remolino. Si muere antes, van al más cercano a 2 u. Uno cada 3 s.',
+         'Uno cada 2,5 s y un 25 % más de daño.',
+         'Latigazo en cadena: el latigazo salta a los 2 enemigos más cercanos con el mismo daño.'] },
+  { name: 'Cutícula de Marrella', slot: 2, icon: 'MarrellaCuticle',
+    anims: [['sp_cuticle_Jellyfish', 'Medusa', 2, 0.66], ['sp_cuticle_Placoderm', 'Pez acorazado', 2, 0.66], ['sp_cuticle_Crinoid', 'Lirio de mar', 2, 0.66],
+            ['sp_reflect', 'Reflejo', 2, 0.5], ['sp_stun', 'Aturde', 2, 0.5], ['sp_proj', 'Devuelto', 3, 0.32]],
+    note: 'Marrella conserva en sus fósiles la iridiscencia de sus espinas, que descomponían la luz.',
+    lv: ['Esquiva justa: si un ataque te alcanza mientras esquivas, tu piel lo refleja con un destello iridiscente. Un proyectil vuelve buscando a quien lo lanzó y le hace 6 de daño; un golpe cuerpo a cuerpo o de contacto aturde 1 s al atacante y le hace 3.',
+         '8 de daño el proyectil y 4 el destello, que aturde 1,5 s.',
+         'Prisma: cada proyectil reflejado se divide en 3 en abanico.'] },
+  { name: 'Yema clonal', slot: 3, icon: 'ClonalBud',
+    anims: [['sp_sprout', 'Brote', 2, 0.5], ['sp_body', 'Tú', 2, 0.66], ['sp_clone', 'La copia', 2, 0.66], ['sp_dissolve', 'Se deshace', 2, 0.5]],
+    note: 'Se inspira en la gemación de los animales coloniales. La copia es tu propio sprite, pasado a verde agua y translúcido.',
+    lv: ['Clic derecho: brota una copia de ti durante 6 s. Va sola a por los enemigos con tu Boca (se acerca con un mordisco, guarda distancia con un disparo) y hace la mitad de tu daño, con los efectos de la Boca pero no los de tus otras mutaciones. No recibe daño, pero los enemigos la atacan como a ti. Flota sobre las fosas. La recarga de 15 s empieza cuando desaparece (también si se limpia la sala).',
+         'Dura 7 s y hace el 65 % de tu daño.',
+         'Gemación: brotan dos copias.'] },
+];
+document.getElementById('specials').append(...SPECIALS.map(m => el('article', { class: 'special panel', style: `--c:${SLOT_COLORS[m.slot]};--tiles:url(${ART.floor_abyss})` },
+  el('div', { class: 'special-head' }, img(ART['sp_icon_' + m.icon], '', 54), el('h3', {}, m.name),
+    el('span', { class: 'slotname' }, SLOTS[m.slot] + ' · especial')),
+  el('div', { class: 'anims' }, ...m.anims.map(([k, n, sc, d]) => el('div', { class: 'anim' }, sprite(k, sc, d, `${m.name}: ${n}`), el('span', { class: 'label' }, n)))),
+  el('div', { class: 'lvs' }, ...m.lv.map((t, i) => el('div', {}, el('span', { class: 'lvn' }, ['I', 'II', 'III'][i]), el('span', {}, t)))),
+  el('p', { class: 'note' }, m.note))));
+document.getElementById('exchange').style.setProperty('--tiles', `url(${ART.floor_cambrian})`);
+document.getElementById('exchange').append(
+  el('div', { class: 'anim' }, sprite('ex_idle', 3, 0.84, 'Cápsula de Darwin en reposo'), el('span', { class: 'label' }, 'En reposo')),
+  el('div', { class: 'anim' }, sprite('ex_morph', 3, 3.3, 'Metamorfosis de medusa a pez dentro de la cápsula'), el('span', { class: 'label' }, 'Medusa → pez')),
+  el('div', { class: 'anim' }, sprite('ex_used', 3, 1.04, 'Cápsula ya usada en este piso'), el('span', { class: 'label' }, 'Gastada')));
+document.getElementById('clam').style.setProperty('--tiles', `url(${ART.floor_abyss})`);
+document.getElementById('clam').append(el('div', { class: 'anim' }, sprite('sp_clam', 3, 1.6, 'Almeja grande que respira y se abre'), el('span', { class: 'label' }, 'Almeja grande')));
+document.getElementById('hearts').append(
+  ...[['sp_hearts', 'Normal'], ['sp_hearts_unstable', 'Inestable'], ['sp_hearts_purple', 'Con el corazón morado']].map(([k, t]) =>
+    el('figure', {}, el('img', { src: ART[k], alt: t, width: '156', height: '48', class: 'pixel' }), el('figcaption', {}, t))),
+  el('figure', {}, sprite('sp_break', 2, 0.6, 'El medio corazón extra se rompe'), el('figcaption', {}, 'Rotura')));
+
+// Enemigos
+const enemiesBox = document.getElementById('enemies');
+ENEMIES.forEach(e => {
+  enemiesBox.append(el('article', { class: 'enemy panel' + (e.wide ? ' wide' : ''), id: 'en-' + e.id, style: `--tiles:url(${ART[e.tiles]})` },
+    el('div', { class: 'enemy-head' }, el('h3', {}, e.name), el('span', { class: 'role' }, e.role)),
+    el('div', { class: 'anims' }, ...e.anims.map(([k, n, s, d]) => el('div', { class: 'anim' }, sprite(k, s, d, `${e.name}: ${n}`), el('span', { class: 'label' }, n)))),
+    el('div', { class: 'stats' }, ...e.stats.map(([k, v]) => el('div', { class: 'stat' }, el('span', { class: 'label' }, k), el('b', {}, v)))),
+    el('p', {}, e.text),
+    el('div', { class: 'asks' }, el('b', {}, 'Lo que exige: '), e.asks)));
+});
+
+// Bestiario
+const beasts = document.getElementById('beasts');
+BOSSES.forEach(b => {
+  const hp = el('div', { class: 'hpbar' },
+    el('span', { class: 'label' }, 'Fases según su vida'),
+    el('div', { class: 'track', role: 'img', 'aria-label': 'Fases: ' + b.hp.map(([n, w]) => `${n} ${w} %`).join(', ') },
+      ...b.hp.map(([n, w, k]) => el('div', { class: 'seg', style: `--w:${w};--k:${k}%` }, n))),
+    el('div', { class: 'ticks', 'aria-hidden': 'true' },
+      ...b.hp.map(([, w], i) => el('span', { style: `--w:${w}` }, b.ticks[i])),
+      el('span', { style: 'flex:0 0 auto' }, b.ticks[b.ticks.length - 1])));
+  const top = el('div', { class: 'beast-top' },
+    el('div', { class: 'stage' }, sprite(b.hero[0], b.hero[1], b.hero[2], b.name)),
+    el('div', { class: 'beast-id' },
+      el('span', { class: 'label' }, 'Jefe · piso 2 · sale al 50 %'),
+      el('h3', {}, b.name),
+      el('p', {}, b.blurb),
+      el('div', { class: 'stats' }, ...b.stats.map(([k, v]) => el('div', { class: 'stat' }, el('span', { class: 'label' }, k), el('b', {}, v)))),
+      hp));
+  const phases = el('div', { class: 'phases' }, ...b.phases.map(p => el('div', { class: 'phase' },
+    el('div', { class: 'phase-art' },
+      el('span', { class: 'phase-hp' }, p.hp),
+      el('div', { class: 'thumb' }, ...p.art.map(([k, s, d]) => sprite(k, s, d, `${b.name}: ${p.title}`)))),
+    el('div', { class: 'phase-body' }, el('h4', {}, p.title), el('ul', {}, ...p.items.map(t => el('li', {}, t)))))));
+  const extras = el('div', { class: 'extras' },
+    el('div', {},
+      el('span', { class: 'label' }, 'Efectos y proyectiles'),
+      el('div', { class: 'projs' }, ...b.projectiles.map(([key, n, t, s, d]) => el('div', { class: 'proj' },
+        el('div', { class: 'ball' }, sprite(key, s, d, n)),
+        el('span', {}, el('b', {}, n + ': '), t)))),
+      el('span', { class: 'label' }, 'Consejos'),
+      el('ul', {}, ...b.tips.map(t => el('li', {}, t)))),
+    el('div', {},
+      el('span', { class: 'label' }, 'Su sala'),
+      el('div', { class: 'room' }, el('img', { src: ART[b.room[0]], alt: `Sala de muestra para el ${b.name}`, class: 'pixel' })),
+      el('p', { class: 'note' }, b.room[1])));
+  beasts.append(el('article', { class: 'beast panel', id: b.id, style: `--c:${b.color};--tiles:url(${ART[b.tiles]});--artw:${b.artWidth}` }, top, introScreen(b, b.tiles), phases, extras));
+});
+
+// El océano
+const bandsBox = document.getElementById('bands');
+BANDS.forEach(bd => bandsBox.append(el('article', { class: 'band panel', style: `--c:${bd.c}` },
+  el('div', { class: 'room' }, el('img', { src: ART['room_' + bd.id], alt: `Sala de muestra: ${bd.name}`, class: 'pixel' })),
+  el('div', { class: 'band-txt' }, el('span', { class: 'label' }, bd.where), el('h3', {}, bd.name), el('p', {}, bd.text)))));
+const doorsBox = document.getElementById('doors');
+BANDS.forEach(bd => doorsBox.append(el('div', { class: 'doorcard panel' },
+  sprite('door_' + bd.id, 2, 2.3, `Puerta de losas: ${bd.name}`), el('span', { class: 'label' }, bd.name))));
+// Presentación del jefe: pantalla de 480 × 270 px del juego con la pose, la banda, el nombre y el retrato, en bucle
+function introScreen(b, tiles) {
+  const I = b.intro;
+  const px = v => `calc(${v} * var(--u))`;
+  const f = ART[I.key + '_pose_f'], s = ART[I.key + '_pose_s'];
+  const tw = ART[I.key + '_title_w'], th = ART[I.key + '_title_h'];
+  const pose = el('div', { class: 'is-pose', style: `left:${px(I.x - s / 2)};top:${px(I.y - s / 2)};width:${px(s)};height:${px(s)};` +
+    `--f:${f};--sw:${px(s)};background-image:url(${ART[I.key + '_pose']});animation-duration:${(f * 0.13).toFixed(2)}s;animation-timing-function:steps(${f - 1})` });
+  const screen = el('div', { class: 'is-screen play', role: 'img',
+      'aria-label': `Presentación del ${b.name}: el jefe hace su pose y entra el rótulo «${b.name.toUpperCase()}, ${I.sub}» con su retrato`,
+      style: `--band:${I.band};--acc:${I.accent};--tiles:url(${ART[tiles]});--shade:${I.shade || 'rgba(0,0,0,.25)'}` },
+    el('div', { class: 'is-shade' }), pose, el('div', { class: 'is-dim' }), el('div', { class: 'is-edge' }), el('div', { class: 'is-band' }),
+    el('img', { class: 'is-name', src: ART[I.key + '_title'], alt: '', style: `left:${px(36)};top:${px(199 - th)};width:${px(tw)}` }),
+    el('span', { class: 'is-sub', style: `left:${px(42)};top:${px(198)}` }, I.sub),
+    el('img', { class: 'is-portrait', src: ART[I.key + '_portrait'], alt: '', style: `left:${px(278)};top:${px(48)};width:${px(176)}` }),
+    el('span', { class: 'is-skip' }, '[E] Saltar'));
+  return el('div', { class: 'intro' },
+    el('div', { class: 'intro-head' }, el('h4', {}, 'Presentación al entrar'), el('span', { class: 'label' }, 'Unos 3 s · siempre · se salta con E')),
+    el('p', {}, I.text),
+    el('div', { class: 'is-box' }, screen));
+}
+// Vuelve a empezar las presentaciones cada 7,2 s
+setInterval(() => document.querySelectorAll('.is-screen').forEach(s => { s.classList.remove('play'); void s.offsetWidth; s.classList.add('play'); }), 7200);
+
+// Salas: cifras, plano de ejemplo, fosas y catálogo
+const NS = 'http://www.w3.org/2000/svg';
+function sv(tag, attrs = {}, text) {
+  const e = document.createElementNS(NS, tag);
+  for (const [k, v] of Object.entries(attrs)) e.setAttribute(k, v);
+  if (text != null) e.textContent = text;
+  return e;
+}
+const cssVar = name => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+
+const FACTS = [['10–12', 'salas de combate en el camino'], ['2–4', 'salas especiales por partida, de un catálogo de 10'],
+  ['2 · 4 · 6 · 8 · 10', 'recompensa al limpiar esas salas'], ['4 + 1,4', 'presupuesto de enemigos: 4 en la primera y +1,4 por sala'],
+  ['3 franjas', 'por tercios del camino: salas 1–4 Someras, 5–8 Arrecife, 9–12 Abismo']];
+document.getElementById('facts').append(...FACTS.map(([b, t]) => el('div', { class: 'fact' }, el('b', {}, b), el('span', {}, t))));
+
+// Plano de ejemplo: rejilla de 7 × 7 casillas; el camino baja
+const PLAN = [
+  { k: 'start', c: 0, r: 0, t: 'IN' }, { n: 1, c: 1, r: 0, band: 0 }, { n: 2, c: 2, r: 0, band: 0, rew: 1 },
+  { n: 3, c: 3, r: 0, band: 0, sp: 1 }, { n: 4, c: 3, r: 1, band: 0, rew: 1 }, { n: 5, c: 4, r: 1, band: 1 },
+  { n: 6, c: 4, r: 2, band: 1, rew: 1 }, { k: 'parkour', c: 4, r: 3, h: 2, t: 'PK' }, { n: 7, c: 4, r: 5, band: 1 },
+  { n: 8, c: 3, r: 5, band: 1, rew: 1 }, { n: 9, c: 2, r: 5, band: 2, sp: 1 }, { n: 10, c: 2, r: 6, band: 2, rew: 1 },
+  { n: 11, c: 3, r: 6, band: 2 }, { n: 12, c: 4, r: 6, band: 2 }, { k: 'boss', c: 5, r: 6, t: 'JF' }, { k: 'pass', c: 6, r: 6, t: 'SP' },
+];
+const SIDE = [{ k: 'shop', c: 5, r: 2, t: 'T', from: [4, 2] }, { k: 'exch', c: 6, r: 2, t: 'C', from: [5, 2] },
+  { k: 'heart', c: 1, r: 5, t: '♥', from: [2, 5] }];
+const KIND = {
+  0: ['--cyan', 'Someras (salas 1–4)'], 1: ['--s-skin', 'Arrecife (salas 5–8)'], 2: ['--abyss', 'Abismo (salas 9–12)'],
+  start: ['--ink', 'Inicio'], parkour: ['--lime', 'Sala especial sin combate (aquí, el parkour: 2 casillas)'],
+  boss: ['--anom', 'Jefe, con su antesala'], pass: ['--muted', 'Sala de paso'], shop: ['--carr', 'Tienda (lateral, a mitad del piso)'],
+  exch: ['--s-limbs', 'Sala de cambio (detrás de la tienda)'], heart: ['--ven', 'Corazón morado (lateral, siempre en el Abismo)'],
+};
+(function drawPlan() {
+  const S = 60, M = 10, B = 44;
+  const svg = sv('svg', { viewBox: `0 0 ${7 * S + 2 * M} ${7 * S + 2 * M}`, role: 'img',
+    'aria-label': 'Piso de ejemplo: 12 salas de combate que bajan por la rejilla en tres franjas, con dos especiales, el parkour, la tienda y la sala de cambio a mitad del piso, el corazón morado en el Abismo, el jefe y la sala de paso.' });
+  const cx = c => M + c * S + S / 2, cy = r => M + r * S + S / 2;
+  const line = (a, b) => svg.append(sv('line', { x1: cx(a[0]), y1: cy(a[1]), x2: cx(b[0]), y2: cy(b[1]), stroke: cssVar('--line'), 'stroke-width': 10 }));
+  for (let i = 1; i < PLAN.length; i++) {
+    const a = PLAN[i - 1], b = PLAN[i];
+    line([a.c, a.r + (a.h ? a.h - 1 : 0)], [b.c, b.r]);
+  }
+  SIDE.forEach(s => line(s.from, [s.c, s.r]));
+  const deep = cssVar('--deep');
+  [...PLAN, ...SIDE].forEach(p => {
+    const kind = p.k || p.band, col = cssVar(KIND[kind][0]);
+    const h = (p.h || 1) * S - (S - B);
+    svg.append(sv('rect', { x: cx(p.c) - B / 2, y: cy(p.r) - B / 2, width: B, height: h, fill: col,
+      stroke: p.sp ? cssVar('--lime') : deep, 'stroke-width': p.sp ? 4 : 2, 'stroke-dasharray': p.sp ? '6 3' : 'none' }));
+    if (p.k === 'parkour') for (let k = 0; k < 4; k++)
+      svg.append(sv('rect', { x: cx(p.c) - 14 + (k % 2) * 16, y: cy(p.r) - 12 + k * 18, width: 12, height: 8, fill: deep, opacity: .55 }));
+    svg.append(sv('text', { x: cx(p.c), y: cy(p.r) + (p.h ? (p.h - 1) * S / 2 : 0) + 6, 'text-anchor': 'middle', 'font-size': 16, fill: deep }, p.t || String(p.n)));
+    if (p.rew) svg.append(sv('text', { x: cx(p.c) + B / 2 + 1, y: cy(p.r) - B / 2 + 4, 'text-anchor': 'middle', 'font-size': 15, fill: cssVar('--lime'), stroke: deep, 'stroke-width': 3, 'paint-order': 'stroke' }, '★'));
+  });
+  document.getElementById('planmap').append(svg);
+  const keys = document.getElementById('plankeys');
+  keys.append(el('span', { class: 'label' }, 'Leyenda'));
+  [0, 1, 2, 'start', 'parkour', 'shop', 'exch', 'heart', 'boss', 'pass'].forEach(k =>
+    keys.append(el('div', { class: 'key' }, el('i', { style: `--k:var(${KIND[k][0]})` }), el('span', {}, KIND[k][1]))));
+  keys.append(el('div', { class: 'key' }, el('i', { class: 'ring', style: '--k:var(--lime)' }, '3'), el('span', {}, 'Sala especial con combate (borde discontinuo)')));
+  keys.append(el('div', { class: 'key' }, el('i', { class: 'ring', style: '--k:var(--lime)' }, '★'), el('span', {}, 'Recompensa al limpiar la sala')));
+})();
+
+// Fosas: la esquiva (3 u) cruza un hueco de 2 tiles
+(function drawPit() {
+  const T = 20, W = 12, H = 5;
+  const svg = sv('svg', { viewBox: `0 0 ${W * T} ${H * T + 34}`, role: 'img', 'aria-label': 'Una fosa de 2 tiles entre dos suelos; la esquiva recorre 3 u y la cruza. Andando, se cae.' });
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+    const pit = x === 5 || x === 6;
+    svg.append(sv('rect', { x: x * T, y: y * T, width: T, height: T, fill: pit ? '#04080f' : ((x + y) % 2 ? '#3c6a7a' : '#447585'),
+      stroke: pit ? '#04080f' : '#2f5866', 'stroke-width': 1 }));
+  }
+  for (const x of [5, 7]) svg.append(sv('rect', { x: x * T - (x === 5 ? 0 : 3), y: 0, width: 3, height: H * T, fill: '#1a2a3a' }));
+  const y = 1.5 * T, x0 = 4.2 * T, x1 = 7.2 * T;
+  svg.append(sv('path', { d: `M${x0} ${y} Q${(x0 + x1) / 2} ${y - 26} ${x1} ${y}`, fill: 'none', stroke: cssVar('--lime'), 'stroke-width': 3, 'stroke-dasharray': '5 4' }));
+  for (const [x, o] of [[x0, 1], [x0 + 20, .45], [x0 + 40, .3], [x1, 1]]) svg.append(sv('circle', { cx: x, cy: y, r: 6, fill: '#f2a9c2', opacity: o, stroke: '#18141f', 'stroke-width': 2 }));
+  svg.append(sv('text', { x: (x0 + x1) / 2, y: y - 18, 'text-anchor': 'middle', 'font-size': 9, fill: cssVar('--lime') }, 'esquiva: 3 u'));
+  const yw = 3.5 * T;
+  svg.append(sv('line', { x1: 3.6 * T, y1: yw, x2: 5.6 * T, y2: yw, stroke: cssVar('--hp'), 'stroke-width': 3, 'stroke-dasharray': '3 3' }));
+  svg.append(sv('circle', { cx: 5.7 * T, cy: yw + 3, r: 4, fill: '#f2a9c2', opacity: .5 }));
+  svg.append(sv('text', { x: 6, y: yw - 8, 'text-anchor': 'start', 'font-size': 9, fill: cssVar('--hp') }, 'andando: cae'));
+  svg.append(sv('text', { x: 6 * T, y: H * T + 14, 'text-anchor': 'middle', 'font-size': 9, fill: cssVar('--muted') }, 'hueco de 2 tiles'));
+  svg.append(sv('path', { d: `M${5 * T} ${H * T + 20} h${2 * T}`, stroke: cssVar('--muted'), 'stroke-width': 2 }));
+  document.getElementById('pitfig').append(svg);
+})();
+
+// Catálogo de salas especiales: plano de cada una a 1 tile = 1 cuadro
+const TILE = { '#': ['#24364e', 'Pared'], '.': ['#3f6f7e', 'Suelo'], '~': ['#03070d', 'Fosa'], 'o': ['#e0806a', 'Coral o columna'],
+  'A': ['#f2c14e', 'Almeja grande (especial)'], 'R': ['#8a909e', 'Roca'], 'F': ['#e8dcc0', 'Hueso del fósil'], 'S': ['#d4b84a', 'Esponja Vauxia'], 'C': ['#c79ad6', 'Almeja pequeña (biomasa)'],
+  'H': ['#d070e0', 'Coral con el corazón morado'], 'D': ['#8ce6f2', 'Puerta'], 'E': ['#ff6f80', 'Entrada de oleadas'] };
+const ROOMS = [
+  { name: 'Parkour', where: 'Camino · 2 casillas en vertical', tags: ['Sin enemigos', 'No cuenta como combate'],
+    text: 'Siempre se entra por arriba, para que el recorrido sea siempre el mismo. El interior es una fosa gigante con columnas de suelo: se baja saltando de una a otra con la esquiva. Al final, una almeja pequeña con 5–15 de biomasa.',
+    map: ['######DD######', '######..######', '#~~~~~..~~~~~#', '#~~~~~..~~~~~#', '#~~~~~~~~~~~~#', '#~~~..~~~~~~~#', '#~~~..~~~~~~~#', '#~~~~~~~~~~~~#',
+      '#~..~~~~~~~~~#', '#~..~~~~~~~~~#', '#~~~~~~~~~~~~#', '#~~~~..~~~~~~#', '#~~~~..~~~~~~#', '#~~~~~~~~~~~~#', '#~~~~~~~..~~~#', '#~~~~~~~..~~~#',
+      '#~~~~~~~~~~~~#', '#~~~~~~~~~..~#', '#~~~~~~~~~..~#', '#~~~~~~~~~~~~#', '#~~~~~~~..~~~#', '#~~~~~~~..~~~#', '#~~~~~~~~~~~~#', '#~~~~~..~~~~~#',
+      '#~~~~~..~~~~~#', '#~~~~~~~~~~~~#', '#~~......C~~~#', '#~~.......~~~#', '######..######', '######DD######'] },
+  { name: 'Corazón morado', always: true, where: 'Lateral · siempre en el Abismo del piso 2', tags: ['Opcional', 'Doble de enemigos', 'Fosas'],
+    text: 'El doble de enemigos de lo normal, más fosas y más decoración. Al otro lado, tras cruzar fosas esquivando, unos corales con un corazón morado. Para un golpe entero, como el verde del Herbívoro, y se gasta con el primero. Se conserva entre pisos: abrirá una sala secreta del piso 3.',
+    map: ['########################', '#....o.....~~......~~~~#', '#.R.......~~~..o...~~~~#', '#.....~~......~~~..~~~~#', 'D....~~~..R....~~..~~~~#',
+      'D.....~~.......~..~~~~~#', '#..o.......~~.....~~.HH#', '#.....R...~~~..o..~~.HH#', '#..~~......~.......~~~~#', '#.~~~..o.......R...~~~~#',
+      '#..~......~~.......~~~~#', '#.......o.~~~...~~.....#', '########################'] },
+  { name: 'Anillo de la sima', where: 'Camino', tags: ['Combate', 'Fosas', 'Sala de la almeja'],
+    text: 'Una sima redonda con un anillo de suelo alrededor. En el centro, una isla con una almeja grande a la que solo se llega esquivando. Las medusas cruzan por encima de la sima.',
+    map: ['######################', '#....................#', '#......o......o......#', '#.......~~~~~~.......#', '#......~~~~~~~~......#', 'D.....~~......~~.....D',
+      'D.....~~..A...~~.....D', '#.....~~......~~.....#', '#......~~~~~~~~......#', '#.......~~~~~~.......#', '#......o......o......#', '#....................#', '######################'] },
+  { name: 'Puente roto', where: 'Camino', tags: ['Combate', 'Oleadas'],
+    text: 'Una grieta de 3 tiles, demasiado ancha para la esquiva, parte la sala en dos; se cruza por dos puentes estrechos. Emboscada: los enemigos llegan en oleadas desde la otra orilla.',
+    map: ['##########DD##########', '#....................#', '#...o.........o......#', '#....................#', '#E..................E#', '#~~~~..~~~~~~~..~~~~~#',
+      '#~~~~..~~~~~~~..~~~~~#', '#~~~~..~~~~~~~..~~~~~#', '#....................#', '#......o......o......#', '#....................#', '##########DD##########'] },
+  { name: 'Bosque de coral', where: 'Camino', tags: ['Combate', 'Columnas'],
+    text: 'Muchas columnas de coral de adorno que tapan la vista. Llena de Ottoias que asoman entre ellas.',
+    map: ['######################', '#....................#', '#..o...o...o...o..o..#', '#....................#', '#.o...o...o...o...o..#', 'D....................D',
+      'D..o...o...o...o..o..D', '#....................#', '#.o...o...o...o...o..#', '#....................#', '#..o...o...o...o..o..#', '#....................#', '######################'] },
+  { name: 'Fósil gigante', where: 'Camino', tags: ['Combate', 'Cobertura'],
+    text: 'El esqueleto de una criatura enorme: la columna y las costillas sirven de cobertura. Al limpiarla deja restos de Carroña y biomasa extra.',
+    map: ['######################', '#....................#', '#...F...F...F...F....#', '#....F..F...F..F.....#', '#.....F.F...F.F......#', 'D..FFFFFFFFFFFFFFFF..D',
+      'D.....F.F...F.F...FF.D', '#....F..F...F..F.....#', '#...F...F...F...F....#', '#....................#', '######################'] },
+  { name: 'Jardín de esponjas', where: 'Camino', tags: ['Combate', '3 esponjas', 'Sala de la almeja'],
+    text: 'Una sala en U con un estanque en el centro. Rompe el límite de una esponja por sala: hay 3, y matarlas da un premio. En un rincón, una almeja grande.',
+    map: ['######################', '#A.....########......#', '#..S...########...S..#', '#......########......#', 'D......########......D', '#......########......#',
+      '#....................#', '#.......~~~~~~.......#', '#.......~~S~~~.......#', '#....................#', '######################'] },
+  { name: 'Sala sellada', where: 'Camino', tags: ['Combate', '3 oleadas'],
+    text: 'Amplia y con pocas coberturas. Las puertas se cierran y llegan tres oleadas seguidas; al final, una recompensa de mutación.',
+    map: ['##########DD##########', '#E..................E#', '#....................#', '#....R..........R....#', '#....................#', 'D....................D',
+      '#....................#', '#....R..........R....#', '#....................#', '#E..................E#', '######################'] },
+  { name: 'Islas', where: 'Camino', tags: ['Combate', 'Fosas'],
+    text: 'Plataformas unidas por puentes de un tile sobre las fosas. Aquí los empujones valen el doble: un enemigo que sale de su isla cae.',
+    map: ['######################', '#.....~~~~~~~~~......#', '#.....~~~~~~~~~......#', 'D....................D', '#.....~~~~.~~~~......#', '#.....~~~~.~~~~......#',
+      '#~~~~~~~~~.~~~~~~~~~~#', '#~~~~~~~~~.~~~~~~~~~~#', '#~~~~~.........~~~~~~#', '#~~~~~.........~~~~~~#', '#~~~~~.........~~~~~~#', '######################'] },
+  { name: 'Gruta escondida', where: 'Lateral', tags: ['Sin enemigos', 'No cuenta como combate', 'Sala de la almeja'],
+    text: 'Pequeña, con un laberinto de grietas. En el centro, una almeja grande con biomasa.',
+    map: ['################', '#......~~......#', 'D......~~..~~..#', '#..~~..~~..~~..#', '#..~~..AA..~~..#', '#..~~~~~~~~~~..#', '#..~~......~~..#', '#......~~......#', '################'] },
+];
+function roomCanvas(map) {
+  const P = 6, w = Math.max(...map.map(r => r.length)), h = map.length;
+  const cv = el('canvas', { width: String(w * P), height: String(h * P) });
+  const g = cv.getContext('2d');
+  map.forEach((row, y) => [...row.padEnd(w, '#')].forEach((ch, x) => {
+    const [col] = TILE[ch] || TILE['#'];
+    g.fillStyle = (ch === '.' && (x + y) % 2) ? '#457787' : col;
+    g.fillRect(x * P, y * P, P, P);
+  }));
+  cv.style.width = `${w * P * 1.5}px`;
+  return cv;
+}
+const usedTiles = new Set(ROOMS.flatMap(r => r.map.join('').split('')));
+document.getElementById('maplegend').append(...Object.entries(TILE).filter(([ch]) => usedTiles.has(ch))
+  .map(([, [col, name]]) => el('span', {}, el('i', { style: `--k:${col}` }), name)));
+document.getElementById('rooms').append(...ROOMS.map(r => el('article', { class: 'rcard panel' + (r.always ? ' always' : '') },
+  el('div', { class: 'rmap' }, roomCanvas(r.map)),
+  el('div', { class: 'rtxt' }, el('span', { class: 'label' }, r.where), el('h3', {}, r.name),
+    el('div', { class: 'rtags' }, ...r.tags.map(t => el('span', { class: 'tag' }, t))),
+    el('p', { class: 'extra' }, r.text)))));
+</script>

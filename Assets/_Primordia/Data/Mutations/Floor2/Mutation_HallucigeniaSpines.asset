@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 394b198e300547144bfb90dc943ea41c, type: 3}
+  m_Name: Mutation_HallucigeniaSpines
+  m_EditorClassIdentifier: Primordia::Primordia.Mutations.HallucigeniaSpinesMutation
+  displayName: Espinas de Hallucigenia
+  description: "Al esquivar dejas 2 p\xFAas en el suelo durante 4 s; quien las pisa recibe 2 de da\xF1o."
+  slot: 1
+  lineages:
+  - {fileID: 11400000, guid: 9858ce86882df2943983411620bec8c7, type: 2}
+  - {fileID: 11400000, guid: 9606c82fda93ba047b31d0bafc7132c4, type: 2}
+  - {fileID: 11400000, guid: 384fc8566a9fe0343add5baa85ab8d83, type: 2}
+  - {fileID: 11400000, guid: 30de4cf987e571d408e1c8e33ccb0cb9, type: 2}
+  look: {fileID: 0}
+  bodyRadius: 0
+  mouthDistance: 0
+  headHeight: 0
+  wornOnHead: 0
+  muzzleDistance: 0
+  attackLean: 0
+  icon: {fileID: 21300000, guid: 0210d17b85c62904b9a270ac33f84ddc, type: 3}
+  largeIcon: {fileID: 21300000, guid: f834500df2e67f34aae14c75317b4520, type: 3}
+  color: {r: 0.66, g: 0.35, b: 0.82, a: 1}
+  levelDescriptions:
+  - "3 p\xFAas que duran 6 s."
+  - "Erizo: al desaparecer, cada p\xFAa sale disparada hacia el enemigo m\xE1s cercano."
+  dodgeSound: 
+  floor: 2
+  special: 0
+  family: 0
+  creatureIdleFrames: []
+  creatureAttackFrames: []
+  creatureBody: {fileID: 0}
+  attackHitTime: 0
+  creatureLayers:
+  - body: {fileID: 9100000, guid: feb82a28b3107fc4b986b41b1d879747, type: 2}
+    layer: {fileID: 9100000, guid: 981b4e82f6f42334aa7ddddf9dc22bb8, type: 2}
+  - body: {fileID: 9100000, guid: 5c4ed1232e5e4c14a9ea4801bceeb8b0, type: 2}
+    layer: {fileID: 9100000, guid: 8f3d82e708cbf3e4d9113072681e2574, type: 2}
+  - body: {fileID: 9100000, guid: 4c5ea57aa6bffee4eb43b77aeb938993, type: 2}
+    layer: {fileID: 9100000, guid: 4b1ea96152d2c864db205931937ac881, type: 2}
+  morphFrames: []
+  revealFrames: []
+  counts: 020000000300000003000000i
+  durations:
+  - 4
+  - 6
+  - 6
+  damage: 2
+  spinePrefab: {fileID: 697708036479076723, guid: 32fedc899cade9949a62f842e24e898a, type: 3}
+  shotAttack: {fileID: 11400000, guid: c8aa92949e386b24c96e0e1b015dea62, type: 2}
+  shotRange: 7
+  spacing: 0.55

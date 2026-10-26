@@ -9,12 +9,13 @@ namespace Primordia.Enemies
     /// Acecho (100–60 %): nada deprisa en círculos junto a las paredes dejando una estela de burbujas lentas y, cada 3–4,5 s,
     /// va a por el jugador: aviso de 0,7 s (se echa atrás con los ojos rojos y los apéndices abiertos) apuntando adonde irá
     /// el jugador, dash en línea recta a toda velocidad y mordisco en un cono por delante en cuanto lo alcanza, y 1 s quieto y
-    /// vulnerable. El dash obliga a esquivar: seguir andando igual no basta. Las demás fases (cerco, escena de los ojos y frenesí) llegan después.
+    /// vulnerable. El dash obliga a esquivar: seguir andando igual no basta.
+    /// Cerco (60–25 %), escena de los ojos (al 25 %) y frenesí (25–0 %): en AnomalocarisBoss.Phases.cs.
     /// Visto desde arriba: el cuerpo ("Body") gira libre hacia donde nada o ataca. No choca con el jugador: le hace medio
     /// corazón al tocarlo, como la ameba gigante.
     /// </summary>
     [RequireComponent(typeof(Enemy), typeof(Rigidbody2D))]
-    public class AnomalocarisBoss : MonoBehaviour, IBoss
+    public partial class AnomalocarisBoss : MonoBehaviour, IBoss
     {
         public const string SwimState = "Swim";
         public const string SwimFastState = "SwimFast";
@@ -24,6 +25,21 @@ namespace Primordia.Enemies
         public const string HurtState = "Hurt";
         public const string DeathState = "Death";
         public const string IntroState = "Intro";
+        public const string ChargeState = "Charge";
+        public const string EyesState = "EyesDark";
+
+        /// <summary>Fase de la pelea, según la vida.</summary>
+        public enum Stage
+        {
+            /// <summary>100–60 %: acecho junto a las paredes.</summary>
+            Stalk,
+            /// <summary>60–25 %: alterna el acecho con cercos en espiral.</summary>
+            Encircle,
+            /// <summary>Al 25 %: escena de los ojos (inmune).</summary>
+            Eyes,
+            /// <summary>25–0 %: frenesí con los zarpazos marcados.</summary>
+            Frenzy
+        }
 
         /// <summary>Lo que está haciendo ahora.</summary>
         public enum Mode
@@ -41,6 +57,22 @@ namespace Primordia.Enemies
             Strike,
             /// <summary>Quieto tras el zarpazo: el momento de castigarle.</summary>
             Vulnerable,
+            /// <summary>Cerco: nada en espiral alrededor del jugador, cerrándose, con un muro de burbujas.</summary>
+            Circle,
+            /// <summary>Escena de los ojos: solo se ven sus ojos cruzando la sala a oscuras.</summary>
+            Eyes,
+            /// <summary>Frenesí: quieto, cargando, con su dash marcado en el suelo.</summary>
+            Charge,
+            /// <summary>Frenesí: dash largo y rapidísimo por la línea marcada.</summary>
+            Frenzy,
+            /// <summary>Frenesí: al final del primer dash salta hacia el jugador a morderle.</summary>
+            Leap,
+            /// <summary>Frenesí: aturdido un instante tras el salto (el momento bueno para pegarle).</summary>
+            Stun,
+            /// <summary>Frenesí: persigue al jugador a toda velocidad y le muerde si le alcanza.</summary>
+            Chase,
+            /// <summary>Frenesí: silueta de ojos brillantes, invulnerable, rondando la sala.</summary>
+            Silhouette,
             Dead
         }
 
@@ -113,7 +145,14 @@ namespace Primordia.Enemies
 
         public string DisplayName => displayName;
         public Health Health { get; private set; }
-        public BossBarStyle BarStyle => BossBarStyle.Normal;
+        public BossBarStyle BarStyle => CurrentMode == Mode.Silhouette ? BossBarStyle.Immune : CurrentStage switch
+        {
+            Stage.Eyes => BossBarStyle.Immune,
+            Stage.Frenzy => BossBarStyle.Enraged,
+            _ => BossBarStyle.Normal
+        };
+
+        public Stage CurrentStage { get; private set; } = Stage.Stalk;
         public Vector2 ArenaCenter => arenaCenter != null ? (Vector2)arenaCenter.position : home;
         public Mode CurrentMode { get; private set; } = Mode.Idle;
 
@@ -212,6 +251,7 @@ namespace Primordia.Enemies
             home = transform.position;
             FindPlayer();
             Health.Damaged += OnDamaged;
+            Health.AddDamageModifier(ModifyDamage);
             enemy.Died += OnDied;
 
             CurrentMode = Mode.Idle;
@@ -225,7 +265,11 @@ namespace Primordia.Enemies
         {
             ActiveBoss.Clear(this);
             Health.Damaged -= OnDamaged;
+            Health.RemoveDamageModifier(ModifyDamage);
             enemy.Died -= OnDied;
+            // Si se va a mitad de una escena o de un frenesí (otra escena, reinicio), todo vuelve a la normalidad.
+            EndEyesScene();
+            ClearMarkers();
         }
 
         void FindPlayer()
@@ -251,15 +295,16 @@ namespace Primordia.Enemies
             {
                 case Mode.Idle:
                     if (!waitingIntro && Time.time >= fightStartsAt)
-                        SetMode(Mode.Swim);
+                        SetMode(CurrentStage == Stage.Frenzy ? Mode.Charge : Mode.Swim);
                     break;
 
                 case Mode.Swim:
                     Steer(OrbitDirection(), turnRate, dt);
                     Move(Heading * swimSpeed * dt);
                     DropBubbles();
+                    // En el cerco, el ataque es una espiral alrededor del jugador en lugar de ir directo a por él.
                     if (player != null && Time.time >= nextStrike)
-                        SetMode(Mode.Hunt);
+                        SetMode(CurrentStage == Stage.Encircle ? Mode.Circle : Mode.Hunt);
                     break;
 
                 case Mode.Hunt:
@@ -331,12 +376,16 @@ namespace Primordia.Enemies
                         // A veces cambia el sentido en que da vueltas.
                         if (UnityEngine.Random.value < 0.4f)
                             orbitSign = -orbitSign;
-                        SetMode(Mode.Swim);
+                        SetMode(CurrentStage == Stage.Frenzy ? Mode.Charge : Mode.Swim);
                     }
+                    break;
+
+                default:
+                    UpdatePhaseMode(dt, t);
                     break;
             }
 
-            if (CurrentMode != Mode.Vulnerable && CurrentMode != Mode.Idle)
+            if (CurrentMode is not (Mode.Vulnerable or Mode.Idle or Mode.Eyes))
                 TouchPlayer();
         }
 
@@ -363,6 +412,7 @@ namespace Primordia.Enemies
                     break;
                 default:
                     PlayState(StateFor(mode));
+                    BeginPhaseMode(mode);
                     break;
             }
             ModeChanged?.Invoke(mode);
@@ -370,7 +420,11 @@ namespace Primordia.Enemies
 
         static string StateFor(Mode mode) => mode switch
         {
-            Mode.Hunt or Mode.Dash => SwimFastState,
+            Mode.Hunt or Mode.Dash or Mode.Circle or Mode.Frenzy or Mode.Chase => SwimFastState,
+            Mode.Charge => ChargeState,
+            Mode.Leap => StrikeState,
+            Mode.Stun => VulnerableState,
+            Mode.Eyes or Mode.Silhouette => EyesState,
             Mode.Warn => WarnState,
             Mode.Strike => StrikeState,
             Mode.Vulnerable => VulnerableState,
@@ -453,15 +507,18 @@ namespace Primordia.Enemies
             return distance;
         }
 
-        void DropBubbles()
+        void DropBubbles() => DropBubbles(bubbleInterval, bubbleLifetime, bubbleSpeed);
+
+        /// <summary>Suelta una burbuja por la cola cada <paramref name="interval"/> segundos.</summary>
+        void DropBubbles(float interval, float lifetime, float speed)
         {
             if (bubblePrefab == null || Time.time < nextBubble)
                 return;
-            nextBubble = Time.time + bubbleInterval;
+            nextBubble = Time.time + interval;
             var tail = rb.position - Heading * tailOffset;
             var side = new Vector2(-Heading.y, Heading.x) * UnityEngine.Random.Range(-0.3f, 0.3f);
             var bubble = Instantiate(bubblePrefab, tail + side * 0.5f, Quaternion.identity, transform.parent);
-            bubble.Launch(-Heading * bubbleSpeed + side, bubbleLifetime);
+            bubble.Launch(-Heading * speed + side, lifetime);
         }
 
         void TryClaw()
@@ -520,7 +577,8 @@ namespace Primordia.Enemies
 
         void OnDamaged(int amount)
         {
-            if ((CurrentMode is Mode.Swim or Mode.Hunt or Mode.Vulnerable) && states != null && states.Has(HurtState))
+            if ((CurrentMode is Mode.Swim or Mode.Hunt or Mode.Vulnerable or Mode.Circle or Mode.Chase or Mode.Stun)
+                && states != null && states.Has(HurtState))
             {
                 states.Play(HurtState, restart: true);
                 hurtUntil = Time.time + states.Length(HurtState);
@@ -536,6 +594,7 @@ namespace Primordia.Enemies
         {
             CurrentMode = Mode.Dead;
             AnomalocarisBubble.PopAll();
+            ClearMarkers();
             foreach (var collider in GetComponentsInChildren<Collider2D>())
                 collider.enabled = false;
             hurtUntil = 0f;
@@ -544,7 +603,10 @@ namespace Primordia.Enemies
 
         void Update()
         {
-            if (CurrentMode == Mode.Dead || states == null)
+            if (CurrentMode == Mode.Dead)
+                return;
+            UpdateStage();
+            if (states == null)
                 return;
             // Vuelve a su animación cuando acaba la de daño.
             if (hurtUntil > 0f && Time.time >= hurtUntil)

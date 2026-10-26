@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3298884603509383968}
   - component: {fileID: 3349903237206922788}
   - component: {fileID: 8611740068237967748}
-  - component: {fileID: 194604539261778501}
+  - component: {fileID: 7311876612029612256}
   m_Layer: 7
   m_Name: Boss_Anomalocaris
   m_TagString: Untagged
@@ -105,6 +105,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f0d6cb78a2029e479f812c131983a5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Primordia::Primordia.Enemies.AnomalocarisBoss
+  encircleThreshold: 0.6
+  circleRadius: {x: 8, y: 3}
+  circleTime: 3
+  circleSpeed: 10
+  wallBubbleInterval: 0.12
+  wallBubbleLifetime: 6
+  eyesThreshold: 0.25
+  lightsFadeTime: 0.4
+  eyesCrossTime: 2
+  roarTime: 0.6
+  unlitMaterial: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
+  skipText: '[E] Saltar'
+  markTime: {x: 1, y: 0.6}
+  secondMarkTime: {x: 0.5, y: 0.35}
+  frenzyOvershoot: 6
+  frenzyMaxDistance: 18
+  frenzySpeed: 30
+  leapDistance: 3.5
+  leapTime: 0.22
+  stunTime: 0.5
+  chaseTime: 2.5
+  chaseSpeed: 7.5
+  chaseTurnRate: 300
+  chaseBackoff: 0.35
+  silhouetteTime: 3
+  silhouetteSpeed: 6
+  biteAreaRadius: 2
+  clawPathFrames:
+  - {fileID: 8174662508582596165, guid: efd22b8624af9734bb77b893dc958469, type: 3}
+  - {fileID: 8788350084581225400, guid: efd22b8624af9734bb77b893dc958469, type: 3}
+  - {fileID: 2202370217604030753, guid: efd22b8624af9734bb77b893dc958469, type: 3}
+  - {fileID: -2016880628897927576, guid: efd22b8624af9734bb77b893dc958469, type: 3}
+  clawAreaFrames:
+  - {fileID: 8814852535516684633, guid: 9e368ec6a375610479fe5778d628a615, type: 3}
+  - {fileID: 5605438945110848153, guid: 9e368ec6a375610479fe5778d628a615, type: 3}
+  - {fileID: -1069597327424517779, guid: 9e368ec6a375610479fe5778d628a615, type: 3}
+  - {fileID: -4928266937214363418, guid: 9e368ec6a375610479fe5778d628a615, type: 3}
   displayName: Anomalocaris
   body: {fileID: 7990191343474916936}
   animator: {fileID: 5120195001772878830}
@@ -140,7 +177,7 @@ MonoBehaviour:
   tailOffset: 2.2
   bodySize: {x: 4.2, y: 1.2}
   contactDamage: 1
---- !u!114 &194604539261778501
+--- !u!114 &7311876612029612256
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -1,4 +1,5 @@
 using System.IO;
+using System.Linq;
 using Primordia.Combat;
 using Primordia.Core;
 using Primordia.Enemies;
@@ -18,6 +19,8 @@ namespace Primordia.Editor
         const string Floor2BossesSourceFolder = "docs/multimedia-temp/floor2-bosses";
         const string AnomalocarisArtFolder = CharactersFolder + "/Enemies/Floor2/Anomalocaris";
         internal const string AnomalocarisPrefabPath = EnemyPrefabsFolder + "/Boss_Anomalocaris.prefab";
+        // Material sin luz de URP: los ojos de la escena y las marcas del frenesí se ven en la sala a oscuras.
+        const string UnlitSpriteMaterialPath = "Packages/com.unity.render-pipelines.universal/Runtime/Materials/Sprite-Unlit-Default.mat";
 
         // Celda de 112×112, cuadros del README de floor2-bosses (ms → cuadros por segundo).
         static readonly Character AnomalocarisArt = new()
@@ -52,6 +55,15 @@ namespace Primordia.Editor
                 ImportLooseSheet($"{fxSource}/Fx_Anomalocaris_Swipe.png", $"{effects}/Fx_Anomalocaris_Swipe.png", 64, new Vector2(0f, 0.5f)), 0.06f);
             var pop = Floor2MouthsSetup.CreateFrameEffect("Effect_AnomalocarisBubble_Pop",
                 ImportLooseSheet($"{fxSource}/Fx_AnomalocarisBubble_Pop.png", $"{effects}/Fx_AnomalocarisBubble_Pop.png", 16), 0.06f);
+            // Marcas del frenesí: la trayectoria va en mosaico (necesita la malla entera) y el área es un círculo de 2 u.
+            var clawPath = ImportLooseSheet($"{fxSource}/Fx_Anomalocaris_ClawPath.png", $"{effects}/Fx_Anomalocaris_ClawPath.png", 16);
+            UseFullRectMesh($"{effects}/Fx_Anomalocaris_ClawPath.png");
+            clawPath = LoadSprites($"{effects}/Fx_Anomalocaris_ClawPath.png");
+            var clawArea = ImportLooseSheet($"{fxSource}/Fx_Anomalocaris_ClawArea.png", $"{effects}/Fx_Anomalocaris_ClawArea.png", 64);
+            var unlit = AssetDatabase.LoadAssetAtPath<Material>(UnlitSpriteMaterialPath);
+            if (unlit == null)
+                Debug.LogWarning($"ArtSetup: no encuentro {UnlitSpriteMaterialPath}; los ojos y las marcas del frenesí se verán poco a oscuras.");
+
             var bubble = CreateAnomalocarisBubble(
                 ImportLooseSheet($"{fxSource}/Proj_AnomalocarisBubble.png", $"{effects}/Proj_AnomalocarisBubble.png", 16), pop);
 
@@ -90,7 +102,9 @@ namespace Primordia.Editor
                 SetFields(enemy, ("data", data));
                 enemy.SetAnimationTimings(art.Length(AnomalocarisBoss.DeathState), 0f);
 
-                root.AddComponent<AnomalocarisBoss>().Configure(body.transform, animator, renderer, bubble, swipe);
+                var boss = root.AddComponent<AnomalocarisBoss>();
+                boss.Configure(body.transform, animator, renderer, bubble, swipe);
+                boss.ConfigurePhases(unlit, clawPath, clawArea);
                 var prefab = PrefabUtility.SaveAsPrefabAsset(root, AnomalocarisPrefabPath);
                 return prefab.GetComponent<Enemy>();
             }
@@ -99,6 +113,24 @@ namespace Primordia.Editor
                 Object.DestroyImmediate(root);
             }
         }
+
+        static void UseFullRectMesh(string path)
+        {
+            var importer = (TextureImporter)AssetImporter.GetAtPath(path);
+            if (importer == null)
+                return;
+            var settings = new TextureImporterSettings();
+            importer.ReadTextureSettings(settings);
+            if (settings.spriteMeshType == SpriteMeshType.FullRect)
+                return;
+            settings.spriteMeshType = SpriteMeshType.FullRect;
+            importer.SetTextureSettings(settings);
+            importer.SaveAndReimport();
+        }
+
+        // Los cuadros de una hoja ya cortada, en orden (Fx_X_0, Fx_X_1…).
+        static Sprite[] LoadSprites(string path) => AssetDatabase.LoadAllAssetsAtPath(path).OfType<Sprite>()
+            .OrderBy(sprite => sprite.rect.x).ToArray();
 
         /// <summary>Burbuja que daña: 1 de vida en la capa Enemy (los disparos la revientan) y su reventón.</summary>
         static AnomalocarisBubble CreateAnomalocarisBubble(Sprite[] frames, GameObject pop)

@@ -18,6 +18,10 @@ namespace Primordia.Rooms
         [SerializeField] GlowPulse pulse;
 
         Coroutine fading;
+        Coroutine dimming;
+
+        // Brillo con la planta atenuada (la silueta del Anomalocaris ronda la sala).
+        const float DimFactor = 0.35f;
 
         /// <summary>False desde que empieza a apagarse hasta que empieza a encenderse.</summary>
         public bool Lit { get; private set; } = true;
@@ -48,6 +52,38 @@ namespace Primordia.Rooms
                 return;
             }
             fading = StartCoroutine(Fade(lit, duration));
+        }
+
+        /// <summary>Baja (true) o recupera su brillo en <paramref name="duration"/> segundos, sin dejar de latir.</summary>
+        public void SetDimmed(bool dimmed, float duration)
+        {
+            if (pulse == null)
+                return;
+            if (dimming != null)
+                StopCoroutine(dimming);
+            float goal = dimmed ? DimFactor : 1f;
+            if (!isActiveAndEnabled || duration <= 0f)
+            {
+                dimming = null;
+                pulse.Multiplier = goal;
+                return;
+            }
+            dimming = StartCoroutine(Dim(goal, duration));
+        }
+
+        /// <summary>1 con su brillo normal; menos, atenuada.</summary>
+        public float Brightness => pulse != null ? pulse.Multiplier : 1f;
+
+        IEnumerator Dim(float goal, float duration)
+        {
+            float start = pulse.Multiplier;
+            for (float t = 0f; t < duration; t += Time.deltaTime)
+            {
+                pulse.Multiplier = Mathf.Lerp(start, goal, t / duration);
+                yield return null;
+            }
+            pulse.Multiplier = goal;
+            dimming = null;
         }
 
         IEnumerator Fade(bool lit, float duration)

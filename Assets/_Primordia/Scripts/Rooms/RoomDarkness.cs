@@ -101,6 +101,16 @@ namespace Primordia.Rooms
             }
         }
 
+        /// <summary>Atenúa (true) o devuelve su brillo a todas las plantas en <paramref name="duration"/> segundos.</summary>
+        public void SetPlantsDimmed(bool dimmed, float duration)
+        {
+            foreach (var plant in plants)
+            {
+                if (plant != null)
+                    plant.SetDimmed(dimmed, duration);
+            }
+        }
+
         void FadeTo(float goal, float time)
         {
             if (globalLight == null)

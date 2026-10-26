@@ -118,7 +118,10 @@ namespace Primordia.Editor
             {
                 config.ConfigureRooms(floor1.StartRoom, floor1.BossRoom, floor1.CombatRooms, floor1.SideRooms,
                     new Vector2Int(10, 12), new Vector2Int(2, 3));
-                config.ConfigureEnemies(floor1.Enemies, floor1.Boss, newBaseBudget: 4f, newBudgetPerRoom: 1.4f);
+                // Los enemigos del piso 2 si ya existen (Primordia > Enemies > Crear enemigos del piso 2); si no, los del 1.
+                var floor2Enemies = ArtSetup.Floor2EnemyEntries();
+                config.ConfigureEnemies(floor2Enemies.Length > 0 ? floor2Enemies : floor1.Enemies, floor1.Boss,
+                    newBaseBudget: 4f, newBudgetPerRoom: 1.4f);
                 config.ConfigureShopDepth(new Vector2(1f / 3f, 2f / 3f));
             }
 

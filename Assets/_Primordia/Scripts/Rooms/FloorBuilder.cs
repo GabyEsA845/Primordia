@@ -994,7 +994,7 @@ namespace Primordia.Rooms
                 var enemies = EncounterPlanner.PickEnemies(config, placed.Layout.Depth, budget, random);
                 var positions = EncounterPlanner.Positions(candidates, enemies.Count, random);
                 for (int i = 0; i < positions.Count; i++)
-                    Object.Instantiate(enemies[i], placed.Origin + positions[i], Quaternion.identity, root);
+                    EncounterPlanner.Spawn(config, enemies[i], placed.Origin + positions[i], root);
             }
             return later.ToArray();
         }
@@ -1039,7 +1039,7 @@ namespace Primordia.Rooms
                 Debug.LogWarning($"FloorBuilder: en {placed.Layout.Name} solo caben {positions.Count} de {enemies.Count} enemigos.");
 
             for (int i = 0; i < positions.Count; i++)
-                Object.Instantiate(enemies[i], placed.Origin + positions[i], Quaternion.identity, enemiesRoot);
+                EncounterPlanner.Spawn(config, enemies[i], placed.Origin + positions[i], enemiesRoot);
         }
 
         /// <summary>Membrana animada sobre el hueco, con su colisión. Arriba, además, el arco fijo de la pared.</summary>

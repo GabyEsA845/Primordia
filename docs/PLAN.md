@@ -63,7 +63,7 @@ Cada módulo vive en su propia carpeta de `Assets/_Primordia/Scripts/` (`Core`, 
   3. Fosas: tiles por vecinos, caída del jugador (−½ corazón y vuelta al último suelo firme), esquiva que las cruza, enemigos que nadan (sombra separada) y que andan (las rodean), y enemigos empujados que caen
   4. Piezas: almejas con biomasa, entradas de oleadas, coral del corazón morado y el corazón que para un golpe y se conserva entre pisos (icono morado en el HUD)
 
-  Enemigos provisionales hasta `feature/floor2-enemies`
+  Los enemigos provisionales los sustituyó `feature/floor2-enemies`
 - [x] `feature/clam-room`: sala de la almeja garantizada en cada piso, aparte del sorteo de especiales (una al azar entre Gruta escondida, Anillo de la sima y Jardín de esponjas, las tres con almeja grande). Después, las 3 mutaciones especiales que solo salen en almejas grandes (diseño cerrado en el GDD, "Mutaciones especiales de las almejas"): Flagelos de Leanchoilia, Cutícula de Marrella y Yema clonal, el comodín de linaje con cartel para elegir, el precio Inestable en el daño y el HUD, y su arte (iconos, 6 capas y efectos)
 
   Pasos:
@@ -78,7 +78,15 @@ Cada módulo vive en su propia carpeta de `Assets/_Primordia/Scripts/` (`Core`, 
   2. Placas mandibulares: mordisco en arco de 110° con el alcance de lo dibujado, empujón, Quebrar con su marca y Guillotina (segunda dentellada más grande), con el arte del mordisco rehecho (hecho)
   3. Golpe sincronizado con el cuadro de la animación de ataque de cada cuerpo, y la capa de la Cutícula de Marrella sobre los cuerpos (hecho)
   4. Corona de brazos y lirio de mar (remolino, Marea, metamorfosis del lirio) y los Flagelos de Leanchoilia con el remolino (hecho)
-- [ ] `feature/floor2-enemies`: Trilobite, Medusa azul, Ottoia, Esponja Vauxia y Cardumen de Pikaia, con su arte, sus avisos y su comportamiento
+- [x] `feature/floor2-enemies`: Trilobite, Medusa azul, Ottoia, Esponja Vauxia y Cardumen de Pikaia, con su arte, sus avisos y su comportamiento
+
+  Pasos:
+  1. Base (cerebros de enemigo, EnemyBrain) y Trilobite: ronda, aviso, embestida, aturdido al chocar y cabeza blindada (menú Primordia > Enemies > Crear enemigos del piso 2) (hecho)
+  2. Medusa azul: flota a impulsos y suelta un anillo de 8 con un hueco que gira (hecho)
+  3. Ottoia: enterrada e inmune, aviso con círculo, sale, muerde y se hunde (hecho)
+  4. Esponja Vauxia: pulso que cura y escuda, una como mucho por sala (hecho)
+  5. Cardumen de Pikaia: 5 peces en formación que rodean y hacen pasadas por turnos (hecho)
+  6. Cierre: costes y sala de inicio en Floor_2 y fuera los enemigos provisionales (hecho)
 - [ ] `feature/floor2-mutations`: las otras 6 mutaciones del piso 2 y sus 8 linajes (beneficios remodelados, Carroñero y su sprite de restos, toques y evoluciones). Incluye el arte que falta: las capas de Extremidades y Piel sobre los 3 cuerpos (12), los efectos de activación de los Órganos, las larvas, las burbujas de la Cola, las púas de Hallucigenia y las escamas de Wiwaxia
 - [ ] `feature/boss-anomalocaris`: cueva ovalada muy grande sin fosas, en la que baja la luz al entrar, con plantas luminosas (luces 2D) y columnas de algas; acecho, cerco, escena de los ojos al 25 % y frenesí con los marcadores del zarpazo
 - [ ] `feature/boss-eurypterid`: cueva de unos 30×22 con 5–6 rocas y grietas en los bordes, pinzas y púas del caparazón, escena de la muda al 50 % (la muda vacía queda como cobertura y se derrumban 2 rocas) y fase blanda con la cola

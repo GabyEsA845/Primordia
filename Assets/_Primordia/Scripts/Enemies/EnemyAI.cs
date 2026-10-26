@@ -119,6 +119,13 @@ namespace Primordia.Enemies
         float searchPointUntil;
         float fireAt;
         float bodyRadius;
+        EnemyBrain brain;
+
+        /// <summary>Cerebro propio (enemigos del piso 2), o null: entonces se comporta según su EnemyBehaviour.</summary>
+        public EnemyBrain Brain => brain;
+
+        /// <summary>A quién va ahora: el objetivo o el señuelo más cercano.</summary>
+        public Transform CurrentTarget { get; private set; }
         ContactFilter2D separationFilter;
 
         void Awake()
@@ -136,6 +143,9 @@ namespace Primordia.Enemies
 
         void Start()
         {
+            // En Start y no en Awake: el cerebro se añade después de la IA (la pide con RequireComponent).
+            brain = GetComponent<EnemyBrain>();
+
             if (target == null)
             {
                 var player = GameObject.FindWithTag("Player");
@@ -172,6 +182,26 @@ namespace Primordia.Enemies
             if (stunDuration > 0f)
                 StatusMarkers.Show(this, "Stun", stunMarker, stunDuration);
         }
+
+        // ---------- Para los cerebros (EnemyBrain) ----------
+
+        /// <summary>Lo pone alerta (al ver al jugador).</summary>
+        internal void BecomeAlert() => Alert();
+
+        /// <summary>Velocidad de movimiento con la ralentización actual.</summary>
+        internal float Speed(EnemyData data) => SpeedOf(data);
+
+        /// <summary>Dirección por el camino hasta ese punto (rodeando paredes y, si anda, fosas).</summary>
+        internal Vector2 DirectionTo(Vector2 point) => PathTo(point);
+
+        /// <summary>La velocidad con la separación de los enemigos cercanos.</summary>
+        internal Vector2 Separated(Vector2 velocity, float speed) => Steer(velocity, speed);
+
+        /// <summary>True si ve ese punto (línea de visión libre).</summary>
+        internal bool Sees(Vector2 point) => CanSee(point);
+
+        /// <summary>Radio del cuerpo.</summary>
+        internal float BodyRadius => bodyRadius;
 
         /// <summary>Lo deja quieto y sin atacar durante ese tiempo, con su marca de cegado si la hay.</summary>
         public void Blind(float duration, GameObject blindMarker = null)
@@ -250,6 +280,15 @@ namespace Primordia.Enemies
 
             // Las copias de la Yema clonal son señuelos: va a por el más cercano.
             var aim = Decoys.Choose(transform.position, target);
+            CurrentTarget = aim;
+
+            // Los enemigos con cerebro propio deciden todo lo demás.
+            if (brain != null)
+            {
+                IsAiming = false;
+                desiredVelocity = brain.Think(aim != null && aim.gameObject.activeInHierarchy ? aim : null, data);
+                return;
+            }
             if (aim == null || !aim.gameObject.activeInHierarchy)
             {
                 IsAiming = false;

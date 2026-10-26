@@ -222,12 +222,31 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ee040b95e788e5649887a36125ca76dc, type: 2}
   - {fileID: 11400000, guid: 2a8ae0b84c247aa4380d009839c9d15e, type: 2}
   enemies:
-  - prefab: {fileID: 8882603238870742745, guid: a55174d84ea389f4ea3dbe2ad2e34d19, type: 3}
-    cost: 1
+  - prefab: {fileID: 8460756809369041511, guid: 8e9430812d0190e4e9227da5e973e588, type: 3}
+    cost: 2
     minDepth: 1
-  - prefab: {fileID: 6360368782889849989, guid: 6a0b1fdfb44e57542b2abcce354082ca, type: 3}
+    maxPerRoom: 0
+    groupSize: 1
+  - prefab: {fileID: 7332615201938473993, guid: 16aff33a2757f1e468a48e63aa075fe1, type: 3}
     cost: 2
     minDepth: 2
+    maxPerRoom: 0
+    groupSize: 1
+  - prefab: {fileID: 2127016927592597609, guid: cb0e4227c704af24fab61c7f50d9199e, type: 3}
+    cost: 3
+    minDepth: 2
+    maxPerRoom: 0
+    groupSize: 1
+  - prefab: {fileID: 4903426230440156472, guid: 0c2ea51cea2dd094087b802d65a7c3b8, type: 3}
+    cost: 3
+    minDepth: 3
+    maxPerRoom: 1
+    groupSize: 1
+  - prefab: {fileID: 4594413056497187767, guid: 6f4bd175c065352458eb2fe4a4a8654f, type: 3}
+    cost: 2
+    minDepth: 1
+    maxPerRoom: 0
+    groupSize: 5
   baseBudget: 4
   budgetPerRoom: 1.4
   referenceFloorArea: 312

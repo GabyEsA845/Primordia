@@ -16,6 +16,8 @@ namespace Primordia.Rooms
         const float DoorDistance = 5f;
         // Separación mínima entre enemigos al aparecer.
         const float EnemySpacing = 2f;
+        // Radio del corro en que aparece un grupo (el cardumen): cabe en la celda libre de alrededor del sitio elegido.
+        const float GroupRadius = 0.7f;
 
         /// <summary>
         /// Presupuesto de una sala: el base más lo que sube por cada sala anterior, escalado con la raíz del
@@ -28,19 +30,55 @@ namespace Primordia.Rooms
             return Mathf.Max(1, Mathf.RoundToInt(budget));
         }
 
-        /// <summary>Enemigos elegidos al azar hasta gastar el presupuesto (o hasta que no quepa ninguno).</summary>
+        /// <summary>
+        /// Enemigos elegidos al azar hasta gastar el presupuesto (o hasta que no quepa ninguno), sin pasar del tope por
+        /// sala de cada uno.
+        /// </summary>
         public static List<Enemy> PickEnemies(FloorConfig config, int depth, int budget, System.Random random)
         {
             var result = new List<Enemy>();
+            var entries = config.Enemies;
+            // Cuántos lleva ya de cada entrada, para su tope por sala.
+            var picked = new int[entries.Length];
             while (budget > 0)
             {
-                var affordable = config.Enemies.Where(e => e.prefab != null && e.cost <= budget && depth >= e.minDepth).ToList();
+                var affordable = Enumerable.Range(0, entries.Length)
+                    .Where(i => entries[i].prefab != null && entries[i].cost <= budget && depth >= entries[i].minDepth
+                                && (entries[i].maxPerRoom == 0 || picked[i] < entries[i].maxPerRoom))
+                    .ToList();
                 if (affordable.Count == 0)
                     break;
 
-                var entry = affordable[random.Next(affordable.Count)];
-                result.Add(entry.prefab);
-                budget -= entry.cost;
+                int index = affordable[random.Next(affordable.Count)];
+                result.Add(entries[index].prefab);
+                picked[index]++;
+                budget -= entries[index].cost;
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// Crea el enemigo elegido en esa posición; si su entrada sale en grupo (el cardumen), crea el grupo entero en un
+        /// corro pequeño alrededor. Devuelve los creados.
+        /// </summary>
+        public static List<Enemy> Spawn(FloorConfig config, Enemy prefab, Vector2 position, Transform parent)
+        {
+            int size = 1;
+            foreach (var entry in config.Enemies)
+            {
+                if (entry.prefab == prefab)
+                {
+                    size = entry.GroupSize;
+                    break;
+                }
+            }
+
+            var result = new List<Enemy>();
+            for (int i = 0; i < size; i++)
+            {
+                var offset = size == 1 ? Vector2.zero
+                    : (Vector2)(Quaternion.Euler(0f, 0f, 360f * i / size) * Vector2.right) * GroupRadius;
+                result.Add(Object.Instantiate(prefab, position + offset, Quaternion.identity, parent));
             }
             return result;
         }

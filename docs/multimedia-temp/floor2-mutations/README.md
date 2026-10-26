@@ -53,11 +53,11 @@ Sin capa en el cuerpo (como en el GDD): efectos de activación.
 
 ## Tanda 4: Carroñero (restos de Carroña)
 
-Paleta de la clase: `#4a3420`, `#8a6a40`, `#c8a46a`, `#f2e0b4` (marrón arena).
+Generada con `generar_carrona.py` (`python generar_carrona.py`, con la skill `primordia-sprites`; ya no está en `generar_mutaciones_piso2.py`). Paleta de la clase: `ramp('#a07a48')` (marrón arena, sombras hacia el morado), carne `ramp('#b04a48')`, restos dobles `ramp('#d4a42c')`.
 
 | Hoja | Cuadros | Lienzo | Uso |
 |---|---|---|---|
-| `Effects/Fx_Carrion_Remains.png` | 4 (bucle) | 16×16 | Restos que deja un enemigo al morir (4 s): montón de carne con trozos de hueso y un brillo que lo recorre. Apoyo abajo en el centro. 150 ms |
+| `Effects/Fx_Carrion_Remains.png` | 4 (bucle) | 16×16 | Restos que deja un enemigo al morir (4 s): montón de arena con un trozo de carne y dos costillas, un destello que lo cruza y una chispa en los cuadros 0 y 2. Apoyo abajo en el centro. 150 ms |
 | `Effects/Fx_Carrion_RemainsDouble.png` | 4 (bucle) | 16×16 | Restos dobles (Doble ración de la Hallucigenia), dorados y algo más grandes |
-| `Effects/Fx_Carrion_Eat.png` | 5 | 24×24 | Al tocarlos: los trozos giran y suben hacia el jugador. 60 ms |
-| `Effects/Status_Carrion_1/2/3.png` | 2 (bucle) | 12×8 | Marca sobre el jugador con el bonus acumulado (1, 2 o 3 colmillos). 250 ms |
+| `Effects/Fx_Carrion_Eat.png` | 5 | 24×24 | Al tocarlos: los trozos (carne y arena, 3 px con contorno) giran en espiral, suben y acaban en chispa. 60 ms |
+| `Effects/Status_Carrion_1/2/3.png` | 2 (bucle) | 12×8 | Marca sobre el jugador con el bonus acumulado (1, 2 o 3 colmillos que comparten contorno; en el cuadro 1 brillan las puntas). 250 ms |

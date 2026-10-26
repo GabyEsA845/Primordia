@@ -41,6 +41,20 @@ Unos 90 px de largo con la cola (el abdomen se estrecha poco a poco hasta la col
 | `Eurypterid_Hurt_Soft` | 2 | 90 | Daño en la fase 2 |
 | `Eurypterid_Death` | 8 | 140 | Se encoge, se ladea, la arena lo cubre y queda fosilizado |
 
+## Sala del Anomalocaris (`AnomalocarisRoom/`) y su burbuja
+
+Generadas con `generar_sala_anomalocaris.py` (skill primordia-sprites). Paleta del Abismo: las algas son una silueta oscura que tapa; las plantas, cian, dan casi toda la luz de la sala.
+
+| Hoja | Cuadros | Celda | ms | Uso |
+|---|---|---|---|---|
+| `Deco_AlgaeColumn_A` / `_B` | 4 | 64×96 | 200 | Columna de algas (marca `A`), bucle. **Pivote en la base: (32, 92) px = (0,5; 0,042)**. Se dibuja por encima de los personajes, sin colisión; translúcida si el jugador está debajo |
+| `Deco_LightPlant` | 4 | 32×32 | 220 | Planta luminosa (marca `L`), bucle; pivote (16, 28) = (0,5; 0,125). Luz 2D cian `#6ae8f0`, unas 4 u, que late con ella |
+| `Deco_LightPlant_Off` | 3 | 32×32 | 120 | Se apaga (escena de los ojos); al revés, se enciende |
+| `Effects/Proj_AnomalocarisBubble` | 4 | 16×16 | 120 | Burbuja que daña (estela del acecho y muro del cerco), bucle |
+| `Effects/Fx_AnomalocarisBubble_Pop` | 4 | 16×16 | 60 | La burbuja revienta (al tocar al jugador o al recibir un disparo) |
+
+`vista_previa_sala_anomalocaris.png` y `gif/` son para revisar.
+
 ## Efectos (`Effects/`)
 
 | Hoja | Cuadros | Celda | Uso |

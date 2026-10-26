@@ -11,6 +11,9 @@ namespace Primordia.Rooms
         [SerializeField, Min(0.05f)] float period = 1f;
         [SerializeField] float phase;
 
+        /// <summary>Intensidad mínima y máxima del latido.</summary>
+        public Vector2 Intensity => intensity;
+
         internal void Configure(Light2D newTarget, Vector2 newIntensity, float newPeriod, float newPhase)
         {
             target = newTarget;

@@ -685,6 +685,7 @@ namespace Primordia.Rooms
 
             BuildObstacles(roomObject.transform, placed, theme, random, glows);
             var vents = BuildPieces(roomObject.transform, placed, config, random);
+            var lightPlants = BuildDarkRoomPieces(roomObject.transform, placed, config, random);
             BuildAmbience(roomObject.transform, placed, theme, config, random);
 
             // Los enemigos esperan desactivados hasta que el jugador entra.
@@ -701,6 +702,10 @@ namespace Primordia.Rooms
             var room = roomObject.AddComponent<Room>();
             room.Configure(enemiesRoot, doors.ToArray());
             room.ConfigureWaves(laterWaves, vents.ToArray());
+
+            // La sala con plantas luminosas (la del Anomalocaris) se queda en penumbra al entrar.
+            if (lightPlants.Count > 0)
+                roomObject.AddComponent<RoomDarkness>().Configure(room, lightPlants);
 
             // La de inicio, la tienda y la sala de paso no tienen enemigos, así que no sueltan nada.
             if (HasEnemies(placed.Layout) && config.SmallBiomass != null)
@@ -911,6 +916,75 @@ namespace Primordia.Rooms
             }
 
             return builtVents;
+        }
+
+        static readonly Color LightPlantGlow = new(0.42f, 0.91f, 0.94f);
+        // Altura de los bulbos sobre la base de la planta, donde va su luz.
+        const float LightPlantGlowHeight = 0.9f;
+        // Círculo de luz de cada planta: toda la intensidad hasta el radio interior y caída hasta el exterior.
+        const float LightPlantInnerRadius = 1.8f;
+        const float LightPlantOuterRadius = 4.5f;
+        static readonly Vector2 LightPlantIntensity = new(1.3f, 1.7f);
+
+        /// <summary>
+        /// Columnas de algas (A) y plantas luminosas (L) de la sala del Anomalocaris. Las algas se dibujan encima de todo
+        /// y no bloquean; las plantas llevan su luz. Devuelve las plantas.
+        /// </summary>
+        static List<LightPlant> BuildDarkRoomPieces(Transform roomObject, PlacedRoom placed, FloorConfig config, System.Random random)
+        {
+            var plants = new List<LightPlant>();
+            var template = placed.Template;
+            var algae = template.CellsOf(RoomTemplate.Mark.Algae);
+            var lights = template.CellsOf(RoomTemplate.Mark.LightPlant);
+            if (algae.Count == 0 && lights.Count == 0)
+                return plants;
+
+            var pieces = config.Pieces;
+            var root = new GameObject("DarkRoom").transform;
+            root.SetParent(roomObject, false);
+
+            foreach (var cell in algae)
+            {
+                var frames = random.Next(2) == 0 ? pieces.algaeColumnA : pieces.algaeColumnB;
+                if (frames == null || frames.Length == 0)
+                    frames = pieces.algaeColumnA ?? pieces.algaeColumnB;
+                var column = new GameObject("AlgaeColumn");
+                column.transform.SetParent(root, false);
+                column.transform.position = (Vector2)(placed.Origin + cell) + Vector2.one * 0.5f;
+                var renderer = column.AddComponent<SpriteRenderer>();
+                renderer.sortingOrder = AlgaeColumn.SortingOrder;
+                if (frames != null && frames.Length > 0)
+                {
+                    renderer.sprite = frames[0];
+                    column.AddComponent<SpriteLoop>().Configure(renderer, frames, 0.2f, (float)random.NextDouble() * 0.8f);
+                }
+                column.AddComponent<AlgaeColumn>().Configure(renderer);
+            }
+
+            foreach (var cell in lights)
+            {
+                var position = (Vector2)(placed.Origin + cell) + Vector2.one * 0.5f;
+                var piece = new GameObject("LightPlant");
+                piece.transform.SetParent(root, false);
+                piece.transform.position = position;
+                var renderer = piece.AddComponent<SpriteRenderer>();
+                renderer.sortingOrder = ObstacleOrder;
+                SpriteLoop loop = null;
+                if (pieces.lightPlant != null && pieces.lightPlant.Length > 0)
+                {
+                    renderer.sprite = pieces.lightPlant[0];
+                    loop = piece.AddComponent<SpriteLoop>();
+                    loop.Configure(renderer, pieces.lightPlant, 0.22f, (float)random.NextDouble() * 0.88f);
+                }
+                Ambience.CreateGlobalLight(roomObject);
+                var glow = Ambience.CreateGlow(piece.transform, position + Vector2.up * LightPlantGlowHeight,
+                    new Glow(null, LightPlantGlow, LightPlantOuterRadius, LightPlantIntensity, 0.88f), (float)random.NextDouble());
+                glow.pointLightInnerRadius = LightPlantInnerRadius;
+                var plant = piece.AddComponent<LightPlant>();
+                plant.Configure(renderer, loop, pieces.lightPlantOff, glow, glow.GetComponent<GlowPulse>());
+                plants.Add(plant);
+            }
+            return plants;
         }
 
         /// <summary>Salas con enemigos (y biomasa al limpiarlas): las de combate, las laterales y la del jefe, salvo las especiales sin enemigos.</summary>

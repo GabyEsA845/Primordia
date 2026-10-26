@@ -361,7 +361,7 @@ namespace Primordia.Editor
         }
 
         /// <summary>El prefab GameUI y su EventSystem, si la escena aún no tiene HUD. True si lo ha añadido.</summary>
-        static bool AddHUD(UnityEngine.SceneManagement.Scene scene)
+        internal static bool AddHUD(UnityEngine.SceneManagement.Scene scene)
         {
             bool hasHUD = scene.GetRootGameObjects().Any(root => root.GetComponentInChildren<UI.HeartsDisplay>(true) != null);
             if (hasHUD)
@@ -376,7 +376,7 @@ namespace Primordia.Editor
         /// El jugador de la escena de prueba empieza como si llegara del piso 1: con una Boca del piso 2 y una mutación del
         /// piso 1 en cada otra ranura, todas a nivel II.
         /// </summary>
-        static void AddTestLoadout(UnityEngine.SceneManagement.Scene scene, FloorConfig floor1)
+        internal static void AddTestLoadout(UnityEngine.SceneManagement.Scene scene, FloorConfig floor1)
         {
             var player = scene.GetRootGameObjects().Select(root => root.GetComponentInChildren<PlayerMutations>()).FirstOrDefault(p => p != null);
             if (player == null || floor1 == null)

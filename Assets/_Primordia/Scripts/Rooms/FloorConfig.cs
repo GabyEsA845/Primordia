@@ -150,6 +150,12 @@ namespace Primordia.Rooms
             public Sprite[] waveVentActive;
             [Tooltip("Tecla E normal y pulsada, sobre lo que se puede usar.")]
             public Sprite[] keyPrompt;
+            [Tooltip("Columnas de algas de la sala del Anomalocaris (dos variantes, bucle), con el pivote en la base.")]
+            public Sprite[] algaeColumnA;
+            public Sprite[] algaeColumnB;
+            [Tooltip("Planta luminosa: latido (bucle) y apagarse.")]
+            public Sprite[] lightPlant;
+            public Sprite[] lightPlantOff;
         }
 
         /// <summary>Lo que guardan las almejas: biomasa siempre y, la grande, una mutación especial si las hay.</summary>

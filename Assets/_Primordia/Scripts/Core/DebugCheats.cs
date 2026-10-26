@@ -11,8 +11,8 @@ namespace Primordia.Core
     /// Atajos para probar (solo en el editor y en compilaciones de desarrollo; la build de itch.io no los lleva):
     /// F1 invulnerable, F2 daño ×5, F3 vacía la sala en combate, F4 da una mutación al azar de la reserva del piso (o
     /// sube de nivel una que ya se lleva), F5 una mutación especial de las almejas (o sube una que ya se lleva) y F6 cambia a
-    /// la siguiente Boca del piso, con el mismo nivel (para probar las Bocas del piso 2 en Test_Floor2). Arriba a la
-    /// izquierda se ve qué está activo.
+    /// la siguiente Boca del piso, con el mismo nivel (para probar las Bocas del piso 2 en Test_Floor2) y F7 lleva junto a
+    /// la cápsula de la sala de cambio. Arriba a la izquierda se ve qué está activo.
     /// </summary>
     public class DebugCheats : MonoBehaviour
     {
@@ -74,12 +74,30 @@ namespace Primordia.Core
                 GiveSpecial();
             if (keyboard.f6Key.wasPressedThisFrame)
                 NextMouth();
+            if (keyboard.f7Key.wasPressedThisFrame)
+                GoToExchange();
 
             // La esquiva enciende y apaga la invulnerabilidad: aquí se renueva cada cuadro sin tocarla.
             if (invulnerable && player.Health != null)
                 player.Health.MakeInvulnerable(0.2f);
             if (strong && player.Weapon != null)
                 player.Weapon.SetDamageBonus(this, DamageBoost);
+        }
+
+        void GoToExchange()
+        {
+            var capsule = FindAnyObjectByType<ExchangeCapsule>();
+            if (capsule == null)
+            {
+                Say("Este piso no tiene sala de cambio");
+                return;
+            }
+            // Delante de la cápsula, por debajo de su bloque de 2×2.
+            var position = (Vector2)capsule.transform.position + Vector2.down * 2.5f;
+            if (player.TryGetComponent<Rigidbody2D>(out var body))
+                body.position = position;
+            player.transform.position = position;
+            Say("Sala de cambio");
         }
 
         void ClearRoom()

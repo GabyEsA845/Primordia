@@ -198,9 +198,13 @@ namespace Primordia.Rooms
             return map;
         }
 
-        /// <summary>Lo que bloquea el paso y los proyectiles: obstáculos, huesos, almejas, el coral del corazón y las rocas que se derrumban.</summary>
+        /// <summary>
+        /// Lo que bloquea el paso y los proyectiles: obstáculos, huesos, almejas, el coral del corazón, las rocas que se
+        /// derrumban y la cápsula de la sala de cambio.
+        /// </summary>
         public static bool IsObstacle(Mark mark) =>
-            mark is Mark.Obstacle or Mark.BigObstacle or Mark.Fossil or Mark.Chest or Mark.HeartCoral or Mark.CollapsingRock;
+            mark is Mark.Obstacle or Mark.BigObstacle or Mark.Fossil or Mark.Chest or Mark.HeartCoral or Mark.CollapsingRock
+                or Mark.Capsule;
 
         /// <summary>Lo que está dentro de la sala: todo menos la pared y los huecos de puerta.</summary>
         public static bool IsInterior(Mark mark) =>

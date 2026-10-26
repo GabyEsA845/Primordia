@@ -13,7 +13,9 @@ namespace Primordia.Tests
     /// <summary>
     /// Mutaciones del piso 2 que no son Bocas. Cola propulsora: dos esquivas seguidas; en el nivel II la segunda deja
     /// burbujas que dañan y empujan. Espinas de Hallucigenia: al esquivar dejas púas que dañan una vez a quien las pisa y,
-    /// con el Erizo, salen disparadas al desaparecer.
+    /// con el Erizo, salen disparadas al desaparecer. Placas de trilobite: +1 corazón y rebota 1 de cada 4 proyectiles (todos
+    /// con Enrollarse, destruye los que toca al esquivar). Escleritos de Wiwaxia: tandas de escamas hacia los enemigos cercanos; con la Órbita,
+    /// antes giran y destruyen proyectiles.
     /// </summary>
     public class Floor2MutationsTests
     {
@@ -171,6 +173,132 @@ namespace Primordia.Tests
 
             Assert.IsTrue(shot.HasValue, "Al desaparecer sale disparada.");
             Assert.Greater(shot.Value.x, 0.9f, "Hacia el enemigo.");
+        }
+
+        AttackData ProjectileAttack(float speed = 12f, float lifetime = 0.8f)
+        {
+            var template = Track(new GameObject("ProjectileTemplate"));
+            template.SetActive(false);
+            template.AddComponent<Rigidbody2D>().gravityScale = 0f;
+            var collider = template.AddComponent<CircleCollider2D>();
+            collider.radius = 0.1f;
+            collider.isTrigger = true;
+            var attack = Track(ScriptableObject.CreateInstance<AttackData>());
+            attack.Configure(template.AddComponent<Projectile>(), 1f, 2, speed, lifetime);
+            return attack;
+        }
+
+        [Test]
+        public void TrilobitePlates_GiveAHeart_WhileEquipped()
+        {
+            var plates = Mutation<TrilobitePlatesMutation>(MutationSlot.Skin);
+            int before = player.Health.Max;
+            EquipAt(plates, 1);
+            Assert.AreEqual(before + 2, player.Health.Max);
+            player.Unequip(MutationSlot.Skin);
+            Assert.AreEqual(before, player.Health.Max);
+        }
+
+        [UnityTest]
+        public IEnumerator TrilobitePlates_BounceOneOfFour_AndAllWhileRolling()
+        {
+            var plates = Mutation<TrilobitePlatesMutation>(MutationSlot.Skin);
+            EquipAt(plates, 1);
+            var bounce = player.GetComponent<PlatesBounce>();
+            var shotObject = Track(new GameObject("Projectile"));
+            shotObject.AddComponent<Rigidbody2D>().gravityScale = 0f;
+            shotObject.AddComponent<CircleCollider2D>().isTrigger = true;
+            var projectile = shotObject.AddComponent<Projectile>();
+
+            var results = new List<bool>();
+            for (int i = 0; i < 8; i++)
+                results.Add(bounce.TryReflect(projectile));
+            CollectionAssert.AreEqual(new[] { false, false, false, true, false, false, false, true }, results, "1 de cada 4.");
+
+            Assert.IsTrue(controller.TryDodge());
+            Assert.IsFalse(bounce.TryReflect(projectile), "Sin Enrollarse, esquivando lo atraviesa como siempre.");
+            // La esquiva (0,25 s) y su recarga (0,4 s).
+            yield return new WaitForSeconds(0.8f);
+
+            player.LevelUp(MutationSlot.Skin);
+            player.LevelUp(MutationSlot.Skin);
+            // El comportamiento del nivel anterior se destruye al final del cuadro.
+            yield return null;
+            bounce = player.GetComponent<PlatesBounce>();
+            Assert.IsTrue(controller.TryDodge(), "La esquiva ya está lista.");
+            Assert.IsTrue(bounce.TryReflect(projectile), "Enrollarse: esquivando destruye todos.");
+            Assert.IsTrue(bounce.TryReflect(projectile));
+        }
+
+        [UnityTest]
+        public IEnumerator WiwaxiaSclerites_ReleaseAVolley_TowardNearbyEnemies()
+        {
+            var sclerites = Mutation<WiwaxiaScleritesMutation>(MutationSlot.Skin);
+            sclerites.ConfigureLook(ProjectileAttack(), null, null, null);
+            EquipAt(sclerites, 1);
+            player.transform.position = new Vector2(50f, 0f);
+            Enemy(new Vector2(53f, 0f));
+            var volley = player.GetComponent<ScleriteVolley>();
+            IReadOnlyList<Projectile> launched = null;
+            volley.Released += list => launched = list;
+            volley.Ready();
+            yield return null;
+            yield return null;
+
+            Assert.AreEqual(1, volley.Volleys);
+            Assert.IsNotNull(launched);
+            Assert.AreEqual(3, launched.Count, "Nivel I: 3 escamas.");
+            Assert.Greater(launched[0].Velocity.x, 0f, "Hacia el enemigo.");
+        }
+
+        [UnityTest]
+        public IEnumerator WiwaxiaSclerites_Orbit_DestroysEnemyProjectiles_ThenFires()
+        {
+            var sclerites = Mutation<WiwaxiaScleritesMutation>(MutationSlot.Skin);
+            sclerites.ConfigureLook(ProjectileAttack(), null, null, null);
+            EquipAt(sclerites, 3);
+            player.transform.position = new Vector2(70f, 0f);
+            Enemy(new Vector2(74f, 0f));
+            var volley = player.GetComponent<ScleriteVolley>();
+
+            // Un proyectil enemigo casi quieto en el camino de la órbita.
+            var enemyShot = ProjectileAttack(speed: 0.1f, lifetime: 5f);
+            var incoming = ProjectilePool.Get(enemyShot.ProjectilePrefab);
+            incoming.Launch(new Vector2(71.1f, 0f), Vector2.left, enemyShot, CombatLayers.ProjectileLayer(Team.Enemy), null);
+
+            volley.Ready();
+            yield return null;
+            Assert.IsTrue(volley.IsOrbiting, "Primero giran.");
+            for (float t = 0f; t < 3f && volley.IsOrbiting; t += Time.deltaTime)
+                yield return null;
+
+            Assert.GreaterOrEqual(volley.Blocked, 1, "Destruyen el proyectil enemigo.");
+            Assert.AreEqual(1, volley.Volleys, "Y luego salen.");
+        }
+
+        [UnityTest]
+        public IEnumerator TrilobitePlates_Roll_BouncesEnemyProjectilesInsideTheBall()
+        {
+            var plates = Mutation<TrilobitePlatesMutation>(MutationSlot.Skin);
+            EquipAt(plates, 3);
+            player.transform.position = new Vector2(90f, 0f);
+            var bounce = player.GetComponent<PlatesBounce>();
+
+            // Una carga enemiga casi quieta dentro de la bola, sin tocar el cuerpo del jugador.
+            var enemyShot = ProjectileAttack(speed: 0.1f, lifetime: 5f);
+            var incoming = ProjectilePool.Get(enemyShot.ProjectilePrefab);
+            incoming.Launch(new Vector2(90.6f, 0f), Vector2.up, enemyShot, CombatLayers.ProjectileLayer(Team.Enemy), null);
+            yield return null;
+            Assert.AreEqual(0, bounce.Bounced, "Sin esquivar, la bola no está.");
+
+            // Hacia la carga: así está dentro de la bola sea cual sea el ritmo de los cuadros.
+            controller.SetInput(Vector2.right, Vector2.right);
+            Assert.IsTrue(controller.TryDodge());
+            yield return null;
+            yield return null;
+
+            Assert.GreaterOrEqual(bounce.Bounced, 1, "Enrollado, destruye lo que hay dentro de la bola.");
+            Assert.IsFalse(incoming.isActiveAndEnabled);
         }
     }
 }

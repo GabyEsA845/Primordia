@@ -10,7 +10,7 @@ namespace Primordia.Editor
 {
     /// <summary>
     /// Las 6 mutaciones del piso 2 que no son Bocas (GDD, tabla de mutaciones del piso 2), por pasos: de momento las
-    /// Extremidades (Cola propulsora y Espinas de Hallucigenia). Importa su arte (docs/multimedia-temp/floor2-mutations),
+    /// Extremidades (Cola propulsora y Espinas de Hallucigenia) y la Piel (Placas de trilobite y Escleritos de Wiwaxia). Importa su arte (docs/multimedia-temp/floor2-mutations),
     /// crea sus datos con textos y valores, sus capas sobre los cuerpos de las Bocas del piso, sus efectos y prefabs, y las
     /// mete en la reserva del piso 2. Rehace los textos, los efectos y las capas cada vez.
     /// </summary>
@@ -41,10 +41,12 @@ namespace Primordia.Editor
             {
                 CreateTailPropulsor(),
                 CreateHallucigeniaSpines(),
+                CreateTrilobitePlates(),
+                CreateWiwaxiaSclerites(),
             };
             AssetDatabase.SaveAssets();
             AddToPool(created);
-            Debug.Log("Floor2MutationsSetup: Cola propulsora y Espinas de Hallucigenia creadas, con sus capas, y en la reserva del piso 2.");
+            Debug.Log("Floor2MutationsSetup: Cola propulsora, Espinas de Hallucigenia, Placas de trilobite y Escleritos de Wiwaxia creadas, con sus capas, y en la reserva del piso 2.");
         }
 
         // ---------- Cola propulsora ----------
@@ -133,6 +135,45 @@ namespace Primordia.Editor
             {
                 Object.DestroyImmediate(root);
             }
+        }
+
+        // ---------- Placas de trilobite ----------
+
+        static MutationData CreateTrilobitePlates()
+        {
+            var plates = Mutation<TrilobitePlatesMutation>("Mutation_TrilobitePlates", "Placas de trilobite",
+                "+1 corazón. 1 de cada 4 proyectiles que te alcanzan se deshace contra tus placas sin hacerte daño.", MutationSlot.Skin,
+                "Se deshace 1 de cada 3.",
+                "Enrollarse: te enrollas al esquivar y destruyes los proyectiles contra los que esquivas.");
+            SetIcons(plates, "TrilobitePlates");
+            SetLayers(plates, "Skin", "Skin_TrilobitePlates");
+            plates.ConfigureLook(Effect("Fx_TrilobitePlates_Bounce", 16), Effect("Fx_TrilobitePlates_Roll", 32));
+            EditorUtility.SetDirty(plates);
+            return plates;
+        }
+
+        // ---------- Escleritos de Wiwaxia ----------
+
+        static MutationData CreateWiwaxiaSclerites()
+        {
+            var sclerites = Mutation<WiwaxiaScleritesMutation>("Mutation_WiwaxiaSclerites", "Escleritos de Wiwaxia",
+                "Cada 9 s sueltas 3 escamas hacia los enemigos cercanos (2 de daño cada una).", MutationSlot.Skin,
+                "Cada 7 s, 5 escamas.",
+                "Órbita: antes de salir disparadas, las escamas giran 2 s a tu alrededor y destruyen los proyectiles enemigos que tocan.");
+            SetIcons(sclerites, "WiwaxiaSclerites");
+            SetLayers(sclerites, "Skin", "Skin_WiwaxiaSclerites");
+
+            var scaleFrames = Effect("Proj_WiwaxiaSclerite", 10);
+            var projectile = Floor2MouthsSetup.CreateProjectile("Projectile_WiwaxiaSclerite", scaleFrames, radius: 0.15f);
+            var attack = CombatSetup.LoadAttack("Attack_WiwaxiaSclerite");
+            if (attack == null)
+                attack = CombatSetup.CreateAttack("Attack_WiwaxiaSclerite", projectile, 1f, 2, 11f, 0.9f);
+            attack.Configure(projectile, fireRate: 1f, damage: 2, speed: 11f, lifetime: 0.9f);
+            EditorUtility.SetDirty(attack);
+
+            sclerites.ConfigureLook(attack, scaleFrames, Effect("Fx_WiwaxiaSclerites_Release", 24), Effect("Fx_WiwaxiaSclerite_Block", 12));
+            EditorUtility.SetDirty(sclerites);
+            return sclerites;
         }
 
         // ---------- Ayudas ----------

@@ -127,7 +127,7 @@ Carnívoro, Herbívoro y Venenoso se remodelan, Hongo duerme y entra el **Carro�
 | Anémona | Lecho urticante | Quien pisa tus púas queda envenenado |
 | Lirio de mar | Corriente nutritiva | El remolino atrae también la biomasa del suelo |
 | Wiwaxia | Cosecha | Cada tanda de escleritos que alcanza a 3 o más enemigos da medio corazón verde |
-| Trilobite | Coraza de carroña | Al tocar unos restos, el siguiente proyectil que te alcance rebota |
+| Trilobite | Coraza de carroña | Al tocar unos restos, el siguiente proyectil que te alcance se deshace contra tus placas |
 | Hallucigenia | Doble ración | Las púas que matan a un enemigo dejan restos dobles (cuentan como dos) |
 
 - **Evolución:** como en el piso 1, al completar un linaje el juego se congela unos 2 s y el cuerpo brilla y se transforma en la silueta del animal, del color de su clase. Parte del cuerpo que da la Boca del linaje (pez acorazado, medusa o lirio de mar), y las siluetas son de 64×64 (48×48 en el piso 1). Por ahora los linajes del piso 2 no cambian piezas del cuerpo.
@@ -239,7 +239,7 @@ Nueve mutaciones: 3 Bocas, una por familia de arma, y 2 por cada otra ranura. El
 | Corona de brazos | Boca | Área → lirio de mar | El clic lanza un remolino donde está el cursor (como mucho a 6 u): dura 2 s, radio 1,6 u, atrae a los enemigos al centro y hace 1 de daño cada 0,4 s. Un remolino por segundo | Radio 2 u, dura 2,5 s y daña cada 0,3 s | **Marea:** al acabar, el remolino estalla, empuja a todos hacia fuera y hace 4 de daño |
 | Cola propulsora | Extremidades | | Dos esquivas seguidas antes de la recarga | La segunda esquiva deja 3 burbujas que hacen 2 de daño y empujan | **Torbellino:** las dos esquivas dejan 5 burbujas de 3 de daño |
 | Espinas de Hallucigenia | Extremidades | | Al esquivar dejas 2 púas en el suelo durante 4 s; quien las pisa recibe 2 de daño | 3 púas que duran 6 s | **Erizo:** al desaparecer, cada púa sale disparada hacia el enemigo más cercano |
-| Placas de trilobite | Piel | | +1 corazón; 1 de cada 4 proyectiles que te alcanzan rebota sin hacerte daño | Rebota 1 de cada 3 | **Enrollarse:** durante la esquiva rebotas todos los proyectiles |
+| Placas de trilobite | Piel | | +1 corazón; 1 de cada 4 proyectiles que te alcanzan se deshace contra tus placas sin hacerte daño | Se deshace 1 de cada 3 | **Enrollarse:** te enrollas al esquivar y destruyes los proyectiles contra los que esquivas (devolverlos es cosa de la Cutícula de Marrella) |
 | Escleritos de Wiwaxia | Piel | | Cada 9 s sueltas 3 escamas hacia los enemigos cercanos (2 de daño cada una) | Cada 7 s, 5 escamas | **Órbita:** antes de salir disparadas, las escamas giran 2 s a tu alrededor y destruyen los proyectiles enemigos que tocan. Es la única forma del piso de protegerse sin esquivar |
 | Saco de crías | Órgano especial | | Clic derecho: 2 larvas aliadas que persiguen y muerden durante 8 s; recarga de 14 s | 3 larvas (8 s) | **Enjambre:** la larva que mata a un enemigo se divide en dos (también 8 s) |
 | Ojos compuestos | Órgano especial | | Clic derecho: durante 3 s todo va al 60 % de velocidad salvo tú; recarga de 12 s | Dura 4 s | **Visión total:** mientras dura, tus ataques hacen un 30 % más de daño |

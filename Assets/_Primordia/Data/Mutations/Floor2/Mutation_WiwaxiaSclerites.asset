@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 652b5ab2fe5e5af45af7c10e98163436, type: 3}
+  m_Name: Mutation_WiwaxiaSclerites
+  m_EditorClassIdentifier: Primordia::Primordia.Mutations.WiwaxiaScleritesMutation
+  displayName: Escleritos de Wiwaxia
+  description: "Cada 9 s sueltas 3 escamas hacia los enemigos cercanos (2 de da\xF1o cada una)."
+  slot: 2
+  lineages: []
+  look: {fileID: 0}
+  bodyRadius: 0
+  mouthDistance: 0
+  headHeight: 0
+  wornOnHead: 0
+  muzzleDistance: 0
+  attackLean: 0
+  icon: {fileID: 21300000, guid: 1340c73b1d5509a4199d10fe5d66a207, type: 3}
+  largeIcon: {fileID: 21300000, guid: 6a04498e31fb1c24dac1de884c47f081, type: 3}
+  color: {r: 0.55, g: 0.7, b: 0.9, a: 1}
+  levelDescriptions:
+  - Cada 7 s, 5 escamas.
+  - "\xD3rbita: antes de salir disparadas, las escamas giran 2 s a tu alrededor y destruyen los proyectiles enemigos que tocan."
+  dodgeSound: 
+  floor: 2
+  special: 0
+  family: 0
+  creatureIdleFrames: []
+  creatureAttackFrames: []
+  creatureBody: {fileID: 0}
+  attackHitTime: 0
+  creatureLayers:
+  - body: {fileID: 9100000, guid: feb82a28b3107fc4b986b41b1d879747, type: 2}
+    layer: {fileID: 9100000, guid: b8b6aa8cb0ed2c34ba7c5be49befd112, type: 2}
+  - body: {fileID: 9100000, guid: 5c4ed1232e5e4c14a9ea4801bceeb8b0, type: 2}
+    layer: {fileID: 9100000, guid: 635f1f934d89b734096d99549eeccffb, type: 2}
+  - body: {fileID: 9100000, guid: 4c5ea57aa6bffee4eb43b77aeb938993, type: 2}
+    layer: {fileID: 9100000, guid: 81f8988398e644b4d9e888fdc2649ebc, type: 2}
+  morphFrames: []
+  revealFrames: []
+  intervals:
+  - 9
+  - 7
+  - 7
+  counts: 030000000500000005000000i
+  scaleAttack: {fileID: 11400000, guid: 01e4e137a4e4ba64d84f26da07e81531, type: 2}
+  range: 7
+  orbitDuration: 2
+  orbitRadius: 1.1
+  orbitSpeed: 0.9
+  scaleFrames:
+  - {fileID: -2057900262668610084, guid: 87837486ec51e744e809e892076885a0, type: 3}
+  - {fileID: -1420594664, guid: 87837486ec51e744e809e892076885a0, type: 3}
+  - {fileID: 581159878, guid: 87837486ec51e744e809e892076885a0, type: 3}
+  releaseFrames:
+  - {fileID: 738485262078500296, guid: f4ce693dffa737a44b39ea6ecead3160, type: 3}
+  - {fileID: -1191749441, guid: f4ce693dffa737a44b39ea6ecead3160, type: 3}
+  - {fileID: 796308947, guid: f4ce693dffa737a44b39ea6ecead3160, type: 3}
+  - {fileID: -2035929816, guid: f4ce693dffa737a44b39ea6ecead3160, type: 3}
+  blockFrames:
+  - {fileID: 6243938976680671143, guid: d34525aade74fcf4b9d787c8964c1025, type: 3}
+  - {fileID: -540346087, guid: d34525aade74fcf4b9d787c8964c1025, type: 3}
+  - {fileID: -1562784302, guid: d34525aade74fcf4b9d787c8964c1025, type: 3}
+  - {fileID: 133907070, guid: d34525aade74fcf4b9d787c8964c1025, type: 3}

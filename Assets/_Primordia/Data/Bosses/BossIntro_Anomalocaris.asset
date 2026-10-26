@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be0e117875afd9841a604c6f446e5f4b, type: 3}
+  m_Name: BossIntro_Anomalocaris
+  m_EditorClassIdentifier: Primordia::Primordia.Enemies.BossIntroData
+  nameSprite: {fileID: 21300000, guid: 9d6a86180a740454caeded7ef4d67451, type: 3}
+  title: "Terror del C\xE1mbrico"
+  portrait: {fileID: 21300000, guid: 609af25aa39832648a533183fede3633, type: 3}
+  bandColor: {r: 0.03137255, g: 0.0627451, b: 0.11764706, a: 1}
+  accentColor: {r: 0.47058824, g: 0.8627451, b: 0.8235294, a: 1}

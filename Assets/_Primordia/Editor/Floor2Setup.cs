@@ -187,9 +187,12 @@ namespace Primordia.Editor
 
         const string MutationPickupPath = "Assets/_Primordia/Prefabs/Mutations/MutationPickup.prefab";
 
-        // Salas de los jefes del piso 2, por orden de la lista de jefes (hasta que lleguen el Anomalocaris y el Euriptérido,
-        // los jefes del piso 1 pelean en ellas).
-        static readonly string[] BossRooms = { "Room_Boss_Anomalocaris", "Room_Boss_Eurypterid" };
+        // Salas de los jefes del piso 2 y su jefe (si ya está creado; si no, pelea en ella un jefe del piso 1, por orden).
+        static readonly (string room, string prefab)[] BossRooms =
+        {
+            ("Room_Boss_Anomalocaris", ArtSetup.AnomalocarisPrefabPath),
+            ("Room_Boss_Eurypterid", null),
+        };
 
         /// <summary>
         /// Planos hechos a mano del piso 2 (docs/multimedia-temp/floor2-rooms/Layouts, de generar_salas_especiales.py y
@@ -224,8 +227,15 @@ namespace Primordia.Editor
             config.ConfigureFixedRooms(Named("Room_Exchange"), Named("Room_Antechamber_Vertical"), Named("Room_Antechamber_Horizontal"));
 
             var abyss = bands.Length > 2 ? bands[2] : null;
-            var bosses = floor1.BossOptions().Select((boss, i) =>
-                new FloorConfig.BossEntry(boss.prefab, Named(BossRooms[i % BossRooms.Length]) ?? boss.room, abyss ?? boss.theme, boss.offset)).ToArray();
+            var floor1Bosses = floor1.BossOptions();
+            var bosses = BossRooms.Select((slot, i) =>
+            {
+                var provisional = floor1Bosses[i % floor1Bosses.Length];
+                var own = slot.prefab != null ? AssetDatabase.LoadAssetAtPath<Enemies.Enemy>(slot.prefab) : null;
+                return own != null
+                    ? new FloorConfig.BossEntry(own, Named(slot.room) ?? provisional.room, abyss ?? provisional.theme, Vector2.zero)
+                    : new FloorConfig.BossEntry(provisional.prefab, Named(slot.room) ?? provisional.room, abyss ?? provisional.theme, provisional.offset);
+            }).ToArray();
             config.ConfigureBosses(bosses);
 
             config.ConfigurePieces(ArtSetup.ImportRoomPieces());

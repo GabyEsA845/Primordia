@@ -12,9 +12,12 @@ namespace Primordia.Rooms
         // Por encima de personajes, proyectiles y efectos; por debajo de la nieve marina (30) y los rayos de luz (40).
         public const int SortingOrder = 25;
 
+        /// <summary>Lo que tapa una columna respecto a su base (unidades): unas 3,6 de ancho y 5 de alto.</summary>
+        public static Rect DefaultCover => new(-1.8f, 0.1f, 3.6f, 5f);
+
         [SerializeField] SpriteRenderer target;
         [Tooltip("Zona que tapa, respecto a la base (en unidades): si el jugador está dentro, la columna se transparenta.")]
-        [SerializeField] Rect cover = new(-1.8f, 0.1f, 3.6f, 5f);
+        [SerializeField] Rect cover = DefaultCover;
         [Tooltip("Opacidad con el jugador debajo.")]
         [SerializeField, Range(0f, 1f)] float seeThrough = 0.4f;
         [Tooltip("Cuánto tarda en pasar de opaca a translúcida y al revés (segundos).")]

@@ -135,12 +135,10 @@ namespace Primordia.Tests
             Assert.IsEmpty(player.GetComponentsInChildren<Light2D>(), "Y el halo se va.");
         }
 
-        [Test]
-        public void Build_PutsAlgaeAboveEverything_AndPlantsWithLight_AndMakesTheRoomDark()
+        /// <summary>Piso de prueba cuya sala del jefe es la Normal con estas filas; devuelve el padre del piso construido.</summary>
+        Transform BuildWithBossRoom(string[] rows, out FloorConfig floor)
         {
-            var floor = Track(ScriptableObject.CreateInstance<FloorConfig>());
-            var rows = RoomLayouts.All[RoomLayouts.Normal].Replace("\r", "").Split('\n').Where(r => r.Length > 0).ToArray();
-            rows[8] = rows[8].Substring(0, 5) + "A" + rows[8].Substring(6, 4) + "L" + rows[8].Substring(11);
+            floor = Track(ScriptableObject.CreateInstance<FloorConfig>());
             var boss = Track(ScriptableObject.CreateInstance<RoomTemplate>());
             boss.SetLayout(string.Join("\n", rows));
             var small = Track(ScriptableObject.CreateInstance<RoomTemplate>());
@@ -161,6 +159,25 @@ namespace Primordia.Tests
             var parent = Track(new GameObject("Floor")).transform;
             var layout = FloorLayoutGenerator.Generate(floor, new System.Random(1));
             FloorBuilder.Build(layout, floor, parent, new System.Random(1));
+            return parent;
+        }
+
+        static string[] NormalRows() =>
+            RoomLayouts.All[RoomLayouts.Normal].Replace("\r", "").Split('\n').Where(r => r.Length > 0).ToArray();
+
+        static void Put(string[] rows, int x, int y, char mark)
+        {
+            // y desde abajo, como en la plantilla.
+            int row = rows.Length - 1 - y;
+            rows[row] = rows[row].Substring(0, x) + mark + rows[row].Substring(x + 1);
+        }
+
+        [Test]
+        public void Build_PutsAlgaeAboveEverything_AndPlantsWithLight_AndMakesTheRoomDark()
+        {
+            var rows = NormalRows();
+            rows[8] = rows[8].Substring(0, 5) + "A" + rows[8].Substring(6, 2) + "L" + rows[8].Substring(9);
+            var parent = BuildWithBossRoom(rows, out _);
 
             var algae = parent.GetComponentsInChildren<AlgaeColumn>(true);
             Assert.AreEqual(1, algae.Length);
@@ -175,6 +192,28 @@ namespace Primordia.Tests
             var dark = parent.GetComponentsInChildren<RoomDarkness>(true);
             Assert.AreEqual(1, dark.Length, "Solo la sala con plantas luminosas se queda en penumbra.");
             CollectionAssert.AreEquivalent(plants, dark[0].Plants);
+        }
+
+        [Test]
+        public void Build_LeavesTheBossSpotClear_OfAlgaeAndPlants()
+        {
+            var rows = NormalRows();
+            // Las de lejos se quedan.
+            rows[8] = rows[8].Substring(0, 5) + "A" + rows[8].Substring(6, 2) + "L" + rows[8].Substring(9);
+            var template = Track(ScriptableObject.CreateInstance<RoomTemplate>());
+            template.SetLayout(string.Join("\n", rows));
+            var bounds = template.FloorBounds();
+            var defaults = Track(ScriptableObject.CreateInstance<FloorConfig>());
+            // Donde aparece el jefe: centro del suelo más su desplazamiento.
+            var spot = new Vector2(bounds.x + bounds.width / 2f, bounds.y + bounds.height / 2f) + defaults.BossOffset;
+            int sx = Mathf.FloorToInt(spot.x), sy = Mathf.FloorToInt(spot.y);
+            Put(rows, sx, sy, 'L');
+            Put(rows, sx + 2, sy - 1, 'A');
+
+            var parent = BuildWithBossRoom(rows, out _);
+
+            Assert.AreEqual(1, parent.GetComponentsInChildren<LightPlant>(true).Length, "La planta del sitio del jefe no se pone.");
+            Assert.AreEqual(1, parent.GetComponentsInChildren<AlgaeColumn>(true).Length, "Ni las algas que lo taparían.");
         }
     }
 }

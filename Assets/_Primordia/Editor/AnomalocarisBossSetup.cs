@@ -1,4 +1,3 @@
-using System.Linq;
 using Primordia.Rooms;
 using UnityEditor;
 using UnityEditor.SceneManagement;
@@ -7,9 +6,10 @@ using UnityEngine;
 namespace Primordia.Editor
 {
     /// <summary>
-    /// Anomalocaris, jefe del piso 2: importa las algas y plantas luminosas de su sala en Floor_2 y crea la escena
-    /// Test_BossAnomalocaris: la sala de inicio del piso 2 con el equipo de prueba y, tras la antesala, la sala del
-    /// Anomalocaris. Se puede volver a ejecutar: actualiza el arte y rehace la escena; lo demás no lo sobrescribe.
+    /// Anomalocaris, jefe del piso 2: importa las algas y plantas luminosas de su sala, crea el jefe (arte, burbuja, datos y
+    /// prefab, <see cref="ArtSetup.CreateAnomalocaris"/>) con su presentación, lo pone en Floor_2 en su sala (en lugar del
+    /// jefe provisional) y crea la escena Test_BossAnomalocaris: la sala de inicio del piso 2 con el equipo de prueba y,
+    /// tras la antesala, la sala del Anomalocaris. Se puede volver a ejecutar: rehace el jefe y la escena.
     /// </summary>
     public static class AnomalocarisBossSetup
     {
@@ -35,18 +35,36 @@ namespace Primordia.Editor
             EditorUtility.SetDirty(floor2);
             AssetDatabase.SaveAssets();
 
-            var entry = floor2.BossOptions().FirstOrDefault(boss => boss.room != null && boss.room.name == RoomName);
-            if (entry.room == null)
+            var options = floor2.BossOptions();
+            int index = System.Array.FindIndex(options, boss => boss.room != null && boss.room.name == RoomName);
+            if (index < 0)
             {
                 Debug.LogError($"AnomalocarisBossSetup: Floor_2 no tiene la sala {RoomName} entre sus jefes; vuelve a crear el piso 2.");
                 return;
             }
 
+            var boss = ArtSetup.CreateAnomalocaris();
+            if (boss == null)
+            {
+                Debug.LogError("AnomalocarisBossSetup: falta el arte en docs/multimedia-temp/floor2-bosses/Anomalocaris (generar_anomalocaris.py).");
+                return;
+            }
+            AssetDatabase.SaveAssets();
+            ArtSetup.ImportBossIntro("Anomalocaris");
+
+            // Su sala y su tema siguen igual; solo cambia el jefe (el provisional del piso 1 sale).
+            var entry = options[index];
+            entry = new FloorConfig.BossEntry(boss, entry.room, entry.theme, Vector2.zero);
+            options[index] = entry;
+            floor2.ConfigureBosses(options);
+            EditorUtility.SetDirty(floor2);
+            AssetDatabase.SaveAssets();
+
             if (CreateTestConfig(floor2, entry) == null)
                 return;
             CreateTestScene();
             AssetDatabase.SaveAssets();
-            Debug.Log($"AnomalocarisBossSetup: {TestScenePath} creada: inicio del piso 2 y, tras la antesala, la sala del Anomalocaris.");
+            Debug.Log($"AnomalocarisBossSetup: Anomalocaris en Floor_2 y {TestScenePath} creada: inicio del piso 2 y, tras la antesala, su sala.");
         }
 
         /// <summary>Copia de Floor_2 con el camino inicio → antesala → Anomalocaris, sin combates, especiales, tienda ni recompensas.</summary>

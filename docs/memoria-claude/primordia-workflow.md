@@ -17,3 +17,4 @@ metadata:
 
 **Why:** así trabajó el usuario toda la primera sesión y lo aprobó en cada paso.
 **How to apply:** seguir este ciclo en cada módulo nuevo. Ver también [[primordia-unity-gotchas]].
+- **Dos equipos (desde 2026-10-26):** el usuario trabaja también desde otro PC clonando el repo. Antes de que cambie de equipo: commit de lo hecho, copiar la memoria a `docs/memoria-claude/` (README con cómo restaurarla) y push de la rama en curso. Al empezar en un equipo, si la memoria de docs/memoria-claude es más nueva que la local, copiarla a la carpeta de memoria.

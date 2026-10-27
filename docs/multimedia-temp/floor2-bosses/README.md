@@ -79,6 +79,26 @@ Generadas con `generar_sala_anomalocaris.py` (skill primordia-sprites). Paleta d
 
 `vista_previa_sala_anomalocaris.png` y `gif/` son para revisar.
 
+## Sala del Euriptérido (`EurypteridRoom/`)
+
+Generada con `generar_sala_euripterido.py` (`python generar_sala_euripterido.py`). Las 2 rocas de la marca `R` que se
+derrumban con la muda. Parte de la roca grande del Abismo (`environment/Abyss/deco/Obstacle_RockBig.png`), así que es igual
+que las demás salvo por las grietas.
+
+| Hoja | Cuadros | Celda | ms | Uso |
+|---|---|---|---|---|
+| `Obstacle_RockCracked` | 1 | 32×32 | — | Roca grande con grietas finas (marca `R`): bloquea como las demás; el juego le crea su contorno de cobertura |
+| `Fx_RockCollapse` | 10 | 48×48 | 90 | Derrumbe (solo visual): tiembla (0-2), **se parte en el cuadro 3** (deja de bloquear), los trozos caen entre el polvo y el último cuadro ya son los escombros. Centrado en la roca |
+| `Deco_Rubble` | 1 | 32×32 | — | Escombros que se quedan en el suelo, sin colisión |
+| `Fx_RockFallShadow` | 6 | 32×32 | 133 | Sombra de aviso de la piedra del techo (borde rojo discontinuo), crece en 0,8 s hasta 1 u de radio; una vez |
+| `Proj_FallingRock` | 4 | 24×24 | 80 | Piedra que cae girando (bucle); el juego la baja desde 9 u de altura en los últimos 0,35 s |
+| `Fx_RockImpact` | 6 | 48×48 | 70 | La piedra se rompe al tocar el suelo (el daño, al empezar); no deja restos |
+| `Fx_FallingPebble` | 3 | 8×8 | — | Chinas decorativas que caen por la pantalla (una forma por cuadro), sin daño |
+| `Fx_PebblePuff` | 4 | 16×16 | 70 | Polvillo de una china al tocar el suelo |
+| `Fx_FloorCrack` | 8 | 48×48 | 250 / 120 | Zona Z de 3×3 casillas: **cuadros 0-5 = aviso de 1,5 s** (grietas que se abren); al terminar el suelo pasa a fosa y se ven los cuadros 6-7 (se hunde) |
+
+`vista_previa_sala_euripterido.png` y `gif/Fx_RockCollapse.gif` son para revisar.
+
 ## Efectos (`Effects/`)
 
 | Hoja | Cuadros | Celda | Uso |

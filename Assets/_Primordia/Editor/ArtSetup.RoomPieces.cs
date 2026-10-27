@@ -8,7 +8,8 @@ namespace Primordia.Editor
 {
     /// <summary>
     /// Piezas de las salas especiales del piso 2 (docs/multimedia-temp/floor2-rooms/Pieces): el esqueleto del Fósil gigante,
-    /// las almejas, el coral del corazón morado, las entradas de oleadas, y las algas y plantas luminosas de la sala del Anomalocaris.
+    /// las almejas, el coral del corazón morado, las entradas de oleadas, las algas y plantas luminosas de la sala del Anomalocaris
+    /// y las rocas que se derrumban en la del Euriptérido.
     /// De momento se usa el primer cuadro de cada una
     /// (abrirlas, cogerlas y las oleadas llegan en el paso 4 de feature/floor-2-structure).
     /// </summary>
@@ -18,12 +19,15 @@ namespace Primordia.Editor
         const string RoomPiecesArtFolder = "Assets/_Primordia/Art/Rooms/Pieces";
         const string PurpleInlaySourceFolder = "docs/multimedia-temp/ui-purple-heart";
         const string AnomalocarisRoomSourceFolder = "docs/multimedia-temp/floor2-bosses/AnomalocarisRoom";
+        const string EurypteridRoomSourceFolder = "docs/multimedia-temp/floor2-bosses/EurypteridRoom";
 
         internal static FloorConfig.RoomPieces ImportRoomPieces()
         {
             CopyFiles(RoomPiecesSourceFolder, RoomPiecesArtFolder, "*.png");
             // Algas y plantas luminosas de la sala del Anomalocaris.
             CopyFiles(AnomalocarisRoomSourceFolder, RoomPiecesArtFolder, "*.png");
+            // Roca agrietada, su derrumbe (48×48) y los escombros de la sala del Euriptérido.
+            CopyFiles(EurypteridRoomSourceFolder, RoomPiecesArtFolder, "*.png");
             var center = new Vector2(0.5f, 0.5f);
             // La almeja grande (32×24) sobresale 8 px por arriba de sus dos celdas: el pivote, en el centro de las celdas.
             var bigClamPivot = new Vector2(0.5f, 8f / 24f);
@@ -54,6 +58,19 @@ namespace Primordia.Editor
             pieces.clamBig = First(pieces.clamBigIdle);
             pieces.heartCoral = First(pieces.heartCoralIdle);
             pieces.waveVent = First(pieces.waveVentIdle);
+            pieces.crackedRock = First(Frames("Obstacle_RockCracked", 32, center));
+            pieces.crackedRockOutline = pieces.crackedRock != null
+                ? CreateOutline($"{RoomPiecesArtFolder}/Obstacle_RockCracked.png", $"{RoomPiecesArtFolder}/Outlines")
+                : null;
+            pieces.rockCollapse = Frames("Fx_RockCollapse", 48, center);
+            pieces.rubble = First(Frames("Deco_Rubble", 32, center));
+            // Derrumbe de la cueva del Euriptérido.
+            pieces.fallShadow = Frames("Fx_RockFallShadow", 32, center);
+            pieces.fallingRock = Frames("Proj_FallingRock", 24, center);
+            pieces.rockImpact = Frames("Fx_RockImpact", 48, center);
+            pieces.pebbles = Frames("Fx_FallingPebble", 8, center);
+            pieces.pebblePuff = Frames("Fx_PebblePuff", 16, center);
+            pieces.floorCrack = Frames("Fx_FloorCrack", 48, center);
 
             // El corazón morado en el HUD, detrás de los verdes.
             var purple = ImportSprite($"{RoomPiecesSourceFolder}/UI_Heart_Purple.png", $"{UIArtFolder}/UI_Heart_Purple.png", Vector4.zero);

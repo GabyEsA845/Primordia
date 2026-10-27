@@ -13,7 +13,8 @@ namespace Primordia.Core
     /// sube de nivel una que ya se lleva), F5 una mutación especial de las almejas (o sube una que ya se lleva) y F6 cambia a
     /// la siguiente Boca del piso, con el mismo nivel (para probar las Bocas del piso 2 en Test_Floor2), F7 lleva junto a
     /// la cápsula de la sala de cambio y F8 completa el siguiente linaje del piso (equipa sus 4 mutaciones, para probar
-    /// beneficios, toques y evoluciones). Arriba a la izquierda se ve qué está activo.
+    /// beneficios, toques y evoluciones), F9 derrumba las rocas agrietadas de la sala y F10 pasa el derrumbe de la cueva a su
+    /// siguiente fase (calma, crujidos, terremoto, derrumbe; sala del Euriptérido). Arriba a la izquierda se ve qué está activo.
     /// </summary>
     public class DebugCheats : MonoBehaviour
     {
@@ -79,6 +80,10 @@ namespace Primordia.Core
                 GoToExchange();
             if (keyboard.f8Key.wasPressedThisFrame)
                 NextLineage();
+            if (keyboard.f9Key.wasPressedThisFrame)
+                CollapseRocks();
+            if (keyboard.f10Key.wasPressedThisFrame)
+                NextCaveMode();
 
             // La esquiva enciende y apaga la invulnerabilidad: aquí se renueva cada cuadro sin tocarla.
             if (invulnerable && player.Health != null)
@@ -101,6 +106,31 @@ namespace Primordia.Core
                 body.position = position;
             player.transform.position = position;
             Say("Sala de cambio");
+        }
+
+        void CollapseRocks()
+        {
+            int count = CollapsingRock.CollapseAll(current);
+            Say(count > 0 ? $"Se derrumban {count} rocas" : "No hay rocas que derrumbar en esta sala");
+        }
+
+        void NextCaveMode()
+        {
+            var cave = current != null ? current.GetComponent<CaveCollapse>() : null;
+            if (cave == null)
+            {
+                Say("Esta sala no tiene derrumbe");
+                return;
+            }
+            var next = (CaveCollapse.Mode)(((int)cave.Current + 1) % 4);
+            cave.SetMode(next);
+            Say(next switch
+            {
+                CaveCollapse.Mode.Calm => "Cueva: calma",
+                CaveCollapse.Mode.Creaking => "Cueva: crujidos",
+                CaveCollapse.Mode.Quake => "Cueva: terremoto",
+                _ => $"Cueva: derrumbe ({cave.PendingZones} zonas por hundir)"
+            });
         }
 
         void ClearRoom()

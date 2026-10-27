@@ -156,6 +156,18 @@ namespace Primordia.Rooms
             [Tooltip("Planta luminosa: latido (bucle) y apagarse.")]
             public Sprite[] lightPlant;
             public Sprite[] lightPlantOff;
+            [Tooltip("Rocas que se derrumban con la muda del Euriptérido (marca R): agrietada, su contorno, el derrumbe y los escombros.")]
+            public Sprite crackedRock;
+            public Sprite crackedRockOutline;
+            public Sprite[] rockCollapse;
+            public Sprite rubble;
+            [Tooltip("Derrumbe de la cueva del Euriptérido: sombra de aviso, piedra que cae, impacto, chinas decorativas y su polvillo, y grietas del suelo que se hunde (3×3).")]
+            public Sprite[] fallShadow;
+            public Sprite[] fallingRock;
+            public Sprite[] rockImpact;
+            public Sprite[] pebbles;
+            public Sprite[] pebblePuff;
+            public Sprite[] floorCrack;
         }
 
         /// <summary>Lo que guardan las almejas: biomasa siempre y, la grande, una mutación especial si las hay.</summary>

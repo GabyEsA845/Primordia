@@ -70,6 +70,16 @@ namespace Primordia.Rooms
 
         public bool IsWalkable(Vector2Int cell) => Contains(cell) && walkable[Index(cell)];
 
+        /// <summary>Cambia una celda mientras se juega (el suelo que se hunde en la sala del Euriptérido).</summary>
+        public void SetWalkable(Vector2Int cell, bool value)
+        {
+            if (!Contains(cell))
+                return;
+            walkable[Index(cell)] = value;
+            // El campo de distancias guardado ya no vale.
+            flowTarget = new Vector2Int(int.MinValue, int.MinValue);
+        }
+
         /// <summary>
         /// True si se puede ir en línea recta de un punto a otro sin pisar pared. Con <paramref name="radius"/>,
         /// comprueba también dos líneas paralelas a esa distancia, para que quepa un cuerpo de ese radio.

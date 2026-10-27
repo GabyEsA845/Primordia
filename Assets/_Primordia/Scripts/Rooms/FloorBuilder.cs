@@ -683,7 +683,7 @@ namespace Primordia.Rooms
                 doors.Add(BuildDoor(roomObject.transform, theme, direction, doorCells));
             }
 
-            BuildObstacles(roomObject.transform, placed, theme, random, glows);
+            BuildObstacles(roomObject.transform, placed, theme, config.Pieces, random, glows);
             var vents = BuildPieces(roomObject.transform, placed, config, random);
             // Donde aparece el jefe no hay algas ni plantas: taparían su presentación.
             Vector2? bossSpot = placed.Layout.Role == RoomRole.Boss ? placed.FloorCenter + boss.offset : null;
@@ -708,6 +708,11 @@ namespace Primordia.Rooms
             // La sala con plantas luminosas (la del Anomalocaris) se queda en penumbra al entrar.
             if (lightPlants.Count > 0)
                 roomObject.AddComponent<RoomDarkness>().Configure(room, lightPlants);
+
+            // La del Euriptérido (rocas R o zonas Z): el derrumbe de la cueva, que el jefe enciende por fases.
+            var sinkZones = placed.Template.SinkZones();
+            if (sinkZones.Count > 0 || placed.Template.BlockCorners(RoomTemplate.Mark.CollapsingRock).Count > 0)
+                BuildCaveCollapse(parent, roomObject, room, placed, theme, config.Pieces, sinkZones);
 
             // La de inicio, la tienda y la sala de paso no tienen enemigos, así que no sueltan nada.
             if (HasEnemies(placed.Layout) && config.SmallBiomass != null)
@@ -748,6 +753,26 @@ namespace Primordia.Rooms
             return room;
         }
 
+        static void BuildCaveCollapse(Transform parent, GameObject roomObject, Room room, PlacedRoom placed, RoomTheme theme,
+            FloorConfig.RoomPieces pieces, List<RectInt> sinkZones)
+        {
+            var floor = placed.Template.FloorBounds();
+            var floorArea = new RectInt(placed.Origin + floor.position, floor.size);
+            var zones = sinkZones.Select(zone => new RectInt(placed.Origin + zone.position, zone.size)).ToList();
+            var level = parent.Find("Level");
+            var ground = level != null ? level.Find("Ground")?.GetComponent<Tilemap>() : null;
+            var decoration = level != null ? level.Find("Decoration")?.GetComponent<Tilemap>() : null;
+            roomObject.AddComponent<CaveCollapse>().Configure(room, floorArea, zones, theme, ground, decoration, new CaveCollapse.Art
+            {
+                fallShadow = pieces.fallShadow,
+                fallingRock = pieces.fallingRock,
+                rockImpact = pieces.rockImpact,
+                pebbles = pieces.pebbles,
+                pebblePuff = pieces.pebblePuff,
+                floorCrack = pieces.floorCrack,
+            });
+        }
+
         // Los obstáculos van por encima de las paredes y por debajo de los personajes, como las columnas.
         const int ObstacleOrder = -5;
         // Rayos de luz: entre 2 y 3 por sala, con al menos esta separación (en tiles) entre ellos.
@@ -757,10 +782,11 @@ namespace Primordia.Rooms
 
         /// <summary>
         /// Obstáculos de cobertura de la plantilla (o de 1×1, O de 2×2): un sprite del tileset con su colisión, que también
-        /// para los proyectiles. Los que brillan dejan su luz en <paramref name="glows"/>.
+        /// para los proyectiles. Los que brillan dejan su luz en <paramref name="glows"/>. Las rocas R (sala del Euriptérido)
+        /// son rocas agrietadas de 2×2 con un <see cref="CollapsingRock"/>, que se derrumban con la muda.
         /// </summary>
-        static void BuildObstacles(Transform roomObject, PlacedRoom placed, RoomTheme theme, System.Random random,
-            List<(Vector2 position, Glow glow)> glows)
+        static void BuildObstacles(Transform roomObject, PlacedRoom placed, RoomTheme theme, FloorConfig.RoomPieces pieces,
+            System.Random random, List<(Vector2 position, Glow glow)> glows)
         {
             var template = placed.Template;
             var small = new List<Vector2Int>();
@@ -769,7 +795,6 @@ namespace Primordia.Rooms
                     if (template.Get(x, y) == RoomTemplate.Mark.Obstacle)
                         small.Add(new Vector2Int(x, y));
             var big = template.BigObstacleCorners();
-            // Rocas del Euriptérido que se derrumban con la muda: de momento, rocas grandes normales.
             var collapsing = template.BlockCorners(RoomTemplate.Mark.CollapsingRock);
             if (small.Count == 0 && big.Count == 0 && collapsing.Count == 0)
                 return;
@@ -781,9 +806,17 @@ namespace Primordia.Rooms
             foreach (var cell in big)
                 Obstacle(cell, 2, theme.BigObstacles, "ObstacleBig");
             foreach (var cell in collapsing)
-                Obstacle(cell, 2, theme.BigObstacles, "ObstacleCollapsing");
+            {
+                // Sin el arte de la roca agrietada, una roca grande del tema (que también se derrumba).
+                var cracked = pieces.crackedRock != null ? new[] { pieces.crackedRock } : theme.BigObstacles;
+                var obstacle = Obstacle(cell, 2, cracked, "ObstacleCollapsing", pieces.crackedRock != null ? pieces.crackedRockOutline : null);
+                var outline = obstacle.transform.Find("Outline");
+                obstacle.AddComponent<CollapsingRock>().Configure(obstacle.GetComponent<SpriteRenderer>(),
+                    outline != null ? outline.gameObject : null, obstacle.GetComponent<BoxCollider2D>(),
+                    pieces.rockCollapse, pieces.rubble);
+            }
 
-            void Obstacle(Vector2Int cell, int size, Sprite[] sprites, string name)
+            GameObject Obstacle(Vector2Int cell, int size, Sprite[] sprites, string name, Sprite ownOutline = null)
             {
                 var obstacle = new GameObject(name);
                 obstacle.transform.SetParent(root, false);
@@ -797,7 +830,7 @@ namespace Primordia.Rooms
                 obstacle.AddComponent<BoxCollider2D>().size = Vector2.one * size;
 
                 // Contorno de color (1 px alrededor de la silueta): que se note que sirve de cobertura y no se pierda en el fondo.
-                var outlineSprite = theme.OutlineOf(renderer.sprite);
+                var outlineSprite = ownOutline != null ? ownOutline : theme.OutlineOf(renderer.sprite);
                 if (outlineSprite != null)
                 {
                     var outline = new GameObject("Outline");
@@ -811,6 +844,7 @@ namespace Primordia.Rooms
                 var glow = theme.GlowOf(renderer.sprite);
                 if (glow.HasValue)
                     glows.Add((position, glow.Value));
+                return obstacle;
             }
         }
 

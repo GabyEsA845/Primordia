@@ -6,7 +6,9 @@ caparazón, gelatina translúcida, arena y esponja; los jefes, enormes. Lo que l
 
 import numpy as np
 
-from efectos import A6, D6, F6, bell, sfx
+from efectos import A5, A6, D5, D6, F5, F6, bell, loop_noise, loop_sine, sfx
+from instrumentos_piso2 import i_glass
+from sintesis import adsr as adsr_env, circular_conv, impulse_response, vibrato as vibrato_hz
 from sintesis import bubbles, midi as midi_hz
 from efectos import pv as _pv
 from sintesis import (SR, bp, bubble, click, dist, expenv, fm, glide, hp, lp, mix, n, noise, noise_sweep, place,
@@ -883,3 +885,164 @@ def cave_floor_sink(rng, v):
     rubble = grains(0.6, rng, 25, 600, 3000, 0.55, gain=(0.3, 0.8))
     fall = noise_sweep(0.7, 1500, 150, rng, 1.5) * expenv(0.7, 0.3, 0.002) * 0.5
     return reverb(mix(d, (0, drop), (0, rubble, 0.6), (0, fall)), rng, 1.2, 0.35)[: n(d)]
+
+
+# ==================================================================== Salas
+
+def grind(rng, d, f=70):
+    """Roca que roza contra roca."""
+    return lp(saw(glide(f, f * 1.1, d)), 500) * 0.5 + bp(noise(d, rng), 200, 1200) * 0.6
+
+
+@sfx("Room_Slabs_Close", 1, 0.7)
+def slabs_close(rng, v):
+    """Las dos losas salen rozando y chocan (0,22 s) con polvo y burbujas."""
+    d = 0.5
+    slide = grind(rng, 0.22) * swell(0.22, 0.85, 1.2)
+    slam = dist(thump(120, 45, 0.25, 0.07), 1.4) + clonk(rng, 140, 0.12, 0.8) * 0.7
+    dust = lp(noise(0.25, rng), 2500) * expenv(0.25, 0.06) * 0.4
+    return mix(d, (0, click(rng, 0.004, 900), 0.2), (0, slide, 0.7), (0.22, slam), (0.23, dust),
+               (0.26, bubbles(0.22, rng, 5, 250, 600, (0.06, 0.1)), 0.3))
+
+
+@sfx("Room_Slabs_Open", 1, 0.6)
+def slabs_open(rng, v):
+    """El sello se enciende (un brillo en re) y las losas se retiran rozando la roca."""
+    d = 0.6
+    seal = mix(0.3, (0, bell(D5, 0.3, 0.08, 2.0, 1.0), 0.5), (0.02, bell(A5, 0.25, 0.07, 2.0, 0.8), 0.4))
+    slide = grind(rng, 0.5, 65) * swell(0.5, 0.25, 1.0)
+    return mix(d, (0, seal), (0.08, slide, 0.8))
+
+
+@sfx("Room_WaveStart", 1, 0.65)
+def wave_start(rng, v):
+    """Cuerno de caracola lejano en re."""
+    d = 0.6
+    f = midi_hz(50)
+    horn = saw(vibrato_hz(f, d)) * 0.6 + saw(vibrato_hz(f / 2, d)) * 0.4
+    horn = bp(horn, 150, 1100) * adsr_env(d, 0.12, 0.1, 0.85, 0.2)
+    return reverb(horn, rng, 1.2, 0.35)[: n(d)]
+
+
+@sfx("Room_WaveVent", 1, 0.55)
+def wave_vent(rng, v):
+    d = 0.6
+    crack = grains(0.15, rng, 10, 800, 3500, 0.12)
+    escape = bubbles(0.5, rng, 20, 180, 700, (0.05, 0.12), gains=(0.3, 0.8))
+    return mix(d, (0, crack), (0, clonk(rng, 130, 0.12, 0.6), 0.7), (0.08, escape))
+
+
+def hinge(rng, d, f0, f1):
+    return lp(tri(glide(f0, f1, d)), 1200) * (0.6 + 0.4 * np.sin(2 * np.pi * 35 * tt(d))) * swell(d, 0.7)
+
+
+@sfx("Room_Clam_Open", 1, 0.6)
+def clam_open(rng, v):
+    d = 0.6
+    snap = clonk(rng, 600, 0.06, 0.8) + lp(noise(0.08, rng), 1500) * expenv(0.08, 0.02) * 0.5
+    return mix(d, (0, click(rng, 0.004, 1200), 0.2), (0, hinge(rng, 0.15, 200, 260), 0.5), (0.15, snap),
+               (0.17, bubbles(0.35, rng, 6, 500, 1400, (0.04, 0.08)), 0.3))
+
+
+@sfx("Room_Clam_Open_Big", 1, 0.7)
+def clam_open_big(rng, v):
+    d = 1.0
+    snap = clonk(rng, 380, 0.09, 0.8) + lp(noise(0.12, rng), 1200) * expenv(0.12, 0.03) * 0.5
+    gold = mix(0.7, *[(i * 0.07, bell(f, 0.4, 0.12, 2.0, 1.0), 0.5) for i, f in enumerate((D5, F5, A5, D6))])
+    return mix(d, (0, click(rng, 0.004, 1000), 0.2), (0, hinge(rng, 0.25, 140, 190), 0.6), (0.25, snap),
+               (0.3, gold), (0.28, bubbles(0.5, rng, 8, 400, 1200, (0.05, 0.1)), 0.3))
+
+
+@sfx("Room_HeartCoral", 1, 0.7)
+def heart_coral(rng, v):
+    """Latido profundo y un acorde misterioso (re menor con mi)."""
+    d = 0.8
+    beat = lp(thump(80, 45, 0.25, 0.07), 300)
+    chord = sum(fm(midi_hz(m), 0.75, 2.0, 0.8, 0.35) for m in (62, 65, 69, 76)) * swell(0.75, 0.15, 0.8)
+    return mix(d, (0, beat), (0.22, beat, 0.7), (0.1, chord, 0.35))
+
+
+@sfx("Player_PurpleHeart_Block", 1, 0.85)
+def purple_heart_block(rng, v):
+    d = 0.3
+    beat = lp(thump(85, 45, 0.2, 0.06), 400)
+    shatter = grains(0.15, rng, 9, 2000, 7000, 0.12)
+    shine = bell(A5, 0.25, 0.06, 2.0, 1.2)
+    return mix(d, (0, beat), (0.02, shatter, 0.7), (0.03, shine, 0.5))
+
+
+@sfx("Player_PitFall", 1, 0.85)
+def player_pit_fall(rng, v):
+    """Resbalón, silbido que baja y un "bloop" amortiguado al fondo (0,6 s)."""
+    d = 0.8
+    slip = noise_sweep(0.08, 600, 1800, rng, 2.0) * swell(0.08, 0.5)
+    whistle = sine(glide(1000, 200, 0.5)) * expenv(0.5, 0.25, 0.003)
+    bloop = lp(bubble(180, 0.2, 1.5, 0.06), 600)
+    return mix(d, (0, slip, 0.6), (0.05, whistle, 0.6), (0.6, bloop))
+
+
+@sfx("Exchange_Capsule_Open", 1, 0.55)
+def capsule_open(rng, v):
+    d = 0.6
+    light = mix(0.6, (0, i_glass(D5, 0.25), 0.5), (0.12, i_glass(A5, 0.3), 0.45))
+    return mix(d, (0, click(rng, 0.004, 1500), 0.2), (0, light), (0, bubbles(0.55, rng, 10, 300, 1200, (0.04, 0.09)), 0.35))[: n(d)]
+
+
+@sfx("Exchange_Capsule_Accept", 1, 0.65)
+def capsule_accept(rng, v):
+    """Burbujeo que crece, zumbido de cristal y un acorde que se resuelve (la mayor → re menor)."""
+    d = 1.2
+    t = tt(0.75)
+    boil = bubbles(0.75, rng, 40, 300, 1500, (0.03, 0.08)) * np.linspace(0.2, 1, n(0.75))
+    hum = (sine(880, 0.75) + sine(883, 0.75)) * swell(0.75, 0.9, 1.2) * 0.2 * (0.8 + 0.2 * np.sin(2 * np.pi * 6 * t))
+    tense = mix(0.3, *[(i * 0.04, bell(midi_hz(m), 0.3, 0.1, 2.0, 0.8), 0.4) for i, m in enumerate((69, 73, 76))])
+    rest = mix(0.45, *[(i * 0.05, bell(midi_hz(m), 0.45, 0.16, 2.0, 1.0), 0.5) for i, m in enumerate((62, 65, 69, 74))])
+    return mix(d, (0, click(rng, 0.004, 1200), 0.2), (0, boil, 0.6), (0, hum), (0.7, tense), (0.95, rest))[: n(d)]
+
+
+# ================================================================ Ambientes
+
+@sfx("Amb_Floor2_Abyss_Loop", 1, 0.3, loop=True)
+def amb_floor2_abyss(rng, v):
+    """El mismo mar, más hondo: rumor más grave, nieve marina, corrientes lejanas y algún sonar. Afinado en re."""
+    d = 24.0
+    N = n(d)
+    t = np.arange(N) / N
+    rumble = loop_noise(d, rng, 70, 3)
+    rumble /= np.max(np.abs(rumble))
+    drone = loop_sine(36.7, d) + loop_sine(55.0, d) * 0.4 + loop_sine(73.4, d) * 0.15
+    drone *= 0.75 + 0.25 * np.sin(2 * np.pi * 3 * t)
+    buf = rumble * (0.7 + 0.3 * np.sin(2 * np.pi * 2 * t)) * 0.55 + drone * 0.12
+    for _ in range(140):  # nieve marina: chasquidos finísimos
+        place(buf, hp(noise(0.003, rng), 5000) * expenv(0.003, 0.001, 0.0002), rng.uniform(0, d), rng.uniform(0.01, 0.04), True)
+    for _ in range(4):  # corrientes lejanas
+        w = 3.0
+        place(buf, bp(noise(w, rng), 120, 600) * swell(w, 0.5), rng.uniform(0, d), rng.uniform(0.08, 0.12), True)
+    for t0 in (5.0, 17.0):  # sonar perdido, en re
+        for k in range(4):
+            ping = sine(midi_hz(86), 1.2) * expenv(1.2, 0.35, 0.004)
+            place(buf, lp(ping, 3000 / (k + 1)), t0 + k * 1.1, 0.05 * 0.5 ** k, True)
+    for _ in range(12):
+        f = np.exp(rng.uniform(np.log(90), np.log(300)))
+        place(buf, lp(bubble(f, rng.uniform(0.15, 0.3), 1.25), 900), rng.uniform(0, d), rng.uniform(0.05, 0.12), True)
+    return buf * 0.75 + circular_conv(buf, impulse_response(3.5, rng, bright=900)) * 0.45
+
+
+@sfx("Amb_Floor2_BossRoom_Loop", 1, 0.3, loop=True)
+def amb_floor2_boss_room(rng, v):
+    """Mar profundo y cerrado: crujidos de roca lejanos y un zumbido grave de amenaza (re con batido)."""
+    d = 16.0
+    N = n(d)
+    t = np.arange(N) / N
+    rumble = loop_noise(d, rng, 100, 3)
+    rumble /= np.max(np.abs(rumble))
+    hum = loop_sine(73.4, d) + loop_sine(73.9, d) * 0.8 + loop_sine(36.7, d) * 0.6 + loop_sine(110.0, d) * 0.15
+    hum *= 0.7 + 0.3 * np.sin(2 * np.pi * 4 * t)
+    buf = rumble * 0.55 + hum * 0.12
+    for _ in range(9):  # crujidos de roca lejanos
+        c = grains(0.8, rng, 12, 300, 1500, 0.75, gain=(0.2, 0.6)) * swell(0.8, 0.5)
+        place(buf, lp(c, 1500), rng.uniform(0, d), rng.uniform(0.08, 0.16), True)
+    for _ in range(18):
+        f = np.exp(rng.uniform(np.log(120), np.log(500)))
+        place(buf, lp(bubble(f, rng.uniform(0.08, 0.16), 1.4), 1200), rng.uniform(0, d), rng.uniform(0.05, 0.12), True)
+    return buf * 0.8 + circular_conv(buf, impulse_response(2.5, rng, bright=1200)) * 0.4

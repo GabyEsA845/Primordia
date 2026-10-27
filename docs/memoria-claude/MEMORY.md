@@ -1,4 +1,4 @@
-- [Estado de Primordia](primordia-project-status.md) — proyecto personal para itch.io; piso 1 completo en main; piso 2: estructura, Bocas, enemigos, sala de cambio y mutaciones/linajes en main (floor2-mutations d5680b5, 2026-10-26); Anomalocaris en main (merge 1086049); SIGUIENTE: feature/boss-eurypterid (ver primordia-boss-eurypterid)
+- [Estado de Primordia](primordia-project-status.md) — proyecto personal para itch.io; piso 1 completo en main; piso 2: estructura, Bocas, enemigos, sala de cambio y mutaciones/linajes en main (floor2-mutations d5680b5, 2026-10-26); Anomalocaris en main (merge 1086049); Euriptérido en main (merge 38cd9f2, 2026-10-27); SIGUIENTE: feature/floor2-audio
 - [Sprites: estado](primordia-sprites-next.md) — personajes, mutaciones e interfaz en main; HUD completo; menús en main; minimapa en main; evoluciones en main; biomasa en main; arte de tienda entregado e importado por menú
 - [Flujo de trabajo](primordia-workflow.md) — español, rama por módulo, menús de editor, commit solo tras confirmar
 - [Trampas técnicas de Unity](primordia-unity-gotchas.md) — Unity abierto, logs, statics, CRLF, zips, referencias perdidas
@@ -24,4 +24,5 @@
 - [Mutaciones del piso 2](primordia-floor2-mutations.md) — terminada y en main (merge d5680b5, 2026-10-26): mutaciones, 8 linajes, Carroña, toques, reserva del piso, F8
 - [Skill primordia-sprites](primordia-sprites-skill.md) — skill propia de pixel art en .claude/skills (en main desde d5680b5); usarla en todo arte nuevo
 - [Jefe Anomalocaris](primordia-boss-anomalocaris.md) — terminado y en main (merge 1086049): fases, barra propia (BossBarSkin/IPhasedBoss), barra fantasma, Tab de 3 estados
-- [Jefe Euriptérido (siguiente)](primordia-boss-eurypterid.md) — SIGUIENTE: rama feature/boss-eurypterid sin crear; arte aprobado, plan por pasos, barra propia dibujada (decidido 2026-10-26; preguntar el diseño antes de dibujar)
+- [Jefe Euriptérido](primordia-boss-eurypterid.md) — terminado y en main (merge 38cd9f2, 2026-10-27): cueva que se derrumba, temblor de pantalla, último aliento con bullet hell, barra propia; SIGUIENTE: feature/floor2-audio
+- [Audio del piso 2 (siguiente)](primordia-floor2-audio.md) — SIGUIENTE: rama feature/floor2-audio sin crear; música por franja, combate y jefes, y sonidos pendientes del piso 2 (lista en la memoria)

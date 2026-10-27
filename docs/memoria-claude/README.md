@@ -8,7 +8,7 @@ su proyecto, en la carpeta del usuario. Esta copia sirve para llevarlas a otro e
 
 ## Restaurarla en otro equipo
 
-1. Clona el repositorio y cambia a la rama en curso (por ejemplo `git switch feature/floor2-mutations`).
+1. Clona el repositorio y cambia a la rama en curso (por ejemplo `git switch main`).
 2. Abre Claude Code en la carpeta del proyecto y pídele: *"Copia las notas de docs/memoria-claude a tu memoria de este
    proyecto"*. Claude sabe en qué carpeta va su memoria en ese equipo.
 

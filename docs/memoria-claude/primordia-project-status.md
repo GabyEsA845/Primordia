@@ -25,4 +25,6 @@ Build web: menú Primordia > Build > Build WebGL (itch.io) ya funcionó; zip en 
 
 **Actualización 2026-10-26:** en main feature/floor2-mutations (merge d5680b5): las 6 mutaciones de Extremidades, Piel y Órganos del piso 2, los 8 linajes con el Carroñero y sus toques, reserva del piso 2 solo con sus mutaciones (más mejoras de lo que se trae) y atajo F8. También en main la skill primordia-sprites y docs/multimedia-temp en git. Siguiente: [[primordia-boss-anomalocaris]].
 
-**Actualización 2026-10-26 (2):** en main feature/boss-anomalocaris (merge 1086049): el Anomalocaris con su sala, sus fases, su barra de vida propia, la barra fantasma para todos los jefes y el Tab de tres estados. Siguiente: `feature/boss-eurypterid`, con barra propia dibujada; ver [[primordia-boss-eurypterid]]. Después `feature/floor2-audio`.
+**Actualización 2026-10-26 (2):** en main feature/boss-anomalocaris (merge 1086049): el Anomalocaris con su sala, sus fases, su barra de vida propia, la barra fantasma para todos los jefes y el Tab de tres estados. Siguiente entonces: `feature/boss-eurypterid`.
+
+**Actualización 2026-10-27:** en main feature/boss-eurypterid (merge 38cd9f2): el Euriptérido con su cueva que se derrumba (piedras, fosas que se abren), el temblor de pantalla para todo el juego (opción en la pausa), la muda, la fase blanda, el último aliento con bullet hell y su barra propia; ver [[primordia-boss-eurypterid]]. Siguiente: `feature/floor2-audio`.

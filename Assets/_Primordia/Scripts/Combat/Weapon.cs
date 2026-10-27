@@ -242,7 +242,8 @@ namespace Primordia.Combat
 
             int count = attack.ProjectileCount;
             float spread = attack.SpreadAngle;
-            if (attack.VolleyEvery > 0 && ++shots % attack.VolleyEvery == 0)
+            bool volley = attack.VolleyEvery > 0 && ++shots % attack.VolleyEvery == 0;
+            if (volley)
             {
                 count = Mathf.Max(count, attack.VolleyCount);
                 spread = attack.VolleySpread;
@@ -263,7 +264,8 @@ namespace Primordia.Combat
             }
 
             Fired?.Invoke(direction);
-            Sfx.Play(attack.FireSound);
+            // La salva (el Ramillete de los Cnidocitos III) tiene su propio abanico.
+            Sfx.Play(volley ? Sounds.CnidocytesFan : attack.FireSound);
         }
 
         /// <summary>Dónde aparece el remolino: en el punto apuntado, como mucho a su alcance del atacante.</summary>

@@ -199,6 +199,7 @@ namespace Primordia.Rooms
                 if (enemy.TryGetComponent<EnemyAI>(out var ai))
                     ai.Alert();
             }
+            Sfx.Play(Sounds.WaveStart);
             WaveStarted?.Invoke(this, CurrentWave);
 
             if (enemies.Length == 0)

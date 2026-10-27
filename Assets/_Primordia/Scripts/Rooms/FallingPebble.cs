@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using Primordia.Core;
 using UnityEngine;
 
@@ -32,6 +33,7 @@ namespace Primordia.Rooms
             position.y -= Speed * Time.deltaTime;
             if (position.y <= landY)
             {
+                Sfx.Play(Sounds.CavePebble);
                 FrameEffect.Play("PebblePuff", puffFrames, 0.07f, FallingRock.ShadowOrder, null, new Vector2(position.x, landY));
                 Destroy(gameObject);
                 return;

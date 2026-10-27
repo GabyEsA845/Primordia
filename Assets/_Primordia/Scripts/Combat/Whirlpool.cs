@@ -86,9 +86,16 @@ namespace Primordia.Combat
             for (int i = 0; i < renderers.Length; i++)
                 baseColors[i] = renderers[i].color;
             active.Add(this);
+            // Un solo bucle mientras quede algún remolino.
+            Sfx.StartLoop(Sounds.ArmCrownWhirlLoop);
         }
 
-        void OnDestroy() => active.Remove(this);
+        void OnDestroy()
+        {
+            active.Remove(this);
+            if (active.Count == 0)
+                Sfx.StopLoop(Sounds.ArmCrownWhirlLoop);
+        }
 
         /// <summary>True si ese objetivo está dentro (basta con que asome).</summary>
         public bool Contains(Health target)

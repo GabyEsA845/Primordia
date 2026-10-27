@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Primordia.Audio;
 using Primordia.Combat;
 using Primordia.Core;
 using Primordia.Player;
@@ -321,6 +322,8 @@ namespace Primordia.Enemies
             across = across.sqrMagnitude > 0.01f ? across.normalized : Heading;
             Vector2 to = InsideArena(center + across * Mathf.Min(arenaSize.x, arenaSize.y) * 0.3f, PathMargin);
             Heading = (to - from).sqrMagnitude > 0.01f ? (to - from).normalized : Heading;
+            if (!skipRequested)
+                Sfx.Play(Sounds.AnomalocarisEyes);
             for (float t = 0f; t < eyesCrossTime && !skipRequested; t += Time.deltaTime)
             {
                 SkipCheck(t);
@@ -335,6 +338,8 @@ namespace Primordia.Enemies
             transform.position = to;
 
             // 3. Ruge temblando (tiembla entero: el cuerpo ya lo mueve el vaivén de nado).
+            if (!skipRequested)
+                Sfx.Play(Sounds.AnomalocarisRoar);
             for (float t = 0f; t < roarTime && !skipRequested; t += Time.deltaTime)
             {
                 SkipCheck(t + 1f);
@@ -347,6 +352,11 @@ namespace Primordia.Enemies
             transform.position = to;
 
             // 4. Vuelve la luz y empieza el frenesí, con el primer dash marcado.
+            if (skipRequested)
+            {
+                Sfx.Stop(Sounds.AnomalocarisEyes);
+                Sfx.Stop(Sounds.AnomalocarisRoar);
+            }
             if (Darkness != null)
                 Darkness.SetPlantsLit(true, skipRequested ? 0f : lightsFadeTime);
             if (!skipRequested)

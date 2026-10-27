@@ -41,6 +41,19 @@ namespace Primordia.Audio
         public const string CuticleReflect = "Special_Cuticle_Reflect";
         public const string CuticleStun = "Special_Cuticle_Stun";
         public const string CarrionEat = "Lineage_Carrion_Eat";
+        public const string CnidocytesFan = "Mouth_Cnidocytes_Fan";
+        public const string ArmCrownWhirlLoop = "Mouth_ArmCrown_Whirl_Loop";
+        public const string TailBubbles = "Limbs_Tail_Bubbles";
+        public const string HallucigeniaPlace = "Limbs_Hallucigenia_Place";
+        public const string HallucigeniaStrike = "Limbs_Hallucigenia_Strike";
+        public const string HallucigeniaLaunch = "Limbs_Hallucigenia_Launch";
+        public const string TrilobiteRoll = "Skin_Trilobite_Roll";
+        public const string WiwaxiaOrbit = "Skin_Wiwaxia_Orbit";
+        public const string BroodSacLarvaBite = "Organ_BroodSac_LarvaBite";
+        public const string FlagellaReady = "Special_Flagella_Ready";
+        public const string BudSpawn = "Special_Bud_Spawn";
+        public const string BudDissolve = "Special_Bud_Dissolve";
+        public const string UnstableCrack = "Special_Unstable_Crack";
 
         // Linajes
         public const string LineageComplete = "Lineage_Complete";
@@ -76,6 +89,56 @@ namespace Primordia.Audio
         public const string AmoebaFury = "Boss_Amoeba_Fury";
         public const string AmoebaImmune = "Boss_Amoeba_Immune";
         public const string AmoebaExhaustedLoop = "Boss_Amoeba_Exhausted_Loop";
+
+        // Enemigos del piso 2
+        public const string TrilobiteWarn = "Enemy_Trilobite_Warn";
+        public const string TrilobiteCharge = "Enemy_Trilobite_Charge";
+        public const string TrilobiteCrash = "Enemy_Trilobite_Crash";
+        public const string OttoiaWarn = "Enemy_Ottoia_Warn";
+        public const string OttoiaBite = "Enemy_Ottoia_Bite";
+        public const string OttoiaSink = "Enemy_Ottoia_Sink";
+        public const string ShieldBlock = "Enemy_Shield_Block";
+        public const string PikaiaDash = "Enemy_Pikaia_Dash";
+        public const string EnemyPitFall = "Enemy_PitFall";
+
+        // Jefe: Anomalocaris
+        public const string AnomalocarisBubble = "Boss_Anomalocaris_Bubble";
+        public const string AnomalocarisWarn = "Boss_Anomalocaris_Warn";
+        public const string AnomalocarisDash = "Boss_Anomalocaris_Dash";
+        public const string AnomalocarisCircle = "Boss_Anomalocaris_Circle";
+        public const string AnomalocarisLightsOut = "Boss_Anomalocaris_LightsOut";
+        public const string AnomalocarisEyes = "Boss_Anomalocaris_Eyes";
+        public const string AnomalocarisRoar = "Boss_Anomalocaris_Roar";
+        public const string AnomalocarisCharge = "Boss_Anomalocaris_Charge";
+        public const string AnomalocarisFrenzy = "Boss_Anomalocaris_Frenzy";
+        public const string AnomalocarisLeap = "Boss_Anomalocaris_Leap";
+        public const string AnomalocarisStun = "Boss_Anomalocaris_Stun";
+        public const string AnomalocarisSilhouette = "Boss_Anomalocaris_Silhouette";
+
+        // Jefe: Euriptérido
+        public const string EurypteridStep = "Boss_Eurypterid_Step";
+        public const string EurypteridPincerWarn = "Boss_Eurypterid_PincerWarn";
+        public const string EurypteridPincer = "Boss_Eurypterid_Pincer";
+        public const string EurypteridArmorBlock = "Boss_Eurypterid_ArmorBlock";
+        public const string EurypteridSpineWarn = "Boss_Eurypterid_SpineWarn";
+        public const string EurypteridSpineShot = "Boss_Eurypterid_SpineShot";
+        public const string EurypteridStunned = "Boss_Eurypterid_Stunned";
+        public const string EurypteridMolt = "Boss_Eurypterid_Molt";
+        public const string EurypteridTailWarn = "Boss_Eurypterid_TailWarn";
+        public const string EurypteridTailSweep = "Boss_Eurypterid_TailSweep";
+        public const string EurypteridStagger = "Boss_Eurypterid_Stagger";
+        public const string EurypteridDowned = "Boss_Eurypterid_Downed";
+        public const string EurypteridRise = "Boss_Eurypterid_Rise";
+        public const string EurypteridFuryShot = "Boss_Eurypterid_FuryShot";
+
+        // Cueva del Euriptérido
+        public const string CaveCreak = "Cave_Creak";
+        public const string CaveQuake = "Cave_Quake";
+        public const string CaveCollapse = "Cave_Collapse";
+        public const string CaveRockFall = "Cave_RockFall";
+        public const string CavePebble = "Cave_Pebble";
+        public const string CaveFloorCrack = "Cave_FloorCrack";
+        public const string CaveFloorSink = "Cave_FloorSink";
         public const string CinematicBars = "Cinematic_Bars";
 
         // Salas y recompensas
@@ -100,6 +163,10 @@ namespace Primordia.Audio
         public const string HeartCoral = "Room_HeartCoral";
         public const string ExchangeOpen = "Exchange_Capsule_Open";
         public const string ExchangeAccept = "Exchange_Capsule_Accept";
+        public const string WaveStart = "Room_WaveStart";
+        public const string WaveVent = "Room_WaveVent";
+        public const string PurpleHeartBlock = "Player_PurpleHeart_Block";
+        public const string PlayerPitFall = "Player_PitFall";
 
         // Tienda
         public const string ShopApproach = "Shop_Approach";

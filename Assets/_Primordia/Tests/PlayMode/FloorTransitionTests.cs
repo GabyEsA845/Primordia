@@ -160,6 +160,9 @@ namespace Primordia.Tests
         {
             if (AudioManager.Instance != null)
                 Object.DestroyImmediate(AudioManager.Instance.gameObject);
+            // El director lee el piso montado al empezar: otra prueba puede haber dejado el 2 (los static no se limpian
+            // entre pruebas).
+            FloorGenerator.CurrentFloor = 1;
             var library = Track(ScriptableObject.CreateInstance<SoundLibrary>());
             library.Configure(new[]
             {

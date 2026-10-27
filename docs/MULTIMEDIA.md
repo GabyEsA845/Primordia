@@ -148,7 +148,7 @@ Los recursos nuevos (hojas de sprites, GIF de revisión, scripts que los generan
 
 ## Música
 
-Once pistas en `docs/multimedia-temp/audio/Music/`, todas en re menor (la tienda, en su relativo fa mayor) y sintetizadas por `generar_audio.py`. La lista completa, con su duración y su ambiente, está en `docs/multimedia-temp/audio/PROMPT.md`. Las elige el `MusicDirector`:
+Veintidós pistas en `docs/multimedia-temp/audio/Music/` (once del piso 1 y once del piso 2), todas en re (cada piso, franja o jefe cambia el modo; la tienda, en su relativo fa mayor) y sintetizadas por `generar_audio.py`. La lista completa, con su duración y su ambiente, está en `docs/multimedia-temp/audio/PROMPT.md` y `PROMPT_piso2.md`. Las elige el `MusicDirector`:
 
 | Pista | Cuándo suena | Prioridad | Estado |
 |-------|-------------|-----------|--------|
@@ -159,12 +159,16 @@ Once pistas en `docs/multimedia-temp/audio/Music/`, todas en re menor (la tienda
 | `Music_Boss_Amoeba_Final` | Lluvia de proyectiles de la ameba (30 s, sin bucle; la pone `AmoebaBoss`) | D | Listo |
 | `Music_Sting_LineageEvolution` | Evolución al completar un linaje (tapa la música 2 s) | D | Listo |
 | `Music_Sting_Victory` / `Music_Sting_Defeat` | Pantallas de victoria y derrota | D | Listo |
+| `Music_Floor2_Shallows_*` / `_Reef_*` / `_Abyss_*` | Piso 2, una pareja exploración + combate por franja (Someras re dórico 100 BPM, Arrecife re eólico 108, Abismo re frigio 80); al cambiar de franja (`Room.DepthBand`) se funden en 3 s | D | Listo |
+| `Music_Exchange` | Sala de cambio (laboratorio de Darwin), en todos los pisos | D | Listo |
+| `Music_Boss_Anomalocaris` → `_Frenzy` | Anomalocaris: acecho y cerco; frenesí tras la escena de los ojos (la escena deja la música en silencio) | D | Listo |
+| `Music_Boss_Eurypterid` → `_LastStand` | Euriptérido: fases acorazada y blanda; último aliento de 25 s exactos (sin bucle) que empieza con la primera salva | D | Listo |
 
-La pausa, el mapa y la elección de mutación bajan la música. El jugador elige en la pausa el volumen de la música y el de los efectos (la interfaz va con los efectos); `AudioVolumes` lo guarda en PlayerPrefs (en la web, en el navegador) con un 80 % de fábrica. Debajo suena el ambiente del piso (`Amb_Floor1_Loop`) o el de la sala del jefe (`Amb_BossRoom_Loop`).
+La pausa, el mapa y la elección de mutación bajan la música. El jugador elige en la pausa el volumen de la música y el de los efectos (la interfaz va con los efectos); `AudioVolumes` lo guarda en PlayerPrefs (en la web, en el navegador) con un 80 % de fábrica. Debajo suena el ambiente del piso (`Amb_Floor1_Loop`; en el piso 2, `Amb_Floor2_Loop` y `Amb_Floor2_Abyss_Loop` en el Abismo) o el de la sala del jefe (`Amb_BossRoom_Loop`, `Amb_Floor2_BossRoom_Loop`).
 
 ## Efectos de sonido
 
-113 efectos (157 archivos con sus variantes) en `docs/multimedia-temp/audio/SFX/`, con la lista completa en `PROMPT.md` (qué evento dispara cada uno) y el `muestrario.html` para escucharlos. Cómo llegan al juego:
+113 efectos del piso 1 y 102 del piso 2 en `docs/multimedia-temp/audio/SFX/`, con la lista completa en `PROMPT.md` y `PROMPT_piso2.md` (qué evento dispara cada uno) y el `muestrario.html` para escucharlos. Cómo llegan al juego:
 
 | Origen | Ejemplos | Dónde se decide |
 |--------|----------|-----------------|
@@ -172,7 +176,7 @@ La pausa, el mapa y la elección de mutación bajan la música. El jugador elige
 | Efectos visuales | Pisotón, Placas, subida de nivel, compra, marcas de estado (veneno, sangrado, cegado, aturdido, paralizado, asustado, sospecha), burbujas que revientan, linaje perdido | `EffectSound` en el prefab del efecto (lo pone el menú) |
 | Jugador | Daño, muerte, curación, latido con poca vida, esquiva, barrera, mutación nueva, habilidad lista o aún recargando, linaje completado | `PlayerAudio`, que el `AudioManager` pone al jugador |
 | Interfaz | Pasar por un botón, pulsar, elegir tarjeta, Saltar, Jugar; abrir la pausa y el mapa | `ButtonSounds` (en cada botón al cargar la escena) y `MusicDirector` |
-| Código | Salas y puertas, biomasa, jefes, tienda, camuflaje, habilidades del Órgano, beneficios de los linajes | Llamadas a `Sfx.Play` con los nombres de `Sounds` |
+| Código | Salas y puertas (losas de roca desde el piso 2), oleadas, fosas, biomasa, jefes y la cueva del Euriptérido, tienda, sala de cambio, mutaciones con efecto propio, beneficios de los linajes, enemigos del piso 2 | Llamadas a `Sfx.Play` con los nombres de `Sounds`; `Sfx.Stop` corta un aviso cuando el juego lo acorta |
 
 Los sonidos que se piden muchos a la vez (doce proyectiles de una ráfaga, cinco enemigos cegados) suenan una sola vez (`minInterval` en la biblioteca), y la biomasa sube de tono al recoger varias seguidas.
 

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Primordia.Audio;
 using Primordia.Combat;
 using Primordia.Core;
 using Primordia.Player;
@@ -100,6 +101,7 @@ namespace Primordia.Mutations
             active.Add(this);
             Room.ClearedAny += OnRoomCleared;
             FrameEffect.Play("ClonalBudSprout", settings.sproutFrames, settings.frameDuration, EffectSortingOrder, null, transform.position);
+            Sfx.Play(Sounds.BudSpawn);
             if (settings.appearDelay <= 0f)
                 Appear();
         }
@@ -129,6 +131,7 @@ namespace Primordia.Mutations
             Decoys.Remove(transform);
             active.Remove(this);
             FrameEffect.Play("ClonalBudDissolve", settings.dissolveFrames, settings.frameDuration, EffectSortingOrder, null, transform.position);
+            Sfx.Play(Sounds.BudDissolve);
             Destroy(gameObject);
         }
 

@@ -32,7 +32,7 @@ namespace Primordia.Rooms
         public static int CurrentSeed { get; private set; }
 
         /// <summary>Número del piso actual (1 = sopa primordial). 0 si todavía no se ha generado ninguno.</summary>
-        public static int CurrentFloor { get; private set; }
+        public static int CurrentFloor { get; internal set; }
 
         /// <summary>Se lanza cada vez que se monta un piso nuevo (también el primero), con su número.</summary>
         public static event Action<int> FloorChanged;

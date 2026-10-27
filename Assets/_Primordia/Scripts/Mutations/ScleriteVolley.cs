@@ -74,7 +74,10 @@ namespace Primordia.Mutations
                 return;
             nextVolley = Time.time + settings.interval;
             if (settings.orbit)
+            {
+                Sfx.Play(Sounds.WiwaxiaOrbit);
                 StartCoroutine(Orbit());
+            }
             else
                 Release(targets);
         }

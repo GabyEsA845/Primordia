@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Primordia.Audio;
 using Primordia.Core;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -133,10 +134,12 @@ namespace Primordia.Rooms
                     break;
                 case Mode.Quake:
                     ScreenShake.SetRumble(this, quakeRumble);
+                    Sfx.Play(Sounds.CaveQuake);
                     CollapsingRock.CollapseAll(this);
                     break;
                 case Mode.Collapse:
                     ScreenShake.SetRumble(this, collapseRumble);
+                    Sfx.Play(Sounds.CaveCollapse);
                     if (pending.Count == 0 && sunk == 0)
                         ChooseZones();
                     nextRock = now + 1.5f;
@@ -171,6 +174,7 @@ namespace Primordia.Rooms
                     {
                         nextCreak = now + Random.Range(creakInterval.x, creakInterval.y);
                         ScreenShake.Pulse(creakShake, 0.6f);
+                        Sfx.Play(Sounds.CaveCreak);
                         for (int i = 0; i < creakPebbles; i++)
                             DropPebble();
                     }
@@ -324,6 +328,7 @@ namespace Primordia.Rooms
             var warning = new Sprite[warningFrames];
             System.Array.Copy(frames, warning, warningFrames);
             FrameEffect.Play("FloorCrack", warning, sinkWarning / Mathf.Max(1, warningFrames), FallingRock.ShadowOrder, null, center);
+            Sfx.Play(Sounds.CaveFloorCrack);
             yield return new WaitForSeconds(sinkWarning);
 
             var cells = new List<Vector2Int>();
@@ -341,6 +346,7 @@ namespace Primordia.Rooms
                 FrameEffect.Play("FloorSink", falling, 0.12f, FallingRock.ShadowOrder, null, center);
             }
             ScreenShake.Pulse(2.5f, 0.4f);
+            Sfx.Play(Sounds.CaveFloorSink);
             sunk++;
         }
     }

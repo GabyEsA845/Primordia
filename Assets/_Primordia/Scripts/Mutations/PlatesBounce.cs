@@ -95,8 +95,11 @@ namespace Primordia.Mutations
         /// <summary>Enrollarse: la bola de placas mientras dura la esquiva.</summary>
         void OnDodgeStarted()
         {
-            if (roll && rollFrames.Length > 0)
+            if (!roll)
+                return;
+            if (rollFrames.Length > 0)
                 FrameEffect.Play("PlatesRoll", rollFrames, frameDuration, SortingOrder, transform);
+            Sfx.Play(Sounds.TrilobiteRoll);
         }
 
         /// <summary>El siguiente proyectil rebota seguro (la Coraza de carroña del Trilobite).</summary>

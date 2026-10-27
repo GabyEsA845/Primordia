@@ -70,6 +70,7 @@ namespace Primordia.Mutations
                 return;
 
             readyShown = true;
+            Sfx.Play(Sounds.FlagellaReady);
             FrameEffect.Play("FlagellaReady", settings.readyFrames, settings.readyFrameDuration, SortingOrder, transform);
         }
 

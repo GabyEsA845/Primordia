@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Primordia.Audio;
 using Primordia.Rooms;
 using UnityEngine;
 
@@ -155,6 +156,7 @@ namespace Primordia.Enemies
                         float distance = target != null ? Vector2.Distance(target.position, position) : ringRadius;
                         Current = Phase.Dash;
                         phaseUntil = Time.time + (distance + dashOvershoot) / Mathf.Max(0.1f, dashSpeed);
+                        Sfx.Play(Sounds.PikaiaDash);
                     }
                     return Vector2.zero;
 

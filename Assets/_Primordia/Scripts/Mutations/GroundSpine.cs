@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Primordia.Audio;
 using Primordia.Combat;
 using Primordia.Core;
 using UnityEngine;
@@ -106,6 +107,7 @@ namespace Primordia.Mutations
                 finally { Striking = null; }
                 Struck?.Invoke(health);
                 AnyStruck?.Invoke(this, health);
+                Sfx.Play(Sounds.HallucigeniaStrike);
             }
         }
 
@@ -144,6 +146,7 @@ namespace Primordia.Mutations
             var direction = ((Vector2)nearest.transform.position - (Vector2)transform.position).normalized;
             ProjectilePool.Get(shot.ProjectilePrefab).Launch(transform.position, direction, shot,
                 CombatLayers.ProjectileLayer(Team.Player), source);
+            Sfx.Play(Sounds.HallucigeniaLaunch);
             Shot?.Invoke(direction);
         }
 

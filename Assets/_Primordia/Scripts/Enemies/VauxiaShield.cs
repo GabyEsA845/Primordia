@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using Primordia.Combat;
 using Primordia.Core;
 using UnityEngine;
@@ -48,6 +49,7 @@ namespace Primordia.Enemies
                 return amount;
             int absorbed = Mathf.Min(available, amount);
             shield.points = available - absorbed;
+            Sfx.Play(Sounds.ShieldBlock);
             if (shield.points == 0)
                 StatusMarkers.Hide(target, MarkerKey);
             return amount - absorbed;

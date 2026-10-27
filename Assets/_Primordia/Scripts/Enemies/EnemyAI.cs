@@ -571,6 +571,7 @@ namespace Primordia.Enemies
             // Lo que llevaba se pierde en el fondo.
             enemy.DropsBiomass = false;
             enemy.FellIntoPit = true;
+            Sfx.Play(Sounds.EnemyPitFall);
             yield return PitFallEffect.Play(transform);
             health.Kill();
         }

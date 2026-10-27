@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using Primordia.Combat;
 using Primordia.Core;
 using Primordia.Rooms;
@@ -174,6 +175,8 @@ namespace Primordia.Enemies
         bool waitingIntro;
         float fightStartsAt;
         float actionStart;
+        // Lo andado desde el último paso que sonó.
+        float walked;
         float nextPincer;
         float nextSpines;
         float stunUntil;
@@ -306,7 +309,7 @@ namespace Primordia.Enemies
                 case Mode.Walk:
                     Steer(ToPlayer(), TurnRate, dt);
                     if (player != null && Vector2.Distance(Head, player.position) > stopDistance)
-                        Move(Heading * WalkSpeed * dt);
+                        Walk(Move(Heading * WalkSpeed * dt));
                     if (player == null)
                         break;
                     if (Time.time >= nextPincer && InPincerReach(player.position))
@@ -384,6 +387,7 @@ namespace Primordia.Enemies
 
         void SetMode(Mode mode)
         {
+            PlayModeSound(CurrentMode, mode);
             CurrentMode = mode;
             actionStart = Time.time;
             if (mode == Mode.PincerStrike)
@@ -442,6 +446,42 @@ namespace Primordia.Enemies
         }
 
         /// <summary>Anda sin meterse en paredes ni rocas, y sin acercarse a las fosas. Devuelve cuánto ha avanzado.</summary>
+        /// <summary>Distancia que se anda entre dos pasos que suenan (no suena cada pata: sería un repiqueteo).</summary>
+        const float StepStride = 1.4f;
+
+        void Walk(float distance)
+        {
+            walked += distance;
+            if (walked < StepStride)
+                return;
+            walked -= StepStride;
+            Sfx.Play(Sounds.EurypteridStep);
+        }
+
+        /// <summary>
+        /// El sonido de cada modo. El aviso de las pinzas dura 0,6 s, pero en la fase blanda solo 0,45: se corta al salir.
+        /// El tambaleo del último aliento suena con Downed; el derrumbe y el jadeo los pone la escena.
+        /// </summary>
+        static void PlayModeSound(Mode previous, Mode next)
+        {
+            if (previous == Mode.PincerWarn && next != Mode.PincerWarn)
+                Sfx.Stop(Sounds.EurypteridPincerWarn);
+            Sfx.Play(next switch
+            {
+                Mode.PincerWarn => Sounds.EurypteridPincerWarn,
+                Mode.PincerStrike => Sounds.EurypteridPincer,
+                Mode.SpineWarn => Sounds.EurypteridSpineWarn,
+                Mode.SpineShoot => Sounds.EurypteridSpineShot,
+                Mode.Stunned => Sounds.EurypteridStunned,
+                Mode.Molt => Sounds.EurypteridMolt,
+                Mode.TailWarn => Sounds.EurypteridTailWarn,
+                Mode.TailSweep => Sounds.EurypteridTailSweep,
+                Mode.Downed => Sounds.EurypteridStagger,
+                Mode.Rise => Sounds.EurypteridRise,
+                _ => null
+            });
+        }
+
         float Move(Vector2 step)
         {
             float distance = step.magnitude;
@@ -555,7 +595,10 @@ namespace Primordia.Enemies
             {
                 case Stage.Armored:
                     if (!rockHit && player != null && IsArmoredAgainst(player.position))
+                    {
                         amount = Health.ScaleDamage(amount, armorFactor);
+                        Sfx.Play(Sounds.EurypteridArmorBlock);
+                    }
                     // Antes de la muda no baja del 50 %: la escena siempre se ve.
                     return Mathf.Min(amount, Mathf.Max(0, Health.Current - MoltHealth));
                 case Stage.Soft:
@@ -599,6 +642,7 @@ namespace Primordia.Enemies
 
         void OnDied(Enemy _)
         {
+            PlayModeSound(CurrentMode, Mode.Dead);
             CurrentMode = Mode.Dead;
             EndLastStand();
             EurypteridSpine.BreakAll();

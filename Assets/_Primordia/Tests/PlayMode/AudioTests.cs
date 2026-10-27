@@ -37,6 +37,10 @@ namespace Primordia.Tests
                 new SoundLibrary.Sound { id = "Loop", clips = new[] { Clip("Loop", 1f) }, volume = 1f, loop = true },
                 Sound(Sounds.PlayerHeal, 0f, Clip("Heal")),
                 Sound(Sounds.PlayerHurt, 0f, Clip("Hurt")),
+                Sound("Long", 0f, Clip("Long", 1f)),
+                Sound(Sounds.UnstableCrack, 0f, Clip("Crack")),
+                Sound(Sounds.PurpleHeartBlock, 0f, Clip("Purple")),
+                Sound(Sounds.CaveQuake, 0f, Clip("Quake")),
             }, new[]
             {
                 new SoundLibrary.Track { id = "Explore", clip = Clip("Explore", 2f), volume = 1f },
@@ -286,6 +290,55 @@ namespace Primordia.Tests
 
             health.Heal(1);
             Assert.AreEqual(Sounds.PlayerHeal, manager.LastSound);
+        }
+
+        [UnityTest]
+        public IEnumerator StopSound_CutsItWithAShortFade()
+        {
+            Assert.IsTrue(manager.PlaySound("Long"));
+            Assert.IsTrue(manager.IsSoundPlaying("Long"));
+
+            Sfx.Stop("Long");
+            Assert.IsFalse(manager.IsSoundPlaying("Long"), "Cortado, ya no cuenta como sonando aunque se esté callando.");
+            yield return new WaitForSecondsRealtime(0.15f);
+
+            foreach (var source in manager.GetComponentsInChildren<AudioSource>())
+                Assert.IsFalse(source.isPlaying && source.clip != null && source.clip.name == "Long", "A los 0,15 s ya calló.");
+        }
+
+        [UnityTest]
+        public IEnumerator PlayerAudio_UnstableHalfHeart_Cracks()
+        {
+            var player = New("Player");
+            var health = player.AddComponent<Health>();
+            player.AddComponent<PlayerAudio>();
+            yield return new WaitForSecondsRealtime(0.6f);
+
+            health.ExtraHitDamage = 1;
+            health.TakeDamage(1);
+            Assert.IsTrue(manager.IsSoundPlaying(Sounds.UnstableCrack), "El medio corazón de más del precio Inestable cruje.");
+        }
+
+        [UnityTest]
+        public IEnumerator PlayerAudio_PurpleHeart_BlocksWithItsSound()
+        {
+            var player = New("Player");
+            var health = player.AddComponent<Health>();
+            player.AddComponent<PlayerAudio>();
+            yield return new WaitForSecondsRealtime(0.6f);
+
+            health.AddPurpleHeart();
+            health.TakeDamage(1);
+            Assert.AreEqual(Sounds.PurpleHeartBlock, manager.LastSound);
+        }
+
+        [Test]
+        public void Cave_Quake_Rumbles()
+        {
+            var cave = New("Cave").AddComponent<CaveCollapse>();
+            cave.SetMode(CaveCollapse.Mode.Quake);
+            Assert.AreEqual(Sounds.CaveQuake, manager.LastSound);
+            cave.SetMode(CaveCollapse.Mode.Calm);
         }
     }
 }

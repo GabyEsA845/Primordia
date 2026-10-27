@@ -257,6 +257,20 @@ namespace Primordia.Core
             Died?.Invoke();
         }
 
+        /// <summary>
+        /// Pierde vida sin que cuente como golpe (no avisa con <see cref="Damaged"/>) y sin morir: se queda en 1 como mínimo.
+        /// La barra del último aliento del Euriptérido, que se vacía sola.
+        /// </summary>
+        public void Drain(int amount)
+        {
+            if (amount <= 0 || IsDead)
+                return;
+            int previous = Current;
+            Current = Mathf.Max(1, Current - amount);
+            if (Current != previous)
+                Changed?.Invoke(Current, maxHealth);
+        }
+
         /// <summary>Invulnerable durante esos segundos (sin tocar <see cref="IsInvulnerable"/>, que lleva la esquiva).</summary>
         public void MakeInvulnerable(float seconds) => invulnerableUntil = Mathf.Max(invulnerableUntil, Time.time + seconds);
 

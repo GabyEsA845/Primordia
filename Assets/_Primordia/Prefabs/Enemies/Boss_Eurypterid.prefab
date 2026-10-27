@@ -166,7 +166,7 @@ GameObject:
   - component: {fileID: 3816757827221336522}
   - component: {fileID: 3969347602998324877}
   - component: {fileID: 4681114822234109588}
-  - component: {fileID: 6918789332141132995}
+  - component: {fileID: 2682481876845196072}
   m_Layer: 7
   m_Name: Boss_Eurypterid
   m_TagString: Untagged
@@ -258,6 +258,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4695ac612397394680d0abd7e451ea1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Primordia::Primordia.Enemies.EurypteridBoss
+  venomPrefab: {fileID: 8591544524576583766, guid: b4c183137941e184ebc9d84fa88cfd5d, type: 3}
+  staggerTime: 2.5
+  downedTime: 2
+  refillTime: 0.8
+  zoomTime: 1
+  zoomMargin: 1
+  barrage:
+  - duration: 8
+    ringInterval: 1.2
+    ringCount: 22
+    ringGap: 4
+    ringGapStep: 33
+    spiralArms: 0
+    spiralInterval: 0.2
+    spiralStep: 0
+    fanInterval: 0
+    fanCount: 5
+    fanSpread: 0
+    rockInterval: 0
+    speed: 4
+  - duration: 8
+    ringInterval: 0
+    ringCount: 1
+    ringGap: 0
+    ringGapStep: 0
+    spiralArms: 2
+    spiralInterval: 0.2
+    spiralStep: 11
+    fanInterval: 0
+    fanCount: 5
+    fanSpread: 0
+    rockInterval: 0
+    speed: 4.5
+  - duration: 9
+    ringInterval: 2.2
+    ringCount: 20
+    ringGap: 5
+    ringGapStep: -47
+    spiralArms: 0
+    spiralInterval: 0.2
+    spiralStep: 0
+    fanInterval: 1.4
+    fanCount: 5
+    fanSpread: 40
+    rockInterval: 1.6
+    speed: 5
   moltTime: 3
   moltAdvance: 1
   exuviaPrefab: {fileID: 8836727043843884637, guid: 67029ac27df9fd541b7a0006943d62e7, type: 3}
@@ -314,7 +360,7 @@ MonoBehaviour:
   headOffset: 2.3
   bodyRadius: 0.9
   pitMargin: 1.2
---- !u!114 &6918789332141132995
+--- !u!114 &2682481876845196072
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

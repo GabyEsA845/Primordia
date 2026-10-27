@@ -11,7 +11,8 @@ namespace Primordia.Enemies
     /// para la mitad del daño que viene de delante, como la del Trilobite. Si el jugador está cerca de la cabeza, abre las
     /// pinzas (aviso) y golpea un cono por delante. Cada pocos segundos, si lo ve, eriza las púas del caparazón y suelta un
     /// abanico de 3 púas venenosas (las paran las rocas). La cueva cruje mientras tanto (<see cref="CaveCollapse"/>).
-    /// Escena de la muda (50 %) y fase blanda (50–0 %): en EurypteridBoss.Phases.cs.
+    /// Escena de la muda (50 %) y fase blanda (50–0 %): en EurypteridBoss.Phases.cs. Último aliento (al llegar a 0): en
+    /// EurypteridBoss.LastStand.cs.
     /// Visto desde arriba: el cuerpo ("Body") gira hacia donde mira. Es sólido (el jugador no lo atraviesa) pero tocarlo no
     /// hace daño; anda, pero nunca cae en las fosas (las rodea).
     /// </summary>
@@ -35,7 +36,9 @@ namespace Primordia.Enemies
             /// <summary>Al 50 %: escena de la muda (inmune).</summary>
             Molt,
             /// <summary>50–0 %: blando y furioso (cola y doble pinza).</summary>
-            Soft
+            Soft,
+            /// <summary>Al llegar a 0: cae rendido, se levanta y suelta el bullet hell (inmune) mientras la barra se vacía.</summary>
+            LastStand
         }
 
         /// <summary>Lo que está haciendo ahora.</summary>
@@ -61,6 +64,12 @@ namespace Primordia.Enemies
             TailWarn,
             /// <summary>Fase blanda: barrido de 180° por detrás con estela venenosa.</summary>
             TailSweep,
+            /// <summary>Último aliento: va tambaleándose al centro, cae rendido y jadea.</summary>
+            Downed,
+            /// <summary>Último aliento: se levanta rugiendo.</summary>
+            Rise,
+            /// <summary>Último aliento: el bullet hell.</summary>
+            Fury,
             Dead
         }
 
@@ -127,7 +136,7 @@ namespace Primordia.Enemies
         public Health Health { get; private set; }
         public BossBarStyle BarStyle => CurrentStage switch
         {
-            Stage.Molt => BossBarStyle.Immune,
+            Stage.Molt or Stage.LastStand => BossBarStyle.Immune,
             Stage.Soft => BossBarStyle.Enraged,
             _ => BossBarStyle.Normal
         };
@@ -208,7 +217,11 @@ namespace Primordia.Enemies
                 Heading = direction.normalized;
         }
 
-        public void SetArena(Transform center, Vector2 size) => arenaCenter = center;
+        public void SetArena(Transform center, Vector2 size)
+        {
+            arenaCenter = center;
+            arenaSize = size;
+        }
 
         public void PlayIntroPose(float hold) => states?.Play(IntroState, restart: true);
 
@@ -243,8 +256,9 @@ namespace Primordia.Enemies
             Health.Damaged -= OnDamaged;
             Health.RemoveDamageModifier(ModifyDamage);
             enemy.Died -= OnDied;
-            // Si se va a mitad de la muda (otra escena, reinicio), todo vuelve a la normalidad.
+            // Si se va a mitad de la muda o del último aliento (otra escena, reinicio), todo vuelve a la normalidad.
             EndMoltScene();
+            EndLastStand();
         }
 
         void FindPlayer()
@@ -264,7 +278,7 @@ namespace Primordia.Enemies
 
         void FixedUpdate()
         {
-            if (CurrentMode is Mode.Dead or Mode.Molt || !CanAct())
+            if (CurrentMode is Mode.Dead or Mode.Molt or Mode.Downed or Mode.Rise or Mode.Fury || !CanAct())
                 return;
             FindPlayer();
             float dt = Time.fixedDeltaTime;
@@ -369,7 +383,7 @@ namespace Primordia.Enemies
                 strikes = 0;
             // El aviso y los ataques se ven siempre: un golpe recibido no los tapa.
             bool restart = mode is Mode.PincerWarn or Mode.PincerStrike or Mode.SpineWarn or Mode.SpineShoot
-                or Mode.TailWarn or Mode.TailSweep or Mode.Molt;
+                or Mode.TailWarn or Mode.TailSweep or Mode.Molt or Mode.Downed or Mode.Rise or Mode.Fury;
             if (restart)
                 hurtUntil = 0f;
             PlayState(StateFor(mode), restart);
@@ -393,6 +407,9 @@ namespace Primordia.Enemies
                 Mode.Molt => MoltState,
                 Mode.TailWarn => TailWarnState,
                 Mode.TailSweep => TailSweepState,
+                Mode.Downed => DownedState,
+                Mode.Rise => RiseState,
+                Mode.Fury => FuryState,
                 Mode.Dead => DeathState,
                 _ => soft ? WalkSoftState : WalkState
             };
@@ -534,17 +551,19 @@ namespace Primordia.Enemies
                         amount = Health.ScaleDamage(amount, armorFactor);
                     // Antes de la muda no baja del 50 %: la escena siempre se ve.
                     return Mathf.Min(amount, Mathf.Max(0, Health.Current - MoltHealth));
-                case Stage.Molt:
-                    return 0;
+                case Stage.Soft:
+                    // No baja de 1: al llegar ahí empieza el último aliento.
+                    return Mathf.Min(Health.ScaleDamage(amount, softDamageFactor), Mathf.Max(0, Health.Current - 1));
                 default:
-                    return Health.ScaleDamage(amount, softDamageFactor);
+                    // Muda y último aliento: inmune (la barra se vacía sola con Health.Drain).
+                    return 0;
             }
         }
 
         /// <summary>Una piedra del techo le cae encima: daño entero (la coraza no la para) y aturdido.</summary>
         public void HitByFallingRock(int damage, float stunDuration)
         {
-            if (CurrentMode is Mode.Dead or Mode.Molt)
+            if (CurrentMode is Mode.Dead || CurrentStage is Stage.Molt or Stage.LastStand)
                 return;
             rockHit = true;
             Health.TakeDamage(damage);
@@ -557,6 +576,8 @@ namespace Primordia.Enemies
 
         void OnDamaged(int amount)
         {
+            if (CurrentStage == Stage.LastStand)
+                return;
             string hurt = CurrentStage == Stage.Soft ? HurtSoftState : HurtState;
             if (CurrentMode is Mode.Walk && states != null && states.Has(hurt))
             {
@@ -572,6 +593,7 @@ namespace Primordia.Enemies
         void OnDied(Enemy _)
         {
             CurrentMode = Mode.Dead;
+            EndLastStand();
             EurypteridSpine.BreakAll();
             if (cave != null)
                 cave.SetMode(CaveCollapse.Mode.Calm);

@@ -93,7 +93,14 @@ namespace Primordia.Enemies
 
         void UpdateStage()
         {
-            if (Health.IsDead || CurrentMode == Mode.Idle || CurrentStage != Stage.Armored)
+            if (Health.IsDead || CurrentMode == Mode.Idle)
+                return;
+            if (CurrentStage == Stage.Soft && Health.Current <= 1)
+            {
+                BeginLastStand();
+                return;
+            }
+            if (CurrentStage != Stage.Armored)
                 return;
             // Por si otro modificador de daño (los beneficios de los linajes) lo dejó por debajo antes de tiempo.
             if (Health.Current < MoltHealth)

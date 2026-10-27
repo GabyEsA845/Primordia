@@ -33,6 +33,8 @@ namespace Primordia.Editor
                 ("SpineShoot", Fps(80), false), ("Hurt", Fps(90), false), ("Molt", Fps(250), false), ("TailWarn", Fps(150), false),
                 ("TailSweep", Fps(50), false), ("DoublePincer", Fps(70), false), ("Death", Fps(140), false),
                 ("Intro", IntroPoseFps, false),
+                // Último aliento (generar_euripterido_final.py): "Downed_Idle" antes que "Downed".
+                ("Downed_Idle", Fps(250), true), ("Downed", Fps(120), false), ("Rise", Fps(110), false), ("Fury", Fps(120), true),
             },
             // La muda vacía es una pieza aparte (cobertura), no una animación del jefe.
             SkipClips = { "Exuvia" },
@@ -54,6 +56,9 @@ namespace Primordia.Editor
                 $"{effects}/Proj_EurypteridSpine.png", 16));
             var exuvia = CreateEurypteridExuvia(ImportLooseSheet($"{Floor2BossesSourceFolder}/Eurypterid/Eurypterid_Exuvia.png",
                 $"{effects}/Eurypterid_Exuvia.png", 128));
+            // Gota venenosa del último aliento (12×12): la misma lógica que la púa, con otro dibujo y más alcance.
+            var venom = CreateEurypteridVenom(ImportLooseSheet($"{Floor2BossesSourceFolder}/Effects/Proj_EurypteridVenom.png",
+                $"{effects}/Proj_EurypteridVenom.png", 12));
             // La media luna del barrido, centrada en el jefe (128×128): gira con él.
             var tailSweep = ImportLooseSheet($"{Floor2BossesSourceFolder}/Effects/Fx_Eurypterid_TailSweep.png",
                 $"{effects}/Fx_Eurypterid_TailSweep.png", 128);
@@ -96,6 +101,7 @@ namespace Primordia.Editor
                 var boss = root.AddComponent<EurypteridBoss>();
                 boss.Configure(body.transform, animator, renderer, spine);
                 boss.ConfigurePhases(exuvia, tailSweep);
+                boss.ConfigureLastStand(venom);
                 var prefab = PrefabUtility.SaveAsPrefabAsset(root, EurypteridPrefabPath);
                 return prefab.GetComponent<Enemy>();
             }
@@ -127,6 +133,29 @@ namespace Primordia.Editor
                 root.AddComponent<EurypteridExuvia>().Configure(renderer, 15);
                 return PrefabUtility.SaveAsPrefabAsset(root, $"{EnemyPrefabsFolder}/Exuvia_Eurypterid.prefab")
                     .GetComponent<EurypteridExuvia>();
+            }
+            finally
+            {
+                Object.DestroyImmediate(root);
+            }
+        }
+
+        /// <summary>Gota venenosa del bullet hell: medio corazón y ralentiza, como la púa; vive lo bastante para cruzar la sala.</summary>
+        static EurypteridSpine CreateEurypteridVenom(Sprite[] frames)
+        {
+            var root = new GameObject("Venom_Eurypterid") { layer = LayerMask.NameToLayer(CombatLayers.Enemy) };
+            try
+            {
+                var renderer = root.AddComponent<SpriteRenderer>();
+                renderer.sprite = frames.Length > 0 ? frames[0] : null;
+                renderer.sortingOrder = 20;
+                if (frames.Length > 1)
+                    root.AddComponent<Rooms.SpriteLoop>().Configure(renderer, frames, 0.15f, 0f);
+                root.AddComponent<Rigidbody2D>().gravityScale = 0f;
+                var drop = root.AddComponent<EurypteridSpine>();
+                drop.Configure(1, 7f, 0.7f, 1.5f);
+                return PrefabUtility.SaveAsPrefabAsset(root, $"{EnemyPrefabsFolder}/Venom_Eurypterid.prefab")
+                    .GetComponent<EurypteridSpine>();
             }
             finally
             {

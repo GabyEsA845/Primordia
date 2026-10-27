@@ -85,6 +85,10 @@ namespace Primordia.Enemies
                 filter.SetLayerMask(LayerMask.GetMask("Default"));
                 if (Physics2D.CircleCast(rb.position, touchRadius * 0.5f, step / distance, filter, hits, distance) > 0)
                 {
+                    // La muda vacía para las púas y las gotas, pero cada una la desgasta.
+                    var shell = hits[0].collider.GetComponentInParent<EurypteridExuvia>();
+                    if (shell != null && shell.TryGetComponent<Health>(out var shellHealth))
+                        shellHealth.TakeDamage(1);
                     Break();
                     return;
                 }

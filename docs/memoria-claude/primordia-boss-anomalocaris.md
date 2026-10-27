@@ -1,22 +1,23 @@
 ---
 name: primordia-boss-anomalocaris
-description: "SIGUIENTE (desde 2026-10-26): rama feature/boss-anomalocaris, primer jefe real del piso 2; qué hay hecho, dónde está el diseño y qué falta"
+description: "Jefe Anomalocaris terminado y en main (merge 1086049, 2026-10-26): sala, fases, barra de vida propia y barra fantasma, Tab de tres estados"
 metadata:
   node_type: memory
   type: project
-  originSessionId: bc20fcc8-a95a-48cd-a40d-3f24382d122a
-  modified: 2026-10-26T21:49:13.417Z
+  originSessionId: c8d2afc4-ef5b-4f47-b591-8e5a73da4f56
+  modified: 2026-10-26T23:17:31.606Z
 ---
 
-Próxima tarea acordada con el usuario el 2026-10-26, al cerrar feature/floor2-mutations (merge d5680b5 en main). Se empieza en una sesión nueva: crear `feature/boss-anomalocaris` desde `main`. Después vienen `feature/boss-eurypterid` y `feature/floor2-audio` (PLAN.md).
+**TERMINADO y en main** (merge 1086049, 2026-10-26; último commit de la rama 438f2f0; push de main y de la rama). El usuario lo probó todo (barra y Tab incluidos).
 
-**Diseño (cerrado):** GDD "Anomalocaris" (~línea 358 de docs/GDD Primordia.md), línea de PLAN.md de la rama y [[primordia-floor2-design]]. Resumen: 300 de vida; cueva ovalada ~36×26 sin fosas, en el Abismo; al entrar baja la luz (penumbra, no ceguera) y las plantas luminosas (luces 2D de URP) dan casi todo el brillo; 4-6 columnas de algas tapan la vista sin bloquear. F1 acecho: zarpazo con aviso 0,7 s y 1 s vulnerable después, estela de burbujas. F2 cerco en espiral. Al 25 %, escena de los ojos (solo los ojos nadando en la oscuridad, inmune). F3 frenesí: se para, carga, marcador 0,8→0,5 s del área y la trayectoria de sus dos zarpazos (casi inesquivables) y pausa corta después.
+Último paso (438f2f0): barra fantasma para todos los jefes (BossHealthBar); aspecto propio por jefe con BossBarSkin (ScriptableObject en Data/Bosses) + BossBarAppearance (en el prefab del jefe) y fases con IPhasedBoss (IBoss.cs). El Anomalocaris tiene una barra de 258×32 con la ventana en (38, 12), muescas al 60 % y al 25 % y silueta cuando es inmune. La cabeza se rediseñó a petición del usuario, porque la redonda "no daba miedo": ahora tiene el escudo en punta, fauces de garras con colmillos y ojos con ceño. Generador: floor2-bosses/generar_barra_anomalocaris.py. Lo importa ArtSetup.CreateAnomalocarisBarSkin desde el menú del jefe. Se puede reutilizar para el Euriptérido (darle un BossBarSkin propio si se quiere).
 
-**Ya hecho:**
-- Arte del jefe APROBADO: docs/multimedia-temp/floor2-bosses/Anomalocaris/ (celda 112×112) y Effects/ (Fx_Anomalocaris_Bubbles, _Swipe 64×64 con origen (0,32), _ClawArea 64×64, _ClawPath 16×8 en mosaico). Tabla de hojas, cuadros, ms y cuadro de daño (ClawStrike cuadro 1) en floor2-bosses/README.md.
-- Presentación del jefe (rótulo, retrato, pose) en main desde feature/boss-intro ([[primordia-floor2-rooms]]).
-- Plantilla de sala `Data/Rooms/Floor2/Room_Boss_Anomalocaris` (de floor2-rooms/generar_salas_fijas.py, función anomalocaris()) con marcas A (columna de algas) y L (planta luminosa) que **aún no tienen sprite ni efecto**; ahora mismo en la sala hay un jefe provisional ([[primordia-floor2-structure]]).
+`ProjectSettings.asset` sigue modificado por Unity desde antes (preloadedAssets vacío): no incluirlo en commits salvo que el usuario lo pida.
 
-**Falta (a proponer al usuario por pasos, arte primero):** sprites de las columnas de algas y de las plantas luminosas (con la skill primordia-sprites, ver [[primordia-sprites-skill]]); que el pintor de salas las ponga (A sin colisión que tapa, L con Light2D); bajada de luz al entrar en la sala; IA del jefe por fases (mirar cómo se hizo la ameba gigante, [[primordia-boss-amoeba]], y BossAI/EnemyBrain de [[primordia-floor2-enemies]]); escena de los ojos; marcadores del frenesí; menú de importación del arte; pruebas. Preguntar antes las decisiones de diseño que no estén cerradas.
+## Qué hay hecho (en la rama, probado y aprobado)
 
-**How to apply:** al empezar la sesión, leer esto y [[primordia-workflow]]; proponer el plan de pasos antes de programar.
+- **Sala** (59fd11b): arte de algas, plantas luminosas y burbuja (`floor2-bosses/generar_sala_anomalocaris.py`); AlgaeColumn (orden 25, translúcida con el jugador debajo), LightPlant (SetLit, SetDimmed), RoomDarkness (en salas con marcas L: al entrar luz global 0,12 azulada + halo 2,5 u en el jugador; al despejar vuelve). Ni algas ni plantas a menos de 3,5 u de donde aparece el jefe. Menú **Primordia > Boss > Crear Anomalocaris y escena de prueba** → Test_BossAnomalocaris.
+- **Jefe** (7785680, a1e3ccb): AnomalocarisBoss (+ .Phases.cs, partial), AnomalocarisBubble, AnomalocarisMarkers; 300 de vida, biomasa 10, sin mutación. Acecho: óvalo junto a las paredes con estela de burbujas; cada 3–4,5 s aviso 0,7 s apuntando adonde irá el jugador y dash a 22 u/s que muerde (1 corazón) y 1 s vulnerable. Cerco (60–25 %): espiral con muro de burbujas y luego el dash. Escena de los ojos (25 %, ~3,5 s, se salta con E; antes no baja del 25 %). Frenesí en ciclo: dash largo marcado (~1 s) → salto a morder → aturdido 0,5 s → persecución 2,5 s → segundo dash con marca corta → silueta invulnerable 3 s con plantas atenuadas → repite. Sonidos en floor2-audio.
+- Pruebas: AnomalocarisRoomTests, AnomalocarisBossTests, AnomalocarisPhasesTests (448/449 en verde; la que fallaba era la esquiva a cámara lenta, ya arreglada).
+
+**How to apply:** referencia para el Euriptérido (mismo esquema: arte de sala → jefe → fases → barra → cierre). Seguir [[primordia-workflow]] y hacer todo sprite nuevo con la skill [[primordia-sprites-skill]].

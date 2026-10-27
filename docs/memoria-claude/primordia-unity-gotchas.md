@@ -32,3 +32,4 @@ metadata:
 
 Relacionado: [[primordia-workflow]].
 - (2026-10-25) En pruebas PlayMode, los proyectiles disparados (ProjectilePool) sobreviven al TearDown y alcanzan al jugador de la prueba siguiente (orden alfabético): fallo intermitente de la Ottoia por las cargas de la medusa. En el TearDown, destruir los Projectile (FindObjectsByType con FindObjectsInactive.Include) y ProjectilePool.Clear().
+- (2026-10-26) Las pruebas que miden distancia recorrida por algo con fin por tiempo (esquiva, dash) bailan un paso de física (0,02 s): el fin se comprueba en FixedUpdate y el inicio cae en Update. Tolerancia de al menos un paso de recorrido (fallo intermitente de Floor2MutationsTests.TimeWarp_PlayerDodgeCoversTheSameDistance: 3,36 con ±0,35).

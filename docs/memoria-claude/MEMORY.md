@@ -1,4 +1,4 @@
-- [Estado de Primordia](primordia-project-status.md) — proyecto personal para itch.io; piso 1 completo en main; piso 2: estructura, Bocas, enemigos, sala de cambio y mutaciones/linajes en main (floor2-mutations d5680b5, 2026-10-26); SIGUIENTE: jefe Anomalocaris (ver primordia-boss-anomalocaris)
+- [Estado de Primordia](primordia-project-status.md) — proyecto personal para itch.io; piso 1 completo en main; piso 2: estructura, Bocas, enemigos, sala de cambio y mutaciones/linajes en main (floor2-mutations d5680b5, 2026-10-26); Anomalocaris en main (merge 1086049); SIGUIENTE: feature/boss-eurypterid (ver primordia-boss-eurypterid)
 - [Sprites: estado](primordia-sprites-next.md) — personajes, mutaciones e interfaz en main; HUD completo; menús en main; minimapa en main; evoluciones en main; biomasa en main; arte de tienda entregado e importado por menú
 - [Flujo de trabajo](primordia-workflow.md) — español, rama por módulo, menús de editor, commit solo tras confirmar
 - [Trampas técnicas de Unity](primordia-unity-gotchas.md) — Unity abierto, logs, statics, CRLF, zips, referencias perdidas
@@ -23,4 +23,5 @@
 - [Sala de cambio](primordia-exchange-room.md) — terminada y en main (merge 4ff7147, 2026-10-25): reglas (piso anterior = un nivel menos, sin especiales), cápsula, ventana y metamorfosis en la cápsula
 - [Mutaciones del piso 2](primordia-floor2-mutations.md) — terminada y en main (merge d5680b5, 2026-10-26): mutaciones, 8 linajes, Carroña, toques, reserva del piso, F8
 - [Skill primordia-sprites](primordia-sprites-skill.md) — skill propia de pixel art en .claude/skills (en main desde d5680b5); usarla en todo arte nuevo
-- [Jefe Anomalocaris (siguiente)](primordia-boss-anomalocaris.md) — próxima rama feature/boss-anomalocaris: diseño cerrado, arte del jefe aprobado; faltan algas/plantas luminosas, luz, IA por fases, escena de los ojos
+- [Jefe Anomalocaris](primordia-boss-anomalocaris.md) — terminado y en main (merge 1086049): fases, barra propia (BossBarSkin/IPhasedBoss), barra fantasma, Tab de 3 estados
+- [Jefe Euriptérido (siguiente)](primordia-boss-eurypterid.md) — SIGUIENTE: rama feature/boss-eurypterid sin crear; arte aprobado, plan por pasos, barra propia dibujada (decidido 2026-10-26; preguntar el diseño antes de dibujar)

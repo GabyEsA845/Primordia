@@ -119,6 +119,19 @@ namespace Primordia.Enemies
 
         public AnomalocarisMarkers Markers => markers;
 
+        /// <summary>Fase para la barra de vida: 0 acecho, 1 cerco, 2 desde la escena de los ojos (con el frenesí).</summary>
+        public int PhaseIndex => CurrentStage switch
+        {
+            Stage.Stalk => 0,
+            Stage.Encircle => 1,
+            _ => 2
+        };
+
+        /// <summary>Umbrales de la barra: el cerco y la escena de los ojos.</summary>
+        public float[] PhaseThresholds => phaseThresholds ??= new[] { encircleThreshold, eyesThreshold };
+
+        float[] phaseThresholds;
+
         // Del primer valor (al empezar el frenesí) al segundo (casi muerto).
         float ByHealth(Vector2 range)
         {

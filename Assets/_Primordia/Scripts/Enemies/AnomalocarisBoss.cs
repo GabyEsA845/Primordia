@@ -15,7 +15,7 @@ namespace Primordia.Enemies
     /// corazón al tocarlo, como la ameba gigante.
     /// </summary>
     [RequireComponent(typeof(Enemy), typeof(Rigidbody2D))]
-    public partial class AnomalocarisBoss : MonoBehaviour, IBoss
+    public partial class AnomalocarisBoss : MonoBehaviour, IBoss, IPhasedBoss
     {
         public const string SwimState = "Swim";
         public const string SwimFastState = "SwimFast";

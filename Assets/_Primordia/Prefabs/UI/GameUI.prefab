@@ -6428,6 +6428,10 @@ MonoBehaviour:
   weakPulseRate: 2.5
   weakPulseScale: 0.08
   weakShake: 1
+  dropTime: 0.12
+  trailHold: 0.4
+  trailDrainRate: 0.8
+  trailColor: {r: 1, g: 0.93, b: 0.88, a: 1}
 --- !u!114 &3833140351214853063
 MonoBehaviour:
   m_ObjectHideFlags: 0

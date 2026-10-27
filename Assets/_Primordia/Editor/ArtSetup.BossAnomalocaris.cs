@@ -3,6 +3,7 @@ using System.Linq;
 using Primordia.Combat;
 using Primordia.Core;
 using Primordia.Enemies;
+using Primordia.UI;
 using UnityEditor;
 using UnityEngine;
 
@@ -21,6 +22,9 @@ namespace Primordia.Editor
         internal const string AnomalocarisPrefabPath = EnemyPrefabsFolder + "/Boss_Anomalocaris.prefab";
         // Material sin luz de URP: los ojos de la escena y las marcas del frenesí se ven en la sala a oscuras.
         const string UnlitSpriteMaterialPath = "Packages/com.unity.render-pipelines.universal/Runtime/Materials/Sprite-Unlit-Default.mat";
+
+        const string AnomalocarisBarArtFolder = UIArtFolder + "/BossBar/Anomalocaris";
+        const string AnomalocarisBarSkinPath = BossIntroDataFolder + "/BossBar_Anomalocaris.asset";
 
         // Celda de 112×112, cuadros del README de floor2-bosses (ms → cuadros por segundo).
         static readonly Character AnomalocarisArt = new()
@@ -76,6 +80,7 @@ namespace Primordia.Editor
                 d.ConfigureBiomass(0f, 0f, 10);
             });
             AssetDatabase.SaveAssets();
+            var barSkin = CreateAnomalocarisBarSkin();
 
             var root = new GameObject("Boss_Anomalocaris") { layer = LayerMask.NameToLayer(CombatLayers.Enemy) };
             try
@@ -105,6 +110,8 @@ namespace Primordia.Editor
                 var boss = root.AddComponent<AnomalocarisBoss>();
                 boss.Configure(body.transform, animator, renderer, bubble, swipe);
                 boss.ConfigurePhases(unlit, clawPath, clawArea);
+                if (barSkin != null)
+                    root.AddComponent<BossBarAppearance>().Configure(barSkin);
                 var prefab = PrefabUtility.SaveAsPrefabAsset(root, AnomalocarisPrefabPath);
                 return prefab.GetComponent<Enemy>();
             }
@@ -112,6 +119,48 @@ namespace Primordia.Editor
             {
                 Object.DestroyImmediate(root);
             }
+        }
+
+        /// <summary>
+        /// Barra de vida propia del Anomalocaris (floor2-bosses/BossBar, generar_barra_anomalocaris.py): marco de 258×32 con
+        /// la ventana de 200×8 en (38, 12), relleno y ojos por fase (acecho, cerco, frenesí), la silueta para cuando es inmune
+        /// y las muescas de los umbrales. Rehace el asset conservando su GUID. Null si falta el arte.
+        /// </summary>
+        internal static BossBarSkin CreateAnomalocarisBarSkin()
+        {
+            const string prefix = "UI_BossBar_Anomalocaris_";
+            Sprite[] Sheet(string name, int cell) => ImportLooseSheet($"{Floor2BossesSourceFolder}/BossBar/{prefix}{name}.png",
+                $"{AnomalocarisBarArtFolder}/{prefix}{name}.png", cell);
+            Sprite One(string name, int cell) => Sheet(name, cell).FirstOrDefault();
+
+            const int frameWidth = 258, windowWidth = 200;
+            var frame = One("Frame", frameWidth);
+            if (frame == null)
+            {
+                Debug.LogWarning("ArtSetup: falta la barra del Anomalocaris (floor2-bosses/generar_barra_anomalocaris.py); usará la barra lisa.");
+                return null;
+            }
+
+            var phases = new[]
+            {
+                new BossBarSkin.PhaseLook { fill = Sheet("Fill_Stalk", windowWidth), eyes = Sheet("Eyes_Stalk", frameWidth) },
+                new BossBarSkin.PhaseLook { fill = Sheet("Fill_Encircle", windowWidth), eyes = Sheet("Eyes_Encircle", frameWidth) },
+                new BossBarSkin.PhaseLook { fill = Sheet("Fill_Frenzy", windowWidth), eyes = Sheet("Eyes_Frenzy", frameWidth) },
+            };
+            var dark = new BossBarSkin.PhaseLook { fill = Sheet("Fill_Immune", windowWidth), eyes = Sheet("Eyes_Dark", frameWidth) };
+
+            Directory.CreateDirectory(BossIntroDataFolder);
+            var skin = AssetDatabase.LoadAssetAtPath<BossBarSkin>(AnomalocarisBarSkinPath);
+            if (skin == null)
+            {
+                skin = ScriptableObject.CreateInstance<BossBarSkin>();
+                AssetDatabase.CreateAsset(skin, AnomalocarisBarSkinPath);
+            }
+            skin.Configure(frame, One("FrameDark", frameWidth), new RectInt(38, 12, windowWidth, 8), One("Back", windowWidth),
+                One("Fill_Trail", windowWidth), phases, dark, One("Notch", 8), One("Notch_Broken", 8), Sheet("Fx_NotchBreak", 16));
+            EditorUtility.SetDirty(skin);
+            AssetDatabase.SaveAssets();
+            return skin;
         }
 
         static void UseFullRectMesh(string path)

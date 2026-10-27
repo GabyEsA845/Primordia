@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 3298884603509383968}
   - component: {fileID: 3349903237206922788}
   - component: {fileID: 8611740068237967748}
-  - component: {fileID: 7311876612029612256}
+  - component: {fileID: 1660527100468792626}
+  - component: {fileID: 3067780352031144633}
   m_Layer: 7
   m_Name: Boss_Anomalocaris
   m_TagString: Untagged
@@ -177,7 +178,20 @@ MonoBehaviour:
   tailOffset: 2.2
   bodySize: {x: 4.2, y: 1.2}
   contactDamage: 1
---- !u!114 &7311876612029612256
+--- !u!114 &1660527100468792626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2909599520529660947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67332564f65997f499fcf325871a9d21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Primordia::Primordia.UI.BossBarAppearance
+  skin: {fileID: 11400000, guid: de615b07e8a6d034cb50bf137bbd0267, type: 2}
+--- !u!114 &3067780352031144633
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

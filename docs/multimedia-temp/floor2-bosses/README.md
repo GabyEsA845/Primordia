@@ -20,6 +20,30 @@ Unos 75 px de largo con la cola (≈ 4,7 u). Rojo con ojos en pedúnculo, para l
 | `Anomalocaris_EyesDark` | 4 | 220 | Cinemática al 25 %: solo los ojos brillando y una sombra apenas visible; el cuadro 3 es un parpadeo |
 | `Anomalocaris_Death` | 8 | 140 | Se apaga, se ladea, la arena lo cubre y queda fosilizado |
 
+## Barra de vida del Anomalocaris (`BossBar/`)
+
+Generada con `generar_barra_anomalocaris.py` (usa la skill primordia-sprites). La barra es el propio animal visto desde arriba, mirando a la izquierda: la cabeza en punta con las fauces de garras y los
+ojos con ceño, el caparazón a lo largo y la cola. Escala de interfaz: un píxel del dibujo = un píxel de la interfaz (480×270).
+Todas las hojas empiezan por `UI_BossBar_Anomalocaris_`. La vida rellena la **ventana de 200×8, en (38, 12) desde la esquina
+de abajo a la izquierda del marco**, de izquierda a derecha (Image *Filled*, horizontal).
+
+| Hoja | Cuadros | Celda | ms | Uso |
+|---|---|---|---|---|
+| `Frame` / `FrameDark` | 1 | 258×32 | — | Marco con la ventana vacía; `FrameDark` es la silueta mientras es inmune (escena de los ojos y silueta del frenesí) |
+| `Back` | 1 | 200×8 | — | Fondo de la ventana |
+| `Fill_Stalk` / `Fill_Encircle` | 1 | 200×8 | — | Relleno del acecho (rojo) y del cerco (naranja) |
+| `Fill_Frenzy` | 2 | 200×8 | 150 | Relleno del frenesí (carmesí), el cuadro 1 con brillos; bucle |
+| `Fill_Immune` | 1 | 200×8 | — | Relleno mientras es inmune (gris violáceo) |
+| `Fill_Trail` | 1 | 200×8 | — | Barra fantasma: la vida recién perdida (espera ~0,4 s y se vacía) |
+| `Eyes_Stalk` / `Eyes_Encircle` | 1 | 258×32 | — | Ojos encima del marco: medio cerrados en el acecho, abiertos con ceño en el cerco |
+| `Eyes_Frenzy` | 2 | 258×32 | 150 | Rojos; el cuadro 1 brilla con halo; bucle |
+| `Eyes_Dark` | 2 | 258×32 | 150 | Amarillos en la oscuridad; el cuadro 1 es un parpadeo |
+| `Notch` / `Notch_Broken` | 1 | 8×32 | — | Placa de hueso de un cambio de fase, **centrada en su umbral** (60 % y 25 %), y rota |
+| `Fx_NotchBreak` | 5 | 16×34 | 70 | Se agrieta, destella y suelta esquirlas; centrada en el mismo punto que la placa |
+
+La importa **Primordia > Boss > Crear Anomalocaris y escena de prueba** (asset `Data/Bosses/BossBar_Anomalocaris.asset`,
+componente `BossBarAppearance` en el prefab del jefe).
+
 ## Euriptérido (`Eurypterid/`)
 
 Unos 90 px de largo con la cola (el abdomen se estrecha poco a poco hasta la cola, de una pieza). Fase 1 acorazada en verde bronce (púas en los segmentos, que son su arma a distancia; borde del escudo claro = frente blindado); fase 2 blanda en rosa.

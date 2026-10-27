@@ -32,6 +32,7 @@ namespace Primordia.Editor
             ("Virus", "Boss_Virus", "Plaga primigenia", Floor1Band, Floor1Accent),
             ("Amoeba", "Boss_Amoeba", "La que todo lo engulle", Floor1Band, Floor1Accent),
             ("Anomalocaris", "Boss_Anomalocaris", "Terror del Cámbrico", Floor2Band, Floor2Accent),
+            ("Eurypterid", "Boss_Eurypterid", "Escorpión de los mares", Floor2Band, Floor2Accent),
         };
 
         [MenuItem("Primordia/Art/Importar presentaciones de jefes")]

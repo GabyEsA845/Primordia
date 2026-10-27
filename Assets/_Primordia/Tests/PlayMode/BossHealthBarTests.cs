@@ -201,6 +201,36 @@ namespace Primordia.Tests
         }
 
         [UnityTest]
+        public IEnumerator Skin_PhaseFrames_AndThePhaseChangeEffect()
+        {
+            var skin = CreateSkin();
+            var armor = MakeSprite(258, 32);
+            var soft = MakeSprite(258, 32);
+            var crack = new[] { MakeSprite(258, 32), MakeSprite(258, 32) };
+            skin.Phase(0).frame = new[] { armor };
+            skin.Phase(1).frame = new[] { soft };
+            skin.Dark.frame = crack;
+            skin.ConfigurePhaseChange(new[] { MakeSprite(258, 32), MakeSprite(258, 32), MakeSprite(258, 32) }, 0.08f);
+            var boss = CreateBoss(skin);
+            yield return null;
+
+            Assert.AreSame(armor, bar.SkinFrameSprite, "Cada fase con su propio marco (el Euriptérido acorazado).");
+            Assert.IsFalse(bar.ShowsPhaseChange, "Al aparecer la barra no hay efecto de cambio.");
+
+            boss.style = BossBarStyle.Immune;
+            yield return null;
+            Assert.Contains(bar.SkinFrameSprite, crack, "Inmune, el marco de su aspecto a oscuras (el caparazón agrietándose).");
+
+            boss.style = BossBarStyle.Normal;
+            boss.phase = 1;
+            yield return null;
+            Assert.AreSame(soft, bar.SkinFrameSprite, "Pasa al marco de la fase siguiente.");
+            Assert.IsTrue(bar.ShowsPhaseChange, "Y se ve el efecto de cambio (el caparazón saltando).");
+            yield return new WaitForSecondsRealtime(0.4f);
+            Assert.IsFalse(bar.ShowsPhaseChange, "Una sola vez: 3 cuadros de 80 ms.");
+        }
+
+        [UnityTest]
         public IEnumerator Anomalocaris_ReportsPhasesForTheBar()
         {
             var go = new GameObject("Anomalocaris");

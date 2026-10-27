@@ -64,10 +64,14 @@ for rel in ['Anomalocaris_Swim', 'Anomalocaris_SwimFast', 'Anomalocaris_ClawWarn
     sheet('bo_' + rel, rf'{BO}\Anomalocaris\{rel}.png')
 for rel in ['Eurypterid_Walk', 'Eurypterid_PincerStrike', 'Eurypterid_SpineWarn', 'Eurypterid_SpineShoot', 'Eurypterid_Molt',
             'Eurypterid_Exuvia', 'Eurypterid_Walk_Soft', 'Eurypterid_TailWarn', 'Eurypterid_TailSweep', 'Eurypterid_DoublePincer',
-            'Eurypterid_Death']:
+            'Eurypterid_Death', 'Eurypterid_Downed', 'Eurypterid_Downed_Idle', 'Eurypterid_Rise', 'Eurypterid_Fury']:
     sheet('bo_' + rel, rf'{BO}\Eurypterid\{rel}.png')
+# Sala del Euriptérido: el derrumbe de la cueva
+for rel in ['Fx_RockCollapse', 'Fx_RockFallShadow', 'Proj_FallingRock', 'Fx_FloorCrack']:
+    sheet('bo_' + rel, rf'{BO}\EurypteridRoom\{rel}.png')
+sheet('bo_Obstacle_RockCracked', rf'{BO}\EurypteridRoom\Obstacle_RockCracked.png')
 for rel, cell in [('Fx_Anomalocaris_Bubbles', None), ('Fx_Anomalocaris_ClawArea', None), ('Proj_EurypteridSpine', 8),
-                  ('Fx_Eurypterid_TailSweep', None)]:
+                  ('Fx_Eurypterid_TailSweep', None), ('Proj_EurypteridVenom', None)]:
     sheet('bo_' + rel, rf'{BO}\Effects\{rel}.png', cell)
 # La púa es 16×8: la paso a un lienzo cuadrado de 16×16 por cuadro para animarla igual que el resto
 sp = Image.open(rf'{BO}\Effects\Proj_EurypteridSpine.png').convert('RGBA')
@@ -76,6 +80,8 @@ for i in range(2): sq.paste(sp.crop((i * 16, 0, i * 16 + 16, 8)), (i * 16, 4))
 assets['bo_Proj_EurypteridSpine'] = png_uri(sq); assets['bo_Proj_EurypteridSpine_f'] = 2; assets['bo_Proj_EurypteridSpine_s'] = 16
 # Barra de vida del Anomalocaris en sus 4 estados (vista previa del generador, ya a ×5)
 assets['bar_Anomalocaris'] = uri(rf'{BO}\vista_previa_barra_anomalocaris.png')
+# Barra del Euriptérido: acorazado, muda, blando, último aliento y el salto del caparazón (ya a ×5)
+assets['bar_Eurypterid'] = uri(rf'{BO}\vista_previa_barra_euripterido.png')
 ji = Image.open(rf'{EN}\Effects\Proj_BlueJelly.png').convert('RGBA')
 assets['en_Proj_BlueJelly'] = png_uri(ji); assets['en_Proj_BlueJelly_f'] = 2; assets['en_Proj_BlueJelly_s'] = 8
 

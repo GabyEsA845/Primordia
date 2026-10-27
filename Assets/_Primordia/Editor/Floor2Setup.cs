@@ -191,7 +191,7 @@ namespace Primordia.Editor
         static readonly (string room, string prefab)[] BossRooms =
         {
             ("Room_Boss_Anomalocaris", ArtSetup.AnomalocarisPrefabPath),
-            ("Room_Boss_Eurypterid", null),
+            ("Room_Boss_Eurypterid", ArtSetup.EurypteridPrefabPath),
         };
 
         /// <summary>

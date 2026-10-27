@@ -1,0 +1,245 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4ba12a379f398148bd08d9c95bcf113, type: 3}
+  m_Name: Floor_BossEurypteridTest
+  m_EditorClassIdentifier: Primordia::Primordia.Rooms.FloorConfig
+  floorNumber: 2
+  nextFloor: {fileID: 0}
+  startRoom: {fileID: 11400000, guid: 5a91f2a6a2141e44cabf083bf34d0f67, type: 2}
+  bossRoom: {fileID: 11400000, guid: 0b0a7e04a606095479317b364d288a26, type: 2}
+  combatRooms:
+  - {fileID: 11400000, guid: 910987259a6c8f5478a4c569e75eaa40, type: 2}
+  - {fileID: 11400000, guid: 6a4ab8b7b37ec3640aff31633e069e1a, type: 2}
+  - {fileID: 11400000, guid: ad5b083a9888c1d4ca39372a232ae321, type: 2}
+  sideRooms: []
+  mainCombatRooms: {x: 0, y: 0}
+  sideRoomCount: {x: 0, y: 0}
+  generateCaves: 1
+  caveSizes:
+  - {x: 30, y: 20}
+  - {x: 34, y: 22}
+  - {x: 38, y: 24}
+  - {x: 44, y: 26}
+  smallCaveSizes:
+  - {x: 26, y: 18}
+  - {x: 28, y: 19}
+  - {x: 30, y: 20}
+  corridorLength: {x: 4, y: 6}
+  corridorWidth: {x: 3, y: 4}
+  pathWeights:
+    down: 6
+    side: 2
+    up: 0.3
+  specialRooms: []
+  specialRoomCount: {x: 0, y: 0}
+  exchangeRoom: {fileID: 0}
+  antechamberVertical: {fileID: 11400000, guid: 937596f4d6c8bec4eb3c1a0a6105722b, type: 2}
+  antechamberHorizontal: {fileID: 11400000, guid: 471aaca2545726540ad08bd2c2e25456, type: 2}
+  pieces:
+    fossil: {fileID: 21300000, guid: c1ce46ac2bc0f634a83eeedc57af9239, type: 3}
+    clamSmall: {fileID: -5809682167455628230, guid: 6a97c7a640583af4183f57c490821b48, type: 3}
+    clamBig: {fileID: -212588564201205427, guid: 07cc3b68e0da5a1459497fb498aa71d8, type: 3}
+    heartCoral: {fileID: 11138241249908429, guid: 3a549ab3d6981c24497cec425995e1b9, type: 3}
+    waveVent: {fileID: 4641803925102896901, guid: f9a2936972b2a5d4a9ca74eadb93d977, type: 3}
+    clamSmallIdle:
+    - {fileID: -5809682167455628230, guid: 6a97c7a640583af4183f57c490821b48, type: 3}
+    - {fileID: -204276654, guid: 6a97c7a640583af4183f57c490821b48, type: 3}
+    - {fileID: 1136858552, guid: 6a97c7a640583af4183f57c490821b48, type: 3}
+    - {fileID: 2112891613, guid: 6a97c7a640583af4183f57c490821b48, type: 3}
+    clamSmallOpen:
+    - {fileID: -786917298937760131, guid: 24ee2607a560010498fecd29279797f8, type: 3}
+    - {fileID: -950743913, guid: 24ee2607a560010498fecd29279797f8, type: 3}
+    - {fileID: -911063288, guid: 24ee2607a560010498fecd29279797f8, type: 3}
+    - {fileID: 2028478544, guid: 24ee2607a560010498fecd29279797f8, type: 3}
+    - {fileID: 391217417, guid: 24ee2607a560010498fecd29279797f8, type: 3}
+    - {fileID: 227769988, guid: 24ee2607a560010498fecd29279797f8, type: 3}
+    clamSmallOpened: {fileID: 2352270924699240382, guid: 4c2c413249007294d84d71a4de1be7f9, type: 3}
+    clamBigIdle:
+    - {fileID: -212588564201205427, guid: 07cc3b68e0da5a1459497fb498aa71d8, type: 3}
+    - {fileID: 5152073555475259239, guid: 07cc3b68e0da5a1459497fb498aa71d8, type: 3}
+    - {fileID: -2369496862841517732, guid: 07cc3b68e0da5a1459497fb498aa71d8, type: 3}
+    - {fileID: -2666480895712035886, guid: 07cc3b68e0da5a1459497fb498aa71d8, type: 3}
+    clamBigOpen:
+    - {fileID: -5783016352393162715, guid: 5a0a1977f231de949a4401b946c12055, type: 3}
+    - {fileID: 5676015770432964585, guid: 5a0a1977f231de949a4401b946c12055, type: 3}
+    - {fileID: -1589191376267029601, guid: 5a0a1977f231de949a4401b946c12055, type: 3}
+    - {fileID: -2552204354115366736, guid: 5a0a1977f231de949a4401b946c12055, type: 3}
+    - {fileID: 2391150789126636524, guid: 5a0a1977f231de949a4401b946c12055, type: 3}
+    - {fileID: -1374965218157784194, guid: 5a0a1977f231de949a4401b946c12055, type: 3}
+    clamBigOpened: {fileID: -2680336454150118558, guid: 7ce138cfc0b6be54eb8116b8010a0261, type: 3}
+    heartCoralIdle:
+    - {fileID: 11138241249908429, guid: 3a549ab3d6981c24497cec425995e1b9, type: 3}
+    - {fileID: -1409922520, guid: 3a549ab3d6981c24497cec425995e1b9, type: 3}
+    - {fileID: -1694566504, guid: 3a549ab3d6981c24497cec425995e1b9, type: 3}
+    - {fileID: 217251866, guid: 3a549ab3d6981c24497cec425995e1b9, type: 3}
+    - {fileID: 1500893513, guid: 3a549ab3d6981c24497cec425995e1b9, type: 3}
+    - {fileID: 269813493, guid: 3a549ab3d6981c24497cec425995e1b9, type: 3}
+    heartCoralTaken: {fileID: -6723765730255796778, guid: 03f148f8ca8b6af4db994ad803c47fdf, type: 3}
+    waveVentIdle:
+    - {fileID: 4641803925102896901, guid: f9a2936972b2a5d4a9ca74eadb93d977, type: 3}
+    - {fileID: 734174861391468448, guid: f9a2936972b2a5d4a9ca74eadb93d977, type: 3}
+    - {fileID: 7040662825532109224, guid: f9a2936972b2a5d4a9ca74eadb93d977, type: 3}
+    - {fileID: 8947488326141082251, guid: f9a2936972b2a5d4a9ca74eadb93d977, type: 3}
+    waveVentActive:
+    - {fileID: -5541000237627582555, guid: 30813de15d65e8b469acb643d44940ab, type: 3}
+    - {fileID: -4133826701234105414, guid: 30813de15d65e8b469acb643d44940ab, type: 3}
+    - {fileID: 6435175120327999983, guid: 30813de15d65e8b469acb643d44940ab, type: 3}
+    - {fileID: 5424324748137198302, guid: 30813de15d65e8b469acb643d44940ab, type: 3}
+    - {fileID: 4226117680107516432, guid: 30813de15d65e8b469acb643d44940ab, type: 3}
+    - {fileID: 9017674391026282070, guid: 30813de15d65e8b469acb643d44940ab, type: 3}
+    keyPrompt:
+    - {fileID: 7210565139753159747, guid: 2bd51478aa9a64143bfd83ba344d4d81, type: 3}
+    - {fileID: -1199138674, guid: 2bd51478aa9a64143bfd83ba344d4d81, type: 3}
+    algaeColumnA:
+    - {fileID: -8614461992108489596, guid: 067443c9295282f4789cfe720401837f, type: 3}
+    - {fileID: -6095371235186012335, guid: 067443c9295282f4789cfe720401837f, type: 3}
+    - {fileID: -2388165376056980160, guid: 067443c9295282f4789cfe720401837f, type: 3}
+    - {fileID: -5181940635354270180, guid: 067443c9295282f4789cfe720401837f, type: 3}
+    algaeColumnB:
+    - {fileID: 2574689475850001804, guid: 0e388f9a1bba4c945b82e4c0a9b38fcd, type: 3}
+    - {fileID: 895796751168570966, guid: 0e388f9a1bba4c945b82e4c0a9b38fcd, type: 3}
+    - {fileID: 4693441194052883085, guid: 0e388f9a1bba4c945b82e4c0a9b38fcd, type: 3}
+    - {fileID: 2994496828800233387, guid: 0e388f9a1bba4c945b82e4c0a9b38fcd, type: 3}
+    lightPlant:
+    - {fileID: 1270631132799813411, guid: 5230d7b5a88a2a74b995afc13cd53c80, type: 3}
+    - {fileID: 8033280173642566006, guid: 5230d7b5a88a2a74b995afc13cd53c80, type: 3}
+    - {fileID: 694771497801056516, guid: 5230d7b5a88a2a74b995afc13cd53c80, type: 3}
+    - {fileID: 3047502142774623074, guid: 5230d7b5a88a2a74b995afc13cd53c80, type: 3}
+    lightPlantOff:
+    - {fileID: -1680492443991513495, guid: 71cbe86315c3f24498db2d8a5b5965d5, type: 3}
+    - {fileID: 1363528761990149609, guid: 71cbe86315c3f24498db2d8a5b5965d5, type: 3}
+    - {fileID: 8274212096462314509, guid: 71cbe86315c3f24498db2d8a5b5965d5, type: 3}
+    crackedRock: {fileID: 7864299542972317314, guid: 3dcc0d9afb0f7534c82ff52eaaa1d832, type: 3}
+    crackedRockOutline: {fileID: 21300000, guid: 9a85e58a09694d646802a64cab639c85, type: 3}
+    rockCollapse:
+    - {fileID: -2526374649738598246, guid: 2db44c1ade1afef45bb3f6b250b03c30, type: 3}
+    - {fileID: 250818792927670620, guid: 2db44c1ade1afef45bb3f6b250b03c30, type: 3}
+    - {fileID: -798847392231101214, guid: 2db44c1ade1afef45bb3f6b250b03c30, type: 3}
+    - {fileID: 3578688029783229936, guid: 2db44c1ade1afef45bb3f6b250b03c30, type: 3}
+    - {fileID: 637052519285467400, guid: 2db44c1ade1afef45bb3f6b250b03c30, type: 3}
+    - {fileID: 5584537379828982562, guid: 2db44c1ade1afef45bb3f6b250b03c30, type: 3}
+    - {fileID: -8000301787758858694, guid: 2db44c1ade1afef45bb3f6b250b03c30, type: 3}
+    - {fileID: -1094161669945337568, guid: 2db44c1ade1afef45bb3f6b250b03c30, type: 3}
+    - {fileID: -6836116240770156750, guid: 2db44c1ade1afef45bb3f6b250b03c30, type: 3}
+    - {fileID: -8816323588475354977, guid: 2db44c1ade1afef45bb3f6b250b03c30, type: 3}
+    rubble: {fileID: 3874908215371709327, guid: 85bdf228864d01f47b88c2f82b1ba14d, type: 3}
+    fallShadow:
+    - {fileID: 4741263456006629988, guid: 5261d9e949c555a4d8c1e06c81a9ef8d, type: 3}
+    - {fileID: -1531329093356930835, guid: 5261d9e949c555a4d8c1e06c81a9ef8d, type: 3}
+    - {fileID: 5280537737322448723, guid: 5261d9e949c555a4d8c1e06c81a9ef8d, type: 3}
+    - {fileID: 7051871679979379184, guid: 5261d9e949c555a4d8c1e06c81a9ef8d, type: 3}
+    - {fileID: -1335517736167074829, guid: 5261d9e949c555a4d8c1e06c81a9ef8d, type: 3}
+    - {fileID: -4504780758457610763, guid: 5261d9e949c555a4d8c1e06c81a9ef8d, type: 3}
+    fallingRock:
+    - {fileID: -6152223507314498086, guid: a0a7875e529a6e347a26431f6eed7f8b, type: 3}
+    - {fileID: -1963675254130976310, guid: a0a7875e529a6e347a26431f6eed7f8b, type: 3}
+    - {fileID: -4227109366961967411, guid: a0a7875e529a6e347a26431f6eed7f8b, type: 3}
+    - {fileID: -4028369564185197151, guid: a0a7875e529a6e347a26431f6eed7f8b, type: 3}
+    rockImpact:
+    - {fileID: -2154092551337060670, guid: cecaa09af68a77645b633ff4b250f403, type: 3}
+    - {fileID: -1448684685505575590, guid: cecaa09af68a77645b633ff4b250f403, type: 3}
+    - {fileID: 1473385123531449363, guid: cecaa09af68a77645b633ff4b250f403, type: 3}
+    - {fileID: -8930504847952854663, guid: cecaa09af68a77645b633ff4b250f403, type: 3}
+    - {fileID: -819307624276989389, guid: cecaa09af68a77645b633ff4b250f403, type: 3}
+    - {fileID: -2145874887, guid: cecaa09af68a77645b633ff4b250f403, type: 3}
+    pebbles:
+    - {fileID: 3375329817751315894, guid: 7ebb15f7b3635ba44a50ba6a4df9538f, type: 3}
+    - {fileID: 4688947900389436541, guid: 7ebb15f7b3635ba44a50ba6a4df9538f, type: 3}
+    - {fileID: 2425948074099103805, guid: 7ebb15f7b3635ba44a50ba6a4df9538f, type: 3}
+    pebblePuff:
+    - {fileID: -6249642549236859035, guid: 7a9b3a26c1b82e149a83cb3699ccb61c, type: 3}
+    - {fileID: -948293965, guid: 7a9b3a26c1b82e149a83cb3699ccb61c, type: 3}
+    - {fileID: 1507106784, guid: 7a9b3a26c1b82e149a83cb3699ccb61c, type: 3}
+    - {fileID: -756262884, guid: 7a9b3a26c1b82e149a83cb3699ccb61c, type: 3}
+    floorCrack:
+    - {fileID: 6571543898681191130, guid: 435c2cc3a476ee14b85cfab9f819d36b, type: 3}
+    - {fileID: -1947782143, guid: 435c2cc3a476ee14b85cfab9f819d36b, type: 3}
+    - {fileID: -623304550, guid: 435c2cc3a476ee14b85cfab9f819d36b, type: 3}
+    - {fileID: -183523, guid: 435c2cc3a476ee14b85cfab9f819d36b, type: 3}
+    - {fileID: 1534420383, guid: 435c2cc3a476ee14b85cfab9f819d36b, type: 3}
+    - {fileID: -726328736, guid: 435c2cc3a476ee14b85cfab9f819d36b, type: 3}
+    - {fileID: -944493484, guid: 435c2cc3a476ee14b85cfab9f819d36b, type: 3}
+    - {fileID: -591285638, guid: 435c2cc3a476ee14b85cfab9f819d36b, type: 3}
+  clams:
+    smallBiomass: {x: 5, y: 15}
+    bigBiomass: {x: 15, y: 25}
+    bigMutations:
+    - {fileID: 11400000, guid: 289afe24f25af604d8034efff1cfcd83, type: 2}
+    - {fileID: 11400000, guid: 13f434cb895f86246a9cf4816f366c35, type: 2}
+    - {fileID: 11400000, guid: 456c6f6a064add5408c20c84f638ba30, type: 2}
+    mutationPickup: {fileID: 6509183854426299438, guid: 5eefc55d350cd944f9aa74a25824635e, type: 3}
+  marineSnowFlakes:
+  - {fileID: 3590211974270708202, guid: d671fc68d187a86458f4ff6d7523cee3, type: 3}
+  - {fileID: 286594514, guid: d671fc68d187a86458f4ff6d7523cee3, type: 3}
+  - {fileID: 274414639, guid: d671fc68d187a86458f4ff6d7523cee3, type: 3}
+  - {fileID: 1949420848, guid: d671fc68d187a86458f4ff6d7523cee3, type: 3}
+  marineSnowMaterial: {fileID: 2100000, guid: f3ac140250851244e9783d107c8e8c2b, type: 2}
+  theme: {fileID: 11400000, guid: ee040b95e788e5649887a36125ca76dc, type: 2}
+  bossTheme: {fileID: 11400000, guid: 0ab89510c4bdea14ab8e629038e4cb6d, type: 2}
+  bandThemes:
+  - {fileID: 11400000, guid: cedc9dc4e61866747a3d64a4731160c4, type: 2}
+  - {fileID: 11400000, guid: ee040b95e788e5649887a36125ca76dc, type: 2}
+  - {fileID: 11400000, guid: 2a8ae0b84c247aa4380d009839c9d15e, type: 2}
+  enemies:
+  - prefab: {fileID: 8460756809369041511, guid: 8e9430812d0190e4e9227da5e973e588, type: 3}
+    cost: 2
+    minDepth: 1
+    maxPerRoom: 0
+    groupSize: 1
+  - prefab: {fileID: 7332615201938473993, guid: 16aff33a2757f1e468a48e63aa075fe1, type: 3}
+    cost: 2
+    minDepth: 2
+    maxPerRoom: 0
+    groupSize: 1
+  - prefab: {fileID: 2127016927592597609, guid: cb0e4227c704af24fab61c7f50d9199e, type: 3}
+    cost: 3
+    minDepth: 2
+    maxPerRoom: 0
+    groupSize: 1
+  - prefab: {fileID: 4903426230440156472, guid: 0c2ea51cea2dd094087b802d65a7c3b8, type: 3}
+    cost: 3
+    minDepth: 3
+    maxPerRoom: 1
+    groupSize: 1
+  - prefab: {fileID: 4594413056497187767, guid: 6f4bd175c065352458eb2fe4a4a8654f, type: 3}
+    cost: 2
+    minDepth: 1
+    maxPerRoom: 0
+    groupSize: 5
+  baseBudget: 4
+  budgetPerRoom: 1.4
+  referenceFloorArea: 312
+  boss: {fileID: 1183084727335379411, guid: 1fc20f23b26e1e14aa8e7a669d298cfb, type: 3}
+  bossOffset: {x: 0, y: 2.5}
+  bosses:
+  - prefab: {fileID: 3969347602998324877, guid: 6fec503adfca2414db07860ba4083345, type: 3}
+    room: {fileID: 11400000, guid: 0b0a7e04a606095479317b364d288a26, type: 2}
+    theme: {fileID: 11400000, guid: 2a8ae0b84c247aa4380d009839c9d15e, type: 2}
+    offset: {x: 0, y: 0}
+  rewardPool: {fileID: 11400000, guid: 6b6074ae5cec706419cf9114349db3e3, type: 2}
+  rewardOptions: 3
+  rewardAfter: 
+  smallBiomass: {fileID: 4954268908327209968, guid: 16d5cda47065aed4886ec380894bf996, type: 3}
+  bigBiomass: {fileID: 7081711356301279898, guid: 51db4ac02edeee84c91ac030d6494999, type: 3}
+  minimumBiomassPerRoom: 2
+  shopRoom: {fileID: 0}
+  shopPrefab: {fileID: 0}
+  shopDepth: {x: 0.33333334, y: 0.6666667}
+  exchangeCapsule: {fileID: 6612489931785259953, guid: 8796ce71248124a4d88f0e9c10c78564, type: 3}
+  transitionRoom: {fileID: 0}
+  transitionPit: {fileID: 0}
+  transitionMidTheme: {fileID: 0}
+  nextFloorTheme: {fileID: 0}
+  nextFloorMouths: []
+  nextFloorName: "oc\xE9ano c\xE1mbrico"
+  exitSprite: {fileID: 21300000, guid: bc9bd159743ed944e9321a5b368508a5, type: 3}
+  exitColor: {r: 0.3, g: 0.95, b: 0.8, a: 1}

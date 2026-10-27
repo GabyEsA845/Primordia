@@ -6,7 +6,8 @@ namespace Primordia.UI
     /// <summary>
     /// Aspecto propio de la barra de vida de un jefe: un marco dibujado (el propio animal) con una ventana donde va la vida,
     /// el relleno y los ojos de cada fase, las muescas que marcan los cambios de fase y la versión a oscuras para cuando es
-    /// inmune. Lo lleva el jefe en <see cref="BossBarAppearance"/>; sin él, la barra es la lisa de siempre.
+    /// inmune. Opcionalmente, un marco distinto por fase (el Euriptérido verde y luego rosa) y un efecto al cambiar de fase
+    /// (su caparazón saltando en pedazos). Lo lleva el jefe en <see cref="BossBarAppearance"/>; sin él, la barra es la lisa de siempre.
     /// Todas las medidas en píxeles de la interfaz (un píxel del dibujo = uno de la interfaz).
     /// </summary>
     public class BossBarSkin : ScriptableObject
@@ -18,6 +19,8 @@ namespace Primordia.UI
             public Sprite[] fill = Array.Empty<Sprite>();
             [Tooltip("Ojos encima del marco (uno o varios cuadros en bucle), del tamaño del marco.")]
             public Sprite[] eyes = Array.Empty<Sprite>();
+            [Tooltip("Marco propio de esta fase (uno o varios cuadros en bucle). Vacío: el marco común (o el de silueta).")]
+            public Sprite[] frame = Array.Empty<Sprite>();
         }
 
         [Header("Marco")]
@@ -46,6 +49,11 @@ namespace Primordia.UI
         [SerializeField] Sprite[] notchBreak = Array.Empty<Sprite>();
         [SerializeField, Min(0.01f)] float notchBreakFrameTime = 0.07f;
 
+        [Header("Cambio de fase")]
+        [Tooltip("Efecto encima de todo, del tamaño del marco, que se ve una vez al pasar a la fase siguiente (opcional).")]
+        [SerializeField] Sprite[] phaseChange = Array.Empty<Sprite>();
+        [SerializeField, Min(0.01f)] float phaseChangeFrameTime = 0.08f;
+
         public Sprite Frame => frame;
         public Sprite FrameDark => frameDark != null ? frameDark : frame;
         public RectInt Window => window;
@@ -58,6 +66,14 @@ namespace Primordia.UI
         public Sprite NotchBroken => notchBroken;
         public Sprite[] NotchBreak => notchBreak;
         public float NotchBreakTime => notchBreak.Length * notchBreakFrameTime;
+        public Sprite[] PhaseChange => phaseChange;
+
+        /// <summary>Cuadro del efecto de cambio de fase a esos segundos de empezar (null al acabar o si no hay).</summary>
+        public Sprite PhaseChangeFrame(float elapsed)
+        {
+            int index = Mathf.FloorToInt(elapsed / phaseChangeFrameTime);
+            return index >= 0 && index < phaseChange.Length ? phaseChange[index] : null;
+        }
 
         /// <summary>Aspecto de esa fase (la última si hay menos).</summary>
         public PhaseLook Phase(int index) =>
@@ -91,6 +107,13 @@ namespace Primordia.UI
             notch = newNotch;
             notchBroken = newNotchBroken;
             notchBreak = newNotchBreak ?? Array.Empty<Sprite>();
+        }
+
+        /// <summary>Efecto al pasar a la fase siguiente (el caparazón del Euriptérido saltando en pedazos).</summary>
+        internal void ConfigurePhaseChange(Sprite[] newPhaseChange, float frameTime)
+        {
+            phaseChange = newPhaseChange ?? Array.Empty<Sprite>();
+            phaseChangeFrameTime = Mathf.Max(0.01f, frameTime);
         }
     }
 }

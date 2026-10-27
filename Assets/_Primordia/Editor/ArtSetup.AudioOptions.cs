@@ -9,7 +9,8 @@ namespace Primordia.Editor
     /// <summary>
     /// Volumen en la pausa (docs/multimedia-temp/menus/Pause/, de generar_volumen.py): cuelga bajo el panel de
     /// estadísticas un panel "AUDIO" del mismo estilo con dos barras, Música (nota) y Efectos (altavoz; la interfaz
-    /// va con los efectos), cada una con su icono y el porcentaje. El valor lo guarda <see cref="AudioVolumes"/>.
+    /// va con los efectos), cada una con su icono y el porcentaje, y la opción Temblor (normal, suave o no; la guarda
+    /// <see cref="Core.ScreenShake"/>). El volumen lo guarda <see cref="AudioVolumes"/>.
     /// También lo hace Importar menús, porque rehace el panel de estadísticas.
     /// </summary>
     public static partial class ArtSetup
@@ -24,6 +25,14 @@ namespace Primordia.Editor
 
         [MenuItem("Primordia/Audio/Añadir volumen a la pausa")]
         static void AddVolumeMenu()
+        {
+            AddVolumeToPause();
+            ApplyPixelFont(UISetup.GameUIPath);
+            AssetDatabase.SaveAssets();
+        }
+
+        /// <summary>Rehace el panel del volumen y el temblor de la pausa (lo usa también el menú del Euriptérido).</summary>
+        internal static void RebuildPauseOptions()
         {
             AddVolumeToPause();
             ApplyPixelFont(UISetup.GameUIPath);
@@ -80,6 +89,22 @@ namespace Primordia.Editor
 
             VolumeRow(panel, SoundGroup.Music, art.Music, art);
             VolumeRow(panel, SoundGroup.Sfx, art.Effects, art);
+            ShakeRow(panel);
+        }
+
+        /// <summary>Fila "Temblor" con el ajuste a la derecha; al pulsar el ajuste, pasa al siguiente.</summary>
+        static void ShakeRow(Transform panel)
+        {
+            var row = UISetup.CreateRow("Row_Shake", panel, panel.childCount, TextAnchor.MiddleLeft);
+            row.GetComponent<HorizontalLayoutGroup>().padding = new RectOffset(3, 1, 0, 0);
+            row.gameObject.AddComponent<LayoutElement>().preferredHeight = SliderHeight + 3f;
+
+            var name = Label(row, "Temblor", UISetup.TextColor, TextAnchor.MiddleLeft);
+            name.gameObject.AddComponent<LayoutElement>().flexibleWidth = 1f;
+            var value = Label(row, "Normal", UISetup.TitleColor, TextAnchor.MiddleRight);
+            value.gameObject.AddComponent<LayoutElement>().preferredWidth = 40f;
+            value.raycastTarget = true;
+            value.gameObject.AddComponent<ScreenShakeOption>().Configure(value);
         }
 
         /// <summary>Una fila con el icono, la barra y el porcentaje. Cabe bajo las estadísticas sin tapar la semilla.</summary>

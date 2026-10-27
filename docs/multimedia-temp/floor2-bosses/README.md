@@ -44,6 +44,31 @@ de abajo a la izquierda del marco**, de izquierda a derecha (Image *Filled*, hor
 La importa **Primordia > Boss > Crear Anomalocaris y escena de prueba** (asset `Data/Bosses/BossBar_Anomalocaris.asset`,
 componente `BossBarAppearance` en el prefab del jefe).
 
+### Barra de vida del Euriptérido (`BossBar/UI_BossBar_Eurypterid_*`)
+
+Generada con `generar_barra_euripterido.py`. El escorpión visto desde arriba, mirando a la izquierda: pinzas abiertas
+y dentadas, escudo con los ojos con ceño, patas y remos, segmentos del abdomen a lo largo y la cola con púa a la
+derecha. Mismas medidas que la del Anomalocaris: 258×32 con la ventana de 200×8 en (38, 12).
+
+| Hoja | Cuadros | Celda | ms | Uso |
+|---|---|---|---|---|
+| `Frame_Armor` / `Frame_Soft` | 1 | 258×32 | — | Marco de la fase acorazada (verde bronce, con púas) y de la blanda (rosa, liso) |
+| `Frame_Crack` | 3 | 258×32 | 150 | Mientras muda (inmune): el caparazón agrietado con las grietas que brillan; bucle |
+| `Frame_Fury` | 2 | 258×32 | 150 | Último aliento: cuerpo blando con la púa de la cola encendida en verde; bucle |
+| `Back` | 1 | 200×8 | — | Fondo de la ventana |
+| `Fill_Armor` / `Fill_Soft` / `Fill_Molt` | 1 | 200×8 | — | Relleno acorazado (verde bronce), blando (rosa carne) y durante la muda (pálido) |
+| `Fill_Venom` | 2 | 200×8 | 150 | Último aliento: verde veneno que late; bucle |
+| `Fill_Trail` | 1 | 200×8 | — | Barra fantasma |
+| `Eyes_Armor` / `Eyes_Soft` / `Eyes_Molt` | 1 | 258×32 | — | Ojos con ceño (acorazado y blando) y cerrados (muda) |
+| `Eyes_Fury` | 2 | 258×32 | 150 | Ojos rojos que arden; bucle |
+| `Notch` / `Notch_Broken` | 1 | 8×32 | — | Placa de quitina del 50 %, centrada en su umbral, y rota |
+| `Fx_NotchBreak` | 5 | 16×34 | 70 | La placa se rompe |
+| `Fx_ShellBurst` | 6 | 258×32 | 80 | Al acabar la muda, el caparazón verde salta en pedazos (efecto de cambio de fase, una vez) |
+
+La importa **Primordia > Boss > Crear Euriptérido y escena de prueba** (asset `Data/Bosses/BossBar_Eurypterid.asset`):
+un marco por fase (acorazado, blando, último aliento), el aspecto agrietado como "inmune" durante la muda y el salto del
+caparazón como efecto de cambio de fase.
+
 ## Euriptérido (`Eurypterid/`)
 
 Unos 90 px de largo con la cola (el abdomen se estrecha poco a poco hasta la cola, de una pieza). Fase 1 acorazada en verde bronce (púas en los segmentos, que son su arma a distancia; borde del escudo claro = frente blindado); fase 2 blanda en rosa.
@@ -64,6 +89,13 @@ Unos 90 px de largo con la cola (el abdomen se estrecha poco a poco hasta la col
 | `Eurypterid_DoublePincer` | 6 | 70 | Doble pinza: **daño en los cuadros 1 y 3** (una pinza y luego la otra) |
 | `Eurypterid_Hurt_Soft` | 2 | 90 | Daño en la fase 2 |
 | `Eurypterid_Death` | 8 | 140 | Se encoge, se ladea, la arena lo cubre y queda fosilizado |
+| `Eurypterid_Downed` | 8 | 120 | Último aliento: se tambalea y cae rendido, ladeado, con las pinzas abiertas |
+| `Eurypterid_Downed_Idle` | 4 | 250 | Rendido en el suelo, jadeando (bucle) |
+| `Eurypterid_Rise` | 8 | 110 | Se levanta rugiendo: pinzas abiertas del todo, ojos rojos y la cola encendida |
+| `Eurypterid_Fury` | 4 | 120 | Pose del bullet hell: plantado, pinzas que palpitan y chispas de veneno (bucle) |
+
+Las cuatro del último aliento y `Effects/Proj_EurypteridVenom` (gota venenosa de 12×12, 2 cuadros) salen de
+`generar_euripterido_final.py`, que reutiliza el cuerpo de `generar_euripterido.py` sin volver a escribir sus hojas.
 
 ## Sala del Anomalocaris (`AnomalocarisRoom/`) y su burbuja
 
@@ -78,6 +110,26 @@ Generadas con `generar_sala_anomalocaris.py` (skill primordia-sprites). Paleta d
 | `Effects/Fx_AnomalocarisBubble_Pop` | 4 | 16×16 | 60 | La burbuja revienta (al tocar al jugador o al recibir un disparo) |
 
 `vista_previa_sala_anomalocaris.png` y `gif/` son para revisar.
+
+## Sala del Euriptérido (`EurypteridRoom/`)
+
+Generada con `generar_sala_euripterido.py` (`python generar_sala_euripterido.py`). Las 2 rocas de la marca `R` que se
+derrumban con la muda. Parte de la roca grande del Abismo (`environment/Abyss/deco/Obstacle_RockBig.png`), así que es igual
+que las demás salvo por las grietas.
+
+| Hoja | Cuadros | Celda | ms | Uso |
+|---|---|---|---|---|
+| `Obstacle_RockCracked` | 1 | 32×32 | — | Roca grande con grietas finas (marca `R`): bloquea como las demás; el juego le crea su contorno de cobertura |
+| `Fx_RockCollapse` | 10 | 48×48 | 90 | Derrumbe (solo visual): tiembla (0-2), **se parte en el cuadro 3** (deja de bloquear), los trozos caen entre el polvo y el último cuadro ya son los escombros. Centrado en la roca |
+| `Deco_Rubble` | 1 | 32×32 | — | Escombros que se quedan en el suelo, sin colisión |
+| `Fx_RockFallShadow` | 6 | 32×32 | 133 | Sombra de aviso de la piedra del techo (borde rojo discontinuo), crece en 0,8 s hasta 1 u de radio; una vez |
+| `Proj_FallingRock` | 4 | 24×24 | 80 | Piedra que cae girando (bucle); el juego la baja desde 9 u de altura en los últimos 0,35 s |
+| `Fx_RockImpact` | 6 | 48×48 | 70 | La piedra se rompe al tocar el suelo (el daño, al empezar); no deja restos |
+| `Fx_FallingPebble` | 3 | 8×8 | — | Chinas decorativas que caen por la pantalla (una forma por cuadro), sin daño |
+| `Fx_PebblePuff` | 4 | 16×16 | 70 | Polvillo de una china al tocar el suelo |
+| `Fx_FloorCrack` | 8 | 48×48 | 250 / 120 | Zona Z de 3×3 casillas: **cuadros 0-5 = aviso de 1,5 s** (grietas que se abren); al terminar el suelo pasa a fosa y se ven los cuadros 6-7 (se hunde) |
+
+`vista_previa_sala_euripterido.png` y `gif/Fx_RockCollapse.gif` son para revisar.
 
 ## Efectos (`Effects/`)
 

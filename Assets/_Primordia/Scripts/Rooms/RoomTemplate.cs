@@ -50,12 +50,14 @@ namespace Primordia.Rooms
             /// <summary>Cápsula del laboratorio de Darwin (2×2).</summary>
             Capsule,
             /// <summary>Roca de 2×2 que se derrumba con la muda del Euriptérido: bloquea hasta entonces.</summary>
-            CollapsingRock
+            CollapsingRock,
+            /// <summary>Suelo que se puede hundir y volverse fosa en el derrumbe de la cueva del Euriptérido (zonas de 3×3).</summary>
+            SinkZone
         }
 
         [Tooltip("Una fila por línea, de arriba abajo. # pared, . suelo, ^ v < > huecos de puerta, o obstáculo 1×1, O obstáculo 2×2, "
             + "~ fosa, F hueso, S esponja, C almeja, H coral del corazón, E entrada de oleadas, A algas, L planta luminosa, K cápsula, "
-            + "R roca que se derrumba.")]
+            + "R roca que se derrumba, Z suelo que se hunde (zonas de 3×3).")]
         [SerializeField, TextArea(16, 40)] string layout;
 
         Mark[,] cells;
@@ -224,6 +226,37 @@ namespace Primordia.Rooms
             return result;
         }
 
+        /// <summary>Zonas de suelo que se pueden hundir (marca Z): cada grupo de celdas Z que se tocan, como rectángulo.</summary>
+        public List<RectInt> SinkZones()
+        {
+            var result = new List<RectInt>();
+            var seen = new HashSet<Vector2Int>();
+            foreach (var start in CellsOf(Mark.SinkZone))
+            {
+                if (!seen.Add(start))
+                    continue;
+                int xMin = start.x, yMin = start.y, xMax = start.x, yMax = start.y;
+                var pending = new Stack<Vector2Int>();
+                pending.Push(start);
+                while (pending.Count > 0)
+                {
+                    var cell = pending.Pop();
+                    xMin = Mathf.Min(xMin, cell.x);
+                    yMin = Mathf.Min(yMin, cell.y);
+                    xMax = Mathf.Max(xMax, cell.x);
+                    yMax = Mathf.Max(yMax, cell.y);
+                    foreach (var step in new[] { Vector2Int.up, Vector2Int.down, Vector2Int.left, Vector2Int.right })
+                    {
+                        var next = cell + step;
+                        if (Get(next.x, next.y) == Mark.SinkZone && seen.Add(next))
+                            pending.Push(next);
+                    }
+                }
+                result.Add(new RectInt(xMin, yMin, xMax - xMin + 1, yMax - yMin + 1));
+            }
+            return result;
+        }
+
         /// <summary>Esquinas de abajo a la izquierda de los bloques de 2×2 con esa marca.</summary>
         public List<Vector2Int> BlockCorners(Mark mark)
         {
@@ -303,6 +336,7 @@ namespace Primordia.Rooms
                         'L' => Mark.LightPlant,
                         'K' => Mark.Capsule,
                         'R' => Mark.CollapsingRock,
+                        'Z' => Mark.SinkZone,
                         _ => Mark.Wall
                     };
                 }

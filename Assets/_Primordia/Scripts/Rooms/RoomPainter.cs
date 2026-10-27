@@ -72,6 +72,30 @@ namespace Primordia.Rooms
             return missing;
         }
 
+        /// <summary>
+        /// Vuelve a dibujar las fosas de esas celdas y de sus vecinas (el borde de las que ya había cambia) cuando el suelo se
+        /// hunde mientras se juega. Quita la decoración que quedaba encima.
+        /// </summary>
+        public static void RepaintPits(FloorMap map, RoomTheme theme, Tilemap floor, Tilemap decoration, IEnumerable<Vector2Int> cells)
+        {
+            if (map == null || theme == null || !theme.HasPits || floor == null)
+                return;
+            var touched = new HashSet<Vector2Int>();
+            foreach (var cell in cells)
+                for (int dx = -1; dx <= 1; dx++)
+                    for (int dy = -1; dy <= 1; dy++)
+                        touched.Add(cell + new Vector2Int(dx, dy));
+            foreach (var position in touched)
+            {
+                if (map.Get(position) != FloorMap.Kind.Pit)
+                    continue;
+                var cell = new Vector3Int(position.x, position.y, 0);
+                floor.SetTile(cell, theme.PitTile(PitMask(map, position)));
+                if (decoration != null)
+                    decoration.SetTile(cell, PitCorner(map, position, theme));
+            }
+        }
+
         static int Mod(int value, int divisor) => ((value % divisor) + divisor) % divisor;
 
         static bool IsPit(FloorMap map, int x, int y) => map.Get(x, y) == FloorMap.Kind.Pit;

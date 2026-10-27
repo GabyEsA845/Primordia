@@ -35,6 +35,9 @@ RHYTHM = {
     "SFX_Mouth_Spores_Puff": 800, "SFX_Boss_Virus_Spiral": 70, "SFX_Boss_Amoeba_Barrage": 90,
     "SFX_Biomass_Pickup_Small": 110, "SFX_Enemy_Hit": 200, "SFX_Projectile_Impact": 150,
     "SFX_Limbs_Hyphae_Trail": 300,
+    # piso 2
+    "SFX_Mouth_Cnidocytes_Shot": 333, "SFX_Mouth_JawPlates_Bite": 500, "SFX_Organ_BroodSac_LarvaBite": 180,
+    "SFX_Limbs_Hallucigenia_Strike": 250, "SFX_Skin_Trilobite_Bounce": 300,
 }
 
 

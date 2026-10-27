@@ -54,7 +54,7 @@ linaje reutilizan los fragmentos del piso 1.
 En cada tabla, "Cuándo suena" dice qué lo dispara (entre paréntesis, el evento o efecto del código). Algunos
 sustituyen a un sonido prestado del piso 1, como se indica.
 
-### Mutaciones: Boca
+### Mutaciones del piso 2: Boca
 
 | Archivo | Var. | Duración | Cuándo suena | Descripción |
 |---------|------|----------|--------------|-------------|
@@ -68,7 +68,7 @@ sustituyen a un sonido prestado del piso 1, como se indica.
 | `SFX_Mouth_ArmCrown_Whirl_Loop` | 1 | 1 s | Mientras dura el remolino (2–2,5 s, `Effect_ArmCrown_Whirl`) | Remolino que gira y succiona, sin ritmo marcado; el juego lo para al acabar |
 | `SFX_Mouth_ArmCrown_Tide` | 1 | 0,6 s | Marea (III): el remolino estalla y empuja (`Effect_ArmCrown_Tide`) | Ola que rompe hacia fuera |
 
-### Mutaciones: Extremidades, Piel y Órgano
+### Mutaciones del piso 2: Extremidades, Piel y Órgano
 
 | Archivo | Var. | Duración | Cuándo suena | Descripción |
 |---------|------|----------|--------------|-------------|

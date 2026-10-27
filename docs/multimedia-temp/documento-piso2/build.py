@@ -74,6 +74,8 @@ sp = Image.open(rf'{BO}\Effects\Proj_EurypteridSpine.png').convert('RGBA')
 sq = Image.new('RGBA', (32, 16), (0, 0, 0, 0))
 for i in range(2): sq.paste(sp.crop((i * 16, 0, i * 16 + 16, 8)), (i * 16, 4))
 assets['bo_Proj_EurypteridSpine'] = png_uri(sq); assets['bo_Proj_EurypteridSpine_f'] = 2; assets['bo_Proj_EurypteridSpine_s'] = 16
+# Barra de vida del Anomalocaris en sus 4 estados (vista previa del generador, ya a ×5)
+assets['bar_Anomalocaris'] = uri(rf'{BO}\vista_previa_barra_anomalocaris.png')
 ji = Image.open(rf'{EN}\Effects\Proj_BlueJelly.png').convert('RGBA')
 assets['en_Proj_BlueJelly'] = png_uri(ji); assets['en_Proj_BlueJelly_f'] = 2; assets['en_Proj_BlueJelly_s'] = 8
 

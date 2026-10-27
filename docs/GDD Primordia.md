@@ -294,6 +294,7 @@ Cada piso tiene **2 jefes posibles** y en cada partida sale uno al azar.
 - **Letra:** el nombre va en Jersey 10 (licencia OFL), la misma en todos los pisos; lo que cambia por piso es el color: relleno lima y banda granate con filo rosa en el piso 1, relleno turquesa y banda azul en el piso 2. El título va en Silkscreen.
 - **Títulos:** Virus gigante, *Plaga primigenia*; Ameba gigante, *La que todo lo engulle*; Anomalocaris, *Terror del Cámbrico*; Euriptérido, *Escorpión de los mares*.
 - En la sala del Anomalocaris, la presentación es el momento en que baja la luz.
+- **Barra de vida de los jefes** (arriba en el centro, con su nombre): todas tienen barra fantasma, como en los juegos de lucha: al recibir daño el relleno baja en un instante y un trazo claro marca lo perdido; espera unos 0,4 s (cada golpe lo reinicia) y se vacía. Los jefes del piso 1 usan la barra lisa; un jefe puede tener una barra propia dibujada, con sus fases marcadas (por ahora, el Anomalocaris).
 
 | Piso | Etapa | Ambientación | Enemigos | Jefes (uno al azar) |
 | --- | --- | --- | --- | --- |
@@ -355,11 +356,12 @@ Cada uno pide una habilidad distinta (reflejos, lectura de patrones, saber esper
 
 **Jefes del piso 2:** 300 de vida cada uno, uno al azar en cada partida. Sus fases cambian la forma de pelear más que la cantidad de daño.
 
-**Anomalocaris:** el gran depredador del Cámbrico, con dos apéndices delante de la boca. Unas 4,7 u de largo. Sala muy grande (cueva ovalada de unos 36×26, sin fosas: en el frenesí hace falta todo el suelo). Al entrar baja la luz y queda en penumbra: se ve, pero poco. Las plantas luminosas, repartidas por los bordes y alguna en el centro (luces 2D), dan casi todo el brillo, y 4–6 columnas de algas tapan la vista sin bloquear el paso. Pide esquivar en el momento justo y castigar la pausa tras cada zarpazo.
-- **Acecho (100–60 %):** nada deprisa en círculos junto a las paredes y deja una estela de burbujas lentas. Zarpazo: avisa 0,7 s echándose atrás con los ojos rojos y los apéndices abiertos, golpea en un cono por delante y se queda 1 s quieto y vulnerable.
-- **Cerco (60–25 %):** nada en espiral a tu alrededor, cerrándose y dejando un muro de burbujas, y termina el cerco con un zarpazo.
-- **Escena al 25 %:** franjas de cine y las plantas se apagan un instante; solo se ven sus ojos nadando en la oscuridad, cruzan la sala y se oye un rugido. Es inmune durante la escena.
-- **Frenesí (25–0 %):** se queda quieto y hace un sonido de carga inconfundible. En el suelo aparecen el área y la trayectoria de sus dos zarpazos (franjas rojizas con forma de flecha) durante 0,8 s al empezar la fase, y unos 0,5 s cuando le queda poca vida. Luego lanza los dos zarpazos demasiado rápido para reaccionar: hay que salir de las zonas marcadas mientras se ven. Después, una pausa corta en la que se le puede castigar.
+**Anomalocaris:** el gran depredador del Cámbrico, con dos apéndices delante de la boca. Unas 4,7 u de largo. Sala muy grande (cueva ovalada de unos 36×26, sin fosas: en el frenesí hace falta todo el suelo). Al entrar baja la luz y queda en penumbra: se ve, pero poco. Las plantas luminosas, repartidas por los bordes y alguna en el centro (luces 2D), dan casi todo el brillo, y 4–6 columnas de algas tapan la vista sin bloquear el paso (ni algas ni plantas a menos de 3,5 u de donde aparece el jefe, para que la presentación se vea). Nada por encima de todo y no choca con el jugador: tocarle quita medio corazón. Pide esquivar en el momento justo y castigar la pausa tras cada zarpazo.
+- **Acecho (100–60 %):** nada deprisa en un óvalo junto a las paredes y deja una estela de burbujas lentas que dañan (los disparos las revientan). Cada 3–4,5 s va a por ti. **Zarpazo:** avisa 0,7 s echándose atrás con los ojos rojos y los apéndices abiertos, apuntando adonde vas a estar; luego se lanza en línea recta a toda velocidad (22 u/s) y muerde en un cono por delante en cuanto te alcanza (1 corazón). Seguir andando igual no basta: hay que esquivar. Después se queda 1 s quieto y vulnerable.
+- **Cerco (60–25 %):** alterna el acecho con espirales a tu alrededor, de unas 8 u a 3 u en 3 s, dejando un muro de burbujas, y termina el cerco con el zarpazo.
+- **Escena de los ojos (al 25 %, unos 3,5 s, se salta con E):** franjas de cine y las plantas se apagan; solo se ven sus ojos cruzando la sala a oscuras, ruge y vuelve la luz. Es inmune durante la escena y antes de ella no baja del 25 %.
+- **Frenesí (25–0 %),** un ciclo que se repite: marca en el suelo un dash largo hacia ti (área y trayectoria en rojo, unos 1 s al empezar la fase y 0,6 s con poca vida), lo recorre rapidísimo y al final salta a morderte; se queda aturdido medio segundo (el mejor momento para pegarle); te persigue a toda velocidad unos 2,5 s mordiéndote si te alcanza; marca otro dash, más corto de ver (0,5 → 0,35 s), y lo hace; y se vuelve una silueta de ojos brillantes, invulnerable, que ronda la sala 3 s con las plantas atenuadas. Se le puede pegar todo el rato salvo en silueta.
+- **Barra de vida propia:** es el propio animal visto desde arriba (cabeza en punta con las fauces de garras, caparazón y cola), con el relleno y los ojos de cada fase (acecho rojo con los ojos medio cerrados, cerco naranja con los ojos abiertos, frenesí carmesí con los ojos rojos brillando). Dos muescas de hueso al 60 % y al 25 % se rompen al pasarlas. Mientras es inmune (escena de los ojos y silueta) la barra se queda en silueta con sus ojos amarillos.
 
 **Euriptérido:** escorpión marino gigante con pinzas y una cola con púa. Unas 5,6 u de largo. Sala: cueva de unos 30×22 con 5–6 rocas de cobertura y grietas solo en los bordes, que en la fase 2 obligan a no pegarse a las paredes. Pide posicionarse y usar la cobertura.
 - **Acorazado (100–50 %):** avanza y ataca con las pinzas si estás cerca (golpe corto con aviso). Cada pocos segundos las púas de su caparazón se erizan, se cargan de veneno y suelta un abanico de 3 púas venenosas hacia ti (la cola no se usa en esta fase). Su coraza reduce a la mitad el daño que le entra de frente, como al Trilobite.
@@ -443,7 +445,7 @@ Controles de teclado y ratón, como Enter the Gungeon. Mando opcional más adela
 | Esquivar | Espacio | Invulnerable durante la esquiva, recarga corta |
 | Habilidad especial | Clic derecho | Lo define el Órgano especial |
 | Pausa | Esc o P | P sirve también en el navegador, donde Esc sale de la pantalla completa |
-| Mapa | TAB | Abre el mapa grande y detiene el juego; TAB o Esc lo cierran. Arriba a la derecha hay siempre un minimapa |
+| Mapa | TAB | Arriba a la derecha hay un minimapa. TAB abre el mapa grande y detiene el juego; otro TAB lo cierra y oculta también el minimapa (para concentrarse en un combate); otro, vuelve el minimapa. Esc cierra el mapa grande |
 
 **Reglas de combate:**
 

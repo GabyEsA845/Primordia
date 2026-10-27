@@ -8,7 +8,8 @@ namespace Primordia.Editor
 {
     /// <summary>
     /// Piezas de las salas especiales del piso 2 (docs/multimedia-temp/floor2-rooms/Pieces): el esqueleto del Fósil gigante,
-    /// las almejas, el coral del corazón morado y las entradas de oleadas. De momento se usa el primer cuadro de cada una
+    /// las almejas, el coral del corazón morado, las entradas de oleadas, y las algas y plantas luminosas de la sala del Anomalocaris.
+    /// De momento se usa el primer cuadro de cada una
     /// (abrirlas, cogerlas y las oleadas llegan en el paso 4 de feature/floor-2-structure).
     /// </summary>
     public static partial class ArtSetup
@@ -16,10 +17,13 @@ namespace Primordia.Editor
         const string RoomPiecesSourceFolder = "docs/multimedia-temp/floor2-rooms/Pieces";
         const string RoomPiecesArtFolder = "Assets/_Primordia/Art/Rooms/Pieces";
         const string PurpleInlaySourceFolder = "docs/multimedia-temp/ui-purple-heart";
+        const string AnomalocarisRoomSourceFolder = "docs/multimedia-temp/floor2-bosses/AnomalocarisRoom";
 
         internal static FloorConfig.RoomPieces ImportRoomPieces()
         {
             CopyFiles(RoomPiecesSourceFolder, RoomPiecesArtFolder, "*.png");
+            // Algas y plantas luminosas de la sala del Anomalocaris.
+            CopyFiles(AnomalocarisRoomSourceFolder, RoomPiecesArtFolder, "*.png");
             var center = new Vector2(0.5f, 0.5f);
             // La almeja grande (32×24) sobresale 8 px por arriba de sus dos celdas: el pivote, en el centro de las celdas.
             var bigClamPivot = new Vector2(0.5f, 8f / 24f);
@@ -34,6 +38,11 @@ namespace Primordia.Editor
                 heartCoralIdle = Frames("HeartCoral_Idle", 32, center),
                 waveVentIdle = Frames("WaveVent_Idle", 16, center),
                 waveVentActive = Frames("WaveVent_Active", 16, center),
+                // Pivote en la base: (32, 92) de 64×96 en las algas y (16, 28) de 32×32 en las plantas.
+                algaeColumnA = Frames("Deco_AlgaeColumn_A", 64, new Vector2(0.5f, 4f / 96f)),
+                algaeColumnB = Frames("Deco_AlgaeColumn_B", 64, new Vector2(0.5f, 4f / 96f)),
+                lightPlant = Frames("Deco_LightPlant", 32, new Vector2(0.5f, 4f / 32f)),
+                lightPlantOff = Frames("Deco_LightPlant_Off", 32, new Vector2(0.5f, 4f / 32f)),
                 keyPrompt = File.Exists($"{ShopSourceFolder}/UI_Key_E.png") && CopyArt($"{ShopSourceFolder}/UI_Key_E.png", $"{ShopArtFolder}/UI_Key_E.png")
                     ? SliceSheet($"{ShopArtFolder}/UI_Key_E.png", KeyCellWidth, new Vector2(0.5f, 0f))
                     : System.Array.Empty<Sprite>(),

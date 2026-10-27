@@ -41,6 +41,19 @@ namespace Primordia.Enemies
         void BeginFight();
     }
 
+    /// <summary>
+    /// Jefe con fases marcadas en su barra de vida (opcional): la barra pone una muesca en cada umbral, la rompe al pasarlo y
+    /// usa el relleno y los ojos de la fase en curso.
+    /// </summary>
+    public interface IPhasedBoss
+    {
+        /// <summary>Fase en curso, desde 0. Pasa a la siguiente al cruzar cada umbral.</summary>
+        int PhaseIndex { get; }
+
+        /// <summary>Fracción de la vida (0–1) a la que empieza cada fase después de la primera, de mayor a menor.</summary>
+        float[] PhaseThresholds { get; }
+    }
+
     /// <summary>Jefe activo ahora mismo, para la barra de vida. Null si no hay ninguno.</summary>
     public static class ActiveBoss
     {

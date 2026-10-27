@@ -242,6 +242,8 @@ tr.picked th::before { content: "▸ "; }
 .proj .ball { background: var(--deep); width: 72px; height: 72px; display: grid; place-items: center; box-shadow: inset 0 0 0 2px var(--line); overflow: hidden; }
 .room { background: var(--deep); padding: 8px; display: grid; place-items: center; box-shadow: inset 0 0 0 2px var(--line); }
 .room img { max-width: 100%; height: auto; max-height: 280px; }
+.bossbar { margin-top: 1rem; }
+.bossbar .room img { max-height: none; width: 100%; }
 
 /* El océano */
 .bands { display: grid; gap: 14px; }
@@ -617,29 +619,34 @@ const ENEMIES = [
 const BOSSES = [
   {
     id: 'anom', name: 'Anomalocaris', color: 'var(--anom)', tiles: 'floor_abyss', artWidth: '16rem', hero: ['bo_Anomalocaris_Swim', 2, 0.66],
-    blurb: 'El gran depredador del Cámbrico, con dos apéndices delante de la boca. Pelea en una sala muy grande y en penumbra: se ve, pero poco. Las plantas luminosas iluminan algo a su alrededor y las columnas de algas tapan la vista sin bloquear el paso.',
+    blurb: 'El gran depredador del Cámbrico, con dos apéndices delante de la boca. Pelea en una sala muy grande y en penumbra: se ve, pero poco. Las plantas luminosas iluminan algo a su alrededor y las columnas de algas tapan la vista sin bloquear el paso. Nada por encima de todo y no choca contigo: tocarle quita medio corazón.',
     stats: [['Vida', '300'], ['Largo', '≈ 4,7 u'], ['Sala', '≈ 36 × 26, oscura']],
     hp: [['Acecho', 40, 35], ['Cerco', 35, 60], ['Frenesí', 25, 90]], ticks: ['100 %', '60 %', '25 %', '0'],
     phases: [
       { hp: '100–60 %', title: 'Acecho', art: [['bo_Anomalocaris_ClawWarn', 1, 0.7], ['bo_Anomalocaris_ClawStrike', 1, 0.3], ['bo_Anomalocaris_Vulnerable', 1, 1]],
-        items: ['Nada deprisa en círculos junto a las paredes y deja una estela de burbujas lentas que hay que esquivar.',
-                'Zarpazo: avisa 0,7 s echándose atrás con los ojos rojos y los apéndices abiertos, golpea en un cono por delante y se queda 1 s quieto y vulnerable.'] },
+        items: ['Nada deprisa en un óvalo junto a las paredes y deja una estela de burbujas lentas que dañan; tus disparos las revientan.',
+                'Cada 3–4,5 s va a por ti. Zarpazo: avisa 0,7 s echándose atrás con los ojos rojos y los apéndices abiertos, apuntando adonde vas a estar.',
+                'Luego se lanza en línea recta a toda velocidad (22 u/s) y muerde en cuanto te alcanza: 1 corazón. Seguir andando igual no basta: hay que esquivar.',
+                'Después se queda 1 s quieto y vulnerable.'] },
       { hp: '60–25 %', title: 'Cerco', art: [['bo_Anomalocaris_SwimFast', 1, 0.28]],
-        items: ['Nada en espiral a tu alrededor, cerrándose y dejando un muro de burbujas, y termina el cerco con un zarpazo.'] },
+        items: ['Alterna el acecho con espirales a tu alrededor, de unas 8 u a 3 u en 3 s, dejando un muro de burbujas, y termina el cerco con el zarpazo.'] },
       { hp: '25 %', title: 'Escena: ojos en la oscuridad', art: [['bo_Anomalocaris_EyesDark', 1, 0.88]],
-        items: ['Franjas de cine y las plantas se apagan un instante. Solo se ven sus ojos nadando en la oscuridad; cruzan la sala y se oye un rugido.',
-                'Es inmune mientras dura la escena.'] },
+        items: ['Unos 3,5 s con franjas de cine (se salta con E): las plantas se apagan y solo se ven sus ojos cruzando la sala a oscuras; ruge y vuelve la luz.',
+                'Es inmune mientras dura la escena, y antes de ella no baja del 25 %.'] },
       { hp: '25–0 %', title: 'Frenesí', art: [['bo_Anomalocaris_Charge', 1, 0.36], ['bo_Anomalocaris_ClawStrike', 1, 0.3]],
-        items: ['Se queda quieto y hace un sonido de carga inconfundible.',
-                'En el suelo aparece el área y la trayectoria de sus dos zarpazos: 0,8 s al empezar la fase, unos 0,5 s cuando le queda poca vida.',
-                'Los dos zarpazos salen demasiado rápido para reaccionar: hay que salir de las zonas marcadas mientras se ven. Después hace una pausa corta en la que se le puede castigar.'] },
+        items: ['Un ciclo que se repite. Marca en el suelo un dash largo hacia ti (área y trayectoria en rojo, 1 s al empezar la fase y 0,6 s con poca vida), lo recorre rapidísimo y al final salta a morderte.',
+                'Se queda aturdido medio segundo: el mejor momento para pegarle.',
+                'Te persigue a toda velocidad unos 2,5 s y te muerde si te alcanza.',
+                'Marca otro dash, más corto de ver (0,5 → 0,35 s), y lo hace.',
+                'Se vuelve una silueta de ojos brillantes, invulnerable, que ronda la sala 3 s con las plantas atenuadas. Salvo en silueta, se le puede pegar todo el rato.'] },
     ],
-    projectiles: [['bo_Fx_Anomalocaris_Bubbles', 'Estela de burbujas', 'Burbujas lentas que suelta al nadar.', 4, 0.5],
-                  ['bo_Fx_Anomalocaris_ClawArea', 'Marcador del zarpazo', 'Zona de 2 u donde caerá cada zarpazo de la fase 3, con la trayectoria en flechas.', 1, 0.5]],
+    projectiles: [['bo_Fx_Anomalocaris_Bubbles', 'Estela de burbujas', 'Burbujas lentas que suelta al nadar y en el muro del cerco; dañan al tocarlas y tus disparos las revientan.', 4, 0.5],
+                  ['bo_Fx_Anomalocaris_ClawArea', 'Marcador del zarpazo', 'Zona de 2 u donde acaba cada dash del frenesí, con la trayectoria en flechas.', 1, 0.5]],
+    bar: ['bar_Anomalocaris', 'Su barra de vida es el propio animal visto desde arriba: cabeza en punta con las fauces de garras, caparazón y cola. El relleno y los ojos cambian con la fase (acecho, cerco y frenesí) y las muescas de hueso del 60 % y el 25 % se rompen al pasarlas. Mientras es inmune (la escena de los ojos y la silueta) se queda en silueta con los ojos amarillos. Como todos los jefes, tiene barra fantasma: un trazo claro marca la vida recién perdida y se vacía al poco.'],
     room: ['room_Abyss', 'Cueva ovalada de unas 36 × 26, sin fosas: en la fase 3 hace falta todo el suelo. Al entrar baja la luz de la sala y las plantas luminosas, repartidas por los bordes y alguna en el centro, dan casi todo el brillo; 4–6 columnas de algas tapan la vista sin bloquear. Aquí, una sala de muestra del Abismo.'],
     intro: { key: 'intro_Anomalocaris', sub: 'Terror del Cámbrico', x: 150, y: 94, band: '#08101e', accent: '#78dcd2', shade: 'rgba(0, 0, 0, .55)',
       text: 'La puerta se cierra y baja la luz de la sala: desde ahí, las plantas luminosas dan casi todo el brillo. El Anomalocaris se acerca nadando, abre los apéndices con los ojos encendidos y entra el rótulo.' },
-    tips: ['Tras cada zarpazo de la fase 1 tienes 1 s para castigarlo.', 'En el frenesí no intentes reaccionar a los zarpazos: muévete en cuanto veas las marcas.'],
+    tips: ['Esquiva el dash en el último momento: tras cada zarpazo tienes 1 s para castigarlo.', 'En el frenesí sal de las marcas en cuanto aparezcan y pégale mientras está aturdido tras el salto.', 'Cuando se vuelve silueta no pierdas el tiempo disparando: aléjate y prepárate para el siguiente ciclo.'],
   },
   {
     id: 'eury', name: 'Euriptérido', color: 'var(--eury)', tiles: 'floor_cambrian', artWidth: '18rem', hero: ['bo_Eurypterid_Walk', 2, 0.6],
@@ -972,7 +979,11 @@ BOSSES.forEach(b => {
       el('span', { class: 'label' }, 'Su sala'),
       el('div', { class: 'room' }, el('img', { src: ART[b.room[0]], alt: `Sala de muestra para el ${b.name}`, class: 'pixel' })),
       el('p', { class: 'note' }, b.room[1])));
-  beasts.append(el('article', { class: 'beast panel', id: b.id, style: `--c:${b.color};--tiles:url(${ART[b.tiles]});--artw:${b.artWidth}` }, top, introScreen(b, b.tiles), phases, extras));
+  const bar = b.bar ? el('div', { class: 'bossbar' },
+    el('span', { class: 'label' }, 'Su barra de vida'),
+    el('div', { class: 'room' }, el('img', { src: ART[b.bar[0]], alt: `Barra de vida del ${b.name} en cada fase`, class: 'pixel' })),
+    el('p', { class: 'note' }, b.bar[1])) : null;
+  beasts.append(el('article', { class: 'beast panel', id: b.id, style: `--c:${b.color};--tiles:url(${ART[b.tiles]});--artw:${b.artWidth}` }, top, introScreen(b, b.tiles), phases, bar, extras));
 });
 
 // El océano

@@ -11,6 +11,12 @@ namespace Primordia.Rooms
         [SerializeField, Min(0.05f)] float period = 1f;
         [SerializeField] float phase;
 
+        /// <summary>Intensidad mínima y máxima del latido.</summary>
+        public Vector2 Intensity => intensity;
+
+        /// <summary>Multiplica la intensidad (1 normal; menos para atenuarla sin perder el latido).</summary>
+        public float Multiplier { get; set; } = 1f;
+
         internal void Configure(Light2D newTarget, Vector2 newIntensity, float newPeriod, float newPhase)
         {
             target = newTarget;
@@ -24,7 +30,7 @@ namespace Primordia.Rooms
             if (target == null)
                 return;
             float t = (Mathf.Sin((Time.time + phase) / period * Mathf.PI * 2f) + 1f) / 2f;
-            target.intensity = Mathf.Lerp(intensity.x, intensity.y, t);
+            target.intensity = Mathf.Lerp(intensity.x, intensity.y, t) * Multiplier;
         }
     }
 }

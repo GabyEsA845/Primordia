@@ -383,7 +383,9 @@ namespace Primordia.Tests
             controller.SetInput(Vector2.zero, Vector2.right);
             yield return new WaitForSecondsRealtime(0.6f);
 
-            Assert.AreEqual(3f, player.transform.position.x - 150f, 0.35f, "A mitad de velocidad, la esquiva recorre lo de siempre.");
+            // La esquiva acaba en el paso de física siguiente a su fin: según dónde caiga, dura un paso más o menos. A mitad de
+            // velocidad cada paso (0,02 s) la mueve 0,48 u (24 u/s), así que la tolerancia es un paso: 2,88 o 3,36 son lo esperado.
+            Assert.AreEqual(3f, player.transform.position.x - 150f, 0.5f, "A mitad de velocidad, la esquiva recorre lo de siempre.");
         }
 
         [UnityTest]

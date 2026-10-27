@@ -9,7 +9,7 @@ namespace Primordia.Editor
     /// Presentación de los jefes (docs/multimedia-temp/boss-intros, generado con generar_presentaciones.py): la pose
     /// "Intro" de cada jefe (el generador la deja junto a sus demás hojas), los retratos y los nombres rotulados del
     /// rótulo, la fuente Jersey 10 con su licencia, un <see cref="BossIntroData"/> por jefe y el componente
-    /// <see cref="BossIntro"/> en su prefab. Por ahora, los dos jefes del piso 1.
+    /// <see cref="BossIntro"/> en su prefab. Los dos jefes del piso 1 y el Anomalocaris.
     /// </summary>
     public static partial class ArtSetup
     {
@@ -31,6 +31,7 @@ namespace Primordia.Editor
         {
             ("Virus", "Boss_Virus", "Plaga primigenia", Floor1Band, Floor1Accent),
             ("Amoeba", "Boss_Amoeba", "La que todo lo engulle", Floor1Band, Floor1Accent),
+            ("Anomalocaris", "Boss_Anomalocaris", "Terror del Cámbrico", Floor2Band, Floor2Accent),
         };
 
         [MenuItem("Primordia/Art/Importar presentaciones de jefes")]
@@ -47,42 +48,57 @@ namespace Primordia.Editor
             foreach (var file in new[] { "Jersey10-Regular.ttf", "Jersey10-OFL.txt" })
                 CopyArt($"{BossIntroSourceFolder}/fuentes/{file}", $"{FontsArtFolder}/{file}");
 
-            Directory.CreateDirectory(BossIntroArtFolder);
-            Directory.CreateDirectory(BossIntroDataFolder);
-            foreach (var (key, prefab, title, band, accent) in BossIntros)
-            {
-                var portrait = ImportSprite($"{BossIntroSourceFolder}/Portraits/Portrait_{key}.png",
-                    $"{BossIntroArtFolder}/Portrait_{key}.png", Vector4.zero);
-                var name = ImportSprite($"{BossIntroSourceFolder}/Titles/Title_{key}.png",
-                    $"{BossIntroArtFolder}/Title_{key}.png", Vector4.zero);
-                if (portrait == null || name == null)
-                {
-                    Debug.LogWarning($"ArtSetup: falta el retrato o el nombre de {key} en {BossIntroSourceFolder}; " +
-                        "lanza generar_presentaciones.py y vuelve a ejecutar el menú.");
-                    continue;
-                }
-
-                string dataPath = $"{BossIntroDataFolder}/BossIntro_{key}.asset";
-                var data = AssetDatabase.LoadAssetAtPath<BossIntroData>(dataPath);
-                if (data == null)
-                {
-                    data = ScriptableObject.CreateInstance<BossIntroData>();
-                    AssetDatabase.CreateAsset(data, dataPath);
-                }
-                data.Configure(name, title, portrait, band, accent);
-                EditorUtility.SetDirty(data);
-
-                string prefabPath = $"{EnemyPrefabsFolder}/{prefab}.prefab";
-                if (AssetDatabase.LoadAssetAtPath<GameObject>(prefabPath) == null)
-                {
-                    Debug.LogWarning($"ArtSetup: no existe {prefabPath}; crea antes el jefe con su menú de Primordia > Boss.");
-                    continue;
-                }
-                EditPrefab(prefabPath, root => SetFields(GetOrAdd<BossIntro>(root), ("data", data)));
-            }
+            foreach (var intro in BossIntros)
+                ImportBossIntro(intro);
 
             AssetDatabase.SaveAssets();
-            Debug.Log("ArtSetup: presentaciones de los jefes importadas (virus y ameba gigante).");
+            Debug.Log("ArtSetup: presentaciones de los jefes importadas (virus, ameba gigante y Anomalocaris).");
+        }
+
+        /// <summary>La presentación de un jefe (por su clave: "Anomalocaris"), si su prefab ya existe.</summary>
+        internal static void ImportBossIntro(string key)
+        {
+            foreach (var intro in BossIntros)
+            {
+                if (intro.key == key)
+                    ImportBossIntro(intro);
+            }
+            AssetDatabase.SaveAssets();
+        }
+
+        static void ImportBossIntro((string key, string prefab, string title, Color band, Color accent) intro)
+        {
+            var (key, prefab, title, band, accent) = intro;
+            Directory.CreateDirectory(BossIntroArtFolder);
+            Directory.CreateDirectory(BossIntroDataFolder);
+            var portrait = ImportSprite($"{BossIntroSourceFolder}/Portraits/Portrait_{key}.png",
+                $"{BossIntroArtFolder}/Portrait_{key}.png", Vector4.zero);
+            var name = ImportSprite($"{BossIntroSourceFolder}/Titles/Title_{key}.png",
+                $"{BossIntroArtFolder}/Title_{key}.png", Vector4.zero);
+            if (portrait == null || name == null)
+            {
+                Debug.LogWarning($"ArtSetup: falta el retrato o el nombre de {key} en {BossIntroSourceFolder}; " +
+                    "lanza generar_presentaciones.py y vuelve a ejecutar el menú.");
+                return;
+            }
+
+            string dataPath = $"{BossIntroDataFolder}/BossIntro_{key}.asset";
+            var data = AssetDatabase.LoadAssetAtPath<BossIntroData>(dataPath);
+            if (data == null)
+            {
+                data = ScriptableObject.CreateInstance<BossIntroData>();
+                AssetDatabase.CreateAsset(data, dataPath);
+            }
+            data.Configure(name, title, portrait, band, accent);
+            EditorUtility.SetDirty(data);
+
+            string prefabPath = $"{EnemyPrefabsFolder}/{prefab}.prefab";
+            if (AssetDatabase.LoadAssetAtPath<GameObject>(prefabPath) == null)
+            {
+                Debug.LogWarning($"ArtSetup: no existe {prefabPath}; crea antes el jefe con su menú de Primordia > Boss.");
+                return;
+            }
+            EditPrefab(prefabPath, root => SetFields(GetOrAdd<BossIntro>(root), ("data", data)));
         }
     }
 }

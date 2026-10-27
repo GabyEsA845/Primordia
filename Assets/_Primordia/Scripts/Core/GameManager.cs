@@ -28,7 +28,8 @@ namespace Primordia.Core
     /// Estado global de la partida. Hay una sola instancia y sobrevive a los cambios de escena.
     /// Pausa el tiempo en <see cref="GameState.Paused"/>, <see cref="GameState.MutationChoice"/>, <see cref="GameState.Map"/> y
     /// <see cref="GameState.Evolution"/>.
-    /// Esc (o P) pausa; TAB abre y cierra el mapa, y Esc también lo cierra.
+    /// Esc (o P) pausa; TAB va del minimapa al mapa grande, de ahí a jugar sin mapa (para concentrarse en un combate) y
+    /// vuelve al minimapa; Esc también cierra el mapa grande.
     /// </summary>
     [DefaultExecutionOrder(-100)]
     public class GameManager : MonoBehaviour
@@ -42,6 +43,9 @@ namespace Primordia.Core
         [SerializeField] bool logStateChanges = true;
 
         public GameState State { get; private set; }
+
+        /// <summary>True si el jugador ha ocultado el minimapa con TAB (sigue así al cambiar de sala hasta volver a pulsar).</summary>
+        public bool MinimapHidden { get; private set; }
 
         /// <summary>Se lanza al cambiar de estado: (anterior, nuevo).</summary>
         public event Action<GameState, GameState> StateChanged;
@@ -118,13 +122,23 @@ namespace Primordia.Core
                 SetState(GameState.Playing);
         }
 
-        /// <summary>Abre el mapa grande mientras se juega, o lo cierra.</summary>
+        /// <summary>
+        /// TAB mientras se juega: minimapa → mapa grande (pausa) → sin mapa → minimapa. Desde la pausa no hace nada.
+        /// </summary>
         public void ToggleMap()
         {
             if (State == GameState.Playing)
-                SetState(GameState.Map);
+            {
+                if (MinimapHidden)
+                    MinimapHidden = false;
+                else
+                    SetState(GameState.Map);
+            }
             else if (State == GameState.Map)
+            {
+                MinimapHidden = true;
                 SetState(GameState.Playing);
+            }
         }
 
         public void Resume()

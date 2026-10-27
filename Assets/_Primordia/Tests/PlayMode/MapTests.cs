@@ -31,20 +31,27 @@ namespace Primordia.Tests
         }
 
         [Test]
-        public void Tab_OpensTheMapWhilePlaying_AndPausesTime()
+        public void Tab_CyclesMinimap_BigMap_AndNoMap()
         {
             var manager = Track(new GameObject("GameManager")).AddComponent<GameManager>();
+            Assert.IsFalse(manager.MinimapHidden);
 
             manager.ToggleMap();
-            Assert.AreEqual(GameState.Map, manager.State);
+            Assert.AreEqual(GameState.Map, manager.State, "Del minimapa al mapa grande.");
             Assert.AreEqual(0f, Time.timeScale);
 
             manager.ToggleMap();
-            Assert.AreEqual(GameState.Playing, manager.State);
+            Assert.AreEqual(GameState.Playing, manager.State, "Del mapa grande a jugar sin mapa.");
+            Assert.IsTrue(manager.MinimapHidden);
+
+            manager.ToggleMap();
+            Assert.AreEqual(GameState.Playing, manager.State, "Y de vuelta al minimapa, sin pausar.");
+            Assert.IsFalse(manager.MinimapHidden);
 
             manager.ToggleMap();
             manager.TogglePause();
             Assert.AreEqual(GameState.Playing, manager.State, "Esc cierra el mapa.");
+            Assert.IsFalse(manager.MinimapHidden, "Y vuelve al minimapa.");
 
             manager.SetState(GameState.Paused);
             manager.ToggleMap();

@@ -201,6 +201,25 @@ MonoBehaviour:
     keyPrompt:
     - {fileID: 7210565139753159747, guid: 2bd51478aa9a64143bfd83ba344d4d81, type: 3}
     - {fileID: -1199138674, guid: 2bd51478aa9a64143bfd83ba344d4d81, type: 3}
+    algaeColumnA:
+    - {fileID: -8614461992108489596, guid: 067443c9295282f4789cfe720401837f, type: 3}
+    - {fileID: -6095371235186012335, guid: 067443c9295282f4789cfe720401837f, type: 3}
+    - {fileID: -2388165376056980160, guid: 067443c9295282f4789cfe720401837f, type: 3}
+    - {fileID: -5181940635354270180, guid: 067443c9295282f4789cfe720401837f, type: 3}
+    algaeColumnB:
+    - {fileID: 2574689475850001804, guid: 0e388f9a1bba4c945b82e4c0a9b38fcd, type: 3}
+    - {fileID: 895796751168570966, guid: 0e388f9a1bba4c945b82e4c0a9b38fcd, type: 3}
+    - {fileID: 4693441194052883085, guid: 0e388f9a1bba4c945b82e4c0a9b38fcd, type: 3}
+    - {fileID: 2994496828800233387, guid: 0e388f9a1bba4c945b82e4c0a9b38fcd, type: 3}
+    lightPlant:
+    - {fileID: 1270631132799813411, guid: 5230d7b5a88a2a74b995afc13cd53c80, type: 3}
+    - {fileID: 8033280173642566006, guid: 5230d7b5a88a2a74b995afc13cd53c80, type: 3}
+    - {fileID: 694771497801056516, guid: 5230d7b5a88a2a74b995afc13cd53c80, type: 3}
+    - {fileID: 3047502142774623074, guid: 5230d7b5a88a2a74b995afc13cd53c80, type: 3}
+    lightPlantOff:
+    - {fileID: -1680492443991513495, guid: 71cbe86315c3f24498db2d8a5b5965d5, type: 3}
+    - {fileID: 1363528761990149609, guid: 71cbe86315c3f24498db2d8a5b5965d5, type: 3}
+    - {fileID: 8274212096462314509, guid: 71cbe86315c3f24498db2d8a5b5965d5, type: 3}
   clams:
     smallBiomass: {x: 5, y: 15}
     bigBiomass: {x: 15, y: 25}
@@ -253,10 +272,10 @@ MonoBehaviour:
   boss: {fileID: 1183084727335379411, guid: 1fc20f23b26e1e14aa8e7a669d298cfb, type: 3}
   bossOffset: {x: 0, y: 2.5}
   bosses:
-  - prefab: {fileID: 1183084727335379411, guid: 1fc20f23b26e1e14aa8e7a669d298cfb, type: 3}
+  - prefab: {fileID: 3349903237206922788, guid: a743796413da555439e4f75ffe36fdf4, type: 3}
     room: {fileID: 11400000, guid: 4af04b5e8f20e0f4c8a44358faf5e4cb, type: 2}
     theme: {fileID: 11400000, guid: 2a8ae0b84c247aa4380d009839c9d15e, type: 2}
-    offset: {x: 0, y: 2.5}
+    offset: {x: 0, y: 0}
   - prefab: {fileID: 3929587759750360350, guid: 02aaf85b190558f41bcb733e7eb43441, type: 3}
     room: {fileID: 11400000, guid: 0b0a7e04a606095479317b364d288a26, type: 2}
     theme: {fileID: 11400000, guid: 2a8ae0b84c247aa4380d009839c9d15e, type: 2}

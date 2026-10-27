@@ -101,7 +101,7 @@ Cada módulo vive en su propia carpeta de `Assets/_Primordia/Scripts/` (`Core`, 
   3. Órganos: Saco de crías (larvas, Enjambre) y Ojos compuestos (cámara lenta, Visión total), con sus efectos de activación (hecho)
   4. Linajes del piso 2: beneficios remodelados, Carroñero y sus restos, los 8 toques y las evoluciones (hecho)
   5. Las mutaciones en Floor_2 (reserva solo del piso 2, con las mejoras de lo que se trae del piso 1; tienda y sala de cambio), atajo F8 para completar linajes, documento del piso 2 y cierre
-- [ ] `feature/boss-anomalocaris`: cueva ovalada muy grande sin fosas, en la que baja la luz al entrar, con plantas luminosas (luces 2D) y columnas de algas; acecho, cerco, escena de los ojos al 25 % y frenesí con los marcadores del zarpazo
+- [x] `feature/boss-anomalocaris`: cueva ovalada muy grande sin fosas, en la que baja la luz al entrar, con plantas luminosas (luces 2D) y columnas de algas; acecho con el dash del zarpazo, cerco, escena de los ojos al 25 % y frenesí en ciclo (dashes marcados, salto, persecución y silueta invulnerable). Incluye la barra fantasma para todos los jefes, la barra de vida propia del Anomalocaris (fases, muescas y silueta) y el Tab de tres estados (minimapa, mapa grande, sin mapa)
 - [ ] `feature/boss-eurypterid`: cueva de unos 30×22 con 5–6 rocas y grietas en los bordes, pinzas y púas del caparazón, escena de la muda al 50 % (la muda vacía queda como cobertura y se derrumban 2 rocas) y fase blanda con la cola
 - [ ] `feature/floor2-audio`: música (exploración, combate y una pista por jefe) y sonidos del piso 2, con el sistema del piso 1
 - [ ] `feature/floor-3`: Pantano carbonífero (lo mismo, con el artrópodo gigante); si se retrasa mucho, la v1.0 sale con 2 pisos

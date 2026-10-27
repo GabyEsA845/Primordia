@@ -185,12 +185,13 @@ namespace Primordia.UI
 
             UpdateMinimap();
 
-            // En la pausa tapaba el menú: se oculta hasta volver a jugar.
-            bool hide = GameManager.Instance != null && GameManager.Instance.State == GameState.Paused;
+            // En la pausa tapaba el menú: se oculta hasta volver a jugar. También si el jugador lo ha ocultado con TAB.
+            var manager = GameManager.Instance;
+            bool hide = manager != null && (manager.State == GameState.Paused || manager.MinimapHidden);
             if (hide != minimapHidden)
                 SetMinimapHidden(hide);
 
-            bool show = GameManager.Instance != null && GameManager.Instance.State == GameState.Map;
+            bool show = manager != null && manager.State == GameState.Map;
             if (show != bigMapShown)
                 SetBigMap(show);
             if (bigMapShown)

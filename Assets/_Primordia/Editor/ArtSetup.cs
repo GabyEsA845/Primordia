@@ -751,6 +751,8 @@ namespace Primordia.Editor
                 var property = serialized.FindProperty(field);
                 if (value is float number)
                     property.floatValue = number;
+                else if (value is int whole)
+                    property.intValue = whole;
                 else
                     property.objectReferenceValue = (Object)value;
             }

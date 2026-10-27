@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fea4fa6ecd96c2841bc129a71802911a, type: 3}
+  m_Name: BossBar_Anomalocaris
+  m_EditorClassIdentifier: Primordia::Primordia.UI.BossBarSkin
+  frame: {fileID: -183579271326191485, guid: a62bc4a10c250eb4a9777ad5ba830c3d, type: 3}
+  frameDark: {fileID: -2488482034137801160, guid: 5097a2d3b34b9f248a2f9a10f04d8040, type: 3}
+  window:
+    x: 38
+    y: 12
+    width: 200
+    height: 8
+  back: {fileID: -1557900071365021203, guid: ae4cf84139912a04e95f4276eea84b1d, type: 3}
+  trail: {fileID: 8727004624240734715, guid: 1d3a66227c10b03499b04a106a2619c2, type: 3}
+  phases:
+  - fill:
+    - {fileID: -275215667952218880, guid: 32859d5f0335ccc4282854c2e98c02c3, type: 3}
+    eyes:
+    - {fileID: -134016869901320017, guid: 37671221c85da1b4c869cb6c9a315fc7, type: 3}
+  - fill:
+    - {fileID: 8340007329007804016, guid: fcd7d5d306c346c4daf2fea90cc2804d, type: 3}
+    eyes:
+    - {fileID: 3090055243331504953, guid: de2f7f83d50fe834c9be7621f91b03d1, type: 3}
+  - fill:
+    - {fileID: -3229001734070248072, guid: fe244bcb707ea0445978652d892fb370, type: 3}
+    - {fileID: 1332061586, guid: fe244bcb707ea0445978652d892fb370, type: 3}
+    eyes:
+    - {fileID: 1771609029316255442, guid: 8a35318c1f54ca14683df001cd8d0586, type: 3}
+    - {fileID: -2123530888834925729, guid: 8a35318c1f54ca14683df001cd8d0586, type: 3}
+  dark:
+    fill:
+    - {fileID: -4346789797381461291, guid: 6e753c1bcf5e03f4087865940499f38c, type: 3}
+    eyes:
+    - {fileID: 373265615511692912, guid: 9dd2638415c69c347aa20dd5fd6824ce, type: 3}
+    - {fileID: 5933254313090480675, guid: 9dd2638415c69c347aa20dd5fd6824ce, type: 3}
+  frameTime: 0.15
+  notch: {fileID: -8080406470971620405, guid: afcb79a8efb2de442bf41b764711806e, type: 3}
+  notchBroken: {fileID: -4572924726891080614, guid: b7c8fa7f8d132a141ae5f1281f077030, type: 3}
+  notchBreak:
+  - {fileID: -2063428195360429766, guid: 8ff3674d361453940a87c9612d252df3, type: 3}
+  - {fileID: 1585073099840031392, guid: 8ff3674d361453940a87c9612d252df3, type: 3}
+  - {fileID: -2998823248619936596, guid: 8ff3674d361453940a87c9612d252df3, type: 3}
+  - {fileID: 4675748855758092360, guid: 8ff3674d361453940a87c9612d252df3, type: 3}
+  - {fileID: -5048954254293254307, guid: 8ff3674d361453940a87c9612d252df3, type: 3}
+  notchBreakFrameTime: 0.07

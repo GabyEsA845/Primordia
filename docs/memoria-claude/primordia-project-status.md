@@ -28,3 +28,5 @@ Build web: menú Primordia > Build > Build WebGL (itch.io) ya funcionó; zip en 
 **Actualización 2026-10-26 (2):** en main feature/boss-anomalocaris (merge 1086049): el Anomalocaris con su sala, sus fases, su barra de vida propia, la barra fantasma para todos los jefes y el Tab de tres estados. Siguiente entonces: `feature/boss-eurypterid`.
 
 **Actualización 2026-10-27:** en main feature/boss-eurypterid (merge 38cd9f2): el Euriptérido con su cueva que se derrumba (piedras, fosas que se abren), el temblor de pantalla para todo el juego (opción en la pausa), la muda, la fase blanda, el último aliento con bullet hell y su barra propia; ver [[primordia-boss-eurypterid]]. Siguiente: `feature/floor2-audio`.
+
+**Actualización 2026-10-27 (tarde):** en main feature/floor2-audio (merge 2a6268f): música por franja con capas, laboratorio, jefes y 102 efectos del piso 2; ver [[primordia-floor2-audio]]. Siguiente según PLAN: `feature/floor-3` (Pantano carbonífero).

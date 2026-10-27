@@ -37,3 +37,4 @@ Relacionado: [[primordia-workflow]].
 - (2026-10-27) Floor2Setup **no sobrescribe** las plantillas de sala que ya existen (Data/Rooms/Floor2): si se cambia un plano .txt, el menú del módulo tiene que releerlo con template.SetLayout (como EurypteridBossSetup).
 - (2026-10-27) Compilar sin Unity: script check.py en el scratchpad (genera los *.check.csproj con todos los .cs, `dotnet build` y los borra); rehacerlo si el scratchpad es nuevo. Para patches de C# con comillas o barras, escribir un .py con Write (los heredoc de Bash fallan).
 
+- (2026-10-27) **Vector3.RotateTowards en 2D con vectores opuestos** (objetivo justo detrás) se sale del plano y, al volver a Vector2, no gira nada: el Euriptérido no se giraba si el jugador estaba exactamente detrás. Usar Enemies/Turning.Towards (elige un costado). Las pruebas de jefes que miden posición tras la muda deben medir al acabar la muda (ModeChanged), porque echa a andar enseguida.

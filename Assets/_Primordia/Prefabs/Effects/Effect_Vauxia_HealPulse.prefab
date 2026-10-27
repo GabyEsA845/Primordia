@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2877440865723263439}
   - component: {fileID: 4195265308557048581}
   - component: {fileID: 5042527060305018884}
+  - component: {fileID: 5177610593388173221}
   m_Layer: 0
   m_Name: Effect_Vauxia_HealPulse
   m_TagString: Untagged
@@ -113,3 +114,17 @@ MonoBehaviour:
   - {fileID: -2159875837502863670, guid: 249a3b8772458934087b5af30e7a699e, type: 3}
   - {fileID: 4012383500826083834, guid: 249a3b8772458934087b5af30e7a699e, type: 3}
   frameDuration: 0.08
+--- !u!114 &5177610593388173221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4096786907532844453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10e032ce63bd4d441bb2e32084dfb091, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Primordia::Primordia.Audio.EffectSound
+  sound: Enemy_Vauxia_Pulse
+  volume: 1

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3827718337915404230}
   - component: {fileID: 4548423399121596882}
   - component: {fileID: 7180530976973128028}
+  - component: {fileID: 7204189363506983177}
   m_Layer: 0
   m_Name: Effect_AnomalocarisBubble_Pop
   m_TagString: Untagged
@@ -111,3 +112,17 @@ MonoBehaviour:
   - {fileID: -1540021835, guid: 8ea4b1a82aa074348bb6b19fc756faf4, type: 3}
   - {fileID: 1190340344, guid: 8ea4b1a82aa074348bb6b19fc756faf4, type: 3}
   frameDuration: 0.06
+--- !u!114 &7204189363506983177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7165621205142603749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10e032ce63bd4d441bb2e32084dfb091, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Primordia::Primordia.Audio.EffectSound
+  sound: Boss_Anomalocaris_BubblePop
+  volume: 1

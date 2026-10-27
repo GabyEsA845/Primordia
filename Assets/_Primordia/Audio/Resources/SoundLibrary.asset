@@ -1035,7 +1035,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: ba1dc501bb143f34cab9da5bd2d620a2, type: 3}
     volume: 0.55
     group: 1
-    minInterval: 0.03
+    minInterval: 0.1
     pitchJitter: 0.04
     loop: 0
   - id: Mouth_ArmCrown_Cast
@@ -1059,7 +1059,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 2bd92ba65287be24595ad27f81160a23, type: 3}
     volume: 0.6
     group: 1
-    minInterval: 0.03
+    minInterval: 0.1
     pitchJitter: 0.04
     loop: 0
   - id: Limbs_Tail_Dodge
@@ -1085,7 +1085,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: c9d90d32746b19449aaff72e047b545d, type: 3}
     volume: 0.5
     group: 1
-    minInterval: 0.03
+    minInterval: 0.05
     pitchJitter: 0.04
     loop: 0
   - id: Limbs_Hallucigenia_Place
@@ -1094,7 +1094,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 2299b1ea6f8eb5f4bb0bd3429eec0383, type: 3}
     volume: 0.45
     group: 1
-    minInterval: 0.03
+    minInterval: 0.1
     pitchJitter: 0.04
     loop: 0
   - id: Limbs_Hallucigenia_Strike
@@ -1103,7 +1103,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: d58a1cff41751b34f8f80135a676aa84, type: 3}
     volume: 0.45
     group: 1
-    minInterval: 0.03
+    minInterval: 0.08
     pitchJitter: 0.04
     loop: 0
   - id: Limbs_Hallucigenia_Launch
@@ -1111,7 +1111,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 96ae9852bb6098b4993227dc94fc6356, type: 3}
     volume: 0.5
     group: 1
-    minInterval: 0.03
+    minInterval: 0.1
     pitchJitter: 0.04
     loop: 0
   - id: Skin_Trilobite_Bounce
@@ -1120,7 +1120,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: c1ee277c46ca1f14481f196781a6a3f8, type: 3}
     volume: 0.5
     group: 1
-    minInterval: 0.03
+    minInterval: 0.05
     pitchJitter: 0.04
     loop: 0
   - id: Skin_Trilobite_Roll
@@ -1162,7 +1162,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: d5e7ac243df2bc549940c1bb902c5c79, type: 3}
     volume: 0.25
     group: 1
-    minInterval: 0.03
+    minInterval: 0.08
     pitchJitter: 0.04
     loop: 0
   - id: Organ_BroodSac_Split
@@ -1195,7 +1195,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 81424be4320fbfd40b1edf4c3226025d, type: 3}
     volume: 0.6
     group: 1
-    minInterval: 0.03
+    minInterval: 0.1
     pitchJitter: 0.04
     loop: 0
   - id: Special_Flagella_Ready
@@ -1204,7 +1204,7 @@ MonoBehaviour:
     volume: 0.35
     group: 1
     minInterval: 0.03
-    pitchJitter: 0.04
+    pitchJitter: 0
     loop: 0
   - id: Special_Cuticle_Reflect
     clips:
@@ -1212,7 +1212,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 6d0e27c23f208c34dac78e2f902be85c, type: 3}
     volume: 0.5
     group: 1
-    minInterval: 0.03
+    minInterval: 0.05
     pitchJitter: 0.04
     loop: 0
   - id: Special_Cuticle_Stun
@@ -1253,8 +1253,8 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 8a694e927fba9f44c8a7b7881673ead2, type: 3}
     volume: 0.5
     group: 1
-    minInterval: 0.03
-    pitchJitter: 0.04
+    minInterval: 0.1
+    pitchJitter: 0
     loop: 0
   - id: Enemy_Shell_Hit
     clips:
@@ -1263,7 +1263,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: a477c728f77a8e0488f6c718c8b36e8a, type: 3}
     volume: 0.45
     group: 1
-    minInterval: 0.03
+    minInterval: 0.05
     pitchJitter: 0.04
     loop: 0
   - id: Enemy_Jelly_Hit
@@ -1273,7 +1273,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 102f105771640134d95e80821538b7dd, type: 3}
     volume: 0.45
     group: 1
-    minInterval: 0.03
+    minInterval: 0.05
     pitchJitter: 0.04
     loop: 0
   - id: Enemy_Sponge_Hit
@@ -1282,7 +1282,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 046082933a2e69a4898b0cfb8735cb9c, type: 3}
     volume: 0.45
     group: 1
-    minInterval: 0.03
+    minInterval: 0.05
     pitchJitter: 0.04
     loop: 0
   - id: Enemy_Trilobite_Warn
@@ -1290,7 +1290,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 321ab4d67a0c0c04681502e1bee04697, type: 3}
     volume: 0.6
     group: 1
-    minInterval: 0.03
+    minInterval: 0.15
     pitchJitter: 0.04
     loop: 0
   - id: Enemy_Trilobite_Charge
@@ -1325,7 +1325,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 904f46a76c3d1a946a576f5cfc3e5771, type: 3}
     volume: 0.5
     group: 1
-    minInterval: 0.03
+    minInterval: 0.2
     pitchJitter: 0.04
     loop: 0
   - id: Enemy_Jelly_Death
@@ -1342,7 +1342,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: aea4bc3a640c5564b94f17a6d599465a, type: 3}
     volume: 0.6
     group: 1
-    minInterval: 0.03
+    minInterval: 0.15
     pitchJitter: 0.04
     loop: 0
   - id: Enemy_Ottoia_Bite
@@ -1384,7 +1384,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 2ddd71f90ccf0bf44a9dadfa75f40fa9, type: 3}
     volume: 0.45
     group: 1
-    minInterval: 0.03
+    minInterval: 0.08
     pitchJitter: 0.04
     loop: 0
   - id: Enemy_Vauxia_Death
@@ -1401,7 +1401,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 9b62f432c22310f478868ae6f2892f28, type: 3}
     volume: 0.4
     group: 1
-    minInterval: 0.03
+    minInterval: 0.3
     pitchJitter: 0.04
     loop: 0
   - id: Enemy_Pikaia_Death
@@ -1410,7 +1410,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 993e37fa965e76a44ace9911bbbf4292, type: 3}
     volume: 0.45
     group: 1
-    minInterval: 0.03
+    minInterval: 0.06
     pitchJitter: 0.04
     loop: 0
   - id: Enemy_PitFall
@@ -1428,7 +1428,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 845682121f217564781a5e42b813ea1c, type: 3}
     volume: 0.2
     group: 1
-    minInterval: 0.03
+    minInterval: 0.1
     pitchJitter: 0.04
     loop: 0
   - id: Boss_Anomalocaris_BubblePop
@@ -1438,7 +1438,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 8d094e71d4e54e74daa43e006e7548b9, type: 3}
     volume: 0.3
     group: 1
-    minInterval: 0.03
+    minInterval: 0.06
     pitchJitter: 0.04
     loop: 0
   - id: Boss_Anomalocaris_Warn
@@ -1565,7 +1565,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: b25bb8859314e514b8509785b32e0beb, type: 3}
     volume: 0.3
     group: 1
-    minInterval: 0.03
+    minInterval: 0.2
     pitchJitter: 0.04
     loop: 0
   - id: Boss_Eurypterid_PincerWarn
@@ -1591,7 +1591,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 8be4236a61749ff409cfd31ce4248c62, type: 3}
     volume: 0.5
     group: 1
-    minInterval: 0.03
+    minInterval: 0.08
     pitchJitter: 0.04
     loop: 0
   - id: Boss_Eurypterid_SpineWarn
@@ -1673,7 +1673,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: df6c6f0be4c7b61488fb3d0ac456ca9d, type: 3}
     volume: 0.2
     group: 1
-    minInterval: 0.03
+    minInterval: 0.07
     pitchJitter: 0.04
     loop: 0
   - id: Boss_Eurypterid_Hurt
@@ -1725,7 +1725,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 5506704096847e94f8392812cc4c715b, type: 3}
     volume: 0.6
     group: 1
-    minInterval: 0.03
+    minInterval: 0.1
     pitchJitter: 0.04
     loop: 0
   - id: Cave_Pebble
@@ -1735,7 +1735,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 4089e9eb5fda5fd4685b8aad549b8f1e, type: 3}
     volume: 0.15
     group: 1
-    minInterval: 0.03
+    minInterval: 0.05
     pitchJitter: 0.04
     loop: 0
   - id: Cave_FloorCrack
@@ -1768,7 +1768,7 @@ MonoBehaviour:
     volume: 0.6
     group: 1
     minInterval: 0.03
-    pitchJitter: 0.04
+    pitchJitter: 0
     loop: 0
   - id: Room_WaveStart
     clips:
@@ -1776,7 +1776,7 @@ MonoBehaviour:
     volume: 0.65
     group: 1
     minInterval: 0.03
-    pitchJitter: 0.04
+    pitchJitter: 0
     loop: 0
   - id: Room_WaveVent
     clips:
@@ -1800,7 +1800,7 @@ MonoBehaviour:
     volume: 0.7
     group: 1
     minInterval: 0.03
-    pitchJitter: 0.04
+    pitchJitter: 0
     loop: 0
   - id: Room_HeartCoral
     clips:
@@ -1808,7 +1808,7 @@ MonoBehaviour:
     volume: 0.7
     group: 1
     minInterval: 0.03
-    pitchJitter: 0.04
+    pitchJitter: 0
     loop: 0
   - id: Player_PurpleHeart_Block
     clips:
@@ -1832,7 +1832,7 @@ MonoBehaviour:
     volume: 0.55
     group: 1
     minInterval: 0.03
-    pitchJitter: 0.04
+    pitchJitter: 0
     loop: 0
   - id: Exchange_Capsule_Accept
     clips:
@@ -1840,7 +1840,7 @@ MonoBehaviour:
     volume: 0.65
     group: 1
     minInterval: 0.03
-    pitchJitter: 0.04
+    pitchJitter: 0
     loop: 0
   - id: Amb_Floor2_Abyss_Loop
     clips:

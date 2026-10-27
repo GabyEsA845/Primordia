@@ -137,7 +137,7 @@ namespace Primordia.Rooms
             var window = FindAnyObjectByType<ExchangeUI>(FindObjectsInactive.Include);
             if (mutations == null || window == null)
                 return;
-            Sfx.Play(Sounds.MutationChoiceOpen);
+            Sfx.Play(Sounds.ExchangeOpen);
             window.Show(mutations, pool, floor, received => Exchange(mutations, received), null);
         }
 
@@ -193,7 +193,7 @@ namespace Primordia.Rooms
         IEnumerator Shine(Color color)
         {
             IsPlaying = true;
-            Sfx.Play(Sounds.MutationGain);
+            Sfx.Play(Sounds.ExchangeAccept);
             for (float t = 0f; t < shine; t += Time.deltaTime)
             {
                 ShowGlow(color, Mathf.Sin(t / shine * Mathf.PI));
@@ -224,7 +224,7 @@ namespace Primordia.Rooms
             var visual = player.transform;
             Vector2 start = visual.position;
             Vector2 center = transform.position;
-            Sfx.Play(Sounds.MutationGain);
+            Sfx.Play(Sounds.ExchangeAccept);
             yield return Phase(enter, k =>
             {
                 visual.position = Vector2.Lerp(start, center, k * 0.6f);

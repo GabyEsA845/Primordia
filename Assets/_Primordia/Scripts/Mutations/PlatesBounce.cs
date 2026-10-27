@@ -131,7 +131,7 @@ namespace Primordia.Mutations
         void BounceOff(Projectile projectile)
         {
             Bounced++;
-            Sfx.Play(Sounds.ShockwaveProjectileBreak);
+            Sfx.Play(Sounds.TrilobiteBounce);
             FrameEffect.Play("PlatesBounce", bounceFrames, frameDuration, SortingOrder, null, projectile.transform.position);
             Bounce?.Invoke();
         }

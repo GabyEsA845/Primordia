@@ -71,7 +71,7 @@ namespace Primordia.Mutations
 
             ProjectilesReflected++;
             Flash();
-            Sfx.Play(Sounds.ShockwaveProjectileBreak);
+            Sfx.Play(Sounds.CuticleReflect);
 
             var shooter = projectile.Source != null ? projectile.Source.GetComponentInParent<Health>() : null;
             if (shooter != null && shooter.IsDead)
@@ -123,7 +123,7 @@ namespace Primordia.Mutations
 
             HitsReflected++;
             Flash();
-            Sfx.Play(Sounds.LegsPush);
+            Sfx.Play(Sounds.CuticleStun);
 
             var collider = attacker.GetComponentInChildren<Collider2D>();
             Vector2 center = collider != null ? (Vector2)collider.bounds.center : (Vector2)attacker.transform.position;

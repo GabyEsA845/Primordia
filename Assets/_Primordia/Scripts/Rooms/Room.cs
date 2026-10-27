@@ -47,6 +47,9 @@ namespace Primordia.Rooms
 
         internal void SetDepthBand(int band) => DepthBand = band;
 
+        // Desde el piso 2 las puertas son losas de roca, no membranas: suenan a piedra.
+        static bool SlabDoors => FloorGenerator.CurrentFloor >= 2;
+
         public event Action<Room> Entered;
 
         /// <summary>Ha llegado una oleada (con el número de oleada, desde la segunda).</summary>
@@ -148,7 +151,7 @@ namespace Primordia.Rooms
             foreach (var door in doors)
                 door.Close();
             if (doors.Length > 0)
-                Sfx.Play(Sounds.DoorsClose);
+                Sfx.Play(SlabDoors ? Sounds.SlabsClose : Sounds.DoorsClose);
             CombatStartedAny?.Invoke(this);
 
             OpenVents();
@@ -239,7 +242,7 @@ namespace Primordia.Rooms
             if (fought)
             {
                 if (doors.Length > 0)
-                    Sfx.Play(Sounds.DoorsOpen);
+                    Sfx.Play(SlabDoors ? Sounds.SlabsOpen : Sounds.DoorsOpen);
                 Sfx.Play(Sounds.RoomCleared);
             }
 

@@ -96,7 +96,7 @@ namespace Primordia.Mutations
         {
             Volleys++;
             FrameEffect.Play("ScleritesRelease", settings.releaseFrames, 0.07f, SortingOrder, transform);
-            Sfx.Play(Sounds.Quills);
+            Sfx.Play(Sounds.WiwaxiaVolley);
             var launched = new List<Projectile>();
             if (settings.attack == null || settings.attack.ProjectilePrefab == null || targets.Count == 0)
             {

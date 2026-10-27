@@ -32,6 +32,16 @@ namespace Primordia.Audio
         public const string VacuoleCharge = "Organ_Vacuole_Charge";
         public const string MutationGain = "Mutation_Gain";
 
+        // Mutaciones del piso 2
+        public const string TrilobiteBounce = "Skin_Trilobite_Bounce";
+        public const string WiwaxiaVolley = "Skin_Wiwaxia_Volley";
+        public const string CompoundEyesOn = "Organ_CompoundEyes_On";
+        public const string CompoundEyesOff = "Organ_CompoundEyes_Off";
+        public const string FlagellaLash = "Special_Flagella_Lash";
+        public const string CuticleReflect = "Special_Cuticle_Reflect";
+        public const string CuticleStun = "Special_Cuticle_Stun";
+        public const string CarrionEat = "Lineage_Carrion_Eat";
+
         // Linajes
         public const string LineageComplete = "Lineage_Complete";
         public const string LineageFinisher = "Lineage_Finisher";
@@ -81,6 +91,15 @@ namespace Primordia.Audio
         public const string MutationChoiceOpen = "Mutation_ChoiceOpen";
         public const string MutationBubbleSpawn = "Mutation_Bubble_Spawn";
         public const string MutationBubblePickup = "Mutation_Bubble_Pickup";
+
+        // Salas del piso 2
+        public const string SlabsClose = "Room_Slabs_Close";
+        public const string SlabsOpen = "Room_Slabs_Open";
+        public const string ClamOpen = "Room_Clam_Open";
+        public const string ClamOpenBig = "Room_Clam_Open_Big";
+        public const string HeartCoral = "Room_HeartCoral";
+        public const string ExchangeOpen = "Exchange_Capsule_Open";
+        public const string ExchangeAccept = "Exchange_Capsule_Accept";
 
         // Tienda
         public const string ShopApproach = "Shop_Approach";

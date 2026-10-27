@@ -51,7 +51,7 @@ namespace Primordia.Rooms
             Taken = true;
             HidePrompt();
             health.AddPurpleHeart();
-            Sfx.Play(Sounds.MutationBubbleSpawn);
+            Sfx.Play(Sounds.HeartCoral);
             if (body != null && taken != null)
                 body.sprite = taken;
             if (glow != null)

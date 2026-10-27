@@ -53,7 +53,7 @@ namespace Primordia.Mutations
             var vignette = FindAnyObjectByType<ScreenVignette>(FindObjectsInactive.Include);
             if (vignette != null)
                 vignette.Show(vignetteColor);
-            Sfx.Play(Sounds.PlayerAbilityReady);
+            Sfx.Play(Sounds.CompoundEyesOn);
             Started?.Invoke();
             AnyStarted?.Invoke(this);
         }
@@ -92,6 +92,7 @@ namespace Primordia.Mutations
             var vignette = FindAnyObjectByType<ScreenVignette>(FindObjectsInactive.Include);
             if (vignette != null)
                 vignette.Hide();
+            Sfx.Play(Sounds.CompoundEyesOff);
             Ended?.Invoke();
         }
 

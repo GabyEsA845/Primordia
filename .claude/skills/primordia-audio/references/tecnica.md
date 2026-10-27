@@ -45,6 +45,9 @@ Recetas que funcionaron en el piso 1 y reglas para que lo nuevo salga igual de b
 - Un bucle dura un número exacto de compases; las notas y la reverberación que se salen del final vuelven al
   principio (lo hace `Song`). Los fragmentos (`loop=False`) llevan `tail` y terminan en silencio, salvo que el
   encargo pida corte seco.
+- **Trampa del empalme:** `Song.render` quita los graves con `hp_stereo` (`sosfiltfilt`), que no es circular y deja
+  un salto de ~0,1 en el empalme de los bucles (en el piso 1 queda escondido; no se regenera). Para bucles nuevos,
+  usar `Song2` de `instrumentos_piso2.py`, que filtra en frecuencia de forma circular.
 - **Capas sincronizadas:** las dos funciones comparten el material (progresión y melodía de una función común, como
   `floor1_material()`), el mismo `Song(bpm, compases)` y solo cambian arreglo y energía.
 - Estructura de 32 compases tipo A A' B A con `section_melody` (semilla fija); el pad y el bajo siguen la
@@ -63,5 +66,5 @@ Recetas que funcionaron en el piso 1 y reglas para que lo nuevo salga igual de b
 - [ ] Las variantes se parecen sin ser iguales.
 - [ ] Los avisos suben hacia el final y duran lo que el aviso del código; las escenas duran lo que la escena.
 - [ ] Los bucles no tienen salto (lint) y las capas duran lo mismo en muestras.
-- [ ] Lo melódico está en la tonalidad del piso; la interfaz, en re menor.
+- [ ] Lo melódico está en re, con el modo de su piso, franja o jefe.
 - [ ] `vol` puesto según la tabla de `pisos.md` y los nuevos frecuentes añadidos a `RHYTHM`.

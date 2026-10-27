@@ -26,8 +26,8 @@ for _name in ("bp", "bubble", "bubbles", "click", "dist", "expenv", "fm", "glide
               "noise", "noise_sweep", "reverb", "sine", "svf", "swell", "thump", "tri"):
     globals()[_name] = padded(globals()[_name])
 
-# Notas de la tonalidad del piso (references/pisos.md), para que los avisos con nota casen con la música
-E3, B3, E4 = (midi(m) for m in (52, 59, 64))
+# Notas en re (tonalidad común del juego) con el modo del piso, para que los avisos con nota casen con la música
+D3, A3, D4 = (midi(m) for m in (50, 57, 62))
 
 
 # --------------------------------------------------------- enemigo de ejemplo
@@ -37,7 +37,7 @@ def example_windup(rng, v):
     """Aviso de 0,6 s (lo que dura el aviso en el código): sube de tono y de brillo y llega arriba al final."""
     d = 0.6
     # Desde un 15 % y no desde cero: finish_sfx recorta el silencio inicial y el aviso quedaría más corto
-    body = tri(glide(E3, E3 * 2, d)) * (0.15 + 0.85 * swell(d, 0.95, 1.5))
+    body = tri(glide(D3, D3 * 2, d)) * (0.15 + 0.85 * swell(d, 0.95, 1.5))
     grit = svf(noise(d, rng), glide(300, 2500, d), 1.0, "lp") * swell(d, 0.95, 2.0) * 0.3  # corte que se abre
     return body + grit
 
@@ -60,7 +60,7 @@ def example_loop(rng, v):
     t = np.arange(n(d)) / n(d)
     rumble = loop_noise(d, rng, 120, 3)
     rumble /= np.max(np.abs(rumble))
-    buf = rumble * (0.7 + 0.3 * np.sin(2 * np.pi * 2 * t)) * 0.6 + loop_sine(E3 / 4, d) * 0.1
+    buf = rumble * (0.7 + 0.3 * np.sin(2 * np.pi * 2 * t)) * 0.6 + loop_sine(D3 / 4, d) * 0.1
     for _ in range(20):
         place(buf, lp(bubble(rng.uniform(150, 600), 0.12, 1.4), 1500), rng.uniform(0, d), 0.1, True)
     return buf * 0.8 + circular_conv(buf, impulse_response(2.0, rng, bright=1500)) * 0.4
@@ -72,14 +72,14 @@ def example_loop(rng, v):
 from musica import (MUSIC, Song, bubble_bed, i_bass, i_bell, make_kit, play_melody, play_pad,  # noqa: E402
                     section_melody)
 
-E_MINOR = {4, 6, 7, 9, 11, 0, 2}
+D_DORIAN = {2, 4, 5, 7, 9, 11, 0}  # re dórico: re menor con si natural
 
 
 def example_material():
     """Progresión y melodía compartidas por las dos capas (así se funden sin chocar)."""
     rng = np.random.default_rng(201)
-    prog = ["Dm"] * 8  # cambiar por acordes de CHORDS (añadir los que falten) en la tonalidad del piso
-    mel = section_melody(rng, prog, 8, 4, 64, 81, E_MINOR)
+    prog = ["Dm"] * 8  # cambiar por acordes de CHORDS (añadir los que falten) en re, con el modo del piso
+    mel = section_melody(rng, prog, 8, 4, 62, 81, D_DORIAN)
     return prog, mel
 
 

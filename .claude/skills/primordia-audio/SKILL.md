@@ -10,7 +10,7 @@ reverberación con numpy y scipy, con semilla fija, para que volver a ejecutar d
 carpeta, `docs/multimedia-temp/audio/`, porque el menú de importación lee de ahí un único `sonidos.json`.
 
 Referencias (leer la que toque, no todas):
-- `references/pisos.md`: identidad sonora de cada piso (tonalidad, tempo, instrumentos, paleta por familia).
+- `references/pisos.md`: identidad sonora de cada piso (modo, tempo, instrumentos, paleta por familia).
   **Leer la sección del piso en el que se trabaja.**
 - `references/tecnica.md`: recetas de síntesis, bucles, música, sonoridad y la lista de comprobación.
 - `references/plantilla_piso.py`: punto de partida de los módulos de un piso nuevo.
@@ -46,8 +46,9 @@ módulos de los pisos y leer las tablas de todos los `PROMPT*.md`.
 - **Paleta por familia**, siempre: jugador en tonos medios y limpios; enemigos más graves, viscosos y algo
   disonantes; jefes enormes con cuerpo; veneno y hongos con siseos y polvo; interfaz con blips de burbuja.
   Nada de metal, pólvora ni armas de fuego: todo es biología.
-- **Tonalidad del piso** (ver `pisos.md`): todo lo melódico de un piso (música, jingles, avisos con nota) en su
-  tonalidad. La interfaz es común a todo el juego y sigue en re menor.
+- **Tonalidad común a todo el juego: re** (re menor / re dórico), decidida en el encargo del piso 1 para que
+  avisos, jingles, interfaz y música nunca choquen. Cada piso, franja o jefe cambia el **color con el modo**
+  (dórico, eólico, frigio; la tienda en su relativo fa mayor), no la tónica (ver `pisos.md`).
 - **Tiempos del código:** un aviso (windup) dura lo mismo que el aviso del juego y llega a su punto más alto justo
   cuando ocurre la acción; las escenas y cinemáticas duran exactamente lo que dura la escena en el código.
 - **Capas sincronizadas** (exploración y combate de un piso): mismo tempo, tonalidad, armonía y duración exacta en
@@ -61,7 +62,7 @@ módulos de los pisos y leer las tablas de todos los `PROMPT*.md`.
 
 1. **Encargo.** Reunir qué tiene que sonar: memoria del módulo, GDD, eventos del código (`event`, `Changed`,
    `Started`…) y sonidos pendientes apuntados en otros módulos. Leer la sección del piso en `pisos.md`. Si falta la
-   identidad sonora del piso (tonalidad, tempo, instrumentos, ambiente), **proponerla y preguntar** antes de
+   identidad sonora del piso (modo, tempo, instrumentos, ambiente), **proponerla y preguntar** antes de
    sintetizar. Escribir las tablas en `PROMPT_pisoN.md` (o añadir filas) y enseñarlas: **el usuario aprueba la
    lista** antes de generar nada.
 2. **Generadores.** Un generador por sonido con `@sfx`, o una función por pista en `MUSIC`, con parámetros por

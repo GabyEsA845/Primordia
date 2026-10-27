@@ -1,6 +1,6 @@
 # Identidad sonora por piso
 
-Lo común a todos los pisos está en `SKILL.md`. Aquí va lo propio de cada uno: tonalidad, tempos, instrumentos,
+Lo común a todos los pisos está en `SKILL.md`. Aquí va lo propio de cada uno: modo, tempos, instrumentos,
 ambiente y paleta de sus criaturas. Al cerrar el audio de un piso nuevo, añadir su sección (la misma estructura).
 La idea general: **cada piso suena más grande y más hondo que el anterior**, igual que las criaturas crecen
 (célula → océano → pantano…), pero con la misma familia de timbres chiptune orgánicos.
@@ -10,8 +10,9 @@ La idea general: **cada piso suena más grande y más hondo que el anterior**, i
 - **Interfaz** (`SFX_UI_*`): blips de burbuja agudos y secos en **re menor**; suenan también en pausa. No cambian
   de un piso a otro.
 - **Jugador base** (`SFX_Player_*`): tonos medios y limpios, "verdes": burbujas, chasquidos, pops.
-- Menú, tienda, victoria, derrota y fragmentos de linaje/jefe: los del piso 1 valen para todo el juego mientras no
-  se pida otra cosa.
+- **Tienda:** `Music_Shop` es la misma en todas las tiendas del juego (decidido por el usuario el 2026-10-27).
+- Menú, victoria, derrota y fragmentos de linaje/jefe: los del piso 1 valen para todo el juego mientras no se pida
+  otra cosa.
 - Volúmenes de referencia (`vol`): frecuentes 0,25-0,4; normales 0,5-0,6; daño al jugador y muertes 0,9; ambientes
   0,25-0,3; música 0,6-0,7.
 
@@ -38,8 +39,8 @@ Lo que ya está decidido o hecho:
   la célula): el mundo suena más grande.
 - **Ambiente ya hecho:** `Amb_Floor2_Loop` (en `efectos.py`, se oye junto a la fosa de la sala de paso y en todo el
   piso): mar abierto, rumor muy grave con oleaje lento (3 vaivenes por bucle de 24 s), corrientes lejanas y un fondo
-  que respira sobre **mi** (41,2 / 61,8 / 82,6 Hz: mi y si graves). Si la música va en otra tonalidad, comprobar
-  que el zumbido no choque.
+  que respira sobre **mi** (41,2 / 61,8 / 82,6 Hz: mi y si graves). Mi y si natural caben en re dórico; en un
+  tramo en re frigio (mi bemol) comprobar que el zumbido no choque.
 - **Puertas:** losas de roca que chocan con polvo y burbujas al cerrar; al abrir, el sello se enciende y se retiran
   (sustituyen a la membrana del piso 1).
 - **Enemigos:** trilobite (embiste tras aviso de 0,6 s, queda panza arriba), medusa azul (anillo de 8 cada 3 s),
@@ -48,9 +49,15 @@ Lo que ya está decidido o hecho:
 - **Jefes:** Anomalocaris (sala oscura con plantas luminosas, zarpazos con aviso, escena de solo sus ojos, fase
   frenética) y Euriptérido (cueva que se derrumba, muda, barrido de cola, último aliento con bullet hell).
 
-Por decidir antes de sintetizar (preguntar al usuario):
-- Tonalidad y modo del piso (¿mi menor/frigio, a juego con el ambiente?), tempos y compás.
-- ¿Música distinta por franja o una sola con variación? ¿Capas de exploración y combate como en el piso 1?
-- Instrumentos que lo distingan del piso 1 (más graves, ecos largos, cantos de cetáceo sintetizados, percusión de
-  conchas y roca…).
+Decidido con el usuario (2026-10-27):
+- Tonalidad en re, como todo el juego.
+- **Música distinta por franja** (Someras, Arrecife, Abismo), cada una con **capas de exploración y combate**
+  sincronizadas como en el piso 1.
+- **Música nueva para la sala de cambio** (el laboratorio de Darwin con la cápsula), como se hizo con la tienda.
+
+Por decidir antes de sintetizar:
+- Instrumentos, modo y tempo de cada franja: propuesta en `docs/multimedia-temp/audio/muestrario_piso2.html`
+  (generado por `muestrario_piso2.py` con `instrumentos_piso2.py`): marimba de conchas, canto de las profundidades,
+  pads que ondulan, armónica de cristal, percusión de mar y eco largo; Someras re dórico 100, Arrecife re eólico 108,
+  Abismo re frigio 80, laboratorio re menor 6/8. Pendiente de que el usuario lo escuche.
 - Una pista por jefe y qué fragmentos nuevos hacen falta (escenas, presentaciones).

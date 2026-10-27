@@ -9,8 +9,9 @@ namespace Primordia.Editor
 {
     /// <summary>
     /// Euriptérido (docs/multimedia-temp/floor2-bosses, generado con generar_euripterido.py): sus animaciones con los ritmos
-    /// del README, la púa venenosa, sus datos (300 de vida; se reconfiguran siempre) y su prefab, que se rehace cada vez
-    /// (conserva el GUID). Lo usa <see cref="EurypteridBossSetup"/>.
+    /// del README, la púa venenosa, la muda vacía que deja (cobertura que se rompe a golpes), el barrido de cola, sus datos
+    /// (300 de vida; se reconfiguran siempre) y su prefab, que se rehace cada vez (conserva el GUID). Lo usa
+    /// <see cref="EurypteridBossSetup"/>.
     /// </summary>
     public static partial class ArtSetup
     {
@@ -51,6 +52,11 @@ namespace Primordia.Editor
             Directory.CreateDirectory(effects);
             var spine = CreateEurypteridSpine(ImportLooseSheet($"{Floor2BossesSourceFolder}/Effects/Proj_EurypteridSpine.png",
                 $"{effects}/Proj_EurypteridSpine.png", 16));
+            var exuvia = CreateEurypteridExuvia(ImportLooseSheet($"{Floor2BossesSourceFolder}/Eurypterid/Eurypterid_Exuvia.png",
+                $"{effects}/Eurypterid_Exuvia.png", 128));
+            // La media luna del barrido, centrada en el jefe (128×128): gira con él.
+            var tailSweep = ImportLooseSheet($"{Floor2BossesSourceFolder}/Effects/Fx_Eurypterid_TailSweep.png",
+                $"{effects}/Fx_Eurypterid_TailSweep.png", 128);
 
             // 300 de vida; anda (no nada) y no hace daño por contacto: solo las pinzas y las púas.
             var data = Floor2EnemyData("Enemy_EurypteridBoss", d =>
@@ -89,8 +95,38 @@ namespace Primordia.Editor
 
                 var boss = root.AddComponent<EurypteridBoss>();
                 boss.Configure(body.transform, animator, renderer, spine);
+                boss.ConfigurePhases(exuvia, tailSweep);
                 var prefab = PrefabUtility.SaveAsPrefabAsset(root, EurypteridPrefabPath);
                 return prefab.GetComponent<Enemy>();
+            }
+            finally
+            {
+                Object.DestroyImmediate(root);
+            }
+        }
+
+        /// <summary>
+        /// Muda vacía: el mismo dibujo y la misma colisión que el cuerpo, sólida en la capa Default (para a los dos bandos) y
+        /// con 15 golpes de aguante.
+        /// </summary>
+        static EurypteridExuvia CreateEurypteridExuvia(Sprite[] frames)
+        {
+            var root = new GameObject("Exuvia_Eurypterid");
+            try
+            {
+                var renderer = root.AddComponent<SpriteRenderer>();
+                renderer.sprite = frames.Length > 0 ? frames[0] : null;
+                // En el suelo: por debajo de los personajes, por encima de las rocas.
+                renderer.sortingOrder = -4;
+                var collider = root.AddComponent<CapsuleCollider2D>();
+                collider.direction = CapsuleDirection2D.Horizontal;
+                collider.size = EurypteridColliderSize;
+                collider.offset = EurypteridColliderOffset;
+                var health = root.AddComponent<Health>();
+                SetFields(health, ("maxHealth", 15));
+                root.AddComponent<EurypteridExuvia>().Configure(renderer, 15);
+                return PrefabUtility.SaveAsPrefabAsset(root, $"{EnemyPrefabsFolder}/Exuvia_Eurypterid.prefab")
+                    .GetComponent<EurypteridExuvia>();
             }
             finally
             {

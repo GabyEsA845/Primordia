@@ -166,7 +166,7 @@ GameObject:
   - component: {fileID: 3816757827221336522}
   - component: {fileID: 3969347602998324877}
   - component: {fileID: 4681114822234109588}
-  - component: {fileID: 2167963272795967111}
+  - component: {fileID: 6918789332141132995}
   m_Layer: 7
   m_Name: Boss_Eurypterid
   m_TagString: Untagged
@@ -258,6 +258,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4695ac612397394680d0abd7e451ea1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Primordia::Primordia.Enemies.EurypteridBoss
+  moltTime: 3
+  moltAdvance: 1
+  exuviaPrefab: {fileID: 8836727043843884637, guid: 67029ac27df9fd541b7a0006943d62e7, type: 3}
+  skipText: '[E] Saltar'
+  softSpeedFactor: 2
+  softTurnRate: 150
+  softDamageFactor: 1.25
+  softPincerWarnTime: 0.45
+  doublePincerHits:
+  - 0.07
+  - 0.21
+  tailReach: 3.5
+  tailSideAngle: 70
+  tailWarnTime: 0.6
+  tailHitDelay: 0.1
+  tailSweepTime: 0.55
+  tailDamage: 2
+  tailRadius: 3.2
+  tailCooldown: 2.5
+  tailSweepFrames:
+  - {fileID: -5329992817373934568, guid: 2d221f42b991ebe4a90d2403fcd644f3, type: 3}
+  - {fileID: 1979858373486330039, guid: 2d221f42b991ebe4a90d2403fcd644f3, type: 3}
+  - {fileID: -6906061598452139479, guid: 2d221f42b991ebe4a90d2403fcd644f3, type: 3}
+  - {fileID: 3374512339380223200, guid: 2d221f42b991ebe4a90d2403fcd644f3, type: 3}
+  - {fileID: 1219300303705895217, guid: 2d221f42b991ebe4a90d2403fcd644f3, type: 3}
+  trailTime: 2
   displayName: "Euript\xE9rido"
   body: {fileID: 2923254662453137392}
   animator: {fileID: 6400515377100836791}
@@ -288,7 +314,7 @@ MonoBehaviour:
   headOffset: 2.3
   bodyRadius: 0.9
   pitMargin: 1.2
---- !u!114 &2167963272795967111
+--- !u!114 &6918789332141132995
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

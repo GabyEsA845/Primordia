@@ -7,7 +7,9 @@ namespace Primordia.Core
     /// <summary>
     /// Temblor de pantalla para todo el juego: golpes que se apagan solos (<see cref="Pulse"/>) y temblores continuos con
     /// dueño (<see cref="SetRumble"/>, p. ej. el derrumbe de la cueva del Euriptérido). Mueve la cámara principal a píxeles
-    /// enteros solo mientras se dibuja (Cinemachine no lo nota) y nunca en pausa. El jugador elige en la pausa cuánto:
+    /// enteros solo mientras se dibuja el cuadro (Cinemachine no lo nota) y nunca en pausa. Se mueve al empezar el dibujado
+    /// del cuadro, antes que cada cámara: la Pixel Perfect Camera de URP fija su matriz de vista al empezar a dibujar la
+    /// cámara, con la posición que tenga entonces. El jugador elige en la pausa cuánto:
     /// normal, suave (la mitad y más lento) o apagado; se guarda en PlayerPrefs.
     /// </summary>
     public static class ScreenShake
@@ -39,8 +41,8 @@ namespace Primordia.Core
             shaken = null;
             if (hooked)
             {
-                RenderPipelineManager.beginCameraRendering -= OnBeginCamera;
-                RenderPipelineManager.endCameraRendering -= OnEndCamera;
+                RenderPipelineManager.beginContextRendering -= OnBeginFrame;
+                RenderPipelineManager.endContextRendering -= OnEndFrame;
                 hooked = false;
             }
         }
@@ -143,29 +145,46 @@ namespace Primordia.Core
         {
             if (hooked)
                 return;
-            RenderPipelineManager.beginCameraRendering += OnBeginCamera;
-            RenderPipelineManager.endCameraRendering += OnEndCamera;
+            RenderPipelineManager.beginContextRendering += OnBeginFrame;
+            RenderPipelineManager.endContextRendering += OnEndFrame;
             hooked = true;
         }
 
-        static void OnBeginCamera(ScriptableRenderContext context, Camera camera)
+        static void OnBeginFrame(ScriptableRenderContext context, List<Camera> cameras)
         {
-            if (!Application.isPlaying || shaken != null || !camera.CompareTag("MainCamera"))
+            if (!Application.isPlaying)
+                return;
+            // Si el dibujado anterior no llegó a su final (no se devolvió la posición), se devuelve ahora: si no, el
+            // temblor se quedaría bloqueado para siempre.
+            if (shaken != null)
+            {
+                shaken.transform.position = restore;
+                shaken = null;
+            }
+            Camera main = null;
+            foreach (var camera in cameras)
+            {
+                if (camera != null && camera.CompareTag("MainCamera"))
+                {
+                    main = camera;
+                    break;
+                }
+            }
+            if (main == null)
                 return;
             var shift = Offset;
             if (shift == Vector2.zero)
                 return;
-            shaken = camera;
-            restore = camera.transform.position;
-            camera.transform.position = restore + (Vector3)shift;
+            shaken = main;
+            restore = main.transform.position;
+            main.transform.position = restore + (Vector3)shift;
         }
 
-        static void OnEndCamera(ScriptableRenderContext context, Camera camera)
+        static void OnEndFrame(ScriptableRenderContext context, List<Camera> cameras)
         {
-            if (camera != shaken)
+            if (shaken == null)
                 return;
-            if (camera != null)
-                camera.transform.position = restore;
+            shaken.transform.position = restore;
             shaken = null;
         }
     }

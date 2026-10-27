@@ -11,12 +11,12 @@ namespace Primordia.Enemies
     /// para la mitad del daño que viene de delante, como la del Trilobite. Si el jugador está cerca de la cabeza, abre las
     /// pinzas (aviso) y golpea un cono por delante. Cada pocos segundos, si lo ve, eriza las púas del caparazón y suelta un
     /// abanico de 3 púas venenosas (las paran las rocas). La cueva cruje mientras tanto (<see cref="CaveCollapse"/>).
-    /// La muda (50 %) y la fase blanda llegan después.
+    /// Escena de la muda (50 %) y fase blanda (50–0 %): en EurypteridBoss.Phases.cs.
     /// Visto desde arriba: el cuerpo ("Body") gira hacia donde mira. Es sólido (el jugador no lo atraviesa) pero tocarlo no
     /// hace daño; anda, pero nunca cae en las fosas (las rodea).
     /// </summary>
     [RequireComponent(typeof(Enemy), typeof(Rigidbody2D))]
-    public class EurypteridBoss : MonoBehaviour, IBoss, IPhasedBoss, IFallingRockTarget
+    public partial class EurypteridBoss : MonoBehaviour, IBoss, IPhasedBoss, IFallingRockTarget
     {
         public const string WalkState = "Walk";
         public const string PincerWarnState = "PincerWarn";
@@ -32,6 +32,8 @@ namespace Primordia.Enemies
         {
             /// <summary>100–50 %: acorazado, pinzas y púas.</summary>
             Armored,
+            /// <summary>Al 50 %: escena de la muda (inmune).</summary>
+            Molt,
             /// <summary>50–0 %: blando y furioso (cola y doble pinza).</summary>
             Soft
         }
@@ -45,7 +47,7 @@ namespace Primordia.Enemies
             Walk,
             /// <summary>Aviso de las pinzas: las abre y se echa atrás.</summary>
             PincerWarn,
-            /// <summary>Cierra las pinzas: golpea un cono por delante.</summary>
+            /// <summary>Cierra las pinzas (en la fase blanda, dos golpes seguidos).</summary>
             PincerStrike,
             /// <summary>Eriza y carga de veneno las púas del caparazón.</summary>
             SpineWarn,
@@ -53,6 +55,12 @@ namespace Primordia.Enemies
             SpineShoot,
             /// <summary>Aturdido (le cayó una piedra del techo).</summary>
             Stunned,
+            /// <summary>Escena de la muda.</summary>
+            Molt,
+            /// <summary>Fase blanda: lleva la cola a un lado y la punta se enciende en verde.</summary>
+            TailWarn,
+            /// <summary>Fase blanda: barrido de 180° por detrás con estela venenosa.</summary>
+            TailSweep,
             Dead
         }
 
@@ -117,7 +125,12 @@ namespace Primordia.Enemies
 
         public string DisplayName => displayName;
         public Health Health { get; private set; }
-        public BossBarStyle BarStyle => CurrentStage == Stage.Soft ? BossBarStyle.Enraged : BossBarStyle.Normal;
+        public BossBarStyle BarStyle => CurrentStage switch
+        {
+            Stage.Molt => BossBarStyle.Immune,
+            Stage.Soft => BossBarStyle.Enraged,
+            _ => BossBarStyle.Normal
+        };
         public Stage CurrentStage { get; private set; } = Stage.Armored;
         public Mode CurrentMode { get; private set; } = Mode.Idle;
         public Vector2 ArenaCenter => arenaCenter != null ? (Vector2)arenaCenter.position : home;
@@ -150,7 +163,7 @@ namespace Primordia.Enemies
         float stunUntil;
         float hurtUntil;
         float flashUntil;
-        bool struck;
+        int strikes;
         bool rockHit;
         float[] phaseThresholds;
         readonly RaycastHit2D[] castHits = new RaycastHit2D[6];
@@ -230,6 +243,8 @@ namespace Primordia.Enemies
             Health.Damaged -= OnDamaged;
             Health.RemoveDamageModifier(ModifyDamage);
             enemy.Died -= OnDied;
+            // Si se va a mitad de la muda (otra escena, reinicio), todo vuelve a la normalidad.
+            EndMoltScene();
         }
 
         void FindPlayer()
@@ -243,9 +258,13 @@ namespace Primordia.Enemies
 
         // ---------- Comportamiento ----------
 
+        float WalkSpeed => CurrentStage == Stage.Soft ? walkSpeed * softSpeedFactor : walkSpeed;
+        float TurnRate => CurrentStage == Stage.Soft ? softTurnRate : turnRate;
+        float PincerWarnTime => CurrentStage == Stage.Soft ? softPincerWarnTime : pincerWarnTime;
+
         void FixedUpdate()
         {
-            if (CurrentMode == Mode.Dead || !CanAct())
+            if (CurrentMode is Mode.Dead or Mode.Molt || !CanAct())
                 return;
             FindPlayer();
             float dt = Time.fixedDeltaTime;
@@ -258,34 +277,43 @@ namespace Primordia.Enemies
                     {
                         // Empieza la pelea: la cueva cruje durante la fase acorazada.
                         if (cave != null && cave.Current == CaveCollapse.Mode.Calm)
-                            cave.SetMode(CaveCollapse.Mode.Creaking);
+                            cave.SetMode(CurrentStage == Stage.Soft ? CaveCollapse.Mode.Collapse : CaveCollapse.Mode.Creaking);
                         SetMode(Mode.Walk);
                     }
                     break;
 
                 case Mode.Walk:
-                    Steer(ToPlayer(), turnRate, dt);
+                    Steer(ToPlayer(), TurnRate, dt);
                     if (player != null && Vector2.Distance(Head, player.position) > stopDistance)
-                        Move(Heading * walkSpeed * dt);
-                    if (player != null && Time.time >= nextPincer && InPincerReach(player.position))
+                        Move(Heading * WalkSpeed * dt);
+                    if (player == null)
+                        break;
+                    if (Time.time >= nextPincer && InPincerReach(player.position))
                         SetMode(Mode.PincerWarn);
-                    else if (player != null && Time.time >= nextSpines && Sees(player.position))
+                    else if (CurrentStage == Stage.Soft && Time.time >= nextTail && InTailReach(player.position))
+                        SetMode(Mode.TailWarn);
+                    else if (CurrentStage == Stage.Armored && Time.time >= nextSpines && Sees(player.position))
                         SetMode(Mode.SpineWarn);
                     break;
 
                 case Mode.PincerWarn:
                     // Al principio sigue apuntando; luego queda fijo para que se pueda esquivar.
                     if (t < pincerAimTime)
-                        Steer(ToPlayer(), turnRate, dt);
-                    Move(-Heading * (recoil / Mathf.Max(0.01f, pincerWarnTime)) * dt);
-                    if (t >= pincerWarnTime)
+                        Steer(ToPlayer(), TurnRate, dt);
+                    Move(-Heading * (recoil / Mathf.Max(0.01f, PincerWarnTime)) * dt);
+                    if (t >= PincerWarnTime)
                         SetMode(Mode.PincerStrike);
                     break;
 
                 case Mode.PincerStrike:
-                    if (!struck && t >= pincerHitDelay)
+                {
+                    // Acorazado, un golpe; blando, dos seguidos (una pinza y luego la otra).
+                    var hits = CurrentStage == Stage.Soft ? doublePincerHits : null;
+                    int total = hits != null ? hits.Length : 1;
+                    float nextHit = hits != null ? hits[Mathf.Min(strikes, total - 1)] : pincerHitDelay;
+                    if (strikes < total && t >= nextHit)
                     {
-                        struck = true;
+                        strikes++;
                         TryPincer();
                     }
                     if (t >= PincerStrikeLength + pincerRecover)
@@ -294,6 +322,7 @@ namespace Primordia.Enemies
                         SetMode(Mode.Walk);
                     }
                     break;
+                }
 
                 case Mode.SpineWarn:
                     if (t >= spineWarnTime)
@@ -315,36 +344,59 @@ namespace Primordia.Enemies
                     if (Time.time >= stunUntil)
                         SetMode(Mode.Walk);
                     break;
+
+                default:
+                    UpdateSoftMode(t);
+                    break;
             }
         }
 
-        float PincerStrikeLength => states != null && states.Has(PincerStrikeState)
-            ? Mathf.Max(pincerHitDelay, states.Length(PincerStrikeState)) : 0.24f;
+        float PincerStrikeLength
+        {
+            get
+            {
+                string state = StateFor(Mode.PincerStrike);
+                float fallback = CurrentStage == Stage.Soft ? 0.42f : 0.24f;
+                return states != null && states.Has(state) ? Mathf.Max(pincerHitDelay, states.Length(state)) : fallback;
+            }
+        }
 
         void SetMode(Mode mode)
         {
             CurrentMode = mode;
             actionStart = Time.time;
             if (mode == Mode.PincerStrike)
-                struck = false;
+                strikes = 0;
             // El aviso y los ataques se ven siempre: un golpe recibido no los tapa.
-            bool restart = mode is Mode.PincerWarn or Mode.PincerStrike or Mode.SpineWarn or Mode.SpineShoot;
+            bool restart = mode is Mode.PincerWarn or Mode.PincerStrike or Mode.SpineWarn or Mode.SpineShoot
+                or Mode.TailWarn or Mode.TailSweep or Mode.Molt;
             if (restart)
                 hurtUntil = 0f;
             PlayState(StateFor(mode), restart);
+            if (animator != null)
+                animator.speed = 1f;
+            BeginSoftMode(mode);
             ModeChanged?.Invoke(mode);
         }
 
-        static string StateFor(Mode mode) => mode switch
+        string StateFor(Mode mode)
         {
-            Mode.PincerWarn => PincerWarnState,
-            Mode.PincerStrike => PincerStrikeState,
-            Mode.SpineWarn => SpineWarnState,
-            Mode.SpineShoot => SpineShootState,
-            Mode.Stunned => HurtState,
-            Mode.Dead => DeathState,
-            _ => WalkState
-        };
+            bool soft = CurrentStage == Stage.Soft;
+            return mode switch
+            {
+                // Blando no hay aviso propio: el primer cuadro de la doble pinza (ya abiertas), quieto.
+                Mode.PincerWarn => soft ? DoublePincerState : PincerWarnState,
+                Mode.PincerStrike => soft ? DoublePincerState : PincerStrikeState,
+                Mode.SpineWarn => SpineWarnState,
+                Mode.SpineShoot => SpineShootState,
+                Mode.Stunned => soft ? HurtSoftState : HurtState,
+                Mode.Molt => MoltState,
+                Mode.TailWarn => TailWarnState,
+                Mode.TailSweep => TailSweepState,
+                Mode.Dead => DeathState,
+                _ => soft ? WalkSoftState : WalkState
+            };
+        }
 
         void PlayState(string state, bool restart = false)
         {
@@ -372,20 +424,28 @@ namespace Primordia.Enemies
             if (distance <= 0f)
                 return 0f;
             var direction = step / distance;
-            var filter = new ContactFilter2D { useTriggers = false };
-            filter.SetLayerMask(LayerMask.GetMask("Default"));
-            int count = Physics2D.CircleCast(rb.position, bodyRadius, direction, filter, castHits, distance + WallSkin);
-            for (int i = 0; i < count; i++)
-            {
-                if (castHits[i].collider.attachedRigidbody == rb)
-                    continue;
-                distance = Mathf.Min(distance, Mathf.Max(0f, castHits[i].distance - WallSkin));
-            }
+            distance = Clearance(direction, distance);
             var target = rb.position + direction * distance;
             // Los jefes no caen en las fosas: se para antes del borde (también delante, donde va la cabeza).
             if (!Pits.IsSafe(target, pitMargin) || !Pits.IsSafe(target + direction * headOffset * 0.6f, 0.3f))
                 return 0f;
             rb.MovePosition(target);
+            return distance;
+        }
+
+        /// <summary>Cuánto puede avanzar en esa dirección (hasta <paramref name="distance"/>) sin meterse en paredes ni rocas.</summary>
+        float Clearance(Vector2 direction, float distance)
+        {
+            var filter = new ContactFilter2D { useTriggers = false };
+            filter.SetLayerMask(LayerMask.GetMask("Default"));
+            int count = Physics2D.CircleCast(rb.position, bodyRadius, direction, filter, castHits, distance + WallSkin);
+            for (int i = 0; i < count; i++)
+            {
+                // Lo que ya toca al empezar no lo frena: así sale de encima de su propia muda vacía.
+                if (castHits[i].collider.attachedRigidbody == rb || castHits[i].distance <= 0f)
+                    continue;
+                distance = Mathf.Min(distance, Mathf.Max(0f, castHits[i].distance - WallSkin));
+            }
             return distance;
         }
 
@@ -465,20 +525,31 @@ namespace Primordia.Enemies
 
         int ModifyDamage(Health target, int amount)
         {
-            if (target != Health || rockHit || player == null)
+            if (target != Health)
                 return amount;
-            return IsArmoredAgainst(player.position) ? Health.ScaleDamage(amount, armorFactor) : amount;
+            switch (CurrentStage)
+            {
+                case Stage.Armored:
+                    if (!rockHit && player != null && IsArmoredAgainst(player.position))
+                        amount = Health.ScaleDamage(amount, armorFactor);
+                    // Antes de la muda no baja del 50 %: la escena siempre se ve.
+                    return Mathf.Min(amount, Mathf.Max(0, Health.Current - MoltHealth));
+                case Stage.Molt:
+                    return 0;
+                default:
+                    return Health.ScaleDamage(amount, softDamageFactor);
+            }
         }
 
         /// <summary>Una piedra del techo le cae encima: daño entero (la coraza no la para) y aturdido.</summary>
         public void HitByFallingRock(int damage, float stunDuration)
         {
-            if (CurrentMode == Mode.Dead)
+            if (CurrentMode is Mode.Dead or Mode.Molt)
                 return;
             rockHit = true;
             Health.TakeDamage(damage);
             rockHit = false;
-            if (Health.IsDead || CurrentMode is Mode.Idle)
+            if (Health.IsDead || CurrentMode is Mode.Idle || CurrentStage == Stage.Molt)
                 return;
             stunUntil = Mathf.Max(stunUntil, Time.time + stunDuration);
             SetMode(Mode.Stunned);
@@ -486,10 +557,11 @@ namespace Primordia.Enemies
 
         void OnDamaged(int amount)
         {
-            if (CurrentMode is Mode.Walk && states != null && states.Has(HurtState))
+            string hurt = CurrentStage == Stage.Soft ? HurtSoftState : HurtState;
+            if (CurrentMode is Mode.Walk && states != null && states.Has(hurt))
             {
-                states.Play(HurtState, restart: true);
-                hurtUntil = Time.time + states.Length(HurtState);
+                states.Play(hurt, restart: true);
+                hurtUntil = Time.time + states.Length(hurt);
             }
             else
             {
@@ -506,12 +578,17 @@ namespace Primordia.Enemies
             foreach (var collider in GetComponentsInChildren<Collider2D>())
                 collider.enabled = false;
             hurtUntil = 0f;
+            if (animator != null)
+                animator.speed = 1f;
             PlayState(DeathState, restart: true);
         }
 
         void Update()
         {
-            if (CurrentMode == Mode.Dead || states == null)
+            if (CurrentMode == Mode.Dead)
+                return;
+            UpdateStage();
+            if (states == null)
                 return;
             if (hurtUntil > 0f && Time.time >= hurtUntil)
             {
@@ -526,7 +603,7 @@ namespace Primordia.Enemies
             if (body != null)
                 body.localRotation = Quaternion.Euler(0f, 0f, angle);
             if (sprite != null)
-                sprite.color = Time.time < flashUntil ? new Color(1f, 0.45f, 0.45f) : Color.white;
+                sprite.color = Time.time < flashUntil || WarnFlash ? new Color(1f, 0.45f, 0.45f) : Color.white;
         }
 
         bool CanAct() =>

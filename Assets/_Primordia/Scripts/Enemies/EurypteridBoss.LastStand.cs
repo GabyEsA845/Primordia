@@ -61,12 +61,12 @@ namespace Primordia.Enemies
         [SerializeField, Min(0f)] float zoomMargin = 1f;
         [SerializeField] BarrageSegment[] barrage =
         {
-            new() { duration = 8f, ringInterval = 1.2f, ringCount = 22, ringGap = 4, ringGapStep = 33f, spiralInterval = 0.2f,
-                    fanCount = 5, speed = 4f },
-            new() { duration = 8f, spiralArms = 2, spiralInterval = 0.2f, spiralStep = 11f, ringCount = 1, fanCount = 5,
-                    speed = 4.5f },
-            new() { duration = 9f, ringInterval = 2.2f, ringCount = 20, ringGap = 5, ringGapStep = -47f, spiralInterval = 0.2f,
-                    fanInterval = 1.4f, fanCount = 5, fanSpread = 40f, rockInterval = 1.6f, speed = 5f },
+            new() { duration = 8f, ringInterval = 0.95f, ringCount = 26, ringGap = 4, ringGapStep = 37f, spiralInterval = 0.2f,
+                    fanCount = 5, speed = 4.6f },
+            new() { duration = 8f, spiralArms = 3, spiralInterval = 0.17f, spiralStep = 11f, ringCount = 1, fanInterval = 2.5f,
+                    fanCount = 3, fanSpread = 24f, speed = 5f },
+            new() { duration = 9f, ringInterval = 1.7f, ringCount = 24, ringGap = 4, ringGapStep = -47f, spiralInterval = 0.2f,
+                    fanInterval = 1.1f, fanCount = 7, fanSpread = 50f, rockInterval = 1.2f, speed = 5.5f },
         };
 
         Coroutine lastStand;

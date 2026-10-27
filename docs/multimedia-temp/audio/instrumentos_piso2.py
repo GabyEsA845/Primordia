@@ -52,6 +52,15 @@ def i_glass(f, d):
     return s * adsr(dd, 0.25, 0.3, 0.8, 0.6)
 
 
+def i_tremolo(f, d, rate=11.0, bright=1500, depth=0.45):
+    """Cuerdas que tiemblan (para los jefes): sierras desafinadas con trémolo rápido."""
+    dd = d + 0.3
+    t = tt(dd)
+    s = (saw(f, dd) + saw(f * 1.004, dd) + saw(f * 0.997, dd)) / 3
+    s = lp(s, bright) * (1 - depth * (0.5 + 0.5 * np.sin(2 * np.pi * rate * t)))
+    return s * adsr(dd, 0.05, 0.1, 0.9, 0.3)
+
+
 def song_line(notes, beat, glide_s=0.22, total=None, low=1.0):
     """Canto de las profundidades: una sola voz continua que se desliza de nota en nota (portamento), con vibrato
     lento que crece en cada nota y algo de aliento. notes = [(pulso, duración en pulsos, midi)]."""

@@ -176,7 +176,7 @@ def check_music(path, info, loops):
             look(name, f"no termina en silencio (los últimos 50 ms a {db(rms(end)):.0f} dBFS)")
 
 
-def check_music_set(info, music_bytes):
+def check_music_set(info, music_bytes, music_names):
     layers = {}
     for name, i in info.items():
         m = re.match(r"^Music_(.+)_(Explore|Combat)$", name)
@@ -191,7 +191,7 @@ def check_music_set(info, music_bytes):
         for n, v in loops.items():
             if abs(v - med) > 3:
                 look(n, f"RMS {v:.1f} dBFS, {v - med:+.1f} dB respecto a la mediana de los bucles ({med:.1f})")
-    floors = {m.group(1) for n in info for m in [re.match(r"^Music_Floor(\d+)_", n)] if m}
+    floors = {m.group(1) for n in music_names for m in [re.match(r"^Music_Floor(\d+)_", n)] if m}
     limit = 12 * max(1, len(floors))
     if music_bytes / 1e6 > limit:
         look("Music/", f"{music_bytes / 1e6:.1f} MB en total (objetivo ≤ 12 MB por piso: {limit} MB)")
@@ -301,7 +301,7 @@ def main(argv):
     for p in music_files:
         if pick(p):
             check_music(p, info, loops)
-    check_music_set(info, sum(p.stat().st_size for p in music_files))
+    check_music_set(info, sum(p.stat().st_size for p in music_files), [p.stem for p in music_files])
 
     if table:
         print(f"{'archivo':48} {'dur':>6} {'pico':>6} {'RMS':>6}")

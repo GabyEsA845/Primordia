@@ -1,4 +1,4 @@
-"""Genera toda la música y los efectos de sonido de Primordia (piso 1) según PROMPT.md.
+"""Genera toda la música y los efectos de sonido de Primordia según PROMPT.md (piso 1) y PROMPT_piso2.md.
 
 Uso: python generar_audio.py [nombre ...]
 Sin argumentos genera todo; con nombres (p. ej. Player_Shot Music_Shop) solo esos.
@@ -19,6 +19,8 @@ import numpy as np
 
 from efectos import SFX
 from musica import MUSIC
+import efectos_piso2  # noqa: F401,E402  (registran sus sonidos en SFX y MUSIC al importarse)
+import musica_piso2  # noqa: F401,E402
 from sintesis import SR, finish_sfx, write_wav
 
 ROOT = Path(__file__).resolve().parent
@@ -39,9 +41,10 @@ RHYTHM = {
 # ============================================================ lectura del prompt
 
 def read_prompt():
-    """Filas de las tablas de PROMPT.md: nombre → (categoría, variantes, duración, cuándo, descripción)."""
+    """Filas de las tablas de los encargos (PROMPT*.md): nombre → (categoría, variantes, duración, cuándo, descripción)."""
     rows, category = {}, ""
-    for line in (ROOT / "PROMPT.md").read_text(encoding="utf-8").splitlines():
+    lines = [l for f in sorted(ROOT.glob("PROMPT*.md")) for l in f.read_text(encoding="utf-8").splitlines()]
+    for line in lines:
         if line.startswith("## ") or line.startswith("### "):
             category = line.lstrip("# ").strip()
         m = re.match(r"^\| `([A-Za-z0-9_]+)(?:\.(?:wav|ogg))?` \|(.*)\|\s*$", line)

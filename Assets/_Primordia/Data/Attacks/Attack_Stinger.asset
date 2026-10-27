@@ -28,6 +28,21 @@ MonoBehaviour:
   bleedDamagePerSecond: 0
   bleedDuration: 0
   bleedEffect: {fileID: 0}
+  areaPrefab: {fileID: 0}
+  areaRange: 6
+  areaRadius: 1.6
+  areaDuration: 2
+  areaTick: 0.4
+  areaPull: 3
+  tideRadius: 0
+  tideDamage: 4
+  tidePush: 10
+  tideEffect: {fileID: 0}
+  pierce: 0
+  volleyEvery: 0
+  volleyCount: 3
+  volleySpread: 30
+  muzzleEffect: {fileID: 0}
   homingTurnRate: 0
   homingRange: 5
   brakeTime: 0
@@ -43,6 +58,14 @@ MonoBehaviour:
   meleeHitEffect: {fileID: 0}
   meleeLunge: 0
   meleeLungeDuration: 0.1
+  meleePush: 0
+  shatterDuration: 0
+  shatterMultiplier: 1.25
+  shatterMarker: {fileID: 0}
+  meleeFromMuzzle: 0
+  guillotineEvery: 0
+  guillotineRange: 3
+  guillotineEffect: {fileID: 0}
   fireSound: Mouth_Stinger_Shot
   hitSound: 
   lungeSound: 

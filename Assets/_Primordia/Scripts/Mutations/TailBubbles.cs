@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using Primordia.Player;
 using UnityEngine;
 
@@ -61,6 +62,7 @@ namespace Primordia.Mutations
                 var position = center + new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * ringRadius;
                 TailBubble.Spawn(prefab, position, damage, lifetime, push);
             }
+            Sfx.Play(Sounds.TailBubbles);
             Released?.Invoke(center);
         }
     }

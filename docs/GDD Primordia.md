@@ -342,7 +342,7 @@ En el piso 1 casi todo se resolvía disparando a lo que se acercaba. En el piso 
 
   Los **cofres** del piso 2 son almejas gigantes (vieiras) que al abrirse sueltan la biomasa. Las **entradas de oleadas** son grietas del suelo que se abren, brillan en rojo y burbujean al salir los enemigos.
 - **Puertas de losas de roca:** dos losas de la misma piedra que la pared salen de dentro y se juntan; en la costura dentada se completa un sello del color de las vetas de cada franja. Cerrar y abrir son animaciones distintas: al cerrar chocan con polvo y burbujas, y al abrir el sello se enciende y las losas se retiran. El piso 1 conserva la membrana.
-- **Música y sonido:** exploración y combate del océano y una pista por jefe, con el mismo sistema del piso 1; el ambiente podría ganar graves con la profundidad. Se hacen más adelante.
+- **Música y sonido:** una música por franja (Someras re dórico, Arrecife re eólico, Abismo re frigio), cada una con capas de exploración y combate y un fundido cruzado de 3 s al cambiar de franja; el Abismo tiene su propio ambiente, más grave. Música propia para la sala de cambio (común a todos los pisos) y dos pistas por jefe (Anomalocaris: acecho y frenesí; Euriptérido: combate y último aliento de 25 s exactos). Instrumentos: marimba de conchas, canto de las profundidades, armónica de cristal y percusión de mar. Los efectos suenan a quitina, roca y agua grande.
 
 | Enemigo | Papel | Comportamiento | Lo que exige al jugador | Vida | Coste · desde |
 | --- | --- | --- | --- | --- | --- |

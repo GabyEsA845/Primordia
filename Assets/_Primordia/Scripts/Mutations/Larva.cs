@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Primordia.Audio;
 using Primordia.Combat;
 using Primordia.Core;
 using Primordia.Rooms;
@@ -200,6 +201,7 @@ namespace Primordia.Mutations
             biteStart = Time.time;
             var bitten = target;
             bitten.TakeDamage(settings.biteDamage);
+            Sfx.Play(Sounds.BroodSacLarvaBite);
             AnyBit?.Invoke(this, bitten);
             if (settings.splits && bitten.IsDead)
                 Split();

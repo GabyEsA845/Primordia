@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3233010675640187257}
   - component: {fileID: 3620766694307224498}
   - component: {fileID: 3968091727979599373}
+  - component: {fileID: 5979769568523911603}
   m_Layer: 0
   m_Name: Effect_TailPropulsor_Pop
   m_TagString: Untagged
@@ -111,3 +112,17 @@ MonoBehaviour:
   - {fileID: -1361952401, guid: 645fb95d2876f1a4783263c71479e890, type: 3}
   - {fileID: -549179293, guid: 645fb95d2876f1a4783263c71479e890, type: 3}
   frameDuration: 0.06
+--- !u!114 &5979769568523911603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4818738648708906877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10e032ce63bd4d441bb2e32084dfb091, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Primordia::Primordia.Audio.EffectSound
+  sound: Limbs_Tail_BubblePop
+  volume: 1

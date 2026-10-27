@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2033136942757455778}
   - component: {fileID: 6456669466588921286}
   - component: {fileID: 7029194441323477438}
+  - component: {fileID: 6967475826332437845}
   m_Layer: 0
   m_Name: Effect_BroodSac_Split
   m_TagString: Untagged
@@ -111,3 +112,17 @@ MonoBehaviour:
   - {fileID: -2095357561903481695, guid: 24b49d52f8d406546bd16921367b15e8, type: 3}
   - {fileID: 859754559, guid: 24b49d52f8d406546bd16921367b15e8, type: 3}
   frameDuration: 0.06
+--- !u!114 &6967475826332437845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 566128138931470313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10e032ce63bd4d441bb2e32084dfb091, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Primordia::Primordia.Audio.EffectSound
+  sound: Organ_BroodSac_Split
+  volume: 1

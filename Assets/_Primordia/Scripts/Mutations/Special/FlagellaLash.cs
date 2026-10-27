@@ -70,6 +70,7 @@ namespace Primordia.Mutations
                 return;
 
             readyShown = true;
+            Sfx.Play(Sounds.FlagellaReady);
             FrameEffect.Play("FlagellaReady", settings.readyFrames, settings.readyFrameDuration, SortingOrder, transform);
         }
 
@@ -117,6 +118,8 @@ namespace Primordia.Mutations
 
         void Launch(Health target, int damage, AttackData attack, int chain)
         {
+            // El sonido arranca con el latigazo: su chasquido cae cuando entra el daño (strikeDelay, 0,4 s).
+            Sfx.Play(Sounds.FlagellaLash);
             FlagellumStrike.Spawn(target, settings.lashFrames, settings.lashFrameDuration, settings.strikeDelay, SortingOrder,
                 (current, lastPosition) => Strike(current, lastPosition, damage, attack, chain));
         }
@@ -159,7 +162,6 @@ namespace Primordia.Mutations
             {
                 if (!target.TakeDamage(damage))
                     return;
-                Sfx.Play(Sounds.Thorns);
                 if (attack != null)
                     attack.ApplyStatus(target, weapon != null ? weapon.PoisonMultiplier : 1f);
                 // Cuenta como golpe del jugador (curarse al matar, el pánico del Camuflaje...).

@@ -1,4 +1,5 @@
 using System.Collections;
+using Primordia.Audio;
 using UnityEngine;
 
 namespace Primordia.Rooms
@@ -46,6 +47,7 @@ namespace Primordia.Rooms
             if (State != RockState.Standing)
                 return;
             State = RockState.Collapsing;
+            Sfx.Play(Sounds.CaveRockFall);
             if (outline != null)
                 outline.SetActive(false);
             if (collapseFrames.Length == 0 || !isActiveAndEnabled)

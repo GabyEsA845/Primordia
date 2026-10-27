@@ -16,6 +16,8 @@ namespace Primordia.Audio
     {
         const int VoiceCount = 24;
         const float LoopFadeTime = 0.25f;
+        // Lo que tarda en callarse un efecto cortado (Sfx.Stop): sin fundido chasquea.
+        const float StopFadeTime = 0.04f;
 
         public static AudioManager Instance { get; private set; }
 
@@ -33,6 +35,9 @@ namespace Primordia.Audio
         internal string LastSound { get; private set; }
 
         readonly List<AudioSource> voices = new();
+        // Qué sonido lleva cada voz (para cortarlo) y las que se están callando.
+        readonly Dictionary<AudioSource, string> voiceIds = new();
+        readonly Dictionary<AudioSource, float> stopping = new();
         readonly Dictionary<string, float> lastPlayed = new();
         readonly Dictionary<string, int> lastClip = new();
         readonly Dictionary<string, LoopVoice> loops = new();
@@ -185,8 +190,30 @@ namespace Primordia.Audio
             voice.volume = Mathf.Clamp01(sound.volume * volumeScale * GroupVolume(sound.group));
             voice.pitch = pitch * (1f + Random.Range(-sound.pitchJitter, sound.pitchJitter));
             voice.Play();
+            voiceIds[voice] = id;
+            stopping.Remove(voice);
             LastSound = id;
             return true;
+        }
+
+        /// <summary>Corta ese efecto si aún suena (con un fundido muy corto), p. ej. un aviso que acaba antes.</summary>
+        public void StopSound(string id)
+        {
+            foreach (var voice in voices)
+            {
+                if (voice.isPlaying && voiceIds.TryGetValue(voice, out var playing) && playing == id && !stopping.ContainsKey(voice))
+                    stopping[voice] = voice.volume;
+            }
+        }
+
+        public bool IsSoundPlaying(string id)
+        {
+            foreach (var voice in voices)
+            {
+                if (voice.isPlaying && !stopping.ContainsKey(voice) && voiceIds.TryGetValue(voice, out var playing) && playing == id)
+                    return true;
+            }
+            return false;
         }
 
         /// <summary>Variante al azar, sin repetir la última.</summary>
@@ -215,6 +242,7 @@ namespace Primordia.Audio
             var stolen = voices[nextVoice];
             nextVoice = (nextVoice + 1) % voices.Count;
             stolen.Stop();
+            stopping.Remove(stolen);
             return stolen;
         }
 
@@ -268,6 +296,19 @@ namespace Primordia.Audio
                     loop.Source.Stop();
             }
 
+            if (stopping.Count > 0)
+            {
+                foreach (var voice in new List<AudioSource>(stopping.Keys))
+                {
+                    voice.volume = Mathf.MoveTowards(voice.volume, 0f, stopping[voice] * Time.unscaledDeltaTime / StopFadeTime);
+                    if (voice.volume <= 0f || !voice.isPlaying)
+                    {
+                        voice.Stop();
+                        stopping.Remove(voice);
+                    }
+                }
+            }
+
             Music.Update(Time.unscaledDeltaTime);
         }
     }
@@ -282,6 +323,14 @@ namespace Primordia.Audio
             var manager = AudioManager.Instance;
             if (manager != null)
                 manager.PlaySound(id, volume, pitch);
+        }
+
+        /// <summary>Corta ese efecto si aún suena.</summary>
+        public static void Stop(string id)
+        {
+            var manager = AudioManager.Instance;
+            if (manager != null && !string.IsNullOrEmpty(id))
+                manager.StopSound(id);
         }
 
         public static void StartLoop(string id)

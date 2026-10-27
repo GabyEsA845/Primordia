@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Primordia.Audio;
 using Primordia.Core;
 using Primordia.Enemies;
 using UnityEngine;
@@ -41,8 +42,12 @@ namespace Primordia.Rooms
         [SerializeField, Min(0)] int enemyDamage = 8;
         [SerializeField, Min(0f)] float enemyStun = 1f;
 
+        // El golpe de Cave_RockFall llega a los 0,15 s (antes silba la caída): empieza a sonar ese tiempo antes de tocar suelo.
+        const float SoundLead = 0.15f;
+
         float elapsed;
         bool landed;
+        bool sounded;
 
         public float Warning => warning;
         public float Radius => radius;
@@ -92,6 +97,12 @@ namespace Primordia.Rooms
                     rock.sprite = rockFrames[Mathf.FloorToInt(elapsed / 0.08f) % rockFrames.Length];
                 // Acelera al caer.
                 rock.transform.localPosition = Vector3.up * (fallHeight * (1f - t * t));
+            }
+
+            if (!sounded && elapsed >= warning - SoundLead)
+            {
+                sounded = true;
+                Sfx.Play(Sounds.CaveRockFall);
             }
 
             if (elapsed >= warning)

@@ -81,7 +81,7 @@ namespace Primordia.Rooms
 
         IEnumerator Open(GameObject player)
         {
-            Sfx.Play(Sounds.MutationBubbleSpawn);
+            Sfx.Play(big ? Sounds.ClamOpenBig : Sounds.ClamOpen);
             foreach (var frame in open)
             {
                 if (body != null)

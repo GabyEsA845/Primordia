@@ -130,6 +130,14 @@ namespace Primordia.Tests
             yield return new WaitForFixedUpdate();
             yield return new WaitForFixedUpdate();
 
+            // Dónde sale el cuerpo nuevo: al acabar la muda (luego echa a andar enseguida).
+            Vector2? afterMolt = null;
+            boss.ModeChanged += mode =>
+            {
+                if (mode == EurypteridBoss.Mode.Walk && boss.CurrentStage == EurypteridBoss.Stage.Soft && afterMolt == null)
+                    afterMolt = boss.transform.position;
+            };
+
             boss.Health.TakeDamage(400);
             Vector2 before = boss.transform.position;
             Assert.AreEqual(150, boss.Health.Current, "Antes de la muda no baja del 50 %.");
@@ -144,7 +152,8 @@ namespace Primordia.Tests
             Assert.AreEqual(EurypteridBoss.Stage.Soft, boss.CurrentStage);
             Assert.IsNotNull(boss.Exuvia, "Deja la muda vacía.");
             Assert.AreEqual(0f, Vector2.Distance(boss.Exuvia.transform.position, before), 0.01f, "Donde estaba.");
-            Assert.AreEqual(1f, Vector2.Distance(boss.transform.position, before), 0.05f, "Y el cuerpo nuevo sale 1 u hacia delante.");
+            Assert.IsTrue(afterMolt.HasValue);
+            Assert.AreEqual(1f, Vector2.Distance(afterMolt.Value, before), 0.05f, "Y el cuerpo nuevo sale 1 u hacia delante.");
             Assert.AreEqual(CaveCollapse.Mode.Collapse, cave.Current, "La fase blanda trae el derrumbe.");
             cave.SetMode(CaveCollapse.Mode.Calm);
         }

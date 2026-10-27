@@ -1,4 +1,5 @@
 using System.Collections;
+using Primordia.Audio;
 using Primordia.Core;
 using Primordia.Player;
 using Primordia.Rooms;
@@ -139,7 +140,7 @@ namespace Primordia.Enemies
             {
                 SkipCheck(t);
                 var toCenter = center - rb.position;
-                Heading = ((Vector2)Vector3.RotateTowards(Heading, toCenter.normalized, 4f * Time.deltaTime, 0f)).normalized;
+                Heading = Turning.Towards(Heading, toCenter.normalized, 4f * Time.deltaTime);
                 float wobble = 0.6f + 0.4f * Mathf.Sin(t * 9f);
                 var step = Vector2.ClampMagnitude(toCenter, walkSpeed * 0.7f * wobble * Time.deltaTime);
                 var target = rb.position + step.normalized * Clearance(step.normalized, step.magnitude);
@@ -158,6 +159,9 @@ namespace Primordia.Enemies
                 animator.speed = 1f;
 
             // 2. Cae rendido y jadea.
+            Sfx.Stop(Sounds.EurypteridStagger);
+            if (!skipRequested)
+                Sfx.Play(Sounds.EurypteridDowned);
             PlayState(DownedState, restart: true);
             ScreenShake.Pulse(2f, 0.4f);
             yield return Wait(StateLength(DownedState, 0.96f));
@@ -165,6 +169,7 @@ namespace Primordia.Enemies
             yield return Wait(downedTime);
 
             // 3. Se levanta rugiendo: la cueva retumba y la barra se rellena entera.
+            Sfx.Stop(Sounds.EurypteridDowned);
             SetMode(Mode.Rise);
             ScreenShake.Pulse(4f, 1f);
             float rise = StateLength(RiseState, 0.88f);
@@ -242,6 +247,7 @@ namespace Primordia.Enemies
                         nextRing = now + segment.ringInterval;
                         Ring(segment.ringCount, segment.ringGap, ringAngle, segment.speed);
                         ringAngle += segment.ringGapStep;
+                        Sfx.Play(Sounds.EurypteridFuryShot);
                     }
                     if (segment.spiralArms > 0 && now >= nextSpiral)
                     {
@@ -253,6 +259,7 @@ namespace Primordia.Enemies
                             Drop(-spiralAngle + offset + 180f / segment.spiralArms, segment.speed);
                         }
                         spiralAngle += segment.spiralStep;
+                        Sfx.Play(Sounds.EurypteridFuryShot);
                         // Gira sobre sí mismo con el remolino: la cola barre la sala.
                         float facing = spiralAngle * Mathf.Deg2Rad;
                         Heading = new Vector2(Mathf.Cos(facing), Mathf.Sin(facing));
@@ -268,6 +275,7 @@ namespace Primordia.Enemies
                             float spread = segment.fanCount > 1 ? segment.fanSpread / (segment.fanCount - 1) : 0f;
                             Drop(baseAngle + (i - (segment.fanCount - 1) / 2f) * spread, segment.speed * 1.3f);
                         }
+                        Sfx.Play(Sounds.EurypteridFuryShot);
                     }
                     if (segment.rockInterval > 0f && now >= nextRocks && cave != null)
                     {

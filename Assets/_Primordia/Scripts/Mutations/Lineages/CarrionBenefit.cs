@@ -82,7 +82,7 @@ namespace Primordia.Mutations
             spawned.Remove(remains);
             AddStacks(remains.Value);
             OneShotEffect.Spawn(eatEffect, remains.transform.position);
-            Sfx.Play(Sounds.BiomassBig);
+            Sfx.Play(Sounds.CarrionEat, 1f, 1f + 0.08f * (Stacks - 1));
             Eaten?.Invoke(remains);
         }
 

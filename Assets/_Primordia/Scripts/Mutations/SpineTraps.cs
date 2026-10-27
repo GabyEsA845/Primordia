@@ -1,4 +1,5 @@
 using System;
+using Primordia.Audio;
 using Primordia.Combat;
 using Primordia.Player;
 using UnityEngine;
@@ -60,6 +61,7 @@ namespace Primordia.Mutations
                 var spine = GroundSpine.Spawn(prefab, position, damage, duration, shot, shotRange, weapon);
                 Placed?.Invoke(spine);
             }
+            Sfx.Play(Sounds.HallucigeniaPlace);
         }
     }
 }

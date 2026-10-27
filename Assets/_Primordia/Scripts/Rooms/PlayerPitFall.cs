@@ -1,4 +1,5 @@
 using System.Collections;
+using Primordia.Audio;
 using Primordia.Core;
 using Primordia.Player;
 using UnityEngine;
@@ -87,6 +88,7 @@ namespace Primordia.Rooms
         {
             IsFalling = true;
             controller.enabled = false;
+            Sfx.Play(Sounds.PlayerPitFall);
             if (body != null)
             {
                 body.linearVelocity = Vector2.zero;

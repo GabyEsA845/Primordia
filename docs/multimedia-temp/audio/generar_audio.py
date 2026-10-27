@@ -1,4 +1,4 @@
-"""Genera toda la música y los efectos de sonido de Primordia (piso 1) según PROMPT.md.
+"""Genera toda la música y los efectos de sonido de Primordia según PROMPT.md (piso 1) y PROMPT_piso2.md.
 
 Uso: python generar_audio.py [nombre ...]
 Sin argumentos genera todo; con nombres (p. ej. Player_Shot Music_Shop) solo esos.
@@ -19,6 +19,8 @@ import numpy as np
 
 from efectos import SFX
 from musica import MUSIC
+import efectos_piso2  # noqa: F401,E402  (registran sus sonidos en SFX y MUSIC al importarse)
+import musica_piso2  # noqa: F401,E402
 from sintesis import SR, finish_sfx, write_wav
 
 ROOT = Path(__file__).resolve().parent
@@ -33,15 +35,19 @@ RHYTHM = {
     "SFX_Mouth_Spores_Puff": 800, "SFX_Boss_Virus_Spiral": 70, "SFX_Boss_Amoeba_Barrage": 90,
     "SFX_Biomass_Pickup_Small": 110, "SFX_Enemy_Hit": 200, "SFX_Projectile_Impact": 150,
     "SFX_Limbs_Hyphae_Trail": 300,
+    # piso 2
+    "SFX_Mouth_Cnidocytes_Shot": 333, "SFX_Mouth_JawPlates_Bite": 500, "SFX_Organ_BroodSac_LarvaBite": 180,
+    "SFX_Limbs_Hallucigenia_Strike": 250, "SFX_Skin_Trilobite_Bounce": 300,
 }
 
 
 # ============================================================ lectura del prompt
 
 def read_prompt():
-    """Filas de las tablas de PROMPT.md: nombre → (categoría, variantes, duración, cuándo, descripción)."""
+    """Filas de las tablas de los encargos (PROMPT*.md): nombre → (categoría, variantes, duración, cuándo, descripción)."""
     rows, category = {}, ""
-    for line in (ROOT / "PROMPT.md").read_text(encoding="utf-8").splitlines():
+    lines = [l for f in sorted(ROOT.glob("PROMPT*.md")) for l in f.read_text(encoding="utf-8").splitlines()]
+    for line in lines:
         if line.startswith("## ") or line.startswith("### "):
             category = line.lstrip("# ").strip()
         m = re.match(r"^\| `([A-Za-z0-9_]+)(?:\.(?:wav|ogg))?` \|(.*)\|\s*$", line)

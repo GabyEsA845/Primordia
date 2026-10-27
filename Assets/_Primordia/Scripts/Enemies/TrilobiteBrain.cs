@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using Primordia.Core;
 using Primordia.Rooms;
 using UnityEngine;
@@ -84,6 +85,13 @@ namespace Primordia.Enemies
             Current = phase;
             phaseStart = Time.time;
             phaseUntil = Time.time + duration;
+            Sfx.Play(phase switch
+            {
+                Phase.Warn => Sounds.TrilobiteWarn,
+                Phase.Charge => Sounds.TrilobiteCharge,
+                Phase.Flip => Sounds.TrilobiteCrash,
+                _ => null
+            });
         }
 
         public override Vector2 Think(Transform target, EnemyData data)

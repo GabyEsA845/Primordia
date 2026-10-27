@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4892176753906602423}
   - component: {fileID: 7230371695601439991}
   - component: {fileID: 6474225569807460415}
+  - component: {fileID: 9188555527482656565}
   m_Layer: 0
   m_Name: Effect_Status_Shatter
   m_TagString: Untagged
@@ -113,3 +114,17 @@ MonoBehaviour:
   - {fileID: -2829554287548652217, guid: f6ab742368e623941816a756eb2d9c0a, type: 3}
   frameDuration: 0.15
   phase: 0
+--- !u!114 &9188555527482656565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5353267614130676155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10e032ce63bd4d441bb2e32084dfb091, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Primordia::Primordia.Audio.EffectSound
+  sound: Status_Shatter
+  volume: 1

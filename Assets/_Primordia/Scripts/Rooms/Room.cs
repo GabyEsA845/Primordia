@@ -39,6 +39,17 @@ namespace Primordia.Rooms
         public RoomState State { get; private set; }
         public int AliveEnemies { get; private set; }
 
+        /// <summary>
+        /// Franja de profundidad de la sala en un piso con franjas (0 = la primera, Someras en el piso 2); -1 si el piso
+        /// no tiene franjas o es la sala del jefe. La usa la música.
+        /// </summary>
+        public int DepthBand { get; private set; } = -1;
+
+        internal void SetDepthBand(int band) => DepthBand = band;
+
+        // Desde el piso 2 las puertas son losas de roca, no membranas: suenan a piedra.
+        static bool SlabDoors => FloorGenerator.CurrentFloor >= 2;
+
         public event Action<Room> Entered;
 
         /// <summary>Ha llegado una oleada (con el número de oleada, desde la segunda).</summary>
@@ -140,7 +151,7 @@ namespace Primordia.Rooms
             foreach (var door in doors)
                 door.Close();
             if (doors.Length > 0)
-                Sfx.Play(Sounds.DoorsClose);
+                Sfx.Play(SlabDoors ? Sounds.SlabsClose : Sounds.DoorsClose);
             CombatStartedAny?.Invoke(this);
 
             OpenVents();
@@ -188,6 +199,7 @@ namespace Primordia.Rooms
                 if (enemy.TryGetComponent<EnemyAI>(out var ai))
                     ai.Alert();
             }
+            Sfx.Play(Sounds.WaveStart);
             WaveStarted?.Invoke(this, CurrentWave);
 
             if (enemies.Length == 0)
@@ -231,7 +243,7 @@ namespace Primordia.Rooms
             if (fought)
             {
                 if (doors.Length > 0)
-                    Sfx.Play(Sounds.DoorsOpen);
+                    Sfx.Play(SlabDoors ? Sounds.SlabsOpen : Sounds.DoorsOpen);
                 Sfx.Play(Sounds.RoomCleared);
             }
 

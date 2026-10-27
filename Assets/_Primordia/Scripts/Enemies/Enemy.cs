@@ -111,7 +111,8 @@ namespace Primordia.Enemies
 
         void OnDied()
         {
-            if (data != null)
+            // El que cae a la fosa ya sonó al caer (Enemy_PitFall).
+            if (data != null && !FellIntoPit)
                 Sfx.Play(WillSplit && !string.IsNullOrEmpty(data.SplitSound) ? data.SplitSound : data.DeathSound);
 
             if (WillSplit && splitDuration > 0f)

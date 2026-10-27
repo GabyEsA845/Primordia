@@ -59,6 +59,8 @@ namespace Primordia.Audio
             health.Died += OnDied;
             health.Changed += OnHealthChanged;
             health.BarrierBlocked += OnBarrierBlocked;
+            health.PurpleBlocked += OnPurpleBlocked;
+            health.ExtraDamageTaken += OnExtraDamageTaken;
             if (controller != null)
                 controller.DodgeStarted += OnDodgeStarted;
             if (mutations != null)
@@ -78,6 +80,8 @@ namespace Primordia.Audio
             health.Died -= OnDied;
             health.Changed -= OnHealthChanged;
             health.BarrierBlocked -= OnBarrierBlocked;
+            health.PurpleBlocked -= OnPurpleBlocked;
+            health.ExtraDamageTaken -= OnExtraDamageTaken;
             if (controller != null)
                 controller.DodgeStarted -= OnDodgeStarted;
             if (mutations != null)
@@ -125,6 +129,11 @@ namespace Primordia.Audio
         }
 
         void OnBarrierBlocked() => Sfx.Play(Sounds.LineageBarrierBlock);
+
+        void OnPurpleBlocked() => Sfx.Play(Sounds.PurpleHeartBlock);
+
+        // El precio Inestable: el medio corazón de más se rompe con su chasquido, encima del daño.
+        void OnExtraDamageTaken(int _) => Sfx.Play(Sounds.UnstableCrack);
 
         void OnDodgeStarted()
         {

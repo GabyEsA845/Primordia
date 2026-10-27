@@ -1,4 +1,5 @@
 using System.Collections;
+using Primordia.Audio;
 using UnityEngine;
 
 namespace Primordia.Rooms
@@ -38,8 +39,11 @@ namespace Primordia.Rooms
         /// <summary>Se abre y brilla mientras sale una oleada.</summary>
         public void Activate()
         {
-            if (isActiveAndEnabled)
-                StartCoroutine(Play());
+            if (!isActiveAndEnabled)
+                return;
+            StartCoroutine(Play());
+            // Varias grietas a la vez suenan una sola vez (minInterval del sonido).
+            Sfx.Play(Sounds.WaveVent);
         }
 
         IEnumerator Play()

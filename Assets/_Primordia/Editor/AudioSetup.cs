@@ -48,6 +48,17 @@ namespace Primordia.Editor
             ["Projectile_Impact"] = 0.05f, ["Mouth_Spore_Pop"] = 0.05f, ["Mutation_Bubble_Burst"] = 0.15f,
             ["Lineage_StingingTrail"] = 0.5f, ["Lineage_Finisher"] = 0.08f, ["Limbs_Hyphae_Trail"] = 0.1f,
             ["Skin_Thorns"] = 0.1f, ["Biomass_Pickup_Small"] = 0.04f, ["Organ_Vacuole_Charge"] = 0.05f,
+            // Piso 2
+            ["Enemy_Jelly_Ring"] = 0.2f, ["Enemy_Shell_Hit"] = 0.05f, ["Enemy_Jelly_Hit"] = 0.05f,
+            ["Enemy_Sponge_Hit"] = 0.05f, ["Enemy_Pikaia_Death"] = 0.06f, ["Enemy_Pikaia_Dash"] = 0.3f,
+            ["Enemy_Shield_Block"] = 0.08f, ["Enemy_Trilobite_Warn"] = 0.15f, ["Enemy_Ottoia_Warn"] = 0.15f,
+            ["Boss_Anomalocaris_Bubble"] = 0.1f, ["Boss_Anomalocaris_BubblePop"] = 0.06f,
+            ["Boss_Eurypterid_FuryShot"] = 0.07f, ["Boss_Eurypterid_Step"] = 0.2f, ["Boss_Eurypterid_ArmorBlock"] = 0.08f,
+            ["Cave_Pebble"] = 0.05f, ["Cave_RockFall"] = 0.1f, ["Organ_BroodSac_LarvaBite"] = 0.08f,
+            ["Limbs_Hallucigenia_Strike"] = 0.08f, ["Limbs_Hallucigenia_Place"] = 0.1f, ["Limbs_Hallucigenia_Launch"] = 0.1f,
+            ["Skin_Trilobite_Bounce"] = 0.05f, ["Special_Cuticle_Reflect"] = 0.05f, ["Special_Flagella_Lash"] = 0.1f,
+            ["Status_Shatter"] = 0.1f, ["Limbs_Tail_BubblePop"] = 0.05f, ["Lineage_Carrion_Eat"] = 0.1f,
+            ["Mouth_ArmCrown_Tide"] = 0.1f,
         };
 
         // Variación de tono distinta de la normal (la biomasa ya sube de tono al encadenarse).
@@ -56,6 +67,10 @@ namespace Primordia.Editor
             ["Biomass_Pickup_Small"] = 0f, ["Biomass_Pickup_Big"] = 0f, ["Room_Cleared"] = 0f, ["Room_Exit"] = 0f,
             ["Mutation_LevelUp"] = 0f, ["Mutation_LevelUp_Gold"] = 0f, ["Mutation_ChoiceOpen"] = 0f,
             ["Lineage_Complete"] = 0f, ["Player_Heal"] = 0f, ["Shop_HeartContainer"] = 0f,
+            // La Carroña sube de tono con cada carga; los acordes, en su nota.
+            ["Lineage_Carrion_Eat"] = 0f, ["Room_HeartCoral"] = 0f, ["Exchange_Capsule_Accept"] = 0f,
+            ["Exchange_Capsule_Open"] = 0f, ["Room_Clam_Open_Big"] = 0f, ["Room_WaveStart"] = 0f,
+            ["Room_Slabs_Open"] = 0f, ["Special_Flagella_Ready"] = 0f,
         };
 
         // Ataque → (disparo, golpe, avance, impacto).
@@ -80,6 +95,22 @@ namespace Primordia.Editor
             ("Attack_AmoebaRing", "Boss_Amoeba_Barrage", null, null, null),
             ("Attack_AmoebaSpiral", "Boss_Amoeba_Barrage", null, null, null),
             ("Attack_AmoebaFan", "Boss_Amoeba_Barrage", null, null, null),
+            // Piso 2. El Ramillete de los Cnidocitos y las púas de Hallucigenia suenan desde su código.
+            ("Attack_Cnidocytes", "Mouth_Cnidocytes_Shot", null, null, "Projectile_Impact"),
+            ("Attack_Cnidocytes_2", "Mouth_Cnidocytes_Shot", null, null, "Projectile_Impact"),
+            ("Attack_Cnidocytes_3", "Mouth_Cnidocytes_Shot", null, null, "Projectile_Impact"),
+            ("Attack_JawPlates", "Mouth_JawPlates_Bite", "Mouth_JawPlates_BiteHit", null, null),
+            ("Attack_JawPlates_2", "Mouth_JawPlates_Bite", "Mouth_JawPlates_BiteHit", null, null),
+            ("Attack_JawPlates_3", "Mouth_JawPlates_Bite", "Mouth_JawPlates_BiteHit", null, null),
+            // Remolino: el disparo es su aparición y el impacto, la Marea del nivel III.
+            ("Attack_ArmCrown", "Mouth_ArmCrown_Cast", null, null, "Mouth_ArmCrown_Tide"),
+            ("Attack_ArmCrown_2", "Mouth_ArmCrown_Cast", null, null, "Mouth_ArmCrown_Tide"),
+            ("Attack_ArmCrown_3", "Mouth_ArmCrown_Cast", null, null, "Mouth_ArmCrown_Tide"),
+            ("Attack_HallucigeniaSpine", null, null, null, "Projectile_Impact"),
+            ("Attack_WiwaxiaSclerite", null, null, null, "Projectile_Impact"),
+            ("Attack_CuticleReflected", null, null, null, "Projectile_Impact"),
+            // Los 8 proyectiles del anillo salen a la vez: el intervalo los junta en un solo latido.
+            ("Attack_BlueJelly", "Enemy_Jelly_Ring", null, null, "Projectile_Impact"),
         };
 
         // Enemigo → (daño, muerte, división, alerta, aviso de disparo).
@@ -90,6 +121,13 @@ namespace Primordia.Editor
             ("Enemy_Small", "Enemy_Hit", "Enemy_SmallAmoeba_Death", null, null, null),
             ("Enemy_VirusBoss", "Boss_Virus_Hurt", "Boss_Virus_Death", null, null, null),
             ("Enemy_AmoebaBoss", "Boss_Amoeba_Hurt", "Boss_Amoeba_Death", null, null, null),
+            ("Floor2/Enemy_Trilobite", "Enemy_Shell_Hit", "Enemy_Trilobite_Death", null, null, null),
+            ("Floor2/Enemy_BlueJelly", "Enemy_Jelly_Hit", "Enemy_Jelly_Death", null, null, null),
+            ("Floor2/Enemy_Ottoia", "Enemy_Hit", "Enemy_Ottoia_Death", null, null, null),
+            ("Floor2/Enemy_Vauxia", "Enemy_Sponge_Hit", "Enemy_Vauxia_Death", null, null, null),
+            ("Floor2/Enemy_Pikaia", "Enemy_Hit", "Enemy_Pikaia_Death", null, null, null),
+            ("Floor2/Enemy_AnomalocarisBoss", "Boss_Anomalocaris_Hurt", "Boss_Anomalocaris_Death", null, null, null),
+            ("Floor2/Enemy_EurypteridBoss", "Boss_Eurypterid_Hurt", "Boss_Eurypterid_Death", null, null, null),
         };
 
         // Efectos visuales que suenan al aparecer.
@@ -117,6 +155,15 @@ namespace Primordia.Editor
             ("Effect_MutationBurst_Predator", "Mutation_Bubble_Burst"),
             ("Effect_MutationBurst_Armored", "Mutation_Bubble_Burst"),
             ("Effect_MutationBurst_Toxic", "Mutation_Bubble_Burst"),
+            // Piso 2
+            ("Effect_JawPlates_Guillotine", "Mouth_JawPlates_Guillotine"),
+            ("Effect_Status_Shatter", "Status_Shatter"),
+            ("Effect_TailPropulsor_Pop", "Limbs_Tail_BubblePop"),
+            ("Effect_BroodSac_Open", "Organ_BroodSac_Open"),
+            ("Effect_BroodSac_Split", "Organ_BroodSac_Split"),
+            ("Effect_Vauxia_HealPulse", "Enemy_Vauxia_Pulse"),
+            ("Effect_AnomalocarisBubble_Pop", "Boss_Anomalocaris_BubblePop"),
+            ("Effect_Anomalocaris_Swipe", "Boss_Anomalocaris_Swipe"),
         };
 
         // Los campos de sonidos.json los rellena JsonUtility.
@@ -319,13 +366,23 @@ namespace Primordia.Editor
             return count;
         }
 
+        // Extremidades con su propio sonido de esquiva.
+        static readonly (string asset, string sound)[] DodgeSounds =
+        {
+            ("Mutation_Fins", "Limbs_Fins_Dodge"),
+            ("Floor2/Mutation_TailPropulsor", "Limbs_Tail_Dodge"),
+        };
+
         static void ConnectMutations()
         {
-            var fins = AssetDatabase.LoadAssetAtPath<MutationData>($"{MutationsFolder}/Mutation_Fins.asset");
-            if (fins == null)
-                return;
-            fins.SetDodgeSound("Limbs_Fins_Dodge");
-            EditorUtility.SetDirty(fins);
+            foreach (var (asset, sound) in DodgeSounds)
+            {
+                var mutation = AssetDatabase.LoadAssetAtPath<MutationData>($"{MutationsFolder}/{asset}.asset");
+                if (mutation == null)
+                    continue;
+                mutation.SetDodgeSound(sound);
+                EditorUtility.SetDirty(mutation);
+            }
         }
 
         static int ConnectEffects()

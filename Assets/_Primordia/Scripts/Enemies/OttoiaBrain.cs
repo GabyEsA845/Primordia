@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using Primordia.Combat;
 using Primordia.Core;
 using UnityEngine;
@@ -88,6 +89,12 @@ namespace Primordia.Enemies
             Current = phase;
             phaseStart = Time.time;
             phaseUntil = Time.time + duration;
+            Sfx.Play(phase switch
+            {
+                Phase.Warn => Sounds.OttoiaWarn,
+                Phase.Sink => Sounds.OttoiaSink,
+                _ => null
+            });
         }
 
         float Length(string state, float fallback)
@@ -173,6 +180,7 @@ namespace Primordia.Enemies
                 if (health.TakeDamage(biteDamage))
                     hit = health;
             }
+            Sfx.Play(Sounds.OttoiaBite);
             Bit?.Invoke(hit);
         }
     }

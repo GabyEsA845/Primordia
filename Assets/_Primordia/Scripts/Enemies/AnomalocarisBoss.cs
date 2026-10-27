@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using Primordia.Combat;
 using Primordia.Core;
 using UnityEngine;
@@ -393,6 +394,7 @@ namespace Primordia.Enemies
 
         void SetMode(Mode mode)
         {
+            PlayModeSound(CurrentMode, mode);
             CurrentMode = mode;
             actionStart = Time.time;
             switch (mode)
@@ -482,7 +484,7 @@ namespace Primordia.Enemies
 
         void Steer(Vector2 desired, float degreesPerSecond, float dt)
         {
-            Heading = ((Vector2)Vector3.RotateTowards(Heading, desired, degreesPerSecond * Mathf.Deg2Rad * dt, 0f)).normalized;
+            Heading = Turning.Towards(Heading, desired, degreesPerSecond * Mathf.Deg2Rad * dt);
         }
 
         /// <summary>
@@ -519,6 +521,38 @@ namespace Primordia.Enemies
             var side = new Vector2(-Heading.y, Heading.x) * UnityEngine.Random.Range(-0.3f, 0.3f);
             var bubble = Instantiate(bubblePrefab, tail + side * 0.5f, Quaternion.identity, transform.parent);
             bubble.Launch(-Heading * speed + side, lifetime);
+            Sfx.Play(Sounds.AnomalocarisBubble);
+        }
+
+        /// <summary>
+        /// El sonido de cada modo. Los que duran lo que dura el modo (carga, cerco, silueta) se cortan al salir, porque la
+        /// carga del frenesí se acorta (0,8 → 0,5 s) y el cerco o la silueta pueden acabar antes.
+        /// </summary>
+        static void PlayModeSound(Mode previous, Mode next)
+        {
+            if (previous != next)
+            {
+                switch (previous)
+                {
+                    case Mode.Charge: Sfx.Stop(Sounds.AnomalocarisCharge); break;
+                    case Mode.Circle: Sfx.Stop(Sounds.AnomalocarisCircle); break;
+                    case Mode.Silhouette: Sfx.Stop(Sounds.AnomalocarisSilhouette); break;
+                }
+            }
+            Sfx.Play(next switch
+            {
+                Mode.Warn => Sounds.AnomalocarisWarn,
+                Mode.Dash => Sounds.AnomalocarisDash,
+                Mode.Circle => Sounds.AnomalocarisCircle,
+                // La escena de los ojos empieza apagando las luces; los ojos y el rugido los pone la escena.
+                Mode.Eyes => Sounds.AnomalocarisLightsOut,
+                Mode.Charge => Sounds.AnomalocarisCharge,
+                Mode.Frenzy => Sounds.AnomalocarisFrenzy,
+                Mode.Leap => Sounds.AnomalocarisLeap,
+                Mode.Stun => Sounds.AnomalocarisStun,
+                Mode.Silhouette => Sounds.AnomalocarisSilhouette,
+                _ => null
+            });
         }
 
         void TryClaw()
@@ -592,6 +626,7 @@ namespace Primordia.Enemies
 
         void OnDied(Enemy _)
         {
+            PlayModeSound(CurrentMode, Mode.Dead);
             CurrentMode = Mode.Dead;
             AnomalocarisBubble.PopAll();
             ClearMarkers();

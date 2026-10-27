@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 944211640243062811}
   - component: {fileID: 3108996133993609047}
   - component: {fileID: 2817057294221827207}
+  - component: {fileID: 4137386320184759087}
   m_Layer: 0
   m_Name: Effect_BroodSac_Open
   m_TagString: Untagged
@@ -113,3 +114,17 @@ MonoBehaviour:
   - {fileID: 6794105985111185616, guid: 7e7efd91da1e2284a8b05663fc406860, type: 3}
   - {fileID: 6742558862723903861, guid: 7e7efd91da1e2284a8b05663fc406860, type: 3}
   frameDuration: 0.07
+--- !u!114 &4137386320184759087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7666846727011138988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10e032ce63bd4d441bb2e32084dfb091, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Primordia::Primordia.Audio.EffectSound
+  sound: Organ_BroodSac_Open
+  volume: 1

@@ -516,3 +516,370 @@ def enemy_pit_fall(rng, v):
     whistle = sine(glide(900, 150, d)) * expenv(d, 0.25, 0.003)
     air = noise_sweep(d, 2000, 300, rng, 2.0) * expenv(d, 0.2, 0.005) * 0.4
     return reverb(whistle + air, rng, 0.8, 0.3)[: n(d)]
+
+
+# ============================================================== Anomalocaris
+
+def growl(rng, d, f0, f1, drive=2.0, rate=28):
+    """Rugido acuático: sierra grave saturada y un formante de ruido que vibra."""
+    t = tt(d)
+    body = dist(lp(saw(glide(f0, f1, d)), 900), drive)
+    throat = bp(noise(d, rng), 300, 1000) * (0.6 + 0.4 * np.sin(2 * np.pi * rate * t))
+    return body * 0.7 + throat * 0.5
+
+
+@sfx("Boss_Anomalocaris_Bubble", 3, 0.2)
+def anoma_bubble(rng, v):
+    return lp(bubble(rng.uniform(250, 400) * pv(rng, v), 0.08, 1.4, 0.025), 1500)
+
+
+@sfx("Boss_Anomalocaris_BubblePop", 3, 0.3)
+def anoma_bubble_pop(rng, v):
+    p = pv(rng, v)
+    return mix(0.08, (0, bubble(220 * p, 0.07, 2.0, 0.02)), (0, click(rng, 0.004, 1500), 0.3))
+
+
+@sfx("Boss_Anomalocaris_Warn", 1, 0.75)
+def anoma_warn(rng, v):
+    """Aviso de 0,7 s: se echa atrás (el agua tira hacia él) y abre los apéndices con chasquidos."""
+    d = 0.7
+    clicks = grains(d, rng, 26, 1000, 4000, d * 0.95, accel=-0.4, g_d=0.008) * np.linspace(0.4, 1, n(d))
+    tension = lp(saw(glide(70, 140, d)), 700) * (0.25 + 0.75 * swell(d, 0.97, 1.5))
+    pull = noise_sweep(d, 1500, 400, rng, 1.5) * swell(d, 0.5) * 0.5
+    return mix(d, (0, click(rng, 0.005, 1500), 0.5), (0, clicks), (0, tension, 0.6), (0, pull))
+
+
+@sfx("Boss_Anomalocaris_Dash", 2, 0.7)
+def anoma_dash(rng, v):
+    p = pv(rng, v)
+    d = 0.3
+    rush = noise_sweep(d, 200 * p, 900 * p, rng, 1.5) * swell(d, 0.25)
+    mass = thump(110 * p, 50, 0.25, 0.09)
+    return mix(d, (0, rush), (0, mass, 0.8), (0, sine(glide(60, 45, d)) * swell(d, 0.2), 0.5))
+
+
+@sfx("Boss_Anomalocaris_Swipe", 2, 0.75)
+def anoma_swipe(rng, v):
+    p = pv(rng, v)
+    d = 0.25
+    slash = noise_sweep(0.08, 3000 * p, 800 * p, rng, 2.0) * expenv(0.08, 0.03, 0.002)
+    crunch = grains(0.08, rng, 7, 900, 3000, 0.07)
+    return mix(d, (0, slash), (0.03, clonk(rng, 260 * p, 0.1)), (0.03, crunch, 0.7))
+
+
+@sfx("Boss_Anomalocaris_Circle", 1, 0.6)
+def anoma_circle(rng, v):
+    """Cerco de 3 s: remolino que gira cada vez más deprisa, se cierra y sube de tono."""
+    d = 3.0
+    rate = np.linspace(2, 9, n(d))
+    spin = 0.5 + 0.5 * np.sin(2 * np.pi * np.cumsum(rate) / SR)
+    water = bp(noise(d, rng), 200, 1500) * (0.4 + 0.6 * spin)
+    tone = tri(glide(100, 260, d)) * 0.25
+    return (water + lp(tone, 1200)) * (0.3 + 0.7 * swell(d, 0.92, 1.5))
+
+
+@sfx("Boss_Anomalocaris_LightsOut", 1, 0.6)
+def anoma_lights_out(rng, v):
+    d = 0.4
+    fall = sine(glide(1200, 150, d)) * expenv(d, 0.18, 0.002)
+    hum = lp(saw(glide(220, 55, d)), 900) * expenv(d, 0.2, 0.002) * 0.4
+    air = noise_sweep(d, 3000, 300, rng, 1.5) * expenv(d, 0.15, 0.002) * 0.3
+    return fall * 0.6 + hum + air
+
+
+@sfx("Boss_Anomalocaris_Eyes", 1, 0.6)
+def anoma_eyes(rng, v):
+    """2 s: algo enorme pasa en la oscuridad (crece y se aleja), agua desplazada lenta y un zumbido grave."""
+    d = 2.0
+    passby = swell(d, 0.5, 1.5)
+    water = noise_sweep(d, 300, 120, rng, 1.2) * passby
+    hum = (sine(55, d) + sine(58, d) * 0.8 + sine(110, d) * 0.3) * passby * 0.35
+    return mix(d, (0, click(rng, 0.004, 800), 0.1), (0, water), (0, hum))
+
+
+@sfx("Boss_Anomalocaris_Roar", 1, 0.85)
+def anoma_roar(rng, v):
+    d = 0.6
+    roar = growl(rng, d, 95, 70) * swell(d, 0.15, 0.8)
+    clicks = grains(0.4, rng, 10, 1200, 4000, 0.35, gain=(0.3, 0.7))
+    return mix(d, (0, roar), (0.05, clicks, 0.5), (0.1, bubbles(0.45, rng, 10, 200, 700, (0.06, 0.12)), 0.4))
+
+
+@sfx("Boss_Anomalocaris_Charge", 1, 0.7)
+def anoma_charge(rng, v):
+    """Carga de 0,8 s que sube rápido; el juego la corta al salir (entre 0,8 y 0,5 s)."""
+    d = 0.8
+    rate = np.linspace(6, 30, n(d))
+    trem = 0.6 + 0.4 * np.sin(2 * np.pi * np.cumsum(rate) / SR)
+    whine = lp(saw(glide(80, 400, d)), 2500) * trem
+    return whine * (0.35 + 0.65 * swell(d, 0.97, 1.2))
+
+
+@sfx("Boss_Anomalocaris_Frenzy", 2, 0.75)
+def anoma_frenzy(rng, v):
+    p = pv(rng, v)
+    d = 0.3
+    rush = noise_sweep(d, 300 * p, 1600 * p, rng, 1.8) * swell(d, 0.2)
+    hiss = hp(noise(d, rng), 4000) * swell(d, 0.3) * 0.3
+    return mix(d, (0, rush), (0, hiss), (0, thump(140 * p, 60, 0.2, 0.06), 0.7))
+
+
+@sfx("Boss_Anomalocaris_Leap", 1, 0.7)
+def anoma_leap(rng, v):
+    d = 0.25
+    jump = noise_sweep(0.15, 300, 1400, rng, 2.0) * swell(0.15, 0.6)
+    snap = bp(noise(0.03, rng), 1000, 4000) * expenv(0.03, 0.007, 0.0003)
+    return mix(d, (0, click(rng, 0.004, 1200), 0.3), (0, jump), (0.18, snap), (0.18, thump(200, 80, 0.07, 0.02), 0.7))
+
+
+@sfx("Boss_Anomalocaris_Stun", 1, 0.6)
+def anoma_stun(rng, v):
+    d = 0.5
+    thud = lp(thump(140, 50, 0.2, 0.07), 500)
+    shiver = grains(0.45, rng, 20, 1500, 4000, 0.42, gain=(0.2, 0.5)) * expenv(0.45, 0.2, 0.001) * \
+        (0.5 + 0.5 * np.sin(2 * np.pi * 20 * tt(0.45)))
+    return mix(d, (0, thud), (0.03, shiver))
+
+
+@sfx("Boss_Anomalocaris_Silhouette", 1, 0.5)
+def anoma_silhouette(rng, v):
+    d = 3.0
+    t = tt(d)
+    drone = sine(55, d) + sine(58.5, d) * 0.8 + sine(110, d) * 0.35 + sine(165, d) * 0.12
+    drone = drone * (0.65 + 0.35 * np.sin(2 * np.pi * 0.6 * t))
+    return mix(d, (0, click(rng, 0.004, 600), 0.05), (0, drone * (0.3 + 0.7 * swell(d, 0.25, 0.7))))
+
+
+@sfx("Boss_Anomalocaris_Hurt", 3, 0.55)
+def anoma_hurt(rng, v):
+    p = pv(rng, v)
+    return mix(0.12, (0, clonk(rng, 170 * p, 0.08, 0.4)), (0, lp(noise(0.05, rng), 700) * expenv(0.05, 0.015), 0.4))
+
+
+@sfx("Boss_Anomalocaris_Death", 1, 0.9)
+def anoma_death(rng, v):
+    d = 2.5
+    slam = dist(thump(110, 35, 0.6, 0.2), 1.5)
+    groan = growl(rng, 1.5, 120, 40, 1.6, 18) * expenv(1.5, 0.6, 0.02)
+    rise = bubbles(1.4, rng, 26, 300, 1400, (0.06, 0.14))
+    out = mix(d, (0, slam), (0.02, groan, 0.8), (1.2, click(rng, 0.008, 1500), 0.5),
+              (1.2, clonk(rng, 220, 0.12), 0.5), (1.0, rise, 0.5))
+    return reverb(out, rng, 1.0, 0.3)[: n(d)]
+
+
+# =================================================== Euriptérido y la cueva
+
+@sfx("Boss_Eurypterid_Step", 3, 0.3)
+def eury_step(rng, v):
+    p = pv(rng, v)
+    return mix(0.1, (0, clonk(rng, 150 * p, 0.05, 0.6)), (0, bp(noise(0.03, rng), 800, 2500) * expenv(0.03, 0.006), 0.4))
+
+
+@sfx("Boss_Eurypterid_PincerWarn", 1, 0.7)
+def eury_pincer_warn(rng, v):
+    """0,6 s (0,45 en la fase blanda: el juego lo corta). Las pinzas se abren con un chasquido y la tensión sube."""
+    d = 0.6
+    open_ = clonk(rng, 330, 0.07)
+    creak = grains(d - 0.03, rng, 22, 800, 2500, d * 0.85, accel=-0.3, g_d=0.007) * np.linspace(0.3, 0.9, n(d - 0.03))
+    tension = lp(tri(glide(120, 260, d)), 1500) * (0.25 + 0.75 * swell(d, 0.97, 1.4))
+    return mix(d, (0, open_, 0.8), (0.03, creak, 0.6), (0, tension, 0.6))
+
+
+@sfx("Boss_Eurypterid_Pincer", 2, 0.75)
+def eury_pincer(rng, v):
+    p = pv(rng, v)
+    d = 0.2
+    snap = hp(noise(0.02, rng), 2500) * expenv(0.02, 0.005, 0.0002)
+    return mix(d, (0, clonk(rng, 380 * p, 0.07)), (0.02, clonk(rng, 340 * p, 0.09), 0.9), (0.02, snap, 0.6),
+               (0.02, thump(150, 60, 0.12, 0.04), 0.7))
+
+
+@sfx("Boss_Eurypterid_ArmorBlock", 2, 0.5)
+def eury_armor_block(rng, v):
+    p = pv(rng, v)
+    return lp(clonk(rng, 200 * p, 0.09, 0.2), 1500)
+
+
+@sfx("Boss_Eurypterid_SpineWarn", 1, 0.65)
+def eury_spine_warn(rng, v):
+    """0,6 s: las púas se erizan (chasquidos que suben) con un siseo venenoso que crece."""
+    d = 0.6
+    bristle = grains(d, rng, 30, 2000, 6000, d * 0.95, accel=-0.3) * np.linspace(0.3, 1, n(d))
+    hiss = bp(noise(d, rng), 3000, 9000) * (0.15 + 0.85 * swell(d, 0.97, 1.6))
+    venom = sine(glide(400, 700, d)) * swell(d, 0.97, 1.6) * 0.15
+    return mix(d, (0, click(rng, 0.004, 2500), 0.4), (0, bristle), (0, hiss, 0.5), (0, venom))
+
+
+@sfx("Boss_Eurypterid_SpineShot", 1, 0.65)
+def eury_spine_shot(rng, v):
+    d = 0.3
+    parts = [(0, thump(180, 80, 0.1, 0.03), 0.6), (0, click(rng, 0.006, 1500), 0.6)]
+    for i, f in enumerate((2200, 2600, 1900)):
+        w = sine(glide(f, f * 0.55, 0.22)) * expenv(0.22, 0.07, 0.003) * 0.5 + \
+            bp(noise(0.22, rng), 2000, 6000) * expenv(0.22, 0.05) * 0.3
+        parts.append((0.01 + i * 0.015, w, 0.7))
+    return mix(d, *parts)
+
+
+@sfx("Boss_Eurypterid_Stunned", 1, 0.7)
+def eury_stunned(rng, v):
+    d = 0.8
+    rock = bp(noise(0.1, rng), 1000, 3000) * expenv(0.1, 0.02)
+    grunt = growl(rng, 0.5, 110, 80, 1.6, 20) * expenv(0.5, 0.2, 0.03)
+    return mix(d, (0, rock, 0.8), (0, thump(120, 45, 0.25, 0.08)), (0, clonk(rng, 200, 0.12), 0.8), (0.15, grunt, 0.7))
+
+
+@sfx("Boss_Eurypterid_Molt", 1, 0.7)
+def eury_molt(rng, v):
+    """Muda de 3 s: crujidos cada vez más seguidos, la coraza se abre (1,8 s), se desprende y sale blando."""
+    d = 3.0
+    creaks = grains(1.8, rng, 50, 700, 3500, 1.75, accel=-0.5, g_d=0.008) * np.linspace(0.3, 1, n(1.8))
+    groan = lp(tri(glide(70, 110, 1.8)), 600) * swell(1.8, 0.9) * 0.4
+    split = clonk(rng, 160, 0.2) + bp(noise(0.15, rng), 600, 4000) * expenv(0.15, 0.04)
+    slide = noise_sweep(0.6, 1500, 300, rng, 1.5) * swell(0.6, 0.2)
+    squelch = sine(glide(300, 150, 0.4)) * expenv(0.4, 0.12) * (0.7 + 0.3 * np.sin(2 * np.pi * 30 * tt(0.4)))
+    soft = bubbles(0.55, rng, 10, 300, 900, (0.06, 0.12))
+    return mix(d, (0, click(rng, 0.004, 1500), 0.3), (0, creaks), (0, groan), (1.8, split), (1.9, slide, 0.6),
+               (2.4, squelch, 0.6), (2.45, soft, 0.5))[: n(d)]
+
+
+@sfx("Boss_Eurypterid_TailWarn", 1, 0.65)
+def eury_tail_warn(rng, v):
+    """0,6 s: la cola se tensa (crujido grave) y la punta sisea en verde."""
+    d = 0.6
+    strain = lp(tri(glide(90, 130, d)), 800) * (0.7 + 0.3 * np.sin(2 * np.pi * 14 * tt(d)))
+    hiss = bp(noise(d, rng), 2500, 8000) * (0.15 + 0.85 * swell(d, 0.97, 1.6))
+    return mix(d, (0, click(rng, 0.004, 1200), 0.3), (0, strain * (0.3 + 0.7 * swell(d, 0.97, 1.2)), 0.7),
+               (0, hiss, 0.5))
+
+
+@sfx("Boss_Eurypterid_TailSweep", 1, 0.75)
+def eury_tail_sweep(rng, v):
+    d = 0.55
+    arc = noise_sweep(d, 400, 1800, rng, 1.8) * swell(d, 0.4, 1.2)
+    weight = lp(noise(d, rng), 300) * swell(d, 0.35) * 0.7
+    return mix(d, (0, click(rng, 0.004, 900), 0.2), (0, arc), (0, weight), (0.1, thump(130, 60, 0.15, 0.05), 0.5))
+
+
+@sfx("Boss_Eurypterid_Stagger", 1, 0.7)
+def eury_stagger(rng, v):
+    """2,5 s: va tambaleándose hacia el centro con pasos torpes."""
+    d = 2.5
+    parts = [(t, clonk(rng, 150 * rng.uniform(0.9, 1.1), 0.06, 0.6), g)
+             for t, g in ((0, 0.6), (0.45, 0.55), (1.0, 0.5), (1.4, 0.55), (2.0, 0.45), (2.25, 0.4))]
+    parts.append((0.2, lp(saw(glide(90, 75, 1.8)), 400) * swell(1.8, 0.5) * 0.25, 1.0))
+    return mix(d, *parts)[: n(d)]
+
+
+@sfx("Boss_Eurypterid_Downed", 1, 0.75)
+def eury_downed(rng, v):
+    """2 s: se derrumba y jadea despacio."""
+    d = 2.0
+    parts = [(0, dist(thump(100, 35, 0.5, 0.15), 1.4)), (0, clonk(rng, 180, 0.15), 0.7),
+             (0, bp(noise(0.15, rng), 600, 2500) * expenv(0.15, 0.04), 0.6)]
+    for i, t in enumerate((0.35, 0.95, 1.5)):  # jadeo
+        breath = lp(noise(0.45, rng), 900) * swell(0.45, 0.4) * 0.6 +             lp(saw(glide(85, 70, 0.45)), 400) * swell(0.45, 0.4) * 0.25
+        parts.append((t, breath, 0.8 - 0.1 * i))
+    return mix(d, *parts)[: n(d)]
+
+
+@sfx("Boss_Eurypterid_Rise", 1, 0.85)
+def eury_rise(rng, v):
+    d = 1.0
+    roar = growl(rng, d, 65, 110, 2.2, 24) * (0.2 + 0.8 * swell(d, 0.92, 1.5))
+    return mix(d, (0, click(rng, 0.004, 1000), 0.2), (0, roar),
+               (0.2, bubbles(0.7, rng, 12, 200, 600, (0.06, 0.12)), 0.4))
+
+
+@sfx("Boss_Eurypterid_FuryShot", 3, 0.2)
+def eury_fury_shot(rng, v):
+    p = pv(rng, v)
+    return mix(0.06, (0, bubble(200 * p, 0.055, 1.8, 0.015)), (0, click(rng, 0.003, 1500), 0.3))
+
+
+@sfx("Boss_Eurypterid_Hurt", 3, 0.55)
+def eury_hurt(rng, v):
+    p = pv(rng, v)
+    return lp(clonk(rng, 200 * p, 0.09, 0.6), 3000)
+
+
+@sfx("Boss_Eurypterid_Death", 1, 0.9)
+def eury_death(rng, v):
+    d = 2.5
+    parts = [(0, dist(thump(100, 32, 0.7, 0.22), 1.5)), (0, bp(noise(0.3, rng), 500, 3000) * expenv(0.3, 0.08), 0.6)]
+    t0 = 0.15
+    for i in range(7):  # piezas de coraza que caen
+        parts.append((t0, clonk(rng, rng.uniform(140, 320), 0.08, 0.7), 0.6 - i * 0.05))
+        t0 += rng.uniform(0.08, 0.16)
+    parts.append((0.3, growl(rng, 1.0, 90, 40, 1.5, 16) * expenv(1.0, 0.4, 0.02), 0.6))
+    parts.append((1.1, bubbles(1.3, rng, 22, 300, 1200, (0.06, 0.14)), 0.5))
+    return reverb(mix(d, *parts), rng, 1.0, 0.3)[: n(d)]
+
+
+@sfx("Cave_Creak", 2, 0.5)
+def cave_creak(rng, v):
+    """1,5 s: roca que roza a lo lejos, a tirones, con crujidos."""
+    d = 1.5
+    p = pv(rng, v, 0.1)
+    slips = (rng.uniform(0, 1, n(d) // 400 + 1) > 0.55).repeat(400)[: n(d)] * 0.6 + 0.4
+    grind = lp(saw(glide(70 * p, 85 * p, d)), 500) * lp(slips, 40)
+    crackle = grains(d, rng, 18, 600, 2500, d * 0.9, gain=(0.2, 0.6))
+    return mix(d, (0, click(rng, 0.004, 900), 0.2), (0, grind * swell(d, 0.5, 1.0)), (0, crackle, 0.5))
+
+
+@sfx("Cave_Quake", 1, 0.6)
+def cave_quake(rng, v):
+    d = 3.0
+    t = tt(d)
+    rumble = lp(noise(d, rng), 120) * (0.7 + 0.3 * np.sin(2 * np.pi * 7.5 * t))
+    sub = sine(glide(38, 45, d)) * 0.5
+    pebbles = grains(d, rng, 60, 1500, 5000, d * 0.95, gain=(0.1, 0.4))
+    parts = [(0, (rumble + sub) * (0.4 + 0.6 * swell(d, 0.4, 1.0))), (0, pebbles, 0.5)]
+    for t0 in (0.3, 1.1, 1.8, 2.4):
+        parts.append((t0, lp(thump(90, 40, 0.3, 0.1), 300), 0.5))
+    return mix(d, (0, click(rng, 0.004, 600), 0.1), *parts)[: n(d)]
+
+
+@sfx("Cave_Collapse", 1, 0.85)
+def cave_collapse(rng, v):
+    d = 1.0
+    parts = [(0, lp(noise(0.9, rng), 1500) * expenv(0.9, 0.3, 0.002), 0.7)]
+    t0 = 0.0
+    for i in range(7):
+        parts.append((t0, dist(thump(rng.uniform(70, 130), 35, 0.35, 0.1), 1.4), 0.8 - i * 0.06))
+        parts.append((t0, bp(noise(0.08, rng), 900, 3000) * expenv(0.08, 0.02), 0.5))
+        t0 += rng.uniform(0.04, 0.12)
+    return mix(d, *parts)[: n(d)]
+
+
+@sfx("Cave_RockFall", 2, 0.6)
+def cave_rock_fall(rng, v):
+    p = pv(rng, v)
+    d = 0.5
+    whistle = sine(glide(900 * p, 500 * p, 0.14)) * (0.3 + 0.7 * swell(0.14, 0.8)) * 0.3
+    impact = bp(noise(0.08, rng), 1000, 3000) * expenv(0.08, 0.018) + thump(130 * p, 50, 0.25, 0.08)
+    dust = lp(noise(0.3, rng), 2500) * expenv(0.3, 0.08) * 0.3
+    return mix(d, (0, whistle), (0.15, impact), (0.16, dust))
+
+
+@sfx("Cave_Pebble", 3, 0.15)
+def cave_pebble(rng, v):
+    return grains(0.06, rng, 2 + v, 1500, 5000, 0.04)
+
+
+@sfx("Cave_FloorCrack", 1, 0.7)
+def cave_floor_crack(rng, v):
+    """Aviso de 1,5 s: una grieta que avanza crujiendo, cada vez más fuerte."""
+    d = 1.5
+    crack = grains(d, rng, 70, 800, 4500, d * 0.97, accel=-0.4, g_d=0.007) * np.linspace(0.3, 1, n(d))
+    groan = lp(tri(glide(55, 80, d)), 400) * (0.2 + 0.8 * swell(d, 0.97, 1.5)) * 0.6
+    return mix(d, (0, click(rng, 0.005, 1200), 0.4), (0, crack), (0, groan))
+
+
+@sfx("Cave_FloorSink", 1, 0.7)
+def cave_floor_sink(rng, v):
+    d = 0.8
+    drop = dist(thump(100, 30, 0.5, 0.15), 1.3)
+    rubble = grains(0.6, rng, 25, 600, 3000, 0.55, gain=(0.3, 0.8))
+    fall = noise_sweep(0.7, 1500, 150, rng, 1.5) * expenv(0.7, 0.3, 0.002) * 0.5
+    return reverb(mix(d, (0, drop), (0, rubble, 0.6), (0, fall)), rng, 1.2, 0.35)[: n(d)]

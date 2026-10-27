@@ -170,7 +170,8 @@ Los que no aparecen (golpe de la Ottoia y de la Pikaia, proyectil que choca) usa
 | `SFX_Boss_Eurypterid_Molt` | 1 | 3,0 s | Escena de la muda (3 s) | La coraza cruje, se abre y se desprende; sale blando |
 | `SFX_Boss_Eurypterid_TailWarn` | 1 | 0,6 s | Fase blanda: lleva la cola a un lado y la punta brilla en verde (0,6 s) | Cola que se tensa y siseo verde |
 | `SFX_Boss_Eurypterid_TailSweep` | 1 | 0,55 s | Barrido de cola de 180° con estela venenosa (0,55 s) | Barrido pesado que silba en arco |
-| `SFX_Boss_Eurypterid_Downed` | 1 | 4,5 s | Último aliento: va tambaleándose al centro (2,5 s), cae rendido y jadea (2 s) | Pasos torpes, un derrumbe y un jadeo lento |
+| `SFX_Boss_Eurypterid_Stagger` | 1 | 2,5 s | Último aliento: va tambaleándose al centro (2,5 s) | Pasos torpes y un gruñido cansado |
+| `SFX_Boss_Eurypterid_Downed` | 1 | 2,0 s | Cae rendido y jadea (2 s) | Un derrumbe y un jadeo lento |
 | `SFX_Boss_Eurypterid_Rise` | 1 | 1,0 s | Se levanta rugiendo | Rugido que crece hasta la primera salva |
 | `SFX_Boss_Eurypterid_FuryShot` | 3 | 0,06 s | Cada salva del bullet hell de 25 s | Pop grave muy corto; muy bajo, suena sin parar |
 | `SFX_Boss_Eurypterid_Hurt` | 3 | 0,12 s | Recibe daño | Golpe en coraza, grave y seco (en la fase blanda, el juego baja el tono) |

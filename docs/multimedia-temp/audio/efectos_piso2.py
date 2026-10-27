@@ -7,12 +7,13 @@ caparazón, gelatina translúcida, arena y esponja; los jefes, enormes. Lo que l
 import numpy as np
 
 from efectos import A6, D6, F6, bell, sfx
+from sintesis import bubbles, midi as midi_hz
 from efectos import pv as _pv
 from sintesis import (SR, bp, bubble, click, dist, expenv, fm, glide, hp, lp, mix, n, noise, noise_sweep, place,
                       reverb, saw, sine, swell, thump, tri, tt)
 from sintesis import padded
 
-for _name in ("bp", "bubble", "click", "dist", "expenv", "fm", "glide", "hp", "lp", "mix", "noise", "noise_sweep",
+for _name in ("bp", "bubble", "bubbles", "click", "dist", "expenv", "fm", "glide", "hp", "lp", "mix", "noise", "noise_sweep",
               "reverb", "saw", "sine", "swell", "thump", "tri", "tt"):
     globals()[_name] = padded(globals()[_name])
 
@@ -341,3 +342,177 @@ def carrion_eat(rng, v):
     gulp = sine(glide(260 * p, 140 * p, 0.12)) * expenv(0.12, 0.04)
     grime = dist(lp(noise(0.15, rng), 1200) * expenv(0.15, 0.04), 2.0) * 0.4
     return mix(d, (0, crunch), (0.02, gulp, 0.6), (0, grime))
+
+
+# ================================================================== Enemigos
+
+@sfx("Enemy_Shell_Hit", 3, 0.45)
+def shell_hit(rng, v):
+    p = pv(rng, v)
+    return mix(0.1, (0, clonk(rng, 300 * p, 0.05, 0.7)), (0, lp(noise(0.04, rng), 900) * expenv(0.04, 0.01), 0.3))
+
+
+@sfx("Enemy_Jelly_Hit", 3, 0.45)
+def jelly_hit(rng, v):
+    p = pv(rng, v)
+    d = 0.1
+    wobble = sine(glide(900 * p, 600 * p, d)) * expenv(d, 0.03, 0.001) * (0.75 + 0.25 * np.sin(2 * np.pi * 35 * tt(d)))
+    return mix(d, (0, bubble(700 * p, 0.08, 1.3, 0.02)), (0, wobble, 0.5), (0, hp(noise(0.03, rng), 6000) * expenv(0.03, 0.006), 0.15))
+
+
+@sfx("Enemy_Sponge_Hit", 2, 0.45)
+def sponge_hit(rng, v):
+    p = pv(rng, v)
+    return mix(0.1, (0, lp(noise(0.08, rng), 500) * expenv(0.08, 0.02, 0.001)),
+               (0, lp(thump(140 * p, 80 * p, 0.07, 0.02), 400), 0.8))
+
+
+@sfx("Enemy_Trilobite_Warn", 1, 0.6)
+def trilobite_warn(rng, v):
+    """Aviso de 0,6 s: escarba cada vez más rápido y la tensión sube hasta la arrancada."""
+    d = 0.6
+    scratch = grains(d, rng, 45, 1500, 4500, d * 0.98, accel=-0.5) * np.linspace(0.3, 1, n(d))
+    tension = tri(glide(150, 320, d)) * (0.2 + 0.8 * swell(d, 0.97, 1.5)) * 0.35
+    return mix(d, (0, click(rng, 0.004, 2000), 0.4), (0, scratch), (0, lp(tension, 1500)))
+
+
+@sfx("Enemy_Trilobite_Charge", 1, 0.55)
+def trilobite_charge(rng, v):
+    d = 0.3
+    legs = grains(0.18, rng, 12, 2000, 5000, 0.17)
+    rush = noise_sweep(d, 300, 1200, rng, 2.0) * swell(d, 0.2)
+    return mix(d, (0, legs, 0.7), (0, rush), (0, thump(200, 110, 0.08, 0.02), 0.5))
+
+
+@sfx("Enemy_Trilobite_Crash", 2, 0.6)
+def trilobite_crash(rng, v):
+    p = pv(rng, v)
+    d = 0.4
+    rock = bp(noise(0.06, rng), 1000, 3000) * expenv(0.06, 0.015)
+    flail = grains(0.25, rng, 10, 2000, 5000, 0.24, gain=(0.2, 0.5))
+    return mix(d, (0, clonk(rng, 220 * p, 0.12)), (0, rock, 0.7), (0, thump(100, 45, 0.15, 0.05), 0.8), (0.12, flail))
+
+
+@sfx("Enemy_Trilobite_Death", 2, 0.6)
+def trilobite_death(rng, v):
+    p = pv(rng, v)
+    d = 0.4
+    crack = grains(0.12, rng, 10, 1200, 5000, 0.1, accel=-0.3)
+    parts = [(0, crack), (0.01, clonk(rng, 180 * p, 0.12), 0.8)]
+    for i in range(5):
+        parts.append((0.08 + i * 0.05, bubble(500 * p * 1.15 ** i, 0.07, 1.5), 0.4))
+    return mix(d, *parts)
+
+
+@sfx("Enemy_Jelly_Ring", 2, 0.5)
+def jelly_ring(rng, v):
+    p = pv(rng, v)
+    d = 0.3
+    pulse = lp(thump(220 * p, 120 * p, 0.2, 0.08), 600)
+    bloom = noise_sweep(d, 400, 1600, rng, 2.0) * swell(d, 0.3)
+    parts = [(0, pulse), (0, bloom, 0.4)]
+    for i in range(8):  # el anillo de 8
+        parts.append((0.05 + i * 0.018, bubble(rng.uniform(900, 1500) * p, 0.05, 1.4), 0.18))
+    return mix(d, *parts)
+
+
+@sfx("Enemy_Jelly_Death", 2, 0.55)
+def jelly_death(rng, v):
+    p = pv(rng, v)
+    d = 0.4
+    squelch = sine(glide(500 * p, 250 * p, 0.15)) * expenv(0.15, 0.05, 0.002)
+    fizz_up = bubbles(0.38, rng, 12, 1000 * p, 2500 * p, (0.03, 0.06), gains=(0.3, 0.7))
+    return mix(d, (0, squelch, 0.7), (0.02, fizz_up))
+
+
+@sfx("Enemy_Ottoia_Warn", 1, 0.6)
+def ottoia_warn(rng, v):
+    """Aviso de 0,8 s: la arena se levanta desde abajo y crece hasta el mordisco."""
+    d = 0.8
+    sand = grains(d, rng, 60, 1200, 5000, d * 0.98, accel=-0.4) * np.linspace(0.25, 1, n(d))
+    rumble = lp(noise(d, rng), 220) * (0.2 + 0.8 * swell(d, 0.97, 1.5))
+    rise = sine(glide(80, 170, d)) * (0.2 + 0.8 * swell(d, 0.97, 1.5)) * 0.5
+    return sand * 0.6 + rumble + rise
+
+
+@sfx("Enemy_Ottoia_Bite", 2, 0.65)
+def ottoia_bite(rng, v):
+    p = pv(rng, v)
+    d = 0.25
+    burst = bp(noise(0.15, rng), 800, 5000) * expenv(0.15, 0.04, 0.001)
+    snap = lambda: bp(noise(0.02, rng), 1000 * p, 4000 * p) * expenv(0.02, 0.005, 0.0003)
+    return mix(d, (0, burst, 0.6), (0, thump(180 * p, 70, 0.12, 0.035)), (0.04, snap()), (0.07, snap(), 0.8))
+
+
+@sfx("Enemy_Ottoia_Sink", 1, 0.45)
+def ottoia_sink(rng, v):
+    d = 0.4
+    swallow = noise_sweep(d, 2000, 300, rng, 1.5) * expenv(d, 0.15, 0.005)
+    sand = grains(0.3, rng, 15, 1500, 5000, 0.25, gain=(0.2, 0.6))
+    glug = sine(glide(150, 80, 0.2)) * expenv(0.2, 0.06)
+    return mix(d, (0, swallow, 0.7), (0, sand, 0.6), (0.1, glug, 0.6))
+
+
+@sfx("Enemy_Ottoia_Death", 1, 0.55)
+def ottoia_death(rng, v):
+    d = 0.4
+    deflate = lp(tri(glide(300, 90, 0.35)), 1500) * expenv(0.35, 0.15, 0.003) * \
+        (0.7 + 0.3 * np.sin(2 * np.pi * 25 * tt(0.35)))
+    splash = grains(0.15, rng, 12, 1200, 5000, 0.12)
+    return mix(d, (0, deflate), (0, splash, 0.6), (0, thump(160, 70, 0.1, 0.03), 0.5))
+
+
+@sfx("Enemy_Vauxia_Pulse", 1, 0.5)
+def vauxia_pulse(rng, v):
+    """Pulso cálido y hueco: una respiración que se expande, con una quinta (re–la) que sube."""
+    d = 0.5
+    breath = swell(d, 0.35, 1.5)
+    chord = (sine(glide(midi_hz(62), midi_hz(62) * 1.02, d)) + sine(midi_hz(69), d) * 0.6) * breath * 0.4
+    hollow = bp(noise(d, rng), 300, 600) * breath * 0.5
+    air = lp(noise(d, rng), 1200) * breath * 0.2
+    return chord + hollow + air
+
+
+@sfx("Enemy_Shield_Block", 2, 0.45)
+def shield_block(rng, v):
+    p = pv(rng, v)
+    d = 0.12
+    knock = thump(300 * p, 200 * p, 0.08, 0.02)
+    ping = fm(900 * p, d, 1.0, 1.2, 0.03)
+    return lp(mix(d, (0, knock), (0, ping, 0.5)), 3500)
+
+
+@sfx("Enemy_Vauxia_Death", 1, 0.55)
+def vauxia_death(rng, v):
+    d = 0.5
+    squeeze = lp(noise(0.3, rng), 1400) * expenv(0.3, 0.1, 0.005) * (0.6 + 0.4 * (rng.uniform(0, 1, n(0.3)) > 0.7))
+    squelch = sine(glide(400, 150, 0.25)) * expenv(0.25, 0.08)
+    drips = bubbles(0.45, rng, 6, 250, 600, (0.06, 0.12), gains=(0.3, 0.6))
+    return mix(d, (0, squeeze, 0.6), (0, squelch, 0.6), (0.08, drips))
+
+
+@sfx("Enemy_Pikaia_Dash", 2, 0.4)
+def pikaia_dash(rng, v):
+    p = pv(rng, v)
+    d = 0.25
+    parts = [(i * 0.028 + rng.uniform(0, 0.01), noise_sweep(0.1, 600 * p, 2000 * p, rng, 2.5) * swell(0.1, 0.4),
+              0.5 + 0.1 * i) for i in range(5)]
+    return mix(d, *parts)
+
+
+@sfx("Enemy_Pikaia_Death", 2, 0.45)
+def pikaia_death(rng, v):
+    p = pv(rng, v)
+    d = 0.2
+    parts = [(0, bubble(1200 * p, 0.06, 1.5), 0.8), (0, click(rng, 0.004, 2500), 0.4)]
+    for i in range(3):
+        parts.append((0.04 + i * 0.035, bubble(1500 * p * 1.1 ** i, 0.04, 1.5), 0.35))
+    return mix(d, *parts)
+
+
+@sfx("Enemy_PitFall", 1, 0.5)
+def enemy_pit_fall(rng, v):
+    d = 0.6
+    whistle = sine(glide(900, 150, d)) * expenv(d, 0.25, 0.003)
+    air = noise_sweep(d, 2000, 300, rng, 2.0) * expenv(d, 0.2, 0.005) * 0.4
+    return reverb(whistle + air, rng, 0.8, 0.3)[: n(d)]

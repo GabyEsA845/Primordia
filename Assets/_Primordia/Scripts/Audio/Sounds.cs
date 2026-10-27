@@ -103,6 +103,8 @@ namespace Primordia.Audio
         public const string AmbFloor1 = "Amb_Floor1_Loop";
         public const string AmbBossRoom = "Amb_BossRoom_Loop";
         public const string AmbFloor2 = "Amb_Floor2_Loop";
+        public const string AmbFloor2Abyss = "Amb_Floor2_Abyss_Loop";
+        public const string AmbFloor2BossRoom = "Amb_Floor2_BossRoom_Loop";
 
         // Música
         public const string MusicMainMenu = "Music_MainMenu";
@@ -116,5 +118,16 @@ namespace Primordia.Audio
         public const string StingBossIntro = "Music_Sting_BossIntro";
         public const string StingVictory = "Music_Sting_Victory";
         public const string StingDefeat = "Music_Sting_Defeat";
+        public const string MusicExchange = "Music_Exchange";
+        public const string MusicFloor2ShallowsExplore = "Music_Floor2_Shallows_Explore";
+        public const string MusicFloor2ShallowsCombat = "Music_Floor2_Shallows_Combat";
+        public const string MusicFloor2ReefExplore = "Music_Floor2_Reef_Explore";
+        public const string MusicFloor2ReefCombat = "Music_Floor2_Reef_Combat";
+        public const string MusicFloor2AbyssExplore = "Music_Floor2_Abyss_Explore";
+        public const string MusicFloor2AbyssCombat = "Music_Floor2_Abyss_Combat";
+        public const string MusicBossAnomalocaris = "Music_Boss_Anomalocaris";
+        public const string MusicBossAnomalocarisFrenzy = "Music_Boss_Anomalocaris_Frenzy";
+        public const string MusicBossEurypterid = "Music_Boss_Eurypterid";
+        public const string MusicBossEurypteridLastStand = "Music_Boss_Eurypterid_LastStand";
     }
 }

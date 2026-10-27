@@ -985,6 +985,879 @@ MonoBehaviour:
     minInterval: 0.03
     pitchJitter: 0
     loop: 1
+  - id: Mouth_Cnidocytes_Shot
+    clips:
+    - {fileID: 8300000, guid: 951455900c50c0b4c8c09fd4a9e9648a, type: 3}
+    - {fileID: 8300000, guid: f387ee3b3cad8f34d82362c2fde7902c, type: 3}
+    - {fileID: 8300000, guid: 2cdf1685c99d71747b7a4e40535d90eb, type: 3}
+    volume: 0.35
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Mouth_Cnidocytes_Fan
+    clips:
+    - {fileID: 8300000, guid: 36a80b3a86426bf4b980600b372e4d8e, type: 3}
+    volume: 0.4
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Mouth_JawPlates_Bite
+    clips:
+    - {fileID: 8300000, guid: 5dc01fd9ad9b46c49a305c3b832486f0, type: 3}
+    - {fileID: 8300000, guid: 89a8eb5aabd62d641aa5ec0bf0f3f429, type: 3}
+    - {fileID: 8300000, guid: 1a3f6ac82e3da8645b74f90f0a269085, type: 3}
+    volume: 0.6
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Mouth_JawPlates_BiteHit
+    clips:
+    - {fileID: 8300000, guid: ff1bc2a807a822d4c80e69711a4f6ad9, type: 3}
+    - {fileID: 8300000, guid: d16e6e59a760bd442abe379cf841bb2d, type: 3}
+    volume: 0.65
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Mouth_JawPlates_Guillotine
+    clips:
+    - {fileID: 8300000, guid: 6af0cbf699bbc3143aef8bd02a91558e, type: 3}
+    volume: 0.75
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Status_Shatter
+    clips:
+    - {fileID: 8300000, guid: ba1dc501bb143f34cab9da5bd2d620a2, type: 3}
+    volume: 0.55
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Mouth_ArmCrown_Cast
+    clips:
+    - {fileID: 8300000, guid: 6c586c4fd4159794e9eec124d7c0f65f, type: 3}
+    volume: 0.5
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Mouth_ArmCrown_Whirl_Loop
+    clips:
+    - {fileID: 8300000, guid: de073a3974f01ed42952072154bd5380, type: 3}
+    volume: 0.35
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0
+    loop: 1
+  - id: Mouth_ArmCrown_Tide
+    clips:
+    - {fileID: 8300000, guid: 2bd92ba65287be24595ad27f81160a23, type: 3}
+    volume: 0.6
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Limbs_Tail_Dodge
+    clips:
+    - {fileID: 8300000, guid: e0887809a593b504ea0c0b4978394c3b, type: 3}
+    - {fileID: 8300000, guid: b3c10c2e72abfbf4f90d1beb886a09bd, type: 3}
+    volume: 0.5
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Limbs_Tail_Bubbles
+    clips:
+    - {fileID: 8300000, guid: 2d71e385368206c42872a462db6ad628, type: 3}
+    volume: 0.4
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Limbs_Tail_BubblePop
+    clips:
+    - {fileID: 8300000, guid: cacdc79551020544e89ca2e3158410ea, type: 3}
+    - {fileID: 8300000, guid: c9d90d32746b19449aaff72e047b545d, type: 3}
+    volume: 0.5
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Limbs_Hallucigenia_Place
+    clips:
+    - {fileID: 8300000, guid: 8216ff27ef3f06848b41e34e6e56bbf0, type: 3}
+    - {fileID: 8300000, guid: 2299b1ea6f8eb5f4bb0bd3429eec0383, type: 3}
+    volume: 0.45
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Limbs_Hallucigenia_Strike
+    clips:
+    - {fileID: 8300000, guid: eeb47f24332e3f64d81ba7c5ff4e73fc, type: 3}
+    - {fileID: 8300000, guid: d58a1cff41751b34f8f80135a676aa84, type: 3}
+    volume: 0.45
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Limbs_Hallucigenia_Launch
+    clips:
+    - {fileID: 8300000, guid: 96ae9852bb6098b4993227dc94fc6356, type: 3}
+    volume: 0.5
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Skin_Trilobite_Bounce
+    clips:
+    - {fileID: 8300000, guid: 6b9147325dc13ad409cb6769ac76d717, type: 3}
+    - {fileID: 8300000, guid: c1ee277c46ca1f14481f196781a6a3f8, type: 3}
+    volume: 0.5
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Skin_Trilobite_Roll
+    clips:
+    - {fileID: 8300000, guid: c66936178f5910b4a8cf5494fa3eb082, type: 3}
+    volume: 0.5
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Skin_Wiwaxia_Volley
+    clips:
+    - {fileID: 8300000, guid: 8c1288c9f059a9345838438a096299db, type: 3}
+    volume: 0.5
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Skin_Wiwaxia_Orbit
+    clips:
+    - {fileID: 8300000, guid: 42fcaf73da05d4d4dbb6bb7b70e09a82, type: 3}
+    volume: 0.4
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Organ_BroodSac_Open
+    clips:
+    - {fileID: 8300000, guid: edd48fef12d9d1443b3d58f5fa2c6b6b, type: 3}
+    volume: 0.55
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Organ_BroodSac_LarvaBite
+    clips:
+    - {fileID: 8300000, guid: 887145ff05b255b4ea7f8fc5ce87c7eb, type: 3}
+    - {fileID: 8300000, guid: 6cd4ee94279afd3408d49c68169e02ab, type: 3}
+    - {fileID: 8300000, guid: d5e7ac243df2bc549940c1bb902c5c79, type: 3}
+    volume: 0.25
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Organ_BroodSac_Split
+    clips:
+    - {fileID: 8300000, guid: e68571b2fc8396749add0a1940fe6d70, type: 3}
+    volume: 0.4
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Organ_CompoundEyes_On
+    clips:
+    - {fileID: 8300000, guid: d62d9aeb325a86049a61fc97be05d895, type: 3}
+    volume: 0.55
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Organ_CompoundEyes_Off
+    clips:
+    - {fileID: 8300000, guid: 4b37d4497ee875b4d8717d483b2a6cf7, type: 3}
+    volume: 0.45
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Special_Flagella_Lash
+    clips:
+    - {fileID: 8300000, guid: 90e5a904700e58b419c92eac9aaeefd8, type: 3}
+    - {fileID: 8300000, guid: 81424be4320fbfd40b1edf4c3226025d, type: 3}
+    volume: 0.6
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Special_Flagella_Ready
+    clips:
+    - {fileID: 8300000, guid: 2c7f52d9164aea242b27ca7d30c6141c, type: 3}
+    volume: 0.35
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Special_Cuticle_Reflect
+    clips:
+    - {fileID: 8300000, guid: f0b6927a1bfb6e442b2482ac34b3e803, type: 3}
+    - {fileID: 8300000, guid: 6d0e27c23f208c34dac78e2f902be85c, type: 3}
+    volume: 0.5
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Special_Cuticle_Stun
+    clips:
+    - {fileID: 8300000, guid: ed87656111ce7c747ad0f4259cf8fe99, type: 3}
+    volume: 0.55
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Special_Bud_Spawn
+    clips:
+    - {fileID: 8300000, guid: 7878fa54b7f16e34d8e60cd4e1cf9544, type: 3}
+    volume: 0.5
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Special_Bud_Dissolve
+    clips:
+    - {fileID: 8300000, guid: 315d4e4213e5a5141b3bbf8adea389eb, type: 3}
+    volume: 0.45
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Special_Unstable_Crack
+    clips:
+    - {fileID: 8300000, guid: 5cba49fb4260f324dbf017640f9ac325, type: 3}
+    volume: 0.6
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Lineage_Carrion_Eat
+    clips:
+    - {fileID: 8300000, guid: e2b88ac622b4b184dad869c765d8f0f4, type: 3}
+    - {fileID: 8300000, guid: 8a694e927fba9f44c8a7b7881673ead2, type: 3}
+    volume: 0.5
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Enemy_Shell_Hit
+    clips:
+    - {fileID: 8300000, guid: 72f9ec101b8ae0744b6229addba77291, type: 3}
+    - {fileID: 8300000, guid: ce44f5a88b138824d9891f537b4cf5e8, type: 3}
+    - {fileID: 8300000, guid: a477c728f77a8e0488f6c718c8b36e8a, type: 3}
+    volume: 0.45
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Enemy_Jelly_Hit
+    clips:
+    - {fileID: 8300000, guid: 39d66a990f89d0341bc5a6fde2b6399d, type: 3}
+    - {fileID: 8300000, guid: 3f2a98aed9e10b846ae0796ca5f8cfb6, type: 3}
+    - {fileID: 8300000, guid: 102f105771640134d95e80821538b7dd, type: 3}
+    volume: 0.45
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Enemy_Sponge_Hit
+    clips:
+    - {fileID: 8300000, guid: 7e0bcd5b73cb0cb47a8fe7c67d5daded, type: 3}
+    - {fileID: 8300000, guid: 046082933a2e69a4898b0cfb8735cb9c, type: 3}
+    volume: 0.45
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Enemy_Trilobite_Warn
+    clips:
+    - {fileID: 8300000, guid: 321ab4d67a0c0c04681502e1bee04697, type: 3}
+    volume: 0.6
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Enemy_Trilobite_Charge
+    clips:
+    - {fileID: 8300000, guid: 2e805ee328684fe4a8729d6654284ecb, type: 3}
+    volume: 0.55
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Enemy_Trilobite_Crash
+    clips:
+    - {fileID: 8300000, guid: af82e1bf5c0a24f45a4c443b345e2a31, type: 3}
+    - {fileID: 8300000, guid: cdc73fc46f774b24a9b52a66dcd5816e, type: 3}
+    volume: 0.6
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Enemy_Trilobite_Death
+    clips:
+    - {fileID: 8300000, guid: 96b8f9bbd4ce60b4b8ab12e4761cac8a, type: 3}
+    - {fileID: 8300000, guid: 6826fcefd5625304e9a3d2c034dace98, type: 3}
+    volume: 0.6
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Enemy_Jelly_Ring
+    clips:
+    - {fileID: 8300000, guid: 80cce5465d89c0443a76fd5956a7e8a3, type: 3}
+    - {fileID: 8300000, guid: 904f46a76c3d1a946a576f5cfc3e5771, type: 3}
+    volume: 0.5
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Enemy_Jelly_Death
+    clips:
+    - {fileID: 8300000, guid: 47af9dc9843f50549baa0f97b98be149, type: 3}
+    - {fileID: 8300000, guid: 3ef99b5a091f7544fbc98a64c50a4c60, type: 3}
+    volume: 0.55
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Enemy_Ottoia_Warn
+    clips:
+    - {fileID: 8300000, guid: aea4bc3a640c5564b94f17a6d599465a, type: 3}
+    volume: 0.6
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Enemy_Ottoia_Bite
+    clips:
+    - {fileID: 8300000, guid: 501bfd3648b99e9438257d34ef739627, type: 3}
+    - {fileID: 8300000, guid: 7302d1c09642756438a8f89cbe4990a1, type: 3}
+    volume: 0.65
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Enemy_Ottoia_Sink
+    clips:
+    - {fileID: 8300000, guid: 18eab04c16946ad49aafb7fbfcb06ba1, type: 3}
+    volume: 0.45
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Enemy_Ottoia_Death
+    clips:
+    - {fileID: 8300000, guid: 59ef5677ae960844cb56abc1d8768f92, type: 3}
+    volume: 0.55
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Enemy_Vauxia_Pulse
+    clips:
+    - {fileID: 8300000, guid: 9d7eb72e92f910046b35fbf65f02ff13, type: 3}
+    volume: 0.5
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Enemy_Shield_Block
+    clips:
+    - {fileID: 8300000, guid: e407f9c7987f13c4bb1a34e59f912805, type: 3}
+    - {fileID: 8300000, guid: 2ddd71f90ccf0bf44a9dadfa75f40fa9, type: 3}
+    volume: 0.45
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Enemy_Vauxia_Death
+    clips:
+    - {fileID: 8300000, guid: f8efefdc7a977234a8006caa20f27653, type: 3}
+    volume: 0.55
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Enemy_Pikaia_Dash
+    clips:
+    - {fileID: 8300000, guid: 7064eb722e70a3e40b78131d9bd23a13, type: 3}
+    - {fileID: 8300000, guid: 9b62f432c22310f478868ae6f2892f28, type: 3}
+    volume: 0.4
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Enemy_Pikaia_Death
+    clips:
+    - {fileID: 8300000, guid: e68c83b6eef5f814590d5f244564379b, type: 3}
+    - {fileID: 8300000, guid: 993e37fa965e76a44ace9911bbbf4292, type: 3}
+    volume: 0.45
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Enemy_PitFall
+    clips:
+    - {fileID: 8300000, guid: 2289af467e4c15443b2df8354727d703, type: 3}
+    volume: 0.5
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Anomalocaris_Bubble
+    clips:
+    - {fileID: 8300000, guid: 52779d4ad36f7ae42874772d87aafdd6, type: 3}
+    - {fileID: 8300000, guid: 2569012c2c3b09c4ea66428cf36466ae, type: 3}
+    - {fileID: 8300000, guid: 845682121f217564781a5e42b813ea1c, type: 3}
+    volume: 0.2
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Anomalocaris_BubblePop
+    clips:
+    - {fileID: 8300000, guid: f9a300f3cd5ad8f47949f355ea261d79, type: 3}
+    - {fileID: 8300000, guid: afd4d3333ffc753499493645dad193ec, type: 3}
+    - {fileID: 8300000, guid: 8d094e71d4e54e74daa43e006e7548b9, type: 3}
+    volume: 0.3
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Anomalocaris_Warn
+    clips:
+    - {fileID: 8300000, guid: 0f1b676cc7ab74c4ab8ec5fc27dfd845, type: 3}
+    volume: 0.75
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Anomalocaris_Dash
+    clips:
+    - {fileID: 8300000, guid: 1978ec76622519f4b87d24a01a0f1561, type: 3}
+    - {fileID: 8300000, guid: ae65536b703997f4dbf820c84b474a56, type: 3}
+    volume: 0.7
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Anomalocaris_Swipe
+    clips:
+    - {fileID: 8300000, guid: d4ff5a15c0ea6bc499d86384a04fba3e, type: 3}
+    - {fileID: 8300000, guid: e0e0e12e4d0e99a4e81446190112a867, type: 3}
+    volume: 0.75
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Anomalocaris_Circle
+    clips:
+    - {fileID: 8300000, guid: c6f479951ae70a44888eba7ad09da5d7, type: 3}
+    volume: 0.6
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Anomalocaris_LightsOut
+    clips:
+    - {fileID: 8300000, guid: be6cffdd6df678647b27503c7f14ba86, type: 3}
+    volume: 0.6
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Anomalocaris_Eyes
+    clips:
+    - {fileID: 8300000, guid: aa4f3c37a2a559347a2fbd3ca223cf70, type: 3}
+    volume: 0.6
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Anomalocaris_Roar
+    clips:
+    - {fileID: 8300000, guid: d2fc4d6a654201d42994e9a380cbdd05, type: 3}
+    volume: 0.85
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Anomalocaris_Charge
+    clips:
+    - {fileID: 8300000, guid: 397565e11b84d884d866d009be96d0b1, type: 3}
+    volume: 0.7
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Anomalocaris_Frenzy
+    clips:
+    - {fileID: 8300000, guid: 52e0a9715b9ca2c4d9f1b01bb2977f5b, type: 3}
+    - {fileID: 8300000, guid: 858b68c21fe018e4d8f57ab28deb40fa, type: 3}
+    volume: 0.75
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Anomalocaris_Leap
+    clips:
+    - {fileID: 8300000, guid: 7663b60a09398d0489d2f95fb68e1b9c, type: 3}
+    volume: 0.7
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Anomalocaris_Stun
+    clips:
+    - {fileID: 8300000, guid: dc1a107a70a2119468f59dfbaf064e00, type: 3}
+    volume: 0.6
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Anomalocaris_Silhouette
+    clips:
+    - {fileID: 8300000, guid: 18443c35ff89da74f892213c5f0db797, type: 3}
+    volume: 0.5
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Anomalocaris_Hurt
+    clips:
+    - {fileID: 8300000, guid: e718609a0bfaef24c84d0712e85b915c, type: 3}
+    - {fileID: 8300000, guid: 17411f11d0e80eb459bd7ba0aae5774f, type: 3}
+    - {fileID: 8300000, guid: b9d038bf1eecde647a991823e3d0b7b6, type: 3}
+    volume: 0.55
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Anomalocaris_Death
+    clips:
+    - {fileID: 8300000, guid: 572f6c73cdb7d9748be3ba1c79686f73, type: 3}
+    volume: 0.9
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Eurypterid_Step
+    clips:
+    - {fileID: 8300000, guid: 98dbd7622d2702047b67bf413208119b, type: 3}
+    - {fileID: 8300000, guid: 754e5c5e424e52b4ca0b43a2b7d79fff, type: 3}
+    - {fileID: 8300000, guid: b25bb8859314e514b8509785b32e0beb, type: 3}
+    volume: 0.3
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Eurypterid_PincerWarn
+    clips:
+    - {fileID: 8300000, guid: 6b75a35c84781594b8988d13c789661a, type: 3}
+    volume: 0.7
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Eurypterid_Pincer
+    clips:
+    - {fileID: 8300000, guid: 8ee2435cd8243904a9a6c4b49cf45a07, type: 3}
+    - {fileID: 8300000, guid: c07ee8062051c3a4ca3d63a68b491274, type: 3}
+    volume: 0.75
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Eurypterid_ArmorBlock
+    clips:
+    - {fileID: 8300000, guid: a76290dee3671cf4586cca500f19b3f7, type: 3}
+    - {fileID: 8300000, guid: 8be4236a61749ff409cfd31ce4248c62, type: 3}
+    volume: 0.5
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Eurypterid_SpineWarn
+    clips:
+    - {fileID: 8300000, guid: 8c5512919bd333249b5beff9f29b88c1, type: 3}
+    volume: 0.65
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Eurypterid_SpineShot
+    clips:
+    - {fileID: 8300000, guid: 744eb50e134eb204ca0fc26a0c3b6b9e, type: 3}
+    volume: 0.65
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Eurypterid_Stunned
+    clips:
+    - {fileID: 8300000, guid: bc2d804bb9269314a899717d72419bf7, type: 3}
+    volume: 0.7
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Eurypterid_Molt
+    clips:
+    - {fileID: 8300000, guid: 2b06c92b1820cdd4c805eb1499091dc7, type: 3}
+    volume: 0.7
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Eurypterid_TailWarn
+    clips:
+    - {fileID: 8300000, guid: ba6c12fd79820d0439031abe9bde0aa2, type: 3}
+    volume: 0.65
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Eurypterid_TailSweep
+    clips:
+    - {fileID: 8300000, guid: cc717e460bc0f17408ba8232fa9ce8bc, type: 3}
+    volume: 0.75
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Eurypterid_Stagger
+    clips:
+    - {fileID: 8300000, guid: 0994ed3e5e51a5c4292f0f1ccf90b03a, type: 3}
+    volume: 0.7
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Eurypterid_Downed
+    clips:
+    - {fileID: 8300000, guid: c49139d69019d6646825ef2214cd44a0, type: 3}
+    volume: 0.75
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Eurypterid_Rise
+    clips:
+    - {fileID: 8300000, guid: acb158ccd4f0ded409b22e6eadc00f76, type: 3}
+    volume: 0.85
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Eurypterid_FuryShot
+    clips:
+    - {fileID: 8300000, guid: f3a210f4818867c4dbc438a5756f31db, type: 3}
+    - {fileID: 8300000, guid: 4c4d11fbdaab27e49ab312c46c64051f, type: 3}
+    - {fileID: 8300000, guid: df6c6f0be4c7b61488fb3d0ac456ca9d, type: 3}
+    volume: 0.2
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Eurypterid_Hurt
+    clips:
+    - {fileID: 8300000, guid: e8fb30dc15616874eae96d9a2062352c, type: 3}
+    - {fileID: 8300000, guid: fc76074a406cd2d40996f339ca480191, type: 3}
+    - {fileID: 8300000, guid: d232815dcd203174184b9226dd89d020, type: 3}
+    volume: 0.55
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Eurypterid_Death
+    clips:
+    - {fileID: 8300000, guid: 4e6986aea3f27f44194daf269c76a6dc, type: 3}
+    volume: 0.9
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Cave_Creak
+    clips:
+    - {fileID: 8300000, guid: afce8e89a2e6c604cb02f0d2fca94311, type: 3}
+    - {fileID: 8300000, guid: dfa6ae05cc719654fbdfe5eb3be33c17, type: 3}
+    volume: 0.5
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Cave_Quake
+    clips:
+    - {fileID: 8300000, guid: 37a25db80d71eb140b26147efc6c16de, type: 3}
+    volume: 0.6
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Cave_Collapse
+    clips:
+    - {fileID: 8300000, guid: f1c98e143b0dacf47a5043c5fee9fedd, type: 3}
+    volume: 0.85
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Cave_RockFall
+    clips:
+    - {fileID: 8300000, guid: 7eeb051469bd27c4ca0a7f34d3fe6af5, type: 3}
+    - {fileID: 8300000, guid: 5506704096847e94f8392812cc4c715b, type: 3}
+    volume: 0.6
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Cave_Pebble
+    clips:
+    - {fileID: 8300000, guid: 23896488651e3f94a9e1bd8bbba0a9f1, type: 3}
+    - {fileID: 8300000, guid: 4eb78288cf12185448aa899e277e21c7, type: 3}
+    - {fileID: 8300000, guid: 4089e9eb5fda5fd4685b8aad549b8f1e, type: 3}
+    volume: 0.15
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Cave_FloorCrack
+    clips:
+    - {fileID: 8300000, guid: cc0dec34ff35a0a4b8242727102dad9a, type: 3}
+    volume: 0.7
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Cave_FloorSink
+    clips:
+    - {fileID: 8300000, guid: 9e19c16e1dd99fa4db8a9e34d53a8612, type: 3}
+    volume: 0.7
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Room_Slabs_Close
+    clips:
+    - {fileID: 8300000, guid: f48c94b110fc9a94285dc8654e1896e3, type: 3}
+    volume: 0.7
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Room_Slabs_Open
+    clips:
+    - {fileID: 8300000, guid: b5d4fc7a6cf1e5040986b763a1bee65f, type: 3}
+    volume: 0.6
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Room_WaveStart
+    clips:
+    - {fileID: 8300000, guid: 4546514cc40a58a4abf2f98e04d92237, type: 3}
+    volume: 0.65
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Room_WaveVent
+    clips:
+    - {fileID: 8300000, guid: 14cf746b9c64c834fba152321295040d, type: 3}
+    volume: 0.55
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Room_Clam_Open
+    clips:
+    - {fileID: 8300000, guid: ba0a288f85b883b4ba1d77ce1263066e, type: 3}
+    volume: 0.6
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Room_Clam_Open_Big
+    clips:
+    - {fileID: 8300000, guid: caa7619616f16f947b027d0a95ed9f7c, type: 3}
+    volume: 0.7
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Room_HeartCoral
+    clips:
+    - {fileID: 8300000, guid: 9561f88438d50cb4e8930c440187938a, type: 3}
+    volume: 0.7
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Player_PurpleHeart_Block
+    clips:
+    - {fileID: 8300000, guid: 76857c85881500e4c881f3ecf0480ab8, type: 3}
+    volume: 0.85
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Player_PitFall
+    clips:
+    - {fileID: 8300000, guid: 746b69743c992e34a891b390991c1ac1, type: 3}
+    volume: 0.85
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Exchange_Capsule_Open
+    clips:
+    - {fileID: 8300000, guid: e2d9f574ac922d64d9c220a199be110a, type: 3}
+    volume: 0.55
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Exchange_Capsule_Accept
+    clips:
+    - {fileID: 8300000, guid: b6dca561c388ad04187b2bc489827ad3, type: 3}
+    volume: 0.65
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Amb_Floor2_Abyss_Loop
+    clips:
+    - {fileID: 8300000, guid: 7fa1c8bb610e16a4da6c8f5cfad10d85, type: 3}
+    volume: 0.3
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0
+    loop: 1
+  - id: Amb_Floor2_BossRoom_Loop
+    clips:
+    - {fileID: 8300000, guid: dbbda89b874c7fa45ad220fc1049215d, type: 3}
+    volume: 0.3
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0
+    loop: 1
   tracks:
   - id: Music_MainMenu
     clip: {fileID: 8300000, guid: b713497956f6e8e4b81fff9469e9496f, type: 3}
@@ -1028,5 +1901,49 @@ MonoBehaviour:
     loop: 0
   - id: Music_Sting_Defeat
     clip: {fileID: 8300000, guid: 69116270b998fb84e934be2c9887998f, type: 3}
+    volume: 0.7
+    loop: 0
+  - id: Music_Floor2_Shallows_Explore
+    clip: {fileID: 8300000, guid: 8cd6d1490a78f15458679a9ba6198c51, type: 3}
+    volume: 0.6
+    loop: 1
+  - id: Music_Floor2_Shallows_Combat
+    clip: {fileID: 8300000, guid: 827b3cd22c39f834ab5f42d2ff95c3d5, type: 3}
+    volume: 0.6
+    loop: 1
+  - id: Music_Floor2_Reef_Explore
+    clip: {fileID: 8300000, guid: 3b1772c7515999244b1cf74e7a49b201, type: 3}
+    volume: 0.6
+    loop: 1
+  - id: Music_Floor2_Reef_Combat
+    clip: {fileID: 8300000, guid: c8ef47ff6dae6094d82a57faadd08ceb, type: 3}
+    volume: 0.6
+    loop: 1
+  - id: Music_Floor2_Abyss_Explore
+    clip: {fileID: 8300000, guid: e5bb4c9ad7df51948ba3cc8eddb0fede, type: 3}
+    volume: 0.6
+    loop: 1
+  - id: Music_Floor2_Abyss_Combat
+    clip: {fileID: 8300000, guid: d6b42f7b173e8b042b0c51cb3e56c363, type: 3}
+    volume: 0.6
+    loop: 1
+  - id: Music_Exchange
+    clip: {fileID: 8300000, guid: f21ea21fc4846844389295e10838f118, type: 3}
+    volume: 0.6
+    loop: 1
+  - id: Music_Boss_Anomalocaris
+    clip: {fileID: 8300000, guid: c544cc9d3ef99c04bbc4bc558c0ed4a2, type: 3}
+    volume: 0.65
+    loop: 1
+  - id: Music_Boss_Anomalocaris_Frenzy
+    clip: {fileID: 8300000, guid: c8884bf8ca37547468f41268d4b67b54, type: 3}
+    volume: 0.65
+    loop: 1
+  - id: Music_Boss_Eurypterid
+    clip: {fileID: 8300000, guid: 4c28f9b5be943194ab8d40d9977e9699, type: 3}
+    volume: 0.65
+    loop: 1
+  - id: Music_Boss_Eurypterid_LastStand
+    clip: {fileID: 8300000, guid: 0a1f1af37c0b8374fa91826342c7ac74, type: 3}
     volume: 0.7
     loop: 0

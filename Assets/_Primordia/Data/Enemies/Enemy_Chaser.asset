@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Primordia::Primordia.Enemies.EnemyData
   maxHealth: 6
   moveSpeed: 3.5
+  swims: 0
+  swimShadow: {fileID: 0}
   behaviour: 0
   detectionRange: 9
   preferredDistance: 6

@@ -124,10 +124,11 @@ namespace Primordia.Tests
         {
             Player(new Vector2(-12f, 8f));
             var arena = Track(new GameObject("Arena")).transform;
-            arena.position = new Vector2(0.6f, 0f);
             var boss = Boss(Vector2.zero, arena);
             yield return MakeSoft(boss);
 
+            // En la fase blanda ya anda hacia el jugador: el centro, a 0,6 u de donde esté al empezar el último aliento.
+            arena.position = (Vector2)boss.transform.position + new Vector2(0.6f, 0f);
             boss.Health.TakeDamage(1000);
             yield return new WaitForSeconds(0.45f);
             Assert.Less(Vector2.Distance(boss.transform.position, arena.position), 0.35f, "Va tambaleándose al centro de la sala.");

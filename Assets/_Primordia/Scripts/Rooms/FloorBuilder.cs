@@ -165,6 +165,7 @@ namespace Primordia.Rooms
             foreach (var room in placed)
             {
                 var builtRoom = BuildRoom(parent, room, themes[room.Theme], config, boss, random, glows);
+                builtRoom.SetDepthBand(room.Theme >= FirstBandTheme ? room.Theme - FirstBandTheme : -1);
                 built.Rooms.Add(builtRoom);
                 var mapRoom = new MapRoom
                 {

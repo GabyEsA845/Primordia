@@ -139,7 +139,7 @@ namespace Primordia.Enemies
             {
                 SkipCheck(t);
                 var toCenter = center - rb.position;
-                Heading = ((Vector2)Vector3.RotateTowards(Heading, toCenter.normalized, 4f * Time.deltaTime, 0f)).normalized;
+                Heading = Turning.Towards(Heading, toCenter.normalized, 4f * Time.deltaTime);
                 float wobble = 0.6f + 0.4f * Mathf.Sin(t * 9f);
                 var step = Vector2.ClampMagnitude(toCenter, walkSpeed * 0.7f * wobble * Time.deltaTime);
                 var target = rb.position + step.normalized * Clearance(step.normalized, step.magnitude);

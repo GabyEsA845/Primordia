@@ -39,6 +39,14 @@ namespace Primordia.Rooms
         public RoomState State { get; private set; }
         public int AliveEnemies { get; private set; }
 
+        /// <summary>
+        /// Franja de profundidad de la sala en un piso con franjas (0 = la primera, Someras en el piso 2); -1 si el piso
+        /// no tiene franjas o es la sala del jefe. La usa la música.
+        /// </summary>
+        public int DepthBand { get; private set; } = -1;
+
+        internal void SetDepthBand(int band) => DepthBand = band;
+
         public event Action<Room> Entered;
 
         /// <summary>Ha llegado una oleada (con el número de oleada, desde la segunda).</summary>

@@ -438,7 +438,7 @@ namespace Primordia.Enemies
 
         void Steer(Vector2 desired, float degreesPerSecond, float dt)
         {
-            Heading = ((Vector2)Vector3.RotateTowards(Heading, desired, degreesPerSecond * Mathf.Deg2Rad * dt, 0f)).normalized;
+            Heading = Turning.Towards(Heading, desired, degreesPerSecond * Mathf.Deg2Rad * dt);
         }
 
         /// <summary>Anda sin meterse en paredes ni rocas, y sin acercarse a las fosas. Devuelve cuánto ha avanzado.</summary>

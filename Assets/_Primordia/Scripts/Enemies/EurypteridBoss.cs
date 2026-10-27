@@ -136,8 +136,9 @@ namespace Primordia.Enemies
         public Health Health { get; private set; }
         public BossBarStyle BarStyle => CurrentStage switch
         {
-            Stage.Molt or Stage.LastStand => BossBarStyle.Immune,
-            Stage.Soft => BossBarStyle.Enraged,
+            // En el último aliento también es inmune, pero la barra lleva su propio aspecto (veneno que palpita).
+            Stage.Molt => BossBarStyle.Immune,
+            Stage.Soft or Stage.LastStand => BossBarStyle.Enraged,
             _ => BossBarStyle.Normal
         };
         public Stage CurrentStage { get; private set; } = Stage.Armored;
@@ -150,7 +151,13 @@ namespace Primordia.Enemies
         /// <summary>Punta de la cabeza, de donde salen las pinzas.</summary>
         public Vector2 Head => (Vector2)transform.position + Heading * headOffset;
 
-        public int PhaseIndex => CurrentStage == Stage.Armored ? 0 : 1;
+        /// <summary>Fase de la barra: acorazado (también durante la muda), blando y último aliento.</summary>
+        public int PhaseIndex => CurrentStage switch
+        {
+            Stage.Armored or Stage.Molt => 0,
+            Stage.Soft => 1,
+            _ => 2
+        };
         public float[] PhaseThresholds => phaseThresholds ??= new[] { MoltThreshold };
         public const float MoltThreshold = 0.5f;
 

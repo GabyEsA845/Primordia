@@ -114,7 +114,7 @@ namespace Primordia.Tests
             Assert.IsFalse(boss.Health.IsDead);
             yield return null;
             Assert.AreEqual(EurypteridBoss.Stage.LastStand, boss.CurrentStage);
-            Assert.AreEqual(BossBarStyle.Immune, boss.BarStyle);
+            Assert.AreEqual(2, boss.PhaseIndex, "La barra pasa a su aspecto del último aliento.");
             boss.Health.TakeDamage(50);
             Assert.AreEqual(1, boss.Health.Current, "Durante el último aliento es inmune.");
         }

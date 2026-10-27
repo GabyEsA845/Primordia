@@ -1,7 +1,9 @@
 using System.IO;
+using System.Linq;
 using Primordia.Combat;
 using Primordia.Core;
 using Primordia.Enemies;
+using Primordia.UI;
 using UnityEditor;
 using UnityEngine;
 
@@ -10,13 +12,15 @@ namespace Primordia.Editor
     /// <summary>
     /// Euriptérido (docs/multimedia-temp/floor2-bosses, generado con generar_euripterido.py): sus animaciones con los ritmos
     /// del README, la púa venenosa, la muda vacía que deja (cobertura que se rompe a golpes), el barrido de cola, sus datos
-    /// (300 de vida; se reconfiguran siempre) y su prefab, que se rehace cada vez (conserva el GUID). Lo usa
-    /// <see cref="EurypteridBossSetup"/>.
+    /// (300 de vida; se reconfiguran siempre), su barra de vida propia y su prefab, que se rehace cada vez (conserva el
+    /// GUID). Lo usa <see cref="EurypteridBossSetup"/>.
     /// </summary>
     public static partial class ArtSetup
     {
         const string EurypteridArtFolder = CharactersFolder + "/Enemies/Floor2/Eurypterid";
         internal const string EurypteridPrefabPath = EnemyPrefabsFolder + "/Boss_Eurypterid.prefab";
+        const string EurypteridBarArtFolder = UIArtFolder + "/BossBar/Eurypterid";
+        const string EurypteridBarSkinPath = BossIntroDataFolder + "/BossBar_Eurypterid.asset";
 
         // Celda de 128×128, cuadros del README de floor2-bosses (ms → cuadros por segundo). Las de la fase blanda van antes
         // que las de la acorazada: gana el primer prefijo que encaja ("Walk_Soft" antes que "Walk").
@@ -72,6 +76,7 @@ namespace Primordia.Editor
                 d.ConfigureBiomass(0f, 0f, 10);
             });
             AssetDatabase.SaveAssets();
+            var barSkin = CreateEurypteridBarSkin();
 
             var root = new GameObject("Boss_Eurypterid") { layer = LayerMask.NameToLayer(CombatLayers.Enemy) };
             try
@@ -102,6 +107,8 @@ namespace Primordia.Editor
                 boss.Configure(body.transform, animator, renderer, spine);
                 boss.ConfigurePhases(exuvia, tailSweep);
                 boss.ConfigureLastStand(venom);
+                if (barSkin != null)
+                    root.AddComponent<BossBarAppearance>().Configure(barSkin);
                 var prefab = PrefabUtility.SaveAsPrefabAsset(root, EurypteridPrefabPath);
                 return prefab.GetComponent<Enemy>();
             }
@@ -138,6 +145,51 @@ namespace Primordia.Editor
             {
                 Object.DestroyImmediate(root);
             }
+        }
+
+        /// <summary>
+        /// Barra de vida propia del Euriptérido (floor2-bosses/BossBar, generar_barra_euripterido.py): el escorpión de
+        /// 258×32 con la ventana de 200×8 en (38, 12), un marco por fase (acorazado verde, blando rosa y el del último
+        /// aliento con la cola encendida), el caparazón agrietándose mientras muda (inmune), la placa del 50 % y el
+        /// caparazón saltando en pedazos al pasar a la fase blanda. Rehace el asset conservando su GUID. Null si falta el arte.
+        /// </summary>
+        internal static BossBarSkin CreateEurypteridBarSkin()
+        {
+            const string prefix = "UI_BossBar_Eurypterid_";
+            Sprite[] Sheet(string name, int cell) => ImportLooseSheet($"{Floor2BossesSourceFolder}/BossBar/{prefix}{name}.png",
+                $"{EurypteridBarArtFolder}/{prefix}{name}.png", cell);
+            Sprite One(string name, int cell) => Sheet(name, cell).FirstOrDefault();
+
+            const int frameWidth = 258, windowWidth = 200;
+            var armor = Sheet("Frame_Armor", frameWidth);
+            if (armor.Length == 0)
+            {
+                Debug.LogWarning("ArtSetup: falta la barra del Euriptérido (floor2-bosses/generar_barra_euripterido.py); usará la barra lisa.");
+                return null;
+            }
+
+            var phases = new[]
+            {
+                new BossBarSkin.PhaseLook { fill = Sheet("Fill_Armor", windowWidth), eyes = Sheet("Eyes_Armor", frameWidth), frame = armor },
+                new BossBarSkin.PhaseLook { fill = Sheet("Fill_Soft", windowWidth), eyes = Sheet("Eyes_Soft", frameWidth), frame = Sheet("Frame_Soft", frameWidth) },
+                new BossBarSkin.PhaseLook { fill = Sheet("Fill_Venom", windowWidth), eyes = Sheet("Eyes_Fury", frameWidth), frame = Sheet("Frame_Fury", frameWidth) },
+            };
+            // Mientras muda (inmune): el caparazón agrietado con las grietas que brillan.
+            var molt = new BossBarSkin.PhaseLook { fill = Sheet("Fill_Molt", windowWidth), eyes = Sheet("Eyes_Molt", frameWidth), frame = Sheet("Frame_Crack", frameWidth) };
+
+            Directory.CreateDirectory(BossIntroDataFolder);
+            var skin = AssetDatabase.LoadAssetAtPath<BossBarSkin>(EurypteridBarSkinPath);
+            if (skin == null)
+            {
+                skin = ScriptableObject.CreateInstance<BossBarSkin>();
+                AssetDatabase.CreateAsset(skin, EurypteridBarSkinPath);
+            }
+            skin.Configure(armor[0], armor[0], new RectInt(38, 12, windowWidth, 8), One("Back", windowWidth),
+                One("Fill_Trail", windowWidth), phases, molt, One("Notch", 8), One("Notch_Broken", 8), Sheet("Fx_NotchBreak", 16));
+            skin.ConfigurePhaseChange(Sheet("Fx_ShellBurst", frameWidth), 0.08f);
+            EditorUtility.SetDirty(skin);
+            AssetDatabase.SaveAssets();
+            return skin;
         }
 
         /// <summary>Gota venenosa del bullet hell: medio corazón y ralentiza, como la púa; vive lo bastante para cruzar la sala.</summary>

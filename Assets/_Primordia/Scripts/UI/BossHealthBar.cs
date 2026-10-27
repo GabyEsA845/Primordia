@@ -79,6 +79,7 @@ namespace Primordia.UI
         internal int NotchCount => skinView?.NotchCount ?? 0;
         internal bool IsNotchBroken(int index) => skinView != null && skinView.IsBroken(index);
         internal bool IsNotchBreaking(int index) => skinView != null && skinView.IsBreaking(index);
+        internal bool ShowsPhaseChange => skinView != null && skinView.ShowsPhaseChange;
 
         void Awake()
         {
@@ -252,8 +253,11 @@ namespace Primordia.UI
             readonly Image trail;
             readonly Image frame;
             readonly Image eyes;
+            readonly Image phaseChange;
             readonly List<Notch> notches = new();
             bool first = true;
+            int lastPhase = -1;
+            float phaseChangeStart = float.NegativeInfinity;
 
             public Sprite FrameSprite => frame.sprite;
             public Sprite FillSprite => fill.sprite;
@@ -261,6 +265,7 @@ namespace Primordia.UI
             public int NotchCount => notches.Count;
             public bool IsBroken(int index) => index >= 0 && index < notches.Count && notches[index].Broken;
             public bool IsBreaking(int index) => IsBroken(index) && notches[index].Effect.enabled;
+            public bool ShowsPhaseChange => phaseChange.enabled;
 
             public SkinView(BossBarSkin skin, Transform parent, float[] thresholds, float top)
             {
@@ -297,12 +302,14 @@ namespace Primordia.UI
                 }
 
                 eyes = Piece("Eyes", null, Vector2.zero, size, Vector2.zero);
+                phaseChange = Piece("PhaseChange", null, Vector2.zero, size, Vector2.zero);
+                phaseChange.enabled = false;
             }
 
             public void Apply(int phase, bool dark, float shown, float trailRatio, float now)
             {
                 var look = dark ? Skin.Dark : Skin.Phase(phase);
-                frame.sprite = dark ? Skin.FrameDark : Skin.Frame;
+                frame.sprite = look.frame != null && look.frame.Length > 0 ? Skin.Loop(look.frame, now) : dark ? Skin.FrameDark : Skin.Frame;
                 fill.sprite = Skin.Loop(look.fill, now);
                 fill.enabled = fill.sprite != null;
                 eyes.sprite = Skin.Loop(look.eyes, now);
@@ -327,6 +334,14 @@ namespace Primordia.UI
                     notch.Plate.sprite = notch.Broken ? Skin.NotchBroken : Skin.Notch;
                     notch.Plate.enabled = effect == null && notch.Plate.sprite != null;
                 }
+
+                // Al pasar a la fase siguiente a la vista (no al aparecer la barra), el efecto de cambio se ve una vez.
+                if (phase > lastPhase && !first)
+                    phaseChangeStart = now;
+                lastPhase = phase;
+                var change = Skin.PhaseChangeFrame(now - phaseChangeStart);
+                phaseChange.sprite = change;
+                phaseChange.enabled = change != null;
                 first = false;
             }
 

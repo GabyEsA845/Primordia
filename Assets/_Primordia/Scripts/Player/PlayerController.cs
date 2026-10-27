@@ -77,6 +77,23 @@ namespace Primordia.Player
             set => dodgeCooldown = Mathf.Max(0f, value);
         }
 
+        /// <summary>True mientras va ralentizado (veneno de las púas del Euriptérido).</summary>
+        public bool IsSlowed => Time.time < slowUntil;
+
+        /// <summary>Multiplicador de la velocidad al andar por la ralentización (1 sin ella). No afecta a la esquiva.</summary>
+        public float SlowFactor => IsSlowed ? slowFactor : 1f;
+
+        /// <summary>
+        /// Lo ralentiza a <paramref name=factor/> de su velocidad durante <paramref name=duration/> s. Si ya iba ralentizado,
+        /// se queda la más fuerte y dura hasta el final más tardío.
+        /// </summary>
+        public void Slow(float factor, float duration)
+        {
+            factor = Mathf.Clamp01(factor);
+            slowFactor = IsSlowed ? Mathf.Min(slowFactor, factor) : factor;
+            slowUntil = Mathf.Max(slowUntil, Time.time + duration);
+        }
+
         public event Action DodgeStarted;
         public event Action DodgeEnded;
 
@@ -95,6 +112,8 @@ namespace Primordia.Player
         float nextDodgeTime;
         Vector2 lungeVelocity;
         float lungeEndTime;
+        float slowFactor = 1f;
+        float slowUntil;
         readonly List<RaycastHit2D> castHits = new();
 
         // Hueco que se deja al chocar al final del avance.
@@ -170,7 +189,7 @@ namespace Primordia.Player
                 StopLunge();
             }
 
-            rb.linearVelocity = CanAct ? MoveInput * moveSpeed * TimeWarp.PlayerSpeed : Vector2.zero;
+            rb.linearVelocity = CanAct ? MoveInput * moveSpeed * SlowFactor * TimeWarp.PlayerSpeed : Vector2.zero;
         }
 
         /// <summary>Empieza una esquiva si se puede. Devuelve false si está en recarga o el juego no está en curso.</summary>

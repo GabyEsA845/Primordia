@@ -7,10 +7,11 @@ namespace Primordia.Editor
 {
     /// <summary>
     /// Euriptérido, jefe del piso 2: importa las piezas de su sala (las rocas agrietadas que se derrumban con la muda y el
-    /// derrumbe de la cueva), vuelve a leer su plano (con las zonas Z que se hunden), pone la opción de temblor en la pausa y
-    /// crea la escena Test_BossEurypterid: la sala de inicio del piso 2 con el equipo de prueba y, tras la antesala, la sala del
-    /// Euriptérido. De momento pelea en ella el jefe provisional del piso 1 (el Euriptérido llega en el paso 2). Se puede
-    /// volver a ejecutar: rehace la escena.
+    /// derrumbe de la cueva), vuelve a leer su plano (con las zonas Z que se hunden), pone la opción de temblor en la pausa,
+    /// crea el jefe (arte, púa, datos y prefab, <see cref="ArtSetup.CreateEurypterid"/>) con su presentación, lo pone en
+    /// Floor_2 en su sala (en lugar del jefe provisional) y crea la escena Test_BossEurypterid: la sala de inicio del piso 2
+    /// con el equipo de prueba y, tras la antesala, la sala del Euriptérido. Se puede volver a ejecutar: rehace el jefe y la
+    /// escena.
     /// </summary>
     public static class EurypteridBossSetup
     {
@@ -61,11 +62,27 @@ namespace Primordia.Editor
 
             ArtSetup.RebuildPauseOptions();
 
+            var boss = ArtSetup.CreateEurypterid();
+            if (boss == null)
+            {
+                Debug.LogError("EurypteridBossSetup: falta el arte en docs/multimedia-temp/floor2-bosses/Eurypterid (generar_euripterido.py).");
+                return;
+            }
+            AssetDatabase.SaveAssets();
+            ArtSetup.ImportBossIntro("Eurypterid");
+
+            // Su sala y su tema siguen igual; solo cambia el jefe (el provisional del piso 1 sale).
+            var entry = new FloorConfig.BossEntry(boss, options[index].room, options[index].theme, Vector2.zero);
+            options[index] = entry;
+            floor2.ConfigureBosses(options);
+            EditorUtility.SetDirty(floor2);
+            AssetDatabase.SaveAssets();
+
             if (CreateTestConfig(floor2, options[index]) == null)
                 return;
             CreateTestScene();
             AssetDatabase.SaveAssets();
-            Debug.Log($"EurypteridBossSetup: {TestScenePath} creada: inicio del piso 2 y, tras la antesala, la sala del Euriptérido (F9 derrumba sus rocas, F10 cambia la fase del derrumbe).");
+            Debug.Log($"EurypteridBossSetup: {TestScenePath} creada: inicio del piso 2 y, tras la antesala, el Euriptérido en su sala (F9 derrumba sus rocas, F10 cambia la fase del derrumbe).");
         }
 
         /// <summary>Copia de Floor_2 con el camino inicio → antesala → Euriptérido, sin combates, especiales, tienda ni recompensas.</summary>

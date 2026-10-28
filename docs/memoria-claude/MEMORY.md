@@ -1,4 +1,4 @@
-- [Estado de Primordia](primordia-project-status.md) — proyecto personal para itch.io; piso 1 completo en main; piso 2: estructura, Bocas, enemigos, sala de cambio y mutaciones/linajes en main (floor2-mutations d5680b5, 2026-10-26); Anomalocaris en main (merge 1086049); Euriptérido en main (merge 38cd9f2, 2026-10-27); audio del piso 2 en main (merge 2a6268f, 2026-10-27); SIGUIENTE: diseñar con el usuario feature/floor-3 (ver "Dónde lo dejamos")
+- [Estado de Primordia](primordia-project-status.md) — proyecto personal para itch.io; piso 1 completo en main; piso 2: estructura, Bocas, enemigos, sala de cambio y mutaciones/linajes en main (floor2-mutations d5680b5, 2026-10-26); Anomalocaris en main (merge 1086049); Euriptérido en main (merge 38cd9f2, 2026-10-27); audio del piso 2 en main (merge 2a6268f, 2026-10-27); diseño del piso 3 en curso (ver primordia-floor3-design)
 - [Sprites: estado](primordia-sprites-next.md) — personajes, mutaciones e interfaz en main; HUD completo; menús en main; minimapa en main; evoluciones en main; biomasa en main; arte de tienda entregado e importado por menú
 - [Flujo de trabajo](primordia-workflow.md) — español, rama por módulo, menús de editor, commit solo tras confirmar
 - [Trampas técnicas de Unity](primordia-unity-gotchas.md) — Unity abierto, logs, statics, CRLF, zips, referencias perdidas
@@ -27,3 +27,5 @@
 - [Jefe Euriptérido](primordia-boss-eurypterid.md) — terminado y en main (merge 38cd9f2, 2026-10-27): cueva que se derrumba, temblor de pantalla, último aliento con bullet hell, barra propia
 - [Audio del piso 2](primordia-floor2-audio.md) — terminado y en main (merge 2a6268f, 2026-10-27): música por franja, jefes, efectos por datos y código, Sfx.Stop
 - [Skill primordia-audio](primordia-audio-skill.md) — skill propia de audio por código (2026-10-27), en main desde 2a6268f; usarla en todo audio nuevo
+- [Diseño del piso 3](primordia-floor3-design.md) — sesión 2026-10-27/28: Bocas, mutaciones, reacciones, linajes (clase Parásito), 6 enemigos + trampas, jefes, sala secreta y salas cerrados; SIGUIENTE: salas especiales, especiales del ámbar, jefe secreto
+- [Jefes con mecánicas](primordia-boss-mechanics.md) — desde el piso 3 los jefes piden usar el terreno/reacciones, no solo meter daño; escenario cada piso más vivo y caótico

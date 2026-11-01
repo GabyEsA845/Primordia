@@ -11,7 +11,7 @@
 
 ## En curso
 - [Estado de Primordia](primordia-project-status.md) — para itch.io; pisos 1 y 2 completos en main; ahora: piso 3
-- [Diseño del piso 3](primordia-floor3-design.md) — CERRADO; arte en rama feature/floor3-art: tandas 0-5 hechas y subidas; AHORA tanda 6 jefes uno a uno (Opus); luego 7 → documento → GDD/PLAN → ramas
+- [Diseño del piso 3](primordia-floor3-design.md) — CERRADO; arte en rama feature/floor3-art: tandas 0-5 subidas; tanda 6 jefes: Arthropleura 6a-6c1 hechas, SIGUIENTE 6c-2 (barra y flechas, Opus); luego Meganeura, Megarachne, Lepidodendron
 - [Jefes con mecánicas](primordia-boss-mechanics.md) — desde el piso 3 los jefes usan terreno/reacciones; escenario más vivo
 
 ## Diseño general (consulta)

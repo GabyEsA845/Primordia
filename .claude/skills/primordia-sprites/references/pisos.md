@@ -81,5 +81,5 @@ de un piso nuevo, añadir aquí su sección (la misma estructura).
 - **Criaturas** (rampa de 5 con `ramp()` del color base · detalle): rana `#c8a028` con manchas azules
   `#0e1e50 #173a8a #2d64c8 #7aa8e8`; Diplocaulus `#d8806a`·`#8a3a4a`; vinagrillo `#8a4a2e`·`#e0b070`; Calamites
   `#6a9a3a`·`#d8d090`; Medullosa `#3a6a3a`·`#a8502a`; libélula `#2aa8a8`·`#c8ecf0`; bombardero `#2a3a6a`·`#e8702a`;
-  araña `#5a6a2a`·`#e04040`; sapo `#8a6a3a`·`#c8b070`; Arthropleura `#5a3a5a`·`#c89a48`; Meganeura
+  araña `#5a6a2a`·`#e04040`; sapo `#8a6a3a`·`#c8b070`; Arthropleura cobre oxidado `#6e3a22`·cuero `#c8a070`, ojos negros (rediseño del 2026-10-31); Meganeura
   `#1e7a8a`·`#e8b050`; Megarachne `#4a3a4a`·`#c83a3a`; Lepidodendron ancestral: corteza + estróbilos.

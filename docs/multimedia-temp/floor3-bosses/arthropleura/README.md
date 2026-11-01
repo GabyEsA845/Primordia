@@ -128,9 +128,50 @@ embestida contra una Sigillaria y fuego que abre las placas. Solo para revisar (
 **F1 (rehecha a petición del usuario):** claro de **28×16 u cerrado**, espesura de 6-7 u, cámara ×1,3 durante la F1 (pendiente de confirmar); las piezas escondidas se **hunden con trama** (máscara tramada de 1 u en el borde de la espesura) y sobre la copa va la cresta continua (`CanopyRidge`); el bicho revienta el borde (`EdgeBreak`) y entra por la brecha. **Lección para montar la sala de la F1:** los huecos de la espesura por donde asoma deben medir **≥ 5 u** de ancho
 (el cuerpo mide 4 u más las patas); en la lámina de escala eran de 2 u.
 
-## Pendiente (6c-2)
+## 6c-2: interfaz (`generar_interfaz_arthropleura.py`)
 
-Barra de segmentos (BossBarSkin) y flechas de borde (cabeza, cola y punto débil rosa).
+### Barra de vida (`BossBar/UI_BossBar_Arthropleura_*`)
+
+El propio bicho visto desde arriba, mirando a la izquierda: cabeza con colmillos de cuero y antenas, 20 placas de cobre con
+paranotos de punta dorada y cola con dos cercos dorados. Marco **320×32**; la vida rellena la **ventana de 260×8 en (46, 12)
+desde la esquina de abajo a la izquierda del marco**, de izquierda a derecha (Image *Filled*, horizontal). Una placa del
+relleno = 13 px = un segmento. Muescas centradas en el 70 % y el 35 % de la ventana (x = 46 + 260 × umbral, ancho 8).
+
+| Hoja | Cuadros | Celda | ms | Uso |
+|---|---|---|---|---|
+| `Frame_Copper` | 1 | 320×32 | — | Marco de la F1 (cobre) |
+| `Frame_Ember` | 3 | 320×32 | 120 | Marco de la F2: placas chamuscadas con grietas de ascuas que parpadean; bucle |
+| `Frame_Open` | 2 | 320×32 | 260 | Marco de la F3: placas levantadas con la carne rosada que late; bucle |
+| `Frame_Raw` | 2 | 320×32 | 200 | Marco del último 10 % (rueda): carne más viva; bucle |
+| `Back` | 1 | 260×8 | — | Fondo de la ventana |
+| `Fill_Copper` | 1 | 260×8 | — | Relleno F1 |
+| `Fill_Ember` | 3 | 260×8 | 120 | Relleno F2 (ascuas); bucle |
+| `Fill_Flesh` | 2 | 260×8 | 260 | Relleno F3 (carne rosada que late); bucle |
+| `Fill_Raw` | 2 | 260×8 | 200 | Relleno de la rueda (carne viva con brillo húmedo); bucle |
+| `Fill_Trail` | 1 | 260×8 | — | Barra fantasma (espera ~0,4 s y se vacía) |
+| `Eyes_Hunt` | 1 | 320×32 | — | Ojos de la F1, encima del marco |
+| `Eyes_Burn` / `Eyes_Flesh` | 2 | 320×32 | 260 | Ojos de la F2 (ascua) y la F3 (carmesí con halo); bucle |
+| `Eyes_Roll` | 4 | 320×32 | 110 | Ojos en espiral de la rueda; bucle |
+| `Notch` / `Notch_Broken` | 1 | 8×32 | — | Espina de quitina de un cambio de fase, **centrada en su umbral**, y rota |
+| `Fx_NotchBreak` | 5 | 16×34 | 70 | La espina se rompe; centrada en el mismo punto |
+| `Fx_WallBreak` | 6 | 320×32 | 80 | 70 %: astillas, piedras, hojas y polvo salen de la muesca del 70 % |
+| `Fx_PlatesOpen` | 6 | 320×32 | 80 | 35 %: ola rosa que abre las placas de la cola a la cabeza |
+
+Marco, relleno y ojos van juntos por fase (F1 Copper/Hunt, F2 Ember/Ember/Burn, F3 Open/Flesh/Flesh, rueda Raw/Raw/Roll).
+
+### Flechas del borde (`EdgeArrows/UI_EdgeArrow_Arthropleura_*`)
+
+Insignia redonda y puntero aparte. El puntero se coloca a ~21 px del centro de la insignia, hacia el objetivo.
+
+| Hoja | Cuadros | Celda | ms | Uso |
+|---|---|---|---|---|
+| `Badge_Head` | 1 | 24×24 | — | Cabeza (aro rojo) |
+| `Badge_HeadWarn` | 2 | 24×24 | 160 | Cabeza a punto de embestir (aro que parpadea); bucle |
+| `Badge_Tail` | 1 | 24×24 | — | Cola (aro dorado) |
+| `Badge_Weak` | 3 | 24×24 | 200 | Punto débil: carne rosada que late; bucle |
+| `Pointer_Head` / `_Tail` / `_Weak` | 16 | 12×12 | — | Puntero: **cuadro 0 = derecha, antihorario cada 22,5°** |
+
+Vistas: `vista_previa_6c2_barra.png`, `vista_previa_6c2_flechas.png`. Regenerar: `python generar_interfaz_arthropleura.py`.
 
 Vistas previas: `vista_previa_6c1.png`, `vista_previa_6b_capas.png`, `vista_previa_6b_animaciones.png`, `vista_previa_6b_curva.png` (estados mezclados), `vista_previa_6a_animaciones.png` (lado), `vista_previa_6a_direcciones.png`, `vista_previa_6a_curva.png`
 (las 16 direcciones encadenadas), `vista_previa_6a_cadena.png` y `vista_previa_escala_*.png`; `gif/` (no va a git).

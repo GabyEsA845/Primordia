@@ -1,6 +1,7 @@
 ## Cómo trabajar
 - [Ahorro de tokens](primordia-token-saving.md) — una cuenta Pro; AVISAR SIEMPRE cambio Opus (diseño/arte) ↔ Sonnet (implementar) al empezar y al acabar cada tarea; agrupar arte/audio
 - [Flujo de trabajo](primordia-workflow.md) — español, rama por módulo, menús de editor, commit solo tras confirmar
+- [Arte de jefes](primordia-boss-art-workflow.md) — un jefe cada vez, preguntas antes de cada subtanda, muestra en 1 dirección, escenas (GIF en gif/escenas/), comparar versiones si duda
 - [Trampas de Unity](primordia-unity-gotchas.md) — Unity abierto, logs, statics, CRLF, zips, referencias perdidas
 - [Multimedia temporal](primordia-multimedia-temp.md) — arte/audio/generadores en docs/multimedia-temp/, se importan con menús Primordia
 - [Skill primordia-sprites](primordia-sprites-skill.md) — usarla en todo arte nuevo
@@ -11,7 +12,8 @@
 
 ## En curso
 - [Estado de Primordia](primordia-project-status.md) — para itch.io; pisos 1 y 2 completos en main; ahora: piso 3
-- [Diseño del piso 3](primordia-floor3-design.md) — CERRADO; arte en rama feature/floor3-art: tandas 0-5 subidas; tanda 6 jefes: Arthropleura 6a-6c1 hechas, SIGUIENTE 6c-2 (barra y flechas, Opus); luego Meganeura, Megarachne, Lepidodendron
+- [Diseño del piso 3](primordia-floor3-design.md) — CERRADO; arte en rama feature/floor3-art: tandas 0-5 subidas; tanda 6 jefes: Arthropleura y Meganeura TERMINADOS; SIGUIENTE Megarachne (Opus, preguntas antes), luego Lepidodendron
+- [Jefe Meganeura](primordia-boss-meganeura.md) — combate y arte terminados (2026-11-01), generadores y reglas para el código
 - [Jefes con mecánicas](primordia-boss-mechanics.md) — desde el piso 3 los jefes usan terreno/reacciones; escenario más vivo
 
 ## Diseño general (consulta)

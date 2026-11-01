@@ -9,8 +9,9 @@ python generar_enemigos_piso3.py . plants ground flyers
 
 `plants` = 3a, `ground` = 3b, `flyers` = 3c. El escarabajo, la araña y la libélula reutilizan la cámara 3D del
 vinagrillo (`floor3-bodies/generar_cuerpos_piso3.py`, a 30°), así que comparten vista, luz y tamaño con el jugador.
-**Regla del piso:** todos los bichos con la vista lateral del jugador; solo lo plano (charcos, telarañas, avisos en el
-suelo) se ve desde arriba.
+**Regla del piso (por defecto):** los bichos con la vista lateral del jugador; lo plano (charcos, telarañas, avisos en
+el suelo) se ve desde arriba. Puede haber excepciones en algunos enemigos o jefes: se deciden con el usuario antes de
+dibujarlos.
 
 **Importar en Unity:** Sprite Mode *Multiple*, 16 PPU, filtro *Point*, compresión *None*, cortar por celda con la tabla.
 Pivote *Bottom Center* para lo que está de pie en el suelo (plantas, sapo, bichos) y *Center* para voladores y efectos.

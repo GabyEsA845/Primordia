@@ -15,6 +15,7 @@ Proceso que el usuario aprobó con el Arthropleura y la Meganeura (2026-10-31 / 
 - **Escenas de vista previa en cada subtanda** (comparar el jefe con la rana, ataques, presentación, muerte…), como PNG con cuadros clave + GIF; **los GIF de escenas montadas van en `gif/escenas/`**.
 - Si el usuario **duda entre dos diseños**, generar las dos versiones (y escenas con cada una) para que elija.
 - Revisar yo mismo cada lámina antes de enseñarla (orden de dibujo, cosas tapadas, efectos apagados por capas) y corregir antes de presentarla.
+- **Todo jefe (y minijefe) lleva su PRESENTACIÓN como en Enter the Gungeon** (recordado por el usuario el 2026-11-01: se había olvidado en el piso 3): pose de entrada + **retrato 176×176** + **rótulo** (Jersey 10 con el color del piso, título, banda diagonal) en `docs/multimedia-temp/boss-intros/` con `generar_presentaciones.py`. Incluirla en la lista de subtandas de cada jefe.
 - Al cerrar el jefe: README de la carpeta, fila en docs/MULTIMEDIA.md, commit en la rama de arte (sin `ProjectSettings.asset`).
 
 **Why:** el usuario quiere decidir cada detalle viendo resultados concretos; le gustaron mucho las escenas.

@@ -1,7 +1,7 @@
 ## Cómo trabajar
 - [Ahorro de tokens](primordia-token-saving.md) — una cuenta Pro; AVISAR SIEMPRE cambio Opus (diseño/arte) ↔ Sonnet (implementar) al empezar y al acabar cada tarea; agrupar arte/audio
 - [Flujo de trabajo](primordia-workflow.md) — español, rama por módulo, menús de editor, commit solo tras confirmar
-- [Arte de jefes](primordia-boss-art-workflow.md) — un jefe cada vez, preguntas antes de cada subtanda, muestra en 1 dirección, escenas (GIF en gif/escenas/), comparar versiones si duda
+- [Arte de jefes](primordia-boss-art-workflow.md) — un jefe cada vez, preguntas antes de cada subtanda, muestra en 1 dirección, escenas (GIF en gif/escenas/), comparar versiones si duda; todo jefe lleva PRESENTACIÓN (retrato + rótulo)
 - [Trampas de Unity](primordia-unity-gotchas.md) — Unity abierto, logs, statics, CRLF, zips, referencias perdidas
 - [Multimedia temporal](primordia-multimedia-temp.md) — arte/audio/generadores en docs/multimedia-temp/, se importan con menús Primordia
 - [Skill primordia-sprites](primordia-sprites-skill.md) — usarla en todo arte nuevo
@@ -12,8 +12,10 @@
 
 ## En curso
 - [Estado de Primordia](primordia-project-status.md) — para itch.io; pisos 1 y 2 completos en main; ahora: piso 3
-- [Diseño del piso 3](primordia-floor3-design.md) — CERRADO; arte en rama feature/floor3-art: tandas 0-5 subidas; tanda 6 jefes: Arthropleura y Meganeura TERMINADOS; SIGUIENTE Megarachne (Opus, preguntas antes), luego Lepidodendron
+- [Diseño del piso 3](primordia-floor3-design.md) — CERRADO; arte en rama feature/floor3-art: tandas 0-5, Arthropleura, Meganeura, Megarachne y presentaciones TERMINADOS; SIGUIENTE Lepidodendron (Opus, preguntas antes)
 - [Jefe Meganeura](primordia-boss-meganeura.md) — combate y arte terminados (2026-11-01), generadores y reglas para el código
+- [Minijefe Megarachne](primordia-boss-megarachne.md) — TERMINADA (2026-11-01): combate, árbol del Nido, cables, reglas para el código
+- [Jefe secreto Lepidodendron](primordia-boss-lepidodendron.md) — SIGUIENTE: diseño, qué reutilizar y preguntas antes de dibujar
 - [Jefes con mecánicas](primordia-boss-mechanics.md) — desde el piso 3 los jefes usan terreno/reacciones; escenario más vivo
 
 ## Diseño general (consulta)

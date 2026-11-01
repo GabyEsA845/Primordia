@@ -1,31 +1,41 @@
-- [Estado de Primordia](primordia-project-status.md) — proyecto personal para itch.io; piso 1 completo en main; piso 2: estructura, Bocas, enemigos, sala de cambio y mutaciones/linajes en main (floor2-mutations d5680b5, 2026-10-26); Anomalocaris en main (merge 1086049); Euriptérido en main (merge 38cd9f2, 2026-10-27); audio del piso 2 en main (merge 2a6268f, 2026-10-27); diseño del piso 3 en curso (ver primordia-floor3-design)
-- [Sprites: estado](primordia-sprites-next.md) — personajes, mutaciones e interfaz en main; HUD completo; menús en main; minimapa en main; evoluciones en main; biomasa en main; arte de tienda entregado e importado por menú
+## Cómo trabajar
+- [Ahorro de tokens](primordia-token-saving.md) — una cuenta Pro; AVISAR SIEMPRE cambio Opus (diseño/arte) ↔ Sonnet (implementar) al empezar y al acabar cada tarea; agrupar arte/audio
 - [Flujo de trabajo](primordia-workflow.md) — español, rama por módulo, menús de editor, commit solo tras confirmar
-- [Trampas técnicas de Unity](primordia-unity-gotchas.md) — Unity abierto, logs, statics, CRLF, zips, referencias perdidas
-- [Carpeta multimedia temporal](primordia-multimedia-temp.md) — arte, audio y generadores en docs/multimedia-temp/ (en git desde 2026-10-26, salvo GIF), se importan con menús Primordia
-- [Niveles de mutaciones](primordia-mutation-levels.md) — diseño aprobado de 3 niveles y evoluciones; en main (merge b751d48)
-- [Biomasa y tienda](primordia-biomass-shop.md) — biomasa (7a506ad) y tienda (ccba8b0) en main
-- [Cuerpo evolutivo (descartado)](primordia-evolving-body.md) — sistema combinado descartado 2026-10-13; guardado en rama feature/evolving-body y stash, no integrar
-- [Diseño de pisos](primordia-floors-design.md) — 6 pisos, criatura por piso × familia de arma, v1.0 con pisos 1-3 (lo de "4 mutaciones por piso" lo sustituye la progresión por pisos); linajes en main; Hifas, Camuflaje, Vacuola y ameba gigante en main
-- [Beneficios de linajes](primordia-lineage-benefits.md) — aprobados 2026-10-15: base por clase (Rematar, Pastar, Toxina débil, Colonizar) + toque por animal; en main (merge 33bcb1d)
-- [Esporas y Aguijón](primordia-spores-stinger.md) — aprobado 2026-10-15: Aguijón a 2/3, Esporas = gorrito Amanita + bocanada que flota, Mandíbulas II+ avanzan 0,6 u; en main (merge 189834f)
-- [Evolución de linajes](primordia-lineage-evolution.md) — aprobado 2026-10-15: animación de 2 s al completar + piezas que cambian por linaje; en main (merge bb1560d)
-- [Audio del piso 1](primordia-audio.md) — música, efectos y volumen en la pausa en main (merge ef052ce, 2026-10-23); probado en itch.io, funciona
-- [Progresión por pisos](primordia-floor-progression.md) — 2026-10-23, en main (3c9c9a1): mutaciones y linajes por piso, sala de paso con Boca obligatoria y metamorfosis, sala de cambio; sala de paso, Bocas del piso 2 y metamorfosis en main (merge 1e25a7a); SIGUIENTE: piso 2
-- [Ameba gigante](primordia-boss-amoeba.md) — segundo jefe del piso 1 en main (merge 22eec23, 2026-10-23); vida del piso 1 al doble
-- [Diseño del piso 2](primordia-floor2-design.md) — 2026-10-24: diseño cerrado (9 mutaciones, linajes con clase Carroñero, 5 enemigos, 2 jefes, escala 16 px); arte completo; en GDD/PLAN (merge d798aa3)
-- [Salas del piso 2](primordia-floor2-rooms.md) — diseño cerrado y en el GDD (fosas, 10 salas especiales con planos y arte aprobados, corazón morado → secreto del piso 3); presentación de jefes en main (f948d02); documentos interactivos actualizados
-- [Estructura del piso 2](primordia-floor2-structure.md) — en main (merge 59f633c, 2026-10-25); menú, atajos F1–F4, qué es provisional
-- [Mutaciones de las almejas](primordia-clam-mutations.md) — terminadas y en main (merge bace4a2); pendientes que dependen de floor2-mouths y de los cuerpos
-- [Documentos por piso](primordia-floor-docs.md) — cada piso tiene su documento interactivo; añadir los cambios relevantes al terminarlos
-- [Bocas del piso 2](primordia-floor2-mouths.md) — las 3 Bocas en main (merge 9420dbf); documento del piso 2 v4
-- [Enemigos del piso 2](primordia-floor2-enemies.md) — terminada y en main (merge 95e1189, 2026-10-25): 5 enemigos con EnemyBrain, tope por sala, grupos; cómo se hizo cada uno
-- [Sala de cambio](primordia-exchange-room.md) — terminada y en main (merge 4ff7147, 2026-10-25): reglas (piso anterior = un nivel menos, sin especiales), cápsula, ventana y metamorfosis en la cápsula
-- [Mutaciones del piso 2](primordia-floor2-mutations.md) — terminada y en main (merge d5680b5, 2026-10-26): mutaciones, 8 linajes, Carroña, toques, reserva del piso, F8
-- [Skill primordia-sprites](primordia-sprites-skill.md) — skill propia de pixel art en .claude/skills (en main desde d5680b5); usarla en todo arte nuevo
-- [Jefe Anomalocaris](primordia-boss-anomalocaris.md) — terminado y en main (merge 1086049): fases, barra propia (BossBarSkin/IPhasedBoss), barra fantasma, Tab de 3 estados
-- [Jefe Euriptérido](primordia-boss-eurypterid.md) — terminado y en main (merge 38cd9f2, 2026-10-27): cueva que se derrumba, temblor de pantalla, último aliento con bullet hell, barra propia
-- [Audio del piso 2](primordia-floor2-audio.md) — terminado y en main (merge 2a6268f, 2026-10-27): música por franja, jefes, efectos por datos y código, Sfx.Stop
-- [Skill primordia-audio](primordia-audio-skill.md) — skill propia de audio por código (2026-10-27), en main desde 2a6268f; usarla en todo audio nuevo
-- [Diseño del piso 3](primordia-floor3-design.md) — sesión 2026-10-27/28: Bocas, mutaciones, reacciones, linajes (clase Parásito), 6 enemigos + trampas, jefes, sala secreta y salas cerrados; SIGUIENTE: salas especiales, especiales del ámbar, jefe secreto
-- [Jefes con mecánicas](primordia-boss-mechanics.md) — desde el piso 3 los jefes piden usar el terreno/reacciones, no solo meter daño; escenario cada piso más vivo y caótico
+- [Trampas de Unity](primordia-unity-gotchas.md) — Unity abierto, logs, statics, CRLF, zips, referencias perdidas
+- [Multimedia temporal](primordia-multimedia-temp.md) — arte/audio/generadores en docs/multimedia-temp/, se importan con menús Primordia
+- [Skill primordia-sprites](primordia-sprites-skill.md) — usarla en todo arte nuevo
+- [Skill primordia-audio](primordia-audio-skill.md) — usarla en todo audio nuevo
+- [Mutaciones por niveles](primordia-mutation-visual-tiers.md) — normales = efectos sin tocar silueta; pieles retocan dentro; especiales cambian el modelo
+- [Documentos por piso](primordia-floor-docs.md) — actualizar el documento interactivo del piso al terminar cada cosa
+- [Codex aparcado](primordia-codex-paused.md) — trabajar con Codex está archivado; no proponerlo
+
+## En curso
+- [Estado de Primordia](primordia-project-status.md) — para itch.io; pisos 1 y 2 completos en main; ahora: piso 3
+- [Diseño del piso 3](primordia-floor3-design.md) — CERRADO; arte en rama feature/floor3-art: tandas 0-4 hechas y subidas; SIGUIENTE tanda 5 (reacciones, Opus); luego 6-7 → documento → GDD/PLAN → ramas
+- [Jefes con mecánicas](primordia-boss-mechanics.md) — desde el piso 3 los jefes usan terreno/reacciones; escenario más vivo
+
+## Diseño general (consulta)
+- [Diseño de pisos](primordia-floors-design.md) — 6 pisos, criatura por piso × familia de arma; v1.0 = pisos 1-3
+- [Progresión por pisos](primordia-floor-progression.md) — mutaciones/linajes por piso, sala de paso, Boca, metamorfosis
+- [Niveles de mutaciones](primordia-mutation-levels.md) — 3 niveles y evoluciones
+- [Beneficios de linajes](primordia-lineage-benefits.md) — base por clase + toque por animal
+- [Evolución de linajes](primordia-lineage-evolution.md) — animación de 2 s + piezas por linaje
+- [Cuerpo evolutivo](primordia-evolving-body.md) — DESCARTADO, no integrar
+
+## Terminado (detalles de implementación)
+- [Sprites: estado](primordia-sprites-next.md) — personajes, HUD, menús, minimapa, tienda
+- [Biomasa y tienda](primordia-biomass-shop.md)
+- [Esporas y Aguijón](primordia-spores-stinger.md)
+- [Audio del piso 1](primordia-audio.md)
+- [Ameba gigante](primordia-boss-amoeba.md) — jefe 2 del piso 1
+- [Diseño del piso 2](primordia-floor2-design.md)
+- [Salas del piso 2](primordia-floor2-rooms.md) — corazón morado → secreto del piso 3
+- [Estructura del piso 2](primordia-floor2-structure.md) — atajos F1–F4
+- [Mutaciones de las almejas](primordia-clam-mutations.md)
+- [Bocas del piso 2](primordia-floor2-mouths.md)
+- [Enemigos del piso 2](primordia-floor2-enemies.md) — EnemyBrain, tope por sala
+- [Sala de cambio](primordia-exchange-room.md)
+- [Mutaciones del piso 2](primordia-floor2-mutations.md) — 8 linajes, Carroña, F8
+- [Jefe Anomalocaris](primordia-boss-anomalocaris.md) — BossBarSkin/IPhasedBoss
+- [Jefe Euriptérido](primordia-boss-eurypterid.md) — derrumbe, bullet hell
+- [Audio del piso 2](primordia-floor2-audio.md) — Sfx.Stop

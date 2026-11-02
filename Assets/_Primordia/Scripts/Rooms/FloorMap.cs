@@ -28,7 +28,10 @@ namespace Primordia.Rooms
             Obstacle,
 
             /// <summary>Fosa: para las paredes cuenta como suelo; los enemigos que andan la rodean.</summary>
-            Pit
+            Pit,
+
+            /// <summary>Lodo profundo del piso 3: para las paredes cuenta como suelo. Hasta que tenga su efecto se pisa como suelo.</summary>
+            Mud
         }
 
         readonly Kind[,] kinds;
@@ -67,7 +70,7 @@ namespace Primordia.Rooms
         public bool IsOpen(int x, int y)
         {
             var kind = Get(x, y);
-            return kind == Kind.Floor || kind == Kind.Passage || kind == Kind.Obstacle || kind == Kind.Pit;
+            return kind == Kind.Floor || kind == Kind.Passage || kind == Kind.Obstacle || kind == Kind.Pit || kind == Kind.Mud;
         }
 
         bool Contains(int x, int y) =>

@@ -89,6 +89,41 @@ namespace Primordia.Tests
         }
 
         [Test]
+        public void FloorThreeCaves_LShapesAndLakes_PassTheChecks_AndKeepSolidGroundBetweenDoors()
+        {
+            var sizes = new[] { new Vector2Int(40, 26), new Vector2Int(44, 28), new Vector2Int(50, 18), new Vector2Int(22, 30),
+                new Vector2Int(52, 34) };
+            int withMud = 0;
+            for (int seed = 1; seed <= 200; seed++)
+            {
+                var size = sizes[seed % sizes.Length];
+                var shape = seed % 2 == 0 ? CaveGenerator.CaveShape.L : CaveGenerator.CaveShape.Oval;
+                var layout = CaveGenerator.Generate(size, new System.Random(seed), true, shape, lakes: true);
+                Assert.IsNotNull(layout, $"semilla {seed}, {size}, {shape}: ninguna cueva pasó la comprobación.");
+                CollectionAssert.IsEmpty(CaveGenerator.Check(layout), $"semilla {seed}, {size}, {shape}");
+                if (layout.Contains('m'))
+                    withMud++;
+
+                var template = Track(ScriptableObject.CreateInstance<RoomTemplate>());
+                template.SetLayout(layout);
+                CollectionAssert.IsEmpty(template.Validate(), $"semilla {seed}: el arte puede dibujar toda la cueva.");
+                int mud = Cells(new RectInt(0, 0, template.Width, template.Height)).Count(cell => template.Get(cell.x, cell.y) == RoomTemplate.Mark.Mud);
+                int floor = Cells(new RectInt(0, 0, template.Width, template.Height)).Count(cell => RoomTemplate.IsInterior(template.Get(cell.x, cell.y)));
+                Assert.LessOrEqual(mud, floor * 0.31f, $"semilla {seed}: el lodo no pasa del 30 % del suelo.");
+            }
+            Assert.Greater(withMud, 100, "La mayoría de salas con lagos llevan lodo.");
+        }
+
+        [Test]
+        public void Caves_WithoutLakesOrShape_AreTheSameAsBefore()
+        {
+            var size = new Vector2Int(34, 22);
+            Assert.AreEqual(CaveGenerator.Generate(size, new System.Random(5)),
+                CaveGenerator.Generate(size, new System.Random(5), true, CaveGenerator.CaveShape.Oval, lakes: false));
+            Assert.IsFalse(CaveGenerator.Generate(size, new System.Random(5)).Contains('m'));
+        }
+
+        [Test]
         public void Caves_AreTheSame_WithTheSameSeed_AndChangeWithAnother()
         {
             var size = new Vector2Int(34, 22);

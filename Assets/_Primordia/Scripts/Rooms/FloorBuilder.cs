@@ -131,6 +131,8 @@ namespace Primordia.Rooms
 
             if (config.HasBands)
                 ThemeFiller(map, placed);
+            if (config.HasBands && config.BlendBandBorders)
+                BlendBandBorders(map, placed, layout, byLayout, random);
 
             foreach (var room in placed.Where(room => room.Layout.Role == RoomRole.Transition))
             {
@@ -262,6 +264,48 @@ namespace Primordia.Rooms
                 }
                 if (nearest != null)
                     map.SetTheme(cell, nearest.Theme);
+            }
+        }
+
+        /// <summary>
+        /// Salas de frontera (piso 3, "el incendio que avanza"): la primera sala de combate de cada franja nueva mezcla en su
+        /// suelo el tileset de la franja anterior y el suyo con una mancha irregular de ruido, todo lo anterior junto a la
+        /// puerta por la que se entra y todo lo nuevo hacia el lado contrario. Las paredes siguen siendo las de la sala.
+        /// </summary>
+        static void BlendBandBorders(FloorMap map, List<PlacedRoom> placed, FloorLayout layout, Dictionary<LayoutRoom, PlacedRoom> byLayout,
+            System.Random random)
+        {
+            foreach (var room in placed)
+            {
+                if (room.Layout.Role != RoomRole.Combat || room.Theme <= FirstBandTheme)
+                    continue;
+
+                // El enlace por el que se llega desde la franja anterior (la sala anterior del camino).
+                int previousTheme = room.Theme - 1;
+                int link = layout.Links.FindIndex(pair => pair.to == room.Layout && byLayout[pair.from].Theme == previousTheme);
+                if (link < 0)
+                    continue;
+
+                var entranceCells = room.DoorCells.TryGetValue(-layout.Direction(link), out var cells) ? cells : null;
+                if (entranceCells == null || entranceCells.Count == 0)
+                    continue;
+                var entrance = new Vector2(entranceCells.Average(cell => cell.x), entranceCells.Average(cell => cell.y));
+                var inward = room.FloorCenter - entrance;
+                if (inward.sqrMagnitude < 1f)
+                    continue;
+
+                float offset = random.Next(1000);
+                foreach (var cell in room.Rect.allPositionsWithin)
+                {
+                    if (map.Get(cell) is FloorMap.Kind.Wall or FloorMap.Kind.DoorArch or FloorMap.Kind.DoorGap or FloorMap.Kind.Passage)
+                        continue;
+
+                    // 0 en la puerta de entrada, 1 en el extremo contrario (el centro vale 0,5).
+                    float along = Mathf.Clamp01(Vector2.Dot((Vector2)cell - entrance, inward) / inward.sqrMagnitude / 2f);
+                    float noise = Mathf.PerlinNoise(cell.x * 0.12f + offset, cell.y * 0.12f + offset);
+                    if (along + (noise - 0.5f) * 0.8f <= 0.4f)
+                        map.SetTheme(cell, previousTheme);
+                }
             }
         }
 
@@ -438,6 +482,7 @@ namespace Primordia.Rooms
                     var mark = room.Template.Get(x, y);
                     map.Set(cell, RoomTemplate.IsObstacle(mark) ? FloorMap.Kind.Obstacle
                         : mark == RoomTemplate.Mark.Pit ? FloorMap.Kind.Pit
+                        : mark == RoomTemplate.Mark.Mud ? FloorMap.Kind.Mud
                         : RoomTemplate.IsInterior(mark) ? FloorMap.Kind.Floor
                         : FloorMap.Kind.Wall);
                     map.SetTheme(cell, room.Theme);

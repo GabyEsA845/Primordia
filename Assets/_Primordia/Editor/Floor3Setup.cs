@@ -18,6 +18,20 @@ namespace Primordia.Editor
         const string TestScenePath = "Assets/_Primordia/Scenes/Test_Floor3.unity";
         const string TeleporterPath = "Assets/_Primordia/Prefabs/Rooms/Teleporter_Floor3.prefab";
 
+        // Tipos de sala de combate (paredes incluidas; la vista es de 30×16,9): normales, alargadas (50×18 y 22×30), en L y una
+        // grande de unas 2×2 casillas. Con lagos de lodo en unas y sin ellos en otras.
+        static readonly FloorConfig.CaveSpec[] CaveSpecs =
+        {
+            new(new Vector2Int(34, 22), CaveGenerator.CaveShape.Oval, lakes: false, weight: 2f),
+            new(new Vector2Int(38, 24), CaveGenerator.CaveShape.Oval, lakes: true, weight: 2f),
+            new(new Vector2Int(44, 26), CaveGenerator.CaveShape.Oval, lakes: true, weight: 1.5f),
+            new(new Vector2Int(50, 18), CaveGenerator.CaveShape.Oval, lakes: false, weight: 1.5f),
+            new(new Vector2Int(22, 30), CaveGenerator.CaveShape.Oval, lakes: false, weight: 1f),
+            new(new Vector2Int(40, 26), CaveGenerator.CaveShape.L, lakes: false, weight: 2f),
+            new(new Vector2Int(44, 28), CaveGenerator.CaveShape.L, lakes: true, weight: 1.5f),
+            new(new Vector2Int(52, 34), CaveGenerator.CaveShape.Oval, lakes: true, weight: 1f),
+        };
+
         [MenuItem("Primordia/Floor 3/Crear piso 3 y escena de prueba")]
         static void CreateAll()
         {
@@ -64,6 +78,11 @@ namespace Primordia.Editor
                 config.ConfigureEnemies(System.Array.Empty<FloorConfig.EnemyEntry>(), floor2.Boss, newBaseBudget: 0f, newBudgetPerRoom: 0f);
                 config.ConfigureShopDepth(new Vector2(1f / 3f, 2f / 3f));
             }
+
+            // Salas de combate de varias siluetas y tamaños, con lagos de lodo en parte de ellas, y las salas de frontera mixtas.
+            // Se ponen la primera vez; luego se pueden ajustar a mano en el asset.
+            if (config.CaveSpecs.Length == 0)
+                config.ConfigureCaveSpecs(CaveSpecs, newBlendBandBorders: true);
 
             config.ConfigureFloor(3, config.NextFloor);
             config.ConfigureArt(bands[0], floor2.BossTheme, floor2.ExitSprite);

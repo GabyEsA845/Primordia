@@ -14,6 +14,15 @@ namespace Primordia.Rooms
     /// </summary>
     public static class CaveGenerator
     {
+        /// <summary>Silueta con la que se dibuja la cueva de una sala. Las alargadas y las grandes son el óvalo con otro tamaño.</summary>
+        public enum CaveShape
+        {
+            Oval,
+
+            /// <summary>Dos manchas unidas con una esquina del interior sin suelo (como máximo el 40 % de cada lado).</summary>
+            L
+        }
+
         /// <summary>Tamaño mínimo de una cueva: lo que hace falta para la pared de arriba, los cuellos y algo de sala.</summary>
         public static readonly Vector2Int MinSize = new(16, 13);
 
@@ -37,6 +46,11 @@ namespace Primordia.Rooms
         const int FloorPerSmallObstacle = 120;
         const int CoverTries = 60;
 
+        // Lagos de lodo: tope de lodo en fracción del suelo, intentos por lago y tamaño mínimo para que valga la pena.
+        const float MaxMudFraction = 0.3f;
+        const int LakeTries = 25;
+        const int MinLakeCells = 20;
+
         const int Attempts = 8;
         const int RepairPasses = 60;
 
@@ -45,12 +59,15 @@ namespace Primordia.Rooms
         /// con un hueco de puerta en cada lado. Null si ningún intento pasa la comprobación.
         /// </summary>
         /// <param name="cover">Con obstáculos de cobertura dentro.</param>
-        public static string Generate(Vector2Int size, System.Random random, bool cover = true)
+        /// <param name="shape">Silueta de la sala: la mancha ovalada de siempre o una L.</param>
+        /// <param name="lakes">Con lagos de lodo profundo (<c>m</c>) con islas de tierra firme, lejos de los cuellos de las puertas.</param>
+        public static string Generate(Vector2Int size, System.Random random, bool cover = true, CaveShape shape = CaveShape.Oval,
+            bool lakes = false)
         {
             size = Vector2Int.Max(size, MinSize);
             for (int attempt = 0; attempt < Attempts; attempt++)
             {
-                var layout = TryGenerate(size, random, cover);
+                var layout = TryGenerate(size, random, cover, shape, lakes);
                 if (layout != null)
                     return layout;
             }
@@ -84,7 +101,7 @@ namespace Primordia.Rooms
                 {
                     char c = x < lines[row].Length ? lines[row][x] : '#';
                     int y = height - 1 - row;
-                    floor[x, y] = c is '.' or 'o' or 'O';
+                    floor[x, y] = c is '.' or 'o' or 'O' or 'm';
                     if (c is 'o' or 'O')
                         cover[x, y] = c;
                     if (doors.TryGetValue(c, out var cells))
@@ -178,7 +195,7 @@ namespace Primordia.Rooms
             return problems;
         }
 
-        static string TryGenerate(Vector2Int size, System.Random random, bool withCover)
+        static string TryGenerate(Vector2Int size, System.Random random, bool withCover, CaveShape shape, bool withLakes)
         {
             int width = size.x, height = size.y;
             // Interior: lo que no es pared del borde (x de 1 a width - 2, y de 1 a height - 4, con y hacia arriba).
@@ -191,18 +208,30 @@ namespace Primordia.Rooms
 
             var floor = new bool[width, height];
             var neck = new bool[width, height];
-            Blob(floor, minX, maxX, minY, maxY, random);
+            if (shape == CaveShape.L)
+                LBlob(floor, minX, maxX, minY, maxY, random);
+            else
+                Blob(floor, minX, maxX, minY, maxY, random);
             Smooth(floor, minX, maxX, minY, maxY);
             Necks(floor, neck, doorX, doorY, minX, maxX, minY, maxY);
 
             if (!Repair(floor, neck, width, height, doorX, doorY, minX, maxX, minY, maxY))
                 return null;
 
+            var mud = withLakes ? Lakes(floor, neck, minX, maxX, minY, maxY, random) : new bool[width, height];
+
+            // La cobertura solo sobre tierra firme: el lodo cuenta como hueco para ella.
             var cover = new char[width, height];
             if (withCover)
-                PlaceCover(floor, neck, cover, minX, maxX, minY, maxY, random);
+            {
+                var firm = (bool[,])floor.Clone();
+                for (int y = 0; y < height; y++)
+                    for (int x = 0; x < width; x++)
+                        firm[x, y] &= !mud[x, y];
+                PlaceCover(firm, neck, cover, minX, maxX, minY, maxY, random);
+            }
 
-            var layout = ToLayout(floor, cover, width, height, doorX, doorY);
+            var layout = ToLayout(floor, cover, mud, width, height, doorX, doorY);
             return Check(layout).Count == 0 ? layout : null;
         }
 
@@ -241,6 +270,146 @@ namespace Primordia.Rooms
                     float radius = inflate * (1f - NoiseDepth * rock);
                     floor[x, y] = nx * nx + ny * ny <= radius * radius;
                 }
+            }
+        }
+
+        /// <summary>
+        /// Silueta en L: dos manchas (una que ocupa todo el alto menos el hueco de la esquina y otra que ocupa solo ese tramo
+        /// del lado), con la esquina sin suelo de entre el 30 % y el 40 % de cada lado, para que el centro (donde acaban los
+        /// cuellos de las puertas) quede siempre en la parte llena.
+        /// </summary>
+        static void LBlob(bool[,] floor, int minX, int maxX, int minY, int maxY, System.Random random)
+        {
+            int width = maxX - minX + 1, height = maxY - minY + 1;
+            int notchW = Mathf.RoundToInt(width * (0.3f + (float)random.NextDouble() * 0.1f));
+            int notchH = Mathf.RoundToInt(height * (0.3f + (float)random.NextDouble() * 0.1f));
+            bool notchRight = random.Next(2) == 0, notchTop = random.Next(2) == 0;
+
+            // Rectángulo de la esquina que falta, y los dos en que queda dividido el resto.
+            int notchMinX = notchRight ? maxX - notchW + 1 : minX, notchMaxX = notchRight ? maxX : minX + notchW - 1;
+            int notchMinY = notchTop ? maxY - notchH + 1 : minY, notchMaxY = notchTop ? maxY : minY + notchH - 1;
+
+            var tall = new bool[floor.GetLength(0), floor.GetLength(1)];
+            var wide = new bool[floor.GetLength(0), floor.GetLength(1)];
+            // Columna entera junto al hueco (todo el alto) y, al otro lado, la franja del hueco hasta su borde.
+            int tallMinX = notchRight ? minX : notchMaxX + 1, tallMaxX = notchRight ? notchMinX - 1 : maxX;
+            Blob(tall, tallMinX, tallMaxX, minY, maxY, random);
+            int wideMinY = notchTop ? minY : notchMaxY + 1, wideMaxY = notchTop ? notchMinY - 1 : maxY;
+            Blob(wide, notchMinX, notchMaxX, wideMinY, wideMaxY, random);
+
+            for (int y = minY; y <= maxY; y++)
+                for (int x = minX; x <= maxX; x++)
+                    floor[x, y] = tall[x, y] || wide[x, y];
+        }
+
+        /// <summary>
+        /// Lagos de lodo profundo: una a tres manchas de contorno ondulado sobre suelo con un margen de suelo alrededor (que
+        /// no toquen las paredes) y lejos de los cuellos de las puertas, así el camino entre puertas es siempre tierra
+        /// firme. Dentro de cada lago queda una o dos islas de tierra firme. El lodo no pasa del 30 % del suelo.
+        /// </summary>
+        static bool[,] Lakes(bool[,] floor, bool[,] neck, int minX, int maxX, int minY, int maxY, System.Random random)
+        {
+            int width = floor.GetLength(0), height = floor.GetLength(1);
+            var mud = new bool[width, height];
+            int area = 0;
+            for (int y = minY; y <= maxY; y++)
+                for (int x = minX; x <= maxX; x++)
+                    if (floor[x, y])
+                        area++;
+
+            int lakeCount = Mathf.Clamp(1 + area / 450, 1, 3);
+            int budget = Mathf.RoundToInt(area * MaxMudFraction);
+            int total = 0;
+
+            bool NearNeck(int x, int y, int margin)
+            {
+                for (int dy = -margin; dy <= margin; dy++)
+                    for (int dx = -margin; dx <= margin; dx++)
+                        if (x + dx >= 0 && y + dy >= 0 && x + dx < width && y + dy < height && neck[x + dx, y + dy])
+                            return true;
+                return false;
+            }
+
+            // Celda donde puede haber lodo: suelo con los 8 vecinos también de suelo (orilla firme junto a la pared) y a más
+            // de 2 tiles de un cuello.
+            bool CanBeMud(int x, int y)
+            {
+                if (x <= minX || y <= minY || x >= maxX || y >= maxY || !floor[x, y] || mud[x, y] || NearNeck(x, y, 2))
+                    return false;
+                for (int dy = -1; dy <= 1; dy++)
+                    for (int dx = -1; dx <= 1; dx++)
+                        if (!floor[x + dx, y + dy])
+                            return false;
+                return true;
+            }
+
+            for (int lake = 0; lake < lakeCount; lake++)
+            {
+                for (int attempt = 0; attempt < LakeTries; attempt++)
+                {
+                    float cx = random.Next(minX + 3, maxX - 2) + 0.5f, cy = random.Next(minY + 3, maxY - 2) + 0.5f;
+                    if (!floor[(int)cx, (int)cy] || NearNeck((int)cx, (int)cy, 4))
+                        continue;
+
+                    float rx = 3.5f + (float)random.NextDouble() * 4f, ry = 3f + (float)random.NextDouble() * 3f;
+                    int waves = random.Next(2, 5);
+                    float phase = (float)(random.NextDouble() * Mathf.PI * 2f);
+                    var cells = new List<Vector2Int>();
+                    for (int y = Mathf.FloorToInt(cy - ry * 1.4f); y <= Mathf.CeilToInt(cy + ry * 1.4f); y++)
+                    {
+                        for (int x = Mathf.FloorToInt(cx - rx * 1.4f); x <= Mathf.CeilToInt(cx + rx * 1.4f); x++)
+                        {
+                            if (x < 0 || y < 0 || x >= width || y >= height)
+                                continue;
+                            float nx = (x + 0.5f - cx) / rx, ny = (y + 0.5f - cy) / ry;
+                            float radius = 1f + 0.25f * Mathf.Sin(waves * Mathf.Atan2(ny, nx) + phase);
+                            if (nx * nx + ny * ny <= radius * radius && CanBeMud(x, y))
+                                cells.Add(new Vector2Int(x, y));
+                        }
+                    }
+                    if (cells.Count < MinLakeCells || total + cells.Count > budget)
+                        continue;
+
+                    foreach (var cell in cells)
+                        mud[cell.x, cell.y] = true;
+                    total += cells.Count;
+                    CarveIslands(mud, cells, random);
+                    break;
+                }
+            }
+            return mud;
+        }
+
+        /// <summary>
+        /// Una o dos islas de tierra firme dentro de un lago: círculos de unos 3 tiles de diámetro cuyo entorno de 5×5 es todo
+        /// lodo, para que queden rodeadas. Si el lago no tiene sitio, no hay isla.
+        /// </summary>
+        static void CarveIslands(bool[,] mud, List<Vector2Int> lake, System.Random random)
+        {
+            int width = mud.GetLength(0), height = mud.GetLength(1);
+            bool Surrounded(Vector2Int c)
+            {
+                for (int dy = -2; dy <= 2; dy++)
+                    for (int dx = -2; dx <= 2; dx++)
+                    {
+                        int x = c.x + dx, y = c.y + dy;
+                        if (x < 0 || y < 0 || x >= width || y >= height || !mud[x, y])
+                            return false;
+                    }
+                return true;
+            }
+
+            int wanted = random.Next(1, 3);
+            for (int island = 0; island < wanted; island++)
+            {
+                var options = lake.FindAll(Surrounded);
+                if (options.Count == 0)
+                    return;
+                var centre = options[random.Next(options.Count)];
+                for (int dy = -1; dy <= 1; dy++)
+                    for (int dx = -1; dx <= 1; dx++)
+                        if (Mathf.Abs(dx) + Mathf.Abs(dy) < 3)
+                            mud[centre.x + dx, centre.y + dy] = false;
             }
         }
 
@@ -427,7 +596,7 @@ namespace Primordia.Rooms
             return cover[x, y] == 'O' && cover[x + 1, y] == 'O' && cover[x, y + 1] == 'O' && cover[x + 1, y + 1] == 'O';
         }
 
-        static string ToLayout(bool[,] floor, char[,] cover, int width, int height, int doorX, int doorY)
+        static string ToLayout(bool[,] floor, char[,] cover, bool[,] mud, int width, int height, int doorX, int doorY)
         {
             var text = new StringBuilder();
             for (int y = height - 1; y >= 0; y--)
@@ -436,7 +605,7 @@ namespace Primordia.Rooms
                 {
                     bool doorColumn = x == doorX || x == doorX + 1;
                     bool doorRow = y == doorY || y == doorY + 1;
-                    char c = floor[x, y] ? (cover[x, y] != 0 ? cover[x, y] : '.')
+                    char c = floor[x, y] ? (cover[x, y] != 0 ? cover[x, y] : mud[x, y] ? 'm' : '.')
                         : y == height - 1 && doorColumn ? '^'
                         : y == 0 && doorColumn ? 'v'
                         : x == 0 && doorRow ? '<'

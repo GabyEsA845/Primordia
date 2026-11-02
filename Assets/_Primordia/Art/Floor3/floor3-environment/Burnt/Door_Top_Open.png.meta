@@ -70,7 +70,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -142,12 +142,12 @@ TextureImporter:
       name: Door_Top_Open_0
       rect:
         serializedVersion: 2
-        x: 1
+        x: 0
         y: 0
-        width: 31
-        height: 29
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -164,12 +164,12 @@ TextureImporter:
       name: Door_Top_Open_1
       rect:
         serializedVersion: 2
-        x: 34
+        x: 32
         y: 0
-        width: 31
-        height: 29
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -186,12 +186,12 @@ TextureImporter:
       name: Door_Top_Open_2
       rect:
         serializedVersion: 2
-        x: 65
+        x: 64
         y: 0
-        width: 31
-        height: 29
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -208,12 +208,12 @@ TextureImporter:
       name: Door_Top_Open_3
       rect:
         serializedVersion: 2
-        x: 97
+        x: 96
         y: 0
-        width: 29
-        height: 29
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -230,12 +230,12 @@ TextureImporter:
       name: Door_Top_Open_4
       rect:
         serializedVersion: 2
-        x: 129
-        y: 14
-        width: 11
-        height: 15
+        x: 128
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -252,12 +252,12 @@ TextureImporter:
       name: Door_Top_Open_5
       rect:
         serializedVersion: 2
-        x: 129
-        y: 7
-        width: 10
-        height: 8
+        x: 160
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -266,72 +266,6 @@ TextureImporter:
       bones: []
       spriteID: cecf0f8f5b6d94e40800000000000000
       internalID: 5641276085312224492
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Door_Top_Open_6
-      rect:
-        serializedVersion: 2
-        x: 147
-        y: 9
-        width: 11
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4bcc4458a3d4c7bb0800000000000000
-      internalID: -4936986177765585740
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Door_Top_Open_7
-      rect:
-        serializedVersion: 2
-        x: 129
-        y: 0
-        width: 17
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ac696e44d82fe12c0800000000000000
-      internalID: -4458859892489939254
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Door_Top_Open_8
-      rect:
-        serializedVersion: 2
-        x: 149
-        y: 0
-        width: 9
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6d27abf9ff49081a0800000000000000
-      internalID: -6809278810966822186
       vertices: []
       indices: 
       edges: []
@@ -356,9 +290,6 @@ TextureImporter:
       Door_Top_Open_3: -7341122349605837377
       Door_Top_Open_4: 5404845763991561328
       Door_Top_Open_5: 5641276085312224492
-      Door_Top_Open_6: -4936986177765585740
-      Door_Top_Open_7: -4458859892489939254
-      Door_Top_Open_8: -6809278810966822186
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -544,7 +544,9 @@ namespace Primordia.Rooms
                         {
                             // Dos salas seguidas del camino no repiten forma, si hay donde elegir.
                             var shape = Pick(random, config.CombatRooms, previousCombat);
-                            room.Template = config.GeneratesCaves ? Cave(layout, random, config.CaveSizes, shape, room) : shape;
+                            room.Template = !config.GeneratesCaves ? shape
+                                : config.CaveSpecs.Length > 0 ? Cave(layout, random, config.CaveSpecs, shape, room)
+                                : Cave(layout, random, config.CaveSizes, shape, room);
                             previousCombat = shape;
                         }
                         room.Reward = rewardAfter.Contains(slot.Depth) || (slot.Special.HasValue && slot.Special.Value.rewardAtEnd);
@@ -623,7 +625,29 @@ namespace Primordia.Rooms
             if (sizes.Length == 0)
                 return fallback;
 
-            var text = CaveGenerator.Generate(sizes[random.Next(sizes.Length)], random);
+            return CaveTemplate(layout, CaveGenerator.Generate(sizes[random.Next(sizes.Length)], random), fallback, room);
+        }
+
+        /// <summary>Cueva de combate de un tipo sorteado por peso (tamaño, silueta y lagos).</summary>
+        static RoomTemplate Cave(FloorLayout layout, System.Random random, FloorConfig.CaveSpec[] specs, RoomTemplate fallback, LayoutRoom room)
+        {
+            float total = specs.Sum(spec => Mathf.Max(0.01f, spec.weight));
+            float roll = (float)random.NextDouble() * total;
+            var chosen = specs[specs.Length - 1];
+            foreach (var spec in specs)
+            {
+                roll -= Mathf.Max(0.01f, spec.weight);
+                if (roll <= 0f)
+                {
+                    chosen = spec;
+                    break;
+                }
+            }
+            return CaveTemplate(layout, CaveGenerator.Generate(chosen.size, random, true, chosen.shape, chosen.lakes), fallback, room);
+        }
+
+        static RoomTemplate CaveTemplate(FloorLayout layout, string text, RoomTemplate fallback, LayoutRoom room)
+        {
             if (text == null)
             {
                 Debug.LogWarning($"FloorLayoutGenerator: ninguna cueva pasó la comprobación para {room.Name}; se usa {(fallback != null ? fallback.name : "nada")}.");

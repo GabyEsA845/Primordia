@@ -97,7 +97,7 @@ namespace Primordia.UI
             foreach (var cell in rect.allPositionsWithin)
             {
                 var local = cell - rect.min;
-                if (map.Get(cell) == FloorMap.Kind.Floor)
+                if (map.Get(cell) is FloorMap.Kind.Floor or FloorMap.Kind.Mud)
                 {
                     distance[local.x, local.y] = int.MaxValue;
                     floorSum += cell;
@@ -137,7 +137,7 @@ namespace Primordia.UI
                 {
                     var local = cell - rect.min;
                     int d = distance[local.x, local.y];
-                    if (map.Get(cell) != FloorMap.Kind.Floor || d < best)
+                    if (map.Get(cell) is not (FloorMap.Kind.Floor or FloorMap.Kind.Mud) || d < best)
                         continue;
 
                     float offset = (cell - centroid).sqrMagnitude;
@@ -210,7 +210,7 @@ namespace Primordia.UI
             foreach (var cell in room.Rect.allPositionsWithin)
             {
                 var kind = map.Get(cell);
-                if (kind == FloorMap.Kind.Floor)
+                if (kind is FloorMap.Kind.Floor or FloorMap.Kind.Mud)
                     Set(cell, ColorOf(floor));
                 else if (kind is FloorMap.Kind.Obstacle or FloorMap.Kind.Pit)
                     // Los obstáculos de cobertura y las fosas, como las columnas.

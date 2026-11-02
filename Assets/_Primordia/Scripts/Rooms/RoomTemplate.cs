@@ -52,12 +52,14 @@ namespace Primordia.Rooms
             /// <summary>Roca de 2×2 que se derrumba con la muda del Euriptérido: bloquea hasta entonces.</summary>
             CollapsingRock,
             /// <summary>Suelo que se puede hundir y volverse fosa en el derrumbe de la cueva del Euriptérido (zonas de 3×3).</summary>
-            SinkZone
+            SinkZone,
+            /// <summary>Lodo profundo del piso 3: suelo (provisional hasta que hunda).</summary>
+            Mud
         }
 
         [Tooltip("Una fila por línea, de arriba abajo. # pared, . suelo, ^ v < > huecos de puerta, o obstáculo 1×1, O obstáculo 2×2, "
             + "~ fosa, F hueso, S esponja, C almeja, H coral del corazón, E entrada de oleadas, A algas, L planta luminosa, K cápsula, "
-            + "R roca que se derrumba, Z suelo que se hunde (zonas de 3×3).")]
+            + "R roca que se derrumba, Z suelo que se hunde (zonas de 3×3), m lodo profundo.")]
         [SerializeField, TextArea(16, 40)] string layout;
 
         Mark[,] cells;
@@ -180,6 +182,7 @@ namespace Primordia.Rooms
                     var kind = mark == Mark.Floor ? FloorMap.Kind.Floor
                         : IsObstacle(mark) ? FloorMap.Kind.Obstacle
                         : mark == Mark.Pit ? FloorMap.Kind.Pit
+                        : mark == Mark.Mud ? FloorMap.Kind.Mud
                         : IsInterior(mark) ? FloorMap.Kind.Floor
                         : !openDoors || mark == Mark.Wall ? FloorMap.Kind.Wall
                         : mark == Mark.DoorUp ? FloorMap.Kind.Passage
@@ -337,6 +340,7 @@ namespace Primordia.Rooms
                         'K' => Mark.Capsule,
                         'R' => Mark.CollapsingRock,
                         'Z' => Mark.SinkZone,
+                        'm' => Mark.Mud,
                         _ => Mark.Wall
                     };
                 }

@@ -88,6 +88,25 @@ namespace Primordia.Rooms
                 direction == Vector2Int.down ? down : direction == Vector2Int.up ? up : side;
         }
 
+        /// <summary>Un tipo de cueva de combate (piso 3): tamaño, silueta, si lleva lagos de lodo y lo frecuente que es.</summary>
+        [Serializable]
+        public struct CaveSpec
+        {
+            public Vector2Int size;
+            public CaveGenerator.CaveShape shape;
+            [Tooltip("Con lagos de lodo profundo y sus islas.")]
+            public bool lakes;
+            [Min(0.01f)] public float weight;
+
+            public CaveSpec(Vector2Int size, CaveGenerator.CaveShape shape, bool lakes, float weight = 1f)
+            {
+                this.size = size;
+                this.shape = shape;
+                this.lakes = lakes;
+                this.weight = weight;
+            }
+        }
+
         /// <summary>Dónde sale una sala especial: en el camino principal o colgando de él.</summary>
         public enum SpecialPlacement
         {
@@ -215,6 +234,12 @@ namespace Primordia.Rooms
         [SerializeField] bool generateCaves;
         [Tooltip("Tamaños posibles (paredes incluidas) de las cuevas de combate; se elige uno al azar por sala.")]
         [SerializeField] Vector2Int[] caveSizes = Array.Empty<Vector2Int>();
+        [Tooltip("Si no está vacío, sustituye a los tamaños de arriba en las salas de combate: cada sala sortea un tipo con su peso "
+            + "(óvalo o L, con o sin lagos de lodo).")]
+        [SerializeField] CaveSpec[] caveSpecs = Array.Empty<CaveSpec>();
+        [Tooltip("Primera sala de combate de cada franja nueva: su suelo mezcla el tileset de la franja anterior y el de la suya "
+            + "con una mancha irregular (más del nuevo hacia la salida). Piso 3: el incendio avanza.")]
+        [SerializeField] bool blendBandBorders;
         [Tooltip("Tamaños posibles de las cuevas de inicio y laterales.")]
         [SerializeField] Vector2Int[] smallCaveSizes = Array.Empty<Vector2Int>();
         [Tooltip("Largo mínimo del pasillo entre salas vecinas, en tiles (mínimo y máximo; uno al azar por hueco de la rejilla).")]
@@ -320,6 +345,8 @@ namespace Primordia.Rooms
         public Vector2Int SideRoomCount => sideRoomCount;
         public bool GeneratesCaves => generateCaves;
         public Vector2Int[] CaveSizes => caveSizes ?? Array.Empty<Vector2Int>();
+        public CaveSpec[] CaveSpecs => caveSpecs ?? Array.Empty<CaveSpec>();
+        public bool BlendBandBorders => blendBandBorders;
         public Vector2Int[] SmallCaveSizes => smallCaveSizes is { Length: > 0 } ? smallCaveSizes : CaveSizes;
         public Vector2Int CorridorLength => corridorLength;
         public Vector2Int CorridorWidth => corridorWidth;
@@ -454,6 +481,12 @@ namespace Primordia.Rooms
             generateCaves = generate;
             caveSizes = newCaveSizes ?? Array.Empty<Vector2Int>();
             smallCaveSizes = newSmallCaveSizes ?? Array.Empty<Vector2Int>();
+        }
+
+        internal void ConfigureCaveSpecs(CaveSpec[] newSpecs, bool newBlendBandBorders)
+        {
+            caveSpecs = newSpecs ?? Array.Empty<CaveSpec>();
+            blendBandBorders = newBlendBandBorders;
         }
 
         internal void ConfigureSpecialRooms(SpecialRoom[] newRooms, Vector2Int newCount)

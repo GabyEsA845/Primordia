@@ -10,6 +10,8 @@ namespace Primordia.Rooms
     /// </summary>
     public static class RoomPainter
     {
+        static readonly Color ProvisionalMud = new(0.38f, 0.42f, 0.22f, 1f);
+
         /// <summary>Celdas que no se pueden dibujar con el arte del tema (pieza que falta o forma imposible).</summary>
         /// <param name="overlay">Capa de las cáusticas, sobre el suelo de los temas que las tienen. Null: sin cáusticas.</param>
         /// <param name="placedDecorations">Si no es null, recibe cada decoración puesta con su celda (para sus luces).</param>
@@ -53,6 +55,13 @@ namespace Primordia.Rooms
                     continue;
 
                 floor.SetTile(cell, tile);
+
+                // Lodo profundo: hasta que tenga sus tiles (subtanda 3), el suelo oscurecido y verdoso para ver su forma.
+                if (map.Get(position) == FloorMap.Kind.Mud)
+                {
+                    floor.SetTileFlags(cell, TileFlags.None);
+                    floor.SetColor(cell, ProvisionalMud);
+                }
 
                 // Cáusticas en mosaico de 4×4 tiles sobre todo el suelo del tema (también bajo sombras y obstáculos).
                 if (overlay != null && theme.HasCaustics)

@@ -1,0 +1,174 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e1209f1fc89bf44e913fd5d9be7da6d, type: 3}
+  m_Name: Theme_Burnt
+  m_EditorClassIdentifier: Primordia::Primordia.Rooms.RoomTheme
+  floor: {fileID: 11400000, guid: c0b6679306b6bea4aafc28644d1d8fba, type: 2}
+  floorVariants:
+  - {fileID: 11400000, guid: 74878ab7187265f41bb61ffe8b5bceba, type: 2}
+  - {fileID: 11400000, guid: 2dfcf15081dcd204e815ec7fe1e4eef6, type: 2}
+  - {fileID: 11400000, guid: 7b463df7b1687b5498becfe145e24021, type: 2}
+  - {fileID: 11400000, guid: c9e8effbfb7456040a950a6f7618c044, type: 2}
+  - {fileID: 11400000, guid: 25d478be2e95787448089513f55f5de4, type: 2}
+  floorShadow:
+  - {fileID: 11400000, guid: b196ae7f8a5af7742afe337bc6db2ab8, type: 2}
+  - {fileID: 11400000, guid: 826c6734e84d0ce4fb75c42e30ae77e5, type: 2}
+  cap: {fileID: 11400000, guid: f64b8ea094ef7654b9f3c3fa29cd00cb, type: 2}
+  capVariants:
+  - {fileID: 11400000, guid: b7161b0f0b52fcd489eef5c621fe130e, type: 2}
+  - {fileID: 11400000, guid: a53b63ec7a0e81d43b2b35a6f9a14f00, type: 2}
+  - {fileID: 11400000, guid: 2bf9dcd7cd29e4743ad66155a8423605, type: 2}
+  faceUpper:
+  - {fileID: 11400000, guid: dce0d81e5e2e77e4c815fcfebcd639db, type: 2}
+  - {fileID: 11400000, guid: c9314e52cbc01f34585a830672620cee, type: 2}
+  - {fileID: 11400000, guid: 85144f5588abbbc4e82092a4615c6321, type: 2}
+  - {fileID: 11400000, guid: 0938da9d7bc40d74a96e66ae04144b8c, type: 2}
+  faceLower:
+  - {fileID: 11400000, guid: 322591f8a030c8947bb6c6c6ef2a6b54, type: 2}
+  - {fileID: 11400000, guid: 94bda2d833611d144b8d7b42d7702e63, type: 2}
+  - {fileID: 11400000, guid: ab6bf7e56d21f0c4cbb0339b44ef602d, type: 2}
+  - {fileID: 11400000, guid: f5baa3491dcd2334d848651a507c6794, type: 2}
+  edgeLeft: {fileID: 11400000, guid: 601da07c8a9f0284dbb4f62023682f26, type: 2}
+  edgeRight: {fileID: 11400000, guid: 9dc5a87b1d12e0c44adcf787aa77782d, type: 2}
+  edgeBottom: {fileID: 11400000, guid: 0064d1081d1502143a2e0c328bfa83a1, type: 2}
+  cornerBottomLeft: {fileID: 11400000, guid: 833062a61038bc9458723e9291969792, type: 2}
+  cornerBottomRight: {fileID: 11400000, guid: c92d8b74bd15f0247b8aff97ad2121dc, type: 2}
+  faceUpperEndLeft: {fileID: 11400000, guid: c1f810aeb7f9aca4084438d25dcecd22, type: 2}
+  faceUpperEndRight: {fileID: 11400000, guid: d8614d6568d1e1b4c8e7dc54f714a293, type: 2}
+  faceLowerEndLeft: {fileID: 11400000, guid: cc3e539c1b12b244483d2095edd2d122, type: 2}
+  faceLowerEndRight: {fileID: 11400000, guid: 0d9efcbc4c3cd374e8b1e0611ef5ea8a, type: 2}
+  outerTopLeft: {fileID: 11400000, guid: aecf688d35887f94ab4c1b628097f24b, type: 2}
+  outerTopRight: {fileID: 11400000, guid: aeeea726d6441574c9114dc2a5a4a047, type: 2}
+  edgeLeftFaceUpper: {fileID: 11400000, guid: decb35fd52f977548acc80eed8e7425f, type: 2}
+  edgeLeftFaceLower: {fileID: 11400000, guid: 147c39175c807ae43b48db36351e8a17, type: 2}
+  edgeRightFaceUpper: {fileID: 11400000, guid: f71226aa9328c0543a0a39449e72bd52, type: 2}
+  edgeRightFaceLower: {fileID: 11400000, guid: 48a1023dc2180fb44977b3eea19f7c68, type: 2}
+  missing: {fileID: 11400000, guid: 3724e1c7198527a4dbb54cfc33c72bc0, type: 2}
+  decorations:
+  - {fileID: 11400000, guid: 344a50fe9664d2443a89b69cfd7d1e30, type: 2}
+  - {fileID: 11400000, guid: 6a4970a96ef9fd34382e4280a3de01b8, type: 2}
+  - {fileID: 11400000, guid: 890bcac4a03f8b044a60c82d56f8eb5d, type: 2}
+  - {fileID: 11400000, guid: 06379bc45d18b644e8eead10082b71ad, type: 2}
+  - {fileID: 11400000, guid: 14730aae0c64d4b458140054b6003758, type: 2}
+  - {fileID: 11400000, guid: feb2b5346a41f9d408f1e93b178a562f, type: 2}
+  decorationChance: 0.09
+  doorway: {fileID: 21300000, guid: 9bf86e86ff021d54d8b66eb7a116d871, type: 3}
+  doorTop: []
+  doorBottom: []
+  doorSide: []
+  slabTop:
+    close:
+    - {fileID: 2940678948360422728, guid: 53ca2b5defacdcf4f8b5dc2e099069e7, type: 3}
+    - {fileID: 8281394206316478311, guid: 53ca2b5defacdcf4f8b5dc2e099069e7, type: 3}
+    - {fileID: -383657821441966866, guid: 53ca2b5defacdcf4f8b5dc2e099069e7, type: 3}
+    - {fileID: 7761846175403427611, guid: 53ca2b5defacdcf4f8b5dc2e099069e7, type: 3}
+    - {fileID: -4664970391861656495, guid: 53ca2b5defacdcf4f8b5dc2e099069e7, type: 3}
+    - {fileID: -3250884835730625889, guid: 53ca2b5defacdcf4f8b5dc2e099069e7, type: 3}
+    - {fileID: -3344636248171214698, guid: 53ca2b5defacdcf4f8b5dc2e099069e7, type: 3}
+    closeDurations:
+    - 0.07
+    - 0.06
+    - 0.06
+    - 0.06
+    - 0.06
+    - 0.11
+    - 0.14
+    open:
+    - {fileID: 2775528229245011154, guid: 30d6e0fa65ce0f64eab8eac24362f6e6, type: 3}
+    - {fileID: 2147576139413206256, guid: 30d6e0fa65ce0f64eab8eac24362f6e6, type: 3}
+    - {fileID: 4376699073831917504, guid: 30d6e0fa65ce0f64eab8eac24362f6e6, type: 3}
+    - {fileID: -7341122349605837377, guid: 30d6e0fa65ce0f64eab8eac24362f6e6, type: 3}
+    - {fileID: 5404845763991561328, guid: 30d6e0fa65ce0f64eab8eac24362f6e6, type: 3}
+    - {fileID: 5641276085312224492, guid: 30d6e0fa65ce0f64eab8eac24362f6e6, type: 3}
+    openDurations:
+    - 0.13
+    - 0.09
+    - 0.06
+    - 0.06
+    - 0.06
+    - 0.06
+  slabBottom:
+    close:
+    - {fileID: -2291608439173651073, guid: 6a915ced35c50ed41bdde6779eb06eab, type: 3}
+    - {fileID: -8871045316677345073, guid: 6a915ced35c50ed41bdde6779eb06eab, type: 3}
+    - {fileID: 274471711049949296, guid: 6a915ced35c50ed41bdde6779eb06eab, type: 3}
+    - {fileID: -2410265758952890229, guid: 6a915ced35c50ed41bdde6779eb06eab, type: 3}
+    - {fileID: -1984883962, guid: 6a915ced35c50ed41bdde6779eb06eab, type: 3}
+    - {fileID: -1753638004, guid: 6a915ced35c50ed41bdde6779eb06eab, type: 3}
+    - {fileID: 803296684, guid: 6a915ced35c50ed41bdde6779eb06eab, type: 3}
+    closeDurations:
+    - 0.07
+    - 0.06
+    - 0.06
+    - 0.06
+    - 0.06
+    - 0.11
+    - 0.14
+    open:
+    - {fileID: -1108958873402442804, guid: 6d9af7e261f25224bbfd481f35d625d4, type: 3}
+    - {fileID: -4154147268522818445, guid: 6d9af7e261f25224bbfd481f35d625d4, type: 3}
+    - {fileID: 7575877774000014712, guid: 6d9af7e261f25224bbfd481f35d625d4, type: 3}
+    - {fileID: 1520256647, guid: 6d9af7e261f25224bbfd481f35d625d4, type: 3}
+    - {fileID: 840553682, guid: 6d9af7e261f25224bbfd481f35d625d4, type: 3}
+    - {fileID: -2121912173, guid: 6d9af7e261f25224bbfd481f35d625d4, type: 3}
+    openDurations:
+    - 0.13
+    - 0.09
+    - 0.06
+    - 0.06
+    - 0.06
+    - 0.06
+  slabSide:
+    close:
+    - {fileID: 4598102263114594384, guid: ab51c3c88b8551640b2db514d76ad67f, type: 3}
+    - {fileID: 3971394370858387195, guid: ab51c3c88b8551640b2db514d76ad67f, type: 3}
+    - {fileID: 2326622885135446248, guid: ab51c3c88b8551640b2db514d76ad67f, type: 3}
+    - {fileID: -5288060402207384444, guid: ab51c3c88b8551640b2db514d76ad67f, type: 3}
+    - {fileID: -4249690137283884277, guid: ab51c3c88b8551640b2db514d76ad67f, type: 3}
+    - {fileID: -4348012942690975334, guid: ab51c3c88b8551640b2db514d76ad67f, type: 3}
+    - {fileID: 6852268705301639239, guid: ab51c3c88b8551640b2db514d76ad67f, type: 3}
+    closeDurations:
+    - 0.07
+    - 0.06
+    - 0.06
+    - 0.06
+    - 0.06
+    - 0.11
+    - 0.14
+    open:
+    - {fileID: -3715851365911302985, guid: bf57f93cb948c2b4fba1612587dc0520, type: 3}
+    - {fileID: 8426650337037751013, guid: bf57f93cb948c2b4fba1612587dc0520, type: 3}
+    - {fileID: 7919695199432774684, guid: bf57f93cb948c2b4fba1612587dc0520, type: 3}
+    - {fileID: 598311157, guid: bf57f93cb948c2b4fba1612587dc0520, type: 3}
+    - {fileID: 87531221, guid: bf57f93cb948c2b4fba1612587dc0520, type: 3}
+    - {fileID: 1599592153, guid: bf57f93cb948c2b4fba1612587dc0520, type: 3}
+    openDurations:
+    - 0.13
+    - 0.09
+    - 0.06
+    - 0.06
+    - 0.06
+    - 0.06
+  smallObstacles: []
+  bigObstacles: []
+  smallObstacleOutlines: []
+  bigObstacleOutlines: []
+  obstacleOutline: {r: 0.95, g: 0.77, b: 0.35, a: 0.85}
+  pitTiles: []
+  pitCorners: []
+  pitMotes: {fileID: 0}
+  pitMotesChance: 0.12
+  caustics: []
+  lightRay: []
+  lightRayFrameDuration: 0.25
+  marineSnow: 0
+  glows: []

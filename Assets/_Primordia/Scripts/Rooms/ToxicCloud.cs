@@ -82,7 +82,7 @@ namespace Primordia.Rooms
                 if (hit.GetComponentInParent<PlayerToxin>() is { } player)
                 {
                     if (!player.IsDodging)
-                        player.Feed(CheckEvery);
+                        player.Feed();
                     continue;
                 }
 

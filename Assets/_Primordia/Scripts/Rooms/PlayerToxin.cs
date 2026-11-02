@@ -23,13 +23,16 @@ namespace Primordia.Rooms
         const float PuddleWindowSeconds = 3f;
         // La ralentización del charco se renueva mientras se pisa; dura un instante más.
         const float SlowHold = 0.3f;
+        // Cuánto dura el aviso de la nube (algo más que el intervalo entre avisos).
+        const float InsideGrace = 0.25f;
 
         static readonly Color DropColor = new(0.66f, 0.88f, 0.25f, 1f);
 
         PlayerController controller;
         Health health;
         BurnIcon icon;
-        float fed;
+        // Hasta cuándo se considera que sigue dentro de la nube: la nube avisa cada 0,1 s y la barra se actualiza cada cuadro.
+        float insideUntil;
         float intoxicatedUntil;
         float nextTick;
         float puddleWindowEnd;
@@ -79,19 +82,19 @@ namespace Primordia.Rooms
             ShowMarker(PuddleWindowSeconds);
         }
 
-        /// <summary>Lo llama la nube tóxica mientras el jugador está dentro: llena la barra.</summary>
-        public void Feed(float seconds) => fed += seconds;
+        /// <summary>
+        /// Lo llama la nube tóxica cada poco mientras el jugador está dentro: mientras llegue, la barra se llena sin parar (no solo en
+        /// los cuadros en que llega el aviso) y, al dejar de llegar, tras un instante empieza a vaciarse.
+        /// </summary>
+        public void Feed() => insideUntil = Time.time + InsideGrace;
 
         void Update()
         {
             if (health != null && health.IsDead)
                 return;
 
-            if (fed > 0f)
-            {
-                Bar += fed / FillSeconds;
-                fed = 0f;
-            }
+            if (Time.time < insideUntil)
+                Bar += Time.deltaTime / FillSeconds;
             else if (Bar > 0f)
                 Bar = Mathf.Max(0f, Bar - Time.deltaTime / EmptySeconds);
 
@@ -162,7 +165,7 @@ namespace Primordia.Rooms
         void Clear()
         {
             Bar = 0f;
-            fed = 0f;
+            insideUntil = 0f;
             intoxicatedUntil = 0f;
             puddleWindowEnd = 0f;
             HideMarker();

@@ -369,6 +369,26 @@ MonoBehaviour:
     - {fileID: 1486192425223714107, guid: 8a14203bf45644a4c87bdce5c8e3cc63, type: 3}
     sacCount: {x: 1, y: 3}
     mistPerCell: 0.003
+  poison:
+    bulbIdle:
+    - {fileID: 5996165417514997906, guid: 4dfdcb8a534f7944481a76891089f8c5, type: 3}
+    - {fileID: 3536589060469486178, guid: 4dfdcb8a534f7944481a76891089f8c5, type: 3}
+    - {fileID: 3274966666171058636, guid: 4dfdcb8a534f7944481a76891089f8c5, type: 3}
+    - {fileID: -735900519090361636, guid: 4dfdcb8a534f7944481a76891089f8c5, type: 3}
+    bulbBurst:
+    - {fileID: 903936242324555015, guid: 03a42cbc60ecda147a583fcc920f3ceb, type: 3}
+    - {fileID: 85036481065149814, guid: 03a42cbc60ecda147a583fcc920f3ceb, type: 3}
+    - {fileID: 9146413095680116066, guid: 03a42cbc60ecda147a583fcc920f3ceb, type: 3}
+    - {fileID: 506430677268956205, guid: 03a42cbc60ecda147a583fcc920f3ceb, type: 3}
+    - {fileID: 2271285039850813898, guid: 03a42cbc60ecda147a583fcc920f3ceb, type: 3}
+    bulbStump: {fileID: 1178935390607009698, guid: 6e3e4bbd7633be74ab2829761688722a, type: 3}
+    bulbRegrow:
+    - {fileID: 287923812859807751, guid: 8923e2de4c2eef640bf43a3ced567966, type: 3}
+    - {fileID: -5012638038216660609, guid: 8923e2de4c2eef640bf43a3ced567966, type: 3}
+    - {fileID: -4399017676213276957, guid: 8923e2de4c2eef640bf43a3ced567966, type: 3}
+    - {fileID: -1218728426924106048, guid: 8923e2de4c2eef640bf43a3ced567966, type: 3}
+    - {fileID: 8560998934728308107, guid: 8923e2de4c2eef640bf43a3ced567966, type: 3}
+    bulbCount: {x: 0, y: 1}
   mudTiles:
   - {fileID: 11400000, guid: a9dbb82dbf48154468e0c4de389dec21, type: 2}
   - {fileID: 11400000, guid: 0e98fcb67abc89e4895444a97a5b08c8, type: 2}

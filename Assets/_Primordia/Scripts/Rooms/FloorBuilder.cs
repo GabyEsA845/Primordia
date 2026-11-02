@@ -737,6 +737,10 @@ namespace Primordia.Rooms
                     shop.MoveCounter(-(placed.Template.FloorBounds().width / 2f) + ShopCounterMargin);
             }
 
+            // Sala inicial, tienda y antesala del jefe: un teletransporte cerca de una esquina libre.
+            if (config.TeleporterPrefab != null && placed.Layout.Role is (RoomRole.Start or RoomRole.Shop or RoomRole.Antechamber))
+                BuildTeleporter(roomObject.transform, placed, config);
+
             if (placed.Layout.Role == RoomRole.Exchange && config.ExchangeCapsule != null)
             {
                 // En el centro de la K de 2×2 del plano (o en el del suelo si el plano no la tiene).
@@ -756,6 +760,27 @@ namespace Primordia.Rooms
             }
 
             return room;
+        }
+
+        /// <summary>
+        /// El teletransporte va en la casilla libre (suelo rodeado de suelo y lejos de las puertas) más cercana a la
+        /// esquina de abajo a la izquierda del suelo, para no estorbar a la tienda ni a lo que haya en el centro.
+        /// </summary>
+        static void BuildTeleporter(Transform roomObject, PlacedRoom placed, FloorConfig config)
+        {
+            var floor = placed.Template.FloorBounds();
+            var doorCells = placed.DoorCells.Values.SelectMany(cells => cells).Select(cell => cell - placed.Origin);
+            var candidates = EncounterPlanner.SpawnCells(placed.Template, doorCells);
+            var corner = new Vector2(floor.xMin + 3f, floor.yMin + 3f);
+            Vector2 position = placed.FloorCenter;
+            if (candidates.Count > 0)
+            {
+                var best = candidates.OrderBy(cell => Vector2.Distance(cell + new Vector2(0.5f, 0.5f), corner)).First();
+                position = (Vector2)(placed.Origin + best) + new Vector2(0.5f, 0.5f);
+            }
+
+            var teleporter = Object.Instantiate(config.TeleporterPrefab, position, Quaternion.identity, roomObject);
+            teleporter.Role = placed.Layout.Role;
         }
 
         static void BuildCaveCollapse(Transform parent, GameObject roomObject, Room room, PlacedRoom placed, RoomTheme theme,

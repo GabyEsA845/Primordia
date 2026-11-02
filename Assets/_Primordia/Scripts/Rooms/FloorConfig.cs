@@ -287,6 +287,8 @@ namespace Primordia.Rooms
         [SerializeField] Vector2 shopDepth = new(0.5f, 1f);
         [Tooltip("Cápsula del laboratorio de Darwin, en la K de la sala de cambio. Vacío: la sala de cambio sale vacía.")]
         [SerializeField] ExchangeCapsule exchangeCapsule;
+        [Tooltip("Teletransporte de la sala inicial, la tienda y la antesala del jefe. Vacío: el piso no tiene.")]
+        [SerializeField] Teleporter teleporterPrefab;
 
         [Header("Sala de paso")]
         [Tooltip("Forma de la sala de paso, pegada a la del jefe. Vacío (o sin fosa): el jefe deja la salida de siempre.")]
@@ -367,6 +369,7 @@ namespace Primordia.Rooms
         public RoomTemplate ShopTemplate => shopRoom;
         public ShopRoom ShopPrefab => shopPrefab;
         public ExchangeCapsule ExchangeCapsule => exchangeCapsule;
+        public Teleporter TeleporterPrefab => teleporterPrefab;
         public bool HasShop => shopRoom != null && shopPrefab != null;
         public RoomTemplate TransitionRoom => transitionRoom;
         public TransitionPit TransitionPit => transitionPit;
@@ -423,6 +426,8 @@ namespace Primordia.Rooms
         }
 
         internal void SetExchangeCapsule(ExchangeCapsule newCapsule) => exchangeCapsule = newCapsule;
+
+        internal void SetTeleporter(Teleporter newTeleporter) => teleporterPrefab = newTeleporter;
 
         internal void ConfigureTransition(RoomTemplate newRoom, TransitionPit newPit, RoomTheme newMidTheme, RoomTheme newNextTheme)
         {

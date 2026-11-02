@@ -49,7 +49,13 @@ namespace Primordia.UI
             public Image Shop;
             public Image Transition;
             public readonly List<Image> Rewards = new();
+            public readonly Dictionary<Teleporter, Image> Teleports = new();
+            public Image Return;
         }
+
+        // Radio (en unidades de la interfaz) en que el ratón alcanza una marca de teletransporte.
+        const float TeleportClickRadius = 6f;
+        Text teleportHint;
 
         FloorGenerator generator;
         Transform player;
@@ -328,7 +334,122 @@ namespace Primordia.UI
 
             // Centrado en la ventana (más lo arrastrado), en píxeles enteros.
             bigMap.Content.anchoredPosition = -Round(size / 2f) + Round(bigMapPan);
+            UpdateTeleportMarkers();
             PlaceMarkers(bigMap, area.position, scale, PlayerFloorPosition());
+            HandleTeleportClick();
+        }
+
+        Vector2 ToFloor(Vector2 world)
+        {
+            Vector2 origin = generator != null ? generator.transform.position : Vector3.zero;
+            return world - origin;
+        }
+
+        /// <summary>
+        /// Marcas del mapa grande: un anillo por cada teletransporte activo que no sea el de esta sala y, si la hay, la
+        /// marca de regreso. Se apagan (más tenues) mientras no se pueda viajar (sala sin limpiar).
+        /// </summary>
+        void UpdateTeleportMarkers()
+        {
+            bool canTravel = TeleportNetwork.CanTravel();
+            var tint = new Color(1f, 1f, 1f, canTravel ? 1f : 0.45f);
+            foreach (var teleporter in Teleporter.All)
+            {
+                if (teleporter == null)
+                    continue;
+                if (!bigMap.Teleports.TryGetValue(teleporter, out var icon))
+                {
+                    icon = CreateMarker(bigMap.Content, MapTeleportIcons.Teleport);
+                    bigMap.Teleports[teleporter] = icon;
+                    // El jugador sigue siendo lo de más arriba.
+                    bigMap.Player.transform.SetAsLastSibling();
+                }
+                bool visible = teleporter.IsActive && teleporter.Room != TeleportNetwork.CurrentRoom;
+                icon.enabled = visible;
+                icon.color = tint;
+                icon.GetComponent<MapMarker>().FloorPosition = ToFloor(teleporter.Position);
+            }
+
+            bool showReturn = TeleportNetwork.HasReturn && TeleportNetwork.ReturnRoom != TeleportNetwork.CurrentRoom;
+            bigMap.Return.enabled = showReturn;
+            bigMap.Return.color = tint;
+            if (showReturn)
+                bigMap.Return.GetComponent<MapMarker>().FloorPosition = ToFloor(TeleportNetwork.ReturnPosition);
+
+            UpdateTeleportHint(canTravel);
+        }
+
+        void UpdateTeleportHint(bool canTravel)
+        {
+            bool any = TeleportNetwork.Destinations().Length > 0 || TeleportNetwork.HasReturn;
+            if (teleportHint == null)
+            {
+                if (bigMapRoot == null)
+                    return;
+                var go = new GameObject("TeleportHint", typeof(RectTransform), typeof(Text));
+                go.transform.SetParent(bigMapRoot.transform, false);
+                teleportHint = go.GetComponent<Text>();
+                teleportHint.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+                teleportHint.fontSize = 8;
+                teleportHint.alignment = TextAnchor.LowerCenter;
+                teleportHint.raycastTarget = false;
+                teleportHint.horizontalOverflow = HorizontalWrapMode.Overflow;
+                var rect = teleportHint.rectTransform;
+                rect.anchorMin = new Vector2(0f, 0f);
+                rect.anchorMax = new Vector2(1f, 0f);
+                rect.pivot = new Vector2(0.5f, 0f);
+                rect.anchoredPosition = new Vector2(0f, 6f);
+                rect.sizeDelta = new Vector2(0f, 14f);
+            }
+            teleportHint.enabled = any;
+            teleportHint.text = canTravel ? "Clic en un teletransporte para viajar" : "Limpia la sala para teletransportarte";
+            teleportHint.color = canTravel ? new Color(0.5f, 0.95f, 0.88f) : new Color(1f, 0.75f, 0.45f);
+        }
+
+        /// <summary>Clic izquierdo sobre una marca de teletransporte (o la de regreso): viaja.</summary>
+        void HandleTeleportClick()
+        {
+            var mouse = Mouse.current;
+            if (mouse == null || !TeleportNetwork.CanTravel())
+                return;
+            if (canvas == null)
+                canvas = GetComponentInParent<Canvas>();
+            var camera = canvas != null && canvas.rootCanvas.renderMode != RenderMode.ScreenSpaceOverlay ? canvas.rootCanvas.worldCamera : null;
+            if (!RectTransformUtility.ScreenPointToLocalPointInRectangle(bigMap.Content, mouse.position.ReadValue(), camera, out var local))
+                return;
+
+            Teleporter hit = null;
+            bool hitReturn = false;
+            float best = TeleportClickRadius;
+            foreach (var (teleporter, icon) in bigMap.Teleports)
+            {
+                if (teleporter == null || !icon.enabled)
+                    continue;
+                float distance = Vector2.Distance(local, icon.rectTransform.anchoredPosition);
+                if (distance <= best)
+                {
+                    best = distance;
+                    hit = teleporter;
+                    hitReturn = false;
+                }
+            }
+            if (bigMap.Return.enabled && Vector2.Distance(local, bigMap.Return.rectTransform.anchoredPosition) <= best)
+            {
+                hit = null;
+                hitReturn = true;
+            }
+
+            // Bajo el ratón la marca crece un poco.
+            foreach (var (teleporter, icon) in bigMap.Teleports)
+                icon.rectTransform.localScale = teleporter == hit ? Vector3.one * 1.4f : Vector3.one;
+            bigMap.Return.rectTransform.localScale = hitReturn ? Vector3.one * 1.4f : Vector3.one;
+
+            if (!mouse.leftButton.wasPressedThisFrame)
+                return;
+            if (hitReturn)
+                TeleportNetwork.TravelBack();
+            else if (hit != null)
+                TeleportNetwork.TravelTo(hit);
         }
 
         /// <summary>
@@ -408,6 +529,8 @@ namespace Primordia.UI
                 if (room.HasReward)
                     view.Rewards.Add(CreateMarker(content, rewardIcon));
             }
+
+            view.Return = CreateMarker(content, MapTeleportIcons.Return);
 
             // El jugador, encima de todo.
             view.Player = CreateMarker(content, playerFrames.Length > 0 ? playerFrames[0] : null);

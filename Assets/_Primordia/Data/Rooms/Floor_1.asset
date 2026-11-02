@@ -59,6 +59,20 @@ MonoBehaviour:
     waveVentIdle: []
     waveVentActive: []
     keyPrompt: []
+    algaeColumnA: []
+    algaeColumnB: []
+    lightPlant: []
+    lightPlantOff: []
+    crackedRock: {fileID: 0}
+    crackedRockOutline: {fileID: 0}
+    rockCollapse: []
+    rubble: {fileID: 0}
+    fallShadow: []
+    fallingRock: []
+    rockImpact: []
+    pebbles: []
+    pebblePuff: []
+    floorCrack: []
   clams:
     smallBiomass: {x: 5, y: 15}
     bigBiomass: {x: 15, y: 25}
@@ -73,9 +87,13 @@ MonoBehaviour:
   - prefab: {fileID: 8882603238870742745, guid: a55174d84ea389f4ea3dbe2ad2e34d19, type: 3}
     cost: 1
     minDepth: 1
+    maxPerRoom: 0
+    groupSize: 0
   - prefab: {fileID: 6360368782889849989, guid: 6a0b1fdfb44e57542b2abcce354082ca, type: 3}
     cost: 2
     minDepth: 2
+    maxPerRoom: 0
+    groupSize: 0
   baseBudget: 3
   budgetPerRoom: 1.4
   referenceFloorArea: 312
@@ -99,6 +117,8 @@ MonoBehaviour:
   shopRoom: {fileID: 11400000, guid: dd2524ff606d8904f8886c9aebe37fdd, type: 2}
   shopPrefab: {fileID: 2843019761843824620, guid: ef69c3942d3bba648adfcf2885fa7fd4, type: 3}
   shopDepth: {x: 0.5, y: 1}
+  exchangeCapsule: {fileID: 0}
+  teleporterPrefab: {fileID: 3449888820682871299, guid: 9ebdb5d6f5ed5a149ba3e9b04ac9a5e6, type: 3}
   transitionRoom: {fileID: 11400000, guid: a1cc0837e3579584189ff066928ff179, type: 2}
   transitionPit: {fileID: 3569420486088721647, guid: 8b10ac4d06826994fac52a004c267678, type: 3}
   transitionMidTheme: {fileID: 11400000, guid: 7c52fb05cf14a8840b29b17042546fb5, type: 2}

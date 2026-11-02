@@ -46,6 +46,32 @@ namespace Primordia.Editor
         internal static RoomTheme LoadFloor3Theme(string themeName) =>
             AssetDatabase.LoadAssetAtPath<RoomTheme>($"{Floor3EnvironmentFolder}/{themeName}/Theme_{themeName}.asset");
 
+        // Burbujas del lodo: 6 cuadros de 16×16 a ~140 ms.
+        const float MudBubblesFps = 1f / 0.14f;
+
+        /// <summary>
+        /// Lodo profundo del tramo (README del escenario): 16 tiles por máscara de vecinos que no son lodo, las esquinas de
+        /// dentro (mismo orden que las fosas: NE, NO, SE, SO) y las burbujas. Sin ellos el lodo se dibuja con el suelo teñido.
+        /// </summary>
+        static void ImportMud(RoomTheme theme, string folder, string tileAssets)
+        {
+            if (!File.Exists($"{folder}/Mud_0.png"))
+            {
+                theme.ConfigureMud(null, null, null);
+                return;
+            }
+
+            TileBase Single(string name) =>
+                File.Exists($"{folder}/{name}.png") ? CreateTile($"{tileAssets}/{name}.asset", ImportSingleSprite($"{folder}/{name}.png"), collides: false) : null;
+
+            var tiles = Enumerable.Range(0, 16).Select(mask => Single($"Mud_{mask}")).ToArray();
+            var corners = PitCorners.Select(corner => Single($"Mud_Corner_{corner}")).ToArray();
+            TileBase bubbles = null;
+            if (File.Exists($"{folder}/Mud_Bubbles.png"))
+                bubbles = CreateAnimatedTile($"{tileAssets}/Mud_Bubbles.asset", SliceSheet($"{folder}/Mud_Bubbles.png", 16), MudBubblesFps);
+            theme.ConfigureMud(tiles, corners, bubbles);
+        }
+
         static RoomTheme ImportFloor3Theme(string themeName, TileBase missing)
         {
             string folder = $"{Floor3EnvironmentFolder}/{themeName}";
@@ -113,6 +139,7 @@ namespace Primordia.Editor
                     ? new DoorAnimation(close, SlabCloseDurations, open, SlabOpenDurations)
                     : null;
             theme.ConfigureSlabs(Roots("Top"), Roots("Bottom"), Roots("Side"));
+            ImportMud(theme, $"{folder}/mud", tileAssets);
             EditorUtility.SetDirty(theme);
 
             Debug.Log($"ArtSetup: tema {themeName}: {tiles.Count} tiles, {decorations.Count} detalles de suelo, {doors.Count} hojas de puertas, "

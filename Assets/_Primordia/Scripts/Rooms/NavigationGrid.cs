@@ -48,12 +48,12 @@ namespace Primordia.Rooms
 
         public RectInt Bounds => bounds;
 
-        /// <summary>Se puede caminar por todo lo que no es pared, obstáculo ni fosa (suelo, pasillos y huecos de puerta).</summary>
-        public NavigationGrid(FloorMap map) : this(map.Bounds, cell => map.Get(cell) is not (FloorMap.Kind.Wall or FloorMap.Kind.Obstacle or FloorMap.Kind.Pit))
+        /// <summary>Se puede caminar por todo lo que no es pared, obstáculo, fosa ni lodo profundo (suelo, pasillos y huecos de puerta).</summary>
+        public NavigationGrid(FloorMap map) : this(map.Bounds, cell => map.Get(cell) is not (FloorMap.Kind.Wall or FloorMap.Kind.Obstacle or FloorMap.Kind.Pit or FloorMap.Kind.Mud))
         {
         }
 
-        /// <summary>Para los que nadan: como la normal, pero las fosas se cruzan por encima.</summary>
+        /// <summary>Para los que nadan: como la normal, pero las fosas y el lodo se cruzan por encima.</summary>
         public static NavigationGrid ForSwimmers(FloorMap map) =>
             new(map.Bounds, cell => map.Get(cell) is not (FloorMap.Kind.Wall or FloorMap.Kind.Obstacle));
 

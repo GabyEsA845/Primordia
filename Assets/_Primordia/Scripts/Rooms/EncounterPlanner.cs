@@ -96,7 +96,7 @@ namespace Primordia.Rooms
                 for (int x = 0; x < template.Width; x++)
                 {
                     var cell = new Vector2Int(x, y);
-                    if (!SurroundedByFloor(template, cell))
+                    if (!SurroundedByFloor(template, cell) || NearMud(template, cell))
                         continue;
                     if (doors.Any(door => Vector2.Distance(door, cell) < DoorDistance))
                         continue;
@@ -124,6 +124,16 @@ namespace Primordia.Rooms
                     chosen.Add(center);
             }
             return chosen;
+        }
+
+        // Nadie aparece a menos de 2 tiles del lodo profundo: ni en la orilla ni en las islas (que no se alcanzan andando).
+        static bool NearMud(RoomTemplate template, Vector2Int cell)
+        {
+            for (int dx = -2; dx <= 2; dx++)
+                for (int dy = -2; dy <= 2; dy++)
+                    if (template.Get(cell.x + dx, cell.y + dy) == RoomTemplate.Mark.Mud)
+                        return true;
+            return false;
         }
 
         static bool SurroundedByFloor(RoomTemplate template, Vector2Int cell)

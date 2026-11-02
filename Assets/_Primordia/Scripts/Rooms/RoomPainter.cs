@@ -42,6 +42,18 @@ namespace Primordia.Rooms
                     continue;
                 }
 
+                // Lodo profundo: igual que la fosa, con sus tiles de orilla, sus esquinas y burbujas que revientan.
+                if (map.Get(position) == FloorMap.Kind.Mud && theme.HasMud)
+                {
+                    floor.SetTile(cell, theme.MudTile(KindMask(map, position, FloorMap.Kind.Mud)));
+                    var mudCorner = Corner(map, position, FloorMap.Kind.Mud, theme.MudCorner);
+                    if (mudCorner != null)
+                        decoration.SetTile(cell, mudCorner);
+                    else if (theme.MudBubbles != null && random.NextDouble() < theme.MudBubblesChance)
+                        decoration.SetTile(cell, theme.MudBubbles);
+                    continue;
+                }
+
                 if (piece == Piece.Missing || (piece != Piece.None && (tile == null || tile == theme.MissingTile)))
                     missing.Add(position);
 
@@ -111,22 +123,28 @@ namespace Primordia.Rooms
         static bool IsPit(FloorMap map, int x, int y) => map.Get(x, y) == FloorMap.Kind.Pit;
 
         /// <summary>Máscara del tile de fosa: suma de los vecinos que no son fosa (N=1, E=2, S=4, O=8).</summary>
-        internal static int PitMask(FloorMap map, Vector2Int cell)
+        internal static int PitMask(FloorMap map, Vector2Int cell) => KindMask(map, cell, FloorMap.Kind.Pit);
+
+        /// <summary>Máscara de los tiles de fosa y de lodo: suma de los vecinos que no son de ese tipo (N=1, E=2, S=4, O=8).</summary>
+        internal static int KindMask(FloorMap map, Vector2Int cell, FloorMap.Kind kind)
         {
             int x = cell.x, y = cell.y;
-            return (IsPit(map, x, y + 1) ? 0 : 1) | (IsPit(map, x + 1, y) ? 0 : 2) | (IsPit(map, x, y - 1) ? 0 : 4) | (IsPit(map, x - 1, y) ? 0 : 8);
+            return (map.Get(x, y + 1) == kind ? 0 : 1) | (map.Get(x + 1, y) == kind ? 0 : 2) | (map.Get(x, y - 1) == kind ? 0 : 4)
+                | (map.Get(x - 1, y) == kind ? 0 : 8);
         }
 
         // Esquina de dentro: los dos vecinos de ese lado son fosa y la diagonal no. Orden del tema: NE, NO, SE, SO.
-        static TileBase PitCorner(FloorMap map, Vector2Int cell, RoomTheme theme)
+        static TileBase PitCorner(FloorMap map, Vector2Int cell, RoomTheme theme) => Corner(map, cell, FloorMap.Kind.Pit, theme.PitCorner);
+
+        static TileBase Corner(FloorMap map, Vector2Int cell, FloorMap.Kind kind, System.Func<int, TileBase> corner)
         {
             int x = cell.x, y = cell.y;
             var corners = new[] { (1, 1), (-1, 1), (1, -1), (-1, -1) };
             for (int i = 0; i < corners.Length; i++)
             {
                 var (dx, dy) = corners[i];
-                if (IsPit(map, x + dx, y) && IsPit(map, x, y + dy) && !IsPit(map, x + dx, y + dy))
-                    return theme.PitCorner(i);
+                if (map.Get(x + dx, y) == kind && map.Get(x, y + dy) == kind && map.Get(x + dx, y + dy) != kind)
+                    return corner(i);
             }
             return null;
         }

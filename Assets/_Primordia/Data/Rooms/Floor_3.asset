@@ -31,6 +31,40 @@ MonoBehaviour:
   - {x: 34, y: 22}
   - {x: 38, y: 24}
   - {x: 44, y: 26}
+  caveSpecs:
+  - size: {x: 34, y: 22}
+    shape: 0
+    lakes: 0
+    weight: 2
+  - size: {x: 38, y: 24}
+    shape: 0
+    lakes: 1
+    weight: 2
+  - size: {x: 44, y: 26}
+    shape: 0
+    lakes: 1
+    weight: 1.5
+  - size: {x: 50, y: 18}
+    shape: 0
+    lakes: 0
+    weight: 1.5
+  - size: {x: 22, y: 30}
+    shape: 0
+    lakes: 0
+    weight: 1
+  - size: {x: 40, y: 26}
+    shape: 1
+    lakes: 0
+    weight: 2
+  - size: {x: 44, y: 28}
+    shape: 1
+    lakes: 1
+    weight: 1.5
+  - size: {x: 52, y: 34}
+    shape: 0
+    lakes: 1
+    weight: 1
+  blendBandBorders: 1
   smallCaveSizes:
   - {x: 26, y: 18}
   - {x: 28, y: 19}

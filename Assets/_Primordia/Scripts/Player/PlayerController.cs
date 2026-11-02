@@ -83,6 +83,9 @@ namespace Primordia.Player
             set => dodgeCooldown = Mathf.Max(0f, value);
         }
 
+        /// <summary>Multiplicador de la velocidad al andar por el terreno (el lodo profundo del piso 3, 1 sin él). Lo fija quien lo causa cada paso.</summary>
+        public float TerrainSpeedFactor { get; set; } = 1f;
+
         /// <summary>True mientras va ralentizado (veneno de las púas del Euriptérido).</summary>
         public bool IsSlowed => Time.time < slowUntil;
 
@@ -195,7 +198,7 @@ namespace Primordia.Player
                 StopLunge();
             }
 
-            rb.linearVelocity = CanAct ? MoveInput * (SpeedOverride ?? moveSpeed) * SlowFactor * TimeWarp.PlayerSpeed : Vector2.zero;
+            rb.linearVelocity = CanAct ? MoveInput * (SpeedOverride ?? moveSpeed) * SlowFactor * TerrainSpeedFactor * TimeWarp.PlayerSpeed : Vector2.zero;
         }
 
         /// <summary>Empieza una esquiva si se puede. Devuelve false si está en recarga o el juego no está en curso.</summary>

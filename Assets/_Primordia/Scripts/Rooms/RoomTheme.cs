@@ -84,6 +84,15 @@ namespace Primordia.Rooms
         [SerializeField] TileBase pitMotes;
         [SerializeField, Range(0f, 1f)] float pitMotesChance = 0.12f;
 
+        [Header("Lodo profundo (piso 3, opcional)")]
+        [Tooltip("16 tiles por máscara: suma de los vecinos que NO son lodo (N=1, E=2, S=4, O=8).")]
+        [SerializeField] TileBase[] mudTiles;
+        [Tooltip("Esquinas de dentro, encima del tile: NE, NO, SE, SO.")]
+        [SerializeField] TileBase[] mudCorners;
+        [Tooltip("Burbujas que suben y revientan, en algunas celdas de lodo.")]
+        [SerializeField] TileBase mudBubbles;
+        [SerializeField, Range(0f, 1f)] float mudBubblesChance = 0.1f;
+
         [Header("Ambiente (piso 2, opcional)")]
         [Tooltip("Cáusticas sobre el suelo: 16 tiles animados, uno por celda de un mosaico de 4×4 (índice x % 4 + 4 · (y % 4)).")]
         [SerializeField] TileBase[] caustics;
@@ -111,6 +120,11 @@ namespace Primordia.Rooms
         public bool HasPits => pitTiles != null && pitTiles.Length == 16;
         public TileBase PitTile(int mask) => HasPits ? pitTiles[mask & 15] : null;
         public TileBase PitCorner(int index) => pitCorners != null && index < pitCorners.Length ? pitCorners[index] : null;
+        public bool HasMud => mudTiles != null && mudTiles.Length == 16;
+        public TileBase MudTile(int mask) => HasMud ? mudTiles[mask & 15] : null;
+        public TileBase MudCorner(int index) => mudCorners != null && index < mudCorners.Length ? mudCorners[index] : null;
+        public TileBase MudBubbles => mudBubbles;
+        public float MudBubblesChance => mudBubblesChance;
         public TileBase PitMotes => pitMotes;
         public float PitMotesChance => pitMotesChance;
 
@@ -261,6 +275,13 @@ namespace Primordia.Rooms
             pitTiles = newTiles;
             pitCorners = newCorners;
             pitMotes = newMotes;
+        }
+
+        internal void ConfigureMud(TileBase[] newTiles, TileBase[] newCorners, TileBase newBubbles)
+        {
+            mudTiles = newTiles;
+            mudCorners = newCorners;
+            mudBubbles = newBubbles;
         }
 
         internal void ConfigureAmbience(TileBase[] newCaustics, Sprite[] newLightRay, float newLightRayFrameDuration, int newMarineSnow,

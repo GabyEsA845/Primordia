@@ -128,6 +128,9 @@ namespace Primordia.Rooms
             // El jugador cae en las fosas (se le añade aquí para no tocar su prefab).
             if (player != null && !player.TryGetComponent<PlayerPitFall>(out _))
                 player.gameObject.AddComponent<PlayerPitFall>();
+            // Y en el lodo profundo del piso 3 se hunde poco a poco.
+            if (player != null && !player.TryGetComponent<PlayerMudSink>(out _))
+                player.gameObject.AddComponent<PlayerMudSink>();
 
             Vector3 start = Built.StartPosition;
             if (player != null)

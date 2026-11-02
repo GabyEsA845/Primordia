@@ -528,7 +528,7 @@ namespace Primordia.Enemies
                 rb.linearVelocity += pullVelocity;
 
             // Los que andan caen si acaban encima de una fosa (empujados); los que nadan y los jefes, nunca.
-            if (!fallingIntoPit && !health.IsDead && Pits.IsDeepInPit(rb.position, PitEdgeGrace) && CanFall())
+            if (!fallingIntoPit && !health.IsDead && Pits.IsDeepInHole(rb.position, PitEdgeGrace) && CanFall())
                 StartCoroutine(FallIntoPit());
         }
 
@@ -548,7 +548,7 @@ namespace Primordia.Enemies
                 return velocity;
 
             float reach = bodyRadius + PitLookAhead;
-            bool Blocked(Vector2 direction) => Pits.IsPit(rb.position + direction.normalized * reach);
+            bool Blocked(Vector2 direction) => Pits.IsHole(rb.position + direction.normalized * reach);
 
             if (!Blocked(velocity))
                 return velocity;
@@ -563,16 +563,23 @@ namespace Primordia.Enemies
 
         bool CanFall() => enemy.Data != null && !enemy.Data.Swims && !TryGetComponent<IBoss>(out _);
 
+        // Lo que tarda en hundirse del todo un enemigo que anda en el lodo profundo (piso 3).
+        const float MudSinkSeconds = 1.5f;
+
         System.Collections.IEnumerator FallIntoPit()
         {
             fallingIntoPit = true;
+            bool inMud = Pits.IsMud(rb.position);
             desiredVelocity = Vector2.zero;
             rb.linearVelocity = Vector2.zero;
             // Lo que llevaba se pierde en el fondo.
             enemy.DropsBiomass = false;
             enemy.FellIntoPit = true;
             Sfx.Play(Sounds.EnemyPitFall);
-            yield return PitFallEffect.Play(transform);
+            if (inMud)
+                yield return MudSinkVisual.SinkAway(transform, MudSinkSeconds);
+            else
+                yield return PitFallEffect.Play(transform);
             health.Kill();
         }
 

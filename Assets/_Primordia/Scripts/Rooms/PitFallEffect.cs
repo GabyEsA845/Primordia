@@ -37,7 +37,7 @@ namespace Primordia.Rooms
                         renderers[i].color = colors[i];
             });
 
-            SpawnBubbles(root.position);
+            SpawnBubbles(root.position, Bubbles, new Color(0.8f, 0.95f, 1f, 0.8f));
             for (float t = 0f; t < Duration; t += Time.deltaTime)
             {
                 float k = t / Duration;
@@ -55,18 +55,18 @@ namespace Primordia.Rooms
             root.localScale = scale * EndScale;
         }
 
-        static void SpawnBubbles(Vector2 position)
+        internal static void SpawnBubbles(Vector2 position, int count, Color tint)
         {
             if (bubbleSprite == null)
                 bubbleSprite = CreateBubbleSprite();
-            for (int i = 0; i < Bubbles; i++)
+            for (int i = 0; i < count; i++)
             {
                 var bubble = new GameObject("PitBubble");
                 bubble.transform.position = position + Random.insideUnitCircle * 0.35f;
                 var renderer = bubble.AddComponent<SpriteRenderer>();
                 renderer.sprite = bubbleSprite;
                 renderer.sortingOrder = 5;
-                renderer.color = new Color(0.8f, 0.95f, 1f, 0.8f);
+                renderer.color = tint;
                 bubble.AddComponent<PitBubble>().Configure(BubbleRise * Random.Range(0.7f, 1.2f), BubbleLife * Random.Range(0.8f, 1.2f), i * 0.08f);
             }
         }

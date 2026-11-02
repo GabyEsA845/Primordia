@@ -32,6 +32,13 @@ namespace Primordia.Rooms
         /// <summary>El hundimiento de <paramref name="root"/> (se crea el componente si hace falta). Con 0 lo deja como estaba.</summary>
         public static void SetLevel(Transform root, float level)
         {
+            // Con el arte del pulido importado, el lodo se pinta en el cuerpo; sin él, la máscara de siempre.
+            if (MudBodyVisual.Ready || root.GetComponent<MudBodyVisual>() != null)
+            {
+                MudBodyVisual.SetLevel(root, level);
+                return;
+            }
+
             var visual = root.GetComponent<MudSinkVisual>();
             if (visual == null)
             {

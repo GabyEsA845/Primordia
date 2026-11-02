@@ -8,7 +8,8 @@ namespace Primordia.Rooms
 {
     /// <summary>
     /// El jugador en el lodo profundo (piso 3): mientras lo pisa se hunde poco a poco (la barra de hundimiento sube) y va cada
-    /// vez más lento; en tierra firme la barra baja. Esquivar (o embestir) cruza el lodo sin hundirse y la vacía. Con la barra
+    /// vez más lento; en tierra firme la barra baja. Esquivar (o embestir) cruza el lodo sin hundirse y deja la barra en pausa (no
+    /// se vacía: al acabar sigue desde donde estaba; solo la vacía un salto, ver <see cref="DodgeResetsSink"/>). Con la barra
     /// llena, vuelve al último suelo firme y pierde medio corazón, con un momento de invulnerabilidad, como en la fosa. Lo añade
     /// <see cref="FloorGenerator"/> al montar el piso. El lodo se ve tapando al jugador de abajo arriba (<see cref="MudSinkVisual"/>).
     /// </summary>
@@ -45,6 +46,12 @@ namespace Primordia.Rooms
 
         public bool IsSinking { get; private set; }
 
+        /// <summary>
+        /// Si la esquiva vacía la barra de hundimiento. Por defecto no: la esquiva la deja en pausa y sigue desde ahí. La mutación
+        /// que cambia la esquiva por un salto lo pondrá a true (saltar sí saca del lodo).
+        /// </summary>
+        public bool DodgeResetsSink { get; set; }
+
         void Awake()
         {
             controller = GetComponent<PlayerController>();
@@ -65,10 +72,11 @@ namespace Primordia.Rooms
             var position = body != null ? body.position : (Vector2)transform.position;
             var feet = position + footOffset;
 
-            // Esquivando (y en las embestidas) se pasa por encima y se sale limpio.
+            // Esquivando (y en las embestidas) se pasa por encima: el hundimiento se queda en pausa (ni sube ni baja) y sigue
+            // desde ahí al acabar. Así no se cruza el lodo a base de esquivas. Un salto sí sale limpio (ver DodgeResetsSink).
             if (controller.IsDodging || controller.IsLunging)
             {
-                if (Sink > 0f)
+                if (DodgeResetsSink && Sink > 0f)
                     Clear();
                 return;
             }

@@ -1,0 +1,1337 @@
+<title>Pantano carbonífero de Primordia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=Pixelify+Sans:wght@500;700&family=Libre+Franklin:wght@400;600;700&display=swap">
+<style>
+/* Layout: como una sala del piso 3. Arriba la pared del pantano; la cabecera es el menú del juego teñido de verde; el resto, paneles del juego (bordes pixelados) sobre el suelo del pantano. Un solo aspecto oscuro, el del juego. */
+:root {
+  color-scheme: dark;
+  --sea: #1c2a18;
+  --deep: #0a120a;
+  --ink: #f0f0dc;
+  --muted: #b4bf98;
+  --line: #4a5c36;
+  --title: #f0b84a;
+  --lime: #d9f26a;
+  --cyan: #78d68c;
+  --carn: #ff8a7a;
+  --herb: #9ce680;
+  --ven: #cfa2f2;
+  --carr: #e0b87a;
+  --hongo: #f0bd62;
+  --para: #e0607a;
+  --s-mouth: #f2805a;
+  --s-limbs: #b979e0;
+  --s-skin: #8cb3e6;
+  --s-organ: #8ce65a;
+  --anom: #f0b84a;
+  --eury: #e89a30;
+  --enemy: #a8d870;
+  --trap: #e8845a;
+  --hp: #ff6f80;
+  --burnt: #d0905a;
+  --fire: #ff9a3a;
+  --secret: #c79af0;
+  --chip: rgba(8, 16, 8, .62);
+  --display: "Silkscreen", "Pixelify Sans", "Courier New", monospace;
+  --body: "Libre Franklin", "Segoe UI", system-ui, sans-serif;
+}
+* { box-sizing: border-box; }
+body { background: var(--sea); color: var(--ink); font-family: var(--body); font-size: 15px; line-height: 1.55; }
+body { background-image: var(--floor); background-size: 384px 384px; image-rendering: pixelated; }
+.pixel, .sprite, .wallband, .stage, .thumb, .logo, .room img, .ball, .sil { image-rendering: pixelated; image-rendering: crisp-edges; }
+
+.wallband { height: 128px; background-image: var(--wall); background-size: 128px 128px; background-repeat: repeat-x; }
+.wrap { max-width: 1080px; margin: -24px auto 0; padding-inline: 16px; padding-block: 0 56px; display: grid; gap: 40px; position: relative; }
+
+h1, h2, h3, h4 { font-family: var(--display); font-weight: 700; text-wrap: balance; margin: 0; letter-spacing: .02em; line-height: 1.15; }
+h1 { font-size: 1.7rem; color: var(--ink); }
+h2 { font-size: 1.45rem; color: var(--title); text-shadow: 2px 2px 0 var(--deep); }
+h3 { font-size: 1.1rem; }
+h4 { font-size: .95rem; }
+p { margin: 0; max-width: 68ch; }
+ul { margin: 0; padding-left: 1.1rem; display: grid; gap: 5px; }
+.muted { color: var(--muted); }
+.label { font-family: var(--display); font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; font-weight: 400; color: var(--muted); }
+section { display: grid; gap: 14px; scroll-margin-top: 16px; }
+section > p.muted { text-shadow: 1px 1px 0 var(--deep); }
+
+/* Paneles del juego (9-slice de 12 px dibujado a ×2) */
+.panel { border: 24px solid transparent; border-image: var(--card) 12 fill / 24px stretch; image-rendering: pixelated; }
+.btn { font: inherit; color: var(--ink); cursor: pointer; border: 14px solid transparent; border-image: var(--button) 7 fill / 14px stretch; image-rendering: pixelated; background: none; }
+.btn:hover { border-image-source: var(--button-hi); }
+.btn[aria-pressed="true"] { border-image-source: var(--button-hi); color: var(--lime); }
+
+/* Cabecera */
+.lead { display: grid; gap: 14px; border: 24px solid transparent; border-image: var(--panel) 12 / 24px stretch; image-rendering: pixelated; position: relative; isolation: isolate; }
+.lead::before { content: ""; position: absolute; inset: -16px; z-index: -1; background: var(--menu) center / cover no-repeat; }
+.logo { width: 400px; max-width: 100%; height: auto; display: block; filter: drop-shadow(3px 3px 0 var(--deep)); }
+.lead .intro { display: grid; gap: 10px; }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 18px; }
+.legend span { display: inline-flex; align-items: center; gap: 7px; font-size: .9rem; }
+.dot { width: 12px; height: 12px; background: var(--c); flex: none; box-shadow: 0 0 0 2px var(--deep); }
+.toc { display: flex; flex-wrap: wrap; gap: 6px; }
+.toc a { font-family: var(--display); font-size: .85rem; text-decoration: none; color: var(--ink); border: 14px solid transparent; border-image: var(--button) 7 fill / 14px stretch; image-rendering: pixelated; padding: 0 4px; margin: -6px 0; }
+.toc a:hover { border-image-source: var(--button-hi); color: var(--lime); }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--lime); outline-offset: 2px; }
+.news { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: .88rem; }
+.news b { color: var(--lime); font-weight: 600; }
+
+/* Beneficios por clase */
+.classes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+@media (max-width: 720px) { .classes { grid-template-columns: 1fr; } }
+.klass { display: grid; gap: 10px; align-content: start; min-width: 0; }
+.klass-head { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.klass-head h3 { color: var(--c); }
+.new { font-family: var(--display); font-size: .66rem; color: var(--deep); background: var(--c); padding: 0 6px; }
+.base { display: grid; gap: 2px; padding: 8px 10px; background: color-mix(in srgb, var(--c) 14%, transparent); box-shadow: inset 3px 0 0 var(--c); }
+.base b { font-weight: 700; color: var(--c); }
+.base .delta { font-size: .85rem; color: var(--muted); }
+.touches { display: grid; gap: 10px; }
+.touch { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 2px 12px; align-items: center; }
+.sil { width: 64px; height: 64px; grid-row: span 3; background: var(--chip); box-shadow: inset 0 0 0 2px var(--line); }
+.touch .who { font-weight: 700; }
+.touch .what b { font-weight: 600; }
+.recipe { font-size: .8rem; color: var(--muted); }
+
+/* Simulador */
+.sim { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 18px; align-items: start; }
+@media (max-width: 760px) { .sim { grid-template-columns: 1fr; } }
+.slots { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+@media (max-width: 460px) { .slots { grid-template-columns: 1fr; } }
+.slot { display: grid; gap: 8px; align-content: start; min-width: 0; }
+.slot .label { color: var(--c); }
+.opts { display: grid; gap: 4px; }
+.opt { text-align: left; display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: 2px 8px; align-items: center; padding: 0; }
+.opt img { width: 28px; height: 28px; grid-row: span 2; align-self: start; image-rendering: pixelated; }
+.opt .name { font-weight: 600; }
+.opt[aria-pressed="true"] .name { color: var(--lime); }
+.tags { display: flex; flex-wrap: wrap; gap: 4px; }
+.tag { font-size: .72rem; padding: 0 5px; border: 2px solid var(--c); color: var(--c); line-height: 1.45; white-space: nowrap; background: var(--chip); }
+
+.result { display: grid; gap: 12px; position: sticky; top: calc(env(safe-area-inset-top, 0px) + 12px); min-width: 0; }
+.result-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.reset { font-size: .82rem; padding: 0 4px; margin: -6px 0; font-family: var(--display); }
+.done { padding: 10px 12px; background: color-mix(in srgb, var(--c) 16%, transparent); box-shadow: inset 0 0 0 2px var(--c); display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 6px 12px; align-items: center; }
+.done .evo { grid-row: span 3; background: var(--deep); box-shadow: inset 0 0 0 2px var(--line); }
+.done b.big { font-family: var(--display); font-size: 1.3rem; color: var(--c); }
+.done .gives { display: grid; gap: 4px; font-size: .9rem; grid-column: 1 / -1; }
+.body-now { display: flex; align-items: center; gap: 10px; font-size: .88rem; color: var(--muted); }
+.body-now .sprite { background-color: var(--deep); box-shadow: inset 0 0 0 2px var(--line); }
+.list { display: grid; gap: 6px; }
+.lin { font: inherit; text-align: left; cursor: pointer; background: var(--chip); color: var(--ink); border: 2px solid var(--line); padding: 7px 10px; display: grid; gap: 4px; }
+.lin:hover { border-color: var(--c); }
+.lin-top { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.lin-top .nm { font-weight: 700; }
+.lin-top .cls { font-size: .78rem; color: var(--c); }
+.lin-top .score { margin-left: auto; font-family: var(--display); font-size: .9rem; }
+.pips { display: flex; gap: 3px; }
+.pip { width: 9px; height: 9px; border: 2px solid var(--c); }
+.pip.on { background: var(--c); }
+.miss { font-size: .84rem; color: var(--muted); }
+
+/* Tablas */
+.tablebox { overflow-x: auto; min-width: 0; }
+table { border-collapse: collapse; width: 100%; font-size: .9rem; }
+#matrix { min-width: 760px; }
+th, td { padding: 7px 8px; border-bottom: 2px solid var(--line); text-align: center; }
+tbody tr:last-child th, tbody tr:last-child td { border-bottom: 0; }
+tbody th { text-align: left; font-weight: 600; white-space: nowrap; }
+thead th { vertical-align: bottom; border-bottom: 2px solid var(--cyan); }
+th button { font: inherit; background: none; border: 0; color: var(--c); cursor: pointer; display: grid; gap: 2px; justify-items: center; padding: 2px 4px; width: 100%; }
+th button .nm { font-weight: 700; color: var(--ink); }
+th button .cls { font-size: .72rem; color: var(--c); font-weight: 600; }
+.slotrow th { text-align: left; font-family: var(--display); font-size: .74rem; text-transform: uppercase; letter-spacing: .08em; color: var(--c); background: var(--chip); padding-block: 5px; }
+.cell { display: inline-block; width: 14px; height: 14px; background: var(--c); box-shadow: 0 0 0 2px var(--deep); }
+td.count { font-family: var(--display); color: var(--muted); }
+.hl { background: color-mix(in srgb, var(--c) 16%, transparent); }
+tr.picked th { color: var(--lime); }
+tr.picked th::before { content: "▸ "; }
+.note { font-size: .88rem; color: var(--muted); }
+
+/* Cuerpos y tabla de mutaciones */
+.bodies { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+@media (max-width: 640px) { .bodies { grid-template-columns: 1fr; } }
+.bodycard { display: grid; gap: 8px; justify-items: start; min-width: 0; }
+.bodycard .pair { display: flex; gap: 6px; background: var(--deep); padding: 6px; box-shadow: inset 0 0 0 2px var(--line); }
+.bodycard b { font-family: var(--display); font-size: .9rem; }
+.bodycard .anims { width: 100%; justify-content: center; align-items: end; }
+.filter { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter button { font-family: var(--display); font-size: .82rem; padding: 0 4px; margin: -6px 0; display: inline-flex; align-items: center; gap: 6px; }
+.filter button img { width: 16px; height: 16px; image-rendering: pixelated; }
+#mutations { min-width: 900px; }
+#mutations th, #mutations td { text-align: left; vertical-align: top; padding: 10px 10px; }
+#mutations thead th { font-family: var(--display); font-size: .74rem; font-weight: 400; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+#mutations tbody th { white-space: normal; }
+#mutations .mname { display: grid; grid-template-columns: 32px minmax(0, 1fr); gap: 2px 10px; align-items: center; width: 14rem; }
+#mutations .mname img { width: 32px; height: 32px; grid-row: span 3; image-rendering: pixelated; }
+#mutations .mname b { font-family: var(--display); font-size: .9rem; font-weight: 700; line-height: 1.2; }
+#mutations .slotname { font-size: .78rem; color: var(--c); }
+#mutations .fam { font-size: .74rem; color: var(--muted); }
+#mutations td.lv { width: 24%; }
+#mutations td.lv .lvn { display: inline-block; font-family: var(--display); font-size: .78rem; color: var(--lime); margin-right: 4px; }
+#mutations td.lins { min-width: 9rem; }
+#mutations tbody tr:nth-child(even) { background: var(--chip); }
+
+/* Mutaciones especiales de las almejas */
+:root { --gold: #f2c14e; }
+.specials { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+@media (max-width: 900px) { .specials { grid-template-columns: 1fr; } }
+.special { display: grid; gap: 10px; align-content: start; min-width: 0; }
+.special-head { display: grid; grid-template-columns: 54px minmax(0, 1fr); gap: 2px 12px; align-items: center; }
+.special-head img { width: 54px; height: 54px; grid-row: span 2; image-rendering: pixelated; }
+.special-head h3 { color: var(--gold); font-size: 1.05rem; }
+.special-head .slotname { font-size: .8rem; color: var(--c); }
+.special .anims { justify-content: center; }
+.special .lvs { display: grid; gap: 6px; font-size: .9rem; }
+.special .lvs div { display: grid; grid-template-columns: 2.2rem minmax(0, 1fr); gap: 8px; }
+.special .lvs .lvn { font-family: var(--display); font-size: .78rem; color: var(--lime); padding-top: 2px; }
+.special .lvs div:last-child .lvn { color: var(--gold); }
+.price { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+@media (max-width: 760px) { .price { grid-template-columns: 1fr; } }
+.price article { display: grid; gap: 10px; align-content: start; min-width: 0; }
+.price article.wide { grid-column: 1 / -1; }
+.price h3 { color: var(--gold); font-size: 1rem; }
+.price p b { color: var(--gold); font-weight: 600; }
+.heartrow { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center; background: var(--deep); padding: 10px 12px; box-shadow: inset 0 0 0 2px var(--line); }
+.heartrow figure { margin: 0; display: grid; gap: 4px; justify-items: center; }
+.heartrow figcaption { font-size: .74rem; color: var(--muted); }
+.cases { display: grid; gap: 6px; font-size: .9rem; }
+.case { padding: 6px 10px; background: var(--chip); box-shadow: inset 3px 0 0 var(--gold); }
+.case b { color: var(--gold); font-weight: 600; }
+
+/* Enemigos */
+.enemies { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+@media (max-width: 820px) { .enemies { grid-template-columns: 1fr; } }
+.enemy { display: grid; gap: 10px; align-content: start; min-width: 0; --c: var(--enemy); }
+.enemy.wide { grid-column: 1 / -1; }
+.enemy-head { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.enemy-head h3 { color: var(--c); font-size: 1.2rem; }
+.role { font-family: var(--display); font-size: .7rem; padding: 0 6px; border: 2px solid var(--c); color: var(--c); }
+.anims { display: flex; flex-wrap: wrap; gap: 6px; background: var(--deep) var(--tiles) 0 0 / 96px 96px; padding: 8px; box-shadow: inset 0 0 0 2px var(--deep), inset 0 0 24px rgba(0, 0, 0, .45); }
+.anim { display: grid; gap: 2px; justify-items: center; }
+.anim .label { font-size: .62rem; color: var(--ink); text-shadow: 1px 1px 0 var(--deep); }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(7.5rem, 1fr)); gap: 8px; }
+.stat { background: var(--chip); padding: 6px 10px; display: grid; box-shadow: inset 0 0 0 2px var(--line); }
+.stat b { font-family: var(--display); font-size: 1rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+.asks { padding: 8px 10px; background: color-mix(in srgb, var(--c) 12%, transparent); box-shadow: inset 3px 0 0 var(--c); font-size: .9rem; }
+.asks b { color: var(--c); }
+
+/* Bestiario */
+.beasts { display: grid; gap: 28px; }
+.beast { display: grid; gap: 0; min-width: 0; }
+.beast-top { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 20px; padding-bottom: 16px; align-items: center; border-bottom: 2px solid var(--line); }
+@media (max-width: 640px) { .beast-top { grid-template-columns: 1fr; } }
+.stage { background: var(--deep) var(--tiles) 0 0 / 144px 144px; display: grid; place-items: center; padding: 10px; min-width: 220px; min-height: 220px; box-shadow: inset 0 0 0 3px var(--deep), inset 0 0 40px rgba(0, 0, 0, .55); overflow: hidden; }
+@media (max-width: 640px) { .stage { min-width: 0; } }
+.beast-id { display: grid; gap: 10px; min-width: 0; }
+.beast-id h3 { font-size: 1.6rem; color: var(--c); text-shadow: 2px 2px 0 var(--deep); }
+.hpbar { display: grid; gap: 4px; }
+.hpbar .track { display: flex; height: 20px; overflow: hidden; border: 2px solid var(--deep); box-shadow: 0 0 0 2px var(--line); }
+.hpbar .seg { flex: var(--w) 1 0; background: color-mix(in srgb, var(--hp) var(--k), var(--deep)); display: grid; place-items: center; font-family: var(--display); font-size: .62rem; color: var(--ink); border-right: 2px solid var(--deep); white-space: nowrap; overflow: hidden; text-shadow: 1px 1px 0 var(--deep); }
+.hpbar .seg:last-child { border-right: 0; }
+.hpbar .ticks { display: flex; font-family: var(--display); font-size: .66rem; color: var(--muted); }
+.hpbar .ticks span { flex: var(--w) 1 0; }
+.phases { display: grid; }
+.phase { display: grid; grid-template-columns: var(--artw, 16rem) minmax(0, 1fr); gap: 18px; padding-block: 16px; border-bottom: 2px solid var(--line); align-items: start; }
+@media (max-width: 820px) { .phase { grid-template-columns: minmax(0, 1fr); } }
+.phase-art { display: grid; gap: 6px; justify-items: start; min-width: 0; }
+.phase-art .thumb { background: var(--deep) var(--tiles) 0 0 / 96px 96px; padding: 6px; display: flex; flex-wrap: wrap; gap: 4px; align-items: center; max-width: 100%; box-shadow: inset 0 0 0 2px var(--deep), inset 0 0 24px rgba(0, 0, 0, .55); }
+.phase-hp { font-family: var(--display); font-size: .9rem; color: var(--c); }
+.phase-body { display: grid; gap: 6px; min-width: 0; }
+.phase-body h4 { color: var(--c); }
+.extras { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; padding-top: 16px; }
+@media (max-width: 720px) { .extras { grid-template-columns: 1fr; } }
+.extras > div { display: grid; gap: 8px; align-content: start; min-width: 0; }
+.projs { display: grid; gap: 8px; }
+.proj { display: grid; grid-template-columns: 72px minmax(0, 1fr); gap: 10px; align-items: center; }
+.proj .ball { background: var(--deep); width: 72px; height: 72px; display: grid; place-items: center; box-shadow: inset 0 0 0 2px var(--line); overflow: hidden; }
+.room { background: var(--deep); padding: 8px; display: grid; place-items: center; box-shadow: inset 0 0 0 2px var(--line); }
+.room img { max-width: 100%; height: auto; max-height: 280px; }
+.bossbar { margin-top: 1rem; }
+.bossbar .room img { max-height: none; width: 100%; }
+
+/* El océano */
+.bands { display: grid; gap: 14px; }
+.band { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 18px; align-items: center; }
+@media (max-width: 760px) { .band { grid-template-columns: 1fr; } }
+.band .room img { max-height: none; width: 100%; }
+.band-txt { display: grid; gap: 8px; min-width: 0; }
+.band-txt h3 { color: var(--c); }
+.doors { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+@media (max-width: 760px) { .doors { grid-template-columns: 1fr; } }
+.doorcard { display: grid; gap: 6px; justify-items: center; min-width: 0; }
+
+/* Presentación del jefe: la pantalla del juego (480 × 270 px de referencia) a escala; --u es un píxel del juego */
+.intro { display: grid; gap: 10px; padding-block: 16px; border-bottom: 2px solid var(--line); }
+.intro-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; }
+.intro-head h4 { color: var(--c); }
+.is-box { container-type: inline-size; width: 100%; max-width: 760px; }
+.is-screen { --u: calc(100cqw / 480); position: relative; width: 100%; aspect-ratio: 16 / 9; overflow: hidden; background: var(--deep) var(--tiles) 0 0 / calc(96 * var(--u)) calc(96 * var(--u)); box-shadow: inset 0 0 0 2px var(--deep); image-rendering: pixelated; }
+.is-screen > * { position: absolute; }
+.is-shade { inset: 0; background: var(--shade, rgba(0, 0, 0, .25)); }
+.is-pose { background-repeat: no-repeat; background-size: calc(var(--f) * var(--sw)) var(--sw); image-rendering: pixelated; }
+.is-dim { inset: 0; background: rgba(0, 0, 0, .35); }
+.is-edge, .is-band { inset: 0; }
+.is-edge { background: var(--acc); clip-path: polygon(0 calc(162 * var(--u)), 100% calc(134 * var(--u)), 100% calc(202 * var(--u)), 0 calc(230 * var(--u))); }
+.is-band { background: var(--band); opacity: .94; clip-path: polygon(0 calc(164 * var(--u)), 100% calc(136 * var(--u)), 100% calc(200 * var(--u)), 0 calc(228 * var(--u))); }
+.is-name, .is-portrait { height: auto; max-width: none; image-rendering: pixelated; }
+.is-sub, .is-skip { font-family: "Silkscreen", "Courier New", monospace; font-size: calc(8 * var(--u)); line-height: 1; white-space: nowrap; text-transform: uppercase; }
+.is-sub { color: var(--acc); }
+.is-skip { right: calc(8 * var(--u)); bottom: calc(6 * var(--u)); color: #c8c8d2; opacity: .8; }
+:root:not([data-motion="off"]) .play .is-pose { animation-name: is-pose; animation-fill-mode: both; animation-delay: .2s; }
+:root:not([data-motion="off"]) .play .is-dim { animation: is-fade-in .3s ease-out 1s both, is-fade-out .3s ease-in 5.9s forwards; }
+:root:not([data-motion="off"]) .play .is-edge, :root:not([data-motion="off"]) .play .is-band { animation: is-slide-l .35s cubic-bezier(.2, .8, .2, 1) 1.1s both, is-out-l .3s ease-in 5.9s forwards; }
+:root:not([data-motion="off"]) .play .is-name { animation: is-slide-l .35s cubic-bezier(.2, .8, .2, 1) 1.3s both, is-out-l .3s ease-in 5.9s forwards; }
+:root:not([data-motion="off"]) .play .is-sub { animation: is-fade-in .3s ease-out 1.6s both, is-fade-out .2s ease-in 5.9s forwards; }
+:root:not([data-motion="off"]) .play .is-portrait { animation: is-slide-r .4s cubic-bezier(.2, .8, .2, 1) 1.25s both, is-out-r .3s ease-in 5.9s forwards; }
+@keyframes is-pose { from { background-position: 0 0; } to { background-position: calc((var(--f) - 1) * var(--sw) * -1) 0; } }
+@keyframes is-fade-in { from { opacity: 0; } }
+@keyframes is-fade-out { to { opacity: 0; } }
+@keyframes is-slide-l { from { transform: translateX(-100%); } to { transform: none; } }
+@keyframes is-out-l { from { transform: none; } to { transform: translateX(-110%); } }
+@keyframes is-slide-r { from { transform: translateX(60%); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes is-out-r { from { transform: none; opacity: 1; } to { transform: translateX(60%); opacity: 0; } }
+
+/* Salas: plano de ejemplo, fosas y catálogo de salas especiales */
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); gap: 8px; }
+.fact { background: var(--chip); padding: 8px 12px; display: grid; gap: 2px; box-shadow: inset 0 0 0 2px var(--line); }
+.fact b { font-family: var(--display); font-size: 1.15rem; color: var(--lime); font-variant-numeric: tabular-nums; }
+.fact span:last-child { font-size: .84rem; color: var(--muted); }
+.plan { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 18px; align-items: start; }
+@media (max-width: 820px) { .plan { grid-template-columns: 1fr; } }
+.plan svg { width: 100%; height: auto; display: block; background: var(--deep); }
+.plan svg text { font-family: var(--display); }
+.keys { display: grid; gap: 6px; font-size: .88rem; }
+.key { display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: 10px; align-items: center; }
+.key i { width: 22px; height: 22px; display: grid; place-items: center; font-style: normal; font-family: var(--display); font-size: .7rem; color: var(--deep); background: var(--k); box-shadow: inset 0 0 0 2px var(--deep); }
+.key i.ring { background: var(--chip); box-shadow: inset 0 0 0 2px var(--k); color: var(--k); }
+.pits { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 18px; align-items: center; }
+@media (max-width: 760px) { .pits { grid-template-columns: 1fr; } }
+.pits svg { width: 100%; height: auto; display: block; background: var(--deep); }
+.pits svg text { font-family: var(--display); }
+.rooms { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+@media (max-width: 760px) { .rooms { grid-template-columns: 1fr; } }
+.rcard { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 14px; align-items: start; min-width: 0; --c: var(--title); }
+.rcard.always { --c: var(--ven); }
+@media (max-width: 460px) { .rcard { grid-template-columns: 1fr; } }
+.rmap { background: var(--deep); padding: 6px; box-shadow: inset 0 0 0 2px var(--line); justify-self: start; }
+.rmap canvas { display: block; image-rendering: pixelated; max-width: 100%; height: auto; }
+.rtxt { display: grid; gap: 6px; min-width: 0; align-content: start; }
+.rtxt h3 { color: var(--c); font-size: 1rem; }
+.rtags { display: flex; flex-wrap: wrap; gap: 4px; }
+.rtxt .extra b { color: var(--c); font-weight: 600; }
+.maplegend { text-shadow: 1px 1px 0 var(--deep); display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: .84rem; color: var(--muted); }
+.maplegend span { display: inline-flex; align-items: center; gap: 6px; }
+.maplegend i { width: 12px; height: 12px; background: var(--k); box-shadow: 0 0 0 1px var(--deep); }
+.handmade { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+@media (max-width: 820px) { .handmade { grid-template-columns: 1fr; } }
+.handmade article { display: grid; gap: 8px; align-content: start; min-width: 0; }
+.handmade h3 { color: var(--title); font-size: 1rem; }
+
+/* Sprites animados: hoja horizontal de --f cuadros de --w × --h px (ya escalados) */
+.sprite { width: var(--w); height: var(--h); background-repeat: no-repeat; background-size: calc(var(--f) * var(--w)) var(--h); animation: sheet var(--d) steps(var(--f)) infinite; max-width: 100%; flex: none; }
+@keyframes sheet { from { background-position: 0 0; } to { background-position: calc(var(--f) * var(--w) * -1) 0; } }
+:root[data-motion="off"] .sprite { animation: none; }
+@media (prefers-reduced-motion: no-preference) { .lin { transition: border-color .12s; } }
+
+/* Piso 3: GIF animadas, tarjetas de galería, reacciones y sistemas */
+.gif { image-rendering: pixelated; max-width: 100%; height: auto; display: block; flex: none; }
+.gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr)); gap: 12px; }
+.shot { display: grid; gap: 6px; align-content: start; min-width: 0; margin: 0; }
+.shot .frame { background: var(--deep); padding: 6px; box-shadow: inset 0 0 0 2px var(--line); display: grid; place-items: center; overflow: hidden; }
+.shot .frame img { max-width: 100%; height: auto; image-rendering: pixelated; display: block; }
+.shot figcaption { font-size: .84rem; color: var(--muted); }
+.shot figcaption b { color: var(--ink); font-weight: 600; }
+.shot.wide { grid-column: 1 / -1; }
+.chain { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.chain .arrow { font-family: var(--display); color: var(--fire); }
+.react { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+@media (max-width: 900px) { .react { grid-template-columns: 1fr; } }
+.react article { display: grid; gap: 10px; align-content: start; min-width: 0; --c: var(--fire); }
+.react h3 { color: var(--c); font-size: 1.05rem; }
+.rules { display: grid; gap: 6px; font-size: .9rem; }
+.rule { padding: 6px 10px; background: var(--chip); box-shadow: inset 3px 0 0 var(--c, var(--fire)); }
+.rule b { color: var(--c, var(--fire)); font-weight: 600; }
+.sys { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+@media (max-width: 760px) { .sys { grid-template-columns: 1fr; } }
+.sys article { display: grid; gap: 10px; align-content: start; min-width: 0; }
+.sys article.wide { grid-column: 1 / -1; }
+.sys h3 { color: var(--title); font-size: 1.05rem; }
+.badge { font-family: var(--display); font-size: .66rem; color: var(--deep); background: var(--c, var(--secret)); padding: 0 6px; align-self: start; width: max-content; }
+.pending { padding: 8px 12px; background: var(--chip); box-shadow: inset 3px 0 0 var(--muted); color: var(--muted); font-size: .9rem; }
+.is-pose-img { image-rendering: pixelated; height: auto; }
+.rcard.nomap { grid-template-columns: 1fr; }
+.three { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+@media (max-width: 760px) { .three { grid-template-columns: 1fr; } }
+.tpcard { display: grid; gap: 6px; justify-items: center; }
+.tpcard .anims { justify-content: center; }
+.heartrow img { image-rendering: pixelated; }
+.gallery.scn { grid-template-columns: repeat(auto-fill, minmax(21rem, 1fr)); }
+.anim .label { font-size: .74rem; }
+.shot .frame, .room, .proj .ball { grid-template-columns: minmax(0, 1fr); }
+.phase-hp { font-size: 1rem; }
+.hpbar .seg { font-size: .72rem; }
+.hpbar .ticks { font-size: .75rem; }
+.stat .label, .beast .label { font-size: .8rem; }
+.is-sub, .is-skip { font-size: calc(10 * var(--u)); }
+.shot figcaption { font-size: .92rem; }
+.proj span { font-size: .95rem; }
+.phase-body li, .extras li { font-size: 1rem; }
+.note { font-size: .95rem; }
+.gifbox { overflow: hidden; max-width: 100%; flex: none; position: relative; image-rendering: pixelated; }
+.gifbox img { display: block; max-width: none; height: auto; image-rendering: pixelated; }
+.motion { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; }
+.motion .btn { font-family: var(--display); font-size: .82rem; padding: 0 4px; margin: -6px 0; }
+.motion .note { margin: 0; }
+</style>
+
+<div class="wallband" aria-hidden="true"></div>
+<div class="wrap">
+  <header class="lead">
+    <img class="logo" id="logo" alt="Primordia" width="400" height="96">
+    <div class="intro">
+    <span class="label">Piso 3 · Pantano carbonífero</span>
+    <h1>Linajes, mutaciones, enemigos y jefes</h1>
+    <p class="muted">Al saltar al piso 3 la criatura sale del mar a un pantano de helechos gigantes que se va quemando a medida que avanzas. La Boca que eliges decide su cuerpo (rana venenosa, <i>Diplocaulus</i> o escorpión látigo). La seña del piso son las <b>reacciones</b>: veneno, metano y fuego se combinan, y casi todo lo que haces (y lo que hacen los jefes) interactúa con ellos. Los linajes son de cada piso, así que aquí se empieza de cero.</p>
+    <div class="news"><span><b>9 mutaciones</b> (3 Bocas)</span><span><b>8 linajes</b></span><span><b>Parásito</b>, clase nueva</span><span><b>Hongo</b> vuelve</span><span><b>6 enemigos</b> y 2 trampas</span><span><b>3 jefes</b> y 1 minijefe</span><span><b>Jefe secreto</b> y reliquia</span><span><b>3 mutaciones especiales</b> en el ámbar</span><span><b>10 salas especiales</b> y lodo profundo</span></div>
+    </div>
+    <div class="legend" id="legend"></div>
+    <div class="motion"><button class="btn" id="motion" type="button" aria-pressed="true"></button><span class="note" id="motionnote"></span></div>
+    <nav class="toc" aria-label="Secciones">
+      <a href="#beneficios">Beneficios</a>
+      <a href="#cuerpo">Arma un cuerpo</a>
+      <a href="#matriz">Matriz</a>
+      <a href="#mutaciones">Mutaciones</a>
+      <a href="#reacciones">Reacciones</a>
+      <a href="#especiales">Especiales</a>
+      <a href="#enemigos">Enemigos</a>
+      <a href="#bestiario">Bestiario</a>
+      <a href="#pantano">El pantano</a>
+      <a href="#salas">Salas</a>
+      <a href="#sistemas">Sistemas</a>
+      <a href="#sonido">Sonido</a>
+    </nav>
+  </header>
+
+  <section id="beneficios" aria-labelledby="ben-t">
+    <h2 id="ben-t">Beneficios</h2>
+    <p class="muted">Las clases atraviesan la partida: en cada piso unas duermen y vuelven más tarde. En el pantano duermen el Herbívoro (casi no hay herbívoros en el Carbonífero, por eso el carbón) y el Carroñero; el Hongo vuelve y entra una clase nueva, el Parásito. Al completar un linaje, el cuerpo se transforma un momento en la silueta del animal.</p>
+    <div class="classes" id="classes"></div>
+  </section>
+
+  <section id="cuerpo" aria-labelledby="sim-t">
+    <h2 id="sim-t">Arma un cuerpo</h2>
+    <p class="muted">Elige una mutación por ranura y mira qué linajes completas o cuánto te falta. Pulsa un linaje para montarlo entero.</p>
+    <div class="sim">
+      <div class="slots" id="slots"></div>
+      <aside class="result panel" aria-live="polite">
+        <div class="result-head">
+          <span class="label">Resultado</span>
+          <button class="reset btn" id="reset" type="button">Vaciar</button>
+        </div>
+        <div class="body-now" id="bodynow"></div>
+        <div id="done"></div>
+        <div class="list" id="ranking"></div>
+      </aside>
+    </div>
+  </section>
+
+  <section id="matriz" aria-labelledby="mx-t">
+    <h2 id="mx-t">Matriz de mutaciones y linajes</h2>
+    <p class="muted">Cada fila es una mutación y cada columna un linaje. Pulsa la cabecera de un linaje para resaltar sus 4 mutaciones.</p>
+    <div class="tablebox panel"><table id="matrix"></table></div>
+    <p class="note">No hay dos linajes con las mismas 4 mutaciones. Cada clase tiene dos animales del Carbonífero y sus toques hacen combo con las mutaciones del propio animal.</p>
+  </section>
+
+  <section id="mutaciones" aria-labelledby="mu-t">
+    <h2 id="mu-t">Mutaciones</h2>
+    <p class="muted">El nivel I de una mutación del piso 3 vale como el II de una del piso 2. Coger otra vez la misma la sube de nivel, hasta el III. Este piso estrena formas de manejo distintas a las de los anteriores: <b>mantener</b> pulsado (Peonza, Chorro de vinagre), <b>cargar</b> y <b>detonar</b> (Escupitajo, Saco de metano). Las Extremidades no se dibujan en el cuerpo; las Pieles retocan el cuerpo dentro de su silueta y los Órganos solo se ven en sus efectos.</p>
+    <div class="bodies" id="bodies"></div>
+    <div class="bodies" id="mutart" role="group" aria-label="Cómo se ven las Extremidades, la Piel y los Órganos"></div>
+    <div class="filter" id="filter" role="group" aria-label="Filtrar por ranura"></div>
+    <div class="tablebox panel"><table id="mutations"></table></div>
+  </section>
+
+  <section id="reacciones" aria-labelledby="re-t">
+    <h2 id="re-t">Reacciones</h2>
+    <p class="muted">La seña del piso. Hay tres elementos, <b>veneno</b>, <b>metano</b> y <b>fuego</b>, y las Bocas, las mutaciones, los enemigos, el escenario y los jefes interactúan con ellos. Fuentes: fumarolas, odres de metano, plantas venenosas y enemigos de fuego.</p>
+    <div class="chain panel" id="chain"></div>
+    <div class="react" id="react"></div>
+    <div class="gallery" id="reactgal"></div>
+  </section>
+
+  <section id="especiales" aria-labelledby="es-t">
+    <h2 id="es-t">Mutaciones especiales</h2>
+    <p class="muted">Tres mutaciones que solo salen de la sala del ámbar: una de Extremidades, una de Piel y una de Órgano especial. Son bastante más fuertes que las demás y suben de nivel como cualquier otra. Mismas reglas que las especiales del piso 2: una vez equipadas, sus mejoras salen en las elecciones y en la tienda, pero la especial en sí nunca se vende. Sus iconos llevan una gema dorada en la esquina.</p>
+    <div class="specials" id="specials"></div>
+    <div class="price">
+      <article class="panel">
+        <h3>Dónde salen: la sala del ámbar</h3>
+        <div class="anims" id="amber" style="justify-content:center"></div>
+        <p>Siempre hay una sala del ámbar por partida: un <b>bloque de ámbar con un insecto dentro</b>. Al romperlo suelta una especial al azar que no lleves. Dos bloques no guardan la misma.</p>
+      </article>
+      <article class="panel">
+        <h3>El precio y el comodín</h3>
+        <div class="cases">
+          <div class="case"><b>Inestable.</b> Igual que en el piso 2: cada golpe que recibes quita medio corazón más por cada especial equipada.</div>
+          <div class="case"><b>Comodín de linaje.</b> Una especial cuenta como la mutación de su ranura de cualquier linaje del que lleves las otras 3. Si completa dos linajes a la vez, sale un cartel para elegir. Solo hay un caso doble: un <b>Órgano especial</b> con Escupitajo venenoso, Patas de salto y Escamas carbonizadas completa Ciempiés o Yesquero, y se elige uno.</div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="enemigos" aria-labelledby="en-t">
+    <h2 id="en-t">Enemigos y trampas</h2>
+    <p class="muted">Seis enemigos que usan el terreno: se mueven por la maleza, el lodo y el aire, y casi todos reaccionan al fuego, al gas o al veneno. Las <b>trampas</b> son una categoría nueva: no cuentan como enemigos ni para limpiar la sala, y se desactivan al limpiarla. Los números (vida, coste, daño) se equilibran al programar.</p>
+    <div class="enemies" id="enemies"></div>
+  </section>
+
+  <section id="bestiario" aria-labelledby="be-t">
+    <h2 id="be-t">Bestiario</h2>
+    <p class="muted">Desde el piso 3 los jefes pelean con el terreno y las reacciones, no solo con daño. En cada partida sale uno de los dos jefes principales, el minijefe es una sala lateral opcional y el jefe secreto solo se abre con la sala secreta. Las salas de jefe son más grandes que en el piso 2. Al entrar, cada jefe se presenta con un rótulo ámbar, como en los pisos anteriores. Las cifras de vida se equilibran al programar.</p>
+    <div class="beasts" id="beasts"></div>
+  </section>
+
+  <section id="pantano" aria-labelledby="pa-t">
+    <h2 id="pa-t">El pantano</h2>
+    <p class="muted">El piso cuenta una historia: <b>el incendio que avanza</b>. Empiezas en un pantano verde, cruzas un bosque humeante y llegas a la tierra quemada. La tormenta de la Meganeura apaga el incendio. El escenario es mucho más variado que el de los pisos anteriores (cinco tipos de helecho, siete formas de charco, detalles del suelo por tramo) y está vivo: los helechos se mecen y se atraviesan, el lodo burbujea, las fumarolas avisan antes de soltar su columna.</p>
+    <div class="bands" id="bands"></div>
+    <h3>Puertas de raíces</h3>
+    <p class="muted">Las puertas son raíces que se enroscan hasta tapar el hueco entero y se retiran al abrirse. La maleza quemable cierra atajos y salas ocultas: arde, y el fuego se propaga de helecho en helecho.</p>
+    <div class="doors" id="doors"></div>
+    <h3>Vida del escenario</h3>
+    <div class="gallery" id="scenery"></div>
+    <h3>Lodo profundo</h3>
+    <div class="pits panel">
+      <div class="anims" id="mudfig" style="justify-content:center"></div>
+      <ul>
+        <li>Sustituye a las fosas del piso 2: te hundes poco a poco y más lento, y sales esquivando.</li>
+        <li>Hundido del todo, pierdes medio corazón.</li>
+        <li>Los enemigos que andan también se hunden; los voladores no, y el sapo de fango nada en él.</li>
+        <li>El terreno no se recupera durante la sala.</li>
+        <li>Los charcos de lodo ralentizan sin hundir.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="salas" aria-labelledby="sa-t">
+    <h2 id="sa-t">Salas</h2>
+    <p class="muted">Cambia la generación: el mapa es más vivo y menos lineal. Hay <b>islas de tierra firme</b> rodeadas de lodo o agua, <b>paredes de maleza quemable</b> (atajos y salas ocultas), salas de combate de varios tamaños (alargadas, en L, de 2×2 casillas), <b>pasillos vivos</b> con trampas y puertas de raíces. Además de las salas mezcladas hay salas con tema: Pradera de Calamites, Nido de bombarderos, Charca de sapos, Telar de la araña y Cielo de libélulas.</p>
+    <div class="facts" id="facts"></div>
+    <div class="plan panel">
+      <div id="planmap"></div>
+      <div class="keys" id="plankeys"></div>
+    </div>
+    <p class="note muted">Un piso de ejemplo, solo ilustrativo (el generador decide la forma). Las salas especiales con combate cuentan como salas de combate; las laterales y las fijas son extra. Las salas de jefe son más grandes que en el piso 2.</p>
+
+    <h3>Salas especiales</h3>
+    <p class="muted">Un catálogo de 10 salas hechas a mano: salen de 3 a 5 por partida, sorteadas. <b>Los cofres son conos gigantes de Lepidodendron.</b> Los planos de cada sala se dibujarán al programar.</p>
+    <div class="rooms" id="rooms"></div>
+
+    <h3>Salas fijas y laterales</h3>
+    <div class="handmade" id="fixedrooms"></div>
+  </section>
+
+  <section id="sistemas" aria-labelledby="si-t">
+    <h2 id="si-t">Sistemas nuevos</h2>
+    <p class="muted">Cosas que se estrenan con el piso 3, algunas para todos los pisos: los corazones de sala y los teletransportes llegan en ramas propias antes del piso, y el almacén de corazones y la cucaracha ladrona van con él.</p>
+    <div class="sys" id="sys"></div>
+  </section>
+
+  <section id="sonido" aria-labelledby="so-t">
+    <h2 id="so-t">Música y sonido</h2>
+    <p class="pending">Pendiente: el audio del piso 3 no está hecho. Lo que ya está decidido: la música de la Meganeura se vuelve caótica con la lluvia y los rayos, y las reacciones (explosión de gas, nube tóxica, fuego en la maleza) necesitan sus propios sonidos. Se hará con el resto de la implementación y se añadirá aquí al terminarlo.</p>
+  </section>
+</div>
+
+<script>
+const ART = /*ASSETS*/{};
+
+const rootStyle = document.documentElement.style;
+for (const [v, key] of [['--floor', 'floor_swamp'], ['--wall', 'wall'], ['--card', 'ui_card'], ['--panel', 'ui_panel'],
+  ['--button', 'ui_button'], ['--button-hi', 'ui_button_hi'], ['--menu', 'menu_bg']])
+  rootStyle.setProperty(v, `url(${ART[key]})`);
+document.getElementById('logo').src = ART.logo;
+const SLOT_COLORS = ['var(--s-mouth)', 'var(--s-limbs)', 'var(--s-skin)', 'var(--s-organ)'];
+
+const CLASSES = {
+  carn: { name: 'Carnívoro', base: 'Rematar', desc: '+100 % de daño a los enemigos heridos, los que tienen la mitad de su vida o menos (+50 % contra el jefe).',
+          delta: 'Nuevo en el piso 3: los enemigos que arden también cuentan como heridos.' },
+  ven: { name: 'Venenoso', base: 'Toxina débil', desc: 'Los enemigos envenenados reciben +50 % de daño de cualquier fuente y se mueven un 20 % más lentos.',
+         delta: 'Nuevo en el piso 3: un enemigo envenenado que muere deja un charco de veneno.' },
+  hongo: { name: 'Hongo', base: 'Colonizar la sala', desc: 'Al empezar cada combate brotan 3 matas de hongo al azar que frenan un 40 % y quitan 1 por segundo a los enemigos; desaparecen al limpiar la sala.',
+           delta: 'Vuelve en el piso 3: un enemigo que muere sobre una mata hace brotar otra (hasta 6 en la sala).' },
+  para: { name: 'Parásito', base: 'Chupar', isNew: true,
+          desc: 'Cada 15 de daño que haces a un enemigo le pega un parásito que le quita 1 de vida por segundo. Por cada 15 de vida que chupa, curas medio corazón (30 si el huésped es un jefe). Si el huésped muere, el parásito salta a otro enemigo. Hasta 3 parásitos.',
+          delta: 'Premia pegar mucho y sin parar: cuanto más aguantan los enemigos, más curas. Color granate.',
+          sprites: [['par_attached', 'Pegado', 4, 0.5], ['par_leap', 'Salta', 4, 0.4], ['par_drain', 'Chupa', 4, 0.3], ['par_heal', 'Cura', 3, 0.5]] },
+};
+const SLOTS = ['Boca', 'Extremidades', 'Piel', 'Órgano especial'];
+const SLOT_ICONS = ['slot_mouth', 'slot_limbs', 'slot_skin', 'slot_organ'];
+const BODIES = {
+  Frog: { name: 'Rana venenosa', fam: 'Área' },
+  Diplocaulus: { name: 'Diplocaulus', fam: 'Cuerpo a cuerpo' },
+  Whipscorpion: { name: 'Escorpión látigo', fam: 'Proyectil' },
+};
+const MUTATIONS = [
+  { id: 'esc', name: 'Escupitajo venenoso', slot: 0, icon: 'PoisonSpit', body: 'Frog',
+    lv: ['Una bola cada 2,8 s que avanza a 2 u/s y atraviesa a los enemigos. Va encogiendo y deja un rastro de charcos de veneno (uno cada 0,5 s, duran 3 s, −30 % de velocidad). Explota al chocar con una pared u obstáculo, al disparar otra o al encoger del todo: 6 de daño en radio 1,5 y un charco grande de 4 s.',
+         'Una bola cada 2,4 s, rastro de 4 s y 8 de daño al explotar.',
+         'Camada: la bola se divide en 4 bolitas en cruz tras 1 s.'] },
+  { id: 'peon', name: 'Peonza', slot: 0, icon: 'SpinningTop', body: 'Diplocaulus',
+    lv: ['Mantén pulsado: giras sobre ti como una peonza, con la cabeza de aspa (radio 1,3). Haces 2 de daño cada 0,25 s y empujas. Vas un 35 % más lento, dura como mucho 3 s y al acabar quedas mareado 0,5 s.',
+         '3 de daño, radio 1,5 y hasta 4 s. Devuelve los proyectiles que toca.',
+         'Bumerán: si has girado al menos 1 s, al soltar sales disparado 3 u hacia el cursor: 8 de daño y aturde a lo que atravieses.'] },
+  { id: 'vina', name: 'Chorro de vinagre', slot: 0, icon: 'VinegarJet', body: 'Whipscorpion',
+    lv: ['Mantén pulsado: un chorro de 5 u, sale de la cola alzada sobre el lomo, que hace 1 de daño cada 0,15 s y sigue al cursor (180°/s). Barra de 3 s; recarga en 2 s (1 s más si la vacías).',
+         'El chorro atraviesa a los enemigos y la barra dura 4 s.',
+         'Salpicadura: el chorro salpica en radio 1 cada 0,5 s.'] },
+  { id: 'salt', name: 'Patas de salto', slot: 1, icon: 'JumpingLegs',
+    lv: ['Tu esquiva es un salto plano de 3 u que pasa por encima de todo (lodo, charcos, trampas). Al caer salpica y esparce los charcos.',
+         '3 de daño al caer.',
+         'Rana toro: al caer aturdes 0,8 s a los enemigos cercanos.'] },
+  { id: 'hila', name: 'Patas hilanderas', slot: 1, icon: 'SpinnerLegs',
+    lv: ['Al esquivar tiendes un hilo entre donde sales y donde llegas: dura 5 s, frena a quien lo cruza y le hace 2 de daño.',
+         'Tiendes 2 hilos.',
+         'Telaraña: donde se cruzan los hilos queda una telaraña que inmoviliza 1 s.'] },
+  { id: 'anfi', name: 'Piel anfibia', slot: 2, icon: 'AmphibianSkin',
+    lv: ['En el agua o sobre los charcos cargas un moco que absorbe un golpe; tarda 3 s en cargarse. Funciona aunque no lleves Escupitajo.',
+         'Se carga en 2 s y vas un 20 % más rápido.',
+         'Reflejo: el moco refleja el golpe que absorbe.'] },
+  { id: 'carb', name: 'Escamas carbonizadas', slot: 2, icon: 'CharredScales',
+    lv: ['Eres inmune al fuego y a las explosiones de gas. Tras pisar fuego, tus ataques queman durante 4 s.',
+         'También eres inmune al veneno de las plantas.',
+         'Brasa: al recibir un golpe, estallas en llamas.'] },
+  { id: 'meta', name: 'Saco de metano', slot: 3, icon: 'MethaneSac',
+    lv: ['Suelta una nube de metano a la deriva que dura 6 s y explota con cualquier ataque: 6 de daño. Tus explosiones no te dañan.',
+         'Sueltas 2 nubes.',
+         'Incendio: la explosión deja fuego en el suelo durante 3 s.'] },
+  { id: 'fero', name: 'Feromonas', slot: 3, icon: 'Pheromones',
+    lv: ['Los enemigos en radio 2 se atacan entre sí durante 3 s. Recarga: 14 s.',
+         'Dura 4 s.',
+         'Frenesí: el daño entre ellos se dobla.'] },
+];
+const LINEAGES = [
+  { id: 'eryops', name: 'Eryops', cls: 'carn', art: 'Eryops', muts: ['peon', 'salt', 'anfi', 'meta'],
+    touch: 'Emboscada del fango', tdesc: 'Al aterrizar de un salto, los enemigos de alrededor quedan heridos (cuentan para Rematar) durante 2 s.' },
+  { id: 'xenacanthus', name: 'Xenacanthus', cls: 'carn', art: 'Xenacanthus', muts: ['vina', 'salt', 'carb', 'fero'],
+    touch: 'Espina cefálica', tdesc: 'Los enemigos confundidos cuentan como heridos.' },
+  { id: 'pulmonoscorpius', name: 'Pulmonoscorpius', cls: 'ven', art: 'Pulmonoscorpius', muts: ['vina', 'hila', 'carb', 'meta'],
+    touch: 'Aguijón de gas', tdesc: 'El Chorro de vinagre envenena y vuelve tóxico el metano que atraviesa.' },
+  { id: 'ciempies', name: 'Ciempiés', cls: 'ven', art: 'Centipede', muts: ['esc', 'salt', 'carb', 'fero'],
+    touch: 'Cien patas', tdesc: 'Al aterrizar de un salto sueltas 3 gotas de veneno.' },
+  { id: 'yesquero', name: 'Yesquero', cls: 'hongo', art: 'TinderFungus', muts: ['esc', 'salt', 'carb', 'meta'],
+    touch: 'Yesca', tdesc: 'La bola de Escupitajo prende y deja un rastro de llamas.' },
+  { id: 'cordyceps', name: 'Cordyceps', cls: 'hongo', art: 'Cordyceps', muts: ['vina', 'hila', 'anfi', 'fero'],
+    touch: 'Zombi', tdesc: 'Un enemigo que muere confundido se levanta como aliado durante 4 s.' },
+  { id: 'lamprea', name: 'Lamprea', cls: 'para', art: 'Lamprey', muts: ['peon', 'hila', 'anfi', 'fero'],
+    touch: 'Ventosa giratoria', tdesc: 'Los parásitos van por duplicado (×2) y giran alrededor del huésped.' },
+  { id: 'sanguijuela', name: 'Sanguijuela', cls: 'para', art: 'Leech', muts: ['esc', 'hila', 'anfi', 'meta'],
+    touch: 'Charca de sanguijuelas', tdesc: 'Detalle por cerrar al programar (el nombre ya está acordado).' },
+];
+
+// Enemigos. Animaciones: [clave, nombre, escala, segundos por vuelta]
+const ENEMIES = [
+  { id: 'calamites', name: 'Calamites', role: 'Planta madre', tiles: 'floor_swamp',
+    anims: [['en_Calamites_Idle', 'Madre', 3, 0.8], ['en_Sprout_Emerge', 'Retoño brota', 4, 0.5], ['en_Sprout_Move', 'Retoño', 4, 0.4], ['en_Spore', 'Espora', 5, 0.3],
+            ['en_SporePop', 'Revienta', 4, 0.4], ['en_Sprout_Wither', 'Se seca', 4, 0.6], ['en_Calamites_Death', 'Muerte', 2, 0.9]],
+    stats: [['Madre', '30 de vida'], ['Retoños', 'cada 4 s']],
+    text: 'Una cola de caballo gigante que no se mueve. Cada 4 s echa un retoño que te persigue y suelta anillos de esporas. Matar a la madre seca de golpe a todos sus retoños.',
+    asks: 'Decidir entre abrirte paso hasta la madre o aguantar a los retoños.' },
+  { id: 'medullosa', name: 'Medullosa', role: 'Mortero', tiles: 'floor_swamp',
+    anims: [['en_Medullosa_Idle', 'Reposo', 3, 0.8], ['en_Medullosa_Aim', 'Apunta', 3, 0.6], ['en_Medullosa_Shoot', 'Dispara', 3, 0.4], ['en_Seed', 'Semilla', 5, 0.3],
+            ['en_SeedTarget', 'Marca', 3, 0.5], ['en_SeedBurst', 'Vaina revienta', 3, 0.5], ['en_Medullosa_Death', 'Muerte', 2, 0.8]],
+    stats: [],
+    text: 'Un helecho de semillas que dispara como un mortero: marca el suelo donde va a caer su semilla y, al llegar, la vaina revienta y deja un charco de veneno.',
+    asks: 'Leer las marcas y no quedarse sobre el suelo que arde o se envenena.' },
+  { id: 'libelula', name: 'Libélula gigante', role: 'Voladora', tiles: 'floor_swamp',
+    anims: [['en_Dragonfly_Fly', 'Vuela', 3, 0.4], ['en_Dragonfly_Warn', 'Aviso', 3, 0.5], ['en_Dragonfly_Dive', 'Picado', 3, 0.25], ['en_Dragonfly_Perch', 'Posada', 3, 0.5],
+            ['en_Dragonfly_Death', 'Muerte', 3, 0.7]],
+    stats: [['Línea de aviso', '0,7 s'], ['Posada', '0,8 s']],
+    text: 'Vuela casi siempre, por encima del lodo y de los charcos. Antes de picar marca una línea durante 0,7 s y se lanza en picado hacia ti; al acabar se posa 0,8 s, que es el momento de pegarle.',
+    asks: 'Esquivar la línea y castigar cuando se posa.' },
+  { id: 'bombardero', name: 'Escarabajo bombardero', role: 'Cono ardiente', tiles: 'floor_smoke',
+    anims: [['en_Beetle_Move', 'Andar', 3, 0.5], ['en_Beetle_Turn', 'Se gira', 3, 0.4], ['en_Beetle_Warn', 'Aviso', 3, 0.5], ['en_Beetle_Spray', 'Rocía', 3, 0.3],
+            ['en_BeetleCone', 'Cono', 2, 0.7], ['en_Beetle_Death', 'Muerte', 3, 0.7]],
+    stats: [['Cono', '3 u'], ['De espaldas', '+50 % daño']],
+    text: 'Se gira hacia ti despacio y suelta un cono ardiente de 3 u. El cono prende el gas y los charcos de veneno que alcance. Recibe un 50 % más de daño por la espalda.',
+    asks: 'Rodearlo y usar su fuego contra el resto.' },
+  { id: 'arana', name: 'Araña de las frondas', role: 'Emboscada', tiles: 'floor_smoke',
+    anims: [['en_Spider_Hidden', 'Oculta', 4, 0.8], ['en_Spider_Reveal', 'Sale', 3, 0.4], ['en_Spider_Move', 'Andar', 3, 0.4], ['en_Spider_Jump', 'Salto', 3, 0.5],
+            ['en_Spider_Shoot', 'Seda', 3, 0.5], ['en_Web_Appear', 'Telaraña', 3, 0.4], ['en_Web_Burn', 'Arde', 3, 0.6], ['en_Spider_Death', 'Muerte', 3, 0.7]],
+    stats: [],
+    text: 'Se esconde dentro de un helecho que tiembla, con 2–4 ojos rojos asomando. Al salir dispara hileras de seda que dejan telarañas en el suelo (frenan y arden) y salta sobre ti.',
+    asks: 'Desconfiar de los helechos que tiemblan y quemar las telarañas.' },
+  { id: 'sapo', name: 'Sapo de fango', role: 'Escupidor', tiles: 'floor_swamp',
+    anims: [['en_Toad_Idle', 'Reposo', 3, 0.7], ['en_Toad_Hop', 'Salta', 3, 0.5], ['en_Toad_Spit', 'Escupe', 3, 0.5], ['en_Mud', 'Lodo', 5, 0.3],
+            ['en_MudSplat', 'Charco', 3, 0.4], ['en_Toad_Inflate', 'Se hincha', 3, 0.6], ['en_ToadBurst', 'Revienta', 2, 0.6], ['en_Toad_Swim', 'Nada', 3, 0.5], ['en_Toad_Death', 'Muerte', 3, 0.7]],
+    stats: [],
+    text: 'Rechoncho, de ojo dorado para no confundirlo con tu rana. Escupe lodo que deja charcos que ralentizan; hinchado, revienta. Nada por el lodo profundo, donde los demás se hunden.',
+    asks: 'Mantener la movilidad entre charcos y no dejarse arrinconar.' },
+  { id: 'carnivora', name: 'Planta carnívora', role: 'Trampa', c: 'var(--trap)', tiles: 'floor_burnt',
+    anims: [['en_Plant_Idle', 'Cebo de ámbar', 3, 0.8], ['en_Plant_Snap', 'Muerde', 3, 0.4], ['en_Plant_Chew', 'Mastica', 3, 0.6], ['en_Plant_Wilt', 'Se seca', 3, 0.7]],
+    stats: [['Cuenta', 'no es enemigo'], ['Atrapa', '1 s']],
+    text: 'No muere. Atrapa a lo que pase al alcance 1 s y se come a los enemigos que atrapa. Se desactiva (y se seca) al limpiar la sala. Cabeza roja carmín: el morado se reserva a lo secreto.',
+    asks: 'Empujar a los enemigos hacia ella y no pisar su zona.' },
+  { id: 'efimeras', name: 'Enjambre de efímeras', role: 'Trampa', c: 'var(--trap)', tiles: 'floor_burnt',
+    anims: [['en_Mayflies_Idle', 'Enjambre', 3, 0.8], ['en_Mayflies_Burn', 'Arde', 3, 0.6]],
+    stats: [['Cuenta', 'no es enemigo']],
+    text: 'Una nube de efímeras que no se puede disparar: solo muere con fuego o explosiones, y no vuelve. Al arder caen como ascuas.',
+    asks: 'Llevar fuego hasta el enjambre o dar un rodeo.' },
+];
+
+// Jefes. Sprites: [clave, escala, segundos por vuelta]; scenes y bars: [clave, pie]
+const BOSSES = [
+  {
+    id: 'arthro', name: 'Arthropleura', kicker: 'Jefe · piso 3 · bosque humeante', color: 'var(--anom)', tiles: 'floor_smoke', artWidth: '20rem', hero: ['ar_curva', 0.27, 1],
+    blurb: 'Un milpiés gigante, más grande que la pantalla: 28 segmentos de 4 u (≈ 78 u de largo) con caparazón de cobre, paranotos de punta dorada y una cabeza monstruosa de colmillos enormes. Su caparazón es invulnerable durante todo el combate: solo se le hace daño por las placas abiertas, y lo que las abre es el fuego. Unas flechas en el borde de la pantalla señalan su cabeza (roja), su cola (dorada) y su punto débil (rosa).',
+    stats: [['Cuerpo', '28 segmentos'], ['Largo', '≈ 78 u'], ['Sala', '28×16 → 60×33 u']],
+    hp: [['El claro', 30, 35], ['Cuerpo-pared', 35, 60], ['El cerco', 35, 90]], ticks: ['100 %', '70 %', '35 %', '0'],
+    phases: [
+      { hp: '100–70 %', title: 'El claro', art: [['ar_rear', 0.45, 1], ['ar_open', 0.45, 1], ['ar_edgeBreak', 0.5, 1]],
+        items: ['Un claro cerrado de 28×16 u rodeado de espesura de unas 6 u. El jefe rodea la sala por fuera: su cuerpo se intuye bajo la maleza (un bulto de frondas que se levanta, con un fundido tramado en el borde) y pasa por los huecos, que miden al menos 5 u.',
+                'El claro empieza cerrado: revienta el borde para asomar y deja una brecha permanente de unas 5 u con restos. La cabeza asoma despacio, abre las mandíbulas y embiste.',
+                'Aquí solo se le daña con fuego, y la cabeza tampoco recibe daño al asomar. Los odres de metano del claro lo prenden, y vuelven a crecer para que el combate nunca se atasque. La cámara se aleja a ×1,3 para ver el rodeo.',
+                'Al llegar al 70 % derriba la pared del claro y la sala pasa a 60×33 u.'] },
+      { hp: '70–35 %', title: 'Cuerpo-pared', art: [['ar_stomp', 1, 1], ['ar_shock', 2, 1], ['ar_eat', 0.45, 1], ['ar_sigFall', 0.5, 1]],
+        items: ['El cuerpo ocupa la sala de pared a pared, como un muro que se desplaza.',
+                'Pisotones: cada uno lanza 3 arcos expansivos en semicírculo (~140°) hacia ti, con 0,3 s entre arcos (cresta de polvo y grieta).',
+                'Derriba árboles: los troncos caídos son cobertura contra las ondas, y si embiste contra un árbol y lo tumba, queda aturdido unos segundos.',
+                'Come helechos con las mandíbulas; si el helecho arde, se quema. El fuego avanza por sus segmentos como una mecha y abre las placas a su paso. Los helechos se prenden con lo que haya en la sala (metano, fumarolas, odres) y con tus mutaciones de fuego.',
+                'Ardiendo, busca las charcas de lodo para apagarse.'] },
+      { hp: '35–10 %', title: 'El cerco', art: [['ar_plates', 0.5, 1], ['ar_openWalk', 0.5, 1], ['ar_arrows', 0.5, 1]],
+        items: ['La cámara se aleja a ×1,5. El cuerpo forma un anillo (≈ 24 u) que se cierra sobre ti, pero siempre deja un hueco por el que salir: se ve venir por las flechas del borde y se salta con Patas de salto. Si te pilla dentro al cerrarse, te aprieta (daño) y te expulsa; luego el anillo se reabre.',
+                'Las placas se abren solas por tramos de 2–3 piezas y dejan ver una carne rosada y húmeda que late y brilla: el punto débil, con una flecha rosa en el borde si está fuera de cámara.',
+                'Fuego en círculo: si prendes el anillo, el fuego corre en círculo por todo el cuerpo y abre las placas a su paso.'] },
+      { hp: 'Último 10 %', title: 'Rueda', art: [['ar_roll', 0.5, 1], ['ar_death', 0.45, 1], ['ar_smoke', 1, 1]],
+        items: ['Se enrosca en una rueda de unos 8 u que rueda rebotando por las paredes.',
+                'Se le daña al chocar contra una pared (queda aturdido) y también le daña el fuego aunque ruede: si pasa rodando por fuego, se quema.',
+                'Al morir rueda, se enrosca en espiral, cierra las placas y se queda gris y humeante. El cuerpo queda en la sala como escenario.'] },
+    ],
+    projectiles: [['ar_shock', 'Arco de tierra', 'Tramo que el código repite a lo largo de cada arco de los pisotones.', 2, 1],
+                  ['ar_stomp', 'Pisotón', 'Polvo y grieta al apoyar la cabeza.', 1, 1],
+                  ['ar_wallBreak', 'Pared que revienta', 'Efecto del 70 %, más grande que el del claro.', 0.18, 1],
+                  ['ar_chargeWarn', 'Aviso de embestida', 'La cabeza se echa atrás y avisa antes de embestir.', 0.25, 1]],
+    scenes: [['ar_sceneRam', 'Fase 2: la embestida contra un árbol.'], ['ar_sceneFire', 'Fuego que abre las placas de los segmentos.']],
+    bar: ['ar_barEmber', 'Su barra de vida es el propio animal visto desde arriba: la cabeza y 20 placas de cobre, una por segmento, que se apagan de la cola a la cabeza. El relleno cambia con la fase (cobre, ascua y carne rosada que late) y las muescas del 70 % y el 35 % se rompen al pasarlas, con un efecto propio (la pared que revienta y las placas que se abren). El último 10 % tiene su propio estado, con los ojos en espiral.'],
+    bars: [['ar_barFlesh', 'Fase 3: carne rosada'], ['ar_barPlates', 'Se abren las placas (35 %)'], ['ar_barRoll', 'Rueda (último 10 %)']],
+    room: ['ar_sceneRam', 'Bosque humeante. La sala de la fase 1 es un claro de 28×16 u con espesura de unas 6 u; al 70 % pasa a 60×33 u. En la fase 3 la cámara se aleja a ×1,5.'],
+    intro: { key: 'Arthropleura', sub: 'Coloso del Carbonífero', pose: { x: 150, y: 100 }, band: '#2a1608', accent: '#e89a30', shade: 'rgba(0, 0, 0, .45)',
+      text: 'Tiembla el suelo y los segmentos pasan sin fin por los huecos de la espesura. Silencio. La cabeza asoma despacio, abre las mandíbulas y entra el rótulo.' },
+    tips: ['Los odres de metano son tu arma en la fase 1: prende al jefe y se abren las placas.', 'En la fase 2 usa los troncos caídos para cubrirte de las ondas y haz que embista contra un árbol.',
+           'En el cerco busca siempre el hueco con las flechas del borde.', 'En la rueda no te quedes junto a las paredes: deja que choque.'],
+  },
+  {
+    id: 'megan', name: 'Meganeura', kicker: 'Jefe · piso 3 · tierra quemada', color: '#8cc8e0', tiles: 'floor_burnt', artWidth: '20rem', hero: ['me_fly', 0.8, 1],
+    blurb: 'Una libélula gigante de 10 u de envergadura. Vuela alto: mientras vuela solo se ve su sombra y es invulnerable; solo se le daña cuando baja. Pelea en una sala de Tierra quemada de 40×24 u y termina en una tormenta eléctrica de verdad. Su barra de vida va abajo de la pantalla y no tiene flecha de borde: basta con su sombra.',
+    stats: [['Envergadura', '10 u'], ['Sala', '40×24 u'], ['Cámara', '×1,3']],
+    hp: [['Aleteo', 35, 35], ['Nidada', 35, 60], ['Tormenta', 30, 90]], ticks: ['100 %', '65 %', '30 %', '0'],
+    phases: [
+      { hp: '100–65 %', title: 'Aire y fuego', art: [['me_hover', 0.5, 1], ['me_diveWarn', 0.5, 1], ['me_dive', 0.5, 1], ['me_gust', 0.5, 1]],
+        items: ['Picado: una marca ámbar sobre ti te sigue y luego se fija en rojo unos segundos; entonces cae donde estás. Encadena hasta tres picados.',
+                'Si se clava en un tronco, una Sigillaria o un Lepidodendron partido queda atrapada ~1,5 s con la cabeza en la madera y se arranca entre astillas: ventana de daño.',
+                'Aleteo fuerte: empuja el gas, el veneno y los proyectiles. Si la prendes dentro de la niebla de metano, cae ardiendo y le quedan agujeros quemados en las alas para siempre.'] },
+      { hp: '65–30 %', title: 'La nidada', art: [['me_lay', 0.5, 1], ['me_eggs', 0.8, 1], ['me_nymph', 0.6, 1], ['me_nymphStrike', 0.5, 1]],
+        items: ['Pone racimos de 3–4 huevos en 2–3 charcas. De los huevos salen ninfas que te persiguen y lanzan el labio extensible (~2,5 u), que te tira hacia ellas.',
+                'Hay que romper TODOS los huevos para que baje furiosa: chillido con ondas y posada furiosa, que es una ventana de daño.'] },
+      { hp: '30–0 %', title: 'Tormenta eléctrica', art: [['me_screech', 0.5, 1], ['me_boltBig', 0.25, 1], ['me_boltMark', 0.5, 1], ['me_shocked', 0.5, 1]],
+        items: ['Entra chillando; oscurece, sopla un viento con ceniza y cae un primer trueno espectacular junto a ti, con destello de pantalla. La lluvia apaga los fuegos y aparecen charcos nuevos.',
+                'Dos tipos de rayo: uno grande que te sigue (una señal azul que carga y se fija un instante) y varios sueltos marcados en el terreno. Los rayos hacen explotar el gas.',
+                'Tras un picado vuela a ras de suelo: lleva el rayo grande hasta ella y se electrocuta, cae boca arriba (vulnerable) y se recupera. Una corriente circular se expande y se apaga en ~4 s.',
+                'Las charcas se electrifican 5–6 s y matan a las ninfas. Las Sigillarias quemadas son pararrayos de un solo uso (se parten, arden, la lluvia las apaga). Los relámpagos revelan su silueta en lo alto.',
+                'La música del jefe se vuelve caótica con la lluvia y los rayos.'] },
+      { hp: '0 %', title: 'Muerte', art: [['me_deathFall', 0.5, 1]],
+        items: ['Se desprende un ala trasera, cae en espiral, se estrella en la charca y flota. La tormenta amaina: llovizna, vuelve la luz y sube vapor.'] },
+    ],
+    projectiles: [['me_diveMark', 'Marca que sigue', 'Ámbar: te sigue antes del picado.', 0.3, 1], ['me_diveLocked', 'Marca fijada', 'Roja: cae aquí.', 0.3, 1],
+                  ['me_eggsBreak', 'Huevos', 'Hay que romperlos todos para que baje.', 0.6, 1], ['me_boltSmall', 'Rayo suelto', 'Marcado en el terreno antes de caer.', 0.1, 1]],
+    scenes: [['me_sceneStorm', 'Entrada de la tormenta.'], ['me_sceneEggs', 'Huevos y ninfas.'], ['me_sceneDeath', 'Muerte y fin de la tormenta.']],
+    bar: ['me_bar', 'Su barra va abajo de la pantalla, porque el jefe vive arriba: las alas forman el marco y la ventana pega al tórax de la libélula. Rellenos turquesa, nube (mientras es invulnerable), furia y tormenta; muescas al 65 % y al 30 %. El marco se rasga al avanzar la pelea y, en el último 10 %, tiembla.'],
+    room: ['me_sceneStorm', 'Tierra quemada de 40×24 u con un Lepidodendron partido grande donde se posa, Sigillarias quemadas (pararrayos) y charcas.'],
+    intro: { key: 'Meganeura', sub: 'Señora de la tormenta', pose: { x: 150, y: 100 }, band: '#2a1608', accent: '#e89a30', shade: 'rgba(0, 0, 0, .45)',
+      text: 'Una sombra cruza la sala. La Meganeura se posa en el Lepidodendron partido, abre las alas con un reflejo azulado y entra el rótulo.' },
+    tips: ['Mientras vuela no gastes disparos: solo se le daña abajo.', 'En la nidada rompe todos los huevos antes de que eclosionen las ninfas.', 'En la tormenta usa las charcas electrificadas contra las ninfas y lleva el rayo grande hacia ella.'],
+  },
+  {
+    id: 'megar', name: 'Megarachne', kicker: 'Minijefe · piso 3 · sala lateral opcional', color: '#c8586a', tiles: 'floor_smoke', artWidth: '20rem', hero: ['mr_walk', 1.1, 1],
+    blurb: 'La araña que nunca fue: se creyó una araña gigante y era un euriptérido (un guiño al Euriptérido del piso 2). Vive en el Nido, una sala lateral opcional del Bosque humeante: un Lepidodendron empapado en el centro con una telaraña grande con embudo en la copa. Es un minijefe corto (60–90 s) y sin fases largas. Mide unas 6 u con las patas.',
+    stats: [['Duración', '60–90 s'], ['Patas', '≈ 6 u'], ['Sala', '32×20 u, cámara ×1']],
+    hp: [['En sus cables', 50, 35], ['Enfadada', 50, 90]], ticks: ['100 %', '50 %', '0'],
+    phases: [
+      { hp: '100–50 %', title: 'En sus cables', art: [['mr_walk', 0.6, 1], ['mr_dropWarn', 0.6, 1], ['mr_land', 0.6, 1], ['mr_silk', 0.6, 1]],
+        items: ['Una red de 4–6 cables de seda (≈ 1 u de grosor) une el árbol con troncos y tocones. Corre por ellos y teje otros: un hilo fino cruza por el suelo y, al llegar, engorda en 1 s hasta ser cable. En los cables es invulnerable; solo recibe daño en el suelo.',
+                'Salto desde el cable: marca el sitio, cae colgada y vuelve trepando. Ráfaga de seda: 5–7 bolitas en abanico estrecho; cada una deja una telaraña pequeña que frena y arde.',
+                'Saco de crías: tiembla y revienta en 3–4 crías pequeñas, rápidas y débiles; romperlo antes lo evita. Red que cae: una sombra crece y una telaraña redonda de ~3 u te atrapa 1 s.',
+                'Tres ventanas de daño: tras el salto (~1,5 s), cuando cae aturdida por un cable quemado con ella encima (~3 s) y mientras teje un hilo nuevo por el suelo.'] },
+      { hp: 'Siempre', title: 'El fuego corre por el cable', art: [['mr_cable', 0.5, 1], ['mr_stunned', 0.6, 1], ['mr_stars', 0.7, 1]],
+        items: ['El fuego corre por el cable como una mecha (~6 u/s, en los dos sentidos desde donde prende); detrás queda negro y fino, suelta ceniza y al final cae entero. Ella cae cuando el frente de fuego la alcanza: puede huir corriendo.',
+                'Las ascuas que caen prenden telarañas y helechos del suelo. La sala tiene fuego que se renueva (ascuas, helechos, odres que vuelven a crecer).'] },
+      { hp: '50–0 %', title: 'Enfado', art: [['mr_threat', 0.6, 1], ['mr_idleRage', 0.6, 1]],
+        items: ['Al 50 % vuelve al Nido, se mete y chilla desde dentro: el árbol se sacude, cae el agua en lluvia y la copa amarillea. Sale enfadada: más rápida, con más cables y más crías.',
+                'Ahora el Nido puede arder, una sola vez: caen todos los cables, se desploma aturdida (ventana grande) y teje de nuevo desde las ramas, más rápido y sin refugio.'] },
+      { hp: '0 %', title: 'Muerte y recompensa', art: [['mr_dead', 0.7, 1], ['mr_cocoon', 1, 1]],
+        items: ['Cae del hilo panza arriba con las patas encogidas (se ve la panza de euriptérido) y la red se descuelga. El cuerpo se queda en la sala.',
+                'Recompensa: un contenedor de corazón dentro de un capullo de seda que cae del embudo y se abre.'] },
+    ],
+    projectiles: [['mr_web', 'Telaraña', 'Frena y arde.', 0.6, 1], ['mr_net', 'Sombra de la red', 'Crece antes de caer.', 0.4, 1], ['mr_sac', 'Saco de crías', 'Tiembla y revienta.', 0.8, 1], ['mr_brood', 'Cría', 'Pequeña, rápida y débil.', 0.9, 1]],
+    scenes: [['mr_sceneNet', 'La red que cae.'], ['mr_sceneSac', 'El saco de crías.']],
+    bar: ['mr_bar', 'Barra más corta, arriba: un cable de seda con ella agarrada a la izquierda y atado a un muñón de rama a la derecha. Estados: invulnerable en su cable (relleno cubierto de seda tramada) y enfado (relleno rojo que late, ojos encendidos, espinas en el marco). La muesca del 50 % se rompe con un chillido.'],
+    room: ['mr_sceneNet', 'El Nido: Bosque humeante de 32×20 u, un Lepidodendron empapado en el centro y 4–6 cables hacia Sigillarias y troncos. La copa se vuelve translúcida cuando pasas debajo.'],
+    intro: { key: 'Megarachne', sub: 'La araña que nunca fue', pose: { x: 150, y: 100 }, band: '#2a1608', accent: '#e89a30', shade: 'rgba(0, 0, 0, .45)',
+      text: 'Los cables tiemblan; ocho ojos rojos se encienden en el fondo del embudo y asoman las patas delanteras. Sale a la copa, baja colgada hasta ti, alza las patas y entra el rótulo con el sello «MINIJEFE».' },
+    tips: ['Solo recibe daño en el suelo: aprovecha el aterrizaje del salto.', 'Quema los cables con ella encima: cae aturdida.', 'Rompe los sacos antes de que revienten.'],
+  },
+  {
+    id: 'lepido', name: 'Lepidodendron ancestral', kicker: 'Jefe secreto · piso 3 · sala secreta', color: 'var(--secret)', tiles: 'floor_swamp', artWidth: '20rem', hero: ['le_veinsWarn', 0.4, 1],
+    blurb: 'Un árbol enorme, viejo y con vetas moradas, al fondo de una sala larguísima (4–5 pantallas): se ve desde el principio. Solo se llega por la sala secreta. No se mueve: el árbol manda con paredes de raíces, conos acorazados, latigazos y esporas. Cuando muere se desploma como última amenaza y deja una reliquia. Lo secreto es morado.',
+    stats: [['Sala', 'pasillo 116×18 + arena 40×26 u'], ['Paredes', '3 × 25 %'], ['Conos', '3']],
+    hp: [['Pared 1', 25, 35], ['Pared 2', 25, 50], ['Pared 3', 25, 65], ['Conos', 25, 90]], ticks: ['100 %', '75 %', '50 %', '25 %', '0'],
+    phases: [
+      { hp: '100–25 %', title: 'Las tres paredes', art: [['le_veinsWarn', 0.3, 1], ['le_veinsHit', 0.3, 1], ['le_shroom', 0.6, 1]],
+        items: ['Tres paredes de raíces cierran el pasillo, cada una más alta y retorcida. Cada una vale el 25 % de la vida del jefe: dañar la pared es dañar al jefe. Tienen 2, 3 y 4 nudos morados que reciben ×2 de daño y revientan.',
+                'Se rompen a golpes o mucho más rápido con fuego (odres y helechos junto a cada pared): el fuego avanza por la pared en unos 3 s y los tramos carbonizados reciben más daño.',
+                'Cada pared trae oleadas: la 1, Calamites y sapos; la 2, arañas y bombarderos (cuyo cono prende la pared); la 3, una mezcla con libélulas. Además llueven esporas en arco por encima de las paredes.',
+                'Al llegar a cero, una pared se retira bajo tierra; si estaba totalmente carbonizada, se desmorona en ceniza. Ninguna de las dos formas deja de dar paso.'] },
+      { hp: '25–0 %', title: 'Los conos', art: [['le_coneExposed', 0.4, 1], ['le_slam', 0.45, 1], ['le_whip', 0.5, 1], ['le_spikes', 0.5, 1], ['le_spore', 1.5, 1]],
+        items: ['La arena: el tronco recibe un −80 % de daño; lo vulnerable son tres conos acorazados que cuelgan de ramas de la copa. Cada cierto tiempo baja uno a golpearte y se queda en el suelo: rompe su armadura (intacta, astillada, rota), el cono queda expuesto, late y recibe daño completo. Roto, ya no ataca. La armadura quemada no rebrota.',
+                'Latigazos de raíces desde los lados con aviso (barrido en franja que se recoge), un corro de púas que brotan bajo ti (primero la central y luego las 4) y una lluvia de esporas con marca roja en el suelo. Enemigos desde las esquinas.',
+                'Las nubes de metano prendidas junto al tronco abren todos los conos de golpe.'] },
+      { hp: '0 %', title: 'Desplome y reliquia', art: [['le_roach', 0.7, 1]],
+        items: ['Cinemática de ~6,6 s: el tronco se parte y cae recto hacia el oeste; la cámara sigue la caída y vuelve. Su sombra se alarga y se oscurece (última amenaza: esquivarla y la nube de esporas).',
+                'El tronco tendido sustituye para siempre a la pared norte de la sala (con colisión) y la copa se rasga: una columna de luz dorada ilumina el tocón.',
+                'En la cara sur del tocón se abre una grieta de luz: pulsa E y entras (fundido dorado) en una cámara redonda de madera, con un pedestal de raíces trenzadas y ámbar. La reliquia se coge con E. Corazón y Espora morada bajan flotando por la luz.'] },
+    ],
+    projectiles: [['le_spore', 'Espora', 'Late y deja estela; marca roja antes de caer.', 2, 1], ['le_slam', 'Golpe del cono', 'Con sombra de aviso y la sala se sacude.', 0.4, 1],
+                  ['le_coneBurst', 'Cono revienta', 'La nube no hace daño.', 0.4, 1], ['le_coneRegrow', 'Armadura rebrota', 'Solo la sana; la quemada no vuelve.', 0.4, 1]],
+    scenes: [['le_sceneWarn', 'El aviso: las vetas suben por el tronco.'], ['le_sceneWallFire', 'Una pared que arde.'], ['le_sceneWallKnot', 'Un nudo que revienta.'], ['le_sceneRoom', 'La cámara del tocón.']],
+    bar: ['le_bar', 'Una rama del árbol con corteza de rombos y nudos morados como muescas (75, 50 y 25 %) que revientan al caer cada pared; a la izquierda, un trozo de tronco con vetas hace de cabeza. El relleno es savia morada que late despacio; en la fase de conos late deprisa, con brillo dorado. Bajo el último tramo cuelgan tres conos pequeños (acorazado, quemado, expuesto, roto). Va abajo, a ~320 px, como la de los jefes.'],
+    room: ['le_sceneWarn', 'Un pasillo de 116×18 u con las tres paredes y, al final, la arena de 40×26 u con el árbol exento en picada: se pierde por arriba de la pantalla y la copa tapa lo de arriba. La cámara se aleja en la fase final.'],
+    intro: { key: 'Lepidodendron', sub: 'Corazón del bosque', pose: { x: 150, y: 110 }, band: '#1c1030', accent: '#c79af0', shade: 'rgba(0, 0, 0, .5)',
+      text: 'La cámara recorre el pasillo y las tres paredes hasta el árbol: las vetas se encienden de abajo arriba, la copa se sacude y las paredes se estremecen. Entra el rótulo con el sello morado «JEFE SECRETO».' },
+    tips: ['Haz el fuego tuyo: odres y helechos junto a cada pared ahorran mucho daño.', 'En la fase de conos, rompe la armadura y pega al cono mientras late.', 'Una nube de metano prendida junto al tronco abre todos los conos de golpe.'],
+  },
+];
+
+const BANDS = [
+  { id: 'swamp', name: 'Pantano', where: 'Primer tramo', c: 'var(--cyan)',
+    text: 'Verde y húmedo. Lepidodendron y Sigillaria como cobertura, helechos altos que tapan la vista (y arden), odres de metano, musgo que gotea y charcos de lodo y de agua.' },
+  { id: 'smoke', name: 'Bosque humeante', where: 'Tramo del medio', c: 'var(--hongo)',
+    text: 'El fuego ya ha pasado por aquí: humo, resplandor y vegetación chamuscada. Fumarolas, helechos que arden y escarabajos bombarderos. Aquí está el Nido de la Megarachne.' },
+  { id: 'burnt', name: 'Tierra quemada', where: 'Último tramo y jefe', c: 'var(--fire)',
+    text: 'Lo que queda tras el incendio: troncos negros y suelo calcinado, con fondo de humo, resplandor y troncos lejanos para dar profundidad. La maleza se queda amarilla para que se vea. La tormenta de la Meganeura apaga el incendio.' },
+];
+
+const byId = Object.fromEntries(MUTATIONS.map(m => [m.id, m]));
+const color = cls => `var(--${cls})`;
+const linsOf = mid => LINEAGES.filter(l => l.muts.includes(mid));
+const recipe = l => l.muts.map(m => byId[m].name).join(' + ');
+const icon = m => ART['icon_' + m.icon];
+const pick = [null, null, null, null];
+let focusLin = null;
+
+function el(tag, attrs = {}, ...kids) {
+  const e = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs)) {
+    if (k === 'style') e.style.cssText = v; else if (k.startsWith('on')) e.addEventListener(k.slice(2), v); else e.setAttribute(k, v);
+  }
+  for (const k of kids) if (k != null) e.append(k);
+  return e;
+}
+
+function img(src, alt, size, cls = 'pixel') {
+  return el('img', { src, alt, width: String(size), height: String(size), class: cls });
+}
+// GIF animada de un jefe o del escenario: se recorta con CSS a la caja del contenido (las láminas vienen en lienzos grandes)
+function gifBox(key, width, alt) {
+  const [x, y, w, h] = ART[key + '_gc'], gw = ART[key + '_gw'];
+  const box = el('div', { class: 'gifbox', role: 'img', 'aria-label': alt, style: `width:${width};aspect-ratio:${w} / ${h}` });
+  box.append(el('img', { src: ART[key], alt: '', style: `width:${gw / w * 100}%;margin-left:${-x / w * 100}%;margin-top:${-y / w * 100}%` }));
+  return box;
+}
+// Sprite animado a partir de una hoja horizontal (cuadros, alto y ancho del cuadro vienen con el arte) o de una GIF
+function sprite(key, scale, seconds, alt) {
+  if (ART[key + '_gw']) return gifBox(key, `${Math.round(ART[key + '_gc'][2] * scale)}px`, alt);
+  const f = ART[key + '_f'], h = ART[key + '_s'], w = ART[key + '_w'] || h;
+  return el('div', { class: 'sprite', role: 'img', 'aria-label': alt,
+    style: `--f:${f};--w:${w * scale}px;--h:${h * scale}px;--d:${seconds}s;background-image:url(${ART[key]})` });
+}
+const shot = (art, caption, wide) => el('figure', { class: 'shot' + (wide ? ' wide' : '') }, el('div', { class: 'frame' }, art), el('figcaption', {}, caption));
+const animRow = (items, tiles, name) => el('div', { class: 'anims', style: `--tiles:url(${ART[tiles]})` }, ...items.map(([k, n, sc, d]) =>
+  el('div', { class: 'anim' }, sprite(k, sc, d, `${name}: ${n}`), el('span', { class: 'label' }, n))));
+
+// Leyenda
+const legend = document.getElementById('legend');
+for (const [k, c] of Object.entries(CLASSES))
+  legend.append(el('span', {}, el('i', { class: 'dot', style: `--c:${color(k)}` }), `${c.name}: ${c.base}`));
+
+// Beneficios por clase
+const classesBox = document.getElementById('classes');
+for (const [k, c] of Object.entries(CLASSES)) {
+  const touches = el('div', { class: 'touches' }, ...LINEAGES.filter(l => l.cls === k).map(l =>
+    el('div', { class: 'touch' },
+      img(ART['sil_' + l.art], `Silueta: ${l.name}`, 64, 'sil'),
+      el('span', { class: 'who' }, l.name),
+      el('span', { class: 'what' }, el('b', {}, l.touch + ': '), l.tdesc),
+      el('span', { class: 'recipe' }, recipe(l)))));
+  classesBox.append(el('article', { class: 'klass panel', style: `--c:${color(k)}` },
+    el('div', { class: 'klass-head' }, el('h3', {}, c.name), c.isNew ? el('span', { class: 'new' }, 'Clase nueva') : el('span', { class: 'label' }, k === 'hongo' ? 'Vuelve' : 'Remodelada')),
+    el('div', { class: 'base' }, el('b', {}, c.base), el('span', {}, c.desc), el('span', { class: 'delta' }, c.delta)),
+    c.sprites ? el('div', { class: 'anims', style: `--tiles:url(${ART.floor_swamp})` }, ...c.sprites.map(([key, n, sc, d]) =>
+      el('div', { class: 'anim' }, sprite(key, sc, d, `${c.base}: ${n}`), el('span', { class: 'label' }, n)))) : null,
+    el('span', { class: 'label' }, 'Toque de cada animal'),
+    touches));
+}
+
+// Ranuras del simulador
+const slotsBox = document.getElementById('slots');
+const optButtons = {};
+SLOTS.forEach((s, i) => {
+  const opts = el('div', { class: 'opts' });
+  MUTATIONS.filter(m => m.slot === i).forEach(m => {
+    const tags = el('div', { class: 'tags' }, ...linsOf(m.id).map(l => el('span', { class: 'tag', style: `--c:${color(l.cls)}` }, l.name)));
+    const b = el('button', { class: 'opt btn', type: 'button', 'aria-pressed': 'false', onclick: () => { pick[i] = pick[i] === m.id ? null : m.id; focusLin = null; render(); } },
+      img(icon(m), '', 24), el('span', { class: 'name' }, m.name), tags);
+    optButtons[m.id] = b;
+    opts.append(b);
+  });
+  slotsBox.append(el('div', { class: 'slot panel', style: `--c:${SLOT_COLORS[i]}` }, el('span', { class: 'label' }, s), opts));
+});
+function setLineage(l) {
+  l.muts.forEach(mid => { pick[byId[mid].slot] = mid; });
+  focusLin = l.id;
+  render();
+}
+document.getElementById('reset').addEventListener('click', () => { pick.fill(null); focusLin = null; render(); });
+
+// Matriz
+const table = document.getElementById('matrix');
+(function buildMatrix() {
+  const head = el('tr', {}, el('th', { scope: 'col' }, el('span', { class: 'label' }, 'Mutación')));
+  LINEAGES.forEach(l => head.append(el('th', { scope: 'col', 'data-lin': l.id, style: `--c:${color(l.cls)}` },
+    el('button', { type: 'button', title: `${CLASSES[l.cls].base} · ${l.touch}`, onclick: () => { focusLin = focusLin === l.id ? null : l.id; render(); } },
+      el('span', { class: 'nm' }, l.name), el('span', { class: 'cls' }, CLASSES[l.cls].name)))));
+  head.append(el('th', { scope: 'col' }, el('span', { class: 'label' }, 'Linajes')));
+  const tbody = el('tbody');
+  SLOTS.forEach((s, i) => {
+    tbody.append(el('tr', { class: 'slotrow', style: `--c:${SLOT_COLORS[i]}` }, el('th', { colspan: String(LINEAGES.length + 2) }, s)));
+    MUTATIONS.filter(m => m.slot === i).forEach(m => {
+      const tr = el('tr', { 'data-mut': m.id }, el('th', { scope: 'row' }, m.name));
+      LINEAGES.forEach(l => tr.append(el('td', { 'data-lin': l.id, style: `--c:${color(l.cls)}` },
+        l.muts.includes(m.id) ? el('span', { class: 'cell', title: `${m.name} · ${l.name}` }) : '')));
+      tr.append(el('td', { class: 'count' }, String(linsOf(m.id).length)));
+      tbody.append(tr);
+    });
+  });
+  table.append(el('thead', {}, head), tbody);
+})();
+
+function render() {
+  for (const [id, b] of Object.entries(optButtons)) b.setAttribute('aria-pressed', String(pick.includes(id)));
+  const done = document.getElementById('done');
+  const ranking = document.getElementById('ranking');
+  const bodyNow = document.getElementById('bodynow');
+  done.replaceChildren(); ranking.replaceChildren(); bodyNow.replaceChildren();
+  const mouth = pick[0] && byId[pick[0]];
+  if (mouth) bodyNow.append(sprite(`body_${mouth.body}_idle`, 2, 0.72, BODIES[mouth.body].name),
+    el('span', {}, `Cuerpo: ${BODIES[mouth.body].name} (${BODIES[mouth.body].fam.toLowerCase()}), por la Boca elegida.`));
+  else bodyNow.append(el('span', {}, 'Sin Boca elegida todavía: la Boca decide el cuerpo.'));
+  const chosen = pick.filter(Boolean);
+  const scored = LINEAGES.map(l => ({ l, hit: l.muts.filter(m => pick.includes(m)).length }))
+    .sort((a, b) => b.hit - a.hit || LINEAGES.indexOf(a.l) - LINEAGES.indexOf(b.l));
+  const full = scored.filter(s => s.hit === 4);
+  if (full.length) {
+    full.forEach(({ l }) => {
+      const c = CLASSES[l.cls];
+      const evo = sprite('evo_' + l.art, 1, 2.2, `Evolución: ${l.name}`); evo.classList.add('evo');
+      done.append(el('div', { class: 'done', style: `--c:${color(l.cls)}` },
+        evo,
+        el('span', { class: 'label' }, `Linaje activo · ${c.name}`),
+        el('b', { class: 'big' }, l.name),
+        el('span', { class: 'muted' }, 'Así evoluciona al completarlo.'),
+        el('div', { class: 'gives' },
+          el('span', {}, el('b', {}, c.base + ': '), c.desc),
+          el('span', {}, el('b', {}, l.touch + ': '), l.tdesc))));
+    });
+  } else if (!chosen.length) {
+    done.append(el('p', { class: 'muted' }, 'Aún no has elegido nada. Así quedan los 8 linajes del piso 3:'));
+  } else {
+    done.append(el('p', { class: 'muted' }, 'Ningún linaje completo todavía. Los más cercanos:'));
+  }
+  scored.filter(s => s.hit < 4).forEach(({ l, hit }) => {
+    const missing = l.muts.filter(m => !pick.includes(m));
+    const blocked = missing.filter(m => pick[byId[m].slot]);
+    const pips = el('span', { class: 'pips', 'aria-hidden': 'true' }, ...l.muts.map(m => el('i', { class: 'pip' + (pick.includes(m) ? ' on' : '') })));
+    const txt = chosen.length
+      ? 'Te falta: ' + missing.map(m => byId[m].name).join(', ') + (blocked.length ? ` (cambiando ${blocked.map(m => SLOTS[byId[m].slot].toLowerCase()).join(' y ')})` : '')
+      : recipe(l);
+    ranking.append(el('button', { class: 'lin', type: 'button', style: `--c:${color(l.cls)}`, onclick: () => setLineage(l) },
+      el('span', { class: 'lin-top' }, pips, el('span', { class: 'nm' }, l.name),
+        el('span', { class: 'cls' }, `${CLASSES[l.cls].base} · ${l.touch}`), el('span', { class: 'score' }, `${hit}/4`)),
+      el('span', { class: 'miss' }, txt)));
+  });
+  table.querySelectorAll('[data-lin]').forEach(c => c.classList.toggle('hl', c.dataset.lin === focusLin));
+  table.querySelectorAll('tr[data-mut]').forEach(r => r.classList.toggle('picked', pick.includes(r.dataset.mut)));
+}
+render();
+
+// Cuerpos (uno por Boca)
+const bodiesBox = document.getElementById('bodies');
+
+// Lo que se ve de cada Boca al atacar: [hoja, nombre, escala, segundos]
+const MOUTH_FX = {
+  Frog: [['mo_spit', 'Bola', 3, 0.4], ['mo_spitBurst', 'Explota', 2, 0.5], ['mo_puddle', 'Charco grande', 2, 0.8]],
+  Diplocaulus: [['mo_whirl', 'Peonza', 2, 0.4], ['mo_deflect', 'Devuelve', 3, 0.3]],
+  Whipscorpion: [['mo_stream', 'Chorro', 4, 0.4], ['mo_splash', 'Salpicadura', 3, 0.5]],
+};
+
+MUTATIONS.filter(m => m.slot === 0).forEach(m => {
+  const b = BODIES[m.body];
+  bodiesBox.append(el('div', { class: 'bodycard panel', style: `--tiles:url(${ART.floor_swamp})` },
+    el('div', { class: 'pair' }, sprite(`body_${m.body}_idle`, 3, 0.72, `${b.name} en reposo`), sprite(`body_${m.body}_atk`, 3, 0.42, `${b.name} atacando`),
+      null),
+    el('b', {}, b.name), el('span', { class: 'note' }, `${b.fam} · ${m.name}`),
+    el('div', { class: 'anims' }, ...MOUTH_FX[m.body].map(([k, n, sc, d]) =>
+      el('div', { class: 'anim' }, sprite(k, sc, d, `${m.name}: ${n}`), el('span', { class: 'label' }, n))))));
+});
+
+
+// Extremidades, Piel y Órganos: la capa de la Piel sobre los 3 cuerpos y los efectos. [hoja, nombre, escala, segundos]
+const MUT_ART = {
+  salt: { note: 'Sin capa en el cuerpo: se ve el despegue y el aterrizaje', fx: [['mf_takeoff', 'Despegue', 3, 0.4], ['mf_land', 'Aterrizaje', 3, 0.6]] },
+  hila: { note: 'Sin capa en el cuerpo: se ven el hilo y la telaraña', fx: [['mf_web', 'Telaraña', 3, 0.8], ['mf_webNew', 'Aparece', 3, 0.5], ['mf_silkHit', 'Impacto', 4, 0.4]] },
+  anfi: { layer: 'AmphibianSkin', note: 'Película verde agua, con brillos sueltos y gotitas', fx: [['mf_charge', 'Carga', 3, 0.6], ['mf_shield', 'Moco', 2, 0.5], ['mf_absorb', 'Absorbe', 2, 0.5], ['mf_reflect', 'Refleja (III)', 2, 0.5]] },
+  carb: { layer: 'CharredScales', note: 'Carbón con escamas y grietas de ascuas que laten', fx: [['mf_primed', 'Prendida', 3, 0.6], ['mf_blaze', 'Brasa (III)', 2, 0.6], ['mf_burning', 'Arde', 4, 0.4]] },
+  meta: { note: 'La vejiga se hincha y suelta la nube', fx: [['mf_release', 'Suelta', 2, 0.6], ['mf_cloud', 'Nube', 3, 0.8], ['mf_explode', 'Explota', 1.5, 0.7]] },
+  fero: { note: 'Velo rosa coral y marca sobre los enemigos', fx: [['mf_pher', 'Suelta', 1.5, 0.7], ['mf_aura', 'Aura', 3, 0.6], ['mf_mark', 'Marca', 4, 0.5], ['mf_frenzy', 'Frenesí (III)', 4, 0.5]] },
+};
+const mutArtBox = document.getElementById('mutart');
+MUTATIONS.filter(m => MUT_ART[m.id]).forEach(m => {
+  const a = MUT_ART[m.id];
+  mutArtBox.append(el('div', { class: 'bodycard panel', style: `--tiles:url(${ART.floor_swamp})` },
+    a.layer ? el('div', { class: 'pair', style: 'flex-wrap:wrap' }, ...Object.entries(BODIES).map(([body, b]) =>
+      sprite(`ml_${a.layer}_${body}`, 2, 0.72, `${m.name} sobre ${b.name.toLowerCase()}`))) : null,
+    el('b', {}, m.name), el('span', { class: 'note' }, `${SLOTS[m.slot]} · ${a.note}`),
+    el('div', { class: 'anims' }, ...a.fx.map(([k, n, sc, d]) =>
+      el('div', { class: 'anim' }, sprite(k, sc, d, `${m.name}: ${n}`), el('span', { class: 'label' }, n))))));
+});
+
+// Tabla de mutaciones, con filtro por ranura
+let slotFilter = -1;
+const mutTable = document.getElementById('mutations');
+const filterBox = document.getElementById('filter');
+const filterButtons = [];
+[-1, 0, 1, 2, 3].forEach(i => {
+  const b = el('button', { class: 'btn', type: 'button', 'aria-pressed': String(i === slotFilter), onclick: () => { slotFilter = i; renderMutations(); } },
+    i >= 0 ? img(ART[SLOT_ICONS[i]], '', 16) : null, i >= 0 ? SLOTS[i] : 'Todas');
+  filterButtons.push([i, b]);
+  filterBox.append(b);
+});
+function renderMutations() {
+  filterButtons.forEach(([i, b]) => b.setAttribute('aria-pressed', String(i === slotFilter)));
+  const head = el('tr', {}, el('th', { scope: 'col' }, 'Mutación'), el('th', { scope: 'col' }, 'Nivel I'),
+    el('th', { scope: 'col' }, 'Nivel II'), el('th', { scope: 'col' }, 'Nivel III (evolución)'), el('th', { scope: 'col' }, 'Linajes'));
+  const body = el('tbody');
+  MUTATIONS.filter(m => slotFilter < 0 || m.slot === slotFilter).forEach(m => {
+    body.append(el('tr', {},
+      el('th', { scope: 'row' }, el('div', { class: 'mname' }, img(icon(m), '', 32), el('b', {}, m.name),
+        el('span', { class: 'slotname', style: `--c:${SLOT_COLORS[m.slot]}` }, SLOTS[m.slot]),
+        m.body ? el('span', { class: 'fam' }, `${BODIES[m.body].fam} → ${BODIES[m.body].name.toLowerCase()}`) : null)),
+      ...m.lv.map((t, i) => el('td', { class: 'lv' }, el('span', { class: 'lvn' }, ['I', 'II', 'III'][i]), t)),
+      el('td', { class: 'lins' }, el('div', { class: 'tags' }, ...linsOf(m.id).map(l => el('span', { class: 'tag', style: `--c:${color(l.cls)}` }, l.name))))));
+  });
+  mutTable.replaceChildren(el('thead', {}, head), body);
+}
+renderMutations();
+
+
+// Mutaciones especiales del ámbar
+const PENDING_LV = 'Mejora por cerrar al programar.';
+const SPECIALS = [
+  { name: 'Cercos de cucaracha', slot: 1, icon: 'Cerci',
+    anims: [['sp_Cerci_Frog', 'Rana', 2, 0.7], ['sp_Cerci_Diplocaulus', 'Diplocaulus', 2, 0.7], ['sp_Cerci_Whipscorpion', 'Escorpión', 2, 0.7], ['sp_cerciFlash', 'Quiebro', 2, 0.4], ['sp_cerciReady', 'Listo', 3, 0.5]],
+    note: 'Los cercos son los apéndices sensoriales del final del abdomen de las cucarachas primitivas: detectan lo que se acerca. Se dibujan detrás del cuerpo y la punta brilla ámbar cuando están listos (gastados, más oscura).',
+    lv: ['Cuando un proyectil está a punto de darte, haces un quiebro en el sitio, sin moverte, y te atraviesa sin hacerte daño. Solo funciona con proyectiles. Recarga: 8 s.', PENDING_LV, 'Evolución por cerrar al programar.'] },
+  { name: 'Cápsula de ámbar', slot: 2, icon: 'AmberCapsule',
+    anims: [['sp_AmberCapsule_Frog', 'Rana', 2, 0.7], ['sp_AmberCapsule_Diplocaulus', 'Diplocaulus', 2, 0.7], ['sp_AmberCapsule_Whipscorpion', 'Escorpión', 2, 0.7],
+            ['sp_ambForm', 'Se forma', 2, 0.4], ['sp_ambHold', 'Encerrado', 2, 0.5], ['sp_ambCrack', 'Se agrieta', 2, 0.4], ['sp_ambShatter', 'Esquirlas', 2, 0.6]],
+    note: 'Una costra de cuentas de ámbar sobre el lomo, con un mosquito dentro. Al usarla se tiñe más oscura.',
+    lv: ['Si un golpe te deja a medio corazón o menos, quedas encerrado en ámbar 2 s: invulnerable e inmóvil. Al romperse saltan esquirlas y un empujón. Una vez por sala.', PENDING_LV, 'Evolución por cerrar al programar.'] },
+  { name: 'Gota de ámbar', slot: 3, icon: 'AmberDrop',
+    anims: [['sp_AmberGland_Frog', 'Rana', 2, 0.7], ['sp_AmberGland_Diplocaulus', 'Diplocaulus', 2, 0.7], ['sp_AmberGland_Whipscorpion', 'Escorpión', 2, 0.7], ['sp_ambDrop', 'Gota', 5, 0.3]],
+    note: 'Una glándula que gotea ámbar: en la garganta de la rana, en las puntas de la cabeza del Diplocaulus o entre las pinzas del escorpión látigo. Se llena a medida que carga.',
+    lv: ['Mantén pulsado el clic derecho para cargar y suelta para encerrar a un enemigo en ámbar 4 s: hace de escudo y, al romperse, salta en esquirlas. Contra jefes, solo 1 s.', PENDING_LV, 'Evolución por cerrar al programar.'] },
+];
+document.getElementById('specials').append(...SPECIALS.map(m => el('article', { class: 'special panel', style: `--c:${SLOT_COLORS[m.slot]};--tiles:url(${ART.floor_burnt})` },
+  el('div', { class: 'special-head' }, img(ART['sp_icon_' + m.icon], '', 54), el('h3', {}, m.name),
+    el('span', { class: 'slotname' }, SLOTS[m.slot] + ' · especial')),
+  el('div', { class: 'anims' }, ...m.anims.map(([k, n, sc, d]) => el('div', { class: 'anim' }, sprite(k, sc, d, `${m.name}: ${n}`), el('span', { class: 'label' }, n)))),
+  el('div', { class: 'lvs' }, ...m.lv.map((t, i) => el('div', {}, el('span', { class: 'lvn' }, ['I', 'II', 'III'][i]), el('span', {}, t)))),
+  el('p', { class: 'note' }, m.note))));
+const amberBox = document.getElementById('amber');
+amberBox.style.setProperty('--tiles', `url(${ART.floor_burnt})`);
+amberBox.append(
+  el('div', { class: 'anim' }, sprite('sp_block', 3, 1, 'Bloque de ámbar con un insecto dentro'), el('span', { class: 'label' }, 'Bloque de ámbar')),
+  el('div', { class: 'anim' }, sprite('sp_blockBreak', 3, 0.8, 'El bloque se rompe'), el('span', { class: 'label' }, 'Se rompe')));
+
+// Reacciones
+const chainBox = document.getElementById('chain');
+const chainItem = (art, label) => el('div', { class: 'anim' }, art, el('span', { class: 'label' }, label));
+const op = t => el('span', { class: 'arrow' }, t);
+chainBox.style.setProperty('--tiles', `url(${ART.floor_smoke})`);
+chainBox.append(
+  chainItem(sprite('mo_puddle', 2, 0.8, 'Charco de veneno'), 'Charco de veneno'), op('+'), chainItem(sprite('mf_burning', 4, 0.4, 'Fuego'), 'Fuego'), op('→'),
+  chainItem(sprite('re_cloudIdle', 2, 0.8, 'Nube tóxica'), 'Nube tóxica'),
+  el('span', { class: 'arrow', style: 'margin-inline:14px' }, '·'),
+  chainItem(sprite('re_mist', 1, 1, 'Niebla de metano'), 'Metano'), op('+'), el('span', { class: 'label' }, 'cualquier ataque'), op('→'),
+  chainItem(sprite('re_mistIgnite', 3, 0.7, 'Explosión de fuego'), 'Explosión de fuego'));
+const REACT = [
+  { name: 'Veneno', c: 'var(--ven)', tiles: 'floor_swamp',
+    anims: [['mo_puddle', 'Charco', 2, 0.8], ['re_poisoned', 'Envenenado', 4, 0.5], ['re_bulbIdle', 'Planta venenosa', 3, 0.8], ['re_bulbHit', 'Golpe', 3, 0.4], ['re_bulbBurst', 'Revienta', 3, 0.5], ['re_bulbRegrow', 'Rebrota', 3, 0.6]],
+    rules: [['Fuentes', 'el Escupitajo venenoso y la Medullosa dejan charcos; la planta venenosa del escenario es un bulbo que revienta al golpearlo dentro de un charco de veneno.'],
+            ['Estado', 'un enemigo envenenado se tiñe de lima y suelta gotas. Si eres Venenoso, al morir deja un charco.'],
+            ['Contra ti', 'las Escamas carbonizadas de nivel II te hacen inmune al veneno de las plantas.']] },
+  { name: 'Metano', c: 'var(--cyan)', tiles: 'floor_smoke',
+    anims: [['re_sac', 'Odre', 3, 0.8], ['re_sacBurst', 'Revienta', 3, 0.5], ['re_mist', 'Niebla', 1.5, 1], ['re_mistIgnite', 'Fogonazo', 3, 0.7], ['re_mistFlare', 'Llamarada', 3, 0.6]],
+    rules: [['Aspecto', 'una niebla baja a ras de suelo, translúcida y sin borde duro, para que no se confunda con el agua.'],
+            ['Reacción', 'gas + cualquier ataque = explosión de fuego. El fogonazo recorre la niebla casilla a casilla, con retardo según la distancia, y deja llamaradas sueltas.'],
+            ['Fuentes', 'odres de metano, fumarolas y tu Saco de metano. Las Escamas carbonizadas te hacen inmune a las explosiones.']] },
+  { name: 'Fuego', c: 'var(--fire)', tiles: 'floor_burnt',
+    anims: [['re_ignite', 'Prende', 4, 0.4], ['mf_ground', 'Fuego en el suelo', 3, 0.6], ['re_puddleIgnite', 'Charco que se prende', 2, 0.8], ['re_cloudForm', 'Nube tóxica', 2, 0.6], ['re_cloudIdle', 'Se mantiene', 2, 0.8], ['re_cloudFade', 'Se va', 2, 0.5], ['re_fireOut', 'Se apaga', 3, 0.6]],
+    rules: [['Fuego + veneno', 'un charco de veneno que se prende suelta una nube tóxica: una columna mostaza que sube (no a ras de suelo, para no confundirla con el metano). El charco queda como mancha quemada.'],
+            ['Se propaga', 'los helechos y la maleza quemable arden y el fuego pasa de uno a otro. La lluvia de la Meganeura lo apaga con vapor.'],
+            ['Fuentes', 'fumarolas, escarabajo bombardero, odres y tus mutaciones de fuego (Escamas, Yesquero, Saco con Incendio).']] },
+];
+document.getElementById('react').append(...REACT.map(r => el('article', { class: 'panel', style: `--c:${r.c}` },
+  el('h3', {}, r.name), animRow(r.anims, r.tiles, r.name),
+  el('div', { class: 'rules' }, ...r.rules.map(([t, x]) => el('div', { class: 'rule' }, el('b', {}, t + ': '), x))))));
+document.getElementById('reactgal').append(
+  shot(animRow([['re_ventWarn', 'Aviso', 3, 0.5], ['re_ventIdle', 'Reposo', 3, 0.8], ['re_ventBlast', 'Columna', 2, 0.6]], 'floor_smoke', 'Fumarola'), 'Fumarola: avisa, y suelta su columna en patrón. Otra de las fuentes de reacciones.'));
+
+// Enemigos
+const enemiesBox = document.getElementById('enemies');
+ENEMIES.forEach(e => {
+  enemiesBox.append(el('article', { class: 'enemy panel' + (e.wide ? ' wide' : ''), id: 'en-' + e.id, style: `--tiles:url(${ART[e.tiles]})` + (e.c ? `;--c:${e.c}` : '') },
+    el('div', { class: 'enemy-head' }, el('h3', {}, e.name), el('span', { class: 'role' }, e.role)),
+    el('div', { class: 'anims' }, ...e.anims.map(([k, n, s, d]) => el('div', { class: 'anim' }, sprite(k, s, d, `${e.name}: ${n}`), el('span', { class: 'label' }, n)))),
+    e.stats.length ? el('div', { class: 'stats' }, ...e.stats.map(([k, v]) => el('div', { class: 'stat' }, el('span', { class: 'label' }, k), el('b', {}, v)))) : null,
+    el('p', {}, e.text),
+    el('div', { class: 'asks' }, el('b', {}, 'Lo que exige: '), e.asks)));
+});
+
+// Presentación del jefe: pantalla de 480 × 270 px del juego con el retrato y el rótulo en bucle
+function introScreen(b, tiles) {
+  const I = b.intro;
+  const px = v => `calc(${v} * var(--u))`;
+  const tw = ART[`intro_${I.key}_title_w`], th = ART[`intro_${I.key}_title_h`];
+  const kids = [el('div', { class: 'is-shade' })];
+  if (I.pose) {
+    const key = `intro_${I.key}_pose`, [, , w, h] = ART[key + '_gc'], k = Math.min(0.55, 190 / h);
+    const box = gifBox(key, px(w * k), `${b.name}: pose de entrada`);
+    box.classList.add('is-pose-img'); box.style.left = px(I.pose.x - w * k / 2); box.style.top = px(I.pose.y - h * k / 2); box.style.position = 'absolute';
+    kids.push(box);
+  }
+  kids.push(el('div', { class: 'is-dim' }), el('div', { class: 'is-edge' }), el('div', { class: 'is-band' }),
+    el('img', { class: 'is-name', src: ART[`intro_${I.key}_title`], alt: '', style: `left:${px(36)};top:${px(199 - th)};width:${px(tw)}` }),
+    el('span', { class: 'is-sub', style: `left:${px(42)};top:${px(198)}` }, I.sub),
+    el('img', { class: 'is-portrait', src: ART[`intro_${I.key}_portrait`], alt: '', style: `left:${px(278)};top:${px(48)};width:${px(176)}` }),
+    el('span', { class: 'is-skip' }, '[E] Saltar'));
+  const screen = el('div', { class: 'is-screen play', role: 'img',
+      'aria-label': `Presentación de ${b.name}: entra el rótulo «${b.name.toUpperCase()}, ${I.sub}» con su retrato`,
+      style: `--band:${I.band};--acc:${I.accent};--tiles:url(${ART[tiles]});--shade:${I.shade || 'rgba(0,0,0,.25)'}` }, ...kids);
+  return el('div', { class: 'intro' },
+    el('div', { class: 'intro-head' }, el('h4', {}, 'Presentación al entrar'), el('span', { class: 'label' }, 'Unos 3 s · siempre · se salta con E')),
+    el('p', {}, I.text),
+    el('div', { class: 'is-box' }, screen));
+}
+setInterval(() => document.querySelectorAll('.is-screen').forEach(s => { s.classList.remove('play'); void s.offsetWidth; s.classList.add('play'); }), 7200);
+
+// Bestiario
+const beasts = document.getElementById('beasts');
+BOSSES.forEach(b => {
+  const hp = el('div', { class: 'hpbar' },
+    el('span', { class: 'label' }, 'Fases según su vida'),
+    el('div', { class: 'track', role: 'img', 'aria-label': 'Fases: ' + b.hp.map(([n, w]) => `${n} ${w} %`).join(', ') },
+      ...b.hp.map(([n, w, k]) => el('div', { class: 'seg', style: `--w:${w};--k:${k}%` }, n))),
+    el('div', { class: 'ticks', 'aria-hidden': 'true' },
+      ...b.hp.map(([, w], i) => el('span', { style: `--w:${w}` }, b.ticks[i])),
+      el('span', { style: 'flex:0 0 auto' }, b.ticks[b.ticks.length - 1])));
+  const top = el('div', { class: 'beast-top' },
+    el('div', { class: 'stage' }, sprite(b.hero[0], b.hero[1], b.hero[2], b.name)),
+    el('div', { class: 'beast-id' },
+      el('span', { class: 'label' }, b.kicker),
+      el('h3', {}, b.name),
+      el('p', {}, b.blurb),
+      el('div', { class: 'stats' }, ...b.stats.map(([k, v]) => el('div', { class: 'stat' }, el('span', { class: 'label' }, k), el('b', {}, v)))),
+      hp));
+  const phases = el('div', { class: 'phases' }, ...b.phases.map(p => el('div', { class: 'phase' },
+    el('div', { class: 'phase-art' },
+      el('span', { class: 'phase-hp' }, p.hp),
+      el('div', { class: 'thumb' }, ...p.art.map(([k, s, d]) => sprite(k, s, d, `${b.name}: ${p.title}`)))),
+    el('div', { class: 'phase-body' }, el('h4', {}, p.title), el('ul', {}, ...p.items.map(t => el('li', {}, t)))))));
+  const scenes = b.scenes ? el('div', { class: 'bossbar' }, el('span', { class: 'label' }, 'Escenas de prueba'),
+    el('div', { class: 'gallery scn' }, ...b.scenes.map(([k, t]) => shot(sprite(k, 1, 1, t), t)))) : null;
+  const extras = el('div', { class: 'extras' },
+    el('div', {},
+      el('span', { class: 'label' }, 'Efectos y proyectiles'),
+      el('div', { class: 'projs' }, ...b.projectiles.map(([key, n, t, s, d]) => el('div', { class: 'proj' },
+        el('div', { class: 'ball' }, sprite(key, s, d, n)),
+        el('span', {}, el('b', {}, n + ': '), t)))),
+      el('span', { class: 'label' }, 'Consejos'),
+      el('ul', {}, ...b.tips.map(t => el('li', {}, t)))),
+    el('div', {},
+      el('span', { class: 'label' }, 'Su sala'),
+      el('div', { class: 'room' }, sprite(b.room[0], 1, 1, `Sala de ${b.name}`)),
+      el('p', { class: 'note' }, b.room[1])));
+  const bar = b.bar ? el('div', { class: 'bossbar' },
+    el('span', { class: 'label' }, 'Su barra de vida'),
+    el('div', { class: 'room' }, sprite(b.bar[0], 1, 1, `Barra de vida de ${b.name}`)),
+    el('p', { class: 'note' }, b.bar[1]),
+    b.bars ? el('div', { class: 'gallery scn' }, ...b.bars.map(([k, t]) => shot(sprite(k, 1, 1, t), t))) : null) : null;
+  beasts.append(el('article', { class: 'beast panel', id: b.id, style: `--c:${b.color};--tiles:url(${ART[b.tiles]});--artw:${b.artWidth}` }, top, introScreen(b, b.tiles), phases, scenes, bar, extras));
+});
+
+// El pantano: las tres escenas (un tramo cada una), puertas de raíces y vida del escenario
+const bandsBox = document.getElementById('bands');
+BANDS.forEach(bd => bandsBox.append(el('article', { class: 'band panel', style: `--c:${bd.c}` },
+  el('div', { class: 'room' }, el('img', { src: ART['scene_' + bd.id], alt: `Escena de muestra: ${bd.name}`, class: 'pixel' })),
+  el('div', { class: 'band-txt' }, el('span', { class: 'label' }, bd.where), el('h3', {}, bd.name), el('p', {}, bd.text)))));
+const doorsBox = document.getElementById('doors');
+BANDS.forEach(bd => doorsBox.append(el('div', { class: 'doorcard panel' },
+  sprite('door_' + bd.id, 2, 1, `Puerta de raíces: ${bd.name}`), sprite('brush_' + bd.id, 2, 1, `Maleza quemable: ${bd.name}`), el('span', { class: 'label' }, bd.name + ' · puerta y maleza'))));
+document.getElementById('scenery').append(
+  shot(sprite('fern_sway', 0.8, 1, 'Helecho que se mece'), 'Helechos de cinco tipos que se mecen.'),
+  shot(sprite('fern_rustle', 0.8, 1, 'Helecho que se atraviesa'), 'Se atraviesan: sacuden las hojas.'),
+  shot(sprite('fern_burn', 0.8, 1, 'Helecho que arde'), 'Arden, y el fuego pasa al siguiente.'),
+  shot(sprite('moss', 1, 1, 'Musgo goteante'), 'Musgo que gotea.'),
+  shot(sprite('puddle_sludge', 1, 1, 'Charco de lodo'), 'Charcos de lodo: ralentizan.'),
+  shot(sprite('puddle_water', 1, 1, 'Charco de agua'), 'Charcos de agua; siete formas de cada uno.'),
+  shot(sprite('re_mist', 1, 1, 'Niebla de metano'), 'Niebla de metano a ras de suelo.'));
+const mudfig = document.getElementById('mudfig');
+mudfig.style.setProperty('--tiles', `url(${ART.floor_swamp})`);
+mudfig.append(el('div', { class: 'anim' }, sprite('mud_bubbles', 2, 1, 'Lodo profundo con burbujas'), el('span', { class: 'label' }, 'Lodo profundo')));
+
+// Salas: cifras, plano de ejemplo y catálogo
+const NS = 'http://www.w3.org/2000/svg';
+function sv(tag, attrs = {}, text) {
+  const e = document.createElementNS(NS, tag);
+  for (const [k, v] of Object.entries(attrs)) e.setAttribute(k, v);
+  if (text != null) e.textContent = text;
+  return e;
+}
+const cssVar = name => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+const FACTS = [['12–14', 'salas de combate en el camino'], ['3–5', 'salas especiales por partida, de un catálogo de 10'], ['2–3', 'salas laterales (tienda aparte)'],
+  ['23–29', 'salas por piso, en total'], ['20–25 min', 'de duración aproximada del piso'], ['3 tramos', 'pantano, bosque humeante y tierra quemada, por tercios']];
+document.getElementById('facts').append(...FACTS.map(([b, t]) => el('div', { class: 'fact' }, el('b', {}, b), el('span', {}, t))));
+
+// Plano de ejemplo (ilustrativo): rejilla de 9 × 6; el camino serpentea
+const COLS = 9, ROWS = 6;
+const PLAN = [
+  { k: 'start', c: 0, r: 0, t: 'IN' }, { n: 1, c: 1, r: 0, band: 0 }, { n: 2, c: 2, r: 0, band: 0, rew: 1 }, { n: 3, c: 3, r: 0, band: 0, sp: 1 },
+  { n: 4, c: 3, r: 1, band: 0, rew: 1 }, { n: 5, c: 4, r: 1, band: 1 }, { n: 6, c: 5, r: 1, band: 1, rew: 1 }, { n: 7, c: 5, r: 2, band: 1, sp: 1 },
+  { n: 8, c: 5, r: 3, band: 1, rew: 1 }, { n: 9, c: 4, r: 3, band: 1 }, { n: 10, c: 3, r: 3, band: 2, rew: 1 }, { n: 11, c: 3, r: 4, band: 2, sp: 1 },
+  { n: 12, c: 4, r: 4, band: 2 }, { n: 13, c: 5, r: 4, band: 2, rew: 1 }, { k: 'boss', c: 6, r: 4, t: 'JF' }, { k: 'pass', c: 7, r: 4, t: 'SP' },
+];
+const SIDE = [{ k: 'shop', c: 4, r: 0, t: 'T', from: [3, 0] }, { k: 'exch', c: 5, r: 0, t: 'C', from: [4, 0] },
+  { k: 'amber', c: 6, r: 2, t: 'Á', from: [5, 2] }, { k: 'nido', c: 6, r: 3, t: 'N', from: [5, 3] }, { k: 'secret', c: 2, r: 3, t: '?', from: [3, 3] }];
+const KIND = {
+  0: ['--cyan', 'Pantano (primer tercio)'], 1: ['--hongo', 'Bosque humeante (tercio del medio)'], 2: ['--fire', 'Tierra quemada (último tercio)'],
+  start: ['--ink', 'Inicio (con teletransporte)'], boss: ['--anom', 'Jefe, con su antesala'], pass: ['--muted', 'Sala de paso'],
+  shop: ['--carr', 'Tienda (con teletransporte y almacén)'], exch: ['--s-limbs', 'Sala de cambio (con teletransporte)'], amber: ['--eury', 'Sala del ámbar (siempre una)'],
+  nido: ['--para', 'El Nido: minijefe Megarachne (lateral, opcional)'], secret: ['--secret', 'Sala secreta (último tercio)'],
+};
+(function drawPlan() {
+  const S = 56, M = 10, B = 40;
+  const svg = sv('svg', { viewBox: `0 0 ${COLS * S + 2 * M} ${ROWS * S + 2 * M}`, role: 'img',
+    'aria-label': 'Piso de ejemplo: 13 salas de combate que serpentean por la rejilla en tres tercios, con tres especiales, la tienda y la sala de cambio, la sala del ámbar, el Nido, la sala secreta, el jefe y la sala de paso.' });
+  const cx = c => M + c * S + S / 2, cy = r => M + r * S + S / 2;
+  const line = (a, b) => svg.append(sv('line', { x1: cx(a[0]), y1: cy(a[1]), x2: cx(b[0]), y2: cy(b[1]), stroke: cssVar('--line'), 'stroke-width': 9 }));
+  for (let i = 1; i < PLAN.length; i++) line([PLAN[i - 1].c, PLAN[i - 1].r], [PLAN[i].c, PLAN[i].r]);
+  SIDE.forEach(s => line(s.from, [s.c, s.r]));
+  const deep = cssVar('--deep');
+  [...PLAN, ...SIDE].forEach(p => {
+    const kind = p.k || p.band, col = cssVar(KIND[kind][0]);
+    svg.append(sv('rect', { x: cx(p.c) - B / 2, y: cy(p.r) - B / 2, width: B, height: B, fill: col,
+      stroke: p.sp ? cssVar('--lime') : deep, 'stroke-width': p.sp ? 4 : 2, 'stroke-dasharray': p.sp ? '6 3' : 'none' }));
+    svg.append(sv('text', { x: cx(p.c), y: cy(p.r) + 6, 'text-anchor': 'middle', 'font-size': 15, fill: deep }, p.t || String(p.n)));
+    if (p.rew) svg.append(sv('text', { x: cx(p.c) + B / 2 + 1, y: cy(p.r) - B / 2 + 4, 'text-anchor': 'middle', 'font-size': 14, fill: cssVar('--lime'), stroke: deep, 'stroke-width': 3, 'paint-order': 'stroke' }, '★'));
+  });
+  document.getElementById('planmap').append(svg);
+  const keys = document.getElementById('plankeys');
+  keys.append(el('span', { class: 'label' }, 'Leyenda'));
+  [0, 1, 2, 'start', 'shop', 'exch', 'amber', 'nido', 'secret', 'boss', 'pass'].forEach(k =>
+    keys.append(el('div', { class: 'key' }, el('i', { style: `--k:var(${KIND[k][0]})` }), el('span', {}, KIND[k][1]))));
+  keys.append(el('div', { class: 'key' }, el('i', { class: 'ring', style: '--k:var(--lime)' }, '3'), el('span', {}, 'Sala especial con combate (borde discontinuo)')));
+  keys.append(el('div', { class: 'key' }, el('i', { class: 'ring', style: '--k:var(--lime)' }, '★'), el('span', {}, 'Recompensa al limpiar la sala')));
+})();
+
+// Catálogo de salas especiales (aprobadas el 28-10; los planos se dibujan al programar)
+const ROOMS = [
+  { name: 'Tronco caído', where: 'Camino', tags: ['Combate', 'Puente'], text: 'Un puente sobre el lodo profundo hecho con un tronco caído. Las libélulas atacan desde el aire mientras cruzas.' },
+  { name: 'Frente de fuego', where: 'Camino', tags: ['Combate', 'Fuego'], text: 'Helechos que arden y avanzan como un frente: hay que moverse con el incendio detrás.' },
+  { name: 'Burbujeo', where: 'Camino', tags: ['Combate', 'Metano'], text: 'Burbujas de metano que suben en ritmo, con un compás que se aprende; cualquier ataque las hace estallar.' },
+  { name: 'Claro de la carnívora', where: 'Camino', tags: ['Combate', 'Trampas'], text: 'Plantas carnívoras en el claro: la gracia es empujar a los enemigos hacia ellas.' },
+  { name: 'Bosque en humo', where: 'Camino', tags: ['Combate', 'Visión reducida'], text: 'El humo reduce la visión: hay que luchar con lo que se oye y se intuye.' },
+  { name: 'Veta de carbón', where: 'Camino', tags: ['Combate', 'Fuego'], text: 'Una veta que arde mucho y parte la sala en dos.' },
+  { name: 'Fumarolas', where: 'Camino', tags: ['Combate', 'Patrón'], text: 'Columnas de fuego que salen en patrón: aprende el orden de las fumarolas.' },
+  { name: 'Tesoro hundido', where: 'Lateral', tags: ['Sin enemigos', 'Lodo profundo'], text: 'Biomasa sobre lodo profundo: llegar a ella es un pequeño rompecabezas de esquivas.' },
+  { name: 'Ladronas', where: 'Lateral', tags: ['Cucarachas'], text: 'Cucarachas que roban biomasa: hay que atraparlas antes de que huyan.' },
+  { name: 'Tocón hueco', where: 'Lateral oculta', tags: ['Maleza quemable', 'Cofre grande'], text: 'Oculta tras maleza quemable. Dentro, un cofre grande: un cono gigante de Lepidodendron.' },
+];
+document.getElementById('rooms').append(...ROOMS.map(r => el('article', { class: 'rcard nomap panel' },
+  el('div', { class: 'rtxt' }, el('span', { class: 'label' }, r.where), el('h3', {}, r.name),
+    el('div', { class: 'rtags' }, ...r.tags.map(t => el('span', { class: 'tag' }, t))),
+    el('p', { class: 'extra' }, r.text)))));
+
+// Salas fijas y laterales
+const FIXED = [
+  { name: 'Tienda y sala de cambio', text: 'Siempre hay tienda y sala de cambio, con teletransporte las dos. La tienda tiene además el almacén de corazones (ver Sistemas).', art: [['tp3_idle', 'Teletransporte', 3, 0.8]] },
+  { name: 'Sala del ámbar', text: 'Siempre una por partida: el bloque de ámbar con un insecto dentro que suelta una mutación especial al romperlo.', art: [['sp_block', 'Bloque', 3, 1]] },
+  { name: 'El Nido', text: 'Sala lateral opcional y grande con el minijefe Megarachne. Su recompensa es un contenedor de corazón dentro de un capullo de seda.', art: [['mr_cocoon', 'Capullo', 1.5, 1]] },
+  { name: 'Sala secreta', text: 'Siempre existe: si nunca cogiste el corazón morado del piso 2 se ve cerrada, como pista para la siguiente partida. Si lo conservas, se abre; si se rompió, se te da una semilla morada y hay que reunir 3 flores moradas repartidas por el piso. Misma recompensa.', art: [['rootwall', 0.5, 1]] },
+  { name: 'Sala de paso', text: 'Tras el jefe, antesala con teletransporte y sala de paso. En esta versión lleva a la pantalla de victoria; el piso 4 es lo siguiente.', art: [['tp3_warp', 'Teletransporte', 3, 0.7]] },
+  { name: 'Salas de jefe', text: 'Más grandes que en el piso 2. El jefe se elige entre el Arthropleura y la Meganeura; el Lepidodendron solo sale por la puerta secreta.', art: [['ar_sceneRam', 0.18, 1]] },
+];
+document.getElementById('fixedrooms').append(...FIXED.map(f => el('article', { class: 'panel' }, el('h3', {}, f.name), el('p', {}, f.text),
+  f.art ? el('div', { class: 'anims', style: `--tiles:url(${ART.floor_swamp});justify-content:center` }, ...f.art.map(a => a.length === 3 && typeof a[0] === 'string' && typeof a[1] === 'number' ?
+    el('div', { class: 'anim' }, sprite(a[0], a[1], a[2], f.name)) : el('div', { class: 'anim' }, sprite(a[0], a[2], a[3], a[1]), el('span', { class: 'label' }, a[1])))) : null)));
+
+// Sistemas nuevos
+const SYS = [
+  { name: 'Corazones de sala', text: 'Al limpiar una sala de combate hay un 12 % de probabilidad de que suelte medio corazón rojo, y un +4 % por cada sala seguida sin corazón (una protección oculta que no se explica en el juego). En los pisos 1 y 2 se queda en la sala hasta recogerlo; desde el piso 3, con la vida llena, pulsar E sobre él lo envía al almacén de la tienda.', hearts: true },
+  { name: 'Almacén de corazones', text: 'Una vaina de semillas en la tienda: capacidad de 4 medios corazones en el piso 3 (+2 por piso). Solo vale dentro del piso. Si sales sin enviar el corazón, una cucaracha lo roba, y así se aprende a usar el almacén. Con el almacén lleno, el corazón se queda en el suelo. Los corazones no salen del piso.',
+    art: [['pc_podReceive', 'Recibe', 3, 0.6], ['pc_podStored', 'Guardado', 3, 0.8], ['le_roach', 'Cucaracha', 0.8, 1]] },
+  { name: 'Tienda', text: 'Siempre vende medio corazón (con la vida llena pasa a ser +1 corazón máximo). Los precios suben ×1,5 por piso, con un único factor para todo.' },
+  { name: 'Teletransportes', text: 'En la sala inicial, la tienda, la sala de cambio y la antesala de la sala de paso. Se activan al entrar y se usan desde el mapa grande (Tab, tercer estado), solo desde una sala limpia; la sala de origen queda marcada como «regreso». Cada piso tiene su aspecto: burbuja de membrana, remolino y tronco hueco con raíces.',
+    art: [['tp1_idle', 'Piso 1', 3, 0.8], ['tp2_idle', 'Piso 2', 3, 0.8], ['tp3_idle', 'Piso 3', 3, 0.8], ['tp3_warp', 'Al usarlo', 3, 0.7]], wide: true },
+  { name: 'Cofres: conos gigantes', text: 'Los cofres del piso son conos gigantes de Lepidodendron, pardos (el morado se reserva a lo secreto). El grande se ve en el Tocón hueco.',
+    art: [['pc_coneIdle', 'Cono', 3, 0.8], ['pc_coneOpen', 'Se abre', 3, 0.8], ['pc_coneOpened', 'Abierto', 3, 1]] },
+  { name: 'Sala secreta y flores moradas', text: 'La sala secreta tiene un muro de raíces gigante, de 8×4 casillas, con un hueco para el corazón morado en el nudo central. Se abre como un telón, con vetas moradas desde el centro. Sin corazón, la semilla (tras reunir las 3 flores moradas) se pone en el hueco y brota en corazón.',
+    art: [['rootwall', 0.6, 1], ['rootwallSeed', 0.6, 1], ['pc_flowerIdle', 'Flor', 4, 0.8], ['pc_flowerPick', 'Se coge', 4, 0.6]], wide: true },
+  { name: 'Reliquias', text: 'Categoría nueva: una por jefe secreto, pasivas y permanentes, sin ranura ni linaje, con su propia fila en la pausa y un efecto que escala con el piso. La del Lepidodendron es la Raíz ancestral: al llegar a cada piso nuevo recuperas toda la vida. Además suelta +1 corazón permanente y la Espora morada, que abre la sala secreta del piso 4 y no se pierde nunca. Cada jefe secreto da la llave del siguiente, camino de un final secreto a largo plazo.',
+    art: [['le_sceneRoom', 0.6, 1]], wide: true },
+  { name: 'Minijefe por piso', text: 'Desde el piso 3 hay un minijefe opcional por piso, en una sala lateral. En este es la Megarachne.' },
+];
+document.getElementById('sys').append(...SYS.map(s => el('article', { class: 'panel' + (s.wide ? ' wide' : ''), style: `--tiles:url(${ART.floor_swamp})` },
+  el('h3', {}, s.name), el('p', {}, s.text),
+  s.hearts ? el('div', { class: 'heartrow' }, ...[['hud_full', 'Corazón'], ['hud_half', 'Medio corazón']].map(([k, t]) =>
+    el('figure', {}, el('img', { src: ART[k], alt: t, width: '48', height: '48', class: 'pixel' }), el('figcaption', {}, t)))) : null,
+  s.art ? el('div', { class: 'anims', style: 'justify-content:center' }, ...s.art.map(a => a.length === 3 && typeof a[1] === 'number' ?
+    el('div', { class: 'anim' }, sprite(a[0], a[1], a[2], s.name)) : el('div', { class: 'anim' }, sprite(a[0], a[2], a[3], a[1]), el('span', { class: 'label' }, a[1])))) : null)));
+
+// Animaciones: por defecto se respeta la preferencia «reducir movimiento» del sistema, pero el botón permite forzarlas
+(function () {
+  const root = document.documentElement, btn = document.getElementById('motion'), note = document.getElementById('motionnote');
+  const sys = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let saved = null;
+  try { saved = localStorage.getItem('primordia-motion'); } catch (e) {}
+  let on = saved ? saved === 'on' : !sys;
+  function apply() {
+    root.dataset.motion = on ? 'on' : 'off';
+    btn.setAttribute('aria-pressed', String(on));
+    btn.textContent = on ? 'Animaciones: activadas' : 'Animaciones: desactivadas';
+    note.textContent = on ? '' : (sys ? 'Tu sistema pide reducir el movimiento, así que empiezan paradas. Pulsa para verlo todo animado.' : '');
+  }
+  btn.addEventListener('click', () => { on = !on; try { localStorage.setItem('primordia-motion', on ? 'on' : 'off'); } catch (e) {} apply(); });
+  apply();
+})();
+</script>

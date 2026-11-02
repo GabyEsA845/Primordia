@@ -31,19 +31,24 @@ namespace Primordia.UI
         [SerializeField] Sprite upgradeArrow;
 
         [Header("Pista de linaje")]
-        [Tooltip("Color del brillo cuando la mutación acerca un linaje que el jugador ya ha empezado.")]
+        [Tooltip("Color de los bordes cuando la mutación acerca un linaje que el jugador ya ha empezado.")]
         [SerializeField] Color lineageGlowColor = new(1f, 0.85f, 0.35f, 1f);
-        [Tooltip("Transparencia mínima y máxima del brillo; late entre las dos.")]
-        [SerializeField] Vector2 lineageGlowAlpha = new(0.08f, 0.32f);
+        [Tooltip("Color con el que se tiñe todo el fondo de la tarjeta recomendada (dorado cálido).")]
+        [SerializeField] Color lineageFillColor = new(1f, 0.74f, 0.15f, 1f);
+        [Tooltip("Cuánto se tiñe el fondo (0 a 1); no late.")]
+        [SerializeField, Range(0f, 1f)] float lineageFillAlpha = 0.6f;
+        [Tooltip("Transparencia mínima y máxima de los bordes; late entre las dos.")]
+        [SerializeField] Vector2 lineageBorderAlpha = new(0.4f, 1f);
         [Tooltip("Segundos de cada latido (tiempo real: la elección pausa el juego).")]
         [SerializeField, Min(0.1f)] float lineageGlowPeriod = 1.2f;
 
         Image badge;
         Image arrow;
-        Image glow;
+        Image fill;
+        Image edgeLayer;
 
         /// <summary>True si la tarjeta brilla porque la mutación ayuda a completar un linaje empezado.</summary>
-        public bool HasLineageHint => glow != null && glow.enabled;
+        public bool HasLineageHint => fill != null && fill.enabled;
 
         /// <summary>True si la última mutación mostrada era una mejora de una que ya se lleva.</summary>
         public bool IsUpgrade { get; private set; }
@@ -131,42 +136,145 @@ namespace Primordia.UI
         }
 
         /// <summary>
-        /// Capa del mismo sprite que el fondo de la tarjeta, teñida de dorado y un poco más grande, que late por
-        /// encima del fondo y por debajo del contenido.
+        /// Pista de la tarjeta que acerca el linaje más avanzado: dos capas por encima del fondo y por debajo del contenido,
+        /// con la silueta exacta de la tarjeta (se calculan a partir de su sprite): una tiñe todo el fondo de dorado
+        /// (fija) y la otra dibuja solo los bordes de la tarjeta en dorado, y late.
         /// </summary>
         void ShowGlow(bool visible)
         {
-            if (glow == null && visible)
+            if (fill == null && visible)
             {
-                glow = new GameObject("LineageGlow", typeof(RectTransform), typeof(Image)).GetComponent<Image>();
-                glow.transform.SetParent(transform, false);
-                glow.transform.SetAsFirstSibling();
-                glow.raycastTarget = false;
-                glow.gameObject.AddComponent<LayoutElement>().ignoreLayout = true;
                 var background = GetComponent<Image>();
-                if (background != null && background.sprite != null)
-                {
-                    glow.sprite = background.sprite;
-                    glow.type = background.type;
-                    glow.pixelsPerUnitMultiplier = background.pixelsPerUnitMultiplier;
-                }
-                var rect = glow.rectTransform;
-                rect.anchorMin = Vector2.zero;
-                rect.anchorMax = Vector2.one;
-                rect.offsetMin = new Vector2(-2f, -2f);
-                rect.offsetMax = new Vector2(2f, 2f);
+                BuildMasks(background != null ? background.sprite : null);
+                fill = CreateLayer("LineageFill", background, silhouette);
+                fill.transform.SetAsFirstSibling();
+                edgeLayer = CreateLayer("LineageEdge", background, edge);
+                edgeLayer.transform.SetSiblingIndex(1);
             }
 
-            if (glow != null)
+            if (fill != null)
             {
-                glow.enabled = visible;
+                fill.enabled = visible && fill.sprite != null;
+                edgeLayer.enabled = visible && edgeLayer.sprite != null;
                 UpdateGlow();
             }
         }
 
+        // Ancho de los bordes dorados, en píxeles del sprite de la tarjeta.
+        const int EdgeWidth = 2;
+
+        static Sprite maskSource;
+        static Sprite silhouette;
+        static Sprite edge;
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        static void ResetStatics()
+        {
+            maskSource = null;
+            silhouette = null;
+            edge = null;
+        }
+
+        /// <summary>
+        /// Dos copias blancas del sprite del fondo, con sus mismos bordes de 9 trozos: su silueta entera (la forma de la
+        /// tarjeta, redondeces incluidas) y solo sus píxeles de borde (los que tocan fuera de la tarjeta). Teñidas de
+        /// dorado dan un color vivo y no el oscuro que saldría de teñir el dibujo.
+        /// </summary>
+        static void BuildMasks(Sprite source)
+        {
+            if (source == null || maskSource == source)
+                return;
+            maskSource = source;
+            silhouette = null;
+            edge = null;
+
+            try
+            {
+                var texture = source.texture;
+                var rect = source.rect;
+                var target = RenderTexture.GetTemporary(texture.width, texture.height, 0, RenderTextureFormat.ARGB32);
+                Graphics.Blit(texture, target);
+                var previous = RenderTexture.active;
+                RenderTexture.active = target;
+                int w = (int)rect.width;
+                int h = (int)rect.height;
+                var copy = new Texture2D(w, h, TextureFormat.RGBA32, false);
+                copy.ReadPixels(new Rect(rect.x, rect.y, w, h), 0, 0);
+                RenderTexture.active = previous;
+                RenderTexture.ReleaseTemporary(target);
+                var pixels = copy.GetPixels32();
+                Object.Destroy(copy);
+
+                bool Solid(int x, int y) => x >= 0 && y >= 0 && x < w && y < h && pixels[y * w + x].a > 127;
+
+                var silhouettePixels = new Color32[w * h];
+                var edgePixels = new Color32[w * h];
+                for (int y = 0; y < h; y++)
+                {
+                    for (int x = 0; x < w; x++)
+                    {
+                        if (!Solid(x, y))
+                            continue;
+                        silhouettePixels[y * w + x] = new Color32(255, 255, 255, 255);
+                        bool onEdge = false;
+                        for (int dy = -EdgeWidth; dy <= EdgeWidth && !onEdge; dy++)
+                        {
+                            for (int dx = -EdgeWidth; dx <= EdgeWidth; dx++)
+                            {
+                                if (!Solid(x + dx, y + dy))
+                                {
+                                    onEdge = true;
+                                    break;
+                                }
+                            }
+                        }
+                        if (onEdge)
+                            edgePixels[y * w + x] = new Color32(255, 255, 255, 255);
+                    }
+                }
+
+                silhouette = MakeSprite(source, w, h, silhouettePixels);
+                edge = MakeSprite(source, w, h, edgePixels);
+            }
+            catch (System.Exception)
+            {
+                // Sin poder leer el dibujo no hay pista de color: la tarjeta se queda como estaba.
+                silhouette = null;
+                edge = null;
+            }
+        }
+
+        static Sprite MakeSprite(Sprite source, int w, int h, Color32[] pixels)
+        {
+            var texture = new Texture2D(w, h, TextureFormat.RGBA32, false) { filterMode = FilterMode.Point, wrapMode = TextureWrapMode.Clamp };
+            texture.SetPixels32(pixels);
+            texture.Apply();
+            return Sprite.Create(texture, new Rect(0f, 0f, w, h), source.pivot / source.rect.size, source.pixelsPerUnit, 0,
+                SpriteMeshType.FullRect, source.border);
+        }
+
+        Image CreateLayer(string layerName, Image background, Sprite sprite)
+        {
+            var layer = new GameObject(layerName, typeof(RectTransform), typeof(Image)).GetComponent<Image>();
+            layer.transform.SetParent(transform, false);
+            layer.raycastTarget = false;
+            layer.gameObject.AddComponent<LayoutElement>().ignoreLayout = true;
+            var rect = layer.rectTransform;
+            rect.anchorMin = Vector2.zero;
+            rect.anchorMax = Vector2.one;
+            rect.offsetMin = rect.offsetMax = Vector2.zero;
+            layer.sprite = sprite;
+            if (background != null)
+            {
+                layer.type = background.type;
+                layer.pixelsPerUnitMultiplier = background.pixelsPerUnitMultiplier;
+            }
+            return layer;
+        }
+
         void Update()
         {
-            if (glow != null && glow.enabled)
+            if (fill != null && fill.enabled)
                 UpdateGlow();
         }
 
@@ -174,8 +282,11 @@ namespace Primordia.UI
         {
             float t = 0.5f + 0.5f * Mathf.Sin(Time.unscaledTime * 2f * Mathf.PI / lineageGlowPeriod);
             var color = lineageGlowColor;
-            color.a = Mathf.Lerp(lineageGlowAlpha.x, lineageGlowAlpha.y, t);
-            glow.color = color;
+            color.a = Mathf.Lerp(lineageBorderAlpha.x, lineageBorderAlpha.y, t);
+            edgeLayer.color = color;
+            var tint = lineageFillColor;
+            tint.a = lineageFillAlpha;
+            fill.color = tint;
         }
 
         /// <summary>La flechita, a la izquierda del texto "Nivel I > II".</summary>

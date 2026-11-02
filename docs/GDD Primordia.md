@@ -279,7 +279,7 @@ Tres mutaciones más, una de Extremidades, una de Piel y una de Órgano (ninguna
 
 El juego completo tiene **6 pisos**, cada uno una etapa de la vida en la Tierra, con enemigos, jefe y mutaciones propios. La v1.0 sale con los pisos 1 a 3 (ver "Alcance").
 
-**Tamaño de los pisos:** las partidas pueden durar de 40 minutos a 1 hora, como en *Enter the Gungeon*. El piso 1 sigue con 4–5 salas de combate y 1–2 laterales; desde el piso 2, 10–12 salas de combate en el camino, de 2 a 4 salas especiales, las laterales, la tienda y la sala de cambio.
+**Tamaño de los pisos:** las partidas pueden durar de 40 minutos a 1 hora, como en *Enter the Gungeon*. El piso 1 tiene 6–7 salas de combate y 2–3 laterales (antes 4–5 y 1–2; recompensa de mutación también tras la sala 6); desde el piso 2, 10–12 salas de combate en el camino, de 2 a 4 salas especiales, las laterales, la tienda y la sala de cambio.
 
 Cada piso tiene **2 jefes posibles** y en cada partida sale uno al azar.
 
@@ -619,3 +619,14 @@ Objetivo: que añadir una mutación, un enemigo o una sala nueva sea crear un ar
 | --- | --- |
 | Sala de la almeja | En cada partida sale, aparte de las 2–4 especiales, una sala al azar entre la Gruta escondida, el Anillo de la sima y el Jardín de esponjas, que llevan siempre una almeja grande. En cualquier franja |
 | Mutaciones especiales | Flagelos de Leanchoilia, Cutícula de Marrella y Yema clonal: solo salen de las almejas grandes, completan cualquier linaje como comodín y tienen el precio Inestable (+½ corazón por golpe y por especial). Tabla "Mutaciones especiales de las almejas" |
+
+**Decidido el 2 de noviembre (cambios de los pisos 1 y 2, tras probarlos)**
+
+| Tema | Decisión |
+| --- | --- |
+| Parkour | Dentro de la sala el jugador se mueve a su velocidad base, sin las mejoras de velocidad; al salir las recupera |
+| Corazones verdes | Dos medios verdes (Pastar biomasa) forman un corazón verde entero en el HUD; el medio sobrante va al final |
+| Veneno en jefes | Contra un jefe el veneno no pasa de 2 de daño por segundo (los enemigos normales, sin tope) |
+| Corazón morado | Aura morada ligera mientras se lleva (que se vea a simple vista sin cargar la pantalla) y, al parar un golpe, destello, onda, sacudida corta y sonido más grave |
+| Pista de linaje | La tarjeta de mutación que acerca el linaje más avanzado tiene el fondo dorado y los bordes dorados que laten, siguiendo la forma de la tarjeta |
+| Piso 1 | 6–7 salas de combate y 2–3 laterales |

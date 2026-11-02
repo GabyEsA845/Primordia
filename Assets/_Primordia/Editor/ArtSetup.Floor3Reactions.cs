@@ -21,6 +21,7 @@ namespace Primordia.Editor
         const string Floor3MutationEffects = Floor3ArtRoot + "/floor3-mutations/Effects";
         const string Floor3ReactionEffects = Floor3ArtRoot + "/floor3-reactions/Effects";
         const float BurningMarkerFrameSeconds = 0.1f;
+        const string PoisonedMarkerPrefabPath = Floor3EffectsPrefabsFolder + "/Effect_Poisoned.prefab";
 
         [MenuItem("Primordia/Floor 3/Crear reacciones (fuego)")]
         static void CreateFloor3ReactionKitMenu()
@@ -59,6 +60,34 @@ namespace Primordia.Editor
                 AssetDatabase.CreateAsset(kit, Floor3ReactionKitPath);
             }
             kit.ConfigureFire(groundFireFrames, fireOutFrames, marker);
+
+            // Veneno: el charco grande (48×48, centro), la nube tóxica (48×64, pivote en la base de la columna, a 58 px de arriba) y la
+            // marca de gotas de los envenenados (16×16).
+            string bodiesEffects = $"{Floor3ArtRoot}/floor3-bodies/Effects";
+            string[] poisonSheets =
+            {
+                $"{bodiesEffects}/Fx_PoisonPuddleBig_Appear.png", $"{bodiesEffects}/Fx_PoisonPuddleBig_Idle.png",
+                $"{bodiesEffects}/Fx_PoisonPuddleBig_Fade.png", $"{Floor3ReactionEffects}/Fx_PoisonPuddle_Ignite.png",
+                $"{Floor3ReactionEffects}/Fx_ToxicCloud_Form.png", $"{Floor3ReactionEffects}/Fx_ToxicCloud_Idle.png",
+                $"{Floor3ReactionEffects}/Fx_ToxicCloud_Fade.png", $"{Floor3ReactionEffects}/Fx_Poisoned.png",
+            };
+            if (poisonSheets.All(File.Exists))
+            {
+                var cloudPivot = new Vector2(0.5f, (64 - 58) / 64f);
+                var poisonedFrames = SliceSheet(poisonSheets[7], 16);
+                var poisonedMarker = EditPrefab(PoisonedMarkerPrefabPath, obj =>
+                {
+                    var renderer = GetOrAdd<SpriteRenderer>(obj);
+                    renderer.sprite = poisonedFrames.Length > 0 ? poisonedFrames[0] : null;
+                    renderer.sortingOrder = 8;
+                    GetOrAdd<SpriteLoop>(obj).Configure(renderer, poisonedFrames, 0.12f, 0f);
+                }, create: true);
+                kit.ConfigurePoison(SliceSheet(poisonSheets[0], 48), SliceSheet(poisonSheets[1], 48), SliceSheet(poisonSheets[2], 48),
+                    SliceSheet(poisonSheets[3], 48), SliceSheet(poisonSheets[4], 48, cloudPivot), SliceSheet(poisonSheets[5], 48, cloudPivot),
+                    SliceSheet(poisonSheets[6], 48, cloudPivot), poisonedMarker);
+            }
+            else
+                Debug.LogWarning("ArtSetup: faltan hojas del veneno (charco, nube o marca); ejecuta Primordia > Floor 3 > Importar todo el arte del piso 3.");
 
             // Metano: la explosión del odre (8 cuadros de 64×64, centro) y el fogonazo de la niebla (pivote abajo).
             string explode = $"{Floor3MutationEffects}/Fx_MethaneSac_Explode.png";
@@ -135,6 +164,27 @@ namespace Primordia.Editor
                     (tiles == 1 ? small : big).Add(sprite);
             }
             theme.ConfigureObstacles(small.ToArray(), big.ToArray());
+        }
+
+        // Bulbos venenosos por sala en cada tramo: el pantano tiene alguno, el bosque humeante menos y la tierra quemada ninguno.
+        static readonly Dictionary<string, Vector2Int> BulbAmounts = new()
+        {
+            [SwampThemeName] = new Vector2Int(0, 2), [SmokeThemeName] = new Vector2Int(0, 1), [BurntThemeName] = Vector2Int.zero,
+        };
+
+        static void ImportPoisonBulbs(RoomTheme theme, string themeName)
+        {
+            string Sheet(string name) => $"{Floor3ArtRoot}/floor3-reactions/{themeName}/{name}.png";
+            var pivot = new Vector2(0.5f, 0f);
+            Sprite[] Frames(string name) => File.Exists(Sheet(name)) ? SliceSheet(Sheet(name), 32, pivot) : new Sprite[0];
+            theme.ConfigurePoison(new PoisonSpec
+            {
+                bulbIdle = Frames("PoisonBulb_Idle"),
+                bulbBurst = Frames("PoisonBulb_Burst"),
+                bulbStump = Frames("PoisonBulb_Stump").FirstOrDefault(),
+                bulbRegrow = Frames("PoisonBulb_Regrow"),
+                bulbCount = BulbAmounts.GetValueOrDefault(themeName),
+            });
         }
 
         static void ImportMethane(RoomTheme theme, string folder, string themeName)

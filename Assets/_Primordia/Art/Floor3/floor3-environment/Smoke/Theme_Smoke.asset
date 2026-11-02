@@ -158,8 +158,13 @@ MonoBehaviour:
     - 0.06
     - 0.06
     - 0.06
-  smallObstacles: []
-  bigObstacles: []
+  smallObstacles:
+  - {fileID: -3419084279159313806, guid: eb23a1e2375ac1f4b9206faaa2d0f72d, type: 3}
+  - {fileID: 2412109894261598016, guid: eefb90edf5fe4914293e30b9611d1d83, type: 3}
+  bigObstacles:
+  - {fileID: 1246647418288044170, guid: 3882c940b017dad44a8825d675e31d43, type: 3}
+  - {fileID: -8098692917695944048, guid: 97184533a90eebf44a55086fb9b606e4, type: 3}
+  - {fileID: -7762785476424702688, guid: 105e40bccc382944e963825cebb0f896, type: 3}
   smallObstacleOutlines: []
   bigObstacleOutlines: []
   obstacleOutline: {r: 0.95, g: 0.77, b: 0.35, a: 0.85}

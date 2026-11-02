@@ -170,7 +170,7 @@ namespace Primordia.Rooms
             if (!visible && before <= 0.001f && icon == null)
                 return;
             if (icon == null)
-                icon = BurnIcon.Create(transform);
+                icon = BurnIcon.Create(transform, BurnIcon.Shape.Flame, new Color(1f, 0.55f, 0.1f, 1f), new Vector3(-0.4f, 1.05f, 0f));
             icon.Set(Bar, visible, Burning);
         }
 

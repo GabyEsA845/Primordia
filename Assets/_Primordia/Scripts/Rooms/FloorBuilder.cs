@@ -752,6 +752,7 @@ namespace Primordia.Rooms
             BuildObstacles(roomObject.transform, placed, theme, config.Pieces, random, glows);
             BuildFerns(roomObject.transform, placed, theme, random);
             BuildMethane(roomObject.transform, placed, theme, random);
+            BuildBulbs(roomObject.transform, placed, theme, random);
             var vents = BuildPieces(roomObject.transform, placed, config, random);
             // Donde aparece el jefe no hay algas ni plantas: taparían su presentación.
             Vector2? bossSpot = placed.Layout.Role == RoomRole.Boss ? placed.FloorCenter + boss.offset : null;
@@ -1362,6 +1363,31 @@ namespace Primordia.Rooms
                     var position = placed.Origin + local;
                     MethaneMist.Create(holder, new Vector2(position.x, position.y - 0.5f), spec.mist, (float)random.NextDouble() * 5f);
                 }
+            }
+        }
+
+        /// <summary>
+        /// Plantas venenosas del tramo (piso 3): unos pocos bulbos en las salas de combate y laterales, lejos de las puertas, las
+        /// paredes y el lodo. Ni en el inicio, ni en la tienda, ni en las salas de los jefes.
+        /// </summary>
+        static void BuildBulbs(Transform parent, PlacedRoom placed, RoomTheme theme, System.Random random)
+        {
+            var spec = theme.Poison;
+            if (spec == null || !spec.HasBulbs || placed.Layout.Role is not (RoomRole.Combat or RoomRole.Side))
+                return;
+
+            var doorCells = placed.DoorCells.Values.SelectMany(cells => cells).Select(cell => cell - placed.Origin);
+            var candidates = EncounterPlanner.SpawnCells(placed.Template, doorCells);
+            int count = random.Next(Mathf.Min(spec.bulbCount.x, spec.bulbCount.y), Mathf.Max(spec.bulbCount.x, spec.bulbCount.y) + 1);
+            if (candidates.Count == 0 || count == 0)
+                return;
+
+            var holder = new GameObject("PoisonBulbs").transform;
+            holder.SetParent(parent, false);
+            foreach (var local in EncounterPlanner.Positions(candidates, count, random))
+            {
+                var position = placed.Origin + local;
+                PoisonBulb.Create(holder, new Vector2(position.x, position.y - 0.4f), spec);
             }
         }
 

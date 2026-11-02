@@ -161,6 +161,7 @@ namespace Primordia.Editor
             ImportBrush(theme, folder);
             ImportFerns(theme, folder, themeName);
             ImportMethane(theme, folder, themeName);
+            ImportPoisonBulbs(theme, themeName);
             ImportObstacles(theme, folder);
             EditorUtility.SetDirty(theme);
 

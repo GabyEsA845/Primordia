@@ -129,6 +129,9 @@ namespace Primordia.Rooms
             // El jugador cae en las fosas (se le añade aquí para no tocar su prefab).
             if (player != null && !player.TryGetComponent<PlayerPitFall>(out _))
                 player.gameObject.AddComponent<PlayerPitFall>();
+            // Y en el veneno del piso 3 (charcos y nube tóxica).
+            if (player != null && !player.TryGetComponent<PlayerToxin>(out _))
+                player.gameObject.AddComponent<PlayerToxin>();
             // Y en el fuego del piso 3 se quema (barra sobre la cabeza).
             if (player != null && !player.TryGetComponent<PlayerBurn>(out _))
                 player.gameObject.AddComponent<PlayerBurn>();

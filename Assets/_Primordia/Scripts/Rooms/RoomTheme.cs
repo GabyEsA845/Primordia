@@ -99,6 +99,9 @@ namespace Primordia.Rooms
         [Header("Metano (piso 3, opcional)")]
         [SerializeField] MethaneSpec methane;
 
+        [Header("Planta venenosa (piso 3, opcional)")]
+        [SerializeField] PoisonSpec poison;
+
         [Header("Lodo profundo (piso 3, opcional)")]
         [Tooltip("16 tiles por máscara: suma de los vecinos que NO son lodo (N=1, E=2, S=4, O=8).")]
         [SerializeField] TileBase[] mudTiles;
@@ -142,6 +145,7 @@ namespace Primordia.Rooms
         }
 
         public MethaneSpec Methane => methane;
+        public PoisonSpec Poison => poison;
         public FernSpec[] Ferns => ferns ?? System.Array.Empty<FernSpec>();
         public float FernDensity => fernDensity;
 
@@ -311,6 +315,8 @@ namespace Primordia.Rooms
 
         internal void ConfigureMethane(MethaneSpec newMethane) => methane = newMethane;
 
+        internal void ConfigurePoison(PoisonSpec newPoison) => poison = newPoison;
+
         internal void ConfigureFerns(FernSpec[] newFerns, float newDensity)
         {
             ferns = newFerns;
@@ -382,6 +388,24 @@ namespace Primordia.Rooms
 
         public bool HasSacs => sacIdle != null && sacIdle.Length > 0 && sacBurst != null && sacBurst.Length > 0 && sacCount.y > 0;
         public bool HasMist => mist != null && mist.Length > 0 && mistPerCell > 0f;
+    }
+
+    /// <summary>Planta venenosa de un tramo: el bulbo (reposo, reventón, cáscara, rebrote) y cuántos salen en cada sala.</summary>
+    [System.Serializable]
+    public class PoisonSpec
+    {
+        [Tooltip("Bulbo (32×32, bucle). Pivote: abajo.")]
+        public Sprite[] bulbIdle = System.Array.Empty<Sprite>();
+        [Tooltip("Reventón (32×32). El cuadro 2 suelta el charco.")]
+        public Sprite[] bulbBurst = System.Array.Empty<Sprite>();
+        [Tooltip("Cáscara abierta mientras espera el rebrote.")]
+        public Sprite bulbStump;
+        [Tooltip("Rebrote (32×32).")]
+        public Sprite[] bulbRegrow = System.Array.Empty<Sprite>();
+        [Tooltip("Bulbos por sala (mínimo y máximo).")]
+        public Vector2Int bulbCount = new(0, 1);
+
+        public bool HasBulbs => bulbIdle != null && bulbIdle.Length > 0 && bulbBurst != null && bulbBurst.Length > 0 && bulbCount.y > 0;
     }
 
     /// <summary>Maleza quemable: reposo, fuego cuadro a cuadro (con la duración de cada uno) y lo que queda, ya abierta.</summary>

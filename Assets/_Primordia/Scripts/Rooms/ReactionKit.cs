@@ -30,6 +30,21 @@ namespace Primordia.Rooms
         [SerializeField] Sprite[] mistFlare = System.Array.Empty<Sprite>();
         [SerializeField, Min(0.01f)] float mistIgniteFrameSeconds = 0.07f;
 
+        [Header("Veneno")]
+        [Tooltip("Charco grande (48×48, centro): cae (una pasada), burbujea (bucle) y se seca (una pasada).")]
+        [SerializeField] Sprite[] puddleAppear = System.Array.Empty<Sprite>();
+        [SerializeField] Sprite[] puddleIdle = System.Array.Empty<Sprite>();
+        [SerializeField] Sprite[] puddleFade = System.Array.Empty<Sprite>();
+        [Tooltip("El fuego corre por el charco (48×48, una pasada). El cuadro 3 es el que suelta la nube.")]
+        [SerializeField] Sprite[] puddleIgnite = System.Array.Empty<Sprite>();
+        [Tooltip("Nube tóxica (48×64): nace, se mantiene (bucle) y se deshace. Pivote: la base de la columna.")]
+        [SerializeField] Sprite[] cloudForm = System.Array.Empty<Sprite>();
+        [SerializeField] Sprite[] cloudIdle = System.Array.Empty<Sprite>();
+        [SerializeField] Sprite[] cloudFade = System.Array.Empty<Sprite>();
+        [SerializeField, Min(0.01f)] float cloudFrameSeconds = 0.11f;
+        [Tooltip("Marca de gotas sobre quien está envenenado (efecto en bucle).")]
+        [SerializeField] GameObject poisonedMarker;
+
         public static ReactionKit Current { get; set; }
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
@@ -40,11 +55,33 @@ namespace Primordia.Rooms
         public Sprite[] FireOut => fireOut ?? System.Array.Empty<Sprite>();
         public float FireOutFrameSeconds => fireOutFrameSeconds;
         public GameObject BurningMarker => burningMarker;
+        public Sprite[] PuddleAppear => puddleAppear ?? System.Array.Empty<Sprite>();
+        public Sprite[] PuddleIdle => puddleIdle ?? System.Array.Empty<Sprite>();
+        public Sprite[] PuddleFade => puddleFade ?? System.Array.Empty<Sprite>();
+        public Sprite[] PuddleIgnite => puddleIgnite ?? System.Array.Empty<Sprite>();
+        public Sprite[] CloudForm => cloudForm ?? System.Array.Empty<Sprite>();
+        public Sprite[] CloudIdle => cloudIdle ?? System.Array.Empty<Sprite>();
+        public Sprite[] CloudFade => cloudFade ?? System.Array.Empty<Sprite>();
+        public float CloudFrameSeconds => cloudFrameSeconds;
+        public GameObject PoisonedMarker => poisonedMarker;
         public Sprite[] Explosion => explosion ?? System.Array.Empty<Sprite>();
         public float ExplosionFrameSeconds => explosionFrameSeconds;
         public Sprite[] MistIgnite => mistIgnite ?? System.Array.Empty<Sprite>();
         public Sprite[] MistFlare => mistFlare ?? System.Array.Empty<Sprite>();
         public float MistIgniteFrameSeconds => mistIgniteFrameSeconds;
+
+        internal void ConfigurePoison(Sprite[] appear, Sprite[] idle, Sprite[] fade, Sprite[] ignite, Sprite[] form, Sprite[] cloudLoop,
+            Sprite[] cloudEnd, GameObject newPoisonedMarker)
+        {
+            puddleAppear = appear;
+            puddleIdle = idle;
+            puddleFade = fade;
+            puddleIgnite = ignite;
+            cloudForm = form;
+            cloudIdle = cloudLoop;
+            cloudFade = cloudEnd;
+            poisonedMarker = newPoisonedMarker;
+        }
 
         internal void ConfigureMethane(Sprite[] newExplosion, Sprite[] newMistIgnite, Sprite[] newMistFlare)
         {

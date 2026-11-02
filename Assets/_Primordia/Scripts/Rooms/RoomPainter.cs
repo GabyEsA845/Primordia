@@ -24,7 +24,8 @@ namespace Primordia.Rooms
             {
                 var theme = themes[Mathf.Clamp(map.GetTheme(position), 0, themes.Count - 1)];
                 var piece = WallRules.Classify(map, position);
-                var tile = theme.Get(piece, CellHash(position));
+                // La cara de abajo elige variante con la celda de arriba para hacer pareja con la cara de arriba.
+                var tile = theme.Get(piece, CellHash(piece == Piece.FaceLower ? position + Vector2Int.up : position));
                 var cell = new Vector3Int(position.x, position.y, 0);
 
                 // Fosa: el tile según qué vecinos no son fosa y, encima, las esquinas de dentro o unas motas que suben.

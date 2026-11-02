@@ -51,9 +51,9 @@ namespace Primordia.Tests
             Assert.AreEqual(Piece.EdgeBottom, At(map, 3, 0));
 
             Assert.AreEqual(Piece.Cap, At(map, 0, 5), "La esquina de arriba es relleno.");
-            Assert.AreEqual(Piece.EdgeLeft, At(map, 0, 4), "El borde lateral sube junto a la cara.");
+            Assert.AreEqual(Piece.EdgeLeftFaceUpper, At(map, 0, 4), "El borde lateral sube junto a la cara.");
             Assert.AreEqual(Piece.EdgeLeft, At(map, 0, 1));
-            Assert.AreEqual(Piece.EdgeRight, At(map, 6, 3));
+            Assert.AreEqual(Piece.EdgeRightFaceLower, At(map, 6, 3));
             Assert.AreEqual(Piece.CornerBottomLeft, At(map, 0, 0));
             Assert.AreEqual(Piece.CornerBottomRight, At(map, 6, 0));
         }

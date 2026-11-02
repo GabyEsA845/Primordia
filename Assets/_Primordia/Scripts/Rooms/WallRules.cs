@@ -35,6 +35,15 @@ namespace Primordia.Rooms
         /// <summary>Pared con suelo encima: borde arriba.</summary>
         EdgeBottom,
 
+        /// <summary>
+        /// Columna de pared junto a la cara de una pared de arriba: el borde sigue por la fila de la cara de arriba o por la de
+        /// abajo (la que toca el suelo). Sin arte propio, el tema usa EdgeLeft / EdgeRight.
+        /// </summary>
+        EdgeLeftFaceUpper,
+        EdgeLeftFaceLower,
+        EdgeRightFaceUpper,
+        EdgeRightFaceLower,
+
         /// <summary>Esquina de una masa de pared con suelo encima y a un lado (entrantes y columnas). Arte pendiente.</summary>
         OuterTopLeft,
         OuterTopRight,
@@ -100,9 +109,9 @@ namespace Primordia.Rooms
 
             // Junto a la cara de una pared de arriba, el borde lateral sigue hasta lo alto de la cara.
             if (IsFace(map, x - 1, y))
-                return Piece.EdgeRight;
+                return map.IsOpen(x - 1, y - 1) ? Piece.EdgeRightFaceLower : Piece.EdgeRightFaceUpper;
             if (IsFace(map, x + 1, y))
-                return Piece.EdgeLeft;
+                return map.IsOpen(x + 1, y - 1) ? Piece.EdgeLeftFaceLower : Piece.EdgeLeftFaceUpper;
 
             if (map.IsOpen(x + 1, y + 1))
                 return Piece.CornerBottomLeft;

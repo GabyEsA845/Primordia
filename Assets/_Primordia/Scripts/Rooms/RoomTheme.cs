@@ -18,6 +18,8 @@ namespace Primordia.Rooms
 
         [Header("Paredes")]
         [SerializeField] TileBase cap;
+        [Tooltip("Variantes de la tapa (una mata más); salen en 1 de cada 4 tiles. Vacío: siempre la tapa normal.")]
+        [SerializeField] TileBase[] capVariants;
         [SerializeField] TileBase[] faceUpper;
         [SerializeField] TileBase[] faceLower;
         [SerializeField] TileBase edgeLeft;
@@ -33,6 +35,11 @@ namespace Primordia.Rooms
         [SerializeField] TileBase faceLowerEndRight;
         [SerializeField] TileBase outerTopLeft;
         [SerializeField] TileBase outerTopRight;
+        [Header("Columna de pared junto a la cara (opcionales: sin ellas, EdgeLeft / EdgeRight)")]
+        [SerializeField] TileBase edgeLeftFaceUpper;
+        [SerializeField] TileBase edgeLeftFaceLower;
+        [SerializeField] TileBase edgeRightFaceUpper;
+        [SerializeField] TileBase edgeRightFaceLower;
         [Tooltip("Se usa donde falta una pieza, para verla enseguida.")]
         [SerializeField] TileBase missing;
 
@@ -142,7 +149,8 @@ namespace Primordia.Rooms
         }
 
         /// <summary>
-        /// Tile de una pieza. <paramref name="hash"/> elige variante de forma estable para cada celda.
+        /// Tile de una pieza. <paramref name="hash"/> elige variante de forma estable para cada celda. Las caras van en pares:
+        /// la de abajo se pide con el hash de la celda de arriba, así las dos eligen el mismo índice y el tronco sigue.
         /// Devuelve el tile de "falta pieza" si el tema no la tiene.
         /// </summary>
         public TileBase Get(Piece piece, int hash)
@@ -151,7 +159,7 @@ namespace Primordia.Rooms
             {
                 Piece.Floor => hash % 3 == 0 ? Pick(floorVariants, hash / 3) ?? floor : floor,
                 Piece.FloorShadow => Pick(floorShadow, hash) ?? floor,
-                Piece.Cap => cap,
+                Piece.Cap => hash % 4 == 0 ? Pick(capVariants, hash / 4) ?? cap : cap,
                 Piece.FaceUpper => Pick(faceUpper, hash),
                 Piece.FaceLower => Pick(faceLower, hash),
                 Piece.FaceUpperEndLeft => faceUpperEndLeft,
@@ -161,6 +169,10 @@ namespace Primordia.Rooms
                 Piece.EdgeLeft => edgeLeft,
                 Piece.EdgeRight => edgeRight,
                 Piece.EdgeBottom => edgeBottom,
+                Piece.EdgeLeftFaceUpper => edgeLeftFaceUpper != null ? edgeLeftFaceUpper : edgeLeft,
+                Piece.EdgeLeftFaceLower => edgeLeftFaceLower != null ? edgeLeftFaceLower : edgeLeft,
+                Piece.EdgeRightFaceUpper => edgeRightFaceUpper != null ? edgeRightFaceUpper : edgeRight,
+                Piece.EdgeRightFaceLower => edgeRightFaceLower != null ? edgeRightFaceLower : edgeRight,
                 Piece.OuterTopLeft => outerTopLeft,
                 Piece.OuterTopRight => outerTopRight,
                 Piece.CornerBottomLeft => cornerBottomLeft,
@@ -201,6 +213,16 @@ namespace Primordia.Rooms
             faceLowerEndRight = newFaceLowerEndRight;
             outerTopLeft = newOuterTopLeft;
             outerTopRight = newOuterTopRight;
+        }
+
+        internal void ConfigureWallExtras(TileBase[] newCapVariants, TileBase newEdgeLeftFaceUpper, TileBase newEdgeLeftFaceLower,
+            TileBase newEdgeRightFaceUpper, TileBase newEdgeRightFaceLower)
+        {
+            capVariants = newCapVariants;
+            edgeLeftFaceUpper = newEdgeLeftFaceUpper;
+            edgeLeftFaceLower = newEdgeLeftFaceLower;
+            edgeRightFaceUpper = newEdgeRightFaceUpper;
+            edgeRightFaceLower = newEdgeRightFaceLower;
         }
 
         internal void ConfigureDecorations(TileBase[] newDecorations, float newChance)

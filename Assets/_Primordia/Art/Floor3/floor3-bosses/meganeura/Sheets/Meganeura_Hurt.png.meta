@@ -1,0 +1,600 @@
+fileFormatVersion: 2
+guid: fc5586d1ea621d24cb23ae347dab2add
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7310961330456270019
+    second: Meganeura_Hurt_0
+  - first:
+      213: -7189139315359090378
+    second: Meganeura_Hurt_1
+  - first:
+      213: -371543094187981168
+    second: Meganeura_Hurt_2
+  - first:
+      213: 453245762074160027
+    second: Meganeura_Hurt_3
+  - first:
+      213: 1626087872905110931
+    second: Meganeura_Hurt_4
+  - first:
+      213: 6480444687907225482
+    second: Meganeura_Hurt_5
+  - first:
+      213: -4222820594692975456
+    second: Meganeura_Hurt_6
+  - first:
+      213: -6459403788018053571
+    second: Meganeura_Hurt_7
+  - first:
+      213: -1183302254377353408
+    second: Meganeura_Hurt_8
+  - first:
+      213: -5364545551303680071
+    second: Meganeura_Hurt_9
+  - first:
+      213: -2373856924151575711
+    second: Meganeura_Hurt_10
+  - first:
+      213: 6589387343041726696
+    second: Meganeura_Hurt_11
+  - first:
+      213: 4331690010348947204
+    second: Meganeura_Hurt_12
+  - first:
+      213: 4853757566414750335
+    second: Meganeura_Hurt_13
+  - first:
+      213: 9006449759368101089
+    second: Meganeura_Hurt_14
+  - first:
+      213: -9091088363268385599
+    second: Meganeura_Hurt_15
+  - first:
+      213: -499878076305645450
+    second: Meganeura_Hurt_16
+  - first:
+      213: 3695728244537381472
+    second: Meganeura_Hurt_17
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Meganeura_Hurt_0
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 1554
+        width: 154
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c4967c4890c57560800000000000000
+      internalID: 7310961330456270019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Meganeura_Hurt_1
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 1554
+        width: 154
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 639f933e1eb0b3c90800000000000000
+      internalID: -7189139315359090378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Meganeura_Hurt_2
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 1366
+        width: 154
+        height: 139
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0960d2c368308daf0800000000000000
+      internalID: -371543094187981168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Meganeura_Hurt_3
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 1366
+        width: 154
+        height: 139
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9ba1648e904a4600800000000000000
+      internalID: 453245762074160027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Meganeura_Hurt_4
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 1189
+        width: 138
+        height: 139
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 39564161e46019610800000000000000
+      internalID: 1626087872905110931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Meganeura_Hurt_5
+      rect:
+        serializedVersion: 2
+        x: 215
+        y: 1189
+        width: 138
+        height: 139
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a8ff649db1a2fe950800000000000000
+      internalID: 6480444687907225482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Meganeura_Hurt_6
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 999
+        width: 132
+        height: 145
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a41f17ea078565c0800000000000000
+      internalID: -4222820594692975456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Meganeura_Hurt_7
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 999
+        width: 132
+        height: 145
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3e0f5a6a769b56a0800000000000000
+      internalID: -6459403788018053571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Meganeura_Hurt_8
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 809
+        width: 125
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 04f3be97ed0149fe0800000000000000
+      internalID: -1183302254377353408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Meganeura_Hurt_9
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 809
+        width: 125
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9bf54216e3e4d85b0800000000000000
+      internalID: -5364545551303680071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Meganeura_Hurt_10
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 628
+        width: 132
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 16b085864bd5e0fd0800000000000000
+      internalID: -2373856924151575711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Meganeura_Hurt_11
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 628
+        width: 132
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e8057d50e4327b50800000000000000
+      internalID: 6589387343041726696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Meganeura_Hurt_12
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 443
+        width: 138
+        height: 105
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 40705f73d114d1c30800000000000000
+      internalID: 4331690010348947204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Meganeura_Hurt_13
+      rect:
+        serializedVersion: 2
+        x: 215
+        y: 443
+        width: 138
+        height: 105
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f7204045ac20c5340800000000000000
+      internalID: 4853757566414750335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Meganeura_Hurt_14
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 249
+        width: 154
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ecb98286565dfc70800000000000000
+      internalID: 9006449759368101089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Meganeura_Hurt_15
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 249
+        width: 154
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c453bddc47f5d180800000000000000
+      internalID: -9091088363268385599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Meganeura_Hurt_16
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 58
+        width: 154
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 670ebceb9831019f0800000000000000
+      internalID: -499878076305645450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Meganeura_Hurt_17
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 58
+        width: 154
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0625702f14dd94330800000000000000
+      internalID: 3695728244537381472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Meganeura_Hurt_0: 7310961330456270019
+      Meganeura_Hurt_1: -7189139315359090378
+      Meganeura_Hurt_10: -2373856924151575711
+      Meganeura_Hurt_11: 6589387343041726696
+      Meganeura_Hurt_12: 4331690010348947204
+      Meganeura_Hurt_13: 4853757566414750335
+      Meganeura_Hurt_14: 9006449759368101089
+      Meganeura_Hurt_15: -9091088363268385599
+      Meganeura_Hurt_16: -499878076305645450
+      Meganeura_Hurt_17: 3695728244537381472
+      Meganeura_Hurt_2: -371543094187981168
+      Meganeura_Hurt_3: 453245762074160027
+      Meganeura_Hurt_4: 1626087872905110931
+      Meganeura_Hurt_5: 6480444687907225482
+      Meganeura_Hurt_6: -4222820594692975456
+      Meganeura_Hurt_7: -6459403788018053571
+      Meganeura_Hurt_8: -1183302254377353408
+      Meganeura_Hurt_9: -5364545551303680071
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

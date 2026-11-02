@@ -1,0 +1,600 @@
+fileFormatVersion: 2
+guid: ae2ba3efbbc0a44478ce2ab4f76b174f
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -7546266469421758084
+    second: Megarachne_Hurt_0
+  - first:
+      213: 6467406672145592330
+    second: Megarachne_Hurt_1
+  - first:
+      213: 7187632984655159123
+    second: Megarachne_Hurt_2
+  - first:
+      213: -2734892306793891882
+    second: Megarachne_Hurt_3
+  - first:
+      213: 5423876199788989255
+    second: Megarachne_Hurt_4
+  - first:
+      213: 6493726766932332400
+    second: Megarachne_Hurt_5
+  - first:
+      213: 2676289537078319979
+    second: Megarachne_Hurt_6
+  - first:
+      213: -472376279193573468
+    second: Megarachne_Hurt_7
+  - first:
+      213: 9063372819343102927
+    second: Megarachne_Hurt_8
+  - first:
+      213: -2491021449106536266
+    second: Megarachne_Hurt_9
+  - first:
+      213: -7309888005753190142
+    second: Megarachne_Hurt_10
+  - first:
+      213: 94368253057252620
+    second: Megarachne_Hurt_11
+  - first:
+      213: 299006289107125221
+    second: Megarachne_Hurt_12
+  - first:
+      213: 7190589991616822032
+    second: Megarachne_Hurt_13
+  - first:
+      213: -4964997127894957606
+    second: Megarachne_Hurt_14
+  - first:
+      213: 7971869084973385370
+    second: Megarachne_Hurt_15
+  - first:
+      213: -2148042626833683283
+    second: Megarachne_Hurt_16
+  - first:
+      213: -6613900058541621136
+    second: Megarachne_Hurt_17
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Megarachne_Hurt_0
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 1057
+        width: 94
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c79ccadb0a6464790800000000000000
+      internalID: -7546266469421758084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Megarachne_Hurt_1
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 1057
+        width: 94
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a00ba3f3a18d0c950800000000000000
+      internalID: 6467406672145592330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Megarachne_Hurt_2
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 929
+        width: 97
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 35f504a2e1a9fb360800000000000000
+      internalID: 7187632984655159123
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Megarachne_Hurt_3
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 929
+        width: 97
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d7f992efe5bb0ad0800000000000000
+      internalID: -2734892306793891882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Megarachne_Hurt_4
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 796
+        width: 98
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74b4e12baaa754b40800000000000000
+      internalID: 5423876199788989255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Megarachne_Hurt_5
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 796
+        width: 98
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07f827bd61a5e1a50800000000000000
+      internalID: 6493726766932332400
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Megarachne_Hurt_6
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 667
+        width: 95
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b6bd5a58727142520800000000000000
+      internalID: 2676289537078319979
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Megarachne_Hurt_7
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 667
+        width: 95
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a7a85ed648c179f0800000000000000
+      internalID: -472376279193573468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Megarachne_Hurt_8
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 537
+        width: 92
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc350e33f8197cd70800000000000000
+      internalID: 9063372819343102927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Megarachne_Hurt_9
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 537
+        width: 92
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b84026a03d1e6dd0800000000000000
+      internalID: -2491021449106536266
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Megarachne_Hurt_10
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 404
+        width: 92
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2094135969f0e8a90800000000000000
+      internalID: -7309888005753190142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Megarachne_Hurt_11
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 404
+        width: 92
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0d3d891d634f4100800000000000000
+      internalID: 94368253057252620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Megarachne_Hurt_12
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 276
+        width: 95
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e386dfb2a8462400800000000000000
+      internalID: 299006289107125221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Megarachne_Hurt_13
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 276
+        width: 95
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01bbccfff7b1ac360800000000000000
+      internalID: 7190589991616822032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Megarachne_Hurt_14
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 147
+        width: 97
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad18cf8fa69c81bb0800000000000000
+      internalID: -4964997127894957606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Megarachne_Hurt_15
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 147
+        width: 97
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a96c1cd22b4c1ae60800000000000000
+      internalID: 7971869084973385370
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Megarachne_Hurt_16
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 24
+        width: 94
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dac6e299c9e9032e0800000000000000
+      internalID: -2148042626833683283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Megarachne_Hurt_17
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 24
+        width: 94
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07001be40f4b634a0800000000000000
+      internalID: -6613900058541621136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Megarachne_Hurt_0: -7546266469421758084
+      Megarachne_Hurt_1: 6467406672145592330
+      Megarachne_Hurt_10: -7309888005753190142
+      Megarachne_Hurt_11: 94368253057252620
+      Megarachne_Hurt_12: 299006289107125221
+      Megarachne_Hurt_13: 7190589991616822032
+      Megarachne_Hurt_14: -4964997127894957606
+      Megarachne_Hurt_15: 7971869084973385370
+      Megarachne_Hurt_16: -2148042626833683283
+      Megarachne_Hurt_17: -6613900058541621136
+      Megarachne_Hurt_2: 7187632984655159123
+      Megarachne_Hurt_3: -2734892306793891882
+      Megarachne_Hurt_4: 5423876199788989255
+      Megarachne_Hurt_5: 6493726766932332400
+      Megarachne_Hurt_6: 2676289537078319979
+      Megarachne_Hurt_7: -472376279193573468
+      Megarachne_Hurt_8: 9063372819343102927
+      Megarachne_Hurt_9: -2491021449106536266
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

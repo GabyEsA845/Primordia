@@ -1,0 +1,574 @@
+fileFormatVersion: 2
+guid: 81a20448e992b51488ee645fe54d7184
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7590979425537547475
+    second: Fx_FallShadow_0
+  - first:
+      213: -5272776510455057390
+    second: Fx_FallShadow_1
+  - first:
+      213: -6896886651155876712
+    second: Fx_FallShadow_2
+  - first:
+      213: 1644311187895022795
+    second: Fx_FallShadow_3
+  - first:
+      213: 7242986311439099689
+    second: Fx_FallShadow_4
+  - first:
+      213: -2455417713402985798
+    second: Fx_FallShadow_5
+  - first:
+      213: 4644258229455005561
+    second: Fx_FallShadow_6
+  - first:
+      213: 8197020075436489031
+    second: Fx_FallShadow_7
+  - first:
+      213: 1214022503593110193
+    second: Fx_FallShadow_8
+  - first:
+      213: 2941462857929831371
+    second: Fx_FallShadow_9
+  - first:
+      213: -4843048376468852958
+    second: Fx_FallShadow_10
+  - first:
+      213: 7195961458937790690
+    second: Fx_FallShadow_11
+  - first:
+      213: 5618068712982804855
+    second: Fx_FallShadow_12
+  - first:
+      213: -7907710393928150543
+    second: Fx_FallShadow_13
+  - first:
+      213: 839606549049153966
+    second: Fx_FallShadow_14
+  - first:
+      213: 2564681516193990919
+    second: Fx_FallShadow_15
+  - first:
+      213: -5865487038846059442
+    second: Fx_FallShadow_16
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Fx_FallShadow_0
+      rect:
+        serializedVersion: 2
+        x: 802
+        y: 24
+        width: 16
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3dcd67c9193985960800000000000000
+      internalID: 7590979425537547475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fx_FallShadow_1
+      rect:
+        serializedVersion: 2
+        x: 1637
+        y: 24
+        width: 29
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2147d4a33b553d6b0800000000000000
+      internalID: -5272776510455057390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fx_FallShadow_2
+      rect:
+        serializedVersion: 2
+        x: 2473
+        y: 22
+        width: 41
+        height: 115
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89478bdc1265940a0800000000000000
+      internalID: -6896886651155876712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fx_FallShadow_3
+      rect:
+        serializedVersion: 2
+        x: 3308
+        y: 22
+        width: 54
+        height: 115
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc4feae3054c1d610800000000000000
+      internalID: 1644311187895022795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fx_FallShadow_4
+      rect:
+        serializedVersion: 2
+        x: 4144
+        y: 22
+        width: 66
+        height: 115
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 927285edca1448460800000000000000
+      internalID: 7242986311439099689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fx_FallShadow_5
+      rect:
+        serializedVersion: 2
+        x: 4967
+        y: 22
+        width: 91
+        height: 115
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab2c969599a9cedd0800000000000000
+      internalID: -2455417713402985798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fx_FallShadow_6
+      rect:
+        serializedVersion: 2
+        x: 5777
+        y: 18
+        width: 129
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 977a9dbd048b37040800000000000000
+      internalID: 4644258229455005561
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fx_FallShadow_7
+      rect:
+        serializedVersion: 2
+        x: 6576
+        y: 16
+        width: 178
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7493325345aa1c170800000000000000
+      internalID: 8197020075436489031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fx_FallShadow_8
+      rect:
+        serializedVersion: 2
+        x: 7364
+        y: 14
+        width: 238
+        height: 131
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ba6ffbe80319d010800000000000000
+      internalID: 1214022503593110193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fx_FallShadow_9
+      rect:
+        serializedVersion: 2
+        x: 8142
+        y: 10
+        width: 308
+        height: 139
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc3b9ee72ec22d820800000000000000
+      internalID: 2941462857929831371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fx_FallShadow_10
+      rect:
+        serializedVersion: 2
+        x: 8913
+        y: 6
+        width: 385
+        height: 147
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22faa8249290accb0800000000000000
+      internalID: -4843048376468852958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fx_FallShadow_11
+      rect:
+        serializedVersion: 2
+        x: 9680
+        y: 0
+        width: 466
+        height: 161
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e0836132d03dd360800000000000000
+      internalID: 7195961458937790690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fx_FallShadow_12
+      rect:
+        serializedVersion: 2
+        x: 10447
+        y: 0
+        width: 547
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 77973198ab367fd40800000000000000
+      internalID: 5618068712982804855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fx_FallShadow_13
+      rect:
+        serializedVersion: 2
+        x: 11221
+        y: 0
+        width: 621
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f19f372b4b224290800000000000000
+      internalID: -7907710393928150543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fx_FallShadow_14
+      rect:
+        serializedVersion: 2
+        x: 12014
+        y: 0
+        width: 676
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea99a2b35b1e6ab00800000000000000
+      internalID: 839606549049153966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fx_FallShadow_15
+      rect:
+        serializedVersion: 2
+        x: 12828
+        y: 0
+        width: 710
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 709c0ce2044979320800000000000000
+      internalID: 2564681516193990919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fx_FallShadow_16
+      rect:
+        serializedVersion: 2
+        x: 13663
+        y: 0
+        width: 723
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4c3ce66d9a999ea0800000000000000
+      internalID: -5865487038846059442
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Fx_FallShadow_0: 7590979425537547475
+      Fx_FallShadow_1: -5272776510455057390
+      Fx_FallShadow_10: -4843048376468852958
+      Fx_FallShadow_11: 7195961458937790690
+      Fx_FallShadow_12: 5618068712982804855
+      Fx_FallShadow_13: -7907710393928150543
+      Fx_FallShadow_14: 839606549049153966
+      Fx_FallShadow_15: 2564681516193990919
+      Fx_FallShadow_16: -5865487038846059442
+      Fx_FallShadow_2: -6896886651155876712
+      Fx_FallShadow_3: 1644311187895022795
+      Fx_FallShadow_4: 7242986311439099689
+      Fx_FallShadow_5: -2455417713402985798
+      Fx_FallShadow_6: 4644258229455005561
+      Fx_FallShadow_7: 8197020075436489031
+      Fx_FallShadow_8: 1214022503593110193
+      Fx_FallShadow_9: 2941462857929831371
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

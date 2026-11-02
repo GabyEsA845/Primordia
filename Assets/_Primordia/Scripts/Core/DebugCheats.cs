@@ -14,7 +14,8 @@ namespace Primordia.Core
     /// la siguiente Boca del piso, con el mismo nivel (para probar las Bocas del piso 2 en Test_Floor2), F7 lleva junto a
     /// la cápsula de la sala de cambio y F8 completa el siguiente linaje del piso (equipa sus 4 mutaciones, para probar
     /// beneficios, toques y evoluciones), F9 derrumba las rocas agrietadas de la sala y F10 pasa el derrumbe de la cueva a su
-    /// siguiente fase (calma, crujidos, terremoto, derrumbe; sala del Euriptérido). Arriba a la izquierda se ve qué está activo.
+    /// siguiente fase (calma, crujidos, terremoto, derrumbe; sala del Euriptérido), Av Pág / Re Pág saltan al tramo siguiente o
+    /// anterior del piso (piso 3). Arriba a la izquierda se ve qué está activo.
     /// </summary>
     public class DebugCheats : MonoBehaviour
     {
@@ -86,6 +87,10 @@ namespace Primordia.Core
                 CycleTeleport();
             if (keyboard.f10Key.wasPressedThisFrame)
                 NextCaveMode();
+            if (keyboard.pageDownKey.wasPressedThisFrame)
+                GoToBand(1);
+            if (keyboard.pageUpKey.wasPressedThisFrame)
+                GoToBand(-1);
 
             // La esquiva enciende y apaga la invulnerabilidad: aquí se renueva cada cuadro sin tocarla.
             if (invulnerable && player.Health != null)
@@ -120,6 +125,40 @@ namespace Primordia.Core
         }
 
         int teleportIndex;
+
+        /// <summary>Av Pág / Re Pág: salta a la sala más cercana del tramo (franja) siguiente o anterior del piso.</summary>
+        void GoToBand(int step)
+        {
+            int band = current != null ? current.DepthBand : -1;
+            if (band < 0)
+            {
+                Say("Este piso no tiene tramos o no estás en una sala con tramo");
+                return;
+            }
+            Room target = null;
+            float best = float.MaxValue;
+            foreach (var room in FindObjectsByType<Room>(FindObjectsSortMode.None))
+            {
+                if (room.DepthBand != band + step || !room.TryGetComponent<Collider2D>(out var area))
+                    continue;
+                float distance = ((Vector2)area.bounds.center - (Vector2)player.transform.position).sqrMagnitude;
+                if (distance < best)
+                {
+                    best = distance;
+                    target = room;
+                }
+            }
+            if (target == null)
+            {
+                Say("No hay más tramos en esa dirección");
+                return;
+            }
+            Vector2 position = target.GetComponent<Collider2D>().bounds.center;
+            if (player.TryGetComponent<Rigidbody2D>(out var body))
+                body.position = position;
+            player.transform.position = position;
+            Say($"Tramo {band + step + 1}");
+        }
 
         void GoToExchange()
         {

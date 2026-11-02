@@ -137,7 +137,7 @@ namespace Primordia.Core
             }
             Room target = null;
             float best = float.MaxValue;
-            foreach (var room in FindObjectsByType<Room>(FindObjectsSortMode.None))
+            foreach (var room in FindObjectsByType<Room>())
             {
                 if (room.DepthBand != band + step || !room.TryGetComponent<Collider2D>(out var area))
                     continue;

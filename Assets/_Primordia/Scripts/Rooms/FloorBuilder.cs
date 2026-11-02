@@ -289,7 +289,7 @@ namespace Primordia.Rooms
                 var entranceCells = room.DoorCells.TryGetValue(-layout.Direction(link), out var cells) ? cells : null;
                 if (entranceCells == null || entranceCells.Count == 0)
                     continue;
-                var entrance = new Vector2(entranceCells.Average(cell => cell.x), entranceCells.Average(cell => cell.y));
+                var entrance = new Vector2((float)entranceCells.Average(cell => cell.x), (float)entranceCells.Average(cell => cell.y));
                 var inward = room.FloorCenter - entrance;
                 if (inward.sqrMagnitude < 1f)
                     continue;

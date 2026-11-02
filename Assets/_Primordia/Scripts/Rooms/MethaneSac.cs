@@ -2,6 +2,7 @@ using System.Collections;
 using Primordia.Combat;
 using Primordia.Core;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 namespace Primordia.Rooms
 {
@@ -35,6 +36,7 @@ namespace Primordia.Rooms
         Collider2D[] colliders = System.Array.Empty<Collider2D>();
         State state;
         float phase;
+        Light2D glow;
 
         /// <summary>Centro del odre (un poco por encima de su base), donde explota.</summary>
         public Vector2 Position => (Vector2)transform.position + Vector2.up * 0.45f;
@@ -42,6 +44,9 @@ namespace Primordia.Rooms
         public bool CanIgnite => state == State.Idle;
 
         public bool IsSpent => state == State.Spent;
+
+        /// <summary>La luz cian suave del odre: se apaga en cuanto empieza a reventar.</summary>
+        public void SetGlow(Light2D light) => glow = light;
 
         /// <summary>Monta un odre en la base <paramref name="position"/> con ese arte.</summary>
         internal static MethaneSac Create(Transform parent, Vector2 position, Sprite[] idle, Sprite[] burst, Sprite remains)
@@ -133,6 +138,8 @@ namespace Primordia.Rooms
                 return;
             state = State.Bursting;
             Flammables.Unregister(this);
+            if (glow != null)
+                glow.gameObject.SetActive(false);
             // Deja de bloquear y de recibir golpes en cuanto empieza a reventar.
             foreach (var collider in colliders)
             {

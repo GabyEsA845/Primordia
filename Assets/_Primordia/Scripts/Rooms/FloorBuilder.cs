@@ -1348,6 +1348,9 @@ namespace Primordia.Rooms
             return door;
         }
 
+        // Luz cian suave de los odres de metano (el cian pálido de su arte).
+        static readonly Glow MethaneGlow = new(null, new Color(0.42f, 0.82f, 0.93f), 2.2f, new Vector2(0.25f, 0.45f), 1.8f);
+
         /// <summary>
         /// Metano del tramo (piso 3): unos pocos odres y manchas de niebla en las salas de combate y laterales, lejos de las
         /// puertas, las paredes y el lodo. Ni en el inicio, ni en la tienda, ni en las salas de los jefes.
@@ -1379,7 +1382,10 @@ namespace Primordia.Rooms
                     var position = placed.Origin + local;
                     if (!TakeSpot(taken, position, BigSceneryRadius))
                         continue;
-                    MethaneSac.Create(holder, new Vector2(position.x, position.y - 0.4f), spec.sacIdle, spec.sacBurst, spec.sacRemains);
+                    var sac = MethaneSac.Create(holder, new Vector2(position.x, position.y - 0.4f), spec.sacIdle, spec.sacBurst, spec.sacRemains);
+                    // Una luz cian suave que late (con la luz global que hace falta para que lo demás no quede a oscuras).
+                    Ambience.CreateGlobalLight(holder);
+                    sac.SetGlow(Ambience.CreateGlow(sac.transform, sac.Position, MethaneGlow, (float)random.NextDouble() * MethaneGlow.period));
                     placedSacs++;
                 }
             }

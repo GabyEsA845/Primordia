@@ -121,6 +121,8 @@ namespace Primordia.Player
         float nextDodgeTime;
         Vector2 lungeVelocity;
         float lungeEndTime;
+        Vector2 shoveVelocity;
+        float shoveEndTime;
         float slowFactor = 1f;
         float slowUntil;
         readonly List<RaycastHit2D> castHits = new();
@@ -198,6 +200,12 @@ namespace Primordia.Player
                 StopLunge();
             }
 
+            if (Time.time < shoveEndTime && CanAct)
+            {
+                rb.linearVelocity = shoveVelocity * TimeWarp.PlayerSpeed;
+                return;
+            }
+
             rb.linearVelocity = CanAct ? MoveInput * (SpeedOverride ?? moveSpeed) * SlowFactor * TerrainSpeedFactor * TimeWarp.PlayerSpeed : Vector2.zero;
         }
 
@@ -211,6 +219,7 @@ namespace Primordia.Player
             DodgeInChain = Time.time >= nextDodgeTime ? 1 : DodgeInChain + 1;
             DodgeDirection = ChooseDodgeDirection(MoveInput, AimDirection);
             StopLunge();
+            shoveEndTime = 0f;
             IsDodging = true;
             // Los tiempos van en tiempo de juego: en cámara lenta duran lo mismo para el jugador.
             dodgeEndTime = Time.time + dodgeDuration * TimeWarp.Scale;
@@ -250,6 +259,21 @@ namespace Primordia.Player
         }
 
         public void StopLunge() => lungeEndTime = 0f;
+
+        /// <summary>True mientras un empujón externo (la fumarola) lo lleva.</summary>
+        public bool IsShoved => Time.time < shoveEndTime;
+
+        /// <summary>
+        /// Lo empuja con esa velocidad durante ese tiempo (en tiempo de juego), sin dejarle moverse por su cuenta. Una esquiva
+        /// empezada durante el empujón lo cancela. No hace nada si no puede actuar.
+        /// </summary>
+        public void Shove(Vector2 velocity, float duration)
+        {
+            if (!CanAct || duration <= 0f)
+                return;
+            shoveVelocity = velocity;
+            shoveEndTime = Time.time + duration * TimeWarp.Scale;
+        }
 
         /// <summary>La esquiva queda lista ya (Sangre en el agua del Tiburón).</summary>
         public void ResetDodgeCooldown() => nextDodgeTime = 0f;

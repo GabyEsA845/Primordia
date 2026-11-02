@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Primordia.Combat;
 using Primordia.Core;
 using Primordia.Enemies;
 using Primordia.Player;
@@ -10,7 +11,9 @@ namespace Primordia.Rooms
     /// <summary>
     /// Fumarola del piso 3: un agujero del suelo que en reposo suelta un hilo de vapor, avisa (brilla y burbujea) y lanza un
     /// chorro de vapor en columna. El chorro hace 1 de daño al jugador y 3 a los enemigos que están en la columna (una vez por
-    /// chorro; la esquiva pasa por encima) y no prende nada. Cada fumarola empieza en un punto distinto del ciclo.
+    /// chorro; la esquiva pasa por encima) y no prende nada. Además empuja a quien está en la columna hacia fuera, al lado en el
+    /// que está (unos 2 tiles; los jefes no se mueven), con una ráfaga de vapor detrás: así se puede mandar a un enemigo al lodo o
+    /// al fuego. Cada fumarola empieza en un punto distinto del ciclo.
     /// </summary>
     public class SteamVent : MonoBehaviour
     {
@@ -24,6 +27,12 @@ namespace Primordia.Rooms
         const int LastDamageFrame = 3;
         const int PlayerDamage = 1;
         const int EnemyDamage = 3;
+        // El empujón: unos 2 tiles. Al jugador, a velocidad constante 0,2 s; al enemigo, con la frenada de sus empujones (30 u/s²).
+        const float PlayerPushSpeed = 10f;
+        const float PlayerPushSeconds = 0.2f;
+        const float EnemyPushSpeed = 11f;
+        const float EnemyStunSeconds = 0.25f;
+        const float GustFrameSeconds = 0.07f;
         // La columna: ancho y alto sobre la boca, en tiles.
         static readonly Vector2 Column = new(0.9f, 3.5f);
 
@@ -110,13 +119,40 @@ namespace Primordia.Rooms
                         continue;
                     hurt.Add(health);
                     health.TakeDamage(PlayerDamage);
+                    float side = SideOf(hit);
+                    player.Shove(Vector2.right * side * PlayerPushSpeed, PlayerPushSeconds);
+                    Gust(hit.bounds.center, side);
                 }
                 else if (health.GetComponentInParent<Enemy>() != null)
                 {
                     hurt.Add(health);
                     health.TakeDamage(EnemyDamage);
+                    if (!health.IsDead && health.GetComponentInParent<IBoss>() == null
+                        && health.GetComponentInParent<IPushable>() is { } pushable)
+                    {
+                        float side = SideOf(hit);
+                        pushable.Knockback(Vector2.right * side * EnemyPushSpeed, EnemyStunSeconds);
+                        Gust(hit.bounds.center, side);
+                    }
                 }
             }
+        }
+
+        /// <summary>A qué lado de la columna está (1 derecha, −1 izquierda); justo en medio, a la derecha.</summary>
+        float SideOf(Collider2D hit) => hit.bounds.center.x < transform.position.x ? -1f : 1f;
+
+        /// <summary>La ráfaga de vapor detrás de lo que sale empujado, mirando hacia donde va.</summary>
+        static void Gust(Vector2 position, float side)
+        {
+            var frames = PolishArt.Current != null ? PolishArt.Current.ventGust : null;
+            if (frames == null || frames.Length == 0)
+                return;
+            var go = new GameObject("VentGust");
+            go.transform.position = position;
+            var renderer = go.AddComponent<SpriteRenderer>();
+            renderer.flipX = side < 0f;
+            renderer.sortingOrder = 3;
+            go.AddComponent<SpriteFramePlayer>().Play(renderer, frames, GustFrameSeconds, newLoop: false);
         }
     }
 }

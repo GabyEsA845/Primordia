@@ -82,6 +82,7 @@ namespace Primordia.Editor
                 doors[i] = new PolishArt.DoorLayers
                 {
                     theme = theme,
+                    arch = ArchSprite(theme),
                     front = First(PolishSheet($"Doors/{theme}", "Doorway_Top_Front", 0, center, $"Door_{theme}_")),
                     shade = First(PolishSheet($"Doors/{theme}", "Doorway_Top_Shade", 0, center, $"Door_{theme}_")),
                 };
@@ -100,6 +101,20 @@ namespace Primordia.Editor
             else
                 Debug.LogWarning("ArtSetup: no existe Effect_Burning; ejecuta antes Primordia > Floor 3 > Crear reacciones (fuego) y vuelve a importar el pulido.");
             Debug.Log("ArtSetup: pulido del piso 3 importado en Resources/PolishArt (lodo, llamas, iconos, agua, fumarola y puertas).");
+        }
+
+        /// <summary>El arco ya importado de ese tema (el que usa su RoomTheme), o null si el tema aún no se ha importado.</summary>
+        static Sprite ArchSprite(string theme)
+        {
+            string path = theme is "Swamp" or "Smoke" or "Burnt"
+                ? $"Assets/_Primordia/Art/Floor3/floor3-environment/{theme}/Doorway_Top.png"
+                : $"Assets/_Primordia/Art/Environment/{theme}/Doors/Doorway_Top.png";
+            foreach (var asset in AssetDatabase.LoadAllAssetsAtPath(path))
+            {
+                if (asset is Sprite sprite)
+                    return sprite;
+            }
+            return null;
         }
 
         /// <summary>

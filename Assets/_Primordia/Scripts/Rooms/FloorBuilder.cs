@@ -1317,6 +1317,11 @@ namespace Primordia.Rooms
                 var doorwayRenderer = doorway.AddComponent<SpriteRenderer>();
                 doorwayRenderer.sprite = theme.Doorway;
                 doorwayRenderer.sortingOrder = -9;
+
+                // Con el arte del pulido, el jugador cruza el arco por detrás de su marco.
+                var layers = PolishArt.Current != null ? PolishArt.Current.DoorFor(theme.Doorway) : null;
+                if (layers != null)
+                    DoorwayCrossing.Create(doorway.transform, layers.front, layers.shade);
             }
 
             var doorObject = new GameObject($"Door_{DirectionName(direction)}");

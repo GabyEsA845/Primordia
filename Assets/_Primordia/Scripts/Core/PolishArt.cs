@@ -28,6 +28,8 @@ namespace Primordia.Core
         public class DoorLayers
         {
             public string theme;
+            /// <summary>El arco de la puerta de ese tema (<c>Doorway_Top</c>): con él se reconoce el tema.</summary>
+            public Sprite arch;
             public Sprite front;
             public Sprite shade;
         }
@@ -83,6 +85,17 @@ namespace Primordia.Core
         {
             foreach (var door in doors)
                 if (door.theme == theme)
+                    return door;
+            return null;
+        }
+
+        /// <summary>Las capas de la puerta de un tema, buscadas por su arco. Null si no hay.</summary>
+        public DoorLayers DoorFor(Sprite arch)
+        {
+            if (arch == null)
+                return null;
+            foreach (var door in doors)
+                if (door.arch == arch && door.front != null && door.shade != null)
                     return door;
             return null;
         }

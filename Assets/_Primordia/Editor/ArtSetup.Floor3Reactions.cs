@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Primordia.Rooms;
@@ -76,7 +77,7 @@ namespace Primordia.Editor
 
         // Helechos por tile de suelo libre de la sala: el pantano muy poblado, el bosque humeante menos y la tierra quemada
         // casi sin ellos (los que quedan, carbonizados).
-        static readonly System.Collections.Generic.Dictionary<string, float> FernDensities = new()
+        static readonly Dictionary<string, float> FernDensities = new()
         {
             [SwampThemeName] = 0.030f, [SmokeThemeName] = 0.018f, [BurntThemeName] = 0.006f,
         };

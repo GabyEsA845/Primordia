@@ -141,6 +141,7 @@ Los recursos nuevos (hojas de sprites, GIF de revisión, scripts que los generan
 | Fondo del menú principal | Caldo primordial en 4 capas: agua, rayos de luz, partículas que suben y siluetas que pasan | D | Listo |
 | Minimapa y mapa grande | Minimapa en el HUD y mapa con TAB: marco, panel de vidrio, paleta del plano e iconos (jugador, jefe, recompensa) | M | Listo |
 | Menú de pausa | Estadísticas, criatura en una lente con sus ranuras y cuadro de información | M | Listo |
+| Corazón de sala, iconos de teletransporte y corazón morado | Medio corazón del suelo (reposo, sombra, recogida, vuelo a la vaina), corazón verde entero del HUD, iconos del mapa (medio corazón sin recoger, teletransporte, regreso; con variantes resaltada y apagada) y aura, mota y onda del corazón morado. `docs/multimedia-temp/ui-extras/` (README) | M | Aprobado, sin importar |
 | Volumen en la pausa | Panel "AUDIO" bajo las estadísticas: barras de música (nota) y efectos (altavoz) con su porcentaje. Piezas de `generar_volumen.py` en `docs/multimedia-temp/menus/Pause/` (`UI_Slider_Track`, `UI_Slider_Fill`, `UI_Slider_Knob`, `UI_Stat_Music`, `UI_Stat_Sfx`); lo monta **Primordia > Audio > Añadir volumen a la pausa** (y también Importar menús) | M | Listo |
 | Pantallas de victoria y derrota | | M | Pendiente |
 | Iconos de linaje | Depredador, Acorazado, Tóxico | D | Pendiente |

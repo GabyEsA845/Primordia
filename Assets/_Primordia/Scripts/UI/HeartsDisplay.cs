@@ -71,6 +71,9 @@ namespace Primordia.UI
         {
             if (greenFull != null)
                 return greenFull;
+            var art = UiExtrasArt.Current;
+            if (art != null && art.barrierFull != null)
+                return greenFull = art.barrierFull;
             if (fullHeart == null)
                 return null;
 

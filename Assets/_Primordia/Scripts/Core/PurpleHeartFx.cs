@@ -27,7 +27,13 @@ namespace Primordia.Core
             ringSprite = null;
         }
 
+        const float AuraFrameSeconds = 0.15f;
+        const float BlockFrameSeconds = 0.05f;
+
         Health health;
+        UiExtrasArt art;
+        bool useArt;
+        float nextMote;
         SpriteRenderer aura;
         Image flash;
         float flashStart = -10f;
@@ -37,6 +43,16 @@ namespace Primordia.Core
         void Awake()
         {
             health = GetComponent<Health>();
+            art = UiExtrasArt.Current;
+            useArt = art != null && art.purpleAura.Length > 0;
+            if (useArt)
+            {
+                // Resplandor ligero en el suelo, a los pies del jugador y detrás de él.
+                aura = CreateSprite("PurpleAura", art.purpleAura[0], Color.white, 2);
+                aura.transform.localPosition = new Vector3(0f, -0.5f, 0f);
+                nextMote = Time.time + Random.Range(0.6f, 1.6f);
+                return;
+            }
             aura = CreateSprite("PurpleAura", GlowSprite(), new Color(Purple.r, Purple.g, Purple.b, 0.3f), 3);
             aura.transform.localScale = Vector3.one * 2.2f;
             ring = CreateSprite("PurpleRing", RingSprite(), Purple, 6);
@@ -80,6 +96,8 @@ namespace Primordia.Core
             flashStart = Time.unscaledTime;
             ringStart = Time.unscaledTime;
             ScreenShake.Pulse(3f, 0.25f);
+            if (useArt)
+                SpriteFramePlayer.PlayOnce(art.purpleBlock, BlockFrameSeconds, transform.position, 6);
             Sfx.Play(Sounds.PurpleHeartBlock, pitch: 0.7f);
             EnsureFlash();
         }
@@ -106,6 +124,12 @@ namespace Primordia.Core
 
         void Update()
         {
+            if (useArt)
+            {
+                UpdateArt();
+                return;
+            }
+
             // El aura late despacio.
             if (aura.enabled)
             {
@@ -125,6 +149,25 @@ namespace Primordia.Core
                 ring.transform.localScale = Vector3.one * Mathf.Lerp(0.5f, RingRadius, 1f - (1f - ringT) * (1f - ringT));
                 ring.color = new Color(Purple.r, Purple.g, Purple.b, 1f - ringT);
             }
+        }
+
+        void UpdateArt()
+        {
+            if (aura.enabled)
+            {
+                aura.sprite = art.purpleAura[Mathf.FloorToInt(Time.time / AuraFrameSeconds) % art.purpleAura.Length];
+                // De vez en cuando sube una mota del resplandor.
+                if (Time.time >= nextMote && art.purpleMote.Length > 0)
+                {
+                    nextMote = Time.time + Random.Range(0.8f, 2.2f);
+                    Vector2 at = (Vector2)transform.position + new Vector2(Random.Range(-0.6f, 0.6f), Random.Range(-0.6f, -0.3f));
+                    SpriteFramePlayer.PlayOnce(art.purpleMote, 0.11f, at, 4);
+                }
+            }
+
+            float flashT = (Time.unscaledTime - flashStart) / FlashSeconds;
+            if (flash != null)
+                flash.color = flashT is >= 0f and < 1f ? new Color(Purple.r, Purple.g, Purple.b, 0.45f * (1f - flashT)) : Color.clear;
         }
 
         // Círculo suave (aura) y anillo fino (onda), de 64×64 a 32 px por unidad: 2 u de diámetro.

@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5be30650b7dbe14e8d21c0004b2390c, type: 3}
+  m_Name: UiExtrasArt
+  m_EditorClassIdentifier: Primordia::Primordia.Core.UiExtrasArt
+  roomHeartIdle:
+  - {fileID: -2180010439147864080, guid: dff396ed1113fe445bcaadad4b1c2340, type: 3}
+  - {fileID: 5233151601060291750, guid: dff396ed1113fe445bcaadad4b1c2340, type: 3}
+  - {fileID: -1749759470844026079, guid: dff396ed1113fe445bcaadad4b1c2340, type: 3}
+  - {fileID: 2843091145133254037, guid: dff396ed1113fe445bcaadad4b1c2340, type: 3}
+  - {fileID: -1696544060294592783, guid: dff396ed1113fe445bcaadad4b1c2340, type: 3}
+  - {fileID: -3595996126640628312, guid: dff396ed1113fe445bcaadad4b1c2340, type: 3}
+  - {fileID: 6653872093120404044, guid: dff396ed1113fe445bcaadad4b1c2340, type: 3}
+  - {fileID: 6850304674463199027, guid: dff396ed1113fe445bcaadad4b1c2340, type: 3}
+  roomHeartShadow: {fileID: 7670276935259676339, guid: d2731e26b405e704f80be79be13e7475, type: 3}
+  roomHeartCollect:
+  - {fileID: -8197313007887897064, guid: fb4a54e3c65665540ae1309229857a5c, type: 3}
+  - {fileID: -8860184446164260052, guid: fb4a54e3c65665540ae1309229857a5c, type: 3}
+  - {fileID: 3094538804513783030, guid: fb4a54e3c65665540ae1309229857a5c, type: 3}
+  - {fileID: -1775488763, guid: fb4a54e3c65665540ae1309229857a5c, type: 3}
+  - {fileID: -1131803644, guid: fb4a54e3c65665540ae1309229857a5c, type: 3}
+  - {fileID: 1753821434, guid: fb4a54e3c65665540ae1309229857a5c, type: 3}
+  roomHeartFly:
+  - {fileID: -4001400275266976785, guid: 3441643efefcf6943a9a4958f63d0ed3, type: 3}
+  - {fileID: 7472619061142461192, guid: 3441643efefcf6943a9a4958f63d0ed3, type: 3}
+  - {fileID: -6191010815430721501, guid: 3441643efefcf6943a9a4958f63d0ed3, type: 3}
+  - {fileID: -8553265762874209939, guid: 3441643efefcf6943a9a4958f63d0ed3, type: 3}
+  barrierFull: {fileID: 1535223963501839050, guid: 9c111ff620ba67842bec151b4d86abe6, type: 3}
+  mapHeart: {fileID: -639424939113874933, guid: 5ed857742b3afee4885c21b3cc159c23, type: 3}
+  mapTeleport:
+  - {fileID: -2948294813557471384, guid: f8bb1374d81451d49bc1bb83055ed2b2, type: 3}
+  - {fileID: 1514502471, guid: f8bb1374d81451d49bc1bb83055ed2b2, type: 3}
+  - {fileID: 1926698930, guid: f8bb1374d81451d49bc1bb83055ed2b2, type: 3}
+  - {fileID: 2085885362, guid: f8bb1374d81451d49bc1bb83055ed2b2, type: 3}
+  mapTeleportHover:
+  - {fileID: 8250944539768140111, guid: b9ce9fe855147e0449ede4ed78928241, type: 3}
+  - {fileID: 1963179295, guid: b9ce9fe855147e0449ede4ed78928241, type: 3}
+  - {fileID: 1975444468, guid: b9ce9fe855147e0449ede4ed78928241, type: 3}
+  - {fileID: -393980958, guid: b9ce9fe855147e0449ede4ed78928241, type: 3}
+  mapTeleportDim: {fileID: -7125541422366759024, guid: bac1d9c0fb14f614eadac40f8b0a5f99, type: 3}
+  mapReturn: {fileID: 4408840376728930542, guid: 00f4c4e8d19513348b9b27ca01dce086, type: 3}
+  mapReturnHover: {fileID: -3086649089830747258, guid: a82774a3cdd685645a04272a9bb3d696, type: 3}
+  mapReturnDim: {fileID: 4206031635297070301, guid: 8e86e30763038334784b44634ff8ac2b, type: 3}
+  purpleAura:
+  - {fileID: -2174582096874025505, guid: bb038591619d712498b961dc17cf2c3f, type: 3}
+  - {fileID: -6875319949721016046, guid: bb038591619d712498b961dc17cf2c3f, type: 3}
+  - {fileID: 2099501936992375231, guid: bb038591619d712498b961dc17cf2c3f, type: 3}
+  - {fileID: -2470499118870935500, guid: bb038591619d712498b961dc17cf2c3f, type: 3}
+  - {fileID: 3969163659810399262, guid: bb038591619d712498b961dc17cf2c3f, type: 3}
+  - {fileID: 8014247134726393650, guid: bb038591619d712498b961dc17cf2c3f, type: 3}
+  - {fileID: 7978949470379411359, guid: bb038591619d712498b961dc17cf2c3f, type: 3}
+  - {fileID: 5946774488298172925, guid: bb038591619d712498b961dc17cf2c3f, type: 3}
+  purpleMote:
+  - {fileID: -5869978879285774400, guid: a5866856ff2639f45ae20fcc7e040559, type: 3}
+  - {fileID: -41920237, guid: a5866856ff2639f45ae20fcc7e040559, type: 3}
+  - {fileID: -346518642, guid: a5866856ff2639f45ae20fcc7e040559, type: 3}
+  - {fileID: 1958941714, guid: a5866856ff2639f45ae20fcc7e040559, type: 3}
+  - {fileID: -1407604240, guid: a5866856ff2639f45ae20fcc7e040559, type: 3}
+  - {fileID: 1871507154, guid: a5866856ff2639f45ae20fcc7e040559, type: 3}
+  purpleBlock:
+  - {fileID: 4622015450741440371, guid: ef3d6f5d4d2e8ae4f8d9ae6d1970ee10, type: 3}
+  - {fileID: 2308266461700241025, guid: ef3d6f5d4d2e8ae4f8d9ae6d1970ee10, type: 3}
+  - {fileID: 1973645560716837376, guid: ef3d6f5d4d2e8ae4f8d9ae6d1970ee10, type: 3}
+  - {fileID: -3550761935279962363, guid: ef3d6f5d4d2e8ae4f8d9ae6d1970ee10, type: 3}
+  - {fileID: 1730723757784868352, guid: ef3d6f5d4d2e8ae4f8d9ae6d1970ee10, type: 3}
+  - {fileID: 8250953131984700529, guid: ef3d6f5d4d2e8ae4f8d9ae6d1970ee10, type: 3}
+  - {fileID: 1181243338036241866, guid: ef3d6f5d4d2e8ae4f8d9ae6d1970ee10, type: 3}
+  - {fileID: -6034134758987539030, guid: ef3d6f5d4d2e8ae4f8d9ae6d1970ee10, type: 3}

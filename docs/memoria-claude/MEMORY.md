@@ -12,10 +12,12 @@
 
 - [Pulido del piso 3](primordia-floor3-art-batch-pending.md) — HECHO (commits en feature/floor-3): dónde está cada cosa; falta la franja de agua en las patas y el rastro de fuego
 - **[Puertas: techo y arcos laterales](primordia-door-design-pending.md) — RECORDAR a la usuaria al cambiar a Opus por cualquier diseño; se implementa entonces**
+- **[Arte pendiente del paso 3 de Bocas](primordia-floor3-step3-art-pending.md) — RECORDAR al pasar a Opus: animaciones de las 3 Bocas, clon de la Peonza, Morph/Reveal, barra de órganos al HUD**
 
 ## En curso
-- [Estado de Primordia](primordia-project-status.md) — para itch.io; pisos 1-2 en main; piso 3 en feature/floor-3 (pasos 1, 2 y pulido HECHOS, sin push); SIGUIENTE paso 3 Cuerpos y Bocas
+- [Estado de Primordia](primordia-project-status.md) — para itch.io; pisos 1-2 en main; piso 3 en feature/floor-3 (pasos 1, 2, 3 y pulido HECHOS); SIGUIENTE pasada de arte con Opus
 - [Reacciones del piso 3](primordia-floor3-reactions-decisions.md) — paso 2 HECHO (subtandas A-D): quemado tipo Gungeon, odre, veneno, fumarolas
+- [Bocas del piso 3](primordia-floor3-mouths-decisions.md) — paso 3 HECHO: Escupitajo, Peonza, Chorro; números, archivos y pruebas
 - [Estructura del piso 3](primordia-floor3-structure-decisions.md) — subtandas, decisiones del generador, estado
 - [Diseño del piso 3](primordia-floor3-design.md) — CERRADO; arte COMPLETO en feature/floor3-art (tandas 0-6, 4 jefes); luego documento, GDD/PLAN, ramas (Sonnet)
 - [Jefe Meganeura](primordia-boss-meganeura.md) — combate y arte terminados (2026-11-01), generadores y reglas para el código

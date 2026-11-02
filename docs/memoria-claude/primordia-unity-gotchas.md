@@ -48,3 +48,7 @@ Relacionado: [[primordia-workflow]].
   pero la barra se actualiza cada cuadro, no vaciar la barra en los cuadros sin aviso (la barra de veneno parpadeaba).
 - (2026-11-02) Un obstáculo de cobertura sin sprite en el tema (`SmallObstacles`/`BigObstacles` vacíos) es un bloque invisible con colisión.
   `Vector2Int + Vector2` vale (se convierte); `Average` de enteros da double; `Dictionary.GetValueOrDefault` pide `using System.Collections.Generic`.
+
+- (2026-11-02) **perl con `s|...|...|` y `\|\|` en el patrón:** el delimitador hace que `\|` sea alternación, el patrón casa con vacío y el texto se inserta AL PRINCIPIO del archivo (rompió PlayerAnimator y AttackData con CS1529). Para parches con `||` usar la herramienta Edit. Tras cualquier parche, comprobar la primera línea de los .cs tocados. Además `python -` / `python` del PATH se cuelga (alias de Store): usar la ruta completa de arriba o node.
+- (2026-11-02) Al cambiar de rama con Unity abierto y una escena de prueba abierta que no existe en la rama destino, Play da "FloorGenerator: falta el FloorConfig" y mapa negro: cerrar esa escena sin guardar y abrir otra de la rama.
+- (2026-11-02) Unity no compila mientras escribo (está abierto): tras cada cambio, pedirle que recompile y mire `Logs/Editor.log` (`grep "error CS"`) si dice que hay error.

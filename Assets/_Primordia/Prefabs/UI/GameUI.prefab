@@ -1381,7 +1381,9 @@ MonoBehaviour:
   specialBadge: {fileID: 21300000, guid: e329fa3d5b623e14c87374eba22a396d, type: 3}
   upgradeArrow: {fileID: 21300000, guid: a5569c0fa1a936946b8eb8d876711ab5, type: 3}
   lineageGlowColor: {r: 1, g: 0.85, b: 0.35, a: 1}
-  lineageGlowAlpha: {x: 0.08, y: 0.32}
+  lineageFillColor: {r: 1, g: 0.74, b: 0.15, a: 1}
+  lineageFillAlpha: 0.6
+  lineageBorderAlpha: {x: 0.4, y: 1}
   lineageGlowPeriod: 1.2
 --- !u!1 &595810291155170744
 GameObject:
@@ -4486,7 +4488,9 @@ MonoBehaviour:
   specialBadge: {fileID: 21300000, guid: e329fa3d5b623e14c87374eba22a396d, type: 3}
   upgradeArrow: {fileID: 21300000, guid: a5569c0fa1a936946b8eb8d876711ab5, type: 3}
   lineageGlowColor: {r: 1, g: 0.85, b: 0.35, a: 1}
-  lineageGlowAlpha: {x: 0.08, y: 0.32}
+  lineageFillColor: {r: 1, g: 0.74, b: 0.15, a: 1}
+  lineageFillAlpha: 0.6
+  lineageBorderAlpha: {x: 0.4, y: 1}
   lineageGlowPeriod: 1.2
 --- !u!1 &1666237541564732958
 GameObject:
@@ -5255,7 +5259,9 @@ MonoBehaviour:
   specialBadge: {fileID: 21300000, guid: e329fa3d5b623e14c87374eba22a396d, type: 3}
   upgradeArrow: {fileID: 21300000, guid: a5569c0fa1a936946b8eb8d876711ab5, type: 3}
   lineageGlowColor: {r: 1, g: 0.85, b: 0.35, a: 1}
-  lineageGlowAlpha: {x: 0.08, y: 0.32}
+  lineageFillColor: {r: 1, g: 0.74, b: 0.15, a: 1}
+  lineageFillAlpha: 0.6
+  lineageBorderAlpha: {x: 0.4, y: 1}
   lineageGlowPeriod: 1.2
 --- !u!1 &1936795939097403969
 GameObject:
@@ -6223,7 +6229,9 @@ MonoBehaviour:
   specialBadge: {fileID: 21300000, guid: e329fa3d5b623e14c87374eba22a396d, type: 3}
   upgradeArrow: {fileID: 21300000, guid: a5569c0fa1a936946b8eb8d876711ab5, type: 3}
   lineageGlowColor: {r: 1, g: 0.85, b: 0.35, a: 1}
-  lineageGlowAlpha: {x: 0.08, y: 0.32}
+  lineageFillColor: {r: 1, g: 0.74, b: 0.15, a: 1}
+  lineageFillAlpha: 0.6
+  lineageBorderAlpha: {x: 0.4, y: 1}
   lineageGlowPeriod: 1.2
 --- !u!1 &2436972470839190278
 GameObject:
@@ -6777,6 +6785,7 @@ MonoBehaviour:
   bigMapRoot: {fileID: 2941092634194199764}
   bigMapViewport: {fileID: 477871304552910400}
   bigMapMaxScale: 2
+  hintFont: {fileID: 12800000, guid: 3f5743f7a94fc904ebe05291aef83a98, type: 3}
 --- !u!114 &5049770284042399684
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22414,7 +22423,9 @@ MonoBehaviour:
   specialBadge: {fileID: 21300000, guid: e329fa3d5b623e14c87374eba22a396d, type: 3}
   upgradeArrow: {fileID: 21300000, guid: a5569c0fa1a936946b8eb8d876711ab5, type: 3}
   lineageGlowColor: {r: 1, g: 0.85, b: 0.35, a: 1}
-  lineageGlowAlpha: {x: 0.08, y: 0.32}
+  lineageFillColor: {r: 1, g: 0.74, b: 0.15, a: 1}
+  lineageFillAlpha: 0.6
+  lineageBorderAlpha: {x: 0.4, y: 1}
   lineageGlowPeriod: 1.2
 --- !u!1 &8607690758156691308
 GameObject:

@@ -51,11 +51,15 @@ namespace Primordia.UI
             public readonly List<Image> Rewards = new();
             public readonly Dictionary<Teleporter, Image> Teleports = new();
             public Image Return;
+            public readonly Dictionary<RoomHearts, Image> Hearts = new();
         }
 
         // Radio (en unidades de la interfaz) en que el ratón alcanza una marca de teletransporte.
         const float TeleportClickRadius = 6f;
         Text teleportHint;
+        [SerializeField] Font hintFont;
+        Teleporter hoveredTeleporter;
+        bool hoveredReturn;
 
         FloorGenerator generator;
         Transform player;
@@ -110,6 +114,9 @@ namespace Primordia.UI
         internal void SetShopIcon(Sprite newShopIcon) => shopIcon = newShopIcon;
 
         internal void SetTransitionIcon(Sprite newTransitionIcon) => transitionIcon = newTransitionIcon;
+
+        /// <summary>Fuente pixel del letrero del mapa grande (si no, la integrada de Unity).</summary>
+        internal void SetHintFont(Font newFont) => hintFont = newFont;
 
         /// <summary>La tienda se marca al entrar en ella o al limpiar una sala vecina (la de la que cuelga).</summary>
         public static bool ShopDiscovered(MapRoom room)
@@ -300,6 +307,7 @@ namespace Primordia.UI
             minimap.Image.rectTransform.sizeDelta = new Vector2(painter.Texture.width, painter.Texture.height);
             minimap.Image.uvRect = new Rect(0f, 0f, 1f, 1f);
             minimap.Content.anchoredPosition = -Floor(playerPixel);
+            UpdateHeartMarkers(minimap);
             PlaceMarkers(minimap, Vector2.zero, 1, floorPosition);
         }
 
@@ -335,6 +343,7 @@ namespace Primordia.UI
             // Centrado en la ventana (más lo arrastrado), en píxeles enteros.
             bigMap.Content.anchoredPosition = -Round(size / 2f) + Round(bigMapPan);
             UpdateTeleportMarkers();
+            UpdateHeartMarkers(bigMap);
             PlaceMarkers(bigMap, area.position, scale, PlayerFloorPosition());
             HandleTeleportClick();
         }
@@ -352,7 +361,10 @@ namespace Primordia.UI
         void UpdateTeleportMarkers()
         {
             bool canTravel = TeleportNetwork.CanTravel();
-            var tint = new Color(1f, 1f, 1f, canTravel ? 1f : 0.45f);
+            bool art = MapTeleportIcons.HasArt;
+            // Con arte, el apagado es su propio icono; el provisional se apaga con la transparencia.
+            var tint = new Color(1f, 1f, 1f, canTravel || art ? 1f : 0.45f);
+            int frame = Mathf.FloorToInt(Time.unscaledTime / 0.12f);
             foreach (var teleporter in Teleporter.All)
             {
                 if (teleporter == null)
@@ -365,18 +377,57 @@ namespace Primordia.UI
                     bigMap.Player.transform.SetAsLastSibling();
                 }
                 bool visible = teleporter.IsActive && teleporter.Room != TeleportNetwork.CurrentRoom;
+                var sprite = !canTravel && art && MapTeleportIcons.TeleportDim != null
+                    ? MapTeleportIcons.TeleportDim
+                    : MapTeleportIcons.TeleportFrame(frame, canTravel && teleporter == hoveredTeleporter);
+                SetMarkerSprite(icon, sprite);
                 icon.enabled = visible;
                 icon.color = tint;
                 icon.GetComponent<MapMarker>().FloorPosition = ToFloor(teleporter.Position);
             }
 
             bool showReturn = TeleportNetwork.HasReturn && TeleportNetwork.ReturnRoom != TeleportNetwork.CurrentRoom;
+            SetMarkerSprite(bigMap.Return, MapTeleportIcons.ReturnIcon(canTravel && hoveredReturn, !canTravel));
             bigMap.Return.enabled = showReturn;
             bigMap.Return.color = tint;
             if (showReturn)
                 bigMap.Return.GetComponent<MapMarker>().FloorPosition = ToFloor(TeleportNetwork.ReturnPosition);
 
             UpdateTeleportHint(canTravel);
+        }
+
+        /// <summary>Cambia el sprite de una marca ajustando su tamaño y pivote (el píxel central, como en CreateMarker).</summary>
+        static void SetMarkerSprite(Image icon, Sprite sprite)
+        {
+            if (icon.sprite == sprite || sprite == null)
+                return;
+            icon.sprite = sprite;
+            var rect = icon.rectTransform;
+            rect.sizeDelta = sprite.rect.size;
+            rect.pivot = new Vector2(Mathf.Floor(sprite.rect.width / 2f) / sprite.rect.width,
+                Mathf.Floor(sprite.rect.height / 2f) / sprite.rect.height);
+        }
+
+        /// <summary>Un medio corazón en cada sala que tenga uno sin recoger, en la posición donde está.</summary>
+        void UpdateHeartMarkers(View view)
+        {
+            if (view == null)
+                return;
+            foreach (var hearts in RoomHearts.All)
+            {
+                if (hearts == null)
+                    continue;
+                if (!view.Hearts.TryGetValue(hearts, out var icon))
+                {
+                    icon = CreateMarker(view.Content, MapTeleportIcons.Heart);
+                    view.Hearts[hearts] = icon;
+                    view.Player.transform.SetAsLastSibling();
+                }
+                bool visible = hearts.HasUnclaimedHeart;
+                icon.enabled = visible;
+                if (visible)
+                    icon.GetComponent<MapMarker>().FloorPosition = ToFloor(hearts.Dropped.transform.position);
+            }
         }
 
         void UpdateTeleportHint(bool canTravel)
@@ -389,7 +440,7 @@ namespace Primordia.UI
                 var go = new GameObject("TeleportHint", typeof(RectTransform), typeof(Text));
                 go.transform.SetParent(bigMapRoot.transform, false);
                 teleportHint = go.GetComponent<Text>();
-                teleportHint.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+                teleportHint.font = hintFont != null ? hintFont : Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
                 teleportHint.fontSize = 8;
                 teleportHint.alignment = TextAnchor.LowerCenter;
                 teleportHint.raycastTarget = false;
@@ -439,10 +490,13 @@ namespace Primordia.UI
                 hitReturn = true;
             }
 
-            // Bajo el ratón la marca crece un poco.
+            // Bajo el ratón la marca se resalta (con arte, su variante más clara; el provisional crece un poco).
+            hoveredTeleporter = hit;
+            hoveredReturn = hitReturn;
+            float grow = MapTeleportIcons.HasArt ? 1f : 1.4f;
             foreach (var (teleporter, icon) in bigMap.Teleports)
-                icon.rectTransform.localScale = teleporter == hit ? Vector3.one * 1.4f : Vector3.one;
-            bigMap.Return.rectTransform.localScale = hitReturn ? Vector3.one * 1.4f : Vector3.one;
+                icon.rectTransform.localScale = teleporter == hit ? Vector3.one * grow : Vector3.one;
+            bigMap.Return.rectTransform.localScale = hitReturn ? Vector3.one * grow : Vector3.one;
 
             if (!mouse.leftButton.wasPressedThisFrame)
                 return;

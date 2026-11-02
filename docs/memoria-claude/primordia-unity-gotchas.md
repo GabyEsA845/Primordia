@@ -38,3 +38,13 @@ Relacionado: [[primordia-workflow]].
 - (2026-10-27) Compilar sin Unity: script check.py en el scratchpad (genera los *.check.csproj con todos los .cs, `dotnet build` y los borra); rehacerlo si el scratchpad es nuevo. Para patches de C# con comillas o barras, escribir un .py con Write (los heredoc de Bash fallan).
 
 - (2026-10-27) **Vector3.RotateTowards en 2D con vectores opuestos** (objetivo justo detrás) se sale del plano y, al volver a Vector2, no gira nada: el Euriptérido no se giraba si el jugador estaba exactamente detrás. Usar Enemies/Turning.Towards (elige un costado). Las pruebas de jefes que miden posición tras la muda deben medir al acabar la muda (ModeChanged), porque echa a andar enseguida.
+
+- (2026-11-02) Bash: `python` (sin ruta) ya funciona en Git Bash (Python 3.12). Los heredoc con comillas/triples comillas siguen fallando
+  con «unexpected EOF»: escribir el .py con Write en el scratchpad y ejecutarlo. Los archivos del proyecto son CRLF o LF según el caso: en
+  los .py de edición leer con newline='' y conservar el estilo. Errores de compilación: `Logs/Editor.log` (buscar `error CS`; mezcla
+  compilaciones antiguas con la última, mirar la fecha).
+- (2026-11-02) **AddComponent ejecuta OnEnable antes de que se asignen los campos** (bug real: el odre de metano se suscribía a su vida
+  en OnEnable, con la vida aún sin asignar, y solo el fuego lo reventaba): suscribir también al configurar. Y cuando algo avisa cada 0,1 s
+  pero la barra se actualiza cada cuadro, no vaciar la barra en los cuadros sin aviso (la barra de veneno parpadeaba).
+- (2026-11-02) Un obstáculo de cobertura sin sprite en el tema (`SmallObstacles`/`BigObstacles` vacíos) es un bloque invisible con colisión.
+  `Vector2Int + Vector2` vale (se convierte); `Average` de enteros da double; `Dictionary.GetValueOrDefault` pide `using System.Collections.Generic`.

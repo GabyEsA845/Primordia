@@ -8,10 +8,19 @@
 - [Skill primordia-audio](primordia-audio-skill.md) — usarla en todo audio nuevo
 - [Mutaciones por niveles](primordia-mutation-visual-tiers.md) — normales = efectos sin tocar silueta; pieles retocan dentro; especiales cambian el modelo
 - [Documentos por piso](primordia-floor-docs.md) — actualizar el documento interactivo del piso al terminar cada cosa
+- [Arte pendiente (tanda Opus)](primordia-art-pending-batch.md) — lista de arte provisional por sustituir: corazón de sala, iconos de mapa, regreso
+- [Icono de corazón en el mapa](primordia-room-heart-map-icon.md) — pendiente: sprite definitivo del corazón de sala + icono de mapa para salas con corazón sin recoger
 - [Codex aparcado](primordia-codex-paused.md) — trabajar con Codex está archivado; no proponerlo
 
+- [Tanda de arte del piso 3](primordia-floor3-art-batch-pending.md) — lista acumulada (lodo en cuerpo, puertas, llamas, iconos, efecto del agua) + código ligado
+- [Pulido: jugador en las puertas](primordia-door-crossing-polish.md) — pendiente: el jugador se ve «pegado» al cruzar el arco (todos los pisos)
+
+- [Pulido: lodo en el cuerpo](primordia-mud-body-polish.md) — pendiente: grumos/burbujas y lodo que se limpia en vez de la máscara recta (con las puertas)
+
 ## En curso
-- [Estado de Primordia](primordia-project-status.md) — para itch.io; pisos 1 y 2 en main; piso 3: ARTE TERMINADO en feature/floor3-art (push pendiente); SIGUIENTE documento interactivo del piso 3
+- [Estado de Primordia](primordia-project-status.md) — para itch.io; pisos 1 y 2 en main; piso 3 EN CURSO en feature/floor-3 (pasos 1 estructura y 2 reacciones HECHOS, sin push); SIGUIENTE paso 3 Cuerpos y Bocas
+- [Reacciones del piso 3](primordia-floor3-reactions-decisions.md) — paso 2 HECHO (subtandas A-D): quemado tipo Gungeon, odre, veneno, fumarolas
+- [Estructura del piso 3](primordia-floor3-structure-decisions.md) — subtandas, decisiones del generador, estado
 - [Diseño del piso 3](primordia-floor3-design.md) — CERRADO; arte COMPLETO en feature/floor3-art (tandas 0-6, 4 jefes); luego documento, GDD/PLAN, ramas (Sonnet)
 - [Jefe Meganeura](primordia-boss-meganeura.md) — combate y arte terminados (2026-11-01), generadores y reglas para el código
 - [Minijefe Megarachne](primordia-boss-megarachne.md) — TERMINADA (2026-11-01): combate, árbol del Nido, cables, reglas para el código
@@ -43,3 +52,4 @@
 - [Jefe Anomalocaris](primordia-boss-anomalocaris.md) — BossBarSkin/IPhasedBoss
 - [Jefe Euriptérido](primordia-boss-eurypterid.md) — derrumbe, bullet hell
 - [Audio del piso 2](primordia-floor2-audio.md) — Sfx.Stop
+- [Cambios pisos 1-2](primordia-pending-floor12-changes.md) — 5 cambios pedidos (velocidad parkour, corazón verde, morado, salas piso 1, tope veneno jefes)

@@ -152,14 +152,18 @@ namespace Primordia.Rooms
                 StatusMarkers.Hide(health, Poison.Key);
         }
 
+        // Con la barra vacía pero intoxicado, la gota sigue a la vista y se vacía con el tiempo que queda de veneno.
         void UpdateIcon()
         {
-            bool visible = Bar > 0.001f;
+            float shown = Bar;
+            if (shown <= 0.001f && IsIntoxicated)
+                shown = (intoxicatedUntil - Time.time) / IntoxicatedSeconds;
+            bool visible = shown > 0.001f;
             if (!visible && icon == null)
                 return;
             if (icon == null)
                 icon = BurnIcon.Create(transform, BurnIcon.Shape.Drop, DropColor, new Vector3(0.4f, 1.05f, 0f));
-            icon.Set(Bar, visible, IsIntoxicated);
+            icon.Set(shown, visible, IsIntoxicated);
         }
 
         void Clear()

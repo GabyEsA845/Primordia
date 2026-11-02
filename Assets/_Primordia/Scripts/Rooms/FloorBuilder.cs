@@ -750,9 +750,11 @@ namespace Primordia.Rooms
             }
 
             BuildObstacles(roomObject.transform, placed, theme, config.Pieces, random, glows);
-            BuildFerns(roomObject.transform, placed, theme, random);
-            BuildMethane(roomObject.transform, placed, theme, random);
-            BuildBulbs(roomObject.transform, placed, theme, random);
+            // Odres, bulbos y helechos no aparecen unos encima de otros ni de las rocas de cobertura: comparten lo ocupado de la sala.
+            var taken = ObstacleFootprints(placed);
+            BuildMethane(roomObject.transform, placed, theme, random, taken);
+            BuildBulbs(roomObject.transform, placed, theme, random, taken);
+            BuildFerns(roomObject.transform, placed, theme, random, taken);
             var vents = BuildPieces(roomObject.transform, placed, config, random);
             // Donde aparece el jefe no hay algas ni plantas: taparían su presentación.
             Vector2? bossSpot = placed.Layout.Role == RoomRole.Boss ? placed.FloorCenter + boss.offset : null;
@@ -1330,7 +1332,7 @@ namespace Primordia.Rooms
         /// Metano del tramo (piso 3): unos pocos odres y manchas de niebla en las salas de combate y laterales, lejos de las
         /// puertas, las paredes y el lodo. Ni en el inicio, ni en la tienda, ni en las salas de los jefes.
         /// </summary>
-        static void BuildMethane(Transform parent, PlacedRoom placed, RoomTheme theme, System.Random random)
+        static void BuildMethane(Transform parent, PlacedRoom placed, RoomTheme theme, System.Random random, List<(Vector2 position, float radius)> taken)
         {
             var spec = theme.Methane;
             if (spec == null || placed.Layout.Role is not (RoomRole.Combat or RoomRole.Side))
@@ -1348,11 +1350,17 @@ namespace Primordia.Rooms
             if (spec.HasSacs)
             {
                 int sacs = random.Next(Mathf.Min(spec.sacCount.x, spec.sacCount.y), Mathf.Max(spec.sacCount.x, spec.sacCount.y) + 1);
-                foreach (var local in EncounterPlanner.Positions(candidates, sacs, random))
+                int placedSacs = 0;
+                foreach (var local in EncounterPlanner.Positions(candidates, sacs * RetryFactor, random))
                 {
+                    if (placedSacs == sacs)
+                        break;
                     // El centro de la celda, pero con la base del odre un poco más abajo.
                     var position = placed.Origin + local;
+                    if (!TakeSpot(taken, position, BigSceneryRadius))
+                        continue;
                     MethaneSac.Create(holder, new Vector2(position.x, position.y - 0.4f), spec.sacIdle, spec.sacBurst, spec.sacRemains);
+                    placedSacs++;
                 }
             }
             if (spec.HasMist)
@@ -1370,7 +1378,7 @@ namespace Primordia.Rooms
         /// Plantas venenosas del tramo (piso 3): unos pocos bulbos en las salas de combate y laterales, lejos de las puertas, las
         /// paredes y el lodo. Ni en el inicio, ni en la tienda, ni en las salas de los jefes.
         /// </summary>
-        static void BuildBulbs(Transform parent, PlacedRoom placed, RoomTheme theme, System.Random random)
+        static void BuildBulbs(Transform parent, PlacedRoom placed, RoomTheme theme, System.Random random, List<(Vector2 position, float radius)> taken)
         {
             var spec = theme.Poison;
             if (spec == null || !spec.HasBulbs || placed.Layout.Role is not (RoomRole.Combat or RoomRole.Side))
@@ -1384,21 +1392,64 @@ namespace Primordia.Rooms
 
             var holder = new GameObject("PoisonBulbs").transform;
             holder.SetParent(parent, false);
-            foreach (var local in EncounterPlanner.Positions(candidates, count, random))
+            int placedBulbs = 0;
+            foreach (var local in EncounterPlanner.Positions(candidates, count * RetryFactor, random))
             {
+                if (placedBulbs == count)
+                    break;
                 var position = placed.Origin + local;
+                if (!TakeSpot(taken, position, BigSceneryRadius))
+                    continue;
                 PoisonBulb.Create(holder, new Vector2(position.x, position.y - 0.4f), spec);
+                placedBulbs++;
             }
         }
 
-        // Entre dos helechos de la sala, al menos esta distancia (en tiles).
-        const float FernSpacing = 1.8f;
+        // Radios de lo que ocupa cada cosa del escenario (en tiles): dos cosas se separan al menos la suma de sus radios, así los
+        // helechos (de unas 2 u de ancho), los odres y los bulbos no se montan unos sobre otros.
+        const float FernRadius = 0.9f;
+        const float BigSceneryRadius = 1.5f;
+        const float SmallObstacleRadius = 1.0f;
+        const float BigObstacleRadius = 1.6f;
+
+        // Se piden más sitios de los necesarios: algunos se descartan por estar demasiado cerca de otra cosa.
+        const int RetryFactor = 4;
+
+        /// <summary>Lo que ya ocupan las rocas y los troncos de cobertura de la sala (centro y radio), en coordenadas del mundo.</summary>
+        static List<(Vector2 position, float radius)> ObstacleFootprints(PlacedRoom placed)
+        {
+            var taken = new List<(Vector2, float)>();
+            var template = placed.Template;
+            for (int y = 0; y < template.Height; y++)
+            {
+                for (int x = 0; x < template.Width; x++)
+                {
+                    if (template.Get(x, y) == RoomTemplate.Mark.Obstacle)
+                        taken.Add(((Vector2)(placed.Origin + new Vector2Int(x, y)) + Vector2.one * 0.5f, SmallObstacleRadius));
+                }
+            }
+            foreach (var corner in template.BigObstacleCorners())
+                taken.Add(((Vector2)(placed.Origin + corner) + Vector2.one, BigObstacleRadius));
+            return taken;
+        }
+
+        /// <summary>Reserva un sitio si no pisa nada de lo ya ocupado (distancia al menos la suma de radios). False si está ocupado.</summary>
+        static bool TakeSpot(List<(Vector2 position, float radius)> taken, Vector2 position, float radius)
+        {
+            foreach (var (other, otherRadius) in taken)
+            {
+                if (Vector2.Distance(other, position) < radius + otherRadius)
+                    return false;
+            }
+            taken.Add((position, radius));
+            return true;
+        }
 
         /// <summary>
         /// Helechos altos del tileset (piso 3): tantos como la densidad del tramo por cada tile de suelo libre, repartidos por
         /// la sala lejos de las puertas, de las paredes y del lodo, y separados entre sí. Sin tipos o sin densidad, nada.
         /// </summary>
-        static void BuildFerns(Transform parent, PlacedRoom placed, RoomTheme theme, System.Random random)
+        static void BuildFerns(Transform parent, PlacedRoom placed, RoomTheme theme, System.Random random, List<(Vector2 position, float radius)> taken)
         {
             var specs = theme.Ferns.Where(spec => spec != null && spec.IsValid).ToList();
             if (specs.Count == 0 || theme.FernDensity <= 0f)
@@ -1407,20 +1458,22 @@ namespace Primordia.Rooms
             var doorCells = placed.DoorCells.Values.SelectMany(cells => cells).Select(cell => cell - placed.Origin);
             var candidates = EncounterPlanner.SpawnCells(placed.Template, doorCells);
             int count = Mathf.RoundToInt(candidates.Count * theme.FernDensity);
-            var positions = EncounterPlanner.Positions(candidates, count, random);
+            var positions = EncounterPlanner.Positions(candidates, count * RetryFactor, random);
             if (positions.Count == 0)
                 return;
 
             var holder = new GameObject("Ferns").transform;
             holder.SetParent(parent, false);
-            var chosen = new List<Vector2>();
             float totalWeight = specs.Sum(spec => spec.weight);
+            int placedFerns = 0;
             foreach (var local in positions)
             {
+                if (placedFerns == count)
+                    break;
                 var position = placed.Origin + local;
-                if (chosen.Any(other => Vector2.Distance(other, position) < FernSpacing))
+                if (!TakeSpot(taken, position, FernRadius))
                     continue;
-                chosen.Add(position);
+                placedFerns++;
 
                 float roll = (float)random.NextDouble() * totalWeight;
                 var spec = specs[specs.Count - 1];

@@ -162,7 +162,7 @@ namespace Primordia.Rooms
             if (!visible && icon == null)
                 return;
             if (icon == null)
-                icon = BurnIcon.Create(transform, BurnIcon.Shape.Drop, DropColor, new Vector3(0.4f, 1.05f, 0f));
+                icon = BurnIcon.Create(transform, BurnIcon.Shape.Cloud, DropColor, new Vector3(0.55f, 1.05f, 0f));
             icon.Set(shown, visible, IsIntoxicated);
         }
 

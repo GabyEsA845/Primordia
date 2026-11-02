@@ -1,22 +1,23 @@
+using Primordia.Core;
 using UnityEngine;
 
 namespace Primordia.Rooms
 {
     /// <summary>
-    /// Icono provisional de una barra de estado sobre la cabeza del jugador (el quemado, el veneno de la nube), hecho por código,
-    /// sin sprites: una silueta (llama o gota) que se rellena de abajo arriba y late mientras el estado sigue activo. No es hijo
-    /// del jugador: lo siguen sus coordenadas, así su máscara no se mezcla con la del lodo. Se sustituirá por arte en la tanda
-    /// de arte.
+    /// Icono de una barra de estado sobre la cabeza del jugador (el quemado, el veneno de la nube): el dibujo vacío debajo y el
+    /// lleno encima, recortado de abajo arriba hasta el nivel de la barra; late mientras el estado sigue activo. Con el arte del
+    /// pulido usa los iconos de <see cref="PolishArt"/> (llama y nube con calavera); sin importar, una silueta provisional hecha
+    /// por código (llama o gota). No es hijo del jugador: lo siguen sus coordenadas, así su máscara no se mezcla con la del lodo.
     /// </summary>
     public class BurnIcon : MonoBehaviour
     {
         public enum Shape
         {
             Flame,
-            Drop
+            Cloud
         }
 
-        // Siluetas, de arriba abajo (8×11).
+        // Siluetas provisionales, de arriba abajo (8×11).
         static readonly string[] Flame =
         {
             "...#....",
@@ -48,7 +49,8 @@ namespace Primordia.Rooms
         };
 
         const int Width = 8, Height = 11;
-        const float Scale = 1.4f;
+        // El icono provisional se agranda; los dibujos del arte ya vienen del tamaño que se ve.
+        const float ProvisionalScale = 1.4f;
         const int FillOrder = 31;
 
         static Sprite flameSprite;
@@ -58,23 +60,36 @@ namespace Primordia.Rooms
         Transform target;
         Vector3 offset;
         SpriteMask mask;
+        float baseScale = 1f;
+        // Tamaño del dibujo en unidades (la máscara lo recorta).
+        Vector2 size;
         float bar;
         bool pulsing;
 
         public static BurnIcon Create(Transform target, Shape shape, Color fill, Vector3 offset)
         {
             EnsureSprites();
-            var silhouette = shape == Shape.Drop ? dropSprite : flameSprite;
-            var root = new GameObject(shape == Shape.Drop ? "PoisonIcon" : "BurnIcon");
+            var art = PolishArt.Current;
+            var empty = art == null ? null : shape == Shape.Cloud ? art.toxicEmpty : art.burnEmpty;
+            var full = art == null ? null : shape == Shape.Cloud ? art.toxicFull : art.burnFull;
+            bool drawn = empty != null && full != null;
+
+            var silhouette = drawn ? full : shape == Shape.Cloud ? dropSprite : flameSprite;
+            var root = new GameObject(shape == Shape.Cloud ? "PoisonIcon" : "BurnIcon");
             var icon = root.AddComponent<BurnIcon>();
             icon.target = target;
             icon.offset = offset;
-            root.transform.localScale = Vector3.one * Scale;
+            icon.baseScale = drawn ? 1f : ProvisionalScale;
+            icon.size = silhouette.bounds.size;
+            root.transform.localScale = Vector3.one * icon.baseScale;
 
             // Cada icono tiene su propio orden de dibujado para que sus máscaras no se mezclen con las de otro.
-            int order = shape == Shape.Drop ? FillOrder + 10 : FillOrder;
-            AddRenderer(root.transform, "Outline", silhouette, order - 1, new Color(0.15f, 0.1f, 0.05f, 0.9f));
-            var fillRenderer = AddRenderer(root.transform, "Fill", silhouette, order, fill);
+            int order = shape == Shape.Cloud ? FillOrder + 10 : FillOrder;
+            if (drawn)
+                AddRenderer(root.transform, "Empty", empty, order - 1, Color.white);
+            else
+                AddRenderer(root.transform, "Outline", silhouette, order - 1, new Color(0.15f, 0.1f, 0.05f, 0.9f));
+            var fillRenderer = AddRenderer(root.transform, "Fill", silhouette, order, drawn ? Color.white : fill);
             fillRenderer.maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
 
             var maskObject = new GameObject("FillMask");
@@ -114,10 +129,9 @@ namespace Primordia.Rooms
         {
             if (mask == null)
                 return;
-            // La máscara cubre de los pies de la silueta hasta la altura de la barra (en tiles).
-            float height = Height / 16f;
-            mask.transform.localScale = new Vector3(Width / 16f + 0.2f, height * bar + 0.0001f, 1f);
-            mask.transform.localPosition = new Vector3(0f, -height / 2f + height * bar / 2f, 0f);
+            // La máscara cubre de los pies de la silueta hasta la altura de la barra (en unidades).
+            mask.transform.localScale = new Vector3(size.x + 0.2f, size.y * bar + 0.0001f, 1f);
+            mask.transform.localPosition = new Vector3(0f, -size.y / 2f + size.y * bar / 2f, 0f);
         }
 
         void LateUpdate()
@@ -130,7 +144,7 @@ namespace Primordia.Rooms
             transform.position = target.position + offset;
             // Mientras el estado sigue activo, el icono late.
             float pulse = pulsing ? 1f + 0.12f * Mathf.Sin(Time.time * 14f) : 1f;
-            transform.localScale = Vector3.one * Scale * pulse;
+            transform.localScale = Vector3.one * baseScale * pulse;
         }
 
         static void EnsureSprites()

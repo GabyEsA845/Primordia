@@ -1,4 +1,5 @@
 using Primordia.Core;
+using Primordia.Rooms;
 using UnityEditor;
 using UnityEngine;
 
@@ -92,6 +93,12 @@ namespace Primordia.Editor
             else
                 EditorUtility.SetDirty(art);
             AssetDatabase.SaveAssets();
+
+            // La marca de «arde» (jugador y enemigos) pasa a llevar las llamas por tamaño y el velo naranja.
+            if (AssetDatabase.LoadAssetAtPath<GameObject>(BurningMarkerPrefabPath) != null)
+                EditPrefab(BurningMarkerPrefabPath, obj => GetOrAdd<BurningMarker>(obj));
+            else
+                Debug.LogWarning("ArtSetup: no existe Effect_Burning; ejecuta antes Primordia > Floor 3 > Crear reacciones (fuego) y vuelve a importar el pulido.");
             Debug.Log("ArtSetup: pulido del piso 3 importado en Resources/PolishArt (lodo, llamas, iconos, agua, fumarola y puertas).");
         }
 

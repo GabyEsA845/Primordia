@@ -68,6 +68,17 @@ namespace Primordia.Combat
 
         public bool Has(string key) => markers.ContainsKey(key);
 
+        /// <summary>True si ese objeto es (o cuelga de) una de las marcas de este objetivo, no de su cuerpo.</summary>
+        public bool IsMarker(Transform candidate)
+        {
+            foreach (var marker in markers.Values)
+            {
+                if (marker.Effect != null && candidate.IsChildOf(marker.Effect.transform))
+                    return true;
+            }
+            return false;
+        }
+
         public GameObject EffectOf(string key) => markers.TryGetValue(key, out var marker) ? marker.Effect : null;
 
         void Awake()

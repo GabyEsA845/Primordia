@@ -16,7 +16,7 @@ pares, bordes junto a la cara); 2) tramos y generador; 3) lodo profundo; 4) male
 
 ESTRUCTURA COMPLETA (4 subtandas hechas y probadas, 2026-11-02; subtanda 4 = maleza quemable + atajos, IFlammable, F12). Siguiente: paso 2 Reacciones del PLAN.
 
-Subtanda 3 (lodo profundo) HECHA y probada (2026-11-02): barra de hundimiento 1,6 s, enemigos que andan lo rodean y mueren si caen, tiles de lodo; falta el pulido visual del cuerpo ([[primordia-mud-body-polish]]). Siguiente: subtanda 4 (maleza quemable y puertas de raíces).
+Subtanda 3 (lodo profundo) HECHA y probada (2026-11-02): barra de hundimiento 1,6 s, enemigos que andan lo rodean y mueren si caen, tiles de lodo; falta el pulido visual del cuerpo (el lodo en el cuerpo). Siguiente: subtanda 4 (maleza quemable y puertas de raíces).
 
 Decisiones subtanda 2: cuevas con forma impuesta (rectángulo largo, L, 2×2) reutilizando CaveGenerator; islas con celda
 nueva `Mud` dibujada provisional hasta la subtanda 3; salas algo mayores que el piso 2 (normales ~34×22–44×26, alargadas
@@ -25,5 +25,7 @@ paredes del tema de su sala. Pruebas sin enemigos; atajo Av Pág / Re Pág salta
 
 **Why:** el piso 3 es lo más largo del proyecto; se prueba cada subtanda antes de la siguiente y se pregunta antes de cada paso.
 
-**How to apply:** seguir este orden; al acabar las subtandas, arreglar el pulido de puertas ([[primordia-door-crossing-polish]]).
+**How to apply:** seguir este orden; al acabar las subtandas, arreglar el pulido de puertas.
 Ver [[primordia-floor3-design]].
+
+**Lodo y esquiva (2026-11-02):** esquivar/embestir en lodo profundo deja la barra de hundimiento EN PAUSA (no la vacía), para no cruzar el lodo a base de esquivas. La mutación que cambia la esquiva por un SALTO (paso 4, mutaciones) debe poner `PlayerMudSink.DodgeResetsSink = true` (saltar sí vacía la barra).

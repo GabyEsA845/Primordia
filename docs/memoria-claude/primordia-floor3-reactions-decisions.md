@@ -30,7 +30,7 @@ humeante: menos helechos, más odres y fumarolas; tierra quemada: casi sin helec
 
 **Why:** el paso es grande; cada subtanda se prueba antes de la siguiente.
 
-**How to apply:** ver [[primordia-floor3-structure-decisions]] (estructura, IFlammable, F12) y [[primordia-mud-body-polish]].
+**How to apply:** ver [[primordia-floor3-structure-decisions]] (estructura, IFlammable, F12) y el lodo en el cuerpo.
 
 **Añadidos tras probar la subtanda A (2026-11-02):** el lodo apaga el quemado casi de golpe (barra entera en ~⅓ s) y quita el
 Burn a los enemigos que se hunden; quien arde (jugador con Burning, enemigo con Burn) prende los helechos y la maleza que toca

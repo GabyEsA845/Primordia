@@ -17,3 +17,5 @@ Desde 2026-10-28 se trabaja solo con una cuenta Claude Pro y hay que ahorrar tod
 
 **Why:** el límite semanal se agotaba 4 días antes del reinicio.
 **How to apply:** al empezar cada tarea, decir qué modelo conviene si no es el actual; leer solo lo necesario (rangos de líneas, grep) y no releer archivos completos.
+
+**Recordatorio fijo (encargo de la usuaria, 2026-11-02):** al avisar del cambio a Opus por CUALQUIER tarea de diseño, añadir «recuerda lo de las puertas» y proponer implementarlo ahí: [[primordia-door-design-pending]].

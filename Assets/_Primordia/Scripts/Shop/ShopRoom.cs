@@ -284,8 +284,21 @@ namespace Primordia.Shop
         /// <summary>"I > II": la fuente pixel no tiene flecha.</summary>
         static string LevelChange(int from) => $"{MutationText.LevelName(from)} > {MutationText.LevelName(from + 1)}";
 
-        /// <summary>Lo que cuesta ahora: la mejora a III es más cara que a II.</summary>
-        public int PriceOf(ShopPedestal pedestal, PlayerMutations player)
+        /// <summary>Cada piso encarece todos los precios de la tienda ×1,5 sobre los del piso anterior.</summary>
+        public const float FloorPriceFactor = 1.5f;
+
+        /// <summary>
+        /// Precio del piso 1 llevado a ese piso: base × 1,5^(piso − 1), redondeado al entero más cercano (los
+        /// medios, hacia arriba). Siempre se parte del precio base, así no se acumulan redondeos.
+        /// </summary>
+        public static int ScaledPrice(int basePrice, int floor) =>
+            Mathf.FloorToInt(basePrice * Mathf.Pow(FloorPriceFactor, Mathf.Max(1, floor) - 1) + 0.5f);
+
+        /// <summary>Lo que cuesta ahora: la mejora a III es más cara que a II, y todo sube con el piso.</summary>
+        public int PriceOf(ShopPedestal pedestal, PlayerMutations player) =>
+            ScaledPrice(BasePriceOf(pedestal, player), FloorGenerator.CurrentFloor);
+
+        int BasePriceOf(ShopPedestal pedestal, PlayerMutations player)
         {
             switch (OfferOf(pedestal, player))
             {

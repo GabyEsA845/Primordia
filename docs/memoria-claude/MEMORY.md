@@ -1,21 +1,20 @@
 ## Cómo trabajar
 - [Ahorro de tokens](primordia-token-saving.md) — una cuenta Pro; AVISAR SIEMPRE cambio Opus (diseño/arte) ↔ Sonnet (implementar) al empezar y al acabar cada tarea; agrupar arte/audio
 - [Flujo de trabajo](primordia-workflow.md) — español, rama por módulo, menús de editor, commit solo tras confirmar
-- [Arte de jefes](primordia-boss-art-workflow.md) — un jefe cada vez, preguntas antes de cada subtanda, muestra en 1 dirección, escenas (GIF en gif/escenas/), comparar versiones si duda; todo jefe lleva PRESENTACIÓN (retrato + rótulo)
+- [Arte de jefes](primordia-boss-art-workflow.md) — un jefe cada vez, preguntas antes de cada subtanda, muestra en 1 dirección, escenas (GIF en gif/escenas/), comparar versiones si duda; PRESENTACIÓN; nada que parezca «pegado sobre el fondo»
 - [Trampas de Unity](primordia-unity-gotchas.md) — Unity abierto, logs, statics, CRLF, zips, referencias perdidas
 - [Multimedia temporal](primordia-multimedia-temp.md) — arte/audio/generadores en docs/multimedia-temp/, se importan con menús Primordia
-- [Skill primordia-sprites](primordia-sprites-skill.md) — usarla en todo arte nuevo
+- [Skill primordia-sprites](primordia-sprites-skill.md) — usarla en todo arte nuevo; PREGUNTAR SIEMPRE antes de cualquier sprite o animación
 - [Skill primordia-audio](primordia-audio-skill.md) — usarla en todo audio nuevo
 - [Mutaciones por niveles](primordia-mutation-visual-tiers.md) — normales = efectos sin tocar silueta; pieles retocan dentro; especiales cambian el modelo
 - [Documentos por piso](primordia-floor-docs.md) — actualizar el documento interactivo del piso al terminar cada cosa
 - [Codex aparcado](primordia-codex-paused.md) — trabajar con Codex está archivado; no proponerlo
 
 ## En curso
-- [Estado de Primordia](primordia-project-status.md) — para itch.io; pisos 1 y 2 completos en main; ahora: piso 3
-- [Diseño del piso 3](primordia-floor3-design.md) — CERRADO; arte en rama feature/floor3-art: tandas 0-5, Arthropleura, Meganeura, Megarachne y presentaciones TERMINADOS; SIGUIENTE Lepidodendron (Opus, preguntas antes)
+- [Estado de Primordia](primordia-project-status.md) — para itch.io; pisos 1 y 2 en main; piso 3: ARTE TERMINADO en feature/floor3-art (push pendiente); SIGUIENTE documento interactivo del piso 3
+- [Diseño del piso 3](primordia-floor3-design.md) — CERRADO; arte COMPLETO en feature/floor3-art (tandas 0-6, 4 jefes); luego documento, GDD/PLAN, ramas (Sonnet)
 - [Jefe Meganeura](primordia-boss-meganeura.md) — combate y arte terminados (2026-11-01), generadores y reglas para el código
 - [Minijefe Megarachne](primordia-boss-megarachne.md) — TERMINADA (2026-11-01): combate, árbol del Nido, cables, reglas para el código
-- [Jefe secreto Lepidodendron](primordia-boss-lepidodendron.md) — SIGUIENTE: diseño, qué reutilizar y preguntas antes de dibujar
 - [Jefes con mecánicas](primordia-boss-mechanics.md) — desde el piso 3 los jefes usan terreno/reacciones; escenario más vivo
 
 ## Diseño general (consulta)
@@ -27,6 +26,7 @@
 - [Cuerpo evolutivo](primordia-evolving-body.md) — DESCARTADO, no integrar
 
 ## Terminado (detalles de implementación)
+- [Jefe secreto Lepidodendron](primordia-boss-lepidodendron.md) — TERMINADO (commit bf0e8bf): resumen para importarlo e implementarlo
 - [Sprites: estado](primordia-sprites-next.md) — personajes, HUD, menús, minimapa, tienda
 - [Biomasa y tienda](primordia-biomass-shop.md)
 - [Esporas y Aguijón](primordia-spores-stinger.md)

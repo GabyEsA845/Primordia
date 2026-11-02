@@ -8,7 +8,7 @@ metadata:
   modified: 2026-11-01T19:48:11.027Z
 ---
 
-**TERMINADA (2026-11-01): arte completo (6h-6k) aprobado y subido a feature/floor3-art; el README de `floor3-bosses/megarachne/` resume el combate y las reglas para el código.** Siguiente: [[primordia-boss-lepidodendron]].
+**TERMINADA (2026-11-01): arte completo (6h-6k) aprobado y subido a feature/floor3-art (commit 026e041, push hecho); el README de `floor3-bosses/megarachne/` resume el combate y las reglas para el código.** Siguiente: [[primordia-boss-lepidodendron]].
 
 Minijefe opcional del piso 3 ([[primordia-floor3-design]]), tanda 6 de arte, proceso de [[primordia-boss-art-workflow]]. Base (28-10): 60-90 s, sin presentación ni fases largas, telarañas que frenan y arden (prenden helechos), corre por sus hilos, suelta crías de Araña de las frondas. Paleta tanda 0: gris violáceo #4a3a4a, marcas rojas #c83a3a.
 

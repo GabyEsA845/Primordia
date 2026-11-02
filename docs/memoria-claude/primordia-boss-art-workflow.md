@@ -20,3 +20,5 @@ Proceso que el usuario aprobó con el Arthropleura y la Meganeura (2026-10-31 / 
 
 **Why:** el usuario quiere decidir cada detalle viendo resultados concretos; le gustaron mucho las escenas.
 **How to apply:** seguirlo con la Megarachne, el Lepidodendron ancestral y los jefes de los pisos 4-6. Ver [[primordia-boss-meganeura]], [[primordia-sprites-skill]].
+
+**Lección del Lepidodendron (2026-11-01):** lo que más rechaza el usuario es que algo **parezca «una imagen pegada sobre el fondo»** (el árbol exento, las paredes de raíces por capas, los nudos morados encima, los restos). Lo que funcionó: integrar con el escenario — sombra moteada y rayos de luz, sombras de contacto, bordes que bajan y se funden con el suelo en trama y con sus colores, piezas «casi enterradas», y para masas grandes un **modelo completo por mapa de alturas** proyectado en picada en vez de piezas sueltas. Cuando un diseño no le convence propone él una alternativa; probar la suya con una lámina de escala antes de dibujar el cuerpo.

@@ -160,6 +160,7 @@ namespace Primordia.Editor
             ImportMud(theme, $"{folder}/mud", tileAssets);
             ImportBrush(theme, folder);
             ImportFerns(theme, folder, themeName);
+            ImportMethane(theme, folder, themeName);
             EditorUtility.SetDirty(theme);
 
             Debug.Log($"ArtSetup: tema {themeName}: {tiles.Count} tiles, {decorations.Count} detalles de suelo, {doors.Count} hojas de puertas, "

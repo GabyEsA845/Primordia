@@ -59,6 +59,18 @@ namespace Primordia.Editor
                 AssetDatabase.CreateAsset(kit, Floor3ReactionKitPath);
             }
             kit.ConfigureFire(groundFireFrames, fireOutFrames, marker);
+
+            // Metano: la explosión del odre (8 cuadros de 64×64, centro) y el fogonazo de la niebla (pivote abajo).
+            string explode = $"{Floor3MutationEffects}/Fx_MethaneSac_Explode.png";
+            string mistIgnite = $"{Floor3ReactionEffects}/Fx_MistIgnite.png";
+            string mistFlare = $"{Floor3ReactionEffects}/Fx_MistFlare.png";
+            if (File.Exists(explode) && File.Exists(mistIgnite) && File.Exists(mistFlare))
+            {
+                kit.ConfigureMethane(SliceSheet(explode, 64), SliceSheet(mistIgnite, 32, new Vector2(0.5f, 0f)),
+                    SliceSheet(mistFlare, 24, new Vector2(0.5f, 0f)));
+            }
+            else
+                Debug.LogWarning("ArtSetup: faltan hojas del metano (explosión o niebla); ejecuta Primordia > Floor 3 > Importar todo el arte del piso 3.");
             EditorUtility.SetDirty(kit);
             AssetDatabase.SaveAssets();
             return kit;
@@ -81,6 +93,34 @@ namespace Primordia.Editor
         {
             [SwampThemeName] = 0.030f, [SmokeThemeName] = 0.018f, [BurntThemeName] = 0.006f,
         };
+
+        // Odres por sala (mínimo y máximo) y manchas de niebla por tile libre en cada tramo: el pantano tiene niebla y algún odre, el
+        // bosque humeante más odres, y la tierra quemada casi nada (ya ardió).
+        static readonly Dictionary<string, (Vector2Int sacs, float mist)> MethaneAmounts = new()
+        {
+            [SwampThemeName] = (new Vector2Int(1, 2), 0.004f),
+            [SmokeThemeName] = (new Vector2Int(1, 3), 0.003f),
+            [BurntThemeName] = (new Vector2Int(0, 1), 0f),
+        };
+
+        static void ImportMethane(RoomTheme theme, string folder, string themeName)
+        {
+            string idle = $"{folder}/props/Methane_Sac_Idle.png";
+            string mist = $"{folder}/props/Methane_Mist.png";
+            string burst = $"{Floor3ArtRoot}/floor3-reactions/{themeName}/Methane_Sac_Burst.png";
+            string remains = $"{Floor3ArtRoot}/floor3-reactions/{themeName}/Methane_Sac_Remains.png";
+            var pivot = new Vector2(0.5f, 0f);
+            var amounts = MethaneAmounts.GetValueOrDefault(themeName);
+            theme.ConfigureMethane(new MethaneSpec
+            {
+                sacIdle = File.Exists(idle) ? SliceSheet(idle, 24, pivot) : new Sprite[0],
+                sacBurst = File.Exists(burst) ? SliceSheet(burst, 32, pivot) : new Sprite[0],
+                sacRemains = File.Exists(remains) ? SliceSheet(remains, 32, pivot).FirstOrDefault() : null,
+                mist = File.Exists(mist) ? SliceSheet(mist, 64, pivot) : new Sprite[0],
+                sacCount = amounts.sacs,
+                mistPerCell = amounts.mist,
+            });
+        }
 
         static void ImportFerns(RoomTheme theme, string folder, string themeName)
         {

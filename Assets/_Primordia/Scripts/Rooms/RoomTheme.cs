@@ -96,6 +96,9 @@ namespace Primordia.Rooms
         [Tooltip("Helechos por cada tile de suelo libre de la sala (0 = ninguno).")]
         [SerializeField, Range(0f, 0.2f)] float fernDensity;
 
+        [Header("Metano (piso 3, opcional)")]
+        [SerializeField] MethaneSpec methane;
+
         [Header("Lodo profundo (piso 3, opcional)")]
         [Tooltip("16 tiles por máscara: suma de los vecinos que NO son lodo (N=1, E=2, S=4, O=8).")]
         [SerializeField] TileBase[] mudTiles;
@@ -138,6 +141,7 @@ namespace Primordia.Rooms
             return brush != null && brush.IsValid ? brush : null;
         }
 
+        public MethaneSpec Methane => methane;
         public FernSpec[] Ferns => ferns ?? System.Array.Empty<FernSpec>();
         public float FernDensity => fernDensity;
 
@@ -305,6 +309,8 @@ namespace Primordia.Rooms
             brushBottom = newBottom;
         }
 
+        internal void ConfigureMethane(MethaneSpec newMethane) => methane = newMethane;
+
         internal void ConfigureFerns(FernSpec[] newFerns, float newDensity)
         {
             ferns = newFerns;
@@ -355,6 +361,27 @@ namespace Primordia.Rooms
             this.open = open ?? System.Array.Empty<Sprite>();
             this.openDurations = openDurations ?? System.Array.Empty<float>();
         }
+    }
+
+    /// <summary>Metano de un tramo: el odre (reposo, reventón, restos), la niebla y cuánto sale en cada sala.</summary>
+    [System.Serializable]
+    public class MethaneSpec
+    {
+        [Tooltip("Odre (24×26, bucle). Pivote: abajo.")]
+        public Sprite[] sacIdle = System.Array.Empty<Sprite>();
+        [Tooltip("Reventón del odre (32×32). El cuadro 2 es el que explota.")]
+        public Sprite[] sacBurst = System.Array.Empty<Sprite>();
+        [Tooltip("La bolsa rota que queda.")]
+        public Sprite sacRemains;
+        [Tooltip("Niebla de metano (64×32, bucle). Pivote: abajo.")]
+        public Sprite[] mist = System.Array.Empty<Sprite>();
+        [Tooltip("Odres por sala (mínimo y máximo).")]
+        public Vector2Int sacCount = new(1, 2);
+        [Tooltip("Manchas de niebla por cada tile de suelo libre de la sala.")]
+        [Range(0f, 0.05f)] public float mistPerCell = 0.004f;
+
+        public bool HasSacs => sacIdle != null && sacIdle.Length > 0 && sacBurst != null && sacBurst.Length > 0 && sacCount.y > 0;
+        public bool HasMist => mist != null && mist.Length > 0 && mistPerCell > 0f;
     }
 
     /// <summary>Maleza quemable: reposo, fuego cuadro a cuadro (con la duración de cada uno) y lo que queda, ya abierta.</summary>

@@ -751,6 +751,7 @@ namespace Primordia.Rooms
 
             BuildObstacles(roomObject.transform, placed, theme, config.Pieces, random, glows);
             BuildFerns(roomObject.transform, placed, theme, random);
+            BuildMethane(roomObject.transform, placed, theme, random);
             var vents = BuildPieces(roomObject.transform, placed, config, random);
             // Donde aparece el jefe no hay algas ni plantas: taparían su presentación.
             Vector2? bossSpot = placed.Layout.Role == RoomRole.Boss ? placed.FloorCenter + boss.offset : null;
@@ -1322,6 +1323,46 @@ namespace Primordia.Rooms
             else
                 door.Configure(blocker, renderer, frames);
             return door;
+        }
+
+        /// <summary>
+        /// Metano del tramo (piso 3): unos pocos odres y manchas de niebla en las salas de combate y laterales, lejos de las
+        /// puertas, las paredes y el lodo. Ni en el inicio, ni en la tienda, ni en las salas de los jefes.
+        /// </summary>
+        static void BuildMethane(Transform parent, PlacedRoom placed, RoomTheme theme, System.Random random)
+        {
+            var spec = theme.Methane;
+            if (spec == null || placed.Layout.Role is not (RoomRole.Combat or RoomRole.Side))
+                return;
+            if (!spec.HasSacs && !spec.HasMist)
+                return;
+
+            var doorCells = placed.DoorCells.Values.SelectMany(cells => cells).Select(cell => cell - placed.Origin);
+            var candidates = EncounterPlanner.SpawnCells(placed.Template, doorCells);
+            if (candidates.Count == 0)
+                return;
+
+            var holder = new GameObject("Methane").transform;
+            holder.SetParent(parent, false);
+            if (spec.HasSacs)
+            {
+                int sacs = random.Next(Mathf.Min(spec.sacCount.x, spec.sacCount.y), Mathf.Max(spec.sacCount.x, spec.sacCount.y) + 1);
+                foreach (var local in EncounterPlanner.Positions(candidates, sacs, random))
+                {
+                    // El centro de la celda, pero con la base del odre un poco más abajo.
+                    var position = placed.Origin + local;
+                    MethaneSac.Create(holder, new Vector2(position.x, position.y - 0.4f), spec.sacIdle, spec.sacBurst, spec.sacRemains);
+                }
+            }
+            if (spec.HasMist)
+            {
+                int patches = Mathf.RoundToInt(candidates.Count * spec.mistPerCell);
+                foreach (var local in EncounterPlanner.Positions(candidates, patches, random))
+                {
+                    var position = placed.Origin + local;
+                    MethaneMist.Create(holder, new Vector2(position.x, position.y - 0.5f), spec.mist, (float)random.NextDouble() * 5f);
+                }
+            }
         }
 
         // Entre dos helechos de la sala, al menos esta distancia (en tiles).

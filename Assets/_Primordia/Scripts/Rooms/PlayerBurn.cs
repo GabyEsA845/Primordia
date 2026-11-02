@@ -69,6 +69,15 @@ namespace Primordia.Rooms
                 Destroy(icon.gameObject);
         }
 
+        /// <summary>Un fogonazo la deja al menos en esa fracción de barra (sin quitarle lo que ya tuviera).</summary>
+        public void SetOnFire(float bar)
+        {
+            if (FireImmune.Has(this))
+                return;
+            Bar = Mathf.Max(Bar, Mathf.Clamp01(bar));
+            Show(0f);
+        }
+
         /// <summary>Lo llama el fuego del suelo mientras el jugador lo pisa: llena la barra.</summary>
         public void Feed(float seconds)
         {

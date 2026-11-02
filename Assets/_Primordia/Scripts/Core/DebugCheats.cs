@@ -82,6 +82,8 @@ namespace Primordia.Core
                 NextLineage();
             if (keyboard.f9Key.wasPressedThisFrame)
                 CollapseRocks();
+            if (keyboard.f11Key.wasPressedThisFrame)
+                CycleTeleport();
             if (keyboard.f10Key.wasPressedThisFrame)
                 NextCaveMode();
 
@@ -91,6 +93,33 @@ namespace Primordia.Core
             if (strong && player.Weapon != null)
                 player.Weapon.SetDamageBonus(this, DamageBoost);
         }
+
+        /// <summary>F11: viaja al siguiente teletransporte activo; si no hay otro, vuelve a la marca de regreso.</summary>
+        void CycleTeleport()
+        {
+            if (!TeleportNetwork.CanTravel())
+            {
+                Say("Ahora no se puede teletransportar (sala sin limpiar)");
+                return;
+            }
+            if (TeleportNetwork.HasReturn)
+            {
+                TeleportNetwork.TravelBack();
+                Say("Regreso");
+                return;
+            }
+            var destinations = TeleportNetwork.Destinations();
+            if (destinations.Length == 0)
+            {
+                Say("No hay teletransportes activos");
+                return;
+            }
+            var next = destinations[teleportIndex++ % destinations.Length];
+            TeleportNetwork.TravelTo(next);
+            Say($"Teletransporte: {next.Role}");
+        }
+
+        int teleportIndex;
 
         void GoToExchange()
         {

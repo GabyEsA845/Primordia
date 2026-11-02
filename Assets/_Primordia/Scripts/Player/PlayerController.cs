@@ -20,6 +20,10 @@ namespace Primordia.Player
         [Header("Movimiento")]
         [Tooltip("Unidades por segundo (1 unidad = 16 px).")]
         [SerializeField, Min(0f)] float moveSpeed = 6f;
+        [Tooltip("Segundos que tarda en alcanzar la velocidad máxima al empezar a andar.")]
+        [SerializeField, Min(0f)] float accelerationTime = 0.07f;
+        [Tooltip("Segundos que tarda en pararse al soltar el movimiento.")]
+        [SerializeField, Min(0f)] float decelerationTime = 0.09f;
 
         [Header("Esquiva")]
         [Tooltip("Distancia total que recorre la esquiva, en unidades.")]
@@ -69,6 +73,16 @@ namespace Primordia.Player
         /// </summary>
         public float? SpeedOverride { get; set; }
 
+        /// <summary>
+        /// Multiplica los tiempos de arranque y frenada: más de 1 pesa más y resbala, menos de 1 es más ágil. 0 = sin inercia.
+        /// Lo pone el cuerpo de la criatura.
+        /// </summary>
+        public float Inertia
+        {
+            get => inertia;
+            set => inertia = Mathf.Max(0f, value);
+        }
+
         /// <summary>Distancia de la esquiva; las mutaciones de Extremidades la modifican.</summary>
         public float DodgeDistance
         {
@@ -104,6 +118,8 @@ namespace Primordia.Player
         public event Action DodgeEnded;
 
         int extraDodges;
+        float inertia = 1f;
+        Vector2 walkVelocity;
 
         // Las pruebas lo desactivan para dar la entrada con SetInput.
         internal bool readInput = true;
@@ -135,6 +151,8 @@ namespace Primordia.Player
             rb = GetComponent<Rigidbody2D>();
             health = GetComponent<Health>();
             ConfigureRigidbody(rb);
+            if (GetComponent<PlayerShadow>() == null)
+                gameObject.AddComponent<PlayerShadow>();
 
             var actions = InputSystem.actions;
             if (actions != null)
@@ -178,6 +196,7 @@ namespace Primordia.Player
                 {
                     // En cámara lenta, más deprisa para que vaya a su ritmo de siempre (ver TimeWarp).
                     rb.linearVelocity = DodgeDirection * (dodgeDistance / dodgeDuration) * TimeWarp.PlayerSpeed;
+                    walkVelocity = Vector2.zero;
                     return;
                 }
 
@@ -189,13 +208,37 @@ namespace Primordia.Player
                 if (Time.time < lungeEndTime && CanAct)
                 {
                     rb.linearVelocity = lungeVelocity * TimeWarp.PlayerSpeed;
+                    walkVelocity = Vector2.zero;
                     return;
                 }
 
                 StopLunge();
             }
 
-            rb.linearVelocity = CanAct ? MoveInput * (SpeedOverride ?? moveSpeed) * SlowFactor * TimeWarp.PlayerSpeed : Vector2.zero;
+            if (CanAct)
+            {
+                rb.linearVelocity = Walk();
+            }
+            else
+            {
+                walkVelocity = Vector2.zero;
+                rb.linearVelocity = Vector2.zero;
+            }
+        }
+
+        /// <summary>
+        /// Velocidad de andar de este paso: se acerca a la que pide el movimiento con un arranque y una frenada cortos
+        /// (<see cref="accelerationTime"/> y <see cref="decelerationTime"/>), para que el cuerpo tenga algo de peso.
+        /// </summary>
+        Vector2 Walk()
+        {
+            float top = (SpeedOverride ?? moveSpeed) * SlowFactor * TimeWarp.PlayerSpeed;
+            Vector2 target = MoveInput * top;
+            float time = (target.sqrMagnitude > 0.0001f ? accelerationTime : decelerationTime) * inertia;
+            // Cambio de velocidad por paso para ir de 0 a la máxima en ese tiempo; la ralentización no alarga el arranque.
+            float maxChange = time > 0.0001f ? Mathf.Max(top, 0.01f) / time * Time.fixedDeltaTime : float.MaxValue;
+            walkVelocity = Vector2.MoveTowards(walkVelocity, target, maxChange);
+            return walkVelocity;
         }
 
         /// <summary>Empieza una esquiva si se puede. Devuelve false si está en recarga o el juego no está en curso.</summary>
@@ -312,6 +355,7 @@ namespace Primordia.Player
             if (IsDodging)
                 EndDodge();
             rb.linearVelocity = Vector2.zero;
+            walkVelocity = Vector2.zero;
 
             if (GameManager.Instance != null)
                 GameManager.Instance.SetState(GameState.Defeat);

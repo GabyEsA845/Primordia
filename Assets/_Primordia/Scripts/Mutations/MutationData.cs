@@ -86,6 +86,8 @@ namespace Primordia.Mutations
         [Tooltip("Solo Boca desde el piso 2: segundos desde que empieza la animación de ataque del cuerpo hasta su cuadro "
             + "del golpe, cuando sale el proyectil o muerde. 0 = al instante.")]
         [SerializeField, Min(0f)] float attackHitTime;
+        [Tooltip("Solo Boca desde el piso 2: peso del cuerpo al arrancar y frenar. 1 = normal, más resbala, menos es más ágil.")]
+        [SerializeField, Min(0f)] float moveInertia = 1f;
         [Tooltip("Solo Piel desde el piso 2: su capa encima de cada cuerpo de criatura (las animaciones del cuerpo y las de "
             + "la capa, con los mismos estados).")]
         [SerializeField] CreatureLayer[] creatureLayers = System.Array.Empty<CreatureLayer>();
@@ -129,6 +131,9 @@ namespace Primordia.Mutations
 
         /// <summary>Solo Boca: segundos hasta el cuadro del golpe de la animación de ataque de su criatura.</summary>
         public float AttackHitTime => attackHitTime;
+
+        /// <summary>Solo Boca: peso del cuerpo de su criatura al arrancar y frenar (ver PlayerController.Inertia).</summary>
+        public float MoveInertia => moveInertia;
 
         /// <summary>Piel y Extremidades: animaciones de su capa sobre ese cuerpo de criatura, o null si no tiene.</summary>
         public RuntimeAnimatorController CreatureLayerFor(RuntimeAnimatorController body)
@@ -211,6 +216,8 @@ namespace Primordia.Mutations
         internal void SetSpecial(bool newSpecial) => special = newSpecial;
 
         internal void SetAttackHitTime(float seconds) => attackHitTime = Mathf.Max(0f, seconds);
+
+        internal void SetMoveInertia(float inertia) => moveInertia = Mathf.Max(0f, inertia);
 
         internal void SetCreatureLayers(params CreatureLayer[] layers) => creatureLayers = layers ?? System.Array.Empty<CreatureLayer>();
 

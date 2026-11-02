@@ -115,6 +115,7 @@ namespace Primordia.Rooms
             Debug.Log($"FloorGenerator: piso generado con la semilla {seed}.", this);
 
             CurrentFloor = config.FloorNumber;
+            RoomHearts.ResetLuck();
             var random = new System.Random(seed);
             Layout = FloorLayoutGenerator.Generate(config, random);
             Built = FloorBuilder.Build(Layout, config, transform, random);

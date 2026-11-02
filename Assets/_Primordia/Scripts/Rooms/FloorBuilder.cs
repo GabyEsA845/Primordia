@@ -719,6 +719,10 @@ namespace Primordia.Rooms
             if (HasEnemies(placed.Layout) && config.SmallBiomass != null)
                 roomObject.AddComponent<RoomBiomass>().Configure(config.SmallBiomass, config.BigBiomass, config.MinimumBiomassPerRoom);
 
+            // Las salas de combate (no el jefe) pueden soltar medio corazón al limpiarse.
+            if (placed.Layout.Role is (RoomRole.Combat or RoomRole.Side) && HasEnemies(placed.Layout))
+                roomObject.AddComponent<RoomHearts>();
+
             if (placed.Layout.Reward && config.RewardPool != null)
                 roomObject.AddComponent<MutationReward>().Configure(config.RewardPool, config.RewardOptions);
 

@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ae6dfe8bf811cd4aa9de30d1d03b937, type: 3}
+  m_Name: Mutation_VinegarJet
+  m_EditorClassIdentifier: Primordia::Primordia.Mutations.AttackMutation
+  displayName: Chorro de vinagre
+  description: Chorro de vinagre desde la cola alzada. (Ataque provisional.)
+  slot: 0
+  lineages: []
+  look: {fileID: 0}
+  bodyRadius: 0
+  mouthDistance: 0
+  headHeight: 0
+  wornOnHead: 0
+  muzzleDistance: 0
+  attackLean: 0
+  icon: {fileID: 21300000, guid: 9b582fa23323eaf40988f526269df6ac, type: 3}
+  largeIcon: {fileID: 21300000, guid: 33aae3e1ae555fa4ead4d2e5ef7b652b, type: 3}
+  color: {r: 0.95, g: 0.5, b: 0.35, a: 1}
+  levelDescriptions:
+  - 
+  - 
+  dodgeSound: 
+  floor: 3
+  special: 0
+  family: 0
+  creatureIdleFrames:
+  - {fileID: -1805595109304944393, guid: f10d7774cdedcfd45bc846cf54872ad0, type: 3}
+  - {fileID: 9069543397658744145, guid: f10d7774cdedcfd45bc846cf54872ad0, type: 3}
+  - {fileID: 8669745701366311654, guid: f10d7774cdedcfd45bc846cf54872ad0, type: 3}
+  - {fileID: 7263092895982953230, guid: f10d7774cdedcfd45bc846cf54872ad0, type: 3}
+  creatureAttackFrames:
+  - {fileID: -340913887454034392, guid: a6b4a3582afab1840954e63648c6c27d, type: 3}
+  - {fileID: 39254974644443346, guid: a6b4a3582afab1840954e63648c6c27d, type: 3}
+  - {fileID: -4602681706343892069, guid: a6b4a3582afab1840954e63648c6c27d, type: 3}
+  - {fileID: 8848760437479975452, guid: a6b4a3582afab1840954e63648c6c27d, type: 3}
+  creatureBody: {fileID: 9100000, guid: 20d0d777444a2e44ea563bce6960ff90, type: 2}
+  attackHitTime: 0
+  creatureLayers: []
+  morphFrames: []
+  revealFrames: []
+  attack: {fileID: 11400000, guid: b6c3f22c0110a2548b95eda6f2d352df, type: 2}
+  healEveryKills: 0
+  upgrades: []
+  healEffect: {fileID: 0}

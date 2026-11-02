@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ae6dfe8bf811cd4aa9de30d1d03b937, type: 3}
+  m_Name: Mutation_PoisonSpit
+  m_EditorClassIdentifier: Primordia::Primordia.Mutations.AttackMutation
+  displayName: Escupitajo venenoso
+  description: Bola de veneno lenta que atraviesa y deja un rastro de charcos. (Ataque provisional.)
+  slot: 0
+  lineages: []
+  look: {fileID: 0}
+  bodyRadius: 0
+  mouthDistance: 0
+  headHeight: 0
+  wornOnHead: 0
+  muzzleDistance: 0
+  attackLean: 0
+  icon: {fileID: 21300000, guid: 0b49aa9a562950f458c92ef24ce6a9f0, type: 3}
+  largeIcon: {fileID: 21300000, guid: 48aa3429242f5bf4183bc2494e00dded, type: 3}
+  color: {r: 0.95, g: 0.5, b: 0.35, a: 1}
+  levelDescriptions:
+  - 
+  - 
+  dodgeSound: 
+  floor: 3
+  special: 0
+  family: 2
+  creatureIdleFrames:
+  - {fileID: 2014096876281328647, guid: be4cb57e7b06b7c44b416470800aca7b, type: 3}
+  - {fileID: -6820247505455608295, guid: be4cb57e7b06b7c44b416470800aca7b, type: 3}
+  - {fileID: -190740223708874062, guid: be4cb57e7b06b7c44b416470800aca7b, type: 3}
+  - {fileID: 4413996328485245264, guid: be4cb57e7b06b7c44b416470800aca7b, type: 3}
+  creatureAttackFrames:
+  - {fileID: -5160892658143633025, guid: 0ed8f09466a9bbe4d893ca008cb6e622, type: 3}
+  - {fileID: 653227230589055223, guid: 0ed8f09466a9bbe4d893ca008cb6e622, type: 3}
+  - {fileID: 8454349705871791913, guid: 0ed8f09466a9bbe4d893ca008cb6e622, type: 3}
+  - {fileID: 5895958268700188322, guid: 0ed8f09466a9bbe4d893ca008cb6e622, type: 3}
+  - {fileID: 8761156442770243659, guid: 0ed8f09466a9bbe4d893ca008cb6e622, type: 3}
+  - {fileID: 560214535275847899, guid: 0ed8f09466a9bbe4d893ca008cb6e622, type: 3}
+  - {fileID: -6364966276349046837, guid: 0ed8f09466a9bbe4d893ca008cb6e622, type: 3}
+  - {fileID: 4221083721812826081, guid: 0ed8f09466a9bbe4d893ca008cb6e622, type: 3}
+  - {fileID: -1874701578711297526, guid: 0ed8f09466a9bbe4d893ca008cb6e622, type: 3}
+  - {fileID: -3953977357405858724, guid: 0ed8f09466a9bbe4d893ca008cb6e622, type: 3}
+  - {fileID: -2691136859831114416, guid: 0ed8f09466a9bbe4d893ca008cb6e622, type: 3}
+  - {fileID: 547431513593175736, guid: 0ed8f09466a9bbe4d893ca008cb6e622, type: 3}
+  creatureBody: {fileID: 9100000, guid: b7a1f1eda68daf141be47a222fb3acad, type: 2}
+  attackHitTime: 0.56
+  creatureLayers: []
+  morphFrames: []
+  revealFrames: []
+  attack: {fileID: 11400000, guid: 30b703fc6d1697d47a0e24871476e1d7, type: 2}
+  healEveryKills: 0
+  upgrades: []
+  healEffect: {fileID: 0}

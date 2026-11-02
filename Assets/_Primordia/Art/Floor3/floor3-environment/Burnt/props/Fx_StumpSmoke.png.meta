@@ -79,7 +79,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -151,12 +151,12 @@ TextureImporter:
       name: Fx_StumpSmoke_0
       rect:
         serializedVersion: 2
-        x: 3
-        y: 15
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 0
+        width: 16
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -173,12 +173,12 @@ TextureImporter:
       name: Fx_StumpSmoke_1
       rect:
         serializedVersion: 2
-        x: 21
-        y: 19
-        width: 9
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 16
+        y: 0
+        width: 16
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -195,12 +195,12 @@ TextureImporter:
       name: Fx_StumpSmoke_2
       rect:
         serializedVersion: 2
-        x: 34
-        y: 15
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 32
+        y: 0
+        width: 16
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -217,12 +217,12 @@ TextureImporter:
       name: Fx_StumpSmoke_3
       rect:
         serializedVersion: 2
-        x: 51
-        y: 19
-        width: 9
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 48
+        y: 0
+        width: 16
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -239,12 +239,12 @@ TextureImporter:
       name: Fx_StumpSmoke_4
       rect:
         serializedVersion: 2
-        x: 67
-        y: 16
-        width: 7
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 64
+        y: 0
+        width: 16
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -261,12 +261,12 @@ TextureImporter:
       name: Fx_StumpSmoke_5
       rect:
         serializedVersion: 2
-        x: 82
-        y: 19
-        width: 8
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 80
+        y: 0
+        width: 16
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -275,138 +275,6 @@ TextureImporter:
       bones: []
       spriteID: 47301535c7087c220800000000000000
       internalID: 2506112989117088628
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_StumpSmoke_6
-      rect:
-        serializedVersion: 2
-        x: 5
-        y: 0
-        width: 6
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: bc92be77e343873c0800000000000000
-      internalID: -4361678796203808309
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_StumpSmoke_7
-      rect:
-        serializedVersion: 2
-        x: 19
-        y: 4
-        width: 9
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5d1998166e0ead6e0800000000000000
-      internalID: -1811888619979697707
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_StumpSmoke_8
-      rect:
-        serializedVersion: 2
-        x: 39
-        y: 0
-        width: 6
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2fcb3d3584ffe3f70800000000000000
-      internalID: 9169046577482022130
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_StumpSmoke_9
-      rect:
-        serializedVersion: 2
-        x: 53
-        y: 4
-        width: 7
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d903a3b7705fb46b0800000000000000
-      internalID: -5310881923072380771
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_StumpSmoke_10
-      rect:
-        serializedVersion: 2
-        x: 67
-        y: 0
-        width: 9
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7f0d6d151035ee1a0800000000000000
-      internalID: -6778389124012912393
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_StumpSmoke_11
-      rect:
-        serializedVersion: 2
-        x: 82
-        y: 4
-        width: 11
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: eac7932e1f7786fe0800000000000000
-      internalID: -1195573820300624722
       vertices: []
       indices: 
       edges: []
@@ -427,16 +295,10 @@ TextureImporter:
     nameFileIdTable:
       Fx_StumpSmoke_0: 369439756620229957
       Fx_StumpSmoke_1: -9129882087556419252
-      Fx_StumpSmoke_10: -6778389124012912393
-      Fx_StumpSmoke_11: -1195573820300624722
       Fx_StumpSmoke_2: -6356111566874632089
       Fx_StumpSmoke_3: -1855657890553771983
       Fx_StumpSmoke_4: -2107971273161548474
       Fx_StumpSmoke_5: 2506112989117088628
-      Fx_StumpSmoke_6: -4361678796203808309
-      Fx_StumpSmoke_7: -1811888619979697707
-      Fx_StumpSmoke_8: 9169046577482022130
-      Fx_StumpSmoke_9: -5310881923072380771
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

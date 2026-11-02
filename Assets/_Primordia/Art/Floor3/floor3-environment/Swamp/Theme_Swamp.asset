@@ -389,6 +389,167 @@ MonoBehaviour:
     - {fileID: -1218728426924106048, guid: 6608540f08bd9404fa155daf1be73e5c, type: 3}
     - {fileID: 8560998934728308107, guid: 6608540f08bd9404fa155daf1be73e5c, type: 3}
     bulbCount: {x: 0, y: 2}
+  scenery:
+    ventIdle:
+    - {fileID: 1342629403789976037, guid: d5feda87bed76f048b04d797ca6feb1f, type: 3}
+    - {fileID: 5884520420465780403, guid: d5feda87bed76f048b04d797ca6feb1f, type: 3}
+    - {fileID: -519574864614482089, guid: d5feda87bed76f048b04d797ca6feb1f, type: 3}
+    - {fileID: 7995998159160676765, guid: d5feda87bed76f048b04d797ca6feb1f, type: 3}
+    ventWarn:
+    - {fileID: -1921503179104068277, guid: 8aeda984fa0dc0845a69caf810958c7d, type: 3}
+    - {fileID: -8098154150491870626, guid: 8aeda984fa0dc0845a69caf810958c7d, type: 3}
+    - {fileID: -2847884436631871153, guid: 8aeda984fa0dc0845a69caf810958c7d, type: 3}
+    - {fileID: -5251340664905520477, guid: 8aeda984fa0dc0845a69caf810958c7d, type: 3}
+    ventBlast:
+    - {fileID: -5297208149369132656, guid: 62f538e2541006b41980242ba85d0b3b, type: 3}
+    - {fileID: -5602898465779154498, guid: 62f538e2541006b41980242ba85d0b3b, type: 3}
+    - {fileID: 3079448676574946550, guid: 62f538e2541006b41980242ba85d0b3b, type: 3}
+    - {fileID: -76905684626377600, guid: 62f538e2541006b41980242ba85d0b3b, type: 3}
+    - {fileID: -3140932447984335908, guid: 62f538e2541006b41980242ba85d0b3b, type: 3}
+    - {fileID: 427823390264775685, guid: 62f538e2541006b41980242ba85d0b3b, type: 3}
+    ventCount: {x: 0, y: 1}
+    puddles:
+    - name: Sludge_Round
+      frames:
+      - {fileID: 2210806170540866483, guid: cbdffabbcd8a45742a23c6c4874b1675, type: 3}
+      - {fileID: -819287439072069126, guid: cbdffabbcd8a45742a23c6c4874b1675, type: 3}
+      - {fileID: -7297371657322008519, guid: cbdffabbcd8a45742a23c6c4874b1675, type: 3}
+      - {fileID: 9067362824427281606, guid: cbdffabbcd8a45742a23c6c4874b1675, type: 3}
+      frameSeconds: 0.26
+      sludge: 1
+    - name: Water_Round
+      frames:
+      - {fileID: 6609075524776229614, guid: a7b43594c6ba7a845b893a788bacae6d, type: 3}
+      - {fileID: 9095699993794208974, guid: a7b43594c6ba7a845b893a788bacae6d, type: 3}
+      - {fileID: -1098583652952512262, guid: a7b43594c6ba7a845b893a788bacae6d, type: 3}
+      - {fileID: 8655783055487511450, guid: a7b43594c6ba7a845b893a788bacae6d, type: 3}
+      frameSeconds: 0.22
+      sludge: 0
+    - name: Sludge_Long
+      frames:
+      - {fileID: -1104846210376026374, guid: 160745aa8d592c249a5dde8f2818d4f5, type: 3}
+      - {fileID: -8264091436720311972, guid: 160745aa8d592c249a5dde8f2818d4f5, type: 3}
+      - {fileID: -1548979103058764164, guid: 160745aa8d592c249a5dde8f2818d4f5, type: 3}
+      - {fileID: -265010406232927907, guid: 160745aa8d592c249a5dde8f2818d4f5, type: 3}
+      frameSeconds: 0.26
+      sludge: 1
+    - name: Water_Long
+      frames:
+      - {fileID: 8695441675859977399, guid: 42022b43321ce154fa5af8de80cf1a41, type: 3}
+      - {fileID: -639948927984641368, guid: 42022b43321ce154fa5af8de80cf1a41, type: 3}
+      - {fileID: 7072461575379246060, guid: 42022b43321ce154fa5af8de80cf1a41, type: 3}
+      - {fileID: -483608138017256361, guid: 42022b43321ce154fa5af8de80cf1a41, type: 3}
+      frameSeconds: 0.22
+      sludge: 0
+    - name: Sludge_Lobed
+      frames:
+      - {fileID: -3562859909255694249, guid: da0d3ade3987cd24f8b4028786b72dd0, type: 3}
+      - {fileID: 4642547355102821488, guid: da0d3ade3987cd24f8b4028786b72dd0, type: 3}
+      - {fileID: 4829681435121095369, guid: da0d3ade3987cd24f8b4028786b72dd0, type: 3}
+      - {fileID: -2213149235086771417, guid: da0d3ade3987cd24f8b4028786b72dd0, type: 3}
+      frameSeconds: 0.26
+      sludge: 1
+    - name: Water_Lobed
+      frames:
+      - {fileID: 8215538854505975702, guid: eae06ff644b13c74e83981870daa7109, type: 3}
+      - {fileID: 7445073717210765963, guid: eae06ff644b13c74e83981870daa7109, type: 3}
+      - {fileID: 3755836524451102161, guid: eae06ff644b13c74e83981870daa7109, type: 3}
+      - {fileID: -9179025883512050622, guid: eae06ff644b13c74e83981870daa7109, type: 3}
+      frameSeconds: 0.22
+      sludge: 0
+    - name: Sludge_Chain
+      frames:
+      - {fileID: -8802832604197647549, guid: 28f0699d9fe217c429d5e7a38ae81193, type: 3}
+      - {fileID: -3695654887914304887, guid: 28f0699d9fe217c429d5e7a38ae81193, type: 3}
+      - {fileID: -3430885117105138908, guid: 28f0699d9fe217c429d5e7a38ae81193, type: 3}
+      - {fileID: 5330452449511193048, guid: 28f0699d9fe217c429d5e7a38ae81193, type: 3}
+      frameSeconds: 0.26
+      sludge: 1
+    - name: Water_Chain
+      frames:
+      - {fileID: -4047465633047955115, guid: 0967bc3305a4f184ba5fd02398605eda, type: 3}
+      - {fileID: 5458723871831281488, guid: 0967bc3305a4f184ba5fd02398605eda, type: 3}
+      - {fileID: 3985468525646306914, guid: 0967bc3305a4f184ba5fd02398605eda, type: 3}
+      - {fileID: -4419556685685693727, guid: 0967bc3305a4f184ba5fd02398605eda, type: 3}
+      frameSeconds: 0.22
+      sludge: 0
+    - name: Sludge_Island
+      frames:
+      - {fileID: -7707836861658895697, guid: 270fcb3cd1dae194b8052499bb650d67, type: 3}
+      - {fileID: -7337437274975424108, guid: 270fcb3cd1dae194b8052499bb650d67, type: 3}
+      - {fileID: 5773068879460814169, guid: 270fcb3cd1dae194b8052499bb650d67, type: 3}
+      - {fileID: -3525304934952404017, guid: 270fcb3cd1dae194b8052499bb650d67, type: 3}
+      frameSeconds: 0.26
+      sludge: 1
+    - name: Water_Island
+      frames:
+      - {fileID: -3424030055915904614, guid: 36468be0d98d89a4e95b3c14d1329490, type: 3}
+      - {fileID: 3635933181384932072, guid: 36468be0d98d89a4e95b3c14d1329490, type: 3}
+      - {fileID: -6643483345049258170, guid: 36468be0d98d89a4e95b3c14d1329490, type: 3}
+      - {fileID: 5003278228488240057, guid: 36468be0d98d89a4e95b3c14d1329490, type: 3}
+      frameSeconds: 0.22
+      sludge: 0
+    - name: Sludge_Splash
+      frames:
+      - {fileID: 8089941058303708986, guid: ff09538008583a04d870cb102952b824, type: 3}
+      - {fileID: -7784974401137435909, guid: ff09538008583a04d870cb102952b824, type: 3}
+      - {fileID: -3782194272043868236, guid: ff09538008583a04d870cb102952b824, type: 3}
+      - {fileID: 8416497121765847521, guid: ff09538008583a04d870cb102952b824, type: 3}
+      frameSeconds: 0.26
+      sludge: 1
+    - name: Water_Splash
+      frames:
+      - {fileID: 3488599477477802216, guid: 2db6f91a35c811d49b06f5c90ddc0e96, type: 3}
+      - {fileID: -4722592450739117220, guid: 2db6f91a35c811d49b06f5c90ddc0e96, type: 3}
+      - {fileID: -8659902743020687013, guid: 2db6f91a35c811d49b06f5c90ddc0e96, type: 3}
+      - {fileID: 1824732976102928534, guid: 2db6f91a35c811d49b06f5c90ddc0e96, type: 3}
+      frameSeconds: 0.22
+      sludge: 0
+    - name: Sludge_Kidney
+      frames:
+      - {fileID: -8812078009263882401, guid: 8a31da3e9e72825419df1c7e00074ebc, type: 3}
+      - {fileID: 4533942418629060008, guid: 8a31da3e9e72825419df1c7e00074ebc, type: 3}
+      - {fileID: 292301062596033612, guid: 8a31da3e9e72825419df1c7e00074ebc, type: 3}
+      - {fileID: 7367028074008280203, guid: 8a31da3e9e72825419df1c7e00074ebc, type: 3}
+      frameSeconds: 0.26
+      sludge: 1
+    - name: Water_Kidney
+      frames:
+      - {fileID: -1532528301775422125, guid: 09d167ee57328e6429b8ba5599286d03, type: 3}
+      - {fileID: -5279721067414009496, guid: 09d167ee57328e6429b8ba5599286d03, type: 3}
+      - {fileID: -1633827516228293836, guid: 09d167ee57328e6429b8ba5599286d03, type: 3}
+      - {fileID: -1787778351392239466, guid: 09d167ee57328e6429b8ba5599286d03, type: 3}
+      frameSeconds: 0.22
+      sludge: 0
+    puddleCount: {x: 3, y: 5}
+    waterShare: 0.6
+    gnatChance: 0.7
+    gnats:
+    - {fileID: 2218869142629257911, guid: d423e4e5fa6299f40a9ff0e334fd1488, type: 3}
+    - {fileID: 853157997, guid: d423e4e5fa6299f40a9ff0e334fd1488, type: 3}
+    - {fileID: -1617251951, guid: d423e4e5fa6299f40a9ff0e334fd1488, type: 3}
+    - {fileID: 489618094, guid: d423e4e5fa6299f40a9ff0e334fd1488, type: 3}
+    beetleIdle:
+    - {fileID: -5370535596461969932, guid: 8a451aa37ddc82743a94f83ebdceb102, type: 3}
+    - {fileID: 3948589326398173618, guid: 8a451aa37ddc82743a94f83ebdceb102, type: 3}
+    beetleRun:
+    - {fileID: 978187040813193187, guid: 4261441cfeefdc643ad149ea9f381243, type: 3}
+    - {fileID: 1976243539260600004, guid: 4261441cfeefdc643ad149ea9f381243, type: 3}
+    - {fileID: 1919686247983306234, guid: 4261441cfeefdc643ad149ea9f381243, type: 3}
+    - {fileID: 7774532045148103110, guid: 4261441cfeefdc643ad149ea9f381243, type: 3}
+    beetleCount: {x: 2, y: 4}
+    embers: []
+    emberCount: {x: 0, y: 0}
+    dripMoss:
+    - {fileID: 2162283570564819411, guid: ebc326e0e542bf74c8d33611b9a92c0e, type: 3}
+    - {fileID: -5170469684464958241, guid: ebc326e0e542bf74c8d33611b9a92c0e, type: 3}
+    - {fileID: 4979787114056012120, guid: ebc326e0e542bf74c8d33611b9a92c0e, type: 3}
+    - {fileID: -1654784659097493138, guid: ebc326e0e542bf74c8d33611b9a92c0e, type: 3}
+    - {fileID: -5838698227407937578, guid: ebc326e0e542bf74c8d33611b9a92c0e, type: 3}
+    - {fileID: -5926074439496696500, guid: ebc326e0e542bf74c8d33611b9a92c0e, type: 3}
+    mossChance: 0.08
+    stump: {fileID: 0}
+    stumpSmoke: []
   mudTiles:
   - {fileID: 11400000, guid: 696b67077d8cd6d43ae0ac6b0ac05a0c, type: 2}
   - {fileID: 11400000, guid: c50e0e2976155c14ebcb010269746d54, type: 2}

@@ -67,7 +67,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -139,12 +139,12 @@ TextureImporter:
       name: Fx_MistIgnite_0
       rect:
         serializedVersion: 2
-        x: 3
+        x: 0
         y: 0
-        width: 26
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 32
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -161,12 +161,12 @@ TextureImporter:
       name: Fx_MistIgnite_1
       rect:
         serializedVersion: 2
-        x: 33
-        y: 2
-        width: 31
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 32
+        y: 0
+        width: 32
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -183,12 +183,12 @@ TextureImporter:
       name: Fx_MistIgnite_2
       rect:
         serializedVersion: 2
-        x: 65
-        y: 2
-        width: 31
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 64
+        y: 0
+        width: 32
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -206,11 +206,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 96
-        y: 2
+        y: 0
         width: 32
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -227,12 +227,12 @@ TextureImporter:
       name: Fx_MistIgnite_4
       rect:
         serializedVersion: 2
-        x: 129
-        y: 1
-        width: 31
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 128
+        y: 0
+        width: 32
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -249,12 +249,12 @@ TextureImporter:
       name: Fx_MistIgnite_5
       rect:
         serializedVersion: 2
-        x: 161
-        y: 1
-        width: 31
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 160
+        y: 0
+        width: 32
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -271,12 +271,12 @@ TextureImporter:
       name: Fx_MistIgnite_6
       rect:
         serializedVersion: 2
-        x: 164
-        y: 8
-        width: 25
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 192
+        y: 0
+        width: 32
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -285,28 +285,6 @@ TextureImporter:
       bones: []
       spriteID: 83d0bdb2c028885c0800000000000000
       internalID: -4212974462618104520
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_MistIgnite_7
-      rect:
-        serializedVersion: 2
-        x: 195
-        y: 9
-        width: 26
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f63f413d796989280800000000000000
-      internalID: -9036307073493306513
       vertices: []
       indices: 
       edges: []
@@ -332,7 +310,6 @@ TextureImporter:
       Fx_MistIgnite_4: -81024277662718946
       Fx_MistIgnite_5: -8875776459508996693
       Fx_MistIgnite_6: -4212974462618104520
-      Fx_MistIgnite_7: -9036307073493306513
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

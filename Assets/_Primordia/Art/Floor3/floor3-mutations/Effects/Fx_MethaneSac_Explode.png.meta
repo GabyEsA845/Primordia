@@ -97,7 +97,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -169,12 +169,12 @@ TextureImporter:
       name: Fx_MethaneSac_Explode_0
       rect:
         serializedVersion: 2
-        x: 23
-        y: 23
-        width: 18
-        height: 18
+        x: 0
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -191,12 +191,12 @@ TextureImporter:
       name: Fx_MethaneSac_Explode_1
       rect:
         serializedVersion: 2
-        x: 80
-        y: 16
-        width: 32
-        height: 32
+        x: 64
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -213,12 +213,12 @@ TextureImporter:
       name: Fx_MethaneSac_Explode_2
       rect:
         serializedVersion: 2
-        x: 140
-        y: 12
-        width: 40
-        height: 40
+        x: 128
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -235,12 +235,12 @@ TextureImporter:
       name: Fx_MethaneSac_Explode_3
       rect:
         serializedVersion: 2
-        x: 200
-        y: 8
-        width: 28
-        height: 48
+        x: 192
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -257,12 +257,12 @@ TextureImporter:
       name: Fx_MethaneSac_Explode_4
       rect:
         serializedVersion: 2
-        x: 206
-        y: 16
-        width: 36
-        height: 32
+        x: 256
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -279,12 +279,12 @@ TextureImporter:
       name: Fx_MethaneSac_Explode_5
       rect:
         serializedVersion: 2
-        x: 223
-        y: 12
-        width: 25
-        height: 41
+        x: 320
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -301,12 +301,12 @@ TextureImporter:
       name: Fx_MethaneSac_Explode_6
       rect:
         serializedVersion: 2
-        x: 260
-        y: 32
-        width: 29
-        height: 29
+        x: 384
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -323,12 +323,12 @@ TextureImporter:
       name: Fx_MethaneSac_Explode_7
       rect:
         serializedVersion: 2
-        x: 262
-        y: 7
-        width: 26
-        height: 26
+        x: 448
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -337,226 +337,6 @@ TextureImporter:
       bones: []
       spriteID: c9ed1995c9b8a4830800000000000000
       internalID: 4056207918034443932
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_MethaneSac_Explode_8
-      rect:
-        serializedVersion: 2
-        x: 268
-        y: 13
-        width: 40
-        height: 38
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0bc99d1b9fd921e10800000000000000
-      internalID: 2166968066474876080
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_MethaneSac_Explode_9
-      rect:
-        serializedVersion: 2
-        x: 287
-        y: 4
-        width: 29
-        height: 29
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 65e774d873d335280800000000000000
-      internalID: -9055827116909167018
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_MethaneSac_Explode_10
-      rect:
-        serializedVersion: 2
-        x: 288
-        y: 32
-        width: 26
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9e0899bee87d64cd0800000000000000
-      internalID: -2574133128157626135
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_MethaneSac_Explode_11
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 32
-        width: 45
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c946b8d11a0696c80800000000000000
-      internalID: -8329019790743346020
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_MethaneSac_Explode_12
-      rect:
-        serializedVersion: 2
-        x: 322
-        y: 3
-        width: 27
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b44bdc31164b1d4e0800000000000000
-      internalID: -1958586033892379573
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_MethaneSac_Explode_13
-      rect:
-        serializedVersion: 2
-        x: 336
-        y: 25
-        width: 32
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: dd61f2d1c1b4546e0800000000000000
-      internalID: -1853993087472298275
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_MethaneSac_Explode_14
-      rect:
-        serializedVersion: 2
-        x: 348
-        y: 0
-        width: 36
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 269f3350926f81830800000000000000
-      internalID: 4042251321606404450
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_MethaneSac_Explode_15
-      rect:
-        serializedVersion: 2
-        x: 364
-        y: 32
-        width: 18
-        height: 29
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 35571436b30882610800000000000000
-      internalID: 1596667060459500883
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_MethaneSac_Explode_16
-      rect:
-        serializedVersion: 2
-        x: 399
-        y: 26
-        width: 34
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 486496587d710c170800000000000000
-      internalID: 8196577536237979268
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_MethaneSac_Explode_17
-      rect:
-        serializedVersion: 2
-        x: 463
-        y: 28
-        width: 34
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7cafdbc4b23b941e0800000000000000
-      internalID: -2213040743323403577
       vertices: []
       indices: 
       edges: []
@@ -577,22 +357,12 @@ TextureImporter:
     nameFileIdTable:
       Fx_MethaneSac_Explode_0: -6120051384208765717
       Fx_MethaneSac_Explode_1: -4323193530139778097
-      Fx_MethaneSac_Explode_10: -2574133128157626135
-      Fx_MethaneSac_Explode_11: -8329019790743346020
-      Fx_MethaneSac_Explode_12: -1958586033892379573
-      Fx_MethaneSac_Explode_13: -1853993087472298275
-      Fx_MethaneSac_Explode_14: 4042251321606404450
-      Fx_MethaneSac_Explode_15: 1596667060459500883
-      Fx_MethaneSac_Explode_16: 8196577536237979268
-      Fx_MethaneSac_Explode_17: -2213040743323403577
       Fx_MethaneSac_Explode_2: 5549910060440747768
       Fx_MethaneSac_Explode_3: -6299369037235855884
       Fx_MethaneSac_Explode_4: 8234103057408149926
       Fx_MethaneSac_Explode_5: -9112145291666140252
       Fx_MethaneSac_Explode_6: -3417244617619257196
       Fx_MethaneSac_Explode_7: 4056207918034443932
-      Fx_MethaneSac_Explode_8: 2166968066474876080
-      Fx_MethaneSac_Explode_9: -9055827116909167018
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

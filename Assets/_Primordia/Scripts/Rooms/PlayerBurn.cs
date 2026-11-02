@@ -26,7 +26,7 @@ namespace Primordia.Rooms
         const float ExtinguishBelow = 0.05f;
         // Cada cuánto prende lo inflamable que toca, y a qué distancia.
         const float IgniteEvery = 0.25f;
-        const float IgniteRadius = 0.9f;
+        const float IgniteRadius = 1.1f;
 
         PlayerController controller;
         Health health;
@@ -118,8 +118,8 @@ namespace Primordia.Rooms
                 Burning = true;
             }
 
-            // Mientras arde, prende los helechos y la maleza por los que pasa.
-            if (Burning)
+            // Con el quemado puesto (la barra empezada o ardiendo), prende todo lo inflamable que roza.
+            if (Burning || Bar > 0.001f)
             {
                 igniteTimer += Time.deltaTime;
                 if (igniteTimer >= IgniteEvery)

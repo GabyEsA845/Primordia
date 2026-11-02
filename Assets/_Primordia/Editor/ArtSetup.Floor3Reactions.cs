@@ -103,6 +103,40 @@ namespace Primordia.Editor
             [BurntThemeName] = (new Vector2Int(0, 1), 0f),
         };
 
+        // Obstáculos de cobertura (README del escenario): archivo, ancho y alto de la imagen, y si bloquean 1×1 o 2×2. La colisión es
+        // la base del dibujo (con unos píxeles de margen y sombra debajo), así que el pivote se pone para que el pie quede en
+        // la base de la caja de colisión que centra el generador.
+        static readonly (string name, int width, int height, int tiles)[] ObstacleTypes =
+        {
+            ("Obstacle_Rock", 24, 18, 1),
+            ("Obstacle_Stump", 24, 22, 1),
+            ("Obstacle_Sigillaria", 48, 66, 2),
+            ("Obstacle_BrokenTrunk", 40, 46, 2),
+            ("Obstacle_FallenLog", 48, 30, 2),
+        };
+
+        // Margen de sombra bajo el pie de los sprites, en píxeles.
+        const int ObstacleFootMargin = 2;
+
+        static void ImportObstacles(RoomTheme theme, string folder)
+        {
+            var small = new List<Sprite>();
+            var big = new List<Sprite>();
+            foreach (var (name, width, height, tiles) in ObstacleTypes)
+            {
+                string path = $"{folder}/props/{name}.png";
+                if (!File.Exists(path))
+                    continue;
+                // El centro de la caja de colisión está a medio tile por cada tile de lado sobre la base.
+                float centerFromFoot = tiles * 16f / 2f;
+                var pivot = new Vector2(0.5f, (ObstacleFootMargin + centerFromFoot) / height);
+                var sprite = SliceSheet(path, width, pivot).FirstOrDefault();
+                if (sprite != null)
+                    (tiles == 1 ? small : big).Add(sprite);
+            }
+            theme.ConfigureObstacles(small.ToArray(), big.ToArray());
+        }
+
         static void ImportMethane(RoomTheme theme, string folder, string themeName)
         {
             string idle = $"{folder}/props/Methane_Sac_Idle.png";

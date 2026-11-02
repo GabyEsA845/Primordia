@@ -68,6 +68,8 @@ namespace Primordia.Rooms
             sac.burst = burst;
             sac.remains = remains;
             sac.health = health;
+            // OnEnable ya pasó (al añadir el componente) sin vida a la que suscribirse: se suscribe ahora.
+            sac.Subscribe();
             // Los golpes de cada equipo buscan por capa: uno de los enemigos (para el jugador) y otro del jugador (para los enemigos).
             sac.colliders = new Collider2D[]
             {
@@ -96,8 +98,16 @@ namespace Primordia.Rooms
         void OnEnable()
         {
             Flammables.Register(this);
-            if (health != null)
-                health.Died += Pop;
+            Subscribe();
+        }
+
+        // Sin duplicar la suscripción si se llama dos veces.
+        void Subscribe()
+        {
+            if (health == null)
+                return;
+            health.Died -= Pop;
+            health.Died += Pop;
         }
 
         void OnDisable()

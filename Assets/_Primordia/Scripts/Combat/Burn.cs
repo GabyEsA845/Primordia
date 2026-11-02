@@ -15,7 +15,7 @@ namespace Primordia.Combat
 
         // Cada cuánto prende lo inflamable que toca, y a qué distancia (casi pegado: un helecho al que se acerca).
         const float IgniteEvery = 0.25f;
-        const float IgniteRadius = 0.9f;
+        const float IgniteRadius = 1.1f;
 
         float igniteTimer;
 

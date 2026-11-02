@@ -320,6 +320,30 @@ MonoBehaviour:
     footRadius: 0.5
     weight: 1
   fernDensity: 0.006
+  methane:
+    sacIdle:
+    - {fileID: -4357448081896897112, guid: 0273f3b2c0a2a444f89ffe68658241ba, type: 3}
+    - {fileID: 6446076642563888805, guid: 0273f3b2c0a2a444f89ffe68658241ba, type: 3}
+    - {fileID: -6289467576226276763, guid: 0273f3b2c0a2a444f89ffe68658241ba, type: 3}
+    - {fileID: -5539291267830686534, guid: 0273f3b2c0a2a444f89ffe68658241ba, type: 3}
+    sacBurst:
+    - {fileID: -7418093019714818548, guid: 923e64e28976ffd4cb22dac4a88fe4b0, type: 3}
+    - {fileID: 7462704289033570257, guid: 923e64e28976ffd4cb22dac4a88fe4b0, type: 3}
+    - {fileID: 5706269142380385645, guid: 923e64e28976ffd4cb22dac4a88fe4b0, type: 3}
+    - {fileID: 5721329496203764564, guid: 923e64e28976ffd4cb22dac4a88fe4b0, type: 3}
+    - {fileID: 5930052353563706475, guid: 923e64e28976ffd4cb22dac4a88fe4b0, type: 3}
+    sacRemains: {fileID: -3776662731488166539, guid: 78c251594eaf4ec4ab9e93275f0eb943, type: 3}
+    mist:
+    - {fileID: -5301034384706175667, guid: 76334a0ce7d33e949b47bdbea7e63426, type: 3}
+    - {fileID: 7103979100258950916, guid: 76334a0ce7d33e949b47bdbea7e63426, type: 3}
+    - {fileID: -8444408585534177509, guid: 76334a0ce7d33e949b47bdbea7e63426, type: 3}
+    - {fileID: -134674290683337440, guid: 76334a0ce7d33e949b47bdbea7e63426, type: 3}
+    - {fileID: 7392299999265601707, guid: 76334a0ce7d33e949b47bdbea7e63426, type: 3}
+    - {fileID: -6594141133301895292, guid: 76334a0ce7d33e949b47bdbea7e63426, type: 3}
+    - {fileID: -4564120339749972388, guid: 76334a0ce7d33e949b47bdbea7e63426, type: 3}
+    - {fileID: 1486192425223714107, guid: 76334a0ce7d33e949b47bdbea7e63426, type: 3}
+    sacCount: {x: 0, y: 1}
+    mistPerCell: 0
   mudTiles:
   - {fileID: 11400000, guid: 450bd2483bbc8624e80ea6a662568a0f, type: 2}
   - {fileID: 11400000, guid: c062cf2fc3b47c74dbcad6fec1aa4690, type: 2}

@@ -15,7 +15,7 @@ namespace Primordia.Core
     /// la cápsula de la sala de cambio y F8 completa el siguiente linaje del piso (equipa sus 4 mutaciones, para probar
     /// beneficios, toques y evoluciones), F9 derrumba las rocas agrietadas de la sala y F10 pasa el derrumbe de la cueva a su
     /// siguiente fase (calma, crujidos, terremoto, derrumbe; sala del Euriptérido), Av Pág / Re Pág saltan al tramo siguiente o
-    /// anterior del piso (piso 3) y F12 prende lo inflamable cercano (maleza del piso 3). Arriba a la izquierda se ve qué está activo.
+    /// anterior del piso (piso 3) y F12 prende lo inflamable cercano (maleza y helechos del piso 3; con Mayús, un fuego en el suelo). Arriba a la izquierda se ve qué está activo.
     /// </summary>
     public class DebugCheats : MonoBehaviour
     {
@@ -88,7 +88,13 @@ namespace Primordia.Core
             if (keyboard.f10Key.wasPressedThisFrame)
                 NextCaveMode();
             if (keyboard.f12Key.wasPressedThisFrame)
-                IgniteNearby();
+            {
+                // Con Mayús, un fuego en el suelo un par de tiles por delante; sin ella, prende lo inflamable cercano.
+                if (keyboard.leftShiftKey.isPressed)
+                    SpawnFire();
+                else
+                    IgniteNearby();
+            }
             if (keyboard.pageDownKey.wasPressedThisFrame)
                 GoToBand(1);
             if (keyboard.pageUpKey.wasPressedThisFrame)
@@ -127,6 +133,13 @@ namespace Primordia.Core
         }
 
         int teleportIndex;
+
+        /// <summary>Mayús + F12: enciende un fuego en el suelo 2 u a la derecha del jugador.</summary>
+        void SpawnFire()
+        {
+            var position = (Vector2)player.transform.position + Vector2.right * 2f + Vector2.down * 0.3f;
+            Say(GroundFire.Spawn(position) != null ? "Fuego en el suelo" : "No hay arte del fuego (ReactionKit)");
+        }
 
         /// <summary>F12: prende lo inflamable (la maleza quemable) a menos de 6 u del jugador.</summary>
         void IgniteNearby()

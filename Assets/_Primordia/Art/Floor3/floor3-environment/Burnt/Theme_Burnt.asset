@@ -167,6 +167,72 @@ MonoBehaviour:
   pitCorners: []
   pitMotes: {fileID: 0}
   pitMotesChance: 0.12
+  brushTop:
+    idle: {fileID: 21300000, guid: 86389d5eb4c065c4180f288d5dc176f9, type: 3}
+    burn:
+    - {fileID: 6734811936681221510, guid: 7ef7e0566c6bf3741b03459b4ef8136f, type: 3}
+    - {fileID: 1131904854, guid: 7ef7e0566c6bf3741b03459b4ef8136f, type: 3}
+    - {fileID: 1661142848, guid: 7ef7e0566c6bf3741b03459b4ef8136f, type: 3}
+    - {fileID: 791234512, guid: 7ef7e0566c6bf3741b03459b4ef8136f, type: 3}
+    - {fileID: 776791850, guid: 7ef7e0566c6bf3741b03459b4ef8136f, type: 3}
+    - {fileID: 831639401, guid: 7ef7e0566c6bf3741b03459b4ef8136f, type: 3}
+    - {fileID: 1996198162, guid: 7ef7e0566c6bf3741b03459b4ef8136f, type: 3}
+    - {fileID: 730814503, guid: 7ef7e0566c6bf3741b03459b4ef8136f, type: 3}
+    durations:
+    - 0.09
+    - 0.09
+    - 0.09
+    - 0.09
+    - 0.1
+    - 0.11
+    - 0.12
+    - 0.14
+    gone: {fileID: 21300000, guid: ae83f45f4fcde7846b58c5915c8320d3, type: 3}
+    opensAtFrame: 5
+  brushSide:
+    idle: {fileID: 21300000, guid: 04191b91c8a797e48affed3a722904e2, type: 3}
+    burn:
+    - {fileID: 5834968136601877216, guid: 0696f6173f2a70b4a893836a9d30a1f1, type: 3}
+    - {fileID: 241529515, guid: 0696f6173f2a70b4a893836a9d30a1f1, type: 3}
+    - {fileID: 1172203044, guid: 0696f6173f2a70b4a893836a9d30a1f1, type: 3}
+    - {fileID: -460655945, guid: 0696f6173f2a70b4a893836a9d30a1f1, type: 3}
+    - {fileID: -1523661610, guid: 0696f6173f2a70b4a893836a9d30a1f1, type: 3}
+    - {fileID: -2015402211, guid: 0696f6173f2a70b4a893836a9d30a1f1, type: 3}
+    - {fileID: 450406394, guid: 0696f6173f2a70b4a893836a9d30a1f1, type: 3}
+    - {fileID: -1352192714, guid: 0696f6173f2a70b4a893836a9d30a1f1, type: 3}
+    durations:
+    - 0.09
+    - 0.09
+    - 0.09
+    - 0.09
+    - 0.1
+    - 0.11
+    - 0.12
+    - 0.14
+    gone: {fileID: 21300000, guid: e439d06ae8df1fc46a6c2411462a86a3, type: 3}
+    opensAtFrame: 5
+  brushBottom:
+    idle: {fileID: 21300000, guid: a0eb5fc8e4ad1a04daf5842c80bee05e, type: 3}
+    burn:
+    - {fileID: -5990234396877041185, guid: a0cfa8bf52a34b947b9a523f80475f65, type: 3}
+    - {fileID: -1470989710, guid: a0cfa8bf52a34b947b9a523f80475f65, type: 3}
+    - {fileID: -1433835643, guid: a0cfa8bf52a34b947b9a523f80475f65, type: 3}
+    - {fileID: 725436988, guid: a0cfa8bf52a34b947b9a523f80475f65, type: 3}
+    - {fileID: -1830585359, guid: a0cfa8bf52a34b947b9a523f80475f65, type: 3}
+    - {fileID: 928063639, guid: a0cfa8bf52a34b947b9a523f80475f65, type: 3}
+    - {fileID: -1635264647, guid: a0cfa8bf52a34b947b9a523f80475f65, type: 3}
+    - {fileID: 626383801, guid: a0cfa8bf52a34b947b9a523f80475f65, type: 3}
+    durations:
+    - 0.09
+    - 0.09
+    - 0.09
+    - 0.09
+    - 0.1
+    - 0.11
+    - 0.12
+    - 0.14
+    gone: {fileID: 21300000, guid: d259c6f18615bdf4d93af679ba8e8c04, type: 3}
+    opensAtFrame: 5
   mudTiles:
   - {fileID: 11400000, guid: 450bd2483bbc8624e80ea6a662568a0f, type: 2}
   - {fileID: 11400000, guid: c062cf2fc3b47c74dbcad6fec1aa4690, type: 2}

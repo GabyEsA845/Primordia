@@ -115,6 +115,7 @@ namespace Primordia.Rooms
             Debug.Log($"FloorGenerator: piso generado con la semilla {seed}.", this);
 
             CurrentFloor = config.FloorNumber;
+            ReactionKit.Current = config.Reactions;
             RoomHearts.ResetLuck();
             var random = new System.Random(seed);
             Layout = FloorLayoutGenerator.Generate(config, random);
@@ -128,6 +129,9 @@ namespace Primordia.Rooms
             // El jugador cae en las fosas (se le añade aquí para no tocar su prefab).
             if (player != null && !player.TryGetComponent<PlayerPitFall>(out _))
                 player.gameObject.AddComponent<PlayerPitFall>();
+            // Y en el fuego del piso 3 se quema (barra sobre la cabeza).
+            if (player != null && !player.TryGetComponent<PlayerBurn>(out _))
+                player.gameObject.AddComponent<PlayerBurn>();
             // Y en el lodo profundo del piso 3 se hunde poco a poco.
             if (player != null && !player.TryGetComponent<PlayerMudSink>(out _))
                 player.gameObject.AddComponent<PlayerMudSink>();

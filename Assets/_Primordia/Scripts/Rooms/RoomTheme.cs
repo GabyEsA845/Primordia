@@ -90,6 +90,12 @@ namespace Primordia.Rooms
         [SerializeField] BrushAnimation brushSide;
         [SerializeField] BrushAnimation brushBottom;
 
+        [Header("Helechos altos (piso 3, opcional)")]
+        [Tooltip("Tipos de helecho del tramo; cada sala los reparte al azar según el peso de cada uno.")]
+        [SerializeField] FernSpec[] ferns = System.Array.Empty<FernSpec>();
+        [Tooltip("Helechos por cada tile de suelo libre de la sala (0 = ninguno).")]
+        [SerializeField, Range(0f, 0.2f)] float fernDensity;
+
         [Header("Lodo profundo (piso 3, opcional)")]
         [Tooltip("16 tiles por máscara: suma de los vecinos que NO son lodo (N=1, E=2, S=4, O=8).")]
         [SerializeField] TileBase[] mudTiles;
@@ -131,6 +137,9 @@ namespace Primordia.Rooms
             var brush = direction == Vector2Int.up ? brushTop : direction == Vector2Int.down ? brushBottom : brushSide;
             return brush != null && brush.IsValid ? brush : null;
         }
+
+        public FernSpec[] Ferns => ferns ?? System.Array.Empty<FernSpec>();
+        public float FernDensity => fernDensity;
 
         public bool HasMud => mudTiles != null && mudTiles.Length == 16;
         public TileBase MudTile(int mask) => HasMud ? mudTiles[mask & 15] : null;
@@ -294,6 +303,12 @@ namespace Primordia.Rooms
             brushTop = newTop;
             brushSide = newSide;
             brushBottom = newBottom;
+        }
+
+        internal void ConfigureFerns(FernSpec[] newFerns, float newDensity)
+        {
+            ferns = newFerns;
+            fernDensity = newDensity;
         }
 
         internal void ConfigureMud(TileBase[] newTiles, TileBase[] newCorners, TileBase newBubbles)

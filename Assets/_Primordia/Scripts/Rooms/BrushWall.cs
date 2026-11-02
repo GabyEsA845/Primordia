@@ -37,6 +37,8 @@ namespace Primordia.Rooms
 
         public bool CanIgnite => !IsOpen && !IsBurning;
 
+        public Vector2 Position => transform.position;
+
         public event System.Action Burned;
 
         internal void Configure(Collider2D newBlocker, SpriteRenderer newRenderer, BrushAnimation newAnimation, IEnumerable<Vector2Int> cells)
@@ -47,6 +49,10 @@ namespace Primordia.Rooms
             Cells.Clear();
             Cells.AddRange(cells);
         }
+
+        void OnEnable() => Flammables.Register(this);
+
+        void OnDisable() => Flammables.Unregister(this);
 
         void Awake()
         {

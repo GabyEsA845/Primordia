@@ -88,6 +88,9 @@ namespace Primordia.Editor
             if (config.ShortcutCount.y == 0)
                 config.ConfigureShortcuts(new Vector2Int(1, 2));
 
+            // Arte de las reacciones (fuego del suelo, llama de los enemigos): lo carga el juego al montar el piso.
+            config.SetReactions(ArtSetup.CreateFloor3ReactionKit());
+
             config.ConfigureFloor(3, config.NextFloor);
             config.ConfigureArt(bands[0], floor2.BossTheme, floor2.ExitSprite);
             config.ConfigureBands(bands);

@@ -750,6 +750,7 @@ namespace Primordia.Rooms
             }
 
             BuildObstacles(roomObject.transform, placed, theme, config.Pieces, random, glows);
+            BuildFerns(roomObject.transform, placed, theme, random);
             var vents = BuildPieces(roomObject.transform, placed, config, random);
             // Donde aparece el jefe no hay algas ni plantas: taparían su presentación.
             Vector2? bossSpot = placed.Layout.Role == RoomRole.Boss ? placed.FloorCenter + boss.offset : null;
@@ -1321,6 +1322,62 @@ namespace Primordia.Rooms
             else
                 door.Configure(blocker, renderer, frames);
             return door;
+        }
+
+        // Entre dos helechos de la sala, al menos esta distancia (en tiles).
+        const float FernSpacing = 1.8f;
+
+        /// <summary>
+        /// Helechos altos del tileset (piso 3): tantos como la densidad del tramo por cada tile de suelo libre, repartidos por
+        /// la sala lejos de las puertas, de las paredes y del lodo, y separados entre sí. Sin tipos o sin densidad, nada.
+        /// </summary>
+        static void BuildFerns(Transform parent, PlacedRoom placed, RoomTheme theme, System.Random random)
+        {
+            var specs = theme.Ferns.Where(spec => spec != null && spec.IsValid).ToList();
+            if (specs.Count == 0 || theme.FernDensity <= 0f)
+                return;
+
+            var doorCells = placed.DoorCells.Values.SelectMany(cells => cells).Select(cell => cell - placed.Origin);
+            var candidates = EncounterPlanner.SpawnCells(placed.Template, doorCells);
+            int count = Mathf.RoundToInt(candidates.Count * theme.FernDensity);
+            var positions = EncounterPlanner.Positions(candidates, count, random);
+            if (positions.Count == 0)
+                return;
+
+            var holder = new GameObject("Ferns").transform;
+            holder.SetParent(parent, false);
+            var chosen = new List<Vector2>();
+            float totalWeight = specs.Sum(spec => spec.weight);
+            foreach (var local in positions)
+            {
+                var position = placed.Origin + local;
+                if (chosen.Any(other => Vector2.Distance(other, position) < FernSpacing))
+                    continue;
+                chosen.Add(position);
+
+                float roll = (float)random.NextDouble() * totalWeight;
+                var spec = specs[specs.Count - 1];
+                foreach (var option in specs)
+                {
+                    roll -= option.weight;
+                    if (roll <= 0f)
+                    {
+                        spec = option;
+                        break;
+                    }
+                }
+
+                // Pivote en el pie: la posición es la base del helecho, en el centro de la celda pero por abajo.
+                var fern = new GameObject($"Fern_{spec.name}");
+                fern.transform.SetParent(holder, false);
+                fern.transform.position = new Vector3(position.x, position.y - 0.4f, 0f);
+                var renderer = fern.AddComponent<SpriteRenderer>();
+                var trigger = fern.AddComponent<CircleCollider2D>();
+                trigger.isTrigger = true;
+                trigger.radius = spec.footRadius;
+                trigger.offset = new Vector2(0f, spec.footRadius * 0.6f);
+                fern.AddComponent<Fern>().Configure(renderer, spec, (float)random.NextDouble() * 10f);
+            }
         }
 
         /// <summary>

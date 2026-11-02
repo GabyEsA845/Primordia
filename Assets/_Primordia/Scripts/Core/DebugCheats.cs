@@ -15,7 +15,7 @@ namespace Primordia.Core
     /// la cápsula de la sala de cambio y F8 completa el siguiente linaje del piso (equipa sus 4 mutaciones, para probar
     /// beneficios, toques y evoluciones), F9 derrumba las rocas agrietadas de la sala y F10 pasa el derrumbe de la cueva a su
     /// siguiente fase (calma, crujidos, terremoto, derrumbe; sala del Euriptérido), Av Pág / Re Pág saltan al tramo siguiente o
-    /// anterior del piso (piso 3). Arriba a la izquierda se ve qué está activo.
+    /// anterior del piso (piso 3) y F12 prende lo inflamable cercano (maleza del piso 3). Arriba a la izquierda se ve qué está activo.
     /// </summary>
     public class DebugCheats : MonoBehaviour
     {
@@ -87,6 +87,8 @@ namespace Primordia.Core
                 CycleTeleport();
             if (keyboard.f10Key.wasPressedThisFrame)
                 NextCaveMode();
+            if (keyboard.f12Key.wasPressedThisFrame)
+                IgniteNearby();
             if (keyboard.pageDownKey.wasPressedThisFrame)
                 GoToBand(1);
             if (keyboard.pageUpKey.wasPressedThisFrame)
@@ -125,6 +127,22 @@ namespace Primordia.Core
         }
 
         int teleportIndex;
+
+        /// <summary>F12: prende lo inflamable (la maleza quemable) a menos de 6 u del jugador.</summary>
+        void IgniteNearby()
+        {
+            int count = 0;
+            foreach (var behaviour in FindObjectsByType<MonoBehaviour>())
+            {
+                if (behaviour is IFlammable flammable && flammable.CanIgnite
+                    && ((Vector2)behaviour.transform.position - (Vector2)player.transform.position).sqrMagnitude <= 36f)
+                {
+                    flammable.Ignite();
+                    count++;
+                }
+            }
+            Say(count > 0 ? $"Se prende {count} inflamable(s)" : "Nada inflamable cerca");
+        }
 
         /// <summary>Av Pág / Re Pág: salta a la sala más cercana del tramo (franja) siguiente o anterior del piso.</summary>
         void GoToBand(int step)

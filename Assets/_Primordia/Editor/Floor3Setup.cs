@@ -84,6 +84,10 @@ namespace Primordia.Editor
             if (config.CaveSpecs.Length == 0)
                 config.ConfigureCaveSpecs(CaveSpecs, newBlendBandBorders: true);
 
+            // Atajos de maleza quemable: 1–2 por partida.
+            if (config.ShortcutCount.y == 0)
+                config.ConfigureShortcuts(new Vector2Int(1, 2));
+
             config.ConfigureFloor(3, config.NextFloor);
             config.ConfigureArt(bands[0], floor2.BossTheme, floor2.ExitSprite);
             config.ConfigureBands(bands);

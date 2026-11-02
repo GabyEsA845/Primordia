@@ -84,6 +84,12 @@ namespace Primordia.Rooms
         [SerializeField] TileBase pitMotes;
         [SerializeField, Range(0f, 1f)] float pitMotesChance = 0.12f;
 
+        [Header("Maleza quemable (piso 3, opcional)")]
+        [Tooltip("Sella una puerta de atajo: en la pared de arriba (2×2), en una pared lateral (izquierda; la derecha se voltea) y en la de abajo.")]
+        [SerializeField] BrushAnimation brushTop;
+        [SerializeField] BrushAnimation brushSide;
+        [SerializeField] BrushAnimation brushBottom;
+
         [Header("Lodo profundo (piso 3, opcional)")]
         [Tooltip("16 tiles por máscara: suma de los vecinos que NO son lodo (N=1, E=2, S=4, O=8).")]
         [SerializeField] TileBase[] mudTiles;
@@ -120,6 +126,12 @@ namespace Primordia.Rooms
         public bool HasPits => pitTiles != null && pitTiles.Length == 16;
         public TileBase PitTile(int mask) => HasPits ? pitTiles[mask & 15] : null;
         public TileBase PitCorner(int index) => pitCorners != null && index < pitCorners.Length ? pitCorners[index] : null;
+        public BrushAnimation BrushFor(Vector2Int direction)
+        {
+            var brush = direction == Vector2Int.up ? brushTop : direction == Vector2Int.down ? brushBottom : brushSide;
+            return brush != null && brush.IsValid ? brush : null;
+        }
+
         public bool HasMud => mudTiles != null && mudTiles.Length == 16;
         public TileBase MudTile(int mask) => HasMud ? mudTiles[mask & 15] : null;
         public TileBase MudCorner(int index) => mudCorners != null && index < mudCorners.Length ? mudCorners[index] : null;
@@ -277,6 +289,13 @@ namespace Primordia.Rooms
             pitMotes = newMotes;
         }
 
+        internal void ConfigureBrush(BrushAnimation newTop, BrushAnimation newSide, BrushAnimation newBottom)
+        {
+            brushTop = newTop;
+            brushSide = newSide;
+            brushBottom = newBottom;
+        }
+
         internal void ConfigureMud(TileBase[] newTiles, TileBase[] newCorners, TileBase newBubbles)
         {
             mudTiles = newTiles;
@@ -320,6 +339,33 @@ namespace Primordia.Rooms
             this.closeDurations = closeDurations ?? System.Array.Empty<float>();
             this.open = open ?? System.Array.Empty<Sprite>();
             this.openDurations = openDurations ?? System.Array.Empty<float>();
+        }
+    }
+
+    /// <summary>Maleza quemable: reposo, fuego cuadro a cuadro (con la duración de cada uno) y lo que queda, ya abierta.</summary>
+    [System.Serializable]
+    public class BrushAnimation
+    {
+        public Sprite idle;
+        [Tooltip("El fuego prende, avanza y deshace los tallos.")]
+        public Sprite[] burn = System.Array.Empty<Sprite>();
+        public float[] durations = System.Array.Empty<float>();
+        [Tooltip("Paso abierto para quedarse (ceniza con ascuas).")]
+        public Sprite gone;
+        [Tooltip("Cuadro del fuego (desde 0) a partir del cual ya no bloquea.")]
+        public int opensAtFrame = 5;
+
+        public bool IsValid => idle != null && burn is { Length: > 0 };
+
+        public BrushAnimation() { }
+
+        public BrushAnimation(Sprite idle, Sprite[] burn, float[] durations, Sprite gone, int opensAtFrame)
+        {
+            this.idle = idle;
+            this.burn = burn ?? System.Array.Empty<Sprite>();
+            this.durations = durations ?? System.Array.Empty<float>();
+            this.gone = gone;
+            this.opensAtFrame = opensAtFrame;
         }
     }
 

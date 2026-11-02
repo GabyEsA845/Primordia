@@ -240,6 +240,9 @@ namespace Primordia.Rooms
         [Tooltip("Primera sala de combate de cada franja nueva: su suelo mezcla el tileset de la franja anterior y el de la suya "
             + "con una mancha irregular (más del nuevo hacia la salida). Piso 3: el incendio avanza.")]
         [SerializeField] bool blendBandBorders;
+        [Tooltip("Atajos de maleza quemable por partida (mínimo y máximo): una puerta extra entre dos salas vecinas del mapa que el "
+            + "camino no unía (con al menos 3 salas de diferencia), sellada con maleza hasta que arde. 0: sin atajos.")]
+        [SerializeField] Vector2Int shortcuts = Vector2Int.zero;
         [Tooltip("Tamaños posibles de las cuevas de inicio y laterales.")]
         [SerializeField] Vector2Int[] smallCaveSizes = Array.Empty<Vector2Int>();
         [Tooltip("Largo mínimo del pasillo entre salas vecinas, en tiles (mínimo y máximo; uno al azar por hueco de la rejilla).")]
@@ -347,6 +350,7 @@ namespace Primordia.Rooms
         public Vector2Int[] CaveSizes => caveSizes ?? Array.Empty<Vector2Int>();
         public CaveSpec[] CaveSpecs => caveSpecs ?? Array.Empty<CaveSpec>();
         public bool BlendBandBorders => blendBandBorders;
+        public Vector2Int ShortcutCount => shortcuts;
         public Vector2Int[] SmallCaveSizes => smallCaveSizes is { Length: > 0 } ? smallCaveSizes : CaveSizes;
         public Vector2Int CorridorLength => corridorLength;
         public Vector2Int CorridorWidth => corridorWidth;
@@ -482,6 +486,8 @@ namespace Primordia.Rooms
             caveSizes = newCaveSizes ?? Array.Empty<Vector2Int>();
             smallCaveSizes = newSmallCaveSizes ?? Array.Empty<Vector2Int>();
         }
+
+        internal void ConfigureShortcuts(Vector2Int newShortcuts) => shortcuts = newShortcuts;
 
         internal void ConfigureCaveSpecs(CaveSpec[] newSpecs, bool newBlendBandBorders)
         {

@@ -20,5 +20,8 @@ namespace Primordia.Rooms
         public MapRoom A;
         public MapRoom B;
         public readonly List<Vector2Int> Cells = new();
+
+        /// <summary>Si es un atajo, la maleza que lo sella; hasta que se descubre, el mapa no lo enseña.</summary>
+        public BrushWall Brush;
     }
 }

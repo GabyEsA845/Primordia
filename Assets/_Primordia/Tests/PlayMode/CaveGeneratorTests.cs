@@ -124,6 +124,39 @@ namespace Primordia.Tests
         }
 
         [Test]
+        public void Shortcuts_JoinNeighbouringRoomsFarApartOnThePath_OnlyWhenTheFloorAsksForThem()
+        {
+            int withShortcut = 0;
+            for (int seed = 1; seed <= 100; seed++)
+            {
+                floor2.ConfigureShortcuts(Vector2Int.zero);
+                var without = FloorLayoutGenerator.Generate(floor2, new System.Random(seed));
+                for (int i = 0; i < without.Links.Count; i++)
+                    Assert.IsFalse(without.IsShortcut(i), $"semilla {seed}: sin atajos pedidos no hay atajos.");
+
+                floor2.ConfigureShortcuts(new Vector2Int(1, 2));
+                var layout = FloorLayoutGenerator.Generate(floor2, new System.Random(seed));
+                int shortcuts = 0;
+                for (int i = 0; i < layout.Links.Count; i++)
+                {
+                    if (!layout.IsShortcut(i))
+                        continue;
+                    shortcuts++;
+                    var (from, to) = layout.Links[i];
+                    var step = to.Cell - from.Cell;
+                    Assert.AreEqual(1, Mathf.Abs(step.x) + Mathf.Abs(step.y), $"semilla {seed}: celdas vecinas.");
+                    Assert.GreaterOrEqual(to.Depth - from.Depth, 3, $"semilla {seed}: la maleza está en la sala menos profunda.");
+                    Assert.AreEqual(1, layout.Links.Count(link => (link.from == from && link.to == to) || (link.from == to && link.to == from)),
+                        $"semilla {seed}: no repite un enlace que ya existía.");
+                }
+                Assert.LessOrEqual(shortcuts, 2, $"semilla {seed}");
+                if (shortcuts > 0)
+                    withShortcut++;
+            }
+            Assert.Greater(withShortcut, 10, "Algunos pisos tienen algún atajo.");
+        }
+
+        [Test]
         public void Caves_AreTheSame_WithTheSameSeed_AndChangeWithAnother()
         {
             var size = new Vector2Int(34, 22);

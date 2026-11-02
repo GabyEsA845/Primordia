@@ -27,6 +27,9 @@ namespace Primordia.UI
 
         static readonly Color32 Clear = new(0, 0, 0, 0);
 
+        // Marca de la maleza quemable descubierta en el mapa: verde seco.
+        static readonly Color32 BrushMark = new(176, 166, 72, 255);
+
         readonly FloorMap map;
         readonly IReadOnlyList<MapRoom> rooms;
         readonly IReadOnlyList<MapCorridor> corridors;
@@ -185,10 +188,17 @@ namespace Primordia.UI
                 bool visitedA = IsVisited(corridor.A), visitedB = IsVisited(corridor.B);
                 if (!visitedA && !visitedB)
                     continue;
+                // Un atajo de maleza no sale hasta que se ha visto la maleza.
+                if (corridor.Brush != null && !corridor.Brush.Discovered)
+                    continue;
 
                 var color = ColorOf(visitedA && visitedB ? Swatch.Corridor : Swatch.Unexplored);
                 foreach (var cell in corridor.Cells)
                     Set(cell, color);
+                // Mientras la maleza no ha ardido, una marca pequeña en su puerta.
+                if (corridor.Brush != null && !corridor.Brush.IsOpen)
+                    foreach (var cell in corridor.Brush.Cells)
+                        Set(cell, BrushMark);
             }
 
             Discovered = discovered is RectInt rect

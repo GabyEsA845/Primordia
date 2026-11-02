@@ -72,6 +72,24 @@ namespace Primordia.Editor
             theme.ConfigureMud(tiles, corners, bubbles);
         }
 
+        // Maleza quemable (README del escenario): el fuego avanza, carboniza y deshace los tallos; cuadro que cuenta, el 5.
+        static readonly float[] BrushBurnDurations = { 0.09f, 0.09f, 0.09f, 0.09f, 0.10f, 0.11f, 0.12f, 0.14f };
+        const int BrushOpensAtFrame = 5;
+
+        static void ImportBrush(RoomTheme theme, string folder)
+        {
+            // Ancho de cada cuadro: arriba 32×32, lateral 16×32, abajo 32×16.
+            BrushAnimation Load(string side, int cellWidth)
+            {
+                string idle = $"{folder}/Brush_{side}_Idle.png", burn = $"{folder}/Brush_{side}_Burn.png", gone = $"{folder}/Brush_{side}_Gone.png";
+                if (!File.Exists(idle) || !File.Exists(burn))
+                    return null;
+                return new BrushAnimation(ImportSingleSprite(idle), SliceSheet(burn, cellWidth), BrushBurnDurations,
+                    File.Exists(gone) ? ImportSingleSprite(gone) : null, BrushOpensAtFrame);
+            }
+            theme.ConfigureBrush(Load("Top", 32), Load("Side", 16), Load("Bottom", 32));
+        }
+
         static RoomTheme ImportFloor3Theme(string themeName, TileBase missing)
         {
             string folder = $"{Floor3EnvironmentFolder}/{themeName}";
@@ -140,6 +158,7 @@ namespace Primordia.Editor
                     : null;
             theme.ConfigureSlabs(Roots("Top"), Roots("Bottom"), Roots("Side"));
             ImportMud(theme, $"{folder}/mud", tileAssets);
+            ImportBrush(theme, folder);
             EditorUtility.SetDirty(theme);
 
             Debug.Log($"ArtSetup: tema {themeName}: {tiles.Count} tiles, {decorations.Count} detalles de suelo, {doors.Count} hojas de puertas, "

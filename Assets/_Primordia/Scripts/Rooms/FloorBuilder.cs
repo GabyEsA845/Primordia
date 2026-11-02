@@ -74,6 +74,9 @@ namespace Primordia.Rooms
             public readonly Dictionary<Vector2Int, List<Vector2Int>> DoorCells = new();
             public readonly Dictionary<Vector2Int, List<Vector2Int>> ArchCells = new();
 
+            /// <summary>Puertas selladas con maleza quemable (atajos): la dirección de cada una.</summary>
+            public readonly HashSet<Vector2Int> BrushDirections = new();
+
             public RoomTemplate Template => Layout.Template;
 
             /// <summary>Índice de su tileset: el del piso, el del jefe o el de su franja de profundidad.</summary>
@@ -118,6 +121,8 @@ namespace Primordia.Rooms
             {
                 var (from, to) = layout.Links[link];
                 var direction = layout.Direction(link);
+                if (layout.IsShortcut(link))
+                    byLayout[from].BrushDirections.Add(direction);
                 OpenDoor(map, byLayout[from], direction);
                 OpenDoor(map, byLayout[to], -direction);
                 var (fromTheme, toTheme) = CorridorThemes(byLayout[from], byLayout[to], config);
@@ -164,9 +169,10 @@ namespace Primordia.Rooms
             }
 
             var mapRooms = new Dictionary<LayoutRoom, MapRoom>();
+            var brushes = new Dictionary<(LayoutRoom room, Vector2Int direction), BrushWall>();
             foreach (var room in placed)
             {
-                var builtRoom = BuildRoom(parent, room, themes[room.Theme], config, boss, random, glows);
+                var builtRoom = BuildRoom(parent, room, themes[room.Theme], config, boss, random, glows, brushes);
                 builtRoom.SetDepthBand(room.Theme >= FirstBandTheme ? room.Theme - FirstBandTheme : -1);
                 built.Rooms.Add(builtRoom);
                 var mapRoom = new MapRoom
@@ -195,11 +201,19 @@ namespace Primordia.Rooms
                     Ambience.CreateGlow(lights, position, glow, (float)random.NextDouble() * Mathf.Max(0.1f, glow.period));
             }
 
-            foreach (var (from, to, cells) in corridorCells)
+            for (int link = 0; link < corridorCells.Count; link++)
             {
+                var (from, to, cells) = corridorCells[link];
                 var corridor = new MapCorridor { A = mapRooms[from], B = mapRooms[to] };
                 corridor.Cells.AddRange(cells);
                 built.Corridors.Add(corridor);
+                // Un atajo no revela la sala vecina: hasta que se descubre la maleza, el mapa no lo cuenta.
+                if (layout.IsShortcut(link))
+                {
+                    brushes.TryGetValue((from, layout.Direction(link)), out var brush);
+                    corridor.Brush = brush;
+                    continue;
+                }
                 corridor.A.Neighbors.Add(corridor.B);
                 corridor.B.Neighbors.Add(corridor.A);
             }
@@ -709,7 +723,7 @@ namespace Primordia.Rooms
         }
 
         static Room BuildRoom(Transform parent, PlacedRoom placed, RoomTheme theme, FloorConfig config, FloorConfig.BossEntry boss,
-            System.Random random, List<(Vector2 position, Glow glow)> glows)
+            System.Random random, List<(Vector2 position, Glow glow)> glows, Dictionary<(LayoutRoom room, Vector2Int direction), BrushWall> brushes)
         {
             var center = placed.FloorCenter;
             var floorBounds = placed.Template.FloorBounds();
@@ -727,6 +741,12 @@ namespace Primordia.Rooms
             {
                 var doorCells = direction == Vector2Int.up ? placed.ArchCells[direction] : cells;
                 doors.Add(BuildDoor(roomObject.transform, theme, direction, doorCells));
+                if (placed.BrushDirections.Contains(direction))
+                {
+                    var brush = BuildBrush(roomObject.transform, theme, direction, doorCells);
+                    if (brush != null)
+                        brushes[(placed.Layout, direction)] = brush;
+                }
             }
 
             BuildObstacles(roomObject.transform, placed, theme, config.Pieces, random, glows);
@@ -1301,6 +1321,38 @@ namespace Primordia.Rooms
             else
                 door.Configure(blocker, renderer, frames);
             return door;
+        }
+
+        /// <summary>
+        /// Maleza quemable delante de una puerta de atajo: tapa el hueco (por encima de la puerta) y bloquea el paso hasta que
+        /// arde. Null si el tileset no tiene maleza.
+        /// </summary>
+        static BrushWall BuildBrush(Transform parent, RoomTheme theme, Vector2Int direction, List<Vector2Int> cells)
+        {
+            var animation = theme.BrushFor(direction);
+            if (animation == null)
+            {
+                Debug.LogWarning($"FloorBuilder: el tileset {theme.name} no tiene maleza; el atajo de {parent.name} queda sin sellar.");
+                return null;
+            }
+
+            int minX = cells.Min(c => c.x), minY = cells.Min(c => c.y);
+            int maxX = cells.Max(c => c.x), maxY = cells.Max(c => c.y);
+            var size = new Vector2(maxX - minX + 1, maxY - minY + 1);
+            var brushObject = new GameObject($"Brush_{DirectionName(direction)}");
+            brushObject.transform.SetParent(parent, false);
+            brushObject.transform.position = new Vector2(minX, minY) + size / 2f;
+
+            var renderer = brushObject.AddComponent<SpriteRenderer>();
+            renderer.sprite = animation.idle;
+            renderer.sortingOrder = -7;
+            renderer.flipX = direction == Vector2Int.right;
+            var blocker = brushObject.AddComponent<BoxCollider2D>();
+            blocker.size = size;
+
+            var brush = brushObject.AddComponent<BrushWall>();
+            brush.Configure(blocker, renderer, animation, cells);
+            return brush;
         }
 
         static string DirectionName(Vector2Int direction) =>

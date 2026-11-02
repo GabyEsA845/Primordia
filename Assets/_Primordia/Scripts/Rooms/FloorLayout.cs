@@ -90,6 +90,7 @@ namespace Primordia.Rooms
         public readonly List<LayoutRoom> Rooms = new();
         public readonly List<(LayoutRoom from, LayoutRoom to)> Links = new();
         readonly List<Vector2Int> linkDirections = new();
+        readonly HashSet<int> shortcutLinks = new();
 
         /// <summary>Jefe de esta partida, con su sala y su tileset.</summary>
         public FloorConfig.BossEntry BossChoice;
@@ -120,6 +121,16 @@ namespace Primordia.Rooms
 
         /// <summary>Dirección del pasillo del enlace <paramref name="index"/>, de la primera sala a la segunda.</summary>
         public Vector2Int Direction(int index) => linkDirections[index];
+
+        /// <summary>True si el enlace <paramref name="index"/> es un atajo sellado con maleza (la maleza está en la puerta de la primera sala).</summary>
+        public bool IsShortcut(int index) => shortcutLinks.Contains(index);
+
+        /// <summary>Une dos salas vecinas con un atajo; <paramref name="from"/> es la menos profunda y lleva la maleza.</summary>
+        public void LinkShortcut(LayoutRoom from, LayoutRoom to)
+        {
+            shortcutLinks.Add(Links.Count);
+            Link(from, to);
+        }
 
         public void Link(LayoutRoom from, LayoutRoom to) => Link(from, to, to.Cell - from.Cell);
 
@@ -613,7 +624,44 @@ namespace Primordia.Rooms
                 }
             }
 
+            AddShortcuts(layout, config, random);
             return layout;
+        }
+
+        // Un atajo une salas con al menos tantas de diferencia a lo largo del camino.
+        const int MinShortcutDepthGap = 3;
+
+        /// <summary>
+        /// Atajos de maleza (piso 3): pares de salas de combate (o el inicio) en celdas vecinas que el camino no unía y que
+        /// distan al menos <see cref="MinShortcutDepthGap"/> salas en el camino. Solo gasta números aleatorios si el piso los pide.
+        /// </summary>
+        static void AddShortcuts(FloorLayout layout, FloorConfig config, System.Random random)
+        {
+            if (config.ShortcutCount.y <= 0)
+                return;
+
+            int wanted = RandomRange(random, config.ShortcutCount);
+            var eligible = layout.Rooms
+                .Where(room => !room.Tall && !room.Special.HasValue && room.Role is RoomRole.Start or RoomRole.Combat)
+                .ToList();
+            var candidates = new List<(LayoutRoom shallow, LayoutRoom deep)>();
+            for (int i = 0; i < eligible.Count; i++)
+            {
+                for (int j = i + 1; j < eligible.Count; j++)
+                {
+                    var a = eligible[i];
+                    var b = eligible[j];
+                    var step = a.Cell - b.Cell;
+                    if (Mathf.Abs(step.x) + Mathf.Abs(step.y) != 1 || Mathf.Abs(a.Depth - b.Depth) < MinShortcutDepthGap)
+                        continue;
+                    if (layout.Links.Any(link => (link.from == a && link.to == b) || (link.from == b && link.to == a)))
+                        continue;
+                    candidates.Add(a.Depth <= b.Depth ? (a, b) : (b, a));
+                }
+            }
+
+            foreach (var (shallow, deep) in candidates.OrderBy(_ => random.Next()).Take(wanted))
+                layout.LinkShortcut(shallow, deep);
         }
 
         /// <summary>

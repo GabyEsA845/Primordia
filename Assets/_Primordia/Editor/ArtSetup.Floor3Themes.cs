@@ -163,6 +163,7 @@ namespace Primordia.Editor
             ImportMethane(theme, folder, themeName);
             ImportPoisonBulbs(theme, themeName);
             ImportObstacles(theme, folder);
+            ImportScenery(theme, folder, themeName);
             EditorUtility.SetDirty(theme);
 
             Debug.Log($"ArtSetup: tema {themeName}: {tiles.Count} tiles, {decorations.Count} detalles de suelo, {doors.Count} hojas de puertas, "

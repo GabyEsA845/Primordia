@@ -102,6 +102,9 @@ namespace Primordia.Rooms
         [Header("Planta venenosa (piso 3, opcional)")]
         [SerializeField] PoisonSpec poison;
 
+        [Header("Escenario vivo (piso 3, opcional)")]
+        [SerializeField] SceneryArt scenery;
+
         [Header("Lodo profundo (piso 3, opcional)")]
         [Tooltip("16 tiles por máscara: suma de los vecinos que NO son lodo (N=1, E=2, S=4, O=8).")]
         [SerializeField] TileBase[] mudTiles;
@@ -145,6 +148,7 @@ namespace Primordia.Rooms
         }
 
         public MethaneSpec Methane => methane;
+        public SceneryArt Scenery => scenery;
         public PoisonSpec Poison => poison;
         public FernSpec[] Ferns => ferns ?? System.Array.Empty<FernSpec>();
         public float FernDensity => fernDensity;
@@ -315,6 +319,8 @@ namespace Primordia.Rooms
 
         internal void ConfigureMethane(MethaneSpec newMethane) => methane = newMethane;
 
+        internal void ConfigureScenery(SceneryArt newScenery) => scenery = newScenery;
+
         internal void ConfigurePoison(PoisonSpec newPoison) => poison = newPoison;
 
         internal void ConfigureFerns(FernSpec[] newFerns, float newDensity)
@@ -406,6 +412,61 @@ namespace Primordia.Rooms
         public Vector2Int bulbCount = new(0, 1);
 
         public bool HasBulbs => bulbIdle != null && bulbIdle.Length > 0 && bulbBurst != null && bulbBurst.Length > 0 && bulbCount.y > 0;
+    }
+
+    /// <summary>Un tipo de charco del escenario (lodo o agua) con su forma.</summary>
+    [System.Serializable]
+    public class PuddleType
+    {
+        public string name;
+        [Tooltip("Cuadros en bucle (centro).")]
+        public Sprite[] frames = System.Array.Empty<Sprite>();
+        [Min(0.01f)] public float frameSeconds = 0.25f;
+        [Tooltip("Lodo: frena un 40 %. Agua de charca: solo se ve.")]
+        public bool sludge;
+    }
+
+    /// <summary>
+    /// Escenario vivo de un tramo del piso 3: fumarolas, charcos de lodo y agua, musgo que gotea, escarabajos, mosquitos, brasas y
+    /// humo de tocones, con cuántos salen en cada sala.
+    /// </summary>
+    [System.Serializable]
+    public class SceneryArt
+    {
+        [Header("Fumarolas")]
+        public Sprite[] ventIdle = System.Array.Empty<Sprite>();
+        public Sprite[] ventWarn = System.Array.Empty<Sprite>();
+        public Sprite[] ventBlast = System.Array.Empty<Sprite>();
+        public Vector2Int ventCount;
+
+        [Header("Charcos")]
+        public PuddleType[] puddles = System.Array.Empty<PuddleType>();
+        public Vector2Int puddleCount;
+        [Tooltip("De los charcos, la fracción que son de agua (el resto, de lodo).")]
+        [Range(0f, 1f)] public float waterShare = 0.6f;
+        [Tooltip("Probabilidad de que un charco de agua tenga mosquitos encima.")]
+        [Range(0f, 1f)] public float gnatChance;
+        public Sprite[] gnats = System.Array.Empty<Sprite>();
+
+        [Header("Bichitos y ambiente")]
+        public Sprite[] beetleIdle = System.Array.Empty<Sprite>();
+        public Sprite[] beetleRun = System.Array.Empty<Sprite>();
+        public Vector2Int beetleCount;
+        public Sprite[] embers = System.Array.Empty<Sprite>();
+        public Vector2Int emberCount;
+
+        [Header("Musgo que gotea")]
+        public Sprite[] dripMoss = System.Array.Empty<Sprite>();
+        [Tooltip("Probabilidad de musgo en cada sitio posible de la cara de la pared.")]
+        [Range(0f, 0.3f)] public float mossChance;
+
+        [Header("Tocones quemados")]
+        [Tooltip("El sprite del tocón de las rocas pequeñas: lleva humo encima.")]
+        public Sprite stump;
+        public Sprite[] stumpSmoke = System.Array.Empty<Sprite>();
+
+        public bool HasVents => ventIdle != null && ventIdle.Length > 0 && ventBlast != null && ventBlast.Length > 0 && ventCount.y > 0;
+        public bool HasPuddles => puddles != null && puddles.Length > 0 && puddleCount.y > 0;
     }
 
     /// <summary>Maleza quemable: reposo, fuego cuadro a cuadro (con la duración de cada uno) y lo que queda, ya abierta.</summary>

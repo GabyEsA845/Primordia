@@ -754,6 +754,8 @@ namespace Primordia.Rooms
             var taken = ObstacleFootprints(placed);
             BuildMethane(roomObject.transform, placed, theme, random, taken);
             BuildBulbs(roomObject.transform, placed, theme, random, taken);
+            BuildScenery(roomObject.transform, placed, theme, random, taken);
+            BuildMoss(roomObject.transform, placed, theme, random);
             BuildFerns(roomObject.transform, placed, theme, random, taken);
             var vents = BuildPieces(roomObject.transform, placed, config, random);
             // Donde aparece el jefe no hay algas ni plantas: taparían su presentación.
@@ -932,6 +934,18 @@ namespace Primordia.Rooms
                 if (sprites.Length > 0)
                     renderer.sprite = sprites[random.Next(sprites.Length)];
                 obstacle.AddComponent<BoxCollider2D>().size = Vector2.one * size;
+
+                // Los tocones de la tierra quemada echan humo.
+                var scenery = theme.Scenery;
+                if (scenery != null && scenery.stump != null && renderer.sprite == scenery.stump && scenery.stumpSmoke.Length > 0)
+                {
+                    var smoke = new GameObject("StumpSmoke");
+                    smoke.transform.SetParent(obstacle.transform, false);
+                    smoke.transform.localPosition = new Vector3(0f, 0.2f, 0f);
+                    var smokeRenderer = smoke.AddComponent<SpriteRenderer>();
+                    smokeRenderer.sortingOrder = ObstacleOrder + 1;
+                    smoke.AddComponent<SpriteFramePlayer>().Play(smokeRenderer, scenery.stumpSmoke, 0.16f, newLoop: true);
+                }
 
                 // Contorno de color (1 px alrededor de la silueta): que se note que sirve de cobertura y no se pierda en el fondo.
                 var outlineSprite = ownOutline != null ? ownOutline : theme.OutlineOf(renderer.sprite);
@@ -1405,12 +1419,157 @@ namespace Primordia.Rooms
             }
         }
 
+        static int RandomCount(System.Random random, Vector2Int range) =>
+            random.Next(Mathf.Min(range.x, range.y), Mathf.Max(range.x, range.y) + 1);
+
+        /// <summary>
+        /// Escenario vivo del tramo (piso 3): fumarolas (solo donde se combate), charcos de lodo y de agua con sus mosquitos,
+        /// escarabajos que huyen y brasas, repartidos por los sitios libres de la sala, lejos de las puertas, las paredes y el lodo
+        /// profundo. No en las salas de los jefes, la tienda ni las fijas.
+        /// </summary>
+        static void BuildScenery(Transform parent, PlacedRoom placed, RoomTheme theme, System.Random random, List<(Vector2 position, float radius)> taken)
+        {
+            var art = theme.Scenery;
+            var role = placed.Layout.Role;
+            if (art == null || role is not (RoomRole.Start or RoomRole.Combat or RoomRole.Side or RoomRole.Special))
+                return;
+
+            var doorCells = placed.DoorCells.Values.SelectMany(cells => cells).Select(cell => cell - placed.Origin);
+            var candidates = EncounterPlanner.SpawnCells(placed.Template, doorCells);
+            if (candidates.Count == 0)
+                return;
+
+            var holder = new GameObject("Scenery").transform;
+            holder.SetParent(parent, false);
+
+            // Fumarolas: solo en las salas de combate y laterales (hacen daño).
+            if (art.HasVents && role is RoomRole.Combat or RoomRole.Side)
+            {
+                int vents = RandomCount(random, art.ventCount);
+                int placedVents = 0;
+                foreach (var local in EncounterPlanner.Positions(candidates, vents * RetryFactor, random))
+                {
+                    if (placedVents == vents)
+                        break;
+                    var position = placed.Origin + local;
+                    if (!TakeSpot(taken, position, VentRadius))
+                        continue;
+                    // La boca ocupa la celda: la base del dibujo, en el borde de abajo de la celda.
+                    SteamVent.Create(holder, new Vector2(position.x, position.y - 0.5f), art.ventIdle, art.ventWarn, art.ventBlast);
+                    placedVents++;
+                }
+            }
+
+            if (art.HasPuddles)
+            {
+                int puddles = RandomCount(random, art.puddleCount);
+                int placedPuddles = 0;
+                var water = art.puddles.Where(type => type != null && !type.sludge && type.frames.Length > 0).ToArray();
+                var sludge = art.puddles.Where(type => type != null && type.sludge && type.frames.Length > 0).ToArray();
+                foreach (var local in EncounterPlanner.Positions(candidates, puddles * RetryFactor, random))
+                {
+                    if (placedPuddles == puddles)
+                        break;
+                    var position = placed.Origin + local;
+                    if (!TakeSpot(taken, position, PuddleRadius))
+                        continue;
+
+                    bool isWater = water.Length > 0 && (sludge.Length == 0 || random.NextDouble() < art.waterShare);
+                    var options = isWater ? water : sludge;
+                    if (options.Length == 0)
+                        continue;
+                    var type = options[random.Next(options.Length)];
+                    GroundPuddle.Create(holder, position, type.frames, type.frameSeconds, type.sludge);
+                    placedPuddles++;
+
+                    // Mosquitos sobre algunos charcos de agua.
+                    if (isWater && art.gnats.Length > 0 && random.NextDouble() < art.gnatChance)
+                    {
+                        var gnats = new GameObject("Gnats");
+                        gnats.transform.SetParent(holder, false);
+                        gnats.transform.position = position + Vector2.up * 0.6f;
+                        var gnatRenderer = gnats.AddComponent<SpriteRenderer>();
+                        gnatRenderer.sortingOrder = 8;
+                        gnats.AddComponent<SpriteFramePlayer>().Play(gnatRenderer, art.gnats, 0.12f, newLoop: true);
+                    }
+                }
+            }
+
+            if (art.beetleIdle.Length > 0 && art.beetleCount.y > 0)
+            {
+                foreach (var local in EncounterPlanner.Positions(candidates, RandomCount(random, art.beetleCount), random))
+                    BeetleCritter.Create(holder, placed.Origin + local, art.beetleIdle, art.beetleRun);
+            }
+
+            if (art.embers.Length > 0 && art.emberCount.y > 0)
+            {
+                foreach (var local in EncounterPlanner.Positions(candidates, RandomCount(random, art.emberCount), random))
+                {
+                    var embers = new GameObject("Embers");
+                    embers.transform.SetParent(holder, false);
+                    embers.transform.position = placed.Origin + local;
+                    var emberRenderer = embers.AddComponent<SpriteRenderer>();
+                    emberRenderer.sortingOrder = -2;
+                    embers.AddComponent<SpriteFramePlayer>().Play(emberRenderer, art.embers, 0.3f, newLoop: true);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Musgo que gotea (piso 3): sobre las dos filas de la cara de la pared de arriba, con la gota cayendo a la primera fila de
+        /// suelo. Algunos sitios al azar, separados entre sí.
+        /// </summary>
+        static void BuildMoss(Transform parent, PlacedRoom placed, RoomTheme theme, System.Random random)
+        {
+            var art = theme.Scenery;
+            var role = placed.Layout.Role;
+            if (art == null || art.dripMoss.Length == 0 || art.mossChance <= 0f
+                || role is not (RoomRole.Start or RoomRole.Combat or RoomRole.Side or RoomRole.Special))
+                return;
+
+            var template = placed.Template;
+            var map = template.ToFloorMap(Vector2Int.zero, openDoors: true);
+            var holder = new GameObject("DripMoss").transform;
+            holder.SetParent(parent, false);
+            var lastX = new Dictionary<int, int>();
+            for (int y = 0; y < template.Height; y++)
+            {
+                for (int x = 0; x < template.Width; x++)
+                {
+                    var cell = new Vector2Int(x, y);
+                    // La fila de arriba de la cara, con la de abajo debajo y suelo después.
+                    if (WallRules.Classify(map, cell) != Piece.FaceUpper
+                        || WallRules.Classify(map, cell + Vector2Int.down) != Piece.FaceLower
+                        || !map.IsOpen(x, y - 2))
+                        continue;
+                    if (random.NextDouble() >= art.mossChance)
+                        continue;
+                    if (lastX.TryGetValue(y, out int previous) && x - previous < MossSpacing)
+                        continue;
+                    lastX[y] = x;
+
+                    var moss = new GameObject("DripMoss");
+                    moss.transform.SetParent(holder, false);
+                    // La base del dibujo en el borde de abajo de la primera fila de suelo (48 px = cara de 2 filas + esa fila).
+                    var position = placed.Origin + new Vector2(x + 0.5f, y - 2f);
+                    moss.transform.position = position;
+                    var mossRenderer = moss.AddComponent<SpriteRenderer>();
+                    mossRenderer.sortingOrder = 0;
+                    moss.AddComponent<SpriteFramePlayer>().Play(mossRenderer, art.dripMoss, 0.15f, newLoop: true);
+                }
+            }
+        }
+
         // Radios de lo que ocupa cada cosa del escenario (en tiles): dos cosas se separan al menos la suma de sus radios, así los
         // helechos (de unas 2 u de ancho), los odres y los bulbos no se montan unos sobre otros.
         const float FernRadius = 0.9f;
         const float BigSceneryRadius = 1.5f;
         const float SmallObstacleRadius = 1.0f;
         const float BigObstacleRadius = 1.6f;
+        const float VentRadius = 1.0f;
+        const float PuddleRadius = 1.3f;
+        // Entre dos trozos de musgo de la misma fila de pared, al menos estas celdas.
+        const int MossSpacing = 4;
 
         // Se piden más sitios de los necesarios: algunos se descartan por estar demasiado cerca de otra cosa.
         const int RetryFactor = 4;

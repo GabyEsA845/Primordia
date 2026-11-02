@@ -187,6 +187,79 @@ namespace Primordia.Editor
             });
         }
 
+        // Escenario vivo (README del escenario): cuántos de cada cosa por sala en cada tramo. El pantano está lleno de charcos y
+        // musgo, el bosque humeante tiene más fumarolas y la tierra quemada muchas, brasas y humo de tocones.
+        static readonly Dictionary<string, (Vector2Int vents, Vector2Int puddles, float water, float gnats, Vector2Int beetles, Vector2Int embers, float moss)>
+            SceneryAmounts = new()
+            {
+                [SwampThemeName] = (new Vector2Int(0, 1), new Vector2Int(3, 5), 0.6f, 0.7f, new Vector2Int(2, 4), Vector2Int.zero, 0.08f),
+                [SmokeThemeName] = (new Vector2Int(1, 2), new Vector2Int(1, 3), 0.4f, 0.5f, new Vector2Int(1, 3), Vector2Int.zero, 0.04f),
+                [BurntThemeName] = (new Vector2Int(2, 3), new Vector2Int(1, 2), 0.3f, 0f, new Vector2Int(0, 2), new Vector2Int(6, 10), 0f),
+            };
+
+        static readonly string[] PuddleShapes = { "Round", "Long", "Lobed", "Chain", "Island", "Splash", "Kidney" };
+
+        static void ImportScenery(RoomTheme theme, string folder, string themeName)
+        {
+            string Sheet(string name) => $"{folder}/props/{name}.png";
+            // Cuadros: ancho de cada uno = ancho de la hoja entre su número de cuadros.
+            Sprite[] Frames(string name, int count, Vector2 pivot)
+            {
+                string path = Sheet(name);
+                if (!File.Exists(path))
+                    return new Sprite[0];
+                var importer = (TextureImporter)AssetImporter.GetAtPath(path);
+                importer.GetSourceTextureWidthAndHeight(out int width, out _);
+                return SliceSheet(path, width / count, pivot);
+            }
+
+            var center = new Vector2(0.5f, 0.5f);
+            var foot = new Vector2(0.5f, 0f);
+            var puddles = new List<PuddleType>();
+            foreach (var shape in PuddleShapes)
+            {
+                // Lodo: brillo y una burbuja, 260 ms; agua: reflejos que se deslizan, 220 ms.
+                var sludgeFrames = Frames($"Puddle_Sludge_{shape}", 4, center);
+                if (sludgeFrames.Length > 0)
+                    puddles.Add(new PuddleType { name = $"Sludge_{shape}", frames = sludgeFrames, frameSeconds = 0.26f, sludge = true });
+                var waterFrames = Frames($"Puddle_Water_{shape}", 4, center);
+                if (waterFrames.Length > 0)
+                    puddles.Add(new PuddleType { name = $"Water_{shape}", frames = waterFrames, frameSeconds = 0.22f, sludge = false });
+            }
+
+            var amounts = SceneryAmounts.GetValueOrDefault(themeName);
+            var stumpPath = Sheet("Obstacle_Stump");
+            theme.ConfigureScenery(new SceneryArt
+            {
+                ventIdle = Frames("Vent_Idle", 4, foot),
+                ventWarn = Frames("Vent_Warn", 4, foot),
+                ventBlast = Frames("Vent_Blast", 6, foot),
+                ventCount = amounts.vents,
+                puddles = puddles.ToArray(),
+                puddleCount = amounts.puddles,
+                waterShare = amounts.water,
+                gnatChance = amounts.gnats,
+                gnats = Frames("Critter_Gnats", 4, center),
+                beetleIdle = Frames("Critter_Beetle_Idle", 2, center),
+                beetleRun = Frames("Critter_Beetle_Run", 4, center),
+                beetleCount = amounts.beetles,
+                embers = Frames("Deco_Embers", 4, center),
+                emberCount = amounts.embers,
+                dripMoss = Frames("Deco_DripMoss", 6, foot),
+                mossChance = amounts.moss,
+                // El tocón quemado (humo encima) es el mismo sprite que importa ImportObstacles; solo la tierra quemada tiene el humo.
+                stump = themeName == BurntThemeName ? StumpSpriteOf(theme) : null,
+                stumpSmoke = themeName == BurntThemeName ? Frames("Fx_StumpSmoke", 6, foot) : new Sprite[0],
+            });
+        }
+
+        // El sprite del tocón entre las rocas pequeñas del tema (el segundo, tras la roca, si ya se importaron los obstáculos).
+        static Sprite StumpSpriteOf(RoomTheme theme)
+        {
+            var stump = theme.SmallObstacles.FirstOrDefault(sprite => sprite != null && sprite.name.StartsWith("Obstacle_Stump"));
+            return stump;
+        }
+
         static void ImportMethane(RoomTheme theme, string folder, string themeName)
         {
             string idle = $"{folder}/props/Methane_Sac_Idle.png";

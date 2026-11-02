@@ -49,7 +49,37 @@ de un piso nuevo, añadir aquí su sección (la misma estructura).
 - Puertas de losas de roca con la paleta de la pared y un sello que brilla en la costura.
 - Generadores de referencia: `floor2-bodies/`, `floor2-enemies/`, `floor2-bosses/base_piso2.py`, `floor2-mutations/`.
 
-## Piso 3 (por diseñar)
+## Piso 3: pantano carbonífero
 
-- Criaturas de ~32 px (cuerpos en lienzos de 32×32 o 40×40, `Death` mayor). Al ser más grandes: rampas de 5 tonos,
-  luz rebotada (`reflect=True`) y algo más de detalle interior. Completar esta sección al cerrar su diseño.
+- **Tamaños:** criaturas de ~32 px (cuerpos en lienzos de 32×32 o 40×40, `Death` mayor). Al ser más grandes: rampas
+  de 5 tonos, luz rebotada (`reflect=True`) y algo más de detalle interior.
+- **Fondo de revisión:** `#1c2e20` (musgo oscuro). Probar también sobre Humeante y Quemada.
+- **Regla del piso:** el escenario va apagado y oscuro (oliva, pardo, ceniza); lo que importa para jugar va saturado y
+  claro (veneno lima, fuego naranja, metano cian pálido, ámbar), así las reacciones se leen en cualquier tramo.
+  **Mucha variedad:** cada pieza del escenario sale de parámetros (tipo, forma, semilla, volteo, parte quemada).
+  Sin flores en el escenario: las únicas son las moradas del camino secreto.
+- **Paletas comunes en `floor3-environment/base_piso3.py`** (fuente única; `floor3-style/` es la prueba aprobada).
+- **Tres tramos del incendio** (suelo 4 · motas 3 · cara de pared 5 · tapa 4 · vetas 3):
+  - **Pantano verde** (`Swamp`): suelo `#1c2e20 #213626 #273f2b #2f4a32`, musgo `#3d5e36 #557a3e #7fa04a`,
+    vetas de musgo `#3f6a2e #68973c #a2c85a`.
+  - **Bosque humeante** (`Smoke`): suelo `#22261f … #3a3d31`, hojarasca `#55553f #77704f #a0946a`, musgo reseco
+    `#5a4a2a #8a6a34 #c09a4a`; humo entre las hojas.
+  - **Tierra quemada** (`Burnt`): suelo `#1d1a1d … #363033`, ceniza `#4a4346 #6d6466 #958a88`, ascuas en las grietas
+    `#a8341c #e8682a #ffb24a`; fondo con profundidad (humo, resplandor lejano, troncos partidos), no troncos apilados.
+- **Paredes de vegetación:** tapa = espesura desde arriba (frondas en 3 capas); cara = troncos de Lepidodendron
+  (cojinetes en rombo), cortina de frondas, musgo y raíces; la espesura se sale al suelo (borde no recto). Maleza
+  quemable `#3a3018 #5c4c24 #86703a #b49a52 #dcc47a`, clara y enredada, con un paso oscuro detrás.
+- **Terreno y plantas:** lodo profundo `#22160f #33221a #4a3324 #634830 #86683f`; charco de lodo
+  `#3a2a1c #55402a #735a3a #9a7e52`; agua turbia `#16302e #1d4440 #2a5e54 #4e8a72 #9cc8a0`; helecho vivo
+  `#1c3a20 #2a5a2a #3e8a34 #6abf48 #b8e878`; reseco `#3a2e16 #5e4a20 #8a6e2a #b8963a #e0c870`; carbón
+  `#141114 #221c1e #352b2a #4c3e38 #6a5848`; corteza `#1e2420 #2e3830 #435040 #5e6c52 #8a9670`; estróbilos (conos-cofre)
+  `#2a1a3a #4a2a6a #7046a0 #a07ad0 #d8c0f0`. Charcos con `blob()` en 7 formas; 5 tipos de helecho.
+- **Reacciones:** veneno `#2e5a14 #5aa020 #a8e040 #e8ffc0`; metano (niebla baja translúcida, sin borde duro)
+  `#1e5a78 #2a90b8 #6ad0ec #d0f8ff`; fuego `#8a1e14 #d4441c #f88c2a #ffd25a #fff4c0`; nube tóxica
+  `#2a2a12 … #e4e478`; ámbar `#6a2e0e #b0581a #e89a30 #ffcc5a #fff0b0`; ascuas `#5a1a14 #a8341c #e8682a #ffb24a`.
+- **Clase nueva Parásito:** granate `#3a0e1e #6a1630 #9a2044 #d04a62 #f4a0a4`.
+- **Criaturas** (rampa de 5 con `ramp()` del color base · detalle): rana `#c8a028` con manchas azules
+  `#0e1e50 #173a8a #2d64c8 #7aa8e8`; Diplocaulus `#d8806a`·`#8a3a4a`; vinagrillo `#8a4a2e`·`#e0b070`; Calamites
+  `#6a9a3a`·`#d8d090`; Medullosa `#3a6a3a`·`#a8502a`; libélula `#2aa8a8`·`#c8ecf0`; bombardero `#2a3a6a`·`#e8702a`;
+  araña `#5a6a2a`·`#e04040`; sapo `#8a6a3a`·`#c8b070`; Arthropleura cobre oxidado `#6e3a22`·cuero `#c8a070`, ojos negros (rediseño del 2026-10-31); Meganeura
+  `#1e7a8a`·`#e8b050`; Megarachne `#4a3a4a`·`#c83a3a`; Lepidodendron ancestral: corteza + estróbilos.

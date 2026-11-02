@@ -267,6 +267,59 @@ Tres mutaciones más, una de Extremidades, una de Piel y una de Órgano (ninguna
 - **Arte:** iconos y una insignia dorada de especial en la esquina; la capa de la Cutícula sobre los 3 cuerpos; el latigazo, el destello iridiscente, el que aturde y el proyectil reflejado; el brote y la disolución en burbujas de la copia (que es tu propio sprite pasado a verde agua y translúcido con un shader, sin hojas nuevas); el borde dorado agrietado de los corazones y su rotura. Generador en `docs/multimedia-temp/clam-mutations/`.
 - **Excepción (25 de octubre):** los Flagelos de Leanchoilia **no se dibujan en el cuerpo**, aunque sean Extremidades, porque una capa de apéndices desentonaba con los tres cuerpos. Se ven en el latigazo junto al enemigo y en un destello azul verdoso breve sobre el jugador cuando el latigazo vuelve a estar listo.
 
+**Mutaciones del piso 3 (decidido el 27 y 28 de octubre)**
+
+Nueve mutaciones: 3 Bocas, una por familia, y 2 por cada otra ranura. No se añade ranura nueva (se deja para el piso 4). Piso del pantano: las formas de manejo son nuevas (mantener, cargar, detonar) y entran las **reacciones** (ver "Piso 3"). Los números los equilibrará el usuario al programar.
+
+| Mutación | Ranura | Familia | Nivel I | Nivel II | Nivel III |
+| --- | --- | --- | --- | --- | --- |
+| Escupitajo venenoso | Boca | Área → rana venenosa | Una bola cada 2,8 s a 2 u/s que atraviesa enemigos y encoge dejando un rastro de charcos de veneno (3 s, uno cada 0,5 s, −30 % de velocidad). Explota al chocar con pared u obstáculo, al disparar otra o al encoger del todo: 6 de daño en radio 1,5 y un charco grande de 4 s | Cada 2,4 s, rastro de 4 s, 8 de daño | **Camada:** la bola se divide en 4 bolitas en cruz tras 1 s |
+| Peonza | Boca | Cuerpo a cuerpo → *Diplocaulus* | Mantener el clic: giras (radio 1,3), 2 de daño cada 0,25 s, empuja, −35 % de velocidad, máximo 3 s y luego mareo de 0,5 s | 3 de daño, radio 1,5, 4 s y devuelve proyectiles | **Bumerán:** tras mantener al menos 1 s, el giro sale 3 u hacia el cursor y vuelve: 8 de daño y aturde |
+| Chorro de vinagre | Boca | Proyectil → escorpión látigo (vinagrillo) | Mantener el clic: chorro de 5 u, un impacto cada 0,15 s que sigue al cursor a 180°/s; barra de 3 s y recarga de 2 s (+1 s si se vacía) | Atraviesa, barra de 4 s | **Salpicadura:** radio 1 cada 0,5 s |
+| Patas de salto | Extremidades | | La esquiva es un salto de 3 u que pasa por encima de todo (fosas, lodo, charcos) y salpica o esparce los charcos | Al caer hace 3 de daño | **Rana toro:** el aterrizaje aturde 0,8 s |
+| Patas hilanderas | Extremidades | | La esquiva tiende un hilo de 5 s entre salida y llegada que frena y daña 2 | 2 hilos | **Telaraña:** en el cruce se forma una telaraña que inmoviliza 1 s |
+| Piel anfibia | Piel | | En agua o charcos se carga un moco que absorbe un golpe, en 3 s (funciona también sin Escupitajo) | 2 s de carga y +20 % de velocidad | **Reflejo:** el moco devuelve el proyectil |
+| Escamas carbonizadas | Piel | | Inmune al fuego y a las explosiones de gas; tras pisar fuego tus ataques queman 4 s | También inmune al veneno de las plantas | **Brasa:** al recibir un golpe estallas en llamas |
+| Saco de metano | Órgano especial | | Clic derecho: nube a la deriva 6 s que explota con cualquier ataque (6 de daño); tus explosiones no te dañan | 2 nubes | **Incendio:** deja fuego 3 s |
+| Feromonas | Órgano especial | | Clic derecho: los enemigos en radio 2 se atacan entre sí 3 s; recarga de 14 s | 4 s | **Frenesí:** daño doble entre ellos |
+
+- Guardadas para después (no se hacen): Cabezazo sísmico, Lengua látigo (latigazo de 3,5 u que atrae; III traga pequeños y cura), Rayo cargado, Red de seda, Muda señuelo, Croar, Alas de libélula, Piel venenosa, Élitros de escarabajo, Sudor de resina.
+- Las Bocas interactúan con el escenario: el Escupitajo y su rastro prenden con fuego (nube tóxica), el Chorro de vinagre envenena en el linaje Pulmonoscorpius, la Peonza esparce charcos.
+- **Pieles que exigen contacto o recibir daño de contacto no funcionan bien** (lección del usuario al diseñarlas): la Piel anfibia carga en agua, no con golpes.
+
+**Clases y linajes del piso 3 (decidido el 27 y 28 de octubre)**
+
+Duermen Herbívoro y Carroñero (casi no hay herbívoros en el carbón). **Entra el Parásito**, clase nueva (color granate): **Chupar**, cada 15 de daño a un enemigo le pega un parásito que le hace 1 por segundo; cada 15 de vida chupada cura medio corazón (30 con un jefe); el parásito salta a otro al morir el enemigo; máximo 3.
+
+| Clase | Beneficio base en el piso 3 |
+| --- | --- |
+| Carnívoro | **Rematar:** igual que en el piso 2; los enemigos que arden cuentan como heridos |
+| Venenoso | **Toxina:** +50 % de daño a los envenenados y −20 % de velocidad; un enemigo envenenado que muere deja un charco |
+| Hongo (vuelve) | **Colonizar:** un enemigo muerto sobre una mata de hongos hace brotar otra mata (hasta 6) |
+| Parásito (nueva) | **Chupar** |
+
+| Linaje | Clase | Boca | Extremidades | Piel | Órgano | Toque |
+| --- | --- | --- | --- | --- | --- | --- |
+| Eryops | Carnívoro | Peonza | Patas de salto | Piel anfibia | Saco de metano | **Emboscada del fango:** aterrizar deja heridos 2 s a los de alrededor |
+| Xenacanthus | Carnívoro | Chorro de vinagre | Patas de salto | Escamas carbonizadas | Feromonas | **Espina cefálica:** los enemigos confundidos cuentan como heridos |
+| Pulmonoscorpius | Venenoso | Chorro de vinagre | Patas hilanderas | Escamas carbonizadas | Saco de metano | **Aguijón de gas:** el chorro envenena y vuelve tóxico el metano |
+| Ciempiés | Venenoso | Escupitajo venenoso | Patas de salto | Escamas carbonizadas | Feromonas | **Cien patas:** al aterrizar sueltas 3 gotas de veneno |
+| Yesquero | Hongo | Escupitajo venenoso | Patas de salto | Escamas carbonizadas | Saco de metano | **Yesca:** la bola prende y deja un rastro de llamas |
+| Cordyceps | Hongo | Chorro de vinagre | Patas hilanderas | Piel anfibia | Feromonas | **Zombi:** un enemigo muerto confundido es tu aliado 4 s |
+| Lamprea | Parásito | Peonza | Patas hilanderas | Piel anfibia | Feromonas | **Ventosa giratoria:** los parásitos se duplican girando |
+| Sanguijuela | Parásito | Escupitajo venenoso | Patas hilanderas | Piel anfibia | Saco de metano | **Charca de sanguijuelas:** los charcos aplican parásitos |
+
+- Hay 8 evoluciones nuevas (animación de unos 2 s como las anteriores, sprites de 80×80 con la paleta de la clase; Parásito granate `#3a0e1e #9a2044 #d04a62 #f4a0a4`).
+- **Mutaciones especiales del ámbar** (diseño cerrado el 28 de octubre; mismas reglas que las de las almejas: comodín de linaje y precio Inestable; en la sala del ámbar, siempre una por piso, dentro de un **bloque de ámbar con un insecto**):
+
+| Mutación | Ranura | Nivel I |
+| --- | --- | --- |
+| Cercos de cucaracha | Extremidades | Si un proyectil está a punto de alcanzarte, haces un quiebro en el sitio, sin moverte, y te atraviesa sin daño. Recarga de 8 s con brillo cuando está lista. Solo proyectiles |
+| Cápsula de ámbar | Piel | Un golpe que te deja a medio corazón o menos te encierra en ámbar 2 s, invulnerable e inmóvil; al romperse suelta esquirlas y empuja. Una vez por sala |
+| Gota de ámbar | Órgano especial | Mantener el clic derecho carga y al soltar encierra a un enemigo 4 s (1 s con los jefes); sirve de escudo y se rompe en esquirlas |
+
+  Caso doble del comodín: un Órgano especial completa Ciempiés o Yesquero y sale el cartel para elegir uno. Los niveles II y III de las especiales del ámbar se cierran al programar.
+
 **Jefe del piso 1 (virus gigante):** 120 de vida, 3×3 unidades, avanza despacio hacia el centro, medio corazón por contacto. Fase 1: espiral de un brazo y ráfaga circular de 12 proyectiles cada 4 s. Fase 2 (desde el 50 %): espiral de dos brazos más rápida, ráfaga de 16 e invoca 2 bacterias cada 8 s (máximo 4 vivas).
 
 **Segundo jefe del piso 1 (ameba gigante):** 180 de vida, unas 4,3 unidades (más grande que el virus), rosa pálido, medio corazón por contacto en todas las fases salvo agotada. En cada partida sale el virus o la ameba, al 50 %. Su sala es redonda (30 tiles de diámetro, borde escalonado), vacía y en azul marino para que contraste con ella. En las fases 1 y 2 no dispara: embiste en línea recta hasta chocar con una pared (se aplasta contra ella) y se queda quieta. Antes de volver a salir avisa durante 0,6 s: tiembla y mira hacia donde irá (la cara entera se desplaza hacia allí); al final se encoge para coger impulso y sale disparada ya a toda velocidad, en la dirección fijada al acabar el aviso. No empuja al jugador: lo atraviesa y le quita medio corazón al tocarlo.
@@ -300,7 +353,7 @@ Cada piso tiene **2 jefes posibles** y en cada partida sale uno al azar.
 | --- | --- | --- | --- | --- |
 | 1 | Sopa primordial | Charco microscópico, colores verdes y burbujas | Bacterias que persiguen, amebas que se dividen al morir | Virus gigante que dispara en espiral · Ameba gigante que se divide |
 | 2 | Océano cámbrico | Fondo marino en tres franjas de profundidad, de las aguas someras al abismo | Trilobites que embisten, medusas que disparan anillos, gusanos Ottoia enterrados, esponjas que curan y cardúmenes de Pikaia | Anomalocaris (depredador con garras) · Euriptérido (escorpión marino gigante) |
-| 3 | Pantano carbonífero | Pantano con helechos gigantes y niebla | Libélulas gigantes que caen en picado, anfibios que escupen | Artrópodo gigante (estilo Arthropleura) · Meganeura (libélula gigante) |
+| 3 | Pantano carbonífero | Pantano que se quema por tramos (verde, bosque humeante, tierra quemada) con helechos gigantes, metano y lodo profundo | Calamites, Medullosa, libélulas gigantes, escarabajos bombarderos, arañas de las frondas y sapos de fango, más trampas (planta carnívora, efímeras) | Arthropleura · Meganeura (y el minijefe opcional Megarachne y el jefe secreto Lepidodendron) |
 | 4 | Desierto pérmico | Dunas rojas, rocas y huesos | Lagartos que corren en zigzag, sinápsidos que lanzan rocas | Dimetrodon con vela dorsal que se calienta (fase 2 más rápida) · Scutosaurus (acorazado que embiste) |
 | 5 | Selva de dinosaurios | Selva densa, helechos y volcanes al fondo | Compsognathus en manada, pterosaurios en picado, plantas carnívoras que disparan | Tiranosaurio · Espinosaurio |
 | 6 | Edad de hielo | Tundra nevada, suelo helado que resbala | Lobos en manada, mamuts que embisten, cazadores que lanzan lanzas | Tigre dientes de sable · Tribu de humanos (el último depredador) |
@@ -372,6 +425,76 @@ Cada uno pide una habilidad distinta (reflejos, lectura de patrones, saber esper
 - **Barra de vida propia:** el escorpión visto desde arriba, con las pinzas abiertas y dentadas, los segmentos del abdomen a lo largo y la cola con púa. Verde bronce con púas en la fase acorazada; en la muda el caparazón se agrieta y las grietas brillan, y al acabar salta en pedazos (se rompe la placa de quitina del 50 %) y queda el marco rosa; en el último aliento la púa de la cola se enciende en verde, los ojos arden en rojo y el relleno verde veneno palpita mientras baja.
 
 **Salas de los jefes:** antes de cada una hay una **antesala**, un túnel más largo que acaba en una puerta de losas grande con el sello encendido. Las dos están hechas a mano y los jefes no caen en las fosas.
+
+**Piso 3: pantano carbonífero (decidido el 27 y 28 de octubre)**
+
+Criterios: nada de ataques o mutaciones repetidos piso tras piso (formas de manejo nuevas), combinaciones distintas a las anteriores, plantas protagonistas, un escenario cada piso más vivo y menos lineal y jefes con mecánicas, no solo daño. Cuerpos del jugador: rana venenosa (amarillo oscuro con manchas azules, Área), *Diplocaulus* salmón (cuerpo a cuerpo) y escorpión látigo caoba (proyectil), de unos 32 px. Cada uno tiene su propia esquiva (salto plano la rana, ondulación el *Diplocaulus*, bola que rueda el vinagrillo).
+
+- **Reacciones (seña del piso):** veneno, metano y fuego. Gas + cualquier ataque = explosión de fuego; fuego + charco de veneno = nube tóxica (columna mostaza que sube); la niebla de metano prendida es un fogonazo que la recorre. Fuentes: fumarolas, odres de metano, plantas venenosas (bulbo que revienta al golpearlo en un charco de veneno) y enemigos de fuego. Un enemigo envenenado se tiñe de lima con gotas.
+- **Progresión del escenario, "el incendio que avanza":** pantano verde → bosque humeante → tierra quemada (por tercios del camino, como las franjas del piso 2). La tormenta de la Meganeura apaga el incendio.
+- **Escenario vivo:** Lepidodendron y Sigillaria como cobertura, helechos altos de 5 tipos (tapan la vista, se atraviesan, arden y el fuego se propaga), odres de metano, musgo goteante, fumarolas, charcos de lodo y agua de 7 formas, y niebla de metano a ras de suelo. **Paredes de vegetación frondosa** (copas desde arriba, cortinas de frondas) y **maleza quemable** (atajos y salas ocultas).
+- **Lodo profundo:** sustituye a las fosas. Te hundes poco a poco y más despacio; se sale esquivando; hundido del todo, −½ corazón. Los enemigos que andan se hunden (los voladores no; el sapo nada). El terreno no se recupera durante la sala.
+- **Generación nueva:** islas de tierra firme rodeadas de lodo o agua, paredes de maleza quemables (atajos y salas ocultas), salas de combate de varios tamaños (alargadas, en L, 2×2), pasillos vivos con trampas y puertas de raíces (con animación propia de cerrar y abrir).
+- **Números:** 12–14 salas de combate, 3–5 especiales de las 10, 2–3 laterales y las fijas (tienda, sala de cambio, sala del ámbar, sala secreta, el Nido y sala de paso), de 23 a 29 salas y 20–25 minutos. **Los cofres son conos gigantes de Lepidodendron** (pardos; el cono ámbar es de la sala del ámbar).
+- **Salas con tema** (además de las mezcladas): Pradera de Calamites, Nido de bombarderos, Charca de sapos, Telar de la araña, Cielo de libélulas.
+
+| Sala especial | Dónde | Qué tiene |
+| --- | --- | --- |
+| Tronco caído | Camino | Un puente de tronco sobre el lodo; libélulas |
+| Frente de fuego | Camino | Helechos que arden y avanzan |
+| Burbujeo | Camino | Burbujas de metano que estallan al ritmo |
+| Claro de la carnívora | Camino | Plantas carnívoras: se empujan enemigos hacia ellas |
+| Bosque en humo | Camino | Visión reducida |
+| Tesoro hundido | Lateral | Biomasa sobre lodo profundo |
+| Ladronas | Lateral | Cucarachas que roban biomasa |
+| Veta de carbón | Camino | Arde mucho y parte la sala |
+| Fumarolas | Camino | Columnas de fuego en patrón |
+| Tocón hueco | Lateral oculta tras maleza | Cofre grande |
+
+- **Sala del ámbar:** siempre una por partida; bloque de ámbar con un insecto que guarda una mutación especial (ver "Mutaciones del piso 3").
+- **Sala secreta:** siempre existe (visible y cerrada si nunca cogiste el corazón morado, como pista para la siguiente partida). Es una antesala con un **muro de raíces gigante** (la pared de arriba entera, 8×4 casillas) con un hueco para el corazón morado en el nudo central; con el corazón intacto el muro se abre como un telón (vetas moradas desde el centro, raíces a los lados). Si el corazón se rompió: semilla morada en el HUD y 3 flores moradas repartidas por el piso; con la semilla puesta en el hueco brota un corazón. Misma recompensa; extra opcional que premia explorar. El morado es siempre el camino secreto.
+- **Pendiente al programar:** el corazón se gasta al abrir el muro (dibujado subiendo y apagándose).
+
+| Enemigo | Papel | Comportamiento | Lo que exige |
+| --- | --- | --- | --- |
+| Calamites | Plantas madre | Madre de 30 de vida inmóvil que suelta retoños cada 4 s y anillos de esporas. Los retoños persiguen al jugador; al matar la madre, se secan | Priorizar a la madre |
+| Medullosa | Mortero | Lanza semillas en arco que marcan el suelo y se abren en vaina que revienta en charco | Leer las marcas |
+| Libélula gigante | Voladora | Vuela sobre todo; marca una línea 0,7 s y cae en picado; posada 0,8 s (vulnerable) | Esquivar el picado y pegar al posarse |
+| Escarabajo bombardero | Cono de fuego | Se gira hacia ti y suelta un cono ardiente de 3 u que prende gas y charcos; +50 % de daño por la espalda | Rodearlo |
+| Araña de las frondas | Emboscada | Oculta dentro de un helecho (tiembla, se ven 2–4 ojos rojos); lanza telarañas que frenan y arden y salta | Detectar helechos que tiemblan |
+| Sapo de fango | Lodo | Escupe lodo que deja charcos que ralentizan; hinchado revienta; nada en el lodo profundo | Mover el combate fuera del lodo |
+
+- **Trampas** (categoría nueva: no cuentan para limpiar la sala y se desactivan al limpiarla): **Planta carnívora** (no muere, atrapa 1 s y se come enemigos; cabeza roja carmín con mandíbulas) y **Enjambre de efímeras** (nube de una pieza que solo muere con fuego o explosiones y no vuelve).
+- Ofrecidos sin usar: Milpiés rodador y Cucarachas ladronas (estas últimas, como sala especial).
+
+**Jefes del piso 3:** uno al azar entre los dos (Arthropleura y Meganeura), salas más grandes y mecánicas de escenario (el terreno, el fuego y la lluvia cambian el combate). Presentación en ámbar del incendio: Arthropleura *Coloso del Carbonífero*, Meganeura *Señora de la tormenta*. Las barras de vida son propias de cada jefe (segmentos, alas).
+
+- **Arthropleura:** artrópodo gigante visto en picada, de unos 78 u (28 segmentos de 4 u). **El caparazón es invulnerable durante todo el combate; solo recibe daño en las placas abiertas.** El fuego abre las placas del tramo que arde (odres, helechos, la mecha); en la fase 3 se abren solas por tramos de 2–3 piezas, con carne rosada que late y una flecha rosa en el borde. Flechas de borde para cabeza, cola y punto débil.
+  - **Fase 1 (claro cerrado de 28×16 u con espesura de ~6 u, cámara ×1,3):** el jefe rodea la sala por fuera, se intuye como un bulto de frondas que tiembla; los segmentos pasan por huecos de al menos 5 u y la cabeza asoma y embiste, revienta el borde y deja una brecha permanente. Solo se le daña con fuego (odres que vuelven a crecer en el claro). Al 70 % derriba la pared y la sala se triplica (suelo de 60×33 u).
+  - **Fase 2:** cuerpo-pared, ondas de pisotón (3 arcos expansivos de ~140° hacia el jugador, cada 0,3 s), derriba árboles (los troncos caídos son cobertura contra las ondas; si embiste un árbol y lo tumba, queda aturdido unos segundos), come helechos (ardiendo se quema) y el fuego avanza por segmentos como una mecha; ardiendo, busca charcas de lodo.
+  - **Fase 3 (35 %, cámara ×1,5):** cerco en anillo con un hueco por el que salir (se ve venir por las flechas; las Patas de salto lo cruzan); si te pilla dentro al cerrarse, te aprieta (daño) y te expulsa; las placas se abren por tramos; si el jugador prende el anillo, el fuego corre por todo el cuerpo. Último 10 %: se enrosca y **rueda** (~8 u) rebotando en las paredes; se aturde al chocar con una pared y el fuego le daña aunque ruede. Al morir se enrosca en espiral y queda gris y humeante como escenario.
+- **Meganeura:** libélula gigante de 10 u de envergadura. **Sala de tierra quemada, suelo de 40×24 u, cámara ×1,3.** Vuela alto (solo se ve su sombra, invulnerable) y baja a atacar; solo se le daña abajo.
+  - **Fase 1:** triple picado (marca ámbar que sigue, luego roja fija); si se clava en un tronco queda atrapada ~1,5 s. Aleteo fuerte que empuja gas, veneno y proyectiles; si se prende la niebla de metano con ella dentro, cae ardiendo y le quedan agujeros quemados en las alas.
+  - **Fase 2 (65 %):** pone racimos de huevos en charcas; de ellos salen ninfas que persiguen y lanzan un labio extensible (~2,5 u que te arrastra). **Hay que romper todos los huevos** para que baje furiosa (chillido con ondas y posada furiosa = ventana de daño).
+  - **Fase 3 (30 %) tormenta:** entrada con chillido, oscurece, viento con ceniza y un primer trueno junto al jugador. La lluvia apaga fuegos y aparecen charcas nuevas. Dos tipos de rayo: uno grande que sigue al jugador (señal azul) y varios sueltos marcados en el terreno. Llevar el rayo grande hasta ella la electrocuta y cae boca arriba; charcas electrificadas de 5–6 s (matan ninfas), corriente circular, Sigillarias quemadas como pararrayos de un solo uso, relámpagos que revelan su silueta. La música se vuelve caótica. Muerte: se desprende un ala, cae en espiral a la charca y la tormenta amaina.
+  - La barra de vida va **abajo de la pantalla** (el jefe vive arriba) y no hay flecha de borde (basta la sombra).
+- **Megarachne (minijefe opcional, sala lateral grande "el Nido", desde el piso 3 hay un minijefe opcional por piso):** guiño: se creyó una araña gigante y era un euriptérido. Sala de bosque humeante de 32×20 u; **de 60 a 90 s**, sin fases largas. En el centro, un **Lepidodendron empapado** (por eso no arde) con una telaraña en la copa y un embudo de unos 3 u; de las puntas de las ramas salen **cables de seda** de ~1 u. Corre por los cables (invulnerable) y solo se le daña en el suelo.
+  - **Ataques:** salto desde el cable (marca y cae), ráfaga de 5–7 bolitas de seda en abanico (cada una deja una telaraña pequeña que frena y arde), saco de crías que revienta en 3–4 crías (romperlo antes lo evita) y red que cae (telaraña redonda de ~3 u, atrapa 1 s). Las crías son pequeñas, rápidas y débiles.
+  - **Ventanas:** tras el salto (~1,5 s); cable quemado con ella encima (el fuego corre por el cable como una mecha a ~6 u/s y cae cuando el frente la alcanza: ~3 s aturdida); y al tejer un cable nuevo, que cruza por el suelo con un hilo fino vulnerable. **Al 50 % se enfada:** vuelve al Nido, chilla y el árbol se seca; entonces el Nido arde una sola vez, se cae la red, y ella teje de nuevo más rápido pero sin refugio. La sala siempre tiene fuego que se renueva (ascuas, helechos, odres que vuelven a crecer).
+  - **Entrada:** sale del embudo (8 ojos rojos, baja colgada, alza las patas, nombre). **Muerte:** cae panza arriba y se queda en la sala, y los cables se descuelgan. **Recompensa:** un contenedor de corazón en un capullo de seda. Barra pequeña (~240×28) arriba, con el cable de seda como marco.
+- **Jefe secreto Lepidodendron ancestral** (*Corazón del bosque*, sello "JEFE SECRETO" morado): sala horizontal muy larga (pasillo de 116×18 u más una arena de 40×26 u), el árbol se ve al fondo desde el inicio.
+  - **Tres paredes de raíces** (25 % de la vida cada una, nudos débiles ×2) que se rompen a golpes o mucho más deprisa con fuego (odres y helechos junto a cada una). Oleadas por pared: 1 Calamites y sapos, 2 arañas y bombarderos (su cono prende la pared), 3 mezcla con libélulas. Esporas en arco por encima de las paredes. A cero la pared se retira bajo tierra; si estaba totalmente carbonizada se desmorona en ceniza.
+  - **Fase final (25 %):** el tronco recibe −80 % de daño; **tres conos** envueltos en una armadura de ramas bajan colgados de una rama a golpear y se quedan un rato; romper la armadura (el fuego la quema, y no rebrota) deja el cono expuesto, que recibe daño completo; cada cono roto deja de atacar. Ataques: latigazo de raíces desde los lados (aviso en el suelo), corro de púas, lluvia de esporas con marca roja y nubes de metano que, prendidas junto al tronco, sacuden el árbol y bajan los conos.
+  - **Muerte:** desplome en cinemática (~6,6 s). El tronco cae recto hacia la entrada, **sustituye la pared norte para siempre** (colisión) y la sombra es la última amenaza que esquivar; la copa se rasga y entra una columna de luz dorada. Queda el tocón con una grieta de luz (E para entrar a su sala).
+  - **Recompensa:** +1 corazón permanente y la **Espora morada** (llave de la sala secreta del piso 4; no se pierde nunca) bajan por la luz; en la sala del tocón (redonda, ~18×12 u) hay un pedestal con la **reliquia Raíz ancestral** (al llegar a cada piso nuevo recuperas toda la vida; se coge con E y tiene una presentación con halo). Categoría nueva **Reliquias**: una por jefe secreto, pasivas y permanentes, sin ranura ni linaje, fila propia en la pausa, efecto que escala con el piso.
+  - **A largo plazo:** un final secreto tras todos los jefes secretos; cada uno da la llave del siguiente.
+
+**Corazones de sala, almacén y teletransportes (decidido el 28 de octubre; se hacen antes del piso 3 y valen para todos los pisos)**
+
+- **Corazón de sala:** al limpiar una sala de combate hay un 12 % de que suelte medio corazón rojo, +4 % por cada sala sin corazón (protección oculta, no se explica en el juego). En los pisos 1 y 2 se queda en la sala hasta recogerlo.
+- **Almacén de corazones (desde el piso 3):** con la vida llena, pulsar E sobre el corazón lo envía a la **vaina de semillas** de la tienda (solo de ese piso). Capacidad de 4 medios en el piso 3 y +2 por piso (6, 8, 10 en el piso 6); si está lleno el corazón se queda en el suelo. Si sales de la sala sin enviarlo, una cucaracha lo roba (así se aprende a usar el almacén). Los corazones no salen del piso.
+- **Tienda:** ya vende siempre medio corazón (con la vida llena es un corazón máximo de más). Los **precios se multiplican por 1,5 en cada piso** (factor único).
+- **Teletransportes:** en la sala inicial, la tienda, la sala de cambio y la antesala de la sala de paso; se activan al entrar y se usan desde el mapa grande (Tab, tercer estado) solo desde una sala limpia; la sala de origen queda marcada como "regreso". Aspecto: burbuja de membrana (piso 1), remolino (piso 2) y tronco hueco con raíces (piso 3).
 
 **Paso al piso siguiente**
 
@@ -482,12 +605,13 @@ La v1.0 tiene los **pisos 1 a 3** completos y pulidos (si el 3 se retrasa mucho,
 - [x] Sala de cambio (el laboratorio de Darwin), desde el piso 2
 - [ ] Piso 2 (Océano cámbrico): 3 franjas de escenario con cuevas generadas, fosas y 10 salas especiales, 5 enemigos, Anomalocaris y Euriptérido, 9 mutaciones, 8 linajes y los 3 cuerpos del jugador
 - [ ] Presentación de los jefes al entrar en su sala (los 4 jefes de los pisos 1 y 2)
-- [ ] Piso 3 (Pantano carbonífero): lo mismo, con el artrópodo gigante
+- [ ] Piso 3 (Pantano carbonífero): diseño y arte cerrados (ver "Piso 3"); falta programarlo: corazones de sala y teletransportes (ramas previas), generación nueva, lodo profundo, reacciones, 6 enemigos y 2 trampas, 9 mutaciones y 8 linajes con la clase Parásito, 3 cuerpos, Arthropleura, Meganeura, Megarachne, Lepidodendron ancestral y sala secreta
 - [x] Tienda con biomasa
 
 **Más adelante**
 
-- [ ] Pisos 4 a 6
+- [ ] Pisos 4 a 6 (el piso 4 incluye la sala secreta que abre la Espora morada)
+- [ ] Final secreto tras todos los jefes secretos (cada uno da la llave del siguiente)
 - [ ] Salas secretas (la primera, en el piso 3, se abre con el corazón morado del piso 2)
 - [ ] Soporte de mando y opciones de audio
 - [ ] Desbloqueos permanentes entre partidas
@@ -630,3 +754,16 @@ Objetivo: que añadir una mutación, un enemigo o una sala nueva sea crear un ar
 | Corazón morado | Aura morada ligera mientras se lleva (que se vea a simple vista sin cargar la pantalla) y, al parar un golpe, destello, onda, sacudida corta y sonido más grave |
 | Pista de linaje | La tarjeta de mutación que acerca el linaje más avanzado tiene el fondo dorado y los bordes dorados que laten, siguiendo la forma de la tarjeta |
 | Piso 1 | 6–7 salas de combate y 2–3 laterales |
+
+**Decidido el 28 de octubre (piso 3)**
+
+| Tema | Decisión |
+| --- | --- |
+| Reacciones | Veneno, metano y fuego: gas + ataque = explosión; fuego + charco de veneno = nube tóxica. Las Bocas interactúan con el escenario |
+| Mutaciones y linajes | 9 mutaciones (3 Bocas: Escupitajo venenoso, Peonza, Chorro de vinagre), clase nueva Parásito (Chupar), 8 linajes, 3 especiales del ámbar. Sin ranura nueva hasta el piso 4 |
+| Escenario | "El incendio que avanza" en tres tramos, lodo profundo en lugar de fosas, generación con islas, maleza quemable y salas de varios tamaños |
+| Trampas | Categoría nueva (planta carnívora y enjambre de efímeras): no cuentan para limpiar la sala |
+| Jefes | Arthropleura (caparazón invulnerable, el fuego abre las placas) y Meganeura (tormenta real); minijefe opcional Megarachne en el Nido; jefe secreto Lepidodendron ancestral con recompensa de corazón, Espora morada y reliquia |
+| Reliquias | Categoría nueva: una por jefe secreto, pasiva y permanente, sin ranura ni linaje |
+| Corazones de sala | 12 % de medio corazón al limpiar (+4 % por sala sin corazón); almacén en la tienda desde el piso 3; precios ×1,5 por piso |
+| Teletransportes | En inicio, tienda, sala de cambio y antesala de la sala de paso; se usan desde el mapa grande en una sala limpia |

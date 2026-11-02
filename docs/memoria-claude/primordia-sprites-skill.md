@@ -16,3 +16,7 @@ Rama `feature/primordia-sprites` sacada de `feature/floor2-mutations` (multimedi
 
 **Why:** que el arte nuevo salga coherente y con mejor técnica sin releer generadores antiguos.
 **How to apply:** usar la skill en todo arte nuevo; no regenerar arte aprobado sin que lo pida. Ver [[primordia-workflow]], [[primordia-multimedia-temp]], [[primordia-floor2-mutations]].
+
+**Antes de dibujar un enemigo o jefe (2026-10-31):** preguntar siempre al usuario las dudas de diseño visible, incluida la vista (por defecto lateral como el jugador, pero puede haber excepciones). Ver [[primordia-floor3-design]] y [[primordia-mutation-visual-tiers]].
+
+**Preguntar SIEMPRE antes de cualquier sprite o animación (el usuario lo pidió el 2026-11-01):** no solo jefes: antes de empezar a dibujar o animar cualquier cosa, hacer una ronda de preguntas (con propuesta recomendada) sobre lo que se vaya a decidir. Si al trabajar tengo que decidir algo que no estaba preguntado (p. ej. qué pasa con el cono roto, qué arde y qué no), preguntarlo antes en vez de decidirlo yo y avisar después. Ver [[primordia-boss-art-workflow]].

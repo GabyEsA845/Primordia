@@ -35,3 +35,27 @@ Hojas en tira con la celda de cada jefe (importar como sus otras hojas: *Multipl
 - **Título:** Silkscreen Regular 8 px.
 
 `maqueta_rotulo_*.png` muestran el rótulo sobre la pantalla (ampliado ×2); `vista_previa_*.png` y `gif/` son solo para revisar. `prueba_fuentes_piso2.png` es la comparación de tipografías con la que se eligió Jersey 10.
+
+## Piso 3 (pantano carbonífero)
+
+Generado con `generar_presentaciones_piso3.py` (`python generar_presentaciones_piso3.py`). Los retratos se hacen con el
+motor 3D de los jefes del piso (`../floor3-bosses/arthropleura/generar_arthropleura.py`), a escala de ilustración y con
+una cámara ajustada a cada uno; cada retrato se dibuja en su propio proceso. Mismo formato que los pisos 1 y 2: retrato
+176×176 apoyado abajo y centrado, rótulo con banda diagonal, nombre en Jersey 10 a 40 px y título en Silkscreen 8.
+
+- **Color del piso 3 (ámbar del incendio):** relleno `#fff4c0 → #ffd25a → #e89a30 → #8a3a10`, contorno `#220c06`,
+  banda parda `#1c0e08`, filo y título ámbar `#ffb24a`.
+- **Minijefe:** sello «MINIJEFE» (placa granate con borde ámbar, Silkscreen Bold 8) a la derecha del nombre.
+- **Jefe secreto:** sello «JEFE SECRETO» (placa morada `#4a1a76` con borde lila `#c496f0`) a la derecha del título;
+  el nombre largo va en dos líneas (la primera palabra a 40 px y el resto a 28 px). Solo un jefe: `python generar_presentaciones_piso3.py solo <Jefe>`.
+
+| Retrato | Jefe | Título | Pose de entrada (ya hecha, en su carpeta) |
+|---|---|---|---|
+| `Portrait_Arthropleura` | Arthropleura | Coloso del Carbonífero | `Arthropleura_Head_Rear` (rodeo y asomo, ver su README) |
+| `Portrait_Meganeura` | Meganeura | Señora de la tormenta | `Meganeura_Intro` |
+| `Portrait_Megarachne` | Megarachne (minijefe) | La araña que nunca fue | `Megarachne_IntroEmerge` + `Megarachne_Threat` |
+| `Portrait_Lepidodendron` | Lepidodendron ancestral (jefe secreto) | Corazón del bosque | Recorrido de cámara hasta el árbol + `Lepido_Veins_Warn` + `Canopy_Arena_Shake` (ver su README) |
+
+`Titles/Title_<Jefe>.png` = el nombre ya rotulado; `maqueta_rotulo_<jefe>.png` = el rótulo sobre la sala (×2);
+`vista_previa_piso3_retratos.png` = los tres retratos. Al conectarlos, añadirlos a `BossIntros` en `ArtSetup.BossIntro.cs`
+(con el color del piso 3 y la marca de minijefe para la Megarachne).

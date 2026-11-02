@@ -63,6 +63,12 @@ namespace Primordia.Player
             set => moveSpeed = Mathf.Max(0f, value);
         }
 
+        /// <summary>
+        /// Velocidad que manda sobre <see cref="MoveSpeed"/> mientras tenga valor (sin tocarla): la sala Parkour del piso 2
+        /// la fija a la velocidad base para que las mejoras de velocidad no estropeen los saltos.
+        /// </summary>
+        public float? SpeedOverride { get; set; }
+
         /// <summary>Distancia de la esquiva; las mutaciones de Extremidades la modifican.</summary>
         public float DodgeDistance
         {
@@ -189,7 +195,7 @@ namespace Primordia.Player
                 StopLunge();
             }
 
-            rb.linearVelocity = CanAct ? MoveInput * moveSpeed * SlowFactor * TimeWarp.PlayerSpeed : Vector2.zero;
+            rb.linearVelocity = CanAct ? MoveInput * (SpeedOverride ?? moveSpeed) * SlowFactor * TimeWarp.PlayerSpeed : Vector2.zero;
         }
 
         /// <summary>Empieza una esquiva si se puede. Devuelve false si está en recarga o el juego no está en curso.</summary>

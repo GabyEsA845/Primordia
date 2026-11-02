@@ -1,4 +1,5 @@
 using Primordia.Core;
+using Primordia.Enemies;
 using UnityEngine;
 
 namespace Primordia.Combat
@@ -23,6 +24,9 @@ namespace Primordia.Combat
 
         /// <summary>Nombre de la marca en <see cref="StatusMarkers"/>.</summary>
         protected abstract string MarkerKey { get; }
+
+        /// <summary>Lo máximo que quita cada golpe a un jefe (sin tope por defecto); con mejoras el veneno dejaba a los jefes sin vida.</summary>
+        protected virtual int BossDamageCap => int.MaxValue;
 
         protected static T Apply<T>(Health target, int damagePerSecond, float duration, GameObject effectPrefab) where T : DamageOverTime
         {
@@ -53,7 +57,10 @@ namespace Primordia.Combat
 
             tickTimer -= 1f;
             ticksLeft--;
-            health.TakeDamage(damagePerTick, DamageKind.Tick);
+            int damage = damagePerTick;
+            if (BossDamageCap < damage && health.GetComponentInParent<IBoss>() != null)
+                damage = BossDamageCap;
+            health.TakeDamage(damage, DamageKind.Tick);
 
             if (ticksLeft <= 0)
                 Destroy(this);

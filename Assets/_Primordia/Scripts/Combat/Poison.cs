@@ -19,6 +19,11 @@ namespace Primordia.Combat
 
         protected override string MarkerKey => Key;
 
+        /// <summary>Contra un jefe el veneno no pasa de 2 de daño por segundo (ajustable aquí).</summary>
+        public const int BossDamagePerSecondCap = 2;
+
+        protected override int BossDamageCap => BossDamagePerSecondCap;
+
         /// <summary>Radio del estallido al morir envenenado (0 = sin contagio).</summary>
         public float BurstRadius => burstRadius;
 

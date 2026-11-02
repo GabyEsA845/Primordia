@@ -46,18 +46,67 @@ namespace Primordia.UI
 
         public IReadOnlyList<Image> Hearts => hearts;
 
-        /// <summary>Medios corazones verdes que se ven ahora.</summary>
+        /// <summary>Medios corazones verdes que se ven ahora (un corazón verde entero cuenta como dos).</summary>
         public int BarrierShown
         {
             get
             {
                 int shown = 0;
-                foreach (var heart in barrierHearts)
+                for (int i = 0; i < barrierHearts.Count; i++)
                 {
-                    if (heart.gameObject.activeSelf)
-                        shown++;
+                    if (barrierHearts[i].gameObject.activeSelf)
+                        shown += i < health.Barrier / 2 ? 2 : 1;
                 }
                 return shown;
+            }
+        }
+
+        Sprite greenFull;
+
+        /// <summary>
+        /// Corazón verde entero PROVISIONAL: el corazón lleno pasado a verde por código (el arte definitivo, más adelante).
+        /// Null si no se puede leer la textura; entonces se tiñe la imagen.
+        /// </summary>
+        Sprite GreenFullSprite()
+        {
+            if (greenFull != null)
+                return greenFull;
+            if (fullHeart == null)
+                return null;
+
+            try
+            {
+                var texture = fullHeart.texture;
+                var rect = fullHeart.rect;
+                var target = RenderTexture.GetTemporary(texture.width, texture.height, 0, RenderTextureFormat.ARGB32);
+                Graphics.Blit(texture, target);
+                var previous = RenderTexture.active;
+                RenderTexture.active = target;
+                var copy = new Texture2D((int)rect.width, (int)rect.height, TextureFormat.RGBA32, false) { filterMode = FilterMode.Point };
+                copy.ReadPixels(new Rect(rect.x, rect.y, rect.width, rect.height), 0, 0);
+                RenderTexture.active = previous;
+                RenderTexture.ReleaseTemporary(target);
+
+                var pixels = copy.GetPixels32();
+                for (int i = 0; i < pixels.Length; i++)
+                {
+                    if (pixels[i].a == 0)
+                        continue;
+                    Color.RGBToHSV(pixels[i], out float h, out float s, out float v);
+                    if (s > 0.12f)
+                        h = 0.30f;
+                    var color = (Color32)Color.HSVToRGB(h, s, v);
+                    color.a = pixels[i].a;
+                    pixels[i] = color;
+                }
+                copy.SetPixels32(pixels);
+                copy.Apply();
+                greenFull = Sprite.Create(copy, new Rect(0f, 0f, copy.width, copy.height), fullHeart.pivot / rect.size, fullHeart.pixelsPerUnit);
+                return greenFull;
+            }
+            catch (System.Exception)
+            {
+                return null;
             }
         }
 
@@ -146,18 +195,25 @@ namespace Primordia.UI
                     hearts[i].sprite = SpriteFor(HeartFill(health.Current, i));
             }
 
-            // Los verdes van detrás de los rojos (los hijos se crean en orden).
-            while (barrierHearts.Count < health.Barrier)
+            // Los verdes van detrás de los rojos (los hijos se crean en orden). Cada dos medios forman un corazón verde
+            // entero; si sobra uno, va al final como medio.
+            int greenFullCount = health.Barrier / 2;
+            int greenIcons = greenFullCount + health.Barrier % 2;
+            while (barrierHearts.Count < greenIcons)
             {
                 var heart = CreateHeart();
                 heart.name = "BarrierHeart";
                 barrierHearts.Add(heart);
             }
+            var greenFullSprite = greenFullCount > 0 ? GreenFullSprite() : null;
             for (int i = 0; i < barrierHearts.Count; i++)
             {
-                barrierHearts[i].sprite = barrierHeart != null ? barrierHeart : halfHeart;
+                bool isFull = i < greenFullCount;
+                barrierHearts[i].sprite = isFull ? greenFullSprite != null ? greenFullSprite : fullHeart
+                    : barrierHeart != null ? barrierHeart : halfHeart;
+                barrierHearts[i].color = isFull && greenFullSprite == null ? new Color(0.55f, 1f, 0.55f) : Color.white;
                 barrierHearts[i].transform.SetAsLastSibling();
-                barrierHearts[i].gameObject.SetActive(i < health.Barrier);
+                barrierHearts[i].gameObject.SetActive(i < greenIcons);
             }
 
             // Con el corazón morado, el morado se incrusta en los corazones: contorno morado y grietas (una variante por corazón).

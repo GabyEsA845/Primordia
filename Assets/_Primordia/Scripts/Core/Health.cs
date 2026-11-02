@@ -72,6 +72,9 @@ namespace Primordia.Core
                 if (clamped == purpleHearts)
                     return;
                 purpleHearts = clamped;
+                // Con un corazón morado, el jugador lleva su aura y su efecto al bloquear.
+                if (clamped > 0 && !TryGetComponent<PurpleHeartFx>(out _))
+                    gameObject.AddComponent<PurpleHeartFx>();
                 Changed?.Invoke(Current, maxHealth);
             }
         }

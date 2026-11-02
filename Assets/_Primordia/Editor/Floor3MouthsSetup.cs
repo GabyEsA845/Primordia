@@ -32,10 +32,13 @@ namespace Primordia.Editor
                 WeaponFamily.Area, "Attack_Spores", color, art.PoisonSpit);
             // La rana suelta la bola en el cuadro 7 de su ataque (0,56 s).
             poisonSpit.SetAttackHitTime(FrogAttackHitTime);
+            // Peso al arrancar y frenar: la rana es ágil, el Diplocaulus resbala.
+            poisonSpit.SetMoveInertia(0.8f);
 
-            CreateMouth("Mutation_SpinningTop", "Peonza",
+            var spinningTop = CreateMouth("Mutation_SpinningTop", "Peonza",
                 "Gira como una peonza con la cabeza como aspa. (Ataque provisional.)",
                 WeaponFamily.Melee, "Attack_Mandibles", color, art.SpinningTop);
+            spinningTop.SetMoveInertia(1.5f);
 
             CreateMouth("Mutation_VinegarJet", "Chorro de vinagre",
                 "Chorro de vinagre desde la cola alzada. (Ataque provisional.)",

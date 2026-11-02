@@ -127,6 +127,9 @@ namespace Primordia.Mutations
             // El golpe sale en el cuadro de la animación de ataque de la criatura.
             if (weapon != null)
                 weapon.Windup = CreatureForm ? newMouth.AttackHitTime : 0f;
+            // Cada cuerpo pesa distinto al arrancar y frenar.
+            if (controller != null)
+                controller.Inertia = CreatureForm ? newMouth.MoveInertia : 1f;
         }
 
         CreatureLayerMirror skinLayer;

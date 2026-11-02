@@ -570,6 +570,9 @@ namespace Primordia.Enemies
         {
             fallingIntoPit = true;
             bool inMud = Pits.IsMud(rb.position);
+            // El lodo apaga al que arde.
+            if (inMud && TryGetComponent<Primordia.Combat.Burn>(out var burning))
+                Destroy(burning);
             desiredVelocity = Vector2.zero;
             rb.linearVelocity = Vector2.zero;
             // Lo que llevaba se pierde en el fondo.

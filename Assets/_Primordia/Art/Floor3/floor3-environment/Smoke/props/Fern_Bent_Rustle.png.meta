@@ -73,7 +73,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -145,12 +145,12 @@ TextureImporter:
       name: Fern_Bent_Rustle_0
       rect:
         serializedVersion: 2
-        x: 26
-        y: 7
-        width: 49
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 0
+        width: 88
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.296875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -167,12 +167,12 @@ TextureImporter:
       name: Fern_Bent_Rustle_1
       rect:
         serializedVersion: 2
-        x: 65
-        y: 20
-        width: 12
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 88
+        y: 0
+        width: 88
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.296875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -189,12 +189,12 @@ TextureImporter:
       name: Fern_Bent_Rustle_2
       rect:
         serializedVersion: 2
-        x: 100
-        y: 13
-        width: 71
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 176
+        y: 0
+        width: 88
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.296875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -211,12 +211,12 @@ TextureImporter:
       name: Fern_Bent_Rustle_3
       rect:
         serializedVersion: 2
-        x: 200
-        y: 7
-        width: 56
-        height: 31
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 264
+        y: 0
+        width: 88
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.296875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -233,12 +233,12 @@ TextureImporter:
       name: Fern_Bent_Rustle_4
       rect:
         serializedVersion: 2
-        x: 280
-        y: 10
-        width: 69
-        height: 29
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 352
+        y: 0
+        width: 88
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.296875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -255,12 +255,12 @@ TextureImporter:
       name: Fern_Bent_Rustle_5
       rect:
         serializedVersion: 2
-        x: 372
-        y: 8
-        width: 66
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 440
+        y: 0
+        width: 88
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.296875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -269,94 +269,6 @@ TextureImporter:
       bones: []
       spriteID: c1aa0e6bf50afc3f0800000000000000
       internalID: -878307069363443172
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fern_Bent_Rustle_6
-      rect:
-        serializedVersion: 2
-        x: 459
-        y: 10
-        width: 55
-        height: 28
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 838935b529789aba0800000000000000
-      internalID: -6077177159492593608
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fern_Bent_Rustle_7
-      rect:
-        serializedVersion: 2
-        x: 71
-        y: 0
-        width: 16
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 926f3951ec719a840800000000000000
-      internalID: 5235742215687632425
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fern_Bent_Rustle_8
-      rect:
-        serializedVersion: 2
-        x: 254
-        y: 4
-        width: 8
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6173f461f9ef48280800000000000000
-      internalID: -9041822192625567978
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fern_Bent_Rustle_9
-      rect:
-        serializedVersion: 2
-        x: 511
-        y: 9
-        width: 14
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9f72ac2ad0252f920800000000000000
-      internalID: 3022568518438234105
       vertices: []
       indices: 
       edges: []
@@ -381,10 +293,6 @@ TextureImporter:
       Fern_Bent_Rustle_3: -8011811268753576
       Fern_Bent_Rustle_4: 6229313880730021356
       Fern_Bent_Rustle_5: -878307069363443172
-      Fern_Bent_Rustle_6: -6077177159492593608
-      Fern_Bent_Rustle_7: 5235742215687632425
-      Fern_Bent_Rustle_8: -9041822192625567978
-      Fern_Bent_Rustle_9: 3022568518438234105
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

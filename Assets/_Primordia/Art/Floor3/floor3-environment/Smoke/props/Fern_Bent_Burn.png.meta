@@ -64,7 +64,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -136,12 +136,12 @@ TextureImporter:
       name: Fern_Bent_Burn_0
       rect:
         serializedVersion: 2
-        x: 18
-        y: 10
-        width: 56
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 0
+        width: 88
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.296875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -158,12 +158,12 @@ TextureImporter:
       name: Fern_Bent_Burn_1
       rect:
         serializedVersion: 2
-        x: 71
-        y: 9
-        width: 15
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 88
+        y: 0
+        width: 88
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.296875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -180,12 +180,12 @@ TextureImporter:
       name: Fern_Bent_Burn_2
       rect:
         serializedVersion: 2
-        x: 109
-        y: 6
-        width: 66
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 176
+        y: 0
+        width: 88
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.296875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -202,12 +202,12 @@ TextureImporter:
       name: Fern_Bent_Burn_3
       rect:
         serializedVersion: 2
-        x: 194
-        y: 10
-        width: 56
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 264
+        y: 0
+        width: 88
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.296875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -216,72 +216,6 @@ TextureImporter:
       bones: []
       spriteID: 87afff29174841650800000000000000
       internalID: 6202728210128435832
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fern_Bent_Burn_4
-      rect:
-        serializedVersion: 2
-        x: 247
-        y: 9
-        width: 10
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: fcb2a7a99ab01c510800000000000000
-      internalID: 1567546968370719695
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fern_Bent_Burn_5
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 9
-        width: 6
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9aaf50171618901b0800000000000000
-      internalID: -5689874398697882967
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fern_Bent_Burn_6
-      rect:
-        serializedVersion: 2
-        x: 279
-        y: 10
-        width: 71
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8776413913263f8c0800000000000000
-      internalID: -3966718881722767496
       vertices: []
       indices: 
       edges: []
@@ -304,9 +238,6 @@ TextureImporter:
       Fern_Bent_Burn_1: -8915684766490769273
       Fern_Bent_Burn_2: -654092181038551706
       Fern_Bent_Burn_3: 6202728210128435832
-      Fern_Bent_Burn_4: 1567546968370719695
-      Fern_Bent_Burn_5: -5689874398697882967
-      Fern_Bent_Burn_6: -3966718881722767496
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

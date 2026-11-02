@@ -61,7 +61,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -133,12 +133,12 @@ TextureImporter:
       name: Fern_Sparse_Sway_0
       rect:
         serializedVersion: 2
-        x: 13
-        y: 1
-        width: 61
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 0
+        width: 92
+        height: 50
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -155,12 +155,12 @@ TextureImporter:
       name: Fern_Sparse_Sway_1
       rect:
         serializedVersion: 2
-        x: 72
-        y: 19
-        width: 11
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 92
+        y: 0
+        width: 92
+        height: 50
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -177,12 +177,12 @@ TextureImporter:
       name: Fern_Sparse_Sway_2
       rect:
         serializedVersion: 2
-        x: 110
-        y: 1
-        width: 68
-        height: 34
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 184
+        y: 0
+        width: 92
+        height: 50
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -199,12 +199,12 @@ TextureImporter:
       name: Fern_Sparse_Sway_3
       rect:
         serializedVersion: 2
-        x: 197
-        y: 1
-        width: 61
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 276
+        y: 0
+        width: 92
+        height: 50
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -213,50 +213,6 @@ TextureImporter:
       bones: []
       spriteID: baffbc77945f11ab0800000000000000
       internalID: -5038976812159598677
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fern_Sparse_Sway_4
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 19
-        width: 11
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7560a23e0d11d3740800000000000000
-      internalID: 5133278739134285399
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fern_Sparse_Sway_5
-      rect:
-        serializedVersion: 2
-        x: 285
-        y: 1
-        width: 71
-        height: 34
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c9c989f538a9b35d0800000000000000
-      internalID: -3081699630969742180
       vertices: []
       indices: 
       edges: []
@@ -279,8 +235,6 @@ TextureImporter:
       Fern_Sparse_Sway_1: -507136825761525119
       Fern_Sparse_Sway_2: -9214989201364274685
       Fern_Sparse_Sway_3: -5038976812159598677
-      Fern_Sparse_Sway_4: 5133278739134285399
-      Fern_Sparse_Sway_5: -3081699630969742180
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -55,7 +55,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -127,12 +127,12 @@ TextureImporter:
       name: Fern_Bent_Burnt_0
       rect:
         serializedVersion: 2
-        x: 21
-        y: 9
-        width: 55
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 0
+        width: 88
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.296875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -141,72 +141,6 @@ TextureImporter:
       bones: []
       spriteID: 2a6b59fe4775233c0800000000000000
       internalID: -4381343327730682206
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fern_Bent_Burnt_1
-      rect:
-        serializedVersion: 2
-        x: 67
-        y: 8
-        width: 10
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c0702d6b381b6e980800000000000000
-      internalID: -8509919266603923700
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fern_Bent_Burnt_2
-      rect:
-        serializedVersion: 2
-        x: 71
-        y: 3
-        width: 11
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9f595baea437e61e0800000000000000
-      internalID: -2202696402135050759
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fern_Bent_Burnt_3
-      rect:
-        serializedVersion: 2
-        x: 75
-        y: 8
-        width: 10
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5110d278ed7c11d80800000000000000
-      internalID: -8281618481193090795
       vertices: []
       indices: 
       edges: []
@@ -226,9 +160,6 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       Fern_Bent_Burnt_0: -4381343327730682206
-      Fern_Bent_Burnt_1: -8509919266603923700
-      Fern_Bent_Burnt_2: -2202696402135050759
-      Fern_Bent_Burnt_3: -8281618481193090795
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

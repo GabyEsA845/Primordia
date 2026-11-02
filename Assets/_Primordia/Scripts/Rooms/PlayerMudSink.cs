@@ -22,6 +22,9 @@ namespace Primordia.Rooms
         const float SafeMargin = 0.45f;
         const float InvulnerabilityAfterSink = 1f;
 
+        // Lo que baja la barra de quemado por segundo mientras se pisa lodo.
+        const float BurnDouseSpeed = 3f;
+
         [Tooltip("Dónde están los pies respecto al centro del cuerpo: el lodo se mide ahí.")]
         [SerializeField] Vector2 footOffset = new(0f, -0.3f);
         [Tooltip("Segundos en el lodo hasta hundirse del todo.")]
@@ -71,6 +74,9 @@ namespace Primordia.Rooms
             }
 
             bool inMud = Pits.IsMud(feet);
+            // El lodo apaga el quemado casi de golpe (la barra entera en ~⅓ de segundo).
+            if (inMud && TryGetComponent<PlayerBurn>(out var burn))
+                burn.Douse(BurnDouseSpeed * Time.fixedDeltaTime);
             float before = Sink;
             Sink = Mathf.Clamp01(Sink + (inMud ? 1f / fillSeconds : -1f / emptySeconds) * Time.fixedDeltaTime);
 

@@ -52,7 +52,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -124,12 +124,12 @@ TextureImporter:
       name: Fern_Tree_Burnt_0
       rect:
         serializedVersion: 2
-        x: 12
-        y: 15
-        width: 11
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 0
+        width: 84
+        height: 74
+      alignment: 9
+      pivot: {x: 0.5, y: 0.067567565}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -138,50 +138,6 @@ TextureImporter:
       bones: []
       spriteID: e9ac4a8cf1904e770800000000000000
       internalID: 8639040017318333086
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fern_Tree_Burnt_1
-      rect:
-        serializedVersion: 2
-        x: 13
-        y: 1
-        width: 54
-        height: 38
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d88ccba7c7140b690800000000000000
-      internalID: -7588493369228343155
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fern_Tree_Burnt_2
-      rect:
-        serializedVersion: 2
-        x: 63
-        y: 10
-        width: 12
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4fc067c43c76da4a0800000000000000
-      internalID: -6580489392019337996
       vertices: []
       indices: 
       edges: []
@@ -201,8 +157,6 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       Fern_Tree_Burnt_0: 8639040017318333086
-      Fern_Tree_Burnt_1: -7588493369228343155
-      Fern_Tree_Burnt_2: -6580489392019337996
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

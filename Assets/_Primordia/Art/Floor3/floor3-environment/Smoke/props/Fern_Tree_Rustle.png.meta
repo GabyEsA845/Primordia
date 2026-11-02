@@ -115,7 +115,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -187,12 +187,12 @@ TextureImporter:
       name: Fern_Tree_Rustle_0
       rect:
         serializedVersion: 2
-        x: 13
-        y: 1
-        width: 50
-        height: 38
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 0
+        width: 84
+        height: 74
+      alignment: 9
+      pivot: {x: 0.5, y: 0.067567565}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -209,12 +209,12 @@ TextureImporter:
       name: Fern_Tree_Rustle_1
       rect:
         serializedVersion: 2
-        x: 55
-        y: 23
-        width: 13
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 84
+        y: 0
+        width: 84
+        height: 74
+      alignment: 9
+      pivot: {x: 0.5, y: 0.067567565}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -231,12 +231,12 @@ TextureImporter:
       name: Fern_Tree_Rustle_2
       rect:
         serializedVersion: 2
-        x: 95
-        y: 21
-        width: 11
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 168
+        y: 0
+        width: 84
+        height: 74
+      alignment: 9
+      pivot: {x: 0.5, y: 0.067567565}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -253,12 +253,12 @@ TextureImporter:
       name: Fern_Tree_Rustle_3
       rect:
         serializedVersion: 2
-        x: 98
-        y: 1
-        width: 51
-        height: 38
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 252
+        y: 0
+        width: 84
+        height: 74
+      alignment: 9
+      pivot: {x: 0.5, y: 0.067567565}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -275,12 +275,12 @@ TextureImporter:
       name: Fern_Tree_Rustle_4
       rect:
         serializedVersion: 2
-        x: 102
-        y: 16
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 336
+        y: 0
+        width: 84
+        height: 74
+      alignment: 9
+      pivot: {x: 0.5, y: 0.067567565}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -297,12 +297,12 @@ TextureImporter:
       name: Fern_Tree_Rustle_5
       rect:
         serializedVersion: 2
-        x: 147
-        y: 17
-        width: 10
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 420
+        y: 0
+        width: 84
+        height: 74
+      alignment: 9
+      pivot: {x: 0.5, y: 0.067567565}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -311,402 +311,6 @@ TextureImporter:
       bones: []
       spriteID: 01ed65a1064f2f270800000000000000
       internalID: 8282951358283701776
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fern_Tree_Rustle_6
-      rect:
-        serializedVersion: 2
-        x: 181
-        y: 1
-        width: 54
-        height: 38
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5a1b33b20d2a0ae10800000000000000
-      internalID: 2206942832373248421
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fern_Tree_Rustle_7
-      rect:
-        serializedVersion: 2
-        x: 181
-        y: 18
-        width: 8
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0116ddf1d3edff7a0800000000000000
-      internalID: -6341105396205395696
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fern_Tree_Rustle_8
-      rect:
-        serializedVersion: 2
-        x: 264
-        y: 1
-        width: 62
-        height: 38
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a80fc52d39e064120800000000000000
-      internalID: 2397619879673655434
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fern_Tree_Rustle_9
-      rect:
-        serializedVersion: 2
-        x: 349
-        y: 1
-        width: 54
-        height: 38
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9e507a49847fdd060800000000000000
-      internalID: 6980006888597816809
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fern_Tree_Rustle_10
-      rect:
-        serializedVersion: 2
-        x: 349
-        y: 15
-        width: 10
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 13d82e1fdfa4bf060800000000000000
-      internalID: 6988261701340794161
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fern_Tree_Rustle_11
-      rect:
-        serializedVersion: 2
-        x: 432
-        y: 15
-        width: 11
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 351ac3372e588c0d0800000000000000
-      internalID: -3402322310835953325
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fern_Tree_Rustle_12
-      rect:
-        serializedVersion: 2
-        x: 433
-        y: 1
-        width: 54
-        height: 38
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4e51d3a0c3547fc50800000000000000
-      internalID: 6698899094909031908
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fern_Tree_Rustle_13
-      rect:
-        serializedVersion: 2
-        x: 58
-        y: 10
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a00a29cb6aeec3bc0800000000000000
-      internalID: -3801901585511833590
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fern_Tree_Rustle_14
-      rect:
-        serializedVersion: 2
-        x: 95
-        y: 10
-        width: 10
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2d3492838e7589f00800000000000000
-      internalID: 1123744761915196370
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fern_Tree_Rustle_15
-      rect:
-        serializedVersion: 2
-        x: 223
-        y: 13
-        width: 11
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 239616e57dd0e5510800000000000000
-      internalID: 1539683341259860274
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fern_Tree_Rustle_16
-      rect:
-        serializedVersion: 2
-        x: 231
-        y: 5
-        width: 12
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2d8c7a407d7c9c7e0800000000000000
-      internalID: -1744643654319355694
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fern_Tree_Rustle_17
-      rect:
-        serializedVersion: 2
-        x: 394
-        y: 11
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 261f90e067302cea0800000000000000
-      internalID: -5854112760051666590
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fern_Tree_Rustle_18
-      rect:
-        serializedVersion: 2
-        x: 396
-        y: 16
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8659a70333366ab40800000000000000
-      internalID: 5451153470486386024
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fern_Tree_Rustle_19
-      rect:
-        serializedVersion: 2
-        x: 399
-        y: 9
-        width: 12
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c54e505e526de1b20800000000000000
-      internalID: 3107156251176723548
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fern_Tree_Rustle_20
-      rect:
-        serializedVersion: 2
-        x: 483
-        y: 10
-        width: 12
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a2f79983b6196c180800000000000000
-      internalID: -9095422507731026134
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fern_Tree_Rustle_21
-      rect:
-        serializedVersion: 2
-        x: 60
-        y: 7
-        width: 8
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 13086fbd4f816dea0800000000000000
-      internalID: -5848459626152558543
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fern_Tree_Rustle_22
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 10
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9b42ea4c88dca9380800000000000000
-      internalID: -8963626121028557639
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fern_Tree_Rustle_23
-      rect:
-        serializedVersion: 2
-        x: 145
-        y: 9
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5452f90703bb99200800000000000000
-      internalID: 187386676234888517
       vertices: []
       indices: 
       edges: []
@@ -727,28 +331,10 @@ TextureImporter:
     nameFileIdTable:
       Fern_Tree_Rustle_0: 6630743252467103031
       Fern_Tree_Rustle_1: -8485098261727981018
-      Fern_Tree_Rustle_10: 6988261701340794161
-      Fern_Tree_Rustle_11: -3402322310835953325
-      Fern_Tree_Rustle_12: 6698899094909031908
-      Fern_Tree_Rustle_13: -3801901585511833590
-      Fern_Tree_Rustle_14: 1123744761915196370
-      Fern_Tree_Rustle_15: 1539683341259860274
-      Fern_Tree_Rustle_16: -1744643654319355694
-      Fern_Tree_Rustle_17: -5854112760051666590
-      Fern_Tree_Rustle_18: 5451153470486386024
-      Fern_Tree_Rustle_19: 3107156251176723548
       Fern_Tree_Rustle_2: -3217150679254524551
-      Fern_Tree_Rustle_20: -9095422507731026134
-      Fern_Tree_Rustle_21: -5848459626152558543
-      Fern_Tree_Rustle_22: -8963626121028557639
-      Fern_Tree_Rustle_23: 187386676234888517
       Fern_Tree_Rustle_3: 7543540624657252029
       Fern_Tree_Rustle_4: -7836521138421902592
       Fern_Tree_Rustle_5: 8282951358283701776
-      Fern_Tree_Rustle_6: 2206942832373248421
-      Fern_Tree_Rustle_7: -6341105396205395696
-      Fern_Tree_Rustle_8: 2397619879673655434
-      Fern_Tree_Rustle_9: 6980006888597816809
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -49,7 +49,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -121,12 +121,12 @@ TextureImporter:
       name: Fern_Sparse_Burnt_0
       rect:
         serializedVersion: 2
-        x: 13
-        y: 1
-        width: 61
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 0
+        width: 92
+        height: 50
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -135,28 +135,6 @@ TextureImporter:
       bones: []
       spriteID: 1aa0971cb2ecc16d0800000000000000
       internalID: -3018310962920224095
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fern_Sparse_Burnt_1
-      rect:
-        serializedVersion: 2
-        x: 72
-        y: 19
-        width: 11
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5f76f14873a9aa390800000000000000
-      internalID: -7806257440862803979
       vertices: []
       indices: 
       edges: []
@@ -176,7 +154,6 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       Fern_Sparse_Burnt_0: -3018310962920224095
-      Fern_Sparse_Burnt_1: -7806257440862803979
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

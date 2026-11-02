@@ -67,7 +67,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -139,12 +139,12 @@ TextureImporter:
       name: Fern_Sparse_Rustle_0
       rect:
         serializedVersion: 2
-        x: 22
-        y: 1
-        width: 66
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 0
+        width: 92
+        height: 50
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -161,12 +161,12 @@ TextureImporter:
       name: Fern_Sparse_Rustle_1
       rect:
         serializedVersion: 2
-        x: 100
-        y: 14
-        width: 18
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 92
+        y: 0
+        width: 92
+        height: 50
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -183,12 +183,12 @@ TextureImporter:
       name: Fern_Sparse_Rustle_2
       rect:
         serializedVersion: 2
-        x: 115
-        y: 1
-        width: 56
-        height: 34
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 184
+        y: 0
+        width: 92
+        height: 50
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -205,12 +205,12 @@ TextureImporter:
       name: Fern_Sparse_Rustle_3
       rect:
         serializedVersion: 2
-        x: 201
-        y: 1
-        width: 69
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 276
+        y: 0
+        width: 92
+        height: 50
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -227,12 +227,12 @@ TextureImporter:
       name: Fern_Sparse_Rustle_4
       rect:
         serializedVersion: 2
-        x: 287
-        y: 1
-        width: 70
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 368
+        y: 0
+        width: 92
+        height: 50
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -249,12 +249,12 @@ TextureImporter:
       name: Fern_Sparse_Rustle_5
       rect:
         serializedVersion: 2
-        x: 382
-        y: 1
-        width: 70
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 460
+        y: 0
+        width: 92
+        height: 50
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -263,50 +263,6 @@ TextureImporter:
       bones: []
       spriteID: dcfd40d5724f52920800000000000000
       internalID: 2965044379594842061
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fern_Sparse_Rustle_6
-      rect:
-        serializedVersion: 2
-        x: 473
-        y: 1
-        width: 61
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4401310f446e89e80800000000000000
-      internalID: -8171528340103819196
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fern_Sparse_Rustle_7
-      rect:
-        serializedVersion: 2
-        x: 532
-        y: 19
-        width: 11
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: bf5b9eebf919ece50800000000000000
-      internalID: 6831557800056436219
       vertices: []
       indices: 
       edges: []
@@ -331,8 +287,6 @@ TextureImporter:
       Fern_Sparse_Rustle_3: 5151493173780318058
       Fern_Sparse_Rustle_4: -2599558618907292027
       Fern_Sparse_Rustle_5: 2965044379594842061
-      Fern_Sparse_Rustle_6: -8171528340103819196
-      Fern_Sparse_Rustle_7: 6831557800056436219
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

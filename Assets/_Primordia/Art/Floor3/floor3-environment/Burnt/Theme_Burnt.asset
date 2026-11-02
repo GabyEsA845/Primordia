@@ -233,6 +233,93 @@ MonoBehaviour:
     - 0.14
     gone: {fileID: 21300000, guid: d259c6f18615bdf4d93af679ba8e8c04, type: 3}
     opensAtFrame: 5
+  ferns:
+  - name: Leafy
+    sway:
+    - {fileID: 6706148739209556049, guid: f28135f4793eaf24c92b1017025340dc, type: 3}
+    - {fileID: 311827654678075889, guid: f28135f4793eaf24c92b1017025340dc, type: 3}
+    - {fileID: 5751064635073462681, guid: f28135f4793eaf24c92b1017025340dc, type: 3}
+    - {fileID: -4965491047815929729, guid: f28135f4793eaf24c92b1017025340dc, type: 3}
+    rustle:
+    - {fileID: -4159067220861895819, guid: 192e65e96d728ff4d89a15ca0ea5a5d9, type: 3}
+    - {fileID: -845529423054674190, guid: 192e65e96d728ff4d89a15ca0ea5a5d9, type: 3}
+    - {fileID: -2913017130527850216, guid: 192e65e96d728ff4d89a15ca0ea5a5d9, type: 3}
+    - {fileID: -5886983665267078261, guid: 192e65e96d728ff4d89a15ca0ea5a5d9, type: 3}
+    - {fileID: -7902596620757529287, guid: 192e65e96d728ff4d89a15ca0ea5a5d9, type: 3}
+    - {fileID: 8429398568187664605, guid: 192e65e96d728ff4d89a15ca0ea5a5d9, type: 3}
+    burn: []
+    burnt: {fileID: 0}
+    footRadius: 0.4
+    weight: 3
+  - name: Sparse
+    sway:
+    - {fileID: 4046801973738626016, guid: 627626a819057ae4ca8019cd24d12157, type: 3}
+    - {fileID: -507136825761525119, guid: 627626a819057ae4ca8019cd24d12157, type: 3}
+    - {fileID: -9214989201364274685, guid: 627626a819057ae4ca8019cd24d12157, type: 3}
+    - {fileID: -5038976812159598677, guid: 627626a819057ae4ca8019cd24d12157, type: 3}
+    rustle:
+    - {fileID: 4134250980901921940, guid: 9182aebbb0fe96b458d03f494085b609, type: 3}
+    - {fileID: -2260115058551513620, guid: 9182aebbb0fe96b458d03f494085b609, type: 3}
+    - {fileID: 5464189358716690241, guid: 9182aebbb0fe96b458d03f494085b609, type: 3}
+    - {fileID: 5151493173780318058, guid: 9182aebbb0fe96b458d03f494085b609, type: 3}
+    - {fileID: -2599558618907292027, guid: 9182aebbb0fe96b458d03f494085b609, type: 3}
+    - {fileID: 2965044379594842061, guid: 9182aebbb0fe96b458d03f494085b609, type: 3}
+    burn: []
+    burnt: {fileID: 0}
+    footRadius: 0.35
+    weight: 2
+  - name: Young
+    sway:
+    - {fileID: -8234366752475521535, guid: 71be22e40e3148248b656269d9e168b6, type: 3}
+    - {fileID: -5791837617931152285, guid: 71be22e40e3148248b656269d9e168b6, type: 3}
+    - {fileID: -2409511528967988624, guid: 71be22e40e3148248b656269d9e168b6, type: 3}
+    - {fileID: 4170500365619942676, guid: 71be22e40e3148248b656269d9e168b6, type: 3}
+    rustle:
+    - {fileID: -3007463049459399334, guid: 52a6df8c982dc5a499542438ad063fbf, type: 3}
+    - {fileID: -6792828867885341867, guid: 52a6df8c982dc5a499542438ad063fbf, type: 3}
+    - {fileID: 1913323411771637633, guid: 52a6df8c982dc5a499542438ad063fbf, type: 3}
+    - {fileID: 2814342127333444310, guid: 52a6df8c982dc5a499542438ad063fbf, type: 3}
+    - {fileID: -4693362447205377364, guid: 52a6df8c982dc5a499542438ad063fbf, type: 3}
+    - {fileID: 938806497448473554, guid: 52a6df8c982dc5a499542438ad063fbf, type: 3}
+    burn: []
+    burnt: {fileID: 0}
+    footRadius: 0.25
+    weight: 3
+  - name: Bent
+    sway:
+    - {fileID: 4453764933617009859, guid: 260f18b66adbde34c97e259e11331a6f, type: 3}
+    - {fileID: 14137623628282786, guid: 260f18b66adbde34c97e259e11331a6f, type: 3}
+    - {fileID: 7290264447352583137, guid: 260f18b66adbde34c97e259e11331a6f, type: 3}
+    - {fileID: -1078524991122427897, guid: 260f18b66adbde34c97e259e11331a6f, type: 3}
+    rustle:
+    - {fileID: 4681432823421485649, guid: 0c60d4d8e7f909c4e85aee3407552646, type: 3}
+    - {fileID: 3790599758349523562, guid: 0c60d4d8e7f909c4e85aee3407552646, type: 3}
+    - {fileID: -8355534442783314112, guid: 0c60d4d8e7f909c4e85aee3407552646, type: 3}
+    - {fileID: -8011811268753576, guid: 0c60d4d8e7f909c4e85aee3407552646, type: 3}
+    - {fileID: 6229313880730021356, guid: 0c60d4d8e7f909c4e85aee3407552646, type: 3}
+    - {fileID: -878307069363443172, guid: 0c60d4d8e7f909c4e85aee3407552646, type: 3}
+    burn: []
+    burnt: {fileID: 0}
+    footRadius: 0.4
+    weight: 1.5
+  - name: Tree
+    sway:
+    - {fileID: -6652660435962727612, guid: 43ed87778c86a764fa5bd93193a26feb, type: 3}
+    - {fileID: -1192133861301822969, guid: 43ed87778c86a764fa5bd93193a26feb, type: 3}
+    - {fileID: -7738971949582219035, guid: 43ed87778c86a764fa5bd93193a26feb, type: 3}
+    - {fileID: 4666801022820272189, guid: 43ed87778c86a764fa5bd93193a26feb, type: 3}
+    rustle:
+    - {fileID: 6630743252467103031, guid: f6fa2ca888df73a4094ca9139bc76205, type: 3}
+    - {fileID: -8485098261727981018, guid: f6fa2ca888df73a4094ca9139bc76205, type: 3}
+    - {fileID: -3217150679254524551, guid: f6fa2ca888df73a4094ca9139bc76205, type: 3}
+    - {fileID: 7543540624657252029, guid: f6fa2ca888df73a4094ca9139bc76205, type: 3}
+    - {fileID: -7836521138421902592, guid: f6fa2ca888df73a4094ca9139bc76205, type: 3}
+    - {fileID: 8282951358283701776, guid: f6fa2ca888df73a4094ca9139bc76205, type: 3}
+    burn: []
+    burnt: {fileID: 0}
+    footRadius: 0.5
+    weight: 1
+  fernDensity: 0.006
   mudTiles:
   - {fileID: 11400000, guid: 450bd2483bbc8624e80ea6a662568a0f, type: 2}
   - {fileID: 11400000, guid: c062cf2fc3b47c74dbcad6fec1aa4690, type: 2}

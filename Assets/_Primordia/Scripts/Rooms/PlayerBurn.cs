@@ -24,10 +24,14 @@ namespace Primordia.Rooms
         const float CreepPerSecond = 0.15f;
         const float DodgeRelief = 0.75f;
         const float ExtinguishBelow = 0.05f;
+        // Cada cuánto prende lo inflamable que toca, y a qué distancia.
+        const float IgniteEvery = 0.25f;
+        const float IgniteRadius = 0.9f;
 
         PlayerController controller;
         Health health;
         float fed;
+        float igniteTimer;
         BurnIcon icon;
 
         /// <summary>Barra de quemado, de 0 a 1.</summary>
@@ -100,10 +104,45 @@ namespace Primordia.Rooms
                 if (health != null)
                     health.TakeDamage(BurnDamage, DamageKind.Tick);
                 Bar = 0f;
+                if (!Burning)
+                    ShowMarker();
                 Burning = true;
             }
 
+            // Mientras arde, prende los helechos y la maleza por los que pasa.
+            if (Burning)
+            {
+                igniteTimer += Time.deltaTime;
+                if (igniteTimer >= IgniteEvery)
+                {
+                    igniteTimer = 0f;
+                    Flammables.IgniteNear(transform.position, IgniteRadius);
+                }
+            }
+
             Show(before);
+        }
+
+        /// <summary>
+        /// Apaga el quemado a esa velocidad (lo que baja la barra en este paso): el lodo profundo lo apaga casi de golpe.
+        /// Cuando casi no queda barra, se acaba el quemado.
+        /// </summary>
+        public void Douse(float amount)
+        {
+            if (Bar <= 0f && !Burning)
+                return;
+            fed = 0f;
+            Bar = Mathf.Max(0f, Bar - amount);
+            if (Bar <= ExtinguishBelow)
+                Extinguish();
+            Show(1f);
+        }
+
+        void Extinguish()
+        {
+            Bar = 0f;
+            Burning = false;
+            HideMarker();
         }
 
         void OnDodgeStarted()
@@ -112,10 +151,7 @@ namespace Primordia.Rooms
                 return;
             Bar = Mathf.Max(0f, Bar - DodgeRelief);
             if (Bar <= ExtinguishBelow)
-            {
-                Bar = 0f;
-                Burning = false;
-            }
+                Extinguish();
             Show(1f);
         }
 
@@ -129,10 +165,25 @@ namespace Primordia.Rooms
             icon.Set(Bar, visible, Burning);
         }
 
+        // Mientras sigue ardiendo, llamas sobre el cuerpo (las de los enemigos, centradas en él).
+        void ShowMarker()
+        {
+            var kit = ReactionKit.Current;
+            if (health != null && kit != null)
+                StatusMarkers.Show(health, Burn.Key, kit.BurningMarker, 0f, overhead: false);
+        }
+
+        void HideMarker()
+        {
+            if (health != null)
+                StatusMarkers.Hide(health, Burn.Key);
+        }
+
         void Clear()
         {
             Bar = 0f;
             Burning = false;
+            HideMarker();
             fed = 0f;
             if (icon != null)
                 icon.Set(0f, false, false);

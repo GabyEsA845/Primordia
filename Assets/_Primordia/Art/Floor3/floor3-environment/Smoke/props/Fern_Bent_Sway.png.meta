@@ -61,7 +61,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -133,12 +133,12 @@ TextureImporter:
       name: Fern_Bent_Sway_0
       rect:
         serializedVersion: 2
-        x: 19
-        y: 10
-        width: 55
-        height: 28
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 0
+        width: 88
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.296875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -155,12 +155,12 @@ TextureImporter:
       name: Fern_Bent_Sway_1
       rect:
         serializedVersion: 2
-        x: 71
-        y: 9
-        width: 14
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 88
+        y: 0
+        width: 88
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.296875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -177,12 +177,12 @@ TextureImporter:
       name: Fern_Bent_Sway_2
       rect:
         serializedVersion: 2
-        x: 112
-        y: 4
-        width: 62
-        height: 34
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 176
+        y: 0
+        width: 88
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.296875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -199,12 +199,12 @@ TextureImporter:
       name: Fern_Bent_Sway_3
       rect:
         serializedVersion: 2
-        x: 195
-        y: 10
-        width: 55
-        height: 28
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 264
+        y: 0
+        width: 88
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.296875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -213,50 +213,6 @@ TextureImporter:
       bones: []
       spriteID: 70034ce1c3f4801f0800000000000000
       internalID: -1078524991122427897
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fern_Bent_Sway_4
-      rect:
-        serializedVersion: 2
-        x: 247
-        y: 9
-        width: 14
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 58242a3178d125450800000000000000
-      internalID: 6075951313263411845
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fern_Bent_Sway_5
-      rect:
-        serializedVersion: 2
-        x: 278
-        y: 12
-        width: 70
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: daa9914c8ca9286e0800000000000000
-      internalID: -1836735510939592019
       vertices: []
       indices: 
       edges: []
@@ -279,8 +235,6 @@ TextureImporter:
       Fern_Bent_Sway_1: 14137623628282786
       Fern_Bent_Sway_2: 7290264447352583137
       Fern_Bent_Sway_3: -1078524991122427897
-      Fern_Bent_Sway_4: 6075951313263411845
-      Fern_Bent_Sway_5: -1836735510939592019
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

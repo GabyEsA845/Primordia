@@ -67,7 +67,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -139,12 +139,12 @@ TextureImporter:
       name: Fern_Leafy_Rustle_0
       rect:
         serializedVersion: 2
-        x: 12
+        x: 0
         y: 0
-        width: 67
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 84
+        height: 50
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -161,12 +161,12 @@ TextureImporter:
       name: Fern_Leafy_Rustle_1
       rect:
         serializedVersion: 2
-        x: 74
-        y: 12
-        width: 11
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 84
+        y: 0
+        width: 84
+        height: 50
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -183,12 +183,12 @@ TextureImporter:
       name: Fern_Leafy_Rustle_2
       rect:
         serializedVersion: 2
-        x: 84
+        x: 168
         y: 0
-        width: 75
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 84
+        height: 50
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -205,12 +205,12 @@ TextureImporter:
       name: Fern_Leafy_Rustle_3
       rect:
         serializedVersion: 2
-        x: 176
+        x: 252
         y: 0
-        width: 72
-        height: 29
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 84
+        height: 50
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -227,12 +227,12 @@ TextureImporter:
       name: Fern_Leafy_Rustle_4
       rect:
         serializedVersion: 2
-        x: 255
+        x: 336
         y: 0
-        width: 73
-        height: 29
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 84
+        height: 50
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -249,12 +249,12 @@ TextureImporter:
       name: Fern_Leafy_Rustle_5
       rect:
         serializedVersion: 2
-        x: 341
+        x: 420
         y: 0
-        width: 71
-        height: 29
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 84
+        height: 50
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -263,50 +263,6 @@ TextureImporter:
       bones: []
       spriteID: dd8130f365d3bf470800000000000000
       internalID: 8429398568187664605
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fern_Leafy_Rustle_6
-      rect:
-        serializedVersion: 2
-        x: 402
-        y: 7
-        width: 11
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 13368a3a6f890f350800000000000000
-      internalID: 6048502484633674545
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fern_Leafy_Rustle_7
-      rect:
-        serializedVersion: 2
-        x: 424
-        y: 0
-        width: 73
-        height: 29
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 74067edac73f95b40800000000000000
-      internalID: 5429638542590959687
       vertices: []
       indices: 
       edges: []
@@ -331,8 +287,6 @@ TextureImporter:
       Fern_Leafy_Rustle_3: -5886983665267078261
       Fern_Leafy_Rustle_4: -7902596620757529287
       Fern_Leafy_Rustle_5: 8429398568187664605
-      Fern_Leafy_Rustle_6: 6048502484633674545
-      Fern_Leafy_Rustle_7: 5429638542590959687
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -85,7 +85,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -157,12 +157,12 @@ TextureImporter:
       name: Fern_Tree_Burn_0
       rect:
         serializedVersion: 2
-        x: 11
-        y: 1
-        width: 55
-        height: 39
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 0
+        width: 84
+        height: 74
+      alignment: 9
+      pivot: {x: 0.5, y: 0.067567565}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -179,12 +179,12 @@ TextureImporter:
       name: Fern_Tree_Burn_1
       rect:
         serializedVersion: 2
-        x: 63
-        y: 15
-        width: 9
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 84
+        y: 0
+        width: 84
+        height: 74
+      alignment: 9
+      pivot: {x: 0.5, y: 0.067567565}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -201,12 +201,12 @@ TextureImporter:
       name: Fern_Tree_Burn_2
       rect:
         serializedVersion: 2
-        x: 96
-        y: 16
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 168
+        y: 0
+        width: 84
+        height: 74
+      alignment: 9
+      pivot: {x: 0.5, y: 0.067567565}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -223,12 +223,12 @@ TextureImporter:
       name: Fern_Tree_Burn_3
       rect:
         serializedVersion: 2
-        x: 100
-        y: 18
-        width: 7
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 252
+        y: 0
+        width: 84
+        height: 74
+      alignment: 9
+      pivot: {x: 0.5, y: 0.067567565}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -237,226 +237,6 @@ TextureImporter:
       bones: []
       spriteID: 2568a2a3871e14e40800000000000000
       internalID: 5639036114932762194
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fern_Tree_Burn_4
-      rect:
-        serializedVersion: 2
-        x: 101
-        y: 1
-        width: 54
-        height: 42
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 409e326192aa34f70800000000000000
-      internalID: 9170360359698295044
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fern_Tree_Burn_5
-      rect:
-        serializedVersion: 2
-        x: 179
-        y: 14
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ae9b9824683adbc50800000000000000
-      internalID: 6682677219124951530
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fern_Tree_Burn_6
-      rect:
-        serializedVersion: 2
-        x: 184
-        y: 1
-        width: 50
-        height: 40
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a898aeed6e426ff60800000000000000
-      internalID: 8067676356481812874
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fern_Tree_Burn_7
-      rect:
-        serializedVersion: 2
-        x: 231
-        y: 15
-        width: 9
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e34ad82024512fa30800000000000000
-      internalID: 4247480771818660926
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fern_Tree_Burn_8
-      rect:
-        serializedVersion: 2
-        x: 263
-        y: 1
-        width: 55
-        height: 40
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7947c586f0b9eeeb0800000000000000
-      internalID: -4688639671568403305
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fern_Tree_Burn_9
-      rect:
-        serializedVersion: 2
-        x: 313
-        y: 17
-        width: 9
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7594aac5c35f7eea0800000000000000
-      internalID: -5843432351888422569
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fern_Tree_Burn_10
-      rect:
-        serializedVersion: 2
-        x: 63
-        y: 7
-        width: 8
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ef3d9e014f6075080800000000000000
-      internalID: -9198876068555402242
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fern_Tree_Burn_11
-      rect:
-        serializedVersion: 2
-        x: 148
-        y: 6
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: dd1c739b1903c65a0800000000000000
-      internalID: -6526788357530861091
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fern_Tree_Burn_12
-      rect:
-        serializedVersion: 2
-        x: 231
-        y: 7
-        width: 8
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: cb1758b4513315fe0800000000000000
-      internalID: -1202123458976845380
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fern_Tree_Burn_13
-      rect:
-        serializedVersion: 2
-        x: 315
-        y: 7
-        width: 7
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e29aac675195ac390800000000000000
-      internalID: -7797321856116414162
       vertices: []
       indices: 
       edges: []
@@ -477,18 +257,8 @@ TextureImporter:
     nameFileIdTable:
       Fern_Tree_Burn_0: 61489887182272159
       Fern_Tree_Burn_1: -2041535919431253979
-      Fern_Tree_Burn_10: -9198876068555402242
-      Fern_Tree_Burn_11: -6526788357530861091
-      Fern_Tree_Burn_12: -1202123458976845380
-      Fern_Tree_Burn_13: -7797321856116414162
       Fern_Tree_Burn_2: 722792809736640407
       Fern_Tree_Burn_3: 5639036114932762194
-      Fern_Tree_Burn_4: 9170360359698295044
-      Fern_Tree_Burn_5: 6682677219124951530
-      Fern_Tree_Burn_6: 8067676356481812874
-      Fern_Tree_Burn_7: 4247480771818660926
-      Fern_Tree_Burn_8: -4688639671568403305
-      Fern_Tree_Burn_9: -5843432351888422569
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

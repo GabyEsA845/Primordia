@@ -13,6 +13,27 @@ namespace Primordia.Combat
 
         protected override string MarkerKey => Key;
 
+        // Cada cuánto prende lo inflamable que toca, y a qué distancia (casi pegado: un helecho al que se acerca).
+        const float IgniteEvery = 0.25f;
+        const float IgniteRadius = 0.9f;
+
+        float igniteTimer;
+
+        protected override void Update()
+        {
+            base.Update();
+            if (health == null || health.IsDead)
+                return;
+
+            // Quien arde prende los helechos y la maleza por los que pasa.
+            igniteTimer += Time.deltaTime;
+            if (igniteTimer >= IgniteEvery)
+            {
+                igniteTimer = 0f;
+                Primordia.Rooms.Flammables.IgniteNear(transform.position, IgniteRadius);
+            }
+        }
+
         /// <summary>Null si el objetivo es inmune al fuego.</summary>
         public static Burn Apply(Health target, int damagePerSecond, float duration, GameObject effectPrefab = null) =>
             FireImmune.Has(target) ? null : Apply<Burn>(target, damagePerSecond, duration, effectPrefab);

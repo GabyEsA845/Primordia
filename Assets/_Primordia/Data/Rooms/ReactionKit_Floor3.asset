@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69f0e1c3824eb0343b7b1e5ee5ddaf4d, type: 3}
+  m_Name: ReactionKit_Floor3
+  m_EditorClassIdentifier: Primordia::Primordia.Rooms.ReactionKit
+  groundFire:
+  - {fileID: 7781667674200368190, guid: bd8ca901ae9ee464dbc638c12cb48c0a, type: 3}
+  - {fileID: 2421130495316651092, guid: bd8ca901ae9ee464dbc638c12cb48c0a, type: 3}
+  - {fileID: 1208630973882220045, guid: bd8ca901ae9ee464dbc638c12cb48c0a, type: 3}
+  - {fileID: 8890184433549309256, guid: bd8ca901ae9ee464dbc638c12cb48c0a, type: 3}
+  - {fileID: -860644101775801443, guid: bd8ca901ae9ee464dbc638c12cb48c0a, type: 3}
+  - {fileID: -7674886987513821244, guid: bd8ca901ae9ee464dbc638c12cb48c0a, type: 3}
+  groundFireFrameSeconds: 0.1
+  fireOut:
+  - {fileID: -3367412634898140190, guid: 63b85a11b482d174489d2c9cc808e5a4, type: 3}
+  - {fileID: 512730886267068427, guid: 63b85a11b482d174489d2c9cc808e5a4, type: 3}
+  - {fileID: 1385775779648401449, guid: 63b85a11b482d174489d2c9cc808e5a4, type: 3}
+  - {fileID: 3108495686696157819, guid: 63b85a11b482d174489d2c9cc808e5a4, type: 3}
+  - {fileID: 1623401939895223024, guid: 63b85a11b482d174489d2c9cc808e5a4, type: 3}
+  - {fileID: -8983576731717102713, guid: 63b85a11b482d174489d2c9cc808e5a4, type: 3}
+  fireOutFrameSeconds: 0.09
+  burningMarker: {fileID: 1719912818386271718, guid: 70e789bf2121bf64084a983aea9a4917, type: 3}

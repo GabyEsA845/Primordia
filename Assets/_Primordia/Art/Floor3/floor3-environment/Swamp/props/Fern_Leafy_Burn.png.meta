@@ -61,7 +61,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -133,12 +133,12 @@ TextureImporter:
       name: Fern_Leafy_Burn_0
       rect:
         serializedVersion: 2
-        x: 3
+        x: 0
         y: 0
-        width: 75
-        height: 34
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 84
+        height: 50
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -155,12 +155,12 @@ TextureImporter:
       name: Fern_Leafy_Burn_1
       rect:
         serializedVersion: 2
-        x: 89
+        x: 84
         y: 0
-        width: 74
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 84
+        height: 50
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -177,12 +177,12 @@ TextureImporter:
       name: Fern_Leafy_Burn_2
       rect:
         serializedVersion: 2
-        x: 171
+        x: 168
         y: 0
-        width: 75
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 84
+        height: 50
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -199,12 +199,12 @@ TextureImporter:
       name: Fern_Leafy_Burn_3
       rect:
         serializedVersion: 2
-        x: 254
-        y: 11
-        width: 6
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 252
+        y: 0
+        width: 84
+        height: 50
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -213,50 +213,6 @@ TextureImporter:
       bones: []
       spriteID: a712006de08f6f9f0800000000000000
       internalID: -434887571391110790
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fern_Leafy_Burn_4
-      rect:
-        serializedVersion: 2
-        x: 259
-        y: 0
-        width: 65
-        height: 34
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0d2b2e08a8bcee510800000000000000
-      internalID: 1580424314981888720
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fern_Leafy_Burn_5
-      rect:
-        serializedVersion: 2
-        x: 322
-        y: 9
-        width: 7
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 02930919c4491df80800000000000000
-      internalID: -8083516799572756192
       vertices: []
       indices: 
       edges: []
@@ -279,8 +235,6 @@ TextureImporter:
       Fern_Leafy_Burn_1: -4835695163035968787
       Fern_Leafy_Burn_2: -591277605070258173
       Fern_Leafy_Burn_3: -434887571391110790
-      Fern_Leafy_Burn_4: 1580424314981888720
-      Fern_Leafy_Burn_5: -8083516799572756192
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -70,7 +70,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -142,12 +142,12 @@ TextureImporter:
       name: Fern_Tree_Sway_0
       rect:
         serializedVersion: 2
-        x: 12
-        y: 1
-        width: 58
-        height: 39
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 0
+        width: 84
+        height: 74
+      alignment: 9
+      pivot: {x: 0.5, y: 0.067567565}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -164,12 +164,12 @@ TextureImporter:
       name: Fern_Tree_Sway_1
       rect:
         serializedVersion: 2
-        x: 63
-        y: 15
-        width: 8
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 84
+        y: 0
+        width: 84
+        height: 74
+      alignment: 9
+      pivot: {x: 0.5, y: 0.067567565}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -186,12 +186,12 @@ TextureImporter:
       name: Fern_Tree_Sway_2
       rect:
         serializedVersion: 2
-        x: 97
-        y: 18
-        width: 8
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 168
+        y: 0
+        width: 84
+        height: 74
+      alignment: 9
+      pivot: {x: 0.5, y: 0.067567565}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -208,12 +208,12 @@ TextureImporter:
       name: Fern_Tree_Sway_3
       rect:
         serializedVersion: 2
-        x: 102
-        y: 1
-        width: 53
-        height: 39
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 252
+        y: 0
+        width: 84
+        height: 74
+      alignment: 9
+      pivot: {x: 0.5, y: 0.067567565}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -222,116 +222,6 @@ TextureImporter:
       bones: []
       spriteID: d38c1a2fdcec3c040800000000000000
       internalID: 4666801022820272189
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fern_Tree_Sway_4
-      rect:
-        serializedVersion: 2
-        x: 180
-        y: 1
-        width: 58
-        height: 39
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 13b87f5ed1197f210800000000000000
-      internalID: 1366720569528519473
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fern_Tree_Sway_5
-      rect:
-        serializedVersion: 2
-        x: 231
-        y: 15
-        width: 8
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c25e2832525db5ad0800000000000000
-      internalID: -2712339995074304724
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fern_Tree_Sway_6
-      rect:
-        serializedVersion: 2
-        x: 267
-        y: 14
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9630487321e275700800000000000000
-      internalID: 528942137015010153
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fern_Tree_Sway_7
-      rect:
-        serializedVersion: 2
-        x: 270
-        y: 1
-        width: 52
-        height: 39
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 434ed6967b6733c00800000000000000
-      internalID: 879176882387280948
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fern_Tree_Sway_8
-      rect:
-        serializedVersion: 2
-        x: 264
-        y: 11
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a877b42ebca22b1a0800000000000000
-      internalID: -6795321832585332854
       vertices: []
       indices: 
       edges: []
@@ -354,11 +244,6 @@ TextureImporter:
       Fern_Tree_Sway_1: -1192133861301822969
       Fern_Tree_Sway_2: -7738971949582219035
       Fern_Tree_Sway_3: 4666801022820272189
-      Fern_Tree_Sway_4: 1366720569528519473
-      Fern_Tree_Sway_5: -2712339995074304724
-      Fern_Tree_Sway_6: 528942137015010153
-      Fern_Tree_Sway_7: 879176882387280948
-      Fern_Tree_Sway_8: -6795321832585332854
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

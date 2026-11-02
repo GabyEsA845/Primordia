@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Mutation_PoisonSpit
   m_EditorClassIdentifier: Primordia::Primordia.Mutations.AttackMutation
   displayName: Escupitajo venenoso
-  description: Bola de veneno lenta que atraviesa y deja un rastro de charcos. (Ataque provisional.)
+  description: "Bola de veneno lenta (2 u/s) que atraviesa a los enemigos con 1 de da\xF1o y deja un charco cada 0,5 s que frena y envenena. Encoge mientras vuela y estalla a los 4 s, al chocar con una pared o al disparar otra: 6 de da\xF1o en 1,5 u y un charco grande de 4 s. Una bola cada 2,8 s."
   slot: 0
   lineages: []
   look: {fileID: 0}
@@ -27,8 +27,8 @@ MonoBehaviour:
   largeIcon: {fileID: 21300000, guid: 48aa3429242f5bf4183bc2494e00dded, type: 3}
   color: {r: 0.95, g: 0.5, b: 0.35, a: 1}
   levelDescriptions:
-  - 
-  - 
+  - "Una bola cada 2,4 s, el rastro dura 4 s y el estallido hace 8 de da\xF1o."
+  - "Camada: al estallar suelta 4 bolitas en cruz que viajan 1 s y estallan con 3 de da\xF1o."
   dodgeSound: 
   floor: 3
   special: 0
@@ -53,10 +53,15 @@ MonoBehaviour:
   - {fileID: 547431513593175736, guid: 0ed8f09466a9bbe4d893ca008cb6e622, type: 3}
   creatureBody: {fileID: 9100000, guid: b7a1f1eda68daf141be47a222fb3acad, type: 2}
   attackHitTime: 0.56
+  moveInertia: 0.8
   creatureLayers: []
   morphFrames: []
   revealFrames: []
-  attack: {fileID: 11400000, guid: 30b703fc6d1697d47a0e24871476e1d7, type: 2}
+  attack: {fileID: 11400000, guid: 19e771518f5e5424d9a20c13a72e39f8, type: 2}
   healEveryKills: 0
-  upgrades: []
+  upgrades:
+  - attack: {fileID: 11400000, guid: 91aa6efe4eca6b64180fbf48b9657ee6, type: 2}
+    healEveryKills: 0
+  - attack: {fileID: 11400000, guid: 4bf23fb1f4ce3c1499f1dbe8fa4eae4e, type: 2}
+    healEveryKills: 0
   healEffect: {fileID: 0}

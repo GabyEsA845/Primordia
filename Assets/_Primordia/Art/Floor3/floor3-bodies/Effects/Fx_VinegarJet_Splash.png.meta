@@ -49,7 +49,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -121,12 +121,12 @@ TextureImporter:
       name: Fx_VinegarJet_Splash_0
       rect:
         serializedVersion: 2
-        x: 10
-        y: 11
-        width: 12
-        height: 10
+        x: 0
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -143,12 +143,12 @@ TextureImporter:
       name: Fx_VinegarJet_Splash_1
       rect:
         serializedVersion: 2
-        x: 38
-        y: 4
-        width: 122
-        height: 24
+        x: 32
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -157,6 +157,72 @@ TextureImporter:
       bones: []
       spriteID: 3c53a4ab74bd7f5f0800000000000000
       internalID: -722868114055088701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fx_VinegarJet_Splash_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 542c0a9d218825448b1ab3bbd8c0cf73
+      internalID: 1788489870
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fx_VinegarJet_Splash_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 078fee17d985ae54aadfce7194e7cdc2
+      internalID: 801996494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fx_VinegarJet_Splash_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be06a360ad593b04cb826a1747346361
+      internalID: -1625258403
       vertices: []
       indices: 
       edges: []
@@ -177,6 +243,9 @@ TextureImporter:
     nameFileIdTable:
       Fx_VinegarJet_Splash_0: -8365203377043069121
       Fx_VinegarJet_Splash_1: -722868114055088701
+      Fx_VinegarJet_Splash_2: 1788489870
+      Fx_VinegarJet_Splash_3: 801996494
+      Fx_VinegarJet_Splash_4: -1625258403
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

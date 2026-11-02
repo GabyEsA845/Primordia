@@ -19,6 +19,8 @@ namespace Primordia.Player
 
         PlayerController controller;
         Weapon weapon;
+        SpinAttack spin;
+        JetAttack jet;
         InputAction attackAction;
 
         void Awake()
@@ -35,6 +37,33 @@ namespace Primordia.Player
                 attackHeld = attackAction != null && attackAction.IsPressed();
                 attackPressed = attackAction != null && attackAction.WasPressedThisFrame();
             }
+
+            // La Peonza se mantiene: la maneja SpinAttack, no el arma.
+            if (weapon.Attack != null && weapon.Attack.IsSpin)
+            {
+                if (spin == null && !TryGetComponent(out spin))
+                    spin = gameObject.AddComponent<SpinAttack>();
+                if (jet != null && jet.IsActive)
+                    jet.Cancel();
+                spin.Tick(attackHeld);
+                attackPressed = false;
+                return;
+            }
+            // El Chorro de vinagre también se mantiene: lo maneja JetAttack.
+            if (weapon.Attack != null && weapon.Attack.IsJet)
+            {
+                if (jet == null && !TryGetComponent(out jet))
+                    jet = gameObject.AddComponent<JetAttack>();
+                if (spin != null && spin.IsActive)
+                    spin.Cancel();
+                jet.Tick(attackHeld);
+                attackPressed = false;
+                return;
+            }
+            if (jet != null && jet.IsActive)
+                jet.Cancel();
+            if (spin != null && spin.IsActive)
+                spin.Cancel();
 
             bool automatic = weapon.Attack != null && weapon.Attack.Automatic;
             bool wantsToFire = automatic ? attackHeld : attackPressed;

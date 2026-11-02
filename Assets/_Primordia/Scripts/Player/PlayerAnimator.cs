@@ -38,6 +38,7 @@ namespace Primordia.Player
         float hurtUntil;
         float attackUntil;
         int currentState;
+        int heldState;
         readonly Dictionary<(RuntimeAnimatorController, Facing), float> attackLengths = new();
 
         public Facing CurrentFacing { get; private set; } = Facing.Down;
@@ -45,6 +46,9 @@ namespace Primordia.Player
         public bool IsHurt => !health.IsDead && Time.time < hurtUntil;
         public Animator BodyAnimator => animator;
         public SpriteRenderer Body => body;
+
+        /// <summary>True mientras se mantiene un estado fijo del cuerpo (la Peonza girando); ver <see cref="Hold"/>.</summary>
+        public bool IsHeld => heldState != 0;
 
         /// <summary>True mientras el cuerpo hace su animación de ataque.</summary>
         public bool IsAttacking => attackUntil > Time.time;
@@ -114,6 +118,15 @@ namespace Primordia.Player
             // La hoja Hurt es de perfil: se voltea igual que la vista lateral.
             if (body != null)
                 body.flipX = FacingOverride == null && (CurrentFacing == Facing.Side || IsHurt) && direction.x < 0f;
+
+            // Un estado mantenido manda sobre todo menos la esquiva (que además lo cancela).
+            if (heldState != 0 && !controller.IsDodging)
+            {
+                // Tras el parpadeo de un golpe, el cuerpo vuelve al estado mantenido (el giro).
+                if (!IsHurt && currentState != heldState)
+                    Play(heldState, restart: true);
+                return;
+            }
 
             if (CurrentAction != Action.Dodge && (IsHurt || IsAttacking))
                 return;
@@ -245,6 +258,42 @@ namespace Primordia.Player
             }
 
             Play(DeathState, restart: true);
+        }
+
+        /// <summary>
+        /// Mantiene un estado del Animator por su nombre (<c>Spin</c>, <c>Dizzy</c>, <c>AttackStart_side</c>…) en lugar de elegir según
+        /// el movimiento, hasta <see cref="Release"/>. Devuelve false si el cuerpo no lo tiene.
+        /// </summary>
+        public bool Hold(string stateName)
+        {
+            int state = Animator.StringToHash(stateName);
+            if (animator == null || animator.runtimeAnimatorController == null || !animator.HasState(0, state))
+                return false;
+
+            heldState = state;
+            Play(state, restart: true);
+            return true;
+        }
+
+        /// <summary>Deja de mantener el estado: el cuerpo vuelve a elegir según lo que hace.</summary>
+        public void Release()
+        {
+            heldState = 0;
+            currentState = 0;
+        }
+
+        /// <summary>Segundos que dura el clip de ese nombre en el cuerpo actual (<paramref name="fallback"/> si no lo tiene).</summary>
+        public float ClipLength(string clipName, float fallback)
+        {
+            var current = animator != null ? animator.runtimeAnimatorController : null;
+            if (current == null)
+                return fallback;
+            foreach (var clip in current.animationClips)
+            {
+                if (clip != null && clip.name.EndsWith(clipName))
+                    return clip.length;
+            }
+            return fallback;
         }
 
         /// <summary>Pone el estado desde el principio. Devuelve false si ya estaba en él (y no se reinicia).</summary>

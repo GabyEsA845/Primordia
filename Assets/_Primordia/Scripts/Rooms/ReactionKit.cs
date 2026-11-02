@@ -45,6 +45,15 @@ namespace Primordia.Rooms
         [Tooltip("Marca de gotas sobre quien está envenenado (efecto en bucle).")]
         [SerializeField] GameObject poisonedMarker;
 
+        [Header("Escupitajo venenoso")]
+        [Tooltip("Charco pequeño del rastro (16×16, centro): cae, burbujea (bucle) y se seca.")]
+        [SerializeField] Sprite[] smallPuddleAppear = System.Array.Empty<Sprite>();
+        [SerializeField] Sprite[] smallPuddleIdle = System.Array.Empty<Sprite>();
+        [SerializeField] Sprite[] smallPuddleFade = System.Array.Empty<Sprite>();
+        [Tooltip("Reventón de la bola (56×56, centro, una pasada). El cuadro 1 es el que daña.")]
+        [SerializeField] Sprite[] spitBurst = System.Array.Empty<Sprite>();
+        [SerializeField, Min(0.01f)] float spitBurstFrameSeconds = 0.06f;
+
         public static ReactionKit Current { get; set; }
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
@@ -59,6 +68,11 @@ namespace Primordia.Rooms
         public Sprite[] PuddleIdle => puddleIdle ?? System.Array.Empty<Sprite>();
         public Sprite[] PuddleFade => puddleFade ?? System.Array.Empty<Sprite>();
         public Sprite[] PuddleIgnite => puddleIgnite ?? System.Array.Empty<Sprite>();
+        public Sprite[] SmallPuddleAppear => smallPuddleAppear ?? System.Array.Empty<Sprite>();
+        public Sprite[] SmallPuddleIdle => smallPuddleIdle ?? System.Array.Empty<Sprite>();
+        public Sprite[] SmallPuddleFade => smallPuddleFade ?? System.Array.Empty<Sprite>();
+        public Sprite[] SpitBurst => spitBurst ?? System.Array.Empty<Sprite>();
+        public float SpitBurstFrameSeconds => spitBurstFrameSeconds;
         public Sprite[] CloudForm => cloudForm ?? System.Array.Empty<Sprite>();
         public Sprite[] CloudIdle => cloudIdle ?? System.Array.Empty<Sprite>();
         public Sprite[] CloudFade => cloudFade ?? System.Array.Empty<Sprite>();
@@ -81,6 +95,14 @@ namespace Primordia.Rooms
             cloudIdle = cloudLoop;
             cloudFade = cloudEnd;
             poisonedMarker = newPoisonedMarker;
+        }
+
+        internal void ConfigureSpit(Sprite[] appear, Sprite[] idle, Sprite[] fade, Sprite[] burst)
+        {
+            smallPuddleAppear = appear;
+            smallPuddleIdle = idle;
+            smallPuddleFade = fade;
+            spitBurst = burst;
         }
 
         internal void ConfigureMethane(Sprite[] newExplosion, Sprite[] newMistIgnite, Sprite[] newMistFlare)

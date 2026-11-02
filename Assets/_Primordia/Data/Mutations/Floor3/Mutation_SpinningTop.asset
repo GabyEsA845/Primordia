@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Mutation_SpinningTop
   m_EditorClassIdentifier: Primordia::Primordia.Mutations.AttackMutation
   displayName: Peonza
-  description: Gira como una peonza con la cabeza como aspa. (Ataque provisional.)
+  description: "Mant\xE9n el bot\xF3n para girar como una peonza: golpea a los enemigos cercanos (2 de da\xF1o cada 0,25 s en 1,3 u) y los empuja, pero te mueves un 35 % m\xE1s lento. Aguanta 3 s y despu\xE9s te mareas 1 s, sin poder moverte ni atacar."
   slot: 0
   lineages: []
   look: {fileID: 0}
@@ -27,8 +27,8 @@ MonoBehaviour:
   largeIcon: {fileID: 21300000, guid: 6870e85afa8a56247996f7b82db89c77, type: 3}
   color: {r: 0.95, g: 0.5, b: 0.35, a: 1}
   levelDescriptions:
-  - 
-  - 
+  - "3 de da\xF1o, radio de 1,5 u, aguanta 4 s y devuelve los proyectiles que entran en el radio."
+  - "Bumer\xE1n: si giras al menos 1 s, al soltar lanza un clon transl\xFAcido 9 u hacia el cursor que va y vuelve con 8 de da\xF1o y aturde. No puedes atacar hasta que regrese."
   dodgeSound: 
   floor: 3
   special: 0
@@ -49,10 +49,15 @@ MonoBehaviour:
   - {fileID: -5140746736050757156, guid: 7cbb96492d3503940a4833c106d52482, type: 3}
   creatureBody: {fileID: 9100000, guid: 1ee0f29d221cfc54b86f59ca6625ec3f, type: 2}
   attackHitTime: 0
+  moveInertia: 1.5
   creatureLayers: []
   morphFrames: []
   revealFrames: []
-  attack: {fileID: 11400000, guid: 2dea36bdb5aa9ba49ab5eaa57e026bc4, type: 2}
+  attack: {fileID: 11400000, guid: 7b0b5bd40b4e239469d0d71e47feebe9, type: 2}
   healEveryKills: 0
-  upgrades: []
+  upgrades:
+  - attack: {fileID: 11400000, guid: 583dade9b53f1774cbb20cfb966b188e, type: 2}
+    healEveryKills: 0
+  - attack: {fileID: 11400000, guid: 9d8552e8de093e64e9254304b19413a4, type: 2}
+    healEveryKills: 0
   healEffect: {fileID: 0}

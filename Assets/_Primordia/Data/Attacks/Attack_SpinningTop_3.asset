@@ -1,0 +1,112 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4006459c6d3b79e4a9467275d67afaf8, type: 3}
+  m_Name: Attack_SpinningTop_3
+  m_EditorClassIdentifier: Primordia::Primordia.Combat.AttackData
+  projectilePrefab: {fileID: 0}
+  fireRate: 4
+  automatic: 0
+  damage: 3
+  projectileSpeed: 1
+  lifetime: 1
+  projectileCount: 1
+  spreadAngle: 0
+  poisonDamagePerSecond: 0
+  poisonDuration: 0
+  poisonEffect: {fileID: 0}
+  poisonBurstRadius: 0
+  poisonBurstEffect: {fileID: 0}
+  bleedDamagePerSecond: 0
+  bleedDuration: 0
+  bleedEffect: {fileID: 0}
+  areaPrefab: {fileID: 0}
+  areaRange: 6
+  areaRadius: 1.6
+  areaDuration: 2
+  areaTick: 0.4
+  areaPull: 3
+  tideRadius: 0
+  tideDamage: 4
+  tidePush: 10
+  tideEffect: {fileID: 0}
+  pierce: 0
+  volleyEvery: 0
+  volleyCount: 3
+  volleySpread: 30
+  muzzleEffect: {fileID: 0}
+  homingTurnRate: 0
+  homingRange: 5
+  brakeTime: 0
+  scatterSpeed: 0
+  speedJitter: 0
+  angleJitter: 0
+  driftSpeed: 0
+  fadeTime: 0
+  melee: 0
+  meleeRange: 1.5
+  meleeArc: 180
+  meleeEffect: {fileID: 0}
+  meleeHitEffect: {fileID: 0}
+  meleeLunge: 0
+  meleeLungeDuration: 0.1
+  meleePush: 0
+  shatterDuration: 0
+  shatterMultiplier: 1.25
+  shatterMarker: {fileID: 0}
+  meleeFromMuzzle: 0
+  guillotineEvery: 0
+  guillotineRange: 3
+  guillotineEffect: {fileID: 0}
+  spit: 0
+  spitMini: 0
+  spitTrailEvery: 0.5
+  spitTrailSeconds: 3
+  spitBurstDamage: 6
+  spitBurstRadius: 1.5
+  spitBurstPuddleSeconds: 4
+  spitSplitCount: 0
+  spitSplitAttack: {fileID: 0}
+  spin: 1
+  spinRadius: 1.5
+  spinDamage: 3
+  spinTick: 0.25
+  spinPush: 6
+  spinSpeedFactor: 0.65
+  spinMaxSeconds: 4
+  spinDizzySeconds: 1
+  spinRecharge: 0.5
+  spinReflects: 1
+  boomerangAfter: 1
+  boomerangRange: 9
+  boomerangDamage: 8
+  boomerangStun: 0.8
+  boomerangPrefab: {fileID: 3770938396781863838, guid: fd99df77e9988964ba7188c52cb44069, type: 3}
+  spinEffect: {fileID: 8151234160488684050, guid: 11ba3ba5f3e7f4e4a94489f28ad410a1, type: 3}
+  spinDeflectEffect: {fileID: 1403432392331564938, guid: ac2bcc38a1df1b44fbdff851be46918f, type: 3}
+  jet: 0
+  jetRange: 5
+  jetTick: 0.15
+  jetTurnRate: 180
+  jetMaxSeconds: 3
+  jetRefillSeconds: 2
+  jetEmptyRefillSeconds: 3
+  jetPierces: 0
+  jetSplashRadius: 0
+  jetSplashTick: 0.5
+  jetSplashDamage: 1
+  jetSegment: {fileID: 0}
+  jetHitEffect: {fileID: 0}
+  jetSplashEffect: {fileID: 0}
+  fireSound: 
+  hitSound: 
+  lungeSound: 
+  impactSound: 

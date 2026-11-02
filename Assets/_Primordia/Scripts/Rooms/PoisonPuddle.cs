@@ -19,6 +19,8 @@ namespace Primordia.Rooms
 
         // Lo que cubre el charco (el dibujo grande mide ~1,2 u de radio) y cada cuánto se comprueba quién lo pisa.
         const float Radius = 1f;
+        const float SmallRadius = 0.45f;
+        const float SmallScale = 0.4f;
         const float CheckEvery = 0.1f;
         const int EnemyDamagePerSecond = 1;
         const float EnemyPoisonSeconds = 3f;
@@ -44,6 +46,9 @@ namespace Primordia.Rooms
 
         SpriteRenderer body;
         State state;
+        bool harmsPlayer = true;
+        bool useSmallArt;
+        float radius = Radius;
         float endTime;
         float nextCheck;
 
@@ -51,8 +56,11 @@ namespace Primordia.Rooms
 
         public bool CanIgnite => state == State.Idle;
 
-        /// <summary>Hace un charco grande en ese punto (el centro del dibujo). Null si no hay arte del veneno.</summary>
-        public static PoisonPuddle Spawn(Vector2 position, float seconds = DefaultSeconds)
+        /// <summary>
+        /// Hace un charco en ese punto (el centro del dibujo). Pequeño: el del rastro del Escupitajo venenoso. Sin <paramref name="harmsPlayer"/>,
+        /// el jugador lo pisa sin frenarse ni envenenarse (los charcos que deja él mismo). Null si no hay arte del veneno.
+        /// </summary>
+        public static PoisonPuddle Spawn(Vector2 position, float seconds = DefaultSeconds, bool small = false, bool harmsPlayer = true)
         {
             var kit = ReactionKit.Current;
             if (kit == null || kit.PuddleIdle.Length == 0)
@@ -65,6 +73,12 @@ namespace Primordia.Rooms
             renderer.sortingOrder = 3;
             var puddle = obj.AddComponent<PoisonPuddle>();
             puddle.body = renderer;
+            puddle.harmsPlayer = harmsPlayer;
+            puddle.radius = small ? SmallRadius : Radius;
+            // Sin dibujo pequeño, el grande reducido.
+            puddle.useSmallArt = small && kit.SmallPuddleIdle.Length > 0;
+            if (small && !puddle.useSmallArt)
+                obj.transform.localScale = Vector3.one * SmallScale;
             puddle.endTime = Time.time + seconds;
             puddle.StartCoroutine(puddle.Run(kit));
             return puddle;
@@ -84,9 +98,9 @@ namespace Primordia.Rooms
 
         IEnumerator Run(ReactionKit kit)
         {
-            yield return Play(kit.PuddleAppear, AppearFrameSeconds);
+            yield return Play(useSmallArt ? kit.SmallPuddleAppear : kit.PuddleAppear, AppearFrameSeconds);
             var player = gameObject.AddComponent<SpriteFramePlayer>();
-            player.Play(body, kit.PuddleIdle, 0.09f, newLoop: true);
+            player.Play(body, useSmallArt ? kit.SmallPuddleIdle : kit.PuddleIdle, 0.09f, newLoop: true);
             while (Time.time < endTime && state == State.Idle)
                 yield return null;
             if (state != State.Idle)
@@ -95,7 +109,7 @@ namespace Primordia.Rooms
             // Se seca: el último cuadro de la animación y fuera.
             state = State.Drying;
             Destroy(player);
-            yield return Play(kit.PuddleFade, AppearFrameSeconds);
+            yield return Play(useSmallArt ? kit.SmallPuddleFade : kit.PuddleFade, AppearFrameSeconds);
             Destroy(gameObject);
         }
 
@@ -119,6 +133,9 @@ namespace Primordia.Rooms
             var player = GetComponent<SpriteFramePlayer>();
             if (player != null)
                 Destroy(player);
+            // El fuego es del tamaño del charco grande: en uno pequeño se reduce.
+            if (useSmallArt)
+                transform.localScale = Vector3.one * SmallScale;
             StartCoroutine(Burn());
         }
 
@@ -146,14 +163,14 @@ namespace Primordia.Rooms
             nextCheck = Time.time + CheckEvery;
 
             var seen = new HashSet<Health>();
-            foreach (var hit in Physics2D.OverlapCircleAll(transform.position, Radius))
+            foreach (var hit in Physics2D.OverlapCircleAll(transform.position, radius))
             {
                 if (hit.isTrigger)
                     continue;
 
                 if (hit.GetComponentInParent<PlayerToxin>() is { } player)
                 {
-                    if (!player.IsDodging)
+                    if (harmsPlayer && !player.IsDodging)
                         player.TouchPuddle();
                     continue;
                 }

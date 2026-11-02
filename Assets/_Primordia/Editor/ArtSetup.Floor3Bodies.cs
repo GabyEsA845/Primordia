@@ -1,3 +1,5 @@
+using Primordia.Rooms;
+using UnityEditor;
 using UnityEngine;
 
 namespace Primordia.Editor
@@ -38,6 +40,30 @@ namespace Primordia.Editor
 
         static readonly Character WhipscorpionBody = Floor3Body("Whipscorpion",
             ("AttackStart", 14.3f, false), ("AttackLoop", 16.7f, true), ("AttackEnd", 12.5f, false));
+
+        /// <summary>Corta en cuadros una hoja de efectos de las Bocas del piso 3 ya importada (floor3-bodies/Effects). Vacío si no está.</summary>
+        internal static Sprite[] Floor3BodyEffect(string name, int cell)
+        {
+            string path = $"{Floor3ArtRoot}/floor3-bodies/Effects/{name}.png";
+            return System.IO.File.Exists(path) ? SliceSheet(path, cell) : System.Array.Empty<Sprite>();
+        }
+
+        /// <summary>Corta en cuadros una hoja de un cuerpo del piso 3 ya importada (p. ej. Diplocaulus, Spin). Vacío si no está.</summary>
+        internal static Sprite[] Floor3BodySheet(string body, string animation)
+        {
+            string path = $"{Floor3BodiesArtFolder}/{body}/Player_{body}_{animation}.png";
+            return System.IO.File.Exists(path) ? SliceSheet(path, 0) : System.Array.Empty<Sprite>();
+        }
+
+        /// <summary>Pone en el kit de reacciones el arte del Escupitajo venenoso: charco pequeño del rastro y reventón.</summary>
+        internal static void ConfigureSpitKit(ReactionKit kit)
+        {
+            if (kit == null)
+                return;
+            kit.ConfigureSpit(Floor3BodyEffect("Fx_PoisonPuddleSmall_Appear", 16), Floor3BodyEffect("Fx_PoisonPuddleSmall_Idle", 16),
+                Floor3BodyEffect("Fx_PoisonPuddleSmall_Fade", 16), Floor3BodyEffect("Fx_PoisonSpit_Burst", 56));
+            EditorUtility.SetDirty(kit);
+        }
 
         internal sealed class Floor3MouthArt
         {

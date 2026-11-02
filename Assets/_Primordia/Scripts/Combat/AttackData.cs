@@ -143,6 +143,75 @@ namespace Primordia.Combat
         [Tooltip("Guillotina: efecto de la segunda dentellada.")]
         [SerializeField] GameObject guillotineEffect;
 
+        [Header("Escupitajo venenoso")]
+        [Tooltip("Proyectil que encoge dejando charcos y estalla al acabar, al chocar o al disparar otro. Falso = proyectil normal.")]
+        [SerializeField] bool spit;
+        [Tooltip("Bolita de la Camada: no cuenta como el último escupitajo (disparar otro no la hace estallar).")]
+        [SerializeField] bool spitMini;
+        [Tooltip("Cada cuántos segundos deja un charco pequeño.")]
+        [SerializeField, Min(0.1f)] float spitTrailEvery = 0.5f;
+        [Tooltip("Segundos que dura cada charco del rastro.")]
+        [SerializeField, Min(0.1f)] float spitTrailSeconds = 3f;
+        [Tooltip("Estallido: daño a los enemigos, radio y segundos del charco que deja (0 = ninguno).")]
+        [SerializeField, Min(0)] int spitBurstDamage = 6;
+        [SerializeField, Min(0.1f)] float spitBurstRadius = 1.5f;
+        [SerializeField, Min(0f)] float spitBurstPuddleSeconds = 4f;
+        [Tooltip("Camada: al estallar suelta tantas bolitas en cruz (0 = ninguna) con este ataque.")]
+        [SerializeField, Min(0)] int spitSplitCount;
+        [SerializeField] AttackData spitSplitAttack;
+
+        [Header("Peonza")]
+        [Tooltip("Ataque que se mantiene: el cuerpo gira, daña y empuja en un radio mientras se pulsa (la Peonza). Falso = ataque normal.")]
+        [SerializeField] bool spin;
+        [SerializeField, Min(0.1f)] float spinRadius = 1.3f;
+        [Tooltip("Daño de cada golpe del giro y segundos entre golpes.")]
+        [SerializeField, Min(0)] int spinDamage = 2;
+        [SerializeField, Min(0.05f)] float spinTick = 0.25f;
+        [Tooltip("Velocidad con que cada golpe empuja a los enemigos hacia fuera.")]
+        [SerializeField, Min(0f)] float spinPush = 6f;
+        [Tooltip("Velocidad al girar, respecto a la normal (0,65 = un 35 % más lento).")]
+        [SerializeField, Range(0.1f, 1f)] float spinSpeedFactor = 0.65f;
+        [Tooltip("Segundos máximos girando; al agotarlos se marea.")]
+        [SerializeField, Min(0.1f)] float spinMaxSeconds = 3f;
+        [SerializeField, Min(0f)] float spinDizzySeconds = 0.5f;
+        [Tooltip("Espera tras soltar o marearse antes de poder girar otra vez.")]
+        [SerializeField, Min(0f)] float spinRecharge = 0.5f;
+        [Tooltip("Devuelve los proyectiles enemigos que entran en el radio (nivel II).")]
+        [SerializeField] bool spinReflects;
+        [Tooltip("Bumerán (nivel III): si se gira al menos estos segundos, al soltar sale una peonza hacia el cursor. 0 = sin bumerán.")]
+        [SerializeField, Min(0f)] float boomerangAfter;
+        [SerializeField, Min(0.5f)] float boomerangRange = 3f;
+        [SerializeField, Min(0)] int boomerangDamage = 8;
+        [SerializeField, Min(0f)] float boomerangStun = 0.8f;
+        [SerializeField] GameObject boomerangPrefab;
+        [Tooltip("Remolino que se ve alrededor mientras gira (en bucle) y destello al devolver un proyectil.")]
+        [SerializeField] GameObject spinEffect;
+        [SerializeField] GameObject spinDeflectEffect;
+
+        [Header("Chorro de vinagre")]
+        [Tooltip("Ataque que se mantiene: un chorro desde la cola que sigue al cursor mientras haya carga (el Chorro de vinagre). Falso = ataque normal.")]
+        [SerializeField] bool jet;
+        [SerializeField, Min(0.5f)] float jetRange = 5f;
+        [Tooltip("El daño de cada golpe es el del ataque; segundos entre golpes.")]
+        [SerializeField, Min(0.05f)] float jetTick = 0.15f;
+        [Tooltip("Grados por segundo con que el chorro gira hacia el cursor.")]
+        [SerializeField, Min(10f)] float jetTurnRate = 180f;
+        [Tooltip("Segundos de chorro que da la barra llena.")]
+        [SerializeField, Min(0.1f)] float jetMaxSeconds = 3f;
+        [Tooltip("Segundos que tarda en llenarse la barra tras soltar, y si se vació del todo.")]
+        [SerializeField, Min(0.1f)] float jetRefillSeconds = 2f;
+        [SerializeField, Min(0.1f)] float jetEmptyRefillSeconds = 3f;
+        [Tooltip("Atraviesa a los enemigos (nivel II): solo lo paran las paredes.")]
+        [SerializeField] bool jetPierces;
+        [Tooltip("Salpicadura (nivel III): radio, segundos entre golpes y daño alrededor del final del chorro. Radio 0 = sin salpicadura.")]
+        [SerializeField, Min(0f)] float jetSplashRadius;
+        [SerializeField, Min(0.1f)] float jetSplashTick = 0.5f;
+        [SerializeField, Min(0)] int jetSplashDamage = 1;
+        [Tooltip("Un tramo del chorro de 1 u hacia la derecha (con su animación), el impacto en bucle y la salpicadura de una pasada.")]
+        [SerializeField] GameObject jetSegment;
+        [SerializeField] GameObject jetHitEffect;
+        [SerializeField] GameObject jetSplashEffect;
+
         [Header("Sonido")]
         [Tooltip("Sonido de cada disparo o mordisco (nombre de la SoundLibrary). Vacío = sin sonido.")]
         [SerializeField] string fireSound;
@@ -165,7 +234,7 @@ namespace Primordia.Combat
         public GameObject PoisonEffect => poisonEffect;
 
         /// <summary>True si con estos datos se puede atacar: tiene proyectil, es cuerpo a cuerpo o de área.</summary>
-        public bool IsUsable => melee || projectilePrefab != null || IsArea;
+        public bool IsUsable => melee || projectilePrefab != null || IsArea || spin || jet;
 
         /// <summary>True si es un remolino de área (la Corona de brazos).</summary>
         public bool IsArea => areaPrefab != null;
@@ -222,6 +291,46 @@ namespace Primordia.Combat
         public GameObject MuzzleEffect => muzzleEffect;
         public float HomingTurnRate => homingTurnRate;
         public float HomingRange => homingRange;
+        public bool IsJet => jet;
+        public float JetRange => jetRange;
+        public float JetTick => jetTick;
+        public float JetTurnRate => jetTurnRate;
+        public float JetMaxSeconds => jetMaxSeconds;
+        public float JetRefillSeconds => jetRefillSeconds;
+        public float JetEmptyRefillSeconds => jetEmptyRefillSeconds;
+        public bool JetPierces => jetPierces;
+        public float JetSplashRadius => jetSplashRadius;
+        public float JetSplashTick => jetSplashTick;
+        public int JetSplashDamage => jetSplashDamage;
+        public GameObject JetSegment => jetSegment;
+        public GameObject JetHitEffect => jetHitEffect;
+        public GameObject JetSplashEffect => jetSplashEffect;
+        public bool IsSpin => spin;
+        public float SpinRadius => spinRadius;
+        public int SpinDamage => spinDamage;
+        public float SpinTick => spinTick;
+        public float SpinPush => spinPush;
+        public float SpinSpeedFactor => spinSpeedFactor;
+        public float SpinMaxSeconds => spinMaxSeconds;
+        public float SpinDizzySeconds => spinDizzySeconds;
+        public float SpinRecharge => spinRecharge;
+        public bool SpinReflects => spinReflects;
+        public float BoomerangAfter => boomerangAfter;
+        public float BoomerangRange => boomerangRange;
+        public int BoomerangDamage => boomerangDamage;
+        public float BoomerangStun => boomerangStun;
+        public GameObject BoomerangPrefab => boomerangPrefab;
+        public GameObject SpinEffect => spinEffect;
+        public GameObject SpinDeflectEffect => spinDeflectEffect;
+        public bool IsSpit => spit;
+        public bool SpitMini => spitMini;
+        public float SpitTrailEvery => spitTrailEvery;
+        public float SpitTrailSeconds => spitTrailSeconds;
+        public int SpitBurstDamage => spitBurstDamage;
+        public float SpitBurstRadius => spitBurstRadius;
+        public float SpitBurstPuddleSeconds => spitBurstPuddleSeconds;
+        public int SpitSplitCount => spitSplitCount;
+        public AttackData SpitSplitAttack => spitSplitAttack;
 
         /// <summary>
         /// Envenena (y, con contagio, prepara el estallido) o hace sangrar al objetivo, según el ataque.
@@ -347,6 +456,69 @@ namespace Primordia.Combat
             bleedDamagePerSecond = Mathf.Max(0, damagePerSecond);
             bleedDuration = Mathf.Max(0f, duration);
             bleedEffect = effect;
+        }
+
+        internal void ConfigureSpit(float trailEvery, float trailSeconds, int burstDamage, float burstRadius, float burstPuddleSeconds,
+            int splitCount = 0, AttackData splitAttack = null, bool mini = false)
+        {
+            spit = true;
+            spitMini = mini;
+            spitTrailEvery = Mathf.Max(0.1f, trailEvery);
+            spitTrailSeconds = Mathf.Max(0.1f, trailSeconds);
+            spitBurstDamage = Mathf.Max(0, burstDamage);
+            spitBurstRadius = Mathf.Max(0.1f, burstRadius);
+            spitBurstPuddleSeconds = Mathf.Max(0f, burstPuddleSeconds);
+            spitSplitCount = Mathf.Max(0, splitCount);
+            spitSplitAttack = splitAttack;
+        }
+
+        internal void ConfigureSpin(float radius, int damage, float tick, float push, float speedFactor, float maxSeconds, float dizzySeconds,
+            float recharge, bool reflects, GameObject effect, GameObject deflectEffect)
+        {
+            spin = true;
+            spinRadius = Mathf.Max(0.1f, radius);
+            spinDamage = Mathf.Max(0, damage);
+            spinTick = Mathf.Max(0.05f, tick);
+            spinPush = Mathf.Max(0f, push);
+            spinSpeedFactor = Mathf.Clamp(speedFactor, 0.1f, 1f);
+            spinMaxSeconds = Mathf.Max(0.1f, maxSeconds);
+            spinDizzySeconds = Mathf.Max(0f, dizzySeconds);
+            spinRecharge = Mathf.Max(0f, recharge);
+            spinReflects = reflects;
+            spinEffect = effect;
+            spinDeflectEffect = deflectEffect;
+        }
+
+        internal void ConfigureJet(float range, float tick, float turnRate, float maxSeconds, float refillSeconds, float emptyRefillSeconds,
+            bool pierces, GameObject segment, GameObject hitEffect, GameObject splashEffect)
+        {
+            jet = true;
+            jetRange = Mathf.Max(0.5f, range);
+            jetTick = Mathf.Max(0.05f, tick);
+            jetTurnRate = Mathf.Max(10f, turnRate);
+            jetMaxSeconds = Mathf.Max(0.1f, maxSeconds);
+            jetRefillSeconds = Mathf.Max(0.1f, refillSeconds);
+            jetEmptyRefillSeconds = Mathf.Max(0.1f, emptyRefillSeconds);
+            jetPierces = pierces;
+            jetSegment = segment;
+            jetHitEffect = hitEffect;
+            jetSplashEffect = splashEffect;
+        }
+
+        internal void ConfigureJetSplash(float radius, float tick, int damage)
+        {
+            jetSplashRadius = Mathf.Max(0f, radius);
+            jetSplashTick = Mathf.Max(0.1f, tick);
+            jetSplashDamage = Mathf.Max(0, damage);
+        }
+
+        internal void ConfigureBoomerang(float after, float range, int damage, float stun, GameObject prefab)
+        {
+            boomerangAfter = Mathf.Max(0f, after);
+            boomerangRange = Mathf.Max(0.5f, range);
+            boomerangDamage = Mathf.Max(0, damage);
+            boomerangStun = Mathf.Max(0f, stun);
+            boomerangPrefab = prefab;
         }
 
         internal void ConfigureHoming(float turnRate, float range)

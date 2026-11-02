@@ -45,7 +45,7 @@ namespace Primordia.Player
         public bool IsDodging { get; private set; }
         public bool IsLunging => lungeEndTime > 0f;
         public Vector2 DodgeDirection { get; private set; }
-        public bool CanDodge => CanAct && !IsDodging && (Time.time >= nextDodgeTime || DodgeInChain <= ExtraDodges);
+        public bool CanDodge => CanAct && !MovementLocked && !IsDodging && (Time.time >= nextDodgeTime || DodgeInChain <= ExtraDodges);
 
         /// <summary>
         /// Esquivas que se pueden encadenar después de la primera sin esperar la recarga (la Cola propulsora da 1). Pasada la
@@ -100,6 +100,21 @@ namespace Primordia.Player
         /// <summary>Multiplicador de la velocidad al andar por el terreno (el lodo profundo del piso 3, 1 sin él). Lo fija quien lo causa cada paso.</summary>
         public float TerrainSpeedFactor { get; set; } = 1f;
 
+        /// <summary>
+        /// True mientras no puede andar ni esquivar (el mareo de la Peonza): se frena como al soltar el movimiento. Lo fija quien lo causa.
+        /// </summary>
+        public bool MovementLocked { get; set; }
+
+        /// <summary>
+        /// Multiplicador de la velocidad al andar mientras mantiene un ataque (la Peonza gira un 35 % más lento). 1 = normal. No tiñe ni
+        /// cuenta como ralentización.
+        /// </summary>
+        public float ChannelSpeedFactor
+        {
+            get => channelSpeedFactor;
+            set => channelSpeedFactor = Mathf.Clamp(value, 0.05f, 1f);
+        }
+
         /// <summary>True mientras va ralentizado (veneno de las púas del Euriptérido).</summary>
         public bool IsSlowed => Time.time < slowUntil;
 
@@ -122,6 +137,7 @@ namespace Primordia.Player
 
         int extraDodges;
         float inertia = 1f;
+        float channelSpeedFactor = 1f;
         Vector2 walkVelocity;
 
         // Las pruebas lo desactivan para dar la entrada con SetInput.
@@ -244,8 +260,8 @@ namespace Primordia.Player
         /// </summary>
         Vector2 Walk()
         {
-            float top = (SpeedOverride ?? moveSpeed) * SlowFactor * TerrainSpeedFactor * TimeWarp.PlayerSpeed;
-            Vector2 target = MoveInput * top;
+            float top = (SpeedOverride ?? moveSpeed) * SlowFactor * ChannelSpeedFactor * TerrainSpeedFactor * TimeWarp.PlayerSpeed;
+            Vector2 target = MovementLocked ? Vector2.zero : MoveInput * top;
             float time = (target.sqrMagnitude > 0.0001f ? accelerationTime : decelerationTime) * inertia;
             // Cambio de velocidad por paso para ir de 0 a la máxima en ese tiempo; la ralentización no alarga el arranque.
             float maxChange = time > 0.0001f ? Mathf.Max(top, 0.01f) / time * Time.fixedDeltaTime : float.MaxValue;

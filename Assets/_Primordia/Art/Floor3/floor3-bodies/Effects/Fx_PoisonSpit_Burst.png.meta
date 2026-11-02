@@ -142,7 +142,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -214,12 +214,12 @@ TextureImporter:
       name: Fx_PoisonSpit_Burst_0
       rect:
         serializedVersion: 2
-        x: 19
-        y: 16
-        width: 18
-        height: 21
+        x: 0
+        y: 0
+        width: 56
+        height: 56
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -236,12 +236,12 @@ TextureImporter:
       name: Fx_PoisonSpit_Burst_1
       rect:
         serializedVersion: 2
-        x: 69
-        y: 16
-        width: 29
-        height: 22
+        x: 56
+        y: 0
+        width: 56
+        height: 56
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -258,12 +258,12 @@ TextureImporter:
       name: Fx_PoisonSpit_Burst_2
       rect:
         serializedVersion: 2
-        x: 122
-        y: 13
-        width: 19
-        height: 26
+        x: 112
+        y: 0
+        width: 56
+        height: 56
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -280,12 +280,12 @@ TextureImporter:
       name: Fx_PoisonSpit_Burst_3
       rect:
         serializedVersion: 2
-        x: 133
-        y: 23
-        width: 17
-        height: 16
+        x: 168
+        y: 0
+        width: 56
+        height: 56
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -302,12 +302,12 @@ TextureImporter:
       name: Fx_PoisonSpit_Burst_4
       rect:
         serializedVersion: 2
-        x: 135
-        y: 32
-        width: 8
-        height: 9
+        x: 224
+        y: 0
+        width: 56
+        height: 56
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -324,12 +324,12 @@ TextureImporter:
       name: Fx_PoisonSpit_Burst_5
       rect:
         serializedVersion: 2
-        x: 142
-        y: 16
-        width: 15
-        height: 20
+        x: 280
+        y: 0
+        width: 56
+        height: 56
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -346,12 +346,12 @@ TextureImporter:
       name: Fx_PoisonSpit_Burst_6
       rect:
         serializedVersion: 2
-        x: 174
-        y: 27
-        width: 10
-        height: 8
+        x: 336
+        y: 0
+        width: 56
+        height: 56
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -360,578 +360,6 @@ TextureImporter:
       bones: []
       spriteID: 802ab29461e8cb1b0800000000000000
       internalID: -5639476407006682616
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_PoisonSpit_Burst_7
-      rect:
-        serializedVersion: 2
-        x: 178
-        y: 21
-        width: 10
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 703d375aa03542030800000000000000
-      internalID: 3468988918172734215
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_PoisonSpit_Burst_8
-      rect:
-        serializedVersion: 2
-        x: 179
-        y: 34
-        width: 8
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8913db9a2909c0620800000000000000
-      internalID: 2741725232749162904
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_PoisonSpit_Burst_9
-      rect:
-        serializedVersion: 2
-        x: 191
-        y: 35
-        width: 7
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6fe008f0248518af0800000000000000
-      internalID: -395938251480756490
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_PoisonSpit_Burst_10
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 25
-        width: 8
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e1161d66bda0c5d30800000000000000
-      internalID: 4421420871610097950
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_PoisonSpit_Burst_11
-      rect:
-        serializedVersion: 2
-        x: 200
-        y: 34
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4e3f293cea8a69bd0800000000000000
-      internalID: -2623724264337771548
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_PoisonSpit_Burst_12
-      rect:
-        serializedVersion: 2
-        x: 207
-        y: 30
-        width: 10
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2e93e498c30df84d0800000000000000
-      internalID: -3130054257578984990
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_PoisonSpit_Burst_13
-      rect:
-        serializedVersion: 2
-        x: 208
-        y: 23
-        width: 10
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b7e5c9451303fe350800000000000000
-      internalID: 6048105813012930171
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_PoisonSpit_Burst_14
-      rect:
-        serializedVersion: 2
-        x: 227
-        y: 28
-        width: 10
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e46cf752af7b31f90800000000000000
-      internalID: -6984036312122669490
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_PoisonSpit_Burst_15
-      rect:
-        serializedVersion: 2
-        x: 232
-        y: 21
-        width: 9
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8409d6b4be4069600800000000000000
-      internalID: 474572219363463240
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_PoisonSpit_Burst_16
-      rect:
-        serializedVersion: 2
-        x: 233
-        y: 35
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7d9f79534be6a2a40800000000000000
-      internalID: 5344205628100835799
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_PoisonSpit_Burst_17
-      rect:
-        serializedVersion: 2
-        x: 247
-        y: 26
-        width: 7
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 67262169d607c7730800000000000000
-      internalID: 3998194185169691254
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_PoisonSpit_Burst_18
-      rect:
-        serializedVersion: 2
-        x: 258
-        y: 36
-        width: 7
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f8a8a5dfbc5134510800000000000000
-      internalID: 1532092264109214351
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_PoisonSpit_Burst_19
-      rect:
-        serializedVersion: 2
-        x: 266
-        y: 31
-        width: 9
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5f8865efd77dc68f0800000000000000
-      internalID: -545824518680704779
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_PoisonSpit_Burst_20
-      rect:
-        serializedVersion: 2
-        x: 267
-        y: 24
-        width: 9
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6501d3eeeae9a0ca0800000000000000
-      internalID: -6049848675260362666
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_PoisonSpit_Burst_21
-      rect:
-        serializedVersion: 2
-        x: 282
-        y: 22
-        width: 12
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ad8074fc44c1eef00800000000000000
-      internalID: 1147886036886948058
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_PoisonSpit_Burst_22
-      rect:
-        serializedVersion: 2
-        x: 288
-        y: 37
-        width: 34
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: fdcd316428df096e0800000000000000
-      internalID: -1832686312376509217
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_PoisonSpit_Burst_23
-      rect:
-        serializedVersion: 2
-        x: 326
-        y: 24
-        width: 7
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9e9435260ea7855c0800000000000000
-      internalID: -4226493146146321943
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_PoisonSpit_Burst_24
-      rect:
-        serializedVersion: 2
-        x: 339
-        y: 8
-        width: 50
-        height: 37
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7e28f47338c0cabb0800000000000000
-      internalID: -4923546534914587929
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_PoisonSpit_Burst_25
-      rect:
-        serializedVersion: 2
-        x: 182
-        y: 15
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5eeb5d8119ef5f3b0800000000000000
-      internalID: -5479193472485966107
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_PoisonSpit_Burst_26
-      rect:
-        serializedVersion: 2
-        x: 189
-        y: 10
-        width: 7
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7df30b7f5e3577be0800000000000000
-      internalID: -1479621705399779369
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_PoisonSpit_Burst_27
-      rect:
-        serializedVersion: 2
-        x: 201
-        y: 13
-        width: 12
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5685a60bd158de080800000000000000
-      internalID: -9156516104814045083
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_PoisonSpit_Burst_28
-      rect:
-        serializedVersion: 2
-        x: 237
-        y: 13
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 33fcecf7d489702d0800000000000000
-      internalID: -3312511542283546829
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_PoisonSpit_Burst_29
-      rect:
-        serializedVersion: 2
-        x: 244
-        y: 7
-        width: 7
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b28794bf6d6335a70800000000000000
-      internalID: 8814449192660989995
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_PoisonSpit_Burst_30
-      rect:
-        serializedVersion: 2
-        x: 259
-        y: 11
-        width: 12
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6aedc4e8070f0d190800000000000000
-      internalID: -7939581776839778650
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_PoisonSpit_Burst_31
-      rect:
-        serializedVersion: 2
-        x: 292
-        y: 7
-        width: 15
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c3086207604dc3bd0800000000000000
-      internalID: -2649009356684230596
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_PoisonSpit_Burst_32
-      rect:
-        serializedVersion: 2
-        x: 316
-        y: 11
-        width: 12
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a1d3658b35e37a720800000000000000
-      internalID: 2857321017885736218
       vertices: []
       indices: 
       edges: []
@@ -952,37 +380,11 @@ TextureImporter:
     nameFileIdTable:
       Fx_PoisonSpit_Burst_0: -5325382480600565889
       Fx_PoisonSpit_Burst_1: -1367099766479736018
-      Fx_PoisonSpit_Burst_10: 4421420871610097950
-      Fx_PoisonSpit_Burst_11: -2623724264337771548
-      Fx_PoisonSpit_Burst_12: -3130054257578984990
-      Fx_PoisonSpit_Burst_13: 6048105813012930171
-      Fx_PoisonSpit_Burst_14: -6984036312122669490
-      Fx_PoisonSpit_Burst_15: 474572219363463240
-      Fx_PoisonSpit_Burst_16: 5344205628100835799
-      Fx_PoisonSpit_Burst_17: 3998194185169691254
-      Fx_PoisonSpit_Burst_18: 1532092264109214351
-      Fx_PoisonSpit_Burst_19: -545824518680704779
       Fx_PoisonSpit_Burst_2: -4723019484979355652
-      Fx_PoisonSpit_Burst_20: -6049848675260362666
-      Fx_PoisonSpit_Burst_21: 1147886036886948058
-      Fx_PoisonSpit_Burst_22: -1832686312376509217
-      Fx_PoisonSpit_Burst_23: -4226493146146321943
-      Fx_PoisonSpit_Burst_24: -4923546534914587929
-      Fx_PoisonSpit_Burst_25: -5479193472485966107
-      Fx_PoisonSpit_Burst_26: -1479621705399779369
-      Fx_PoisonSpit_Burst_27: -9156516104814045083
-      Fx_PoisonSpit_Burst_28: -3312511542283546829
-      Fx_PoisonSpit_Burst_29: 8814449192660989995
       Fx_PoisonSpit_Burst_3: -7299191351077594589
-      Fx_PoisonSpit_Burst_30: -7939581776839778650
-      Fx_PoisonSpit_Burst_31: -2649009356684230596
-      Fx_PoisonSpit_Burst_32: 2857321017885736218
       Fx_PoisonSpit_Burst_4: 2740464799540298992
       Fx_PoisonSpit_Burst_5: -1457333114268079391
       Fx_PoisonSpit_Burst_6: -5639476407006682616
-      Fx_PoisonSpit_Burst_7: 3468988918172734215
-      Fx_PoisonSpit_Burst_8: 2741725232749162904
-      Fx_PoisonSpit_Burst_9: -395938251480756490
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

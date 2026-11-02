@@ -20,6 +20,30 @@ namespace Primordia.Combat
 
         public int Damage { get; private set; }
 
+        /// <summary>Ataque con el que se lanzó (null antes del primer lanzamiento).</summary>
+        public AttackData Attack => attack;
+
+        /// <summary>Por qué acaba un proyectil; lo reciben los que reaccionan al final (el Escupitajo venenoso).</summary>
+        public enum EndReason
+        {
+            /// <summary>Quitado sin más: escena, jefe, rebote…</summary>
+            Cleared,
+            /// <summary>Se acabó su tiempo de vida.</summary>
+            Expired,
+            /// <summary>Chocó con una pared u obstáculo.</summary>
+            Wall,
+            /// <summary>Dio a alguien y no atraviesa más.</summary>
+            Hit,
+            /// <summary>Lo hizo estallar quien lo disparó.</summary>
+            Detonated
+        }
+
+        /// <summary>Se lanza al terminar <see cref="Launch"/>.</summary>
+        public event System.Action<Projectile> Launched;
+
+        /// <summary>Se lanza justo antes de quitarlo, con el motivo. Aún conserva su arma y su posición.</summary>
+        public event System.Action<Projectile, EndReason> Ending;
+
         /// <summary>Arma que lo disparó (puede ser null o haberse destruido).</summary>
         public Weapon Source => source;
 
@@ -149,6 +173,7 @@ namespace Primordia.Combat
 
             launched = true;
             active.Add(this);
+            Launched?.Invoke(this);
         }
 
         void FixedUpdate()
@@ -168,7 +193,7 @@ namespace Primordia.Combat
             age += Time.fixedDeltaTime * (playerShot ? TimeWarp.PlayerSpeed : 1f);
             if (age >= attack.Lifetime)
             {
-                Despawn();
+                Despawn(EndReason.Expired);
                 return;
             }
 
@@ -288,7 +313,7 @@ namespace Primordia.Combat
             {
                 OneShotEffect.Spawn(impactEffect, transform.position);
                 Sfx.Play(attack.ImpactSound);
-                Despawn();
+                Despawn(EndReason.Wall);
                 return;
             }
 
@@ -325,15 +350,18 @@ namespace Primordia.Combat
                 piercesLeft--;
                 return;
             }
-            Despawn();
+            Despawn(EndReason.Hit);
         }
 
-        public void Despawn()
+        public void Despawn() => Despawn(EndReason.Cleared);
+
+        public void Despawn(EndReason reason)
         {
             if (!launched)
                 return;
 
             launched = false;
+            Ending?.Invoke(this, reason);
             active.Remove(this);
             source = null;
             rb.linearVelocity = Vector2.zero;

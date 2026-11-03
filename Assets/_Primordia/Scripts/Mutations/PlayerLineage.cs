@@ -228,6 +228,24 @@ namespace Primordia.Mutations
                     Add<PuffOnHitTouch>().Configure(mutations, b.puffRadius, b.puffCooldown);
                     break;
 
+                // Piso 3
+                case LineageTouch.CephalicSpine:
+                    BenefitOf<FinisherBenefit>()?.SetConfusedCount(true);
+                    break;
+
+                case LineageTouch.HundredLegs:
+                    Add<CentipedeTouch>().Configure(b.centipedePuddleSeconds);
+                    break;
+
+                case LineageTouch.SpinningSucker:
+                    var parasites = BenefitOf<ParasiteBenefit>();
+                    if (parasites != null)
+                    {
+                        parasites.SetArt(b.parasiteMarkerLamprey, b.parasiteLeapLamprey);
+                        Add<LampreyTouch>().Configure(parasites, b.parasiteLimit, b.lampreySpinLimit);
+                    }
+                    break;
+
                 // Piso 2: trabajan sobre el beneficio de la clase, que ya está puesto.
                 case LineageTouch.Feast:
                     Add<FeastTouch>().Configure(BenefitOf<FinisherBenefit>(), mutations.Weapon, mutations.Health, b.feastHeal,

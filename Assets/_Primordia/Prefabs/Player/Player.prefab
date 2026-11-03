@@ -458,6 +458,8 @@ MonoBehaviour:
     - {fileID: 4733597006396688755, guid: 1a1ccf100ec3fc5428880785dfe8e9f0, type: 3}
     - {fileID: 4752962310218321683, guid: e472d22724cba774582b81413cd8a8a7, type: 3}
     - {fileID: 1903925669969525811, guid: a397e57a10665c44ca139e584bcad814, type: 3}
+    toxinPuddleSeconds: 6
+    matSproutLimit: 6
     parasiteDamageNeeded: 15
     parasiteDamagePerSecond: 1
     parasiteDrainPerHeal: 15
@@ -467,6 +469,10 @@ MonoBehaviour:
     parasiteJumpEffect: {fileID: 8659026236104199227, guid: dbf00c02309ef144e878b91136d4736a, type: 3}
     parasiteDrainDrop: {fileID: 6696896756884721314, guid: b70272e03ce54db42be6873a5cde96a0, type: 3}
     parasiteHealEffect: {fileID: 4635648333105651139, guid: 78d1cffa66c640a489bf2cae36299322, type: 3}
+    centipedePuddleSeconds: 4
+    lampreySpinLimit: 6
+    parasiteMarkerLamprey: {fileID: 7834564935101127261, guid: 9cb19a1c0a3b4d1428fe036b829e77ff, type: 3}
+    parasiteLeapLamprey: {fileID: 8036641937895922133, guid: 48c0900a645a3ca4fa394ea96b36bcfb, type: 3}
     feastHeal: 1
     feastCooldown: 6
     fiveEyesBonus: 1

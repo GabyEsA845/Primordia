@@ -22,6 +22,7 @@ namespace Primordia.Mutations
         bool blindCounts;
         bool stunnedCount;
         bool burningCounts;
+        bool confusedCount;
         bool dodgeOnFinish;
         GameObject finishEffect;
         PlayerController controller;
@@ -55,6 +56,9 @@ namespace Primordia.Mutations
         /// <summary>Piso 3: los enemigos que arden también cuentan como heridos.</summary>
         public void SetBurningCount(bool value) => burningCounts = value;
 
+        /// <summary>Espina cefálica (Xenacanthus): los enemigos confundidos también cuentan como heridos.</summary>
+        public void SetConfusedCount(bool value) => confusedCount = value;
+
         /// <summary>True si ese objetivo cuenta como herido.</summary>
         public bool IsWounded(Health target)
         {
@@ -62,6 +66,8 @@ namespace Primordia.Mutations
                 return true;
             bool hasAI = target.TryGetComponent<EnemyAI>(out var ai);
             if (blindCounts && hasAI && ai.IsBlind)
+                return true;
+            if (confusedCount && hasAI && ai.IsConfused)
                 return true;
             if (burningCounts && target.TryGetComponent<Burn>(out _))
                 return true;

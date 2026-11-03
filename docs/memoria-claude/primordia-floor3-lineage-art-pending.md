@@ -1,8 +1,23 @@
 ---
 name: primordia-floor3-lineage-art-pending
-description: "Tanda de arte PENDIENTE (Opus) de los linajes del piso 3: chorro venenoso, Eryops (barro y marcador), matas de hongo, parásito grande, Sanguijuela con sangre"
+description: "Tanda de arte de los linajes del piso 3 HECHA y aprobada (2026-11-03, Opus) en floor3-lineage-art/; falta importarla e integrarla (Sonnet, 4b)"
 metadata:
   type: project
+---
+
+**HECHA Y APROBADA (2026-11-03, Opus), sin commit:** todo en `docs/multimedia-temp/floor3-lineage-art/` (README con hojas, ms, pivotes y
+reglas de montaje; generador `generar_arte_linajes.py`; escenas de comparación en `gif/escenas/`). Fila en `docs/MULTIMEDIA.md`.
+**Falta (Sonnet, en el 4b):** menú de importación, usar las variantes según el linaje y montar las reglas del README (Idle de 8 cuadros
+en los charcos de la Sanguijuela, coágulos y gusanillos sobre la banda, matas al azar entre 8, nivel de acecho 55 %/hundido 80 %,
+barro que se seca por tiempo, terrones a cada paso). Después, documento interactivo del piso 3 y GDD.
+Cambios sobre lo pensado: las repisas de hongo se cambiaron por **estrellas de tierra** (desde arriba no se leían); el Eryops **no lleva
+capa por animación**, usa el lodo por shader del pulido + textura seca; la sangre de la banda va en **coágulos aparte** (pintada en los
+sellos salían rayas); se añadieron gusanillos nadando en la banda (pedido de la usuaria) y la escena del Diplocaulus con Piel anfibia.
+**Añadido y aprobado el mismo día: Cordyceps (Zombi)** (README §6, `Zombie/`): el enemigo muerto se levanta 4 s aliado con el mismo diseño,
+tinte pálido por shader, ojos verde-azulados, 2-3 hongos por arriba de la silueta, estela de esporas al moverse/atacar, brote al
+levantarse (muerte al revés) y desmoronarse al caer. Vale para todos los enemigos MENOS jefes y trampas (planta carnívora y efímeras).
+Pendiente de confirmar con la usuaria en el 4b: vida al levantarse (propuesta 50 %).
+
 ---
 
 Decidida con la usuaria el 2026-11-03 al cerrar el paso 4a (cambios de diseño en [[primordia-floor3-mutations-decisions]]). Se hace en **otra
@@ -35,3 +50,13 @@ el charco sangriento hace más daño que el normal.
 
 **Why:** la usuaria quiso que los toques de los linajes se vean y se lean en pantalla sin ser un efecto invisible.
 **How to apply:** al abrir una sesión con Opus, leer este archivo, avisar del cambio de modelo y preguntar las dudas de cada pieza antes de dibujar.
+
+**Respuestas de la usuaria (2026-11-03, sesión Opus):** chorro = vinagre paja con veta y gotas verde veneno (impacto y salpicadura con
+manchas verdes humeantes); Eryops = capa de barro en la mitad baja con goterones que se seca en 5 s, en el lodo medio hundido fijo
+(lomo y ojos fuera) y marcador = gotas de barro que salpican de los pies al moverse; **solo el cuerpo de la Peonza (Diplocaulus)**, que es
+el único que activa el linaje; hongos = micelio bioluminiscente (hilos blancos, setillas verde-azuladas, esporas; brota, late, pulsa al
+dañar), mediana y grande; parásito Lamprea = pegado 16 px y salto 20 px con anillo de dientes; Sanguijuela = verde turbio con nubes de
+sangre y 2-3 gusanillos nadando, bola translúcida con sombra que se retuerce, explosión con gotas rojizas y gusanillos. Orden: parásito →
+chorro → Sanguijuela → hongos → Eryops.
+**Escenas (pedido de la usuaria):** cada pieza lleva una escena GIF que compare lo normal con la versión del linaje, en
+`floor3-lineage-art/gif/escenas/` (más una tira `_cuadros.png` con cuadros clave). Generador: `floor3-lineage-art/generar_arte_linajes.py`.

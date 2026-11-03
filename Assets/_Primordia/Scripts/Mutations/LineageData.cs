@@ -35,6 +35,15 @@ namespace Primordia.Mutations
         Harvest,         // Wiwaxia: una tanda de escleritos que alcanza a 3 da medio corazón verde
         CarrionArmor,    // Trilobite: tras comer restos, el siguiente proyectil se deshace en las placas
         DoubleServing,   // Hallucigenia: las púas que matan dejan restos dobles
+        // Piso 3
+        MudStalker,      // Eryops: cruza el lodo sin hundirse, +30 % de velocidad en él y 5 s después
+        CephalicSpine,   // Xenacanthus: los confundidos cuentan como heridos
+        GasSting,        // Pulmonoscorpius: el chorro envenena y vuelve tóxico el metano
+        HundredLegs,     // Ciempiés: charco de veneno al aterrizar e inmunidad al veneno
+        Tinder,          // Yesquero: la bola arde y deja fuego en vez de veneno
+        Zombie,          // Cordyceps: el confundido que muere es tu aliado
+        SpinningSucker,  // Lamprea: girando, los parásitos se duplican y el máximo sube a 6
+        LeechPool,       // Sanguijuela: los charcos pegan parásitos y la bola salta a los enemigos
     }
 
     /// <summary>

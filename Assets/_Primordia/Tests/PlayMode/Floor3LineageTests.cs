@@ -170,6 +170,110 @@ namespace Primordia.Tests
             StringAssert.DoesNotContain("arden", MutationText.ClassBenefit(LineageClass.Carnivore, 2).description);
         }
 
+        // ---------- Toques del piso 3 (tanda 1) ----------
+
+        [Test]
+        public void Xenacanthus_ConfusedEnemiesCountAsWounded()
+        {
+            Complete(LineageClass.Carnivore, LineageTouch.CephalicSpine);
+            var enemy = CreateEnemy(100);
+            var finisher = player.GetComponent<FinisherBenefit>();
+
+            Assert.IsFalse(finisher.IsWounded(enemy.Health));
+            enemy.GetComponent<EnemyAI>().IsConfused = true;
+            Assert.IsTrue(finisher.IsWounded(enemy.Health));
+        }
+
+        [Test]
+        public void Carnivore_WithoutTheTouch_ConfusedEnemiesAreNotWounded()
+        {
+            Complete(LineageClass.Carnivore);
+            var enemy = CreateEnemy(100);
+            enemy.GetComponent<EnemyAI>().IsConfused = true;
+
+            Assert.IsFalse(player.GetComponent<FinisherBenefit>().IsWounded(enemy.Health));
+        }
+
+        [Test]
+        public void Centipede_IsImmuneToAllPoisonAndToxicGas()
+        {
+            var enemy = CreateEnemy(100);
+            Assert.IsNotNull(Poison.Apply(enemy.Health, 1, 3));
+            Assert.IsFalse(PoisonImmune.Has(player.transform));
+
+            Complete(LineageClass.Venomous, LineageTouch.HundredLegs);
+
+            Assert.IsTrue(PoisonImmune.Has(player.transform));
+            Assert.IsNull(Poison.Apply(mutations.Health, 1, 3));
+            Assert.IsFalse(Parasite.Has(mutations.Health));
+            // Los enemigos siguen envenenándose con normalidad.
+            Assert.IsNotNull(Poison.Apply(CreateEnemy(100).Health, 1, 3));
+        }
+
+        [Test]
+        public void Centipede_LosingTheLineageRestoresPoison()
+        {
+            Complete(LineageClass.Venomous, LineageTouch.HundredLegs);
+            lineage.enabled = false;
+            Object.DestroyImmediate(player.GetComponent<CentipedeTouch>());
+
+            Assert.IsNotNull(Poison.Apply(mutations.Health, 1, 3));
+        }
+
+        [UnityTest]
+        public IEnumerator Lamprey_WhileSpinning_EachParasiteAttachesAnotherToTheNearestEnemy()
+        {
+            Complete(LineageClass.Parasite, LineageTouch.SpinningSucker);
+            var touch = player.GetComponent<LampreyTouch>();
+            Assert.IsNotNull(touch);
+            touch.forceSpinning = true;
+            var first = CreateEnemy(100, new Vector2(10, 0));
+            var near = CreateEnemy(100, new Vector2(11, 0));
+            var far = CreateEnemy(100, new Vector2(20, 0));
+
+            first.Health.TakeDamage(15);
+
+            Assert.IsTrue(Parasite.Has(first.Health));
+            Assert.IsTrue(Parasite.Has(near.Health));
+            Assert.IsFalse(Parasite.Has(far.Health));
+            Assert.AreEqual(1, touch.Duplicated);
+            // El segundo no se duplica a su vez.
+            Assert.AreEqual(2, Parasite.Alive);
+            yield return null;
+        }
+
+        [UnityTest]
+        public IEnumerator Lamprey_RaisesTheLimitToSixOnlyWhileSpinning()
+        {
+            Complete(LineageClass.Parasite, LineageTouch.SpinningSucker);
+            var touch = player.GetComponent<LampreyTouch>();
+
+            yield return null;
+            Assert.AreEqual(Parasite.DefaultLimit, Parasite.Limit);
+
+            touch.forceSpinning = true;
+            yield return null;
+            Assert.AreEqual(6, Parasite.Limit);
+
+            touch.forceSpinning = false;
+            yield return new WaitForSeconds(1.2f);
+            Assert.AreEqual(Parasite.DefaultLimit, Parasite.Limit);
+        }
+
+        [UnityTest]
+        public IEnumerator Lamprey_NotSpinning_DoesNotDuplicate()
+        {
+            Complete(LineageClass.Parasite, LineageTouch.SpinningSucker);
+            var first = CreateEnemy(100, new Vector2(10, 0));
+            var near = CreateEnemy(100, new Vector2(11, 0));
+
+            first.Health.TakeDamage(15);
+            yield return null;
+
+            Assert.AreEqual(1, Parasite.Alive);
+            Assert.IsFalse(Parasite.Has(near.Health));
+        }
+
         // ---------- Parásito: textos ----------
 
         [Test]

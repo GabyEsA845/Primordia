@@ -68,6 +68,14 @@ namespace Primordia.Mutations
         public GameObject parasiteDrainDrop;
         public GameObject parasiteHealEffect;
 
+        [Header("Toques del piso 3")]
+        [Tooltip("Cien patas (Ciempiés): segundos que dura el charco de veneno de cada aterrizaje.")]
+        [Min(0.5f)] public float centipedePuddleSeconds = 4f;
+        [Tooltip("Ventosa giratoria (Lamprea): máximo de parásitos mientras gira, y el parásito grande (marca y salto).")]
+        [Min(1)] public int lampreySpinLimit = 6;
+        public GameObject parasiteMarkerLamprey;
+        public GameObject parasiteLeapLamprey;
+
         [Header("Toques del piso 2")]
         [Tooltip("Festín (Placodermo): vida que cura rematar con un mordisco (1 = medio corazón) y cada cuánto como mucho.")]
         [Min(1)] public int feastHeal = 1;

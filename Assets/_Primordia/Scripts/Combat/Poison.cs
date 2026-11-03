@@ -28,12 +28,17 @@ namespace Primordia.Combat
         public float BurstRadius => burstRadius;
 
         public static Poison Apply(Health target, int damagePerSecond, float duration, GameObject effectPrefab = null) =>
-            Apply<Poison>(target, damagePerSecond, duration, effectPrefab);
+            Immune(target) ? null : Apply<Poison>(target, damagePerSecond, duration, effectPrefab);
+
+        /// <summary>True si el objetivo no sufre ningún veneno (el linaje Ciempiés).</summary>
+        static bool Immune(Health target) => target != null && target.TryGetComponent<IFullPoisonImmune>(out _);
 
         /// <summary>Veneno que, si el objetivo muere con él, estalla y contagia a los cercanos.</summary>
         public static Poison ApplyContagious(Health target, int damagePerSecond, float duration, GameObject effectPrefab,
             float burstRadius, GameObject burstEffect)
         {
+            if (Immune(target))
+                return null;
             var poison = Apply<Poison>(target, damagePerSecond, duration, effectPrefab);
             if (burstRadius > poison.burstRadius)
             {

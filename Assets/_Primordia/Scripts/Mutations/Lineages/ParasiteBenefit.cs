@@ -68,6 +68,18 @@ namespace Primordia.Mutations
         /// <summary>Máximo de parásitos vivos (la Lamprea lo sube a 6 al girar).</summary>
         public void SetLimit(int limit) => Parasite.Limit = Mathf.Max(1, limit);
 
+        /// <summary>Cambia el dibujo del parásito pegado y del salto (la Lamprea, más grande). Los ya pegados no cambian.</summary>
+        public void SetArt(GameObject newMarkerPrefab, GameObject newJumpEffect)
+        {
+            if (newMarkerPrefab != null)
+                markerPrefab = newMarkerPrefab;
+            if (newJumpEffect != null)
+                jumpEffect = newJumpEffect;
+        }
+
+        /// <summary>Pega un parásito a ese enemigo con los ajustes del linaje (null si no cabe o ya lo lleva).</summary>
+        public Parasite AttachTo(Health target) => Parasite.Attach(target, parasiteDamage, markerPrefab, jumpEffect);
+
         int Watch(Health target, int amount)
         {
             if (!handlers.ContainsKey(target) && target.TryGetComponent<Enemy>(out _))

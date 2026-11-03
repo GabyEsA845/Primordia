@@ -9,6 +9,14 @@ namespace Primordia.Combat
     }
 
     /// <summary>
+    /// Inmunidad a TODO el veneno (el Ciempiés): además del de las plantas, el de los ataques y las púas
+    /// (<see cref="Poison"/> no se aplica).
+    /// </summary>
+    public interface IFullPoisonImmune : IPoisonImmune
+    {
+    }
+
+    /// <summary>
     /// Comprueba si el jugador no sufre el veneno de las plantas (los charcos de los bulbos y la nube tóxica). Lo consulta
     /// <see cref="Primordia.Rooms.PlayerToxin"/>.
     /// </summary>

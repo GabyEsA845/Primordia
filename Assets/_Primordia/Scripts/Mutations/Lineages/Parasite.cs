@@ -42,6 +42,9 @@ namespace Primordia.Mutations
         /// <summary>Se lanza con la vida que ha quitado un parásito: (parásito, vida quitada).</summary>
         public static event Action<Parasite, int> Drained;
 
+        /// <summary>Se lanza al pegarse un parásito nuevo (no al saltar): la Lamprea pega otro a su lado.</summary>
+        public static event Action<Parasite> Attached;
+
         /// <summary>Se lanza cuando un parásito salta al morir su enemigo: (parásito nuevo, enemigo anterior).</summary>
         public static event Action<Parasite, Health> Jumped;
 
@@ -52,6 +55,7 @@ namespace Primordia.Mutations
             Limit = DefaultLimit;
             Ticking = false;
             Drained = null;
+            Attached = null;
             Jumped = null;
         }
 
@@ -77,6 +81,7 @@ namespace Primordia.Mutations
             target.Died += parasite.OnHostDied;
             // Pegado al cuerpo, no encima de la cabeza.
             StatusMarkers.Show(target, Key, marker, 0f, overhead: false);
+            Attached?.Invoke(parasite);
             return parasite;
         }
 
@@ -144,7 +149,8 @@ namespace Primordia.Mutations
         }
 
         // Cuenta ya como libre su sitio (Release) antes de buscar, así que el límite no lo bloquea.
-        static Health FindNextHost(Health from)
+        /// <summary>El enemigo vivo más cercano a ese que aún no lleva parásito (null si no hay).</summary>
+        public static Health FindNextHost(Health from)
         {
             Health best = null;
             float bestDistance = float.MaxValue;

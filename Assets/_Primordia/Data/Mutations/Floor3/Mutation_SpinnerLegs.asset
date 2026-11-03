@@ -15,7 +15,11 @@ MonoBehaviour:
   displayName: Patas hilanderas
   description: "La esquiva (4 u) tiende un hilo de 7 s entre donde empiezas y donde acabas: frena a los enemigos y da\xF1a 3 al que lo toca."
   slot: 1
-  lineages: []
+  lineages:
+  - {fileID: 11400000, guid: 1afdabdbc03bbdf4ea2af117cd4d09e7, type: 2}
+  - {fileID: 11400000, guid: 57c926db45f93734e94ca1c187727374, type: 2}
+  - {fileID: 11400000, guid: d485b77255db328418fcfea70680785e, type: 2}
+  - {fileID: 11400000, guid: 913c75ea476c24c4aa5df9ec177a3eed, type: 2}
   look: {fileID: 0}
   bodyRadius: 0
   mouthDistance: 0

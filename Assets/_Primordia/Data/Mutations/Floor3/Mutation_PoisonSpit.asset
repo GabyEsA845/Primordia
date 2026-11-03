@@ -15,7 +15,10 @@ MonoBehaviour:
   displayName: Escupitajo venenoso
   description: "Bola de veneno lenta (2 u/s) que atraviesa a los enemigos con 1 de da\xF1o y deja una banda de baba que frena y envenena y se seca a los 3 s. Estalla a los 4 s (se hincha y parpadea al final), al chocar con una pared o al disparar otra: 6 de da\xF1o en 1,5 u y un charco salpicado de 4 s. Una bola cada 2,8 s."
   slot: 0
-  lineages: []
+  lineages:
+  - {fileID: 11400000, guid: 25d78a2274e704e47b2f7f37aa460566, type: 2}
+  - {fileID: 11400000, guid: d485b77255db328418fcfea70680785e, type: 2}
+  - {fileID: 11400000, guid: a72d9608b2e1a924290084de01a3e40e, type: 2}
   look: {fileID: 0}
   bodyRadius: 0
   mouthDistance: 0

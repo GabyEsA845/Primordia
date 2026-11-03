@@ -26,6 +26,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: c86c30dab7b99fe44a3b9cae91269691, type: 3}
   largeIcon: {fileID: 21300000, guid: 4b37e6afb7177f14eb4d248eea5ab034, type: 3}
   color: {r: 0.55, g: 0.7, b: 0.9, a: 1}
+  summary: 
   levelDescriptions:
   - "8 de da\xF1o el proyectil y 4 el destello, que aturde 1,5 s."
   - 'Prisma: cada proyectil reflejado se divide en 3 en abanico.'
@@ -37,6 +38,7 @@ MonoBehaviour:
   creatureAttackFrames: []
   creatureBody: {fileID: 0}
   attackHitTime: 0
+  moveInertia: 1
   creatureLayers:
   - body: {fileID: 9100000, guid: feb82a28b3107fc4b986b41b1d879747, type: 2}
     layer: {fileID: 9100000, guid: 599f42139920a1343bf726756d844dd7, type: 2}
@@ -44,6 +46,7 @@ MonoBehaviour:
     layer: {fileID: 9100000, guid: 0fe16d9f0f0625e47b2b4e57ade6149a, type: 2}
   - body: {fileID: 9100000, guid: 4c5ea57aa6bffee4eb43b77aeb938993, type: 2}
     layer: {fileID: 9100000, guid: 45dcfaab758780d49834a3203b6dc071, type: 2}
+  morphPaths: []
   morphFrames: []
   revealFrames: []
   values:

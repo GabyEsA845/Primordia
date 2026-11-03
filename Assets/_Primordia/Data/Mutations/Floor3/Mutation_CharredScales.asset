@@ -15,7 +15,11 @@ MonoBehaviour:
   displayName: Escamas carbonizadas
   description: Inmune al fuego y a las explosiones de gas. Tras pisar fuego, tus ataques queman 4 s.
   slot: 2
-  lineages: []
+  lineages:
+  - {fileID: 11400000, guid: 25d78a2274e704e47b2f7f37aa460566, type: 2}
+  - {fileID: 11400000, guid: 913c75ea476c24c4aa5df9ec177a3eed, type: 2}
+  - {fileID: 11400000, guid: a72d9608b2e1a924290084de01a3e40e, type: 2}
+  - {fileID: 11400000, guid: 8445915ab5da60542b055d1988713fc7, type: 2}
   look: {fileID: 0}
   bodyRadius: 0
   mouthDistance: 0

@@ -30,6 +30,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 6cc0bddf6a2947948be317d862a6b93b, type: 3}
   largeIcon: {fileID: 21300000, guid: 24bac519e3852f347b6471b9e025ba38, type: 3}
   color: {r: 0.55, g: 0.9, b: 0.35, a: 1}
+  summary: 
   levelDescriptions:
   - Dura 4 s.
   - "Visi\xF3n total: mientras dura, tus ataques hacen un 30 % m\xE1s de da\xF1o."
@@ -41,7 +42,9 @@ MonoBehaviour:
   creatureAttackFrames: []
   creatureBody: {fileID: 0}
   attackHitTime: 0
+  moveInertia: 1
   creatureLayers: []
+  morphPaths: []
   morphFrames: []
   revealFrames: []
   cooldown: 12

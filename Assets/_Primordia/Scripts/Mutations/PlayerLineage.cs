@@ -152,6 +152,7 @@ namespace Primordia.Mutations
             var touch = lineage.Touch;
             // Las clases se remodelan en cada piso: el piso es el de las mutaciones del linaje.
             bool floor2 = lineage.Floor >= 2;
+            bool floor3 = lineage.Floor >= 3;
             switch (lineage.Class)
             {
                 case LineageClass.Carnivore:
@@ -159,6 +160,7 @@ namespace Primordia.Mutations
                     finisher.Configure(mutations.Controller, b.woundedThreshold, b.finisherMultiplier,
                         b.bossFinisherMultiplier, touch == LineageTouch.BlindPrey, touch == LineageTouch.BloodInTheWater, b.finishEffect);
                     finisher.SetStunnedCount(floor2);
+                    finisher.SetBurningCount(floor3);
                     break;
 
                 case LineageClass.Herbivore:
@@ -167,12 +169,20 @@ namespace Primordia.Mutations
                     break;
 
                 case LineageClass.Venomous:
-                    Add<ToxinBenefit>().Configure(b.toxinMultiplier, floor2 ? b.toxinSlowFactor : 1f);
+                    var toxin = Add<ToxinBenefit>();
+                    toxin.Configure(b.toxinMultiplier, floor2 ? b.toxinSlowFactor : 1f);
+                    toxin.SetPuddle(floor3 ? b.toxinPuddleSeconds : 0f);
                     break;
 
                 case LineageClass.Scavenger:
                     Add<CarrionBenefit>().Configure(b.remainsPrefab, b.remainsDuration, b.carrionBonusPerStack, b.carrionDuration,
                         b.carrionMaxStacks, b.eatEffect, b.carrionMarkers);
+                    break;
+
+                case LineageClass.Parasite:
+                    Add<ParasiteBenefit>().Configure(mutations.Health, b.parasiteDamageNeeded, b.parasiteDamagePerSecond,
+                        b.parasiteDrainPerHeal, b.parasiteBossDrainPerHeal, b.parasiteLimit, b.parasiteHealEffect,
+                        b.parasiteMarker, b.parasiteJumpEffect, b.parasiteDrainDrop);
                     break;
 
                 case LineageClass.Fungal:
@@ -185,7 +195,9 @@ namespace Primordia.Mutations
                         slowFactor = b.matSlowFactor,
                         radius = b.matRadius * (big ? b.largeMatScale : 1f),
                     };
-                    Add<ColonyBenefit>().Configure(big ? b.largeMatPrefab : b.matPrefab, mat, big ? b.largeMatCount : b.matCount);
+                    var colony = Add<ColonyBenefit>();
+                    colony.Configure(big ? b.largeMatPrefab : b.matPrefab, mat, big ? b.largeMatCount : b.matCount);
+                    colony.SetSprouting(floor3 ? b.matSproutLimit : 0);
                     break;
             }
 

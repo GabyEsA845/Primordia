@@ -15,7 +15,11 @@ MonoBehaviour:
   displayName: Piel anfibia
   description: 'De pie en agua, lodo o charcos se carga un moco (3 s): cargado, eres inmune al fuego, al gas y al veneno de las plantas hasta que un golpe lo rompe. Funciona sin Escupitajo.'
   slot: 2
-  lineages: []
+  lineages:
+  - {fileID: 11400000, guid: 1afdabdbc03bbdf4ea2af117cd4d09e7, type: 2}
+  - {fileID: 11400000, guid: 6badadfe6c6600f44959c103b47c6fed, type: 2}
+  - {fileID: 11400000, guid: 57c926db45f93734e94ca1c187727374, type: 2}
+  - {fileID: 11400000, guid: d485b77255db328418fcfea70680785e, type: 2}
   look: {fileID: 0}
   bodyRadius: 0
   mouthDistance: 0

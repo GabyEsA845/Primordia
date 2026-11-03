@@ -15,7 +15,11 @@ MonoBehaviour:
   displayName: Saco de metano
   description: "Clic derecho: sueltas una nube de gas que deriva hacia donde apuntas durante 8 s y explota con cualquier ataque tuyo (6 de da\xF1o, no te da\xF1a a ti). Recarga de 10 s. Con el saco, ninguna explosi\xF3n de gas te da\xF1a."
   slot: 3
-  lineages: []
+  lineages:
+  - {fileID: 11400000, guid: 6badadfe6c6600f44959c103b47c6fed, type: 2}
+  - {fileID: 11400000, guid: d485b77255db328418fcfea70680785e, type: 2}
+  - {fileID: 11400000, guid: 913c75ea476c24c4aa5df9ec177a3eed, type: 2}
+  - {fileID: 11400000, guid: a72d9608b2e1a924290084de01a3e40e, type: 2}
   look: {fileID: 0}
   bodyRadius: 0
   mouthDistance: 0

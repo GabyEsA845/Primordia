@@ -15,7 +15,11 @@ MonoBehaviour:
   displayName: Feromonas
   description: "Clic derecho: lanzas un velo de feromonas hasta 5 u hacia el cursor; los enemigos en radio 2 se atacan entre s\xED durante 3 s. Los jefes no se confunden. Recarga de 14 s."
   slot: 3
-  lineages: []
+  lineages:
+  - {fileID: 11400000, guid: 25d78a2274e704e47b2f7f37aa460566, type: 2}
+  - {fileID: 11400000, guid: 1afdabdbc03bbdf4ea2af117cd4d09e7, type: 2}
+  - {fileID: 11400000, guid: 57c926db45f93734e94ca1c187727374, type: 2}
+  - {fileID: 11400000, guid: 8445915ab5da60542b055d1988713fc7, type: 2}
   look: {fileID: 0}
   bodyRadius: 0
   mouthDistance: 0

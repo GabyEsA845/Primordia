@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Primordia.Audio;
+using Primordia.Enemies;
 using Primordia.Rooms;
 using UnityEngine;
 
@@ -18,6 +19,7 @@ namespace Primordia.Mutations
         MyceliumPatch matPrefab;
         MyceliumPatch.Settings settings;
         int count;
+        int sproutLimit;
         Room[] rooms = System.Array.Empty<Room>();
         Room pendingRoom;
         readonly List<MyceliumPatch> mats = new();
@@ -43,6 +45,49 @@ namespace Primordia.Mutations
             }
         }
 
+        /// <summary>
+        /// Piso 3: un enemigo que muere sobre una mata hace brotar otra junto a él, hasta ese máximo de matas en la sala
+        /// (0 = sin brotes, como en el piso 1).
+        /// </summary>
+        public void SetSprouting(int maxMats)
+        {
+            Enemy.AnyDied -= OnEnemyDied;
+            sproutLimit = Mathf.Max(0, maxMats);
+            if (sproutLimit > 0)
+                Enemy.AnyDied += OnEnemyDied;
+        }
+
+        void OnEnemyDied(Enemy enemy)
+        {
+            if (enemy == null || enemy.FellIntoPit || mats.Count >= sproutLimit)
+                return;
+
+            Vector2 corpse = enemy.transform.position;
+            bool onMat = false;
+            foreach (var mat in mats)
+            {
+                if (mat != null && ((Vector2)mat.transform.position - corpse).sqrMagnitude <= settings.radius * settings.radius)
+                {
+                    onMat = true;
+                    break;
+                }
+            }
+            if (!onMat)
+                return;
+
+            // La nueva sale a un lado, sin pisar a las otras ni las paredes.
+            float spacing = settings.radius * 2f;
+            for (int attempt = 0; attempt < Attempts; attempt++)
+            {
+                var point = corpse + Random.insideUnitCircle.normalized * Random.Range(spacing, spacing * 1.6f);
+                if (!IsFree(point, spacing))
+                    continue;
+                Sfx.Play(Sounds.LineageColonize);
+                Spawn(point);
+                return;
+            }
+        }
+
         // Al entrar todavía no se sabe si la sala tiene enemigos: se mira después.
         void OnRoomEntered(Room room) => pendingRoom = room;
 
@@ -64,11 +109,14 @@ namespace Primordia.Mutations
         }
 
         /// <summary>Hace brotar las matas en esa sala.</summary>
-        public void Colonize(Room room)
+        public void Colonize(Room room) =>
+            Colonize(room.TryGetComponent<Collider2D>(out var area) ? area.bounds : new Bounds(room.transform.position, Vector3.one * 8f));
+
+        /// <summary>Hace brotar las matas por esa zona (las pruebas, sin sala).</summary>
+        public void Colonize(Bounds bounds)
         {
             ClearMats();
             Sfx.Play(Sounds.LineageColonize);
-            var bounds = room.TryGetComponent<Collider2D>(out var area) ? area.bounds : new Bounds(room.transform.position, Vector3.one * 8f);
             float spacing = settings.radius * 2f;
 
             for (int i = 0; i < count; i++)
@@ -141,6 +189,7 @@ namespace Primordia.Mutations
 
         void OnDestroy()
         {
+            Enemy.AnyDied -= OnEnemyDied;
             Unsubscribe();
             ClearMats();
         }

@@ -15,7 +15,9 @@ MonoBehaviour:
   displayName: Peonza
   description: "Mant\xE9n el bot\xF3n para girar como una peonza: golpea a los enemigos cercanos (2 de da\xF1o cada 0,25 s en 1,3 u) y los empuja, pero te mueves un 35 % m\xE1s lento. Aguanta 3 s y despu\xE9s te mareas 1 s, sin poder moverte ni atacar."
   slot: 0
-  lineages: []
+  lineages:
+  - {fileID: 11400000, guid: 6badadfe6c6600f44959c103b47c6fed, type: 2}
+  - {fileID: 11400000, guid: 57c926db45f93734e94ca1c187727374, type: 2}
   look: {fileID: 0}
   bodyRadius: 0
   mouthDistance: 0

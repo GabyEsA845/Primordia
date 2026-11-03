@@ -28,6 +28,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 047dc5f67833af54b861ab2f3dce47aa, type: 3}
   largeIcon: {fileID: 21300000, guid: e7b5841a65b99194b9afa86dc6e5fbd5, type: 3}
   color: {r: 0.55, g: 0.9, b: 0.35, a: 1}
+  summary: 
   levelDescriptions:
   - "Nube m\xE1s grande (radio 4) y recarga de 6 s."
   - 'Tinta corrosiva: los enemigos dentro de la nube pierden 1 de vida por segundo.'
@@ -39,7 +40,9 @@ MonoBehaviour:
   creatureAttackFrames: []
   creatureBody: {fileID: 0}
   attackHitTime: 0
+  moveInertia: 1
   creatureLayers: []
+  morphPaths: []
   morphFrames: []
   revealFrames: []
   cooldown: 8

@@ -109,6 +109,7 @@ namespace Primordia.Mutations
             LineageClass.Venomous => "Venenoso",
             LineageClass.Fungal => "Hongo",
             LineageClass.Scavenger => "Carroñero",
+            LineageClass.Parasite => "Parásito",
             _ => lineageClass.ToString()
         };
 
@@ -123,6 +124,7 @@ namespace Primordia.Mutations
             LineageClass.Venomous => new Color(0.8f, 0.6f, 0.95f),
             LineageClass.Fungal => new Color(0.95f, 0.75f, 0.4f),
             LineageClass.Scavenger => new Color(0.78f, 0.64f, 0.42f),
+            LineageClass.Parasite => new Color(0.82f, 0.29f, 0.38f), // granate #d04a62
             _ => Color.white
         };
 
@@ -135,7 +137,17 @@ namespace Primordia.Mutations
 
         /// <summary>Beneficio común de cada clase de linaje en ese piso: nombre y lo que hace.</summary>
         public static (string name, string description) ClassBenefit(LineageClass lineageClass, int floor = 1) =>
+            floor >= 3 ? ClassBenefitFloor3(lineageClass) :
             floor >= 2 ? ClassBenefitFloor2(lineageClass) : ClassBenefitFloor1(lineageClass);
+
+        static (string name, string description) ClassBenefitFloor3(LineageClass lineageClass) => lineageClass switch
+        {
+            LineageClass.Carnivore => ("Rematar", "+100 % de daño a los heridos (+50 % al jefe). Los aturdidos, los quebrados y los que arden cuentan como heridos."),
+            LineageClass.Venomous => ("Toxina", "Los enemigos envenenados reciben +50 % de daño y van un 20 % más lentos. Si uno muere envenenado, deja un charco de veneno."),
+            LineageClass.Fungal => ("Colonizar", "En cada combate brotan matas de hongo que frenan y dañan. Un enemigo que muere sobre una mata hace brotar otra (hasta 6)."),
+            LineageClass.Parasite => ("Chupar", "Cada 15 de daño a un enemigo le pega un parásito que le quita 1 por segundo. Cada 15 de vida chupada, medio corazón (30 con un jefe). Salta a otro al morir; 3 como máximo."),
+            _ => ClassBenefitFloor2(lineageClass)
+        };
 
         static (string name, string description) ClassBenefitFloor2(LineageClass lineageClass) => lineageClass switch
         {

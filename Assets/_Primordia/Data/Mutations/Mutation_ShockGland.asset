@@ -28,6 +28,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: d809792cefdd9fc4daa6672fb3acbfcc, type: 3}
   largeIcon: {fileID: 21300000, guid: 1ccf462038905d54e843b0dc43c8c167, type: 3}
   color: {r: 0.55, g: 0.9, b: 0.35, a: 1}
+  summary: 
   levelDescriptions:
   - "Onda mucho m\xE1s grande (radio 6) y recarga de 4,5 s."
   - 'Paralizante: los enemigos que alcanza la onda quedan paralizados 2 s.'
@@ -39,7 +40,9 @@ MonoBehaviour:
   creatureAttackFrames: []
   creatureBody: {fileID: 0}
   attackHitTime: 0
+  moveInertia: 1
   creatureLayers: []
+  morphPaths: []
   morphFrames: []
   revealFrames: []
   cooldown: 6

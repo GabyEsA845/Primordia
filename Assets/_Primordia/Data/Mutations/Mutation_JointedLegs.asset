@@ -28,6 +28,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 9d847d4f4af4eae47a600fb8cd0b1f5a, type: 3}
   largeIcon: {fileID: 21300000, guid: a4d4f3f414d799640b982b1e64ce210a, type: 3}
   color: {r: 0.66, g: 0.35, b: 0.82, a: 1}
+  summary: 
   levelDescriptions:
   - "El empuj\xF3n aturde 1 s y hace 2 de da\xF1o."
   - "Pisot\xF3n: al terminar cada esquiva, aturdes a todos los enemigos cercanos."
@@ -39,7 +40,9 @@ MonoBehaviour:
   creatureAttackFrames: []
   creatureBody: {fileID: 0}
   attackHitTime: 0
+  moveInertia: 1
   creatureLayers: []
+  morphPaths: []
   morphFrames: []
   revealFrames: []
   pushSpeed: 12

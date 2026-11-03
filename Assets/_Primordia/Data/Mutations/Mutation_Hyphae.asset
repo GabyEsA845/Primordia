@@ -28,6 +28,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 8a674eca796ed994b81e24e7c7148e1f, type: 3}
   largeIcon: {fileID: 21300000, guid: f6b6ec884736a1d468b8293f20b4092d, type: 3}
   color: {r: 0.66, g: 0.35, b: 0.82, a: 1}
+  summary: 
   levelDescriptions:
   - El micelio dura 4,5 s y quita 2 de vida por segundo.
   - 'Red micelial: los enemigos que mueren sobre el micelio sueltan una nube de esporas que envenena a los cercanos.'
@@ -39,7 +40,9 @@ MonoBehaviour:
   creatureAttackFrames: []
   creatureBody: {fileID: 0}
   attackHitTime: 0
+  moveInertia: 1
   creatureLayers: []
+  morphPaths: []
   morphFrames: []
   revealFrames: []
   patchPrefab: {fileID: 6801238614155818512, guid: dca366fc2035a67478e6696b045165d6, type: 3}

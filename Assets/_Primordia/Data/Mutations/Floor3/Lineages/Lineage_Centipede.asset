@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec9caba99e4f72f41b76a80ba442218f, type: 3}
+  m_Name: Lineage_Centipede
+  m_EditorClassIdentifier: Primordia::Primordia.Mutations.LineageData
+  displayName: "Ciempi\xE9s"
+  lineageClass: 2
+  mutations:
+  - {fileID: 11400000, guid: d24033605a2f5f848a612c7459aaa83f, type: 2}
+  - {fileID: 11400000, guid: 86419e7347de9a54da806ef91794dbe1, type: 2}
+  - {fileID: 11400000, guid: 54e2afef19f14ec4cbaa4a45476e667f, type: 2}
+  - {fileID: 11400000, guid: 3f4475762927a0647a2485773dc2e8aa, type: 2}
+  touch: 0
+  touchName: 
+  benefit: 
+  mouthLook: {fileID: 0}
+  mouthMuzzleDistance: 0
+  limbsLook: {fileID: 0}
+  evolutionEffect: {fileID: 8417171421689643901, guid: b099ac406df78244c9b0adc47e68b27e, type: 3}

@@ -9,7 +9,8 @@ namespace Primordia.Mutations
         Herbivore,
         Venomous,
         Fungal,
-        Scavenger // Carroñero (piso 2)
+        Scavenger, // Carroñero (piso 2)
+        Parasite   // Parásito (piso 3)
     }
 
     /// <summary>

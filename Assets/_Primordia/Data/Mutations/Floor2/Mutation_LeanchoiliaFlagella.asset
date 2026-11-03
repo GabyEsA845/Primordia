@@ -26,6 +26,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 37ed9b98d624e0d40a7d48973bfa9333, type: 3}
   largeIcon: {fileID: 21300000, guid: 8d51bc75a0cc6fb468d71a90d34a5748, type: 3}
   color: {r: 0.66, g: 0.35, b: 0.82, a: 1}
+  summary: 
   levelDescriptions:
   - "Uno cada 2,5 s y un 25 % m\xE1s de da\xF1o."
   - "Latigazo en cadena: el latigazo salta a los 2 enemigos m\xE1s cercanos con el mismo da\xF1o."
@@ -37,7 +38,9 @@ MonoBehaviour:
   creatureAttackFrames: []
   creatureBody: {fileID: 0}
   attackHitTime: 0
+  moveInertia: 1
   creatureLayers: []
+  morphPaths: []
   morphFrames: []
   revealFrames: []
   values:

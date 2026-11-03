@@ -2,6 +2,7 @@ using System;
 using Primordia.Combat;
 using Primordia.Core;
 using Primordia.Enemies;
+using Primordia.Rooms;
 using UnityEngine;
 
 namespace Primordia.Mutations
@@ -19,6 +20,7 @@ namespace Primordia.Mutations
         float multiplier = 1.5f;
         float slowFactor = 1f;
         float nextSlow;
+        float puddleSeconds;
         Func<Health, int, int> modifier;
 
         public float SlowFactor => slowFactor;
@@ -32,6 +34,23 @@ namespace Primordia.Mutations
                 modifier = Modify;
                 Health.AddDamageModifier(modifier);
             }
+        }
+
+        /// <summary>Piso 3: el enemigo que muere envenenado deja un charco de veneno (que arde en nube tóxica si prende fuego).</summary>
+        public void SetPuddle(float seconds)
+        {
+            Enemy.AnyDied -= OnEnemyDied;
+            puddleSeconds = seconds;
+            if (seconds > 0f)
+                Enemy.AnyDied += OnEnemyDied;
+        }
+
+        void OnEnemyDied(Enemy enemy)
+        {
+            // El veneno sigue puesto en el golpe que lo mata. Los que caen a una fosa no dejan nada.
+            if (enemy == null || enemy.FellIntoPit || !enemy.TryGetComponent<Poison>(out _))
+                return;
+            PoisonPuddle.Spawn(enemy.transform.position, puddleSeconds, harmsPlayer: false);
         }
 
         int Modify(Health target, int amount) =>
@@ -53,6 +72,7 @@ namespace Primordia.Mutations
 
         void OnDestroy()
         {
+            Enemy.AnyDied -= OnEnemyDied;
             if (modifier != null)
                 Health.RemoveDamageModifier(modifier);
         }

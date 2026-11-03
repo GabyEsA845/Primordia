@@ -28,6 +28,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 8528ad1b9360ea34e960b23a7c3d5f85, type: 3}
   largeIcon: {fileID: 21300000, guid: bf9005ec2861fa4428fae56e5eda249c, type: 3}
   color: {r: 0.55, g: 0.7, b: 0.9, a: 1}
+  summary: 
   levelDescriptions:
   - "+2 corazones en total y solo \u22125 % de velocidad."
   - 'Placas: anulan el primer golpe que recibes en cada sala.'
@@ -39,7 +40,9 @@ MonoBehaviour:
   creatureAttackFrames: []
   creatureBody: {fileID: 0}
   attackHitTime: 0
+  moveInertia: 1
   creatureLayers: []
+  morphPaths: []
   morphFrames: []
   revealFrames: []
   moveSpeedMultiplier: 0.9

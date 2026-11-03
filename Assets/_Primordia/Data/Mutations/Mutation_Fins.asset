@@ -29,6 +29,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 626d99b2c5ecf8342a67a738a928bf8d, type: 3}
   largeIcon: {fileID: 21300000, guid: b1375a22d7e85974e89d0e36c7ab1097, type: 3}
   color: {r: 0.66, g: 0.35, b: 0.82, a: 1}
+  summary: 
   levelDescriptions:
   - "+45 % de velocidad y esquivas m\xE1s seguidas (\u221225 % de espera)."
   - "Emboscada: tras esquivar, haces un 50 % m\xE1s de da\xF1o durante 1,5 s."
@@ -42,6 +43,7 @@ MonoBehaviour:
   attackHitTime: 0
   moveInertia: 1
   creatureLayers: []
+  morphPaths: []
   morphFrames: []
   revealFrames: []
   moveSpeedMultiplier: 1.3

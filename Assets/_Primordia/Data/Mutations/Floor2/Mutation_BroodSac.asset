@@ -30,6 +30,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: db7c2b281b2ddd54580b9fb00fdaec7a, type: 3}
   largeIcon: {fileID: 21300000, guid: 4a0fe474315934a4a8102a557c03cb79, type: 3}
   color: {r: 0.55, g: 0.9, b: 0.35, a: 1}
+  summary: 
   levelDescriptions:
   - 3 larvas (8 s).
   - "Enjambre: la larva que mata a un enemigo se divide en dos (tambi\xE9n 8 s)."
@@ -41,7 +42,9 @@ MonoBehaviour:
   creatureAttackFrames: []
   creatureBody: {fileID: 0}
   attackHitTime: 0
+  moveInertia: 1
   creatureLayers: []
+  morphPaths: []
   morphFrames: []
   revealFrames: []
   cooldown: 14

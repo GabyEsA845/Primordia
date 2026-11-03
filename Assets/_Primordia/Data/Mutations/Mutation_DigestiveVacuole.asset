@@ -29,6 +29,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 833743cf76cb91649999277ecb983dc9, type: 3}
   largeIcon: {fileID: 21300000, guid: a0d2615175d5bd94096a108e6d825281, type: 3}
   color: {r: 0.55, g: 0.9, b: 0.35, a: 1}
+  summary: 
   levelDescriptions:
   - Se recarga cada 3 muertes.
   - "Digesti\xF3n completa: cura un coraz\xF3n entero (sigue recarg\xE1ndose cada 3 muertes)."
@@ -40,7 +41,9 @@ MonoBehaviour:
   creatureAttackFrames: []
   creatureBody: {fileID: 0}
   attackHitTime: 0
+  moveInertia: 1
   creatureLayers: []
+  morphPaths: []
   morphFrames: []
   revealFrames: []
   cooldown: 0.5

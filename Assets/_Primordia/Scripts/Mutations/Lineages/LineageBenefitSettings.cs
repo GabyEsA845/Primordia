@@ -46,6 +46,28 @@ namespace Primordia.Mutations
         [Tooltip("Marca sobre el jugador con 1, 2 y 3 colmillos.")]
         public GameObject[] carrionMarkers = new GameObject[3];
 
+        [Header("Piso 3: clases remodeladas")]
+        [Tooltip("Toxina en el piso 3: segundos que dura el charco que deja el envenenado al morir.")]
+        [Min(0.5f)] public float toxinPuddleSeconds = 6f;
+        [Tooltip("Colonizar en el piso 3: máximo de matas en la sala cuando brotan otras al morir un enemigo encima.")]
+        [Min(1)] public int matSproutLimit = 6;
+
+        [Header("Parásito: Chupar (piso 3)")]
+        [Tooltip("Daño a un enemigo para pegarle un parásito.")]
+        [Min(1)] public int parasiteDamageNeeded = 15;
+        [Tooltip("Vida que quita el parásito cada segundo.")]
+        [Min(1)] public int parasiteDamagePerSecond = 1;
+        [Tooltip("Vida chupada por cada medio corazón que cura, y con un jefe.")]
+        [Min(1)] public int parasiteDrainPerHeal = 15;
+        [Min(1)] public int parasiteBossDrainPerHeal = 30;
+        [Tooltip("Parásitos vivos a la vez, entre todos los enemigos.")]
+        [Min(1)] public int parasiteLimit = 3;
+        [Tooltip("Marca sobre el enemigo que lleva un parásito, efecto del salto a otro, gota de vida que sube al jugador con cada tic y efecto de curar.")]
+        public GameObject parasiteMarker;
+        public GameObject parasiteJumpEffect;
+        public GameObject parasiteDrainDrop;
+        public GameObject parasiteHealEffect;
+
         [Header("Toques del piso 2")]
         [Tooltip("Festín (Placodermo): vida que cura rematar con un mordisco (1 = medio corazón) y cada cuánto como mucho.")]
         [Min(1)] public int feastHeal = 1;

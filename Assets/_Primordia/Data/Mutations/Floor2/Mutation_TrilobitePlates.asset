@@ -30,6 +30,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 45f9084465995b64bb27488f3d621c87, type: 3}
   largeIcon: {fileID: 21300000, guid: a1d3a9f04b034ef47be51549ca032549, type: 3}
   color: {r: 0.55, g: 0.7, b: 0.9, a: 1}
+  summary: 
   levelDescriptions:
   - Se deshace 1 de cada 3.
   - 'Enrollarse: te enrollas al esquivar y destruyes los proyectiles contra los que esquivas.'
@@ -41,6 +42,7 @@ MonoBehaviour:
   creatureAttackFrames: []
   creatureBody: {fileID: 0}
   attackHitTime: 0
+  moveInertia: 1
   creatureLayers:
   - body: {fileID: 9100000, guid: feb82a28b3107fc4b986b41b1d879747, type: 2}
     layer: {fileID: 9100000, guid: 4c343ab67e0096943b3e2c676be025ad, type: 2}
@@ -48,6 +50,7 @@ MonoBehaviour:
     layer: {fileID: 9100000, guid: 30a2a701c77c6c743afdc3594c0e2103, type: 2}
   - body: {fileID: 9100000, guid: 4c5ea57aa6bffee4eb43b77aeb938993, type: 2}
     layer: {fileID: 9100000, guid: 9a4d700163f01da4ab7611040294a8fc, type: 2}
+  morphPaths: []
   morphFrames: []
   revealFrames: []
   healthBonus: 2

@@ -21,6 +21,7 @@ namespace Primordia.Mutations
         float bossMultiplier = 1.5f;
         bool blindCounts;
         bool stunnedCount;
+        bool burningCounts;
         bool dodgeOnFinish;
         GameObject finishEffect;
         PlayerController controller;
@@ -51,6 +52,9 @@ namespace Primordia.Mutations
         /// <summary>Piso 2: los aturdidos y los que tienen Quebrar también cuentan como heridos.</summary>
         public void SetStunnedCount(bool value) => stunnedCount = value;
 
+        /// <summary>Piso 3: los enemigos que arden también cuentan como heridos.</summary>
+        public void SetBurningCount(bool value) => burningCounts = value;
+
         /// <summary>True si ese objetivo cuenta como herido.</summary>
         public bool IsWounded(Health target)
         {
@@ -58,6 +62,8 @@ namespace Primordia.Mutations
                 return true;
             bool hasAI = target.TryGetComponent<EnemyAI>(out var ai);
             if (blindCounts && hasAI && ai.IsBlind)
+                return true;
+            if (burningCounts && target.TryGetComponent<Burn>(out _))
                 return true;
             if (!stunnedCount)
                 return false;

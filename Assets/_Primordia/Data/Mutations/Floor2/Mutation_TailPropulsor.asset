@@ -30,6 +30,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: f0e01761ccd4c0a4198db44fcab09ec9, type: 3}
   largeIcon: {fileID: 21300000, guid: 05ed99ec0051b0d4eab5902b72f8b194, type: 3}
   color: {r: 0.66, g: 0.35, b: 0.82, a: 1}
+  summary: 
   levelDescriptions:
   - "La segunda esquiva deja 3 burbujas que hacen 2 de da\xF1o y empujan."
   - "Torbellino: las dos esquivas dejan 5 burbujas de 3 de da\xF1o."
@@ -49,6 +50,7 @@ MonoBehaviour:
     layer: {fileID: 9100000, guid: d2d79a226b899564485dcce19f43abf6, type: 2}
   - body: {fileID: 9100000, guid: 4c5ea57aa6bffee4eb43b77aeb938993, type: 2}
     layer: {fileID: 9100000, guid: c48edb56a25f2ec41b33c77369308ea5, type: 2}
+  morphPaths: []
   morphFrames: []
   revealFrames: []
   extraDodges: 1

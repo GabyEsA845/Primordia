@@ -30,6 +30,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 0210d17b85c62904b9a270ac33f84ddc, type: 3}
   largeIcon: {fileID: 21300000, guid: f834500df2e67f34aae14c75317b4520, type: 3}
   color: {r: 0.66, g: 0.35, b: 0.82, a: 1}
+  summary: 
   levelDescriptions:
   - "3 p\xFAas que duran 6 s."
   - "Erizo: al desaparecer, cada p\xFAa sale disparada hacia el enemigo m\xE1s cercano."
@@ -41,6 +42,7 @@ MonoBehaviour:
   creatureAttackFrames: []
   creatureBody: {fileID: 0}
   attackHitTime: 0
+  moveInertia: 1
   creatureLayers:
   - body: {fileID: 9100000, guid: feb82a28b3107fc4b986b41b1d879747, type: 2}
     layer: {fileID: 9100000, guid: 981b4e82f6f42334aa7ddddf9dc22bb8, type: 2}
@@ -48,6 +50,7 @@ MonoBehaviour:
     layer: {fileID: 9100000, guid: 8f3d82e708cbf3e4d9113072681e2574, type: 2}
   - body: {fileID: 9100000, guid: 4c5ea57aa6bffee4eb43b77aeb938993, type: 2}
     layer: {fileID: 9100000, guid: 4b1ea96152d2c864db205931937ac881, type: 2}
+  morphPaths: []
   morphFrames: []
   revealFrames: []
   counts: 020000000300000003000000i

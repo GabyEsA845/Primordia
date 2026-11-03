@@ -15,7 +15,10 @@ MonoBehaviour:
   displayName: Chorro de vinagre
   description: "Mant\xE9n el bot\xF3n para echar un chorro de vinagre de 5 u desde la cola, que sigue al cursor (180\xB0/s) y hace 1 de da\xF1o cada 0,15 s al primer enemigo que toca. La barra dura 3 s y se rellena en 2 s al soltar; si se vac\xEDa, no puedes usarlo hasta que se llene (3 s)."
   slot: 0
-  lineages: []
+  lineages:
+  - {fileID: 11400000, guid: 1afdabdbc03bbdf4ea2af117cd4d09e7, type: 2}
+  - {fileID: 11400000, guid: 913c75ea476c24c4aa5df9ec177a3eed, type: 2}
+  - {fileID: 11400000, guid: 8445915ab5da60542b055d1988713fc7, type: 2}
   look: {fileID: 0}
   bodyRadius: 0
   mouthDistance: 0

@@ -15,7 +15,11 @@ MonoBehaviour:
   displayName: Patas de salto
   description: "La esquiva es un salto alto de 4 u: en el aire eres invulnerable y pasas por encima de enemigos, proyectiles, lodo, charcos y obst\xE1culos bajos. Al caer esparces los charcos de veneno."
   slot: 1
-  lineages: []
+  lineages:
+  - {fileID: 11400000, guid: 25d78a2274e704e47b2f7f37aa460566, type: 2}
+  - {fileID: 11400000, guid: 6badadfe6c6600f44959c103b47c6fed, type: 2}
+  - {fileID: 11400000, guid: a72d9608b2e1a924290084de01a3e40e, type: 2}
+  - {fileID: 11400000, guid: 8445915ab5da60542b055d1988713fc7, type: 2}
   look: {fileID: 0}
   bodyRadius: 0
   mouthDistance: 0

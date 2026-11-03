@@ -26,6 +26,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: a13ee2b77a0fc7f419b0257af9d347c8, type: 3}
   largeIcon: {fileID: 21300000, guid: b928f3694749e634686a9e816f245c3f, type: 3}
   color: {r: 0.55, g: 0.9, b: 0.35, a: 1}
+  summary: 
   levelDescriptions:
   - "Dura 7 s y hace el 65 % de tu da\xF1o."
   - "Gemaci\xF3n: brotan dos copias."
@@ -37,7 +38,9 @@ MonoBehaviour:
   creatureAttackFrames: []
   creatureBody: {fileID: 0}
   attackHitTime: 0
+  moveInertia: 1
   creatureLayers: []
+  morphPaths: []
   morphFrames: []
   revealFrames: []
   cooldown: 15

@@ -28,6 +28,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 814fa29f7a3de5b438ea49cb74c6913f, type: 3}
   largeIcon: {fileID: 21300000, guid: 4a5c61cee97089043b4b95751daf5ca6, type: 3}
   color: {r: 0.55, g: 0.7, b: 0.9, a: 1}
+  summary: 
   levelDescriptions:
   - "3 de da\xF1o al tocarte, y adem\xE1s envenena."
   - "Erizo: al recibir un golpe, disparas 8 p\xFAas venenosas en c\xEDrculo."
@@ -39,7 +40,9 @@ MonoBehaviour:
   creatureAttackFrames: []
   creatureBody: {fileID: 0}
   attackHitTime: 0
+  moveInertia: 1
   creatureLayers: []
+  morphPaths: []
   morphFrames: []
   revealFrames: []
   damage: 2

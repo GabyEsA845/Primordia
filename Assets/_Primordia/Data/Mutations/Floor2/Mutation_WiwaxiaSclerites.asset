@@ -30,6 +30,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 1340c73b1d5509a4199d10fe5d66a207, type: 3}
   largeIcon: {fileID: 21300000, guid: 6a04498e31fb1c24dac1de884c47f081, type: 3}
   color: {r: 0.55, g: 0.7, b: 0.9, a: 1}
+  summary: 
   levelDescriptions:
   - Cada 7 s, 5 escamas.
   - "\xD3rbita: antes de salir disparadas, las escamas giran 2 s a tu alrededor y destruyen los proyectiles enemigos que tocan."
@@ -41,6 +42,7 @@ MonoBehaviour:
   creatureAttackFrames: []
   creatureBody: {fileID: 0}
   attackHitTime: 0
+  moveInertia: 1
   creatureLayers:
   - body: {fileID: 9100000, guid: feb82a28b3107fc4b986b41b1d879747, type: 2}
     layer: {fileID: 9100000, guid: b8b6aa8cb0ed2c34ba7c5be49befd112, type: 2}
@@ -48,6 +50,7 @@ MonoBehaviour:
     layer: {fileID: 9100000, guid: 635f1f934d89b734096d99549eeccffb, type: 2}
   - body: {fileID: 9100000, guid: 4c5ea57aa6bffee4eb43b77aeb938993, type: 2}
     layer: {fileID: 9100000, guid: 81f8988398e644b4d9e888fdc2649ebc, type: 2}
+  morphPaths: []
   morphFrames: []
   revealFrames: []
   intervals:

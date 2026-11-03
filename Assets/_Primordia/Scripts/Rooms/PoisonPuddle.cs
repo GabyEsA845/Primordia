@@ -39,7 +39,18 @@ namespace Primordia.Rooms
         static readonly List<PoisonPuddle> all = new();
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-        static void ResetStatics() => all.Clear();
+        static void ResetStatics()
+        {
+            all.Clear();
+            PlayerBonus = 0;
+            EnemyAffected = null;
+        }
+
+        /// <summary>Daño por segundo de más de los charcos y la baba que deja el jugador (la Sanguijuela: sangrientos).</summary>
+        public static int PlayerBonus { get; set; }
+
+        /// <summary>Un enemigo ha pisado un charco o una banda del jugador (no los del escenario); se lanza cada comprobación.</summary>
+        public static event System.Action<Health> EnemyAffected;
 
         /// <summary>Los charcos que hay ahora.</summary>
         public static IReadOnlyList<PoisonPuddle> All => all;
@@ -48,13 +59,15 @@ namespace Primordia.Rooms
         State state;
         bool harmsPlayer = true;
         bool useSplat;
+        bool leech;
         float radius = Radius;
         float endTime;
         float nextCheck;
 
         public Vector2 Position => transform.position;
 
-        public bool CanIgnite => state == State.Idle;
+        // La sangre no arde: el charco de la Sanguijuela no es inflamable.
+        public bool CanIgnite => state == State.Idle && !leech;
 
         /// <summary>True si ese punto está dentro de algún charco de veneno que no se esté quemando ni secando.</summary>
         public static bool IsOver(Vector2 point)
@@ -83,7 +96,7 @@ namespace Primordia.Rooms
         /// El charco salpicado que deja el reventón del Escupitajo: su cuerpo coincide con <paramref name="effectRadius"/>, el radio
         /// que frena y envenena. Sin dibujo propio, el charco grande reducido. Null si no hay arte del veneno.
         /// </summary>
-        public static PoisonPuddle SpawnSplat(Vector2 position, float seconds, float effectRadius, bool harmsPlayer = false)
+        public static PoisonPuddle SpawnSplat(Vector2 position, float seconds, float effectRadius, bool harmsPlayer = false, bool leech = false)
         {
             var kit = ReactionKit.Current;
             if (kit == null)
@@ -91,10 +104,12 @@ namespace Primordia.Rooms
             bool splat = kit.SplatIdle.Length > 0;
             if (!splat && kit.PuddleIdle.Length == 0)
                 return null;
-            return Create(kit, position, seconds, effectRadius, harmsPlayer, splat);
+            // Sanguijuela: charco rojizo con gusanillos (si hay su arte).
+            return Create(kit, position, seconds, effectRadius, harmsPlayer, splat, leech && splat && kit.HasLeechSplat);
         }
 
-        static PoisonPuddle Create(ReactionKit kit, Vector2 position, float seconds, float effectRadius, bool harmsPlayer, bool splat)
+        static PoisonPuddle Create(ReactionKit kit, Vector2 position, float seconds, float effectRadius, bool harmsPlayer, bool splat,
+            bool leech = false)
         {
             var obj = new GameObject("PoisonPuddle");
             obj.transform.position = position;
@@ -106,6 +121,7 @@ namespace Primordia.Rooms
             puddle.harmsPlayer = harmsPlayer;
             puddle.radius = effectRadius;
             puddle.useSplat = splat;
+            puddle.leech = leech;
             obj.transform.localScale = Vector3.one * (splat ? effectRadius / SplatBodyRadius : effectRadius / Radius);
             puddle.endTime = Time.time + seconds;
             puddle.StartCoroutine(puddle.Run(kit));
@@ -126,9 +142,9 @@ namespace Primordia.Rooms
 
         IEnumerator Run(ReactionKit kit)
         {
-            yield return Play(useSplat ? kit.SplatAppear : kit.PuddleAppear, AppearFrameSeconds);
+            yield return Play(!useSplat ? kit.PuddleAppear : leech ? kit.LeechSplatAppear : kit.SplatAppear, AppearFrameSeconds);
             var player = gameObject.AddComponent<SpriteFramePlayer>();
-            player.Play(body, useSplat ? kit.SplatIdle : kit.PuddleIdle, 0.09f, newLoop: true);
+            player.Play(body, !useSplat ? kit.PuddleIdle : leech ? kit.LeechSplatIdle : kit.SplatIdle, 0.09f, newLoop: true);
             while (Time.time < endTime && state == State.Idle)
                 yield return null;
             if (state != State.Idle)
@@ -137,7 +153,7 @@ namespace Primordia.Rooms
             // Se seca: el último cuadro de la animación y fuera.
             state = State.Drying;
             Destroy(player);
-            yield return Play(useSplat ? kit.SplatFade : kit.PuddleFade, AppearFrameSeconds);
+            yield return Play(!useSplat ? kit.PuddleFade : leech ? kit.LeechSplatFade : kit.SplatFade, AppearFrameSeconds);
             Destroy(gameObject);
         }
 
@@ -215,7 +231,10 @@ namespace Primordia.Rooms
             if (health == null || health.IsDead || !seen.Add(health) || health.GetComponentInParent<Enemy>() == null)
                 return;
             Toxins.SlowEnemy(health, CheckEvery * 3f);
-            Toxins.PoisonEnemy(health, EnemyDamagePerSecond, EnemyPoisonSeconds);
+            // Los del jugador (sin daño al jugador) hacen más daño con la Sanguijuela.
+            Toxins.PoisonEnemy(health, EnemyDamagePerSecond + (harmsPlayer ? 0 : PlayerBonus), EnemyPoisonSeconds);
+            if (!harmsPlayer)
+                EnemyAffected?.Invoke(health);
         }
     }
 }

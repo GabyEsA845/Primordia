@@ -240,6 +240,12 @@ namespace Primordia.Mutations
                     Add<CentipedeTouch>().Configure(b.centipedePuddleSeconds);
                     break;
 
+                case LineageTouch.LeechPool:
+                    var leechParasites = BenefitOf<ParasiteBenefit>();
+                    if (leechParasites != null)
+                        Add<LeechTouch>().Configure(leechParasites, b.leechPuddleBonus);
+                    break;
+
                 case LineageTouch.SpinningSucker:
                     var parasites = BenefitOf<ParasiteBenefit>();
                     if (parasites != null)

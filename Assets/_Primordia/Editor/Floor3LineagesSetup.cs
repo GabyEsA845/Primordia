@@ -4,6 +4,7 @@ using System.Linq;
 using Primordia.Combat;
 using Primordia.Core;
 using Primordia.Mutations;
+using Primordia.Rooms;
 using UnityEditor;
 using UnityEngine;
 
@@ -21,6 +22,7 @@ namespace Primordia.Editor
         const string MutationsFolder = "Assets/_Primordia/Data/Mutations/Floor3";
         const string LineagesFolder = MutationsFolder + "/Lineages";
         const string SourceFolder = "docs/multimedia-temp/floor3-mutations";
+        const string KitPath = "Assets/_Primordia/Data/Rooms/ReactionKit_Floor3.asset";
         const string LineageArtFolder = "docs/multimedia-temp/floor3-lineage-art";
         const string EffectsArtFolder = "Assets/_Primordia/Art/Effects/Floor3Mutations";
 
@@ -43,6 +45,10 @@ namespace Primordia.Editor
             ["Xenacanthus"] = (LineageTouch.CephalicSpine, "Espina cefálica", "Los enemigos confundidos cuentan como heridos."),
             ["Pulmonoscorpius"] = (LineageTouch.GasSting, "Aguijón de gas",
                 "El chorro envenena a lo que toca y vuelve nube tóxica el metano que alcanza, en vez de explotarlo."),
+            ["TinderFungus"] = (LineageTouch.Tinder, "Yesca",
+                "La bola del Escupitajo va ardiendo: su rastro es de fuego en vez de veneno y al explotar deja fuego."),
+            ["Leech"] = (LineageTouch.LeechPool, "Charca de sanguijuelas",
+                "Tus charcos y tu baba pegan parásitos y hacen más daño, y no arden. Al explotar la bola saltan parásitos a los enemigos más cercanos."),
             ["Centipede"] =(LineageTouch.HundredLegs, "Cien patas",
                 "Cada aterrizaje deja un charco de veneno durante 4 s. Eres inmune a todo el veneno y al gas tóxico."),
             ["Lamprey"] = (LineageTouch.SpinningSucker, "Ventosa giratoria",
@@ -86,6 +92,7 @@ namespace Primordia.Editor
             AssetDatabase.SaveAssets();
             LineageSetup.LinkMutations();
             SetUpParasite();
+            SetUpLeechKit();
 
             if (missing.Count > 0)
                 Debug.LogWarning($"Floor3LineagesSetup: faltan las mutaciones {string.Join(", ", missing)}; créalas con Primordia > Mutations / Floor 3.");
@@ -141,6 +148,54 @@ namespace Primordia.Editor
             {
                 PrefabUtility.UnloadPrefabContents(root);
             }
+        }
+
+        // ---------- Escupitajo de la Sanguijuela ----------
+
+        /// <summary>
+        /// El arte rojizo del Escupitajo de la Sanguijuela (bola, bolitas, reventón, charco salpicado y banda de baba con coágulos y
+        /// gusanillos) en el <see cref="ReactionKit"/> del piso 3, de donde lo toman la bola, la banda y los charcos.
+        /// </summary>
+        static void SetUpLeechKit()
+        {
+            var kit = AssetDatabase.LoadAssetAtPath<ReactionKit>(KitPath);
+            if (kit == null)
+            {
+                Debug.LogWarning("Floor3LineagesSetup: no hay ReactionKit del piso 3; ejecuta Primordia > Floor 3 > Crear reacciones.");
+                return;
+            }
+
+            // El pivote de las bolas es su punto de apoyo en el suelo (README de floor3-spit).
+            var ballPivot = new Vector2(0.5f, 0.3125f);
+            var miniPivot = new Vector2(0.5f, 0.29f);
+            Sprite[] Ball(string name, int cell, Vector2 pivot) => ArtSetup.ImportLooseSheet(
+                $"{LineageArtFolder}/Effects/{name}.png", $"{EffectsArtFolder}/{name}.png", cell, pivot);
+
+            kit.ConfigureLeechSpit(LineageSheet("Effects", "Fx_PoisonSpit_Leech_Burst", 64), LineageSheet("Effects", "Fx_PoisonLeechSplat_Appear", 64),
+                LineageSheet("Effects", "Fx_PoisonLeechSplat_Idle", 64), LineageSheet("Effects", "Fx_PoisonLeechSplat_Fade", 64));
+            kit.ConfigureLeechBall(
+                Ball("Proj_PoisonSpit_Leech_Roll_side", 24, ballPivot), Ball("Proj_PoisonSpit_Leech_Roll_down", 24, ballPivot),
+                Ball("Proj_PoisonSpit_Leech_Roll_up", 24, ballPivot), Ball("Proj_PoisonSpit_Leech_Swell_side", 24, ballPivot),
+                Ball("Proj_PoisonSpit_Leech_Swell_down", 24, ballPivot), Ball("Proj_PoisonSpit_Leech_Swell_up", 24, ballPivot),
+                Ball("Proj_PoisonSpitSmall_Leech_Roll_side", 12, miniPivot), Ball("Proj_PoisonSpitSmall_Leech_Roll_down", 12, miniPivot),
+                Ball("Proj_PoisonSpitSmall_Leech_Roll_up", 12, miniPivot));
+            kit.ConfigureLeechSlime(LeechVariants("Fx_SlimeTrailLeech_Rim", 6, 20), LeechVariants("Fx_SlimeTrailLeech_Body", 6, 20),
+                LeechVariants("Fx_SlimeTrailLeechThin_Rim", 5, 14), LeechVariants("Fx_SlimeTrailLeechThin_Body", 5, 14),
+                LineageSheet("Effects", "Fx_SlimeTrailLeech_Shine", 8), LeechVariants("Fx_SlimeTrailLeech_Clot", 3, 10),
+                LineageSheet("Effects", "Fx_SlimeTrailLeech_Worm", 12), LineageSheet("Effects", "Fx_SlimeTrailLeech_WormSink", 12));
+            if (!kit.HasLeechSlime || !kit.HasLeechSplat)
+                Debug.LogWarning("Floor3LineagesSetup: faltan hojas del Escupitajo de la Sanguijuela en docs/multimedia-temp/floor3-lineage-art/Effects.");
+            EditorUtility.SetDirty(kit);
+            AssetDatabase.SaveAssets();
+        }
+
+        // Las variantes <prefix>_0 ... <prefix>_<count-1>, una detrás de otra.
+        static Sprite[] LeechVariants(string prefix, int count, int cell)
+        {
+            var all = new List<Sprite>();
+            for (int i = 0; i < count; i++)
+                all.AddRange(LineageSheet("Effects", $"{prefix}_{i}", cell));
+            return all.ToArray();
         }
 
         // ---------- Chorro venenoso (Pulmonoscorpius) ----------

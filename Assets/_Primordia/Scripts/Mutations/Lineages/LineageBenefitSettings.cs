@@ -69,6 +69,8 @@ namespace Primordia.Mutations
         public GameObject parasiteHealEffect;
 
         [Header("Toques del piso 3")]
+        [Tooltip("Charca de sanguijuelas: daño por segundo de más de los charcos y la baba del jugador.")]
+        [Min(0)] public int leechPuddleBonus = 1;
         [Tooltip("Cien patas (Ciempiés): segundos que dura el charco de veneno de cada aterrizaje.")]
         [Min(0.5f)] public float centipedePuddleSeconds = 4f;
         [Tooltip("Ventosa giratoria (Lamprea): máximo de parásitos mientras gira, y el parásito grande (marca y salto).")]

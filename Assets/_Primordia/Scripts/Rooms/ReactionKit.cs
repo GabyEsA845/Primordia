@@ -62,6 +62,31 @@ namespace Primordia.Rooms
         [Tooltip("Brillo húmedo (8×8, 4 cuadros en bucle).")]
         [SerializeField] Sprite[] slimeShine = System.Array.Empty<Sprite>();
 
+        [Header("Sanguijuela (Escupitajo con el linaje Sanguijuela, floor3-lineage-art)")]
+        [SerializeField] Sprite[] leechBurst = System.Array.Empty<Sprite>();
+        [SerializeField] Sprite[] leechSplatAppear = System.Array.Empty<Sprite>();
+        [SerializeField] Sprite[] leechSplatIdle = System.Array.Empty<Sprite>();
+        [SerializeField] Sprite[] leechSplatFade = System.Array.Empty<Sprite>();
+        [SerializeField] Sprite[] leechRollSide = System.Array.Empty<Sprite>();
+        [SerializeField] Sprite[] leechRollDown = System.Array.Empty<Sprite>();
+        [SerializeField] Sprite[] leechRollUp = System.Array.Empty<Sprite>();
+        [SerializeField] Sprite[] leechSwellSide = System.Array.Empty<Sprite>();
+        [SerializeField] Sprite[] leechSwellDown = System.Array.Empty<Sprite>();
+        [SerializeField] Sprite[] leechSwellUp = System.Array.Empty<Sprite>();
+        [SerializeField] Sprite[] leechMiniRollSide = System.Array.Empty<Sprite>();
+        [SerializeField] Sprite[] leechMiniRollDown = System.Array.Empty<Sprite>();
+        [SerializeField] Sprite[] leechMiniRollUp = System.Array.Empty<Sprite>();
+        [SerializeField] Sprite[] leechSlimeRim = System.Array.Empty<Sprite>();
+        [SerializeField] Sprite[] leechSlimeBody = System.Array.Empty<Sprite>();
+        [SerializeField] Sprite[] leechSlimeThinRim = System.Array.Empty<Sprite>();
+        [SerializeField] Sprite[] leechSlimeThinBody = System.Array.Empty<Sprite>();
+        [SerializeField] Sprite[] leechSlimeShine = System.Array.Empty<Sprite>();
+        [Tooltip("Coágulos de la banda: 3 variantes de 8 cuadros (10×10), los mismos índices que el sello.")]
+        [SerializeField] Sprite[] leechClot = System.Array.Empty<Sprite>();
+        [Tooltip("Gusanillo que nada por la banda (8 cuadros en bucle, 12×12) y cómo se hunde (3 cuadros).")]
+        [SerializeField] Sprite[] leechWorm = System.Array.Empty<Sprite>();
+        [SerializeField] Sprite[] leechWormSink = System.Array.Empty<Sprite>();
+
         /// <summary>Cuadros de cada sello de la banda de baba.</summary>
         public const int SlimeFrames = 8;
 
@@ -94,6 +119,74 @@ namespace Primordia.Rooms
         public Sprite SlimeRimFrame(bool thin, int variant, int frame) => (thin ? slimeThinRim : slimeRim)[variant * SlimeFrames + frame];
         public Sprite SlimeBodyFrame(bool thin, int variant, int frame) => (thin ? slimeThinBody : slimeBody)[variant * SlimeFrames + frame];
         public Sprite[] SpitBurst => spitBurst ?? System.Array.Empty<Sprite>();
+
+        // ---- Sanguijuela ----
+        static Sprite[] Safe(Sprite[] frames) => frames ?? System.Array.Empty<Sprite>();
+        public Sprite[] LeechBurst => Safe(leechBurst);
+        public Sprite[] LeechSplatAppear => Safe(leechSplatAppear);
+        public Sprite[] LeechSplatIdle => Safe(leechSplatIdle);
+        public Sprite[] LeechSplatFade => Safe(leechSplatFade);
+        public Sprite[] LeechRollSide => Safe(leechRollSide);
+        public Sprite[] LeechRollDown => Safe(leechRollDown);
+        public Sprite[] LeechRollUp => Safe(leechRollUp);
+        public Sprite[] LeechSwellSide => Safe(leechSwellSide);
+        public Sprite[] LeechSwellDown => Safe(leechSwellDown);
+        public Sprite[] LeechSwellUp => Safe(leechSwellUp);
+        public Sprite[] LeechMiniRollSide => Safe(leechMiniRollSide);
+        public Sprite[] LeechMiniRollDown => Safe(leechMiniRollDown);
+        public Sprite[] LeechMiniRollUp => Safe(leechMiniRollUp);
+        public Sprite[] LeechSlimeShine => Safe(leechSlimeShine);
+        public Sprite[] LeechClot => Safe(leechClot);
+        public Sprite[] LeechWorm => Safe(leechWorm);
+        public Sprite[] LeechWormSink => Safe(leechWormSink);
+
+        /// <summary>Hay arte de la banda de baba de la Sanguijuela (normal y fina).</summary>
+        public bool HasLeechSlime => Safe(leechSlimeBody).Length >= SlimeFrames && Safe(leechSlimeRim).Length >= SlimeFrames
+            && Safe(leechSlimeThinBody).Length >= SlimeFrames && Safe(leechSlimeThinRim).Length >= SlimeFrames;
+
+        /// <summary>Hay arte del charco salpicado de la Sanguijuela.</summary>
+        public bool HasLeechSplat => Safe(leechSplatIdle).Length > 0 && Safe(leechSplatAppear).Length > 0 && Safe(leechSplatFade).Length > 0;
+
+        /// <summary>Variantes de sello de la banda de la Sanguijuela, normal o fina.</summary>
+        public int LeechSlimeVariants(bool thin) => (thin ? Safe(leechSlimeThinBody) : Safe(leechSlimeBody)).Length / SlimeFrames;
+
+        public Sprite LeechSlimeRimFrame(bool thin, int variant, int frame) => (thin ? leechSlimeThinRim : leechSlimeRim)[variant * SlimeFrames + frame];
+        public Sprite LeechSlimeBodyFrame(bool thin, int variant, int frame) => (thin ? leechSlimeThinBody : leechSlimeBody)[variant * SlimeFrames + frame];
+
+        internal void ConfigureLeechSpit(Sprite[] burst, Sprite[] appear, Sprite[] idle, Sprite[] fade)
+        {
+            leechBurst = burst;
+            leechSplatAppear = appear;
+            leechSplatIdle = idle;
+            leechSplatFade = fade;
+        }
+
+        internal void ConfigureLeechBall(Sprite[] rollSide, Sprite[] rollDown, Sprite[] rollUp, Sprite[] swellSide, Sprite[] swellDown,
+            Sprite[] swellUp, Sprite[] miniSide, Sprite[] miniDown, Sprite[] miniUp)
+        {
+            leechRollSide = rollSide;
+            leechRollDown = rollDown;
+            leechRollUp = rollUp;
+            leechSwellSide = swellSide;
+            leechSwellDown = swellDown;
+            leechSwellUp = swellUp;
+            leechMiniRollSide = miniSide;
+            leechMiniRollDown = miniDown;
+            leechMiniRollUp = miniUp;
+        }
+
+        internal void ConfigureLeechSlime(Sprite[] rim, Sprite[] body, Sprite[] thinRim, Sprite[] thinBody, Sprite[] shine, Sprite[] clot,
+            Sprite[] worm, Sprite[] wormSink)
+        {
+            leechSlimeRim = rim;
+            leechSlimeBody = body;
+            leechSlimeThinRim = thinRim;
+            leechSlimeThinBody = thinBody;
+            leechSlimeShine = shine;
+            leechClot = clot;
+            leechWorm = worm;
+            leechWormSink = wormSink;
+        }
         public float SpitBurstFrameSeconds => spitBurstFrameSeconds;
         public Sprite[] CloudForm => cloudForm ?? System.Array.Empty<Sprite>();
         public Sprite[] CloudIdle => cloudIdle ?? System.Array.Empty<Sprite>();

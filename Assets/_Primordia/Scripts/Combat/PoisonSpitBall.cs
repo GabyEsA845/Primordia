@@ -1,4 +1,7 @@
 using System.Collections.Generic;
+using Primordia.Core;
+using Primordia.Enemies;
+using Primordia.Mutations;
 using Primordia.Rooms;
 using UnityEngine;
 
@@ -16,6 +19,13 @@ namespace Primordia.Combat
         // Los últimos segundos de la bola normal: sigue rodando con la hoja Swell (6 cuadros de 0,1 s).
         const float SwellSeconds = 0.6f;
         const float SwellFrameSeconds = 0.1f;
+
+        // Yesquero: la bola arde. Cada cuánto quema lo que toca, a qué distancia, y el color provisional de la bola encendida.
+        const float BurnEvery = 0.1f;
+        const float BurnRadius = 0.6f;
+        const int BurnDamage = 1;
+        const float BurnSeconds = 3f;
+        static readonly Color EmberTint = new(1f, 0.62f, 0.32f);
 
         // De lado, la boca queda más abajo que el punto de disparo (la cabeza): la bola sale al suelo desde ahí.
         const float SideMouthDrop = 0.35f;
@@ -44,6 +54,10 @@ namespace Primordia.Combat
         SlimeTrail trail;
         float age;
         float launchedAt;
+        bool leech;
+        bool tinder;
+        float nextBurn;
+        Vector2 lastFire;
         Vector2 heading = Vector2.right;
         bool alive;
 
@@ -94,7 +108,22 @@ namespace Primordia.Combat
                 if (body != null)
                     body.position = mouth;
             }
-            trail = SlimeTrail.Begin(transform.position, heading, attack.SpitMini, attack.SpitTrailEvery, attack.SpitTrailSeconds, harmsPlayer: !IsPlayerShot);
+            var touch = IsPlayerShot ? LineageTouches.Of(weapon) : LineageTouch.None;
+            tinder = touch == LineageTouch.Tinder;
+            leech = touch == LineageTouch.LeechPool && ReactionKit.Current != null && ReactionKit.Current.LeechRollSide.Length > 0;
+            nextBurn = 0f;
+            if (tinder)
+            {
+                // Yesquero: sin baba; la bola va dejando fuego por el camino.
+                trail = null;
+                lastFire = transform.position;
+                GroundFire.Spawn(lastFire, attack.SpitTrailSeconds, harmsPlayer: false);
+            }
+            else
+            {
+                trail = SlimeTrail.Begin(transform.position, heading, attack.SpitMini, attack.SpitTrailEvery, attack.SpitTrailSeconds,
+                    harmsPlayer: !IsPlayerShot, leech: leech);
+            }
             Draw();
             if (weapon == null || attack.SpitMini)
                 return;
@@ -113,6 +142,33 @@ namespace Primordia.Combat
             age += Time.fixedDeltaTime * (IsPlayerShot ? Core.TimeWarp.PlayerSpeed : 1f);
             if (trail != null)
                 trail.Extend(transform.position);
+            if (tinder)
+                Smolder();
+        }
+
+        // Yesquero: va ardiendo. Deja fuego cada trecho y quema a los enemigos y lo inflamable que roza.
+        void Smolder()
+        {
+            Vector2 position = transform.position;
+            if (Vector2.Distance(position, lastFire) >= attack.SpitTrailEvery)
+            {
+                lastFire = position;
+                GroundFire.Spawn(position, attack.SpitTrailSeconds, harmsPlayer: false);
+            }
+
+            if (Time.time < nextBurn)
+                return;
+            nextBurn = Time.time + BurnEvery;
+            Flammables.IgniteNear(position, BurnRadius);
+            var marker = ReactionKit.Current != null ? ReactionKit.Current.BurningMarker : null;
+            foreach (var hit in Physics2D.OverlapCircleAll(position, BurnRadius, LayerMask.GetMask(CombatLayers.Enemy)))
+            {
+                if (hit.isTrigger)
+                    continue;
+                var health = hit.GetComponentInParent<Health>();
+                if (health != null && !health.IsDead && health.TryGetComponent<Enemy>(out _))
+                    Burn.Apply(health, BurnDamage, BurnSeconds, marker);
+            }
         }
 
         void Update()
@@ -137,6 +193,7 @@ namespace Primordia.Combat
                 heading = body.linearVelocity.normalized;
             bool horizontal = Mathf.Abs(heading.x) >= Mathf.Abs(heading.y);
             visual.flipX = horizontal && heading.x < 0f;
+            visual.color = tinder ? EmberTint : Color.white;
 
             float swellStart = attack.Lifetime - SwellSeconds;
             bool swelling = !attack.SpitMini && age >= swellStart && SwellFor(horizontal).Length > 0;
@@ -162,9 +219,32 @@ namespace Primordia.Combat
             visual.sprite = swelling ? frames[Mathf.Min(frame, frames.Length - 1)] : frames[frame % frames.Length];
         }
 
-        Sprite[] RollFor(bool horizontal) => horizontal ? rollSide : heading.y > 0f ? rollUp : rollDown;
+        // Sanguijuela: las hojas rojizas salen del ReactionKit; si falta alguna, la normal.
+        Sprite[] RollFor(bool horizontal)
+        {
+            if (leech)
+            {
+                var kit = ReactionKit.Current;
+                var own = attack.SpitMini
+                    ? (horizontal ? kit.LeechMiniRollSide : heading.y > 0f ? kit.LeechMiniRollUp : kit.LeechMiniRollDown)
+                    : (horizontal ? kit.LeechRollSide : heading.y > 0f ? kit.LeechRollUp : kit.LeechRollDown);
+                if (own.Length > 0)
+                    return own;
+            }
+            return horizontal ? rollSide : heading.y > 0f ? rollUp : rollDown;
+        }
 
-        Sprite[] SwellFor(bool horizontal) => horizontal ? swellSide : heading.y > 0f ? swellUp : swellDown;
+        Sprite[] SwellFor(bool horizontal)
+        {
+            if (leech)
+            {
+                var kit = ReactionKit.Current;
+                var own = horizontal ? kit.LeechSwellSide : heading.y > 0f ? kit.LeechSwellUp : kit.LeechSwellDown;
+                if (own.Length > 0)
+                    return own;
+            }
+            return horizontal ? swellSide : heading.y > 0f ? swellUp : swellDown;
+        }
 
         bool IsPlayerShot => gameObject.layer == CombatLayers.ProjectileLayer(Team.Player);
 
@@ -196,7 +276,8 @@ namespace Primordia.Combat
             int damage = weapon != null
                 ? Mathf.Max(0, Mathf.CeilToInt(attack.SpitBurstDamage * weapon.DamageMultiplier - 0.001f))
                 : attack.SpitBurstDamage;
-            PoisonSpitBurst.Spawn(position, damage, attack.SpitBurstRadius, attack.SpitBurstPuddleSeconds, weapon, victims);
+            var look = tinder ? PoisonSpitBurst.Look.Fire : leech ? PoisonSpitBurst.Look.Leech : PoisonSpitBurst.Look.Normal;
+            PoisonSpitBurst.Spawn(position, damage, attack.SpitBurstRadius, attack.SpitBurstPuddleSeconds, weapon, victims, look);
 
             // Camada: bolitas en cruz.
             if (attack.SpitSplitCount > 0 && attack.SpitSplitAttack != null && attack.SpitSplitAttack.ProjectilePrefab != null)

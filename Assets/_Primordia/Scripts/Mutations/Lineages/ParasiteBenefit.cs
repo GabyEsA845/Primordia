@@ -77,6 +77,9 @@ namespace Primordia.Mutations
                 jumpEffect = newJumpEffect;
         }
 
+        /// <summary>Efecto del salto del parásito (para los toques que lo lanzan de otro sitio).</summary>
+        public GameObject JumpEffect => jumpEffect;
+
         /// <summary>Pega un parásito a ese enemigo con los ajustes del linaje (null si no cabe o ya lo lleva).</summary>
         public Parasite AttachTo(Health target) => Parasite.Attach(target, parasiteDamage, markerPrefab, jumpEffect);
 

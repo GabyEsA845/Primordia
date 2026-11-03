@@ -38,6 +38,11 @@ namespace Primordia.Combat
         const int RimOrder = 3;
         const int BodyOrder = 4;
         const int ShineOrder = 5;
+        const int ClotOrder = 6;
+        // Sanguijuela: de cada tanto sello lleva un coágulo, de otros un gusanillo que nada por la banda.
+        const float ClotChance = 0.2f;
+        const float WormChance = 0.2f;
+        const float WormFrameSeconds = 0.11f;
         // Separación en z para que, dentro de cada capa, el sello más nuevo quede encima.
         const float DepthStep = 0.00025f;
         const int DepthCycle = 4000;
@@ -53,6 +58,9 @@ namespace Primordia.Combat
             public SpriteRenderer Rim;
             public SpriteRenderer Body;
             public SpriteRenderer Shine;
+            public SpriteRenderer Clot;
+            public int ClotVariant;
+            public SpriteRenderer Worm;
             public bool Gone;
 
             Vector2 IFlammable.Position => Position;
@@ -68,6 +76,7 @@ namespace Primordia.Combat
         readonly HashSet<Health> seen = new();
         ReactionKit kit;
         bool thin;
+        bool leech;
         bool harmsPlayer;
         float seconds;
         float spacing;
@@ -85,15 +94,19 @@ namespace Primordia.Combat
         /// Empieza una banda en ese punto del suelo (con un sello). <paramref name="thin"/>: la banda fina de las bolitas; <paramref name="spacing"/>: unidades entre sellos.
         /// Null si no hay arte de la baba.
         /// </summary>
-        public static SlimeTrail Begin(Vector2 position, Vector2 direction, bool thin, float spacing, float seconds, bool harmsPlayer)
+        public static SlimeTrail Begin(Vector2 position, Vector2 direction, bool thin, float spacing, float seconds, bool harmsPlayer,
+            bool leech = false)
         {
             var kit = ReactionKit.Current;
             if (kit == null || !kit.HasSlime)
                 return null;
+            // Sanguijuela: banda rojiza que no arde; sin su arte, la normal.
+            leech &= kit.HasLeechSlime;
 
             var trail = new GameObject(thin ? "SlimeTrailThin" : "SlimeTrail").AddComponent<SlimeTrail>();
             trail.kit = kit;
             trail.thin = thin;
+            trail.leech = leech;
             trail.harmsPlayer = harmsPlayer;
             trail.seconds = seconds;
             trail.spacing = Mathf.Max(0.05f, spacing);
@@ -146,7 +159,7 @@ namespace Primordia.Combat
             var spot = position + perpendicular * (offset / 16f);
             spot = new Vector2(Mathf.Round(spot.x * 16f) / 16f, Mathf.Round(spot.y * 16f) / 16f);
 
-            int variants = kit.SlimeVariants(thin);
+            int variants = leech ? kit.LeechSlimeVariants(thin) : kit.SlimeVariants(thin);
             bool rare = Random.value < (thin ? RareChanceThin : RareChance);
             int variant = rare ? variants - 1 : Random.Range(0, Mathf.Max(1, variants - 1));
 
@@ -168,9 +181,28 @@ namespace Primordia.Combat
                 stamp.Shine = NewRenderer("Shine", spot + new Vector2(-ShineOffset, ShineOffset), depth, ShineOrder);
                 stamp.Shine.enabled = false;
             }
+            // Solo la banda normal de la Sanguijuela lleva coágulos y gusanillos.
+            if (leech && !thin)
+            {
+                float roll = Random.value;
+                var clots = kit.LeechClot;
+                if (roll < ClotChance && clots.Length >= ReactionKit.SlimeFrames)
+                {
+                    stamp.ClotVariant = Random.Range(0, clots.Length / ReactionKit.SlimeFrames);
+                    stamp.Clot = NewRenderer("Clot", spot, depth, ClotOrder);
+                }
+                else if (roll < ClotChance + WormChance && kit.LeechWorm.Length > 0)
+                {
+                    stamp.Worm = NewRenderer("Worm", spot, depth, ClotOrder);
+                    // Dibujado hacia la derecha: se gira con la banda.
+                    stamp.Worm.transform.rotation = Quaternion.Euler(0f, 0f, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg);
+                }
+            }
             Show(stamp, Time.time);
             stamps.Add(stamp);
-            Flammables.Register(stamp);
+            // La sangre no arde: la banda de la Sanguijuela no es inflamable.
+            if (!leech)
+                Flammables.Register(stamp);
         }
 
         SpriteRenderer NewRenderer(string label, Vector2 position, float depth, int order)
@@ -194,11 +226,33 @@ namespace Primordia.Combat
             else
                 frame = age < BornFrameSeconds ? 0 : age < BornFrameSeconds * 2f ? 1 : 2;
 
-            stamp.Rim.sprite = kit.SlimeRimFrame(thin, stamp.Variant, frame);
-            stamp.Body.sprite = kit.SlimeBodyFrame(thin, stamp.Variant, frame);
+            stamp.Rim.sprite = leech ? kit.LeechSlimeRimFrame(thin, stamp.Variant, frame) : kit.SlimeRimFrame(thin, stamp.Variant, frame);
+            stamp.Body.sprite = leech ? kit.LeechSlimeBodyFrame(thin, stamp.Variant, frame) : kit.SlimeBodyFrame(thin, stamp.Variant, frame);
+            if (stamp.Clot != null)
+                stamp.Clot.sprite = kit.LeechClot[stamp.ClotVariant * ReactionKit.SlimeFrames + frame];
+            if (stamp.Worm != null)
+            {
+                // Nada mientras el sello está húmedo (cuadros 0-2), se hunde al empezar a secarse (3-5) y desaparece.
+                var sink = kit.LeechWormSink;
+                if (frame <= 2)
+                {
+                    var swim = kit.LeechWorm;
+                    stamp.Worm.enabled = true;
+                    stamp.Worm.sprite = swim[Mathf.FloorToInt(now / WormFrameSeconds) % swim.Length];
+                }
+                else if (frame <= 5 && sink.Length > 0)
+                {
+                    stamp.Worm.enabled = true;
+                    stamp.Worm.sprite = sink[Mathf.Clamp(frame - 3, 0, sink.Length - 1)];
+                }
+                else
+                {
+                    stamp.Worm.enabled = false;
+                }
+            }
             if (stamp.Shine != null)
             {
-                var shine = kit.SlimeShine;
+                var shine = leech ? kit.LeechSlimeShine : kit.SlimeShine;
                 stamp.Shine.enabled = frame == 2;
                 stamp.Shine.sprite = shine[Mathf.FloorToInt(now / ShineFrameSeconds) % shine.Length];
             }
@@ -265,6 +319,8 @@ namespace Primordia.Combat
             if (stamp.Rim != null) Destroy(stamp.Rim.gameObject);
             if (stamp.Body != null) Destroy(stamp.Body.gameObject);
             if (stamp.Shine != null) Destroy(stamp.Shine.gameObject);
+            if (stamp.Clot != null) Destroy(stamp.Clot.gameObject);
+            if (stamp.Worm != null) Destroy(stamp.Worm.gameObject);
         }
 
         void OnDestroy()

@@ -336,6 +336,98 @@ namespace Primordia.Tests
             Assert.IsNotNull(sac);
         }
 
+        // ---------- Toques del piso 3 (tanda 2b): Yesquero ----------
+
+        [Test]
+        public void Tinder_BurstOfTheBall_BurnsWhatItReaches()
+        {
+            var enemy = CreateEnemy(20, new Vector2(10f, 0f));
+            Physics2D.SyncTransforms();
+
+            PoisonSpitBurst.Spawn(new Vector2(10f, 0.5f), 6, 1.5f, 3f, player.GetComponent<Weapon>(), Team.Enemy, PoisonSpitBurst.Look.Fire);
+
+            Assert.AreEqual(14, enemy.Health.Current);
+            Assert.IsNotNull(enemy.GetComponent<Burn>());
+        }
+
+        [Test]
+        public void Tinder_NormalBurst_DoesNotBurn()
+        {
+            var enemy = CreateEnemy(20, new Vector2(10f, 0f));
+            Physics2D.SyncTransforms();
+
+            PoisonSpitBurst.Spawn(new Vector2(10f, 0.5f), 6, 1.5f, 3f, player.GetComponent<Weapon>(), Team.Enemy);
+
+            Assert.AreEqual(14, enemy.Health.Current);
+            Assert.IsNull(enemy.GetComponent<Burn>());
+        }
+
+        // ---------- Toques del piso 3 (tanda 2b): Sanguijuela ----------
+
+        [Test]
+        public void Leech_PlayerPuddles_AttachAParasiteAndHurtMore()
+        {
+            Complete(LineageClass.Parasite, LineageTouch.LeechPool);
+            Assert.AreEqual(1, PoisonPuddle.PlayerBonus);
+            var enemy = CreateEnemy(100);
+
+            PoisonPuddle.Affect(enemy.GetComponent<CircleCollider2D>(), false, new HashSet<Health>());
+
+            Assert.IsTrue(Parasite.Has(enemy.Health));
+            Assert.AreEqual(2, enemy.GetComponent<Poison>().DamagePerTick);
+        }
+
+        [Test]
+        public void Leech_ScenerySpuddles_DoNotAttachParasites()
+        {
+            Complete(LineageClass.Parasite, LineageTouch.LeechPool);
+            var enemy = CreateEnemy(100);
+
+            // Un charco del escenario (hace daño al jugador): no es del jugador.
+            PoisonPuddle.Affect(enemy.GetComponent<CircleCollider2D>(), true, new HashSet<Health>());
+
+            Assert.IsFalse(Parasite.Has(enemy.Health));
+            Assert.AreEqual(1, enemy.GetComponent<Poison>().DamagePerTick);
+        }
+
+        [Test]
+        public void Leech_BurstOfTheBall_ParasitesJumpToTheNearestEnemiesUpToTheMaximum()
+        {
+            Complete(LineageClass.Parasite, LineageTouch.LeechPool);
+            var enemies = new List<Enemy>();
+            for (int i = 0; i < 5; i++)
+                enemies.Add(CreateEnemy(100, new Vector2(10 + i * 2, 0)));
+
+            PoisonSpitBurst.Spawn(new Vector2(10f, 1f), 0, 1.5f, 0f, player.GetComponent<Weapon>(), Team.Enemy);
+
+            Assert.AreEqual(3, Parasite.Alive);
+            for (int i = 0; i < 3; i++)
+                Assert.IsTrue(Parasite.Has(enemies[i].Health), $"enemigo {i}");
+            Assert.IsFalse(Parasite.Has(enemies[3].Health));
+            Assert.IsFalse(Parasite.Has(enemies[4].Health));
+        }
+
+        [Test]
+        public void Leech_SmallPelletsOfTheLitterDoNotMakeParasitesJump()
+        {
+            Complete(LineageClass.Parasite, LineageTouch.LeechPool);
+            var enemy = CreateEnemy(100);
+
+            // Radio menor de 1: es una bolita de la Camada.
+            PoisonSpitBurst.Spawn(Vector2.zero, 0, 0.8f, 0f, player.GetComponent<Weapon>(), Team.Enemy);
+
+            Assert.IsFalse(Parasite.Has(enemy.Health));
+        }
+
+        [Test]
+        public void Leech_LosingTheTouchRestoresThePuddleDamage()
+        {
+            Complete(LineageClass.Parasite, LineageTouch.LeechPool);
+            Object.DestroyImmediate(player.GetComponent<LeechTouch>());
+
+            Assert.AreEqual(0, PoisonPuddle.PlayerBonus);
+        }
+
         // ---------- Parásito: textos ----------
 
         [Test]

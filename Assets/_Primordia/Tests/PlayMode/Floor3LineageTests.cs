@@ -336,6 +336,84 @@ namespace Primordia.Tests
             Assert.IsNotNull(sac);
         }
 
+        // ---------- Toques del piso 3 (tanda 4): Acecho del fango del Eryops ----------
+
+        [UnityTest]
+        public IEnumerator Eryops_InTheMud_BoostsSpeedForFiveSecondsAfterLeaving()
+        {
+            lineage.ConfigureBenefits(new LineageBenefitSettings { eryopsSpeedBonus = 0.3f, eryopsBuffSeconds = 0.6f });
+            Complete(LineageClass.Carnivore, LineageTouch.MudStalker);
+            var touch = player.GetComponent<EryopsTouch>();
+            var controller = player.GetComponent<PlayerController>();
+            Assert.IsNotNull(touch);
+
+            yield return null;
+            Assert.AreEqual(1f, controller.BoostSpeedFactor);
+
+            touch.forceInMud = true;
+            yield return null;
+            Assert.IsTrue(touch.Buffed);
+            Assert.AreEqual(1.3f, controller.BoostSpeedFactor, 0.001f);
+
+            // Sale del lodo: la mejora sigue un rato y luego se acaba.
+            touch.forceInMud = false;
+            yield return new WaitForSeconds(0.3f);
+            Assert.AreEqual(1.3f, controller.BoostSpeedFactor, 0.001f);
+            yield return new WaitForSeconds(0.6f);
+            Assert.AreEqual(1f, controller.BoostSpeedFactor);
+
+            // Volver a entrar la renueva.
+            touch.forceInMud = true;
+            yield return null;
+            Assert.AreEqual(1.3f, controller.BoostSpeedFactor, 0.001f);
+        }
+
+        [Test]
+        public void Eryops_LosingTheLineageRestoresSpeedAndSinking()
+        {
+            Complete(LineageClass.Carnivore, LineageTouch.MudStalker);
+            var sink = player.AddComponent<PlayerMudSink>();
+            var controller = player.GetComponent<PlayerController>();
+            var touch = player.GetComponent<EryopsTouch>();
+            touch.Configure(0.3f, 0.6f, 5f);
+            Assert.IsTrue(sink.SinkImmune);
+
+            Object.DestroyImmediate(touch);
+
+            Assert.IsFalse(sink.SinkImmune);
+            Assert.AreEqual(1f, controller.BoostSpeedFactor);
+        }
+
+        [Test]
+        public void MudBodyPaint_DryMud_UsesTheDryTonesWhereTheNoiseIsBelowTheDryness()
+        {
+            const int size = 4;
+            var source = new MudBodyPaint.Data
+            {
+                width = size, height = size, pixels = new Color32[size * size], minRow = 0, maxRow = size - 1, lo = 50f, hi = 200f,
+            };
+            for (int i = 0; i < source.pixels.Length; i++)
+                source.pixels[i] = new Color32(120, 80, 60, 255);
+            var noise = new Color32[32 * 32];
+            for (int i = 0; i < noise.Length; i++)
+                noise[i] = new Color32(0, 0, 0, 255);
+            var tables = new MudBodyPaint.Tables
+            {
+                noise = noise, noiseSize = 32, texIndex = new int[16 * 16], texSize = 16, dryIndex = new int[16 * 16],
+            };
+            for (int i = 0; i < tables.texIndex.Length; i++)
+                tables.texIndex[i] = 2;
+
+            var wet = new Color32[size * size];
+            var dried = new Color32[size * size];
+            MudBodyPaint.Paint(source, wet, new MudBodyPaint.Settings { level = 10f, feetRow = 0 }, tables);
+            MudBodyPaint.Paint(source, dried, new MudBodyPaint.Settings { level = 10f, feetRow = 0, dry = 1f }, tables);
+
+            // Sin secar, el tono 2 del lodo (0x4a,0x33,0x24); seco, el tono 0 del barro seco (46,36,28).
+            Assert.AreEqual(new Color32(0x4a, 0x33, 0x24, 255), wet[0]);
+            Assert.AreEqual(new Color32(46, 36, 28, 255), dried[0]);
+        }
+
         // ---------- Toques del piso 3 (tanda 3): Zombi del Cordyceps ----------
 
         [Test]

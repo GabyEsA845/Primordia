@@ -41,6 +41,13 @@ namespace Primordia.Core
         public Sized mudRingBack = new();
         public Sprite[] mudBubble = System.Array.Empty<Sprite>();
         public Sprite[] mudDrip = System.Array.Empty<Sprite>();
+        [Header("Eryops (floor3-lineage-art/Eryops)")]
+        [Tooltip("Barro seco tileable (16×16): las placas del barro al secarse.")]
+        public Sprite mudTextureDry;
+        [Tooltip("Estela en V en el lodo (4 cuadros, bucle; pivote a la derecha) y terrones que saltan de las patas (6 cuadros) y escamas que caen (5).")]
+        public Sprite[] eryopsWake = System.Array.Empty<Sprite>();
+        public Sprite[] eryopsKick = System.Array.Empty<Sprite>();
+        public Sprite[] eryopsFlake = System.Array.Empty<Sprite>();
 
         [Header("Llamas")]
         public Sized bodyFlame = new();

@@ -91,6 +91,14 @@ namespace Primordia.Mutations
         public Sprite[] zombieRise = System.Array.Empty<Sprite>();
         public Sprite[] zombieCrumble = System.Array.Empty<Sprite>();
 
+        [Header("Eryops: Acecho del fango")]
+        [Tooltip("Velocidad de más en el lodo y mientras dura el barro (0,3 = +30 %).")]
+        [Min(0f)] public float eryopsSpeedBonus = 0.3f;
+        [Tooltip("Fracción de la velocidad al cruzar el lodo profundo sin hundirse.")]
+        [Range(0.1f, 1f)] public float eryopsMudSpeed = 0.6f;
+        [Tooltip("Segundos que dura la mejora después de salir del lodo.")]
+        [Min(0.5f)] public float eryopsBuffSeconds = 5f;
+
         [Header("Toques del piso 3")]
         [Tooltip("Charca de sanguijuelas: daño por segundo de más de los charcos y la baba del jugador.")]
         [Min(0)] public int leechPuddleBonus = 1;

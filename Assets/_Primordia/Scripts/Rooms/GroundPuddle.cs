@@ -72,6 +72,20 @@ namespace Primordia.Rooms
             return false;
         }
 
+        /// <summary>True si ese punto está dentro de algún charco de lodo (no de agua) del escenario.</summary>
+        public static bool IsSludgeOver(Vector2 point)
+        {
+            foreach (var puddle in all)
+            {
+                if (!puddle.sludge)
+                    continue;
+                Vector2 offset = point - (Vector2)puddle.transform.position;
+                if (Mathf.Abs(offset.x) <= puddle.area.x / 2f && Mathf.Abs(offset.y) <= puddle.area.y / 2f)
+                    return true;
+            }
+            return false;
+        }
+
         internal static GroundPuddle Create(Transform parent, Vector2 position, Sprite[] frames, float frameSeconds, bool sludge)
         {
             var obj = new GameObject(sludge ? "Puddle_Sludge" : "Puddle_Water");

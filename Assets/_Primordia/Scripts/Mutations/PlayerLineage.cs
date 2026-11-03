@@ -234,6 +234,10 @@ namespace Primordia.Mutations
                     break;
 
                 // Piso 3
+                case LineageTouch.MudStalker:
+                    Add<EryopsTouch>().Configure(b.eryopsSpeedBonus, b.eryopsMudSpeed, b.eryopsBuffSeconds);
+                    break;
+
                 case LineageTouch.CephalicSpine:
                     BenefitOf<FinisherBenefit>()?.SetConfusedCount(true);
                     break;

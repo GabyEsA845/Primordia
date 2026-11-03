@@ -100,6 +100,9 @@ namespace Primordia.Player
         /// <summary>Multiplicador de la velocidad al andar por el terreno (el lodo profundo del piso 3, 1 sin él). Lo fija quien lo causa cada paso.</summary>
         public float TerrainSpeedFactor { get; set; } = 1f;
 
+        /// <summary>Multiplicador extra de la velocidad al andar (el +30 % del Eryops en el lodo, 1 sin él). Lo fija quien lo causa.</summary>
+        public float BoostSpeedFactor { get; set; } = 1f;
+
         /// <summary>
         /// True mientras no puede andar ni esquivar (el mareo de la Peonza): se frena como al soltar el movimiento. Lo fija quien lo causa.
         /// </summary>
@@ -296,7 +299,7 @@ namespace Primordia.Player
         /// </summary>
         Vector2 Walk()
         {
-            float top = (SpeedOverride ?? moveSpeed) * SlowFactor * ChannelSpeedFactor * TerrainSpeedFactor * TimeWarp.PlayerSpeed;
+            float top = (SpeedOverride ?? moveSpeed) * SlowFactor * ChannelSpeedFactor * TerrainSpeedFactor * BoostSpeedFactor * TimeWarp.PlayerSpeed;
             Vector2 target = MovementLocked || MoveFrozen ? Vector2.zero : MoveInput * top;
             float time = (target.sqrMagnitude > 0.0001f ? accelerationTime : decelerationTime) * inertia;
             // Cambio de velocidad por paso para ir de 0 a la máxima en ese tiempo; la ralentización no alarga el arranque.

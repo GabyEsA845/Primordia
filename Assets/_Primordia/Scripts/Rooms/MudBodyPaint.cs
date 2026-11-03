@@ -17,6 +17,11 @@ namespace Primordia.Rooms
             new(0x22, 0x16, 0x0f, 255), new(0x33, 0x22, 0x1a, 255), new(0x4a, 0x33, 0x24, 255),
             new(0x63, 0x48, 0x30, 255), new(0x86, 0x68, 0x3f, 255), new(0xb0, 0x94, 0x68, 255),
         };
+        // Rampa del barro seco (Fx_MudBody_TexDry, de oscuro a claro): placas y grietas más claras y apagadas.
+        static readonly Color32[] RampDry =
+        {
+            new(46, 36, 28, 255), new(78, 62, 44, 255), new(110, 90, 64, 255), new(142, 122, 90, 255), new(176, 160, 124, 255),
+        };
         static readonly Color32 Outline = new(24, 20, 37, 255);
         static readonly Color32 EyeWhite = new(244, 244, 232, 255);
 
@@ -37,6 +42,8 @@ namespace Primordia.Rooms
             public int t;
             /// <summary>Enemigos: dos tonos por la luz del cuerpo y el borde, sin textura ni manchas.</summary>
             public bool simple;
+            /// <summary>0..1: qué parte del barro está seca (por manchas; el Eryops). Pide <see cref="Tables.dryIndex"/>.</summary>
+            public float dry;
         }
 
         /// <summary>Datos de un sprite leído una vez: sus píxeles, dónde empieza y acaba el dibujo y las luces del cuerpo.</summary>
@@ -57,6 +64,8 @@ namespace Primordia.Rooms
             public int noiseSize;
             public int[] texIndex;
             public int texSize;
+            /// <summary>La textura del barro seco (16×16, como la del lodo) en índices de <see cref="RampDry"/>; null si no hay.</summary>
+            public int[] dryIndex;
         }
 
         static readonly Dictionary<Sprite, Data> dataCache = new();
@@ -153,7 +162,7 @@ namespace Primordia.Rooms
         }
 
         /// <summary>El ruido y la textura leídos del arte, o null si falta alguno.</summary>
-        public static Tables TablesFrom(Sprite noiseSprite, Sprite textureSprite)
+        public static Tables TablesFrom(Sprite noiseSprite, Sprite textureSprite, Sprite drySprite = null)
         {
             var noise = DataOf(noiseSprite);
             var texture = DataOf(textureSprite);
@@ -163,16 +172,26 @@ namespace Primordia.Rooms
             var index = new int[texture.pixels.Length];
             for (int i = 0; i < index.Length; i++)
                 index[i] = NearestRamp(texture.pixels[i]);
-            return new Tables { noise = noise.pixels, texIndex = index, noiseSize = noise.width, texSize = texture.width };
+            int[] dryIndex = null;
+            var dry = DataOf(drySprite);
+            if (dry != null && dry.width == texture.width && dry.height == texture.height)
+            {
+                dryIndex = new int[dry.pixels.Length];
+                for (int i = 0; i < dryIndex.Length; i++)
+                    dryIndex[i] = Nearest(RampDry, dry.pixels[i]);
+            }
+            return new Tables { noise = noise.pixels, texIndex = index, noiseSize = noise.width, texSize = texture.width, dryIndex = dryIndex };
         }
 
-        static int NearestRamp(Color32 c)
+        static int NearestRamp(Color32 c) => Nearest(Ramp, c);
+
+        static int Nearest(Color32[] ramp, Color32 c)
         {
             int best = 0;
             int bestDistance = int.MaxValue;
-            for (int i = 0; i < Ramp.Length; i++)
+            for (int i = 0; i < ramp.Length; i++)
             {
-                int dr = c.r - Ramp[i].r, dg = c.g - Ramp[i].g, db = c.b - Ramp[i].b;
+                int dr = c.r - ramp[i].r, dg = c.g - ramp[i].g, db = c.b - ramp[i].b;
                 int distance = dr * dr + dg * dg + db * db;
                 if (distance < bestDistance)
                 {
@@ -233,11 +252,19 @@ namespace Primordia.Rooms
                 i = rim ? 4 : light > source.hi ? 3 : light > source.lo ? 2 : 1;
             else
             {
-            {
                 int size = tables.texSize;
                 int textureRowTop = (rowTop + s.t / 3) % size;
-                i = tables.texIndex[(size - 1 - textureRowTop) * size + x % size];
-            }
+                int cell = (size - 1 - textureRowTop) * size + x % size;
+                i = tables.texIndex[cell];
+
+                // Barro seco (Eryops): por manchas, donde el ruido queda por debajo de lo seco; el borde no se seca.
+                if (covered && !rim && s.dry > 0f && tables.dryIndex != null && Noise(tables, (rowTop * 2 + 3) % 32, (x * 3 + 7) % 32) < s.dry)
+                {
+                    int d = tables.dryIndex[cell];
+                    d = Mathf.Clamp(d + (light < source.lo ? -1 : light > source.hi ? 1 : 0), 0, RampDry.Length - 1);
+                    return RampDry[d];
+                }
+
                 if (i != 5)
                     i = Mathf.Clamp(i + (light < source.lo ? -1 : light > source.hi ? 1 : 0), 0, 4);
                 if (rim)

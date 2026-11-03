@@ -52,6 +52,15 @@ namespace Primordia.Rooms
         /// </summary>
         public bool DodgeResetsSink { get; set; }
 
+        /// <summary>
+        /// Cruza el lodo profundo sin hundirse (el Eryops): solo va a <see cref="MudWalkSpeed"/> y no pierde vida. El dibujo del barro lo
+        /// pone quien lo activa.
+        /// </summary>
+        public bool SinkImmune { get; set; }
+
+        /// <summary>Fracción de la velocidad en el lodo profundo cuando <see cref="SinkImmune"/> (1 = sin frenar).</summary>
+        public float MudWalkSpeed { get; set; } = 0.6f;
+
         void Awake()
         {
             controller = GetComponent<PlayerController>();
@@ -78,6 +87,22 @@ namespace Primordia.Rooms
             {
                 if (DodgeResetsSink && Sink > 0f)
                     Clear();
+                return;
+            }
+
+            if (SinkImmune)
+            {
+                bool wading = Pits.IsMud(feet);
+                if (wading && TryGetComponent<PlayerBurn>(out var wet))
+                    wet.Douse(BurnDouseSpeed * Time.fixedDeltaTime);
+                if (Sink > 0f)
+                    Clear();
+                controller.TerrainSpeedFactor = wading ? MudWalkSpeed : 1f;
+                if (!wading && Pits.IsFirm(feet, SafeMargin))
+                {
+                    lastFirm = position;
+                    hasFirm = true;
+                }
                 return;
             }
 

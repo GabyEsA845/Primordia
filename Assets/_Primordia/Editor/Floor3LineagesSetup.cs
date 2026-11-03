@@ -45,6 +45,8 @@ namespace Primordia.Editor
             ["Xenacanthus"] = (LineageTouch.CephalicSpine, "Espina cefálica", "Los enemigos confundidos cuentan como heridos."),
             ["Pulmonoscorpius"] = (LineageTouch.GasSting, "Aguijón de gas",
                 "El chorro envenena a lo que toca y vuelve nube tóxica el metano que alcanza, en vez de explotarlo."),
+            ["Eryops"] = (LineageTouch.MudStalker, "Acecho del fango",
+                "Cruzas el lodo sin hundirte, medio sumergido y más despacio. Ganas +30 % de velocidad en el lodo y 5 s después de salir (se renueva al entrar)."),
             ["Cordyceps"] = (LineageTouch.Zombie, "Zombi",
                 "Un enemigo confundido al que le toca morir se levanta 4 s como tu aliado: ataca a los demás enemigos y no se le puede dañar."),
             ["TinderFungus"] = (LineageTouch.Tinder, "Yesca",
@@ -97,6 +99,7 @@ namespace Primordia.Editor
             SetUpLeechKit();
             SetUpFungusMats();
             SetUpZombie();
+            SetUpEryops();
 
             if (missing.Count > 0)
                 Debug.LogWarning($"Floor3LineagesSetup: faltan las mutaciones {string.Join(", ", missing)}; créalas con Primordia > Mutations / Floor 3.");
@@ -152,6 +155,35 @@ namespace Primordia.Editor
             {
                 PrefabUtility.UnloadPrefabContents(root);
             }
+        }
+
+        // ---------- Eryops (Acecho del fango) ----------
+
+        const string PolishArtPath = "Assets/_Primordia/Resources/PolishArt.asset";
+
+        /// <summary>
+        /// El arte del Eryops (Eryops/) en el <see cref="PolishArt"/>: el barro seco, la estela, los terrones y las escamas. El barro en el
+        /// cuerpo lo pinta <see cref="MudBodyVisual"/> con el arte del pulido, que hay que haber importado antes.
+        /// </summary>
+        static void SetUpEryops()
+        {
+            var art = AssetDatabase.LoadAssetAtPath<PolishArt>(PolishArtPath);
+            if (art == null)
+            {
+                Debug.LogWarning("Floor3LineagesSetup: no hay PolishArt; ejecuta Primordia > Floor 3 > Importar todo el arte del piso 3 (pulido) antes.");
+                return;
+            }
+
+            string source = $"{LineageArtFolder}/Eryops";
+            art.mudTextureDry = ArtSetup.ImportLooseSprite($"{source}/Fx_MudBody_TexDry.png", $"{EffectsArtFolder}/Fx_MudBody_TexDry.png");
+            // Estela: pivote a la derecha; terrones: abajo, a 16 de 24 px; escamas: arriba (README).
+            art.eryopsWake = ArtSetup.ImportLooseSheet($"{source}/Fx_EryopsMudWake.png", $"{EffectsArtFolder}/Fx_EryopsMudWake.png", 32, new Vector2(1f, 0.5f));
+            art.eryopsKick = ArtSetup.ImportLooseSheet($"{source}/Fx_EryopsMudKick.png", $"{EffectsArtFolder}/Fx_EryopsMudKick.png", 24, new Vector2(16f / 24f, 0f));
+            art.eryopsFlake = ArtSetup.ImportLooseSheet($"{source}/Fx_EryopsMudFlake.png", $"{EffectsArtFolder}/Fx_EryopsMudFlake.png", 8, new Vector2(0.5f, 1f));
+            if (art.mudTextureDry == null || art.eryopsWake.Length == 0 || art.eryopsKick.Length == 0 || art.eryopsFlake.Length == 0)
+                Debug.LogWarning("Floor3LineagesSetup: faltan hojas del Eryops en docs/multimedia-temp/floor3-lineage-art/Eryops.");
+            EditorUtility.SetDirty(art);
+            AssetDatabase.SaveAssets();
         }
 
         // ---------- Zombi (Cordyceps) ----------

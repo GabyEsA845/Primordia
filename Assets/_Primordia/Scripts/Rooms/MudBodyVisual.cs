@@ -13,6 +13,9 @@ namespace Primordia.Rooms
     /// gotean y se limpian al andar. Los enemigos usan la versión simple. Lo crea <see cref="MudSinkVisual.SetLevel"/>; sin el
     /// arte importado no se usa y queda la máscara de siempre.
     /// </summary>
+    // Después de las capas de la Piel, la Boca y las Extremidades (CreatureLayerMirror, orden 100): su Animator fija el sprite de la capa en
+    // su LateUpdate, y si el barro se pintara antes, esas capas volverían al dibujo sin hundir.
+    [DefaultExecutionOrder(200)]
     public class MudBodyVisual : MonoBehaviour
     {
         // Cuánto del alto del cuerpo tapa el lodo con el hundimiento al máximo, y qué parte de eso es hundirse de verdad.
@@ -32,6 +35,9 @@ namespace Primordia.Rooms
         class Layer
         {
             public SpriteRenderer renderer;
+            // Efecto animado que cuelga del cuerpo (el moco de la Piel anfibia): baja con el cuerpo y se recorta en la superficie, pero no
+            // se pinta de barro ni cuenta para medir el cuerpo.
+            public bool overlay;
             public Sprite source;
             public Sprite painted;
             public Texture2D texture;
@@ -75,6 +81,58 @@ namespace Primordia.Rooms
             }
         }
 
+        /// <summary>
+        /// Modo manual (el Eryops): quien lo pone decide qué se pinta, sin el hundimiento del lodo profundo. Todo en fracciones: lo
+        /// cubierto del alto del cuerpo, cuánto de eso queda hundido bajo la superficie, qué parte del barro está seca, hasta qué alto
+        /// quedan manchas y cuánto se han limpiado.
+        /// </summary>
+        public struct Manual
+        {
+            public float cover;
+            public float sink;
+            public float dry;
+            public float stain;
+            public float clean;
+        }
+
+        bool manual;
+        Manual manualState;
+
+        /// <summary>Altura (mundo) de los pies del dibujo, la superficie del barro: el último cuadro medido.</summary>
+        public float FeetY => feetY;
+
+        /// <summary>True si el último cuadro había cuerpo a la vista (<see cref="FeetY"/> vale).</summary>
+        public bool HasBody => hasBody;
+
+        /// <summary>True si lo gobierna un <see cref="Manual"/>.</summary>
+        public bool IsManual => manual;
+
+        /// <summary>Pone el modo manual en <paramref name="root"/> (sin el arte del pulido no hace nada).</summary>
+        public static void SetManual(Transform root, Manual state)
+        {
+            if (!Ready)
+                return;
+            var visual = root.GetComponent<MudBodyVisual>();
+            if (visual == null)
+                visual = root.gameObject.AddComponent<MudBodyVisual>();
+            visual.manual = true;
+            visual.manualState = state;
+            visual.drying = false;
+        }
+
+        /// <summary>Quita el modo manual y deja el cuerpo como estaba.</summary>
+        public static void ClearManual(Transform root)
+        {
+            var visual = root.GetComponent<MudBodyVisual>();
+            if (visual != null && visual.manual)
+                Destroy(visual);
+        }
+
+        // Alto cubierto de barro en unidades y qué parte de eso es hundirse de verdad.
+        float CoverWorld => manual ? manualState.cover * ReferenceHeight : level * MaxCover * ReferenceHeight;
+
+        float SinkNow => manual ? manualState.sink : SinkShare;
+
         /// <summary>Hundimiento visible, de 0 (nada) a 1 (tapado del todo). Con las manchas secándose, 0.</summary>
         public float Level => level;
 
@@ -99,11 +157,14 @@ namespace Primordia.Rooms
             // El jugador deja manchas y lleva la textura entera; los enemigos, la versión simple.
             simple = GetComponent<PlayerController>() == null;
             var art = PolishArt.Current;
-            tables = MudBodyPaint.TablesFrom(art.mudNoise, art.mudTexture);
+            tables = MudBodyPaint.TablesFrom(art.mudNoise, art.mudTexture, art.mudTextureDry);
         }
 
         void Apply(float newLevel)
         {
+            // En modo manual no manda el hundimiento del lodo profundo.
+            if (manual)
+                return;
             if (newLevel > 0f)
             {
                 level = newLevel;
@@ -146,7 +207,11 @@ namespace Primordia.Rooms
             if (!Measure())
                 return;
 
-            if (drying)
+            if (manual)
+            {
+                // Lo gobierna quien lo puso: sin secado propio.
+            }
+            else if (drying)
             {
                 walked += Vector2.Distance(lastPosition, transform.position);
                 lastPosition = transform.position;
@@ -178,7 +243,7 @@ namespace Primordia.Rooms
             foreach (var renderer in GetComponentsInChildren<SpriteRenderer>())
             {
                 if (!layers.ContainsKey(renderer) && IsBody(renderer))
-                    layers[renderer] = new Layer { renderer = renderer };
+                    layers[renderer] = new Layer { renderer = renderer, overlay = IsOverlay(renderer) };
             }
 
             gone.Clear();
@@ -199,6 +264,15 @@ namespace Primordia.Rooms
             return markers == null || !markers.IsMarker(renderer.transform);
         }
 
+        // Un efecto animado que cuelga del cuerpo (el moco de la Piel anfibia, que se carga justo en el lodo, el remolino de la Peonza...).
+        static bool IsOverlay(SpriteRenderer renderer)
+        {
+            string name = renderer.gameObject.name;
+            return renderer.TryGetComponent<SpriteFramePlayer>(out _) || renderer.TryGetComponent<SpriteLoop>(out _)
+                || renderer.TryGetComponent<FrameEffect>(out _) || renderer.TryGetComponent<OneShotEffect>(out _)
+                || name.StartsWith("Effect_") || name.Contains("Mucus");
+        }
+
         /// <summary>Dónde están los pies y la cabeza ahora (con los dibujos, no con la celda). False si no hay cuerpo a la vista.</summary>
         bool Measure()
         {
@@ -215,7 +289,7 @@ namespace Primordia.Rooms
                 var current = renderer.sprite == layer.painted && layer.painted != null ? layer.source : renderer.sprite;
                 layer.source = current;
                 layer.data = MudBodyPaint.DataOf(current);
-                if (layer.data == null)
+                if (layer.data == null || layer.overlay)
                     continue;
 
                 var box = renderer.bounds;
@@ -247,7 +321,7 @@ namespace Primordia.Rooms
         void PaintLayers()
         {
             int t = Mathf.FloorToInt(Time.time / FrameSeconds);
-            float levelWorld = level * MaxCover * ReferenceHeight;
+            float levelWorld = CoverWorld;
             foreach (var layer in layers.Values)
             {
                 var renderer = layer.renderer;
@@ -257,10 +331,11 @@ namespace Primordia.Rooms
                 float perPixel = renderer.bounds.size.y / layer.data.height;
                 var settings = new MudBodyPaint.Settings
                 {
-                    level = levelWorld / perPixel,
-                    stain = simple ? 0f : (drying ? peak / perPixel : 0f),
-                    clean = clean,
-                    sunk = Mathf.FloorToInt(levelWorld * SinkShare / perPixel),
+                    level = layer.overlay ? 0f : levelWorld / perPixel,
+                    stain = layer.overlay ? 0f : simple ? 0f : manual ? manualState.stain * ReferenceHeight / perPixel : (drying ? peak / perPixel : 0f),
+                    clean = manual ? manualState.clean : clean,
+                    dry = manual && !layer.overlay ? manualState.dry : 0f,
+                    sunk = Mathf.FloorToInt(levelWorld * SinkNow / perPixel),
                     feetRow = Mathf.RoundToInt((feetY - renderer.bounds.min.y) / perPixel),
                     t = t,
                     simple = simple,
@@ -312,7 +387,7 @@ namespace Primordia.Rooms
         {
             var art = PolishArt.Current;
             float widthPixels = bounds.size.x * PixelsPerUnit;
-            int sunk = Mathf.FloorToInt(level * MaxCover * ReferenceHeight * SinkShare * PixelsPerUnit);
+            int sunk = Mathf.FloorToInt(CoverWorld * SinkNow * PixelsPerUnit);
 
             // El anillo de la superficie, mientras el cuerpo está hundido.
             if (sunk > 0)
@@ -329,8 +404,8 @@ namespace Primordia.Rooms
             else if (ringFront != null)
                 ringBack.enabled = ringFront.enabled = false;
 
-            float coverWorld = level * MaxCover * ReferenceHeight * (1f - SinkShare);
-            if (level > 0f && coverWorld > 2f / PixelsPerUnit && Time.time >= nextBubble)
+            float coverWorld = CoverWorld * (1f - SinkNow);
+            if (CoverWorld > 0f && coverWorld > 2f / PixelsPerUnit && Time.time >= nextBubble)
             {
                 nextBubble = Time.time + BubbleEvery;
                 var at = new Vector2(bounds.center.x + (Random.value - 0.5f) * bounds.size.x * 0.7f, feetY + coverWorld - 0.1f);

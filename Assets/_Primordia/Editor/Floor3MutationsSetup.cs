@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Primordia.Combat;
 using Primordia.Mutations;
 using UnityEditor;
@@ -10,8 +11,8 @@ namespace Primordia.Editor
     /// <summary>
     /// Las mutaciones del piso 3 que no son Bocas (GDD, "Mutaciones del piso 3"), por subpasos. Subpaso 1: las Extremidades (Patas
     /// de salto y Patas hilanderas), solo con efectos y sin capa sobre el cuerpo (regla de niveles de las mutaciones). Importa su
-    /// arte de docs/multimedia-temp/floor3-mutations y rehace los textos y los efectos cada vez. De momento no las mete en ninguna
-    /// reserva (eso es el subpaso 5); se prueban con los atajos F1-F5.
+    /// arte de docs/multimedia-temp/floor3-mutations y rehace los textos y los efectos cada vez. Cada menú deja al día la reserva del
+    /// piso 3 (<see cref="EnsurePool"/>); se prueban con los atajos F1-F5.
     /// </summary>
     public static class Floor3MutationsSetup
     {
@@ -20,6 +21,7 @@ namespace Primordia.Editor
         const string MutationsFolder = "Assets/_Primordia/Data/Mutations/Floor3";
         const string EffectsArtFolder = "Assets/_Primordia/Art/Effects/Floor3Mutations";
         const string UIArtFolder = "Assets/_Primordia/Art/UI/Icons";
+        const string PoolPath = "Assets/_Primordia/Data/Mutations/MutationPool_Floor3.asset";
 
         [MenuItem("Primordia/Mutations/Crear mutaciones del piso 3 (Extremidades)")]
         static void CreateLimbs()
@@ -29,6 +31,7 @@ namespace Primordia.Editor
             CreateJumpingLegs();
             CreateSpinnerLegs();
             AssetDatabase.SaveAssets();
+            EnsurePool();
             Debug.Log("Floor3MutationsSetup: Patas de salto y Patas hilanderas creadas (Data/Mutations/Floor3).");
         }
 
@@ -40,6 +43,7 @@ namespace Primordia.Editor
             CreateAmphibianSkin();
             CreateCharredScales();
             AssetDatabase.SaveAssets();
+            EnsurePool();
             Debug.Log("Floor3MutationsSetup: Piel anfibia y Escamas carbonizadas creadas (Data/Mutations/Floor3), con sus capas sobre los 3 cuerpos.");
         }
 
@@ -51,7 +55,41 @@ namespace Primordia.Editor
             CreateMethaneSac();
             CreatePheromones();
             AssetDatabase.SaveAssets();
+            EnsurePool();
             Debug.Log("Floor3MutationsSetup: Saco de metano y Feromonas creados (Data/Mutations/Floor3).");
+        }
+
+        // ---------- Reserva del piso 3 ----------
+
+        /// <summary>
+        /// La reserva del piso 3 (elecciones, tienda y sala de cambio): solo mutaciones del piso 3 que no sean especiales, es decir, las
+        /// Extremidades, la Piel y los Órganos y las 3 Bocas. Las Bocas solo se ofrecen como mejora de la que se lleva (la Boca nueva llega
+        /// por la sala de paso y la metamorfosis). Las mejoras de lo que se trae de pisos anteriores se ofrecen aunque no estén aquí
+        /// (<see cref="MutationPool.PickOffer(int, PlayerMutations)"/>). Se crea si no existe y se rehace con lo que haya en
+        /// Data/Mutations/Floor3, así que se puede repetir.
+        /// </summary>
+        [MenuItem("Primordia/Mutations/Crear reserva del piso 3")]
+        internal static MutationPool EnsurePool()
+        {
+            Directory.CreateDirectory(MutationsFolder);
+            var pool = AssetDatabase.LoadAssetAtPath<MutationPool>(PoolPath);
+            if (pool == null)
+            {
+                pool = ScriptableObject.CreateInstance<MutationPool>();
+                AssetDatabase.CreateAsset(pool, PoolPath);
+            }
+
+            var mutations = AssetDatabase.FindAssets("t:MutationData", new[] { MutationsFolder })
+                .Select(guid => AssetDatabase.LoadAssetAtPath<MutationData>(AssetDatabase.GUIDToAssetPath(guid)))
+                .Where(m => m != null && m.Floor >= 3 && !m.IsSpecial)
+                .OrderBy(m => m.Slot)
+                .ThenBy(m => m.name)
+                .ToList();
+            pool.Configure(mutations, newOffersNewMouths: false);
+            EditorUtility.SetDirty(pool);
+            AssetDatabase.SaveAssets();
+            Debug.Log($"Floor3MutationsSetup: reserva del piso 3 con {mutations.Count} mutaciones (sin especiales; las Bocas solo como mejora).");
+            return pool;
         }
 
         // ---------- Patas de salto ----------

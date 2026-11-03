@@ -293,23 +293,25 @@ Duermen Herbívoro y Carroñero (casi no hay herbívoros en el carbón). **Entra
 
 | Clase | Beneficio base en el piso 3 |
 | --- | --- |
-| Carnívoro | **Rematar:** igual que en el piso 2; los enemigos que arden cuentan como heridos |
-| Venenoso | **Toxina:** +50 % de daño a los envenenados y −20 % de velocidad; un enemigo envenenado que muere deja un charco |
-| Hongo (vuelve) | **Colonizar:** un enemigo muerto sobre una mata de hongos hace brotar otra mata (hasta 6) |
-| Parásito (nueva) | **Chupar** |
+| Carnívoro | **Rematar:** igual que en el piso 2 (aturdidos y quebrados cuentan como heridos); los enemigos que arden también |
+| Venenoso | **Toxina:** +50 % de daño a los envenenados y −20 % de velocidad; un enemigo envenenado que muere deja un charco de veneno de 6 s (si arde, nube tóxica) |
+| Hongo (vuelve) | **Colonizar:** matas de hongo al empezar el combate (medianas, de 4 especies de micelio bioluminiscente: campanillas, bejines, estrellas de tierra y mazas) que frenan, dañan y enredan las patas; un enemigo que muere sobre una mata hace brotar otra grande junto a él (hasta 6) |
+| Parásito (nueva) | **Chupar:** cada 15 de daño a un enemigo le pega un parásito (1 de daño por segundo; máximo 3 vivos en total, uno por enemigo); cada 15 de vida chupada, medio corazón (30 con jefe); salta al enemigo más cercano al morir su huésped |
 
 | Linaje | Clase | Boca | Extremidades | Piel | Órgano | Toque |
 | --- | --- | --- | --- | --- | --- | --- |
-| Eryops | Carnívoro | Peonza | Patas de salto | Piel anfibia | Saco de metano | **Emboscada del fango:** aterrizar deja heridos 2 s a los de alrededor |
+| Eryops | Carnívoro | Peonza | Patas de salto | Piel anfibia | Saco de metano | **Acecho del fango:** cruzas el lodo (profundo y charcos) sin hundirte, medio sumergido como un cazador y a 0,6 de velocidad; +30 % de velocidad en el lodo y 5 s después de salir (se renueva); el barro gotea, se seca por manchas y se desprende, y salen terrones de las patas mientras dura |
 | Xenacanthus | Carnívoro | Chorro de vinagre | Patas de salto | Escamas carbonizadas | Feromonas | **Espina cefálica:** los enemigos confundidos cuentan como heridos |
-| Pulmonoscorpius | Venenoso | Chorro de vinagre | Patas hilanderas | Escamas carbonizadas | Saco de metano | **Aguijón de gas:** el chorro envenena y vuelve tóxico el metano |
-| Ciempiés | Venenoso | Escupitajo venenoso | Patas de salto | Escamas carbonizadas | Feromonas | **Cien patas:** al aterrizar sueltas 3 gotas de veneno |
-| Yesquero | Hongo | Escupitajo venenoso | Patas de salto | Escamas carbonizadas | Saco de metano | **Yesca:** la bola prende y deja un rastro de llamas |
-| Cordyceps | Hongo | Chorro de vinagre | Patas hilanderas | Piel anfibia | Feromonas | **Zombi:** un enemigo muerto confundido es tu aliado 4 s |
-| Lamprea | Parásito | Peonza | Patas hilanderas | Piel anfibia | Feromonas | **Ventosa giratoria:** los parásitos se duplican girando |
-| Sanguijuela | Parásito | Escupitajo venenoso | Patas hilanderas | Piel anfibia | Saco de metano | **Charca de sanguijuelas:** los charcos aplican parásitos |
+| Pulmonoscorpius | Venenoso | Chorro de vinagre | Patas hilanderas | Escamas carbonizadas | Saco de metano | **Aguijón de gas:** el chorro (con su arte venenoso) envenena y vuelve nube tóxica el metano que toca (tu nube, el odre y la niebla) en lugar de explotarlo; no es inmune al gas |
+| Ciempiés | Venenoso | Escupitajo venenoso | Patas de salto | Escamas carbonizadas | Feromonas | **Cien patas:** cada aterrizaje deja un charco de veneno de 4 s (el de las vainas) que no te daña; inmune a todo veneno y gas tóxico, también el tuyo |
+| Yesquero | Hongo | Escupitajo venenoso | Patas de salto | Escamas carbonizadas | Saco de metano | **Yesca:** la bola es una brasa de hongo yesquero que arde: sin baba, deja un rastro de fuego con marcas chamuscadas, quema lo que roza y revienta en brasas dejando fuego |
+| Cordyceps | Hongo | Chorro de vinagre | Patas hilanderas | Piel anfibia | Feromonas | **Zombi:** un enemigo confundido al que le toca morir se levanta 4 s como tu aliado intocable (hongos en el lomo y estela de esporas): ataca a los demás enemigos y cae de verdad al acabar; jefes y trampas no |
+| Lamprea | Parásito | Peonza | Patas hilanderas | Piel anfibia | Feromonas | **Ventosa giratoria:** girando, cada parásito que pegas pega otro al enemigo más cercano y el máximo sube a 6; parásitos más grandes |
+| Sanguijuela | Parásito | Escupitajo venenoso | Patas hilanderas | Piel anfibia | Saco de metano | **Charca de sanguijuelas:** el Escupitajo es rojizo con gusanillos y ya no arde; tus charcos y tu baba pegan parásitos y hacen +1 de daño por segundo; al reventar la bola grande saltan parásitos a los enemigos más cercanos hasta el máximo |
 
 - **Reglas concretas (decididas el 3 de noviembre):** las Patas de salto te hacen invulnerable en el aire y pasan sobre enemigos, proyectiles, lodo, charcos y obstáculos bajos (no sobre paredes ni árboles altos). La Piel anfibia carga en agua, lodo y charcos de veneno, y el moco dura hasta el golpe. La Brasa es una llamarada de radio 1,5 que hace 4 de daño, con 5 s de recarga. La nube del Saco de metano deriva hacia el cursor a 0,6 u/s, con 10 s de recarga. Las Feromonas se lanzan en el cursor, y jefes y minijefe son inmunes. Como mucho hay 3 parásitos vivos en total. El Venenoso deja un charco grande al morir el envenenado. La Lamprea, mientras gira, pega un segundo parásito al enemigo más cercano y su máximo sube a 6. Con la Sanguijuela, tus charcos de veneno pegan parásitos. Con la Yesca, el rastro es de fuego en vez de veneno. Con el Aguijón de gas, el chorro convierte en nube tóxica el metano que toca, en lugar de hacerlo explotar.
+- **Cambios de diseño de los toques (3 de noviembre):** la Emboscada del fango pasó a Acecho del fango, Cien patas pasó de 3 gotas a un charco con inmunidad total al veneno, y la Sanguijuela suma el reventón con salto de parásitos y el Escupitajo que no arde. El Yesquero y el Cordyceps mantienen su idea, ahora con arte propio (brasa y zombi).
+- **Reserva del piso 3 (igual en todos los pisos superiores al 1):** solo las mutaciones del piso (Extremidades, Piel y Órganos que no sean especiales) y las Bocas del piso solo como mejora de la que se lleva; las mejoras de lo que se trae de pisos anteriores se ofrecen siempre. Vale para recompensas, tienda y sala de cambio.
 - Hay 8 evoluciones nuevas (animación de unos 2 s como las anteriores, sprites de 80×80 con la paleta de la clase; Parásito granate `#3a0e1e #9a2044 #d04a62 #f4a0a4`).
 - **Mutaciones especiales del ámbar** (diseño cerrado el 28 de octubre; mismas reglas que las de las almejas: comodín de linaje y precio Inestable; en la sala del ámbar, siempre una por piso, dentro de un **bloque de ámbar con un insecto**):
 

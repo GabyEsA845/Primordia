@@ -97,6 +97,7 @@ namespace Primordia.Editor
             LineageSetup.LinkMutations();
             SetUpParasite();
             SetUpLeechKit();
+            SetUpTinderKit();
             SetUpFungusMats();
             SetUpZombie();
             SetUpEryops();
@@ -338,6 +339,37 @@ namespace Primordia.Editor
                 LineageSheet("Effects", "Fx_SlimeTrailLeech_Worm", 12), LineageSheet("Effects", "Fx_SlimeTrailLeech_WormSink", 12));
             if (!kit.HasLeechSlime || !kit.HasLeechSplat)
                 Debug.LogWarning("Floor3LineagesSetup: faltan hojas del Escupitajo de la Sanguijuela en docs/multimedia-temp/floor3-lineage-art/Effects.");
+            EditorUtility.SetDirty(kit);
+            AssetDatabase.SaveAssets();
+        }
+
+        // ---------- Escupitajo del Yesquero ----------
+
+        /// <summary>
+        /// El arte del Escupitajo del Yesquero (bola de brasa 32×32, bolitas, reventón de brasas y marcas chamuscadas) en el
+        /// <see cref="ReactionKit"/> del piso 3, de donde lo toman la bola, el reventón y los fuegos del rastro.
+        /// </summary>
+        static void SetUpTinderKit()
+        {
+            var kit = AssetDatabase.LoadAssetAtPath<ReactionKit>(KitPath);
+            if (kit == null)
+                return;
+
+            // El apoyo de la bola en el suelo: (16, 20,5) de 32 px desde arriba; el de las bolitas, como las verdes (README §7).
+            var ballPivot = new Vector2(0.5f, 0.359f);
+            var miniPivot = new Vector2(0.5f, 0.29f);
+            Sprite[] Ball(string name, int cell, Vector2 pivot) => ArtSetup.ImportLooseSheet(
+                $"{LineageArtFolder}/Effects/{name}.png", $"{EffectsArtFolder}/{name}.png", cell, pivot);
+
+            kit.ConfigureTinderBall(
+                Ball("Proj_PoisonSpit_Tinder_Roll_side", 32, ballPivot), Ball("Proj_PoisonSpit_Tinder_Roll_down", 32, ballPivot),
+                Ball("Proj_PoisonSpit_Tinder_Roll_up", 32, ballPivot), Ball("Proj_PoisonSpit_Tinder_Swell_side", 32, ballPivot),
+                Ball("Proj_PoisonSpit_Tinder_Swell_down", 32, ballPivot), Ball("Proj_PoisonSpit_Tinder_Swell_up", 32, ballPivot),
+                Ball("Proj_PoisonSpitSmall_Tinder_Roll_side", 12, miniPivot), Ball("Proj_PoisonSpitSmall_Tinder_Roll_down", 12, miniPivot),
+                Ball("Proj_PoisonSpitSmall_Tinder_Roll_up", 12, miniPivot));
+            kit.ConfigureTinderEffects(LineageSheet("Effects", "Fx_PoisonSpit_Tinder_Burst", 64), LeechVariants("Fx_TinderScorch", 4, 20));
+            if (!kit.HasTinderScorch || kit.TinderRollSide.Length == 0 || kit.TinderBurst.Length == 0)
+                Debug.LogWarning("Floor3LineagesSetup: faltan hojas del Escupitajo del Yesquero en docs/multimedia-temp/floor3-lineage-art/Effects.");
             EditorUtility.SetDirty(kit);
             AssetDatabase.SaveAssets();
         }

@@ -59,6 +59,8 @@ namespace Primordia.Combat
             var frames = kit != null ? kit.SpitBurst : Array.Empty<Sprite>();
             if (look == Look.Leech && kit != null && kit.LeechBurst.Length > 0)
                 frames = kit.LeechBurst;
+            else if (look == Look.Fire && kit != null && kit.TinderBurst.Length > 0)
+                frames = kit.TinderBurst;
             bool small = radius < SmallBurstRadius;
 
             if (look == Look.Fire)
@@ -75,9 +77,6 @@ namespace Primordia.Combat
 
             var renderer = obj.AddComponent<SpriteRenderer>();
             renderer.sortingOrder = 21;
-            // Yesquero: el estallido es el verde de siempre pero teñido de fuego (sin dibujo propio).
-            if (look == Look.Fire)
-                renderer.color = new Color(1f, 0.62f, 0.32f);
             obj.transform.localScale = Vector3.one * (radius / ArtRadius);
             for (int i = 0; i < frames.Length; i++)
             {
@@ -93,11 +92,11 @@ namespace Primordia.Combat
         static void LeaveFire(Vector2 position, float radius, float seconds)
         {
             float duration = seconds > 0f ? seconds : GroundFire.DefaultSeconds;
-            GroundFire.Spawn(position, duration, harmsPlayer: false);
+            TinderScorch.Attach(GroundFire.Spawn(position, duration, harmsPlayer: false));
             if (radius >= SmallBurstRadius)
             {
                 foreach (var side in new[] { Vector2.left, Vector2.right, Vector2.up, Vector2.down })
-                    GroundFire.Spawn(position + side * radius * FireSpread, duration, harmsPlayer: false);
+                    TinderScorch.Attach(GroundFire.Spawn(position + side * radius * FireSpread, duration, harmsPlayer: false));
             }
             Flammables.IgniteNear(position, radius);
         }

@@ -336,6 +336,54 @@ namespace Primordia.Tests
             Assert.IsNotNull(sac);
         }
 
+        // ---------- Subpaso 5: reserva del piso 3 ----------
+
+        MutationPool Floor3Pool(out StatMutation[] others, out StatMutation mouth)
+        {
+            var list = new List<MutationData>();
+            var extra = new List<StatMutation>();
+            foreach (var slot in new[] { MutationSlot.Limbs, MutationSlot.Skin, MutationSlot.Organ })
+            {
+                var m = Mutation(slot, 3);
+                list.Add(m);
+                extra.Add(m);
+            }
+            mouth = Mutation(MutationSlot.Mouth, 3);
+            list.Add(mouth);
+            others = extra.ToArray();
+            var pool = Track(ScriptableObject.CreateInstance<MutationPool>());
+            pool.Configure(list, newOffersNewMouths: false);
+            return pool;
+        }
+
+        [Test]
+        public void Floor3Pool_OffersTheFloorMutations_ButNotNewMouths()
+        {
+            var pool = Floor3Pool(out var others, out var mouth);
+
+            // Sin llevar ninguna Boca del piso 3, no se ofrece (la Boca llega por la sala de paso).
+            var offer = pool.PickOffer(10, mutations);
+
+            foreach (var mutation in others)
+                CollectionAssert.Contains(offer, mutation);
+            CollectionAssert.DoesNotContain(offer, mouth);
+        }
+
+        [Test]
+        public void Floor3Pool_OffersTheUpgradeOfTheMouthYouCarry_AndNothingFromOtherFloors()
+        {
+            var pool = Floor3Pool(out _, out var mouth);
+            mutations.Equip(mouth);
+            // Una mutación del piso 1 que se trae: no está en la reserva, pero su mejora sí se ofrece.
+            var carried = Mutation(MutationSlot.Skin, 1);
+            mutations.Equip(carried);
+
+            var offer = pool.PickOffer(10, mutations);
+
+            // La del piso 1 no es una opción nueva y, sin subir de nivel, tampoco sale: nada del piso 1 se cuela.
+            Assert.IsEmpty(offer.FindAll(m => m.Floor < 3 && !mutations.CanLevelUp(m)));
+        }
+
         // ---------- Toques del piso 3 (tanda 4): Acecho del fango del Eryops ----------
 
         [UnityTest]
@@ -583,6 +631,63 @@ namespace Primordia.Tests
         }
 
         // ---------- Toques del piso 3 (tanda 2b): Yesquero ----------
+
+        static Sprite[] FakeFrames(int count)
+        {
+            var texture = new Texture2D(1, 1);
+            var frames = new Sprite[count];
+            for (int i = 0; i < count; i++)
+                frames[i] = Sprite.Create(texture, new Rect(0, 0, 1, 1), new Vector2(0.5f, 0.5f));
+            return frames;
+        }
+
+        [Test]
+        public void Tinder_EachFireGetsOneScorchMark_ThatFollowsItsFire()
+        {
+            var kit = Track(ScriptableObject.CreateInstance<ReactionKit>());
+            kit.ConfigureFire(FakeFrames(2), FakeFrames(2), null);
+            kit.ConfigureTinderEffects(FakeFrames(7), FakeFrames(ReactionKit.ScorchFrames * 4));
+            var previous = ReactionKit.Current;
+            ReactionKit.Current = kit;
+            try
+            {
+                var fire = GroundFire.Spawn(new Vector2(30f, 0f), 3f, harmsPlayer: false);
+                Assert.IsNotNull(fire);
+                Assert.IsTrue(fire.IsBurning);
+
+                var mark = TinderScorch.Attach(fire);
+                Assert.IsNotNull(mark);
+                Assert.AreSame(mark, TinderScorch.Attach(fire), "una sola marca por fuego");
+                Assert.AreEqual(fire.transform.position, mark.transform.position);
+                Assert.IsFalse(mark.IsFading);
+                Object.DestroyImmediate(mark.gameObject);
+                Object.DestroyImmediate(fire.gameObject);
+            }
+            finally
+            {
+                ReactionKit.Current = previous;
+            }
+        }
+
+        [Test]
+        public void Tinder_WithoutScorchArt_NoMarkIsMade()
+        {
+            var kit = Track(ScriptableObject.CreateInstance<ReactionKit>());
+            kit.ConfigureFire(FakeFrames(2), FakeFrames(2), null);
+            var previous = ReactionKit.Current;
+            ReactionKit.Current = kit;
+            try
+            {
+                var fire = GroundFire.Spawn(new Vector2(30f, 0f), 3f, harmsPlayer: false);
+                Assert.IsNull(TinderScorch.Attach(fire));
+                Assert.IsNull(TinderScorch.Attach(null));
+                Object.DestroyImmediate(fire.gameObject);
+            }
+            finally
+            {
+                ReactionKit.Current = previous;
+            }
+        }
 
         [Test]
         public void Tinder_BurstOfTheBall_BurnsWhatItReaches()

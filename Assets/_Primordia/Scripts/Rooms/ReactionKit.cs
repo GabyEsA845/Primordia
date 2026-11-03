@@ -87,6 +87,21 @@ namespace Primordia.Rooms
         [SerializeField] Sprite[] leechWorm = System.Array.Empty<Sprite>();
         [SerializeField] Sprite[] leechWormSink = System.Array.Empty<Sprite>();
 
+        [Header("Yesquero (Escupitajo con el linaje Yesquero, floor3-lineage-art)")]
+        [SerializeField] Sprite[] tinderRollSide = System.Array.Empty<Sprite>();
+        [SerializeField] Sprite[] tinderRollDown = System.Array.Empty<Sprite>();
+        [SerializeField] Sprite[] tinderRollUp = System.Array.Empty<Sprite>();
+        [SerializeField] Sprite[] tinderSwellSide = System.Array.Empty<Sprite>();
+        [SerializeField] Sprite[] tinderSwellDown = System.Array.Empty<Sprite>();
+        [SerializeField] Sprite[] tinderSwellUp = System.Array.Empty<Sprite>();
+        [SerializeField] Sprite[] tinderMiniRollSide = System.Array.Empty<Sprite>();
+        [SerializeField] Sprite[] tinderMiniRollDown = System.Array.Empty<Sprite>();
+        [SerializeField] Sprite[] tinderMiniRollUp = System.Array.Empty<Sprite>();
+        [Tooltip("Reventón de brasas (64×64, centro, 7 cuadros). El cuadro 1 es el que daña.")]
+        [SerializeField] Sprite[] tinderBurst = System.Array.Empty<Sprite>();
+        [Tooltip("Marcas chamuscadas bajo cada fuego del rastro: 4 variantes de 8 cuadros (20×20).")]
+        [SerializeField] Sprite[] tinderScorch = System.Array.Empty<Sprite>();
+
         /// <summary>Cuadros de cada sello de la banda de baba.</summary>
         public const int SlimeFrames = 8;
 
@@ -119,6 +134,45 @@ namespace Primordia.Rooms
         public Sprite SlimeRimFrame(bool thin, int variant, int frame) => (thin ? slimeThinRim : slimeRim)[variant * SlimeFrames + frame];
         public Sprite SlimeBodyFrame(bool thin, int variant, int frame) => (thin ? slimeThinBody : slimeBody)[variant * SlimeFrames + frame];
         public Sprite[] SpitBurst => spitBurst ?? System.Array.Empty<Sprite>();
+
+        // ---- Yesquero ----
+        public Sprite[] TinderRollSide => Safe(tinderRollSide);
+        public Sprite[] TinderRollDown => Safe(tinderRollDown);
+        public Sprite[] TinderRollUp => Safe(tinderRollUp);
+        public Sprite[] TinderSwellSide => Safe(tinderSwellSide);
+        public Sprite[] TinderSwellDown => Safe(tinderSwellDown);
+        public Sprite[] TinderSwellUp => Safe(tinderSwellUp);
+        public Sprite[] TinderMiniRollSide => Safe(tinderMiniRollSide);
+        public Sprite[] TinderMiniRollDown => Safe(tinderMiniRollDown);
+        public Sprite[] TinderMiniRollUp => Safe(tinderMiniRollUp);
+        public Sprite[] TinderBurst => Safe(tinderBurst);
+        public Sprite[] TinderScorch => Safe(tinderScorch);
+
+        /// <summary>Cuadros de cada marca chamuscada.</summary>
+        public const int ScorchFrames = 8;
+
+        /// <summary>Hay arte de la marca chamuscada.</summary>
+        public bool HasTinderScorch => Safe(tinderScorch).Length >= ScorchFrames;
+
+        internal void ConfigureTinderBall(Sprite[] rollSide, Sprite[] rollDown, Sprite[] rollUp, Sprite[] swellSide, Sprite[] swellDown,
+            Sprite[] swellUp, Sprite[] miniSide, Sprite[] miniDown, Sprite[] miniUp)
+        {
+            tinderRollSide = rollSide;
+            tinderRollDown = rollDown;
+            tinderRollUp = rollUp;
+            tinderSwellSide = swellSide;
+            tinderSwellDown = swellDown;
+            tinderSwellUp = swellUp;
+            tinderMiniRollSide = miniSide;
+            tinderMiniRollDown = miniDown;
+            tinderMiniRollUp = miniUp;
+        }
+
+        internal void ConfigureTinderEffects(Sprite[] burst, Sprite[] scorch)
+        {
+            tinderBurst = burst;
+            tinderScorch = scorch;
+        }
 
         // ---- Sanguijuela ----
         static Sprite[] Safe(Sprite[] frames) => frames ?? System.Array.Empty<Sprite>();

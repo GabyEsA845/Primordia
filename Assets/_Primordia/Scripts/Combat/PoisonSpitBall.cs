@@ -20,12 +20,11 @@ namespace Primordia.Combat
         const float SwellSeconds = 0.6f;
         const float SwellFrameSeconds = 0.1f;
 
-        // Yesquero: la bola arde. Cada cuánto quema lo que toca, a qué distancia, y el color provisional de la bola encendida.
+        // Yesquero: la bola arde. Cada cuánto quema lo que toca y a qué distancia.
         const float BurnEvery = 0.1f;
         const float BurnRadius = 0.6f;
         const int BurnDamage = 1;
         const float BurnSeconds = 3f;
-        static readonly Color EmberTint = new(1f, 0.62f, 0.32f);
 
         // De lado, la boca queda más abajo que el punto de disparo (la cabeza): la bola sale al suelo desde ahí.
         const float SideMouthDrop = 0.35f;
@@ -117,7 +116,7 @@ namespace Primordia.Combat
                 // Yesquero: sin baba; la bola va dejando fuego por el camino.
                 trail = null;
                 lastFire = transform.position;
-                GroundFire.Spawn(lastFire, attack.SpitTrailSeconds, harmsPlayer: false);
+                TinderScorch.Attach(GroundFire.Spawn(lastFire, attack.SpitTrailSeconds, harmsPlayer: false));
             }
             else
             {
@@ -153,7 +152,7 @@ namespace Primordia.Combat
             if (Vector2.Distance(position, lastFire) >= attack.SpitTrailEvery)
             {
                 lastFire = position;
-                GroundFire.Spawn(position, attack.SpitTrailSeconds, harmsPlayer: false);
+                TinderScorch.Attach(GroundFire.Spawn(position, attack.SpitTrailSeconds, harmsPlayer: false));
             }
 
             if (Time.time < nextBurn)
@@ -193,7 +192,6 @@ namespace Primordia.Combat
                 heading = body.linearVelocity.normalized;
             bool horizontal = Mathf.Abs(heading.x) >= Mathf.Abs(heading.y);
             visual.flipX = horizontal && heading.x < 0f;
-            visual.color = tinder ? EmberTint : Color.white;
 
             float swellStart = attack.Lifetime - SwellSeconds;
             bool swelling = !attack.SpitMini && age >= swellStart && SwellFor(horizontal).Length > 0;
@@ -219,15 +217,22 @@ namespace Primordia.Combat
             visual.sprite = swelling ? frames[Mathf.Min(frame, frames.Length - 1)] : frames[frame % frames.Length];
         }
 
-        // Sanguijuela: las hojas rojizas salen del ReactionKit; si falta alguna, la normal.
+        // Sanguijuela y Yesquero: las hojas propias salen del ReactionKit; si falta alguna, la normal.
         Sprite[] RollFor(bool horizontal)
         {
-            if (leech)
+            var kit = ReactionKit.Current;
+            if (kit != null && (leech || tinder))
             {
-                var kit = ReactionKit.Current;
-                var own = attack.SpitMini
-                    ? (horizontal ? kit.LeechMiniRollSide : heading.y > 0f ? kit.LeechMiniRollUp : kit.LeechMiniRollDown)
-                    : (horizontal ? kit.LeechRollSide : heading.y > 0f ? kit.LeechRollUp : kit.LeechRollDown);
+                bool up = heading.y > 0f;
+                Sprite[] own;
+                if (leech)
+                    own = attack.SpitMini
+                        ? (horizontal ? kit.LeechMiniRollSide : up ? kit.LeechMiniRollUp : kit.LeechMiniRollDown)
+                        : (horizontal ? kit.LeechRollSide : up ? kit.LeechRollUp : kit.LeechRollDown);
+                else
+                    own = attack.SpitMini
+                        ? (horizontal ? kit.TinderMiniRollSide : up ? kit.TinderMiniRollUp : kit.TinderMiniRollDown)
+                        : (horizontal ? kit.TinderRollSide : up ? kit.TinderRollUp : kit.TinderRollDown);
                 if (own.Length > 0)
                     return own;
             }
@@ -236,10 +241,13 @@ namespace Primordia.Combat
 
         Sprite[] SwellFor(bool horizontal)
         {
-            if (leech)
+            var kit = ReactionKit.Current;
+            if (kit != null && (leech || tinder))
             {
-                var kit = ReactionKit.Current;
-                var own = horizontal ? kit.LeechSwellSide : heading.y > 0f ? kit.LeechSwellUp : kit.LeechSwellDown;
+                bool up = heading.y > 0f;
+                var own = leech
+                    ? (horizontal ? kit.LeechSwellSide : up ? kit.LeechSwellUp : kit.LeechSwellDown)
+                    : (horizontal ? kit.TinderSwellSide : up ? kit.TinderSwellUp : kit.TinderSwellDown);
                 if (own.Length > 0)
                     return own;
             }

@@ -407,6 +407,7 @@ tr.picked th::before { content: "▸ "; }
       <a href="#beneficios">Beneficios</a>
       <a href="#cuerpo">Arma un cuerpo</a>
       <a href="#matriz">Matriz</a>
+      <a href="#toques">Toques</a>
       <a href="#mutaciones">Mutaciones</a>
       <a href="#reacciones">Reacciones</a>
       <a href="#especiales">Especiales</a>
@@ -440,6 +441,12 @@ tr.picked th::before { content: "▸ "; }
         <div class="list" id="ranking"></div>
       </aside>
     </div>
+  </section>
+
+  <section id="toques" aria-labelledby="to-t">
+    <h2 id="to-t">Cómo se ven los toques de los linajes</h2>
+    <p class="muted">Cada linaje cambia algo que se ve: el parásito de la Lamprea, el chorro del Pulmonoscorpius, el Escupitajo del Yesquero y el de la Sanguijuela, las matas de hongo, el barro del Eryops y los zombis del Cordyceps. Cada escena compara lo normal con la versión del linaje.</p>
+    <div class="jumpart" id="touchart"></div>
   </section>
 
   <section id="matriz" aria-labelledby="mx-t">
@@ -565,11 +572,11 @@ const CLASSES = {
   carn: { name: 'Carnívoro', base: 'Rematar', desc: '+100 % de daño a los enemigos heridos, los que tienen la mitad de su vida o menos (+50 % contra el jefe).',
           delta: 'Nuevo en el piso 3: los enemigos que arden también cuentan como heridos.' },
   ven: { name: 'Venenoso', base: 'Toxina débil', desc: 'Los enemigos envenenados reciben +50 % de daño de cualquier fuente y se mueven un 20 % más lentos.',
-         delta: 'Nuevo en el piso 3: un enemigo envenenado que muere deja un charco de veneno.' },
-  hongo: { name: 'Hongo', base: 'Colonizar la sala', desc: 'Al empezar cada combate brotan 3 matas de hongo al azar que frenan un 40 % y quitan 1 por segundo a los enemigos; desaparecen al limpiar la sala.',
-           delta: 'Vuelve en el piso 3: un enemigo que muere sobre una mata hace brotar otra (hasta 6 en la sala).' },
+         delta: 'Nuevo en el piso 3: un enemigo envenenado que muere deja un charco de veneno durante 6 s (si arde, se vuelve una nube tóxica).' },
+  hongo: { name: 'Hongo', base: 'Colonizar la sala', desc: 'Al empezar cada combate brotan 3 matas de hongo al azar (de 4 especies de micelio bioluminiscente) que frenan un 40 %, enredan las patas y quitan 1 por segundo a los enemigos; desaparecen al limpiar la sala.',
+           delta: 'Vuelve en el piso 3 con matas nuevas: un enemigo que muere sobre una mata hace brotar otra, más grande, a su lado (hasta 6 en la sala).' },
   para: { name: 'Parásito', base: 'Chupar', isNew: true,
-          desc: 'Cada 15 de daño que haces a un enemigo le pega un parásito que le quita 1 de vida por segundo. Por cada 15 de vida que chupa, curas medio corazón (30 si el huésped es un jefe). Si el huésped muere, el parásito salta a otro enemigo. Hasta 3 parásitos.',
+          desc: 'Cada 15 de daño que haces a un enemigo le pega un parásito que le quita 1 de vida por segundo. Por cada 15 de vida que chupa, curas medio corazón (30 si el huésped es un jefe). Si el huésped muere, el parásito salta al enemigo más cercano. Hasta 3 parásitos vivos en total, uno por enemigo.',
           delta: 'Premia pegar mucho y sin parar: cuanto más aguantan los enemigos, más curas. Color granate.',
           sprites: [['par_attached', 'Pegado', 4, 0.5], ['par_leap', 'Salta', 4, 0.4], ['par_drain', 'Chupa', 4, 0.3], ['par_heal', 'Cura', 3, 0.5]] },
 };
@@ -620,21 +627,21 @@ const MUTATIONS = [
 ];
 const LINEAGES = [
   { id: 'eryops', name: 'Eryops', cls: 'carn', art: 'Eryops', muts: ['peon', 'salt', 'anfi', 'meta'],
-    touch: 'Emboscada del fango', tdesc: 'Al aterrizar de un salto, los enemigos de alrededor quedan heridos (cuentan para Rematar) durante 2 s.' },
+    touch: 'Acecho del fango', tdesc: 'Cruzas el lodo sin hundirte, medio sumergido como un cazador y más despacio (0,6). Ganas +30 % de velocidad en el lodo y 5 s después de salir, y se renueva al entrar. El barro gotea, se seca por manchas y se desprende; mientras dura salen terrones de las patas.' },
   { id: 'xenacanthus', name: 'Xenacanthus', cls: 'carn', art: 'Xenacanthus', muts: ['vina', 'salt', 'carb', 'fero'],
     touch: 'Espina cefálica', tdesc: 'Los enemigos confundidos cuentan como heridos.' },
   { id: 'pulmonoscorpius', name: 'Pulmonoscorpius', cls: 'ven', art: 'Pulmonoscorpius', muts: ['vina', 'hila', 'carb', 'meta'],
-    touch: 'Aguijón de gas', tdesc: 'El Chorro de vinagre envenena y vuelve tóxico el metano que atraviesa.' },
+    touch: 'Aguijón de gas', tdesc: 'El Chorro de vinagre, ahora con veta verde veneno, envenena lo que toca y vuelve nube tóxica el metano que atraviesa (tu nube, el odre y la niebla) en lugar de explotarlo. No te hace inmune al gas.' },
   { id: 'ciempies', name: 'Ciempiés', cls: 'ven', art: 'Centipede', muts: ['esc', 'salt', 'carb', 'fero'],
-    touch: 'Cien patas', tdesc: 'Al aterrizar de un salto sueltas 3 gotas de veneno.' },
+    touch: 'Cien patas', tdesc: 'Cada aterrizaje deja un charco de veneno de 4 s, como el de las vainas, que no te daña. Eres inmune a todo veneno y gas tóxico, también el tuyo.' },
   { id: 'yesquero', name: 'Yesquero', cls: 'hongo', art: 'TinderFungus', muts: ['esc', 'salt', 'carb', 'meta'],
-    touch: 'Yesca', tdesc: 'La bola de Escupitajo prende y deja un rastro de llamas.' },
+    touch: 'Yesca', tdesc: 'La bola es una brasa de hongo yesquero que arde: sin baba, deja un rastro de fuego con marcas chamuscadas, quema lo que roza y revienta en brasas dejando fuego.' },
   { id: 'cordyceps', name: 'Cordyceps', cls: 'hongo', art: 'Cordyceps', muts: ['vina', 'hila', 'anfi', 'fero'],
-    touch: 'Zombi', tdesc: 'Un enemigo que muere confundido se levanta como aliado durante 4 s.' },
+    touch: 'Zombi', tdesc: 'Un enemigo confundido al que le toca morir no muere: se levanta 4 s como tu aliado intocable, con hongos en el lomo y una estela de esporas. Ataca a los demás enemigos y cae de verdad al acabar. Los jefes y las trampas no se levantan.' },
   { id: 'lamprea', name: 'Lamprea', cls: 'para', art: 'Lamprey', muts: ['peon', 'hila', 'anfi', 'fero'],
-    touch: 'Ventosa giratoria', tdesc: 'Los parásitos van por duplicado (×2) y giran alrededor del huésped.' },
+    touch: 'Ventosa giratoria', tdesc: 'Mientras giras con la Peonza, cada parásito que pegas pega otro al enemigo más cercano y el máximo sube a 6. Tus parásitos son lampreas, más grandes.' },
   { id: 'sanguijuela', name: 'Sanguijuela', cls: 'para', art: 'Leech', muts: ['esc', 'hila', 'anfi', 'meta'],
-    touch: 'Charca de sanguijuelas', tdesc: 'Detalle por cerrar al programar (el nombre ya está acordado).' },
+    touch: 'Charca de sanguijuelas', tdesc: 'El Escupitajo se vuelve rojizo, con gusanillos, y ya no arde. Tus charcos y tu baba pegan un parásito a quien los pisa y hacen +1 de daño por segundo. Al reventar la bola saltan sanguijuelas a los enemigos más cercanos, hasta llenar el máximo.' },
 ];
 
 // Enemigos. Animaciones: [clave, nombre, escala, segundos por vuelta]
@@ -1043,6 +1050,44 @@ const JUMP_ART = [
       ['net', [['mj_net1', 'Triángulo', 0.9, 0], ['mj_net2', 'Cuadrilátero', 0.9, 0], ['mj_net3', 'Hexágono', 0.9, 0]]],
     ] },
 ];
+// Los toques de los linajes: escena comparada (WebP animado, ancho completo) y hojas sueltas. [hoja o escena, nombre, escala, segundos]
+const TOUCH_ART = [
+  { title: 'Lamprea · Ventosa giratoria: el parásito grande',
+    text: 'Con la Lamprea el parásito pegado y el que salta de un enemigo a otro son lampreas de cinco anillos con el disco de dientes. Mientras giras con la Peonza, cada parásito que pegas pega otro al enemigo más cercano y el máximo sube a 6.',
+    scene: 'la_scene_parasito',
+    sheets: [['la_lampAttached', 'Pegada', 4, 0.6], ['la_lampLeap', 'Salta', 4, 0.4]] },
+  { title: 'Pulmonoscorpius · Aguijón de gas: el chorro venenoso',
+    text: 'El mismo chorro de vinagre con una veta verde veneno que ondula y late. Envenena a lo que toca; si alcanza metano (tu nube, un odre o la niebla) lo vuelve nube tóxica en lugar de explotarlo. Su impacto y su salpicadura (nivel III) humean verdosos.',
+    scene: 'la_scene_chorro',
+    sheets: [['la_jetStream', 'Tramo', 3, 0.5], ['la_jetMuzzle', 'Salida', 3, 0.5], ['la_jetHit', 'Impacto', 3, 0.5]] },
+  { title: 'Yesquero · Yesca: la brasa',
+    text: 'La bola es una costra de hongo yesquero con grietas al rojo; al final se hincha, las grietas se abren y se ponen blancas. No deja baba: deja un rastro de fuego con una marca chamuscada debajo que se apaga a la vez que el fuego, y revienta en brasas (también en las bolitas de la Camada).',
+    scene: 'la_scene_yesquero',
+    sheets: [['la_tindRoll', 'Rueda', 3, 1.0], ['la_tindSwell', 'Se hincha', 3, 0.6], ['la_tindMini', 'Bolita', 4, 0.44], ['la_tindBurst', 'Revienta', 2, 0.4], ['la_tindScorch', 'Marca', 3, 1.0]] },
+  { title: 'Sanguijuela · Charca de sanguijuelas: el Escupitajo rojizo',
+    text: 'La bola, el charco y la baba son verde turbio con nubes de sangre y gusanillos que nadan. El charco y la baba no arden, pegan un parásito a quien los pisa y hacen +1 de daño por segundo; al reventar la bola saltan sanguijuelas a los enemigos más cercanos.',
+    scene: 'la_scene_sanguijuela',
+    sheets: [['la_leechRoll', 'Rueda', 3, 1.0], ['la_leechBurst', 'Revienta', 2, 0.45], ['la_leechSplat', 'Charco', 2, 0.7], ['la_leechWorm', 'Gusanillo', 4, 0.9]] },
+  { title: 'Hongo · Colonizar la sala: las matas del piso 3',
+    text: 'Cuatro especies de micelio bioluminiscente, en dos tamaños: campanillas, bejines, estrellas de tierra y mazas. Brotan al empezar el combate (medianas) o de un enemigo que muere encima (grandes), laten, destellan y soplan esporas cuando dañan y enredan las patas de quien está encima.',
+    scene: 'la_scene_hongos',
+    sheets: [['la_matBells', 'Campanillas', 2, 0.9], ['la_matPuff', 'Bejines', 2, 0.9], ['la_matStars', 'Estrellas de tierra', 2, 0.9], ['la_matClubs', 'Mazas', 2, 0.9], ['la_snare', 'Hilos', 4, 0.5]] },
+  { title: 'Eryops · Acecho del fango: el cazador',
+    text: 'En el lodo el Eryops se hunde hasta el lomo como un cazador al acecho y deja una estela. Al salir el barro gotea, se seca por manchas y se desprende en escamas durante los 5 s de la mejora; mientras dura, salen terrones de sus patas a cada paso.',
+    scene: 'la_scene_eryops',
+    sheets: [['la_eryKick', 'Terrones', 3, 0.3], ['la_eryWake', 'Estela', 3, 0.4], ['la_eryFlake', 'Escama', 5, 0.5]] },
+  { title: 'Cordyceps · Zombi: el aliado levantado',
+    text: 'Un enemigo confundido al que le toca morir se levanta 4 s como tu aliado: pálido, con ojos verdeazulados, hongos en el lomo y una estela de esporas. Ataca a los demás enemigos y, al acabar, se desmorona en esporas.',
+    scene: 'la_scene_zombi',
+    sheets: [['la_zombFungus0', 'Hongo 1', 5, 0.6], ['la_zombFungus1', 'Hongo 2', 5, 0.6], ['la_zombFungus2', 'Hongo 3', 5, 0.6], ['la_zombFungus3', 'Hongo 4', 5, 0.6], ['la_zombTrail', 'Estela', 4, 0.54], ['la_zombRise', 'Se levanta', 2, 0.5], ['la_zombCrumble', 'Se desmorona', 2, 0.64]] },
+];
+document.getElementById('touchart').append(...TOUCH_ART.map(p =>
+  el('article', { class: 'panel', style: `--tiles:url(${ART.floor_swamp})` },
+    el('h3', {}, p.title), el('p', { class: 'muted' }, p.text),
+    el('div', { class: 'anims jumprow' }, el('div', { class: 'anim' }, sprite(p.scene, 0.9, 0, `${p.title}: escena comparada`))),
+    el('div', { class: 'anims jumprow' }, ...p.sheets.map(([k, n, sc, d]) =>
+      el('div', { class: 'anim' }, sprite(k, sc, d, `${p.title}: ${n}`), el('span', { class: 'label' }, n)))))));
+
 const jumpBox = document.getElementById('jumpart');
 JUMP_ART.forEach(p => {
   jumpBox.append(el('article', { class: 'panel', style: `--tiles:url(${ART.floor_swamp})` },

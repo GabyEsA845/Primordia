@@ -58,6 +58,20 @@ def G(key, path):
     assets[key + '_gc'] = [0, 0, im.width, im.height] if '_scene' in key else [x0, y0, x1 - x0, y1 - y0]
 
 
+def W(key, path):
+    """Escena animada comparada: se recomprime a WebP sin pérdida (el mismo dibujo, unas 5 veces más ligero que la GIF) y se
+    muestra a lienzo completo (la clave lleva _scene, como en G)."""
+    im = Image.open(path)
+    fs, durs = [], []
+    for i in range(im.n_frames):
+        im.seek(i); fs.append(im.convert('RGBA')); durs.append(im.info.get('duration', 100))
+    buf = io.BytesIO()
+    fs[0].save(buf, format='WEBP', save_all=True, append_images=fs[1:], duration=durs, loop=0, lossless=True, method=3)
+    assets[key] = 'data:image/webp;base64,' + base64.b64encode(buf.getvalue()).decode()
+    assets[key + '_gw'] = im.width; assets[key + '_gh'] = im.height
+    assets[key + '_gc'] = [0, 0, im.width, im.height]
+
+
 def frames(path, cell):
     im = Image.open(path).convert('RGBA')
     return [im.crop((i * cell, 0, i * cell + cell, im.height)) for i in range(im.width // cell)]
@@ -285,6 +299,31 @@ for key, rel in [('fern_sway', 'Fern_Leafy_Sway'), ('fern_burn', 'Fern_Leafy_Bur
                  ('mud_bubbles', 'Mud_Bubbles'), ('moss', 'Deco_DripMoss'), ('puddle_sludge', 'Puddle_Sludge_Lobed'),
                  ('puddle_water', 'Puddle_Water_Lobed')]:
     G(key, rf'{EV}\Swamp\gif\{rel}.gif')
+
+# ---- Toques de los linajes (floor3-lineage-art): escenas comparadas y hojas sueltas
+LA = TEMP + r'\floor3-lineage-art'
+for key, name in [('parasito', 'escena_parasito_normal_vs_lamprea'), ('chorro', 'escena_chorro_normal_vs_venenoso'),
+                  ('yesquero', 'escena_escupitajo_normal_vs_yesquero'), ('sanguijuela', 'escena_escupitajo_normal_vs_sanguijuela'),
+                  ('hongos', 'escena_matas_hongo'), ('eryops', 'escena_eryops_normal_vs_eryops'), ('zombi', 'escena_cordyceps_zombi')]:
+    W('la_scene_' + key, rf'{LA}\gif\escenas\{name}.gif')
+LE_ = LA + r'\Effects'
+for key, rel, w in [('la_lampAttached', r'Parasite\Parasite_Attached_Lamprey', 16), ('la_lampLeap', r'Parasite\Parasite_Leap_Lamprey', 20),
+                    ('la_jetStream', r'Effects\Fx_VinegarJet_Poison_Stream_A', 16), ('la_jetMuzzle', r'Effects\Fx_VinegarJet_Poison_Muzzle', 16),
+                    ('la_jetHit', r'Effects\Fx_VinegarJet_Poison_Hit', 24),
+                    ('la_tindRoll', r'Effects\Proj_PoisonSpit_Tinder_Roll_side', 32), ('la_tindSwell', r'Effects\Proj_PoisonSpit_Tinder_Swell_side', 32),
+                    ('la_tindMini', r'Effects\Proj_PoisonSpitSmall_Tinder_Roll_side', 12), ('la_tindBurst', r'Effects\Fx_PoisonSpit_Tinder_Burst', 64),
+                    ('la_tindScorch', r'Effects\Fx_TinderScorch_0', 20),
+                    ('la_leechRoll', r'Effects\Proj_PoisonSpit_Leech_Roll_side', 24), ('la_leechBurst', r'Effects\Fx_PoisonSpit_Leech_Burst', 64),
+                    ('la_leechSplat', r'Effects\Fx_PoisonLeechSplat_Idle', 64), ('la_leechWorm', r'Effects\Fx_SlimeTrailLeech_Worm', 12),
+                    ('la_matBells', r'FungusMat\Fx_FungusMat_Bells_M_Idle', 48), ('la_matPuff', r'FungusMat\Fx_FungusMat_Puffballs_M_Idle', 48),
+                    ('la_matStars', r'FungusMat\Fx_FungusMat_Earthstars_M_Idle', 48), ('la_matClubs', r'FungusMat\Fx_FungusMat_Clubs_M_Idle', 48),
+                    ('la_snare', r'FungusMat\Fx_FungusMat_Snare', 16),
+                    ('la_eryKick', r'Eryops\Fx_EryopsMudKick', 24), ('la_eryWake', r'Eryops\Fx_EryopsMudWake', 32), ('la_eryFlake', r'Eryops\Fx_EryopsMudFlake', 8),
+                    ('la_zombFungus0', r'Zombie\Fx_ZombieFungus_0_Idle', 8), ('la_zombFungus1', r'Zombie\Fx_ZombieFungus_1_Idle', 8),
+                    ('la_zombFungus2', r'Zombie\Fx_ZombieFungus_2_Idle', 8), ('la_zombFungus3', r'Zombie\Fx_ZombieFungus_3_Idle', 8),
+                    ('la_zombTrail', r'Zombie\Fx_ZombieSporeTrail', 12), ('la_zombRise', r'Zombie\Fx_ZombieRise', 48),
+                    ('la_zombCrumble', r'Zombie\Fx_ZombieCrumble', 48)]:
+    S(key, rf'{LA}\{rel}', w)
 
 # ---- Aspecto de la página: piezas del juego teñidas de pantano
 for key, rel in [('ui_card', 'UI_Card_Normal'), ('ui_panel', 'UI_Panel'), ('ui_button', 'UI_Button_Normal'), ('ui_button_hi', 'UI_Button_Highlighted')]:

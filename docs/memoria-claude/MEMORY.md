@@ -13,14 +13,14 @@
 - [Codex aparcado](primordia-codex-paused.md) — trabajar con Codex está archivado; no proponerlo
 
 - [Pulido del piso 3](primordia-floor3-art-batch-pending.md) — HECHO (commits en feature/floor-3): dónde está cada cosa; falta la franja de agua en las patas y el rastro de fuego
-- [Tanda de arte de linajes del piso 3](primordia-floor3-lineage-art-pending.md) — 1.ª tanda integrada; **2.ª (Yesquero) DIBUJADA y aprobada: integrarla con Sonnet antes del subpaso 5**
+- [Tanda de arte de linajes del piso 3](primordia-floor3-lineage-art-pending.md) — 1.ª y 2.ª tandas (Yesquero) hechas e integradas, la 2.ª a falta de commit; NO queda arte pendiente (tinte real y muerte al revés del Zombi van con los enemigos del paso 5)
 - [Puertas: coronas y marcos laterales](primordia-door-design-pending.md) — HECHAS, integradas y probadas (2026-11-03)
 - [Pasada de arte del paso 3 (Bocas)](primordia-floor3-step3-art-pending.md) — HECHA, integrada, probada y subida (d9244789)
 
 ## En curso
 - [Sala de paso del piso 2 → 3](primordia-floor2-transition-room.md) — charca, ambiente del pantano y metamorfosis por pareja HECHOS y subidos
-- **[Estado de Primordia](primordia-project-status.md) — pisos 1-2 en main; piso 3 en feature/floor-3 (pasos 1, 2, 3 HECHOS y subidos); paso 4: subpasos 1-3 (Extremidades, Piel, Órganos) y su arte HECHOS y subidos; SIGUIENTE linajes (4a/4b) con Sonnet**
-- [Mutaciones y linajes del piso 3](primordia-floor3-mutations-decisions.md) — paso 4: reglas cerradas, subpasos 1-3 y arte del salto HECHOS; quedan 4a/4b (linajes) y 5
+- **[Estado de Primordia](primordia-project-status.md) — pisos 1-2 en main; piso 3 en feature/floor-3: pasos 1-4 HECHOS y con commit (4 = mutaciones y linajes, completo); SIGUIENTE paso 5 = enemigos y trampas del piso 3 (Sonnet)**
+- [Mutaciones y linajes del piso 3](primordia-floor3-mutations-decisions.md) — paso 4 COMPLETO (subpasos 1-5, 8 linajes y toques, reserva); detalle de cada pieza, archivos y decisiones
 - [Reacciones del piso 3](primordia-floor3-reactions-decisions.md) — paso 2 HECHO (subtandas A-D): quemado tipo Gungeon, odre, veneno, fumarolas
 - [Bocas del piso 3](primordia-floor3-mouths-decisions.md) — paso 3 HECHO: Escupitajo, Peonza, Chorro; números, archivos y pruebas
 - [Estructura del piso 3](primordia-floor3-structure-decisions.md) — subtandas, decisiones del generador, estado

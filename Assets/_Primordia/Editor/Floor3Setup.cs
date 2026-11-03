@@ -97,7 +97,8 @@ namespace Primordia.Editor
             config.ConfigureBosses(floor2.Bosses);
             config.ConfigureBiomass(floor2.SmallBiomass, floor2.BigBiomass, floor2.MinimumBiomassPerRoom);
             config.ConfigureShop(floor2.ShopTemplate, floor2.ShopPrefab);
-            config.ConfigureRewards(floor2.RewardPool, isNew ? floor2.RewardAfter : config.RewardAfter);
+            // Reserva propia del piso 3 (solo mutaciones del piso 3; las Bocas, como mejora): recompensas, tienda y sala de cambio.
+            config.ConfigureRewards(Floor3MutationsSetup.EnsurePool(), isNew ? floor2.RewardAfter : config.RewardAfter);
             config.ConfigureTransition(null, null, null, null);
             config.ConfigureFixedRooms(floor2.ExchangeRoom, floor2.AntechamberVertical, floor2.AntechamberHorizontal);
             config.ConfigurePieces(floor2.Pieces);

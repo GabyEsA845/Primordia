@@ -34,6 +34,10 @@ namespace Primordia.Rooms
         public static IReadOnlyList<GroundFire> All => all;
 
         float endTime;
+
+        /// <summary>True mientras arde (hasta que se acaba su tiempo y empieza a apagarse). Se alarga si otro fuego cae encima.</summary>
+        public bool IsBurning => !dying && Time.time < endTime;
+
         float nextSpread;
         float nextCheck;
         bool dying;

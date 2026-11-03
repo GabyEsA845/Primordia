@@ -52,6 +52,7 @@ namespace Primordia.Editor
             ConfigureVinegarJet(vinegarJet);
 
             AssetDatabase.SaveAssets();
+            Floor3MutationsSetup.EnsurePool();
             MouthSummaries.Apply();
             ArtSetup.ConfigureSpitKit(AssetDatabase.LoadAssetAtPath<ReactionKit>(ReactionKitPath));
             AssetDatabase.SaveAssets();

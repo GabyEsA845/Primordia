@@ -587,29 +587,29 @@ const MUTATIONS = [
          'El chorro atraviesa a los enemigos y la barra dura 4 s.',
          'Salpicadura: el chorro salpica en radio 1 cada 0,5 s.'] },
   { id: 'salt', name: 'Patas de salto', slot: 1, icon: 'JumpingLegs',
-    lv: ['Tu esquiva es un salto plano de 3 u que pasa por encima de todo (lodo, charcos, trampas). Al caer salpica y esparce los charcos.',
-         '3 de daño al caer.',
-         'Rana toro: al caer aturdes 0,8 s a los enemigos cercanos.'] },
+    lv: ['Tu esquiva es un salto alto de 4 u: en el aire eres invulnerable y pasas por encima de enemigos, proyectiles, lodo, charcos y obstáculos bajos (las paredes y los árboles altos te paran). Saltar te saca del lodo profundo y, al caer, esparces los charcos de veneno.',
+         'Salto de 5 u. Al caer haces 3 de daño a los de alrededor (radio 1,6).',
+         'Salto cargado: salto de 6 u. Si mantienes la esquiva más de 1 s dejas de andar y aparece un marcador que se aleja hacia donde apuntas (de 3 a 8 u en 1,5 s, y se para ante una pared). Al soltar saltas ahí: 6 de daño en radio 2,2, empuja y aturde 1,2 s. Un toque corto sigue siendo un salto normal.'] },
   { id: 'hila', name: 'Patas hilanderas', slot: 1, icon: 'SpinnerLegs',
-    lv: ['Al esquivar tiendes un hilo entre donde sales y donde llegas: dura 5 s, frena a quien lo cruza y le hace 2 de daño.',
-         'Tiendes 2 hilos.',
-         'Telaraña: donde se cruzan los hilos queda una telaraña que inmoviliza 1 s.'] },
+    lv: ['Tu esquiva llega a 4 u y tiende un hilo entre donde sales y donde llegas: dura 7 s, frena a quien lo toca y le hace 3 de daño (una vez). Solo puede haber un hilo: el nuevo rompe el anterior.',
+         'Esquiva de 5 u. Los hilos duran 9 s, hacen 4 de daño y puedes tener 2 a la vez.',
+         'Red: los hilos ya no desaparecen (se sueltan al cambiar de sala). Al tender el tercero, los extremos de los tres se unen y una telaraña cubre todo lo de dentro: 4 de daño y los deja inmovilizados 3 s. Luego se empieza de cero.'] },
   { id: 'anfi', name: 'Piel anfibia', slot: 2, icon: 'AmphibianSkin',
-    lv: ['En el agua o sobre los charcos cargas un moco que absorbe un golpe; tarda 3 s en cargarse. Funciona aunque no lleves Escupitajo.',
+    lv: ['De pie en agua, lodo o charcos cargas un moco (3 s). Cargado, eres inmune al fuego, a las explosiones de gas y al veneno de las plantas, y apagas lo que arda. Un golpe de enemigo rompe el moco y te hace daño: hay que volver a cargarlo. Funciona aunque no lleves Escupitajo.',
          'Se carga en 2 s y vas un 20 % más rápido.',
-         'Reflejo: el moco refleja el golpe que absorbe.'] },
+         'Bloqueo: con el moco puesto, el primer daño que recibas, del tipo que sea, no te hace daño: solo rompe el moco (y tienes 0,4 s de invulnerabilidad).'] },
   { id: 'carb', name: 'Escamas carbonizadas', slot: 2, icon: 'CharredScales',
-    lv: ['Eres inmune al fuego y a las explosiones de gas. Tras pisar fuego, tus ataques queman durante 4 s.',
-         'También eres inmune al veneno de las plantas.',
-         'Brasa: al recibir un golpe, estallas en llamas.'] },
+    lv: ['Eres inmune al fuego y a las explosiones de gas. Tras pisar fuego, tus ataques queman a los enemigos durante 4 s.',
+         'También eres inmune al veneno de las plantas y, al recibir un golpe, estallas en llamas (Brasa: 4 de daño en radio 1,5, prende lo inflamable; recarga de 5 s).',
+         'Llamarada: todos tus ataques prenden fuego siempre, sin pisar fuego antes, a los enemigos y al escenario (helechos, maleza, metano, charcos de veneno) donde impactan y por donde pasan.'] },
   { id: 'meta', name: 'Saco de metano', slot: 3, icon: 'MethaneSac',
-    lv: ['Suelta una nube de metano a la deriva que dura 6 s y explota con cualquier ataque: 6 de daño. Tus explosiones no te dañan.',
-         'Sueltas 2 nubes.',
-         'Incendio: la explosión deja fuego en el suelo durante 3 s.'] },
+    lv: ['Clic derecho: sueltas una nube de metano que deriva hacia donde apuntas durante 8 s (0,9 u/s; una pared la para) y explota con cualquier ataque tuyo, con el fuego y con otra explosión: 6 de daño en radio 2 a todo menos a ti. Mientras llevas el saco, ninguna explosión de gas te daña. Recarga de 10 s.',
+         'Sueltas 2 nubes, bien separadas en abanico.',
+         'Incendio: la explosión deja fuego en el suelo durante 3 s, que quema a los enemigos pero no a ti.'] },
   { id: 'fero', name: 'Feromonas', slot: 3, icon: 'Pheromones',
-    lv: ['Los enemigos en radio 2 se atacan entre sí durante 3 s. Recarga: 14 s.',
+    lv: ['Clic derecho: lanzas un velo de feromonas hasta 5 u hacia el cursor; los enemigos en radio 2 persiguen y atacan al enemigo más cercano durante 3 s (los que disparan, con sus propios proyectiles). Los jefes no se confunden. Recarga de 14 s.',
          'Dura 4 s.',
-         'Frenesí: el daño entre ellos se dobla.'] },
+         'Frenesí: el daño entre los confundidos se dobla.'] },
 ];
 const LINEAGES = [
   { id: 'eryops', name: 'Eryops', cls: 'carn', art: 'Eryops', muts: ['peon', 'salt', 'anfi', 'meta'],
@@ -997,10 +997,16 @@ MUTATIONS.filter(m => m.slot === 0).forEach(m => {
 
 // Extremidades, Piel y Órganos: la capa de la Piel sobre los 3 cuerpos y los efectos. [hoja, nombre, escala, segundos]
 const MUT_ART = {
-  salt: { note: 'Sin capa en el cuerpo: se ve el despegue y el aterrizaje', fx: [['mf_takeoff', 'Despegue', 3, 0.4], ['mf_land', 'Aterrizaje', 3, 0.6]] },
-  hila: { note: 'Sin capa en el cuerpo: se ven el hilo y la telaraña', fx: [['mf_web', 'Telaraña', 3, 0.8], ['mf_webNew', 'Aparece', 3, 0.5], ['mf_silkHit', 'Impacto', 4, 0.4]] },
-  anfi: { layer: 'AmphibianSkin', note: 'Película verde agua, con brillos sueltos y gotitas', fx: [['mf_charge', 'Carga', 3, 0.6], ['mf_shield', 'Moco', 2, 0.5], ['mf_absorb', 'Absorbe', 2, 0.5], ['mf_reflect', 'Refleja (III)', 2, 0.5]] },
-  carb: { layer: 'CharredScales', note: 'Carbón con escamas y grietas de ascuas que laten', fx: [['mf_primed', 'Prendida', 3, 0.6], ['mf_blaze', 'Brasa (III)', 2, 0.6], ['mf_burning', 'Arde', 4, 0.4]] },
+  salt: { note: 'Cada cuerpo salta a su manera: la rana se estira, el Diplocaulus se enrosca como un muelle y el vinagrillo abre las patas. El cuerpo sube en arco (más alto cuanto más lejos salta) con su sombra en el suelo',
+          fx: [['mf_takeoff', 'Despegue', 3, 0.4], ['mf_land', 'Aterrizaje', 3, 0.6]],
+          jump: [['mj_frog', 'Rana', 0.55, 0], ['mj_diplo', 'Diplocaulus', 0.55, 0], ['mj_whip', 'Vinagrillo', 0.55, 0]],
+          charge: [['mjc_Frog', 'Rana', 2, 0.45], ['mjc_Diplocaulus', 'Diplocaulus', 2, 0.45], ['mjc_Whipscorpion', 'Vinagrillo', 2, 0.45]],
+          marker: [['mj_marker', 'Marcador del salto cargado: se aleja al mantener y late en amarillo con la carga al máximo', 0.5, 0], ['mf_mspot', 'Diana', 4, 0.66], ['mf_mfull', 'Carga máxima', 4, 0.66]] },
+  hila: { note: 'Sin capa en el cuerpo: se ven el hilo y la red, que se teje con la forma exacta de los tres hilos',
+          fx: [['mf_silkHit', 'Impacto del hilo', 4, 0.4]],
+          jump: [['mj_net1', 'Red de 3 hilos (triángulo)', 3, 0], ['mj_net2', 'Cuadrilátero', 3, 0], ['mj_net3', 'Hexágono', 3, 0]] },
+  anfi: { layer: 'AmphibianSkin', note: 'Película verde agua, con brillos sueltos y gotitas', fx: [['mf_charge', 'Carga', 3, 0.6], ['mf_shield', 'Moco', 2, 0.5], ['mf_absorb', 'Se rompe', 2, 0.5], ['mf_reflect', 'Bloqueo (III)', 2, 0.5]] },
+  carb: { layer: 'CharredScales', note: 'Carbón con escamas y grietas de ascuas que laten', fx: [['mf_primed', 'Prendida', 3, 0.6], ['mf_blaze', 'Brasa (II)', 2, 0.6], ['mf_burning', 'Arde', 4, 0.4]] },
   meta: { note: 'La vejiga se hincha y suelta la nube', fx: [['mf_release', 'Suelta', 2, 0.6], ['mf_cloud', 'Nube', 3, 0.8], ['mf_explode', 'Explota', 1.5, 0.7]] },
   fero: { note: 'Velo rosa coral y marca sobre los enemigos', fx: [['mf_pher', 'Suelta', 1.5, 0.7], ['mf_aura', 'Aura', 3, 0.6], ['mf_mark', 'Marca', 4, 0.5], ['mf_frenzy', 'Frenesí (III)', 4, 0.5]] },
 };
@@ -1012,7 +1018,14 @@ MUTATIONS.filter(m => MUT_ART[m.id]).forEach(m => {
       sprite(`ml_${a.layer}_${body}`, 2, 0.72, `${m.name} sobre ${b.name.toLowerCase()}`))) : null,
     el('b', {}, m.name), el('span', { class: 'note' }, `${SLOTS[m.slot]} · ${a.note}`),
     el('div', { class: 'anims' }, ...a.fx.map(([k, n, sc, d]) =>
-      el('div', { class: 'anim' }, sprite(k, sc, d, `${m.name}: ${n}`), el('span', { class: 'label' }, n))))));
+      el('div', { class: 'anim' }, sprite(k, sc, d, `${m.name}: ${n}`), el('span', { class: 'label' }, n)))),
+    // Escenas (GIF) y poses de carga: el salto entero de cada cuerpo, el marcador y la red.
+    a.jump ? el('div', { class: 'anims', style: 'justify-content:center' }, ...a.jump.map(([k, n, sc, d]) =>
+      el('div', { class: 'anim' }, sprite(k, sc, d, `${m.name}: ${n}`), el('span', { class: 'label' }, n)))) : null,
+    a.charge ? el('div', { class: 'anims' }, ...a.charge.map(([k, n, sc, d]) =>
+      el('div', { class: 'anim' }, sprite(k, sc, d, `${m.name}: carga del nivel III, ${n}`), el('span', { class: 'label' }, `Carga: ${n}`)))) : null,
+    a.marker ? el('div', { class: 'anims', style: 'justify-content:center' }, ...a.marker.map(([k, n, sc, d]) =>
+      el('div', { class: 'anim' }, sprite(k, sc, d, `${m.name}: ${n}`), el('span', { class: 'label' }, n)))) : null));
 });
 
 // Tabla de mutaciones, con filtro por ranura
@@ -1089,17 +1102,17 @@ const REACT = [
     anims: [['mo_puddle', 'Charco', 2, 0.8], ['re_poisoned', 'Envenenado', 4, 0.5], ['re_bulbIdle', 'Planta venenosa', 3, 0.8], ['re_bulbHit', 'Golpe', 3, 0.4], ['re_bulbBurst', 'Revienta', 3, 0.5], ['re_bulbRegrow', 'Rebrota', 3, 0.6]],
     rules: [['Fuentes', 'el Escupitajo venenoso y la Medullosa dejan charcos; la planta venenosa del escenario es un bulbo que revienta al golpearlo dentro de un charco de veneno.'],
             ['Estado', 'un enemigo envenenado se tiñe de lima y suelta gotas. Si eres Venenoso, al morir deja un charco.'],
-            ['Contra ti', 'las Escamas carbonizadas de nivel II te hacen inmune al veneno de las plantas.']] },
+            ['Contra ti', 'las Escamas carbonizadas de nivel II y la Piel anfibia cargada te hacen inmune al veneno de las plantas.']] },
   { name: 'Metano', c: 'var(--cyan)', tiles: 'floor_smoke',
     anims: [['re_sac', 'Odre', 3, 0.8], ['re_sacBurst', 'Revienta', 3, 0.5], ['re_mist', 'Niebla', 1.5, 1], ['re_mistIgnite', 'Fogonazo', 3, 0.7], ['re_mistFlare', 'Llamarada', 3, 0.6]],
     rules: [['Aspecto', 'una niebla baja a ras de suelo, translúcida y sin borde duro, para que no se confunda con el agua.'],
             ['Reacción', 'gas + cualquier ataque = explosión de fuego. El fogonazo recorre la niebla casilla a casilla, con retardo según la distancia, y deja llamaradas sueltas.'],
-            ['Fuentes', 'odres de metano, fumarolas y tu Saco de metano. Las Escamas carbonizadas te hacen inmune a las explosiones.']] },
+            ['Fuentes', 'odres de metano, fumarolas y tu Saco de metano. Las Escamas carbonizadas, la Piel anfibia cargada y el Saco de metano te hacen inmune a las explosiones (el saco, también a las de los odres).']] },
   { name: 'Fuego', c: 'var(--fire)', tiles: 'floor_burnt',
     anims: [['re_ignite', 'Prende', 4, 0.4], ['mf_ground', 'Fuego en el suelo', 3, 0.6], ['re_puddleIgnite', 'Charco que se prende', 2, 0.8], ['re_cloudForm', 'Nube tóxica', 2, 0.6], ['re_cloudIdle', 'Se mantiene', 2, 0.8], ['re_cloudFade', 'Se va', 2, 0.5], ['re_fireOut', 'Se apaga', 3, 0.6]],
     rules: [['Fuego + veneno', 'un charco de veneno que se prende suelta una nube tóxica: una columna mostaza que sube (no a ras de suelo, para no confundirla con el metano). El charco queda como mancha quemada.'],
             ['Se propaga', 'los helechos y la maleza quemable arden y el fuego pasa de uno a otro. La lluvia de la Meganeura lo apaga con vapor.'],
-            ['Fuentes', 'fumarolas, escarabajo bombardero, odres y tus mutaciones de fuego (Escamas, Yesquero, Saco con Incendio).']] },
+            ['Fuentes', 'fumarolas, escarabajo bombardero, odres y tus mutaciones de fuego (Escamas, Yesquero, Saco con Incendio, cuyo fuego no te quema).']] },
 ];
 document.getElementById('react').append(...REACT.map(r => el('article', { class: 'panel', style: `--c:${r.c}` },
   el('h3', {}, r.name), animRow(r.anims, r.tiles, r.name),

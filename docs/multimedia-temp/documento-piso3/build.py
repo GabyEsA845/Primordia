@@ -15,6 +15,7 @@ RE = TEMP + r'\floor3-reactions'
 EV = TEMP + r'\floor3-environment'
 BO = TEMP + r'\floor3-bosses'
 BI = TEMP + r'\boss-intros'
+JU = TEMP + r'\floor3-jump'
 
 assets = {}
 
@@ -120,6 +121,15 @@ for key, rel, w in [('mf_land', r'Effects\Fx_JumpingLegs_Land', 16), ('mf_takeof
                     ('par_attached', r'Parasite\Parasite_Attached', 12), ('par_leap', r'Parasite\Parasite_Leap', 16),
                     ('par_drain', r'Effects\Fx_Parasite_Drain', 8), ('par_heal', r'Effects\Fx_Parasite_Heal', 32)]:
     S(key, rf'{MU}\{rel}', w)
+# Salto alto, marcador del salto cargado y red (arte de la tanda del salto): escenas GIF, pose de carga y hojas del marcador
+for key, name in [('mj_frog', 'escena_Player_Frog_Jump_side'), ('mj_diplo', 'escena_Player_Diplocaulus_Jump_side'),
+                  ('mj_whip', 'escena_Player_Whipscorpion_Jump_side'), ('mj_marker', 'escena_marcador'),
+                  ('mj_net1', 'Red_1'), ('mj_net2', 'Red_2'), ('mj_net3', 'Red_3')]:
+    G(key, os.path.join(JU, 'gif', name + '.gif'))
+for body in ('Frog', 'Diplocaulus', 'Whipscorpion'):
+    S('mjc_' + body, os.path.join(B3, body, 'Player_' + body + '_JumpCharge_side'), 40)
+S('mf_mspot', os.path.join(JU, 'Effects', 'Fx_JumpMarker_Spot'), 24)
+S('mf_mfull', os.path.join(JU, 'Effects', 'Fx_JumpMarker_Full'), 24)
 # capa de Piel sobre cada cuerpo (el cuerpo y la piel miden lo mismo)
 for layer in ('AmphibianSkin', 'CharredScales'):
     for body in ('Frog', 'Diplocaulus', 'Whipscorpion'):

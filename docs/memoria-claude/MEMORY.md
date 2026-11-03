@@ -11,12 +11,12 @@
 - [Codex aparcado](primordia-codex-paused.md) — trabajar con Codex está archivado; no proponerlo
 
 - [Pulido del piso 3](primordia-floor3-art-batch-pending.md) — HECHO (commits en feature/floor-3): dónde está cada cosa; falta la franja de agua en las patas y el rastro de fuego
-- [Puertas: coronas y marcos laterales](primordia-door-design-pending.md) — arte HECHO y aprobado (doors-frames); falta integrarlo con Sonnet
-- **[Arte pendiente del paso 3 de Bocas](primordia-floor3-step3-art-pending.md) — pasada integrada y probada salvo la metamorfosis (espera a la sala de paso del piso 2)**
+- [Puertas: coronas y marcos laterales](primordia-door-design-pending.md) — HECHAS, integradas y probadas (2026-11-03)
+- [Pasada de arte del paso 3 (Bocas)](primordia-floor3-step3-art-pending.md) — HECHA, integrada, probada y subida (d9244789)
 
 ## En curso
-- **[Sala de paso del piso 2](primordia-floor2-transition-room.md) — diseño, charca y ambiente HECHOS; SIGUIENTE programarla con Sonnet y luego la metamorfosis por pareja**
-- [Estado de Primordia](primordia-project-status.md) — para itch.io; pisos 1-2 en main; piso 3 en feature/floor-3 (pasos 1, 2, 3 y pulido HECHOS); SIGUIENTE integrar la pasada de arte con Sonnet
+- [Sala de paso del piso 2 → 3](primordia-floor2-transition-room.md) — charca, ambiente del pantano y metamorfosis por pareja HECHOS y subidos
+- **[Estado de Primordia](primordia-project-status.md) — pisos 1-2 en main; piso 3 en feature/floor-3 (pasos 1, 2, 3 HECHOS y subidos); SIGUIENTE paso 4 (mutaciones y linajes, con Opus)**
 - [Reacciones del piso 3](primordia-floor3-reactions-decisions.md) — paso 2 HECHO (subtandas A-D): quemado tipo Gungeon, odre, veneno, fumarolas
 - [Bocas del piso 3](primordia-floor3-mouths-decisions.md) — paso 3 HECHO: Escupitajo, Peonza, Chorro; números, archivos y pruebas
 - [Estructura del piso 3](primordia-floor3-structure-decisions.md) — subtandas, decisiones del generador, estado

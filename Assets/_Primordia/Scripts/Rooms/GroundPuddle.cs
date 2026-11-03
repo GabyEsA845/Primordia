@@ -45,11 +45,32 @@ namespace Primordia.Rooms
         readonly Dictionary<Health, Wader> waders = new();
         readonly List<Health> gone = new();
 
+        static readonly List<GroundPuddle> all = new();
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        static void ResetStatics() => all.Clear();
+
         bool sludge;
         Vector2 area;
         float nextCheck;
 
         public bool IsSludge => sludge;
+
+        void OnEnable() => all.Add(this);
+
+        void OnDisable() => all.Remove(this);
+
+        /// <summary>True si ese punto está dentro de algún charco de lodo o de agua del escenario (la Piel anfibia se carga ahí).</summary>
+        public static bool IsOver(Vector2 point)
+        {
+            foreach (var puddle in all)
+            {
+                Vector2 offset = point - (Vector2)puddle.transform.position;
+                if (Mathf.Abs(offset.x) <= puddle.area.x / 2f && Mathf.Abs(offset.y) <= puddle.area.y / 2f)
+                    return true;
+            }
+            return false;
+        }
 
         internal static GroundPuddle Create(Transform parent, Vector2 position, Sprite[] frames, float frameSeconds, bool sludge)
         {

@@ -135,6 +135,28 @@ namespace Primordia.Player
         public event Action DodgeStarted;
         public event Action DodgeEnded;
 
+        /// <summary>Se lanza al pulsar y al soltar el botón de esquiva (también si no se puede esquivar).</summary>
+        public event Action DodgePressed;
+        public event Action DodgeReleased;
+
+        /// <summary>True mientras el botón de esquiva está pulsado.</summary>
+        public bool DodgeHeld { get; private set; }
+
+        /// <summary>
+        /// Si es true, pulsar el botón no esquiva: quien lo pone (las Patas de salto del nivel III, que cargan el salto) decide cuándo
+        /// llamar a <see cref="TryDodge"/> al soltarlo.
+        /// </summary>
+        public bool ManualDodge { get; set; }
+
+        /// <summary>Duración de la esquiva; las Patas de salto la alargan con la distancia.</summary>
+        public float DodgeDuration
+        {
+            get => dodgeDuration;
+            set => dodgeDuration = Mathf.Max(0.05f, value);
+        }
+
+        float dodgeSpeed;
+
         int extraDodges;
         float inertia = 1f;
         float channelSpeedFactor = 1f;
@@ -199,12 +221,11 @@ namespace Primordia.Player
         {
             if (readInput)
                 ReadInput();
+            if (readInput && dodgeAction != null)
+                SetDodgeHeld(dodgeAction.IsPressed());
 
             if (!CanAct)
                 return;
-
-            if (readInput && dodgeAction != null && dodgeAction.WasPressedThisFrame())
-                TryDodge();
 
             UpdateAimPivot();
         }
@@ -216,7 +237,7 @@ namespace Primordia.Player
                 if (Time.time < dodgeEndTime)
                 {
                     // En cámara lenta, más deprisa para que vaya a su ritmo de siempre (ver TimeWarp).
-                    rb.linearVelocity = DodgeDirection * (dodgeDistance / dodgeDuration) * TimeWarp.PlayerSpeed;
+                    rb.linearVelocity = DodgeDirection * dodgeSpeed * TimeWarp.PlayerSpeed;
                     walkVelocity = Vector2.zero;
                     return;
                 }
@@ -269,20 +290,47 @@ namespace Primordia.Player
             return walkVelocity;
         }
 
-        /// <summary>Empieza una esquiva si se puede. Devuelve false si está en recarga o el juego no está en curso.</summary>
-        public bool TryDodge()
+        /// <summary>
+        /// Cambia el estado del botón de esquiva: al pulsarlo esquiva (salvo con <see cref="ManualDodge"/>) y lanza
+        /// <see cref="DodgePressed"/>; al soltarlo, <see cref="DodgeReleased"/>. Lo llama el teclado y las pruebas.
+        /// </summary>
+        internal void SetDodgeHeld(bool held)
+        {
+            if (held == DodgeHeld)
+                return;
+            DodgeHeld = held;
+            if (held)
+            {
+                DodgePressed?.Invoke();
+                if (!ManualDodge)
+                    TryDodge();
+            }
+            else
+                DodgeReleased?.Invoke();
+        }
+
+        /// <summary>
+        /// Empieza una esquiva si se puede. Devuelve false si está en recarga o el juego no está en curso. Sin parámetros usa la
+        /// dirección del movimiento (o del apuntado), la distancia y la duración de siempre; el salto cargado fija las suyas.
+        /// </summary>
+        public bool TryDodge(Vector2? direction = null, float? distance = null, float? duration = null)
         {
             if (!CanDodge)
                 return false;
 
             // Pasada la recarga, empieza una cadena nueva; si no, es una esquiva encadenada.
             DodgeInChain = Time.time >= nextDodgeTime ? 1 : DodgeInChain + 1;
-            DodgeDirection = ChooseDodgeDirection(MoveInput, AimDirection);
+            DodgeDirection = direction.HasValue && direction.Value.sqrMagnitude > 0.0001f
+                ? direction.Value.normalized
+                : ChooseDodgeDirection(MoveInput, AimDirection);
+            float length = distance ?? dodgeDistance;
+            float seconds = duration ?? dodgeDuration;
+            dodgeSpeed = length / seconds;
             StopLunge();
             shoveEndTime = 0f;
             IsDodging = true;
             // Los tiempos van en tiempo de juego: en cámara lenta duran lo mismo para el jugador.
-            dodgeEndTime = Time.time + dodgeDuration * TimeWarp.Scale;
+            dodgeEndTime = Time.time + seconds * TimeWarp.Scale;
             nextDodgeTime = dodgeEndTime + dodgeCooldown * TimeWarp.Scale;
             health.IsInvulnerable = true;
 

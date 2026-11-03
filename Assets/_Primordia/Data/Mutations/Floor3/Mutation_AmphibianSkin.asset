@@ -1,0 +1,79 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20c60115f3cee4f4994a25b8f143873b, type: 3}
+  m_Name: Mutation_AmphibianSkin
+  m_EditorClassIdentifier: Primordia::Primordia.Mutations.AmphibianSkinMutation
+  displayName: Piel anfibia
+  description: 'De pie en agua, lodo o charcos se carga un moco (3 s): cargado, eres inmune al fuego, al gas y al veneno de las plantas hasta que un golpe lo rompe. Funciona sin Escupitajo.'
+  slot: 2
+  lineages: []
+  look: {fileID: 0}
+  bodyRadius: 0
+  mouthDistance: 0
+  headHeight: 0
+  wornOnHead: 0
+  muzzleDistance: 0
+  attackLean: 0
+  icon: {fileID: 21300000, guid: f5024357640d5a446a27419df67bc295, type: 3}
+  largeIcon: {fileID: 21300000, guid: 8d6598e075cdd6e41b25363f3dbc6bca, type: 3}
+  color: {r: 0.55, g: 0.7, b: 0.9, a: 1}
+  summary: 
+  levelDescriptions:
+  - "El moco se carga en 2 s y vas un 20 % m\xE1s r\xE1pido."
+  - "Bloqueo: el golpe que rompe el moco no te hace da\xF1o; hay que volver a cargarlo."
+  dodgeSound: 
+  floor: 3
+  special: 0
+  family: 0
+  creatureIdleFrames: []
+  creatureAttackFrames: []
+  creatureBody: {fileID: 0}
+  attackHitTime: 0
+  moveInertia: 1
+  creatureLayers:
+  - body: {fileID: 9100000, guid: b7a1f1eda68daf141be47a222fb3acad, type: 2}
+    layer: {fileID: 9100000, guid: cb11202379ed7e541b80162f44e8c6a4, type: 2}
+  - body: {fileID: 9100000, guid: 1ee0f29d221cfc54b86f59ca6625ec3f, type: 2}
+    layer: {fileID: 9100000, guid: 3a8b253c44d036043b506bc553cc5c0e, type: 2}
+  - body: {fileID: 9100000, guid: 20d0d777444a2e44ea563bce6960ff90, type: 2}
+    layer: {fileID: 9100000, guid: 3eb7dbfad9bf8c54294ddff75a0df3d2, type: 2}
+  morphPaths: []
+  morphFrames: []
+  revealFrames: []
+  chargeSeconds:
+  - 3
+  - 2
+  - 2
+  speedBonus:
+  - 0
+  - 0.2
+  - 0.2
+  chargeFrames:
+  - {fileID: -257833967135939763, guid: 18abe93125d38a34896f56338e1e12ff, type: 3}
+  - {fileID: 5015647853470479791, guid: 18abe93125d38a34896f56338e1e12ff, type: 3}
+  - {fileID: 4871248942334498159, guid: 18abe93125d38a34896f56338e1e12ff, type: 3}
+  - {fileID: 6692148234090211380, guid: 18abe93125d38a34896f56338e1e12ff, type: 3}
+  shieldFrames:
+  - {fileID: 1930495570856610222, guid: 1a519b33bd641614faf1f8a4f54ec86f, type: 3}
+  - {fileID: -326120694636181362, guid: 1a519b33bd641614faf1f8a4f54ec86f, type: 3}
+  - {fileID: 7441482409417316535, guid: 1a519b33bd641614faf1f8a4f54ec86f, type: 3}
+  - {fileID: -8368778222928322423, guid: 1a519b33bd641614faf1f8a4f54ec86f, type: 3}
+  absorbFrames:
+  - {fileID: -5784825921332629381, guid: 0978ca1bff948694daa37613edc3d0a6, type: 3}
+  - {fileID: -816064814, guid: 0978ca1bff948694daa37613edc3d0a6, type: 3}
+  - {fileID: -1423402169, guid: 0978ca1bff948694daa37613edc3d0a6, type: 3}
+  - {fileID: -487956351, guid: 0978ca1bff948694daa37613edc3d0a6, type: 3}
+  blockFrames:
+  - {fileID: 6189073316390758290, guid: e98eb3cf32e7e4a45a6e44080a5963a3, type: 3}
+  - {fileID: 6328895530923345467, guid: e98eb3cf32e7e4a45a6e44080a5963a3, type: 3}
+  - {fileID: -8316597274862483556, guid: e98eb3cf32e7e4a45a6e44080a5963a3, type: 3}
+  - {fileID: -5576825140774713810, guid: e98eb3cf32e7e4a45a6e44080a5963a3, type: 3}

@@ -94,6 +94,9 @@ namespace Primordia.Combat
         /// <summary>Proyectiles en vuelo ahora mismo, de los dos equipos.</summary>
         public static int ActiveCount => active.Count;
 
+        /// <summary>Los proyectiles en vuelo, de los dos equipos (para buscar los de un equipo por su capa).</summary>
+        public static IReadOnlyList<Projectile> Active => active;
+
         /// <summary>Quita todos los proyectiles en vuelo, de los dos equipos, sin efecto de impacto.</summary>
         public static void DespawnAll()
         {

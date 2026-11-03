@@ -30,7 +30,7 @@ namespace Primordia.Rooms
                 if (hit.isTrigger)
                     continue;
                 var health = hit.GetComponentInParent<Health>();
-                if (health == null || health.IsDead || !seen.Add(health) || FireImmune.Has(health))
+                if (health == null || health.IsDead || !seen.Add(health) || FireImmune.Has(health) || ExplosionImmune.Has(health))
                     continue;
                 bool isPlayer = health.GetComponentInParent<PlayerController>() != null;
                 health.TakeDamage(isPlayer ? PlayerDamage : EnemyDamage);

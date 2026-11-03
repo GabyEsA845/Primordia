@@ -74,6 +74,8 @@ namespace Primordia.Rooms
         /// <summary>Lo llama un charco mientras el jugador lo pisa: frena y, una vez cada ventana de 3 s, quita 1 de vida.</summary>
         public void TouchPuddle()
         {
+            if (PoisonImmune.Has(this))
+                return;
             controller.Slow(Toxins.PuddleSlow, SlowHold);
             if (Time.time < puddleWindowEnd)
                 return;
@@ -86,7 +88,11 @@ namespace Primordia.Rooms
         /// Lo llama la nube tóxica cada poco mientras el jugador está dentro: mientras llegue, la barra se llena sin parar (no solo en
         /// los cuadros en que llega el aviso) y, al dejar de llegar, tras un instante empieza a vaciarse.
         /// </summary>
-        public void Feed() => insideUntil = Time.time + InsideGrace;
+        public void Feed()
+        {
+            if (!PoisonImmune.Has(this))
+                insideUntil = Time.time + InsideGrace;
+        }
 
         void Update()
         {

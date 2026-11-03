@@ -86,6 +86,15 @@ namespace Primordia.Enemies
             set => target = value;
         }
 
+        /// <summary>
+        /// Confundido (las Feromonas): va a por <see cref="OverrideTarget"/> (otro enemigo) y no hace caso al jugador; sin nadie a quien
+        /// atacar se queda quieto. Lo pone <see cref="Primordia.Mutations.Confusion"/>.
+        /// </summary>
+        public bool IsConfused { get; set; }
+
+        /// <summary>A quién persigue y ataca mientras <see cref="IsConfused"/>.</summary>
+        public Transform OverrideTarget { get; set; }
+
         public State Current { get; private set; }
         public bool IsAlert { get; private set; }
         public bool IsStunned => Time.time < stunnedUntil;
@@ -279,7 +288,9 @@ namespace Primordia.Enemies
             }
 
             // Las copias de la Yema clonal son señuelos: va a por el más cercano.
-            var aim = Decoys.Choose(transform.position, target);
+            Transform aim = IsConfused
+                ? (OverrideTarget != null && OverrideTarget.gameObject.activeInHierarchy ? OverrideTarget : null)
+                : Decoys.Choose(transform.position, target);
             CurrentTarget = aim;
 
             // Los enemigos con cerebro propio deciden todo lo demás.

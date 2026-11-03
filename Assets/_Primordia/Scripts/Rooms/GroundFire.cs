@@ -37,13 +37,15 @@ namespace Primordia.Rooms
         float nextSpread;
         float nextCheck;
         bool dying;
+        bool harmsPlayer = true;
         SpriteRenderer body;
 
         /// <summary>
         /// Enciende un fuego en esa posición (el pie de las llamas). Si ya hay otro casi en el mismo sitio, lo alarga en vez de
-        /// poner otro encima. Null si no hay arte del fuego (<see cref="ReactionKit"/>).
+        /// poner otro encima. Sin <paramref name="harmsPlayer"/>, el jugador lo pisa sin quemarse (el Incendio del Saco de metano);
+        /// los enemigos arden igual. Null si no hay arte del fuego (<see cref="ReactionKit"/>).
         /// </summary>
-        public static GroundFire Spawn(Vector2 position, float seconds = DefaultSeconds)
+        public static GroundFire Spawn(Vector2 position, float seconds = DefaultSeconds, bool harmsPlayer = true)
         {
             var kit = ReactionKit.Current;
             if (kit == null || kit.GroundFire.Length == 0)
@@ -54,6 +56,7 @@ namespace Primordia.Rooms
                 if (!fire.dying && (fire.transform.position - (Vector3)position).sqrMagnitude < 0.25f)
                 {
                     fire.endTime = Mathf.Max(fire.endTime, Time.time + seconds);
+                    fire.harmsPlayer |= harmsPlayer;
                     return fire;
                 }
             }
@@ -64,6 +67,7 @@ namespace Primordia.Rooms
             renderer.sortingOrder = 6;
             var fireComponent = obj.AddComponent<GroundFire>();
             fireComponent.body = renderer;
+            fireComponent.harmsPlayer = harmsPlayer;
             fireComponent.endTime = Time.time + seconds;
             fireComponent.nextSpread = Time.time + SpreadEvery;
             obj.AddComponent<SpriteFramePlayer>().Play(renderer, kit.GroundFire, kit.GroundFireFrameSeconds, newLoop: true);
@@ -110,7 +114,7 @@ namespace Primordia.Rooms
                 if (hit.GetComponentInParent<PlayerBurn>() is { } player)
                 {
                     // La esquiva pasa por encima del fuego.
-                    if (!player.IsDodging)
+                    if (!player.IsDodging && harmsPlayer)
                         player.Feed(seconds);
                     continue;
                 }

@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff4ebd12934d51b49b43de2522058fe9, type: 3}
+  m_Name: Mutation_MethaneSac
+  m_EditorClassIdentifier: Primordia::Primordia.Mutations.MethaneSacMutation
+  displayName: Saco de metano
+  description: "Clic derecho: sueltas una nube de gas que deriva hacia donde apuntas durante 6 s y explota con cualquier ataque tuyo (6 de da\xF1o, no te da\xF1a a ti). Recarga de 10 s. Con el saco, ninguna explosi\xF3n de gas te da\xF1a."
+  slot: 3
+  lineages: []
+  look: {fileID: 0}
+  bodyRadius: 0
+  mouthDistance: 0
+  headHeight: 0
+  wornOnHead: 0
+  muzzleDistance: 0
+  attackLean: 0
+  icon: {fileID: 21300000, guid: 625553a996c0a0341b5042575284b80e, type: 3}
+  largeIcon: {fileID: 21300000, guid: c0c2177ab3b675c4fb31621d1ff593ff, type: 3}
+  color: {r: 0.55, g: 0.9, b: 0.35, a: 1}
+  summary: 
+  levelDescriptions:
+  - Sueltas dos nubes en abanico.
+  - "Incendio: la explosi\xF3n deja fuego en el suelo durante 3 s."
+  dodgeSound: 
+  floor: 3
+  special: 0
+  family: 0
+  creatureIdleFrames: []
+  creatureAttackFrames: []
+  creatureBody: {fileID: 0}
+  attackHitTime: 0
+  moveInertia: 1
+  creatureLayers: []
+  morphPaths: []
+  morphFrames: []
+  revealFrames: []
+  cooldown: 10
+  effectPrefab: {fileID: 0}
+  effectRadius: 1
+  cloudCounts: 010000000200000002000000i
+  cloud:
+    damage: 6
+    lifetime: 6
+    speed: 0.6
+    explosionRadius: 2
+    fireSeconds: 0
+  incendioSeconds: 3
+  spreadDegrees: 14
+  releaseDelay: 0.35
+  releaseFrames:
+  - {fileID: 5625121430970856362, guid: dc5d2eabfa996074184616af05c1a7e8, type: 3}
+  - {fileID: 3362932984582372887, guid: dc5d2eabfa996074184616af05c1a7e8, type: 3}
+  - {fileID: 3647512747506432007, guid: dc5d2eabfa996074184616af05c1a7e8, type: 3}
+  - {fileID: -3669945426916723677, guid: dc5d2eabfa996074184616af05c1a7e8, type: 3}
+  - {fileID: 6711823949913273050, guid: dc5d2eabfa996074184616af05c1a7e8, type: 3}
+  - {fileID: -5158641482650435808, guid: dc5d2eabfa996074184616af05c1a7e8, type: 3}
+  - {fileID: -5407256923483548870, guid: dc5d2eabfa996074184616af05c1a7e8, type: 3}
+  cloudFrames:
+  - {fileID: -1045264341635762206, guid: b1591181ae834d14dbcb43d700cfbaf3, type: 3}
+  - {fileID: 1276109161709869742, guid: b1591181ae834d14dbcb43d700cfbaf3, type: 3}
+  - {fileID: 4927782777408665186, guid: b1591181ae834d14dbcb43d700cfbaf3, type: 3}
+  - {fileID: 7507328110511544342, guid: b1591181ae834d14dbcb43d700cfbaf3, type: 3}
+  - {fileID: 4134086471591649003, guid: b1591181ae834d14dbcb43d700cfbaf3, type: 3}
+  - {fileID: -2640540884204004223, guid: b1591181ae834d14dbcb43d700cfbaf3, type: 3}
+  fadeFrames:
+  - {fileID: -8057123287009128432, guid: 2a2e13e8304c3ac48934cdb543d18f58, type: 3}
+  - {fileID: 4728192748214453570, guid: 2a2e13e8304c3ac48934cdb543d18f58, type: 3}
+  - {fileID: 558964408813615543, guid: 2a2e13e8304c3ac48934cdb543d18f58, type: 3}
+  - {fileID: -5603987569624668299, guid: 2a2e13e8304c3ac48934cdb543d18f58, type: 3}
+  explodeFrames:
+  - {fileID: -6120051384208765717, guid: 52b92288cfa808a4f8a2ab7ad80c8652, type: 3}
+  - {fileID: -4323193530139778097, guid: 52b92288cfa808a4f8a2ab7ad80c8652, type: 3}
+  - {fileID: 5549910060440747768, guid: 52b92288cfa808a4f8a2ab7ad80c8652, type: 3}
+  - {fileID: -6299369037235855884, guid: 52b92288cfa808a4f8a2ab7ad80c8652, type: 3}
+  - {fileID: 8234103057408149926, guid: 52b92288cfa808a4f8a2ab7ad80c8652, type: 3}
+  - {fileID: -9112145291666140252, guid: 52b92288cfa808a4f8a2ab7ad80c8652, type: 3}
+  - {fileID: -3417244617619257196, guid: 52b92288cfa808a4f8a2ab7ad80c8652, type: 3}
+  - {fileID: 4056207918034443932, guid: 52b92288cfa808a4f8a2ab7ad80c8652, type: 3}

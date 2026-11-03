@@ -9,11 +9,11 @@ namespace Primordia.Core
 {
     /// <summary>
     /// Atajos para probar (solo en el editor y en compilaciones de desarrollo; la build de itch.io no los lleva):
-    /// F1 invulnerable, F2 daño ×5, F3 vacía la sala en combate, F4 da una mutación al azar de la reserva del piso (o
-    /// sube de nivel una que ya se lleva), F5 una mutación especial de las almejas (o sube una que ya se lleva) y F6 cambia a
-    /// la siguiente Boca del piso, con el mismo nivel (para probar las Bocas del piso 2 en Test_Floor2), F7 lleva junto a
-    /// la cápsula de la sala de cambio y F8 completa el siguiente linaje del piso (equipa sus 4 mutaciones, para probar
-    /// beneficios, toques y evoluciones), F9 derrumba las rocas agrietadas de la sala y F10 pasa el derrumbe de la cueva a su
+    /// F1, F2 y F3 rotan por las Extremidades, la Piel y los Órganos del piso (con el mismo nivel), F4 completa el siguiente
+    /// linaje del piso (equipa sus 4 mutaciones, para probar beneficios, toques y evoluciones), F5 sube un nivel la primera
+    /// mutación que pueda (Boca, Extremidades, Piel, Órgano), F6 cambia a la siguiente Boca del piso, F7 invulnerable y
+    /// F8 lleva junto a la cápsula de la sala de cambio. Con Mayús: F2 daño ×5, F3 vacía la sala en combate, F4 da una
+    /// mutación al azar de la reserva del piso (o sube una que ya se lleva) y F5 una especial de las almejas. F9 derrumba las rocas agrietadas de la sala y F10 pasa el derrumbe de la cueva a su
     /// siguiente fase (calma, crujidos, terremoto, derrumbe; sala del Euriptérido), Av Pág / Re Pág saltan al tramo siguiente o
     /// anterior del piso (piso 3) y F12 prende lo inflamable cercano (maleza y helechos del piso 3; con Mayús, un fuego en el suelo). Arriba a la izquierda se ve qué está activo.
     /// </summary>
@@ -60,27 +60,50 @@ namespace Primordia.Core
             if (player == null)
                 return;
 
-            if (keyboard.f1Key.wasPressedThisFrame)
-                Say((invulnerable = !invulnerable) ? "Invulnerable" : "Vulnerable");
+            bool shift = keyboard.leftShiftKey.isPressed;
+            // Sin Mayús: F1-F3 rotan Extremidades, Piel y Órganos del piso; F4 rota los linajes; F5 sube de nivel; F7 invulnerable.
+            // Con Mayús: lo que antes estaba en F2-F5 (daño ×5, vaciar sala, mutación al azar, especial).
+            if (keyboard.f1Key.wasPressedThisFrame && !shift)
+                NextSlotMutation(MutationSlot.Limbs, "Extremidades");
             if (keyboard.f2Key.wasPressedThisFrame)
             {
-                strong = !strong;
-                if (!strong && player.Weapon != null)
-                    player.Weapon.ClearDamageBonus(this);
-                Say(strong ? $"Daño ×{DamageBoost}" : "Daño normal");
+                if (shift)
+                {
+                    strong = !strong;
+                    if (!strong && player.Weapon != null)
+                        player.Weapon.ClearDamageBonus(this);
+                    Say(strong ? $"Daño ×{DamageBoost}" : "Daño normal");
+                }
+                else
+                    NextSlotMutation(MutationSlot.Skin, "Piel");
             }
             if (keyboard.f3Key.wasPressedThisFrame)
-                ClearRoom();
+            {
+                if (shift)
+                    ClearRoom();
+                else
+                    NextSlotMutation(MutationSlot.Organ, "Órgano");
+            }
             if (keyboard.f4Key.wasPressedThisFrame)
-                GiveMutation();
+            {
+                if (shift)
+                    GiveMutation();
+                else
+                    NextLineage();
+            }
             if (keyboard.f5Key.wasPressedThisFrame)
-                GiveSpecial();
+            {
+                if (shift)
+                    GiveSpecial();
+                else
+                    LevelUpNext();
+            }
             if (keyboard.f6Key.wasPressedThisFrame)
                 NextMouth();
             if (keyboard.f7Key.wasPressedThisFrame)
-                GoToExchange();
+                Say((invulnerable = !invulnerable) ? "Invulnerable" : "Vulnerable");
             if (keyboard.f8Key.wasPressedThisFrame)
-                NextLineage();
+                GoToExchange();
             if (keyboard.f9Key.wasPressedThisFrame)
                 CollapseRocks();
             if (keyboard.f11Key.wasPressedThisFrame)
@@ -318,6 +341,49 @@ namespace Primordia.Core
             {
             }
             Say($"Boca: {next.DisplayName} (nivel {player.LevelOf(MutationSlot.Mouth)})");
+        }
+
+        /// <summary>
+        /// F1-F3: cambia la mutación de esa ranura por la siguiente del piso actual (en orden de nombre, sin las especiales) y la
+        /// deja al nivel de la anterior.
+        /// </summary>
+        void NextSlotMutation(MutationSlot slot, string slotName)
+        {
+            var all = AllAssets<MutationData>();
+            all.RemoveAll(m => m.Slot != slot || m.Floor != Mathf.Max(1, FloorGenerator.CurrentFloor) || m.IsSpecial);
+            if (all.Count == 0)
+            {
+                Say($"Este piso no tiene mutaciones de {slotName}");
+                return;
+            }
+
+            var current = player.Get(slot);
+            int level = Mathf.Max(1, player.LevelOf(slot));
+            var next = all[(all.IndexOf(current) + 1) % all.Count];
+            if (current != null)
+                player.Unequip(slot);
+            player.Equip(next);
+            while (player.LevelOf(slot) < level && player.LevelUp(slot))
+            {
+            }
+            Say($"{slotName}: {next.DisplayName} (nivel {player.LevelOf(slot)})");
+        }
+
+        static readonly MutationSlot[] LevelOrder = { MutationSlot.Mouth, MutationSlot.Limbs, MutationSlot.Skin, MutationSlot.Organ };
+
+        /// <summary>F5: sube un nivel la primera mutación equipada que aún pueda subir, en el orden Boca, Extremidades, Piel y Órgano.</summary>
+        void LevelUpNext()
+        {
+            foreach (var slot in LevelOrder)
+            {
+                var mutation = player.Get(slot);
+                if (mutation == null || !player.CanLevelUp(mutation))
+                    continue;
+                player.LevelUp(slot);
+                Say($"{mutation.DisplayName} sube a nivel {player.LevelOf(slot)}");
+                return;
+            }
+            Say("Todo está al nivel máximo");
         }
 
         /// <summary>

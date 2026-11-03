@@ -1,0 +1,85 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4750a344937ffac41b6f6e9f3ff10026, type: 3}
+  m_Name: Mutation_JumpingLegs
+  m_EditorClassIdentifier: Primordia::Primordia.Mutations.JumpingLegsMutation
+  displayName: Patas de salto
+  description: "La esquiva es un salto alto de 4 u: en el aire eres invulnerable y pasas por encima de enemigos, proyectiles, lodo, charcos y obst\xE1culos bajos. Al caer esparces los charcos de veneno."
+  slot: 1
+  lineages: []
+  look: {fileID: 0}
+  bodyRadius: 0
+  mouthDistance: 0
+  headHeight: 0
+  wornOnHead: 0
+  muzzleDistance: 0
+  attackLean: 0
+  icon: {fileID: 21300000, guid: c24bf42a0b77d1546a5add35ebcd529c, type: 3}
+  largeIcon: {fileID: 21300000, guid: 559ade8afe3803b4caee016f2fba6736, type: 3}
+  color: {r: 0.66, g: 0.35, b: 0.82, a: 1}
+  summary: 
+  levelDescriptions:
+  - "Salto de 5 u; el aterrizaje hace 3 de da\xF1o a los de alrededor."
+  - "Salto cargado: salto de 6 u; mant\xE9n la esquiva al menos 1 s y un marcador muestra d\xF3nde caer\xE1s (m\xE1s lejos cuanto m\xE1s aguantes, hacia donde apuntes). Al soltar saltas ah\xED con un impacto de 6 de da\xF1o que empuja y aturde 1,2 s."
+  dodgeSound: 
+  floor: 3
+  special: 0
+  family: 0
+  creatureIdleFrames: []
+  creatureAttackFrames: []
+  creatureBody: {fileID: 0}
+  attackHitTime: 0
+  moveInertia: 1
+  creatureLayers: []
+  morphPaths: []
+  morphFrames: []
+  revealFrames: []
+  distances:
+  - 4
+  - 5
+  - 6
+  landDamage: 000000000300000003000000i
+  landRadii:
+  - 1.2
+  - 1.6
+  - 1.6
+  minHold: 1
+  chargeSeconds: 1.5
+  chargedMinDistance: 3
+  chargedMaxDistance: 8
+  chargedDamage: 6
+  chargedRadius: 2.2
+  chargedStun: 1.2
+  chargedPush: 9
+  takeoffFrames:
+  - {fileID: 392307671080330147, guid: 1971f564c7bcb034999fd51d0bd25ce5, type: 3}
+  - {fileID: 1626897469, guid: 1971f564c7bcb034999fd51d0bd25ce5, type: 3}
+  - {fileID: 2016035127, guid: 1971f564c7bcb034999fd51d0bd25ce5, type: 3}
+  - {fileID: -831423496, guid: 1971f564c7bcb034999fd51d0bd25ce5, type: 3}
+  - {fileID: 275160420, guid: 1971f564c7bcb034999fd51d0bd25ce5, type: 3}
+  landFrames:
+  - {fileID: -8242013177643251429, guid: 2a37c5f2e11a87c4ba9d74c8b16bcf8c, type: 3}
+  - {fileID: 9031565310918276569, guid: 2a37c5f2e11a87c4ba9d74c8b16bcf8c, type: 3}
+  - {fileID: 7492411334309345637, guid: 2a37c5f2e11a87c4ba9d74c8b16bcf8c, type: 3}
+  - {fileID: 8957233568480013365, guid: 2a37c5f2e11a87c4ba9d74c8b16bcf8c, type: 3}
+  - {fileID: 1742577074202846018, guid: 2a37c5f2e11a87c4ba9d74c8b16bcf8c, type: 3}
+  quakeFrames:
+  - {fileID: -4296546866030300675, guid: 2788577647819a24089e56da1694c18c, type: 3}
+  - {fileID: 7077500982115066640, guid: 2788577647819a24089e56da1694c18c, type: 3}
+  - {fileID: 5724181898075184354, guid: 2788577647819a24089e56da1694c18c, type: 3}
+  - {fileID: -2393429004682065193, guid: 2788577647819a24089e56da1694c18c, type: 3}
+  - {fileID: 1135627405664792653, guid: 2788577647819a24089e56da1694c18c, type: 3}
+  stunnedFrames:
+  - {fileID: 6664973462887005616, guid: a86f8afdfa7acf8489cb7b6755ecf13a, type: 3}
+  - {fileID: 358151472, guid: a86f8afdfa7acf8489cb7b6755ecf13a, type: 3}
+  - {fileID: 922523272, guid: a86f8afdfa7acf8489cb7b6755ecf13a, type: 3}
+  - {fileID: 941571126, guid: a86f8afdfa7acf8489cb7b6755ecf13a, type: 3}

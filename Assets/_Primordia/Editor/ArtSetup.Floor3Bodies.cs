@@ -41,6 +41,28 @@ namespace Primordia.Editor
         static readonly Character WhipscorpionBody = Floor3Body("Whipscorpion",
             ("AttackStart", 14.3f, false), ("AttackLoop", 16.7f, true), ("AttackEnd", 12.5f, false));
 
+        /// <summary>
+        /// La capa de una Piel del piso 3 sobre un cuerpo (docs/multimedia-temp/floor3-mutations/Skin, hojas <c>{prefix}_{cuerpo}_*</c>), con
+        /// los mismos estados y ritmo que el cuerpo. Null si no están las hojas.
+        /// </summary>
+        internal static RuntimeAnimatorController ImportFloor3SkinLayer(string prefix, string body)
+        {
+            var template = body == "Frog" ? FrogBody : body == "Diplocaulus" ? DiplocaulusBody : body == "Whipscorpion" ? WhipscorpionBody : null;
+            const string source = "docs/multimedia-temp/floor3-mutations/Skin";
+            string name = $"{prefix}_{body}";
+            if (template == null || !System.IO.Directory.Exists(source) || System.IO.Directory.GetFiles(source, name + "_*.png").Length == 0)
+                return null;
+            var art = Import(new Character
+            {
+                Name = name,
+                SourceFolder = source,
+                ArtFolder = $"{CharactersFolder}/Player/Floor3Skins/{prefix}/{body}",
+                DefaultState = "Idle_down",
+                Timings = template.Timings,
+            });
+            return art != null ? art.Controller : null;
+        }
+
         /// <summary>Corta en cuadros una hoja de efectos de las Bocas del piso 3 ya importada (floor3-bodies/Effects). Vacío si no está.</summary>
         internal static Sprite[] Floor3BodyEffect(string name, int cell)
         {

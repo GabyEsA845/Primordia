@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcec0f868bcf6d6419fe4bb28dd3d677, type: 3}
+  m_Name: Mutation_Pheromones
+  m_EditorClassIdentifier: Primordia::Primordia.Mutations.PheromonesMutation
+  displayName: Feromonas
+  description: "Clic derecho: lanzas un velo de feromonas hasta 5 u hacia el cursor; los enemigos en radio 2 se atacan entre s\xED durante 3 s. Los jefes no se confunden. Recarga de 14 s."
+  slot: 3
+  lineages: []
+  look: {fileID: 0}
+  bodyRadius: 0
+  mouthDistance: 0
+  headHeight: 0
+  wornOnHead: 0
+  muzzleDistance: 0
+  attackLean: 0
+  icon: {fileID: 21300000, guid: 669d627b5bc11964d9f2959c9a0a20e2, type: 3}
+  largeIcon: {fileID: 21300000, guid: 74fc9c5cf6e1a9a45aee217176119f58, type: 3}
+  color: {r: 0.55, g: 0.9, b: 0.35, a: 1}
+  summary: 
+  levelDescriptions:
+  - "La confusi\xF3n dura 4 s."
+  - "Frenes\xED: el da\xF1o entre los confundidos es doble."
+  dodgeSound: 
+  floor: 3
+  special: 0
+  family: 0
+  creatureIdleFrames: []
+  creatureAttackFrames: []
+  creatureBody: {fileID: 0}
+  attackHitTime: 0
+  moveInertia: 1
+  creatureLayers: []
+  morphPaths: []
+  morphFrames: []
+  revealFrames: []
+  cooldown: 14
+  effectPrefab: {fileID: 0}
+  effectRadius: 1
+  seconds:
+  - 3
+  - 4
+  - 4
+  radius: 2
+  throwRange: 5
+  releaseFrames:
+  - {fileID: -2485274220095665546, guid: eb01cab18b0911e4fb4c1a676716b441, type: 3}
+  - {fileID: -5744410410728980855, guid: eb01cab18b0911e4fb4c1a676716b441, type: 3}
+  - {fileID: -894002409566061152, guid: eb01cab18b0911e4fb4c1a676716b441, type: 3}
+  - {fileID: -6572462799543416666, guid: eb01cab18b0911e4fb4c1a676716b441, type: 3}
+  - {fileID: -9190019399157680772, guid: eb01cab18b0911e4fb4c1a676716b441, type: 3}
+  - {fileID: -2144185102473995185, guid: eb01cab18b0911e4fb4c1a676716b441, type: 3}
+  - {fileID: 1008986850579139893, guid: eb01cab18b0911e4fb4c1a676716b441, type: 3}
+  auraFrames:
+  - {fileID: 1355691606800674094, guid: 353817286e11fee488b0f74c1d9d6fdc, type: 3}
+  - {fileID: 6437370933568782522, guid: 353817286e11fee488b0f74c1d9d6fdc, type: 3}
+  - {fileID: -4914865861183415401, guid: 353817286e11fee488b0f74c1d9d6fdc, type: 3}
+  - {fileID: -4034987499661664246, guid: 353817286e11fee488b0f74c1d9d6fdc, type: 3}
+  markFrames:
+  - {fileID: 668147039648667401, guid: c5bd48b1f3bf0cc419e75a77a42d42d7, type: 3}
+  - {fileID: -9003259149535439449, guid: c5bd48b1f3bf0cc419e75a77a42d42d7, type: 3}
+  - {fileID: -3686496754608462768, guid: c5bd48b1f3bf0cc419e75a77a42d42d7, type: 3}
+  - {fileID: 1922928195177032525, guid: c5bd48b1f3bf0cc419e75a77a42d42d7, type: 3}
+  frenzyFrames:
+  - {fileID: 2649449203329985239, guid: 404aa3058cdcc244b9c3adb0fff6aa7a, type: 3}
+  - {fileID: -437928707785691255, guid: 404aa3058cdcc244b9c3adb0fff6aa7a, type: 3}
+  - {fileID: 9180889337793203445, guid: 404aa3058cdcc244b9c3adb0fff6aa7a, type: 3}
+  - {fileID: -3830845467087019923, guid: 404aa3058cdcc244b9c3adb0fff6aa7a, type: 3}

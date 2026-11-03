@@ -1,0 +1,84 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24e10820b4c37084685483c0b0bbf8ef, type: 3}
+  m_Name: Mutation_SpinnerLegs
+  m_EditorClassIdentifier: Primordia::Primordia.Mutations.SpinnerLegsMutation
+  displayName: Patas hilanderas
+  description: "La esquiva (4 u) tiende un hilo de 7 s entre donde empiezas y donde acabas: frena a los enemigos y da\xF1a 3 al que lo toca."
+  slot: 1
+  lineages: []
+  look: {fileID: 0}
+  bodyRadius: 0
+  mouthDistance: 0
+  headHeight: 0
+  wornOnHead: 0
+  muzzleDistance: 0
+  attackLean: 0
+  icon: {fileID: 21300000, guid: 2a14f6cdd5beb0f4e9fe5db66d6b233a, type: 3}
+  largeIcon: {fileID: 21300000, guid: 4c88a1cc3119dd74092e01b99f79fef6, type: 3}
+  color: {r: 0.66, g: 0.35, b: 0.82, a: 1}
+  summary: 
+  levelDescriptions:
+  - "Esquiva de 5 u, hilos de 9 s con 4 de da\xF1o y hasta 2 a la vez."
+  - "Red: los hilos ya no desaparecen; con 3 en la sala sus extremos se unen y una telara\xF1a cubre todo lo de dentro: 4 de da\xF1o e inmoviliza 3 s."
+  dodgeSound: 
+  floor: 3
+  special: 0
+  family: 0
+  creatureIdleFrames: []
+  creatureAttackFrames: []
+  creatureBody: {fileID: 0}
+  attackHitTime: 0
+  moveInertia: 1
+  creatureLayers: []
+  morphPaths: []
+  morphFrames: []
+  revealFrames: []
+  distances:
+  - 4
+  - 5
+  - 5
+  threadLimits: 010000000200000003000000i
+  threadLifetimes:
+  - 7
+  - 9
+  - 0
+  damages: 030000000400000004000000i
+  minLength: 0.8
+  netSeconds: 4
+  netHoldSeconds: 3
+  startFrames:
+  - {fileID: 1652332900542428690, guid: 9946637c1b4af60499cdec8855a40ec3, type: 3}
+  - {fileID: 805198249, guid: 9946637c1b4af60499cdec8855a40ec3, type: 3}
+  - {fileID: -1635392666, guid: 9946637c1b4af60499cdec8855a40ec3, type: 3}
+  - {fileID: -958460825, guid: 9946637c1b4af60499cdec8855a40ec3, type: 3}
+  threadFrames:
+  - {fileID: 7786799987296147889, guid: 48b19d14f97a5bf4785f99b36d29572a, type: 3}
+  - {fileID: 1639273320, guid: 48b19d14f97a5bf4785f99b36d29572a, type: 3}
+  anchorFrames:
+  - {fileID: 6235940406868244335, guid: 2d8ce1b06c4312b4e99219555c340023, type: 3}
+  - {fileID: 2109623263687382873, guid: 2d8ce1b06c4312b4e99219555c340023, type: 3}
+  hitFrames:
+  - {fileID: -126208787057010, guid: 856a24f1860771d468503af63a76b55f, type: 3}
+  - {fileID: -838997061, guid: 856a24f1860771d468503af63a76b55f, type: 3}
+  - {fileID: 1396630791, guid: 856a24f1860771d468503af63a76b55f, type: 3}
+  - {fileID: -1368267042, guid: 856a24f1860771d468503af63a76b55f, type: 3}
+  webAppear:
+  - {fileID: 6447546041488074023, guid: 5a3324cd0540c3a4aa8a4e3810f0f80f, type: 3}
+  - {fileID: 7019323806295952417, guid: 5a3324cd0540c3a4aa8a4e3810f0f80f, type: 3}
+  - {fileID: -3122540267975383599, guid: 5a3324cd0540c3a4aa8a4e3810f0f80f, type: 3}
+  webIdle:
+  - {fileID: -7290360533354553739, guid: dc28d3cbee7a2db4a8503e885c7eda74, type: 3}
+  webFade:
+  - {fileID: 1211154366257323125, guid: 1727e6e8769ff3c4ba0864fe39050303, type: 3}
+  - {fileID: -7841209521103028538, guid: 1727e6e8769ff3c4ba0864fe39050303, type: 3}
+  - {fileID: -8314789237781593187, guid: 1727e6e8769ff3c4ba0864fe39050303, type: 3}

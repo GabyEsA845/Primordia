@@ -56,6 +56,17 @@ namespace Primordia.Rooms
 
         public bool CanIgnite => state == State.Idle;
 
+        /// <summary>True si ese punto está dentro de algún charco de veneno que no se esté quemando ni secando.</summary>
+        public static bool IsOver(Vector2 point)
+        {
+            foreach (var puddle in all)
+            {
+                if (puddle.state == State.Idle && (point - puddle.Position).sqrMagnitude <= puddle.radius * puddle.radius)
+                    return true;
+            }
+            return false;
+        }
+
         /// <summary>
         /// Hace un charco en ese punto (el centro del dibujo). Sin <paramref name="harmsPlayer"/>, el jugador lo pisa sin frenarse ni
         /// envenenarse (los charcos que deja él mismo). Null si no hay arte del veneno.

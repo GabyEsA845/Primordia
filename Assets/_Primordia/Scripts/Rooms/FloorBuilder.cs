@@ -953,6 +953,9 @@ namespace Primordia.Rooms
                 if (sprites.Length > 0)
                     renderer.sprite = sprites[random.Next(sprites.Length)];
                 obstacle.AddComponent<BoxCollider2D>().size = Vector2.one * size;
+                // Los de 1×1 son bajos: un salto (Patas de salto) los cruza.
+                if (size == 1)
+                    obstacle.AddComponent<JumpableObstacle>();
 
                 // Los tocones de la tierra quemada echan humo.
                 var scenery = theme.Scenery;

@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 995faeb14e53dec469b9c673e08cc76c, type: 3}
+  m_Name: Mutation_CharredScales
+  m_EditorClassIdentifier: Primordia::Primordia.Mutations.CharredScalesMutation
+  displayName: Escamas carbonizadas
+  description: Inmune al fuego y a las explosiones de gas. Tras pisar fuego, tus ataques queman 4 s.
+  slot: 2
+  lineages: []
+  look: {fileID: 0}
+  bodyRadius: 0
+  mouthDistance: 0
+  headHeight: 0
+  wornOnHead: 0
+  muzzleDistance: 0
+  attackLean: 0
+  icon: {fileID: 21300000, guid: b35838bf5601a66409666f5eaa55d7dc, type: 3}
+  largeIcon: {fileID: 21300000, guid: c8326b931b916e04f9a2d6d6422d41f9, type: 3}
+  color: {r: 0.55, g: 0.7, b: 0.9, a: 1}
+  summary: 
+  levelDescriptions:
+  - "Tambi\xE9n eres inmune al veneno de las plantas, y al recibir un golpe estallas en llamas (4 de da\xF1o en radio 1,5; recarga de 5 s)."
+  - 'Llamarada: todos tus ataques prenden fuego siempre, a los enemigos y al escenario (helechos, metano, charcos de veneno) donde impactan y por donde pasan.'
+  dodgeSound: 
+  floor: 3
+  special: 0
+  family: 0
+  creatureIdleFrames: []
+  creatureAttackFrames: []
+  creatureBody: {fileID: 0}
+  attackHitTime: 0
+  moveInertia: 1
+  creatureLayers:
+  - body: {fileID: 9100000, guid: b7a1f1eda68daf141be47a222fb3acad, type: 2}
+    layer: {fileID: 9100000, guid: 56b8c80f939f1da45ae7f45ff5875135, type: 2}
+  - body: {fileID: 9100000, guid: 1ee0f29d221cfc54b86f59ca6625ec3f, type: 2}
+    layer: {fileID: 9100000, guid: 401d33b5f4db03649855b8785109bdcb, type: 2}
+  - body: {fileID: 9100000, guid: 20d0d777444a2e44ea563bce6960ff90, type: 2}
+    layer: {fileID: 9100000, guid: 9e25752c8e5dc86499c2785a0417dab3, type: 2}
+  morphPaths: []
+  morphFrames: []
+  revealFrames: []
+  primedSeconds: 4
+  blazeDamage: 4
+  blazeRadius: 1.5
+  blazeCooldown: 5
+  primedFrames:
+  - {fileID: -3386342325130667942, guid: 9cee2bd16cea94c418655fb1f5e14714, type: 3}
+  - {fileID: 1823871305, guid: 9cee2bd16cea94c418655fb1f5e14714, type: 3}
+  - {fileID: -89072058, guid: 9cee2bd16cea94c418655fb1f5e14714, type: 3}
+  - {fileID: 2143065333, guid: 9cee2bd16cea94c418655fb1f5e14714, type: 3}
+  blazeFrames:
+  - {fileID: -7928116840094374642, guid: 5c4c466b1e1232849b180412753a8dcd, type: 3}
+  - {fileID: 5950268846151298781, guid: 5c4c466b1e1232849b180412753a8dcd, type: 3}
+  - {fileID: 7676070425817376297, guid: 5c4c466b1e1232849b180412753a8dcd, type: 3}
+  - {fileID: -1751512228903410783, guid: 5c4c466b1e1232849b180412753a8dcd, type: 3}
+  - {fileID: 72912159389927064, guid: 5c4c466b1e1232849b180412753a8dcd, type: 3}
+  - {fileID: 4346242786598724044, guid: 5c4c466b1e1232849b180412753a8dcd, type: 3}

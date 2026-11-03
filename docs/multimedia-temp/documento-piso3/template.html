@@ -151,10 +151,16 @@ tr.picked th::before { content: "▸ "; }
 /* Cuerpos y tabla de mutaciones */
 .bodies { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
 @media (max-width: 640px) { .bodies { grid-template-columns: 1fr; } }
-.bodycard { display: grid; gap: 8px; justify-items: start; min-width: 0; }
+.bodycard { display: grid; gap: 8px; justify-items: start; align-content: start; min-width: 0; }
 .bodycard .pair { display: flex; gap: 6px; background: var(--deep); padding: 6px; box-shadow: inset 0 0 0 2px var(--line); }
 .bodycard b { font-family: var(--display); font-size: .9rem; }
 .bodycard .anims { width: 100%; justify-content: center; align-items: end; }
+#mutart .bodycard { align-self: start; }
+.jumpart { display: grid; gap: 12px; margin-top: 12px; grid-template-columns: minmax(0, 1fr); }
+.jumpart .panel { display: grid; gap: 8px; min-width: 0; }
+.jumpart h3 { font-family: var(--display); font-size: .95rem; margin: 0; }
+.jumpart .anims { justify-content: center; align-items: end; gap: 14px; min-width: 0; }
+.jumpart .anim { min-width: 0; max-width: 100%; }
 .filter { display: flex; flex-wrap: wrap; gap: 6px; }
 .filter button { font-family: var(--display); font-size: .82rem; padding: 0 4px; margin: -6px 0; display: inline-flex; align-items: center; gap: 6px; }
 .filter button img { width: 16px; height: 16px; image-rendering: pixelated; }
@@ -448,6 +454,7 @@ tr.picked th::before { content: "▸ "; }
     <p class="muted">El nivel I de una mutación del piso 3 vale como el II de una del piso 2. Coger otra vez la misma la sube de nivel, hasta el III. Este piso estrena formas de manejo distintas a las de los anteriores: <b>mantener</b> pulsado (Peonza, Chorro de vinagre), <b>cargar</b> y <b>detonar</b> (Escupitajo, Saco de metano). Las Extremidades no se dibujan en el cuerpo; las Pieles retocan el cuerpo dentro de su silueta y los Órganos solo se ven en sus efectos.</p>
     <div class="bodies" id="bodies"></div>
     <div class="bodies" id="mutart" role="group" aria-label="Cómo se ven las Extremidades, la Piel y los Órganos"></div>
+    <div class="jumpart" id="jumpart"></div>
     <div class="filter" id="filter" role="group" aria-label="Filtrar por ranura"></div>
     <div class="tablebox panel"><table id="mutations"></table></div>
   </section>
@@ -997,14 +1004,8 @@ MUTATIONS.filter(m => m.slot === 0).forEach(m => {
 
 // Extremidades, Piel y Órganos: la capa de la Piel sobre los 3 cuerpos y los efectos. [hoja, nombre, escala, segundos]
 const MUT_ART = {
-  salt: { note: 'Cada cuerpo salta a su manera: la rana se estira, el Diplocaulus se enrosca como un muelle y el vinagrillo abre las patas. El cuerpo sube en arco (más alto cuanto más lejos salta) con su sombra en el suelo',
-          fx: [['mf_takeoff', 'Despegue', 3, 0.4], ['mf_land', 'Aterrizaje', 3, 0.6]],
-          jump: [['mj_frog', 'Rana', 0.55, 0], ['mj_diplo', 'Diplocaulus', 0.55, 0], ['mj_whip', 'Vinagrillo', 0.55, 0]],
-          charge: [['mjc_Frog', 'Rana', 2, 0.45], ['mjc_Diplocaulus', 'Diplocaulus', 2, 0.45], ['mjc_Whipscorpion', 'Vinagrillo', 2, 0.45]],
-          marker: [['mj_marker', 'Marcador del salto cargado: se aleja al mantener y late en amarillo con la carga al máximo', 0.5, 0], ['mf_mspot', 'Diana', 4, 0.66], ['mf_mfull', 'Carga máxima', 4, 0.66]] },
-  hila: { note: 'Sin capa en el cuerpo: se ven el hilo y la red, que se teje con la forma exacta de los tres hilos',
-          fx: [['mf_silkHit', 'Impacto del hilo', 4, 0.4]],
-          jump: [['mj_net1', 'Red de 3 hilos (triángulo)', 3, 0], ['mj_net2', 'Cuadrilátero', 3, 0], ['mj_net3', 'Hexágono', 3, 0]] },
+  salt: { note: 'Sin capa en el cuerpo: se ven el despegue y el aterrizaje (el salto entero, más abajo)', fx: [['mf_takeoff', 'Despegue', 3, 0.4], ['mf_land', 'Aterrizaje', 3, 0.6]] },
+  hila: { note: 'Sin capa en el cuerpo: se ve el impacto del hilo (la red, más abajo)', fx: [['mf_silkHit', 'Impacto del hilo', 4, 0.4]] },
   anfi: { layer: 'AmphibianSkin', note: 'Película verde agua, con brillos sueltos y gotitas', fx: [['mf_charge', 'Carga', 3, 0.6], ['mf_shield', 'Moco', 2, 0.5], ['mf_absorb', 'Se rompe', 2, 0.5], ['mf_reflect', 'Bloqueo (III)', 2, 0.5]] },
   carb: { layer: 'CharredScales', note: 'Carbón con escamas y grietas de ascuas que laten', fx: [['mf_primed', 'Prendida', 3, 0.6], ['mf_blaze', 'Brasa (II)', 2, 0.6], ['mf_burning', 'Arde', 4, 0.4]] },
   meta: { note: 'La vejiga se hincha y suelta la nube', fx: [['mf_release', 'Suelta', 2, 0.6], ['mf_cloud', 'Nube', 3, 0.8], ['mf_explode', 'Explota', 1.5, 0.7]] },
@@ -1018,14 +1019,36 @@ MUTATIONS.filter(m => MUT_ART[m.id]).forEach(m => {
       sprite(`ml_${a.layer}_${body}`, 2, 0.72, `${m.name} sobre ${b.name.toLowerCase()}`))) : null,
     el('b', {}, m.name), el('span', { class: 'note' }, `${SLOTS[m.slot]} · ${a.note}`),
     el('div', { class: 'anims' }, ...a.fx.map(([k, n, sc, d]) =>
-      el('div', { class: 'anim' }, sprite(k, sc, d, `${m.name}: ${n}`), el('span', { class: 'label' }, n)))),
-    // Escenas (GIF) y poses de carga: el salto entero de cada cuerpo, el marcador y la red.
-    a.jump ? el('div', { class: 'anims', style: 'justify-content:center' }, ...a.jump.map(([k, n, sc, d]) =>
-      el('div', { class: 'anim' }, sprite(k, sc, d, `${m.name}: ${n}`), el('span', { class: 'label' }, n)))) : null,
-    a.charge ? el('div', { class: 'anims' }, ...a.charge.map(([k, n, sc, d]) =>
-      el('div', { class: 'anim' }, sprite(k, sc, d, `${m.name}: carga del nivel III, ${n}`), el('span', { class: 'label' }, `Carga: ${n}`)))) : null,
-    a.marker ? el('div', { class: 'anims', style: 'justify-content:center' }, ...a.marker.map(([k, n, sc, d]) =>
-      el('div', { class: 'anim' }, sprite(k, sc, d, `${m.name}: ${n}`), el('span', { class: 'label' }, n)))) : null));
+      el('div', { class: 'anim' }, sprite(k, sc, d, `${m.name}: ${n}`), el('span', { class: 'label' }, n))))));
+});
+
+// El salto alto de las Patas de salto y la red de las Patas hilanderas: escenas GIF a ancho completo, debajo de las tarjetas.
+// [hoja o GIF, nombre, escala, segundos]
+const JUMP_ART = [
+  { title: 'Patas de salto: el salto alto',
+    text: 'Cada cuerpo salta a su manera: la rana se estira, el Diplocaulus se enrosca como un muelle y sale disparado con la cabeza por delante, y el vinagrillo abre las patas con la cola en alto. El cuerpo sube en arco (más alto cuanto más lejos salta) con su sombra en el suelo, que se encoge al subir.',
+    rows: [
+      ['jump', [['mj_frog', 'Rana', 0.62, 0], ['mj_diplo', 'Diplocaulus', 0.62, 0], ['mj_whip', 'Vinagrillo', 0.62, 0]]],
+    ] },
+  { title: 'Patas de salto, nivel III: el salto cargado',
+    text: 'Al mantener la esquiva más de 1 s, el cuerpo se agacha y tiembla (no te puedes mover, pero sí apuntar y atacar), y un marcador se aleja hacia el cursor: una diana con una huella de rana y cuatro esquinas tenues que marcan el radio del impacto. Con la carga al máximo, la diana late en amarillo. Al soltar, saltas ahí.',
+    rows: [
+      ['charge', [['mjc_Frog', 'Rana', 3, 0.45], ['mjc_Diplocaulus', 'Diplocaulus', 3, 0.45], ['mjc_Whipscorpion', 'Vinagrillo', 3, 0.45],
+                  ['mf_mspot', 'Diana', 4, 0.66], ['mf_mfull', 'Carga máxima', 4, 0.66]]],
+      ['scene', [['mj_marker', 'La rana carga y el marcador se aleja de 3 a 8 u', 0.7, 0]]],
+    ] },
+  { title: 'Patas hilanderas, nivel III: la red',
+    text: 'Con tres hilos en la sala, sus extremos se unen y una telaraña se teje sobre todo lo de dentro con la forma exacta del contorno: los radios crecen desde el centro, aparecen los anillos, brilla con el rocío dorado y se deshilacha al acabar. Aquí, tres formas de ejemplo.',
+    rows: [
+      ['net', [['mj_net1', 'Triángulo', 0.9, 0], ['mj_net2', 'Cuadrilátero', 0.9, 0], ['mj_net3', 'Hexágono', 0.9, 0]]],
+    ] },
+];
+const jumpBox = document.getElementById('jumpart');
+JUMP_ART.forEach(p => {
+  jumpBox.append(el('article', { class: 'panel', style: `--tiles:url(${ART.floor_swamp})` },
+    el('h3', {}, p.title), el('p', { class: 'muted' }, p.text),
+    ...p.rows.map(([kind, items]) => el('div', { class: 'anims jumprow' }, ...items.map(([k, n, sc, d]) =>
+      el('div', { class: 'anim' }, sprite(k, sc, d, `${p.title}: ${n}`), el('span', { class: 'label' }, n)))))));
 });
 
 // Tabla de mutaciones, con filtro por ranura

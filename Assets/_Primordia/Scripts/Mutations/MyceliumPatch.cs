@@ -44,6 +44,14 @@ namespace Primordia.Mutations
 
         public Settings Current => settings;
 
+        readonly List<Enemy> covered = new();
+
+        /// <summary>Enemigos vivos que tiene encima ahora (se actualiza en cada Update de la mata).</summary>
+        public IReadOnlyList<Enemy> Covered => covered;
+
+        /// <summary>True si ese enemigo está encima ahora.</summary>
+        public bool Covers(Enemy enemy) => covered.Contains(enemy);
+
         public void Configure(Settings newSettings)
         {
             settings = newSettings;
@@ -69,12 +77,15 @@ namespace Primordia.Mutations
             }
 
             touching.Clear();
+            covered.Clear();
             Physics2D.OverlapCircle(transform.position, settings.radius, filter, touching);
             foreach (var hit in touching)
             {
                 var enemy = hit.GetComponentInParent<Enemy>();
                 if (enemy == null || enemy.Health.IsDead)
                     continue;
+                if (!covered.Contains(enemy))
+                    covered.Add(enemy);
 
                 var exposure = enemy.TryGetComponent<MyceliumExposure>(out var existing) ? existing : enemy.gameObject.AddComponent<MyceliumExposure>();
                 exposure.Touch(settings);

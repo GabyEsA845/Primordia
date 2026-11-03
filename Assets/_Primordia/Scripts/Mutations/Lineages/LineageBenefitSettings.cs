@@ -68,6 +68,13 @@ namespace Primordia.Mutations
         public GameObject parasiteDrainDrop;
         public GameObject parasiteHealEffect;
 
+        [Header("Hongo: matas del piso 3 (Colonizar)")]
+        [Tooltip("Las 4 especies de mata (Campanillas, Bejines, Estrellas de tierra, Mazas) en tamaño mediano y grande.")]
+        public MyceliumPatch[] floor3MatsMedium = System.Array.Empty<MyceliumPatch>();
+        public MyceliumPatch[] floor3MatsLarge = System.Array.Empty<MyceliumPatch>();
+        [Tooltip("Radio de la mata grande respecto a la mediana (27 px / 19 px del dibujo).")]
+        [Min(1f)] public float floor3LargeMatScale = 1.42f;
+
         [Header("Toques del piso 3")]
         [Tooltip("Charca de sanguijuelas: daño por segundo de más de los charcos y la baba del jugador.")]
         [Min(0)] public int leechPuddleBonus = 1;

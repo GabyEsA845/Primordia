@@ -93,6 +93,7 @@ namespace Primordia.Editor
             LineageSetup.LinkMutations();
             SetUpParasite();
             SetUpLeechKit();
+            SetUpFungusMats();
 
             if (missing.Count > 0)
                 Debug.LogWarning($"Floor3LineagesSetup: faltan las mutaciones {string.Join(", ", missing)}; créalas con Primordia > Mutations / Floor 3.");
@@ -147,6 +148,83 @@ namespace Primordia.Editor
             finally
             {
                 PrefabUtility.UnloadPrefabContents(root);
+            }
+        }
+
+        // ---------- Matas de hongo del piso 3 (Colonizar la sala) ----------
+
+        // Las 4 especies de mata y las dos tallas (celda 48 y 64), de docs/multimedia-temp/floor3-lineage-art/FungusMat.
+        static readonly string[] MatSpecies = { "Bells", "Puffballs", "Earthstars", "Clubs" };
+
+        /// <summary>
+        /// Crea un prefab por especie y talla (mata con <see cref="MyceliumPatch"/> y <see cref="FungusMat"/>) y el de los hilos que enredan
+        /// a los enemigos, y los pone en los beneficios del jugador (Colonizar los usa en el piso 3).
+        /// </summary>
+        static void SetUpFungusMats()
+        {
+            var snareFrames = ArtSetup.ImportLooseSheet($"{LineageArtFolder}/FungusMat/Fx_FungusMat_Snare.png",
+                $"{EffectsArtFolder}/Fx_FungusMat_Snare.png", 16, new Vector2(0.5f, 0f));
+            var snare = Floor2MouthsSetup.CreateLoopEffect("Effect_FungusMat_Snare", snareFrames, 0.12f, sortingOrder: 5);
+
+            var medium = new List<MyceliumPatch>();
+            var large = new List<MyceliumPatch>();
+            foreach (string species in MatSpecies)
+            {
+                var m = CreateMat(species, "M", 48, snare);
+                var l = CreateMat(species, "L", 64, snare);
+                if (m != null)
+                    medium.Add(m);
+                if (l != null)
+                    large.Add(l);
+            }
+            AssetDatabase.SaveAssets();
+
+            var root = PrefabUtility.LoadPrefabContents(PlayerSetup.PlayerPath);
+            try
+            {
+                if (!root.TryGetComponent<PlayerLineage>(out var lineage))
+                    return;
+                var benefits = lineage.Benefits ?? new LineageBenefitSettings();
+                benefits.floor3MatsMedium = medium.ToArray();
+                benefits.floor3MatsLarge = large.ToArray();
+                lineage.ConfigureBenefits(benefits);
+                PrefabUtility.SaveAsPrefabAsset(root, PlayerSetup.PlayerPath);
+            }
+            finally
+            {
+                PrefabUtility.UnloadPrefabContents(root);
+            }
+            if (medium.Count < MatSpecies.Length || large.Count < MatSpecies.Length)
+                Debug.LogWarning("Floor3LineagesSetup: faltan hojas de matas de hongo en docs/multimedia-temp/floor3-lineage-art/FungusMat.");
+        }
+
+        static MyceliumPatch CreateMat(string species, string size, int cell, GameObject snare)
+        {
+            Sprite[] Sheet(string anim) => ArtSetup.ImportLooseSheet($"{LineageArtFolder}/FungusMat/Fx_FungusMat_{species}_{size}_{anim}.png",
+                $"{EffectsArtFolder}/Fx_FungusMat_{species}_{size}_{anim}.png", cell);
+
+            var appear = Sheet("Appear");
+            var idle = Sheet("Idle");
+            var pulse = Sheet("Pulse");
+            if (appear.Length == 0 || idle.Length == 0 || pulse.Length == 0)
+                return null;
+
+            string prefabName = $"Effect_FungusMat_{species}_{size}";
+            var obj = new GameObject(prefabName);
+            try
+            {
+                var renderer = obj.AddComponent<SpriteRenderer>();
+                renderer.sprite = idle[0];
+                // En el suelo, bajo los personajes (como el micelio del piso 1).
+                renderer.sortingOrder = 4;
+                obj.AddComponent<MyceliumPatch>();
+                obj.AddComponent<FungusMat>().Configure(appear, idle, pulse, snare);
+                Directory.CreateDirectory("Assets/_Primordia/Prefabs/Effects");
+                return PrefabUtility.SaveAsPrefabAsset(obj, $"Assets/_Primordia/Prefabs/Effects/{prefabName}.prefab").GetComponent<MyceliumPatch>();
+            }
+            finally
+            {
+                Object.DestroyImmediate(obj);
             }
         }
 

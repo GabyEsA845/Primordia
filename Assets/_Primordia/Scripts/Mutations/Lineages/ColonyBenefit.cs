@@ -20,6 +20,9 @@ namespace Primordia.Mutations
         MyceliumPatch.Settings settings;
         int count;
         int sproutLimit;
+        MyceliumPatch[] mediumMats = System.Array.Empty<MyceliumPatch>();
+        MyceliumPatch[] largeMats = System.Array.Empty<MyceliumPatch>();
+        float largeScale = 1.42f;
         Room[] rooms = System.Array.Empty<Room>();
         Room pendingRoom;
         readonly List<MyceliumPatch> mats = new();
@@ -46,6 +49,17 @@ namespace Primordia.Mutations
         }
 
         /// <summary>
+        /// Piso 3: las matas nuevas (4 especies, cada una mediana y grande). Las del principio del combate son medianas y las que
+        /// brotan de un enemigo muerto, grandes (el radio de las grandes es el de las medianas por <paramref name="newLargeScale"/>).
+        /// </summary>
+        public void SetVariants(MyceliumPatch[] medium, MyceliumPatch[] large, float newLargeScale)
+        {
+            mediumMats = medium ?? System.Array.Empty<MyceliumPatch>();
+            largeMats = large ?? System.Array.Empty<MyceliumPatch>();
+            largeScale = Mathf.Max(1f, newLargeScale);
+        }
+
+        /// <summary>
         /// Piso 3: un enemigo que muere sobre una mata hace brotar otra junto a él, hasta ese máximo de matas en la sala
         /// (0 = sin brotes, como en el piso 1).
         /// </summary>
@@ -66,7 +80,8 @@ namespace Primordia.Mutations
             bool onMat = false;
             foreach (var mat in mats)
             {
-                if (mat != null && ((Vector2)mat.transform.position - corpse).sqrMagnitude <= settings.radius * settings.radius)
+                float reach = mat != null ? mat.Current.radius : 0f;
+                if (mat != null && ((Vector2)mat.transform.position - corpse).sqrMagnitude <= reach * reach)
                 {
                     onMat = true;
                     break;
@@ -75,15 +90,17 @@ namespace Primordia.Mutations
             if (!onMat)
                 return;
 
-            // La nueva sale a un lado, sin pisar a las otras ni las paredes.
-            float spacing = settings.radius * 2f;
+            // La nueva sale a un lado, sin pisar a las otras ni las paredes (grande si hay matas grandes).
+            bool large = largeMats.Length > 0;
+            float radius = settings.radius * (large ? largeScale : 1f);
+            float spacing = radius * 2f;
             for (int attempt = 0; attempt < Attempts; attempt++)
             {
                 var point = corpse + Random.insideUnitCircle.normalized * Random.Range(spacing, spacing * 1.6f);
-                if (!IsFree(point, spacing))
+                if (!IsFree(point, radius))
                     continue;
                 Sfx.Play(Sounds.LineageColonize);
-                Spawn(point);
+                Spawn(point, large);
                 return;
             }
         }
@@ -117,14 +134,13 @@ namespace Primordia.Mutations
         {
             ClearMats();
             Sfx.Play(Sounds.LineageColonize);
-            float spacing = settings.radius * 2f;
 
             for (int i = 0; i < count; i++)
             {
                 for (int attempt = 0; attempt < Attempts; attempt++)
                 {
                     var point = new Vector2(Random.Range(bounds.min.x, bounds.max.x), Random.Range(bounds.min.y, bounds.max.y));
-                    if (!IsFree(point, spacing))
+                    if (!IsFree(point, settings.radius))
                         continue;
 
                     Spawn(point);
@@ -133,11 +149,15 @@ namespace Primordia.Mutations
             }
         }
 
-        bool IsFree(Vector2 point, float spacing)
+        // Libre de otras matas (sin solaparse) y de paredes, para una mata de ese radio.
+        bool IsFree(Vector2 point, float radius)
         {
             foreach (var mat in mats)
             {
-                if (mat != null && ((Vector2)mat.transform.position - point).sqrMagnitude < spacing * spacing)
+                if (mat == null)
+                    continue;
+                float apart = radius + mat.Current.radius;
+                if (((Vector2)mat.transform.position - point).sqrMagnitude < apart * apart)
                     return false;
             }
 
@@ -146,7 +166,7 @@ namespace Primordia.Mutations
             if (grid == null)
                 return true;
 
-            float r = settings.radius * 0.8f;
+            float r = radius * 0.8f;
             foreach (var offset in new[] { Vector2.zero, new Vector2(r, 0f), new Vector2(-r, 0f), new Vector2(0f, r), new Vector2(0f, -r) })
             {
                 if (!grid.IsWalkable(NavigationGrid.CellOf(point + offset)))
@@ -155,14 +175,20 @@ namespace Primordia.Mutations
             return true;
         }
 
-        void Spawn(Vector2 point)
+        void Spawn(Vector2 point, bool large = false)
         {
-            // Sin prefab (pruebas, o antes de importar el arte) la mata funciona igual, sin dibujo.
-            var mat = matPrefab != null
-                ? Instantiate(matPrefab, point, Quaternion.identity)
+            // Piso 3: una especie al azar, mediana o grande. Sin variantes, la mata de siempre.
+            var variants = large ? largeMats : mediumMats;
+            var prefab = variants.Length > 0 ? variants[Random.Range(0, variants.Length)] : matPrefab;
+            var mat = prefab != null
+                ? Instantiate(prefab, point, Quaternion.identity)
+                // Sin prefab (pruebas, o antes de importar el arte) la mata funciona igual, sin dibujo.
                 : new GameObject("FungusMat").AddComponent<MyceliumPatch>();
             mat.transform.position = point;
-            mat.Configure(settings);
+            var matSettings = settings;
+            if (large && variants.Length > 0)
+                matSettings.radius *= largeScale;
+            mat.Configure(matSettings);
             mats.Add(mat);
         }
 

@@ -336,6 +336,65 @@ namespace Primordia.Tests
             Assert.IsNotNull(sac);
         }
 
+        // ---------- Toques del piso 3 (tanda 2c): matas de hongo ----------
+
+        MyceliumPatch MatPrefab(string prefabName)
+        {
+            var go = Track(new GameObject(prefabName));
+            go.AddComponent<SpriteRenderer>();
+            return go.AddComponent<MyceliumPatch>();
+        }
+
+        [Test]
+        public void Fungal_Floor3_MatsUseTheVariants_AndSproutsAreLarge()
+        {
+            Complete(LineageClass.Fungal);
+            var colony = player.GetComponent<ColonyBenefit>();
+            colony.SetVariants(new[] { MatPrefab("MatM") }, new[] { MatPrefab("MatL") }, 1.5f);
+            colony.Colonize(new Bounds(Vector3.zero, new Vector3(30f, 30f, 1f)));
+            int before = colony.Mats.Count;
+            Assert.Greater(before, 0);
+            foreach (var mat in colony.Mats)
+            {
+                StringAssert.StartsWith("MatM", mat.name);
+                Assert.AreEqual(1.2f, mat.Current.radius, 0.001f);
+            }
+
+            var enemy = CreateEnemy(5, colony.Mats[0].transform.position);
+            enemy.Health.TakeDamage(10);
+
+            Assert.AreEqual(before + 1, colony.Mats.Count);
+            var sprout = colony.Mats[colony.Mats.Count - 1];
+            StringAssert.StartsWith("MatL", sprout.name);
+            Assert.AreEqual(1.2f * 1.5f, sprout.Current.radius, 0.001f);
+        }
+
+        [UnityTest]
+        public IEnumerator FungusMat_SnaresTheEnemiesOnTopOfIt_AndLetsThemGo()
+        {
+            var snare = Track(new GameObject("Snare"));
+            snare.AddComponent<SpriteRenderer>();
+            var go = Track(new GameObject("Mat"));
+            go.transform.position = new Vector3(10f, 0f, 0f);
+            go.AddComponent<SpriteRenderer>();
+            var patch = go.AddComponent<MyceliumPatch>();
+            var mat = go.AddComponent<FungusMat>();
+            mat.Configure(new Sprite[0], new Sprite[0], new Sprite[0], snare);
+            patch.Configure(new MyceliumPatch.Settings { duration = 30f, damagePerSecond = 1, slowFactor = 1f, radius = 1.2f });
+            var enemy = CreateEnemy(100, new Vector2(10f, 0f));
+            Physics2D.SyncTransforms();
+
+            yield return null;
+            yield return null;
+            Assert.AreEqual(1, mat.SnareCount);
+
+            enemy.transform.position = new Vector3(40f, 0f, 0f);
+            Physics2D.SyncTransforms();
+            yield return null;
+            yield return null;
+            Assert.AreEqual(0, mat.SnareCount);
+        }
+
         // ---------- Toques del piso 3 (tanda 2b): Yesquero ----------
 
         [Test]

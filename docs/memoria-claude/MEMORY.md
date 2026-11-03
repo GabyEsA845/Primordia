@@ -1,6 +1,7 @@
 ## Cómo trabajar
 - [Ahorro de tokens](primordia-token-saving.md) — una cuenta Pro; AVISAR SIEMPRE cambio Opus (diseño/arte) ↔ Sonnet (implementar) al empezar y al acabar cada tarea; agrupar arte/audio
 - [Arte provisional por código](primordia-provisional-art.md) — permitido en lo sencillo; anotarlo y recordar sustituirlo al pasar a Opus
+- [Trampas de herramientas](primordia-session-tooling-lessons.md) — compilar sin Unity, Bash/heredocs, assets serializados, capturas y republicar el documento
 - [Flujo de trabajo](primordia-workflow.md) — español, rama por módulo, menús de editor, commit solo tras confirmar
 - [Arte de jefes](primordia-boss-art-workflow.md) — un jefe cada vez, preguntas antes de cada subtanda, muestra en 1 dirección, escenas (GIF en gif/escenas/), comparar versiones si duda; PRESENTACIÓN; nada que parezca «pegado sobre el fondo»
 - [Trampas de Unity](primordia-unity-gotchas.md) — Unity abierto, logs, statics, CRLF, zips, referencias perdidas
@@ -17,8 +18,8 @@
 
 ## En curso
 - [Sala de paso del piso 2 → 3](primordia-floor2-transition-room.md) — charca, ambiente del pantano y metamorfosis por pareja HECHOS y subidos
-- **[Estado de Primordia](primordia-project-status.md) — pisos 1-2 en main; piso 3 en feature/floor-3 (pasos 1, 2, 3 HECHOS y subidos); paso 4: subpasos 1-3 (Extremidades, Piel, Órganos) HECHOS; SIGUIENTE tanda de arte con Opus y después linajes (4a/4b) con Sonnet**
-- [Mutaciones y linajes del piso 3](primordia-floor3-mutations-decisions.md) — paso 4: reglas cerradas (2026-11-03) y subpasos 1-5 para Sonnet
+- **[Estado de Primordia](primordia-project-status.md) — pisos 1-2 en main; piso 3 en feature/floor-3 (pasos 1, 2, 3 HECHOS y subidos); paso 4: subpasos 1-3 (Extremidades, Piel, Órganos) y su arte HECHOS y subidos; SIGUIENTE linajes (4a/4b) con Sonnet**
+- [Mutaciones y linajes del piso 3](primordia-floor3-mutations-decisions.md) — paso 4: reglas cerradas, subpasos 1-3 y arte del salto HECHOS; quedan 4a/4b (linajes) y 5
 - [Reacciones del piso 3](primordia-floor3-reactions-decisions.md) — paso 2 HECHO (subtandas A-D): quemado tipo Gungeon, odre, veneno, fumarolas
 - [Bocas del piso 3](primordia-floor3-mouths-decisions.md) — paso 3 HECHO: Escupitajo, Peonza, Chorro; números, archivos y pruebas
 - [Estructura del piso 3](primordia-floor3-structure-decisions.md) — subtandas, decisiones del generador, estado

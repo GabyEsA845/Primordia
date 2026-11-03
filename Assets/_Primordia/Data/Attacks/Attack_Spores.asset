@@ -66,6 +66,46 @@ MonoBehaviour:
   guillotineEvery: 0
   guillotineRange: 3
   guillotineEffect: {fileID: 0}
+  spit: 0
+  spitMini: 0
+  spitTrailEvery: 0.5
+  spitTrailSeconds: 3
+  spitBurstDamage: 6
+  spitBurstRadius: 1.5
+  spitBurstPuddleSeconds: 4
+  spitSplitCount: 0
+  spitSplitAttack: {fileID: 0}
+  spin: 0
+  spinRadius: 1.3
+  spinDamage: 2
+  spinTick: 0.25
+  spinPush: 6
+  spinSpeedFactor: 0.65
+  spinMaxSeconds: 3
+  spinDizzySeconds: 0.5
+  spinRecharge: 0.5
+  spinReflects: 0
+  boomerangAfter: 0
+  boomerangRange: 3
+  boomerangDamage: 8
+  boomerangStun: 0.8
+  boomerangPrefab: {fileID: 0}
+  spinEffect: {fileID: 0}
+  spinDeflectEffect: {fileID: 0}
+  jet: 0
+  jetRange: 5
+  jetTick: 0.15
+  jetTurnRate: 180
+  jetMaxSeconds: 3
+  jetRefillSeconds: 2
+  jetEmptyRefillSeconds: 3
+  jetPierces: 0
+  jetSplashRadius: 0
+  jetSplashTick: 0.5
+  jetSplashDamage: 1
+  jetArt: {fileID: 0}
+  jetHitEffect: {fileID: 0}
+  jetSplashEffects: []
   fireSound: Mouth_Spores_Puff
   hitSound: 
   lungeSound: 

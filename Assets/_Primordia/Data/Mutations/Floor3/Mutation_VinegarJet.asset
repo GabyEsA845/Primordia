@@ -26,6 +26,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 9b582fa23323eaf40988f526269df6ac, type: 3}
   largeIcon: {fileID: 21300000, guid: 33aae3e1ae555fa4ead4d2e5ef7b652b, type: 3}
   color: {r: 0.95, g: 0.5, b: 0.35, a: 1}
+  summary: Chorro continuo desde la cola que sigue al cursor.
   levelDescriptions:
   - Atraviesa a los enemigos, llega a 6 u y la barra dura 4 s.
   - "Salpicadura: llega a 7 u y cada 0,5 s hace 1 de da\xF1o a los enemigos a 2 u del final del chorro."
@@ -47,8 +48,85 @@ MonoBehaviour:
   attackHitTime: 0
   moveInertia: 1
   creatureLayers: []
+  morphPaths:
+  - from: {fileID: 11400000, guid: d468567d77e17a740bce0b08be2d375b, type: 2}
+    frames:
+    - {fileID: -2972801670434521121, guid: 771f020179a3c4f46aa1ab419d22ab1f, type: 3}
+    - {fileID: 4192894108652815911, guid: 771f020179a3c4f46aa1ab419d22ab1f, type: 3}
+    - {fileID: -5279215771993222599, guid: 771f020179a3c4f46aa1ab419d22ab1f, type: 3}
+    - {fileID: 1395958064861744958, guid: 771f020179a3c4f46aa1ab419d22ab1f, type: 3}
+    - {fileID: -1466331964185389465, guid: 771f020179a3c4f46aa1ab419d22ab1f, type: 3}
+    - {fileID: -2985792563075539842, guid: 771f020179a3c4f46aa1ab419d22ab1f, type: 3}
+    - {fileID: 2104658524725775355, guid: 771f020179a3c4f46aa1ab419d22ab1f, type: 3}
+    - {fileID: -1808685119183296844, guid: 771f020179a3c4f46aa1ab419d22ab1f, type: 3}
+    - {fileID: 3269080983822191649, guid: 771f020179a3c4f46aa1ab419d22ab1f, type: 3}
+    - {fileID: 2420608749974404516, guid: 771f020179a3c4f46aa1ab419d22ab1f, type: 3}
+    - {fileID: -4633793117466375106, guid: 771f020179a3c4f46aa1ab419d22ab1f, type: 3}
+    - {fileID: 638966014109544235, guid: 771f020179a3c4f46aa1ab419d22ab1f, type: 3}
+  - from: {fileID: 11400000, guid: 6de2da03eeb17e2408aa6f9686415075, type: 2}
+    frames:
+    - {fileID: 1471115423169957672, guid: 9ed0ed4c19e6ba448a2f2a434b4c7aba, type: 3}
+    - {fileID: -4591414933575269600, guid: 9ed0ed4c19e6ba448a2f2a434b4c7aba, type: 3}
+    - {fileID: -5651970177251033940, guid: 9ed0ed4c19e6ba448a2f2a434b4c7aba, type: 3}
+    - {fileID: -4191616564048708262, guid: 9ed0ed4c19e6ba448a2f2a434b4c7aba, type: 3}
+    - {fileID: -5235922191761804288, guid: 9ed0ed4c19e6ba448a2f2a434b4c7aba, type: 3}
+    - {fileID: -8222634497638230937, guid: 9ed0ed4c19e6ba448a2f2a434b4c7aba, type: 3}
+    - {fileID: 460461874879799648, guid: 9ed0ed4c19e6ba448a2f2a434b4c7aba, type: 3}
+    - {fileID: -8474645628095217508, guid: 9ed0ed4c19e6ba448a2f2a434b4c7aba, type: 3}
+    - {fileID: 4465019925241845617, guid: 9ed0ed4c19e6ba448a2f2a434b4c7aba, type: 3}
+    - {fileID: 1572249098441407649, guid: 9ed0ed4c19e6ba448a2f2a434b4c7aba, type: 3}
+    - {fileID: 8942983128515441249, guid: 9ed0ed4c19e6ba448a2f2a434b4c7aba, type: 3}
+    - {fileID: -3943688088009667438, guid: 9ed0ed4c19e6ba448a2f2a434b4c7aba, type: 3}
+  - from: {fileID: 11400000, guid: 803d9070a0eb9064db9f5f51212292b3, type: 2}
+    frames:
+    - {fileID: -2468548501842939479, guid: 51dbf710256a7f84dbd8a3ad6a3aa739, type: 3}
+    - {fileID: 24836738123294790, guid: 51dbf710256a7f84dbd8a3ad6a3aa739, type: 3}
+    - {fileID: -2150381219458137202, guid: 51dbf710256a7f84dbd8a3ad6a3aa739, type: 3}
+    - {fileID: 3684599800714991403, guid: 51dbf710256a7f84dbd8a3ad6a3aa739, type: 3}
+    - {fileID: 8154331522346730435, guid: 51dbf710256a7f84dbd8a3ad6a3aa739, type: 3}
+    - {fileID: 6258081005813974739, guid: 51dbf710256a7f84dbd8a3ad6a3aa739, type: 3}
+    - {fileID: -1730694617009651783, guid: 51dbf710256a7f84dbd8a3ad6a3aa739, type: 3}
+    - {fileID: 5176951300895758460, guid: 51dbf710256a7f84dbd8a3ad6a3aa739, type: 3}
+    - {fileID: 8154406866997359249, guid: 51dbf710256a7f84dbd8a3ad6a3aa739, type: 3}
+    - {fileID: -2660108441718071030, guid: 51dbf710256a7f84dbd8a3ad6a3aa739, type: 3}
+    - {fileID: 5150523633361712554, guid: 51dbf710256a7f84dbd8a3ad6a3aa739, type: 3}
+    - {fileID: -3005791442607129671, guid: 51dbf710256a7f84dbd8a3ad6a3aa739, type: 3}
+  - from: {fileID: 11400000, guid: d24033605a2f5f848a612c7459aaa83f, type: 2}
+    frames:
+    - {fileID: 2858836415796026549, guid: 8087e878f8f057d47860022c001b0763, type: 3}
+    - {fileID: -1949333059360307602, guid: 8087e878f8f057d47860022c001b0763, type: 3}
+    - {fileID: -6518037972787413718, guid: 8087e878f8f057d47860022c001b0763, type: 3}
+    - {fileID: -3962504965438978303, guid: 8087e878f8f057d47860022c001b0763, type: 3}
+    - {fileID: -1429050751100763846, guid: 8087e878f8f057d47860022c001b0763, type: 3}
+    - {fileID: -385376652538155914, guid: 8087e878f8f057d47860022c001b0763, type: 3}
+    - {fileID: 3520819983302524393, guid: 8087e878f8f057d47860022c001b0763, type: 3}
+    - {fileID: 2570702717146630856, guid: 8087e878f8f057d47860022c001b0763, type: 3}
+    - {fileID: -9143194633262183425, guid: 8087e878f8f057d47860022c001b0763, type: 3}
+    - {fileID: 897365161323395378, guid: 8087e878f8f057d47860022c001b0763, type: 3}
+    - {fileID: -7476251823581592166, guid: 8087e878f8f057d47860022c001b0763, type: 3}
+    - {fileID: 5834723659580797005, guid: 8087e878f8f057d47860022c001b0763, type: 3}
+  - from: {fileID: 11400000, guid: 7c94acb5b3f281747be39993f23a2771, type: 2}
+    frames:
+    - {fileID: 5912244821298267533, guid: d864f6470cef29b4e8fe8d13d498438a, type: 3}
+    - {fileID: -3785829393235007402, guid: d864f6470cef29b4e8fe8d13d498438a, type: 3}
+    - {fileID: -5388698726470986533, guid: d864f6470cef29b4e8fe8d13d498438a, type: 3}
+    - {fileID: 1100467834167071290, guid: d864f6470cef29b4e8fe8d13d498438a, type: 3}
+    - {fileID: 974751873983573448, guid: d864f6470cef29b4e8fe8d13d498438a, type: 3}
+    - {fileID: 2824495158084870382, guid: d864f6470cef29b4e8fe8d13d498438a, type: 3}
+    - {fileID: -3763707848688478605, guid: d864f6470cef29b4e8fe8d13d498438a, type: 3}
+    - {fileID: 3020423077904435186, guid: d864f6470cef29b4e8fe8d13d498438a, type: 3}
+    - {fileID: 7725612635461068631, guid: d864f6470cef29b4e8fe8d13d498438a, type: 3}
+    - {fileID: -3109896104959102166, guid: d864f6470cef29b4e8fe8d13d498438a, type: 3}
+    - {fileID: 3634878000698670420, guid: d864f6470cef29b4e8fe8d13d498438a, type: 3}
+    - {fileID: 1071849314310380560, guid: d864f6470cef29b4e8fe8d13d498438a, type: 3}
   morphFrames: []
-  revealFrames: []
+  revealFrames:
+  - {fileID: -406659797504664887, guid: c24850a8ca5327041a0a5da29aa00d86, type: 3}
+  - {fileID: 6683489238652036953, guid: c24850a8ca5327041a0a5da29aa00d86, type: 3}
+  - {fileID: 2285973691922746943, guid: c24850a8ca5327041a0a5da29aa00d86, type: 3}
+  - {fileID: 3297790699263212152, guid: c24850a8ca5327041a0a5da29aa00d86, type: 3}
+  - {fileID: 2145984691519628992, guid: c24850a8ca5327041a0a5da29aa00d86, type: 3}
+  - {fileID: -339614082734325684, guid: c24850a8ca5327041a0a5da29aa00d86, type: 3}
   attack: {fileID: 11400000, guid: c4db451255d89114f9ec15bf988d0550, type: 2}
   healEveryKills: 0
   upgrades:

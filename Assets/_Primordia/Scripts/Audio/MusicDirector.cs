@@ -40,7 +40,7 @@ namespace Primordia.Audio
 
         static readonly string[] Ambiences =
         {
-            Sounds.AmbFloor1, Sounds.AmbBossRoom, Sounds.AmbFloor2, Sounds.AmbFloor2Abyss, Sounds.AmbFloor2BossRoom
+            Sounds.AmbFloor1, Sounds.AmbBossRoom, Sounds.AmbFloor2, Sounds.AmbFloor2Abyss, Sounds.AmbFloor2BossRoom, Sounds.AmbFloor3
         };
 
         AudioManager manager;
@@ -59,7 +59,12 @@ namespace Primordia.Audio
         public int CurrentBand => band;
 
         // Ambiente de cada piso: la sopa en el primero y el océano desde el segundo (más hondo en el Abismo).
-        string FloorAmbience => floorNumber < 2 ? Sounds.AmbFloor1 : band >= AbyssBand ? Sounds.AmbFloor2Abyss : Sounds.AmbFloor2;
+        string FloorAmbience => floorNumber < 2 ? Sounds.AmbFloor1
+            : floorNumber >= 3 ? Sounds.AmbFloor3
+            : band >= AbyssBand ? Sounds.AmbFloor2Abyss : Sounds.AmbFloor2;
+
+        // Lo que se oye junto a la fosa de la sala de paso: el océano en el piso 1 y el pantano en el 2.
+        string NextAmbience => floorNumber == 1 ? Sounds.AmbFloor2 : floorNumber == 2 ? Sounds.AmbFloor3 : null;
 
         string BossAmbience => floorNumber < 2 ? Sounds.AmbBossRoom : Sounds.AmbFloor2BossRoom;
 
@@ -141,12 +146,16 @@ namespace Primordia.Audio
             transitionBlend = blend;
 
             manager.Music.SetDistanceGain(1f - blend);
-            if (floorNumber == 1 && manager.IsLoopPlaying(Sounds.AmbFloor1))
-                manager.StartLoop(Sounds.AmbFloor1, 1f - blend);
+            string next = NextAmbience;
+            if (next == null)
+                return;
+            string current = FloorAmbience;
+            if (manager.IsLoopPlaying(current))
+                manager.StartLoop(current, 1f - blend);
             if (blend > 0f)
-                manager.StartLoop(Sounds.AmbFloor2, blend);
-            else if (floorNumber == 1)
-                manager.StopLoop(Sounds.AmbFloor2);
+                manager.StartLoop(next, blend);
+            else
+                manager.StopLoop(next);
         }
 
         /// <summary>Cuánto suena ya el océano de la sala de paso (0 = nada, 1 = solo él).</summary>
@@ -185,6 +194,7 @@ namespace Primordia.Audio
             }
 
             manager.StopLoop(Sounds.AmbFloor2, 0f);
+            manager.StopLoop(Sounds.AmbFloor3, 0f);
             PlayFloor(fade: 1.5f);
         }
 
@@ -200,8 +210,8 @@ namespace Primordia.Audio
         {
             foreach (var id in Ambiences)
             {
-                // En el piso 1, el océano solo suena junto a la fosa y lo lleva UpdateTransition.
-                if (id != ambience && !(floorNumber == 1 && id == Sounds.AmbFloor2))
+                // Lo de la sala de paso (el océano en el piso 1, el pantano en el 2) solo suena junto a la fosa y lo lleva UpdateTransition.
+                if (id != ambience && id != NextAmbience)
                     manager.StopLoop(id);
             }
             manager.StartLoop(ambience);

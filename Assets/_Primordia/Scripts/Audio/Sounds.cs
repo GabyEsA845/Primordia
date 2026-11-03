@@ -16,6 +16,8 @@ namespace Primordia.Audio
         public const string PlayerLowHealthLoop = "Player_LowHealth_Loop";
         public const string PlayerAbilityReady = "Player_AbilityReady";
         public const string PlayerAbilityNotReady = "Player_AbilityNotReady";
+        // Recuadro del Órgano en el HUD: aviso de que la habilidad está lista (sustituye a PlayerAbilityReady).
+        public const string UIOrganReady = "UI_OrganReady";
 
         // Mutaciones
         public const string LegsPush = "Limbs_Legs_Push";
@@ -191,6 +193,8 @@ namespace Primordia.Audio
         public const string AmbFloor2 = "Amb_Floor2_Loop";
         public const string AmbFloor2Abyss = "Amb_Floor2_Abyss_Loop";
         public const string AmbFloor2BossRoom = "Amb_Floor2_BossRoom_Loop";
+        // Pantano carbonífero: ambiente del piso 3 y lo que se oye junto a la charca de la sala de paso del piso 2.
+        public const string AmbFloor3 = "Amb_Floor3_Loop";
 
         // Música
         public const string MusicMainMenu = "Music_MainMenu";

@@ -22,6 +22,7 @@ namespace Primordia.Editor
         const float FrogAttackHitTime = 7 * 0.08f;
         const string ReactionKitPath = "Assets/_Primordia/Data/Rooms/ReactionKit_Floor3.asset";
         const string ProjectilesFolder = "Assets/_Primordia/Prefabs/Combat";
+        const string JetArtPath = "Assets/_Primordia/Data/Attacks/JetArt_VinegarJet.asset";
 
         [MenuItem("Primordia/Floor 3/Crear Bocas del piso 3 (cuerpos y datos)")]
         internal static void CreateAll()
@@ -51,6 +52,7 @@ namespace Primordia.Editor
             ConfigureVinegarJet(vinegarJet);
 
             AssetDatabase.SaveAssets();
+            MouthSummaries.Apply();
             ArtSetup.ConfigureSpitKit(AssetDatabase.LoadAssetAtPath<ReactionKit>(ReactionKitPath));
             AssetDatabase.SaveAssets();
             EquipInTestScene();
@@ -84,52 +86,60 @@ namespace Primordia.Editor
         // ---------- Escupitajo venenoso (rana) ----------
 
         /// <summary>
-        /// Nivel I: bola cada 2,8 s a 2 u/s que atraviesa (1 de daño al tocar), vive 4 s, deja un charco de 3 s cada 0,5 s y estalla
-        /// con 6 de daño en 1,5 u y un charco grande de 4 s. II: cada 2,4 s, rastro de 4 s y 8 de daño. III, Camada: el estallido suelta
+        /// Nivel I: bola cada 2,8 s a 2 u/s que rueda atravesando (1 de daño al tocar), vive 4 s, deja una banda de baba que se seca a los
+        /// 3 s (cada sello desde que se pinta) y estalla con 6 de daño en 1,5 u y un charco salpicado de 4 s. II: cada 2,4 s, rastro de 4 s y 8 de daño. III, Camada: el estallido suelta
         /// 4 bolitas en cruz que viajan 1 s y estallan con 3 de daño en 0,8 u.
         /// </summary>
         static void ConfigurePoisonSpit(AttackMutation mutation)
         {
-            string effects = "Assets/_Primordia/Art/Floor3/floor3-bodies/Effects";
-            var ballFrames = ArtSetup.Floor3BodyEffect("Proj_PoisonSpit", 24);
-            var miniFrames = ArtSetup.Floor3BodyEffect("Proj_PoisonSpitSmall", 12);
-            if (ballFrames.Length == 0 || miniFrames.Length == 0)
+            // El pivote de las bolas es su punto de apoyo en el suelo (README de floor3-spit).
+            var ballPivot = new Vector2(0.5f, 0.3125f);
+            var miniPivot = new Vector2(0.5f, 0.29f);
+            var ballArt = new SpitBallArt(
+                ArtSetup.Floor3SpitSheet("Proj_PoisonSpit_Roll_side", 24, ballPivot), ArtSetup.Floor3SpitSheet("Proj_PoisonSpit_Roll_down", 24, ballPivot),
+                ArtSetup.Floor3SpitSheet("Proj_PoisonSpit_Roll_up", 24, ballPivot), ArtSetup.Floor3SpitSheet("Proj_PoisonSpit_Swell_side", 24, ballPivot),
+                ArtSetup.Floor3SpitSheet("Proj_PoisonSpit_Swell_down", 24, ballPivot), ArtSetup.Floor3SpitSheet("Proj_PoisonSpit_Swell_up", 24, ballPivot));
+            var miniArt = new SpitBallArt(
+                ArtSetup.Floor3SpitSheet("Proj_PoisonSpitSmall_Roll_side", 12, miniPivot), ArtSetup.Floor3SpitSheet("Proj_PoisonSpitSmall_Roll_down", 12, miniPivot),
+                ArtSetup.Floor3SpitSheet("Proj_PoisonSpitSmall_Roll_up", 12, miniPivot), System.Array.Empty<Sprite>(),
+                System.Array.Empty<Sprite>(), System.Array.Empty<Sprite>());
+            if (!ballArt.Complete || miniArt.Side.Length == 0 || miniArt.Down.Length == 0 || miniArt.Up.Length == 0)
             {
-                Debug.LogWarning($"Floor3MouthsSetup: faltan las hojas del Escupitajo en {effects}; ejecuta Primordia > Floor 3 > Importar todo el arte del piso 3.");
+                Debug.LogWarning("Floor3MouthsSetup: faltan las hojas del Escupitajo en Art/Floor3/floor3-spit; ejecuta Primordia > Floor 3 > Importar todo el arte del piso 3.");
                 return;
             }
 
             Directory.CreateDirectory(ProjectilesFolder);
-            var ball = CreateSpitProjectile("Projectile_PoisonSpit", ballFrames, radius: 0.3f, frameSeconds: 0.07f);
-            var mini = CreateSpitProjectile("Projectile_PoisonSpitMini", miniFrames, radius: 0.15f, frameSeconds: 0.08f);
+            var ball = CreateSpitProjectile("Projectile_PoisonSpit", ballArt, radius: 0.3f, rollFrameSeconds: 0.135f);
+            var mini = CreateSpitProjectile("Projectile_PoisonSpitMini", miniArt, radius: 0.15f, rollFrameSeconds: 0.11f);
 
             var template = CombatSetup.LoadAttack("Attack_Stinger");
             var miniAttack = Attack("Attack_PoisonSpitMini", template, a =>
             {
                 a.Configure(mini, fireRate: 1f, damage: 0, speed: 2.5f, lifetime: 1f);
                 a.SetPierce(99);
-                a.ConfigureSpit(0.5f, 3f, burstDamage: 3, burstRadius: 0.8f, burstPuddleSeconds: 3f, mini: true);
+                a.ConfigureSpit(SlimeTrail.ThinSpacing, 3f, burstDamage: 3, burstRadius: 0.8f, burstPuddleSeconds: 3f, mini: true);
                 ClearExtras(a);
             });
             var one = Attack("Attack_PoisonSpit", template, a =>
             {
                 a.Configure(ball, fireRate: 1f / 2.8f, damage: 1, speed: 2f, lifetime: 4f, automatic: true);
                 a.SetPierce(99);
-                a.ConfigureSpit(0.5f, 3f, burstDamage: 6, burstRadius: 1.5f, burstPuddleSeconds: 4f);
+                a.ConfigureSpit(SlimeTrail.Spacing, 3f, burstDamage: 6, burstRadius: 1.5f, burstPuddleSeconds: 4f);
                 ClearExtras(a);
             });
             var two = Attack("Attack_PoisonSpit_2", one, a =>
             {
                 a.SetFireRate(1f / 2.4f);
-                a.ConfigureSpit(0.5f, 4f, burstDamage: 8, burstRadius: 1.5f, burstPuddleSeconds: 4f);
+                a.ConfigureSpit(SlimeTrail.Spacing, 4f, burstDamage: 8, burstRadius: 1.5f, burstPuddleSeconds: 4f);
             });
             var three = Attack("Attack_PoisonSpit_3", two, a =>
-                a.ConfigureSpit(0.5f, 4f, burstDamage: 8, burstRadius: 1.5f, burstPuddleSeconds: 4f, splitCount: 4, splitAttack: miniAttack));
+                a.ConfigureSpit(SlimeTrail.Spacing, 4f, burstDamage: 8, burstRadius: 1.5f, burstPuddleSeconds: 4f, splitCount: 4, splitAttack: miniAttack));
 
             mutation.ConfigureBase(mutation.DisplayName,
-                "Bola de veneno lenta (2 u/s) que atraviesa a los enemigos con 1 de daño y deja un charco cada 0,5 s que frena y envenena. Encoge mientras vuela y estalla a los 4 s, al chocar con una pared o al disparar otra: 6 de daño en 1,5 u y un charco grande de 4 s. Una bola cada 2,8 s.",
+                "Bola de veneno lenta (2 u/s) que atraviesa a los enemigos con 1 de daño y deja una banda de baba que frena y envenena y se seca a los 3 s. Estalla a los 4 s (se hincha y parpadea al final), al chocar con una pared o al disparar otra: 6 de daño en 1,5 u y un charco salpicado de 4 s. Una bola cada 2,8 s.",
                 MutationSlot.Mouth, mutation.Color);
-            mutation.SetLevelDescriptions("Una bola cada 2,4 s, el rastro dura 4 s y el estallido hace 8 de daño.",
+            mutation.SetLevelDescriptions("Una bola cada 2,4 s, la baba dura 4 s y el estallido hace 8 de daño.",
                 "Camada: al estallar suelta 4 bolitas en cruz que viajan 1 s y estallan con 3 de daño.");
             mutation.Configure(one, newHealEveryKills: 0);
             mutation.ConfigureUpgrades(new AttackMutation.AttackLevel { attack = two }, new AttackMutation.AttackLevel { attack = three });
@@ -147,8 +157,13 @@ namespace Primordia.Editor
         {
             var whirlFrames = ArtSetup.Floor3BodyEffect("Fx_SpinningTop_Whirl", 48);
             var deflectFrames = ArtSetup.Floor3BodyEffect("Fx_SpinningTop_Deflect", 16);
-            var spinFrames = ArtSetup.Floor3BodySheet("Diplocaulus", "Spin");
-            if (whirlFrames.Length == 0 || deflectFrames.Length == 0 || spinFrames.Length == 0)
+            var cloneArt = new CloneArt
+            {
+                Spin = ArtSetup.Floor3CloneSheet("Fx_SpinClone_Spin", 40), Echo = ArtSetup.Floor3CloneSheet("Fx_SpinClone_Echo", 40),
+                Whirl = ArtSetup.Floor3CloneSheet("Fx_SpinClone_Whirl", 32), Appear = ArtSetup.Floor3CloneSheet("Fx_SpinClone_Appear", 40),
+                Merge = ArtSetup.Floor3CloneSheet("Fx_SpinClone_Merge", 40),
+            };
+            if (whirlFrames.Length == 0 || deflectFrames.Length == 0 || !cloneArt.Complete)
             {
                 Debug.LogWarning("Floor3MouthsSetup: faltan las hojas de la Peonza; ejecuta Primordia > Floor 3 > Importar todo el arte del piso 3.");
                 return;
@@ -157,7 +172,7 @@ namespace Primordia.Editor
             Directory.CreateDirectory(ProjectilesFolder);
             var whirl = Floor2MouthsSetup.CreateLoopEffect("Effect_SpinningTop_Whirl", whirlFrames, 0.05f, 11);
             var deflect = Floor2MouthsSetup.CreateFrameEffect("Effect_SpinningTop_Deflect", deflectFrames, 0.05f);
-            var boomerang = CreateBoomerangPrefab("Boomerang_Diplocaulus", spinFrames);
+            var boomerang = CreateBoomerangPrefab("Boomerang_Diplocaulus", cloneArt);
 
             var one = Attack("Attack_SpinningTop", null, a =>
             {
@@ -182,19 +197,39 @@ namespace Primordia.Editor
             EditorUtility.SetDirty(mutation);
         }
 
-        /// <summary>La peonza que sale y vuelve del nivel III, con el dibujo de Spin en bucle. Se rehace.</summary>
-        static GameObject CreateBoomerangPrefab(string prefabName, Sprite[] frames)
+        /// <summary>Las hojas del clon de la Peonza (floor3-top-clone).</summary>
+        sealed class CloneArt
+        {
+            public Sprite[] Spin, Echo, Whirl, Appear, Merge;
+
+            public bool Complete => Spin.Length > 0 && Echo.Length > 0 && Whirl.Length > 0 && Appear.Length > 0 && Merge.Length > 0;
+        }
+
+        /// <summary>
+        /// El clon que sale y vuelve del nivel III: el clon girando (encima), su remolino, y dos ecos detrás que el código coloca en las
+        /// dos posiciones anteriores. Orden de dibujo: ecos debajo, remolino, clon encima. Se rehace.
+        /// </summary>
+        static GameObject CreateBoomerangPrefab(string prefabName, CloneArt art)
         {
             var root = new GameObject(prefabName);
             try
             {
-                var renderer = root.AddComponent<SpriteRenderer>();
-                renderer.sprite = frames[0];
-                renderer.sortingOrder = 20;
-                // Clon translúcido del Diplocaulus (provisional: los mismos cuadros del giro; el clon dibujado llegará con el arte).
-                renderer.color = new Color(0.75f, 0.95f, 1f, 0.6f);
-                root.AddComponent<SpriteLoop>().Configure(renderer, frames, 0.04f, 0f);
-                root.AddComponent<SpinBoomerang>();
+                SpriteRenderer Layer(string layerName, int order)
+                {
+                    var child = new GameObject(layerName);
+                    child.transform.SetParent(root.transform, false);
+                    var layer = child.AddComponent<SpriteRenderer>();
+                    layer.sortingOrder = order;
+                    layer.enabled = false;
+                    return layer;
+                }
+
+                var echoes = new[] { Layer("Echo1", 19), Layer("Echo2", 19) };
+                var whirl = Layer("Whirl", 20);
+                var body = root.AddComponent<SpriteRenderer>();
+                body.sprite = art.Appear[0];
+                body.sortingOrder = 21;
+                root.AddComponent<SpinBoomerang>().ConfigureArt(body, echoes, whirl, art.Spin, art.Echo, art.Whirl, art.Appear, art.Merge);
                 return PrefabUtility.SaveAsPrefabAsset(root, $"{ProjectilesFolder}/{prefabName}.prefab");
             }
             finally
@@ -212,33 +247,56 @@ namespace Primordia.Editor
         /// </summary>
         static void ConfigureVinegarJet(AttackMutation mutation)
         {
-            var streamFrames = ArtSetup.Floor3BodyEffect("Fx_VinegarJet_Stream", 16);
-            var muzzleFrames = ArtSetup.Floor3BodyEffect("Fx_VinegarJet_Muzzle", 12);
-            var hitFrames = ArtSetup.Floor3BodyEffect("Fx_VinegarJet_Hit", 16);
-            var splashFrames = ArtSetup.Floor3BodyEffect("Fx_VinegarJet_Splash", 32);
-            if (streamFrames.Length == 0 || muzzleFrames.Length == 0 || hitFrames.Length == 0 || splashFrames.Length == 0)
+            // Los tramos tienen el pivote en el borde izquierdo, a media altura (README de floor3-jet).
+            var segmentPivot = new Vector2(0f, 0.5f);
+            var start = ArtSetup.Floor3JetSheet("Fx_VinegarJet_Start", 16, segmentPivot);
+            var streams = new System.Collections.Generic.List<Sprite>();
+            var tips = new System.Collections.Generic.List<Sprite>();
+            foreach (string letter in new[] { "A", "B", "C" })
             {
-                Debug.LogWarning("Floor3MouthsSetup: faltan las hojas del Chorro de vinagre; ejecuta Primordia > Floor 3 > Importar todo el arte del piso 3.");
+                streams.AddRange(ArtSetup.Floor3JetSheet($"Fx_VinegarJet_Stream_{letter}", 16, segmentPivot));
+                tips.AddRange(ArtSetup.Floor3JetSheet($"Fx_VinegarJet_Tip_{letter}", 16, segmentPivot));
+            }
+            var muzzleFrames = ArtSetup.Floor3JetSheet("Fx_VinegarJet_Muzzle", 16);
+            var hitFrames = ArtSetup.Floor3JetSheet("Fx_VinegarJet_Hit", 24);
+            var splashFrames = new Sprite[3][];
+            for (int i = 0; i < 3; i++)
+                splashFrames[i] = ArtSetup.Floor3JetSheet($"Fx_VinegarJet_Splash_{i}", 80);
+            if (start.Length != JetArt.Frames || streams.Count != JetArt.Frames * 3 || tips.Count != JetArt.Frames * 3
+                || muzzleFrames.Length == 0 || hitFrames.Length == 0 || splashFrames.Any(frames => frames.Length == 0))
+            {
+                Debug.LogWarning("Floor3MouthsSetup: faltan las hojas del Chorro de vinagre en Art/Floor3/floor3-jet; ejecuta Primordia > Floor 3 > Importar todo el arte del piso 3.");
                 return;
             }
 
             Directory.CreateDirectory(ProjectilesFolder);
-            var segment = CreateJetSegmentPrefab("Effect_VinegarJet_Segment", streamFrames);
+            var art = AssetDatabase.LoadAssetAtPath<JetArt>(JetArtPath);
+            if (art == null)
+            {
+                art = ScriptableObject.CreateInstance<JetArt>();
+                AssetDatabase.CreateAsset(art, JetArtPath);
+            }
+            art.Configure(start, streams.ToArray(), tips.ToArray());
+            EditorUtility.SetDirty(art);
+
+            // Salida y salpicaduras a 50 y 65 ms por cuadro, impacto a 60 ms (README).
             var muzzle = Floor2MouthsSetup.CreateLoopEffect("Effect_VinegarJet_Muzzle", muzzleFrames, 0.05f, 21);
             var hit = Floor2MouthsSetup.CreateLoopEffect("Effect_VinegarJet_Hit", hitFrames, 0.06f, 21);
-            var splash = Floor2MouthsSetup.CreateFrameEffect("Effect_VinegarJet_Splash", splashFrames, 0.06f);
+            var splash = new GameObject[3];
+            for (int i = 0; i < 3; i++)
+                splash[i] = Floor2MouthsSetup.CreateFrameEffect($"Effect_VinegarJet_Splash_{i}", splashFrames[i], 0.065f);
 
             var one = Attack("Attack_VinegarJet", null, a =>
             {
                 a.Configure(null, fireRate: 1f / 0.15f, damage: 1, speed: 1f, lifetime: 1f);
-                a.ConfigureJet(5f, 0.15f, 180f, 3f, 2f, 3f, false, segment, hit, splash);
+                a.ConfigureJet(5f, 0.15f, 180f, 3f, 2f, 3f, false, art, hit, splash);
                 a.ConfigureJetSplash(0f, 0.5f, 1);
                 a.SetMuzzleEffect(muzzle);
             });
-            var two = Attack("Attack_VinegarJet_2", one, a => a.ConfigureJet(6f, 0.15f, 180f, 4f, 2f, 3f, true, segment, hit, splash));
+            var two = Attack("Attack_VinegarJet_2", one, a => a.ConfigureJet(6f, 0.15f, 180f, 4f, 2f, 3f, true, art, hit, splash));
             var three = Attack("Attack_VinegarJet_3", two, a =>
             {
-                a.ConfigureJet(7f, 0.15f, 180f, 4f, 2f, 3f, true, segment, hit, splash);
+                a.ConfigureJet(7f, 0.15f, 180f, 4f, 2f, 3f, true, art, hit, splash);
                 a.ConfigureJetSplash(2f, 0.5f, 1);
             });
 
@@ -250,24 +308,6 @@ namespace Primordia.Editor
             mutation.Configure(one, newHealEveryKills: 0);
             mutation.ConfigureUpgrades(new AttackMutation.AttackLevel { attack = two }, new AttackMutation.AttackLevel { attack = three });
             EditorUtility.SetDirty(mutation);
-        }
-
-        /// <summary>Un tramo de 1 u del chorro (16×8 px, hacia la derecha) con su animación en bucle. Se rehace.</summary>
-        static GameObject CreateJetSegmentPrefab(string prefabName, Sprite[] frames)
-        {
-            var root = new GameObject(prefabName);
-            try
-            {
-                var renderer = root.AddComponent<SpriteRenderer>();
-                renderer.sprite = frames[0];
-                renderer.sortingOrder = 19;
-                root.AddComponent<SpriteLoop>().Configure(renderer, frames, 0.06f, 0f);
-                return PrefabUtility.SaveAsPrefabAsset(root, $"{ProjectilesFolder}/{prefabName}.prefab");
-            }
-            finally
-            {
-                Object.DestroyImmediate(root);
-            }
         }
 
         // Un ataque limpio de efectos heredados del Aguijón (veneno, abanico, buscador…).
@@ -292,22 +332,45 @@ namespace Primordia.Editor
             return attack;
         }
 
-        /// <summary>Proyectil con la bola animada (los cuadros miran a la derecha) y el componente del Escupitajo. Se rehace.</summary>
-        static Projectile CreateSpitProjectile(string prefabName, Sprite[] frames, float radius, float frameSeconds)
+        /// <summary>Las hojas de una bola del Escupitajo: rodando hacia los lados, abajo y arriba, y el hinchado final (solo la grande).</summary>
+        sealed class SpitBallArt
+        {
+            public readonly Sprite[] Side, Down, Up, SwellSide, SwellDown, SwellUp;
+
+            public SpitBallArt(Sprite[] side, Sprite[] down, Sprite[] up, Sprite[] swellSide, Sprite[] swellDown, Sprite[] swellUp)
+            {
+                Side = side;
+                Down = down;
+                Up = up;
+                SwellSide = swellSide;
+                SwellDown = swellDown;
+                SwellUp = swellUp;
+            }
+
+            public bool Complete => Side.Length > 0 && Down.Length > 0 && Up.Length > 0 && SwellSide.Length > 0 && SwellDown.Length > 0 && SwellUp.Length > 0;
+        }
+
+        /// <summary>
+        /// Proyectil de la bola: la raíz gira hacia donde va (y es el punto de apoyo en el suelo) y un hijo lleva el dibujo, que no gira
+        /// (<see cref="PoisonSpitBall"/> lo orienta). Se rehace.
+        /// </summary>
+        static Projectile CreateSpitProjectile(string prefabName, SpitBallArt art, float radius, float rollFrameSeconds)
         {
             var root = new GameObject(prefabName);
             try
             {
-                var renderer = root.AddComponent<SpriteRenderer>();
-                renderer.sprite = frames[0];
+                var visualObject = new GameObject("Visual");
+                visualObject.transform.SetParent(root.transform, false);
+                var renderer = visualObject.AddComponent<SpriteRenderer>();
+                renderer.sprite = art.Side[0];
                 renderer.sortingOrder = 20;
-                root.AddComponent<SpriteLoop>().Configure(renderer, frames, frameSeconds, 0f);
                 var collider = root.AddComponent<CircleCollider2D>();
                 collider.isTrigger = true;
                 collider.radius = radius;
                 root.AddComponent<Rigidbody2D>().gravityScale = 0f;
                 root.AddComponent<Projectile>();
-                root.AddComponent<PoisonSpitBall>();
+                root.AddComponent<PoisonSpitBall>().ConfigureArt(renderer, art.Side, art.Down, art.Up, art.SwellSide, art.SwellDown, art.SwellUp,
+                    rollFrameSeconds);
                 return PrefabUtility.SaveAsPrefabAsset(root, $"{ProjectilesFolder}/{prefabName}.prefab").GetComponent<Projectile>();
             }
             finally

@@ -32,6 +32,30 @@ namespace Primordia.Editor
             public Sprite[] Key;
         }
 
+        // Charca del pantano, la fosa de la sala de paso del piso 2 (docs/multimedia-temp/floor3-transition: generar_charca.py).
+        const string SwampPitSourceFolder = "docs/multimedia-temp/floor3-transition";
+        const string SwampPitArtFolder = "Assets/_Primordia/Art/FloorTransition/Swamp";
+        // Los 4 cuadros de la burbuja: 2 subiendo y 2 de reventón.
+        internal const int SwampBubblePopFrames = 2;
+
+        /// <summary>Importa la charca del pantano y su burbuja que revienta (la tecla E es la de la fosa normal). Null si no está.</summary>
+        internal static TransitionPitArt ImportSwampPitArt()
+        {
+            string pitPath = $"{SwampPitArtFolder}/Transition_Pit_Swamp.png";
+            string bubblePath = $"{SwampPitArtFolder}/Transition_Bubble_Swamp.png";
+            if (!CopyArt($"{SwampPitSourceFolder}/Transition_Pit_Swamp.png", pitPath)
+                || !CopyArt($"{SwampPitSourceFolder}/Transition_Bubble_Swamp.png", bubblePath))
+                return null;
+
+            var normal = ImportTransitionPitArt();
+            return new TransitionPitArt
+            {
+                Pit = SliceSheet(pitPath, PitCellWidth),
+                Bubble = SliceSheet(bubblePath, BubbleCellWidth),
+                Key = normal != null ? normal.Key : System.Array.Empty<Sprite>(),
+            };
+        }
+
         /// <summary>Importa los temas Shore y Cambrian. Cualquiera puede ser null si faltan sus tiles.</summary>
         internal static (RoomTheme mid, RoomTheme next) ImportTransitionThemes()
         {

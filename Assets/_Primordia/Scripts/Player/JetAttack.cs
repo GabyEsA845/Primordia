@@ -25,11 +25,8 @@ namespace Primordia.Player
         // Cuánto crece el chorro hacia su alcance y cuánto se recoge al soltar, en unidades por segundo.
         const float ExtendSpeed = 30f;
         const float RetractSpeed = 40f;
-        // Tramo del chorro en el que nace fino y se ensancha, y tramo de la punta que se afina (unidades).
-        const float TaperIn = 0.9f;
-        const float TaperOut = 0.7f;
-        // Radio al que está dibujada la salpicadura (32 px de lado).
-        const float SplashArtRadius = 1f;
+        // Los tramos del dibujo miden 1 u (16 px) y la salpicadura ya está dibujada al radio del juego: nada se escala.
+        const int SegmentPixels = 16;
         // Punta del abdomen en píxeles desde el centro del lienzo de 40×40 (x a la derecha, y hacia arriba), según el README del cuerpo.
         // Con el cuerpo volteado a la izquierda se invierte la x.
         static readonly Vector2 SideTip = new(1f, 9f);
@@ -54,9 +51,18 @@ namespace Primordia.Player
         float reach;
         float tailDistance;
         bool retracting;
+        // El último tramo es la punta (el chorro llegó a su alcance sin chocar) y qué salpicadura toca.
+        bool freeTip;
+        int splashVariant;
         Vector2 lastDirection = Vector2.right;
         readonly HashSet<Health> struck = new();
         readonly List<SpriteRenderer> segments = new();
+        // Los tramos recortados a lo que llega el chorro, para no crear el mismo sprite cada cuadro.
+        static readonly Dictionary<(Sprite, int, int), Sprite> croppedSprites = new();
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        static void ResetStatics() => croppedSprites.Clear();
+
         readonly List<(Health health, float distance)> targets = new();
         GameObject hitEffect;
         GameObject muzzleEffect;
@@ -110,7 +116,7 @@ namespace Primordia.Player
                 ClearDrawing();
                 return;
             }
-            DrawSegments(Origin, lastDirection, tailDistance, reach);
+            DrawSegments(Origin, lastDirection, tailDistance, reach, freeTip);
         }
 
         /// <summary>Se llama cada fotograma mientras el ataque equipado es un chorro. <paramref name="held"/>: el botón está pulsado.</summary>
@@ -221,8 +227,9 @@ namespace Primordia.Player
             tailDistance = 0f;
             Vector2 end = origin + direction * reach;
             bool blocked = length < attack.JetRange - 0.01f && reach >= length - 0.01f;
-            DrawSegments(origin, direction, 0f, reach);
-            DrawEffects(origin, end, blocked);
+            freeTip = length >= attack.JetRange - 0.01f && reach >= length - 0.01f;
+            DrawSegments(origin, direction, 0f, reach, freeTip);
+            DrawEffects(origin, end, blocked, direction);
 
             tickTimer -= dt;
             if (tickTimer <= 0f)
@@ -302,9 +309,10 @@ namespace Primordia.Player
         void Splash(Vector2 end)
         {
             int damage = Mathf.Max(0, Mathf.CeilToInt(attack.JetSplashDamage * weapon.DamageMultiplier - 0.001f));
-            var effect = OneShotEffect.Spawn(attack.JetSplashEffect, end);
-            if (effect != null)
-                effect.transform.localScale = Vector3.one * (attack.JetSplashRadius / SplashArtRadius);
+            // Las tres salpicaduras se alternan en cada golpe.
+            var splashes = attack.JetSplashEffects;
+            if (splashes.Length > 0)
+                OneShotEffect.Spawn(splashes[splashVariant++ % splashes.Length], end);
             struck.Clear();
             foreach (var hit in Physics2D.OverlapCircleAll(end, attack.JetSplashRadius, LayerMask.GetMask(CombatLayers.Enemy)))
             {
@@ -320,54 +328,81 @@ namespace Primordia.Player
 
         // ---------- Dibujo ----------
 
-        // El chorro son tramos de 1 u hacia la derecha, girados hacia el cursor, entre dos distancias desde la cola. Nace fino y se
-        // ensancha, y la punta se afina (tamaño y transparencia), para que no se vea cortado. Los extremos se recortan al tramo visible.
-        void DrawSegments(Vector2 origin, Vector2 direction, float from, float to)
+        // El chorro son huecos fijos de 1 u desde la cola, girados hacia el cursor, entre dos distancias: el primero es el inicio, los
+        // siguientes alternan los tramos A, B y C y, si el chorro no choca, el último es la punta. Los extremos se recortan (no se
+        // aplastan) a lo visible. Todos los tramos van en el mismo cuadro, con el mismo reloj.
+        void DrawSegments(Vector2 origin, Vector2 direction, float from, float to, bool tip)
         {
-            var prefab = attack != null ? attack.JetSegment : null;
+            var art = attack != null ? attack.JetArt : null;
+            if (art == null || !art.IsComplete)
+            {
+                foreach (var segment in segments)
+                    segment.enabled = false;
+                return;
+            }
+
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            int frame = JetArt.CurrentFrame;
             int first = Mathf.FloorToInt(from);
-            int count = prefab != null ? Mathf.Max(0, Mathf.CeilToInt(to) - first) : 0;
+            int last = Mathf.CeilToInt(to) - 1;
+            int count = Mathf.Max(0, last - first + 1);
             for (int i = 0; i < count; i++)
             {
                 while (segments.Count <= i)
                 {
-                    var created = Instantiate(prefab, transform.parent);
-                    segments.Add(created.GetComponent<SpriteRenderer>());
+                    var created = new GameObject("JetSegment");
+                    created.transform.SetParent(transform.parent, false);
+                    var renderer = created.AddComponent<SpriteRenderer>();
+                    renderer.sortingOrder = 19;
+                    segments.Add(renderer);
                 }
 
-                float start = Mathf.Max(first + i, from);
-                float end = Mathf.Min(first + i + 1, to);
-                var segment = segments[i];
-                if (end - start <= 0.01f)
+                int slot = first + i;
+                // Lo visible del hueco, en píxeles desde su borde izquierdo.
+                int left = Mathf.RoundToInt((Mathf.Max(slot, from) - slot) * SegmentPixels);
+                int right = Mathf.RoundToInt((Mathf.Min(slot + 1, to) - slot) * SegmentPixels);
+                var segmentRenderer = segments[i];
+                if (right - left <= 0)
                 {
-                    segment.enabled = false;
+                    segmentRenderer.enabled = false;
                     continue;
                 }
 
-                float middle = (start + end) / 2f;
-                float fadeIn = Mathf.SmoothStep(0f, 1f, Mathf.Clamp01((middle - from) / TaperIn));
-                float fadeOut = Mathf.SmoothStep(0f, 1f, Mathf.Clamp01((to - middle) / TaperOut));
-                segment.enabled = true;
-                segment.transform.SetPositionAndRotation(origin + direction * middle, Quaternion.Euler(0f, 0f, angle));
-                segment.transform.localScale = new Vector3(end - start, Mathf.Lerp(0.45f, 1f, fadeIn) * Mathf.Lerp(0.7f, 1f, fadeOut), 1f);
-                var color = segment.color;
-                color.a = Mathf.Lerp(0.35f, 1f, fadeIn) * Mathf.Lerp(0.55f, 1f, fadeOut);
-                segment.color = color;
+                var sprite = slot == 0 ? art.StartFrame(frame)
+                    : tip && slot == last ? art.Tip((slot - 1) % JetArt.Variants, frame)
+                    : art.Stream((slot - 1) % JetArt.Variants, frame);
+                segmentRenderer.enabled = true;
+                segmentRenderer.sprite = Crop(sprite, left, right);
+                segmentRenderer.transform.SetPositionAndRotation(origin + direction * (slot + left / (float)SegmentPixels), Quaternion.Euler(0f, 0f, angle));
             }
             for (int i = count; i < segments.Count; i++)
                 segments[i].enabled = false;
         }
 
-        // Impacto cuando el chorro ya ha llegado a lo que lo corta, y salida en la punta de la cola.
-        void DrawEffects(Vector2 origin, Vector2 end, bool blocked)
+        // El cuadro recortado a los píxeles de left a right, con el pivote en su borde izquierdo a media altura.
+        static Sprite Crop(Sprite sprite, int left, int right)
+        {
+            if (left <= 0 && right >= sprite.rect.width)
+                return sprite;
+            var key = (sprite, left, right);
+            if (croppedSprites.TryGetValue(key, out var cached) && cached != null)
+                return cached;
+            var rect = new Rect(sprite.rect.x + left, sprite.rect.y, right - left, sprite.rect.height);
+            var cropped = Sprite.Create(sprite.texture, rect, new Vector2(0f, 0.5f), sprite.pixelsPerUnit);
+            croppedSprites[key] = cropped;
+            return cropped;
+        }
+
+        // Impacto cuando el chorro ya ha llegado a lo que lo corta (girado con el chorro: está dibujado llegando desde la izquierda), y
+        // salida en la punta de la cola.
+        void DrawEffects(Vector2 origin, Vector2 end, bool blocked, Vector2 direction)
         {
             if (blocked && attack.JetHitEffect != null)
             {
                 if (hitEffect == null)
                     hitEffect = Instantiate(attack.JetHitEffect, transform.parent);
                 hitEffect.SetActive(true);
-                hitEffect.transform.position = end;
+                hitEffect.transform.SetPositionAndRotation(end, Quaternion.Euler(0f, 0f, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg));
             }
             else if (hitEffect != null)
             {
@@ -436,7 +471,7 @@ namespace Primordia.Player
         void Stop()
         {
             ClearEffects();
-            if (reach > 0.05f && attack != null && attack.JetSegment != null)
+            if (reach > 0.05f && attack != null && attack.JetArt != null)
             {
                 retracting = true;
                 tailDistance = 0f;

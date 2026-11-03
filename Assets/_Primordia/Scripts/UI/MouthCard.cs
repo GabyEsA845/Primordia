@@ -49,7 +49,7 @@ namespace Primordia.UI
             if (family != null)
                 family.text = MutationText.FamilyName(mutation.Family);
             if (description != null)
-                description.text = mutation.Description;
+                description.text = mutation.Summary;
             if (colorStrip != null)
                 colorStrip.color = mutation.Color;
             if (icon != null)

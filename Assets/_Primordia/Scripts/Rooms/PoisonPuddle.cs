@@ -19,9 +19,9 @@ namespace Primordia.Rooms
 
         // Lo que cubre el charco (el dibujo grande mide ~1,2 u de radio) y cada cuánto se comprueba quién lo pisa.
         const float Radius = 1f;
-        const float SmallRadius = 0.45f;
-        const float SmallScale = 0.4f;
-        const float CheckEvery = 0.1f;
+        // Radio del cuerpo del charco salpicado del Escupitajo (14 px de 64): se escala para que coincida con el radio que daña.
+        const float SplatBodyRadius = 14f / 16f;
+        public const float CheckEvery = 0.1f;
         const int EnemyDamagePerSecond = 1;
         const float EnemyPoisonSeconds = 3f;
         const float AppearFrameSeconds = 0.09f;
@@ -47,7 +47,7 @@ namespace Primordia.Rooms
         SpriteRenderer body;
         State state;
         bool harmsPlayer = true;
-        bool useSmallArt;
+        bool useSplat;
         float radius = Radius;
         float endTime;
         float nextCheck;
@@ -57,15 +57,34 @@ namespace Primordia.Rooms
         public bool CanIgnite => state == State.Idle;
 
         /// <summary>
-        /// Hace un charco en ese punto (el centro del dibujo). Pequeño: el del rastro del Escupitajo venenoso. Sin <paramref name="harmsPlayer"/>,
-        /// el jugador lo pisa sin frenarse ni envenenarse (los charcos que deja él mismo). Null si no hay arte del veneno.
+        /// Hace un charco en ese punto (el centro del dibujo). Sin <paramref name="harmsPlayer"/>, el jugador lo pisa sin frenarse ni
+        /// envenenarse (los charcos que deja él mismo). Null si no hay arte del veneno.
         /// </summary>
-        public static PoisonPuddle Spawn(Vector2 position, float seconds = DefaultSeconds, bool small = false, bool harmsPlayer = true)
+        public static PoisonPuddle Spawn(Vector2 position, float seconds = DefaultSeconds, bool harmsPlayer = true)
         {
             var kit = ReactionKit.Current;
             if (kit == null || kit.PuddleIdle.Length == 0)
                 return null;
+            return Create(kit, position, seconds, Radius, harmsPlayer, splat: false);
+        }
 
+        /// <summary>
+        /// El charco salpicado que deja el reventón del Escupitajo: su cuerpo coincide con <paramref name="effectRadius"/>, el radio
+        /// que frena y envenena. Sin dibujo propio, el charco grande reducido. Null si no hay arte del veneno.
+        /// </summary>
+        public static PoisonPuddle SpawnSplat(Vector2 position, float seconds, float effectRadius, bool harmsPlayer = false)
+        {
+            var kit = ReactionKit.Current;
+            if (kit == null)
+                return null;
+            bool splat = kit.SplatIdle.Length > 0;
+            if (!splat && kit.PuddleIdle.Length == 0)
+                return null;
+            return Create(kit, position, seconds, effectRadius, harmsPlayer, splat);
+        }
+
+        static PoisonPuddle Create(ReactionKit kit, Vector2 position, float seconds, float effectRadius, bool harmsPlayer, bool splat)
+        {
             var obj = new GameObject("PoisonPuddle");
             obj.transform.position = position;
             var renderer = obj.AddComponent<SpriteRenderer>();
@@ -74,11 +93,9 @@ namespace Primordia.Rooms
             var puddle = obj.AddComponent<PoisonPuddle>();
             puddle.body = renderer;
             puddle.harmsPlayer = harmsPlayer;
-            puddle.radius = small ? SmallRadius : Radius;
-            // Sin dibujo pequeño, el grande reducido.
-            puddle.useSmallArt = small && kit.SmallPuddleIdle.Length > 0;
-            if (small && !puddle.useSmallArt)
-                obj.transform.localScale = Vector3.one * SmallScale;
+            puddle.radius = effectRadius;
+            puddle.useSplat = splat;
+            obj.transform.localScale = Vector3.one * (splat ? effectRadius / SplatBodyRadius : effectRadius / Radius);
             puddle.endTime = Time.time + seconds;
             puddle.StartCoroutine(puddle.Run(kit));
             return puddle;
@@ -98,9 +115,9 @@ namespace Primordia.Rooms
 
         IEnumerator Run(ReactionKit kit)
         {
-            yield return Play(useSmallArt ? kit.SmallPuddleAppear : kit.PuddleAppear, AppearFrameSeconds);
+            yield return Play(useSplat ? kit.SplatAppear : kit.PuddleAppear, AppearFrameSeconds);
             var player = gameObject.AddComponent<SpriteFramePlayer>();
-            player.Play(body, useSmallArt ? kit.SmallPuddleIdle : kit.PuddleIdle, 0.09f, newLoop: true);
+            player.Play(body, useSplat ? kit.SplatIdle : kit.PuddleIdle, 0.09f, newLoop: true);
             while (Time.time < endTime && state == State.Idle)
                 yield return null;
             if (state != State.Idle)
@@ -109,7 +126,7 @@ namespace Primordia.Rooms
             // Se seca: el último cuadro de la animación y fuera.
             state = State.Drying;
             Destroy(player);
-            yield return Play(useSmallArt ? kit.SmallPuddleFade : kit.PuddleFade, AppearFrameSeconds);
+            yield return Play(useSplat ? kit.SplatFade : kit.PuddleFade, AppearFrameSeconds);
             Destroy(gameObject);
         }
 
@@ -133,9 +150,8 @@ namespace Primordia.Rooms
             var player = GetComponent<SpriteFramePlayer>();
             if (player != null)
                 Destroy(player);
-            // El fuego es del tamaño del charco grande: en uno pequeño se reduce.
-            if (useSmallArt)
-                transform.localScale = Vector3.one * SmallScale;
+            // El fuego es del tamaño del charco grande: en uno más pequeño se reduce.
+            transform.localScale = Vector3.one * (radius / Radius);
             StartCoroutine(Burn());
         }
 
@@ -164,23 +180,31 @@ namespace Primordia.Rooms
 
             var seen = new HashSet<Health>();
             foreach (var hit in Physics2D.OverlapCircleAll(transform.position, radius))
+                Affect(hit, harmsPlayer, seen);
+        }
+
+        /// <summary>
+        /// Lo que hace un charco (o un tramo de la banda de baba) a lo que toca, cada <see cref="CheckEvery"/>: el jugador recibe su
+        /// ventana de veneno (si <paramref name="harmsPlayer"/> y no esquiva); a los enemigos los frena y los envenena.
+        /// <paramref name="seen"/> evita contar dos veces al mismo en una comprobación.
+        /// </summary>
+        public static void Affect(Collider2D hit, bool harmsPlayer, HashSet<Health> seen)
+        {
+            if (hit.isTrigger)
+                return;
+
+            if (hit.GetComponentInParent<PlayerToxin>() is { } player)
             {
-                if (hit.isTrigger)
-                    continue;
-
-                if (hit.GetComponentInParent<PlayerToxin>() is { } player)
-                {
-                    if (harmsPlayer && !player.IsDodging)
-                        player.TouchPuddle();
-                    continue;
-                }
-
-                var health = hit.GetComponentInParent<Health>();
-                if (health == null || health.IsDead || !seen.Add(health) || health.GetComponentInParent<Enemy>() == null)
-                    continue;
-                Toxins.SlowEnemy(health, CheckEvery * 3f);
-                Toxins.PoisonEnemy(health, EnemyDamagePerSecond, EnemyPoisonSeconds);
+                if (harmsPlayer && !player.IsDodging)
+                    player.TouchPuddle();
+                return;
             }
+
+            var health = hit.GetComponentInParent<Health>();
+            if (health == null || health.IsDead || !seen.Add(health) || health.GetComponentInParent<Enemy>() == null)
+                return;
+            Toxins.SlowEnemy(health, CheckEvery * 3f);
+            Toxins.PoisonEnemy(health, EnemyDamagePerSecond, EnemyPoisonSeconds);
         }
     }
 }

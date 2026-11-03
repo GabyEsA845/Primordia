@@ -82,16 +82,20 @@ namespace Primordia.Editor
         }
 
         /// <summary>Prefab de la fosa: borde sólido, dibujo que late, tecla E y burbujas (estas las crea el componente).</summary>
-        static TransitionPit CreatePitPrefab(Sprite square)
+        static TransitionPit CreatePitPrefab(Sprite square) =>
+            CreatePitPrefab(square, ArtSetup.ImportTransitionPitArt(), PitPrefabPath, 0);
+
+        /// <summary>El prefab de una fosa con ese arte y esa ruta; <paramref name="bubblePopFrames"/>: cuadros de reventón de la burbuja.</summary>
+        static TransitionPit CreatePitPrefab(Sprite square, ArtSetup.TransitionPitArt art, string prefabPath, int bubblePopFrames,
+            ArtSetup.MetamorphosisArt rising = null)
         {
             Directory.CreateDirectory(PrefabsFolder);
-            var art = ArtSetup.ImportTransitionPitArt();
             if (art == null)
                 Debug.LogWarning("FloorTransitionSetup: no está el arte de la fosa (docs/multimedia-temp/floor-transition, "
                     + "generar_fosa.py); se verá como un cuadrado.");
 
-            bool exists = LoadPitPrefab() != null;
-            var root = exists ? PrefabUtility.LoadPrefabContents(PitPrefabPath) : new GameObject("TransitionPit");
+            bool exists = AssetDatabase.LoadAssetAtPath<TransitionPit>(prefabPath) != null;
+            var root = exists ? PrefabUtility.LoadPrefabContents(prefabPath) : new GameObject("TransitionPit");
             try
             {
                 if (!root.TryGetComponent<CapsuleCollider2D>(out var collider))
@@ -113,16 +117,23 @@ namespace Primordia.Editor
                     pit = root.AddComponent<TransitionPit>();
                 pit.Configure(pitRenderer, art?.Pit, art?.Bubble, key, art?.Key, EdgeRadii);
                 pit.SetRadius(InteractRadius);
+                pit.SetBubblePop(bubblePopFrames);
 
-                var meta = ArtSetup.ImportMetamorphosisArt();
+                // Con arte de subida (piso 2 al 3), la criatura sube a la superficie del pantano en lugar de caer por el abismo.
+                var meta = rising ?? ArtSetup.ImportMetamorphosisArt();
                 if (!root.TryGetComponent<Metamorphosis>(out var metamorphosis))
                     metamorphosis = root.AddComponent<Metamorphosis>();
-                metamorphosis.Configure(meta.Background, meta.Rays, meta.Motes, art?.Bubble, meta.Aura, meta.Burst);
+                var bubbleFrames = art?.Bubble;
+                // Las burbujas de la metamorfosis son las que suben, sin los cuadros de reventón.
+                if (bubbleFrames != null && bubblePopFrames > 0)
+                    bubbleFrames = bubbleFrames.Take(bubbleFrames.Length - bubblePopFrames).ToArray();
+                metamorphosis.Configure(meta.Background, meta.Rays, meta.Motes, bubbleFrames, meta.Aura, meta.Burst);
+                metamorphosis.SetRising(rising != null);
                 if (meta.Aura.Length == 0)
                     Debug.LogWarning("FloorTransitionSetup: falta el arte de la metamorfosis (docs/multimedia-temp/metamorphosis, "
                         + "generar_metamorfosis.py).");
 
-                PrefabUtility.SaveAsPrefabAsset(root, PitPrefabPath);
+                PrefabUtility.SaveAsPrefabAsset(root, prefabPath);
             }
             finally
             {
@@ -132,7 +143,7 @@ namespace Primordia.Editor
                     Object.DestroyImmediate(root);
             }
 
-            return LoadPitPrefab();
+            return AssetDatabase.LoadAssetAtPath<TransitionPit>(prefabPath);
         }
 
         static SpriteRenderer Child(Transform parent, string name, Vector3 position)

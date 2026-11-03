@@ -53,6 +53,7 @@ namespace Primordia.Editor
             ApplyArt(jawPlates, art.JawPlates);
             ApplyArt(armCrown, art.ArmCrown);
             AssetDatabase.SaveAssets();
+            MouthSummaries.Apply();
             return new[] { cnidocytes, jawPlates, armCrown };
         }
 

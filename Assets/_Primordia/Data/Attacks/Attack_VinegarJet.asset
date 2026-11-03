@@ -103,9 +103,12 @@ MonoBehaviour:
   jetSplashRadius: 0
   jetSplashTick: 0.5
   jetSplashDamage: 1
-  jetSegment: {fileID: 7145959433622761536, guid: a1eafd39ab6426c4f94dbdb78f603917, type: 3}
+  jetArt: {fileID: 11400000, guid: 6d26974b661e20f4f83f031ff2f92c65, type: 2}
   jetHitEffect: {fileID: 8456665658976138126, guid: b7e65dda599491347a1935985914051e, type: 3}
-  jetSplashEffect: {fileID: 4888629936653842133, guid: 7bbbf78ecd8f6e9418946a191b85e10f, type: 3}
+  jetSplashEffects:
+  - {fileID: 2939479053724130490, guid: 0e9f78f231a8115428081a00bc7cd111, type: 3}
+  - {fileID: 8995252570102386149, guid: 0f272b33bcbad5f469dcfd2e84390abd, type: 3}
+  - {fileID: 6142250923980580748, guid: f24440ee4ed58dc4bb85bda715fc0ab6, type: 3}
   fireSound: 
   hitSound: 
   lungeSound: 

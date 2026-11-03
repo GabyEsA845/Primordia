@@ -82,12 +82,12 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 21
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 8402269414689351512, guid: cce8a7e804f1921468947aba371a5bfb, type: 3}
+  m_Sprite: {fileID: 8402269414689351512, guid: 9f5527355b31234469f171af5c75d7be, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.5, y: 1.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -107,9 +107,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Primordia::Primordia.Rooms.SpriteLoop
   target: {fileID: 4322754968077311567}
   frames:
-  - {fileID: 8402269414689351512, guid: cce8a7e804f1921468947aba371a5bfb, type: 3}
-  - {fileID: -4055773622336556531, guid: cce8a7e804f1921468947aba371a5bfb, type: 3}
-  - {fileID: 560287085039931244, guid: cce8a7e804f1921468947aba371a5bfb, type: 3}
-  - {fileID: -4279853646822263408, guid: cce8a7e804f1921468947aba371a5bfb, type: 3}
+  - {fileID: 8402269414689351512, guid: 9f5527355b31234469f171af5c75d7be, type: 3}
+  - {fileID: -4055773622336556531, guid: 9f5527355b31234469f171af5c75d7be, type: 3}
+  - {fileID: 560287085039931244, guid: 9f5527355b31234469f171af5c75d7be, type: 3}
+  - {fileID: -4279853646822263408, guid: 9f5527355b31234469f171af5c75d7be, type: 3}
   frameDuration: 0.06
   phase: 0

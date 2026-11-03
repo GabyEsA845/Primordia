@@ -23,6 +23,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9fc9825df5f48cd4fa745190a06fe8a7, type: 2}
   - {fileID: 11400000, guid: 798d48e8e64210f4984d0983300950e4, type: 2}
   cap: {fileID: 11400000, guid: 21931b2c799c3ed40a8e5d04ac7b1834, type: 2}
+  capVariants: []
   faceUpper:
   - {fileID: 11400000, guid: 9a4f35c37883d2a40ad2a2a170e63523, type: 2}
   - {fileID: 11400000, guid: 296c22e1fc1487b45bf7cf5f892fcc64, type: 2}
@@ -40,7 +41,18 @@ MonoBehaviour:
   faceLowerEndRight: {fileID: 11400000, guid: d00cc463180c23d4085eb32d7953d646, type: 2}
   outerTopLeft: {fileID: 11400000, guid: 2dbb6300809f64242a0e6b16a2645c9c, type: 2}
   outerTopRight: {fileID: 11400000, guid: 54250f70eb4c7b64c85b088b36fbddc5, type: 2}
+  edgeLeftFaceUpper: {fileID: 0}
+  edgeLeftFaceLower: {fileID: 0}
+  edgeRightFaceUpper: {fileID: 0}
+  edgeRightFaceLower: {fileID: 0}
   missing: {fileID: 11400000, guid: 3724e1c7198527a4dbb54cfc33c72bc0, type: 2}
+  doorCrown: {fileID: 21300000, guid: 538f43c7478429047a59a4b148c7577a, type: 3}
+  doorSideBack: {fileID: 21300000, guid: e0daa6da7eee43946b0a2a83c7e0e2de, type: 3}
+  doorSideFront: {fileID: 21300000, guid: aa033118baa111b4cb4f049f9936fe6f, type: 3}
+  wallSideDeco:
+  - {fileID: 21300000, guid: d8eac4ffd14abd641805fea5ecc03745, type: 3}
+  - {fileID: 21300000, guid: a4549d25224f3d44b88ba6bb2f3b2474, type: 3}
+  - {fileID: 21300000, guid: a39d90af9b414c8419a965106eabb7c2, type: 3}
   decorations:
   - {fileID: 11400000, guid: 9f76324acf1ccd941a941a609c2a7235, type: 2}
   - {fileID: 11400000, guid: 85d8e8b297f401240bde7b5b2ef19c3d, type: 2}
@@ -67,3 +79,88 @@ MonoBehaviour:
   - {fileID: 1422942707524771534, guid: abb6d32581e5bda469719a581738a502, type: 3}
   - {fileID: 3227117808192725293, guid: abb6d32581e5bda469719a581738a502, type: 3}
   - {fileID: 304631952, guid: abb6d32581e5bda469719a581738a502, type: 3}
+  slabTop:
+    close: []
+    closeDurations: []
+    open: []
+    openDurations: []
+  slabBottom:
+    close: []
+    closeDurations: []
+    open: []
+    openDurations: []
+  slabSide:
+    close: []
+    closeDurations: []
+    open: []
+    openDurations: []
+  smallObstacles: []
+  bigObstacles: []
+  smallObstacleOutlines: []
+  bigObstacleOutlines: []
+  obstacleOutline: {r: 0.95, g: 0.77, b: 0.35, a: 0.85}
+  pitTiles: []
+  pitCorners: []
+  pitMotes: {fileID: 0}
+  pitMotesChance: 0.12
+  brushTop:
+    idle: {fileID: 0}
+    burn: []
+    durations: []
+    gone: {fileID: 0}
+    opensAtFrame: 5
+  brushSide:
+    idle: {fileID: 0}
+    burn: []
+    durations: []
+    gone: {fileID: 0}
+    opensAtFrame: 5
+  brushBottom:
+    idle: {fileID: 0}
+    burn: []
+    durations: []
+    gone: {fileID: 0}
+    opensAtFrame: 5
+  ferns: []
+  fernDensity: 0
+  methane:
+    sacIdle: []
+    sacBurst: []
+    sacRemains: {fileID: 0}
+    mist: []
+    sacCount: {x: 1, y: 2}
+    mistPerCell: 0.004
+  poison:
+    bulbIdle: []
+    bulbBurst: []
+    bulbStump: {fileID: 0}
+    bulbRegrow: []
+    bulbCount: {x: 0, y: 1}
+  scenery:
+    ventIdle: []
+    ventWarn: []
+    ventBlast: []
+    ventCount: {x: 0, y: 0}
+    puddles: []
+    puddleCount: {x: 0, y: 0}
+    waterShare: 0.6
+    gnatChance: 0
+    gnats: []
+    beetleIdle: []
+    beetleRun: []
+    beetleCount: {x: 0, y: 0}
+    embers: []
+    emberCount: {x: 0, y: 0}
+    dripMoss: []
+    mossChance: 0
+    stump: {fileID: 0}
+    stumpSmoke: []
+  mudTiles: []
+  mudCorners: []
+  mudBubbles: {fileID: 0}
+  mudBubblesChance: 0.1
+  caustics: []
+  lightRay: []
+  lightRayFrameDuration: 0.25
+  marineSnow: 0
+  glows: []

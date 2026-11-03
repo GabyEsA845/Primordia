@@ -113,7 +113,7 @@ Cada módulo vive en su propia carpeta de `Assets/_Primordia/Scripts/` (`Core`, 
   3. Cuerpos y Bocas: rana, *Diplocaulus* y vinagrillo, Escupitajo venenoso, Peonza y Chorro de vinagre (con su barra de carga)
   4. Mutaciones y linajes: 6 mutaciones, clase Parásito (Chupar), 8 linajes con sus evoluciones, tienda y sala de cambio, atajo para completar linajes
   5. Enemigos y trampas: 6 enemigos con sus cerebros y las trampas (categoría que no cuenta para limpiar)
-  6. Salas: 10 especiales, salas con tema, sala del ámbar con las 3 especiales, almacén de corazones y cucaracha ladrona, sala secreta con el muro de raíces y las flores moradas, sala de paso
+  6. Salas: 10 especiales, salas con tema, sala del ámbar con las 3 especiales, almacén de corazones y cucaracha ladrona, sala secreta con el muro de raíces y las flores moradas, sala de paso del piso 3 (lleva a la victoria hasta que exista el piso 4) y **sala de paso del piso 2 al 3**, que aún no existe: la salida del piso 2 da la victoria. Reutiliza la cueva, la fosa, la ventana de Bocas y la metamorfosis, con mezcla de paleta del mar cámbrico al pantano y la subida a la superficie (`docs/multimedia-temp/floor3-metamorphosis`)
   7. Jefes (uno cada vez): Arthropleura, Meganeura, Megarachne (el Nido) y Lepidodendron ancestral con su desplome, recompensa y reliquias; presentaciones y barras propias
   8. Audio del piso 3 (skill `primordia-audio`), documento del piso 3 al día y cierre
 - [ ] `feature/balance`: equilibrio de vida, daño y ritmo. La vida de los enemigos del piso 1 ya se dobló en `feature/boss-amoeba` (6, 8 y 2; virus 120), que también hace notar más Rematar

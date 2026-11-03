@@ -142,7 +142,7 @@ namespace Primordia.Rooms
 
             foreach (var room in placed.Where(room => room.Layout.Role == RoomRole.Transition))
             {
-                ThemeTransition(map, room, placed);
+                ThemeTransition(map, room, placed, config);
                 foreach (var cell in PitCells(room, config))
                     noDecoration.Add(cell);
             }
@@ -173,7 +173,7 @@ namespace Primordia.Rooms
             var brushes = new Dictionary<(LayoutRoom room, Vector2Int direction), BrushWall>();
             foreach (var room in placed)
             {
-                var builtRoom = BuildRoom(parent, room, themes[room.Theme], config, boss, random, glows, brushes);
+                var builtRoom = BuildRoom(parent, room, themes[room.Theme], config, boss, random, glows, brushes, map);
                 builtRoom.SetDepthBand(room.Theme >= FirstBandTheme ? room.Theme - FirstBandTheme : -1);
                 built.Rooms.Add(builtRoom);
                 var mapRoom = new MapRoom
@@ -413,8 +413,10 @@ namespace Primordia.Rooms
         /// piso siguiente alrededor de la fosa y más allá. También el relleno de pared de alrededor que queda más cerca de
         /// esta sala que de las demás, para que desde dentro no se vea el corte.
         /// </summary>
-        static void ThemeTransition(FloorMap map, PlacedRoom room, List<PlacedRoom> placed)
+        static void ThemeTransition(FloorMap map, PlacedRoom room, List<PlacedRoom> placed, FloorConfig config)
         {
+            // Se entra con el tileset del piso; con franjas (piso 2), con el de la última, la más honda (el Abismo).
+            int entryTheme = config.HasBands ? FirstBandTheme + config.BandThemes.Length - 1 : SoupTheme;
             var entry = room.DoorCells.Values.FirstOrDefault();
             if (entry == null || entry.Count == 0)
                 return;
@@ -439,7 +441,7 @@ namespace Primordia.Rooms
 
                 float t = Vector2.Distance(cell + Vector2.one * 0.5f, door) / span
                     + ((CellNoise(cell) & 1023) / 1023f * 2f - 1f) * ThemeNoise;
-                map.SetTheme(cell, t < MidThemeFrom ? SoupTheme : t < NextThemeFrom ? MidTheme : NextTheme);
+                map.SetTheme(cell, t < MidThemeFrom ? entryTheme : t < NextThemeFrom ? MidTheme : NextTheme);
             }
         }
 
@@ -724,7 +726,7 @@ namespace Primordia.Rooms
         }
 
         static Room BuildRoom(Transform parent, PlacedRoom placed, RoomTheme theme, FloorConfig config, FloorConfig.BossEntry boss,
-            System.Random random, List<(Vector2 position, Glow glow)> glows, Dictionary<(LayoutRoom room, Vector2Int direction), BrushWall> brushes)
+            System.Random random, List<(Vector2 position, Glow glow)> glows, Dictionary<(LayoutRoom room, Vector2Int direction), BrushWall> brushes, FloorMap map)
         {
             var center = placed.FloorCenter;
             var floorBounds = placed.Template.FloorBounds();
@@ -750,6 +752,8 @@ namespace Primordia.Rooms
                 }
             }
 
+            // Con su propia semilla (la posición de la sala): los adornos no cambian lo que sale del resto de la sala.
+            BuildWallDeco(roomObject.transform, placed, theme, new System.Random(placed.Origin.x * 73856093 ^ placed.Origin.y * 19349663));
             BuildObstacles(roomObject.transform, placed, theme, config.Pieces, random, glows);
             // Odres, bulbos y helechos no aparecen unos encima de otros ni de las rocas de cobertura: comparten lo ocupado de la sala.
             var taken = ObstacleFootprints(placed);
@@ -757,7 +761,21 @@ namespace Primordia.Rooms
             BuildBulbs(roomObject.transform, placed, theme, random, taken);
             BuildScenery(roomObject.transform, placed, theme, random, taken);
             BuildMoss(roomObject.transform, placed, theme, random);
-            BuildFerns(roomObject.transform, placed, theme, random, taken);
+            // En la sala de paso, la vegetación del piso siguiente solo crece donde el suelo ya es suyo (junto a la charca).
+            if (placed.Layout.Role == RoomRole.Transition && config.NextFloorTheme != null)
+            {
+                var pitCenter = placed.FloorCenter;
+                BuildFerns(roomObject.transform, placed, config.NextFloorTheme, random, taken, cell =>
+                {
+                    var global = placed.Origin + cell;
+                    var offset = (Vector2)global + Vector2.one * 0.5f - pitCenter;
+                    return map.GetTheme(global) == NextTheme && (Mathf.Abs(offset.x) > PitFernClearance.x || Mathf.Abs(offset.y) > PitFernClearance.y);
+                });
+            }
+            else
+            {
+                BuildFerns(roomObject.transform, placed, theme, random, taken);
+            }
             var vents = BuildPieces(roomObject.transform, placed, config, random);
             // Donde aparece el jefe no hay algas ni plantas: taparían su presentación.
             Vector2? bossSpot = placed.Layout.Role == RoomRole.Boss ? placed.FloorCenter + boss.offset : null;
@@ -1324,6 +1342,8 @@ namespace Primordia.Rooms
                     DoorwayCrossing.Create(doorway.transform, layers.front, layers.shade);
             }
 
+            BuildDoorFrame(parent, theme, direction, position);
+
             var doorObject = new GameObject($"Door_{DirectionName(direction)}");
             doorObject.transform.SetParent(parent, false);
             doorObject.transform.position = position;
@@ -1346,6 +1366,91 @@ namespace Primordia.Rooms
             else
                 door.Configure(blocker, renderer, frames);
             return door;
+        }
+
+        // Dónde van los marcos de las puertas respecto al centro del arco o del hueco (README de doors-frames) y su orden de dibujo.
+        const float CrownLift = 1.25f;
+        const float SideFrameOffsetX = 0.75f;
+        const float SideFrameOffsetY = 0.5f;
+        const int DoorCrownOrder = 41;
+        const int DoorBackOrder = -7;
+        // Por encima del jugador (y de lo que lleva), como el marco del arco de arriba.
+        const int DoorFrontOrder = 40;
+
+        /// <summary>
+        /// La corona del arco de las puertas de arriba y el par de piezas (detrás y delante del jugador) de las laterales, pintadas con
+        /// la textura del tema. Las de abajo no cambian. Sin ese arte en el tema, no se pone nada.
+        /// </summary>
+        static void BuildDoorFrame(Transform parent, RoomTheme theme, Vector2Int direction, Vector2 position)
+        {
+            if (direction == Vector2Int.up && theme.DoorCrown != null)
+            {
+                FramePiece(parent, "DoorwayCrown", theme.DoorCrown, position + Vector2.up * CrownLift, false, DoorCrownOrder);
+            }
+            else if ((direction == Vector2Int.left || direction == Vector2Int.right) && theme.DoorSideBack != null && theme.DoorSideFront != null)
+            {
+                bool right = direction == Vector2Int.right;
+                var spot = position + new Vector2(right ? -SideFrameOffsetX : SideFrameOffsetX, SideFrameOffsetY);
+                FramePiece(parent, "DoorwaySideBack", theme.DoorSideBack, spot, right, DoorBackOrder);
+                FramePiece(parent, "DoorwaySideFront", theme.DoorSideFront, spot, right, DoorFrontOrder);
+            }
+        }
+
+        static void FramePiece(Transform parent, string name, Sprite sprite, Vector2 position, bool flipX, int order)
+        {
+            var piece = new GameObject(name);
+            piece.transform.SetParent(parent, false);
+            piece.transform.position = position;
+            var renderer = piece.AddComponent<SpriteRenderer>();
+            renderer.sprite = sprite;
+            renderer.flipX = flipX;
+            renderer.sortingOrder = order;
+        }
+
+        // Adornos sueltos en las paredes laterales: uno de cada 4-5 tiles de borde, al azar, nunca pegados a una puerta ni en las esquinas.
+        const float WallDecoChance = 0.22f;
+        const int WallDecoSpacing = 3;
+        // Los adornos asoman 8 px a la sala (el dibujo mide 24 px y el tile 16): el centro se corre 4 px hacia ella.
+        const float WallDecoShift = 0.25f;
+        const int WallDecoOrder = -9;
+
+        static void BuildWallDeco(Transform parent, PlacedRoom placed, RoomTheme theme, System.Random random)
+        {
+            var art = theme.WallSideDeco;
+            if (art.Length == 0)
+                return;
+
+            var template = placed.Template;
+            var map = template.ToFloorMap(Vector2Int.zero, openDoors: true);
+            var doorCells = placed.DoorCells.Values.SelectMany(cells => cells).Select(cell => cell - placed.Origin).ToList();
+            var holder = new GameObject("WallDeco").transform;
+            holder.SetParent(parent, false);
+            var lastY = new Dictionary<int, int>();
+            for (int y = 0; y < template.Height; y++)
+            {
+                for (int x = 0; x < template.Width; x++)
+                {
+                    var cell = new Vector2Int(x, y);
+                    var piece = WallRules.Classify(map, cell);
+                    if (piece is not (Piece.EdgeLeft or Piece.EdgeRight))
+                        continue;
+                    // Sin esquinas: encima y debajo sigue el mismo borde.
+                    if (WallRules.Classify(map, cell + Vector2Int.up) != piece || WallRules.Classify(map, cell + Vector2Int.down) != piece)
+                        continue;
+                    if (doorCells.Any(door => Mathf.Abs(door.x - x) <= 1 && Mathf.Abs(door.y - y) <= 1))
+                        continue;
+                    if (random.NextDouble() >= WallDecoChance)
+                        continue;
+                    int column = x * 2 + (piece == Piece.EdgeLeft ? 0 : 1);
+                    if (lastY.TryGetValue(column, out int previous) && y - previous < WallDecoSpacing)
+                        continue;
+                    lastY[column] = y;
+
+                    bool left = piece == Piece.EdgeLeft;
+                    var position = placed.Origin + new Vector2(x + 0.5f + (left ? WallDecoShift : -WallDecoShift), y + 0.5f);
+                    FramePiece(holder, "WallDeco", art[random.Next(art.Length)], position, !left, WallDecoOrder);
+                }
+            }
         }
 
         // Luz cian suave de los odres de metano (el cian pálido de su arte).
@@ -1620,7 +1725,11 @@ namespace Primordia.Rooms
         /// Helechos altos del tileset (piso 3): tantos como la densidad del tramo por cada tile de suelo libre, repartidos por
         /// la sala lejos de las puertas, de las paredes y del lodo, y separados entre sí. Sin tipos o sin densidad, nada.
         /// </summary>
-        static void BuildFerns(Transform parent, PlacedRoom placed, RoomTheme theme, System.Random random, List<(Vector2 position, float radius)> taken)
+        // Sin helechos sobre la fosa de la sala de paso ni pegados a su borde.
+        static readonly Vector2 PitFernClearance = new(4.5f, 3.5f);
+
+        static void BuildFerns(Transform parent, PlacedRoom placed, RoomTheme theme, System.Random random, List<(Vector2 position, float radius)> taken,
+            System.Func<Vector2Int, bool> accept = null)
         {
             var specs = theme.Ferns.Where(spec => spec != null && spec.IsValid).ToList();
             if (specs.Count == 0 || theme.FernDensity <= 0f)
@@ -1628,6 +1737,8 @@ namespace Primordia.Rooms
 
             var doorCells = placed.DoorCells.Values.SelectMany(cells => cells).Select(cell => cell - placed.Origin);
             var candidates = EncounterPlanner.SpawnCells(placed.Template, doorCells);
+            if (accept != null)
+                candidates = candidates.Where(accept).ToList();
             int count = Mathf.RoundToInt(candidates.Count * theme.FernDensity);
             var positions = EncounterPlanner.Positions(candidates, count * RetryFactor, random);
             if (positions.Count == 0)

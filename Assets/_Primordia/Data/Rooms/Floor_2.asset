@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Floor_2
   m_EditorClassIdentifier: Primordia::Primordia.Rooms.FloorConfig
   floorNumber: 2
-  nextFloor: {fileID: 0}
+  nextFloor: {fileID: 11400000, guid: 60a9a74960b4f7a4c95d495d80291118, type: 2}
   startRoom: {fileID: 11400000, guid: 5a91f2a6a2141e44cabf083bf34d0f67, type: 2}
   bossRoom: {fileID: 11400000, guid: fc6ceb4b1ee497742babf0fa9f360cd1, type: 2}
   combatRooms:
@@ -31,6 +31,10 @@ MonoBehaviour:
   - {x: 34, y: 22}
   - {x: 38, y: 24}
   - {x: 44, y: 26}
+  caveSpecs: []
+  blendBandBorders: 0
+  shortcuts: {x: 0, y: 0}
+  reactions: {fileID: 0}
   smallCaveSizes:
   - {x: 26, y: 18}
   - {x: 28, y: 19}
@@ -342,11 +346,14 @@ MonoBehaviour:
   shopDepth: {x: 0.33333334, y: 0.6666667}
   exchangeCapsule: {fileID: 6612489931785259953, guid: 8796ce71248124a4d88f0e9c10c78564, type: 3}
   teleporterPrefab: {fileID: 2188242407887244512, guid: 15b94c6ef2ef011419bdfde1acf243ad, type: 3}
-  transitionRoom: {fileID: 0}
-  transitionPit: {fileID: 0}
-  transitionMidTheme: {fileID: 0}
-  nextFloorTheme: {fileID: 0}
-  nextFloorMouths: []
-  nextFloorName: "oc\xE9ano c\xE1mbrico"
+  transitionRoom: {fileID: 11400000, guid: a1cc0837e3579584189ff066928ff179, type: 2}
+  transitionPit: {fileID: 1877373228975974796, guid: 65744f038331af34e9c782cc71aafc9e, type: 3}
+  transitionMidTheme: {fileID: 11400000, guid: cedc9dc4e61866747a3d64a4731160c4, type: 2}
+  nextFloorTheme: {fileID: 11400000, guid: 2f82768b85e2cd44da157df1fc9e06b5, type: 2}
+  nextFloorMouths:
+  - {fileID: 11400000, guid: d24033605a2f5f848a612c7459aaa83f, type: 2}
+  - {fileID: 11400000, guid: 7c94acb5b3f281747be39993f23a2771, type: 2}
+  - {fileID: 11400000, guid: 3508e8b65631fc64ca8241d9921ca549, type: 2}
+  nextFloorName: "pantano carbon\xEDfero"
   exitSprite: {fileID: 21300000, guid: bc9bd159743ed944e9321a5b368508a5, type: 3}
   exitColor: {r: 0.3, g: 0.95, b: 0.8, a: 1}

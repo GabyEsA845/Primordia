@@ -150,8 +150,10 @@ namespace Primordia.Editor
             config.ConfigureBiomass(floor1.SmallBiomass, floor1.BigBiomass, floor1.MinimumBiomassPerRoom);
             config.ConfigureShop(floor1.ShopTemplate, floor1.ShopPrefab);
             config.ConfigureRewards(pool, isNew ? RewardAfter : config.RewardAfter);
-            // El piso 2 todavía no tiene sala de paso: su jefe deja la salida de siempre, que da la victoria.
-            config.ConfigureTransition(null, null, null, null);
+            // La sala de paso del piso 2 la crea Primordia > Floor transition > Crear sala de paso del piso 2; aquí solo se conserva.
+            // Sin ella, el jefe deja la salida de siempre, que da la victoria.
+            if (isNew)
+                config.ConfigureTransition(null, null, null, null);
 
             // Paso 2: salas especiales y fijas (tienda, sala de cambio, antesala y salas de los jefes) hechas a mano.
             ConfigureHandmadeRooms(config, floor1, fallbackBands);

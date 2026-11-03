@@ -63,6 +63,8 @@ namespace Primordia.Mutations
         [SerializeField] Sprite largeIcon;
         [Tooltip("Color de la mutación en la interfaz (el de su ranura).")]
         [SerializeField] Color color = Color.white;
+        [Tooltip("Una frase corta para las cartas de elección de Boca (la descripción entera no cabe). Vacío = la descripción.")]
+        [SerializeField, TextArea(1, 2)] string summary;
         [Tooltip("Lo que añade cada nivel: el II y el III (evolución).")]
         [SerializeField, TextArea(2, 4)] string[] levelDescriptions = new string[MaxLevel - 1];
         [Tooltip("Extremidades: sonido de la esquiva con esta mutación (SoundLibrary). Vacío = el normal.")]
@@ -91,6 +93,8 @@ namespace Primordia.Mutations
         [Tooltip("Solo Piel desde el piso 2: su capa encima de cada cuerpo de criatura (las animaciones del cuerpo y las de "
             + "la capa, con los mismos estados).")]
         [SerializeField] CreatureLayer[] creatureLayers = System.Array.Empty<CreatureLayer>();
+        [Tooltip("Silueta que cambia desde otra Boca (una hoja por pareja); sin ella se usa la de la célula.")]
+        [SerializeField] MorphPath[] morphPaths = System.Array.Empty<MorphPath>();
         [Tooltip("Solo Boca desde el piso 2: metamorfosis, la silueta blanca que pasa de la célula a la criatura.")]
         [SerializeField] Sprite[] morphFrames = System.Array.Empty<Sprite>();
         [Tooltip("Solo Boca desde el piso 2: de la silueta blanca a los colores de la criatura, al final de la metamorfosis.")]
@@ -101,6 +105,9 @@ namespace Primordia.Mutations
         /// <summary>Extremidades: sonido de la esquiva con esta mutación (las Aletas). Vacío = el normal.</summary>
         public string DodgeSound => dodgeSound;
         public string Description => description;
+
+        /// <summary>Resumen de una frase para las cartas de la ventana de elección de Boca; sin él, la descripción entera.</summary>
+        public string Summary => string.IsNullOrEmpty(summary) ? description : summary;
         public MutationSlot Slot => slot;
         public System.Collections.Generic.IReadOnlyList<LineageData> Lineages =>
             lineages ?? (System.Collections.Generic.IReadOnlyList<LineageData>)System.Array.Empty<LineageData>();
@@ -129,6 +136,14 @@ namespace Primordia.Mutations
             public RuntimeAnimatorController layer;
         }
 
+        /// <summary>Silueta de la metamorfosis desde una Boca concreta (la del piso anterior) hasta esta.</summary>
+        [System.Serializable]
+        public struct MorphPath
+        {
+            public MutationData from;
+            public Sprite[] frames;
+        }
+
         /// <summary>Solo Boca: segundos hasta el cuadro del golpe de la animación de ataque de su criatura.</summary>
         public float AttackHitTime => attackHitTime;
 
@@ -146,6 +161,20 @@ namespace Primordia.Mutations
                     return layer.layer;
             }
             return null;
+        }
+
+        /// <summary>Silueta que cambia de la Boca <paramref name="from"/> (la que llevabas) a esta; sin hoja para esa pareja, la de la célula.</summary>
+        public Sprite[] MorphFrom(MutationData from)
+        {
+            if (from != null && morphPaths != null)
+            {
+                foreach (var path in morphPaths)
+                {
+                    if (path.from == from && path.frames != null && path.frames.Length > 0)
+                        return path.frames;
+                }
+            }
+            return MorphFrames;
         }
 
         public Sprite[] MorphFrames => morphFrames ?? System.Array.Empty<Sprite>();
@@ -183,6 +212,8 @@ namespace Primordia.Mutations
         internal void SetDodgeSound(string sound) => dodgeSound = sound;
 
         internal void SetLevelDescriptions(params string[] descriptions) => levelDescriptions = descriptions;
+
+        internal void SetSummary(string newSummary) => summary = newSummary;
 
         internal void SetIcons(Sprite newIcon, Sprite newLargeIcon)
         {
@@ -226,6 +257,9 @@ namespace Primordia.Mutations
             creatureIdleFrames = idle ?? System.Array.Empty<Sprite>();
             creatureAttackFrames = attack ?? System.Array.Empty<Sprite>();
         }
+
+        /// <summary>Una hoja de silueta por cada Boca desde la que se puede llegar a esta (la metamorfosis del piso 2 al 3 parte del cuerpo viejo).</summary>
+        internal void SetMorphPaths(MorphPath[] paths) => morphPaths = paths;
 
         internal void SetCreature(RuntimeAnimatorController body, Sprite[] morph, Sprite[] reveal)
         {

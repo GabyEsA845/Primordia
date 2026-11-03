@@ -67,3 +67,12 @@ Cerrado y aprobado por el usuario (en `musica_piso2.py`, `efectos_piso2.py` e `i
   Sala de jefe con `Amb_Floor2_BossRoom_Loop`.
 - **Efectos:** 102 + 2 ambientes. Avisos con la duración exacta del aviso del juego; los que el juego puede acortar
   (carga del frenesí, aviso de pinzas en fase blanda, cerco, silueta) se cortan con `Sfx.Stop`.
+
+## Piso 3: pantano carbonífero (empezado, 2026-11-03)
+
+- **Ambiente hecho:** `Amb_Floor3_Loop` (en `efectos_piso3.py`, encargo `PROMPT_piso3.md`): aire caliente y húmedo que
+  respira (3 veces por bucle de 24 s), fondo grave en **re y la** (73,4 / 110 / 36,7 Hz, con batido lento), croar
+  lejano en grupos (re y la), insectos que pasan, burbujas gordas de lodo y metano, gotas del musgo y frondas.
+  Sube junto a la charca de la sala de paso del piso 2 y suena en el pantano verde.
+- Pendiente (paso 8 del PLAN): modo y tempo de la música, ambientes del bosque humeante y la tierra quemada, Bocas,
+  enemigos, reacciones (fuego, metano, veneno) y jefes.

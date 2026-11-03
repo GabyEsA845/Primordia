@@ -41,6 +41,7 @@ MonoBehaviour:
   creatureAttackFrames: []
   creatureBody: {fileID: 0}
   attackHitTime: 0
+  moveInertia: 1
   creatureLayers:
   - body: {fileID: 9100000, guid: feb82a28b3107fc4b986b41b1d879747, type: 2}
     layer: {fileID: 9100000, guid: 49ed046263b2c084a9ed2023938d0a57, type: 2}

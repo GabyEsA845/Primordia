@@ -187,11 +187,9 @@ namespace Primordia.Editor
             EditPrefab(PlayerSetup.PlayerPath, root =>
             {
                 var bar = root.GetComponentInChildren<CooldownBar>(true);
+                // Sin barra bajo el jugador: la recarga se ve en el recuadro del HUD.
                 if (bar == null)
-                {
-                    Debug.LogWarning("ArtSetup: el jugador no tiene CooldownBar; créala con Primordia > Mutations.");
                     return;
-                }
 
                 var background = bar.transform.Find("Background").GetComponent<SpriteRenderer>();
                 var fill = bar.transform.Find("Fill").GetComponent<SpriteRenderer>();

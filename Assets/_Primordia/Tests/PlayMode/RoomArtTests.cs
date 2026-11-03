@@ -76,7 +76,7 @@ namespace Primordia.Tests
             Assert.AreEqual(Piece.FaceUpperEndLeft, At(map, 4, 4));
             Assert.AreEqual(Piece.EdgeRight, At(map, 4, 5), "Lado del entrante que da al suelo de arriba.");
             Assert.AreEqual(Piece.FaceLower, At(map, 6, 3));
-            Assert.AreEqual(Piece.EdgeRight, At(map, 9, 3), "La pared derecha sigue junto a la cara del entrante.");
+            Assert.AreEqual(Piece.EdgeRightFaceLower, At(map, 9, 3), "La pared derecha sigue junto a la cara del entrante (el borde sube hasta la fila de la cara que toca el suelo).");
         }
 
         [Test]

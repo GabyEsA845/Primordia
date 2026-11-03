@@ -35,6 +35,9 @@ namespace Primordia.Rooms
         [SerializeField, Min(0.05f)] float bubbleInterval = 0.35f;
         [SerializeField, Min(0.1f)] float bubbleLifetime = 1.6f;
         [SerializeField, Min(0f)] float bubbleSpeed = 0.9f;
+        [Tooltip("Los últimos cuadros de la hoja son el reventón (la burbuja no se desvanece: sube y revienta). 0 = solo se desvanece.")]
+        [SerializeField, Min(0)] int bubblePopFrames;
+        [SerializeField, Min(0.05f)] float bubblePopSeconds = 0.25f;
 
         [Header("Tecla")]
         [SerializeField] SpriteRenderer keyPrompt;
@@ -108,6 +111,9 @@ namespace Primordia.Rooms
             keyFrames = newKeyFrames ?? System.Array.Empty<Sprite>();
             edgeRadii = newEdgeRadii;
         }
+
+        /// <summary>Los últimos <paramref name="frames"/> cuadros de la hoja de burbujas son el reventón del final de su vida.</summary>
+        internal void SetBubblePop(int frames) => bubblePopFrames = Mathf.Clamp(frames, 0, Mathf.Max(0, bubbleFrames.Length - 1));
 
         internal void SetNextFloor(MutationData[] mouths, string floorName)
         {
@@ -204,9 +210,21 @@ namespace Primordia.Rooms
                     continue;
                 }
 
+                float untilPop = bubbleLifetime - age;
+                bool popping = bubblePopFrames > 0 && untilPop <= bubblePopSeconds;
+                if (popping)
+                {
+                    // Revienta donde está: se queda quieta y pasa los cuadros del reventón.
+                    int step = Mathf.Min(bubblePopFrames - 1, Mathf.FloorToInt((1f - untilPop / bubblePopSeconds) * bubblePopFrames));
+                    renderer.sprite = bubbleFrames[bubbleFrames.Length - bubblePopFrames + step];
+                    renderer.color = Color.white;
+                    continue;
+                }
+
                 renderer.transform.position += new Vector3(Mathf.Sin((age + born) * 5f) * 0.004f, bubbleSpeed * Time.deltaTime, 0f);
-                renderer.sprite = bubbleFrames[(int)(age * 4f) % bubbleFrames.Length];
-                renderer.color = new Color(1f, 1f, 1f, 1f - age / bubbleLifetime);
+                int rising = bubbleFrames.Length - bubblePopFrames;
+                renderer.sprite = bubbleFrames[(int)(age * 4f) % rising];
+                renderer.color = bubblePopFrames > 0 ? Color.white : new Color(1f, 1f, 1f, 1f - age / bubbleLifetime);
             }
         }
 
@@ -252,6 +270,8 @@ namespace Primordia.Rooms
         IEnumerator Jump(GameObject jumper)
         {
             var manager = GameManager.Instance;
+            // La Boca con la que saltas: de su cuerpo parte la silueta de la metamorfosis (la elección la cambia).
+            var previousMouth = jumper.TryGetComponent<PlayerMutations>(out var jumperMutations) ? jumperMutations.Get(MutationSlot.Mouth) : null;
             if (manager != null)
                 manager.SetState(GameState.Cinematic);
             Sfx.Play(Sounds.TransitionJump);
@@ -295,7 +315,7 @@ namespace Primordia.Rooms
             if (metamorphosis != null && chosenMouth != null)
             {
                 visual.localScale = baseScale;
-                yield return metamorphosis.Play(jumper, chosenMouth);
+                yield return metamorphosis.Play(jumper, chosenMouth, previousMouth);
                 LeaveFloor(manager);
                 yield break;
             }

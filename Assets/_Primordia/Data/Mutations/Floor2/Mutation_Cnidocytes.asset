@@ -28,6 +28,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 91d68b12a73e4d64e9c439eebcd7fbb0, type: 3}
   largeIcon: {fileID: 21300000, guid: 563bb8c8de7e74e4a8655e17716eec1c, type: 3}
   color: {r: 0.95, g: 0.5, b: 0.35, a: 1}
+  summary: "Arp\xF3n urticante que atraviesa y envenena."
   levelDescriptions:
   - Atraviesa a 2 enemigos y el veneno sube a 2 por segundo.
   - 'Ramillete: cada cuarto disparo son 3 arpones en abanico.'
@@ -49,6 +50,7 @@ MonoBehaviour:
   - {fileID: -3230314704043606289, guid: 08b39a779193e9a458e9dd4b8a7feb09, type: 3}
   creatureBody: {fileID: 9100000, guid: 5c4ed1232e5e4c14a9ea4801bceeb8b0, type: 2}
   attackHitTime: 0.14285715
+  moveInertia: 1
   creatureLayers: []
   morphFrames:
   - {fileID: -1609282909594631881, guid: aed4f866b26e425429accf8cddac9ef2, type: 3}

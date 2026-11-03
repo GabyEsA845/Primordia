@@ -921,6 +921,14 @@ MonoBehaviour:
     minInterval: 0.03
     pitchJitter: 0
     loop: 0
+  - id: UI_OrganReady
+    clips:
+    - {fileID: 8300000, guid: d0405f709d5728a449fd5bb66e63a302, type: 3}
+    volume: 0.5
+    group: 2
+    minInterval: 0.03
+    pitchJitter: 0
+    loop: 0
   - id: UI_StartGame
     clips:
     - {fileID: 8300000, guid: 1170e7d0296d2854382fff1ffc088692, type: 3}
@@ -1853,6 +1861,14 @@ MonoBehaviour:
   - id: Amb_Floor2_BossRoom_Loop
     clips:
     - {fileID: 8300000, guid: dbbda89b874c7fa45ad220fc1049215d, type: 3}
+    volume: 0.3
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0
+    loop: 1
+  - id: Amb_Floor3_Loop
+    clips:
+    - {fileID: 8300000, guid: 75ddfe85d695d6946ae3eb56bf761a12, type: 3}
     volume: 0.3
     group: 1
     minInterval: 0.03

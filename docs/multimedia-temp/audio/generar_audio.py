@@ -1,4 +1,4 @@
-"""Genera toda la música y los efectos de sonido de Primordia según PROMPT.md (piso 1) y PROMPT_piso2.md.
+"""Genera toda la música y los efectos de sonido de Primordia según PROMPT.md (piso 1), PROMPT_piso2.md y PROMPT_piso3.md.
 
 Uso: python generar_audio.py [nombre ...]
 Sin argumentos genera todo; con nombres (p. ej. Player_Shot Music_Shop) solo esos.
@@ -21,6 +21,7 @@ from efectos import SFX
 from musica import MUSIC
 import efectos_piso2  # noqa: F401,E402  (registran sus sonidos en SFX y MUSIC al importarse)
 import musica_piso2  # noqa: F401,E402
+import efectos_piso3  # noqa: F401,E402
 from sintesis import SR, finish_sfx, write_wav
 
 ROOT = Path(__file__).resolve().parent

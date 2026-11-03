@@ -19,7 +19,7 @@ namespace Primordia.Editor
         static readonly string[] Floor3Groups =
         {
             "floor3-environment", "floor3-reactions", "floor3-bodies", "floor3-enemies",
-            "floor3-lineages", "floor3-mutations", "floor3-bosses",
+            "floor3-lineages", "floor3-mutations", "floor3-bosses", "floor3-spit", "floor3-jet", "floor3-top-clone",
         };
 
         // Carpetas y archivos que son material de revisión (GIF, escenas, vistas previas, cachés de Python), no del juego.

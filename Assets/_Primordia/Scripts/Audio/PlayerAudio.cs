@@ -102,7 +102,7 @@ namespace Primordia.Audio
                 return;
             bool charging = ability.IsCharging;
             if (wasCharging && !charging && ability.Ability != null)
-                Sfx.Play(Sounds.PlayerAbilityReady);
+                Sfx.Play(Sounds.UIOrganReady);
             wasCharging = charging;
         }
 

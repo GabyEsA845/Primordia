@@ -55,6 +55,15 @@ namespace Primordia.Rooms
         [Tooltip("Tamaño de la cámara durante la escena (0,75 = se acerca un 25 %).")]
         [SerializeField, Range(0.3f, 1f)] float zoom = 0.7f;
 
+        [Header("Subida (del mar a tierra)")]
+        [Tooltip("En lugar de caer por el abismo, la criatura sube hacia la superficie: el fondo (dos pantallas de alto) baja durante toda la escena y las motas bajan despacio.")]
+        [SerializeField] bool rising;
+        [Tooltip("Dónde está el centro del fondo al empezar (abajo del todo a la vista) y al acabar (la superficie sobre la criatura), respecto al centro del abismo, en unidades.")]
+        [SerializeField] Vector2 risingOffsets = new(10.5f, -10.4f);
+        // Altura del fondo (544 px) y de la superficie desde su borde de arriba (58 px), en unidades; los rayos cuelgan de la superficie.
+        const float RisingBackgroundHeight = 34f;
+        const float SurfaceFromTop = 58f / 16f;
+
         /// <summary>Se ha visto entera alguna vez: desde entonces se puede saltar.</summary>
         public static bool Seen
         {
@@ -90,6 +99,9 @@ namespace Primordia.Rooms
             burstFrames = newBurst ?? Array.Empty<Sprite>();
         }
 
+        /// <summary>La criatura sube en lugar de caer (la subida del piso 2 al 3, con el fondo de la superficie del pantano).</summary>
+        internal void SetRising(bool newRising) => rising = newRising;
+
         internal void SetTiming(float newFadeOut, float newFadeIn, float newFall, float newGlow, float newMorph, float newReveal,
             float newPose, float newEndFade)
         {
@@ -109,8 +121,11 @@ namespace Primordia.Rooms
             return familyColors != null && index < familyColors.Length ? familyColors[index] : Color.white;
         }
 
-        /// <summary>La escena entera. Al acabar, la pantalla queda en negro y la criatura con su forma nueva.</summary>
-        public IEnumerator Play(GameObject player, MutationData mouth)
+        /// <summary>
+        /// La escena entera. Al acabar, la pantalla queda en negro y la criatura con su forma nueva. <paramref name="previous"/>:
+        /// la Boca que llevabas, de cuyo cuerpo parte la silueta (sin ella, de la célula).
+        /// </summary>
+        public IEnumerator Play(GameObject player, MutationData mouth, MutationData previous = null)
         {
             IsPlaying = true;
             Skipped = false;
@@ -131,6 +146,8 @@ namespace Primordia.Rooms
             // El abismo, lejos del piso; la criatura y la cámara se van allí.
             Vector2 stage = (Vector2)transform.position + stageOffset;
             var scene = BuildStage(stage);
+            var morphFrames = mouth != null ? mouth.MorphFrom(previous) : Array.Empty<Sprite>();
+            scrollTime = 0f;
             var visual = player.transform;
             var baseScale = visual.localScale.sqrMagnitude > 0.0001f ? visual.localScale : Vector3.one;
             visual.localScale = baseScale;
@@ -151,7 +168,7 @@ namespace Primordia.Rooms
             foreach (var renderer in player.GetComponentsInChildren<SpriteRenderer>())
                 renderers.Add((renderer, renderer.color));
             var aura = Child(visual, "MetamorphosisAura", order - 1, auraFrames.Length > 0 ? auraFrames[0] : null);
-            var silhouette = Child(visual, "MetamorphosisSilhouette", order + 6, Frame(mouth?.MorphFrames, 0));
+            var silhouette = Child(visual, "MetamorphosisSilhouette", order + 6, Frame(morphFrames, 0));
             var burst = Child(visual, "MetamorphosisBurst", order + 7, null);
             SetAlpha(aura, color, 0f);
             SetAlpha(silhouette, Color.white, 0f);
@@ -181,9 +198,8 @@ namespace Primordia.Rooms
                     Drift(scene, visual, stage);
                     Animate(aura, auraFrames, 10f);
                     aura.transform.localScale = Vector3.one * (1.3f + Mathf.Sin(Time.time * 9f) * 0.08f);
-                    var frames = mouth != null ? mouth.MorphFrames : Array.Empty<Sprite>();
-                    if (frames.Length > 0)
-                        silhouette.sprite = frames[Mathf.Min(frames.Length - 1, (int)(k * frames.Length))];
+                    if (morphFrames.Length > 0)
+                        silhouette.sprite = morphFrames[Mathf.Min(morphFrames.Length - 1, (int)(k * morphFrames.Length))];
                 }, () => skipped = true);
             }
 
@@ -303,7 +319,12 @@ namespace Primordia.Rooms
             public readonly List<(Transform particle, float speed)> Particles = new();
             public readonly List<SpriteRenderer> Animated = new();
             public Transform[] Rays = Array.Empty<Transform>();
+            public Transform Background;
         }
+
+        // Segundos que lleva la escena (para bajar el fondo de la subida) y lo que dura desde la caída hasta la revelación.
+        float scrollTime;
+        float ScrollSeconds => Mathf.Max(0.01f, fall + glow + morph + reveal);
 
         Stage BuildStage(Vector2 center)
         {
@@ -315,10 +336,27 @@ namespace Primordia.Rooms
             if (background != null)
             {
                 var bg = Child(root, "Background", -60, background);
-                bg.transform.localScale = Vector3.one * 1.3f;
+                // El abismo se agranda un poco; el fondo de la subida mide justo lo que hace falta y se desplaza.
+                bg.transform.localScale = rising ? Vector3.one : Vector3.one * 1.3f;
+                stage.Background = bg.transform;
+                if (rising)
+                    bg.transform.localPosition = new Vector3(0f, risingOffsets.x, 0f);
             }
 
-            if (rays != null)
+            if (rays != null && rising && stage.Background != null)
+            {
+                // Los rayos cuelgan de la superficie (la parte de arriba del fondo) y bajan con él.
+                stage.Rays = new Transform[0];
+                float surface = RisingBackgroundHeight / 2f - SurfaceFromTop;
+                float rayHeight = rays.bounds.size.y;
+                for (int i = 0; i < 2; i++)
+                {
+                    var ray = Child(stage.Background, $"Rays_{i}", -58, rays);
+                    ray.transform.localPosition = new Vector3(i == 0 ? -6f : 7f, surface - rayHeight / 2f + 0.2f, 0f);
+                    ray.color = new Color(1f, 1f, 1f, i == 0 ? 0.55f : 0.35f);
+                }
+            }
+            else if (rays != null)
             {
                 stage.Rays = new Transform[2];
                 for (int i = 0; i < 2; i++)
@@ -358,13 +396,23 @@ namespace Primordia.Rooms
             foreach (var (particle, speed) in stage.Particles)
             {
                 var p = particle.localPosition;
-                p.y += speed * dt;
+                // Al subir, el agua pasa hacia abajo y más despacio que al caer.
+                p.y += (rising ? -speed * 0.45f : speed) * dt;
                 if (p.y > 10f)
                     p.y -= 20f;
+                else if (p.y < -10f)
+                    p.y += 20f;
                 particle.localPosition = p;
             }
             foreach (var bubble in stage.Animated)
                 Animate(bubble, bubbleFrames, 4f);
+            if (rising && stage.Background != null)
+            {
+                // El fondo baja durante toda la escena, de modo que al acabar la revelación la superficie queda sobre la criatura.
+                scrollTime += dt;
+                float k = Mathf.SmoothStep(0f, 1f, Mathf.Clamp01(scrollTime / ScrollSeconds));
+                stage.Background.localPosition = new Vector3(0f, Mathf.Lerp(risingOffsets.x, risingOffsets.y, k), 0f);
+            }
             for (int i = 0; i < stage.Rays.Length; i++)
                 stage.Rays[i].localPosition = new Vector3(stage.Rays[i].localPosition.x, 1f + Mathf.Sin(Time.time * 0.7f + i) * 0.3f, 0f);
 

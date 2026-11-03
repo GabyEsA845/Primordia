@@ -7,15 +7,18 @@ using UnityEngine;
 namespace Primordia.Combat
 {
     /// <summary>
-    /// Reventón del Escupitajo venenoso: el dibujo de la bola que estalla, el daño en un radio en el cuadro 1 y el charco que
-    /// deja. Vive solo lo que dura su animación.
+    /// Reventón del Escupitajo venenoso: el dibujo de la bola que estalla, el daño en un radio en el cuadro 1 y el charco salpicado
+    /// que deja. Vive solo lo que dura su animación.
     /// </summary>
     public class PoisonSpitBurst : MonoBehaviour
     {
         // El dibujo mide 1,5 u de radio: se escala al del ataque.
         const float ArtRadius = 1.5f;
         const int DamageFrame = 1;
-        // Por debajo de este radio el charco que deja es el pequeño.
+        // Radio al que frena y envenena el charco salpicado que deja: el del reventón normal y el de las bolitas de la Camada.
+        const float PuddleRadius = 1f;
+        const float SmallPuddleRadius = 0.45f;
+        // Por debajo de este radio de reventón es el de las bolitas.
         const float SmallBurstRadius = 1f;
 
         public static void Spawn(Vector2 position, int damage, float radius, float puddleSeconds, Weapon source, Team victims)
@@ -30,7 +33,7 @@ namespace Primordia.Combat
             var kit = ReactionKit.Current;
             var frames = kit != null ? kit.SpitBurst : System.Array.Empty<Sprite>();
             if (puddleSeconds > 0f)
-                PoisonPuddle.Spawn(position, puddleSeconds, small: radius < SmallBurstRadius, harmsPlayer: false);
+                PoisonPuddle.SpawnSplat(position, puddleSeconds, radius < SmallBurstRadius ? SmallPuddleRadius : PuddleRadius);
 
             if (frames.Length == 0)
             {

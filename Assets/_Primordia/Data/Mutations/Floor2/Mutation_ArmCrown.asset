@@ -28,6 +28,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: ccd2471114d56a3479029deeb5feb50a, type: 3}
   largeIcon: {fileID: 21300000, guid: 7c49729353a0e2745974528f9de9d688, type: 3}
   color: {r: 0.95, g: 0.5, b: 0.35, a: 1}
+  summary: "Remolino que atrae a los enemigos y les hace da\xF1o."
   levelDescriptions:
   - "Radio de 2 u, dura 2,5 s y da\xF1a cada 0,3 s."
   - "Marea: al acabar, el remolino estalla, empuja a todos hacia fuera y hace 4 de da\xF1o."
@@ -49,6 +50,7 @@ MonoBehaviour:
   - {fileID: -376660756, guid: cad2708c9e0b6264d8975fda46a55a05, type: 3}
   creatureBody: {fileID: 9100000, guid: feb82a28b3107fc4b986b41b1d879747, type: 2}
   attackHitTime: 0.14285715
+  moveInertia: 1
   creatureLayers: []
   morphFrames:
   - {fileID: -2691607645031426501, guid: ac9ccb743d837bf46a65f24e3b959014, type: 3}

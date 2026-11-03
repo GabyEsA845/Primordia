@@ -46,13 +46,24 @@ namespace Primordia.Rooms
         [SerializeField] GameObject poisonedMarker;
 
         [Header("Escupitajo venenoso")]
-        [Tooltip("Charco pequeño del rastro (16×16, centro): cae, burbujea (bucle) y se seca.")]
-        [SerializeField] Sprite[] smallPuddleAppear = System.Array.Empty<Sprite>();
-        [SerializeField] Sprite[] smallPuddleIdle = System.Array.Empty<Sprite>();
-        [SerializeField] Sprite[] smallPuddleFade = System.Array.Empty<Sprite>();
-        [Tooltip("Reventón de la bola (56×56, centro, una pasada). El cuadro 1 es el que daña.")]
+        [Tooltip("Reventón de la bola (64×64, centro, una pasada). El cuadro 1 es el que daña.")]
         [SerializeField] Sprite[] spitBurst = System.Array.Empty<Sprite>();
         [SerializeField, Min(0.01f)] float spitBurstFrameSeconds = 0.06f;
+        [Tooltip("Charco salpicado que deja el reventón (64×64, centro): cae, burbujea (bucle) y se seca. El cuerpo mide ~14 px de radio.")]
+        [SerializeField] Sprite[] splatAppear = System.Array.Empty<Sprite>();
+        [SerializeField] Sprite[] splatIdle = System.Array.Empty<Sprite>();
+        [SerializeField] Sprite[] splatFade = System.Array.Empty<Sprite>();
+        [Tooltip("Sellos de la banda de baba, 8 cuadros cada uno, una variante tras otra: 6 de 20×20 (borde y cuerpo).")]
+        [SerializeField] Sprite[] slimeRim = System.Array.Empty<Sprite>();
+        [SerializeField] Sprite[] slimeBody = System.Array.Empty<Sprite>();
+        [Tooltip("Banda fina de la Camada: 5 variantes de 14×14.")]
+        [SerializeField] Sprite[] slimeThinRim = System.Array.Empty<Sprite>();
+        [SerializeField] Sprite[] slimeThinBody = System.Array.Empty<Sprite>();
+        [Tooltip("Brillo húmedo (8×8, 4 cuadros en bucle).")]
+        [SerializeField] Sprite[] slimeShine = System.Array.Empty<Sprite>();
+
+        /// <summary>Cuadros de cada sello de la banda de baba.</summary>
+        public const int SlimeFrames = 8;
 
         public static ReactionKit Current { get; set; }
 
@@ -68,9 +79,20 @@ namespace Primordia.Rooms
         public Sprite[] PuddleIdle => puddleIdle ?? System.Array.Empty<Sprite>();
         public Sprite[] PuddleFade => puddleFade ?? System.Array.Empty<Sprite>();
         public Sprite[] PuddleIgnite => puddleIgnite ?? System.Array.Empty<Sprite>();
-        public Sprite[] SmallPuddleAppear => smallPuddleAppear ?? System.Array.Empty<Sprite>();
-        public Sprite[] SmallPuddleIdle => smallPuddleIdle ?? System.Array.Empty<Sprite>();
-        public Sprite[] SmallPuddleFade => smallPuddleFade ?? System.Array.Empty<Sprite>();
+        public Sprite[] SplatAppear => splatAppear ?? System.Array.Empty<Sprite>();
+        public Sprite[] SplatIdle => splatIdle ?? System.Array.Empty<Sprite>();
+        public Sprite[] SplatFade => splatFade ?? System.Array.Empty<Sprite>();
+        public Sprite[] SlimeShine => slimeShine ?? System.Array.Empty<Sprite>();
+
+        /// <summary>Hay arte de la banda de baba (normal y fina).</summary>
+        public bool HasSlime => slimeBody != null && slimeBody.Length >= SlimeFrames && slimeRim != null && slimeRim.Length >= SlimeFrames
+            && slimeThinBody != null && slimeThinBody.Length >= SlimeFrames && slimeThinRim != null && slimeThinRim.Length >= SlimeFrames;
+
+        /// <summary>Variantes de sello de la banda normal o de la fina.</summary>
+        public int SlimeVariants(bool thin) => (thin ? slimeThinBody : slimeBody).Length / SlimeFrames;
+
+        public Sprite SlimeRimFrame(bool thin, int variant, int frame) => (thin ? slimeThinRim : slimeRim)[variant * SlimeFrames + frame];
+        public Sprite SlimeBodyFrame(bool thin, int variant, int frame) => (thin ? slimeThinBody : slimeBody)[variant * SlimeFrames + frame];
         public Sprite[] SpitBurst => spitBurst ?? System.Array.Empty<Sprite>();
         public float SpitBurstFrameSeconds => spitBurstFrameSeconds;
         public Sprite[] CloudForm => cloudForm ?? System.Array.Empty<Sprite>();
@@ -97,12 +119,21 @@ namespace Primordia.Rooms
             poisonedMarker = newPoisonedMarker;
         }
 
-        internal void ConfigureSpit(Sprite[] appear, Sprite[] idle, Sprite[] fade, Sprite[] burst)
+        internal void ConfigureSpit(Sprite[] burst, Sprite[] appear, Sprite[] idle, Sprite[] fade)
         {
-            smallPuddleAppear = appear;
-            smallPuddleIdle = idle;
-            smallPuddleFade = fade;
             spitBurst = burst;
+            splatAppear = appear;
+            splatIdle = idle;
+            splatFade = fade;
+        }
+
+        internal void ConfigureSlime(Sprite[] rim, Sprite[] body, Sprite[] thinRim, Sprite[] thinBody, Sprite[] shine)
+        {
+            slimeRim = rim;
+            slimeBody = body;
+            slimeThinRim = thinRim;
+            slimeThinBody = thinBody;
+            slimeShine = shine;
         }
 
         internal void ConfigureMethane(Sprite[] newExplosion, Sprite[] newMistIgnite, Sprite[] newMistFlare)

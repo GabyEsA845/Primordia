@@ -34,6 +34,9 @@ namespace Primordia.Mutations
         /// <summary>True si se recarga matando enemigos en lugar de con el tiempo.</summary>
         public bool UsesKills => KillsNeeded > 0;
 
+        /// <summary>Enemigos que hay que matar para recargarla entera (0 si va por tiempo).</summary>
+        public int KillsRequired => KillsNeeded;
+
         /// <summary>Enemigos que faltan por matar para recargarla (0 si está lista o va por tiempo).</summary>
         public int KillsLeft => UsesKills ? Mathf.Max(0, KillsNeeded - kills) : 0;
 

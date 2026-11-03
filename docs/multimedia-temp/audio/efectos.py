@@ -1024,6 +1024,16 @@ def ui_card_select(rng, v):
                (0.14, note(A5, 0.25, "sq", 0.1), 0.3), (0.14, bell(A5 * 2, 0.25, 0.1, 2, 1), 0.2))
 
 
+@sfx("UI_OrganReady", 1, 0.5, "UI")
+def ui_organ_ready(rng, v):
+    """La savia llega arriba del tubo: burbuja que sube de re a la y tintineo cristalino (la y re agudos) encima."""
+    d = 0.25
+    bloop = bubble(D5, 0.12, 1.5, 0.04)
+    tink = mix(0.175, (0, bell(A6, 0.13, 0.045, 3.5, 1.4), 0.5), (0.045, bell(D6 * 2, 0.13, 0.05, 3.5, 1.2), 0.38))
+    sheen = hp(noise(0.08, rng), 5000) * expenv(0.08, 0.02) * 0.05
+    return mix(d, (0, bloop), (0.07, tink), (0.07, sheen))
+
+
 @sfx("UI_StartGame", 1, 0.65, "UI")
 def ui_start_game(rng, v):
     d = 1.0

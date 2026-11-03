@@ -43,6 +43,15 @@ namespace Primordia.Rooms
         [Tooltip("Se usa donde falta una pieza, para verla enseguida.")]
         [SerializeField] TileBase missing;
 
+        [Header("Marcos de las puertas (opcionales, docs/multimedia-temp/doors-frames)")]
+        [Tooltip("Corona sobre el arco de las puertas de arriba (48×24).")]
+        [SerializeField] Sprite doorCrown;
+        [Tooltip("Puerta lateral, pared izquierda (40×72): lo de detrás va debajo del jugador y lo de delante, encima. La derecha los voltea.")]
+        [SerializeField] Sprite doorSideBack;
+        [SerializeField] Sprite doorSideFront;
+        [Tooltip("Adornos sueltos para las paredes laterales (24×16, pared izquierda).")]
+        [SerializeField] Sprite[] wallSideDeco = System.Array.Empty<Sprite>();
+
         [Header("Decoración (sin colisión)")]
         [SerializeField] TileBase[] decorations;
         [Tooltip("Probabilidad de decoración en cada tile de suelo libre.")]
@@ -129,6 +138,10 @@ namespace Primordia.Rooms
         public TileBase[] Decorations => decorations;
         public float DecorationChance => decorationChance;
         public Sprite Doorway => doorway;
+        public Sprite DoorCrown => doorCrown;
+        public Sprite DoorSideBack => doorSideBack;
+        public Sprite DoorSideFront => doorSideFront;
+        public Sprite[] WallSideDeco => wallSideDeco ?? System.Array.Empty<Sprite>();
         public Sprite[] DoorTop => doorTop;
         public Sprite[] DoorBottom => doorBottom;
         public Sprite[] DoorSide => doorSide;
@@ -284,6 +297,14 @@ namespace Primordia.Rooms
             doorTop = newDoorTop;
             doorBottom = newDoorBottom;
             doorSide = newDoorSide;
+        }
+
+        internal void ConfigureDoorFrames(Sprite crown, Sprite sideBack, Sprite sideFront, Sprite[] deco)
+        {
+            doorCrown = crown;
+            doorSideBack = sideBack;
+            doorSideFront = sideFront;
+            wallSideDeco = deco;
         }
 
         internal void ConfigureSlabs(DoorAnimation newTop, DoorAnimation newBottom, DoorAnimation newSide)

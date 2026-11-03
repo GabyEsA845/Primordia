@@ -230,6 +230,7 @@ Siempre en re menor, secos y cortos. Suenan también con el juego en pausa.
 | `SFX_UI_PauseClose` | 1 | 0,25 s | Cierra la pausa | Lo contrario |
 | `SFX_UI_MapOpen` | 1 | 0,3 s | Abre el mapa grande (TAB) | Lente que enfoca, cristal |
 | `SFX_UI_MapClose` | 1 | 0,2 s | Cierra el mapa | El mismo, más corto y al revés |
+| `SFX_UI_OrganReady` | 1 | 0,25 s | El tubo del recuadro del Órgano (HUD, abajo a la izquierda) se llena y destella: la habilidad está lista | "Bloop" de burbuja que sube de tono y un tintineo cristalino encima, como la savia llegando arriba del tubo; en re |
 
 ## Más adelante (no lo hagas ahora)
 

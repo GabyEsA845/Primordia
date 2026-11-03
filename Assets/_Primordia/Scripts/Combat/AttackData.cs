@@ -144,13 +144,13 @@ namespace Primordia.Combat
         [SerializeField] GameObject guillotineEffect;
 
         [Header("Escupitajo venenoso")]
-        [Tooltip("Proyectil que encoge dejando charcos y estalla al acabar, al chocar o al disparar otro. Falso = proyectil normal.")]
+        [Tooltip("Proyectil que rueda dejando una banda de baba y estalla al acabar, al chocar o al disparar otro. Falso = proyectil normal.")]
         [SerializeField] bool spit;
         [Tooltip("Bolita de la Camada: no cuenta como el último escupitajo (disparar otro no la hace estallar).")]
         [SerializeField] bool spitMini;
-        [Tooltip("Cada cuántos segundos deja un charco pequeño.")]
+        [Tooltip("Unidades entre sellos de la banda de baba (0,25 la normal, 0,125 la fina de las bolitas).")]
         [SerializeField, Min(0.1f)] float spitTrailEvery = 0.5f;
-        [Tooltip("Segundos que dura cada charco del rastro.")]
+        [Tooltip("Segundos que dura cada sello de la banda desde que se pinta.")]
         [SerializeField, Min(0.1f)] float spitTrailSeconds = 3f;
         [Tooltip("Estallido: daño a los enemigos, radio y segundos del charco que deja (0 = ninguno).")]
         [SerializeField, Min(0)] int spitBurstDamage = 6;
@@ -207,10 +207,10 @@ namespace Primordia.Combat
         [SerializeField, Min(0f)] float jetSplashRadius;
         [SerializeField, Min(0.1f)] float jetSplashTick = 0.5f;
         [SerializeField, Min(0)] int jetSplashDamage = 1;
-        [Tooltip("Un tramo del chorro de 1 u hacia la derecha (con su animación), el impacto en bucle y la salpicadura de una pasada.")]
-        [SerializeField] GameObject jetSegment;
+        [Tooltip("Arte del chorro (inicio, tramos y puntas), el impacto en bucle (dibujado llegando desde la izquierda: se gira con el chorro) y las salpicaduras de una pasada, que se alternan.")]
+        [SerializeField] JetArt jetArt;
         [SerializeField] GameObject jetHitEffect;
-        [SerializeField] GameObject jetSplashEffect;
+        [SerializeField] GameObject[] jetSplashEffects = System.Array.Empty<GameObject>();
 
         [Header("Sonido")]
         [Tooltip("Sonido de cada disparo o mordisco (nombre de la SoundLibrary). Vacío = sin sonido.")]
@@ -302,9 +302,9 @@ namespace Primordia.Combat
         public float JetSplashRadius => jetSplashRadius;
         public float JetSplashTick => jetSplashTick;
         public int JetSplashDamage => jetSplashDamage;
-        public GameObject JetSegment => jetSegment;
+        public JetArt JetArt => jetArt;
         public GameObject JetHitEffect => jetHitEffect;
-        public GameObject JetSplashEffect => jetSplashEffect;
+        public GameObject[] JetSplashEffects => jetSplashEffects ?? System.Array.Empty<GameObject>();
         public bool IsSpin => spin;
         public float SpinRadius => spinRadius;
         public int SpinDamage => spinDamage;
@@ -490,7 +490,7 @@ namespace Primordia.Combat
         }
 
         internal void ConfigureJet(float range, float tick, float turnRate, float maxSeconds, float refillSeconds, float emptyRefillSeconds,
-            bool pierces, GameObject segment, GameObject hitEffect, GameObject splashEffect)
+            bool pierces, JetArt art, GameObject hitEffect, GameObject[] splashEffects)
         {
             jet = true;
             jetRange = Mathf.Max(0.5f, range);
@@ -500,9 +500,9 @@ namespace Primordia.Combat
             jetRefillSeconds = Mathf.Max(0.1f, refillSeconds);
             jetEmptyRefillSeconds = Mathf.Max(0.1f, emptyRefillSeconds);
             jetPierces = pierces;
-            jetSegment = segment;
+            jetArt = art;
             jetHitEffect = hitEffect;
-            jetSplashEffect = splashEffect;
+            jetSplashEffects = splashEffects;
         }
 
         internal void ConfigureJetSplash(float radius, float tick, int damage)

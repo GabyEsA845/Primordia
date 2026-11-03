@@ -262,9 +262,7 @@ namespace Primordia.Editor
                 if (!root.TryGetComponent<PlayerAbility>(out var ability))
                     ability = root.AddComponent<PlayerAbility>();
 
-                if (root.transform.Find("CooldownBar") == null)
-                    CreateCooldownBar(root.transform, ability, pixel);
-
+                // La recarga del Órgano se ve en el recuadro del HUD (Primordia > Art > Importar recuadro del Órgano), no bajo el jugador.
                 PrefabUtility.SaveAsPrefabAsset(root, PlayerSetup.PlayerPath);
             }
             finally

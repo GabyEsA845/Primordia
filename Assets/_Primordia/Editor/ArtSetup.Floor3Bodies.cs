@@ -55,13 +55,62 @@ namespace Primordia.Editor
             return System.IO.File.Exists(path) ? SliceSheet(path, 0) : System.Array.Empty<Sprite>();
         }
 
-        /// <summary>Pone en el kit de reacciones el arte del Escupitajo venenoso: charco pequeño del rastro y reventón.</summary>
+        /// <summary>
+        /// Corta en cuadros una hoja del Escupitajo venenoso ya importada (floor3-spit/Effects) con ese pivote (el centro si no se dice).
+        /// Vacío si no está.
+        /// </summary>
+        internal static Sprite[] Floor3SpitSheet(string name, int cell, Vector2? pivot = null)
+        {
+            string path = $"{Floor3ArtRoot}/floor3-spit/Effects/{name}.png";
+            return System.IO.File.Exists(path) ? SliceSheet(path, cell, pivot ?? new Vector2(0.5f, 0.5f)) : System.Array.Empty<Sprite>();
+        }
+
+        /// <summary>
+        /// Corta en cuadros una hoja del Chorro de vinagre ya importada (floor3-jet/Effects) con ese pivote (el centro si no se dice).
+        /// Vacío si no está.
+        /// </summary>
+        internal static Sprite[] Floor3JetSheet(string name, int cell, Vector2? pivot = null)
+        {
+            string path = $"{Floor3ArtRoot}/floor3-jet/Effects/{name}.png";
+            return System.IO.File.Exists(path) ? SliceSheet(path, cell, pivot ?? new Vector2(0.5f, 0.5f)) : System.Array.Empty<Sprite>();
+        }
+
+        /// <summary>Corta en cuadros una hoja del clon de la Peonza ya importada (floor3-top-clone/Effects). Vacío si no está.</summary>
+        internal static Sprite[] Floor3CloneSheet(string name, int cell)
+        {
+            string path = $"{Floor3ArtRoot}/floor3-top-clone/Effects/{name}.png";
+            return System.IO.File.Exists(path) ? SliceSheet(path, cell) : System.Array.Empty<Sprite>();
+        }
+
+        // Los cuadros de las variantes <prefix>_0 ... <prefix>_<count-1>, una variante detrás de otra. Vacío si falta alguna.
+        static Sprite[] Floor3SpitVariants(string prefix, int count, int cell)
+        {
+            var all = new System.Collections.Generic.List<Sprite>();
+            for (int i = 0; i < count; i++)
+            {
+                var frames = Floor3SpitSheet($"{prefix}_{i}", cell);
+                if (frames.Length != ReactionKit.SlimeFrames)
+                    return System.Array.Empty<Sprite>();
+                all.AddRange(frames);
+            }
+            return all.ToArray();
+        }
+
+        /// <summary>
+        /// Pone en el kit de reacciones el arte del Escupitajo venenoso (floor3-spit): el reventón, el charco salpicado y los sellos de
+        /// la banda de baba (normal y fina) con su brillo.
+        /// </summary>
         internal static void ConfigureSpitKit(ReactionKit kit)
         {
             if (kit == null)
                 return;
-            kit.ConfigureSpit(Floor3BodyEffect("Fx_PoisonPuddleSmall_Appear", 16), Floor3BodyEffect("Fx_PoisonPuddleSmall_Idle", 16),
-                Floor3BodyEffect("Fx_PoisonPuddleSmall_Fade", 16), Floor3BodyEffect("Fx_PoisonSpit_Burst", 56));
+            kit.ConfigureSpit(Floor3SpitSheet("Fx_PoisonSpit_Burst", 64), Floor3SpitSheet("Fx_PoisonSplat_Appear", 64),
+                Floor3SpitSheet("Fx_PoisonSplat_Idle", 64), Floor3SpitSheet("Fx_PoisonSplat_Fade", 64));
+            kit.ConfigureSlime(Floor3SpitVariants("Fx_SlimeTrail_Rim", 6, 20), Floor3SpitVariants("Fx_SlimeTrail_Body", 6, 20),
+                Floor3SpitVariants("Fx_SlimeTrailThin_Rim", 5, 14), Floor3SpitVariants("Fx_SlimeTrailThin_Body", 5, 14),
+                Floor3SpitSheet("Fx_SlimeTrail_Shine", 8));
+            if (!kit.HasSlime)
+                Debug.LogWarning("ArtSetup: faltan las hojas de la banda de baba (floor3-spit); ejecuta Primordia > Floor 3 > Importar todo el arte del piso 3.");
             EditorUtility.SetDirty(kit);
         }
 

@@ -14,9 +14,6 @@ namespace Primordia.Mutations
     /// </summary>
     public class SilkThreads : MonoBehaviour
     {
-        // Segundos que se queda cada hilo del contorno de la red, visible, antes de soltarse.
-        const float EdgeSeconds = 1.5f;
-
         PlayerController controller;
         int maxThreads;
         float seconds;
@@ -154,9 +151,7 @@ namespace Primordia.Mutations
             var hull = SilkNet.ConvexHull(ends);
             if (hull.Count < 3)
                 return;
-            // Los hilos del contorno unen los extremos y se sueltan enseguida; el daño lo hace la red.
-            for (int i = 0; i < hull.Count; i++)
-                SilkThread.Spawn(hull[i], hull[(i + 1) % hull.Count], EdgeSeconds, 0, thread, anchor, hit);
+            // El contorno de la red (los hilos que unen los extremos) ya va en su dibujo (SilkNetArt); el daño lo hace la red.
             var created = SilkNet.Spawn(hull, netSeconds, damage, netHold, webAppear, webIdle, webFade);
             NetFormed?.Invoke(created);
         }

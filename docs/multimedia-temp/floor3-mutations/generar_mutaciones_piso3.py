@@ -29,7 +29,7 @@ encendida = quiebro listo), Cápsula de ámbar = costra de resina en el lomo con
 glándula delante que se llena al cargar (Rest y Full). Efectos: quiebro, listo, bloque de ámbar (para la Cápsula y para
 el enemigo encerrado por la Gota), estallido en esquirlas y la gota lanzada.
 
-Uso: python generar_mutaciones_piso3.py [limbs] [skins] [organs] [specials]
+Uso: python generar_mutaciones_piso3.py [limbs] [skins] [jumpskins] [organs] [specials]
 """
 import math, os, sys
 
@@ -417,6 +417,24 @@ def icon_charred(n):
     for (a, b) in (((9, 12), (15, 16)), ((15, 16), (19, 14)), ((19, 14), (24, 20))):
         for (x, y) in E.line_pts(a[0] * k, a[1] * k, b[0] * k, b[1] * k): cv.put_in(x, y, C(EMBER[3]))
     return cv
+
+def skins_jump():
+    """Capas de las dos Pieles para las poses del salto de las Patas de salto (Jump y JumpCharge, 40×40), calculadas de las hojas de
+    ../floor3-bodies como las demás. Solo estas hojas: las de las otras animaciones no se tocan."""
+    comp = {}
+    for mut, fn in (('AmphibianSkin', amphibian), ('CharredScales', charred)):
+        for body in SKIN_ANIMS:
+            for a in ('Jump', 'JumpCharge'):
+                for f in FACINGS:
+                    frames = frames_of(os.path.join(BODIES, body, f'Player_{body}_{a}_{f}.png'))
+                    layer = skin_sheet(frames, fn)
+                    save(os.path.join(OUT, 'Skin', f'Skin_{mut}_{body}_{a}_{f}.png'), layer)
+                    if f == 'side':
+                        rows = []
+                        for fr, ly in zip(frames, layer):
+                            c = fr.copy(); c.alpha_composite(ly); rows.append(c)
+                        comp[f'{mut} {body} {a}_{f}'] = rows
+        preview(os.path.join(OUT, f'vista_previa_piel_salto_{mut}.png'), {k: v for k, v in comp.items() if k.startswith(mut)}, BG, scale=3)
 
 def skins():
     B = BODIES
@@ -1121,6 +1139,7 @@ if __name__ == '__main__':
     which = sys.argv[1:] or ['limbs']
     if 'limbs' in which: limbs()
     if 'skins' in which: skins()
+    if 'jumpskins' in which: skins_jump()
     if 'organs' in which: organs()
     if 'specials' in which: specials()
     print('Listo:', OUT)

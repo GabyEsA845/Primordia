@@ -42,6 +42,10 @@ namespace Primordia.Mutations
         [SerializeField] Sprite[] landFrames = System.Array.Empty<Sprite>();
         [SerializeField] Sprite[] quakeFrames = System.Array.Empty<Sprite>();
         [SerializeField] Sprite[] stunnedFrames = System.Array.Empty<Sprite>();
+        [Tooltip("Marcador del salto cargado: diana (6 cuadros), diana al máximo (6) y las 4 esquinas del radio del impacto.")]
+        [SerializeField] Sprite[] markerSpotFrames = System.Array.Empty<Sprite>();
+        [SerializeField] Sprite[] markerFullFrames = System.Array.Empty<Sprite>();
+        [SerializeField] Sprite[] markerCornerFrames = System.Array.Empty<Sprite>();
 
         public float DistanceAt(int level) => distances[Mathf.Clamp(level - 1, 0, distances.Length - 1)];
         public int DamageAt(int level) => landDamage[Mathf.Clamp(level - 1, 0, landDamage.Length - 1)];
@@ -76,7 +80,15 @@ namespace Primordia.Mutations
                 chargedStun = chargedStun,
                 chargedPush = chargedPush,
             };
-            player.AddBehaviour<JumpingLegs>(Slot).Configure(controller, settings, takeoffFrames, landFrames, quakeFrames, stunnedFrames);
+            player.AddBehaviour<JumpingLegs>(Slot).Configure(controller, settings, takeoffFrames, landFrames, quakeFrames, stunnedFrames,
+                markerSpotFrames, markerFullFrames, markerCornerFrames);
+        }
+
+        internal void ConfigureMarker(Sprite[] spot, Sprite[] full, Sprite[] corners)
+        {
+            markerSpotFrames = spot;
+            markerFullFrames = full;
+            markerCornerFrames = corners;
         }
 
         public override void Remove(PlayerMutations player, int level)

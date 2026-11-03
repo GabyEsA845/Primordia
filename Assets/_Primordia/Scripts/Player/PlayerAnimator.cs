@@ -30,6 +30,16 @@ namespace Primordia.Player
             Animator.StringToHash("Attack_side"), Animator.StringToHash("Attack_down"), Animator.StringToHash("Attack_up"),
         };
         static readonly int DeathState = Animator.StringToHash("Death");
+        static readonly int[] JumpStates =
+        {
+            Animator.StringToHash("Jump_side"), Animator.StringToHash("Jump_down"), Animator.StringToHash("Jump_up"),
+        };
+        static readonly int[] JumpChargeStates =
+        {
+            Animator.StringToHash("JumpCharge_side"), Animator.StringToHash("JumpCharge_down"), Animator.StringToHash("JumpCharge_up"),
+        };
+        // Avance del salto (0 a 1) en que empieza cada cuadro de la hoja Jump: agacharse, impulso, vuelo, caída y amortiguar.
+        static readonly float[] JumpPhases = { 0f, 0.12f, 0.35f, 0.62f, 0.88f };
         static readonly int[,] States = BuildStates();
 
         PlayerController controller;
@@ -49,6 +59,17 @@ namespace Primordia.Player
 
         /// <summary>True mientras se mantiene un estado fijo del cuerpo (la Peonza girando); ver <see cref="Hold"/>.</summary>
         public bool IsHeld => heldState != 0;
+
+        /// <summary>
+        /// Avance del salto de las Patas de salto (0 a 1) mientras salta, o null. Con valor, el cuerpo hace la pose de la hoja
+        /// <c>Jump_side/down/up</c> que toca a ese avance en lugar de la esquiva (si el cuerpo la tiene).
+        /// </summary>
+        public float? JumpProgress { get; set; }
+
+        /// <summary>True mientras carga el salto del nivel III: el cuerpo hace <c>JumpCharge_*</c> en bucle (si lo tiene).</summary>
+        public bool JumpCharging { get; set; }
+
+        bool jumpPosed;
 
         /// <summary>True mientras el cuerpo hace su animación de ataque.</summary>
         public bool IsAttacking => attackUntil > Time.time;
@@ -119,6 +140,9 @@ namespace Primordia.Player
             if (body != null)
                 body.flipX = FacingOverride == null && (CurrentFacing == Facing.Side || IsHurt) && direction.x < 0f;
 
+            if (PlayJumpPose())
+                return;
+
             // Un estado mantenido manda sobre todo menos la esquiva (que además lo cancela).
             if (heldState != 0 && !controller.IsDodging)
             {
@@ -134,6 +158,46 @@ namespace Primordia.Player
 
             if (Play(States[(int)CurrentAction, (int)CurrentFacing]))
                 StateChanged?.Invoke(CurrentAction, CurrentFacing);
+        }
+
+        /// <summary>
+        /// Poses del salto: durante el salto, el cuadro de Jump que toca a su avance; al cargarlo, JumpCharge en bucle. Devuelve true si
+        /// el cuerpo las hace (si no las tiene, se ve la esquiva de siempre).
+        /// </summary>
+        bool PlayJumpPose()
+        {
+            bool hasAnimator = animator != null && animator.runtimeAnimatorController != null;
+            int facing = (int)CurrentFacing;
+            if (hasAnimator && controller.IsDodging && JumpProgress.HasValue && animator.HasState(0, JumpStates[facing]))
+            {
+                int frame = 0;
+                for (int i = 0; i < JumpPhases.Length; i++)
+                {
+                    if (JumpProgress.Value >= JumpPhases[i])
+                        frame = i;
+                }
+                // El cuadro se elige a mano: el Animator se queda quieto en él.
+                animator.speed = 0f;
+                animator.Play(JumpStates[facing], 0, (frame + 0.5f) / JumpPhases.Length);
+                currentState = JumpStates[facing];
+                jumpPosed = true;
+                return true;
+            }
+
+            if (jumpPosed)
+            {
+                jumpPosed = false;
+                if (animator != null)
+                    animator.speed = 1f;
+                currentState = 0;
+            }
+
+            if (hasAnimator && JumpCharging && !controller.IsDodging && animator.HasState(0, JumpChargeStates[facing]))
+            {
+                Play(JumpChargeStates[facing]);
+                return true;
+            }
+            return false;
         }
 
         /// <summary>Lateral si la dirección es más horizontal que vertical; si no, arriba o abajo.</summary>

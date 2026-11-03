@@ -22,3 +22,5 @@ salto (sin hojas propias), telaraña/red de las Patas hilanderas (celdas de Fx_S
 (agacharse, subir, caer, sombra; hoy se usa la esquiva normal); (2) marcador del salto cargado (hoy `JumpMarker`, anillos por código); (3) telaraña/red de las Patas
 hilanderas como una sola pieza con la forma del polígono (idea de la usuaria; hoy celdas de Fx_SilkWeb); (4) lo que quiera cambiar de Saco de metano, Feromonas y las pieles
 (sus efectos son los dibujados en la tanda 4 de feature/floor3-art); (5) arte de los linajes ya existe (floor3-lineages). Preguntar vista y dudas antes de dibujar.
+
+**HECHO con Opus y aprobado (2026-11-03):** salto alto de los 3 cuerpos, marcador del salto cargado y red tejida de las Patas hilanderas (`docs/multimedia-temp/floor3-jump/`, README); integrado en código con Sonnet (PlayerAnimator `JumpProgress`/`JumpCharging`, `JumpingLegs` arco y sombra, `JumpMarker` con sprites, `SilkNetArt`). La usuaria aprueba también los efectos de órganos y pieles tal cual. **No queda arte provisional pendiente del paso 4.** Las capas de Piel ya tienen sus hojas de salto y de carga.

@@ -270,6 +270,35 @@ namespace Primordia.Tests
         }
 
         [Test]
+        public void SilkNetArt_WeavesNineFramesOverThePolygon_AndRefusesAnEmptyOne()
+        {
+            var hull = new List<Vector2> { new(0, 0), new(5, 0), new(5, 4), new(0, 4) };
+            var frames = SilkNetArt.Build(hull, out var center);
+            Assert.AreEqual(SilkNetArt.GrowFrames + SilkNetArt.TwinkleFrames + SilkNetArt.FrayFrames, frames.Length);
+            Assert.AreEqual(2.5f, center.x, 0.01f);
+            Assert.AreEqual(2f, center.y, 0.01f);
+            Assert.GreaterOrEqual(frames[0].texture.width, 80, "La textura cubre la caja del polígono (5 u a 16 px).");
+            Assert.IsNull(SilkNetArt.Build(new List<Vector2> { new(0, 0), new(1, 0) }, out _));
+            foreach (var frame in frames)
+                Object.DestroyImmediate(frame.texture);
+        }
+
+        [UnityTest]
+        public IEnumerator JumpingLegs_DodgeProgressGrowsDuringTheJump_AndEndsAtZero()
+        {
+            EquipAt(Mutation<JumpingLegsMutation>(MutationSlot.Limbs), 1);
+            player.transform.position = Vector2.zero;
+            yield return new WaitForFixedUpdate();
+            Dodge(Vector2.right);
+            Assert.AreEqual(4f, controller.DodgeLength, 0.001f);
+            yield return new WaitForSeconds(0.15f);
+            Assert.Greater(controller.DodgeProgress, 0.2f);
+            Assert.Less(controller.DodgeProgress, 1f);
+            yield return new WaitForSeconds(0.5f);
+            Assert.AreEqual(0f, controller.DodgeProgress);
+        }
+
+        [Test]
         public void SilkNet_ConvexHullAndContains()
         {
             var hull = SilkNet.ConvexHull(new[]

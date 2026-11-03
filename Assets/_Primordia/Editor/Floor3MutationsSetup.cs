@@ -16,6 +16,7 @@ namespace Primordia.Editor
     public static class Floor3MutationsSetup
     {
         const string SourceFolder = "docs/multimedia-temp/floor3-mutations";
+        const string JumpSourceFolder = "docs/multimedia-temp/floor3-jump";
         const string MutationsFolder = "Assets/_Primordia/Data/Mutations/Floor3";
         const string EffectsArtFolder = "Assets/_Primordia/Art/Effects/Floor3Mutations";
         const string UIArtFolder = "Assets/_Primordia/Art/UI/Icons";
@@ -65,6 +66,8 @@ namespace Primordia.Editor
             SetIcons(legs, "JumpingLegs");
             legs.ConfigureLook(Effect("Fx_JumpingLegs_Takeoff", 32), Effect("Fx_JumpingLegs_Land", 32), Effect("Fx_JumpingLegs_Quake", 48),
                 Effect("Fx_Stunned", 16));
+            // Marcador del salto cargado (diana de huellas y esquinas del impacto), de la tanda de arte del salto.
+            legs.ConfigureMarker(JumpEffect("Fx_JumpMarker_Spot", 24), JumpEffect("Fx_JumpMarker_Full", 24), JumpEffect("Fx_JumpMarker_Corner", 8));
             EditorUtility.SetDirty(legs);
         }
 
@@ -190,6 +193,9 @@ namespace Primordia.Editor
             if (small != null)
                 mutation.SetIcons(small, large);
         }
+
+        static Sprite[] JumpEffect(string name, int cell) =>
+            ArtSetup.ImportLooseSheet($"{JumpSourceFolder}/Effects/{name}.png", $"{EffectsArtFolder}/{name}.png", cell);
 
         static Sprite[] Effect(string name, int cell) =>
             ArtSetup.ImportLooseSheet($"{SourceFolder}/Effects/{name}.png", $"{EffectsArtFolder}/{name}.png", cell);

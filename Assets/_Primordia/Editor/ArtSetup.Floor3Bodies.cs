@@ -20,6 +20,8 @@ namespace Primordia.Editor
             {
                 ("Idle", body == "Frog" ? 6.25f : 5.9f, true), ("Move", body == "Diplocaulus" ? 10f : 11.1f, true),
                 ("Dodge", body == "Diplocaulus" ? 18.2f : 16.7f, false), ("Hurt", 12.5f, false), ("Death", 8.3f, false),
+                // Salto de las Patas de salto: el cuadro lo elige el código por el avance del salto; la carga va en bucle.
+                ("JumpCharge", 9f, true), ("Jump", 16.7f, false),
             };
             var timings = new System.Collections.Generic.List<(string, float, bool)>(specific);
             timings.AddRange(common);

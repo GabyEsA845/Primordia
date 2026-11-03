@@ -35,6 +35,11 @@ namespace Primordia.Mutations
         }
 
         const int FxOrder = 8;
+        // El arco del salto: altura a medio vuelo = 0,375 por unidad de distancia (1,5 u a 4 u), con tope.
+        const float ArcPerUnit = 0.375f;
+        const float ArcMax = 2.2f;
+        // Los pies respecto al centro del cuerpo, donde queda la sombra.
+        static readonly Vector2 FootOffset = new(0f, -0.3f);
         const float FrameSeconds = 0.06f;
         // Lo que se queda corto el marcador ante una pared, para no caer dentro de ella.
         const float WallMargin = 0.5f;
@@ -51,6 +56,12 @@ namespace Primordia.Mutations
         bool holding;
         float pressedAt;
         JumpMarker marker;
+        PlayerAnimator playerAnimator;
+        Transform bodyTransform;
+        Vector3 bodyBase;
+        bool raised;
+        Sprite[] markerSpot, markerFull, markerCorners;
+        SpriteRenderer shadow;
 
         /// <summary>Se lanza al caer, con el punto de aterrizaje (los toques de los linajes se cuelgan de aquí).</summary>
         public event Action<Vector2> Landed;
@@ -64,9 +75,14 @@ namespace Primordia.Mutations
         public Settings Current => settings;
 
         public void Configure(PlayerController newController, Settings newSettings, Sprite[] newTakeoff, Sprite[] newLand,
-            Sprite[] newQuake, Sprite[] newStunned)
+            Sprite[] newQuake, Sprite[] newStunned, Sprite[] newMarkerSpot = null, Sprite[] newMarkerFull = null,
+            Sprite[] newMarkerCorners = null)
         {
             Unsubscribe();
+            markerSpot = newMarkerSpot;
+            markerFull = newMarkerFull;
+            markerCorners = newMarkerCorners;
+            playerAnimator = GetComponent<PlayerAnimator>();
             controller = newController;
             body = GetComponent<Rigidbody2D>();
             bodyCollider = GetComponent<Collider2D>();
@@ -90,6 +106,9 @@ namespace Primordia.Mutations
             if (airborne)
                 Land(false);
             HideMarker();
+            ResetJumpVisual();
+            if (controller != null)
+                controller.MoveFrozen = false;
             JumpableObstacle.SetPassable(bodyCollider, false);
         }
 
@@ -166,14 +185,74 @@ namespace Primordia.Mutations
             if (holding && !airborne && IsCharging && controller.CanAct)
             {
                 if (marker == null)
-                    marker = JumpMarker.Create(settings.chargedRadius);
-                marker.transform.position = ChargedTarget(Time.time - pressedAt);
+                    marker = JumpMarker.Create(settings.chargedRadius, markerSpot, markerFull, markerCorners);
+                float held = Time.time - pressedAt;
+                marker.transform.position = ChargedTarget(held);
+                marker.SetFull(held - settings.minHold >= settings.chargeSeconds);
             }
             else if (marker != null)
                 HideMarker();
 
             if (restoring && !airborne && JumpableObstacle.Restore(bodyCollider) == 0)
                 restoring = false;
+
+            UpdateJumpVisual();
+        }
+
+        /// <summary>
+        /// El salto se ve alto: el cuerpo sube en arco (más alto cuanto más lejos salta) con la pose que toca a su avance y deja una
+        /// sombra en el suelo que se encoge al subir. Mientras carga, el cuerpo hace la pose de carga.
+        /// </summary>
+        void UpdateJumpVisual()
+        {
+            // Mientras carga el salto no se anda (se puede apuntar, atacar y soltar el salto).
+            if (controller != null)
+                controller.MoveFrozen = IsCharging && !airborne && controller.CanAct;
+            if (playerAnimator == null)
+                return;
+            playerAnimator.JumpCharging = IsCharging && !airborne && controller.CanAct;
+            if (!airborne)
+            {
+                ResetJumpVisual(keepCharge: true);
+                return;
+            }
+
+            float t = controller.DodgeProgress;
+            float height = Mathf.Min(ArcMax, ArcPerUnit * controller.DodgeLength);
+            float lift = height * Mathf.Sin(Mathf.PI * t);
+            playerAnimator.JumpProgress = t;
+            if (bodyTransform == null && playerAnimator.Body != null)
+                bodyTransform = playerAnimator.Body.transform;
+            if (bodyTransform != null)
+            {
+                if (!raised)
+                    bodyBase = bodyTransform.localPosition;
+                raised = true;
+                bodyTransform.localPosition = bodyBase + Vector3.up * lift;
+            }
+
+            if (shadow == null)
+                shadow = JumpMarker.CreateShadow(transform);
+            shadow.transform.position = (Vector2)transform.position + FootOffset;
+            shadow.transform.localScale = Vector3.one * (1f - 0.45f * (height > 0f ? lift / height : 0f));
+            if (playerAnimator.Body != null)
+                shadow.sortingLayerID = playerAnimator.Body.sortingLayerID;
+        }
+
+        void ResetJumpVisual(bool keepCharge = false)
+        {
+            if (playerAnimator != null)
+            {
+                playerAnimator.JumpProgress = null;
+                if (!keepCharge)
+                    playerAnimator.JumpCharging = false;
+            }
+            if (raised && bodyTransform != null)
+                bodyTransform.localPosition = bodyBase;
+            raised = false;
+            if (shadow != null)
+                Destroy(shadow.gameObject);
+            shadow = null;
         }
 
         void HideMarker()

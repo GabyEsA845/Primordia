@@ -106,6 +106,12 @@ namespace Primordia.Player
         public bool MovementLocked { get; set; }
 
         /// <summary>
+        /// True mientras no se puede andar pero sí apuntar, atacar y esquivar: se frena como al soltar el movimiento (las Patas de salto
+        /// del nivel III mientras cargan el salto). A diferencia de <see cref="MovementLocked"/>, no impide esquivar.
+        /// </summary>
+        public bool MoveFrozen { get; set; }
+
+        /// <summary>
         /// Multiplicador de la velocidad al andar mientras mantiene un ataque (la Peonza gira un 35 % más lento). 1 = normal. No tiñe ni
         /// cuenta como ralentización.
         /// </summary>
@@ -156,6 +162,15 @@ namespace Primordia.Player
         }
 
         float dodgeSpeed;
+        float dodgeStartTime;
+        float dodgeLength;
+
+        /// <summary>Avance de la esquiva en curso, de 0 a 1 (las Patas de salto lo usan para la pose y el arco). 0 si no esquiva.</summary>
+        public float DodgeProgress =>
+            !IsDodging ? 0f : Mathf.Clamp01((Time.time - dodgeStartTime) / Mathf.Max(0.01f, dodgeEndTime - dodgeStartTime));
+
+        /// <summary>Distancia de la esquiva en curso (o de la última), en unidades.</summary>
+        public float DodgeLength => dodgeLength;
 
         int extraDodges;
         float inertia = 1f;
@@ -282,7 +297,7 @@ namespace Primordia.Player
         Vector2 Walk()
         {
             float top = (SpeedOverride ?? moveSpeed) * SlowFactor * ChannelSpeedFactor * TerrainSpeedFactor * TimeWarp.PlayerSpeed;
-            Vector2 target = MovementLocked ? Vector2.zero : MoveInput * top;
+            Vector2 target = MovementLocked || MoveFrozen ? Vector2.zero : MoveInput * top;
             float time = (target.sqrMagnitude > 0.0001f ? accelerationTime : decelerationTime) * inertia;
             // Cambio de velocidad por paso para ir de 0 a la máxima en ese tiempo; la ralentización no alarga el arranque.
             float maxChange = time > 0.0001f ? Mathf.Max(top, 0.01f) / time * Time.fixedDeltaTime : float.MaxValue;
@@ -326,6 +341,8 @@ namespace Primordia.Player
             float length = distance ?? dodgeDistance;
             float seconds = duration ?? dodgeDuration;
             dodgeSpeed = length / seconds;
+            dodgeLength = length;
+            dodgeStartTime = Time.time;
             StopLunge();
             shoveEndTime = 0f;
             IsDodging = true;

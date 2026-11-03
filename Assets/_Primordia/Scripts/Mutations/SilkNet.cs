@@ -14,9 +14,6 @@ namespace Primordia.Mutations
     public class SilkNet : MonoBehaviour
     {
         const float CheckEvery = 0.1f;
-        // Separación de las celdas de telaraña con que se dibuja el relleno, y las que caben como máximo.
-        const float CellSpacing = 1f;
-        const int MaxCells = 60;
 
         readonly HashSet<Health> caught = new();
         List<Vector2> polygon;
@@ -46,26 +43,54 @@ namespace Primordia.Mutations
             return net;
         }
 
+        /// <summary>
+        /// La telaraña se teje (los radios crecen del centro, 0,4 s), brilla mientras dura y se deshilacha al final (0,6 s). Se dibuja por
+        /// código con la forma exacta del polígono (<see cref="SilkNetArt"/>); los cuadros de las celdas sueltas ya no se usan.
+        /// </summary>
         void FillVisual(float seconds, Sprite[] appear, Sprite[] idle, Sprite[] fade)
         {
-            var min = polygon[0];
-            var max = polygon[0];
-            foreach (var point in polygon)
+            var frames = SilkNetArt.Build(polygon, out var center);
+            if (frames == null)
+                return;
+            var obj = new GameObject("NetWeb");
+            obj.transform.SetParent(transform, false);
+            obj.transform.position = center;
+            var renderer = obj.AddComponent<SpriteRenderer>();
+            renderer.sortingOrder = -1;
+            renderer.sprite = frames[0];
+            StartCoroutine(PlayWeb(renderer, frames, seconds));
+        }
+
+        System.Collections.IEnumerator PlayWeb(SpriteRenderer renderer, Sprite[] frames, float seconds)
+        {
+            const float GrowStep = 0.1f, TwinkleStep = 0.25f, FrayStep = 0.2f;
+            for (int i = 0; i < SilkNetArt.GrowFrames; i++)
             {
-                min = Vector2.Min(min, point);
-                max = Vector2.Max(max, point);
+                renderer.sprite = frames[i];
+                yield return new WaitForSeconds(GrowStep);
             }
-            int cells = 0;
-            for (float x = min.x + CellSpacing / 2f; x <= max.x && cells < MaxCells; x += CellSpacing)
+            float fraySeconds = SilkNetArt.FrayFrames * FrayStep;
+            int twinkle = 0;
+            while (Time.time < until - fraySeconds)
             {
-                for (float y = min.y + CellSpacing / 2f; y <= max.y && cells < MaxCells; y += CellSpacing)
-                {
-                    if (!Contains(new Vector2(x, y)))
-                        continue;
-                    var web = SilkWeb.Spawn(new Vector2(x, y), seconds, 0f, 0f, appear, idle, fade);
-                    web.transform.SetParent(transform, true);
-                    cells++;
-                }
+                renderer.sprite = frames[SilkNetArt.GrowFrames + twinkle % SilkNetArt.TwinkleFrames];
+                twinkle++;
+                yield return new WaitForSeconds(TwinkleStep);
+            }
+            for (int i = 0; i < SilkNetArt.FrayFrames; i++)
+            {
+                renderer.sprite = frames[SilkNetArt.GrowFrames + SilkNetArt.TwinkleFrames + i];
+                yield return new WaitForSeconds(FrayStep);
+            }
+        }
+
+        void OnDestroy()
+        {
+            // Los cuadros se crearon por código: se liberan con la red.
+            foreach (var renderer in GetComponentsInChildren<SpriteRenderer>())
+            {
+                if (renderer.sprite != null && renderer.sprite.texture != null && (renderer.sprite.texture.hideFlags & HideFlags.HideAndDontSave) != 0)
+                    Destroy(renderer.sprite.texture);
             }
         }
 

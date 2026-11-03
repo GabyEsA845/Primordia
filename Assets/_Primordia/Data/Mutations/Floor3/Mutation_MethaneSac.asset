@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Mutation_MethaneSac
   m_EditorClassIdentifier: Primordia::Primordia.Mutations.MethaneSacMutation
   displayName: Saco de metano
-  description: "Clic derecho: sueltas una nube de gas que deriva hacia donde apuntas durante 6 s y explota con cualquier ataque tuyo (6 de da\xF1o, no te da\xF1a a ti). Recarga de 10 s. Con el saco, ninguna explosi\xF3n de gas te da\xF1a."
+  description: "Clic derecho: sueltas una nube de gas que deriva hacia donde apuntas durante 8 s y explota con cualquier ataque tuyo (6 de da\xF1o, no te da\xF1a a ti). Recarga de 10 s. Con el saco, ninguna explosi\xF3n de gas te da\xF1a."
   slot: 3
   lineages: []
   look: {fileID: 0}
@@ -28,8 +28,8 @@ MonoBehaviour:
   color: {r: 0.55, g: 0.9, b: 0.35, a: 1}
   summary: 
   levelDescriptions:
-  - Sueltas dos nubes en abanico.
-  - "Incendio: la explosi\xF3n deja fuego en el suelo durante 3 s."
+  - Sueltas dos nubes bien separadas.
+  - "Incendio: la explosi\xF3n deja fuego en el suelo durante 3 s (no te quema a ti)."
   dodgeSound: 
   floor: 3
   special: 0
@@ -47,14 +47,15 @@ MonoBehaviour:
   effectPrefab: {fileID: 0}
   effectRadius: 1
   cloudCounts: 010000000200000002000000i
-  cloud:
+  cloudSettings:
     damage: 6
-    lifetime: 6
-    speed: 0.6
+    lifetime: 8
+    speed: 0.9
     explosionRadius: 2
     fireSeconds: 0
   incendioSeconds: 3
-  spreadDegrees: 14
+  fanDegrees: 36
+  fanGap: 1.6
   releaseDelay: 0.35
   releaseFrames:
   - {fileID: 5625121430970856362, guid: dc5d2eabfa996074184616af05c1a7e8, type: 3}

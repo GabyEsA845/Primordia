@@ -12,7 +12,7 @@ namespace Primordia.Rooms
     /// rota se queda el resto de la sala y ya no bloquea. Tiene un colisionador de bloqueo y, para los golpes cuerpo a cuerpo
     /// de cada equipo, otro en la capa de los enemigos y otro en la del jugador.
     /// </summary>
-    public class MethaneSac : MonoBehaviour, IFlammable
+    public class MethaneSac : MonoBehaviour, IFlammable, IToxifiable
     {
         const float IdleFrameSeconds = 0.26f;
         const float BurstFrameSeconds = 0.06f;
@@ -20,6 +20,9 @@ namespace Primordia.Rooms
         const int ExplodeFrame = 2;
         // Tamaño del cuerpo, en tiles.
         static readonly Vector2 BodySize = new(0.75f, 0.6f);
+        // Lo que recibe los golpes cubre todo el dibujo (el bloqueo, solo la base): si no, los ataques atraviesan la mitad de arriba.
+        static readonly Vector2 HitSize = new(1.0f, 1.1f);
+        const float HitCenterY = 0.75f;
 
         enum State
         {
@@ -93,8 +96,10 @@ namespace Primordia.Rooms
             if (layer >= 0)
                 obj.layer = layer;
             var box = obj.AddComponent<BoxCollider2D>();
-            box.size = BodySize;
-            box.offset = new Vector2(0f, BodySize.y / 2f);
+            box.size = HitSize;
+            box.offset = new Vector2(0f, HitCenterY);
+            // Solo recibe golpes por capa: no empuja ni estorba a nadie (el bloqueo ya lo hace el colisionador de la base).
+            box.excludeLayers = LayerMask.GetMask(CombatLayers.Player, CombatLayers.Enemy);
             return box;
         }
 
@@ -127,6 +132,29 @@ namespace Primordia.Rooms
             if (state != State.Idle || body == null || idle.Length == 0)
                 return;
             body.sprite = idle[Mathf.FloorToInt((Time.time + phase) / IdleFrameSeconds) % idle.Length];
+        }
+
+        public bool CanToxify => state == State.Idle;
+
+        public Bounds ToxifyBounds => new(Position + Vector2.up * HitCenterY, HitSize);
+
+        /// <summary>Aguijón de gas: el odre se desinfla en una nube tóxica en lugar de explotar.</summary>
+        public void Toxify()
+        {
+            if (state != State.Idle)
+                return;
+            state = State.Spent;
+            Flammables.Unregister(this);
+            if (glow != null)
+                glow.gameObject.SetActive(false);
+            foreach (var collider in colliders)
+            {
+                if (collider != null)
+                    collider.enabled = false;
+            }
+            if (body != null)
+                body.sprite = remains;
+            ToxicCloud.Spawn(Position);
         }
 
         /// <summary>El fuego lo revienta.</summary>

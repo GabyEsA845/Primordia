@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using Primordia.Combat;
 using Primordia.Core;
+using Primordia.Mutations;
+using Primordia.Rooms;
 using UnityEngine;
 
 namespace Primordia.Player
@@ -38,6 +40,7 @@ namespace Primordia.Player
         PlayerAnimator animator;
         Weapon weapon;
         Health health;
+        PlayerLineage lineage;
         AttackData attack;
         float charge;
         bool initialized;
@@ -94,6 +97,34 @@ namespace Primordia.Player
             animator = GetComponent<PlayerAnimator>();
             weapon = GetComponent<Weapon>();
             health = GetComponent<Health>();
+            lineage = GetComponent<PlayerLineage>();
+        }
+
+        // Aguijón de gas (Pulmonoscorpius): el chorro envenena, vuelve tóxico el metano y usa su dibujo venenoso.
+        bool Venom => lineage != null && lineage.ActiveTouch == LineageTouch.GasSting;
+
+        JetArt CurrentArt
+        {
+            get
+            {
+                if (Venom && lineage.Benefits.poisonJetArt != null)
+                    return lineage.Benefits.poisonJetArt;
+                return attack != null ? attack.JetArt : null;
+            }
+        }
+
+        GameObject CurrentHitEffect => Venom && lineage.Benefits.poisonJetHit != null ? lineage.Benefits.poisonJetHit : attack.JetHitEffect;
+
+        GameObject CurrentMuzzleEffect => Venom && lineage.Benefits.poisonJetMuzzle != null ? lineage.Benefits.poisonJetMuzzle : attack.MuzzleEffect;
+
+        GameObject[] CurrentSplashEffects => Venom && lineage.Benefits.poisonJetSplashes.Length > 0 ? lineage.Benefits.poisonJetSplashes : attack.JetSplashEffects;
+
+        void Poisoned(Health target)
+        {
+            if (target == null || target.IsDead)
+                return;
+            var marker = ReactionKit.Current != null ? ReactionKit.Current.PoisonedMarker : null;
+            Poison.Apply(target, lineage.Benefits.jetPoisonDamage, lineage.Benefits.jetPoisonSeconds, marker);
         }
 
         void OnDisable() => Cancel();
@@ -280,6 +311,10 @@ namespace Primordia.Player
                     continue;
 
                 var target = collider.GetComponentInParent<Health>();
+                // Odres y vainas: el colisionador de la base bloquea el paso, pero el chorro debe darles con el de la capa enemiga,
+                // que cubre todo el dibujo (si no, a veces se paraba en ellos como en una pared).
+                if (target != null && collider.gameObject.layer != enemyLayer && HasEnemyLayerCollider(target, enemyLayer))
+                    continue;
                 if (target == null || collider.gameObject.layer != enemyLayer)
                     return Mathf.Max(0f, hit.distance);
                 if (target.IsDead || targets.Exists(t => t.health == target))
@@ -292,17 +327,42 @@ namespace Primordia.Player
             return range;
         }
 
+        static readonly List<Collider2D> ownColliders = new();
+
+        // True si ese objeto tiene un colisionador (no disparador) en la capa enemiga.
+        static bool HasEnemyLayerCollider(Health target, int enemyLayer)
+        {
+            ownColliders.Clear();
+            target.GetComponentsInChildren(ownColliders);
+            foreach (var own in ownColliders)
+            {
+                if (!own.isTrigger && own.gameObject.layer == enemyLayer)
+                    return true;
+            }
+            return false;
+        }
+
         // Solo da a lo que el chorro ya ha alcanzado al crecer.
         void Strike()
         {
             int damage = Mathf.Max(0, Mathf.CeilToInt(attack.Damage * weapon.DamageMultiplier - 0.001f));
+            bool venom = Venom;
             foreach (var (target, distance) in targets)
             {
                 if (target == null || target.IsDead || distance > reach + 0.05f)
                     continue;
+                // El metano no recibe el golpe: se vuelve nube tóxica en lugar de explotar (directamente, sin depender de la zona).
+                if (venom && ToxifyInstead(target))
+                    continue;
                 if (target.TakeDamage(damage))
+                {
                     weapon.ReportHit(target);
+                    if (venom)
+                        Poisoned(target);
+                }
             }
+            if (venom)
+                Flammables.ToxifyAlong(Origin, Origin + lastDirection * reach, JetRadius);
         }
 
         // Nivel III: daño alrededor del final del chorro.
@@ -310,9 +370,12 @@ namespace Primordia.Player
         {
             int damage = Mathf.Max(0, Mathf.CeilToInt(attack.JetSplashDamage * weapon.DamageMultiplier - 0.001f));
             // Las tres salpicaduras se alternan en cada golpe.
-            var splashes = attack.JetSplashEffects;
+            var splashes = CurrentSplashEffects;
             if (splashes.Length > 0)
                 OneShotEffect.Spawn(splashes[splashVariant++ % splashes.Length], end);
+            bool venom = Venom;
+            if (venom)
+                Flammables.ToxifyAlong(end, end, attack.JetSplashRadius);
             struck.Clear();
             foreach (var hit in Physics2D.OverlapCircleAll(end, attack.JetSplashRadius, LayerMask.GetMask(CombatLayers.Enemy)))
             {
@@ -321,9 +384,26 @@ namespace Primordia.Player
                 var target = hit.GetComponentInParent<Health>();
                 if (target == null || target.IsDead || !struck.Add(target))
                     continue;
+                if (venom && ToxifyInstead(target))
+                    continue;
                 if (target.TakeDamage(damage))
+                {
                     weapon.ReportHit(target);
+                    if (venom)
+                        Poisoned(target);
+                }
             }
+        }
+
+        // Si el objetivo es metano, lo vuelve nube tóxica y devuelve true (no se le hace daño).
+        static bool ToxifyInstead(Health target)
+        {
+            var toxifiable = target.GetComponentInParent<IToxifiable>();
+            if (toxifiable == null)
+                return false;
+            if (toxifiable.CanToxify)
+                toxifiable.Toxify();
+            return true;
         }
 
         // ---------- Dibujo ----------
@@ -333,7 +413,7 @@ namespace Primordia.Player
         // aplastan) a lo visible. Todos los tramos van en el mismo cuadro, con el mismo reloj.
         void DrawSegments(Vector2 origin, Vector2 direction, float from, float to, bool tip)
         {
-            var art = attack != null ? attack.JetArt : null;
+            var art = CurrentArt;
             if (art == null || !art.IsComplete)
             {
                 foreach (var segment in segments)
@@ -397,10 +477,11 @@ namespace Primordia.Player
         // salida en la punta de la cola.
         void DrawEffects(Vector2 origin, Vector2 end, bool blocked, Vector2 direction)
         {
-            if (blocked && attack.JetHitEffect != null)
+            var hitPrefab = CurrentHitEffect;
+            if (blocked && hitPrefab != null)
             {
                 if (hitEffect == null)
-                    hitEffect = Instantiate(attack.JetHitEffect, transform.parent);
+                    hitEffect = Instantiate(hitPrefab, transform.parent);
                 hitEffect.SetActive(true);
                 hitEffect.transform.SetPositionAndRotation(end, Quaternion.Euler(0f, 0f, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg));
             }
@@ -409,10 +490,11 @@ namespace Primordia.Player
                 hitEffect.SetActive(false);
             }
 
-            if (attack.MuzzleEffect != null)
+            var muzzlePrefab = CurrentMuzzleEffect;
+            if (muzzlePrefab != null)
             {
                 if (muzzleEffect == null)
-                    muzzleEffect = Instantiate(attack.MuzzleEffect, transform.parent);
+                    muzzleEffect = Instantiate(muzzlePrefab, transform.parent);
                 muzzleEffect.transform.position = origin;
             }
         }
@@ -471,7 +553,7 @@ namespace Primordia.Player
         void Stop()
         {
             ClearEffects();
-            if (reach > 0.05f && attack != null && attack.JetArt != null)
+            if (reach > 0.05f && attack != null && CurrentArt != null)
             {
                 retracting = true;
                 tailDistance = 0f;

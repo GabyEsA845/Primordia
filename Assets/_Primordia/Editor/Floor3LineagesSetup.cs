@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Primordia.Combat;
 using Primordia.Core;
 using Primordia.Mutations;
 using UnityEditor;
@@ -40,7 +41,9 @@ namespace Primordia.Editor
         static readonly Dictionary<string, (LineageTouch touch, string name, string description)> Touches = new()
         {
             ["Xenacanthus"] = (LineageTouch.CephalicSpine, "Espina cefálica", "Los enemigos confundidos cuentan como heridos."),
-            ["Centipede"] = (LineageTouch.HundredLegs, "Cien patas",
+            ["Pulmonoscorpius"] = (LineageTouch.GasSting, "Aguijón de gas",
+                "El chorro envenena a lo que toca y vuelve nube tóxica el metano que alcanza, en vez de explotarlo."),
+            ["Centipede"] =(LineageTouch.HundredLegs, "Cien patas",
                 "Cada aterrizaje deja un charco de veneno durante 4 s. Eres inmune a todo el veneno y al gas tóxico."),
             ["Lamprey"] = (LineageTouch.SpinningSucker, "Ventosa giratoria",
                 "Mientras giras, cada parásito que pegas pega otro al enemigo más cercano y el máximo sube a 6."),
@@ -106,6 +109,7 @@ namespace Primordia.Editor
             var leapLamprey = Floor2MouthsSetup.CreateFrameEffect("Effect_Parasite_Leap_Lamprey",
                 LineageSheet("Parasite", "Parasite_Leap_Lamprey", 20), 0.08f, sortingOrder: 23);
             AddArcFlight(leapLamprey);
+            var poisonJet = BuildPoisonJet();
             AssetDatabase.SaveAssets();
 
             var root = PrefabUtility.LoadPrefabContents(PlayerSetup.PlayerPath);
@@ -123,6 +127,13 @@ namespace Primordia.Editor
                 benefits.parasiteHealEffect = heal;
                 benefits.parasiteMarkerLamprey = markerLamprey;
                 benefits.parasiteLeapLamprey = leapLamprey;
+                if (poisonJet.art != null)
+                {
+                    benefits.poisonJetArt = poisonJet.art;
+                    benefits.poisonJetHit = poisonJet.hit;
+                    benefits.poisonJetMuzzle = poisonJet.muzzle;
+                    benefits.poisonJetSplashes = poisonJet.splashes;
+                }
                 lineage.ConfigureBenefits(benefits);
                 PrefabUtility.SaveAsPrefabAsset(root, PlayerSetup.PlayerPath);
             }
@@ -130,6 +141,65 @@ namespace Primordia.Editor
             {
                 PrefabUtility.UnloadPrefabContents(root);
             }
+        }
+
+        // ---------- Chorro venenoso (Pulmonoscorpius) ----------
+
+        /// <summary>
+        /// El dibujo del Chorro de vinagre venenoso (las mismas 13 hojas que el normal, prefijo <c>Fx_VinegarJet_Poison_</c>) y sus efectos de
+        /// salida, impacto y salpicadura. Arte nulo si falta alguna hoja.
+        /// </summary>
+        static (JetArt art, GameObject hit, GameObject muzzle, GameObject[] splashes) BuildPoisonJet()
+        {
+            // Los tramos tienen el pivote en el borde izquierdo, a media altura (README de floor3-jet).
+            var pivot = new Vector2(0f, 0.5f);
+            var start = JetSheet("Start", 16, pivot);
+            var streams = new List<Sprite>();
+            var tips = new List<Sprite>();
+            foreach (string letter in new[] { "A", "B", "C" })
+            {
+                streams.AddRange(JetSheet($"Stream_{letter}", 16, pivot));
+                tips.AddRange(JetSheet($"Tip_{letter}", 16, pivot));
+            }
+            var muzzleFrames = JetSheet("Muzzle", 16);
+            var hitFrames = JetSheet("Hit", 24);
+            var splashFrames = new Sprite[3][];
+            for (int i = 0; i < 3; i++)
+                splashFrames[i] = JetSheet($"Splash_{i}", 80);
+
+            if (start.Length != JetArt.Frames || streams.Count != JetArt.Frames * 3 || tips.Count != JetArt.Frames * 3
+                || muzzleFrames.Length == 0 || hitFrames.Length == 0 || splashFrames.Any(frames => frames.Length == 0))
+            {
+                Debug.LogWarning("Floor3LineagesSetup: faltan las hojas del Chorro venenoso en docs/multimedia-temp/floor3-lineage-art/Effects.");
+                return (null, null, null, null);
+            }
+
+            const string path = "Assets/_Primordia/Data/Attacks/JetArt_VinegarJet_Poison.asset";
+            Directory.CreateDirectory("Assets/_Primordia/Data/Attacks");
+            var art = AssetDatabase.LoadAssetAtPath<JetArt>(path);
+            if (art == null)
+            {
+                art = ScriptableObject.CreateInstance<JetArt>();
+                AssetDatabase.CreateAsset(art, path);
+            }
+            art.Configure(start, streams.ToArray(), tips.ToArray());
+            EditorUtility.SetDirty(art);
+
+            // Salida y salpicaduras a 50 y 65 ms por cuadro, impacto a 60 ms (como el chorro normal).
+            var muzzle = Floor2MouthsSetup.CreateLoopEffect("Effect_VinegarJet_Poison_Muzzle", muzzleFrames, 0.05f, 21);
+            var hit = Floor2MouthsSetup.CreateLoopEffect("Effect_VinegarJet_Poison_Hit", hitFrames, 0.06f, 21);
+            var splashes = new GameObject[3];
+            for (int i = 0; i < 3; i++)
+                splashes[i] = Floor2MouthsSetup.CreateFrameEffect($"Effect_VinegarJet_Poison_Splash_{i}", splashFrames[i], 0.065f);
+            return (art, hit, muzzle, splashes);
+        }
+
+        static Sprite[] JetSheet(string name, int cell, Vector2? pivot = null)
+        {
+            string file = $"Fx_VinegarJet_Poison_{name}";
+            string source = $"{LineageArtFolder}/Effects/{file}.png";
+            string target = $"{EffectsArtFolder}/{file}.png";
+            return pivot.HasValue ? ArtSetup.ImportLooseSheet(source, target, cell, pivot.Value) : ArtSetup.ImportLooseSheet(source, target, cell);
         }
 
         /// <summary>Al prefab del efecto le pone el vuelo en arco (el código lo lanza al crearlo).</summary>

@@ -24,6 +24,9 @@ namespace Primordia.Rooms
         // Salpicadura al reventar.
         const float SplashRadius = 1.6f;
         static readonly Vector2 BodySize = new(0.75f, 0.6f);
+        // Lo que recibe los golpes cubre todo el dibujo (el bloqueo, solo la base): si no, los ataques atraviesan la mitad de arriba.
+        static readonly Vector2 HitSize = new(1.2f, 1.3f);
+        const float HitCenterY = 0.8f;
 
         enum State
         {
@@ -84,8 +87,10 @@ namespace Primordia.Rooms
             if (layer >= 0)
                 obj.layer = layer;
             var box = obj.AddComponent<BoxCollider2D>();
-            box.size = BodySize;
-            box.offset = new Vector2(0f, BodySize.y / 2f);
+            box.size = HitSize;
+            box.offset = new Vector2(0f, HitCenterY);
+            // Solo recibe golpes por capa: no empuja ni estorba a nadie (el bloqueo ya lo hace el colisionador de la base).
+            box.excludeLayers = LayerMask.GetMask(CombatLayers.Player, CombatLayers.Enemy);
             return box;
         }
 

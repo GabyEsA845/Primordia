@@ -473,6 +473,15 @@ MonoBehaviour:
     lampreySpinLimit: 6
     parasiteMarkerLamprey: {fileID: 7834564935101127261, guid: 9cb19a1c0a3b4d1428fe036b829e77ff, type: 3}
     parasiteLeapLamprey: {fileID: 8036641937895922133, guid: 48c0900a645a3ca4fa394ea96b36bcfb, type: 3}
+    poisonJetArt: {fileID: 11400000, guid: 49f5ce4243a2e4f429febaee6a734c87, type: 2}
+    poisonJetHit: {fileID: 8712203284278682476, guid: 9a31b81cafb1c664aa0409bc9dca2736, type: 3}
+    poisonJetMuzzle: {fileID: 8225259900193463964, guid: 82ae851b78f912643bc0ff36a5315013, type: 3}
+    poisonJetSplashes:
+    - {fileID: 7166150063439160747, guid: 5f1ddba02ff915d4388f2c4bc019cd23, type: 3}
+    - {fileID: 9114934706979283014, guid: 8d980d9d654401046892ce2c4d9ce67d, type: 3}
+    - {fileID: 5179011481108786319, guid: 81c446a9262a0de49b834c842e78521d, type: 3}
+    jetPoisonDamage: 1
+    jetPoisonSeconds: 3
     feastHeal: 1
     feastCooldown: 6
     fiveEyesBonus: 1

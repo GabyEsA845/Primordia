@@ -76,6 +76,14 @@ namespace Primordia.Mutations
         public GameObject parasiteMarkerLamprey;
         public GameObject parasiteLeapLamprey;
 
+        [Tooltip("Aguijón de gas (Pulmonoscorpius): el chorro venenoso (dibujo del chorro, impacto, salida y salpicaduras) y el veneno que pone.")]
+        public Primordia.Combat.JetArt poisonJetArt;
+        public GameObject poisonJetHit;
+        public GameObject poisonJetMuzzle;
+        public GameObject[] poisonJetSplashes = System.Array.Empty<GameObject>();
+        [Min(1)] public int jetPoisonDamage = 1;
+        [Min(0.5f)] public float jetPoisonSeconds = 3f;
+
         [Header("Toques del piso 2")]
         [Tooltip("Festín (Placodermo): vida que cura rematar con un mordisco (1 = medio corazón) y cada cuánto como mucho.")]
         [Min(1)] public int feastHeal = 1;

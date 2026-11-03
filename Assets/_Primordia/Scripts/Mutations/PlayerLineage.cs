@@ -56,6 +56,9 @@ namespace Primordia.Mutations
 
         internal LineageBenefitSettings Benefits => benefits;
 
+        /// <summary>Toque del linaje activo (None si no hay).</summary>
+        public LineageTouch ActiveTouch => Active != null ? Active.Touch : LineageTouch.None;
+
         internal void ConfigureBenefits(LineageBenefitSettings newBenefits) => benefits = newBenefits ?? new LineageBenefitSettings();
 
         /// <summary>Componente de beneficio de ese tipo que lleva ahora (o null).</summary>

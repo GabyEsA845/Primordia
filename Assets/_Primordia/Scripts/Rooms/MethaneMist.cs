@@ -12,7 +12,7 @@ namespace Primordia.Rooms
     /// cerca. El fogonazo la recorre y salta a las manchas vecinas (la cadena corre por la sala): 3 de daño y llamas a los
     /// enemigos, ½ corazón al jugador con la barra de quemado a la mitad. Después la mancha desaparece.
     /// </summary>
-    public class MethaneMist : MonoBehaviour, IFlammable
+    public class MethaneMist : MonoBehaviour, IFlammable, IToxifiable
     {
         // Lo que cubre la mancha, el retardo hasta que el fogonazo daña (cuadro 1 de 70 ms) y hasta que salta a las vecinas.
         static readonly Vector2 Area = new(3.6f, 1.4f);
@@ -30,6 +30,21 @@ namespace Primordia.Rooms
         public Vector2 Position => transform.position;
 
         public bool CanIgnite => !lit;
+
+        public bool CanToxify => !lit;
+
+        public Bounds ToxifyBounds => new((Vector2)transform.position + Vector2.up * Area.y / 2f, Area);
+
+        /// <summary>Aguijón de gas: la mancha de niebla se vuelve una nube tóxica en lugar de arder.</summary>
+        public void Toxify()
+        {
+            if (lit)
+                return;
+            lit = true;
+            Flammables.Unregister(this);
+            ToxicCloud.Spawn(transform.position);
+            Destroy(gameObject);
+        }
 
         internal static MethaneMist Create(Transform parent, Vector2 position, Sprite[] frames, float phase)
         {

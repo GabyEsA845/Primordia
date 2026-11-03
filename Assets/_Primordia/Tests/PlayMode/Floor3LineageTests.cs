@@ -7,6 +7,7 @@ using Primordia.Core;
 using Primordia.Enemies;
 using Primordia.Mutations;
 using Primordia.Player;
+using Primordia.Rooms;
 using UnityEngine;
 using UnityEngine.TestTools;
 
@@ -272,6 +273,67 @@ namespace Primordia.Tests
 
             Assert.AreEqual(1, Parasite.Alive);
             Assert.IsFalse(Parasite.Has(near.Health));
+        }
+
+        // ---------- Toques del piso 3 (tanda 2): Aguijón de gas ----------
+
+        static MethaneCloud SpawnCloud(Vector2 position)
+        {
+            var settings = new MethaneCloud.Settings { damage = 6, lifetime = 8f, speed = 0f, explosionRadius = 2f, fireSeconds = 0f };
+            return MethaneCloud.Spawn(position, Vector2.right, settings, null, null, null);
+        }
+
+        [Test]
+        public void GasSting_ToxifyAlong_TurnsTheMethaneCloudIntoGasInsteadOfExploding()
+        {
+            var cloud = SpawnCloud(new Vector2(5f, 0f));
+            created.Add(cloud.gameObject);
+            var enemy = CreateEnemy(20, new Vector2(5.5f, 0f));
+
+            int count = Flammables.ToxifyAlong(Vector2.zero, new Vector2(8f, 0f), 0.25f);
+
+            Assert.AreEqual(1, count);
+            Assert.IsTrue(cloud.Exploded);
+            // No explotó: el enemigo de al lado sigue entero.
+            Assert.AreEqual(20, enemy.Health.Current);
+        }
+
+        [Test]
+        public void GasSting_ToxifyAlong_IgnoresMethaneOffTheBeam()
+        {
+            var cloud = SpawnCloud(new Vector2(5f, 4f));
+            created.Add(cloud.gameObject);
+
+            Assert.AreEqual(0, Flammables.ToxifyAlong(Vector2.zero, new Vector2(8f, 0f), 0.25f));
+            Assert.IsFalse(cloud.Exploded);
+        }
+
+        [Test]
+        public void GasSting_OtherAttacksStillMakeTheMethaneExplode()
+        {
+            var cloud = SpawnCloud(new Vector2(5f, 0f));
+            created.Add(cloud.gameObject);
+            var enemy = CreateEnemy(20, new Vector2(5.5f, 0f));
+
+            cloud.Health.TakeDamage(1);
+
+            Assert.IsTrue(cloud.Exploded);
+            Assert.AreEqual(14, enemy.Health.Current);
+        }
+
+        [Test]
+        public void MethaneSac_HitBoxCoversTheWholeDrawing_NotJustTheBase()
+        {
+            var parent = Track(new GameObject("Props"));
+            var sac = MethaneSac.Create(parent.transform, Vector2.zero, new Sprite[0], new Sprite[0], null);
+            Physics2D.SyncTransforms();
+            int mask = LayerMask.GetMask(CombatLayers.Enemy);
+
+            // A 1 u de la base, por encima del bloqueo (0,6 u), también recibe los golpes.
+            Assert.IsNotNull(Physics2D.OverlapPoint(new Vector2(0f, 1.0f), mask), "arriba");
+            Assert.IsNotNull(Physics2D.OverlapPoint(new Vector2(0f, 0.3f), mask), "base");
+            Assert.IsNull(Physics2D.OverlapPoint(new Vector2(0f, 1.6f), mask), "por encima del dibujo");
+            Assert.IsNotNull(sac);
         }
 
         // ---------- Parásito: textos ----------

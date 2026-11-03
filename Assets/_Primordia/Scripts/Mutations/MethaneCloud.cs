@@ -14,7 +14,7 @@ namespace Primordia.Mutations
     /// (<see cref="IFlammable"/>): 6 de daño en su radio a todo menos al jugador, prende lo inflamable y, con el Incendio, deja
     /// fuego unos segundos. Ver <see cref="MethaneSacMutation"/>.
     /// </summary>
-    public class MethaneCloud : MonoBehaviour, IFlammable
+    public class MethaneCloud : MonoBehaviour, IFlammable, IToxifiable
     {
         [System.Serializable]
         public struct Settings
@@ -53,6 +53,21 @@ namespace Primordia.Mutations
         public bool CanIgnite => !exploded && !fading;
 
         public bool Exploded => exploded;
+
+        public bool CanToxify => !exploded;
+
+        public Bounds ToxifyBounds => new(transform.position, Vector3.one * BodyRadius * 2f);
+
+        /// <summary>Aguijón de gas: se vuelve nube tóxica en lugar de explotar.</summary>
+        public void Toxify()
+        {
+            if (exploded)
+                return;
+            exploded = true;
+            Flammables.Unregister(this);
+            ToxicCloud.Spawn(transform.position);
+            Destroy(gameObject);
+        }
 
         public Health Health => health;
 

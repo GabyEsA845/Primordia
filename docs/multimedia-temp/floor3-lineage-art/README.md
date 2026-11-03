@@ -5,7 +5,7 @@ Se apoya en los generadores ya aprobados: `floor3-mutations` (parásito), `floor
 (Escupitajo y charco grande), `floor3-polish` (lodo pintado en el cuerpo) y `floor3-environment` (lodo de las escenas).
 
 ```
-"$LOCALAPPDATA/Programs/Python/Python312/python.exe" generar_arte_linajes.py [parasite] [jet] [leech] [fungus] [eryops]
+"$LOCALAPPDATA/Programs/Python/Python312/python.exe" generar_arte_linajes.py [parasite] [jet] [leech] [fungus] [eryops] [zombie] [tinder]
 ```
 
 Sin argumentos lo genera todo. **Importar** (lo hace Sonnet en `feature/floor-3`): Multiple, 16 PPU, Point, sin compresión, cortar por
@@ -104,3 +104,28 @@ Calamites, brote de Calamites y Medullosa. Mantiene su diseño y sus animaciones
 | `Fx_ZombieSporeTrail` | 6 | 12×12 | 90 | abajo, centro | Soplo de esporas que sube y se apaga |
 | `Fx_ZombieRise` | 8 | 48×48 | 65 | abajo, centro | Hilos que suben del suelo, anillo de esporas y destello |
 | `Fx_ZombieCrumble` | 8 | 48×48 | 80 | abajo, centro | Nube de esporas pálidas y trocitos de hongo que caen |
+
+## 7. Yesquero (Yesca): bola de brasa, reventón de brasas y banda chamuscada — `Effects/*Tinder*`
+
+Segunda tanda de Opus (2026-11-03). Sustituye el tinte naranja provisional (`PoisonSpitBall.EmberTint`: quitarlo y dejar el color en blanco) y el estallido
+de fuego genérico. La bola es una **costra de hongo yesquero** seca con grietas al rojo: giran las placas y las grietas, mientras que la luz, las
+llamitas (inclinadas hacia atrás en `side`) y las chispas no giran. Al hincharse, las grietas se abren y se ponen blancas, y la costra se pone al rojo en los cuadros 2, 4 y 5.
+**No deja baba:** el rastro sigue siendo `GroundFire.Spawn` cada `SpitTrailEvery`, ahora con una marca chamuscada debajo.
+
+| Hoja | Cuadros | Celda | ms | Pivote | Uso |
+|---|---|---|---|---|---|
+| `Proj_PoisonSpit_Tinder_Roll_side/down/up` | 8 (bucle) | **32×32** | 135 | apoyo (16, 20,5) → (0,5, 0,359) | Bola rodando. Es la misma regla de direcciones que la verde (izquierda = `side` con *Flip X*) |
+| `Proj_PoisonSpit_Tinder_Swell_side/down/up` | 6 | **32×32** | 100 | apoyo (16, 20,5) | Últimos 0,6 s: crece hasta 1,3, las grietas se abren y blanquean, y la costra se pone al rojo en los cuadros 2, 4 y 5 |
+| `Proj_PoisonSpitSmall_Tinder_Roll_side/down/up` | 4 (bucle) | 12×12 | 110 | apoyo (6, 8,5), como la verde | Bolitas de la Camada (III) |
+| `Fx_PoisonSpit_Tinder_Burst` | 7 | 64×64 | 60 | centro, igual que `Fx_PoisonSpit_Burst` | Reventón de brasas con la forma del verde (radio 1,5 u, tres chorretones): costra al rojo → llamarada → lenguas de fuego, trozos de costra con estela de chispas, ascuas en el suelo y bocanada de humo. **Cuadro que cuenta: el 1.** Después, `LeaveFire` igual que ahora |
+| `Fx_TinderScorch_0…3` | 8 | 20×20 | ver abajo | centro | Marca chamuscada (~13×9 px) en el pie de **cada** `GroundFire` del rastro y del estallido. Se elige una variante al azar |
+
+- **Por qué 32×32:** sin el pie pegajoso, la brasa se dibuja un 20 % mayor (`TINDER_R`) para pesar como la verde, y hinchada no cabe en 24 junto con
+  sus llamas. El apoyo queda 4,5 px por debajo del centro, igual que la verde (12, 16,5 en 24), así que **se coloca en el mismo sitio**. El radio de daño no cambia.
+- **Marca chamuscada:** cuadros 0-1 a 90 ms (aparece), 2-3 en bucle a 200 ms **mientras arde su fuego** (las ascuas titilan) y 4-7 a 350 ms cuando
+  se apaga (1,4 s: las ascuas se apagan y el hollín se desvanece). Después, se destruye. Va por debajo del fuego (orden menor que 6) y por encima del suelo. Si
+  `GroundFire.Spawn` alarga un fuego que ya existía, la marca también se alarga.
+- **Bolitas de la Camada (III):** igual que las de la Sanguijuela (`LeechMiniRoll…`), con el Yesquero las bolitas usan `Proj_PoisonSpitSmall_Tinder_Roll_*`.
+  Su estallido es `Fx_PoisonSpit_Tinder_Burst` escalado por `radius / ArtRadius`, como el verde, y deja un solo fuego (estallido pequeño).
+  Su rastro de fuego también lleva la marca chamuscada.
+- **Rastro:** con un fuego de 2 u cada 0,5 u, el rastro sale como un muro de fuego continuo. **La usuaria lo dejó así** (2026-11-03).

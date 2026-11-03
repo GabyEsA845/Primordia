@@ -13,7 +13,7 @@
 - [Codex aparcado](primordia-codex-paused.md) — trabajar con Codex está archivado; no proponerlo
 
 - [Pulido del piso 3](primordia-floor3-art-batch-pending.md) — HECHO (commits en feature/floor-3): dónde está cada cosa; falta la franja de agua en las patas y el rastro de fuego
-- [Tanda de arte de linajes del piso 3](primordia-floor3-lineage-art-pending.md) — HECHA y aprobada (Opus) en floor3-lineage-art/, sin commit; falta importarla e integrarla en el 4b (Sonnet)
+- [Tanda de arte de linajes del piso 3](primordia-floor3-lineage-art-pending.md) — 1.ª tanda integrada; **2.ª (Yesquero) DIBUJADA y aprobada: integrarla con Sonnet antes del subpaso 5**
 - [Puertas: coronas y marcos laterales](primordia-door-design-pending.md) — HECHAS, integradas y probadas (2026-11-03)
 - [Pasada de arte del paso 3 (Bocas)](primordia-floor3-step3-art-pending.md) — HECHA, integrada, probada y subida (d9244789)
 

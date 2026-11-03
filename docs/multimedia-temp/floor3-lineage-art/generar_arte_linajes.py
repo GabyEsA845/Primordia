@@ -2,9 +2,10 @@
 
 Hecho con la skill primordia-sprites (pixel.py): 16 px por unidad, luz arriba a la izquierda, contorno OUTL.
 Piezas: parásito grande (Lamprea), chorro venenoso (Pulmonoscorpius), Escupitajo sangriento (Sanguijuela),
-matas de hongo (clase Hongo) y lodo del Eryops (solo Diplocaulus, Peonza).
+matas de hongo (clase Hongo), lodo del Eryops (solo Diplocaulus, Peonza), zombis del Cordyceps y, en la 2.ª tanda,
+la brasa del Yesquero (bola, reventón de brasas y banda chamuscada).
 
-Uso: python generar_arte_linajes.py [parasite] [jet] [leech] [fungus] [eryops]   (sin argumentos: todo)
+Uso: python generar_arte_linajes.py [parasite] [jet] [leech] [fungus] [eryops] [zombie] [tinder]   (sin argumentos: todo)
 """
 import math, os, sys
 
@@ -1274,8 +1275,314 @@ def zombie_all():
 
 
 # =================================================================================================
+# 7. Yesquero (Yesca): la bola del Escupitajo es una brasa de hongo yesquero que rueda ardiendo
+#    Misma celda, apoyo, radio y ms que la bola verde (floor3-spit). Es una costra seca: sin baba, sin pie pegajoso.
+#    Lo que gira son las placas de la costra y sus grietas al rojo; la luz, las llamitas y las chispas no giran.
+# =================================================================================================
+sys.path.insert(0, os.path.join(HERE, '..', 'floor3-spit'))
+import generar_escupitajo as SP                           # AXES, _rot, _norm, BALL_R, SMALL_R, CONTACT, ms de la bola
+
+CRUST = ['#1e1618', '#3a2a24', '#5c4430', '#806446', '#a48a66']       # yesca seca y chamuscada
+CRUST_HOT = ['#4a1814', '#7a2c1c', '#a84a26', '#d07a3a', '#f0b060']   # costra al rojo (parpadeo del hinchado)
+EMB = M.EMBER                                             # ascuas del piso 3
+WHITE_HOT = '#fff4c0'
+ASHC = '#8c8078'                                          # motas de ceniza sobre las placas (solo en la cara de luz)
+TINDER_R = 1.2                                            # la costra no se aplasta ni lleva pie: algo mayor para pesar como la verde
+_rs = random.Random(41)
+CRACK_SEEDS = [SP._norm((_rs.uniform(-1, 1), _rs.uniform(-1, 1), _rs.uniform(-1, 1))) for _ in range(9)]
+ASH_PTS = [SP._norm(v) for v in ((.4, -.6, .7), (-.7, -.2, .68), (.2, .5, -.84), (-.3, .8, .5), (.8, .1, -.6))]
+TINDER_CELL = 32                                          # la brasa hinchada y sus llamas no caben en 24: celda de 32
+TINDER_CONTACT = (16, 16 + SP.CONTACT[24][1] - 12)      # mismo apoyo respecto al centro que la verde (pivote centrado)
+TINDER_FX = os.path.normpath(os.path.join(HERE, '..', 'floor3-mutations', 'Effects'))
+
+
+def _dot(a, b): return a[0] * b[0] + a[1] * b[1] + a[2] * b[2]
+
+
+def tinder_flame(cv, x, y, h, ph, w=1.6, lean=0.0):
+    """Llamita de h px que sale de la costra; lean < 0 la tumba hacia atrás (va rodando a la derecha)."""
+    for k in range(int(h)):
+        t = k / h
+        ww = (1 - t) * w
+        sway = math.sin(ph + t * 3) * t * 1.1 + lean * t * t
+        for d in range(-int(ww + .5), int(ww + .5) + 1):
+            col = FIRE[4] if t < .25 and d == 0 else FIRE[3] if t < .45 else FIRE[2] if t < .75 else FIRE[1]
+            cv.put(x + d + sway, y - k, C(col))
+
+
+def ember_ball(cv, view, th, r, contact, swell=0.0, flash=False, ph=0.0, small=False):
+    """Brasa de yesca apoyada en contact. th: ángulo girado; swell 0..1 hincha hasta 1,3 y abre las grietas."""
+    gx, gy = contact
+    r = r * TINDER_R * (1 + .3 * swell)
+    sx, sy = (1.04, .96) if view == 'side' else (1.0, .97)
+    cx, cy = gx, gy - r * .95 * sy
+    for y in range(int(gy - 2), int(gy + 3)):                           # sombra de contacto y el suelo iluminado
+        for x in range(int(gx - r * 1.6), int(gx + r * 1.6) + 1):
+            d = ((x + .5 - gx) / (r * 1.15)) ** 2 + ((y + .5 - gy - .6) / 1.9) ** 2
+            if d <= 1: cv.put(x, y, C(hexc(OUTL), 110))
+            elif d <= 1.45: cv.put(x, y, C(EMB[2], int(38 + 60 * swell)))     # el suelo recoge el resplandor
+    t = Canvas(cv.w, cv.h)
+    inside = lambda x, y: ((x - cx) / (r * sx)) ** 2 + ((y - cy) / (r * sy)) ** 2 <= 1
+    fill(t, inside, cx, cy, r * 1.1 * sx, r * 1.1 * sy, CRUST_HOT if flash else CRUST,
+         box=(cx - r - 2, cy - r - 2, cx + r + 2, cy + r + 2))
+    k = SP.AXES[view]
+    w = (.10 if small else .06) + .16 * swell                            # ancho de las grietas (se abren al hincharse)
+    hot = flash or swell > .55
+    for (x, y) in list(t.px):
+        nx, ny = (x + .5 - cx) / (r * sx), (y + .5 - cy) / (r * sy)
+        nz = math.sqrt(max(0.0, 1 - nx * nx - ny * ny))
+        v = SP._rot((nx, ny, nz), k, -th)
+        d = sorted((_dot(v, s) for s in CRACK_SEEDS), reverse=True)
+        e = d[0] - d[1]
+        if e < w * (.5 + .5 * nz):                                       # en el canto, las grietas se ven más finas
+            core = e < w * .4
+            c = (WHITE_HOT if core else EMB[3]) if hot else (EMB[3] if core else EMB[2])
+            t.px[(x, y)] = C(c)
+        elif not small and not hot and nx + ny < -.2 and any(_dot(v, a) > .985 for a in ASH_PTS):
+            t.px[(x, y)] = C(ASHC)
+    t.outline(); t.clean()
+    for p, c in t.px.items(): cv.px[p] = c
+    lean = -1.6 if view == 'side' else 0.0                               # el aire de la carrera tumba las llamas
+    tops = [(0.0, 1.0)] if small else [(-.5, .7), (.05, 1.0), (.55, .75)]
+    for j, (ox, hk) in enumerate(tops):
+        fx = cx + ox * r * sx
+        fy = cy - r * sy * math.sqrt(1 - ox * ox) * .8 + 1
+        h = (2.6 if small else 4.2) * hk * (1 + .7 * swell) + math.sin(ph * 2 * math.pi + j * 2.1)
+        h = min(h, fy - .5)                                              # que no se salgan de la celda
+        tinder_flame(cv, fx, fy, max(1.5, h), ph * 2 * math.pi + j * 1.7, w=.9 if small else 1.4 + .4 * swell, lean=lean)
+    for s in range(1 if small else 3 + int(2 * swell)):                  # chispas que suben y se quedan atrás
+        u = (ph + s / (1 if small else 3 + int(2 * swell))) % 1
+        x = cx + math.sin(s * 2.3) * r * .4 + (-u * 5 if view == 'side' else math.sin(u * 6 + s) * 1.5)
+        y = cy - r * sy - (0 if small else 1) - u * (1.6 if small else 7)
+        if y >= 1: cv.put(x, y, C(EMB[4] if u < .3 else EMB[3] if u < .6 else EMB[2], int(255 * (1 - u * .5))))
+    return cv
+
+
+def tinder_roll(view, n=8):
+    return [ember_ball(Canvas(TINDER_CELL), view, i / n * 2 * math.pi, SP.BALL_R, TINDER_CONTACT, ph=2 * i / n) for i in range(n)]
+
+
+def tinder_swell(view):
+    """6 cuadros de 100 ms como la verde: sigue rodando, crece a 1,3, las grietas se abren y blanquean, parpadea en 2, 4 y 5."""
+    return [ember_ball(Canvas(TINDER_CELL), view, i / 8 * 2 * math.pi, SP.BALL_R, TINDER_CONTACT, swell=(i + 1) / 6,
+                       flash=i in (2, 4, 5), ph=i / 3) for i in range(6)]
+
+
+def tinder_small(view):
+    return [ember_ball(Canvas(12), view, i / 4 * 2 * math.pi, SP.SMALL_R, SP.CONTACT[12], ph=i / 4, small=True)
+            for i in range(4)]
+
+
+BURST_N = 64                                             # celda del reventón, como Fx_PoisonSpit_Burst
+SMOKEC = M.SMOKE
+CHAR = M.CARBON
+
+
+def _fire_blob(cv, lobes, heat, box):
+    """Llamarada por metabolas: cuanto más dentro, más caliente (heat 0..1 sube todo el tono). Borde rojo oscuro."""
+    x0, y0, x1, y1 = box
+    t = Canvas(cv.w, cv.h)
+    for y in range(max(0, int(y0)), min(cv.h, int(y1) + 1)):
+        for x in range(max(0, int(x0)), min(cv.w, int(x1) + 1)):
+            f = sum(rr * rr / max(.01, (x + .5 - lx) ** 2 + (y + .5 - ly) ** 2) for lx, ly, rr in lobes)
+            if f < 1: continue
+            t.px[(x, y)] = C(FIRE[min(4, int((f - 1) * .55 + heat * 1.4) + 1)])
+    t.outline(C(FIRE[0]))
+    for p, c in t.px.items(): cv.px[p] = c
+
+
+def _chunk(cv, x, y, r):
+    """Trozo de costra que vuela: placa oscura con el canto al rojo."""
+    t = Canvas(cv.w, cv.h)
+    if r < 1.1:
+        t.put(x, y, C(CRUST[1])); t.put(x + 1, y, C(EMB[3]))
+    else:
+        ellipse(t, x, y, r, r * .85, CRUST[:4])
+        t.put_in(x + r * .5, y + r * .4, C(EMB[3]))
+        t.put_in(x + r * .5 - 1, y + r * .4, C(EMB[2]))
+        t.outline()
+    for p, c in t.px.items(): cv.px.setdefault(p, c)
+
+
+def _smoke(cv, x, y, r, a):
+    """Bocanada de humo: redonda, clara arriba a la izquierda y con el borde deshilachado."""
+    for yy in range(int(y - r) - 1, int(y + r) + 2):
+        for xx in range(int(x - r) - 1, int(x + r) + 2):
+            d = ((xx + .5 - x) / r) ** 2 + ((yy + .5 - y) / (r * .85)) ** 2
+            if d > 1 or (d > .8 and (xx + yy) % 2): continue
+            k = 3 if (xx - x) + (yy - y) < -r * .5 else 2 if d < .5 else 1
+            cv.put_out(xx, yy, C(SMOKEC[k], a))
+
+
+def tinder_burst_frame(i):
+    """Reventón de brasas, radio 1,5 u (24 px) y la misma forma que el verde: la costra al rojo se aplasta, revienta en
+    lenguas de fuego hacia los tres chorretones, los trozos de costra salen volando con estela de chispas y caen como
+    ascuas, y queda una bocanada de humo. Cuadro que cuenta: el 1. Después el código enciende el fuego del suelo."""
+    cv = Canvas(BURST_N); c = BURST_N / 2
+    tongues, drops = SP._splat_plan()
+    rnd = random.Random(12)
+    if i == 0:                                              # se aplasta contra el suelo, al rojo y rajada
+        return ember_ball(cv, 'down', .4, SP.BALL_R * 1.15, (c, c + 7), swell=.9, flash=True, ph=.2)
+    prog = (0, 0, .55, .8, .95, 1.0, 1.0)[i]
+    if i >= 2:                                              # humo: nace en el centro y sube
+        u = (i - 2) / 4
+        for dx, dy, rr in ((-3, 0, 5.5), (3, -2, 5.0), (0, -5, 4.5)):
+            _smoke(cv, c + dx * (1 + u), c - 2 + dy - u * 12, rr * (.6 + .6 * u), int(200 * (1 - u * .7)))
+    if i <= 4:                                              # lenguas de fuego: se abren hacia los chorretones y suben
+        heat = (1.0, 1.0, .7, .35, 0)[i]
+        lobes = [] if i >= 3 else [(c, c - (i - 1) * 2, 7.0 - (i - 1) * 2.5)]
+        for (a, ln, th) in tongues:
+            for j in range(1, 4):
+                out = (4 + 3.2 * j) * ln * (1 + .5 * (i - 1))
+                rr = (4.2 - j) * th * (1, 1, .85, .6, .4)[i]
+                if rr > .6: lobes.append((c + math.cos(a) * out, c + math.sin(a) * out * .82 - (i - 1) * 2.5 * j, rr))
+        if i == 1:
+            for k in range(5):
+                a = rnd.uniform(0, 2 * math.pi); lobes.append((c + math.cos(a) * 5, c + math.sin(a) * 4, rnd.uniform(2, 3.4)))
+        _fire_blob(cv, lobes, heat, (c - 26, c - 26, c + 26, c + 22))
+        if i >= 3:                                          # puntas de llama que siguen ardiendo un momento
+            for (a, ln, th) in tongues:
+                out = (4 + 3.2 * 3) * ln * (1 + .5 * (i - 1)) * .78
+                tinder_flame(cv, c + math.cos(a) * out, c + math.sin(a) * out * .82 + 2, 6 - 2 * (i - 3), i + a, w=1.3)
+    for (a, d, sz) in drops:                                 # trozos de costra
+        if i == 1:
+            if d >= .6: _chunk(cv, c + math.cos(a) * 13 * d, c + math.sin(a) * 11 * d, 1.2 * sz)
+            continue
+        dist = 24 * d * prog
+        x, y = c + math.cos(a) * dist, c + math.sin(a) * dist * .82
+        if i <= 4:
+            _chunk(cv, x, y, max(.7, (1.5 - .2 * (i - 2)) * sz))
+            if d * sz > .7:                                  # estela de chispas
+                for k in (1, 2, 3):
+                    cv.put_out(c + math.cos(a) * (dist - 2.2 * k), c + math.sin(a) * (dist - 2.2 * k) * .82,
+                               C(EMB[4 - k], 255 - 50 * k))
+        else:                                                # en el suelo: ascuas que se apagan
+            cv.put(x, y, C(EMB[3] if i == 5 else EMB[2])); cv.put(x - 1, y, C(EMB[1]))
+            if sz > 1 and i == 5: cv.put(x, y - 1, C(EMB[2]))
+    if i <= 2: sparks(cv, c - 3, c - 6, 3 - i)
+    return cv
+
+
+# --- Banda chamuscada: una marca bajo cada fuego del rastro (en su pie, cada 0,5 u) ---------------------------------
+SCORCH_N = 20
+SCORCH_VARIANTS = [(6.4, 4.4, 11), (7.0, 4.8, 23), (5.8, 4.2, 37), (6.8, 4.0, 52)]   # (rx, ry, semilla)
+SCORCH_MS = {'appear': 90, 'hold': 200, 'cool': 350}
+
+
+def scorch_frame(k, i):
+    """Marca de quemado de ~13×9 px. 0-1 aparece, 2-3 ascuas que titilan (bucle mientras arde su fuego),
+    4-7 se enfría: las ascuas se apagan y el hollín se desvanece."""
+    rx, ry, seed = SCORCH_VARIANTS[k]
+    rnd = random.Random(seed)
+    cv = Canvas(SCORCH_N); c = SCORCH_N / 2
+    bumps = [(rnd.uniform(0, 2 * math.pi), rnd.uniform(.75, 1.15)) for _ in range(3)]
+    def radius(ang):
+        return 1 + .18 * sum(math.cos(ang * (j + 2) + a) * (b - .95) * 3 for j, (a, b) in enumerate(bumps))
+    grow = (.65, 1, 1, 1, 1, 1, .96, .9)[i]
+    alpha = (230, 230, 230, 230, 225, 200, 140, 70)[i]
+    embers = [(rnd.uniform(-.7, .7), rnd.uniform(-.6, .6)) for _ in range(7)]
+    ash = [(rnd.uniform(-.6, .6), rnd.uniform(-.5, .5)) for _ in range(4)]
+    for y in range(SCORCH_N):
+        for x in range(SCORCH_N):
+            dx, dy = (x + .5 - c) / (rx * grow), (y + .5 - c) / (ry * grow)
+            q = math.hypot(dx, dy) / radius(math.atan2(dy, dx))
+            if q > 1 or (q > .82 and (x + y + (i > 5)) % 2): continue      # borde punteado: se funde con el suelo
+            col = CHAR[0] if q < .45 else CHAR[1] if q < .8 else CHAR[2]
+            cv.put(x, y, C(col, alpha if q < .82 else int(alpha * .7)))
+    if i < 6:
+        for (ax, ay) in ash: cv.put_in(c + ax * rx, c + ay * ry, C(CHAR[3], alpha))
+    lit = {0: 5, 1: 7, 2: 6, 3: 6, 4: 3, 5: 1}.get(i, 0)
+    for j, (ex, ey) in enumerate(embers[:lit]):
+        if i in (2, 3) and (j + i) % 3 == 0: col = EMB[4]
+        elif i >= 4: col = EMB[1] if i == 5 else EMB[2]
+        else: col = EMB[3] if j % 2 else EMB[2]
+        cv.put_in(c + ex * rx * grow, c + ey * ry * grow, C(col))
+    return cv
+
+
+def tinder_scene(T):
+    """Dos filas: Escupitajo normal (deja baba, revienta y deja charco) y Yesquero (fuego cada 0,5 u que dura 3 s con la
+    marca chamuscada debajo; revienta en brasas y deja 5 fuegos, como PoisonSpitBurst.LeaveFire)."""
+    W, H = 216, 120
+    bg = ground(W, H)
+    fire = load_sheet(os.path.join(TINDER_FX, 'Fx_GroundFire.png'), 32)
+    old = lambda n: sheet_frames(os.path.join(SPIT, n + '.png'))
+    g_roll, g_swell, g_burst = old('Proj_PoisonSpit_Roll_side'), old('Proj_PoisonSpit_Swell_side'), old('Fx_PoisonSpit_Burst')
+    g_ap, g_idle = old('Fx_PoisonSplat_Appear'), old('Fx_PoisonSplat_Idle')
+    rims = [old(f'Fx_SlimeTrail_Rim_{k}') for k in range(6)]; bodies = [old(f'Fx_SlimeTrail_Body_{k}') for k in range(6)]
+    x0, x1, roll_end, swell_end = 16, 150, 2.4, 3.0
+    FIRE_S, COOL = 3.0, 4 * SCORCH_MS['cool'] / 1000
+    def scorch_idx(age):
+        if age < .09: return 0
+        if age < .18: return 1
+        if age < FIRE_S: return 2 + int(age / .2) % 2
+        return min(7, 4 + int((age - FIRE_S) / (SCORCH_MS['cool'] / 1000)))
+    frames = []
+    gy, gy2 = 34, 96
+    for f in range(150):                                     # 7,5 s
+        im = bg.copy(); t = f * SCENE_MS / 1000
+        bx = x0 + (x1 - x0) * min(1, t / roll_end)
+        seals = []                                           # fila 1: normal
+        for sx in range(x0, int(bx) - 4, 4):
+            age = t - (sx - x0) / (x1 - x0) * roll_end
+            vr = random.Random(sx).choice((0, 1, 1, 2, 2, 3, 3, 4, 4, 0, 1, 5))
+            if age < 3.0: seals.append((sx, vr, 2 if age < 2.5 else min(7, 3 + int((age - 2.5) / .1))))
+        for sx, vr, fi in seals: paste_c(im, rims[vr][fi], sx, gy)
+        for sx, vr, fi in seals: paste_c(im, bodies[vr][fi], sx, gy)
+        fires = [(sx, gy2, (sx - x0) / (x1 - x0) * roll_end) for sx in range(x0, int(bx) + 1, 8)]   # fila 2: Yesquero
+        if t >= swell_end + .06:
+            for dx, dy in ((0, 0), (-13, 0), (13, 0), (0, -13), (0, 13)): fires.append((x1 + dx, gy2 + dy, swell_end + .06))
+        for fx, fy, t0 in fires:
+            age = t - t0
+            if 0 <= age < FIRE_S + COOL: paste_c(im, T['scorch'][(fx // 8 + fy) % 4][scorch_idx(age)], fx, fy)
+        for fx, fy, t0 in sorted(fires, key=lambda q: q[1]):
+            if 0 <= t - t0 < FIRE_S: im.alpha_composite(fire[(f * SCENE_MS // 100 + fx) % 6], (fx - 16, fy - 21))
+        for gyy, roll, swell in ((gy, g_roll, g_swell), (gy2, T['roll'], T['swell'])):
+            fr = as_img(roll[int(t * 1000 / SP.ROLL_MS) % 8]) if t < roll_end else as_img(swell[min(5, int((t - roll_end) * 10))]) if t < swell_end else None
+            if fr: im.alpha_composite(fr, (int(bx - fr.width / 2), int(gyy - fr.height / 2 - 4.5)))
+        if t >= swell_end:
+            k = int((t - swell_end) * 1000 / 90)
+            paste_c(im, g_ap[k] if k < len(g_ap) else g_idle[(k - len(g_ap)) % len(g_idle)], x1, gy)
+            kb = int((t - swell_end) * 1000 / 60)
+            if kb < len(g_burst): paste_c(im, g_burst[kb], x1, gy - 3)
+            if kb < 7: paste_c(im, T['burst'][kb], x1, gy2 - 3)
+        frames.append(im)
+    save_scene('escena_escupitajo_normal_vs_yesquero', frames,
+               [('Escupitajo normal', 4, 2), ('Linaje Yesquero', 4, 62)], keys=[16, 40, 61, 63, 66, 100, 140])
+
+
+def tinder_all():
+    T = {}
+    for v in ('side', 'down', 'up'):
+        T[f'Proj_PoisonSpit_Tinder_Roll_{v}'] = tinder_roll(v)
+        T[f'Proj_PoisonSpit_Tinder_Swell_{v}'] = tinder_swell(v)
+        T[f'Proj_PoisonSpitSmall_Tinder_Roll_{v}'] = tinder_small(v)
+    T['Fx_PoisonSpit_Tinder_Burst'] = [tinder_burst_frame(i) for i in range(7)]
+    for k in range(4): T[f'Fx_TinderScorch_{k}'] = [scorch_frame(k, i) for i in range(8)]
+    for name, frames in T.items(): save('Effects/' + name + '.png', frames)
+    old = lambda n: sheet_frames(os.path.join(SPIT, n + '.png'))
+    rows = {'Normal Roll side': old('Proj_PoisonSpit_Roll_side')}
+    for v in ('side', 'down', 'up'): rows[f'Yesquero Roll {v}'] = T[f'Proj_PoisonSpit_Tinder_Roll_{v}']
+    rows['Normal Swell side'] = old('Proj_PoisonSpit_Swell_side')
+    for v in ('side', 'down', 'up'): rows[f'Yesquero Swell {v}'] = T[f'Proj_PoisonSpit_Tinder_Swell_{v}']
+    rows['Normal Small side'] = old('Proj_PoisonSpitSmall_Roll_side')
+    for v in ('side', 'down', 'up'): rows[f'Yesquero Small {v}'] = T[f'Proj_PoisonSpitSmall_Tinder_Roll_{v}']
+    preview(os.path.join(OUT, 'vista_previa_yesquero_bola.png'), rows, BG, scale=6)
+    rows = {'Normal Burst': old('Fx_PoisonSpit_Burst'), 'Yesquero Burst': T['Fx_PoisonSpit_Tinder_Burst']}
+    for k in range(4): rows[f'Chamuscado {k} (0-7)'] = T[f'Fx_TinderScorch_{k}']
+    preview(os.path.join(OUT, 'vista_previa_yesquero_efectos.png'), rows, BG, scale=4)
+    for name, ms in (('Proj_PoisonSpit_Tinder_Roll_side', SP.ROLL_MS), ('Proj_PoisonSpit_Tinder_Swell_side', SP.SWELL_MS),
+                     ('Proj_PoisonSpitSmall_Tinder_Roll_side', SP.SMALL_MS)):
+        gifs(name, T[name], ms, 8)
+    gifs('Fx_PoisonSpit_Tinder_Burst', T['Fx_PoisonSpit_Tinder_Burst'], 60, 5)
+    tinder_scene({'roll': T['Proj_PoisonSpit_Tinder_Roll_side'], 'swell': T['Proj_PoisonSpit_Tinder_Swell_side'],
+                  'burst': T['Fx_PoisonSpit_Tinder_Burst'], 'scorch': [T[f'Fx_TinderScorch_{k}'] for k in range(4)]})
+
+
+# =================================================================================================
 if __name__ == '__main__':
-    want = set(sys.argv[1:]) or {'parasite', 'jet', 'leech', 'fungus', 'eryops', 'zombie'}
+    want = set(sys.argv[1:]) or {'parasite', 'jet', 'leech', 'fungus', 'eryops', 'zombie', 'tinder'}
+    if 'tinder' in want: tinder_all()
     if 'parasite' in want: parasite_sheets()
     if 'jet' in want: jet_all()
     if 'leech' in want: leech_all()

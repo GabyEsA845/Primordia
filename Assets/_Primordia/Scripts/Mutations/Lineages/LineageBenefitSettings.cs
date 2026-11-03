@@ -75,6 +75,22 @@ namespace Primordia.Mutations
         [Tooltip("Radio de la mata grande respecto a la mediana (27 px / 19 px del dibujo).")]
         [Min(1f)] public float floor3LargeMatScale = 1.42f;
 
+        [System.Serializable]
+        public struct FrameSet
+        {
+            public Sprite[] frames;
+        }
+
+        [Header("Cordyceps: Zombi")]
+        [Tooltip("Segundos que dura el aliado levantado.")]
+        [Min(0.5f)] public float zombieSeconds = 4f;
+        [Tooltip("Hongos del lomo: 4 variantes (brota y se mece), la estela de esporas y el levantarse y caer.")]
+        public FrameSet[] zombieFungusSprout = System.Array.Empty<FrameSet>();
+        public FrameSet[] zombieFungusIdle = System.Array.Empty<FrameSet>();
+        public Sprite[] zombieSporeTrail = System.Array.Empty<Sprite>();
+        public Sprite[] zombieRise = System.Array.Empty<Sprite>();
+        public Sprite[] zombieCrumble = System.Array.Empty<Sprite>();
+
         [Header("Toques del piso 3")]
         [Tooltip("Charca de sanguijuelas: daño por segundo de más de los charcos y la baba del jugador.")]
         [Min(0)] public int leechPuddleBonus = 1;

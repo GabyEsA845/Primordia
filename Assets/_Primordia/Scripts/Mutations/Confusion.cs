@@ -121,7 +121,7 @@ namespace Primordia.Mutations
             float bestDistance = SearchRange * SearchRange;
             foreach (var enemy in FindObjectsByType<Enemy>())
             {
-                if (enemy.gameObject == gameObject || enemy.Health == null || enemy.Health.IsDead)
+                if (enemy.gameObject == gameObject || enemy.Health == null || enemy.Health.IsDead || enemy.TryGetComponent<ZombieAlly>(out _))
                     continue;
                 float distance = ((Vector2)enemy.transform.position - (Vector2)transform.position).sqrMagnitude;
                 if (distance < bestDistance)

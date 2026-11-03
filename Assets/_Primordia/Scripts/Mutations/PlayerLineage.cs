@@ -242,6 +242,18 @@ namespace Primordia.Mutations
                     Add<CentipedeTouch>().Configure(b.centipedePuddleSeconds);
                     break;
 
+                case LineageTouch.Zombie:
+                    var zombieArt = new ZombieAlly.Art
+                    {
+                        FungusSprout = System.Array.ConvertAll(b.zombieFungusSprout ?? new LineageBenefitSettings.FrameSet[0], set => set.frames),
+                        FungusIdle = System.Array.ConvertAll(b.zombieFungusIdle ?? new LineageBenefitSettings.FrameSet[0], set => set.frames),
+                        SporeTrail = b.zombieSporeTrail ?? new Sprite[0],
+                        Rise = b.zombieRise ?? new Sprite[0],
+                        Crumble = b.zombieCrumble ?? new Sprite[0],
+                    };
+                    Add<ZombieTouch>().Configure(b.zombieSeconds, zombieArt);
+                    break;
+
                 case LineageTouch.LeechPool:
                     var leechParasites = BenefitOf<ParasiteBenefit>();
                     if (leechParasites != null)

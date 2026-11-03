@@ -80,10 +80,10 @@ namespace Primordia.Tests
             return data;
         }
 
-        Enemy CreateEnemy(int maxHealth, Vector2 position = default)
+        Enemy CreateEnemy(int maxHealth, Vector2 position = default, float moveSpeed = 0f)
         {
             var data = Track(ScriptableObject.CreateInstance<EnemyData>());
-            data.Configure(EnemyBehaviour.Chaser, maxHealth: maxHealth, moveSpeed: 0f, detectionRange: 0f, contactDamage: 0);
+            data.Configure(EnemyBehaviour.Chaser, maxHealth: maxHealth, moveSpeed: moveSpeed, detectionRange: 0f, contactDamage: 0);
             var go = Track(new GameObject("Enemy") { layer = LayerMask.NameToLayer(CombatLayers.Enemy) });
             go.transform.position = position == default ? new Vector3(10f, 0f, 0f) : (Vector3)position;
             go.AddComponent<CircleCollider2D>().radius = 0.4f;
@@ -334,6 +334,115 @@ namespace Primordia.Tests
             Assert.IsNotNull(Physics2D.OverlapPoint(new Vector2(0f, 0.3f), mask), "base");
             Assert.IsNull(Physics2D.OverlapPoint(new Vector2(0f, 1.6f), mask), "por encima del dibujo");
             Assert.IsNotNull(sac);
+        }
+
+        // ---------- Toques del piso 3 (tanda 3): Zombi del Cordyceps ----------
+
+        [Test]
+        public void Health_LethalInterceptor_LeavesOneLifeInsteadOfDying()
+        {
+            var enemy = CreateEnemy(10);
+            System.Func<Health, bool> interceptor = h => h == enemy.Health;
+            Health.AddLethalInterceptor(interceptor);
+            try
+            {
+                enemy.Health.TakeDamage(50);
+                Assert.IsFalse(enemy.Health.IsDead);
+                Assert.AreEqual(1, enemy.Health.Current);
+            }
+            finally
+            {
+                Health.RemoveLethalInterceptor(interceptor);
+            }
+            enemy.Health.TakeDamage(5);
+            Assert.IsTrue(enemy.Health.IsDead);
+        }
+
+        Enemy ConfusedEnemy(int health, Vector2 position)
+        {
+            var enemy = CreateEnemy(health, position, moveSpeed: 2f);
+            Assert.IsNotNull(Confusion.Apply(enemy.Health, 10f, false, null, null, null));
+            return enemy;
+        }
+
+        [UnityTest]
+        public IEnumerator Zombie_ConfusedEnemyThatWouldDie_RisesAndCannotBeHurt()
+        {
+            Complete(LineageClass.Fungal, LineageTouch.Zombie);
+            var touch = player.GetComponent<ZombieTouch>();
+            var enemy = ConfusedEnemy(10, new Vector2(10f, 0f));
+            CreateEnemy(100, new Vector2(14f, 0f), moveSpeed: 2f);
+
+            enemy.Health.TakeDamage(50);
+
+            Assert.IsFalse(enemy.Health.IsDead);
+            Assert.AreEqual(1, enemy.Health.Current);
+            Assert.IsNotNull(enemy.GetComponent<ZombieAlly>());
+            Assert.AreEqual(1, touch.Raised);
+
+            yield return null;
+            Assert.IsFalse(enemy.Health.TakeDamage(5), "intocable mientras es aliado");
+            Assert.IsFalse(enemy.Health.IsDead);
+        }
+
+        [UnityTest]
+        public IEnumerator Zombie_FallsForRealWhenItsTimeIsUp()
+        {
+            lineage.ConfigureBenefits(new LineageBenefitSettings { zombieSeconds = 0.6f });
+            Complete(LineageClass.Fungal, LineageTouch.Zombie);
+            var enemy = ConfusedEnemy(10, new Vector2(10f, 0f));
+            CreateEnemy(100, new Vector2(14f, 0f), moveSpeed: 2f);
+            var health = enemy.Health;
+            enemy.Health.TakeDamage(50);
+            Assert.IsFalse(health.IsDead);
+
+            yield return new WaitForSeconds(1.3f);
+
+            Assert.IsTrue(health == null || health.IsDead);
+        }
+
+        [UnityTest]
+        public IEnumerator Zombie_FallsAtOnceWhenThereIsNobodyLeftToFight()
+        {
+            Complete(LineageClass.Fungal, LineageTouch.Zombie);
+            var enemy = ConfusedEnemy(10, new Vector2(10f, 0f));
+            var health = enemy.Health;
+            health.TakeDamage(50);
+            Assert.IsFalse(health.IsDead);
+
+            // Pasada la subida (0,5 s) y sin más enemigos, cae sin esperar los 4 s.
+            yield return new WaitForSeconds(0.9f);
+
+            Assert.IsTrue(health == null || health.IsDead);
+        }
+
+        [Test]
+        public void Zombie_NotConfusedOrNotMobile_DiesNormally()
+        {
+            Complete(LineageClass.Fungal, LineageTouch.Zombie);
+            var plain = CreateEnemy(10, new Vector2(10f, 0f), moveSpeed: 2f);
+            plain.Health.TakeDamage(50);
+            Assert.IsTrue(plain.Health.IsDead, "sin confundir");
+
+            var still = CreateEnemy(10, new Vector2(12f, 0f), moveSpeed: 0f);
+            Confusion.Apply(still.Health, 10f, false, null, null, null);
+            still.Health.TakeDamage(50);
+            Assert.IsTrue(still.Health.IsDead, "inmóvil (planta o trampa)");
+        }
+
+        [UnityTest]
+        public IEnumerator Zombie_AlliesAreNotTargetsOfConfusedEnemies()
+        {
+            Complete(LineageClass.Fungal, LineageTouch.Zombie);
+            var ally = ConfusedEnemy(10, new Vector2(10f, 0f));
+            ally.Health.TakeDamage(50);
+            var other = ConfusedEnemy(100, new Vector2(11f, 0f));
+
+            // La confusión busca objetivo en su primer Update.
+            yield return null;
+            var confusion = other.GetComponent<Confusion>();
+            // El único otro enemigo es un aliado: no hay a quién atacar.
+            Assert.IsNull(confusion.Target);
         }
 
         // ---------- Toques del piso 3 (tanda 2c): matas de hongo ----------

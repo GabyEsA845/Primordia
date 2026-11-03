@@ -480,6 +480,74 @@ MonoBehaviour:
     - {fileID: 9055024761921583350, guid: fc1a66d4f53217e4bbaaa0814809023f, type: 3}
     - {fileID: 3450315939472373309, guid: 06a7f272b5bbf424fbf9a8f6b9a7737c, type: 3}
     floor3LargeMatScale: 1.42
+    zombieSeconds: 4
+    zombieFungusSprout:
+    - frames:
+      - {fileID: 1312843906972447142, guid: bf22660b1681b1b4d9f631c5d7a19a8e, type: 3}
+      - {fileID: 1783801517420421310, guid: bf22660b1681b1b4d9f631c5d7a19a8e, type: 3}
+      - {fileID: -7638608775767448742, guid: bf22660b1681b1b4d9f631c5d7a19a8e, type: 3}
+      - {fileID: -4285527920701480745, guid: bf22660b1681b1b4d9f631c5d7a19a8e, type: 3}
+    - frames:
+      - {fileID: -6649457911057225982, guid: 9fdec4e9512bd02479653d4c7e219992, type: 3}
+      - {fileID: -8237106293958523182, guid: 9fdec4e9512bd02479653d4c7e219992, type: 3}
+      - {fileID: 1765647479985644296, guid: 9fdec4e9512bd02479653d4c7e219992, type: 3}
+      - {fileID: -317531221467523096, guid: 9fdec4e9512bd02479653d4c7e219992, type: 3}
+    - frames:
+      - {fileID: -3033558696937032769, guid: 14932f2c3f161c74b9980cfd0412d332, type: 3}
+      - {fileID: -1739234625, guid: 14932f2c3f161c74b9980cfd0412d332, type: 3}
+      - {fileID: 1611047359, guid: 14932f2c3f161c74b9980cfd0412d332, type: 3}
+      - {fileID: 293983167, guid: 14932f2c3f161c74b9980cfd0412d332, type: 3}
+    - frames:
+      - {fileID: -2299606036783860027, guid: c9168bfdba36b104ea9ea86b03582d4f, type: 3}
+      - {fileID: 6298894231733376594, guid: c9168bfdba36b104ea9ea86b03582d4f, type: 3}
+      - {fileID: 1108497947, guid: c9168bfdba36b104ea9ea86b03582d4f, type: 3}
+      - {fileID: 58689713, guid: c9168bfdba36b104ea9ea86b03582d4f, type: 3}
+    zombieFungusIdle:
+    - frames:
+      - {fileID: -2365388256782667407, guid: c4183732413c5c64a8f52ec71cc2ffb1, type: 3}
+      - {fileID: 3662651544204187332, guid: c4183732413c5c64a8f52ec71cc2ffb1, type: 3}
+      - {fileID: -2135291154930522521, guid: c4183732413c5c64a8f52ec71cc2ffb1, type: 3}
+      - {fileID: 3854530455428442685, guid: c4183732413c5c64a8f52ec71cc2ffb1, type: 3}
+    - frames:
+      - {fileID: 3187108231645046577, guid: dad51970eaeb58d44bc6c59adc4b3f92, type: 3}
+      - {fileID: 3928282434622092776, guid: dad51970eaeb58d44bc6c59adc4b3f92, type: 3}
+      - {fileID: 1978848402017360946, guid: dad51970eaeb58d44bc6c59adc4b3f92, type: 3}
+      - {fileID: 8584917760377868958, guid: dad51970eaeb58d44bc6c59adc4b3f92, type: 3}
+    - frames:
+      - {fileID: 323686965778600245, guid: 0678e01e6cad4c24fba6a578c097bfd5, type: 3}
+      - {fileID: 1233609203, guid: 0678e01e6cad4c24fba6a578c097bfd5, type: 3}
+      - {fileID: 1611685400, guid: 0678e01e6cad4c24fba6a578c097bfd5, type: 3}
+      - {fileID: 791714489, guid: 0678e01e6cad4c24fba6a578c097bfd5, type: 3}
+    - frames:
+      - {fileID: 267067778685157843, guid: 210bcd33b4dcfb5408c752ee52c5094f, type: 3}
+      - {fileID: -6724598982439540183, guid: 210bcd33b4dcfb5408c752ee52c5094f, type: 3}
+      - {fileID: -7779967020831981962, guid: 210bcd33b4dcfb5408c752ee52c5094f, type: 3}
+      - {fileID: -347042669, guid: 210bcd33b4dcfb5408c752ee52c5094f, type: 3}
+    zombieSporeTrail:
+    - {fileID: -6110260495874256783, guid: b2fa2640de8d15e4c9b1ecd6e68476a5, type: 3}
+    - {fileID: 1738801203, guid: b2fa2640de8d15e4c9b1ecd6e68476a5, type: 3}
+    - {fileID: -2016243306, guid: b2fa2640de8d15e4c9b1ecd6e68476a5, type: 3}
+    - {fileID: 1932729642, guid: b2fa2640de8d15e4c9b1ecd6e68476a5, type: 3}
+    - {fileID: -1269980446, guid: b2fa2640de8d15e4c9b1ecd6e68476a5, type: 3}
+    - {fileID: 904728402, guid: b2fa2640de8d15e4c9b1ecd6e68476a5, type: 3}
+    zombieRise:
+    - {fileID: -7114883231331182844, guid: b875c0660aa01d14b8d846f4b4a22d06, type: 3}
+    - {fileID: -5260686436506126123, guid: b875c0660aa01d14b8d846f4b4a22d06, type: 3}
+    - {fileID: 2910942291214791919, guid: b875c0660aa01d14b8d846f4b4a22d06, type: 3}
+    - {fileID: -2488218684342532349, guid: b875c0660aa01d14b8d846f4b4a22d06, type: 3}
+    - {fileID: 792439691766782220, guid: b875c0660aa01d14b8d846f4b4a22d06, type: 3}
+    - {fileID: 4111613513335997578, guid: b875c0660aa01d14b8d846f4b4a22d06, type: 3}
+    - {fileID: 5462455888473836351, guid: b875c0660aa01d14b8d846f4b4a22d06, type: 3}
+    - {fileID: -5184266342025089208, guid: b875c0660aa01d14b8d846f4b4a22d06, type: 3}
+    zombieCrumble:
+    - {fileID: 4130727235654580449, guid: 3a9e146c019bd6143bd40f35d3d4bb21, type: 3}
+    - {fileID: 2777014828864425448, guid: 3a9e146c019bd6143bd40f35d3d4bb21, type: 3}
+    - {fileID: 4322945190432217774, guid: 3a9e146c019bd6143bd40f35d3d4bb21, type: 3}
+    - {fileID: 5906615916128310764, guid: 3a9e146c019bd6143bd40f35d3d4bb21, type: 3}
+    - {fileID: 5883112065916788398, guid: 3a9e146c019bd6143bd40f35d3d4bb21, type: 3}
+    - {fileID: 3973415649527176645, guid: 3a9e146c019bd6143bd40f35d3d4bb21, type: 3}
+    - {fileID: -1322109584, guid: 3a9e146c019bd6143bd40f35d3d4bb21, type: 3}
+    - {fileID: 608448507, guid: 3a9e146c019bd6143bd40f35d3d4bb21, type: 3}
     leechPuddleBonus: 1
     centipedePuddleSeconds: 4
     lampreySpinLimit: 6

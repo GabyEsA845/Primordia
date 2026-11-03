@@ -45,6 +45,8 @@ namespace Primordia.Editor
             ["Xenacanthus"] = (LineageTouch.CephalicSpine, "Espina cefálica", "Los enemigos confundidos cuentan como heridos."),
             ["Pulmonoscorpius"] = (LineageTouch.GasSting, "Aguijón de gas",
                 "El chorro envenena a lo que toca y vuelve nube tóxica el metano que alcanza, en vez de explotarlo."),
+            ["Cordyceps"] = (LineageTouch.Zombie, "Zombi",
+                "Un enemigo confundido al que le toca morir se levanta 4 s como tu aliado: ataca a los demás enemigos y no se le puede dañar."),
             ["TinderFungus"] = (LineageTouch.Tinder, "Yesca",
                 "La bola del Escupitajo va ardiendo: su rastro es de fuego en vez de veneno y al explotar deja fuego."),
             ["Leech"] = (LineageTouch.LeechPool, "Charca de sanguijuelas",
@@ -94,6 +96,7 @@ namespace Primordia.Editor
             SetUpParasite();
             SetUpLeechKit();
             SetUpFungusMats();
+            SetUpZombie();
 
             if (missing.Count > 0)
                 Debug.LogWarning($"Floor3LineagesSetup: faltan las mutaciones {string.Join(", ", missing)}; créalas con Primordia > Mutations / Floor 3.");
@@ -142,6 +145,46 @@ namespace Primordia.Editor
                     benefits.poisonJetMuzzle = poisonJet.muzzle;
                     benefits.poisonJetSplashes = poisonJet.splashes;
                 }
+                lineage.ConfigureBenefits(benefits);
+                PrefabUtility.SaveAsPrefabAsset(root, PlayerSetup.PlayerPath);
+            }
+            finally
+            {
+                PrefabUtility.UnloadPrefabContents(root);
+            }
+        }
+
+        // ---------- Zombi (Cordyceps) ----------
+
+        /// <summary>El arte de los aliados levantados (Zombie/): hongos del lomo, estela, levantarse y caer. Pivote abajo en el centro.</summary>
+        static void SetUpZombie()
+        {
+            var feet = new Vector2(0.5f, 0f);
+            Sprite[] Sheet(string name, int cell) => ArtSetup.ImportLooseSheet($"{LineageArtFolder}/Zombie/{name}.png",
+                $"{EffectsArtFolder}/{name}.png", cell, feet);
+
+            var sprout = new LineageBenefitSettings.FrameSet[4];
+            var idle = new LineageBenefitSettings.FrameSet[4];
+            for (int i = 0; i < 4; i++)
+            {
+                sprout[i] = new LineageBenefitSettings.FrameSet { frames = Sheet($"Fx_ZombieFungus_{i}_Sprout", 8) };
+                idle[i] = new LineageBenefitSettings.FrameSet { frames = Sheet($"Fx_ZombieFungus_{i}_Idle", 8) };
+            }
+            var trail = Sheet("Fx_ZombieSporeTrail", 12);
+            var rise = Sheet("Fx_ZombieRise", 48);
+            var crumble = Sheet("Fx_ZombieCrumble", 48);
+
+            var root = PrefabUtility.LoadPrefabContents(PlayerSetup.PlayerPath);
+            try
+            {
+                if (!root.TryGetComponent<PlayerLineage>(out var lineage))
+                    return;
+                var benefits = lineage.Benefits ?? new LineageBenefitSettings();
+                benefits.zombieFungusSprout = sprout;
+                benefits.zombieFungusIdle = idle;
+                benefits.zombieSporeTrail = trail;
+                benefits.zombieRise = rise;
+                benefits.zombieCrumble = crumble;
                 lineage.ConfigureBenefits(benefits);
                 PrefabUtility.SaveAsPrefabAsset(root, PlayerSetup.PlayerPath);
             }

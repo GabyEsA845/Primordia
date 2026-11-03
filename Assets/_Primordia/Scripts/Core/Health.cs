@@ -149,7 +149,11 @@ namespace Primordia.Core
         static readonly List<Func<Health, int, int>> damageModifiers = new();
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-        static void ResetStatics() => damageModifiers.Clear();
+        static void ResetStatics()
+        {
+            damageModifiers.Clear();
+            lethalInterceptors.Clear();
+        }
 
         public static void AddDamageModifier(Func<Health, int, int> modifier)
         {
@@ -158,6 +162,32 @@ namespace Primordia.Core
         }
 
         public static void RemoveDamageModifier(Func<Health, int, int> modifier) => damageModifiers.Remove(modifier);
+
+        /// <summary>
+        /// Pueden impedir una muerte (el Zombi del Cordyceps): se les pregunta cuando un golpe iba a dejar la vida en 0; si alguno devuelve
+        /// true, el objetivo se queda con 1 de vida y no muere. Solo se consulta con golpes; <see cref="Kill"/> no se puede impedir.
+        /// </summary>
+        static readonly List<Func<Health, bool>> lethalInterceptors = new();
+
+        public static void AddLethalInterceptor(Func<Health, bool> interceptor)
+        {
+            if (interceptor != null && !lethalInterceptors.Contains(interceptor))
+                lethalInterceptors.Add(interceptor);
+        }
+
+        public static void RemoveLethalInterceptor(Func<Health, bool> interceptor) => lethalInterceptors.Remove(interceptor);
+
+        bool InterceptLethal()
+        {
+            if (lethalInterceptors.Count == 0)
+                return false;
+            foreach (var interceptor in lethalInterceptors.ToArray())
+            {
+                if (interceptor(this))
+                    return true;
+            }
+            return false;
+        }
 
         /// <summary>
         /// Multiplica un daño entero con redondeo al azar: 1 × 1,5 da 1 o 2 con la misma probabilidad, así de media
@@ -228,7 +258,11 @@ namespace Primordia.Core
 
             int extra = kind == DamageKind.Hit ? extraHitDamage : 0;
             int before = Current;
-            Current = Mathf.Max(0, Current - amount - extra);
+            int remaining = Current - amount - extra;
+            // Un efecto puede impedir la muerte: se queda con 1 de vida.
+            if (remaining <= 0 && InterceptLethal())
+                remaining = 1;
+            Current = Mathf.Max(0, remaining);
             invulnerableUntil = Time.time + invulnerabilityAfterHit;
 
             // Lo que quitó de más el precio Inestable (el HUD rompe ese medio corazón con un destello dorado).

@@ -172,6 +172,55 @@ namespace Primordia.Tests
         }
 
         [Test]
+        public void PickEnemies_MudEnemies_OnlyComeInRoomsWithMud()
+        {
+            var toad = CreateEnemyTemplate("Toad");
+            config.ConfigureEnemies(new[]
+            {
+                new FloorConfig.EnemyEntry(toad, cost: 1, needsMud: true),
+                new FloorConfig.EnemyEntry(shooter, cost: 2)
+            }, null);
+
+            for (int seed = 1; seed <= 30; seed++)
+            {
+                Assert.IsFalse(EncounterPlanner.PickEnemies(config, depth: 3, budget: 9, new System.Random(seed), roomHasMud: false).Contains(toad),
+                    $"Sin lodo no sale el sapo (semilla {seed}).");
+            }
+            Assert.IsTrue(Enumerable.Range(1, 30).Any(seed => EncounterPlanner.PickEnemies(config, depth: 3, budget: 9, new System.Random(seed), roomHasMud: true).Contains(toad)),
+                "Con lodo sí puede salir.");
+        }
+
+        [Test]
+        public void MudSideCells_AreFloorNearMud_NotOnItNorOnTheShore()
+        {
+            var template = Track(ScriptableObject.CreateInstance<RoomTemplate>());
+            template.SetLayout(string.Join("\n", new[]
+            {
+                "............",
+                "............",
+                "............",
+                "............",
+                "............",
+                "............",
+                ".......mm...",
+                ".......mm...",
+                "............",
+                "............",
+            }));
+
+            Assert.IsTrue(EncounterPlanner.HasMud(template));
+            var cells = EncounterPlanner.MudSideCells(template, new Vector2Int[0]);
+            Assert.IsNotEmpty(cells);
+            foreach (var cell in cells)
+            {
+                Assert.AreEqual(RoomTemplate.Mark.Floor, template.Get(cell.x, cell.y));
+                int distance = Mathf.Max(Mathf.Max(7 - cell.x, cell.x - 8, 0), Mathf.Max(2 - cell.y, cell.y - 3, 0));
+                Assert.GreaterOrEqual(distance, 2, "No en la orilla.");
+                Assert.LessOrEqual(distance, 4, "Pero cerca del lodo.");
+            }
+        }
+
+        [Test]
         public void Spawn_GroupEntries_CreateTheWholeGroup_ForOneCost()
         {
             var fish = CreateEnemyTemplate("Fish");

@@ -18,10 +18,14 @@ namespace Primordia.Editor
         const string Floor3EnemiesArtFolder = CharactersFolder + "/Enemies/Floor3";
         const string Floor3EnemyDataFolder = "Assets/_Primordia/Data/Enemies/Floor3";
 
-        /// <summary>Prefab, coste, sala de combate desde la que salen, tope por sala (0 = sin tope) y cuántos salen juntos.</summary>
-        static readonly (string prefab, int cost, int minDepth, int maxPerRoom, int groupSize)[] Floor3Roster =
+        /// <summary>
+        /// Prefab, coste, sala de combate desde la que salen, tope por sala (0 = sin tope), cuántos salen juntos y si solo salen en
+        /// salas con lodo profundo, junto a él.
+        /// </summary>
+        static readonly (string prefab, int cost, int minDepth, int maxPerRoom, int groupSize, bool needsMud)[] Floor3Roster =
         {
-            ("Enemy_Beetle", 3, 1, 0, 1),
+            ("Enemy_Beetle", 3, 1, 0, 1, false),
+            ("Enemy_Toad", 3, 1, 3, 1, true),
         };
 
         [MenuItem("Primordia/Floor 3/Crear enemigos del piso 3")]
@@ -31,14 +35,15 @@ namespace Primordia.Editor
             Directory.CreateDirectory(EnemyPrefabsFolder);
 
             CreateBeetle();
+            CreateToad();
 
             AssetDatabase.SaveAssets();
             var entries = new List<FloorConfig.EnemyEntry>();
-            foreach (var (prefab, cost, minDepth, maxPerRoom, groupSize) in Floor3Roster)
+            foreach (var (prefab, cost, minDepth, maxPerRoom, groupSize, needsMud) in Floor3Roster)
             {
                 var enemy = AssetDatabase.LoadAssetAtPath<Enemy>($"{EnemyPrefabsFolder}/{prefab}.prefab");
                 if (enemy != null)
-                    entries.Add(new FloorConfig.EnemyEntry(enemy, cost, minDepth, maxPerRoom, groupSize));
+                    entries.Add(new FloorConfig.EnemyEntry(enemy, cost, minDepth, maxPerRoom, groupSize, needsMud));
             }
             PutInFloor3(entries.ToArray());
             Debug.Log($"ArtSetup: {entries.Count} enemigos del piso 3 creados y puestos en Floor_3.");
@@ -69,6 +74,87 @@ namespace Primordia.Editor
                 maxHealth: 12, moveSpeed: 2.2f, detectionRange: 8f, contactDamage: 1));
             return BuildFloor2Enemy("Enemy_Beetle", data, art, colliderRadius: 0.5f,
                 root => root.AddComponent<BeetleBrain>().Configure(spray), colliderOffset: new Vector2(0f, 0.4f));
+        }
+
+        // ---------- Sapo de fango ----------
+
+        static Enemy CreateToad()
+        {
+            // Pivote a la altura de las patas (3 px sobre el borde de abajo de un cuadro de 32).
+            var character = Floor3Enemy("Toad",
+                ("Idle", Fps(180), true), ("Hop", Fps(90), true), ("Spit", Fps(90), false), ("Inflate", Fps(120), true),
+                ("Dive", Fps(90), false), ("Emerge", Fps(90), false), ("Swim", Fps(160), true), ("Hurt", Fps(90), false),
+                ("Death", Fps(120), false));
+            character.DefaultState = "Idle";
+            character.Pivot = new Vector2(0.5f, 0.1f);
+            var art = Import(character);
+            if (art == null)
+                return null;
+
+            string effects = $"{Floor3EnemiesArtFolder}/Effects";
+            Directory.CreateDirectory(effects);
+            string source = $"{Floor3EnemiesSourceFolder}/Effects";
+            var splat = Floor2MouthsSetup.CreateFrameEffect("Effect_ToadMud_Splat",
+                ImportLooseSheet($"{source}/Fx_ToadMud_Splat.png", $"{effects}/Fx_ToadMud_Splat.png", 24), 0.07f);
+            var burst = Floor2MouthsSetup.CreateFrameEffect("Effect_Toad_Burst",
+                ImportLooseSheet($"{source}/Fx_Toad_Burst.png", $"{effects}/Fx_Toad_Burst.png", 48), 0.07f);
+            var shadowSprite = ImportLooseSheet($"{source}/Fx_FlyerShadow.png", $"{effects}/Fx_FlyerShadow.png", 24);
+            var ballFrames = ImportLooseSheet($"{source}/Proj_ToadMud.png", $"{effects}/Proj_ToadMud.png", 12);
+            var puddle = SludgePuddleFrames();
+            var ball = CreateToadMudBall(ballFrames, shadowSprite, splat, puddle);
+
+            // 10 de vida, salta despacio, te ve a 9 u y hace medio corazón al tocarlo. Nada: no se hunde en el lodo.
+            var data = Floor3EnemyData("Enemy_Toad", d =>
+            {
+                d.Configure(EnemyBehaviour.Chaser, maxHealth: 10, moveSpeed: 3f, detectionRange: 9f, contactDamage: 1);
+                d.ConfigureSwimming(true);
+            });
+            return BuildFloor2Enemy("Enemy_Toad", data, art, colliderRadius: 0.45f,
+                root => root.AddComponent<ToadBrain>().Configure(ball, burst, puddle, 0.26f), colliderOffset: new Vector2(0f, 0.4f));
+        }
+
+        /// <summary>Cuadros del charco de lodo del escenario (el salpicado, el más pequeño): el que deja el sapo.</summary>
+        static Sprite[] SludgePuddleFrames()
+        {
+            string path = $"{Floor3ArtRoot}/floor3-environment/Swamp/props/Puddle_Sludge_Splash.png";
+            if (!File.Exists(path))
+            {
+                Debug.LogWarning($"ArtSetup: falta {path}; el sapo no dejará charco (Primordia > Floor 3 > Importar todo el arte del piso 3).");
+                return new Sprite[0];
+            }
+            var importer = (TextureImporter)AssetImporter.GetAtPath(path);
+            importer.GetSourceTextureWidthAndHeight(out int width, out _);
+            return SliceSheet(path, width / 4, new Vector2(0.5f, 0.5f));
+        }
+
+        /// <summary>Bola de lodo del sapo: la sombra pegada al suelo y el cuerpo de la bola, que sube y baja con el arco. Se rehace.</summary>
+        static ToadMudBall CreateToadMudBall(Sprite[] ballFrames, Sprite[] shadow, GameObject splat, Sprite[] puddle)
+        {
+            var root = new GameObject("Projectile_ToadMud");
+            try
+            {
+                var shadowObject = new GameObject("Shadow");
+                shadowObject.transform.SetParent(root.transform, false);
+                var shadowRenderer = shadowObject.AddComponent<SpriteRenderer>();
+                shadowRenderer.sprite = shadow.Length > 0 ? shadow[0] : null;
+                shadowRenderer.sortingOrder = 3;
+
+                var body = new GameObject("Body");
+                body.transform.SetParent(root.transform, false);
+                var renderer = body.AddComponent<SpriteRenderer>();
+                renderer.sprite = ballFrames.Length > 0 ? ballFrames[0] : null;
+                renderer.sortingOrder = 20;
+                if (ballFrames.Length > 1)
+                    body.AddComponent<SpriteLoop>().Configure(renderer, ballFrames, 0.09f, 0f);
+
+                var ball = root.AddComponent<ToadMudBall>();
+                ball.Configure(body.transform, shadowObject.transform, splat, puddle, 0.26f);
+                return PrefabUtility.SaveAsPrefabAsset(root, $"{ProjectilePrefabsFolder}/Projectile_ToadMud.prefab").GetComponent<ToadMudBall>();
+            }
+            finally
+            {
+                Object.DestroyImmediate(root);
+            }
         }
 
         // ---------- Ayudas ----------
@@ -106,8 +192,19 @@ namespace Primordia.Editor
                 Debug.LogWarning("ArtSetup: no existe Floor_3; créalo con Primordia > Floor 3 > Crear piso 3 y escena de prueba.");
                 return;
             }
+            // Las recompensas, la tienda y la sala de cambio salen de la reserva del piso 3, no de la del 2 (Floor_3 la tenía mal).
+            var pool = Floor3MutationsSetup.EnsurePool();
+            if (config.RewardPool != pool)
+            {
+                config.ConfigureRewards(pool, config.RewardAfter);
+                Debug.Log("ArtSetup: Floor_3 usaba otra reserva de mutaciones; ahora usa MutationPool_Floor3.");
+            }
             if (entries.Length == 0)
+            {
+                EditorUtility.SetDirty(config);
+                AssetDatabase.SaveAssets();
                 return;
+            }
             if (config.BaseBudget <= 0f)
                 config.ConfigureEnemies(entries, config.Boss, newBaseBudget: 3f, newBudgetPerRoom: 1.4f);
             else

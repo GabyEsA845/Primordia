@@ -26,14 +26,17 @@ namespace Primordia.Rooms
             [Min(0)] public int maxPerRoom;
             [Tooltip("Cuántos salen juntos cada vez que se elige (el cardumen de Pikaia, 5); el coste es por grupo. 0 o 1 = uno.")]
             [Min(0)] public int groupSize;
+            [Tooltip("Solo sale en salas con lodo profundo y aparece junto a él (el sapo de fango).")]
+            public bool needsMud;
 
-            public EnemyEntry(Enemy prefab, int cost, int minDepth = 1, int maxPerRoom = 0, int groupSize = 1)
+            public EnemyEntry(Enemy prefab, int cost, int minDepth = 1, int maxPerRoom = 0, int groupSize = 1, bool needsMud = false)
             {
                 this.prefab = prefab;
                 this.cost = cost;
                 this.minDepth = minDepth;
                 this.maxPerRoom = maxPerRoom;
                 this.groupSize = groupSize;
+                this.needsMud = needsMud;
             }
 
             /// <summary>Cuántos salen juntos (al menos 1).</summary>

@@ -1,6 +1,6 @@
 ---
 name: primordia-floor3-enemy-art-pending
-description: "Arte de enemigos del piso 3 que hay que mejorar más adelante (Opus): cono del escarabajo bombardero"
+description: "Arte de enemigos del piso 3 que hay que mejorar más adelante (Opus): cono del escarabajo bombardero y animaciones del sapo en el lodo"
 metadata:
   type: project
 ---
@@ -10,3 +10,5 @@ metadata:
 
 **Why:** el usuario lo vio en juego y no luce; el resto del escarabajo le gusta.
 **How to apply:** al llegar a una tanda de arte del piso 3, incluir esto; al acabar, volver a ejecutar Primordia > Floor 3 > Importar todo el arte del piso 3 y Crear enemigos del piso 3. Ver [[primordia-floor3-design]] y [[primordia-provisional-art]].
+
+- **Sapo de fango en el lodo** (`Toad_*`, `floor3-enemies/Toad`, `generar_enemigos_piso3.py`; detectado el 2026-11-03): (1) asomado sobre el lodo profundo parece **levitar** (el sprite normal no toca el lodo): necesita una variante «en el lodo» (Idle/Spit/Hurt con el cuerpo parcialmente hundido, borde de lodo o ondas en la base); (2) la **zambullida** (`Toad_Dive`) y su inversa (`Toad_Emerge`, que es `Toad_Dive` con los cuadros al revés, generada a mano) **no lucen bien**: rehacerlas con salpicadura/burbujas y que el cuerpo se hunda de verdad; revisar también `Toad_Swim` (lomo y ojos). El código no cambia: `ToadBrain` usa los estados Idle, Spit, Dive, Swim, Emerge; si hacen falta variantes en lodo, añadir estados y un `InMud` en `AnimationState`.

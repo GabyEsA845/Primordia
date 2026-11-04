@@ -1271,10 +1271,9 @@ namespace Primordia.Rooms
                     later.Add(root);
                 }
 
-                var enemies = EncounterPlanner.PickEnemies(config, placed.Layout.Depth, budget, random);
-                var positions = EncounterPlanner.Positions(candidates, enemies.Count, random);
-                for (int i = 0; i < positions.Count; i++)
-                    EncounterPlanner.Spawn(config, enemies[i], placed.Origin + positions[i], root);
+                var enemies = EncounterPlanner.PickEnemies(config, placed.Layout.Depth, budget, random, EncounterPlanner.HasMud(template));
+                foreach (var (enemy, position) in EncounterPlanner.Place(config, template, doorCells, enemies, candidates, random))
+                    EncounterPlanner.Spawn(config, enemy, placed.Origin + position, root);
             }
             return later.ToArray();
         }
@@ -1310,16 +1309,16 @@ namespace Primordia.Rooms
                 return;
             // Las especiales cambian la cantidad (el Corazón morado, el doble).
             int budget = Mathf.RoundToInt(EncounterPlanner.Budget(config, placed.Layout.Depth, floorArea) * placed.Layout.EnemyMultiplier);
-            var enemies = EncounterPlanner.PickEnemies(config, placed.Layout.Depth, budget, random);
+            var enemies = EncounterPlanner.PickEnemies(config, placed.Layout.Depth, budget, random, EncounterPlanner.HasMud(template));
 
-            var doorCells = placed.DoorCells.Values.SelectMany(cells => cells).Select(cell => cell - placed.Origin);
+            var doorCells = placed.DoorCells.Values.SelectMany(cells => cells).Select(cell => cell - placed.Origin).ToList();
             var candidates = EncounterPlanner.SpawnCells(template, doorCells);
-            var positions = EncounterPlanner.Positions(candidates, enemies.Count, random);
-            if (positions.Count < enemies.Count)
-                Debug.LogWarning($"FloorBuilder: en {placed.Layout.Name} solo caben {positions.Count} de {enemies.Count} enemigos.");
+            var placements = EncounterPlanner.Place(config, template, doorCells, enemies, candidates, random);
+            if (placements.Count < enemies.Count)
+                Debug.LogWarning($"FloorBuilder: en {placed.Layout.Name} solo caben {placements.Count} de {enemies.Count} enemigos.");
 
-            for (int i = 0; i < positions.Count; i++)
-                EncounterPlanner.Spawn(config, enemies[i], placed.Origin + positions[i], enemiesRoot);
+            foreach (var (enemy, position) in placements)
+                EncounterPlanner.Spawn(config, enemy, placed.Origin + position, enemiesRoot);
         }
 
         /// <summary>Membrana animada sobre el hueco, con su colisión. Arriba, además, el arco fijo de la pared.</summary>

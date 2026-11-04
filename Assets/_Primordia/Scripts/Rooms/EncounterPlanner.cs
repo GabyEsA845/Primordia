@@ -34,7 +34,7 @@ namespace Primordia.Rooms
         /// Enemigos elegidos al azar hasta gastar el presupuesto (o hasta que no quepa ninguno), sin pasar del tope por
         /// sala de cada uno.
         /// </summary>
-        public static List<Enemy> PickEnemies(FloorConfig config, int depth, int budget, System.Random random)
+        public static List<Enemy> PickEnemies(FloorConfig config, int depth, int budget, System.Random random, bool roomHasMud = true)
         {
             var result = new List<Enemy>();
             var entries = config.Enemies;
@@ -44,7 +44,8 @@ namespace Primordia.Rooms
             {
                 var affordable = Enumerable.Range(0, entries.Length)
                     .Where(i => entries[i].prefab != null && entries[i].cost <= budget && depth >= entries[i].minDepth
-                                && (entries[i].maxPerRoom == 0 || picked[i] < entries[i].maxPerRoom))
+                                && (entries[i].maxPerRoom == 0 || picked[i] < entries[i].maxPerRoom)
+                                && (!entries[i].needsMud || roomHasMud))
                     .ToList();
                 if (affordable.Count == 0)
                     break;
@@ -104,6 +105,73 @@ namespace Primordia.Rooms
                 }
             }
             return result;
+        }
+
+        /// <summary>True si la sala tiene lodo profundo.</summary>
+        public static bool HasMud(RoomTemplate template)
+        {
+            for (int y = 0; y < template.Height; y++)
+                for (int x = 0; x < template.Width; x++)
+                    if (template.Get(x, y) == RoomTemplate.Mark.Mud)
+                        return true;
+            return false;
+        }
+
+        /// <summary>
+        /// Celdas junto al lodo profundo (suelo a 2–3 tiles de él, sin pisarlo ni pegarse a la orilla) y lejos de las puertas:
+        /// donde salen los enemigos que viven del lodo, para que puedan meterse en él.
+        /// </summary>
+        public static List<Vector2Int> MudSideCells(RoomTemplate template, IEnumerable<Vector2Int> doorCells)
+        {
+            var doors = doorCells.ToList();
+            var result = new List<Vector2Int>();
+            for (int y = 0; y < template.Height; y++)
+            {
+                for (int x = 0; x < template.Width; x++)
+                {
+                    var cell = new Vector2Int(x, y);
+                    if (template.Get(x, y) != RoomTemplate.Mark.Floor || MudWithin(template, cell, 1) || !MudWithin(template, cell, 3))
+                        continue;
+                    if (doors.Any(door => Vector2.Distance(door, cell) < DoorDistance))
+                        continue;
+                    result.Add(cell);
+                }
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// Reparte los enemigos en sitios: los que necesitan lodo, junto a él; los demás, en <paramref name="floorCells"/>.
+        /// Los que no caben se quedan fuera. Posiciones en coordenadas de la plantilla.
+        /// </summary>
+        public static List<(Enemy enemy, Vector2 position)> Place(FloorConfig config, RoomTemplate template, IEnumerable<Vector2Int> doorCells,
+            List<Enemy> enemies, List<Vector2Int> floorCells, System.Random random)
+        {
+            var result = new List<(Enemy, Vector2)>();
+            var mudEnemies = enemies.Where(enemy => NeedsMud(config, enemy)).ToList();
+            var otherEnemies = enemies.Where(enemy => !NeedsMud(config, enemy)).ToList();
+
+            var others = Positions(floorCells, otherEnemies.Count, random);
+            for (int i = 0; i < others.Count; i++)
+                result.Add((otherEnemies[i], others[i]));
+            if (mudEnemies.Count > 0)
+            {
+                var mud = Positions(MudSideCells(template, doorCells), mudEnemies.Count, random);
+                for (int i = 0; i < mud.Count; i++)
+                    result.Add((mudEnemies[i], mud[i]));
+            }
+            return result;
+        }
+
+        static bool NeedsMud(FloorConfig config, Enemy prefab) => config.Enemies.Any(entry => entry.prefab == prefab && entry.needsMud);
+
+        static bool MudWithin(RoomTemplate template, Vector2Int cell, int distance)
+        {
+            for (int dx = -distance; dx <= distance; dx++)
+                for (int dy = -distance; dy <= distance; dy++)
+                    if (template.Get(cell.x + dx, cell.y + dy) == RoomTemplate.Mark.Mud)
+                        return true;
+            return false;
         }
 
         /// <summary>

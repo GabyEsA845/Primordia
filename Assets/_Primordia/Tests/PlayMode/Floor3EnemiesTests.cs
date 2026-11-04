@@ -111,6 +111,74 @@ namespace Primordia.Tests
         }
 
         [UnityTest]
+        public IEnumerator Toad_InRange_SpitsAtYou()
+        {
+            player.transform.position = new Vector2(5f, 0f);
+            var toad = CreateEnemy<ToadBrain>(Data(10), Vector2.zero);
+            Vector2? aimed = null;
+            toad.Spat += aim => aimed = aim;
+            for (float t = 0f; t < 1.5f && aimed == null; t += Time.deltaTime)
+                yield return null;
+
+            Assert.IsNotNull(aimed, "Te escupe al verte a tiro.");
+            Assert.AreEqual(5f, aimed.Value.x, 0.01f, "Apunta a donde estás.");
+        }
+
+        [UnityTest]
+        public IEnumerator Toad_Close_InflatesAndBurstsHurtingYou()
+        {
+            player.AddComponent<CircleCollider2D>().radius = 0.4f;
+            var playerHealth = player.GetComponent<Health>();
+            player.transform.position = new Vector2(1.2f, 0f);
+            var toad = CreateEnemy<ToadBrain>(Data(10), Vector2.zero);
+            yield return null;
+            yield return null;
+            Assert.AreEqual(ToadBrain.Phase.Inflate, toad.Current, "Pegado a él, se hincha.");
+
+            yield return new WaitForSeconds(0.8f);
+            Assert.IsTrue(toad.HasBurst, "Y revienta.");
+            Assert.IsTrue(toad.GetComponent<Health>().IsDead, "El sapo muere al reventar.");
+            Assert.Less(playerHealth.Current, playerHealth.Max, "El reventón te hace daño.");
+        }
+
+        [UnityTest]
+        public IEnumerator Toad_LowHealth_InflatesAndRushesYou()
+        {
+            player.transform.position = new Vector2(5f, 0f);
+            var toad = CreateEnemy<ToadBrain>(Data(10), Vector2.zero);
+            yield return null;
+            toad.GetComponent<Health>().TakeDamage(8);
+
+            for (float t = 0f; t < 1.5f && toad.Current != ToadBrain.Phase.Rush; t += Time.deltaTime)
+                yield return null;
+            Assert.AreEqual(ToadBrain.Phase.Rush, toad.Current, "Con poca vida se hincha y corre hacia ti.");
+
+            for (float t = 0f; t < 3f && !toad.HasBurst; t += Time.deltaTime)
+                yield return null;
+            Assert.IsTrue(toad.HasBurst, "Revienta al llegar o al acabar el tiempo.");
+        }
+
+        [UnityTest]
+        public IEnumerator Toad_Submerge_IsImmuneAndComesBack()
+        {
+            player.transform.position = new Vector2(7f, 0f);
+            var toad = CreateEnemy<ToadBrain>(Data(10), Vector2.zero);
+            yield return null;
+            var health = toad.GetComponent<Health>();
+
+            toad.Submerge();
+            Assert.IsTrue(toad.IsSubmerged);
+            Assert.IsTrue(health.IsInvulnerable, "Bajo el lodo no recibe daño.");
+            Assert.IsFalse(toad.GetComponent<Collider2D>().enabled, "Ni lo tocan los proyectiles.");
+
+            for (float t = 0f; t < 4f && toad.Current != ToadBrain.Phase.Surfaced; t += Time.deltaTime)
+                yield return null;
+            Assert.AreEqual(ToadBrain.Phase.Surfaced, toad.Current, "Vuelve a asomar.");
+            Assert.IsFalse(health.IsInvulnerable);
+            Assert.IsTrue(toad.GetComponent<Collider2D>().enabled);
+        }
+
+        [UnityTest]
         public IEnumerator Beetle_Back_TakesFiftyPercentMoreDamage()
         {
             // Sin objetivo a la vista pasea; se le fija la cabeza hacia la derecha y se compara de frente y por la espalda.

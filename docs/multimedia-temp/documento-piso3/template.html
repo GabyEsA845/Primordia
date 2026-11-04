@@ -496,7 +496,7 @@ tr.picked th::before { content: "▸ "; }
 
   <section id="enemigos" aria-labelledby="en-t">
     <h2 id="en-t">Enemigos y trampas</h2>
-    <p class="muted">Seis enemigos que usan el terreno: se mueven por la maleza, el lodo y el aire, y casi todos reaccionan al fuego, al gas o al veneno. Las <b>trampas</b> son una categoría nueva: no cuentan como enemigos ni para limpiar la sala, y se desactivan al limpiarla. Los números (vida, coste, daño) se equilibran al programar.</p>
+    <p class="muted">Seis enemigos que usan el terreno: se mueven por la maleza, el lodo y el aire, y casi todos reaccionan al fuego, al gas o al veneno. Las <b>trampas</b> son una categoría nueva: no cuentan como enemigos ni para limpiar la sala, y se desactivan al limpiarla. Los números son los programados (se afinan al equilibrar): desde la primera sala hay 3–4 enemigos y unos 10 en las últimas, y las trampas salen por probabilidad. Las plantas solo crecen sobre tierra, el sapo solo sale en salas con lodo y la araña nace en los helechos.</p>
     <div class="enemies" id="enemies"></div>
   </section>
 
@@ -522,6 +522,7 @@ tr.picked th::before { content: "▸ "; }
         <li>Sustituye a las fosas del piso 2: te hundes poco a poco y más lento, y sales esquivando.</li>
         <li>Hundido del todo, pierdes medio corazón.</li>
         <li>Los enemigos que andan también se hunden; los voladores no, y el sapo de fango nada en él.</li>
+        <li>La orilla no hunde: hay que entrar un poco en el lodo dibujado (0,3 u) para empezar a hundirse.</li>
         <li>El terreno no se recupera durante la sala.</li>
         <li>Los charcos de lodo ralentizan sin hundir.</li>
       </ul>
@@ -574,7 +575,7 @@ const CLASSES = {
   ven: { name: 'Venenoso', base: 'Toxina débil', desc: 'Los enemigos envenenados reciben +50 % de daño de cualquier fuente y se mueven un 20 % más lentos.',
          delta: 'Nuevo en el piso 3: un enemigo envenenado que muere deja un charco de veneno durante 6 s (si arde, se vuelve una nube tóxica).' },
   hongo: { name: 'Hongo', base: 'Colonizar la sala', desc: 'Al empezar cada combate brotan 3 matas de hongo al azar (de 4 especies de micelio bioluminiscente) que frenan un 40 %, enredan las patas y quitan 1 por segundo a los enemigos; desaparecen al limpiar la sala.',
-           delta: 'Vuelve en el piso 3 con matas nuevas: un enemigo que muere sobre una mata hace brotar otra, más grande, a su lado (hasta 6 en la sala).' },
+           delta: 'Vuelve en el piso 3 con matas nuevas: un enemigo que muere sobre una mata hace brotar otra, más grande, a su lado (hasta 6 en la sala). Las matas son grandes: unos 4,5 u de ancho las medianas y 6 u las grandes.' },
   para: { name: 'Parásito', base: 'Chupar', isNew: true,
           desc: 'Cada 15 de daño que haces a un enemigo le pega un parásito que le quita 1 de vida por segundo. Por cada 15 de vida que chupa, curas medio corazón (30 si el huésped es un jefe). Si el huésped muere, el parásito salta al enemigo más cercano. Hasta 3 parásitos vivos en total, uno por enemigo.',
           delta: 'Premia pegar mucho y sin parar: cuanto más aguantan los enemigos, más curas. Color granate.',
@@ -649,48 +650,50 @@ const ENEMIES = [
   { id: 'calamites', name: 'Calamites', role: 'Planta madre', tiles: 'floor_swamp',
     anims: [['en_Calamites_Idle', 'Madre', 3, 0.8], ['en_Sprout_Emerge', 'Retoño brota', 4, 0.5], ['en_Sprout_Move', 'Retoño', 4, 0.4], ['en_Spore', 'Espora', 5, 0.3],
             ['en_SporePop', 'Revienta', 4, 0.4], ['en_Sprout_Wither', 'Se seca', 4, 0.6], ['en_Calamites_Death', 'Muerte', 2, 0.9]],
-    stats: [['Madre', '30 de vida'], ['Retoños', 'cada 4 s']],
-    text: 'Una cola de caballo gigante que no se mueve. Cada 4 s echa un retoño que te persigue y suelta anillos de esporas. Matar a la madre seca de golpe a todos sus retoños.',
+    stats: [['Madre', '30 de vida'], ['Retoños', 'cada 4 s, hasta 4'], ['Esporas', 'anillo cada 7 s'], ['Desde', 'sala 3']],
+    text: 'Una cola de caballo gigante que no se mueve y solo crece sobre tierra, no sobre charcos. Mientras te ve, cada 4 s echa un retoño (hasta 4 vivos) que te persigue, y cada 7 s suelta un anillo de 10 esporas lentas con huecos que gira de un disparo al siguiente. Matar a la madre seca de golpe a todos sus retoños.',
     asks: 'Decidir entre abrirte paso hasta la madre o aguantar a los retoños.' },
   { id: 'medullosa', name: 'Medullosa', role: 'Mortero', tiles: 'floor_swamp',
     anims: [['en_Medullosa_Idle', 'Reposo', 3, 0.8], ['en_Medullosa_Aim', 'Apunta', 3, 0.6], ['en_Medullosa_Shoot', 'Dispara', 3, 0.4], ['en_Seed', 'Semilla', 5, 0.3],
             ['en_SeedTarget', 'Marca', 3, 0.5], ['en_SeedBurst', 'Vaina revienta', 3, 0.5], ['en_Medullosa_Death', 'Muerte', 2, 0.8]],
-    stats: [],
-    text: 'Un helecho de semillas que dispara como un mortero: marca el suelo donde va a caer su semilla y, al llegar, la vaina revienta y deja un charco de veneno.',
+    stats: [['Vida', '16'], ['Alcance', '15 u'], ['Cadencia', 'cada 4 s'], ['Desde', 'sala 1']],
+    text: 'Un helecho de semillas que dispara como un mortero desde lejos y solo crece sobre tierra. Marca el suelo donde estás, la marca se queda fija y 1,1 s después cae una vaina que hace medio corazón en un radio pequeño y deja un charco de veneno durante 6 s (que arde).',
     asks: 'Leer las marcas y no quedarse sobre el suelo que arde o se envenena.' },
   { id: 'libelula', name: 'Libélula gigante', role: 'Voladora', tiles: 'floor_swamp',
     anims: [['en_Dragonfly_Fly', 'Vuela', 3, 0.4], ['en_Dragonfly_Warn', 'Aviso', 3, 0.5], ['en_Dragonfly_Dive', 'Picado', 3, 0.25], ['en_Dragonfly_Perch', 'Posada', 3, 0.5],
             ['en_Dragonfly_Death', 'Muerte', 3, 0.7]],
-    stats: [['Línea de aviso', '0,7 s'], ['Posada', '0,8 s']],
-    text: 'Vuela casi siempre, por encima del lodo y de los charcos. Antes de picar marca una línea durante 0,7 s y se lanza en picado hacia ti; al acabar se posa 0,8 s, que es el momento de pegarle.',
+    stats: [['Vida', '14'], ['Línea de aviso', '0,7 s'], ['Picado', '1 corazón'], ['Posada', '0,8 s']],
+    text: 'Vuela por encima de todo (fosas, lodo, charcos) dando vueltas a tu alrededor, e inmune: los proyectiles y los golpes la atraviesan. Cada 4 s marca una línea 0,7 s (se fija 0,3 s antes del final) y cae en picado por ella; al acabar se posa 0,8 s, que es el único momento en que se le puede pegar. Si el picado termina sobre una fosa o lodo no se posa.',
     asks: 'Esquivar la línea y castigar cuando se posa.' },
   { id: 'bombardero', name: 'Escarabajo bombardero', role: 'Cono ardiente', tiles: 'floor_smoke',
     anims: [['en_Beetle_Move', 'Andar', 3, 0.5], ['en_Beetle_Turn', 'Se gira', 3, 0.4], ['en_Beetle_Warn', 'Aviso', 3, 0.5], ['en_Beetle_Spray', 'Rocía', 3, 0.3],
-            ['en_BeetleCone', 'Cono', 2, 0.7], ['en_Beetle_Death', 'Muerte', 3, 0.7]],
-    stats: [['Cono', '3 u'], ['De espaldas', '+50 % daño']],
-    text: 'Se gira hacia ti despacio y suelta un cono ardiente de 3 u. El cono prende el gas y los charcos de veneno que alcance. Recibe un 50 % más de daño por la espalda.',
+            ['en_Cone_Start', 'Cono: sale', 2, 0.2], ['en_Cone_Loop', 'Cono: bucle', 2, 0.4], ['en_Cone_End', 'Cono: se apaga', 2, 0.3], ['en_Beetle_Death', 'Muerte', 3, 0.7]],
+    stats: [['Vida', '12'], ['Cono', '3 u, 1,2 s'], ['De espaldas', '+50 % daño'], ['Desde', 'sala 1']],
+    text: 'Se acerca, se gira dándote la espalda y avisa 0,6 s con la punta al rojo; entonces suelta un lanzallamas de 3 u durante 1,2 s. El cono quema al jugador y a los enemigos que alcance, prende el gas, los charcos de veneno y los helechos a su paso y deja fuego en el suelo unos segundos. Es inmune al fuego y recibe un 50 % más de daño por la espalda.',
     asks: 'Rodearlo y usar su fuego contra el resto.' },
   { id: 'arana', name: 'Araña de las frondas', role: 'Emboscada', tiles: 'floor_smoke',
     anims: [['en_Spider_Hidden', 'Oculta', 4, 0.8], ['en_Spider_Reveal', 'Sale', 3, 0.4], ['en_Spider_Move', 'Andar', 3, 0.4], ['en_Spider_Jump', 'Salto', 3, 0.5],
             ['en_Spider_Shoot', 'Seda', 3, 0.5], ['en_Web_Appear', 'Telaraña', 3, 0.4], ['en_Web_Burn', 'Arde', 3, 0.6], ['en_Spider_Death', 'Muerte', 3, 0.7]],
-    stats: [],
-    text: 'Se esconde dentro de un helecho que tiembla, con 2–4 ojos rojos asomando. Al salir dispara hileras de seda que dejan telarañas en el suelo (frenan y arden) y salta sobre ti.',
+    stats: [['Vida', '12'], ['Sale a', '3,2 u'], ['Telaraña', 'frena 50 %, 12 s'], ['Desde', 'sala 1']],
+    text: 'Nace escondida dentro de un helecho entero, que tiembla con sus ojos rojos asomando (inmune mientras tanto). Sale de golpe si te acercas, si el helecho arde o pasados 10 s. Ya fuera, lanza bolas de seda en arco que dejan telarañas en el suelo (frenan y arden) y salta para apartarse si te pegas o para acortar distancia si estás lejos.',
     asks: 'Desconfiar de los helechos que tiemblan y quemar las telarañas.' },
   { id: 'sapo', name: 'Sapo de fango', role: 'Escupidor', tiles: 'floor_swamp',
     anims: [['en_Toad_Idle', 'Reposo', 3, 0.7], ['en_Toad_Hop', 'Salta', 3, 0.5], ['en_Toad_Spit', 'Escupe', 3, 0.5], ['en_Mud', 'Lodo', 5, 0.3],
-            ['en_MudSplat', 'Charco', 3, 0.4], ['en_Toad_Inflate', 'Se hincha', 3, 0.6], ['en_ToadBurst', 'Revienta', 2, 0.6], ['en_Toad_Swim', 'Nada', 3, 0.5], ['en_Toad_Death', 'Muerte', 3, 0.7]],
-    stats: [],
-    text: 'Rechoncho, de ojo dorado para no confundirlo con tu rana. Escupe lodo que deja charcos que ralentizan; hinchado, revienta. Nada por el lodo profundo, donde los demás se hunden.',
+            ['en_MudSplat', 'Charco', 3, 0.4], ['en_Toad_Inflate', 'Se hincha', 3, 0.6], ['en_ToadBurst', 'Revienta', 2, 0.6], ['en_Toad_Swim', 'Nada', 3, 0.5], ['en_Toad_Death', 'Muerte', 3, 0.7],
+            ['en_Toad_Idle_Mud', 'En el lodo', 3, 0.7], ['en_Toad_Wade', 'Vadea', 3, 0.5], ['en_Toad_Spit_Mud', 'Escupe hundido', 3, 0.5],
+            ['en_Toad_Dive', 'Se zambulle', 3, 0.5], ['en_Toad_Emerge', 'Sale', 3, 0.5]],
+    stats: [['Vida', '10'], ['Reventón', 'cerca o con poca vida'], ['Charco', 'frena 8 s'], ['Desde', 'sala 1']],
+    text: 'Solo aparece en salas con lodo profundo y junto a él: se mete en el lodo, hundido hasta la panza, y ataca desde ahí escupiendo lodo en arco que deja charcos que ralentizan. Si lo golpean estando en el lodo se zambulle 2 s (inmune, nada) y vuelve a asomar. Si te pegas a él, o le queda poca vida, se hincha y revienta (medio corazón en radio 1,6 y un charco) y muere.',
     asks: 'Mantener la movilidad entre charcos y no dejarse arrinconar.' },
   { id: 'carnivora', name: 'Planta carnívora', role: 'Trampa', c: 'var(--trap)', tiles: 'floor_burnt',
     anims: [['en_Plant_Idle', 'Cebo de ámbar', 3, 0.8], ['en_Plant_Snap', 'Muerde', 3, 0.4], ['en_Plant_Chew', 'Mastica', 3, 0.6], ['en_Plant_Wilt', 'Se seca', 3, 0.7]],
-    stats: [['Cuenta', 'no es enemigo'], ['Atrapa', '1 s']],
-    text: 'No muere. Atrapa a lo que pase al alcance 1 s y se come a los enemigos que atrapa. Se desactiva (y se seca) al limpiar la sala. Cabeza roja carmín: el morado se reserva a lo secreto.',
+    stats: [['Cuenta', 'no es enemigo'], ['Atrapa', '1 s'], ['Al soltarte', 'medio corazón'], ['Desde', 'sala 2, 35 %']],
+    text: 'No muere y solo crece sobre tierra. Muerde a lo que pise su boca: al jugador lo deja sin poder moverse ni esquivar 1 s y le hace medio corazón al soltarlo; a un enemigo que no sea jefe se lo come. Se seca y se desactiva al limpiar la sala. Cabeza roja carmín: el morado se reserva a lo secreto.',
     asks: 'Empujar a los enemigos hacia ella y no pisar su zona.' },
   { id: 'efimeras', name: 'Enjambre de efímeras', role: 'Trampa', c: 'var(--trap)', tiles: 'floor_burnt',
     anims: [['en_Mayflies_Idle', 'Enjambre', 3, 0.8], ['en_Mayflies_Burn', 'Arde', 3, 0.6]],
-    stats: [['Cuenta', 'no es enemigo']],
-    text: 'Una nube de efímeras que no se puede disparar: solo muere con fuego o explosiones, y no vuelve. Al arder caen como ascuas.',
+    stats: [['Cuenta', 'no es enemigo'], ['Daño', 'medio corazón / s'], ['Desde', 'sala 3, 30 %']],
+    text: 'Una nube de efímeras que flota hacia ti por encima de todo y te pica mientras la atraviesas. No tiene cuerpo, así que no se puede disparar: solo muere con fuego o explosiones; arde, cae como ascuas y no vuelve. Se disipa al limpiar la sala.',
     asks: 'Llevar fuego hasta el enjambre o dar un rodeo.' },
 ];
 

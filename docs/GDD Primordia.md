@@ -460,14 +460,14 @@ Criterios: nada de ataques o mutaciones repetidos piso tras piso (formas de mane
 
 | Enemigo | Papel | Comportamiento | Lo que exige |
 | --- | --- | --- | --- |
-| Calamites | Plantas madre | Madre de 30 de vida inmóvil que suelta retoños cada 4 s y anillos de esporas. Los retoños persiguen al jugador; al matar la madre, se secan | Priorizar a la madre |
-| Medullosa | Mortero | Lanza semillas en arco que marcan el suelo y se abren en vaina que revienta en charco | Leer las marcas |
-| Libélula gigante | Voladora | Vuela sobre todo; marca una línea 0,7 s y cae en picado; posada 0,8 s (vulnerable) | Esquivar el picado y pegar al posarse |
-| Escarabajo bombardero | Cono de fuego | Se gira hacia ti y suelta un cono ardiente de 3 u que prende gas y charcos; +50 % de daño por la espalda | Rodearlo |
-| Araña de las frondas | Emboscada | Oculta dentro de un helecho (tiembla, se ven 2–4 ojos rojos); lanza telarañas que frenan y arden y salta | Detectar helechos que tiemblan |
-| Sapo de fango | Lodo | Escupe lodo que deja charcos que ralentizan; hinchado revienta; nada en el lodo profundo | Mover el combate fuera del lodo |
+| Calamites | Plantas madre | Madre de 30 de vida inmóvil, solo sobre tierra. Mientras te ve echa un retoño cada 4 s (hasta 4 vivos; te persiguen y no sueltan biomasa) y cada 7 s un anillo de 10 esporas lentas con huecos que gira 18° cada vez. Al morir la madre, los retoños se secan | Priorizar a la madre |
+| Medullosa | Mortero | 16 de vida, solo sobre tierra. Ve a 15 u: marca el suelo donde estás y 1,1 s después cae una vaina que hace medio corazón en radio 0,9 y deja un charco de veneno 6 s (arde). Un tiro cada 4 s | Leer las marcas |
+| Libélula gigante | Voladora | 14 de vida. Vuela inmune (proyectiles y golpes la atraviesan) dando vueltas a 5,5 u; marca una línea 0,7 s (se fija 0,3 s antes), cae en picado a 14 u/s (1 corazón de daño) y se posa 0,8 s, vulnerable. Si acaba sobre fosa o lodo no se posa | Esquivar el picado y pegar al posarse |
+| Escarabajo bombardero | Cono de fuego | 12 de vida, inmune al fuego. Se acerca, se gira y avisa 0,6 s; suelta por detrás un lanzallamas de 3 u durante 1,2 s (3 fases: salida, bucle, final) que quema al jugador y a los enemigos, prende gas, charcos y helechos y deja fuego en el suelo. +50 % de daño por la espalda | Rodearlo |
+| Araña de las frondas | Emboscada | 12 de vida. Nace escondida en un helecho entero (que tiembla; inmune) y sale a 3,2 u, si el helecho arde o a los 10 s. Lanza seda en arco que deja telarañas (frenan 50 %, 12 s, arden) y salta para apartarse o acercarse. Sin helecho, sale directa | Detectar helechos que tiemblan |
+| Sapo de fango | Lodo | 10 de vida. Solo sale en salas con lodo profundo, junto a él: se mete y ataca desde ahí, hundido hasta la panza. Escupe lodo en arco que deja charcos que ralentizan 8 s; si lo golpean en el lodo se zambulle 2 s (inmune). Si te pegas a él o le queda poca vida se hincha y revienta (1 de daño en radio 1,6) | Mover el combate fuera del lodo |
 
-- **Trampas** (categoría nueva: no cuentan para limpiar la sala y se desactivan al limpiarla): **Planta carnívora** (no muere, atrapa 1 s y se come enemigos; cabeza roja carmín con mandíbulas) y **Enjambre de efímeras** (nube de una pieza que solo muere con fuego o explosiones y no vuelve).
+- **Trampas** (categoría nueva: no son enemigos, no cuentan para limpiar la sala, esperan inactivas hasta que entras y se desactivan al limpiarla; salen en salas de combate con una probabilidad por sala): **Planta carnívora** (desde la sala 2, 35 %, solo sobre tierra; no muere, atrapa 1 s al que pise su boca —al jugador lo deja sin moverse ni esquivar y le hace medio corazón al soltarlo; a un enemigo que no sea jefe se lo come— y se seca al limpiar; cabeza roja carmín con mandíbulas) y **Enjambre de efímeras** (desde la sala 3, 30 %; nube de una pieza que flota hacia ti a 1,4 u/s por encima de todo, sin cuerpo —proyectiles y golpes la atraviesan—, pica medio corazón por segundo y solo muere con fuego o explosiones: arde, cae como ascuas y no vuelve).
 - Ofrecidos sin usar: Milpiés rodador y Cucarachas ladronas (estas últimas, como sala especial).
 
 **Jefes del piso 3:** uno al azar entre los dos (Arthropleura y Meganeura), salas más grandes y mecánicas de escenario (el terreno, el fuego y la lluvia cambian el combate). Presentación en ámbar del incendio: Arthropleura *Coloso del Carbonífero*, Meganeura *Señora de la tormenta*. Las barras de vida son propias de cada jefe (segmentos, alas).
@@ -766,6 +766,7 @@ Objetivo: que añadir una mutación, un enemigo o una sala nueva sea crear un ar
 | Mutaciones y linajes | 9 mutaciones (3 Bocas: Escupitajo venenoso, Peonza, Chorro de vinagre), clase nueva Parásito (Chupar), 8 linajes, 3 especiales del ámbar. Sin ranura nueva hasta el piso 4 |
 | Escenario | "El incendio que avanza" en tres tramos, lodo profundo en lugar de fosas, generación con islas, maleza quemable y salas de varios tamaños |
 | Trampas | Categoría nueva (planta carnívora y enjambre de efímeras): no cuentan para limpiar la sala |
+| Enemigos y trampas (programados, 3 de noviembre) | Más enemigos desde la primera sala (presupuesto 8 + 1,6 por sala). El sapo solo sale en salas con lodo profundo y junto a él; las plantas (Calamites, Medullosa, planta carnívora) solo sobre tierra, no sobre charcos; la araña nace en helechos. El lodo profundo no hunde en la orilla (margen de 0,3 u). Las matas de hongo del Cordyceps se agrandan ×1,5 |
 | Jefes | Arthropleura (caparazón invulnerable, el fuego abre las placas) y Meganeura (tormenta real); minijefe opcional Megarachne en el Nido; jefe secreto Lepidodendron ancestral con recompensa de corazón, Espora morada y reliquia |
 | Reliquias | Categoría nueva: una por jefe secreto, pasiva y permanente, sin ranura ni linaje |
 | Corazones de sala | 12 % de medio corazón al limpiar (+4 % por sala sin corazón); almacén en la tienda desde el piso 3; precios ×1,5 por piso |

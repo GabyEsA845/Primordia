@@ -79,6 +79,113 @@ MonoBehaviour:
     up: 0.3
   specialRooms: []
   specialRoomCount: {x: 2, y: 4}
+  encounterThemes:
+  - name: Pradera de Calamites
+    enemies:
+    - prefab: {fileID: 2940776833964867364, guid: 50bb68a91f19387489dbbdd06f38d1bc, type: 3}
+      weight: 4
+      maxPerRoom: 3
+    - prefab: {fileID: 4030936345262680546, guid: eb47435608f714d4b98b1d117760890f, type: 3}
+      weight: 1
+      maxPerRoom: 0
+    enemyMultiplier: 1.25
+    minDepth: 3
+    customCave: 1
+    cave:
+      size: {x: 44, y: 26}
+      shape: 0
+      lakes: 0
+      weight: 1
+    fernScale: 0.4
+    methaneScale: 0.5
+    bulbScale: 0.5
+    ventScale: 0.5
+    puddleScale: 0.5
+  - name: Nido de bombarderos
+    enemies:
+    - prefab: {fileID: 5591278114451798428, guid: 02e354aed6ea0bc4db71769bc7a522ca, type: 3}
+      weight: 4
+      maxPerRoom: 5
+    - prefab: {fileID: 6997304892591655701, guid: d65c70b707df61644906b88ad04954ec, type: 3}
+      weight: 1
+      maxPerRoom: 0
+    enemyMultiplier: 1.25
+    minDepth: 3
+    customCave: 1
+    cave:
+      size: {x: 38, y: 24}
+      shape: 0
+      lakes: 0
+      weight: 1
+    fernScale: 1.3
+    methaneScale: 2
+    bulbScale: 0
+    ventScale: 1.5
+    puddleScale: 0.5
+  - name: Charca de sapos
+    enemies:
+    - prefab: {fileID: 7499488381273586071, guid: 678125193e38aeb43a7d34843db73cc9, type: 3}
+      weight: 4
+      maxPerRoom: 5
+    - prefab: {fileID: 4030936345262680546, guid: eb47435608f714d4b98b1d117760890f, type: 3}
+      weight: 1
+      maxPerRoom: 0
+    enemyMultiplier: 1.25
+    minDepth: 3
+    customCave: 1
+    cave:
+      size: {x: 44, y: 26}
+      shape: 0
+      lakes: 1
+      weight: 1
+    fernScale: 0.7
+    methaneScale: 0.7
+    bulbScale: 1
+    ventScale: 0.5
+    puddleScale: 2
+  - name: "Telar de la ara\xF1a"
+    enemies:
+    - prefab: {fileID: 6997304892591655701, guid: d65c70b707df61644906b88ad04954ec, type: 3}
+      weight: 4
+      maxPerRoom: 5
+    - prefab: {fileID: 2940776833964867364, guid: 50bb68a91f19387489dbbdd06f38d1bc, type: 3}
+      weight: 1
+      maxPerRoom: 1
+    enemyMultiplier: 1.25
+    minDepth: 3
+    customCave: 1
+    cave:
+      size: {x: 38, y: 24}
+      shape: 0
+      lakes: 0
+      weight: 1
+    fernScale: 2
+    methaneScale: 1.5
+    bulbScale: 1
+    ventScale: 0.5
+    puddleScale: 0.5
+  - name: "Cielo de lib\xE9lulas"
+    enemies:
+    - prefab: {fileID: 5472151132634873348, guid: 9283a615604ff264cbb1e94ec47b79e9, type: 3}
+      weight: 4
+      maxPerRoom: 4
+    - prefab: {fileID: 4030936345262680546, guid: eb47435608f714d4b98b1d117760890f, type: 3}
+      weight: 1
+      maxPerRoom: 0
+    enemyMultiplier: 1.25
+    minDepth: 3
+    customCave: 1
+    cave:
+      size: {x: 50, y: 18}
+      shape: 0
+      lakes: 0
+      weight: 1
+    fernScale: 0.3
+    methaneScale: 0.5
+    bulbScale: 0
+    ventScale: 0.5
+    puddleScale: 1
+  encounterThemeCount: {x: 2, y: 4}
   exchangeRoom: {fileID: 11400000, guid: 5b2f86552c2f4024fa62b3277af9db01, type: 2}
   antechamberVertical: {fileID: 11400000, guid: 937596f4d6c8bec4eb3c1a0a6105722b, type: 2}
   antechamberHorizontal: {fileID: 11400000, guid: 471aaca2545726540ad08bd2c2e25456, type: 2}

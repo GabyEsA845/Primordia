@@ -34,7 +34,8 @@ namespace Primordia.Rooms
         /// Enemigos elegidos al azar hasta gastar el presupuesto (o hasta que no quepa ninguno), sin pasar del tope por
         /// sala de cada uno.
         /// </summary>
-        public static List<Enemy> PickEnemies(FloorConfig config, int depth, int budget, System.Random random, bool roomHasMud = true)
+        public static List<Enemy> PickEnemies(FloorConfig config, int depth, int budget, System.Random random, bool roomHasMud = true,
+            FloorConfig.EncounterTheme? theme = null)
         {
             var result = new List<Enemy>();
             var entries = config.Enemies;
@@ -44,18 +45,43 @@ namespace Primordia.Rooms
             {
                 var affordable = Enumerable.Range(0, entries.Length)
                     .Where(i => entries[i].prefab != null && entries[i].cost <= budget && depth >= entries[i].minDepth
-                                && (entries[i].maxPerRoom == 0 || picked[i] < entries[i].maxPerRoom)
-                                && (!entries[i].needsMud || roomHasMud))
+                                && (MaxPerRoom(entries[i], theme) == 0 || picked[i] < MaxPerRoom(entries[i], theme))
+                                && (!entries[i].needsMud || roomHasMud)
+                                && (!theme.HasValue || Weight(entries[i], theme.Value) > 0))
                     .ToList();
                 if (affordable.Count == 0)
                     break;
 
-                int index = affordable[random.Next(affordable.Count)];
+                int index = theme.HasValue ? WeightedPick(affordable, i => Weight(entries[i], theme.Value), random) : affordable[random.Next(affordable.Count)];
                 result.Add(entries[index].prefab);
                 picked[index]++;
                 budget -= entries[index].cost;
             }
             return result;
+        }
+
+        // Una sala con tema solo sortea los enemigos del tema (por peso) y puede cambiar su tope por sala.
+        static int Weight(FloorConfig.EnemyEntry entry, FloorConfig.EncounterTheme theme) =>
+            theme.enemies.Where(enemy => enemy.prefab == entry.prefab).Sum(enemy => enemy.weight);
+
+        static int MaxPerRoom(FloorConfig.EnemyEntry entry, FloorConfig.EncounterTheme? theme)
+        {
+            if (!theme.HasValue)
+                return entry.maxPerRoom;
+            var themed = theme.Value.enemies.FirstOrDefault(enemy => enemy.prefab == entry.prefab);
+            return themed.prefab != null && themed.maxPerRoom > 0 ? themed.maxPerRoom : entry.maxPerRoom;
+        }
+
+        static int WeightedPick(List<int> options, System.Func<int, int> weight, System.Random random)
+        {
+            int roll = random.Next(options.Sum(weight));
+            foreach (int option in options)
+            {
+                roll -= weight(option);
+                if (roll < 0)
+                    return option;
+            }
+            return options[options.Count - 1];
         }
 
         /// <summary>

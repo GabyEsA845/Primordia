@@ -34,6 +34,9 @@ namespace Primordia.Core
         /// <summary>Invulnerabilidad controlada desde fuera, por ejemplo durante la esquiva.</summary>
         public bool IsInvulnerable { get; set; }
 
+        /// <summary>Escala el daño que recibe (1 normal; 0,5 la libélula en el aire). Si el golpe queda en 0, se desvía.</summary>
+        public float DamageTakenMultiplier { get; set; } = 1f;
+
         public float InvulnerabilityAfterHit
         {
             get => invulnerabilityAfterHit;
@@ -228,8 +231,14 @@ namespace Primordia.Core
             }
 
             amount = ModifiedDamage(amount);
+            if (amount > 0 && DamageTakenMultiplier < 1f)
+                amount = ScaleDamage(amount, DamageTakenMultiplier);
             if (amount <= 0)
+            {
+                if (DamageTakenMultiplier < 1f)
+                    Deflected?.Invoke();
                 return false;
+            }
 
             // El corazón morado, la barrera y el escudo paran el golpe entero; cuentan como golpe (dan la invulnerabilidad de después).
             if (purpleHearts > 0)

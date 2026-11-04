@@ -6,10 +6,10 @@ using UnityEngine;
 namespace Primordia.Enemies
 {
     /// <summary>
-    /// Libélula gigante (piso 3, voladora): vuela por encima de todo (fosas, lodo, charcos; los proyectiles y el jugador la
-    /// atraviesan y es inmune) dando vueltas a tu alrededor. Cada pocos segundos fija una línea de ataque 0,7 s (morro arriba, el ojo
+    /// Libélula gigante (piso 3, voladora): vuela por encima de todo (fosas, lodo, charcos; el jugador la atraviesa
+    /// y recibe la mitad de daño en el aire) dando vueltas a tu alrededor. Cada pocos segundos fija una línea de ataque 0,7 s (morro arriba, el ojo
     /// brilla, una línea en el suelo la delata) y cae en picado por ella, rápida, hiriendo al jugador que alcance. Al acabar el
-    /// picado se posa 0,8 s: ahí, y solo ahí, se le puede hacer daño. Después despega y vuelve a volar. Si el picado acaba sobre una
+    /// picado se posa 0,8 s: ahí recibe el daño completo. Después despega y vuelve a volar. Si el picado acaba sobre una
     /// fosa o lodo no se posa y sigue volando.
     /// </summary>
     public class DragonflyBrain : EnemyBrain
@@ -20,6 +20,8 @@ namespace Primordia.Enemies
         [Tooltip("A qué distancia da vueltas al jugador.")]
         [SerializeField, Min(1f)] float orbitDistance = 5.5f;
         [SerializeField, Min(0.1f)] float orbitTurnSeconds = 3f;
+        [Tooltip("Daño que recibe en el aire respecto a posada (0,5: la mitad de media). Posada, el normal.")]
+        [SerializeField, Range(0.1f, 1f)] float airborneDamageTaken = 0.5f;
 
         [Header("Picado")]
         [SerializeField, Min(0.5f)] float diveRange = 10f;
@@ -48,7 +50,7 @@ namespace Primordia.Enemies
 
         public Phase Current { get; private set; } = Phase.Fly;
 
-        /// <summary>True mientras está en el aire: inmune y sin chocar con el jugador ni con sus proyectiles.</summary>
+        /// <summary>True mientras está en el aire: daño reducido y sin chocar con el jugador.</summary>
         public bool IsAirborne => Current is Phase.Fly or Phase.Warn or Phase.Dive or Phase.Takeoff;
 
         /// <summary>Dirección del picado (la de la línea de aviso).</summary>
@@ -91,7 +93,7 @@ namespace Primordia.Enemies
 
         public override Vector2? Facing => Current is Phase.Warn or Phase.Dive ? DiveDirection : null;
 
-        // En el aire es inmune: los golpes (la Peonza, empujes) no la empujan ni la aturden, y así no rompen su picado.
+        // En el aire los golpes (la Peonza, empujes) no la empujan ni la aturden, y así no rompen su picado.
         public override bool CanBePushed => !IsAirborne;
 
         public override bool ShowsHurt => Current is Phase.Perch or Phase.Land;
@@ -114,16 +116,16 @@ namespace Primordia.Enemies
         {
             ClearLine();
             if (Health != null)
-                Health.IsInvulnerable = false;
+                Health.DamageTakenMultiplier = 1f;
         }
 
-        /// <summary>En el aire: inmune y sin chocar con el jugador ni con sus proyectiles; las paredes sí la paran.</summary>
+        /// <summary>En el aire: recibe menos daño y no choca con el jugador (sus proyectiles sí la alcanzan); las paredes la paran.</summary>
         void SetAirborne(bool airborne)
         {
             if (Health != null)
-                Health.IsInvulnerable = airborne;
+                Health.DamageTakenMultiplier = airborne ? airborneDamageTaken : 1f;
             if (Body != null)
-                Body.excludeLayers = airborne ? LayerMask.GetMask(Combat.CombatLayers.Player, Combat.CombatLayers.PlayerProjectile) : 0;
+                Body.excludeLayers = airborne ? LayerMask.GetMask(Combat.CombatLayers.Player) : 0;
             if (look != null)
                 look.Grounded = !airborne;
         }
@@ -168,7 +170,7 @@ namespace Primordia.Enemies
                 case Phase.Perch:
                     if (Time.time >= phaseUntil)
                     {
-                        // Despega: ya en el aire, inmune, aunque aún subiendo.
+                        // Despega: ya en el aire, aunque aún subiendo.
                         SetAirborne(true);
                         Enter(Phase.Takeoff, Length("Takeoff", DefaultTakeoff));
                     }

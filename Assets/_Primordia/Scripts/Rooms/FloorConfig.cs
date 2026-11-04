@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Primordia.Biomass;
 using Primordia.Enemies;
 using Primordia.Mutations;
@@ -180,6 +181,50 @@ namespace Primordia.Rooms
             public bool IsValid => template != null;
         }
 
+        /// <summary>Un enemigo de una sala con tema: cuánto pesa en el sorteo y su tope en esa sala (si no, el de su entrada).</summary>
+        [Serializable]
+        public struct ThemedEnemy
+        {
+            public Enemy prefab;
+            [Min(1)] public int weight;
+            [Tooltip("Tope en una sala con este tema (0 = el de su entrada en Enemies).")]
+            [Min(0)] public int maxPerRoom;
+
+            public ThemedEnemy(Enemy prefab, int weight, int maxPerRoom = 0)
+            {
+                this.prefab = prefab;
+                this.weight = weight;
+                this.maxPerRoom = maxPerRoom;
+            }
+        }
+
+        /// <summary>
+        /// Sala de combate con tema (piso 3: Pradera de Calamites, Nido de bombarderos…): sustituye a una sala de combate normal
+        /// con otros enemigos (casi solo el protagonista del tema y algún apoyo), otra cueva y otro reparto del escenario.
+        /// </summary>
+        [Serializable]
+        public struct EncounterTheme
+        {
+            public string name;
+            [Tooltip("Enemigos del tema. Coste, sala mínima, lodo y demás, de su entrada en Enemies; aquí, su peso y su tope.")]
+            public ThemedEnemy[] enemies;
+            [Tooltip("Enemigos respecto a una sala normal (1 igual).")]
+            [Min(0.1f)] public float enemyMultiplier;
+            [Tooltip("Sala de combate del camino más temprana en la que puede salir.")]
+            [Min(1)] public int minDepth;
+            [Tooltip("Cueva propia del tema; si no, la que toque por sorteo.")]
+            public bool customCave;
+            public CaveSpec cave;
+            [Header("Escenario respecto al normal (1 igual, 0 ninguno)")]
+            [Min(0f)] public float fernScale;
+            [Min(0f)] public float methaneScale;
+            [Min(0f)] public float bulbScale;
+            [Min(0f)] public float ventScale;
+            [Min(0f)] public float puddleScale;
+
+            public bool IsValid => enemies != null && enemies.Any(enemy => enemy.prefab != null);
+        }
+
         /// <summary>Sprites de las piezas de las salas especiales (huesos, almejas, coral, entradas de oleadas).</summary>
         [Serializable]
         public struct RoomPieces
@@ -296,6 +341,10 @@ namespace Primordia.Rooms
         [SerializeField] SpecialRoom[] specialRooms = Array.Empty<SpecialRoom>();
         [Tooltip("Salas especiales por partida, contando las que salen siempre (mínimo y máximo).")]
         [SerializeField] Vector2Int specialRoomCount = new(2, 4);
+        [Header("Salas con tema (piso 3)")]
+        [SerializeField] EncounterTheme[] encounterThemes = Array.Empty<EncounterTheme>();
+        [Tooltip("Salas con tema por partida (mínimo y máximo); cada tema sale como mucho una vez. Sustituyen a salas de combate del camino.")]
+        [SerializeField] Vector2Int encounterThemeCount = new(2, 4);
         [Tooltip("Sala de cambio (laboratorio de Darwin), en fondo de saco detrás de la tienda. Vacío: no hay.")]
         [SerializeField] RoomTemplate exchangeRoom;
         [Tooltip("Antesala del jefe, en línea recta con él: el túnel vertical (puertas arriba y abajo). Vacío: sin antesala.")]
@@ -400,6 +449,8 @@ namespace Primordia.Rooms
         public PathWeights Path => pathWeights;
         public SpecialRoom[] SpecialRooms => Array.FindAll(specialRooms ?? Array.Empty<SpecialRoom>(), room => room.IsValid);
         public Vector2Int SpecialRoomCount => specialRoomCount;
+        public EncounterTheme[] EncounterThemes => Array.FindAll(encounterThemes ?? Array.Empty<EncounterTheme>(), theme => theme.IsValid);
+        public Vector2Int EncounterThemeCount => encounterThemeCount;
         public RoomTemplate ExchangeRoom => exchangeRoom;
         public bool HasExchange => exchangeRoom != null && HasShop;
         public RoomTemplate AntechamberVertical => antechamberVertical;
@@ -547,6 +598,12 @@ namespace Primordia.Rooms
         {
             specialRooms = newRooms ?? Array.Empty<SpecialRoom>();
             specialRoomCount = newCount;
+        }
+
+        internal void ConfigureEncounterThemes(EncounterTheme[] newThemes, Vector2Int newCount)
+        {
+            encounterThemes = newThemes ?? Array.Empty<EncounterTheme>();
+            encounterThemeCount = newCount;
         }
 
         internal void ConfigureFixedRooms(RoomTemplate newExchange, RoomTemplate newAntechamberVertical, RoomTemplate newAntechamberHorizontal)

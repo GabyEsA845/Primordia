@@ -114,6 +114,57 @@ namespace Primordia.Tests
             Assert.Greater(withMud, 100, "La mayoría de salas con lagos llevan lodo.");
         }
 
+        FloorConfig.EncounterTheme[] MakeThemes(int count)
+        {
+            var themes = new FloorConfig.EncounterTheme[count];
+            for (int i = 0; i < count; i++)
+            {
+                var enemy = Track(new GameObject($"ThemeEnemy_{i}")).AddComponent<Primordia.Enemies.Enemy>();
+                themes[i] = new FloorConfig.EncounterTheme
+                {
+                    name = $"Tema {i}",
+                    enemies = new[] { new FloorConfig.ThemedEnemy(enemy, 4) },
+                    enemyMultiplier = 1.25f,
+                    minDepth = 3,
+                    customCave = true,
+                    cave = new FloorConfig.CaveSpec(new Vector2Int(44, 26), CaveGenerator.CaveShape.Oval, lakes: false),
+                    fernScale = 1f, methaneScale = 1f, bulbScale = 1f, ventScale = 1f, puddleScale = 1f,
+                };
+            }
+            return themes;
+        }
+
+        [Test]
+        public void EncounterThemes_TakeCombatRoomsOfThePath_OneOfEachAtMost()
+        {
+            floor2.ConfigureEncounterThemes(MakeThemes(5), new Vector2Int(2, 4));
+            for (int seed = 1; seed <= 60; seed++)
+            {
+                var layout = FloorLayoutGenerator.Generate(floor2, new System.Random(seed));
+                var themed = layout.Rooms.Where(room => room.Encounter.HasValue).ToList();
+                Assert.That(themed.Count, Is.InRange(2, 4), $"semilla {seed}: de 2 a 4 salas con tema.");
+                Assert.AreEqual(themed.Count, themed.Select(room => room.Encounter.Value.name).Distinct().Count(), $"semilla {seed}: sin repetir tema.");
+                int lastCombat = layout.Rooms.Where(room => room.Role == RoomRole.Combat).Max(room => room.Depth);
+                foreach (var room in themed)
+                {
+                    Assert.AreEqual(RoomRole.Combat, room.Role, $"semilla {seed}: solo sustituye salas de combate del camino.");
+                    Assert.GreaterOrEqual(room.Depth, 3, $"semilla {seed}: no en las dos primeras.");
+                    Assert.Less(room.Depth, lastCombat, $"semilla {seed}: no en la última antes del jefe.");
+                    Assert.AreEqual(1.25f, room.EnemyMultiplier, 0.001f);
+                }
+            }
+        }
+
+        [Test]
+        public void EncounterThemes_WithoutThemes_DoNothingToTheLayout()
+        {
+            for (int seed = 1; seed <= 20; seed++)
+            {
+                var layout = FloorLayoutGenerator.Generate(floor2, new System.Random(seed));
+                Assert.IsFalse(layout.Rooms.Any(room => room.Encounter.HasValue), $"semilla {seed}");
+            }
+        }
+
         [Test]
         public void Caves_WithoutLakesOrShape_AreTheSameAsBefore()
         {

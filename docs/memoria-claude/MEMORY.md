@@ -21,6 +21,7 @@
 ## En curso
 - [Sala de paso del piso 2 → 3](primordia-floor2-transition-room.md) — charca, ambiente del pantano y metamorfosis por pareja HECHOS y subidos
 - **[Estado de Primordia](primordia-project-status.md) — pisos 1-2 en main; piso 3 en feature/floor-3: pasos 1-5 HECHOS y con commit (5 = enemigos y trampas, cerrado con documento v8 y GDD/PLAN); SIGUIENTE paso 6 = salas con tema (Sonnet)**
+- [Salas con tema del piso 3](primordia-floor3-room-themes.md) — paso 6 bloque 1 programado (2026-11-04): 5 temas, menú, números y piezas pendientes de Opus
 - [Enemigos y trampas del piso 3](primordia-floor3-enemies-decisions.md) — paso 5 HECHO: 6 enemigos + 2 trampas, números, archivos, generador, margen del lodo, matas Cordyceps
 - [Mutaciones y linajes del piso 3](primordia-floor3-mutations-decisions.md) — paso 4 COMPLETO (subpasos 1-5, 8 linajes y toques, reserva); detalle de cada pieza, archivos y decisiones
 - [Reacciones del piso 3](primordia-floor3-reactions-decisions.md) — paso 2 HECHO (subtandas A-D): quemado tipo Gungeon, odre, veneno, fumarolas

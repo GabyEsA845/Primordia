@@ -45,6 +45,9 @@ namespace Primordia.Rooms
         /// <summary>Sala especial hecha a mano, si lo es.</summary>
         public FloorConfig.SpecialRoom? Special;
 
+        /// <summary>Tema de la sala de combate (Pradera de Calamites, Nido de bombarderos…), si lo tiene.</summary>
+        public FloorConfig.EncounterTheme? Encounter;
+
         /// <summary>Ocupa dos casillas en vertical: <see cref="Cell"/> y la de encima.</summary>
         public bool Tall;
 
@@ -59,7 +62,7 @@ namespace Primordia.Rooms
         }
 
         /// <summary>Enemigos respecto a una sala normal (el Corazón morado lleva el doble; el Parkour y la Gruta, ninguno).</summary>
-        public float EnemyMultiplier => Special.HasValue ? Special.Value.enemyMultiplier : 1f;
+        public float EnemyMultiplier => Special.HasValue ? Special.Value.enemyMultiplier : Encounter.HasValue ? Encounter.Value.enemyMultiplier : 1f;
 
         string SpecialName => Special.HasValue && Special.Value.template != null
             ? Special.Value.template.name.Replace("Room_Special_", "")
@@ -515,6 +518,7 @@ namespace Primordia.Rooms
             var rewardAfter = new HashSet<int>(config.RewardAfter ?? new int[0]);
             RoomTemplate previousCombat = null;
             var bySlot = new LayoutRoom[slots.Count];
+            var encounters = PickEncounters(config, random, slots);
 
             for (int s = 0; s < slots.Count; s++)
             {
@@ -555,7 +559,10 @@ namespace Primordia.Rooms
                         {
                             // Dos salas seguidas del camino no repiten forma, si hay donde elegir.
                             var shape = Pick(random, config.CombatRooms, previousCombat);
+                            if (encounters.TryGetValue(slot.Depth, out var encounter))
+                                room.Encounter = encounter;
                             room.Template = !config.GeneratesCaves ? shape
+                                : room.Encounter is { customCave: true } themed ? Cave(layout, random, new[] { themed.cave }, shape, room)
                                 : config.CaveSpecs.Length > 0 ? Cave(layout, random, config.CaveSpecs, shape, room)
                                 : Cave(layout, random, config.CaveSizes, shape, room);
                             previousCombat = shape;
@@ -668,6 +675,36 @@ namespace Primordia.Rooms
         /// Cueva generada para la sala, de uno de los tamaños posibles. Si no sale ninguna que pase la comprobación, la forma
         /// de reserva del catálogo (<paramref name="fallback"/>).
         /// </summary>
+        /// <summary>
+        /// Salas con tema de la partida: hasta el número sorteado, cada tema una vez, en salas de combate del camino sin especial
+        /// (nunca de las dos primeras ni la última). Sin temas en el piso, no gasta azar. Devuelve el tema por profundidad.
+        /// </summary>
+        static Dictionary<int, FloorConfig.EncounterTheme> PickEncounters(FloorConfig config, System.Random random, List<Slot> slots)
+        {
+            var result = new Dictionary<int, FloorConfig.EncounterTheme>();
+            var themes = config.EncounterThemes;
+            if (themes.Length == 0)
+                return result;
+
+            var combat = slots.Where(slot => slot.Role == RoomRole.Combat).ToList();
+            int last = combat.Count == 0 ? 0 : combat.Max(slot => slot.Depth);
+            var free = combat.Where(slot => !slot.Special.HasValue && slot.Depth >= FirstSpecialDepth && slot.Depth < last)
+                .Select(slot => slot.Depth).ToList();
+            int wanted = Mathf.Min(RandomRange(random, config.EncounterThemeCount), themes.Length);
+            foreach (var theme in themes.OrderBy(_ => random.Next()))
+            {
+                if (result.Count == wanted)
+                    break;
+                var fits = free.Where(depth => depth >= theme.minDepth).ToList();
+                if (fits.Count == 0)
+                    continue;
+                int pick = fits[random.Next(fits.Count)];
+                result[pick] = theme;
+                free.Remove(pick);
+            }
+            return result;
+        }
+
         static RoomTemplate Cave(FloorLayout layout, System.Random random, Vector2Int[] sizes, RoomTemplate fallback, LayoutRoom room)
         {
             if (sizes.Length == 0)

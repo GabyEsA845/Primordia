@@ -436,7 +436,7 @@ namespace Primordia.Tests
             yield return null;
 
             Assert.IsTrue(dragonfly.IsAirborne);
-            Assert.IsTrue(health.IsInvulnerable, "En el aire es inmune.");
+            Assert.Less(health.DamageTakenMultiplier, 1f, "En el aire recibe menos daño.");
 
             Vector2? warned = null;
             dragonfly.Warned += direction => warned = direction;
@@ -453,7 +453,7 @@ namespace Primordia.Tests
             for (float t = 0f; t < 2f && dragonfly.Current != DragonflyBrain.Phase.Perch; t += Time.deltaTime)
                 yield return null;
             Assert.AreEqual(DragonflyBrain.Phase.Perch, dragonfly.Current, "Al acabar, se posa.");
-            Assert.IsFalse(health.IsInvulnerable, "Posada, es vulnerable.");
+            Assert.AreEqual(1f, health.DamageTakenMultiplier, "Posada, daño completo.");
             Assert.IsFalse(dragonfly.IsAirborne);
         }
 
@@ -506,7 +506,26 @@ namespace Primordia.Tests
 
             yield return new WaitForSeconds(1.5f);
             Assert.IsTrue(dragonfly.IsAirborne, "Después despega.");
-            Assert.IsTrue(dragonfly.GetComponent<Health>().IsInvulnerable);
+            Assert.Less(dragonfly.GetComponent<Health>().DamageTakenMultiplier, 1f);
+        }
+
+        [UnityTest]
+        public IEnumerator Dragonfly_Airborne_TakesReducedDamage()
+        {
+            player.transform.position = new Vector2(30f, 0f);
+            var dragonfly = CreateEnemy<DragonflyBrain>(Data(400, detection: 5f, contactDamage: 0), Vector2.zero);
+            var health = dragonfly.GetComponent<Health>();
+            yield return null;
+            yield return null;
+            Assert.IsTrue(dragonfly.IsAirborne);
+            Assert.IsFalse(health.IsInvulnerable, "En el aire ya no es inmune.");
+
+            int before = health.Current;
+            for (int i = 0; i < 100; i++)
+                health.TakeDamage(2);
+            int lost = before - health.Current;
+            Assert.Greater(lost, 60, "El daño le llega.");
+            Assert.Less(lost, 140, "Pero reducido: de media la mitad de 200.");
         }
 
         [UnityTest]

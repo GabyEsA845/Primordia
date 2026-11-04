@@ -145,11 +145,34 @@ namespace Primordia.Rooms
         /// Los que no caben se quedan fuera. Posiciones en coordenadas de la plantilla.
         /// </summary>
         public static List<(Enemy enemy, Vector2 position)> Place(FloorConfig config, RoomTemplate template, IEnumerable<Vector2Int> doorCells,
-            List<Enemy> enemies, List<Vector2Int> floorCells, System.Random random, System.Func<Vector2, bool> onWetGround = null)
+            List<Enemy> enemies, List<Vector2Int> floorCells, System.Random random, System.Func<Vector2, bool> onWetGround = null,
+            IReadOnlyList<Vector2> fernSpots = null)
         {
             var result = new List<(Enemy, Vector2)>();
             var mudEnemies = enemies.Where(enemy => NeedsMud(config, enemy)).ToList();
             var otherEnemies = enemies.Where(enemy => !NeedsMud(config, enemy)).ToList();
+
+            // Los que se esconden en un helecho salen donde hay uno, lejos de las puertas y unos de otros; si no hay helechos
+            // suficientes, salen en suelo libre como cualquiera.
+            var doors = doorCells.ToList();
+            var hiders = otherEnemies.Where(enemy => HidesInFern(config, enemy)).ToList();
+            otherEnemies = otherEnemies.Where(enemy => !HidesInFern(config, enemy)).ToList();
+            var usedFerns = new List<Vector2>();
+            if (fernSpots != null)
+            {
+                var shuffled = fernSpots.Where(spot => doors.All(door => Vector2.Distance(door, spot) >= DoorDistance))
+                    .OrderBy(_ => random.Next()).ToList();
+                foreach (var hider in hiders.ToList())
+                {
+                    var spot = shuffled.Cast<Vector2?>().FirstOrDefault(s => usedFerns.All(used => Vector2.Distance(used, s.Value) >= EnemySpacing));
+                    if (spot == null)
+                        break;
+                    usedFerns.Add(spot.Value);
+                    result.Add((hider, spot.Value));
+                    hiders.Remove(hider);
+                }
+            }
+            otherEnemies.AddRange(hiders);
 
             // Las plantas (dryGround) solo salen sobre tierra: no sobre charcos de lodo o de agua. Se colocan primero, en los sitios
             // secos, y los demás reparten lo que queda.
@@ -174,6 +197,8 @@ namespace Primordia.Rooms
         }
 
         static bool IsDryGroundOnly(FloorConfig config, Enemy prefab) => config.Enemies.Any(entry => entry.prefab == prefab && entry.dryGround);
+
+        static bool HidesInFern(FloorConfig config, Enemy prefab) => config.Enemies.Any(entry => entry.prefab == prefab && entry.hidesInFern);
 
         static bool NeedsMud(FloorConfig config, Enemy prefab) => config.Enemies.Any(entry => entry.prefab == prefab && entry.needsMud);
 

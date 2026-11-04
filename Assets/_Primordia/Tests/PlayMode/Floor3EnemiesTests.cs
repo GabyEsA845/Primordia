@@ -281,6 +281,98 @@ namespace Primordia.Tests
             Assert.IsTrue(sproutHealth.IsDead, "Y se deshace.");
         }
 
+        // Escondite de pruebas: hace lo que un helecho (tiembla mientras hay alguien dentro y puede dejar de estar entero).
+        class FakeHideout : MonoBehaviour, Primordia.Rooms.IHidingPlace
+        {
+            public Vector2 Position => transform.position;
+            public bool Intact { get; set; } = true;
+            public bool Trembling { get; set; }
+        }
+
+        [UnityTest]
+        public IEnumerator Spider_WithoutAFern_StartsOutAndSpinsSilkAtYou()
+        {
+            player.transform.position = new Vector2(6f, 0f);
+            var spider = CreateEnemy<SpiderBrain>(Data(12), Vector2.zero);
+            Vector2? aimed = null;
+            spider.Spat += aim => aimed = aim;
+            yield return null;
+            Assert.IsFalse(spider.IsHidden, "Sin helecho donde esconderse, sale directamente.");
+
+            for (float t = 0f; t < 3f && aimed == null; t += Time.deltaTime)
+                yield return null;
+            Assert.IsNotNull(aimed, "Te lanza seda al verte a tiro.");
+            Assert.AreEqual(6f, aimed.Value.x, 0.01f, "A donde estás.");
+        }
+
+        [UnityTest]
+        public IEnumerator Spider_Hidden_IsImmuneAndShakesTheFern_UntilYouGetClose()
+        {
+            player.transform.position = new Vector2(8f, 0f);
+            var spider = CreateEnemy<SpiderBrain>(Data(12), Vector2.zero);
+            var fern = Track(new GameObject("Fern")).AddComponent<FakeHideout>();
+            spider.HideIn(fern);
+            yield return new WaitForSeconds(0.3f);
+
+            Assert.IsTrue(spider.IsHidden);
+            Assert.IsTrue(fern.Trembling, "El helecho tiembla mientras hay una araña dentro.");
+            Assert.IsTrue(spider.GetComponent<Health>().IsInvulnerable, "Escondida no recibe daño.");
+            Assert.IsFalse(spider.GetComponent<Collider2D>().enabled, "Ni la tocan los proyectiles.");
+
+            player.transform.position = new Vector2(2f, 0f);
+            yield return new WaitForSeconds(0.15f);
+            Assert.AreEqual(SpiderBrain.Phase.Reveal, spider.Current, "Si te acercas, sale de golpe.");
+            Assert.IsFalse(spider.GetComponent<Health>().IsInvulnerable);
+            Assert.IsTrue(spider.GetComponent<Collider2D>().enabled);
+            Assert.IsFalse(fern.Trembling, "El helecho se calma.");
+        }
+
+        [UnityTest]
+        public IEnumerator Spider_WhenTheFernBurns_JumpsOut()
+        {
+            player.transform.position = new Vector2(8f, 0f);
+            var spider = CreateEnemy<SpiderBrain>(Data(12), Vector2.zero);
+            var fern = Track(new GameObject("Fern")).AddComponent<FakeHideout>();
+            spider.HideIn(fern);
+            yield return new WaitForSeconds(0.2f);
+            Assert.IsTrue(spider.IsHidden);
+
+            fern.Intact = false;
+            yield return new WaitForSeconds(0.15f);
+            Assert.IsFalse(spider.IsHidden, "Si el helecho arde, sale.");
+        }
+
+        [UnityTest]
+        public IEnumerator Spider_TooClose_JumpsAway()
+        {
+            player.transform.position = new Vector2(1.5f, 0f);
+            var spider = CreateEnemy<SpiderBrain>(Data(12), Vector2.zero);
+            Vector2? jumped = null;
+            spider.Jumped += direction => jumped = direction;
+            for (float t = 0f; t < 1f && jumped == null; t += Time.deltaTime)
+                yield return null;
+
+            Assert.IsNotNull(jumped, "Pegado a ella, salta.");
+            Assert.Less(jumped.Value.x, -0.9f, "Para apartarse de ti.");
+            yield return new WaitForSeconds(0.3f);
+            Assert.Less(spider.transform.position.x, -0.5f, "Y se aleja.");
+        }
+
+        [UnityTest]
+        public IEnumerator SpiderWeb_SlowsThoseOnIt_AndBurnsAway()
+        {
+            var web = Primordia.Rooms.SpiderWeb.Create(new Vector2(0f, 0f), null, null, null, 10f);
+            Track(web.gameObject);
+            Assert.IsTrue(Primordia.Rooms.SpiderWeb.IsOver(new Vector2(0.3f, 0f)));
+            Assert.IsFalse(Primordia.Rooms.SpiderWeb.IsOver(new Vector2(3f, 0f)));
+            Assert.IsTrue(web.CanIgnite);
+
+            web.Ignite();
+            Assert.IsFalse(web.CanIgnite, "Ya arde.");
+            yield return new WaitForSeconds(0.4f);
+            Assert.IsTrue(web == null, "Se consume.");
+        }
+
         [UnityTest]
         public IEnumerator Beetle_Back_TakesFiftyPercentMoreDamage()
         {

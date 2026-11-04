@@ -9,7 +9,7 @@ namespace Primordia.Rooms
     /// en su base (que salta a los helechos de al lado) y queda como restos, sin volver a arder. Los de la tierra quemada,
     /// ya carbonizados, no arden.
     /// </summary>
-    public class Fern : MonoBehaviour, IFlammable
+    public class Fern : MonoBehaviour, IFlammable, IHidingPlace
     {
         const float SwayFrameSeconds = 0.22f;
         const float RustleFrameSeconds = 0.07f;
@@ -41,6 +41,11 @@ namespace Primordia.Rooms
         public Vector2 Position => transform.position;
 
         public bool CanIgnite => spec != null && spec.IsBurnable && state != State.Burning && state != State.Burnt;
+
+        // Escondite (la Araña de las frondas): mientras haya alguien dentro, el helecho se sacude sin parar.
+        public bool Intact => CanIgnite;
+
+        public bool Trembling { get; set; }
 
         internal void Configure(SpriteRenderer newBody, FernSpec newSpec, float newPhase)
         {
@@ -89,7 +94,10 @@ namespace Primordia.Rooms
             switch (state)
             {
                 case State.Rustle when Time.time - stateStart >= spec.rustle.Length * RustleFrameSeconds:
-                    SetState(State.Sway);
+                    SetState(Trembling ? State.Rustle : State.Sway);
+                    break;
+                case State.Sway when Trembling && spec.rustle != null && spec.rustle.Length > 0:
+                    SetState(State.Rustle);
                     break;
                 case State.Burning when Time.time - stateStart >= BurnSeconds:
                     SetState(State.Burnt);

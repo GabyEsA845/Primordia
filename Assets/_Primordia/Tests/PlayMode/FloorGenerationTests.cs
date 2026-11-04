@@ -248,6 +248,26 @@ namespace Primordia.Tests
         }
 
         [Test]
+        public void Place_FernHiders_GoToFerns_AndFallBackToTheFloor()
+        {
+            var spider = CreateEnemyTemplate("Spider");
+            config.ConfigureEnemies(new[]
+            {
+                new FloorConfig.EnemyEntry(spider, cost: 1, hidesInFern: true),
+                new FloorConfig.EnemyEntry(shooter, cost: 2)
+            }, null);
+            var template = Track(ScriptableObject.CreateInstance<RoomTemplate>());
+            template.SetLayout(string.Join("\n", Enumerable.Repeat("..............", 14)));
+            var floor = EncounterPlanner.SpawnCells(template, new Vector2Int[0]);
+            var ferns = new List<Vector2> { new(3f, 3f), new(10f, 10f) };
+
+            var placed = EncounterPlanner.Place(config, template, new Vector2Int[0], new List<Enemy> { spider, spider, spider },
+                floor, new System.Random(1), null, ferns);
+            Assert.AreEqual(3, placed.Count, "Todas encuentran sitio: la que no tiene helecho sale en el suelo.");
+            Assert.AreEqual(2, placed.Count(p => ferns.Contains(p.position)), "Dos en los dos helechos.");
+        }
+
+        [Test]
         public void Spawn_GroupEntries_CreateTheWholeGroup_ForOneCost()
         {
             var fish = CreateEnemyTemplate("Fish");

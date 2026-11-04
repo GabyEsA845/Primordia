@@ -787,12 +787,15 @@ namespace Primordia.Rooms
             var enemiesRoot = new GameObject("Enemies").transform;
             enemiesRoot.SetParent(roomObject.transform, false);
             enemiesRoot.gameObject.SetActive(false);
+            // Los helechos enteros de la sala (en coordenadas de la plantilla): donde pueden esconderse las arañas.
+            var fernSpots = roomObject.GetComponentsInChildren<Fern>().Where(fern => fern.Intact)
+                .Select(fern => fern.Position - (Vector2)placed.Origin).ToList();
             var special = placed.Layout.Special;
             var laterWaves = System.Array.Empty<Transform>();
             if (special.HasValue && special.Value.waves > 0 && vents.Count > 0)
-                laterWaves = SpawnWaves(placed, roomObject.transform, enemiesRoot, config, random, vents, special.Value.waves, puddleSpots);
+                laterWaves = SpawnWaves(placed, roomObject.transform, enemiesRoot, config, random, vents, special.Value.waves, puddleSpots, fernSpots);
             else
-                SpawnEnemies(placed, enemiesRoot, config, boss, random, puddleSpots);
+                SpawnEnemies(placed, enemiesRoot, config, boss, random, puddleSpots, fernSpots);
 
             var room = roomObject.AddComponent<Room>();
             room.Configure(enemiesRoot, doors.ToArray());
@@ -1246,7 +1249,7 @@ namespace Primordia.Rooms
         /// las demás, que esperan desactivadas.
         /// </summary>
         static Transform[] SpawnWaves(PlacedRoom placed, Transform roomObject, Transform firstWave, FloorConfig config, System.Random random,
-            List<WaveVent> vents, int waves, List<(Vector2 position, float radius)> puddleSpots = null)
+            List<WaveVent> vents, int waves, List<(Vector2 position, float radius)> puddleSpots = null, IReadOnlyList<Vector2> fernSpots = null)
         {
             var template = placed.Template;
             var floorArea = Enumerable.Range(0, template.Width * template.Height)
@@ -1273,7 +1276,7 @@ namespace Primordia.Rooms
                 }
 
                 var enemies = EncounterPlanner.PickEnemies(config, placed.Layout.Depth, budget, random, EncounterPlanner.HasMud(template));
-                foreach (var (enemy, position) in EncounterPlanner.Place(config, template, doorCells, enemies, candidates, random, WetGround(placed, puddleSpots)))
+                foreach (var (enemy, position) in EncounterPlanner.Place(config, template, doorCells, enemies, candidates, random, WetGround(placed, puddleSpots), fernSpots))
                     EncounterPlanner.Spawn(config, enemy, placed.Origin + position, root);
             }
             return later.ToArray();
@@ -1292,7 +1295,7 @@ namespace Primordia.Rooms
         }
 
         static void SpawnEnemies(PlacedRoom placed, Transform enemiesRoot, FloorConfig config, FloorConfig.BossEntry bossEntry,
-            System.Random random, List<(Vector2 position, float radius)> puddleSpots = null)
+            System.Random random, List<(Vector2 position, float radius)> puddleSpots = null, IReadOnlyList<Vector2> fernSpots = null)
         {
             switch (placed.Layout.Role)
             {
@@ -1326,7 +1329,7 @@ namespace Primordia.Rooms
 
             var doorCells = placed.DoorCells.Values.SelectMany(cells => cells).Select(cell => cell - placed.Origin).ToList();
             var candidates = EncounterPlanner.SpawnCells(template, doorCells);
-            var placements = EncounterPlanner.Place(config, template, doorCells, enemies, candidates, random, WetGround(placed, puddleSpots));
+            var placements = EncounterPlanner.Place(config, template, doorCells, enemies, candidates, random, WetGround(placed, puddleSpots), fernSpots);
             if (placements.Count < enemies.Count)
                 Debug.LogWarning($"FloorBuilder: en {placed.Layout.Name} solo caben {placements.Count} de {enemies.Count} enemigos.");
 

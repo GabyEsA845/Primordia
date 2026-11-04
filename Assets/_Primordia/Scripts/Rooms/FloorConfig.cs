@@ -30,9 +30,11 @@ namespace Primordia.Rooms
             public bool needsMud;
             [Tooltip("Planta: solo sale sobre tierra, no sobre charcos de lodo o de agua (las plantas del piso 3).")]
             public bool dryGround;
+            [Tooltip("Sale dentro de un helecho de la sala, a salvo de los charcos (la Araña de las frondas).")]
+            public bool hidesInFern;
 
             public EnemyEntry(Enemy prefab, int cost, int minDepth = 1, int maxPerRoom = 0, int groupSize = 1, bool needsMud = false,
-                bool dryGround = false)
+                bool dryGround = false, bool hidesInFern = false)
             {
                 this.prefab = prefab;
                 this.cost = cost;
@@ -41,6 +43,7 @@ namespace Primordia.Rooms
                 this.groupSize = groupSize;
                 this.needsMud = needsMud;
                 this.dryGround = dryGround;
+                this.hidesInFern = hidesInFern;
             }
 
             /// <summary>Cuántos salen juntos (al menos 1).</summary>

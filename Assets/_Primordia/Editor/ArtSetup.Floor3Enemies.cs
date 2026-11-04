@@ -22,14 +22,15 @@ namespace Primordia.Editor
 
         /// <summary>
         /// Prefab, coste, sala de combate desde la que salen, tope por sala (0 = sin tope), cuántos salen juntos y si solo salen en
-        /// salas con lodo profundo, junto a él, y si es una planta (solo sobre tierra, no sobre charcos).
+        /// salas con lodo profundo, junto a él, si es una planta (solo sobre tierra, no sobre charcos) y si se esconde en un helecho.
         /// </summary>
-        static readonly (string prefab, int cost, int minDepth, int maxPerRoom, int groupSize, bool needsMud, bool dryGround)[] Floor3Roster =
+        static readonly (string prefab, int cost, int minDepth, int maxPerRoom, int groupSize, bool needsMud, bool dryGround, bool hidesInFern)[] Floor3Roster =
         {
-            ("Enemy_Beetle", 3, 1, 0, 1, false, false),
-            ("Enemy_Toad", 3, 1, 3, 1, true, false),
-            ("Enemy_Medullosa", 4, 2, 2, 1, false, true),
-            ("Enemy_Calamites", 5, 3, 1, 1, false, true),
+            ("Enemy_Beetle", 3, 1, 0, 1, false, false, false),
+            ("Enemy_Toad", 3, 1, 3, 1, true, false, false),
+            ("Enemy_Medullosa", 4, 2, 2, 1, false, true, false),
+            ("Enemy_Spider", 3, 2, 3, 1, false, false, true),
+            ("Enemy_Calamites", 5, 3, 1, 1, false, true, false),
         };
 
         [MenuItem("Primordia/Floor 3/Crear enemigos del piso 3")]
@@ -42,14 +43,15 @@ namespace Primordia.Editor
             CreateToad();
             CreateMedullosa();
             CreateCalamites();
+            CreateSpider();
 
             AssetDatabase.SaveAssets();
             var entries = new List<FloorConfig.EnemyEntry>();
-            foreach (var (prefab, cost, minDepth, maxPerRoom, groupSize, needsMud, dryGround) in Floor3Roster)
+            foreach (var (prefab, cost, minDepth, maxPerRoom, groupSize, needsMud, dryGround, hidesInFern) in Floor3Roster)
             {
                 var enemy = AssetDatabase.LoadAssetAtPath<Enemy>($"{EnemyPrefabsFolder}/{prefab}.prefab");
                 if (enemy != null)
-                    entries.Add(new FloorConfig.EnemyEntry(enemy, cost, minDepth, maxPerRoom, groupSize, needsMud, dryGround));
+                    entries.Add(new FloorConfig.EnemyEntry(enemy, cost, minDepth, maxPerRoom, groupSize, needsMud, dryGround, hidesInFern));
             }
             PutInFloor3(entries.ToArray());
             Debug.Log($"ArtSetup: {entries.Count} enemigos del piso 3 creados y puestos en Floor_3.");
@@ -294,6 +296,72 @@ namespace Primordia.Editor
             var enemy = BuildFloor2Enemy("Enemy_CalamitesSprout", data, art, colliderRadius: 0.3f,
                 root => root.AddComponent<CalamitesSproutBrain>(), colliderOffset: new Vector2(0f, 0.35f));
             return enemy != null ? enemy.GetComponent<CalamitesSproutBrain>() : null;
+        }
+
+        // ---------- Araña de las frondas ----------
+
+        static Enemy CreateSpider()
+        {
+            // Cuadros de 32×32 (el salto y la muerte, de 40×40; la capa escondida, de 24×12). Pivote a la altura de las patas
+            // (8 px sobre el borde de abajo de un cuadro de 32).
+            var character = Floor3Enemy("Spider",
+                ("Hidden", Fps(200), true), ("Reveal", Fps(70), false), ("Idle", Fps(180), true), ("Move", Fps(100), true),
+                ("Jump", Fps(80), false), ("Shoot", Fps(70), false), ("Hurt", Fps(90), false), ("Death", Fps(120), false));
+            character.DefaultState = "Idle";
+            character.Pivot = new Vector2(0.5f, 0.25f);
+            character.CellWidths = new Dictionary<string, int>
+            {
+                ["Hidden"] = 24, ["Reveal"] = 32, ["Idle"] = 32, ["Move"] = 32, ["Jump"] = 40, ["Shoot"] = 32, ["Hurt"] = 32, ["Death"] = 40
+            };
+            var art = Import(character);
+            if (art == null)
+                return null;
+
+            string effects = $"{Floor3EnemiesArtFolder}/Effects";
+            Directory.CreateDirectory(effects);
+            string source = $"{Floor3EnemiesSourceFolder}/Effects";
+            var appear = ImportLooseSheet($"{source}/Fx_SpiderWeb_Appear.png", $"{effects}/Fx_SpiderWeb_Appear.png", 32);
+            var idle = ImportLooseSheet($"{source}/Fx_SpiderWeb_Idle.png", $"{effects}/Fx_SpiderWeb_Idle.png", 32);
+            var burn = ImportLooseSheet($"{source}/Fx_SpiderWeb_Burn.png", $"{effects}/Fx_SpiderWeb_Burn.png", 32);
+            var silkFrames = ImportLooseSheet($"{source}/Proj_SpiderSilk.png", $"{effects}/Proj_SpiderSilk.png", 10);
+            var shadow = ImportLooseSheet($"{source}/Fx_FlyerShadow.png", $"{effects}/Fx_FlyerShadow.png", 24);
+            var silk = CreateSpiderSilk(silkFrames, shadow, appear, idle, burn);
+
+            // 12 de vida, rápida, te ve a 10 u y hace medio corazón al tocarla.
+            var data = Floor3EnemyData("Enemy_Spider", d => d.Configure(EnemyBehaviour.Chaser,
+                maxHealth: 12, moveSpeed: 3.2f, detectionRange: 10f, contactDamage: 1));
+            return BuildFloor2Enemy("Enemy_Spider", data, art, colliderRadius: 0.45f,
+                root => root.AddComponent<SpiderBrain>().Configure(silk), colliderOffset: new Vector2(0f, 0.4f));
+        }
+
+        /// <summary>Bola de seda: sombra al suelo y cuerpo que sube y baja con el arco; deja la telaraña al caer. Se rehace.</summary>
+        static SpiderSilk CreateSpiderSilk(Sprite[] silkFrames, Sprite[] shadow, Sprite[] appear, Sprite[] idle, Sprite[] burn)
+        {
+            var root = new GameObject("Projectile_SpiderSilk");
+            try
+            {
+                var shadowObject = new GameObject("Shadow");
+                shadowObject.transform.SetParent(root.transform, false);
+                var shadowRenderer = shadowObject.AddComponent<SpriteRenderer>();
+                shadowRenderer.sprite = shadow.Length > 0 ? shadow[0] : null;
+                shadowRenderer.sortingOrder = 3;
+
+                var body = new GameObject("Body");
+                body.transform.SetParent(root.transform, false);
+                var renderer = body.AddComponent<SpriteRenderer>();
+                renderer.sprite = silkFrames.Length > 0 ? silkFrames[0] : null;
+                renderer.sortingOrder = 20;
+                if (silkFrames.Length > 1)
+                    body.AddComponent<SpriteLoop>().Configure(renderer, silkFrames, 0.09f, 0f);
+
+                var silk = root.AddComponent<SpiderSilk>();
+                silk.Configure(body.transform, shadowObject.transform, appear, idle, burn);
+                return PrefabUtility.SaveAsPrefabAsset(root, $"{ProjectilePrefabsFolder}/Projectile_SpiderSilk.prefab").GetComponent<SpiderSilk>();
+            }
+            finally
+            {
+                Object.DestroyImmediate(root);
+            }
         }
 
         // ---------- Ayudas ----------

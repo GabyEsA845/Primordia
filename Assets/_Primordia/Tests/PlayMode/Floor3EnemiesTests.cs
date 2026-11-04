@@ -131,13 +131,15 @@ namespace Primordia.Tests
             var playerHealth = player.GetComponent<Health>();
             player.transform.position = new Vector2(1.2f, 0f);
             var toad = CreateEnemy<ToadBrain>(Data(10), Vector2.zero);
+            // El enemigo se destruye al morir: la vida se guarda antes para poder mirarla después.
+            var toadHealth = toad.GetComponent<Health>();
             yield return null;
             yield return null;
             Assert.AreEqual(ToadBrain.Phase.Inflate, toad.Current, "Pegado a él, se hincha.");
 
             yield return new WaitForSeconds(0.8f);
             Assert.IsTrue(toad.HasBurst, "Y revienta.");
-            Assert.IsTrue(toad.GetComponent<Health>().IsDead, "El sapo muere al reventar.");
+            Assert.IsTrue(toadHealth.IsDead, "El sapo muere al reventar.");
             Assert.Less(playerHealth.Current, playerHealth.Max, "El reventón te hace daño.");
         }
 
@@ -176,6 +178,39 @@ namespace Primordia.Tests
             Assert.AreEqual(ToadBrain.Phase.Surfaced, toad.Current, "Vuelve a asomar.");
             Assert.IsFalse(health.IsInvulnerable);
             Assert.IsTrue(toad.GetComponent<Collider2D>().enabled);
+        }
+
+        [UnityTest]
+        public IEnumerator Medullosa_InRange_AimsThenFiresAtWhereYouStood()
+        {
+            player.transform.position = new Vector2(6f, 0f);
+            var medullosa = CreateEnemy<MedullosaBrain>(Data(16, contactDamage: 0), Vector2.zero);
+            Vector2? fired = null;
+            medullosa.Fired += point => fired = point;
+            bool aimed = false;
+            for (float t = 0f; t < 3f && fired == null; t += Time.deltaTime)
+            {
+                aimed |= medullosa.Current == MedullosaBrain.Phase.Aim;
+                yield return null;
+            }
+
+            Assert.IsTrue(aimed, "Primero apunta.");
+            Assert.IsNotNull(fired, "Y lanza la vaina.");
+            Assert.AreEqual(6f, fired.Value.x, 0.01f, "A donde estás.");
+            Assert.AreEqual(RigidbodyConstraints2D.FreezeAll, medullosa.GetComponent<Rigidbody2D>().constraints, "Es una planta: nada la mueve.");
+        }
+
+        [UnityTest]
+        public IEnumerator Medullosa_OutOfRange_DoesNotFire()
+        {
+            player.transform.position = new Vector2(40f, 0f);
+            var medullosa = CreateEnemy<MedullosaBrain>(Data(16, contactDamage: 0), Vector2.zero);
+            bool fired = false;
+            medullosa.Fired += _ => fired = true;
+            yield return new WaitForSeconds(2.5f);
+
+            Assert.IsFalse(fired, "Sin verte a tiro no dispara.");
+            Assert.AreEqual(MedullosaBrain.Phase.Idle, medullosa.Current);
         }
 
         [UnityTest]

@@ -236,6 +236,12 @@ MonoBehaviour:
     maxPerRoom: 3
     groupSize: 1
     needsMud: 1
+  - prefab: {fileID: 4030936345262680546, guid: eb47435608f714d4b98b1d117760890f, type: 3}
+    cost: 4
+    minDepth: 2
+    maxPerRoom: 2
+    groupSize: 1
+    needsMud: 0
   baseBudget: 3
   budgetPerRoom: 1.4
   referenceFloorArea: 312

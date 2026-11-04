@@ -26,6 +26,7 @@ namespace Primordia.Editor
         {
             ("Enemy_Beetle", 3, 1, 0, 1, false),
             ("Enemy_Toad", 3, 1, 3, 1, true),
+            ("Enemy_Medullosa", 4, 2, 2, 1, false),
         };
 
         [MenuItem("Primordia/Floor 3/Crear enemigos del piso 3")]
@@ -36,6 +37,7 @@ namespace Primordia.Editor
 
             CreateBeetle();
             CreateToad();
+            CreateMedullosa();
 
             AssetDatabase.SaveAssets();
             var entries = new List<FloorConfig.EnemyEntry>();
@@ -150,6 +152,69 @@ namespace Primordia.Editor
                 var ball = root.AddComponent<ToadMudBall>();
                 ball.Configure(body.transform, shadowObject.transform, splat, puddle, 0.26f);
                 return PrefabUtility.SaveAsPrefabAsset(root, $"{ProjectilePrefabsFolder}/Projectile_ToadMud.prefab").GetComponent<ToadMudBall>();
+            }
+            finally
+            {
+                Object.DestroyImmediate(root);
+            }
+        }
+
+        // ---------- Medullosa ----------
+
+        static Enemy CreateMedullosa()
+        {
+            // Cuadros de 32×40 (la muerte, de 40×48). Pivote al pie: el dibujo acaba 2 px sobre el borde de abajo.
+            var character = Floor3Enemy("Medullosa",
+                ("Idle", Fps(180), true), ("Aim", Fps(150), false), ("Shoot", Fps(70), false), ("Hurt", Fps(90), false),
+                ("Death", Fps(120), false));
+            character.DefaultState = "Idle";
+            character.Pivot = new Vector2(0.5f, 0.05f);
+            character.CellWidths = new Dictionary<string, int> { ["Idle"] = 32, ["Aim"] = 32, ["Shoot"] = 32, ["Hurt"] = 32, ["Death"] = 40 };
+            var art = Import(character);
+            if (art == null)
+                return null;
+
+            string effects = $"{Floor3EnemiesArtFolder}/Effects";
+            Directory.CreateDirectory(effects);
+            string source = $"{Floor3EnemiesSourceFolder}/Effects";
+            var burst = Floor2MouthsSetup.CreateFrameEffect("Effect_MedullosaSeed_Burst",
+                ImportLooseSheet($"{source}/Fx_MedullosaSeed_Burst.png", $"{effects}/Fx_MedullosaSeed_Burst.png", 24), 0.07f);
+            var marker = Floor2MouthsSetup.CreateLoopEffect("Effect_MedullosaSeed_Target",
+                ImportLooseSheet($"{source}/Fx_MedullosaSeed_Target.png", $"{effects}/Fx_MedullosaSeed_Target.png", 24), 0.12f, sortingOrder: 2);
+            var podFrames = ImportLooseSheet($"{source}/Proj_MedullosaSeed.png", $"{effects}/Proj_MedullosaSeed.png", 12);
+            var shadow = ImportLooseSheet($"{source}/Fx_FlyerShadow.png", $"{effects}/Fx_FlyerShadow.png", 24);
+            var seed = CreateMedullosaSeed(podFrames, shadow, burst);
+
+            // 16 de vida, inmóvil, te ve a 10 u y no hace daño al tocarla (solo sus vainas).
+            var data = Floor3EnemyData("Enemy_Medullosa", d => d.Configure(EnemyBehaviour.Chaser,
+                maxHealth: 16, moveSpeed: 0f, detectionRange: 10f, contactDamage: 0));
+            return BuildFloor2Enemy("Enemy_Medullosa", data, art, colliderRadius: 0.6f,
+                root => root.AddComponent<MedullosaBrain>().Configure(seed, marker), colliderOffset: new Vector2(0f, 0.7f));
+        }
+
+        /// <summary>Vaina de la Medullosa: sombra al suelo y cuerpo que sube y baja con el arco, dando vueltas. Se rehace.</summary>
+        static MedullosaSeed CreateMedullosaSeed(Sprite[] podFrames, Sprite[] shadow, GameObject burst)
+        {
+            var root = new GameObject("Projectile_MedullosaSeed");
+            try
+            {
+                var shadowObject = new GameObject("Shadow");
+                shadowObject.transform.SetParent(root.transform, false);
+                var shadowRenderer = shadowObject.AddComponent<SpriteRenderer>();
+                shadowRenderer.sprite = shadow.Length > 0 ? shadow[0] : null;
+                shadowRenderer.sortingOrder = 3;
+
+                var body = new GameObject("Body");
+                body.transform.SetParent(root.transform, false);
+                var renderer = body.AddComponent<SpriteRenderer>();
+                renderer.sprite = podFrames.Length > 0 ? podFrames[0] : null;
+                renderer.sortingOrder = 20;
+                if (podFrames.Length > 1)
+                    body.AddComponent<SpriteLoop>().Configure(renderer, podFrames, 0.09f, 0f);
+
+                var seed = root.AddComponent<MedullosaSeed>();
+                seed.Configure(body.transform, shadowObject.transform, burst);
+                return PrefabUtility.SaveAsPrefabAsset(root, $"{ProjectilePrefabsFolder}/Projectile_MedullosaSeed.prefab").GetComponent<MedullosaSeed>();
             }
             finally
             {

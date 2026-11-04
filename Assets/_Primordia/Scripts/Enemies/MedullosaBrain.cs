@@ -12,7 +12,7 @@ namespace Primordia.Enemies
     {
         public enum Phase { Idle, Aim, Shoot }
 
-        [SerializeField, Min(0.5f)] float range = 10f;
+        [SerializeField, Min(0.5f)] float range = 15f;
         [Tooltip("Segundos entre el inicio de un tiro y el siguiente.")]
         [SerializeField, Min(0.1f)] float cooldown = 4f;
         [Tooltip("Cuadro de Shoot en el que sale la vaina (desde 0), de cuántos.")]

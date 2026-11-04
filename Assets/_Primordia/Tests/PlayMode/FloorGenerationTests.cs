@@ -221,6 +221,33 @@ namespace Primordia.Tests
         }
 
         [Test]
+        public void Place_Plants_AvoidWetGround_ButOthersDoNot()
+        {
+            var plant = CreateEnemyTemplate("Plant");
+            config.ConfigureEnemies(new[]
+            {
+                new FloorConfig.EnemyEntry(plant, cost: 1, dryGround: true),
+                new FloorConfig.EnemyEntry(shooter, cost: 2)
+            }, null);
+            var template = Track(ScriptableObject.CreateInstance<RoomTemplate>());
+            template.SetLayout(string.Join("\n", Enumerable.Repeat("..............", 14)));
+            var floor = EncounterPlanner.SpawnCells(template, new Vector2Int[0]);
+            // La mitad izquierda es un charco.
+            System.Func<Vector2, bool> wet = point => point.x < 7f;
+
+            for (int seed = 1; seed <= 20; seed++)
+            {
+                var placed = EncounterPlanner.Place(config, template, new Vector2Int[0], new List<Enemy> { plant, plant, shooter, shooter },
+                    floor, new System.Random(seed), wet);
+                foreach (var (enemy, position) in placed.Where(p => p.enemy == plant))
+                    Assert.GreaterOrEqual(position.x, 7f, $"Las plantas no salen sobre el charco (semilla {seed}).");
+            }
+            Assert.IsTrue(Enumerable.Range(1, 20).Any(seed => EncounterPlanner.Place(config, template, new Vector2Int[0],
+                new List<Enemy> { shooter, shooter, shooter }, floor, new System.Random(seed), wet).Any(p => p.position.x < 7f)),
+                "Los demás enemigos sí pueden salir ahí.");
+        }
+
+        [Test]
         public void Spawn_GroupEntries_CreateTheWholeGroup_ForOneCost()
         {
             var fish = CreateEnemyTemplate("Fish");

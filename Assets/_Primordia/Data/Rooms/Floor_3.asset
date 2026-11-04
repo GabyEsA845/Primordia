@@ -230,18 +230,28 @@ MonoBehaviour:
     maxPerRoom: 0
     groupSize: 1
     needsMud: 0
+    dryGround: 0
   - prefab: {fileID: 7499488381273586071, guid: 678125193e38aeb43a7d34843db73cc9, type: 3}
     cost: 3
     minDepth: 1
     maxPerRoom: 3
     groupSize: 1
     needsMud: 1
+    dryGround: 0
   - prefab: {fileID: 4030936345262680546, guid: eb47435608f714d4b98b1d117760890f, type: 3}
     cost: 4
     minDepth: 2
     maxPerRoom: 2
     groupSize: 1
     needsMud: 0
+    dryGround: 1
+  - prefab: {fileID: 2940776833964867364, guid: 50bb68a91f19387489dbbdd06f38d1bc, type: 3}
+    cost: 5
+    minDepth: 3
+    maxPerRoom: 1
+    groupSize: 1
+    needsMud: 0
+    dryGround: 1
   baseBudget: 3
   budgetPerRoom: 1.4
   referenceFloorArea: 312

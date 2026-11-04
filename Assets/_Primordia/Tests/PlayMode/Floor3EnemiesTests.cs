@@ -213,6 +213,74 @@ namespace Primordia.Tests
             Assert.AreEqual(MedullosaBrain.Phase.Idle, medullosa.Current);
         }
 
+        // Plantilla de retoño: desactivada, para que las copias no actúen hasta que la prueba las active.
+        CalamitesSproutBrain SproutTemplate()
+        {
+            var go = Track(new GameObject("SproutTemplate"));
+            go.SetActive(false);
+            go.layer = LayerMask.NameToLayer(CombatLayers.Enemy);
+            go.AddComponent<CircleCollider2D>().radius = 0.3f;
+            var enemy = go.AddComponent<Enemy>();
+            go.AddComponent<EnemyAI>().Target = player.transform;
+            var brain = go.AddComponent<CalamitesSproutBrain>();
+            enemy.SetData(Data(3));
+            go.GetComponent<Rigidbody2D>().gravityScale = 0f;
+            return brain;
+        }
+
+        [UnityTest]
+        public IEnumerator Calamites_WhileItSeesYou_EchoesSprouts_UpToTheLimit()
+        {
+            player.transform.position = new Vector2(5f, 0f);
+            var mother = CreateEnemy<CalamitesBrain>(Data(30, contactDamage: 0), Vector2.zero);
+            mother.Configure(SproutTemplate());
+            int born = 0;
+            mother.SproutSpawned += sprout =>
+            {
+                born++;
+                Track(sprout.gameObject);
+                sprout.gameObject.SetActive(true);
+            };
+
+            for (float t = 0f; t < 3f && born == 0; t += Time.deltaTime)
+                yield return null;
+            Assert.AreEqual(1, born, "Echa un retoño poco después de verte.");
+            Assert.AreEqual(1, mother.Sprouts.Count);
+            Assert.AreSame(mother, mother.Sprouts[0].Mother, "El retoño sabe quién es su madre.");
+
+            // Cada 4 s otro, sin pasar del tope de vivos.
+            yield return new WaitForSeconds(14f);
+            Assert.LessOrEqual(mother.Sprouts.Count, 4);
+            Assert.GreaterOrEqual(born, 3);
+        }
+
+        [UnityTest]
+        public IEnumerator Calamites_WhenTheMotherDies_SproutsWitherAndDie()
+        {
+            player.transform.position = new Vector2(5f, 0f);
+            var mother = CreateEnemy<CalamitesBrain>(Data(30, contactDamage: 0), Vector2.zero);
+            mother.Configure(SproutTemplate());
+            CalamitesSproutBrain sprout = null;
+            mother.SproutSpawned += born =>
+            {
+                sprout = born;
+                Track(born.gameObject);
+                born.gameObject.SetActive(true);
+            };
+            for (float t = 0f; t < 3f && sprout == null; t += Time.deltaTime)
+                yield return null;
+            Assert.IsNotNull(sprout);
+            var sproutHealth = sprout.GetComponent<Health>();
+            yield return new WaitForSeconds(0.5f);
+            Assert.AreEqual(CalamitesSproutBrain.Phase.Chase, sprout.Current, "Tras brotar, persigue.");
+
+            mother.GetComponent<Health>().Kill();
+            Assert.AreEqual(CalamitesSproutBrain.Phase.Wither, sprout.Current, "Al morir la madre, el retoño se seca.");
+
+            yield return new WaitForSeconds(1f);
+            Assert.IsTrue(sproutHealth.IsDead, "Y se deshace.");
+        }
+
         [UnityTest]
         public IEnumerator Beetle_Back_TakesFiftyPercentMoreDamage()
         {

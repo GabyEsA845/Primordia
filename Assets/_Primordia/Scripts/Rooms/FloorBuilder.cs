@@ -759,7 +759,8 @@ namespace Primordia.Rooms
             var taken = ObstacleFootprints(placed);
             BuildMethane(roomObject.transform, placed, theme, random, taken);
             BuildBulbs(roomObject.transform, placed, theme, random, taken);
-            BuildScenery(roomObject.transform, placed, theme, random, taken);
+            var puddleSpots = new List<(Vector2 position, float radius)>();
+            BuildScenery(roomObject.transform, placed, theme, random, taken, puddleSpots);
             BuildMoss(roomObject.transform, placed, theme, random);
             // En la sala de paso, la vegetación del piso siguiente solo crece donde el suelo ya es suyo (junto a la charca).
             if (placed.Layout.Role == RoomRole.Transition && config.NextFloorTheme != null)
@@ -789,9 +790,9 @@ namespace Primordia.Rooms
             var special = placed.Layout.Special;
             var laterWaves = System.Array.Empty<Transform>();
             if (special.HasValue && special.Value.waves > 0 && vents.Count > 0)
-                laterWaves = SpawnWaves(placed, roomObject.transform, enemiesRoot, config, random, vents, special.Value.waves);
+                laterWaves = SpawnWaves(placed, roomObject.transform, enemiesRoot, config, random, vents, special.Value.waves, puddleSpots);
             else
-                SpawnEnemies(placed, enemiesRoot, config, boss, random);
+                SpawnEnemies(placed, enemiesRoot, config, boss, random, puddleSpots);
 
             var room = roomObject.AddComponent<Room>();
             room.Configure(enemiesRoot, doors.ToArray());
@@ -1245,7 +1246,7 @@ namespace Primordia.Rooms
         /// las demás, que esperan desactivadas.
         /// </summary>
         static Transform[] SpawnWaves(PlacedRoom placed, Transform roomObject, Transform firstWave, FloorConfig config, System.Random random,
-            List<WaveVent> vents, int waves)
+            List<WaveVent> vents, int waves, List<(Vector2 position, float radius)> puddleSpots = null)
         {
             var template = placed.Template;
             var floorArea = Enumerable.Range(0, template.Width * template.Height)
@@ -1272,14 +1273,26 @@ namespace Primordia.Rooms
                 }
 
                 var enemies = EncounterPlanner.PickEnemies(config, placed.Layout.Depth, budget, random, EncounterPlanner.HasMud(template));
-                foreach (var (enemy, position) in EncounterPlanner.Place(config, template, doorCells, enemies, candidates, random))
+                foreach (var (enemy, position) in EncounterPlanner.Place(config, template, doorCells, enemies, candidates, random, WetGround(placed, puddleSpots)))
                     EncounterPlanner.Spawn(config, enemy, placed.Origin + position, root);
             }
             return later.ToArray();
         }
 
+        /// <summary>
+        /// Dice si un punto de la plantilla cae sobre un charco del escenario (lodo o agua): las plantas no salen ahí. Null si no hay
+        /// charcos.
+        /// </summary>
+        static System.Func<Vector2, bool> WetGround(PlacedRoom placed, List<(Vector2 position, float radius)> puddleSpots)
+        {
+            if (puddleSpots == null || puddleSpots.Count == 0)
+                return null;
+            // Con un poco de margen: el cuerpo de la planta mide más que su punto.
+            return local => puddleSpots.Any(puddle => Vector2.Distance(puddle.position - (Vector2)placed.Origin, local) < puddle.radius + 0.3f);
+        }
+
         static void SpawnEnemies(PlacedRoom placed, Transform enemiesRoot, FloorConfig config, FloorConfig.BossEntry bossEntry,
-            System.Random random)
+            System.Random random, List<(Vector2 position, float radius)> puddleSpots = null)
         {
             switch (placed.Layout.Role)
             {
@@ -1313,7 +1326,7 @@ namespace Primordia.Rooms
 
             var doorCells = placed.DoorCells.Values.SelectMany(cells => cells).Select(cell => cell - placed.Origin).ToList();
             var candidates = EncounterPlanner.SpawnCells(template, doorCells);
-            var placements = EncounterPlanner.Place(config, template, doorCells, enemies, candidates, random);
+            var placements = EncounterPlanner.Place(config, template, doorCells, enemies, candidates, random, WetGround(placed, puddleSpots));
             if (placements.Count < enemies.Count)
                 Debug.LogWarning($"FloorBuilder: en {placed.Layout.Name} solo caben {placements.Count} de {enemies.Count} enemigos.");
 
@@ -1546,7 +1559,8 @@ namespace Primordia.Rooms
         /// escarabajos que huyen y brasas, repartidos por los sitios libres de la sala, lejos de las puertas, las paredes y el lodo
         /// profundo. No en las salas de los jefes, la tienda ni las fijas.
         /// </summary>
-        static void BuildScenery(Transform parent, PlacedRoom placed, RoomTheme theme, System.Random random, List<(Vector2 position, float radius)> taken)
+        static void BuildScenery(Transform parent, PlacedRoom placed, RoomTheme theme, System.Random random, List<(Vector2 position, float radius)> taken,
+            List<(Vector2 position, float radius)> puddleSpots = null)
         {
             var art = theme.Scenery;
             var role = placed.Layout.Role;
@@ -1599,6 +1613,7 @@ namespace Primordia.Rooms
                         continue;
                     var type = options[random.Next(options.Length)];
                     GroundPuddle.Create(holder, position, type.frames, type.frameSeconds, type.sludge);
+                    puddleSpots?.Add((position, PuddleRadius));
                     placedPuddles++;
 
                     // Mosquitos sobre algunos charcos de agua.

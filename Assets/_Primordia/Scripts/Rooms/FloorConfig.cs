@@ -28,8 +28,11 @@ namespace Primordia.Rooms
             [Min(0)] public int groupSize;
             [Tooltip("Solo sale en salas con lodo profundo y aparece junto a él (el sapo de fango).")]
             public bool needsMud;
+            [Tooltip("Planta: solo sale sobre tierra, no sobre charcos de lodo o de agua (las plantas del piso 3).")]
+            public bool dryGround;
 
-            public EnemyEntry(Enemy prefab, int cost, int minDepth = 1, int maxPerRoom = 0, int groupSize = 1, bool needsMud = false)
+            public EnemyEntry(Enemy prefab, int cost, int minDepth = 1, int maxPerRoom = 0, int groupSize = 1, bool needsMud = false,
+                bool dryGround = false)
             {
                 this.prefab = prefab;
                 this.cost = cost;
@@ -37,6 +40,7 @@ namespace Primordia.Rooms
                 this.maxPerRoom = maxPerRoom;
                 this.groupSize = groupSize;
                 this.needsMud = needsMud;
+                this.dryGround = dryGround;
             }
 
             /// <summary>Cuántos salen juntos (al menos 1).</summary>

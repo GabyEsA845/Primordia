@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using System.IO;
+using Primordia.Combat;
+using Primordia.Core;
 using Primordia.Enemies;
 using Primordia.Rooms;
 using UnityEditor;
@@ -20,13 +22,14 @@ namespace Primordia.Editor
 
         /// <summary>
         /// Prefab, coste, sala de combate desde la que salen, tope por sala (0 = sin tope), cuántos salen juntos y si solo salen en
-        /// salas con lodo profundo, junto a él.
+        /// salas con lodo profundo, junto a él, y si es una planta (solo sobre tierra, no sobre charcos).
         /// </summary>
-        static readonly (string prefab, int cost, int minDepth, int maxPerRoom, int groupSize, bool needsMud)[] Floor3Roster =
+        static readonly (string prefab, int cost, int minDepth, int maxPerRoom, int groupSize, bool needsMud, bool dryGround)[] Floor3Roster =
         {
-            ("Enemy_Beetle", 3, 1, 0, 1, false),
-            ("Enemy_Toad", 3, 1, 3, 1, true),
-            ("Enemy_Medullosa", 4, 2, 2, 1, false),
+            ("Enemy_Beetle", 3, 1, 0, 1, false, false),
+            ("Enemy_Toad", 3, 1, 3, 1, true, false),
+            ("Enemy_Medullosa", 4, 2, 2, 1, false, true),
+            ("Enemy_Calamites", 5, 3, 1, 1, false, true),
         };
 
         [MenuItem("Primordia/Floor 3/Crear enemigos del piso 3")]
@@ -38,14 +41,15 @@ namespace Primordia.Editor
             CreateBeetle();
             CreateToad();
             CreateMedullosa();
+            CreateCalamites();
 
             AssetDatabase.SaveAssets();
             var entries = new List<FloorConfig.EnemyEntry>();
-            foreach (var (prefab, cost, minDepth, maxPerRoom, groupSize, needsMud) in Floor3Roster)
+            foreach (var (prefab, cost, minDepth, maxPerRoom, groupSize, needsMud, dryGround) in Floor3Roster)
             {
                 var enemy = AssetDatabase.LoadAssetAtPath<Enemy>($"{EnemyPrefabsFolder}/{prefab}.prefab");
                 if (enemy != null)
-                    entries.Add(new FloorConfig.EnemyEntry(enemy, cost, minDepth, maxPerRoom, groupSize, needsMud));
+                    entries.Add(new FloorConfig.EnemyEntry(enemy, cost, minDepth, maxPerRoom, groupSize, needsMud, dryGround));
             }
             PutInFloor3(entries.ToArray());
             Debug.Log($"ArtSetup: {entries.Count} enemigos del piso 3 creados y puestos en Floor_3.");
@@ -185,9 +189,9 @@ namespace Primordia.Editor
             var shadow = ImportLooseSheet($"{source}/Fx_FlyerShadow.png", $"{effects}/Fx_FlyerShadow.png", 24);
             var seed = CreateMedullosaSeed(podFrames, shadow, burst);
 
-            // 16 de vida, inmóvil, te ve a 10 u y no hace daño al tocarla (solo sus vainas).
+            // 16 de vida, inmóvil, te ve a 15 u (el alcance de su mortero) y no hace daño al tocarla (solo sus vainas).
             var data = Floor3EnemyData("Enemy_Medullosa", d => d.Configure(EnemyBehaviour.Chaser,
-                maxHealth: 16, moveSpeed: 0f, detectionRange: 10f, contactDamage: 0));
+                maxHealth: 16, moveSpeed: 0f, detectionRange: 15f, contactDamage: 0));
             return BuildFloor2Enemy("Enemy_Medullosa", data, art, colliderRadius: 0.6f,
                 root => root.AddComponent<MedullosaBrain>().Configure(seed, marker), colliderOffset: new Vector2(0f, 0.7f));
         }
@@ -220,6 +224,76 @@ namespace Primordia.Editor
             {
                 Object.DestroyImmediate(root);
             }
+        }
+
+        // ---------- Calamites ----------
+
+        static Enemy CreateCalamites()
+        {
+            // El retoño primero: la madre lo lleva en su cerebro. No está en la tabla del piso: solo lo echa la madre.
+            var sprout = CreateCalamitesSprout();
+
+            // Cuadros de 32×48 (la muerte, de 48×56). Pivote al pie: el dibujo acaba 1–2 px sobre el borde de abajo.
+            var character = Floor3Enemy("Calamites",
+                ("Idle", Fps(180), true), ("Spawn", Fps(110), false), ("Spores", Fps(110), false), ("Hurt", Fps(90), false),
+                ("Death", Fps(120), false));
+            character.DefaultState = "Idle";
+            character.Pivot = new Vector2(0.5f, 0.03f);
+            character.CellWidths = new Dictionary<string, int> { ["Idle"] = 32, ["Spawn"] = 32, ["Spores"] = 32, ["Hurt"] = 32, ["Death"] = 48 };
+            var art = Import(character);
+            if (art == null || sprout == null)
+                return null;
+
+            // Espora del anillo: lenta, 1 de daño, se deshace al chocar.
+            string effects = $"{Floor3EnemiesArtFolder}/Effects";
+            Directory.CreateDirectory(effects);
+            string source = $"{Floor3EnemiesSourceFolder}/Effects";
+            var pop = Floor2MouthsSetup.CreateFrameEffect("Effect_CalamitesSpore_Pop",
+                ImportLooseSheet($"{source}/Fx_CalamitesSpore_Pop.png", $"{effects}/Fx_CalamitesSpore_Pop.png", 12), 0.07f);
+            var spore = CreateEnemyProjectile("Projectile_CalamitesSpore",
+                ImportLooseSheet($"{source}/Proj_CalamitesSpore.png", $"{effects}/Proj_CalamitesSpore.png", 8), radius: 0.2f, pop);
+            var attack = CombatSetup.LoadAttack("Attack_CalamitesSpore");
+            if (attack == null)
+                attack = CombatSetup.CreateAttack("Attack_CalamitesSpore", spore, 1f / 7f, 1, 3f, 3.5f);
+            attack.Configure(spore, fireRate: 1f / 7f, damage: 1, speed: 3f, lifetime: 3.5f);
+            EditorUtility.SetDirty(attack);
+
+            // 30 de vida, inmóvil, te ve a 11 u y no hace daño al tocarla (sus retoños y esporas sí).
+            var data = Floor3EnemyData("Enemy_Calamites", d => d.Configure(EnemyBehaviour.Chaser,
+                maxHealth: 30, moveSpeed: 0f, detectionRange: 11f, contactDamage: 0));
+            return BuildFloor2Enemy("Enemy_Calamites", data, art, colliderRadius: 0.7f, root =>
+            {
+                // Las esporas salen de los estróbilos, en lo alto de las cañas.
+                var muzzle = new GameObject("Muzzle").transform;
+                muzzle.SetParent(root.transform, false);
+                muzzle.localPosition = new Vector3(0f, 2f, 0f);
+                CombatSetup.ConfigureWeapon(root.AddComponent<Weapon>(), attack, Team.Enemy, muzzle);
+                root.AddComponent<CalamitesBrain>().Configure(sprout);
+            }, colliderOffset: new Vector2(0f, 0.8f));
+        }
+
+        static CalamitesSproutBrain CreateCalamitesSprout()
+        {
+            // Cuadros de 16×24; pivote al pie.
+            var character = Floor3Enemy("CalamitesSprout",
+                ("Emerge", Fps(90), false), ("Idle", Fps(180), true), ("Move", Fps(100), true), ("Wither", Fps(140), false),
+                ("Hurt", Fps(90), false), ("Death", Fps(120), false));
+            character.DefaultState = "Idle";
+            character.Pivot = new Vector2(0.5f, 0.04f);
+            character.CellWidths = new Dictionary<string, int>
+            {
+                ["Emerge"] = 16, ["Idle"] = 16, ["Move"] = 16, ["Wither"] = 16, ["Hurt"] = 16, ["Death"] = 16
+            };
+            var art = Import(character);
+            if (art == null)
+                return null;
+
+            // 3 de vida, rápido, siempre sabe dónde estás y hace medio corazón al tocarte.
+            var data = Floor3EnemyData("Enemy_CalamitesSprout", d => d.Configure(EnemyBehaviour.Chaser,
+                maxHealth: 3, moveSpeed: 3.4f, detectionRange: 30f, contactDamage: 1));
+            var enemy = BuildFloor2Enemy("Enemy_CalamitesSprout", data, art, colliderRadius: 0.3f,
+                root => root.AddComponent<CalamitesSproutBrain>(), colliderOffset: new Vector2(0f, 0.35f));
+            return enemy != null ? enemy.GetComponent<CalamitesSproutBrain>() : null;
         }
 
         // ---------- Ayudas ----------

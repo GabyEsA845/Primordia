@@ -145,13 +145,23 @@ namespace Primordia.Rooms
         /// Los que no caben se quedan fuera. Posiciones en coordenadas de la plantilla.
         /// </summary>
         public static List<(Enemy enemy, Vector2 position)> Place(FloorConfig config, RoomTemplate template, IEnumerable<Vector2Int> doorCells,
-            List<Enemy> enemies, List<Vector2Int> floorCells, System.Random random)
+            List<Enemy> enemies, List<Vector2Int> floorCells, System.Random random, System.Func<Vector2, bool> onWetGround = null)
         {
             var result = new List<(Enemy, Vector2)>();
             var mudEnemies = enemies.Where(enemy => NeedsMud(config, enemy)).ToList();
             var otherEnemies = enemies.Where(enemy => !NeedsMud(config, enemy)).ToList();
 
-            var others = Positions(floorCells, otherEnemies.Count, random);
+            // Las plantas (dryGround) solo salen sobre tierra: no sobre charcos de lodo o de agua. Se colocan primero, en los sitios
+            // secos, y los demás reparten lo que queda.
+            var plants = otherEnemies.Where(enemy => IsDryGroundOnly(config, enemy)).ToList();
+            otherEnemies = otherEnemies.Where(enemy => !IsDryGroundOnly(config, enemy)).ToList();
+            var dryCells = onWetGround == null ? floorCells : floorCells.Where(cell => !onWetGround(cell + new Vector2(0.5f, 0.5f))).ToList();
+            var plantSpots = Positions(dryCells, plants.Count, random);
+            for (int i = 0; i < plantSpots.Count; i++)
+                result.Add((plants[i], plantSpots[i]));
+
+            var free = floorCells.Where(cell => !plantSpots.Any(spot => Vector2.Distance(spot, cell + new Vector2(0.5f, 0.5f)) < EnemySpacing)).ToList();
+            var others = Positions(free, otherEnemies.Count, random);
             for (int i = 0; i < others.Count; i++)
                 result.Add((otherEnemies[i], others[i]));
             if (mudEnemies.Count > 0)
@@ -162,6 +172,8 @@ namespace Primordia.Rooms
             }
             return result;
         }
+
+        static bool IsDryGroundOnly(FloorConfig config, Enemy prefab) => config.Enemies.Any(entry => entry.prefab == prefab && entry.dryGround);
 
         static bool NeedsMud(FloorConfig config, Enemy prefab) => config.Enemies.Any(entry => entry.prefab == prefab && entry.needsMud);
 

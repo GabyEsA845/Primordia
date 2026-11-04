@@ -223,9 +223,14 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2f82768b85e2cd44da157df1fc9e06b5, type: 2}
   - {fileID: 11400000, guid: fa7a3ffbadb4a2a40b32568a2b3f2c6e, type: 2}
   - {fileID: 11400000, guid: 91c375b155d807f41842a9c5a738317a, type: 2}
-  enemies: []
-  baseBudget: 0
-  budgetPerRoom: 0
+  enemies:
+  - prefab: {fileID: 5591278114451798428, guid: 02e354aed6ea0bc4db71769bc7a522ca, type: 3}
+    cost: 3
+    minDepth: 1
+    maxPerRoom: 0
+    groupSize: 1
+  baseBudget: 3
+  budgetPerRoom: 1.4
   referenceFloorArea: 312
   boss: {fileID: 1183084727335379411, guid: 1fc20f23b26e1e14aa8e7a669d298cfb, type: 3}
   bossOffset: {x: 0, y: 2.5}

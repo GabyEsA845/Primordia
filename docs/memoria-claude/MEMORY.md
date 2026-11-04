@@ -16,6 +16,7 @@
 - [Tanda de arte de linajes del piso 3](primordia-floor3-lineage-art-pending.md) — 1.ª y 2.ª tandas (Yesquero) hechas e integradas, la 2.ª a falta de commit; NO queda arte pendiente (tinte real y muerte al revés del Zombi van con los enemigos del paso 5)
 - [Puertas: coronas y marcos laterales](primordia-door-design-pending.md) — HECHAS, integradas y probadas (2026-11-03)
 - [Pasada de arte del paso 3 (Bocas)](primordia-floor3-step3-art-pending.md) — HECHA, integrada, probada y subida (d9244789)
+- [Arte pendiente de enemigos del piso 3](primordia-floor3-enemy-art-pending.md) — cono del escarabajo (triángulo naranja): rehacerlo con llamas (Opus, preguntar antes)
 
 ## En curso
 - [Sala de paso del piso 2 → 3](primordia-floor2-transition-room.md) — charca, ambiente del pantano y metamorfosis por pareja HECHOS y subidos

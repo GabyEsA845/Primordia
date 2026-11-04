@@ -20,4 +20,4 @@ La carpeta `docs/memoria-claude/` es la fuente de verdad compartida entre cuenta
 
 ## Siguiente paso
 
-Mira `primordia-project-status.md`: piso 3 en `feature/floor-3`, pasos 1-5 hechos (el 5, enemigos y trampas, cerrado con documento y GDD/PLAN al día); siguiente el paso 6 (salas con tema).
+Mira `primordia-project-status.md`: piso 3 en `feature/floor-3`, pasos 1-5 hechos; paso 6 (salas) en curso: bloque 1 (salas con tema) hecho, bloque 2 (sala del ámbar) con el subpaso 2a hecho. SIGUIENTE: 2b Cercos de cucaracha, 2c Cápsula de ámbar, 2d Gota de ámbar (ver `primordia-floor3-amber.md`), luego bloques 3-6. Hay pendientes de arte para Opus en `primordia-floor3-room-themes.md` y `primordia-floor3-amber.md`.

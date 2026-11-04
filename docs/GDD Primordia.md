@@ -321,7 +321,8 @@ Duermen Herbívoro y Carroñero (casi no hay herbívoros en el carbón). **Entra
 | Cápsula de ámbar | Piel | Un golpe que te deja a medio corazón o menos te encierra en ámbar 2 s, invulnerable e inmóvil; al romperse suelta esquirlas y empuja. Una vez por sala |
 | Gota de ámbar | Órgano especial | Mantener el clic derecho carga y al soltar encierra a un enemigo 4 s (1 s con los jefes); sirve de escudo y se rompe en esquirlas |
 
-  Caso doble del comodín: un Órgano especial completa Ciempiés o Yesquero y sale el cartel para elegir uno. Los niveles II y III de las especiales del ámbar se cierran al programar.
+  Caso doble del comodín: un Órgano especial completa Ciempiés o Yesquero y sale el cartel para elegir uno.
+  **Niveles cerrados el 4 de noviembre:** Cercos: II recarga 6 s; III dos cargas con enfriamiento independiente y +30 % de velocidad 2 s tras cada quiebro. Cápsula (cambia desde el nivel I): al encerrarte te cura medio corazón y tienes 2 s de invencibilidad al salir; II cura 1 corazón y las esquirlas aturden 1 s (no a jefes); III dos activaciones por sala y cura 1 corazón y medio. Gota: I aturde 5 s (jefes 1,5 s), enfriamiento 20 s, el enemigo hace de escudo y recibe daño, y al romperse suelta esquirlas que dañan; II enfriamiento 18 s, 8 s (jefes 2 s); III enfriamiento 15 s, el enemigo muere al instante y su cadáver queda en ámbar de escudo (se rompe y suelta esquirlas), jefes 2 s de aturdimiento. La sala del ámbar lleva un solo bloque con una especial al azar.
 
 **Jefe del piso 1 (virus gigante):** 120 de vida, 3×3 unidades, avanza despacio hacia el centro, medio corazón por contacto. Fase 1: espiral de un brazo y ráfaga circular de 12 proyectiles cada 4 s. Fase 2 (desde el 50 %): espiral de dos brazos más rápida, ráfaga de 16 e invoca 2 bacterias cada 8 s (máximo 4 vivas).
 

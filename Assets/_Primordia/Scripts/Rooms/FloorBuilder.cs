@@ -1005,6 +1005,20 @@ namespace Primordia.Rooms
         static readonly Color HeartGlow = new(0.75f, 0.45f, 1f);
         static readonly Color CapsuleGlow = new(0.45f, 0.95f, 0.65f);
 
+        static readonly Color AmberGlow = new(1f, 0.72f, 0.25f);
+
+        /// <summary>El bloque de ámbar de la sala del ámbar, con una mutación especial al azar de las que el jugador no lleva.</summary>
+        static void BuildAmberBlock(Transform roomObject, Transform root, FloorConfig config, Vector2 position, PlayerMutations player, System.Random random)
+        {
+            var amber = config.Amber;
+            var block = Object.Instantiate(amber.block, position, Quaternion.identity, root);
+            block.SetContents(Clam.PickMutation(amber.mutations, player, random), amber.mutationPickup);
+            block.ConfigurePrompt(config.Pieces.keyPrompt, 1.9f);
+            block.SetRadius(2f);
+            Ambience.CreateGlobalLight(roomObject);
+            block.SetGlow(Ambience.CreateGlow(block.transform, position, new Glow(null, AmberGlow, 2.2f, new Vector2(0.35f, 0.7f), 1.6f), 0f));
+        }
+
         static List<WaveVent> BuildPieces(Transform roomObject, PlacedRoom placed, FloorConfig config, System.Random random)
         {
             var builtVents = new List<WaveVent>();
@@ -1038,10 +1052,20 @@ namespace Primordia.Rooms
             var player = GameObject.FindWithTag("Player");
             var playerMutations = player != null ? player.GetComponent<PlayerMutations>() : null;
             var taken = new HashSet<Vector2Int>();
+            bool amberRoom = placed.Layout.Special is { amber: true } && config.Amber.block != null;
             foreach (var cell in chests)
             {
                 if (taken.Contains(cell))
                     continue;
+                if (amberRoom)
+                {
+                    // La sala del ámbar: el bloque ocupa las dos casillas C (o la que haya), con la base en el suelo.
+                    bool wide = chests.Contains(cell + Vector2Int.right);
+                    if (wide)
+                        taken.Add(cell + Vector2Int.right);
+                    BuildAmberBlock(roomObject, root, config, (Vector2)(placed.Origin + cell) + new Vector2(wide ? 1f : 0.5f, 0.5f), playerMutations, random);
+                    continue;
+                }
                 bool big = chests.Contains(cell + Vector2Int.right);
                 if (big)
                     taken.Add(cell + Vector2Int.right);

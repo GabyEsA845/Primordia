@@ -115,7 +115,7 @@ namespace Primordia.Rooms
             {
                 var bubble = Instantiate(mutationPickup, origin, Quaternion.identity, transform.parent);
                 bubble.SetMutation(mutation);
-                StartCoroutine(Drop(bubble, DropTarget(player)));
+                StartCoroutine(DropBubble(bubble, DropTarget(Position, player)));
             }
         }
 
@@ -127,15 +127,15 @@ namespace Primordia.Rooms
         /// Dónde cae la burbuja: delante de la almeja, hacia el jugador que la abrió (normalmente abajo). Ese lado es suelo que
         /// pisa (en el Anillo de la sima, la isla), y como queda casi encima de él, la coge sin buscarla. Sin jugador, abajo.
         /// </summary>
-        Vector2 DropTarget(GameObject player)
+        internal static Vector2 DropTarget(Vector2 from, GameObject player)
         {
-            var toPlayer = player != null ? (Vector2)player.transform.position - Position : Vector2.down;
+            var toPlayer = player != null ? (Vector2)player.transform.position - from : Vector2.down;
             var direction = toPlayer.sqrMagnitude > 0.01f ? toPlayer.normalized : Vector2.down;
-            return Position + direction * Mathf.Min(DropDistance, Mathf.Max(0.6f, toPlayer.magnitude));
+            return from + direction * Mathf.Min(DropDistance, Mathf.Max(0.6f, toPlayer.magnitude));
         }
 
         /// <summary>La burbuja salta de la almeja en un arco corto y no se puede coger hasta que cae.</summary>
-        IEnumerator Drop(MutationPickup bubble, Vector2 target)
+        internal static IEnumerator DropBubble(MutationPickup bubble, Vector2 target)
         {
             var trigger = bubble.GetComponent<Collider2D>();
             if (trigger != null)

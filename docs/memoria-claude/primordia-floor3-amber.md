@@ -1,0 +1,17 @@
+---
+name: primordia-floor3-amber
+description: "Paso 6, bloque 2 del piso 3: sala del ámbar y sus 3 especiales (Cercos, Cápsula, Gota) con los niveles I-III cerrados por la usuaria el 2026-11-04"
+metadata:
+  type: project
+---
+
+**Decisiones de la usuaria (2026-11-04):** sala del ámbar = lateral sin enemigos, abierta, siempre una; **1 bloque de ámbar con una especial al azar** (como la almeja grande: una que no se tenga). Orden: sala+bloque → Cercos → Cápsula → Gota, probando cada una y commit por subpaso.
+
+**Niveles cerrados (cambian el GDD):**
+- **Cercos de cucaracha (Ext):** I recarga 8 s; II 6 s; III **2 cargas con enfriamiento independiente** y +30 % de velocidad de movimiento 2 s tras cada quiebro.
+- **Cápsula de ámbar (Piel):** (cambia desde el nivel I) al encerrarte (golpe que te deja a ≤½ corazón) **te cura ½ corazón** y tienes **2 s de invencibilidad al salir** del bloque; II cura 1 corazón entero en total y **las esquirlas aturden 1 s** (no a jefes); III **2 activaciones por sala** y cura 1½ corazones.
+- **Gota de ámbar (Órgano especial):** I **aturde 5 s (jefes 1,5 s), enfriamiento 20 s**, el enemigo encerrado hace de escudo y **recibe daño** mientras está dentro, y al romperse suelta esquirlas que dañan alrededor; II enfriamiento 18 s, 8 s (jefes 2 s); III enfriamiento 15 s, el enemigo encerrado **muere al instante** y su cadáver queda en ámbar de escudo (se puede romper y suelta esquirlas); jefes solo 2 s de aturdimiento.
+
+Arte de las 3 especiales (cuerpos, iconos, efectos Fx_AmberBlock_*, Proj_AmberDrop, AmberBlock_Idle/Break) ya existe en `Art/Floor3/floor3-mutations` y `floor3-environment/pieces`.
+
+**Subpaso 2a (sala + bloque) HECHO y PROBADO por la usuaria (2026-11-04: la sala aparece), con commit y push. PENDIENTE DE ARTE (Opus): ambientar la sala del ámbar, que se siente muy vacía (decoración propia: ámbar en las paredes, resina, insectos atrapados, luz cálida…; preguntar antes de dibujar).** Siguiente: 2b Cercos, 2c Cápsula, 2d Gota. Detalle del 2a: `AmberBlock` (Scripts/Rooms; E rompe, cuadro 3 de la rotura suelta la burbuja con `Clam.DropBubble/DropTarget`, ahora internal static), `FloorConfig.AmberContents` (prefab, mutaciones, burbuja) + `SpecialRoom.amber`, `FloorBuilder.BuildAmberBlock` (casillas C de una sala amber = bloque), menú **Primordia > Floor 3 > Crear sala del ámbar** (prefab `Prefabs/Rooms/AmberBlock`, plantilla `Data/Rooms/Floor3/Room_Special_Amber` de 24×15 con `CC` en el centro, la mete en Floor_3 como lateral, siempre, sin enemigos). Hasta que existan `Data/Mutations/Floor3/Mutation_Cerci|AmberCapsule|AmberGland`, el bloque guarda como PROVISIONALES las especiales del piso 2 (Flagelos, Cutícula, Yema); el menú se vuelve a ejecutar tras 2b-2d. Prueba nueva: `AmberRoom_IsAlwaysOneSideRoomWithoutEnemies`.

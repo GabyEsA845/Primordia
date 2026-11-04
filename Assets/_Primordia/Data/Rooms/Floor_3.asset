@@ -77,8 +77,19 @@ MonoBehaviour:
     down: 6
     side: 2
     up: 0.3
-  specialRooms: []
-  specialRoomCount: {x: 2, y: 4}
+  specialRooms:
+  - template: {fileID: 11400000, guid: f80c68fb22a64f041851b4a025922a5d, type: 2}
+    placement: 1
+    countsAsCombat: 0
+    enemyMultiplier: 0
+    always: 1
+    band: -1
+    tall: 0
+    waves: 0
+    rewardAtEnd: 0
+    clamRoom: 0
+    amber: 1
+  specialRoomCount: {x: 1, y: 1}
   encounterThemes:
   - name: Pradera de Calamites
     enemies:
@@ -318,6 +329,13 @@ MonoBehaviour:
     smallBiomass: {x: 5, y: 15}
     bigBiomass: {x: 15, y: 25}
     bigMutations:
+    - {fileID: 11400000, guid: 289afe24f25af604d8034efff1cfcd83, type: 2}
+    - {fileID: 11400000, guid: 13f434cb895f86246a9cf4816f366c35, type: 2}
+    - {fileID: 11400000, guid: 456c6f6a064add5408c20c84f638ba30, type: 2}
+    mutationPickup: {fileID: 6509183854426299438, guid: 5eefc55d350cd944f9aa74a25824635e, type: 3}
+  amber:
+    block: {fileID: 155527025087572839, guid: 18706f5e0408a0343be577ff8050c8ec, type: 3}
+    mutations:
     - {fileID: 11400000, guid: 289afe24f25af604d8034efff1cfcd83, type: 2}
     - {fileID: 11400000, guid: 13f434cb895f86246a9cf4816f366c35, type: 2}
     - {fileID: 11400000, guid: 456c6f6a064add5408c20c84f638ba30, type: 2}

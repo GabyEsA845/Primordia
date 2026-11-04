@@ -177,6 +177,8 @@ namespace Primordia.Rooms
             [Tooltip("Candidata a la sala de la almeja: lleva almeja grande y en cada partida sale una de las candidatas aparte "
                 + "del sorteo de especiales (Gruta escondida, Anillo de la sima, Jardín de esponjas).")]
             public bool clamRoom;
+            [Tooltip("La sala del ámbar (piso 3): sus casillas C son un bloque de ámbar con una mutación especial, no una almeja.")]
+            public bool amber;
 
             public bool IsValid => template != null;
         }
@@ -293,6 +295,18 @@ namespace Primordia.Rooms
             };
         }
 
+        /// <summary>El bloque de ámbar de la sala del ámbar (piso 3) y las mutaciones especiales que puede guardar.</summary>
+        [Serializable]
+        public struct AmberContents
+        {
+            [Tooltip("Prefab del bloque (cuerpo, cuadros de reposo y de rotura).")]
+            public AmberBlock block;
+            [Tooltip("Mutaciones especiales del ámbar: una al azar que el jugador no lleve.")]
+            public MutationData[] mutations;
+            [Tooltip("Burbuja de mutación que suelta el bloque.")]
+            public MutationPickup mutationPickup;
+        }
+
         [Header("Piso")]
         [Tooltip("Número del piso (1 = sopa primordial, 2 = océano cámbrico…).")]
         [SerializeField, Min(1)] int floorNumber = 1;
@@ -353,6 +367,7 @@ namespace Primordia.Rooms
         [SerializeField] RoomTemplate antechamberHorizontal;
         [SerializeField] RoomPieces pieces;
         [SerializeField] ClamContents clams = ClamContents.Default;
+        [SerializeField] AmberContents amber;
 
         [Header("Ambiente")]
         [Tooltip("Copos de nieve marina (variantes). La cantidad por sala la da el tileset de su franja.")]
@@ -458,6 +473,7 @@ namespace Primordia.Rooms
         public bool HasAntechamber => antechamberVertical != null && antechamberHorizontal != null;
         public RoomPieces Pieces => pieces;
         public ClamContents Clams => clams;
+        public AmberContents Amber => amber;
         public Sprite[] MarineSnowFlakes => marineSnowFlakes ?? Array.Empty<Sprite>();
         public Material MarineSnowMaterial => marineSnowMaterial;
         public RoomTheme Theme => theme;
@@ -599,6 +615,8 @@ namespace Primordia.Rooms
             specialRooms = newRooms ?? Array.Empty<SpecialRoom>();
             specialRoomCount = newCount;
         }
+
+        internal void ConfigureAmber(AmberContents newAmber) => amber = newAmber;
 
         internal void ConfigureEncounterThemes(EncounterTheme[] newThemes, Vector2Int newCount)
         {

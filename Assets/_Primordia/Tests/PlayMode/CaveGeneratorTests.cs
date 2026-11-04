@@ -156,6 +156,26 @@ namespace Primordia.Tests
         }
 
         [Test]
+        public void AmberRoom_IsAlwaysOneSideRoomWithoutEnemies()
+        {
+            floor2.ConfigureSpecialRooms(new[]
+            {
+                new FloorConfig.SpecialRoom
+                {
+                    template = Template(RoomLayouts.Normal), placement = FloorConfig.SpecialPlacement.Side, always = true, band = -1, amber = true,
+                },
+            }, new Vector2Int(1, 1));
+            for (int seed = 1; seed <= 40; seed++)
+            {
+                var layout = FloorLayoutGenerator.Generate(floor2, new System.Random(seed));
+                var amber = layout.Rooms.Where(room => room.Special is { amber: true }).ToList();
+                Assert.AreEqual(1, amber.Count, $"semilla {seed}: siempre una sala del ámbar.");
+                Assert.AreEqual(RoomRole.Side, amber[0].Role, $"semilla {seed}: lateral.");
+                Assert.AreEqual(0f, amber[0].EnemyMultiplier, $"semilla {seed}: sin enemigos.");
+            }
+        }
+
+        [Test]
         public void EncounterThemes_WithoutThemes_DoNothingToTheLayout()
         {
             for (int seed = 1; seed <= 20; seed++)

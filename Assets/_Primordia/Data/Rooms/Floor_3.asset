@@ -272,6 +272,17 @@ MonoBehaviour:
     needsMud: 0
     dryGround: 0
     hidesInFern: 0
+  traps:
+  - prefab: {fileID: 7324845947946916195, guid: d9bcc36e21f012f4a8afbea351577961, type: 3}
+    minDepth: 2
+    chance: 0.35
+    maxPerRoom: 2
+    dryGround: 1
+  - prefab: {fileID: 6224116474742818006, guid: 0bbd1990ce7ec704ba780959bdac9920, type: 3}
+    minDepth: 3
+    chance: 0.3
+    maxPerRoom: 1
+    dryGround: 0
   baseBudget: 8
   budgetPerRoom: 1.6
   referenceFloorArea: 312

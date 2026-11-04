@@ -796,6 +796,7 @@ namespace Primordia.Rooms
                 laterWaves = SpawnWaves(placed, roomObject.transform, enemiesRoot, config, random, vents, special.Value.waves, puddleSpots, fernSpots);
             else
                 SpawnEnemies(placed, enemiesRoot, config, boss, random, puddleSpots, fernSpots);
+            SpawnTraps(placed, enemiesRoot, config, random, puddleSpots);
 
             var room = roomObject.AddComponent<Room>();
             room.Configure(enemiesRoot, doors.ToArray());
@@ -1292,6 +1293,41 @@ namespace Primordia.Rooms
                 return null;
             // Con un poco de margen: el cuerpo de la planta mide más que su punto.
             return local => puddleSpots.Any(puddle => Vector2.Distance(puddle.position - (Vector2)placed.Origin, local) < puddle.radius + 0.3f);
+        }
+
+        /// <summary>
+        /// Trampas de la sala (planta carnívora, enjambre de efímeras): en sitios libres, lejos de las puertas, las plantas solo sobre
+        /// tierra. Cuelgan de los enemigos de la sala, así que esperan inactivas hasta que entra el jugador, y como no son enemigos no
+        /// cuentan para limpiarla.
+        /// </summary>
+        static void SpawnTraps(PlacedRoom placed, Transform enemiesRoot, FloorConfig config, System.Random random,
+            List<(Vector2 position, float radius)> puddleSpots)
+        {
+            // Salas de combate y laterales con enemigos; la del jefe, no.
+            if (config.Traps.Length == 0 || placed.Layout.Role is not (RoomRole.Combat or RoomRole.Side) || !HasEnemies(placed.Layout))
+                return;
+            var picked = EncounterPlanner.PickTraps(config, placed.Layout.Depth, random);
+            if (picked.Count == 0)
+                return;
+
+            var template = placed.Template;
+            var doorCells = placed.DoorCells.Values.SelectMany(cells => cells).Select(cell => cell - placed.Origin).ToList();
+            var candidates = EncounterPlanner.SpawnCells(template, doorCells);
+            var wet = WetGround(placed, puddleSpots);
+
+            // Cada trampa va a un sitio distinto, separadas entre sí.
+            var spots = EncounterPlanner.Positions(candidates, picked.Count * 3, random);
+            var used = new List<Vector2>();
+            foreach (var trap in picked)
+            {
+                var pool = trap.dryGround && wet != null ? spots.Where(spot => !wet(spot)) : spots;
+                var free = pool.Where(spot => used.All(other => Vector2.Distance(other, spot) >= 3f)).ToList();
+                if (free.Count == 0)
+                    continue;
+                var spot = free[random.Next(free.Count)];
+                used.Add(spot);
+                Object.Instantiate(trap.prefab, placed.Origin + spot, Quaternion.identity, enemiesRoot);
+            }
         }
 
         static void SpawnEnemies(PlacedRoom placed, Transform enemiesRoot, FloorConfig config, FloorConfig.BossEntry bossEntry,

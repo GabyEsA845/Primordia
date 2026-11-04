@@ -50,6 +50,34 @@ namespace Primordia.Rooms
             public int GroupSize => Mathf.Max(1, groupSize);
         }
 
+        /// <summary>
+        /// Una trampa del piso (planta carnívora, enjambre de efímeras): no es un enemigo, no cuenta para limpiar la sala y se
+        /// desactiva al limpiarla. Cada una tiene su probabilidad de aparecer en una sala de combate.
+        /// </summary>
+        [Serializable]
+        public struct TrapEntry
+        {
+            [Tooltip("La trampa (con su CarnivorousPlant o su MayflySwarm). Cuelga de los enemigos de la sala: espera inactiva hasta que entra el jugador.")]
+            public GameObject prefab;
+            [Tooltip("A partir de qué sala de combate del camino puede salir (1 = desde la primera).")]
+            [Min(1)] public int minDepth;
+            [Tooltip("Probabilidad, de 0 a 1, de que salga en una sala (se tira una vez por cada una del tope).")]
+            [Range(0f, 1f)] public float chance;
+            [Tooltip("Cuántas puede haber como mucho en una sala.")]
+            [Min(1)] public int maxPerRoom;
+            [Tooltip("Solo sobre tierra, no sobre charcos de lodo o de agua (las plantas).")]
+            public bool dryGround;
+
+            public TrapEntry(GameObject prefab, int minDepth, float chance, int maxPerRoom = 1, bool dryGround = false)
+            {
+                this.prefab = prefab;
+                this.minDepth = minDepth;
+                this.chance = chance;
+                this.maxPerRoom = maxPerRoom;
+                this.dryGround = dryGround;
+            }
+        }
+
         /// <summary>Un jefe posible del piso, con su sala y su tileset. En cada partida sale uno al azar.</summary>
         [Serializable]
         public struct BossEntry
@@ -292,6 +320,8 @@ namespace Primordia.Rooms
 
         [Header("Enemigos")]
         [SerializeField] EnemyEntry[] enemies = Array.Empty<EnemyEntry>();
+        [Tooltip("Trampas del piso (no son enemigos: no cuentan para limpiar la sala).")]
+        [SerializeField] TrapEntry[] traps = Array.Empty<TrapEntry>();
         [Tooltip("Presupuesto de la primera sala de combate en una sala normal (26×12 de suelo).")]
         [SerializeField, Min(0f)] float baseBudget = 3f;
         [Tooltip("Cuánto sube el presupuesto en cada sala de combate siguiente del camino.")]
@@ -382,6 +412,7 @@ namespace Primordia.Rooms
         public RoomTheme Theme => theme;
         public RoomTheme BossTheme => bossTheme;
         public EnemyEntry[] Enemies => enemies;
+        public TrapEntry[] Traps => traps;
         public float BaseBudget => baseBudget;
         public float BudgetPerRoom => budgetPerRoom;
         public int ReferenceFloorArea => referenceFloorArea;
@@ -450,6 +481,8 @@ namespace Primordia.Rooms
             baseBudget = newBaseBudget;
             budgetPerRoom = newBudgetPerRoom;
         }
+
+        internal void SetTraps(TrapEntry[] newTraps) => traps = newTraps ?? Array.Empty<TrapEntry>();
 
         /// <summary>Cambia solo los enemigos (el jefe y el presupuesto se quedan).</summary>
         internal void SetEnemies(EnemyEntry[] newEnemies) => enemies = newEnemies ?? Array.Empty<EnemyEntry>();

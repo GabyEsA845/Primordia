@@ -52,6 +52,7 @@ namespace Primordia.Editor
             CreateCalamites();
             CreateSpider();
             CreateDragonfly();
+            var traps = CreateTraps();
 
             AssetDatabase.SaveAssets();
             var entries = new List<FloorConfig.EnemyEntry>();
@@ -61,8 +62,8 @@ namespace Primordia.Editor
                 if (enemy != null)
                     entries.Add(new FloorConfig.EnemyEntry(enemy, cost, minDepth, maxPerRoom, groupSize, needsMud, dryGround, hidesInFern));
             }
-            PutInFloor3(entries.ToArray());
-            Debug.Log($"ArtSetup: {entries.Count} enemigos del piso 3 creados y puestos en Floor_3.");
+            PutInFloor3(entries.ToArray(), traps);
+            Debug.Log($"ArtSetup: {entries.Count} enemigos y {traps.Length} trampas del piso 3 creados y puestos en Floor_3.");
         }
 
         // ---------- Escarabajo bombardero ----------
@@ -404,6 +405,62 @@ namespace Primordia.Editor
                 root => root.AddComponent<DragonflyBrain>().Configure(segment), colliderOffset: new Vector2(0f, 0.4f));
         }
 
+        // ---------- Trampas ----------
+
+        /// <summary>Planta carnívora y enjambre de efímeras: prefabs sueltos (no enemigos), con su probabilidad en las salas de combate.</summary>
+        static FloorConfig.TrapEntry[] CreateTraps()
+        {
+            string trapsFolder = $"{Floor3EnemiesArtFolder}/Traps";
+            Directory.CreateDirectory(trapsFolder);
+            Directory.CreateDirectory("Assets/_Primordia/Prefabs/Traps");
+
+            Sprite[] Sheet(string folder, string name, int cell, Vector2 pivot)
+            {
+                string target = $"{trapsFolder}/{name}.png";
+                return CopyArt($"{Floor3EnemiesSourceFolder}/{folder}/{name}.png", target) ? SliceSheet(target, cell, pivot) : new Sprite[0];
+            }
+
+            // Planta carnívora: cuadros de 40×40, pivote al pie (el dibujo acaba 1 px sobre el borde de abajo).
+            var foot = new Vector2(0.5f, 0.02f);
+            var plantRoot = new GameObject("Trap_CarnivorousPlant");
+            GameObject plant;
+            try
+            {
+                plantRoot.AddComponent<SpriteRenderer>();
+                var component = plantRoot.AddComponent<CarnivorousPlant>();
+                component.Configure(Sheet("CarnivorousPlant", "CarnivorousPlant_Idle", 40, foot), Sheet("CarnivorousPlant", "CarnivorousPlant_Snap", 40, foot),
+                    Sheet("CarnivorousPlant", "CarnivorousPlant_Chew", 40, foot), Sheet("CarnivorousPlant", "CarnivorousPlant_Open", 40, foot),
+                    Sheet("CarnivorousPlant", "CarnivorousPlant_Wilt", 40, foot));
+                plant = PrefabUtility.SaveAsPrefabAsset(plantRoot, "Assets/_Primordia/Prefabs/Traps/Trap_CarnivorousPlant.prefab");
+            }
+            finally
+            {
+                Object.DestroyImmediate(plantRoot);
+            }
+
+            // Enjambre de efímeras: cuadros de 40×40, pivote al centro.
+            var center = new Vector2(0.5f, 0.5f);
+            var swarmRoot = new GameObject("Trap_MayflySwarm");
+            GameObject swarm;
+            try
+            {
+                swarmRoot.AddComponent<SpriteRenderer>();
+                swarmRoot.AddComponent<MayflySwarm>().Configure(Sheet("Mayflies", "Mayflies_Idle", 40, center), Sheet("Mayflies", "Mayflies_Burn", 40, center));
+                swarm = PrefabUtility.SaveAsPrefabAsset(swarmRoot, "Assets/_Primordia/Prefabs/Traps/Trap_MayflySwarm.prefab");
+            }
+            finally
+            {
+                Object.DestroyImmediate(swarmRoot);
+            }
+
+            // La planta, desde la sala 2 y sobre tierra; el enjambre, desde la 3. Probabilidades por sala de combate.
+            return new[]
+            {
+                new FloorConfig.TrapEntry(plant, minDepth: 2, chance: 0.35f, maxPerRoom: 2, dryGround: true),
+                new FloorConfig.TrapEntry(swarm, minDepth: 3, chance: 0.3f, maxPerRoom: 1),
+            };
+        }
+
         // ---------- Ayudas ----------
 
         static Character Floor3Enemy(string name, params (string, float, bool)[] timings) => new()
@@ -431,7 +488,7 @@ namespace Primordia.Editor
         }
 
         /// <summary>Los enemigos de Floor_3 pasan a ser estos. Si el piso aún no tenía presupuesto (sin enemigos), le da el del piso 2.</summary>
-        static void PutInFloor3(FloorConfig.EnemyEntry[] entries)
+        static void PutInFloor3(FloorConfig.EnemyEntry[] entries, FloorConfig.TrapEntry[] traps)
         {
             var config = AssetDatabase.LoadAssetAtPath<FloorConfig>(Floor3Setup.Floor3ConfigPath);
             if (config == null)
@@ -446,6 +503,8 @@ namespace Primordia.Editor
                 config.ConfigureRewards(pool, config.RewardAfter);
                 Debug.Log("ArtSetup: Floor_3 usaba otra reserva de mutaciones; ahora usa MutationPool_Floor3.");
             }
+            if (traps.Length > 0)
+                config.SetTraps(traps);
             if (entries.Length == 0)
             {
                 EditorUtility.SetDirty(config);

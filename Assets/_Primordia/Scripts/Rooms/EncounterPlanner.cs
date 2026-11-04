@@ -59,6 +59,26 @@ namespace Primordia.Rooms
         }
 
         /// <summary>
+        /// Trampas de una sala: por cada entrada que ya puede salir a esa profundidad, tira su probabilidad una vez por cada una del
+        /// tope. No gastan presupuesto.
+        /// </summary>
+        public static List<FloorConfig.TrapEntry> PickTraps(FloorConfig config, int depth, System.Random random)
+        {
+            var result = new List<FloorConfig.TrapEntry>();
+            foreach (var entry in config.Traps)
+            {
+                if (entry.prefab == null || depth < entry.minDepth)
+                    continue;
+                for (int i = 0; i < Mathf.Max(1, entry.maxPerRoom); i++)
+                {
+                    if (random.NextDouble() < entry.chance)
+                        result.Add(entry);
+                }
+            }
+            return result;
+        }
+
+        /// <summary>
         /// Crea el enemigo elegido en esa posición; si su entrada sale en grupo (el cardumen), crea el grupo entero en un
         /// corro pequeño alrededor. Devuelve los creados.
         /// </summary>

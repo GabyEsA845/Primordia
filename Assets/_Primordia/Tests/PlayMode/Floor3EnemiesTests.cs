@@ -374,6 +374,90 @@ namespace Primordia.Tests
         }
 
         [UnityTest]
+        public IEnumerator Dragonfly_Flies_ThenWarnsDivesAndPerchesVulnerable()
+        {
+            player.AddComponent<CircleCollider2D>().radius = 0.4f;
+            player.transform.position = new Vector2(5f, 0f);
+            var dragonfly = CreateEnemy<DragonflyBrain>(Data(14, detection: 12f, contactDamage: 0), new Vector2(0f, 0f));
+            var health = dragonfly.GetComponent<Health>();
+            yield return null;
+            yield return null;
+
+            Assert.IsTrue(dragonfly.IsAirborne);
+            Assert.IsTrue(health.IsInvulnerable, "En el aire es inmune.");
+
+            Vector2? warned = null;
+            dragonfly.Warned += direction => warned = direction;
+            for (float t = 0f; t < 5f && dragonfly.Current != DragonflyBrain.Phase.Warn; t += Time.deltaTime)
+                yield return null;
+            Assert.AreEqual(DragonflyBrain.Phase.Warn, dragonfly.Current, "Fija la línea de ataque.");
+            Assert.Greater(dragonfly.DiveDirection.x, 0.5f, "Hacia ti.");
+            Assert.Less(dragonfly.GetComponent<Rigidbody2D>().linearVelocity.magnitude, 0.5f, "Quieta mientras avisa.");
+
+            for (float t = 0f; t < 2f && dragonfly.Current != DragonflyBrain.Phase.Dive; t += Time.deltaTime)
+                yield return null;
+            Assert.AreEqual(DragonflyBrain.Phase.Dive, dragonfly.Current, "Y cae en picado.");
+
+            for (float t = 0f; t < 2f && dragonfly.Current != DragonflyBrain.Phase.Perch; t += Time.deltaTime)
+                yield return null;
+            Assert.AreEqual(DragonflyBrain.Phase.Perch, dragonfly.Current, "Al acabar, se posa.");
+            Assert.IsFalse(health.IsInvulnerable, "Posada, es vulnerable.");
+            Assert.IsFalse(dragonfly.IsAirborne);
+        }
+
+        [UnityTest]
+        public IEnumerator Dragonfly_Dive_HurtsYou_UnlessYouDodge()
+        {
+            var playerHealth = player.GetComponent<Health>();
+            player.AddComponent<CircleCollider2D>().radius = 0.4f;
+            player.transform.position = new Vector2(4f, 0f);
+            var dragonfly = CreateEnemy<DragonflyBrain>(Data(14, detection: 12f, contactDamage: 0), Vector2.zero);
+            Health victim = null;
+            dragonfly.Dived += hit => victim = hit;
+            for (float t = 0f; t < 6f && dragonfly.Current != DragonflyBrain.Phase.Perch; t += Time.deltaTime)
+                yield return null;
+
+            Assert.IsNotNull(victim, "El picado te alcanza.");
+            Assert.AreEqual(playerHealth.Max - 2, playerHealth.Current, "Y te hace un corazón de daño.");
+        }
+
+        [UnityTest]
+        public IEnumerator Dragonfly_Airborne_IgnoresHitsAndPushes_ButPerchedTakesDamage()
+        {
+            player.transform.position = new Vector2(5f, 0f);
+            var dragonfly = CreateEnemy<DragonflyBrain>(Data(14, detection: 12f, contactDamage: 0), Vector2.zero);
+            var health = dragonfly.GetComponent<Health>();
+            var ai = dragonfly.GetComponent<EnemyAI>();
+            yield return null;
+            yield return null;
+
+            Assert.IsFalse(health.TakeDamage(3), "En el aire, el daño no entra.");
+            ai.Knockback(Vector2.left * 10f, 0.5f);
+            Assert.IsFalse(ai.IsStunned, "Ni un golpe sin daño (la Peonza) la empuja o la aturde.");
+
+            for (float t = 0f; t < 6f && dragonfly.Current != DragonflyBrain.Phase.Perch; t += Time.deltaTime)
+                yield return null;
+            Assert.AreEqual(DragonflyBrain.Phase.Perch, dragonfly.Current);
+            int before = health.Current;
+            Assert.IsTrue(health.TakeDamage(3), "Posada, recibe el daño.");
+            Assert.AreEqual(before - 3, health.Current);
+        }
+
+        [UnityTest]
+        public IEnumerator Dragonfly_Perch_ThenTakesOffAndFliesAgain()
+        {
+            player.transform.position = new Vector2(5f, 0f);
+            var dragonfly = CreateEnemy<DragonflyBrain>(Data(14, detection: 12f, contactDamage: 0), Vector2.zero);
+            for (float t = 0f; t < 6f && dragonfly.Current != DragonflyBrain.Phase.Perch; t += Time.deltaTime)
+                yield return null;
+            Assert.AreEqual(DragonflyBrain.Phase.Perch, dragonfly.Current);
+
+            yield return new WaitForSeconds(1.5f);
+            Assert.IsTrue(dragonfly.IsAirborne, "Después despega.");
+            Assert.IsTrue(dragonfly.GetComponent<Health>().IsInvulnerable);
+        }
+
+        [UnityTest]
         public IEnumerator Beetle_Back_TakesFiftyPercentMoreDamage()
         {
             // Sin objetivo a la vista pasea; se le fija la cabeza hacia la derecha y se compara de frente y por la espalda.

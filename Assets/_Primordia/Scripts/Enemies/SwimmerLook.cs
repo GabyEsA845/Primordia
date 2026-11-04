@@ -22,6 +22,13 @@ namespace Primordia.Enemies
 
         public Transform Shadow { get; private set; }
 
+        /// <summary>True si está posado: el cuerpo baja al suelo (la libélula posada) y vuelve a subir al despegar.</summary>
+        public bool Grounded { get; set; }
+
+        // Cuánto de la altura y el vaivén se ve, de 0 (en el suelo) a 1 (en el aire); cambia con el tiempo.
+        float level = 1f;
+        const float LevelSpeed = 5f;
+
         internal void Configure(Sprite newShadow) => shadowSprite = newShadow;
 
         void Start()
@@ -44,8 +51,9 @@ namespace Primordia.Enemies
         {
             if (body == null)
                 return;
+            level = Mathf.MoveTowards(level, Grounded ? 0f : 1f, LevelSpeed * Time.deltaTime);
             float bob = Mathf.Sin((Time.time + phase) / BobPeriod * Mathf.PI * 2f) * BobAmplitude;
-            body.localPosition = bodyRest + Vector3.up * (Height + bob);
+            body.localPosition = bodyRest + Vector3.up * ((Height + bob) * level);
         }
 
         // Elipse de 12×4 px a 16 px por unidad.

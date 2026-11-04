@@ -242,7 +242,7 @@ MonoBehaviour:
     hidesInFern: 0
   - prefab: {fileID: 4030936345262680546, guid: eb47435608f714d4b98b1d117760890f, type: 3}
     cost: 4
-    minDepth: 2
+    minDepth: 1
     maxPerRoom: 2
     groupSize: 1
     needsMud: 0
@@ -250,7 +250,7 @@ MonoBehaviour:
     hidesInFern: 0
   - prefab: {fileID: 6997304892591655701, guid: d65c70b707df61644906b88ad04954ec, type: 3}
     cost: 3
-    minDepth: 2
+    minDepth: 1
     maxPerRoom: 3
     groupSize: 1
     needsMud: 0
@@ -264,8 +264,16 @@ MonoBehaviour:
     needsMud: 0
     dryGround: 1
     hidesInFern: 0
-  baseBudget: 3
-  budgetPerRoom: 1.4
+  - prefab: {fileID: 5472151132634873348, guid: 9283a615604ff264cbb1e94ec47b79e9, type: 3}
+    cost: 4
+    minDepth: 3
+    maxPerRoom: 2
+    groupSize: 1
+    needsMud: 0
+    dryGround: 0
+    hidesInFern: 0
+  baseBudget: 8
+  budgetPerRoom: 1.6
   referenceFloorArea: 312
   boss: {fileID: 1183084727335379411, guid: 1fc20f23b26e1e14aa8e7a669d298cfb, type: 3}
   bossOffset: {x: 0, y: 2.5}

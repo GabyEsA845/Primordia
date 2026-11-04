@@ -28,10 +28,17 @@ namespace Primordia.Editor
         {
             ("Enemy_Beetle", 3, 1, 0, 1, false, false, false),
             ("Enemy_Toad", 3, 1, 3, 1, true, false, false),
-            ("Enemy_Medullosa", 4, 2, 2, 1, false, true, false),
-            ("Enemy_Spider", 3, 2, 3, 1, false, false, true),
+            ("Enemy_Medullosa", 4, 1, 2, 1, false, true, false),
+            ("Enemy_Spider", 3, 1, 3, 1, false, false, true),
             ("Enemy_Calamites", 5, 3, 1, 1, false, true, false),
+            ("Enemy_Dragonfly", 4, 3, 2, 1, false, false, false),
         };
+
+        // Presupuesto de enemigos por sala del piso 3: las cuevas miden 34×22–44×26 (el presupuesto escala con la raíz del área), así
+        // que con el 3 + 1,4 de los pisos anteriores salía un solo enemigo en la primera sala. Con esto salen 3–4 desde la primera
+        // y unos 10 en las últimas.
+        const float Floor3BaseBudget = 8f;
+        const float Floor3BudgetPerRoom = 1.6f;
 
         [MenuItem("Primordia/Floor 3/Crear enemigos del piso 3")]
         static void CreateFloor3Enemies()
@@ -44,6 +51,7 @@ namespace Primordia.Editor
             CreateMedullosa();
             CreateCalamites();
             CreateSpider();
+            CreateDragonfly();
 
             AssetDatabase.SaveAssets();
             var entries = new List<FloorConfig.EnemyEntry>();
@@ -364,6 +372,38 @@ namespace Primordia.Editor
             }
         }
 
+        // ---------- Libélula gigante ----------
+
+        static Enemy CreateDragonfly()
+        {
+            // Cuadros de 40×40. Pivote a la altura de las patas posada (11 px sobre el borde de abajo): al posarse, el pie de la
+            // libélula queda en el suelo; en el aire SwimmerLook la sube y deja su sombra abajo.
+            var character = Floor3Enemy("Dragonfly",
+                ("Fly", Fps(50), true), ("Warn", Fps(150), true), ("Dive", Fps(90), true), ("Land", Fps(90), false),
+                ("Takeoff", Fps(90), false), ("Perch", Fps(200), true), ("Hurt", Fps(90), false), ("Death", Fps(120), false));
+            character.DefaultState = "Fly";
+            character.Pivot = new Vector2(0.5f, 0.275f);
+            var art = Import(character);
+            if (art == null)
+                return null;
+
+            string effects = $"{Floor3EnemiesArtFolder}/Effects";
+            Directory.CreateDirectory(effects);
+            string source = $"{Floor3EnemiesSourceFolder}/Effects";
+            var segment = Floor2MouthsSetup.CreateLoopEffect("Effect_DragonflyAim",
+                ImportLooseSheet($"{source}/Fx_DragonflyAim.png", $"{effects}/Fx_DragonflyAim.png", 8), 0.08f, sortingOrder: 2);
+            var shadow = ImportLooseSheet($"{source}/Fx_FlyerShadow.png", $"{effects}/Fx_FlyerShadow.png", 24);
+
+            // 14 de vida, vuela deprisa, te ve a 12 u y no hace daño al tocarla (solo el picado, que hace uno de corazón).
+            var data = Floor3EnemyData("Enemy_Dragonfly", d =>
+            {
+                d.Configure(EnemyBehaviour.Chaser, maxHealth: 14, moveSpeed: 4.5f, detectionRange: 12f, contactDamage: 0);
+                d.ConfigureSwimming(true, shadow.Length > 0 ? shadow[0] : null);
+            });
+            return BuildFloor2Enemy("Enemy_Dragonfly", data, art, colliderRadius: 0.5f,
+                root => root.AddComponent<DragonflyBrain>().Configure(segment), colliderOffset: new Vector2(0f, 0.4f));
+        }
+
         // ---------- Ayudas ----------
 
         static Character Floor3Enemy(string name, params (string, float, bool)[] timings) => new()
@@ -412,8 +452,11 @@ namespace Primordia.Editor
                 AssetDatabase.SaveAssets();
                 return;
             }
-            if (config.BaseBudget <= 0f)
-                config.ConfigureEnemies(entries, config.Boss, newBaseBudget: 3f, newBudgetPerRoom: 1.4f);
+            // El presupuesto solo se toca si es el de antes (nunca fijado, o el de los pisos 1 y 2): lo ajustado a mano se respeta.
+            bool untouched = config.BaseBudget <= 0f
+                || (Mathf.Approximately(config.BaseBudget, 3f) && Mathf.Approximately(config.BudgetPerRoom, 1.4f));
+            if (untouched)
+                config.ConfigureEnemies(entries, config.Boss, Floor3BaseBudget, Floor3BudgetPerRoom);
             else
                 config.SetEnemies(entries);
             EditorUtility.SetDirty(config);

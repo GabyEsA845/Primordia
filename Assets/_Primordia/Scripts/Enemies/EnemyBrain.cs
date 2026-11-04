@@ -40,6 +40,9 @@ namespace Primordia.Enemies
         /// <summary>Hacia dónde mira (para voltear el sprite). Null = lo de siempre (al objetivo o hacia donde se mueve).</summary>
         public virtual Vector2? Facing => null;
 
+        /// <summary>False si ahora nada lo empuja ni lo aturde (la libélula en el aire: un golpe sin daño no debe frenarla).</summary>
+        public virtual bool CanBePushed => true;
+
         /// <summary>False mientras no debe verse la animación de daño (enterrado, en mitad de una embestida…).</summary>
         public virtual bool ShowsHurt => true;
 

@@ -185,6 +185,8 @@ namespace Primordia.Enemies
         /// </summary>
         public void Knockback(Vector2 velocity, float stunDuration, GameObject stunMarker = null)
         {
+            if (brain != null && !brain.CanBePushed)
+                return;
             knockbackVelocity = velocity;
             stunnedUntil = Mathf.Max(stunnedUntil, Time.time + stunDuration);
             Alert();

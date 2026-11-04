@@ -20,7 +20,8 @@
 
 ## En curso
 - [Sala de paso del piso 2 → 3](primordia-floor2-transition-room.md) — charca, ambiente del pantano y metamorfosis por pareja HECHOS y subidos
-- **[Estado de Primordia](primordia-project-status.md) — pisos 1-2 en main; piso 3 en feature/floor-3: pasos 1-4 HECHOS y con commit (4 = mutaciones y linajes, completo); SIGUIENTE paso 5 = enemigos y trampas del piso 3 (Sonnet)**
+- **[Estado de Primordia](primordia-project-status.md) — pisos 1-2 en main; piso 3 en feature/floor-3: pasos 1-5 HECHOS y con commit (5 = enemigos y trampas; falta la tanda de arte con Opus y el documento); SIGUIENTE paso 6 = salas con tema (Sonnet)**
+- [Enemigos y trampas del piso 3](primordia-floor3-enemies-decisions.md) — paso 5 HECHO: 6 enemigos + 2 trampas, números, archivos, cambios al generador
 - [Mutaciones y linajes del piso 3](primordia-floor3-mutations-decisions.md) — paso 4 COMPLETO (subpasos 1-5, 8 linajes y toques, reserva); detalle de cada pieza, archivos y decisiones
 - [Reacciones del piso 3](primordia-floor3-reactions-decisions.md) — paso 2 HECHO (subtandas A-D): quemado tipo Gungeon, odre, veneno, fumarolas
 - [Bocas del piso 3](primordia-floor3-mouths-decisions.md) — paso 3 HECHO: Escupitajo, Peonza, Chorro; números, archivos y pruebas

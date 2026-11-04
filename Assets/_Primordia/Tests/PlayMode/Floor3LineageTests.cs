@@ -604,6 +604,27 @@ namespace Primordia.Tests
             Assert.AreEqual(1.2f * 1.5f, sprout.Current.radius, 0.001f);
         }
 
+        [Test]
+        public void Fungal_Floor3_GeneralMatScale_GrowsTheDrawingAndTheRadius()
+        {
+            Complete(LineageClass.Fungal);
+            var colony = player.GetComponent<ColonyBenefit>();
+            colony.SetVariants(new[] { MatPrefab("MatM") }, new[] { MatPrefab("MatL") }, 1.5f, 1.5f);
+            colony.Colonize(new Bounds(Vector3.zero, new Vector3(40f, 40f, 1f)));
+            Assert.Greater(colony.Mats.Count, 0);
+            foreach (var mat in colony.Mats)
+            {
+                Assert.AreEqual(1.2f * 1.5f, mat.Current.radius, 0.001f, "El radio crece con el tamaño general.");
+                Assert.AreEqual(1.5f, mat.transform.localScale.x, 0.001f, "Y el dibujo, igual.");
+            }
+
+            var enemy = CreateEnemy(5, colony.Mats[0].transform.position);
+            enemy.Health.TakeDamage(10);
+            var sprout = colony.Mats[colony.Mats.Count - 1];
+            Assert.AreEqual(1.2f * 1.5f * 1.5f, sprout.Current.radius, 0.001f, "La grande, por su escala además.");
+            Assert.AreEqual(1.5f, sprout.transform.localScale.x, 0.001f);
+        }
+
         [UnityTest]
         public IEnumerator FungusMat_SnaresTheEnemiesOnTopOfIt_AndLetsThemGo()
         {

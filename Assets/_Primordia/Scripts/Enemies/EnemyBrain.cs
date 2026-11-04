@@ -43,6 +43,12 @@ namespace Primordia.Enemies
         /// <summary>False si ahora nada lo empuja ni lo aturde (la libélula en el aire: un golpe sin daño no debe frenarla).</summary>
         public virtual bool CanBePushed => true;
 
+        /// <summary>Animación de daño que se ve ahora (null = Hurt): el sapo en el lodo la tiene propia.</summary>
+        public virtual string HurtState => null;
+
+        /// <summary>Animación de muerte que se ve ahora (null = Death).</summary>
+        public virtual string DeathState => null;
+
         /// <summary>False mientras no debe verse la animación de daño (enterrado, en mitad de una embestida…).</summary>
         public virtual bool ShowsHurt => true;
 

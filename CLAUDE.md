@@ -20,4 +20,4 @@ La carpeta `docs/memoria-claude/` es la fuente de verdad compartida entre cuenta
 
 ## Siguiente paso
 
-Mira `primordia-project-status.md`: piso 3 en `feature/floor-3`, siguiente el paso 4 (mutaciones y linajes).
+Mira `primordia-project-status.md`: piso 3 en `feature/floor-3`, paso 5 (enemigos y trampas) hecho; falta actualizar el documento interactivo y el GDD/PLAN, y después el paso 6 (salas con tema).

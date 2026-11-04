@@ -74,6 +74,8 @@ namespace Primordia.Mutations
         public MyceliumPatch[] floor3MatsLarge = System.Array.Empty<MyceliumPatch>();
         [Tooltip("Radio de la mata grande respecto a la mediana (27 px / 19 px del dibujo).")]
         [Min(1f)] public float floor3LargeMatScale = 1.42f;
+        [Tooltip("Tamaño general de las matas del piso 3 (dibujo y radio de daño y frenado), medianas y grandes: las salas son grandes y con el tamaño del dibujo quedaban pequeñas.")]
+        [Min(1f)] public float floor3MatScale = 1.5f;
 
         [System.Serializable]
         public struct FrameSet

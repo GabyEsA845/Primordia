@@ -23,6 +23,7 @@ namespace Primordia.Mutations
         MyceliumPatch[] mediumMats = System.Array.Empty<MyceliumPatch>();
         MyceliumPatch[] largeMats = System.Array.Empty<MyceliumPatch>();
         float largeScale = 1.42f;
+        float matScale = 1f;
         Room[] rooms = System.Array.Empty<Room>();
         Room pendingRoom;
         readonly List<MyceliumPatch> mats = new();
@@ -52,12 +53,19 @@ namespace Primordia.Mutations
         /// Piso 3: las matas nuevas (4 especies, cada una mediana y grande). Las del principio del combate son medianas y las que
         /// brotan de un enemigo muerto, grandes (el radio de las grandes es el de las medianas por <paramref name="newLargeScale"/>).
         /// </summary>
-        public void SetVariants(MyceliumPatch[] medium, MyceliumPatch[] large, float newLargeScale)
+        public void SetVariants(MyceliumPatch[] medium, MyceliumPatch[] large, float newLargeScale, float newMatScale = 1f)
         {
             mediumMats = medium ?? System.Array.Empty<MyceliumPatch>();
             largeMats = large ?? System.Array.Empty<MyceliumPatch>();
             largeScale = Mathf.Max(1f, newLargeScale);
+            matScale = Mathf.Max(1f, newMatScale);
         }
+
+        // Tamaño general de las matas nuevas (dibujo y radio): solo se aplica a las variantes del piso 3, no a la mata de siempre.
+        float VariantScale => mediumMats.Length > 0 || largeMats.Length > 0 ? matScale : 1f;
+
+        // Radio de una mata nueva: el de los ajustes por el tamaño general y, si es grande, por su escala.
+        float MatRadius(bool large) => settings.radius * VariantScale * (large ? largeScale : 1f);
 
         /// <summary>
         /// Piso 3: un enemigo que muere sobre una mata hace brotar otra junto a él, hasta ese máximo de matas en la sala
@@ -92,7 +100,7 @@ namespace Primordia.Mutations
 
             // La nueva sale a un lado, sin pisar a las otras ni las paredes (grande si hay matas grandes).
             bool large = largeMats.Length > 0;
-            float radius = settings.radius * (large ? largeScale : 1f);
+            float radius = MatRadius(large);
             float spacing = radius * 2f;
             for (int attempt = 0; attempt < Attempts; attempt++)
             {
@@ -140,7 +148,7 @@ namespace Primordia.Mutations
                 for (int attempt = 0; attempt < Attempts; attempt++)
                 {
                     var point = new Vector2(Random.Range(bounds.min.x, bounds.max.x), Random.Range(bounds.min.y, bounds.max.y));
-                    if (!IsFree(point, settings.radius))
+                    if (!IsFree(point, MatRadius(false)))
                         continue;
 
                     Spawn(point);
@@ -186,8 +194,12 @@ namespace Primordia.Mutations
                 : new GameObject("FungusMat").AddComponent<MyceliumPatch>();
             mat.transform.position = point;
             var matSettings = settings;
-            if (large && variants.Length > 0)
-                matSettings.radius *= largeScale;
+            if (variants.Length > 0)
+            {
+                // El dibujo y el radio crecen a la vez con el tamaño general.
+                matSettings.radius = MatRadius(large);
+                mat.transform.localScale = Vector3.one * VariantScale;
+            }
             mat.Configure(matSettings);
             mats.Add(mat);
         }

@@ -128,13 +128,16 @@ namespace Primordia.Enemies
             if (health.IsDead || Time.time < actionUntil || (brain != null && !brain.ShowsHurt))
                 return;
 
-            Show(HurtState);
+            string custom = brain != null ? brain.HurtState : null;
+            Show(custom != null && states.Has(custom) ? custom : HurtState);
         }
 
         void OnDied()
         {
             bool split = enemy.WillSplit && (animator == null || states.Has(SplitState));
-            states.Play(split ? SplitState : DeathState, restart: true);
+            string custom = brain != null ? brain.DeathState : null;
+            string death = custom != null && states.Has(custom) ? custom : DeathState;
+            states.Play(split ? SplitState : death, restart: true);
 
             if (!enemy.WillSplit)
                 OneShotEffect.Spawn(deathEffect, transform.position);

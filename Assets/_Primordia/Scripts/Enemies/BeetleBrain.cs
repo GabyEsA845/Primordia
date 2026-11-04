@@ -104,13 +104,16 @@ namespace Primordia.Enemies
         void Start()
         {
             if (Health != null)
-                Health.Died += EndCone;
+                Health.Died += OnDied;
         }
+
+        // Al morir, el cono desaparece de golpe.
+        void OnDied() => EndCone();
 
         void OnDestroy()
         {
             if (Health != null)
-                Health.Died -= EndCone;
+                Health.Died -= OnDied;
             EndCone();
         }
 
@@ -183,7 +186,8 @@ namespace Primordia.Enemies
                     }
                     if (Time.time >= phaseUntil)
                     {
-                        EndCone();
+                        // Acaba el chorro: el cono se recoge y se deshace en humo solo (fase final).
+                        EndCone(graceful: true);
                         Enter(Phase.Rest, restTime);
                     }
                     return Vector2.zero;
@@ -255,10 +259,19 @@ namespace Primordia.Enemies
             cone = Instantiate(sprayEffect, Tip, Quaternion.Euler(0f, 0f, Mathf.Atan2(SprayDirection.y, SprayDirection.x) * Mathf.Rad2Deg));
         }
 
-        void EndCone()
+        /// <summary>
+        /// Quita el cono. Con <paramref name="graceful"/> pasa a su fase final (se recoge en humo y se destruye solo); si no, desaparece de
+        /// golpe (el escarabajo muere, lo aturden o se desactiva).
+        /// </summary>
+        void EndCone(bool graceful = false)
         {
             if (cone != null)
-                Destroy(cone);
+            {
+                if (graceful && cone.TryGetComponent<ConeEffect>(out var effect))
+                    effect.Finish();
+                else
+                    Destroy(cone);
+            }
             cone = null;
         }
 

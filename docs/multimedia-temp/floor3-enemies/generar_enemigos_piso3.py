@@ -1379,9 +1379,367 @@ def plants():
           'Fx_MedullosaSeed_Burst': [seed_burst(i) for i in range(5)]}
     write(fx, 'efectos_plantas', fx=True)
 
+# =================================================================================================
+# Retoques (2026-11-03): cono lanzallamas del escarabajo y sapo en el lodo profundo. Solo escribe estas hojas.
+# =================================================================================================
+SMOKE = ['#3a2e2c', '#54443e', '#706058']                     # humo de la punta del cono
+MUD_HI = '#b89a6a'                                            # brillo húmedo (el de Mud_Bubbles)
+
+def _hash(ix, iy, seed):
+    h = (ix * 374761393 + iy * 668265263 + seed * 69069) & 0xffffffff
+    h = ((h ^ (h >> 13)) * 1274126177) & 0xffffffff
+    return ((h ^ (h >> 16)) & 0xffff) / 65535
+
+def vnoise(x, y, cell, period, seed=0):
+    """Ruido de valor suave, periódico en x cada `period` celdas (para que el bucle cierre)."""
+    gx, gy = x / cell, y / cell
+    ix, iy = math.floor(gx), math.floor(gy)
+    fx, fy = gx - ix, gy - iy
+    sx, sy = fx * fx * (3 - 2 * fx), fy * fy * (3 - 2 * fy)
+    v = lambda a, b: _hash(a % period, b, seed)
+    top = v(ix, iy) + (v(ix + 1, iy) - v(ix, iy)) * sx
+    bot = v(ix, iy + 1) + (v(ix + 1, iy + 1) - v(ix, iy + 1)) * sx
+    return top + (bot - top) * sy
+
+CONE_L, CONE_Y = 48, 13.5                                     # 3 u de largo; eje a media altura de la celda 56×28
+
+def flame_cone(shift, front=1.0, tail=0.0, cool=0.0, smoke=0.0):
+    """Cono de lanzallamas: núcleo blanco-amarillo en la boquilla, lenguas naranjas y rojas que se rizan hacia
+    fuera y humo en la punta. `shift` mueve el ruido hacia fuera (8 px por cuadro, cierra cada 6 cuadros);
+    `front` 0..1 = hasta dónde llega la cabeza (salida); `tail` 0..1 = la base se despega de la boquilla (final);
+    `cool` enfría las llamas y `smoke` añade humo."""
+    cv = Canvas(56, 28)
+    fx, tx = front * CONE_L, tail * CONE_L
+    for y in range(1, 27):                                    # 1 px libre arriba y abajo
+        n_end = vnoise(-shift * 1.5, y, 3, 16, 41)           # la punta acaba en bolsas, no recta
+        x_end = fx - 3 + 7 * (n_end - 0.5) * (0.4 + front)
+        x_tail = tx + 4 * (vnoise(shift, y, 3, 16, 43) - 0.5)
+        for x in range(55):
+            t = min(1.0, x / CONE_L)
+            half = 2.2 + 10.8 * t ** 0.8                      # 0,15 u en la boquilla, ~0,8 u al final (como el código)
+            dy = y - CONE_Y
+            n1 = vnoise(x - shift, dy * 0.4, 6, 8, 3)          # bultos del borde que viajan hacia fuera
+            n2 = vnoise(x - shift, y, 4, 12, 11)               # bolsas de calor
+            n3 = vnoise(x - shift * 2.0, y, 3, 16, 23)         # remolinos finos y lenguas sueltas
+            he = half * (0.78 + 0.5 * n1 + 0.2 * (n3 - 0.5))
+            r = abs(dy) / he
+            if tail > 0:                                      # final: lo que queda se recoge en una nube redonda
+                if x < x_tail: continue
+                ccx = (tx + fx) / 2; crx = (fx - tx) / 2 + 3
+                cry = (2.2 + 10.8 * min(1, ccx / CONE_L) ** 0.8) * (1 + 0.25 * tail)
+                if ((x - ccx) / crx) ** 2 + (dy / cry) ** 2 > 0.85 + 0.5 * (n3 - 0.5): continue
+                r = min(r, 0.85 * abs(dy) / cry + 0.0)
+            beyond = x > x_end
+            if beyond and x > x_end + 5: continue
+            if r > 1.3: continue
+            if r > 1.0 or beyond:                             # fuera: lenguas sueltas o humo
+                if beyond and n2 > 0.45 and r < 1.0 + smoke * 0.3:
+                    sm = SMOKE[2] if n3 > 0.6 else SMOKE[1] if n3 > 0.35 else SMOKE[0]
+                    cv.put(x, y, C(sm, 170)); continue
+                if r > 1.0 and not beyond and n3 > 0.66 and t > 0.2 and cool < 0.6: cv.put(x, y, C(FIRE[1 if n3 > 0.8 else 0]))
+                continue
+            heat = 1.22 - 0.9 * t - 0.6 * r * r + 0.45 * (n2 - 0.5) - cool
+            if smoke > 0 and heat < 0.1 + smoke * 0.25 and n2 < 0.3 + smoke * 0.3 and t > 0.25:
+                if r > 0.8 and n3 < 0.5: continue                 # humo deshilachado, no en bloque
+                sm = SMOKE[2] if n3 > 0.6 else SMOKE[1] if n3 > 0.35 else SMOKE[0]
+                cv.put(x, y, C(sm, 150)); continue
+            idx = 4 if heat > 1.0 else 3 if heat > 0.75 else 2 if heat > 0.5 else 1 if heat > 0.25 else 0
+            if r > 0.86: idx = min(idx, 1)                    # el borde siempre rojo oscuro: hace de contorno
+            if r > 0.86 and t > 0.6 and n3 < 0.4: idx = 0
+            cv.put(x, y, C(FIRE[idx]))
+    # chispas que salen disparadas por delante y por los lados
+    for k in range(7):
+        base = _hash(k, 0, 5) * CONE_L
+        x = (base + shift * 1.6) % (CONE_L + 6)
+        if x > fx or x < tx + 2 or x < 10: continue
+        side = 1 if k % 2 else -1
+        y = CONE_Y + side * (2.4 + 10.0 * (x / CONE_L) ** 0.85) * (0.9 + 0.35 * _hash(k, 1, 5))
+        if 1 <= y < 27 and x < 54:
+            cv.put(x, y, C(FIRE[4] if cool < 0.3 else FIRE[3]))
+            cv.put(x - 1, y, C(FIRE[2]))
+    return cv
+
+def beetle_cone():
+    """Salida (3) + bucle (6, mismo tamaño) + final (4). Ruido continuo de una hoja a otra."""
+    st = [flame_cone((i - 3) * 8, front=f) for i, f in enumerate((0.3, 0.6, 0.86))]
+    lp = [flame_cone(i * 8) for i in range(6)]
+    en = [flame_cone((6 + i) * 8, tail=tl, cool=c, smoke=s, front=f)
+          for i, (tl, c, s, f) in enumerate(((0.2, 0.15, 0.15, 1.0), (0.42, 0.35, 0.4, 1.02), (0.64, 0.6, 0.7, 1.05), (0.84, 0.95, 1.0, 1.08)))]
+    return {'Fx_BeetleSpray_Start': st, 'Fx_BeetleSpray_Loop': lp, 'Fx_BeetleSpray_End': en}
+
+# --- Sapo en el lodo profundo ------------------------------------------------------------------
+MUD_SURF = [C(MUDB[1]), C(MUDB[2]), C(MUDB[3]), C(MUDB[4]), C(MUD_HI)]
+
+def toad_cx(n=32, off=(0, 0), puff=0.0, stretch=0.0):
+    """Centro del cuerpo del sapo (el mismo cálculo que toad())."""
+    return 15 + off[0] - stretch * 1.5 - puff * 1.5
+
+def mud_cut(cv, cx, level, rx, ring=0.0, wet=True, ripple=None, back_ripple=True):
+    """Corta el sapo a la altura del lodo con la línea de agua curvada hacia delante (vista desde arriba),
+    le pone barro mojado justo encima y un collar de lodo desplazado; `ripple` = (radio extra, fase) dibuja
+    el anillo de ondas alrededor (la parte de atrás queda detrás del cuerpo)."""
+    def wl(x):                                                # línea de agua: más baja en el centro (arco de delante)
+        d = (x - cx) / rx
+        return level + 1.6 * math.sqrt(max(0.0, 1 - d * d))
+    for (x, y) in list(cv.px):
+        if y > wl(x): del cv.px[(x, y)]
+    body = set(cv.px)
+    if wet and not FLAT:                                      # barro pegado justo encima de la línea
+        for (x, y) in body:
+            if wl(x) - 2 < y <= wl(x) and cv.px[(x, y)] != OUTL:
+                cv.px[(x, y)] = MUD_SURF[1] if y > wl(x) - 1 else MUD_SURF[2]
+    xs = [x for (x, _) in body] or [int(cx)]
+    x0, x1 = min(xs) - 1, max(xs) + 1
+    x0, x1 = max(x0, 1), min(x1, cv.w - 2)
+    for x in range(x0, x1 + 1):                               # collar: lodo que abraza el cuerpo
+        y = int(round(wl(x)))
+        edge = x in (x0, x1)
+        cv.put(x, y + 1, MUD_SURF[1])
+        cv.put(x, y, MUD_SURF[2] if (x - x0) % 4 or edge else MUD_SURF[3])
+        if (x - x0) % 9 == 4 and not edge: cv.put(x, y, MUD_SURF[4])   # brillo húmedo
+    if ripple:
+        extra, ph = ripple
+        rr, ry = rx + 3 + extra, 2.6 + extra * 0.35
+        cy = level + 1
+        for k in range(40):
+            a = k / 40 * 2 * math.pi
+            x, y = cx + math.cos(a) * rr, cy + math.sin(a) * ry
+            if (k + int(ph * 4)) % 5 == 0: continue           # anillo a trazos
+            col = MUD_SURF[2] if math.sin(a) > 0 else MUD_SURF[1]
+            if extra > 3: col = MUD_SURF[1]
+            if not (1 <= x < cv.w - 1): continue
+            if math.sin(a) < 0 and back_ripple: cv.put_out(x, y, col)
+            elif math.sin(a) >= 0: cv.put_out(x, y, col)
+    return cv
+
+def mud_bubbles(cv, pts):
+    """Burbujas de lodo: (x, y, tamaño 0 punto, 1 burbuja, 2 revienta)."""
+    for x, y, s in pts:
+        if s == 0: cv.put_out(x, y, MUD_SURF[3])
+        elif s == 1:
+            cv.put_out(x, y, MUD_SURF[3]); cv.put_out(x + 1, y, MUD_SURF[2])
+            cv.put_out(x, y - 1, MUD_SURF[4]); cv.put_out(x + 1, y - 1, MUD_SURF[3])
+        else:
+            for dx, dy in ((-1, 0), (2, 0), (0, -1), (1, 1)): cv.put_out(x + dx, y + dy, MUD_SURF[3])
+
+def mud_drops(cv, pts):
+    """Goterones de lodo en el aire (x, y, grande)."""
+    for x, y, big in pts:
+        cv.put(x, y, MUD_SURF[3]); cv.put(x, y + 1, MUD_SURF[1])
+        if big: cv.put(x + 1, y, MUD_SURF[2]); cv.put(x + 1, y + 1, MUD_SURF[0]); cv.put(x, y - 1, MUD_SURF[4])
+
+PANZA = 22                                                    # línea del lodo «hasta la panza» en la celda 32
+
+def toad_mud(level=PANZA, ripple=(0, 0), n=32, off=(0, 0), bubbles=(), drops=(), wet=True, **kw):
+    cv = toad(n=n, off=off, **kw)
+    cx = toad_cx(n, off, kw.get('puff', 0.0), kw.get('stretch', 0.0)) + kw.get('shake', 0)
+    rx = 13 * (1 + kw.get('puff', 0.0) * 0.2)
+    mud_cut(cv, cx, level + off[1], rx, ripple=ripple, wet=wet)
+    mud_bubbles(cv, bubbles); mud_drops(cv, drops)
+    return cv
+
+def wake(cv, cx, level, ph, length=12, spread=0.45, back=True):
+    """Estela en V detrás (a la izquierda) y ola de proa delante."""
+    for s in (-1, 1):
+        for j in range(length):
+            x = cx - 10 - j
+            y = level + 1 + s * (1 + j * spread)
+            if (j + ph) % 4 == 3 or x < 1: continue
+            cv.put_out(x, y, MUD_SURF[3] if j < length * 0.6 else MUD_SURF[2])
+    for j, dy in enumerate((0, -1, 0)):                       # ola de proa
+        cv.put_out(cx + 12 + j % 2 + (ph % 2), level + dy + 1, MUD_SURF[3] if j != 1 else MUD_SURF[4])
+
+def toad_wade(i):
+    """Moverse por el lodo: no salta, empuja con el pecho y deja una estela."""
+    bob = (0, 1, 0, -1)[i]
+    cv = toad(breath=bob, stretch=0.15 * (i % 2))
+    cx = toad_cx(stretch=0.15 * (i % 2))
+    mud_cut(cv, cx, PANZA, 13, ripple=None)
+    wake(cv, cx, PANZA, i)
+    return cv
+
+def toad_dive(i):
+    """Zambullida: se agacha, se lanza de cabeza y el lodo se lo traga con salpicadura y burbujas. 5 cuadros."""
+    if i == 0: return toad_mud(squash=0.6, ripple=(0, 0))
+    if i == 1:                                                # se lanza adelante y arriba
+        cv = toad(stretch=0.9, lift=5, off=(0, 0)); cx = toad_cx(off=(0, 0), stretch=0.9)
+        mud_cut(cv, cx, PANZA + 3, 13, ripple=(1, 1), wet=False)
+        mud_drops(cv, [(cx - 12, 18, 1), (cx - 9, 15, 0), (cx - 15, 20, 0)])
+        return cv
+    cv = Canvas(32)
+    if i == 2:                                                # entra de cabeza: solo asoman el lomo y las patas
+        t = toad(stretch=1.0, lift=1, off=(3, 3)); cx = toad_cx(off=(3, 3), stretch=1.0)
+        mud_cut(t, cx, PANZA - 1, 13, wet=True)
+        for (x, y) in list(t.px):                             # la cabeza ya está dentro: corta lo de delante
+            if x > cx + 3 + (PANZA - y) * 0.35: del t.px[(x, y)]
+        for y in range(PANZA - 9, PANZA + 1):                 # borde del lodo donde entra la cabeza
+            x = int(cx + 3 + (PANZA - y) * 0.35) + 1
+            if (x - 1, y) in t.px: t.put(x, y, MUD_SURF[2]); t.put(x + 1, y, MUD_SURF[1])
+        cv = t
+        crown = [(cx + 6, PANZA - 4, 1), (cx + 9, PANZA - 6, 1), (cx + 12, PANZA - 3, 0), (cx + 3, PANZA - 6, 0),
+                 (cx + 11, PANZA - 8, 0)]
+        mud_drops(cv, crown)
+        return cv
+    if i == 3:                                                # solo el pie trasero y una corona de salpicadura
+        cx = 15
+        for k in range(7):                                    # pata trasera que asoma estirada hacia arriba
+            x, y = cx - 1 - k * 0.7, PANZA + 1 - k
+            cv.put(x, y, C(TOAD[2])); cv.put(x + 1, y, C(TOAD[1]))
+        for x in range(cx - 9, cx - 4): cv.put(x, PANZA - 7, C(TOAD[2]))   # pie palmeado
+        cv.put(cx - 9, PANZA - 8, C(TOAD[3])); cv.put(cx - 7, PANZA - 8, C(TOAD[3]))
+        cv.outline(); cv.clean()
+        mud_cut(cv, cx, PANZA, 9, ripple=(1, 2), wet=True)
+        mud_drops(cv, [(cx - 2, PANZA - 9, 1), (cx + 3, PANZA - 10, 1), (cx + 7, PANZA - 6, 0), (cx - 6, PANZA - 7, 0),
+                       (cx + 1, PANZA - 13, 0)])
+        return cv
+    cx = 15                                                   # se cierra el lodo: anillo y burbujas
+    mud_cut(cv, cx, PANZA, 8, ripple=(3, 3), wet=False)
+    mud_bubbles(cv, [(cx - 2, PANZA, 1), (cx + 3, PANZA - 1, 0), (cx + 5, PANZA + 1, 2)])
+    mud_drops(cv, [(cx + 6, PANZA - 3, 0), (cx - 5, PANZA - 2, 0)])
+    return cv
+
+def toad_emerge(i):
+    """Salir: burbujas, el lodo se abomba y el sapo sale de golpe salpicando. 5 cuadros."""
+    cx = 15
+    cv = Canvas(32)
+    if i == 0:
+        mud_bubbles(cv, [(cx - 1, PANZA, 1), (cx + 4, PANZA - 1, 1), (cx - 5, PANZA + 1, 2), (cx + 1, PANZA + 2, 0)]); return cv
+    if i == 1:                                                # el lodo se abomba
+        for x in range(cx - 7, cx + 8):
+            d = (x - cx) / 7.5; h = 3.2 * math.sqrt(max(0, 1 - d * d))
+            for y in range(int(PANZA + 1 - h), PANZA + 2): cv.put(x, y, MUD_SURF[1] if y > PANZA - h + 1 else MUD_SURF[3])
+        cv.put(cx - 3, int(PANZA - 2), MUD_SURF[4]); cv.put(cx - 2, int(PANZA - 2), MUD_SURF[3])
+        mud_bubbles(cv, [(cx + 6, PANZA, 2), (cx - 8, PANZA, 0)])
+        return cv
+    if i == 2:                                                # revienta: sale de golpe, más alto de lo normal
+        cv = toad_mud(level=PANZA + 3, ripple=(1, 0), squash=0.0, stretch=0.3, lift=3,
+                      drops=[(cx - 9, 10, 1), (cx + 9, 9, 1), (cx - 4, 7, 0), (cx + 4, 6, 0), (cx + 12, 13, 0),
+                             (cx - 13, 14, 0)])
+        return cv
+    if i == 3:                                                # cae y el lodo le chorrea
+        return toad_mud(level=PANZA + 1, ripple=(2, 1), squash=0.35,
+                        drops=[(cx - 11, 15, 0), (cx + 11, 14, 1), (cx - 6, 12, 0), (cx + 6, 11, 0)])
+    return toad_mud(ripple=(3, 2), squash=0.1, drops=[(cx - 12, PANZA - 2, 0), (cx + 13, PANZA - 1, 0)])
+
+def toad_swim(i):
+    """Nadando: solo asoman los ojos y una franja fina del lomo, con estela en V y alguna burbuja."""
+    bob = (0, 1, 1, 0)[i]
+    cv = toad(breath=0)
+    cx = toad_cx()
+    lvl = 16 + bob                                            # por encima: protuberancia del ojo y la cresta del lomo
+    mud_cut(cv, cx, lvl, 12, wet=True)
+    wake(cv, cx, lvl, i, length=14, spread=0.5)
+    if i in (1, 3): mud_bubbles(cv, [(cx - 14 - i, lvl + 2, 0)])
+    return cv
+
+def toad_death_mud(i):
+    """Muere en el lodo: panza arriba y se hunde hasta desaparecer; quedan burbujas y un anillo que se apaga."""
+    n = 40; ox, oy = 4, 6
+    lvl = PANZA + oy
+    if i == 0: return toad_mud(n=n, off=(ox, oy), eye_state='x', squash=0.5, ripple=(1, 0))
+    if i <= 3:
+        t = (0.1, 0.35, 0.6)[i - 1]
+        cv = toad_belly_up(t, n=n)
+        sunk = Canvas(n)
+        for (x, y), c in cv.px.items(): sunk.put(x, y - 2 + (i - 1) * 3, c)
+        mud_cut(sunk, n / 2, lvl - 2, 12, ripple=(i, i), wet=True)
+        if i == 3: mud_bubbles(sunk, [(n / 2 - 4, lvl - 2, 1), (n / 2 + 5, lvl - 1, 0)])
+        return sunk
+    cv = Canvas(n)
+    if i == 4:
+        mud_cut(cv, n / 2, lvl - 2, 8, ripple=(4, 1), wet=False)
+        mud_bubbles(cv, [(n / 2 - 2, lvl - 2, 1), (n / 2 + 3, lvl - 3, 1), (n / 2 + 6, lvl - 1, 0)])
+    else:
+        mud_bubbles(cv, [(n / 2 + 1, lvl - 2, 2), (n / 2 - 4, lvl - 1, 0)])
+        for k in range(0, 40, 3):                             # último anillo, muy tenue
+            a = k / 40 * 2 * math.pi
+            cv.put(n / 2 + math.cos(a) * 18, lvl - 1 + math.sin(a) * 4.5, MUD_SURF[1])
+    return cv
+
+def toad_mud_anims():
+    global FLAT
+    a = {}
+    a['Toad_Idle_Mud'] = [toad_mud(breath=b, sac=s, ripple=(r, i)) for i, (b, s, r) in
+                          enumerate(((0, 0, 0), (1, 0.15, 0.5), (2, 0.3, 1), (1, 0.15, 0.5)))]
+    a['Toad_Wade'] = [toad_wade(i) for i in range(4)]
+    a['Toad_Spit_Mud'] = [toad_mud(sac=0.5), toad_mud(sac=1.0, squash=0.2), toad_mud(sac=0.6, mouth=0.5),
+                          toad_mud(mouth=1.0, stretch=0.3, ripple=(1, 0)), toad_mud(mouth=0.3, ripple=(2, 1))]
+    a['Toad_Inflate_Mud'] = [toad_mud(puff=p, shake=s, eye_state='shut' if p > 0.7 else 'angry', n=40, off=(4, 6),
+                                      ripple=(r, i), bubbles=bb)
+                             for i, (p, s, r, bb) in enumerate(((0.3, 0, 0, ()), (0.55, 1, 1, ((8, 30, 0),)),
+                                                                (0.8, -1, 1.5, ((7, 29, 1), (33, 30, 0))),
+                                                                (1.0, 1, 2, ((6, 29, 2), (34, 29, 1), (30, 31, 0)))))]
+    FLAT = WHITE5; w = toad_mud(); FLAT = RED5; r = toad_mud(); FLAT = None
+    a['Toad_Hurt_Mud'] = [w, r]
+    a['Toad_Death_Mud'] = [toad_death_mud(i) for i in range(6)]
+    a['Toad_Dive'] = [toad_dive(i) for i in range(5)]
+    a['Toad_Emerge'] = [toad_emerge(i) for i in range(5)]
+    a['Toad_Swim'] = [toad_swim(i) for i in range(4)]
+    return a
+
+def tile_bg(w, h, tile):
+    """Fondo de baldosas del escenario para las escenas de revisión."""
+    env = os.path.join(OUT, '..', 'floor3-environment', 'Swamp')
+    im = Image.new('RGBA', (w, h))
+    t = Image.open(os.path.join(env, tile)).convert('RGBA')
+    for x in range(0, w, 16):
+        for y in range(0, h, 16): im.alpha_composite(t, (x, y))
+    return im
+
+def retoques():
+    global MS
+    MS.update({'Wade': 110, 'BeetleSpray_Start': 60, 'BeetleSpray_Loop': 60, 'BeetleSpray_End': 70})
+    cone = beetle_cone()
+    write(cone, 'cono_escarabajo', fx=True)
+    toad_a = toad_mud_anims()
+    MS['Dive'] = 70; MS['Emerge'] = 80
+    write(toad_a, 'sapo_lodo')
+    esc = os.path.join(OUT, 'gif', 'escenas'); os.makedirs(esc, exist_ok=True)
+    # escena del cono: antes (6 cuadros en bucle, como en el juego) arriba y ahora (salida+bucle+final) abajo
+    B = beetle_anims()
+    tip = beetle_spray_origin()
+    old = [as_img(beetle_spray(i)) for i in range(6)]
+    new = [as_img(f) for f in cone['Fx_BeetleSpray_Start'] + cone['Fx_BeetleSpray_Loop'] * 3 + cone['Fx_BeetleSpray_End']]
+    frames = []
+    W, H = 112, 96
+    seq = [('warn', k) for k in range(4) for _ in range(2)] + [('spray', k) for k in range(len(new))] + [('idle', 0)] * 6
+    for kind, k in seq:
+        im = Image.new('RGBA', (W, H)); im.alpha_composite(tile_bg(W, 48, 'tiles/Floor_0.png'), (0, 0))
+        im.alpha_composite(tile_bg(W, 48, 'tiles/Floor_1.png'), (0, 48))
+        for row in (0, 1):
+            bx, by = 66, row * 48 + 8
+            if kind == 'warn': b = B['Beetle_Warn'][k]
+            elif kind == 'spray': b = B['Beetle_Spray'][k % 3]
+            else: b = B['Beetle_Idle'][0]
+            im.alpha_composite(as_img(b), (bx, by))
+            if kind == 'spray':
+                if row == 0: c = old[k % 6] if k < 20 else None     # el bucle viejo dura lo mismo (1,2 s)
+                else: c = new[k]
+                if c is not None:
+                    c = c.transpose(Image.FLIP_LEFT_RIGHT)
+                    im.alpha_composite(c, (bx + tip[0] - 56, by + tip[1] - 14))
+        frames.append(im)
+    gif(os.path.join(esc, 'escena_cono_antes_vs_ahora.gif'), frames, 60, BG, scale=4)
+    # escena del sapo sobre el lodo profundo: asomado, escupe, se zambulle, nada, sale, se hincha
+    A = dict(toad_anims()); A.update(toad_a)
+    seq = ([('Toad_Idle_Mud', k) for k in range(4)] * 2 + [('Toad_Spit_Mud', k) for k in range(5)] +
+           [('Toad_Dive', k) for k in range(5)] + [('Toad_Swim', k % 4) for k in range(8)] +
+           [('Toad_Emerge', k) for k in range(5)] + [('Toad_Wade', k % 4) for k in range(8)] +
+           [('Toad_Idle_Mud', k) for k in range(4)])
+    frames = []; x = 6.0
+    for name, k in seq:
+        im = tile_bg(96, 48, 'mud/Mud_0.png')
+        if name == 'Toad_Swim': x += 4                        # nada rápido
+        elif name == 'Toad_Wade': x -= 1.5                    # vadea despacio de vuelta
+        im.alpha_composite(as_img(A[name][k]), (int(x), 8))
+        frames.append(im)
+    gif(os.path.join(esc, 'escena_sapo_en_el_lodo.gif'), frames, 110, BG, scale=4)
+    print('Escenas en', esc)
+
 if __name__ == '__main__':
     which = [x for x in sys.argv[1:] if x.isalpha()] or ['plants']
     if 'plants' in which: plants()
     if 'ground' in which: ground()
     if 'flyers' in which: flyers()
+    if 'retoques' in which: retoques()
     print('Listo:', OUT)

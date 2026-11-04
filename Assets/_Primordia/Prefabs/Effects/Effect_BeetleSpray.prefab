@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7789056283166162932}
   - component: {fileID: 5133396085783092138}
-  - component: {fileID: 7351564400020773108}
+  - component: {fileID: 2405158317679638333}
   m_Layer: 0
   m_Name: Effect_BeetleSpray
   m_TagString: Untagged
@@ -82,7 +82,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 7
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -1865591576935058932, guid: 595fbea10b97002479019b30144948c4, type: 3}
+  m_Sprite: {fileID: -3540951402899215683, guid: e1a62cdc553506e40bc56d0b47bbd103, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -93,7 +93,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
---- !u!114 &7351564400020773108
+--- !u!114 &2405158317679638333
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -102,16 +102,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 7214717751699242673}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a19b77ed9525bca4eaf8122e560b87fa, type: 3}
+  m_Script: {fileID: 11500000, guid: ead0ee817fb6e0c4997968d1525e3d04, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Primordia::Primordia.Rooms.SpriteLoop
-  target: {fileID: 5133396085783092138}
-  frames:
-  - {fileID: -1865591576935058932, guid: 595fbea10b97002479019b30144948c4, type: 3}
-  - {fileID: 4942590468169199508, guid: 595fbea10b97002479019b30144948c4, type: 3}
-  - {fileID: -4052780961796857977, guid: 595fbea10b97002479019b30144948c4, type: 3}
-  - {fileID: 2666552432292719742, guid: 595fbea10b97002479019b30144948c4, type: 3}
-  - {fileID: -2667760456208012807, guid: 595fbea10b97002479019b30144948c4, type: 3}
-  - {fileID: 5378389109071481626, guid: 595fbea10b97002479019b30144948c4, type: 3}
-  frameDuration: 0.06
-  phase: 0
+  m_EditorClassIdentifier: Primordia::Primordia.Enemies.ConeEffect
+  start:
+  - {fileID: -3540951402899215683, guid: e1a62cdc553506e40bc56d0b47bbd103, type: 3}
+  - {fileID: -8333806720373178413, guid: e1a62cdc553506e40bc56d0b47bbd103, type: 3}
+  - {fileID: -7407435069786810042, guid: e1a62cdc553506e40bc56d0b47bbd103, type: 3}
+  loop:
+  - {fileID: 6236025679849379427, guid: 51bb4e601551c92468f65b3885c61125, type: 3}
+  - {fileID: 527349338567343120, guid: 51bb4e601551c92468f65b3885c61125, type: 3}
+  - {fileID: 5848030146899455359, guid: 51bb4e601551c92468f65b3885c61125, type: 3}
+  - {fileID: -3776294723079789871, guid: 51bb4e601551c92468f65b3885c61125, type: 3}
+  - {fileID: -1434060705265941380, guid: 51bb4e601551c92468f65b3885c61125, type: 3}
+  - {fileID: -2870875251834185318, guid: 51bb4e601551c92468f65b3885c61125, type: 3}
+  end:
+  - {fileID: -5379451702606576678, guid: f85356ccc9a649b40baf4062c2465b63, type: 3}
+  - {fileID: -3537555685157527724, guid: f85356ccc9a649b40baf4062c2465b63, type: 3}
+  - {fileID: -7172766627757616444, guid: f85356ccc9a649b40baf4062c2465b63, type: 3}
+  - {fileID: -4340710164850665629, guid: f85356ccc9a649b40baf4062c2465b63, type: 3}
+  frameSeconds: 0.06
+  endFrameSeconds: 0.07

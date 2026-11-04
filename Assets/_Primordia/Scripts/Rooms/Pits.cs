@@ -22,6 +22,24 @@ namespace Primordia.Rooms
         /// <summary>True si en esa posición del mundo hay lodo profundo.</summary>
         public static bool IsMud(Vector2 position) => Map != null && Map.Get(NavigationGrid.CellOf(position)) == FloorMap.Kind.Mud;
 
+        /// <summary>
+        /// Margen de la orilla del lodo: el dibujo de la orilla no llena la casilla entera, así que no se está «en el lodo» hasta
+        /// entrar al menos esto (igual que el labio de las fosas, <see cref="IsDeepInPit"/>).
+        /// </summary>
+        public const float MudEdgeGrace = 0.3f;
+
+        /// <summary>
+        /// True si esa posición está dentro del lodo profundo al menos <paramref name="grace"/> por los cuatro lados: pisar la orilla,
+        /// o la franja de suelo que el arte deja entre el lodo dibujado y la casilla, no hunde ni cuenta como estar en el lodo.
+        /// </summary>
+        public static bool IsDeepInMud(Vector2 position, float grace = MudEdgeGrace)
+        {
+            if (Map == null || !IsMud(position))
+                return false;
+            return IsMud(position + Vector2.up * grace) && IsMud(position + Vector2.down * grace)
+                && IsMud(position + Vector2.left * grace) && IsMud(position + Vector2.right * grace);
+        }
+
         /// <summary>True si hay fosa o lodo profundo: lo que un enemigo que anda no pisa por su cuenta.</summary>
         public static bool IsHole(Vector2 position) => IsPit(position) || IsMud(position);
 

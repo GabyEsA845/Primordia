@@ -79,12 +79,11 @@ namespace Primordia.Editor
             if (art == null)
                 return null;
 
-            // El cono nace en su borde izquierdo a media altura y va a la derecha: el cerebro lo gira hacia el objetivo.
+            // El cono nace en su borde izquierdo a media altura y va a la derecha: el cerebro lo gira hacia el objetivo. Son tres hojas
+            // de 56×28: salida (3 cuadros), bucle (6) y final (4); ConeEffect las encadena.
             string effects = $"{Floor3EnemiesArtFolder}/Effects";
             Directory.CreateDirectory(effects);
-            var spray = Floor2MouthsSetup.CreateLoopEffect("Effect_BeetleSpray",
-                ImportLooseSheet($"{Floor3EnemiesSourceFolder}/Effects/Fx_BeetleSpray.png", $"{effects}/Fx_BeetleSpray.png", 56, new Vector2(0f, 0.5f)),
-                0.06f, sortingOrder: 7);
+            var spray = CreateBeetleConeEffect(effects);
 
             // 12 de vida, anda despacio, te ve a 8 u y hace medio corazón al tocarlo.
             var data = Floor3EnemyData("Enemy_Beetle", d => d.Configure(EnemyBehaviour.Chaser,
@@ -101,7 +100,10 @@ namespace Primordia.Editor
             var character = Floor3Enemy("Toad",
                 ("Idle", Fps(180), true), ("Hop", Fps(90), true), ("Spit", Fps(90), false), ("Inflate", Fps(120), true),
                 ("Dive", Fps(90), false), ("Emerge", Fps(90), false), ("Swim", Fps(160), true), ("Hurt", Fps(90), false),
-                ("Death", Fps(120), false));
+                ("Death", Fps(120), false),
+                // En el lodo profundo, hundido hasta la panza (ToadBrain.InMud): quieto, vadeando, escupiendo, hinchado, herido y muerto.
+                ("Idle_Mud", Fps(180), true), ("Wade", Fps(110), true), ("Spit_Mud", Fps(90), false), ("Inflate_Mud", Fps(120), true),
+                ("Hurt_Mud", Fps(90), false), ("Death_Mud", Fps(120), false));
             character.DefaultState = "Idle";
             character.Pivot = new Vector2(0.5f, 0.1f);
             var art = Import(character);
@@ -459,6 +461,32 @@ namespace Primordia.Editor
                 new FloorConfig.TrapEntry(plant, minDepth: 2, chance: 0.35f, maxPerRoom: 2, dryGround: true),
                 new FloorConfig.TrapEntry(swarm, minDepth: 3, chance: 0.3f, maxPerRoom: 1),
             };
+        }
+
+        /// <summary>Efecto del cono del escarabajo: un sprite con <see cref="ConeEffect"/> y las tres hojas. Se rehace (conserva el GUID).</summary>
+        static GameObject CreateBeetleConeEffect(string effectsFolder)
+        {
+            string source = $"{Floor3EnemiesSourceFolder}/Effects";
+            var pivot = new Vector2(0f, 0.5f);
+            var start = ImportLooseSheet($"{source}/Fx_BeetleSpray_Start.png", $"{effectsFolder}/Fx_BeetleSpray_Start.png", 56, pivot);
+            var loop = ImportLooseSheet($"{source}/Fx_BeetleSpray_Loop.png", $"{effectsFolder}/Fx_BeetleSpray_Loop.png", 56, pivot);
+            var end = ImportLooseSheet($"{source}/Fx_BeetleSpray_End.png", $"{effectsFolder}/Fx_BeetleSpray_End.png", 56, pivot);
+            if (loop.Length == 0)
+                return null;
+
+            var root = new GameObject("Effect_BeetleSpray");
+            try
+            {
+                var renderer = root.AddComponent<SpriteRenderer>();
+                renderer.sprite = start.Length > 0 ? start[0] : loop[0];
+                renderer.sortingOrder = 7;
+                root.AddComponent<ConeEffect>().Configure(start, loop, end, 0.06f, 0.07f);
+                return PrefabUtility.SaveAsPrefabAsset(root, $"{EffectPrefabsFolder}/Effect_BeetleSpray.prefab");
+            }
+            finally
+            {
+                Object.DestroyImmediate(root);
+            }
         }
 
         // ---------- Ayudas ----------

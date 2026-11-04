@@ -202,7 +202,7 @@ namespace Primordia.Mutations
                     colony.Configure(big ? b.largeMatPrefab : b.matPrefab, mat, big ? b.largeMatCount : b.matCount);
                     colony.SetSprouting(floor3 ? b.matSproutLimit : 0);
                     if (floor3)
-                        colony.SetVariants(b.floor3MatsMedium, b.floor3MatsLarge, b.floor3LargeMatScale);
+                        colony.SetVariants(b.floor3MatsMedium, b.floor3MatsLarge, b.floor3LargeMatScale, b.floor3MatScale);
                     break;
             }
 

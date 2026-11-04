@@ -92,7 +92,7 @@ namespace Primordia.Rooms
 
             if (SinkImmune)
             {
-                bool wading = Pits.IsMud(feet);
+                bool wading = Pits.IsDeepInMud(feet);
                 if (wading && TryGetComponent<PlayerBurn>(out var wet))
                     wet.Douse(BurnDouseSpeed * Time.fixedDeltaTime);
                 if (Sink > 0f)
@@ -106,7 +106,7 @@ namespace Primordia.Rooms
                 return;
             }
 
-            bool inMud = Pits.IsMud(feet);
+            bool inMud = Pits.IsDeepInMud(feet);
             // El lodo apaga el quemado casi de golpe (la barra entera en ~⅓ de segundo).
             if (inMud && TryGetComponent<PlayerBurn>(out var burn))
                 burn.Douse(BurnDouseSpeed * Time.fixedDeltaTime);

@@ -92,22 +92,28 @@ namespace Primordia.Enemies
             puddleFrameSeconds = puddleFrame;
         }
 
+        // En el lodo profundo va hundido hasta la panza: Idle, Spit, Inflate, Hurt y Death tienen su variante _Mud y se mueve vadeando
+        // (Wade) en lugar de saltar. Dive, Swim y Emerge son iguales dentro y fuera.
         public override string AnimationState => Current switch
         {
-            Phase.Spit => "Spit",
-            Phase.Inflate or Phase.Rush => "Inflate",
+            Phase.Spit => InMud ? "Spit_Mud" : "Spit",
+            Phase.Inflate or Phase.Rush => InMud ? "Inflate_Mud" : "Inflate",
             Phase.Dive => "Dive",
             Phase.Swim => "Swim",
             Phase.Emerge => "Emerge",
-            _ => moving ? "Hop" : "Idle",
+            _ => InMud ? (moving ? "Wade" : "Idle_Mud") : (moving ? "Hop" : "Idle"),
         };
+
+        public override string HurtState => InMud ? "Hurt_Mud" : null;
+
+        public override string DeathState => InMud ? "Death_Mud" : null;
 
         public override Vector2? Facing => alerted || IsSubmerged ? facing : null;
 
         public override bool ShowsHurt => Current == Phase.Surfaced;
 
         /// <summary>True si está sobre lodo profundo.</summary>
-        public bool InMud => Pits.IsMud(transform.position);
+        public bool InMud => Pits.IsDeepInMud(transform.position);
 
         protected override void Awake()
         {
@@ -311,7 +317,7 @@ namespace Primordia.Enemies
                     {
                         var point = position + new Vector2(dx, dy);
                         float squared = (point - position).sqrMagnitude;
-                        if (squared < best && Pits.IsMud(point))
+                        if (squared < best && Pits.IsDeepInMud(point))
                         {
                             best = squared;
                             mudGoal = point;
@@ -334,7 +340,7 @@ namespace Primordia.Enemies
             for (int i = 0; i < 12; i++)
             {
                 var point = position + Random.insideUnitCircle.normalized * Random.Range(2f, 4f);
-                if (!Pits.IsMud(point))
+                if (!Pits.IsDeepInMud(point))
                     continue;
                 float score = target != null ? Vector2.Distance(point, target.position) : Random.value;
                 if (score > bestScore)

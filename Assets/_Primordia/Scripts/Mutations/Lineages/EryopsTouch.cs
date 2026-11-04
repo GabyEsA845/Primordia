@@ -122,7 +122,7 @@ namespace Primordia.Mutations
             if (controller.IsDodging)
                 return false;
             Vector2 feet = (Vector2)transform.position + FootOffset;
-            return Pits.IsMud(feet) || GroundPuddle.IsSludgeOver(feet);
+            return Pits.IsDeepInMud(feet) || GroundPuddle.IsSludgeOver(feet);
         }
 
         // ---------- El barro en el cuerpo ----------

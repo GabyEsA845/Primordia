@@ -39,6 +39,18 @@ namespace Primordia.Tests
         }
 
         [Test]
+        public void IsDeepInMud_NeedsToBeInsideTheEdge_LikeThePitLip()
+        {
+            Pits.Map = MapWith(FloorMap.Kind.Mud);
+            Assert.IsTrue(Pits.IsDeepInMud(new Vector2(4.5f, 4.5f)), "En medio del lago.");
+            Assert.IsTrue(Pits.IsMud(new Vector2(3.1f, 4.5f)), "La casilla de la orilla es lodo…");
+            Assert.IsFalse(Pits.IsDeepInMud(new Vector2(3.1f, 4.5f)), "…pero pisar su borde no hunde ni cuenta como estar en el lodo.");
+            Assert.IsFalse(Pits.IsDeepInMud(new Vector2(4.5f, 5.95f)), "Tampoco por arriba.");
+            Assert.IsTrue(Pits.IsDeepInMud(new Vector2(3.4f, 4.5f)), "Pasado el margen, sí.");
+            Assert.IsFalse(Pits.IsDeepInMud(new Vector2(1.5f, 1.5f)), "Fuera, no.");
+        }
+
+        [Test]
         public void Pits_AreNotMud()
         {
             Pits.Map = MapWith(FloorMap.Kind.Pit);

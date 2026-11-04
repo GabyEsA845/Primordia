@@ -181,6 +181,58 @@ namespace Primordia.Tests
         }
 
         [UnityTest]
+        public IEnumerator Toad_InDeepMud_UsesItsMudAnimations()
+        {
+            player.transform.position = new Vector2(40f, 0f);
+            // Un lodo de 1×1 en la casilla (0, 0); el resto es suelo.
+            var map = new Primordia.Rooms.FloorMap(new RectInt(-10, -10, 30, 20));
+            for (int x = -10; x < 20; x++)
+                for (int y = -10; y < 10; y++)
+                    map.Set(new Vector2Int(x, y), Primordia.Rooms.FloorMap.Kind.Floor);
+            map.Set(new Vector2Int(0, 0), Primordia.Rooms.FloorMap.Kind.Mud);
+            Primordia.Rooms.Pits.Map = map;
+            try
+            {
+                var toad = CreateEnemy<ToadBrain>(Data(10), new Vector2(0.5f, 0.5f));
+                yield return null;
+
+                Assert.IsTrue(toad.InMud);
+                Assert.AreEqual("Idle_Mud", toad.AnimationState, "En el lodo, hundido hasta la panza.");
+                Assert.AreEqual("Hurt_Mud", toad.HurtState);
+                Assert.AreEqual("Death_Mud", toad.DeathState);
+
+                toad.transform.position = new Vector2(5.5f, 0.5f);
+                Assert.IsFalse(toad.InMud);
+                Assert.AreEqual("Idle", toad.AnimationState, "En tierra firme, el de siempre.");
+                Assert.IsNull(toad.HurtState);
+                Assert.IsNull(toad.DeathState);
+            }
+            finally
+            {
+                Primordia.Rooms.Pits.Map = null;
+            }
+        }
+
+        [UnityTest]
+        public IEnumerator BeetleCone_PlaysStartThenLoop_AndFinishesInHalfASecond()
+        {
+            Sprite Pixel() => Track(Sprite.Create(new Texture2D(2, 2), new Rect(0, 0, 2, 2), Vector2.zero));
+            var go = Track(new GameObject("Cone"));
+            go.AddComponent<SpriteRenderer>();
+            var cone = go.AddComponent<ConeEffect>();
+            cone.Configure(new[] { Pixel(), Pixel() }, new[] { Pixel(), Pixel(), Pixel() }, new[] { Pixel(), Pixel() });
+            Assert.AreEqual(ConeEffect.Stage.Start, cone.Current, "Empieza por la salida.");
+
+            yield return new WaitForSeconds(0.25f);
+            Assert.AreEqual(ConeEffect.Stage.Loop, cone.Current, "Luego, el bucle mientras dura el chorro.");
+
+            cone.Finish();
+            Assert.AreEqual(ConeEffect.Stage.End, cone.Current);
+            yield return new WaitForSeconds(0.4f);
+            Assert.IsTrue(cone == null, "Al acabar la fase final, se destruye.");
+        }
+
+        [UnityTest]
         public IEnumerator Medullosa_InRange_AimsThenFiresAtWhereYouStood()
         {
             player.transform.position = new Vector2(6f, 0f);

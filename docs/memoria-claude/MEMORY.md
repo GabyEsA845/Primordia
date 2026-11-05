@@ -16,13 +16,15 @@
 - [Tanda de arte de linajes del piso 3](primordia-floor3-lineage-art-pending.md) — 1.ª y 2.ª tandas (Yesquero) hechas e integradas, la 2.ª a falta de commit; NO queda arte pendiente (tinte real y muerte al revés del Zombi van con los enemigos del paso 5)
 - [Puertas: coronas y marcos laterales](primordia-door-design-pending.md) — HECHAS, integradas y probadas (2026-11-03)
 - [Pasada de arte del paso 3 (Bocas)](primordia-floor3-step3-art-pending.md) — HECHA, integrada, probada y subida (d9244789)
-- [Arte de enemigos del piso 3](primordia-floor3-enemy-art-pending.md) — cono del escarabajo en 3 fases y sapo en el lodo: HECHO, integrado y probado; falta README y MULTIMEDIA.md (Opus)
+- [Arte de enemigos del piso 3](primordia-floor3-enemy-art-pending.md) — cono del escarabajo en 3 fases y sapo en el lodo: HECHO, integrado y probado; README y MULTIMEDIA.md HECHOS (2026-11-04)
 
 ## En curso
 - [Sala de paso del piso 2 → 3](primordia-floor2-transition-room.md) — charca, ambiente del pantano y metamorfosis por pareja HECHOS y subidos
 - **[Estado de Primordia](primordia-project-status.md) — pisos 1-2 en main; piso 3 en feature/floor-3: pasos 1-5 HECHOS y con commit (5 = enemigos y trampas, cerrado con documento v8 y GDD/PLAN); SIGUIENTE paso 6 = salas con tema (Sonnet)**
 - [Sala del ámbar y especiales del ámbar](primordia-floor3-amber.md) — paso 6 bloque 2: decisiones y niveles I-III cerrados 2026-11-04; subpaso 2a (sala+bloque) programado
-- [Salas con tema del piso 3](primordia-floor3-room-themes.md) — paso 6 bloque 1 programado (2026-11-04): 5 temas, menú, números y piezas pendientes de Opus
+- [Aspecto de las especiales del ámbar](primordia-floor3-specials-look.md) — subtandas 1 (bloque nuevo en 2 capas y gota) y 2 (nivel III) APROBADAS; falta la 3 (contorno dorado y motas)
+- [Cucarachas ladronas del piso 3](primordia-floor3-thief-roach.md) — arte APROBADO (2026-11-04, floor3-roach): parda carbonífera, cenital girada por código, botín a cuestas; las del corazón no se matan
+- [Salas con tema del piso 3](primordia-floor3-room-themes.md) — paso 6 bloque 1 programado (2026-11-04): 5 temas, menú, números; letrero DIBUJADO y aprobado (floor3-room-signs), falta importarlo y programarlo (Sonnet); piezas de escenario pendientes de Opus
 - [Enemigos y trampas del piso 3](primordia-floor3-enemies-decisions.md) — paso 5 HECHO: 6 enemigos + 2 trampas, números, archivos, generador, margen del lodo, matas Cordyceps
 - [Mutaciones y linajes del piso 3](primordia-floor3-mutations-decisions.md) — paso 4 COMPLETO (subpasos 1-5, 8 linajes y toques, reserva); detalle de cada pieza, archivos y decisiones
 - [Reacciones del piso 3](primordia-floor3-reactions-decisions.md) — paso 2 HECHO (subtandas A-D): quemado tipo Gungeon, odre, veneno, fumarolas

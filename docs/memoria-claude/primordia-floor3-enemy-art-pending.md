@@ -1,6 +1,6 @@
 ---
 name: primordia-floor3-enemy-art-pending
-description: "Arte de enemigos del piso 3 (cono del escarabajo en 3 fases y sapo en el lodo): HECHO, integrado y probado por la usuaria (2026-11-03); solo falta el README y MULTIMEDIA.md del arte (Opus)"
+description: "Arte de enemigos del piso 3 (cono del escarabajo en 3 fases y sapo en el lodo): HECHO, integrado y probado (2026-11-03); README y MULTIMEDIA.md hechos (2026-11-04)"
 metadata:
   type: project
 ---

@@ -19,3 +19,5 @@ Qué hay y dónde (código en `Assets/_Primordia/Scripts/Rooms` salvo `PolishArt
 - **Fumarola** (`SteamVent`): empuje ~2 tiles a jugador (`PlayerController.Shove`) y enemigos; luz cian en odres (`MethaneSac.SetGlow`).
 
 Ligado que sigue pendiente: los enemigos muy inflamables dejan rastro de fuego al arder (paso 5, enemigos).
+
+**Revisado 2026-11-04 (Opus):** la franja de agua y el rastro de fuego **NO necesitan arte nuevo**: la franja ya está aprobada (falta programarla con `MudBodyPaint`) y el rastro reutiliza `Fx_GroundFire` + `Fx_TinderScorch_*` vía `GroundFire.Spawn` (como el Yesquero). Ambos son trabajo de Sonnet.

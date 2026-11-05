@@ -66,10 +66,23 @@ Todos miran a la derecha; para la izquierda, *Flip X*.
 | `Toad_Hop` | 4 | 32×32 | 90 | Salto (bucle al moverse) |
 | `Toad_Spit` | 5 | 32×32 | 90 | Hincha la garganta y escupe; **la bola sale en el cuadro 3** |
 | `Toad_Inflate` | 4 | 40×40 | 120 | Se hincha temblando antes de reventar (qué dispara esto se decide al programar) |
-| `Toad_Dive` | 3 | 32×32 | 90 | Se zambulle en el lodo profundo (al revés: sale) |
-| `Toad_Swim` | 4 | 32×32 | 160 | Nada en el lodo: solo asoman ojos y lomo (bucle) |
+| `Toad_Dive` | 5 | 32×32 | 90 | Se zambulle en el lodo profundo: se agacha, entra de cabeza, salpicadura y burbujas (rehecha el 2026-11-03) |
+| `Toad_Emerge` | 5 | 32×32 | 90 | Sale del lodo: burbujas, el lodo se abomba y sale de golpe (propia, ya no es `Toad_Dive` al revés) |
+| `Toad_Swim` | 4 | 32×32 | 160 | Nada en el lodo: solo ojos y una franja fina de lomo, con estela en V y burbujas (bucle) |
 | `Toad_Hurt` | 2 | 32×32 | 90 | Daño |
 | `Toad_Death` | 6 | 40×40 | 120 | Panza arriba y se apaga |
+
+**Sapo en el lodo profundo** (`ToadBrain.InMud`; añadido el 2026-11-03): hundido hasta la panza (línea del lodo en
+y = 22, `PANZA` en el generador), patas tapadas y anillo de ondas. Mismos cuadros que su versión normal.
+
+| Hoja | Cuadros | Celda | ms | Uso |
+|---|---|---|---|---|
+| `Toad_Idle_Mud` | 4 | 32×32 | 180 | Respira hundido en el lodo (bucle) |
+| `Toad_Wade` | 4 | 32×32 | 160 | Se mueve vadeando (sin saltar), con ondas y estela (bucle) |
+| `Toad_Spit_Mud` | 5 | 32×32 | 90 | Escupe desde el lodo; **la bola sale en el cuadro 3** |
+| `Toad_Inflate_Mud` | 4 | 40×40 | 120 | Se hincha en el lodo |
+| `Toad_Hurt_Mud` | 2 | 32×32 | 90 | Daño en el lodo |
+| `Toad_Death_Mud` | 6 | 40×40 | 120 | Panza arriba y se hunde hasta desaparecer |
 
 **Escarabajo:** el chorro sale del píxel **(3, 14)** de su celda de 32×32 (punta del abdomen, mirando a la derecha).
 
@@ -96,7 +109,9 @@ Todos miran a la derecha; para la izquierda, *Flip X*.
 | `Proj_MedullosaSeed` | 4 | 12×12 | Vaina dando vueltas en su parábola (la sombra, `Fx_FlyerShadow`) |
 | `Fx_MedullosaSeed_Target` | 4 | 24×24 | Aviso en el suelo donde caerá |
 | `Fx_MedullosaSeed_Burst` | 5 | 24×24 | Se raja y salpica veneno; después, `Fx_PoisonPuddleSmall` de `floor3-bodies/Effects` |
-| `Fx_BeetleSpray` | 6 | 56×28 | Cono ardiente de 3 u: nace en el borde izquierdo a media altura y va a la derecha (con *Flip X* sale por detrás del escarabajo); prende gas y charcos |
+| `Fx_BeetleSpray_Start` | 3 | 56×28 | Cono del escarabajo en 3 fases (lanzallamas, 60 ms): sale. Nace en el borde izquierdo a media altura y va a la derecha (con *Flip X* sale por detrás del escarabajo); prende gas y charcos |
+| `Fx_BeetleSpray_Loop` | 6 | 56×28 | Bucle mientras dura el cono (`BeetleBrain.StartCone/EndCone`): núcleo amarillo-blanco, lenguas que se rizan y chispas; el ruido avanza 8 px por cuadro, así que encadena sin saltos |
+| `Fx_BeetleSpray_End` | 4 | 56×28 | Se apaga: la nube se deshace en humo |
 | `Fx_SpiderWeb_Appear` | 3 | 32×32 | Telaraña en el suelo (desde arriba) |
 | `Fx_SpiderWeb_Idle` | 1 | 32×32 | Telaraña que frena |
 | `Fx_SpiderWeb_Burn` | 5 | 32×32 | Arde desde el centro y desaparece |

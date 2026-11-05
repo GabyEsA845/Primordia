@@ -1,0 +1,86 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e43cb776b94e07c4099a829d674deb64, type: 3}
+  m_Name: Mutation_Cerci
+  m_EditorClassIdentifier: Primordia::Primordia.Mutations.CerciMutation
+  displayName: Cercos de cucaracha
+  description: "Si un proyectil est\xE1 a punto de alcanzarte, haces un quiebro en el sitio, sin moverte, y te atraviesa sin da\xF1o. Recarga de 8 s, con un brillo cuando vuelve a estar listo. Solo proyectiles."
+  slot: 1
+  lineages: []
+  look: {fileID: 0}
+  bodyRadius: 0
+  mouthDistance: 0
+  headHeight: 0
+  wornOnHead: 0
+  muzzleDistance: 0
+  attackLean: 0
+  icon: {fileID: 21300000, guid: 96aa933f4f42d184b94063f4f2cdd157, type: 3}
+  largeIcon: {fileID: 21300000, guid: aaab6cf261de0794380137ce0ae4b3d9, type: 3}
+  color: {r: 0.66, g: 0.35, b: 0.82, a: 1}
+  summary: 
+  levelDescriptions:
+  - Recarga de 6 s.
+  - "Doble quiebro: guardas 2 quiebros, cada uno con su recarga, y tras cada uno vas un 30 % m\xE1s r\xE1pido durante 2 s."
+  dodgeSound: 
+  floor: 3
+  special: 1
+  family: 0
+  creatureIdleFrames: []
+  creatureAttackFrames: []
+  creatureBody: {fileID: 0}
+  attackHitTime: 0
+  moveInertia: 1
+  creatureLayers:
+  - body: {fileID: 9100000, guid: b7a1f1eda68daf141be47a222fb3acad, type: 2}
+    layer: {fileID: 9100000, guid: f96195c7c26c0c14bbe13dd23d0731cf, type: 2}
+  - body: {fileID: 9100000, guid: 1ee0f29d221cfc54b86f59ca6625ec3f, type: 2}
+    layer: {fileID: 9100000, guid: d5cc48e84c088d5449bc37eff1b91118, type: 2}
+  - body: {fileID: 9100000, guid: 20d0d777444a2e44ea563bce6960ff90, type: 2}
+    layer: {fileID: 9100000, guid: a88c7db80ceca604db939fde7a9ab1d3, type: 2}
+  morphPaths: []
+  morphFrames: []
+  revealFrames: []
+  values:
+    cooldown: 8
+    charges: 1
+    speedBonus: 0
+    speedSeconds: 2
+  upgrades:
+  - cooldown: 6
+    charges: 1
+    speedBonus: 0
+    speedSeconds: 2
+  - cooldown: 6
+    charges: 2
+    speedBonus: 0.3
+    speedSeconds: 2
+  dodgeSeconds: 0.45
+  spentBrightness: 0.55
+  flashFrames:
+  - {fileID: 9009267793978146016, guid: 9ce279d835163a1429eee37c29436dcb, type: 3}
+  - {fileID: -2313069468598719103, guid: 9ce279d835163a1429eee37c29436dcb, type: 3}
+  - {fileID: 7091169154635162736, guid: 9ce279d835163a1429eee37c29436dcb, type: 3}
+  - {fileID: 533314713738502724, guid: 9ce279d835163a1429eee37c29436dcb, type: 3}
+  readyFrames:
+  - {fileID: 5952247477894551646, guid: 9f80d052adceb744da01b3e7cc2eee37, type: 3}
+  - {fileID: -5185761301449526899, guid: 9f80d052adceb744da01b3e7cc2eee37, type: 3}
+  - {fileID: -7779069265942947665, guid: 9f80d052adceb744da01b3e7cc2eee37, type: 3}
+  - {fileID: 1056159407, guid: 9f80d052adceb744da01b3e7cc2eee37, type: 3}
+  burstFrames:
+  - {fileID: 1433661228568812307, guid: c6e80d5260e71a342b2af5f8485d7502, type: 3}
+  - {fileID: 4978946484606607330, guid: c6e80d5260e71a342b2af5f8485d7502, type: 3}
+  - {fileID: 3857719826730346759, guid: c6e80d5260e71a342b2af5f8485d7502, type: 3}
+  - {fileID: -5420246894481363065, guid: c6e80d5260e71a342b2af5f8485d7502, type: 3}
+  - {fileID: 6186822281959324904, guid: c6e80d5260e71a342b2af5f8485d7502, type: 3}
+  - {fileID: 5060303376600254785, guid: c6e80d5260e71a342b2af5f8485d7502, type: 3}
+  - {fileID: -5088294350932477877, guid: c6e80d5260e71a342b2af5f8485d7502, type: 3}
+  frameDuration: 0.07

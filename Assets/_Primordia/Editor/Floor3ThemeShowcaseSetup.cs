@@ -45,6 +45,8 @@ namespace Primordia.Editor
             EditorUtility.SetDirty(config);
             AssetDatabase.SaveAssets();
 
+            // La creación de la escena no sobrescribe una existente: se borra para regenerarla.
+            AssetDatabase.DeleteAsset(ScenePath);
             var square = CoreSetup.CreateSquareSprite();
             var cameraRig = CoreSetup.CreateCameraRigPrefab();
             var gameManager = CoreSetup.CreateGameManagerPrefab();

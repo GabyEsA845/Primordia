@@ -44,6 +44,8 @@ namespace Primordia.Rooms
             public bool simple;
             /// <summary>0..1: qué parte del barro está seca (por manchas; el Eryops). Pide <see cref="Tables.dryIndex"/>.</summary>
             public float dry;
+            /// <summary>En agua de charca: las 4 filas de abajo del cuerpo se ven bajo el agua, con su línea que titila.</summary>
+            public bool water;
         }
 
         /// <summary>Datos de un sprite leído una vez: sus píxeles, dónde empieza y acaba el dibujo y las luces del cuerpo.</summary>
@@ -230,10 +232,32 @@ namespace Primordia.Rooms
                     if (c.a == 0)
                         continue;
                     if (!IsOutline(c) && !IsEye(c))
+                    {
                         c = Cover(c, source, tables, s, x, above, rowTop);
+                        if (s.water && above >= 0 && above < WaterRows)
+                            c = Underwater(c, above, x, s.t);
+                    }
                     destination[row * w + x] = c;
                 }
             }
+        }
+
+        // Agua de charca: la franja de 4 px de abajo se ve al 55 % del agua con la línea de agua arriba (titila).
+        const int WaterRows = 4;
+        const float WaterShare = 0.55f;
+        static readonly Color32 WaterColor = new(0x2a, 0x5e, 0x54, 255);
+        static readonly Color32 WaterLineLight = new(0x9c, 0xc8, 0xa0, 255);
+        static readonly Color32 WaterLineDark = new(0x4e, 0x8a, 0x72, 255);
+
+        static Color32 Underwater(Color32 c, int above, int x, int t)
+        {
+            if (above == WaterRows - 1)
+            {
+                var line = ((x + t / 2) & 1) == 0 ? WaterLineLight : WaterLineDark;
+                return new Color32(line.r, line.g, line.b, c.a);
+            }
+            return new Color32((byte)Mathf.Lerp(c.r, WaterColor.r, WaterShare), (byte)Mathf.Lerp(c.g, WaterColor.g, WaterShare),
+                (byte)Mathf.Lerp(c.b, WaterColor.b, WaterShare), c.a);
         }
 
         static Color32 Cover(Color32 c, Data source, Tables tables, Settings s, int x, int above, int rowTop)

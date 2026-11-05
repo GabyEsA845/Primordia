@@ -202,6 +202,7 @@ MonoBehaviour:
     ventScale: 0.5
     puddleScale: 1
   encounterThemeCount: {x: 2, y: 4}
+  themeShowcase: 0
   exchangeRoom: {fileID: 11400000, guid: 5b2f86552c2f4024fa62b3277af9db01, type: 2}
   antechamberVertical: {fileID: 11400000, guid: 937596f4d6c8bec4eb3c1a0a6105722b, type: 2}
   antechamberHorizontal: {fileID: 11400000, guid: 471aaca2545726540ad08bd2c2e25456, type: 2}
@@ -341,9 +342,9 @@ MonoBehaviour:
   amber:
     block: {fileID: 155527025087572839, guid: 18706f5e0408a0343be577ff8050c8ec, type: 3}
     mutations:
-    - {fileID: 11400000, guid: 289afe24f25af604d8034efff1cfcd83, type: 2}
-    - {fileID: 11400000, guid: 13f434cb895f86246a9cf4816f366c35, type: 2}
-    - {fileID: 11400000, guid: 456c6f6a064add5408c20c84f638ba30, type: 2}
+    - {fileID: 11400000, guid: 4cf6690434a251f49bee028a0c8e198b, type: 2}
+    - {fileID: 11400000, guid: 8d8f746ba16aec64595e96b1b16fe899, type: 2}
+    - {fileID: 11400000, guid: 2b673246433eaf04a8a1b95bc04f0020, type: 2}
     mutationPickup: {fileID: 6509183854426299438, guid: 5eefc55d350cd944f9aa74a25824635e, type: 3}
   marineSnowFlakes: []
   marineSnowMaterial: {fileID: 0}

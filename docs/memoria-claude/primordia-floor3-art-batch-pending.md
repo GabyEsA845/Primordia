@@ -21,3 +21,7 @@ Qué hay y dónde (código en `Assets/_Primordia/Scripts/Rooms` salvo `PolishArt
 Ligado que sigue pendiente: los enemigos muy inflamables dejan rastro de fuego al arder (paso 5, enemigos).
 
 **Revisado 2026-11-04 (Opus):** la franja de agua y el rastro de fuego **NO necesitan arte nuevo**: la franja ya está aprobada (falta programarla con `MudBodyPaint`) y el rastro reutiliza `Fx_GroundFire` + `Fx_TinderScorch_*` vía `GroundFire.Spawn` (como el Yesquero). Ambos son trabajo de Sonnet.
+
+**Franja de agua y rastro de fuego PROGRAMADOS (2026-11-05, Sonnet; SIN probar en juego ni commit):**
+- Franja de agua: `MudBodyVisual.SetWater(raiz, bool)` (modo agua dentro del pintado del lodo) + `MudBodyPaint.Settings.water`: las 4 filas de abajo del cuerpo al 55 % de `#2a5e54` y la fila de arriba con la línea `#9cc8a0`/`#4e8a72` que titila; no toca contorno ni ojos. `GroundPuddle.CheckWater` lo pone al entrar (jugador y enemigos) y lo quita al salir; funciona con la gran charca y con los charcos de agua. Sin el arte del pulido no hace nada. Pruebas `WaterStripTests`.
+- Rastro de fuego: `Burn.LeavesFireTrail`: Calamites, brote, Medullosa y libélula (cuerpo seco o vegetal; DECISIÓN MÍA al no estar definido, cambiar si la usuaria prefiere otros) dejan, ardiendo y andando, `GroundFire` de 2 s a los pies cada 0,4 s (mín. 0,3 u de paso) con `TinderScorch`. El escarabajo ya dejaba el suyo; la araña y el sapo no.

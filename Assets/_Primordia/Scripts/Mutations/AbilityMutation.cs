@@ -51,6 +51,15 @@ namespace Primordia.Mutations
 
         public abstract void Activate(PlayerMutations player);
 
+        /// <summary>
+        /// True si se usa manteniendo el clic derecho (la Gota de ámbar): al pulsar se llama a <see cref="Activate"/> (empieza a cargar)
+        /// y al soltar a <see cref="Release"/>; la recarga empieza solo si <see cref="Release"/> dice que se usó.
+        /// </summary>
+        public virtual bool HoldToCharge => false;
+
+        /// <summary>Solo con <see cref="HoldToCharge"/>: se suelta el clic. True si la habilidad se usó (empieza la recarga).</summary>
+        public virtual bool Release(PlayerMutations player) => false;
+
         /// <summary>Crea el efecto visual del nivel I en esa posición, del tamaño del área.</summary>
         protected GameObject SpawnEffect(Vector2 position, float radius) => SpawnEffect(effectPrefab, effectRadius, position, radius);
 

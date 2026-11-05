@@ -1,0 +1,164 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4c9fbb777bafd94d9dca889356201f6, type: 3}
+  m_Name: Mutation_AmberGland
+  m_EditorClassIdentifier: Primordia::Primordia.Mutations.AmberGlandMutation
+  displayName: "Gota de \xE1mbar"
+  description: "Mant\xE9n el clic derecho para cargar y suelta para lanzar una gota que encierra a un enemigo 5 s (1,5 s a un jefe). Dentro del bloque est\xE1 aturdido, hace de escudo y recibe da\xF1o; al romperse suelta esquirlas que da\xF1an alrededor. Recarga de 20 s."
+  slot: 3
+  lineages: []
+  look: {fileID: 0}
+  bodyRadius: 0
+  mouthDistance: 0
+  headHeight: 0
+  wornOnHead: 0
+  muzzleDistance: 0
+  attackLean: 0
+  icon: {fileID: 21300000, guid: 124249be6433aba4da15619b4f8b5e6d, type: 3}
+  largeIcon: {fileID: 21300000, guid: c28e447d72e1aa04ebf06cdc73912f39, type: 3}
+  color: {r: 0.55, g: 0.9, b: 0.35, a: 1}
+  summary: 
+  levelDescriptions:
+  - Encierra 8 s (jefes 2 s) y se recarga en 18 s.
+  - "Fosilizaci\xF3n: el enemigo muere al instante y su cad\xE1ver queda en \xE1mbar como escudo que se puede romper soltando esquirlas (los jefes solo 2 s). Recarga de 15 s."
+  dodgeSound: 
+  floor: 3
+  special: 1
+  family: 0
+  creatureIdleFrames: []
+  creatureAttackFrames: []
+  creatureBody: {fileID: 0}
+  attackHitTime: 0
+  moveInertia: 1
+  creatureLayers:
+  - body: {fileID: 9100000, guid: b7a1f1eda68daf141be47a222fb3acad, type: 2}
+    layer: {fileID: 9100000, guid: 55d32ae5ba4fcc249a37f1593dbade36, type: 2}
+  - body: {fileID: 9100000, guid: 1ee0f29d221cfc54b86f59ca6625ec3f, type: 2}
+    layer: {fileID: 9100000, guid: bdfd66e7deb14c14e9b7bcd0787c964f, type: 2}
+  - body: {fileID: 9100000, guid: 20d0d777444a2e44ea563bce6960ff90, type: 2}
+    layer: {fileID: 9100000, guid: 971c1d5d606283442916a57a3647c3d9, type: 2}
+  morphPaths: []
+  morphFrames: []
+  revealFrames: []
+  cooldown: 20
+  effectPrefab: {fileID: 0}
+  effectRadius: 1
+  values:
+    cooldown: 20
+    stunSeconds: 5
+    bossSeconds: 1.5
+    kills: 0
+  upgrades:
+  - cooldown: 18
+    stunSeconds: 8
+    bossSeconds: 2
+    kills: 0
+  - cooldown: 15
+    stunSeconds: 8
+    bossSeconds: 2
+    kills: 1
+  chargeSeconds: 0.5
+  dropSpeed: 15
+  dropRange: 12
+  damagePerSecond: 2
+  shardRadius: 2.2
+  shardDamage: 4
+  shardPush: 5
+  corpseHealth: 6
+  corpseSeconds: 10
+  shell:
+    backForm:
+    - {fileID: -5594028359549876769, guid: 60a4444dd86eaf0459513009bb498e87, type: 3}
+    - {fileID: 7478201056833037868, guid: 60a4444dd86eaf0459513009bb498e87, type: 3}
+    - {fileID: -3079483121377214046, guid: 60a4444dd86eaf0459513009bb498e87, type: 3}
+    - {fileID: -4374729952974016980, guid: 60a4444dd86eaf0459513009bb498e87, type: 3}
+    - {fileID: 4034268490114115256, guid: 60a4444dd86eaf0459513009bb498e87, type: 3}
+    - {fileID: 6025638584719634090, guid: 60a4444dd86eaf0459513009bb498e87, type: 3}
+    backHold:
+    - {fileID: -8346984605138674498, guid: 628fa8838ddb63b448b164a26aef159f, type: 3}
+    frontForm:
+    - {fileID: -4455387672296245446, guid: ba2bc7f01eaa1b540968149a810952d5, type: 3}
+    - {fileID: -5465501150878823435, guid: ba2bc7f01eaa1b540968149a810952d5, type: 3}
+    - {fileID: -4051356434400937103, guid: ba2bc7f01eaa1b540968149a810952d5, type: 3}
+    - {fileID: 175741423404639327, guid: ba2bc7f01eaa1b540968149a810952d5, type: 3}
+    - {fileID: -6816027678913400687, guid: ba2bc7f01eaa1b540968149a810952d5, type: 3}
+    - {fileID: -2567199405099649812, guid: ba2bc7f01eaa1b540968149a810952d5, type: 3}
+    frontHold:
+    - {fileID: -8084570934642454128, guid: 0c4bcec233d60c348a8acfb7f701d9ce, type: 3}
+    - {fileID: -3426756186340781408, guid: 0c4bcec233d60c348a8acfb7f701d9ce, type: 3}
+    - {fileID: 3992458915026760856, guid: 0c4bcec233d60c348a8acfb7f701d9ce, type: 3}
+    - {fileID: -4625136951665694255, guid: 0c4bcec233d60c348a8acfb7f701d9ce, type: 3}
+    - {fileID: 83468083382884078, guid: 0c4bcec233d60c348a8acfb7f701d9ce, type: 3}
+    - {fileID: -6760198350384966179, guid: 0c4bcec233d60c348a8acfb7f701d9ce, type: 3}
+    - {fileID: -6926235746050219940, guid: 0c4bcec233d60c348a8acfb7f701d9ce, type: 3}
+    - {fileID: -6845481543869520199, guid: 0c4bcec233d60c348a8acfb7f701d9ce, type: 3}
+    crack:
+    - {fileID: 1001699364140878528, guid: 6a6a4559c96901f47a3496030c94007d, type: 3}
+    - {fileID: 9112634806908940380, guid: 6a6a4559c96901f47a3496030c94007d, type: 3}
+    - {fileID: -8054959613417146077, guid: 6a6a4559c96901f47a3496030c94007d, type: 3}
+    shatter:
+    - {fileID: 1055418867687213457, guid: ae761b24315856040a2555c11b1969ce, type: 3}
+    - {fileID: -3841374648340505062, guid: ae761b24315856040a2555c11b1969ce, type: 3}
+    - {fileID: 1501764482767349146, guid: ae761b24315856040a2555c11b1969ce, type: 3}
+    - {fileID: -4471420509286182692, guid: ae761b24315856040a2555c11b1969ce, type: 3}
+    - {fileID: 3491174815885944569, guid: ae761b24315856040a2555c11b1969ce, type: 3}
+    - {fileID: 2778691402992360654, guid: ae761b24315856040a2555c11b1969ce, type: 3}
+    - {fileID: -924263039748659004, guid: ae761b24315856040a2555c11b1969ce, type: 3}
+    - {fileID: -1699392056461859963, guid: ae761b24315856040a2555c11b1969ce, type: 3}
+  shellIII:
+    backForm: []
+    backHold: []
+    frontForm: []
+    frontHold: []
+    crack: []
+    shatter: []
+  dropFrames:
+  - {fileID: 3120832237341674554, guid: ab373a444fc08634eb2192ef65e1bc51, type: 3}
+  - {fileID: 7770544944442033693, guid: ab373a444fc08634eb2192ef65e1bc51, type: 3}
+  - {fileID: 8765393609149189323, guid: ab373a444fc08634eb2192ef65e1bc51, type: 3}
+  - {fileID: 2690502509786986553, guid: ab373a444fc08634eb2192ef65e1bc51, type: 3}
+  hitFrames:
+  - {fileID: 1946954163144149859, guid: a2c4c826207331e4eb346c38890ccc3e, type: 3}
+  - {fileID: 2376967599265748933, guid: a2c4c826207331e4eb346c38890ccc3e, type: 3}
+  - {fileID: -982075571, guid: a2c4c826207331e4eb346c38890ccc3e, type: 3}
+  - {fileID: 872100533, guid: a2c4c826207331e4eb346c38890ccc3e, type: 3}
+  - {fileID: -375428168, guid: a2c4c826207331e4eb346c38890ccc3e, type: 3}
+  starFrames:
+  - {fileID: 821011978243437071, guid: f218d2b8c115cd745aa37cb217f43f1c, type: 3}
+  - {fileID: 8818884509744101379, guid: f218d2b8c115cd745aa37cb217f43f1c, type: 3}
+  - {fileID: -5616068019518203914, guid: f218d2b8c115cd745aa37cb217f43f1c, type: 3}
+  - {fileID: -7463125491015432498, guid: f218d2b8c115cd745aa37cb217f43f1c, type: 3}
+  - {fileID: 7694935674817761035, guid: f218d2b8c115cd745aa37cb217f43f1c, type: 3}
+  - {fileID: -7685845050880667783, guid: f218d2b8c115cd745aa37cb217f43f1c, type: 3}
+  crystalFrames:
+  - {fileID: 6937849152116214339, guid: 0eed028364be0e242a243563725e735c, type: 3}
+  - {fileID: -2472524258811637537, guid: 0eed028364be0e242a243563725e735c, type: 3}
+  - {fileID: -3142492419774996325, guid: 0eed028364be0e242a243563725e735c, type: 3}
+  - {fileID: 116154934129771146, guid: 0eed028364be0e242a243563725e735c, type: 3}
+  - {fileID: 9183359182580150910, guid: 0eed028364be0e242a243563725e735c, type: 3}
+  - {fileID: -8538400253703506049, guid: 0eed028364be0e242a243563725e735c, type: 3}
+  fossilFrames:
+  - {fileID: 5661135621256252438, guid: 2cc2eb8f972ccd34db3b53a7766403da, type: 3}
+  - {fileID: -5001694568274570051, guid: 2cc2eb8f972ccd34db3b53a7766403da, type: 3}
+  - {fileID: -6906242092277807886, guid: 2cc2eb8f972ccd34db3b53a7766403da, type: 3}
+  - {fileID: -2945797017615290825, guid: 2cc2eb8f972ccd34db3b53a7766403da, type: 3}
+  - {fileID: 930019277161810613, guid: 2cc2eb8f972ccd34db3b53a7766403da, type: 3}
+  - {fileID: 5644185160860842262, guid: 2cc2eb8f972ccd34db3b53a7766403da, type: 3}
+  - {fileID: 9153468775987716372, guid: 2cc2eb8f972ccd34db3b53a7766403da, type: 3}
+  - {fileID: -9126733848675625533, guid: 2cc2eb8f972ccd34db3b53a7766403da, type: 3}
+  fullLayers:
+  - body: {fileID: 9100000, guid: b7a1f1eda68daf141be47a222fb3acad, type: 2}
+    layer: {fileID: 9100000, guid: 64acb3890f214d54ab8cec9176e52c20, type: 2}
+  - body: {fileID: 9100000, guid: 1ee0f29d221cfc54b86f59ca6625ec3f, type: 2}
+    layer: {fileID: 9100000, guid: 3129f8db750cabd4986a3e681ff49999, type: 2}
+  - body: {fileID: 9100000, guid: 20d0d777444a2e44ea563bce6960ff90, type: 2}
+    layer: {fileID: 9100000, guid: 8055a4d416774af4ea65291eb571c2b5, type: 2}

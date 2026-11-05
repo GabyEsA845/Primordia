@@ -134,6 +134,12 @@ namespace Primordia.Mutations
 
         CreatureLayerMirror skinLayer;
         CreatureLayerMirror limbsLayer;
+        CreatureLayerMirror organLayer;
+
+        /// <summary>Las capas vivas (null si no hay): para teñirlas desde la mutación (los Cercos gastados).</summary>
+        public CreatureLayerMirror SkinMirror => skinLayer;
+        public CreatureLayerMirror LimbsMirror => limbsLayer;
+        public CreatureLayerMirror OrganMirror => organLayer;
 
         /// <summary>Capa de la Piel sobre el cuerpo de la criatura que se ve ahora (null si no hay).</summary>
         public RuntimeAnimatorController CreatureSkinLayer => skinLayer != null ? skinLayer.Controller : null;
@@ -149,6 +155,7 @@ namespace Primordia.Mutations
         {
             UpdateLayer(ref skinLayer, MutationSlot.Skin, "CreatureSkinLayer", 1);
             UpdateLayer(ref limbsLayer, MutationSlot.Limbs, "CreatureLimbsLayer", -1);
+            UpdateLayer(ref organLayer, MutationSlot.Organ, "CreatureOrganLayer", 1);
         }
 
         void UpdateLayer(ref CreatureLayerMirror mirror, MutationSlot slot, string name, int orderOffset)

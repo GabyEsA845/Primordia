@@ -323,8 +323,10 @@ namespace Primordia.Combat
             // La esquiva justa de la Cutícula lo devuelve antes de que haga daño.
             if (gameObject.layer != CombatLayers.ProjectileLayer(Team.Player))
             {
-                var reflector = other.GetComponentInParent<IHitReflector>();
-                if (reflector != null && reflector.TryReflect(this))
+                bool reflected = false;
+                foreach (var reflector in other.GetComponentsInParent<IHitReflector>())
+                    reflected |= reflector.TryReflect(this);
+                if (reflected)
                 {
                     Despawn();
                     return;

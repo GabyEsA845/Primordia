@@ -1,0 +1,169 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc68f7f56fd29b14ca6117ccf7b84871, type: 3}
+  m_Name: Mutation_AmberCapsule
+  m_EditorClassIdentifier: Primordia::Primordia.Mutations.AmberCapsuleMutation
+  displayName: "C\xE1psula de \xE1mbar"
+  description: "Un golpe que te deja a medio coraz\xF3n o menos te encierra en \xE1mbar 2 s, invulnerable e inm\xF3vil. Al encerrarte te cura medio coraz\xF3n; al romperse suelta esquirlas que da\xF1an y empujan, y tienes 2 s de invencibilidad al salir. Una vez por sala."
+  slot: 2
+  lineages: []
+  look: {fileID: 0}
+  bodyRadius: 0
+  mouthDistance: 0
+  headHeight: 0
+  wornOnHead: 0
+  muzzleDistance: 0
+  attackLean: 0
+  icon: {fileID: 21300000, guid: 9196be1a96995e749ad546fac182e315, type: 3}
+  largeIcon: {fileID: 21300000, guid: a4e897c0ef52de046bd3eb614b72d3e6, type: 3}
+  color: {r: 0.55, g: 0.7, b: 0.9, a: 1}
+  summary: 
+  levelDescriptions:
+  - "Te cura 1 coraz\xF3n entero en total y las esquirlas aturden 1 s (no a jefes)."
+  - "Doble c\xE1scara: dos activaciones por sala y te cura 1 coraz\xF3n y medio."
+  dodgeSound: 
+  floor: 3
+  special: 1
+  family: 0
+  creatureIdleFrames: []
+  creatureAttackFrames: []
+  creatureBody: {fileID: 0}
+  attackHitTime: 0
+  moveInertia: 1
+  creatureLayers:
+  - body: {fileID: 9100000, guid: b7a1f1eda68daf141be47a222fb3acad, type: 2}
+    layer: {fileID: 9100000, guid: 00dce28b8028a6d4d8975960368c84cc, type: 2}
+  - body: {fileID: 9100000, guid: 1ee0f29d221cfc54b86f59ca6625ec3f, type: 2}
+    layer: {fileID: 9100000, guid: 9e4e5f2746bd4fc409f8dcb70e0960df, type: 2}
+  - body: {fileID: 9100000, guid: 20d0d777444a2e44ea563bce6960ff90, type: 2}
+    layer: {fileID: 9100000, guid: 67786d13263ce8244a44bd26eadc652a, type: 2}
+  morphPaths: []
+  morphFrames: []
+  revealFrames: []
+  values:
+    heal: 1
+    perRoom: 1
+    shardStun: 0
+  upgrades:
+  - heal: 2
+    perRoom: 1
+    shardStun: 1
+  - heal: 3
+    perRoom: 2
+    shardStun: 1
+  lockSeconds: 2
+  exitInvulnerability: 2
+  shardRadius: 2.4
+  shardDamage: 4
+  shardPush: 7
+  shell:
+    backForm:
+    - {fileID: -5594028359549876769, guid: 60a4444dd86eaf0459513009bb498e87, type: 3}
+    - {fileID: 7478201056833037868, guid: 60a4444dd86eaf0459513009bb498e87, type: 3}
+    - {fileID: -3079483121377214046, guid: 60a4444dd86eaf0459513009bb498e87, type: 3}
+    - {fileID: -4374729952974016980, guid: 60a4444dd86eaf0459513009bb498e87, type: 3}
+    - {fileID: 4034268490114115256, guid: 60a4444dd86eaf0459513009bb498e87, type: 3}
+    - {fileID: 6025638584719634090, guid: 60a4444dd86eaf0459513009bb498e87, type: 3}
+    backHold:
+    - {fileID: -8346984605138674498, guid: 628fa8838ddb63b448b164a26aef159f, type: 3}
+    frontForm:
+    - {fileID: -4455387672296245446, guid: ba2bc7f01eaa1b540968149a810952d5, type: 3}
+    - {fileID: -5465501150878823435, guid: ba2bc7f01eaa1b540968149a810952d5, type: 3}
+    - {fileID: -4051356434400937103, guid: ba2bc7f01eaa1b540968149a810952d5, type: 3}
+    - {fileID: 175741423404639327, guid: ba2bc7f01eaa1b540968149a810952d5, type: 3}
+    - {fileID: -6816027678913400687, guid: ba2bc7f01eaa1b540968149a810952d5, type: 3}
+    - {fileID: -2567199405099649812, guid: ba2bc7f01eaa1b540968149a810952d5, type: 3}
+    frontHold:
+    - {fileID: -8084570934642454128, guid: 0c4bcec233d60c348a8acfb7f701d9ce, type: 3}
+    - {fileID: -3426756186340781408, guid: 0c4bcec233d60c348a8acfb7f701d9ce, type: 3}
+    - {fileID: 3992458915026760856, guid: 0c4bcec233d60c348a8acfb7f701d9ce, type: 3}
+    - {fileID: -4625136951665694255, guid: 0c4bcec233d60c348a8acfb7f701d9ce, type: 3}
+    - {fileID: 83468083382884078, guid: 0c4bcec233d60c348a8acfb7f701d9ce, type: 3}
+    - {fileID: -6760198350384966179, guid: 0c4bcec233d60c348a8acfb7f701d9ce, type: 3}
+    - {fileID: -6926235746050219940, guid: 0c4bcec233d60c348a8acfb7f701d9ce, type: 3}
+    - {fileID: -6845481543869520199, guid: 0c4bcec233d60c348a8acfb7f701d9ce, type: 3}
+    crack:
+    - {fileID: 1001699364140878528, guid: 6a6a4559c96901f47a3496030c94007d, type: 3}
+    - {fileID: 9112634806908940380, guid: 6a6a4559c96901f47a3496030c94007d, type: 3}
+    - {fileID: -8054959613417146077, guid: 6a6a4559c96901f47a3496030c94007d, type: 3}
+    shatter:
+    - {fileID: 1055418867687213457, guid: ae761b24315856040a2555c11b1969ce, type: 3}
+    - {fileID: -3841374648340505062, guid: ae761b24315856040a2555c11b1969ce, type: 3}
+    - {fileID: 1501764482767349146, guid: ae761b24315856040a2555c11b1969ce, type: 3}
+    - {fileID: -4471420509286182692, guid: ae761b24315856040a2555c11b1969ce, type: 3}
+    - {fileID: 3491174815885944569, guid: ae761b24315856040a2555c11b1969ce, type: 3}
+    - {fileID: 2778691402992360654, guid: ae761b24315856040a2555c11b1969ce, type: 3}
+    - {fileID: -924263039748659004, guid: ae761b24315856040a2555c11b1969ce, type: 3}
+    - {fileID: -1699392056461859963, guid: ae761b24315856040a2555c11b1969ce, type: 3}
+  shellIII:
+    backForm:
+    - {fileID: -8094027390072127797, guid: cd41697ee5ffb6d43ba32479cc4934eb, type: 3}
+    - {fileID: 644822590330117873, guid: cd41697ee5ffb6d43ba32479cc4934eb, type: 3}
+    - {fileID: 1675178387380514208, guid: cd41697ee5ffb6d43ba32479cc4934eb, type: 3}
+    - {fileID: 7179093166470803221, guid: cd41697ee5ffb6d43ba32479cc4934eb, type: 3}
+    - {fileID: -495917448772952509, guid: cd41697ee5ffb6d43ba32479cc4934eb, type: 3}
+    - {fileID: -4381111302797766570, guid: cd41697ee5ffb6d43ba32479cc4934eb, type: 3}
+    - {fileID: -2754636358994766272, guid: cd41697ee5ffb6d43ba32479cc4934eb, type: 3}
+    - {fileID: -7605456614921730056, guid: cd41697ee5ffb6d43ba32479cc4934eb, type: 3}
+    backHold:
+    - {fileID: -8009015084206067428, guid: 0e334b0ef7d6e1c44ae4ec4d82ffb11b, type: 3}
+    - {fileID: -1322618736514381190, guid: 0e334b0ef7d6e1c44ae4ec4d82ffb11b, type: 3}
+    - {fileID: -1447136240641301713, guid: 0e334b0ef7d6e1c44ae4ec4d82ffb11b, type: 3}
+    - {fileID: -6640946855510465522, guid: 0e334b0ef7d6e1c44ae4ec4d82ffb11b, type: 3}
+    - {fileID: 3587090536984932482, guid: 0e334b0ef7d6e1c44ae4ec4d82ffb11b, type: 3}
+    - {fileID: 8592819975943277457, guid: 0e334b0ef7d6e1c44ae4ec4d82ffb11b, type: 3}
+    - {fileID: 5555108047121639784, guid: 0e334b0ef7d6e1c44ae4ec4d82ffb11b, type: 3}
+    - {fileID: -6819825273890556767, guid: 0e334b0ef7d6e1c44ae4ec4d82ffb11b, type: 3}
+    frontForm:
+    - {fileID: 8977302469043854951, guid: 1d2628e01f13ee4469d3870ddf66903e, type: 3}
+    - {fileID: 5424347880699392895, guid: 1d2628e01f13ee4469d3870ddf66903e, type: 3}
+    - {fileID: 4735053599935214548, guid: 1d2628e01f13ee4469d3870ddf66903e, type: 3}
+    - {fileID: -7684059973709099320, guid: 1d2628e01f13ee4469d3870ddf66903e, type: 3}
+    - {fileID: -8318135786936290908, guid: 1d2628e01f13ee4469d3870ddf66903e, type: 3}
+    - {fileID: 1588911782176722664, guid: 1d2628e01f13ee4469d3870ddf66903e, type: 3}
+    - {fileID: -7435674376746382944, guid: 1d2628e01f13ee4469d3870ddf66903e, type: 3}
+    - {fileID: 3468430276288585246, guid: 1d2628e01f13ee4469d3870ddf66903e, type: 3}
+    frontHold:
+    - {fileID: -5259224306589939362, guid: cc1ddb0f5d0ff05468c922dc874a3a44, type: 3}
+    - {fileID: -1072603820314481708, guid: cc1ddb0f5d0ff05468c922dc874a3a44, type: 3}
+    - {fileID: -4233030849372562587, guid: cc1ddb0f5d0ff05468c922dc874a3a44, type: 3}
+    - {fileID: -625821711961458936, guid: cc1ddb0f5d0ff05468c922dc874a3a44, type: 3}
+    - {fileID: -3237280237004624570, guid: cc1ddb0f5d0ff05468c922dc874a3a44, type: 3}
+    - {fileID: 1708021131051553219, guid: cc1ddb0f5d0ff05468c922dc874a3a44, type: 3}
+    - {fileID: -2749748312252934500, guid: cc1ddb0f5d0ff05468c922dc874a3a44, type: 3}
+    - {fileID: -7788644535062544594, guid: cc1ddb0f5d0ff05468c922dc874a3a44, type: 3}
+    crack:
+    - {fileID: -5304335327101430957, guid: 364bb6744d6d7cd4a86a1196e68ae3cf, type: 3}
+    - {fileID: -3646577337757372017, guid: 364bb6744d6d7cd4a86a1196e68ae3cf, type: 3}
+    - {fileID: -2278957886827975044, guid: 364bb6744d6d7cd4a86a1196e68ae3cf, type: 3}
+    shatter:
+    - {fileID: 1055418867687213457, guid: ae761b24315856040a2555c11b1969ce, type: 3}
+    - {fileID: -3841374648340505062, guid: ae761b24315856040a2555c11b1969ce, type: 3}
+    - {fileID: 1501764482767349146, guid: ae761b24315856040a2555c11b1969ce, type: 3}
+    - {fileID: -4471420509286182692, guid: ae761b24315856040a2555c11b1969ce, type: 3}
+    - {fileID: 3491174815885944569, guid: ae761b24315856040a2555c11b1969ce, type: 3}
+    - {fileID: 2778691402992360654, guid: ae761b24315856040a2555c11b1969ce, type: 3}
+    - {fileID: -924263039748659004, guid: ae761b24315856040a2555c11b1969ce, type: 3}
+    - {fileID: -1699392056461859963, guid: ae761b24315856040a2555c11b1969ce, type: 3}
+  healFrames:
+  - {fileID: 3178317019791181968, guid: 76e360c109f7e0f469ea6be5944c9fbe, type: 3}
+  - {fileID: 9165600238102124455, guid: 76e360c109f7e0f469ea6be5944c9fbe, type: 3}
+  - {fileID: 4429838943380572779, guid: 76e360c109f7e0f469ea6be5944c9fbe, type: 3}
+  - {fileID: 3999369662249099807, guid: 76e360c109f7e0f469ea6be5944c9fbe, type: 3}
+  - {fileID: -5248305509951490427, guid: 76e360c109f7e0f469ea6be5944c9fbe, type: 3}
+  - {fileID: -2745690236996208448, guid: 76e360c109f7e0f469ea6be5944c9fbe, type: 3}
+  - {fileID: -8246049761203928440, guid: 76e360c109f7e0f469ea6be5944c9fbe, type: 3}
+  - {fileID: -4610349525265446845, guid: 76e360c109f7e0f469ea6be5944c9fbe, type: 3}
+  - {fileID: 4318274036657939169, guid: 76e360c109f7e0f469ea6be5944c9fbe, type: 3}
+  - {fileID: 8488711744557295971, guid: 76e360c109f7e0f469ea6be5944c9fbe, type: 3}
+  - {fileID: 5925981866795390371, guid: 76e360c109f7e0f469ea6be5944c9fbe, type: 3}
+  - {fileID: -6865198277291390041, guid: 76e360c109f7e0f469ea6be5944c9fbe, type: 3}

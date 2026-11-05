@@ -194,6 +194,8 @@ namespace Primordia.Rooms
                 if (entered)
                     waders[health] = wader = new Wader { body = body, last = body.position, nextRipple = Time.time + RippleEvery };
                 wader.seen = true;
+                if (entered)
+                    MudBodyVisual.SetWater(body, true);
 
                 bool burning = Douse(health, player);
                 var feet = (Vector2)body.position + FootOffset;
@@ -222,6 +224,7 @@ namespace Primordia.Rooms
                 waders.Remove(key);
                 if (wader.body == null)
                     continue;
+                MudBodyVisual.SetWater(wader.body, false);
                 var feet = (Vector2)wader.body.position + FootOffset;
                 Fx(PolishArt.Current?.waterDrip, feet + new Vector2(-0.25f, 0.5f), FxOrder);
                 Fx(PolishArt.Current?.waterDrip, feet + new Vector2(0.25f, 0.4f), FxOrder);

@@ -36,6 +36,9 @@ namespace Primordia.Mutations
 
         public bool IsShown => spriteRenderer.enabled;
 
+        /// <summary>Tinte que se multiplica al color del cuerpo (los Cercos gastados se oscurecen, la glándula llena se funde). Blanco = nada.</summary>
+        public Color Tint { get; set; } = Color.white;
+
         /// <summary>Crea la capa como hija del cuerpo: delante (+1, la Piel) o detrás (-1, las Extremidades).</summary>
         internal static CreatureLayerMirror Create(Animator bodyAnimator, SpriteRenderer body, string name = "CreatureSkinLayer",
             int orderOffset = 1)
@@ -73,7 +76,7 @@ namespace Primordia.Mutations
             spriteRenderer.flipX = sourceRenderer.flipX;
             spriteRenderer.sortingLayerID = sourceRenderer.sortingLayerID;
             spriteRenderer.sortingOrder = sourceRenderer.sortingOrder + orderOffset;
-            spriteRenderer.color = sourceRenderer.color;
+            spriteRenderer.color = sourceRenderer.color * Tint;
         }
     }
 }

@@ -18,6 +18,9 @@ namespace Primordia.Mutations
         // Las pruebas lo desactivan para controlar specialPressed a mano.
         internal bool readInput = true;
         internal bool specialPressed;
+        // Para las pruebas: el clic se mantiene (habilidades de mantener y soltar).
+        internal bool specialHeld;
+        bool holding;
 
         public AbilityMutation Ability { get; private set; }
         public bool IsReady => Ability != null && (UsesKills ? kills >= KillsNeeded : Time.time >= readyTime);
@@ -88,12 +91,51 @@ namespace Primordia.Mutations
             }
 
             if (readInput)
+            {
                 specialPressed = specialAction != null && specialAction.WasPressedThisFrame();
+                specialHeld = specialAction != null && specialAction.IsPressed();
+            }
+
+            if (Ability != null && Ability.HoldToCharge)
+            {
+                UpdateHold();
+                specialPressed = false;
+                return;
+            }
 
             if (specialPressed)
                 TryUse();
 
             specialPressed = false;
+        }
+
+        // Habilidad de mantener y soltar: al pulsar empieza a cargar; al soltar sale y empieza la recarga.
+        void UpdateHold()
+        {
+            if (!holding)
+            {
+                if (!specialPressed)
+                    return;
+                if (!IsReady || !controller.CanAct || !Ability.CanActivate(mutations))
+                {
+                    if (!IsReady && controller.CanAct)
+                        Refused?.Invoke();
+                    return;
+                }
+                holding = true;
+                Ability.Activate(mutations);
+                return;
+            }
+
+            if (specialHeld && controller.CanAct)
+                return;
+            holding = false;
+            if (!Ability.Release(mutations))
+                return;
+            currentCooldown = Ability.CooldownAt(Mathf.Max(1, mutations.LevelOf(Ability.Slot)));
+            readyTime = Time.time + currentCooldown;
+            kills = 0;
+            Used?.Invoke();
         }
 
         /// <summary>Usa la habilidad si está lista, sirve de algo y el jugador puede actuar.</summary>
@@ -120,6 +162,7 @@ namespace Primordia.Mutations
         {
             Ability = ability;
             running = false;
+            holding = false;
             readyTime = 0f;
             kills = int.MaxValue / 2;
         }

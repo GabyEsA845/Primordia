@@ -97,6 +97,32 @@ namespace Primordia.Rooms
 
         bool manual;
         Manual manualState;
+        bool water;
+
+        /// <summary>
+        /// Mete (o saca) el cuerpo de <paramref name="root"/> en el agua de una charca: la franja de abajo se ve bajo el agua. Sin el
+        /// arte del pulido no hace nada; al salir, si no hay lodo que dibujar, se quita solo.
+        /// </summary>
+        public static void SetWater(Transform root, bool inWater)
+        {
+            if (root == null)
+                return;
+            var visual = root.GetComponent<MudBodyVisual>();
+            if (inWater)
+            {
+                if (!Ready)
+                    return;
+                if (visual == null)
+                    visual = root.gameObject.AddComponent<MudBodyVisual>();
+                visual.water = true;
+                return;
+            }
+            if (visual == null)
+                return;
+            visual.water = false;
+            if (!visual.manual && visual.level <= 0f && !visual.drying)
+                Destroy(visual);
+        }
 
         /// <summary>Altura (mundo) de los pies del dibujo, la superficie del barro: el último cuadro medido.</summary>
         public float FeetY => feetY;
@@ -175,7 +201,7 @@ namespace Primordia.Rooms
 
             level = 0f;
             // Sin manchas que dejar (enemigos o casi nada de lodo), se acabó.
-            if (simple || peak <= 0.05f || tables == null)
+            if (!water && (simple || peak <= 0.05f || tables == null))
             {
                 Destroy(this);
                 return;
@@ -339,6 +365,7 @@ namespace Primordia.Rooms
                     feetRow = Mathf.RoundToInt((feetY - renderer.bounds.min.y) / perPixel),
                     t = t,
                     simple = simple,
+                    water = water && !layer.overlay,
                 };
                 if (!EnsureSprite(layer))
                     continue;

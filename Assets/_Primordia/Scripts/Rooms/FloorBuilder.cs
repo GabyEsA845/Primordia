@@ -15,7 +15,7 @@ namespace Primordia.Rooms
     /// pinta todo el piso en Tilemaps y crea salas, puertas, enemigos, recompensas, tienda, jefe y salida.
     /// Funciona igual en el juego (piso aleatorio) que en el editor.
     /// </summary>
-    public static class FloorBuilder
+    public static partial class FloorBuilder
     {
         /// <summary>Pasillo más corto entre dos salas vecinas; si una sala es más pequeña que su celda, crece.</summary>
         public const int CorridorLength = 4;
@@ -175,6 +175,7 @@ namespace Primordia.Rooms
             {
                 var builtRoom = BuildRoom(parent, room, themes[room.Theme], config, boss, random, glows, brushes, map);
                 builtRoom.SetDepthBand(room.Theme >= FirstBandTheme ? room.Theme - FirstBandTheme : -1);
+                builtRoom.SetSignKey(room.Layout.Encounter?.signKey);
                 built.Rooms.Add(builtRoom);
                 var mapRoom = new MapRoom
                 {
@@ -757,10 +758,13 @@ namespace Primordia.Rooms
             BuildObstacles(roomObject.transform, placed, theme, config.Pieces, random, glows);
             // Odres, bulbos y helechos no aparecen unos encima de otros ni de las rocas de cobertura: comparten lo ocupado de la sala.
             var taken = ObstacleFootprints(placed);
+            var puddleSpots = new List<(Vector2 position, float radius)>();
+            // La gran charca de la Charca de sapos va primero: lo demás la esquiva.
+            var pond = BuildPond(parent, roomObject.transform, placed, taken, puddleSpots);
             BuildMethane(roomObject.transform, placed, theme, random, taken);
             BuildBulbs(roomObject.transform, placed, theme, random, taken);
-            var puddleSpots = new List<(Vector2 position, float radius)>();
             BuildScenery(roomObject.transform, placed, theme, random, taken, puddleSpots);
+            BuildThemeDecor(roomObject.transform, placed, pond, taken);
             BuildMoss(roomObject.transform, placed, theme, random);
             // En la sala de paso, la vegetación del piso siguiente solo crece donde el suelo ya es suyo (junto a la charca).
             if (placed.Layout.Role == RoomRole.Transition && config.NextFloorTheme != null)

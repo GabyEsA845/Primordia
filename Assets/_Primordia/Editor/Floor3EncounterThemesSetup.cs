@@ -74,10 +74,22 @@ namespace Primordia.Editor
             Debug.Log($"Floor3EncounterThemesSetup: {config.EncounterThemes.Length} salas con tema en Floor_3 (2 a 4 por partida).");
         }
 
+        // Clave de los dibujos del letrero (docs/multimedia-temp/floor3-room-signs).
+        static string SignKeyOf(string name) => name switch
+        {
+            "Pradera de Calamites" => "CalamitesMeadow",
+            "Nido de bombarderos" => "BeetleNest",
+            "Charca de sapos" => "ToadPond",
+            "Telar de la araña" => "SpiderLoom",
+            "Cielo de libélulas" => "DragonflySky",
+            _ => "",
+        };
+
         static FloorConfig.EncounterTheme Theme(string name, FloorConfig.ThemedEnemy[] enemies, float multiplier, int minDepth,
             FloorConfig.CaveSpec cave, float fern, float methane, float bulb, float vent, float puddle) => new()
         {
             name = name,
+            signKey = SignKeyOf(name),
             enemies = enemies.Where(enemy => enemy.prefab != null).ToArray(),
             enemyMultiplier = multiplier,
             minDepth = minDepth,

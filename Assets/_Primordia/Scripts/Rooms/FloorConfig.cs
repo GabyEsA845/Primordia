@@ -208,6 +208,8 @@ namespace Primordia.Rooms
         public struct EncounterTheme
         {
             public string name;
+            [Tooltip("Clave de los dibujos del letrero (RoomSignArt), p. ej. BeetleNest. Vacía = sin letrero.")]
+            public string signKey;
             [Tooltip("Enemigos del tema. Coste, sala mínima, lodo y demás, de su entrada en Enemies; aquí, su peso y su tope.")]
             public ThemedEnemy[] enemies;
             [Tooltip("Enemigos respecto a una sala normal (1 igual).")]
@@ -359,6 +361,8 @@ namespace Primordia.Rooms
         [SerializeField] EncounterTheme[] encounterThemes = Array.Empty<EncounterTheme>();
         [Tooltip("Salas con tema por partida (mínimo y máximo); cada tema sale como mucho una vez. Sustituyen a salas de combate del camino.")]
         [SerializeField] Vector2Int encounterThemeCount = new(2, 4);
+        [Tooltip("Escena de pruebas: todos los temas, uno por sala de combate y en orden desde la primera (ignora la sala mínima).")]
+        [SerializeField] bool themeShowcase;
         [Tooltip("Sala de cambio (laboratorio de Darwin), en fondo de saco detrás de la tienda. Vacío: no hay.")]
         [SerializeField] RoomTemplate exchangeRoom;
         [Tooltip("Antesala del jefe, en línea recta con él: el túnel vertical (puertas arriba y abajo). Vacío: sin antesala.")]
@@ -466,6 +470,7 @@ namespace Primordia.Rooms
         public Vector2Int SpecialRoomCount => specialRoomCount;
         public EncounterTheme[] EncounterThemes => Array.FindAll(encounterThemes ?? Array.Empty<EncounterTheme>(), theme => theme.IsValid);
         public Vector2Int EncounterThemeCount => encounterThemeCount;
+        public bool ThemeShowcase => themeShowcase;
         public RoomTemplate ExchangeRoom => exchangeRoom;
         public bool HasExchange => exchangeRoom != null && HasShop;
         public RoomTemplate AntechamberVertical => antechamberVertical;
@@ -623,6 +628,8 @@ namespace Primordia.Rooms
             encounterThemes = newThemes ?? Array.Empty<EncounterTheme>();
             encounterThemeCount = newCount;
         }
+
+        internal void ConfigureThemeShowcase(bool value) => themeShowcase = value;
 
         internal void ConfigureFixedRooms(RoomTemplate newExchange, RoomTemplate newAntechamberVertical, RoomTemplate newAntechamberHorizontal)
         {

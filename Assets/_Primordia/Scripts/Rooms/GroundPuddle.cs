@@ -52,6 +52,8 @@ namespace Primordia.Rooms
 
         bool sludge;
         Vector2 area;
+        // Charca de forma libre (la gran charca de un tema): sus celdas; el área es su caja.
+        HashSet<Vector2Int> cells;
         float nextCheck;
 
         public bool IsSludge => sludge;
@@ -65,11 +67,38 @@ namespace Primordia.Rooms
         {
             foreach (var puddle in all)
             {
-                Vector2 offset = point - (Vector2)puddle.transform.position;
-                if (Mathf.Abs(offset.x) <= puddle.area.x / 2f && Mathf.Abs(offset.y) <= puddle.area.y / 2f)
+                if (puddle.Covers(point))
                     return true;
             }
             return false;
+        }
+
+        bool Covers(Vector2 point)
+        {
+            if (cells != null)
+                return cells.Contains(new Vector2Int(Mathf.FloorToInt(point.x), Mathf.FloorToInt(point.y)));
+            Vector2 offset = point - (Vector2)transform.position;
+            return Mathf.Abs(offset.x) <= area.x / 2f && Mathf.Abs(offset.y) <= area.y / 2f;
+        }
+
+        /// <summary>Agua de forma libre: una zona que cubre esas celdas (globales). Sin dibujo propio: lo ponen sus tiles.</summary>
+        internal static GroundPuddle CreateZone(Transform parent, HashSet<Vector2Int> zoneCells)
+        {
+            var obj = new GameObject("Puddle_Water_Zone");
+            obj.transform.SetParent(parent, false);
+            int minX = int.MaxValue, minY = int.MaxValue, maxX = int.MinValue, maxY = int.MinValue;
+            foreach (var cell in zoneCells)
+            {
+                minX = Mathf.Min(minX, cell.x);
+                minY = Mathf.Min(minY, cell.y);
+                maxX = Mathf.Max(maxX, cell.x);
+                maxY = Mathf.Max(maxY, cell.y);
+            }
+            obj.transform.position = new Vector2((minX + maxX + 1) / 2f, (minY + maxY + 1) / 2f);
+            var puddle = obj.AddComponent<GroundPuddle>();
+            puddle.cells = new HashSet<Vector2Int>(zoneCells);
+            puddle.area = new Vector2(maxX - minX + 1, maxY - minY + 1);
+            return puddle;
         }
 
         /// <summary>True si ese punto está dentro de algún charco de lodo (no de agua) del escenario.</summary>
@@ -79,8 +108,7 @@ namespace Primordia.Rooms
             {
                 if (!puddle.sludge)
                     continue;
-                Vector2 offset = point - (Vector2)puddle.transform.position;
-                if (Mathf.Abs(offset.x) <= puddle.area.x / 2f && Mathf.Abs(offset.y) <= puddle.area.y / 2f)
+                if (puddle.Covers(point))
                     return true;
             }
             return false;
@@ -149,6 +177,8 @@ namespace Primordia.Rooms
                     continue;
                 var health = hit.GetComponentInParent<Health>();
                 if (health == null || health.IsDead)
+                    continue;
+                if (cells != null && !Covers((Vector2)health.transform.position + FootOffset))
                     continue;
 
                 var player = health.GetComponentInParent<PlayerController>();

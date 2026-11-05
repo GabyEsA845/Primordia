@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dc7018dea8924342ab4cd9a95afc179, type: 3}
+  m_Name: RoomSignArt
+  m_EditorClassIdentifier: Primordia::Primordia.Core.RoomSignArt
+  log: {fileID: 21300000, guid: 066f14619ec4d8f4f840b44e2a573b4a, type: 3}
+  entries:
+  - key: CalamitesMeadow
+    title: {fileID: 21300000, guid: 28281105d4cf99446921c5efa68fd004, type: 3}
+    icon: {fileID: 21300000, guid: bfc7a2a589457324aaca8c94ab21db43, type: 3}
+  - key: BeetleNest
+    title: {fileID: 21300000, guid: ebd3e29ec8dbd7e4a85eb5b65f255e77, type: 3}
+    icon: {fileID: 21300000, guid: f5849c4803fc1c444bc6c013eb0bb211, type: 3}
+  - key: ToadPond
+    title: {fileID: 21300000, guid: d75b98d47ccd15748bf4c6fd4ccda694, type: 3}
+    icon: {fileID: 21300000, guid: da45ce73afc99864a9f9752157ddd7ed, type: 3}
+  - key: SpiderLoom
+    title: {fileID: 21300000, guid: 0b931d0d12fe0a64e82cea28e271caa4, type: 3}
+    icon: {fileID: 21300000, guid: bc90a7bd38f428544a5db403af209f44, type: 3}
+  - key: DragonflySky
+    title: {fileID: 21300000, guid: 4955ce474cd3817408e3d3bd880d63d3, type: 3}
+    icon: {fileID: 21300000, guid: aa1e8935037e5e14bb770d32f5569171, type: 3}

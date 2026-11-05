@@ -690,6 +690,15 @@ namespace Primordia.Rooms
             int last = combat.Count == 0 ? 0 : combat.Max(slot => slot.Depth);
             var free = combat.Where(slot => !slot.Special.HasValue && slot.Depth >= FirstSpecialDepth && slot.Depth < last)
                 .Select(slot => slot.Depth).ToList();
+            if (config.ThemeShowcase)
+            {
+                // Escena de pruebas: cada tema en una sala de combate, en orden, sin gastar azar.
+                var rooms = combat.Where(slot => !slot.Special.HasValue).Select(slot => slot.Depth).OrderBy(depth => depth).ToList();
+                for (int i = 0; i < Mathf.Min(rooms.Count, themes.Length); i++)
+                    result[rooms[i]] = themes[i];
+                return result;
+            }
+
             int wanted = Mathf.Min(RandomRange(random, config.EncounterThemeCount), themes.Length);
             foreach (var theme in themes.OrderBy(_ => random.Next()))
             {

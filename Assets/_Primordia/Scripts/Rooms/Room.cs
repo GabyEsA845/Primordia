@@ -47,6 +47,11 @@ namespace Primordia.Rooms
 
         internal void SetDepthBand(int band) => DepthBand = band;
 
+        /// <summary>Clave del letrero de una sala con tema (piso 3); vacía si no lo tiene. Sale una vez, al cerrarse la sala.</summary>
+        public string SignKey { get; private set; } = "";
+
+        internal void SetSignKey(string key) => SignKey = key ?? "";
+
         // Desde el piso 2 las puertas son losas de roca, no membranas: suenan a piedra.
         static bool SlabDoors => FloorGenerator.CurrentFloor >= 2;
 

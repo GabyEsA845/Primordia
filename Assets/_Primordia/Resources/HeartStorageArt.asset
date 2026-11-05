@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72e1a8696770b9344b891de91a77405f, type: 3}
+  m_Name: HeartStorageArt
+  m_EditorClassIdentifier: Primordia::Primordia.Rooms.HeartStorageArt
+  podStored:
+  - {fileID: -6511097119454319598, guid: a04348fc53bdb9743b2168eabaec8fa5, type: 3}
+  - {fileID: 8387436829153060565, guid: a04348fc53bdb9743b2168eabaec8fa5, type: 3}
+  - {fileID: -226694967446209973, guid: a04348fc53bdb9743b2168eabaec8fa5, type: 3}
+  - {fileID: 2300360539351957343, guid: a04348fc53bdb9743b2168eabaec8fa5, type: 3}
+  - {fileID: 111207644280357619, guid: a04348fc53bdb9743b2168eabaec8fa5, type: 3}
+  podReceive:
+  - {fileID: -7785231488762603224, guid: 794dfbdd1a1d78042a86c3c08d7bb2ba, type: 3}
+  - {fileID: 4466670431221333924, guid: 794dfbdd1a1d78042a86c3c08d7bb2ba, type: 3}
+  - {fileID: -3221358701414169247, guid: 794dfbdd1a1d78042a86c3c08d7bb2ba, type: 3}
+  - {fileID: -3173385490909493840, guid: 794dfbdd1a1d78042a86c3c08d7bb2ba, type: 3}
+  idle:
+  - {fileID: 1145079779576605684, guid: 112cc43a106803348b373de625884255, type: 3}
+  - {fileID: -8181183317393901573, guid: 112cc43a106803348b373de625884255, type: 3}
+  - {fileID: -8115672772247712000, guid: 112cc43a106803348b373de625884255, type: 3}
+  - {fileID: -2117468533239993639, guid: 112cc43a106803348b373de625884255, type: 3}
+  run:
+  - {fileID: -4470869107079048959, guid: 3c9fc78b9e187324391f6740afd99c17, type: 3}
+  - {fileID: -5308682946161281449, guid: 3c9fc78b9e187324391f6740afd99c17, type: 3}
+  - {fileID: -8014136389347467103, guid: 3c9fc78b9e187324391f6740afd99c17, type: 3}
+  - {fileID: 5735509120435774635, guid: 3c9fc78b9e187324391f6740afd99c17, type: 3}
+  grab:
+  - {fileID: 6382903357091324029, guid: 3c71301fb6d367147a0731ac45c3adfd, type: 3}
+  - {fileID: -8042461700886225340, guid: 3c71301fb6d367147a0731ac45c3adfd, type: 3}
+  - {fileID: 1114376843806072156, guid: 3c71301fb6d367147a0731ac45c3adfd, type: 3}
+  - {fileID: 3458284701257791242, guid: 3c71301fb6d367147a0731ac45c3adfd, type: 3}
+  - {fileID: -879850105710250431, guid: 3c71301fb6d367147a0731ac45c3adfd, type: 3}
+  hurt:
+  - {fileID: 3293646232271343049, guid: d87f72960a3c88f4cb8e263fbaf2a92a, type: 3}
+  - {fileID: 4999617396380906796, guid: d87f72960a3c88f4cb8e263fbaf2a92a, type: 3}
+  death:
+  - {fileID: 4775555056847431056, guid: dcbcb0fba8c1d354d930b213526d4cbb, type: 3}
+  - {fileID: 926801120995315720, guid: dcbcb0fba8c1d354d930b213526d4cbb, type: 3}
+  - {fileID: -6433704229727320069, guid: dcbcb0fba8c1d354d930b213526d4cbb, type: 3}
+  - {fileID: 5570508423354171771, guid: dcbcb0fba8c1d354d930b213526d4cbb, type: 3}
+  - {fileID: 1677864008711809280, guid: dcbcb0fba8c1d354d930b213526d4cbb, type: 3}
+  - {fileID: -4020127819054130584, guid: dcbcb0fba8c1d354d930b213526d4cbb, type: 3}
+  emerge:
+  - {fileID: -1723842677888941093, guid: 8f06e393a35e0a344ac315dcdb9ac1f2, type: 3}
+  - {fileID: -4963640967740979458, guid: 8f06e393a35e0a344ac315dcdb9ac1f2, type: 3}
+  - {fileID: -7689530955708008379, guid: 8f06e393a35e0a344ac315dcdb9ac1f2, type: 3}
+  - {fileID: -7826913050582211184, guid: 8f06e393a35e0a344ac315dcdb9ac1f2, type: 3}
+  - {fileID: -5554584150139942832, guid: 8f06e393a35e0a344ac315dcdb9ac1f2, type: 3}
+  - {fileID: -4347460452655410266, guid: 8f06e393a35e0a344ac315dcdb9ac1f2, type: 3}
+  hide:
+  - {fileID: -2152206901599998044, guid: fdf3d4121cc7d634dbc072551a2e6530, type: 3}
+  - {fileID: 6829522316874041577, guid: fdf3d4121cc7d634dbc072551a2e6530, type: 3}
+  - {fileID: -6750489447487631289, guid: fdf3d4121cc7d634dbc072551a2e6530, type: 3}
+  - {fileID: 7517548818431982290, guid: fdf3d4121cc7d634dbc072551a2e6530, type: 3}
+  - {fileID: -833573740321861260, guid: fdf3d4121cc7d634dbc072551a2e6530, type: 3}
+  - {fileID: 5647647104694652934, guid: fdf3d4121cc7d634dbc072551a2e6530, type: 3}
+  crack: {fileID: 4320023536497000062, guid: 891328f9cf5384746a4ddc069855f913, type: 3}

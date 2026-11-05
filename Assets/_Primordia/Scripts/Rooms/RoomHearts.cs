@@ -45,6 +45,9 @@ namespace Primordia.Rooms
         }
 
         Room room;
+        RoomTemplate template;
+        Vector2Int origin;
+        HeartThief thief;
         Vector2 lastEnemyPosition;
         bool hasEnemyPosition;
 
@@ -60,11 +63,19 @@ namespace Primordia.Rooms
 
         void Awake() => room = GetComponent<Room>();
 
+        /// <summary>La forma de la sala y su origen en el mundo: de ahí salen los sitios de las grietas de la cucaracha ladrona.</summary>
+        internal void Configure(RoomTemplate newTemplate, Vector2Int newOrigin)
+        {
+            template = newTemplate;
+            origin = newOrigin;
+        }
+
         void OnEnable()
         {
             all.Add(this);
             room.EnemyDied += OnEnemyDied;
             room.Cleared += OnCleared;
+            Room.PlayerExitedAny += OnPlayerExited;
         }
 
         void OnDisable()
@@ -72,6 +83,35 @@ namespace Primordia.Rooms
             all.Remove(this);
             room.EnemyDied -= OnEnemyDied;
             room.Cleared -= OnCleared;
+            Room.PlayerExitedAny -= OnPlayerExited;
+        }
+
+        // Desde el piso 3, el corazón que se queda en el suelo al salir de la sala lo roba una cucaracha (así se aprende a usar el almacén).
+        void OnPlayerExited(Room exited)
+        {
+            if (exited != room || !HeartStorage.Exists || !HasUnclaimedHeart || (thief != null && !thief.IsDone) || template == null)
+                return;
+            thief = HeartThief.Send(Dropped, CrackSpots(), transform);
+        }
+
+        // Sitios de la sala pegados a una pared, donde cabe una grieta.
+        List<Vector2> CrackSpots()
+        {
+            var spots = new List<Vector2>();
+            for (int y = 1; y < template.Height - 1; y++)
+            {
+                for (int x = 1; x < template.Width - 1; x++)
+                {
+                    if (template.Get(x, y) != RoomTemplate.Mark.Floor)
+                        continue;
+                    bool nextToWall = template.Get(x, y + 1) == RoomTemplate.Mark.Wall || template.Get(x, y - 1) == RoomTemplate.Mark.Wall
+                        || template.Get(x + 1, y) == RoomTemplate.Mark.Wall || template.Get(x - 1, y) == RoomTemplate.Mark.Wall;
+                    // Dos de margen a los lados para que quepa la salida corriendo.
+                    if (nextToWall && template.Get(x - 2, y) == RoomTemplate.Mark.Floor && template.Get(x + 2, y) == RoomTemplate.Mark.Floor)
+                        spots.Add((Vector2)(origin + new Vector2Int(x, y)) + new Vector2(0.5f, 0.5f));
+                }
+            }
+            return spots;
         }
 
         void OnEnemyDied(Room _, Enemy enemy)
@@ -81,6 +121,14 @@ namespace Primordia.Rooms
 
             lastEnemyPosition = enemy.transform.position;
             hasEnemyPosition = true;
+        }
+
+        /// <summary>Solo para probar: deja un corazón de sala ahora mismo (sustituye al que hubiera).</summary>
+        internal void DebugDrop(Vector2 position)
+        {
+            if (Dropped != null && !Dropped.Collected)
+                Destroy(Dropped.gameObject);
+            Dropped = RoomHeartPickup.Create(position, transform);
         }
 
         void OnCleared(Room _)
@@ -97,7 +145,7 @@ namespace Primordia.Rooms
     /// Medio corazón rojo en el suelo. Con la vida llena se queda donde está; con vida que curar, el imán lo atrae
     /// y al tocarlo cura medio corazón. Sprite provisional dibujado por código, hasta que haya arte.
     /// </summary>
-    public class RoomHeartPickup : MonoBehaviour
+    public class RoomHeartPickup : PromptInteractable
     {
         const float MagnetRadius = 1.5f;
         const float CollectRadius = 0.45f;
@@ -144,7 +192,47 @@ namespace Primordia.Rooms
                 shadowRenderer.sortingOrder = 4;
                 shadow.AddComponent<FixedShadow>();
             }
-            return go.AddComponent<RoomHeartPickup>();
+            var pickup = go.AddComponent<RoomHeartPickup>();
+            // Desde el piso 3, con la vida llena se puede enviar a la vaina de la tienda con E.
+            pickup.ConfigurePrompt(HeartStorage.KeyPrompt, 0.9f);
+            pickup.SetRadius(1.3f);
+            return pickup;
+        }
+
+        protected override string TooltipTitle => "Medio corazón";
+
+        protected override string TooltipDetails => $"E para guardarlo en la vaina ({HeartStorage.Stored}/{HeartStorage.Capacity})";
+
+        protected override Color TooltipColor => new(0.92f, 0.28f, 0.34f);
+
+        public override Vector2 Position => transform.position;
+
+        // Solo con la vida llena (si no, el imán lo da para curarte) y mientras la vaina tenga sitio.
+        public override bool IsAvailable => !Collected && HeartStorage.Exists && !HeartStorage.IsFull
+                                            && health != null && !health.IsDead && health.Current >= health.Max;
+
+        /// <summary>E: lo envía volando a la vaina de la tienda.</summary>
+        public override void Interact(GameObject player)
+        {
+            if (!IsAvailable || !HeartStorage.Store())
+                return;
+            Collected = true;
+            HidePrompt();
+            var shop = FindAnyObjectByType<Primordia.Shop.ShopRoom>(FindObjectsInactive.Include);
+            Vector2 toward = shop != null ? (Vector2)shop.transform.position - (Vector2)transform.position : Vector2.up;
+            HeartFlight.Launch(transform.position, toward);
+            Sfx.Play(Sounds.PlayerHeal);
+            Destroy(gameObject);
+        }
+
+        /// <summary>Se lo lleva una cucaracha: desaparece sin curar ni guardarse.</summary>
+        public void Steal()
+        {
+            if (Collected)
+                return;
+            Collected = true;
+            HidePrompt();
+            Destroy(gameObject);
         }
 
         void Awake()

@@ -4,6 +4,7 @@
 - [Trampas de herramientas](primordia-session-tooling-lessons.md) — compilar sin Unity, Bash/heredocs, assets serializados, capturas y republicar el documento
 - [Flujo de trabajo](primordia-workflow.md) — español, rama por módulo, menús de editor, commit solo tras confirmar
 - [Arte de jefes](primordia-boss-art-workflow.md) — un jefe cada vez, preguntas antes de cada subtanda, muestra en 1 dirección, escenas (GIF en gif/escenas/), comparar versiones si duda; PRESENTACIÓN; nada que parezca «pegado sobre el fondo»
+- [Unity en batchmode](primordia-unity-batchmode.md) — lanzar menús y pruebas con Unity cerrado; 6 fallos que ya existían; ordenador nuevo
 - [Trampas de Unity](primordia-unity-gotchas.md) — Unity abierto, logs, statics, CRLF, zips, referencias perdidas
 - [Multimedia temporal](primordia-multimedia-temp.md) — arte/audio/generadores en docs/multimedia-temp/, se importan con menús Primordia
 - [Skill primordia-sprites](primordia-sprites-skill.md) — usarla en todo arte nuevo; PREGUNTAR SIEMPRE antes de cualquier sprite o animación
@@ -23,7 +24,7 @@
 - **[Estado de Primordia](primordia-project-status.md) — pisos 1-2 en main; piso 3 en feature/floor-3: pasos 1-5 HECHOS y con commit (5 = enemigos y trampas, cerrado con documento v8 y GDD/PLAN); SIGUIENTE paso 6 = salas con tema (Sonnet)**
 - [Sala del ámbar y especiales del ámbar](primordia-floor3-amber.md) — paso 6 bloque 2: decisiones y niveles I-III cerrados 2026-11-04; subpaso 2a (sala+bloque) programado
 - [Aspecto de las especiales del ámbar](primordia-floor3-specials-look.md) — subtandas 1 (bloque nuevo en 2 capas y gota) y 2 (nivel III) APROBADAS; falta la 3 (contorno dorado y motas); la usuaria rehará los sprites de las 3 (2026-11-05)
-- [Cucarachas ladronas del piso 3](primordia-floor3-thief-roach.md) — arte APROBADO (2026-11-04, floor3-roach): parda carbonífera, cenital girada por código, botín a cuestas; las del corazón no se matan
+- [Cucarachas ladronas del piso 3](primordia-floor3-thief-roach.md) — arte APROBADO (2026-11-04, floor3-roach); bloque 3 (almacén + robo del corazón) PROGRAMADO 2026-11-05: parda carbonífera, cenital girada por código, botín a cuestas; las del corazón no se matan
 - [Salas con tema del piso 3](primordia-floor3-room-themes.md) — paso 6 bloque 1 programado (2026-11-04): 5 temas, menú, números; letrero DIBUJADO y aprobado (floor3-room-signs), falta importarlo y programarlo (Sonnet); piezas de escenario pendientes de Opus
 - [Enemigos y trampas del piso 3](primordia-floor3-enemies-decisions.md) — paso 5 HECHO: 6 enemigos + 2 trampas, números, archivos, generador, margen del lodo, matas Cordyceps
 - [Mutaciones y linajes del piso 3](primordia-floor3-mutations-decisions.md) — paso 4 COMPLETO (subpasos 1-5, 8 linajes y toques, reserva); detalle de cada pieza, archivos y decisiones

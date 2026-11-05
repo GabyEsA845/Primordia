@@ -42,6 +42,29 @@ namespace Primordia.Rooms
         // Franjas de profundidad (piso 2): sus tilesets van a continuación de los anteriores.
         const int FirstBandTheme = 4;
 
+        // Distancia mínima entre la vaina de semillas de la tienda y el teletransporte.
+        const float HeartPodClearance = 3.5f;
+
+        /// <summary>
+        /// Dónde va la vaina de semillas en la tienda: la esquina de abajo a la derecha del suelo, la opuesta a la del teletransporte,
+        /// lejos de los pedestales (centro), del mostrador (arriba) y de las puertas; la celda libre más cercana a ese rincón.
+        /// </summary>
+        static Vector2 HeartPodSpot(PlacedRoom placed)
+        {
+            var floor = placed.Template.FloorBounds();
+            var doorCells = placed.DoorCells.Values.SelectMany(cells => cells).Select(cell => cell - placed.Origin);
+            var corner = new Vector2(floor.xMax - 3f, floor.yMin + 3f);
+            var centre = placed.FloorCenter;
+            var candidates = EncounterPlanner.SpawnCells(placed.Template, doorCells)
+                .Select(cell => (Vector2)(placed.Origin + cell) + new Vector2(0.5f, 0.5f))
+                // Fuera de la franja de los pedestales y de Darwin.
+                .Where(point => Mathf.Abs(point.x - centre.x) > 7f || point.y < centre.y - 5f)
+                .OrderBy(point => Vector2.Distance(point, corner))
+                .ToList();
+            // Los pies, en la parte de abajo de la celda.
+            return candidates.Count > 0 ? candidates[0] + Vector2.down * 0.5f : centre + new Vector2(8.5f, -4f);
+        }
+
         // Tramos de la sala de paso, en fracción de la distancia de su puerta a la fosa: hasta aquí, tema del piso actual;
         // luego el intermedio, y desde el segundo, el del piso siguiente. Un poco de ruido para que el corte no sea recto.
         const float MidThemeFrom = 0.4f;
@@ -97,6 +120,8 @@ namespace Primordia.Rooms
         public static BuiltFloor Build(FloorLayout layout, FloorConfig config, Transform parent, System.Random random)
         {
             var built = new BuiltFloor();
+            // La tecla E del corazón que se envía a la vaina es la de las demás piezas con aviso.
+            HeartStorage.KeyPrompt = config.Pieces.keyPrompt;
             var boss = layout.BossChoice.IsValid ? layout.BossChoice : config.BossOptions()[0];
             var bossTheme = boss.theme != null ? boss.theme : config.BossTheme != null ? config.BossTheme : config.Theme;
             var themes = new[]
@@ -805,6 +830,7 @@ namespace Primordia.Rooms
                 SpawnEnemies(placed, enemiesRoot, config, boss, random, puddleSpots, fernSpots, hazardSpots);
             SpawnTraps(placed, enemiesRoot, config, random, puddleSpots, hazardSpots);
 
+            Vector2? podAt = null;
             var room = roomObject.AddComponent<Room>();
             room.Configure(enemiesRoot, doors.ToArray());
             room.ConfigureWaves(laterWaves, vents.ToArray());
@@ -828,7 +854,7 @@ namespace Primordia.Rooms
 
             // Las salas de combate (no el jefe) pueden soltar medio corazón al limpiarse.
             if (placed.Layout.Role is (RoomRole.Combat or RoomRole.Side) && HasEnemies(placed.Layout))
-                roomObject.AddComponent<RoomHearts>();
+                roomObject.AddComponent<RoomHearts>().Configure(placed.Template, placed.Origin);
 
             if (placed.Layout.Reward && config.RewardPool != null)
                 roomObject.AddComponent<MutationReward>().Configure(config.RewardPool, config.RewardOptions);
@@ -842,11 +868,17 @@ namespace Primordia.Rooms
                 // El mostrador va arriba en el centro; si la puerta está arriba, se aparta para no taparla.
                 if (placed.DoorCells.ContainsKey(Vector2Int.up))
                     shop.MoveCounter(-(placed.Template.FloorBounds().width / 2f) + ShopCounterMargin);
+                // Desde el piso 3, la vaina de semillas donde se guardan los corazones de las salas.
+                if (HeartStorage.CapacityOf(config.FloorNumber) > 0)
+                {
+                    podAt = HeartPodSpot(placed);
+                    HeartPod.Create(roomObject.transform, podAt.Value, config.Pieces.keyPrompt);
+                }
             }
 
             // Sala inicial, tienda y antesala del jefe: un teletransporte cerca de una esquina libre.
             if (config.TeleporterPrefab != null && placed.Layout.Role is (RoomRole.Start or RoomRole.Shop or RoomRole.Antechamber))
-                BuildTeleporter(roomObject.transform, placed, config);
+                BuildTeleporter(roomObject.transform, placed, config, podAt);
 
             if (placed.Layout.Role == RoomRole.Exchange && config.ExchangeCapsule != null)
             {
@@ -873,11 +905,14 @@ namespace Primordia.Rooms
         /// El teletransporte va en la casilla libre (suelo rodeado de suelo y lejos de las puertas) más cercana a la
         /// esquina de abajo a la izquierda del suelo, para no estorbar a la tienda ni a lo que haya en el centro.
         /// </summary>
-        static void BuildTeleporter(Transform roomObject, PlacedRoom placed, FloorConfig config)
+        static void BuildTeleporter(Transform roomObject, PlacedRoom placed, FloorConfig config, Vector2? avoid = null)
         {
             var floor = placed.Template.FloorBounds();
             var doorCells = placed.DoorCells.Values.SelectMany(cells => cells).Select(cell => cell - placed.Origin);
             var candidates = EncounterPlanner.SpawnCells(placed.Template, doorCells);
+            // No encima de la vaina de la tienda ni pegado a ella.
+            if (avoid.HasValue)
+                candidates = candidates.Where(cell => Vector2.Distance((Vector2)(placed.Origin + cell) + new Vector2(0.5f, 0.5f), avoid.Value) >= HeartPodClearance).ToList();
             var corner = new Vector2(floor.xMin + 3f, floor.yMin + 3f);
             Vector2 position = placed.FloorCenter;
             if (candidates.Count > 0)

@@ -117,6 +117,7 @@ namespace Primordia.Rooms
             CurrentFloor = config.FloorNumber;
             ReactionKit.Current = config.Reactions;
             RoomHearts.ResetLuck();
+            HeartStorage.Reset(config.FloorNumber);
             var random = new System.Random(seed);
             Layout = FloorLayoutGenerator.Generate(config, random);
             Built = FloorBuilder.Build(Layout, config, transform, random);

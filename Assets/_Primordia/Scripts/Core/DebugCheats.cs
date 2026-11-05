@@ -65,6 +65,9 @@ namespace Primordia.Core
             // Con Mayús: lo que antes estaba en F2-F5 (daño ×5, vaciar sala, mutación al azar, especial).
             if (keyboard.f1Key.wasPressedThisFrame && !shift)
                 NextSlotMutation(MutationSlot.Limbs, "Extremidades");
+            // Mayús+F1: un medio corazón de sala en el suelo, delante (para probar el almacén y la cucaracha ladrona).
+            if (keyboard.f1Key.wasPressedThisFrame && shift)
+                DropRoomHeart();
             if (keyboard.f2Key.wasPressedThisFrame)
             {
                 if (shift)
@@ -128,6 +131,20 @@ namespace Primordia.Core
                 player.Health.MakeInvulnerable(0.2f);
             if (strong && player.Weapon != null)
                 player.Weapon.SetDamageBonus(this, DamageBoost);
+        }
+
+        /// <summary>Mayús+F1: deja un medio corazón de sala unos tiles por delante, en la sala en que estás.</summary>
+        void DropRoomHeart()
+        {
+            var hearts = current != null ? current.GetComponent<RoomHearts>() : null;
+            if (hearts == null)
+            {
+                Say("Esta sala no suelta corazones");
+                return;
+            }
+            Vector2 aim = player.Controller != null ? player.Controller.AimDirection : Vector2.right;
+            hearts.DebugDrop((Vector2)player.transform.position + aim.normalized * 2.5f);
+            Say("Medio corazón en el suelo");
         }
 
         /// <summary>F11: viaja al siguiente teletransporte activo; si no hay otro, vuelve a la marca de regreso.</summary>

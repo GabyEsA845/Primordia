@@ -1,6 +1,6 @@
 ---
 name: primordia-floor3-capsule-redesign
-description: "Rediseño de arte de la Cápsula de ámbar (piso 3), 2026-11-06: forma D aprobada, animaciones de formación/rotura/curación/halo hechas; falta reposo, importar y programar"
+description: "Rediseño de arte de la Cápsula de ámbar (piso 3), 2026-11-06: ARTE CERRADO (forma D, formación, reposo, rotura, curación y halo); falta importar y programar (Sonnet)"
 metadata:
   type: project
 ---
@@ -17,7 +17,7 @@ La usuaria no estaba contenta con el arte de las especiales del ámbar (ver [[pr
 **Why:** la cápsula anterior (octogonal 48×56) «lucía demasiado grande», forma y efectos de aparición/rotura no le gustaban.
 
 **How to apply / SIGUIENTE (en orden):**
-1. Arte pendiente (Opus recomendado, pero lo hizo Sonnet): **animación de REPOSO** de la cápsula (bucle I-II y III) y exportar Back/Front de reposo (celda 58×60). Retoques opcionales que la usuaria puede pedir: corazones, gemas del halo (5 px, poco visibles), grietas de los cuadros 1-3 de la rotura, trozos planos.
+1. **ARTE CERRADO (2026-11-06, Opus):** reposo HECHO y aprobado (`generar_reposo.py` → `reposo/`): va DEBAJO de la curación durante los 2 s dentro; sutil (destello en cuadros 0-4 + 3 burbujas, sin latido propio porque lo pone la curación), bucle corto 8 × 120 ms elegido por la usuaria, Back fija; nivel III: onda de luz por las vetas del suelo (`Fx_AmberFloorVeins_Idle`). Retoques opcionales que la usuaria puede pedir: corazones, gemas del halo (5 px, poco visibles), grietas de los cuadros 1-3 de la rotura, trozos planos.
 2. Luego (Sonnet): importar con menú `Primordia > Floor 3 > …` (nuevo `ArtSetup`), sustituir `Fx_AmberShell*` en `AmberShell`/`AmberCapsuleShield`, programar el tiempo detenido en la formación, curación por pulsos, halo en vez de capa del lomo, tinte de curación. **Nada de esto está importado ni programado.** Actualizar `docs/MULTIMEDIA.md`.
 3. Después la **Gota de ámbar** y los **Cercos** (rediseño; preguntar qué no gusta y la idea de aspecto, igual que se hizo con la Cápsula), y el contorno dorado/motas común (subtanda 3).
 

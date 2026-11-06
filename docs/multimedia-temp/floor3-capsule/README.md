@@ -24,9 +24,10 @@ Los GIF (`gif/`) y `__pycache__` no van a git; se regeneran. PNG por LFS.
 | `generar_rotura.py` | agrietado, quiebre y estallido | `rotura/` |
 | `generar_curacion.py` | curación (1, 2 y 3 medios corazones) | `curacion/` |
 | `generar_halo.py` | halo con alas (listo/medio/apagado/fundido/resplandor) | `halo/` |
+| `generar_reposo.py` | reposo (bucle corto) I-II y III + vetas que brillan; GIF de prueba con la curación encima | `reposo/`, `vista_previa_reposo.png` |
 
 ## Hojas para importar (todas con celda del ancho/alto indicado, cuadros horizontales, 16 PPU, Point, sin compresión)
-Cápsula en reposo (imagen fija, sin hoja propia aún): `propuestas/Capsule_D_{Back,Front}.png` para I-II (celda 46×48, pies en y=41); el nivel III usa el generador (`capsule3()` en `generar_cristalizacion.py`). **Falta exportarlas** como hoja de reposo (ver «Pendiente»).
+Cápsula en reposo = `reposo/` (abajo), en la misma celda que la formación. `propuestas/Capsule_D_*` queda solo como referencia.
 
 | Hoja | Cuadros | Celda | ms | Uso |
 |---|---|---|---|---|
@@ -34,6 +35,9 @@ Cápsula en reposo (imagen fija, sin hoja propia aún): `propuestas/Capsule_D_{B
 | `cristalizacion/Fx_AmberCapsule3_Form_{Back,Front}` | 12 | 58×60 | igual | Formación III (cápsula mayor) |
 | `cristalizacion/Fx_AmberCapsule_Form_Glow` | 12 | 58×60 | igual | Halo y motas del remate, detrás de todo (igual en I-II y III) |
 | `cristalizacion/Fx_AmberFloorVeins_Form` | 12 | 96×16 | igual | Vetas del suelo (solo III); fila 0 = y 44 de la celda de la cápsula; eje x=48 |
+| `reposo/Fx_AmberCapsule_Idle_Back` / `Fx_AmberCapsule3_Idle_Back` | 1 | 58×60 | | Cápsula en reposo, detrás de la criatura (fija). Pies en y=51, eje x=29 |
+| `reposo/Fx_AmberCapsule_Idle_Front` / `Fx_AmberCapsule3_Idle_Front` | 8 | 58×60 | 120 | Bucle de reposo delante: destello que cruza (cuadros 0-4) y 3 burbujas que suben. Sin latido (lo pone la curación). Va **debajo de las capas de curación** durante los 2 s dentro; si la cápsula dura otra cosa, el bucle se repite |
+| `reposo/Fx_AmberFloorVeins_Idle` | 8 | 96×16 | 120 | Solo III: vetas ya formadas con una onda de luz que sale de la base hacia fuera (misma colocación que `Fx_AmberFloorVeins_Form`) |
 | `rotura/Fx_AmberCapsule_Break_{Back,Front}` / `3_` | 12 | 96×60 | 110×4, 90, 70×7 | Rotura I-II y III. **Cuadro que cuenta: el 5º (índice 4, el quiebre)**: libera al jugador y reparte esquirlas. Desde el 6º, Back vacío |
 | `rotura/Fx_AmberCapsule_Break_Glow` | 12 | 96×60 | igual | Destello y polvo (detrás de todo) |
 | `rotura/Fx_AmberFloorVeins_Break` | 12 | 96×16 | igual | Vetas del suelo vibran y se disuelven (III) |
@@ -46,7 +50,7 @@ Cápsula en reposo (imagen fija, sin hoja propia aún): `propuestas/Capsule_D_{B
 Tinte de la criatura en la curación (shader, mezcla hacia `#fff0b0`): `TINT` en `generar_curacion.py` (I: 1 pulso; II: 2; III: 3; máx. 0,45).
 
 ## Pendiente
-1. **Animación de REPOSO** de la cápsula (bucle: brillo que cruza, burbujas, latido del núcleo; variante III). Hoy solo hay imagen fija. Exportar también Back/Front de reposo en celda 58×60 (como la formación).
+1. ~~Animación de REPOSO~~ HECHA (2026-11-06, `generar_reposo.py`; sutil, 8 × 120 ms, vetas que brillan en III), a falta de aprobación.
 2. Importar todo en Unity (menú `Primordia > Floor 3 > ...`, Sonnet) y sustituir a `Fx_AmberShell*` en `AmberShell`/`AmberCapsuleShield`; **tiempo detenido durante la formación**, halo en lugar de la capa del lomo (`Special_AmberCapsule_*`), curación (pulsos y corazones por medio corazón).
 3. Actualizar `docs/MULTIMEDIA.md` con esta carpeta.
 4. Si la usuaria lo pide: agrandar/alargar corazones, gemas del halo (5 px, poco visibles), grietas de los cuadros 1-3 de la rotura (finas), trozos de la rotura (planos, sin textura).

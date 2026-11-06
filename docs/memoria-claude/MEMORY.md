@@ -23,6 +23,7 @@
 - [Sala de paso del piso 2 → 3](primordia-floor2-transition-room.md) — charca, ambiente del pantano y metamorfosis por pareja HECHOS y subidos
 - **[Estado de Primordia](primordia-project-status.md) — pisos 1-2 en main; piso 3 en feature/floor-3: pasos 1-5 HECHOS y con commit (5 = enemigos y trampas, cerrado con documento v8 y GDD/PLAN); SIGUIENTE paso 6 = salas con tema (Sonnet)**
 - [Sala del ámbar y especiales del ámbar](primordia-floor3-amber.md) — paso 6 bloque 2: decisiones y niveles I-III cerrados 2026-11-04; subpaso 2a (sala+bloque) programado
+- **[Rediseño de la Cápsula de ámbar](primordia-floor3-capsule-redesign.md) — 2026-11-06: forma D aprobada + formación, rotura, curación y halo con alas HECHOS (arte en floor3-capsule/); falta reposo, importar y programar; luego Gota y Cercos**
 - [Aspecto de las especiales del ámbar](primordia-floor3-specials-look.md) — subtandas 1 (bloque nuevo en 2 capas y gota) y 2 (nivel III) APROBADAS; falta la 3 (contorno dorado y motas); la usuaria rehará los sprites de las 3 (2026-11-05)
 - [Cucarachas ladronas del piso 3](primordia-floor3-thief-roach.md) — arte APROBADO (2026-11-04, floor3-roach); bloque 3 (almacén + robo del corazón) PROGRAMADO 2026-11-05: parda carbonífera, cenital girada por código, botín a cuestas; las del corazón no se matan
 - [Salas con tema del piso 3](primordia-floor3-room-themes.md) — paso 6 bloque 1 programado (2026-11-04): 5 temas, menú, números; letrero DIBUJADO y aprobado (floor3-room-signs), falta importarlo y programarlo (Sonnet); piezas de escenario pendientes de Opus

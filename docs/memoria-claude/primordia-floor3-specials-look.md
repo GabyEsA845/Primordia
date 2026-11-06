@@ -27,4 +27,6 @@ Descartado: estética totalmente distinta por especial. Por decidir: si las espe
 
 **ARTE PENDIENTE (2026-11-05, la usuaria):** tras probar las 3 especiales del ámbar en juego, **no le gusta cómo quedaron los sprites** y los actualizará ella más adelante (no especificó cuáles: capas del cuerpo, bloque/efectos, iconos…; preguntar cuáles al retomarlo). El código no depende del aspecto: al cambiarlos basta repetir `Primordia > Floor 3 > Crear mutaciones especiales del ámbar` (re-importa iconos, capas y efectos desde `floor3-mutations/` y `floor3-specials-look/`). Sigue pendiente también la subtanda 3 (contorno dorado y motas).
 
+**ACTUALIZACIÓN 2 (2026-11-06):** Cápsula y Gota rediseñadas y cerradas ([[primordia-floor3-capsule-redesign]], [[primordia-floor3-drop-redesign]]). **Los Cercos se quedan como están** (la usuaria dice que lucen bien; no retocarlos). Sigue pendiente la subtanda 3 (contorno dorado y motas).
+
 **ACTUALIZACIÓN (2026-11-06):** la usuaria ha empezado a rehacer el arte, por la Cápsula; ver [[primordia-floor3-capsule-redesign]] (forma D, formación, rotura, curación y halo hechos; la Gota y los Cercos siguen pendientes). Lo de `shell/` y `level3/` ya no vale para la Cápsula.

@@ -18,22 +18,42 @@ namespace Primordia.Core
 
         public static bool IsActive => Scale < 1f;
 
+        /// <summary>True mientras algo detiene el mundo del todo (la formación de la Cápsula de ámbar).</summary>
+        public static bool Frozen { get; private set; }
+
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
         static void ResetStatics()
         {
             Scale = 1f;
+            Frozen = false;
             // Una escena nueva nunca empieza en cámara lenta.
             SceneManager.sceneLoaded -= OnSceneLoaded;
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
 
-        static void OnSceneLoaded(Scene scene, LoadSceneMode mode) => Scale = 1f;
+        static void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
+            Scale = 1f;
+            Frozen = false;
+        }
 
         /// <summary>Pone la cámara lenta (o la quita con 1). Si el juego está parado (pausa, menú), se nota al reanudar.</summary>
         public static void Set(float scale)
         {
             Scale = Mathf.Clamp(scale, 0.05f, 1f);
-            if (Time.timeScale > 0f)
+            if (Time.timeScale > 0f && !Frozen)
+                Time.timeScale = Scale;
+        }
+
+        /// <summary>Detiene (o devuelve) el tiempo del mundo. Quien lo detiene sigue su reloj con el tiempo sin escala.</summary>
+        public static void Freeze(bool frozen)
+        {
+            if (Frozen == frozen)
+                return;
+            Frozen = frozen;
+            if (frozen)
+                Time.timeScale = 0f;
+            else if (GameManager.Instance == null || GameManager.Instance.State == GameState.Playing)
                 Time.timeScale = Scale;
         }
 

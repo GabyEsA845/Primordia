@@ -121,6 +121,99 @@ namespace Primordia.Tests
             Assert.AreEqual(2, dodge.DodgesMade);
         }
 
+        // ---------- Bloque de ámbar ----------
+
+        Sprite[] Frames(int count)
+        {
+            var texture = Track(new Texture2D(4, 4));
+            var sprite = Sprite.Create(texture, new Rect(0, 0, 4, 4), new Vector2(0.5f, 0.5f));
+            Track(sprite);
+            var frames = new Sprite[count];
+            for (int i = 0; i < count; i++)
+                frames[i] = sprite;
+            return frames;
+        }
+
+        [UnityTest]
+        public IEnumerator Shell_FreezesTheWorldWhileForming_ThenReleasesAtTheBreakFrame_AndDestroysItself()
+        {
+            var art = new AmberShellArt
+            {
+                formFront = Frames(3), formBack = Frames(3), formDurations = new[] { 0.1f, 0.1f, 0.1f },
+                holdFront = Frames(2), holdBack = Frames(1),
+                breakFront = Frames(3), breakBack = Frames(3), breakDurations = new[] { 0.1f, 0.1f, 0.1f }, breakCountFrame = 1,
+            };
+            Vector2 released = default;
+            bool broken = false;
+            var shell = AmberShell.Create(player.transform, art, 0.2f, freezeWorld: true);
+            shell.Broken += center => { broken = true; released = center; };
+            Assert.AreEqual(0.3f, art.FormSeconds, 0.001f);
+            Assert.AreEqual(0.1f, art.BreakReleaseSeconds, 0.001f);
+
+            yield return null;
+            Assert.IsTrue(TimeWarp.Frozen, "El tiempo se detiene mientras se forma.");
+            Assert.AreEqual(0f, Time.timeScale);
+
+            yield return new WaitForSecondsRealtime(0.5f);
+            Assert.IsFalse(TimeWarp.Frozen, "Y vuelve al acabar la formación.");
+            Assert.AreEqual(1f, Time.timeScale);
+            Assert.IsFalse(broken);
+
+            // 0,2 s de reposo y 0,1 s hasta el cuadro de liberación.
+            yield return new WaitForSeconds(0.45f);
+            Assert.IsTrue(broken, "Libera en el cuadro que cuenta.");
+
+            yield return new WaitForSeconds(0.4f);
+            Assert.IsTrue(shell == null, "Se destruye al acabar la rotura.");
+        }
+
+        [UnityTest]
+        public IEnumerator Shell_WithASolidBody_BlocksUntilItReleases_ThenLetsGo()
+        {
+            var art = new AmberShellArt
+            {
+                holdFront = Frames(1), holdBack = Frames(1), solidSize = new Vector2(2f, 1.5f), solidOffset = new Vector2(0f, 0.75f),
+                breakFront = Frames(2), breakBack = Frames(2), breakDurations = new[] { 0.1f, 0.1f }, breakCountFrame = 1,
+            };
+            var shell = AmberShell.Create(player.transform, art, 0.3f, AmberShell.Anchor.Feet);
+            yield return null;
+            var solid = shell.transform.Find("Solid");
+            Assert.IsNotNull(solid, "El bloque tiene cuerpo.");
+            Assert.IsTrue(solid.gameObject.activeSelf);
+            Assert.IsFalse(solid.GetComponent<BoxCollider2D>().isTrigger, "Frena de verdad.");
+
+            yield return new WaitForSeconds(0.55f);
+            Assert.IsTrue(shell == null || !shell.transform.Find("Solid").gameObject.activeSelf, "Al liberar, deja de ser sólido.");
+        }
+
+        [UnityTest]
+        public IEnumerator Shell_WithASolidBody_DoesNotPushOutWhatItEncloses()
+        {
+            // Un enemigo dinámico dentro del bloque: el bloque lo sigue, así que si lo empujara se iría cayendo sin parar.
+            var enemy = Track(new GameObject("Enemy"));
+            enemy.transform.position = new Vector3(0f, 5f, 0f);
+            var body = enemy.AddComponent<Rigidbody2D>();
+            body.gravityScale = 0f;
+            enemy.AddComponent<CircleCollider2D>().radius = 0.4f;
+            var art = new AmberShellArt { holdFront = Frames(1), holdBack = Frames(1), solidSize = new Vector2(2.5f, 1.7f), solidOffset = new Vector2(0f, 0.75f) };
+            AmberShell.Create(enemy.transform, art, 5f, AmberShell.Anchor.Feet);
+
+            yield return new WaitForSeconds(0.6f);
+            Assert.AreEqual(5f, enemy.transform.position.y, 0.05f, "No se mueve: el bloque no lo empuja.");
+        }
+
+        [UnityTest]
+        public IEnumerator Shell_FeetAnchor_PutsItsDrawingOnTheGround_AndTheCenterRisesFromThere()
+        {
+            player.transform.position = new Vector3(3f, 2f, 0f);
+            var art = new AmberShellArt { holdFront = Frames(1), centerRise = 0.875f };
+            var shell = AmberShell.Create(player.transform, art, 5f, AmberShell.Anchor.Feet);
+            yield return null;
+            // El collider del jugador (radio 0,4) da los pies.
+            Assert.AreEqual(1.6f, shell.transform.position.y, 0.05f);
+            Assert.AreEqual(1.6f + 0.875f, shell.Center.y, 0.05f);
+        }
+
         // ---------- Cápsula ----------
 
         [Test]
@@ -146,12 +239,14 @@ namespace Primordia.Tests
 
             shield.Encase();
             Assert.IsTrue(shield.IsEncased);
-            Assert.AreEqual(2, health.Current, "Cura medio corazón al encerrarte.");
             Assert.IsTrue(controller.MovementLocked, "Inmóvil.");
             Assert.IsFalse(health.CanTakeDamage, "Invulnerable.");
             Assert.AreEqual(0, shield.ActivationsLeft, "Una vez por sala.");
 
-            yield return new WaitForSeconds(2.3f);
+            yield return new WaitForSeconds(0.6f);
+            Assert.AreEqual(2, health.Current, "Cura medio corazón con el pulso de la curación (sin dibujo, a los 0,4 s).");
+
+            yield return new WaitForSeconds(1.8f);
             Assert.IsFalse(controller.MovementLocked, "Se rompe el bloque y vuelves a moverte.");
             Assert.IsFalse(health.CanTakeDamage, "Y sigues invencible 2 s más.");
         }

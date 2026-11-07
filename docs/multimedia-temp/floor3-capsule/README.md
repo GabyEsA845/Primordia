@@ -51,7 +51,7 @@ Tinte de la criatura en la curación (shader, mezcla hacia `#fff0b0`): `TINT` en
 
 ## Pendiente
 1. ~~Animación de REPOSO~~ HECHA (2026-11-06, `generar_reposo.py`; sutil, 8 × 120 ms, vetas que brillan en III), a falta de aprobación.
-2. Importar todo en Unity (menú `Primordia > Floor 3 > ...`, Sonnet) y sustituir a `Fx_AmberShell*` en `AmberShell`/`AmberCapsuleShield`; **tiempo detenido durante la formación**, halo en lugar de la capa del lomo (`Special_AmberCapsule_*`), curación (pulsos y corazones por medio corazón).
+2. ~~Importar y programar~~ HECHO (2026-11-06): menú `Primordia > Floor 3 > Crear mutaciones especiales del ámbar` (`Floor3AmberSpecialsSetup`); tiempo detenido en la formación, halo, curación por pulsos. Falta probarlo en juego.
 3. Actualizar `docs/MULTIMEDIA.md` con esta carpeta.
 4. Si la usuaria lo pide: agrandar/alargar corazones, gemas del halo (5 px, poco visibles), grietas de los cuadros 1-3 de la rotura (finas), trozos de la rotura (planos, sin textura).
-5. La Gota de ámbar y los Cercos siguen por rediseñar (la usuaria dijo que empezaba por la Cápsula).
+5. La Gota ya está rediseñada (`floor3-drop/`); los Cercos NO se rediseñan (a la usuaria le gusta el actual).

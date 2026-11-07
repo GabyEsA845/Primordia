@@ -7,7 +7,7 @@ namespace Primordia.Mutations
     /// Cápsula de ámbar (Piel, especial del ámbar): un golpe que te deja a medio corazón o menos te encierra en ámbar 2 s, invulnerable
     /// e inmóvil; al encerrarte te cura medio corazón, y al romperse el bloque suelta esquirlas que dañan y empujan, y tienes 2 s de
     /// invencibilidad al salir. Una vez por sala. Nivel II: en total cura 1 corazón y las esquirlas aturden 1 s (no a jefes). Nivel
-    /// III: 2 activaciones por sala y cura 1 corazón y medio, con el bloque de doble cáscara y corazoncitos que suben.
+    /// III: 2 activaciones por sala y cura 1 corazón y medio, con una cápsula más ancha y vetas de ámbar por el suelo.
     /// </summary>
     [CreateAssetMenu(menuName = "Primordia/Mutations/Special/Amber Capsule", fileName = "Mutation_AmberCapsule")]
     public class AmberCapsuleMutation : MutationData
@@ -43,10 +43,12 @@ namespace Primordia.Mutations
 
         [Header("Arte")]
         [SerializeField] AmberShellArt shell = new();
-        [Tooltip("Nivel III: bloque de doble cáscara.")]
+        [Tooltip("Nivel III: la cápsula más ancha, con las vetas del suelo.")]
         [SerializeField] AmberShellArt shellIII = new();
-        [Tooltip("Nivel III: pulsos cálidos y medios corazones que suben (48×56).")]
-        [SerializeField] Sprite[] healFrames = Array.Empty<Sprite>();
+        [Tooltip("Curación de los niveles I, II y III (20 cuadros de capas sobre la cápsula en reposo).")]
+        [SerializeField] AmberHealArt[] heals = System.Array.Empty<AmberHealArt>();
+        [Tooltip("Halo con alas sobre la cabeza mientras está lista.")]
+        [SerializeField] AmberHaloArt halo = new();
 
         public CapsuleLevel ValuesAt(int level)
         {
@@ -67,8 +69,10 @@ namespace Primordia.Mutations
                 shardRadius = shardRadius,
                 shardDamage = shardDamage,
                 shardPush = shardPush,
+                levelThree = level >= 3,
                 shell = level >= 3 && !shellIII.IsEmpty ? shellIII : shell,
-                healFrames = level >= 3 ? healFrames : Array.Empty<Sprite>(),
+                healArt = heals != null && heals.Length > 0 ? heals[Mathf.Clamp(level, 1, heals.Length) - 1] : null,
+                halo = halo,
             });
         }
 
@@ -78,11 +82,12 @@ namespace Primordia.Mutations
             upgrades = newUpgrades;
         }
 
-        internal void SetArt(AmberShellArt newShell, AmberShellArt newShellIII, Sprite[] newHeal)
+        internal void SetArt(AmberShellArt newShell, AmberShellArt newShellIII, AmberHealArt[] newHeals, AmberHaloArt newHalo)
         {
             shell = newShell ?? new AmberShellArt();
             shellIII = newShellIII ?? new AmberShellArt();
-            healFrames = newHeal ?? Array.Empty<Sprite>();
+            heals = newHeals ?? Array.Empty<AmberHealArt>();
+            halo = newHalo ?? new AmberHaloArt();
         }
     }
 }

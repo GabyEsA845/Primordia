@@ -13,7 +13,7 @@ namespace Primordia.Editor
     /// <summary>
     /// Las 3 mutaciones especiales del ámbar del piso 3 (paso 6, bloque 2, subpasos 2b-2d): Cercos de cucaracha, Cápsula de ámbar y Gota
     /// de ámbar. Crea sus datos con los textos de cada nivel, importa sus iconos, sus capas sobre los cuerpos de las criaturas del piso 3
-    /// y los efectos (docs/multimedia-temp/floor3-mutations y floor3-specials-look/shell + level3), las mete en el bloque de la sala
+    /// y los efectos (docs/multimedia-temp/floor3-mutations, floor3-capsule y floor3-drop; los Cercos aún usan floor3-specials-look), las mete en el bloque de la sala
     /// del ámbar y monta la escena de prueba Test_Floor3Specials, con atajos para probarlas una por una en sus tres niveles.
     /// </summary>
     public static class Floor3AmberSpecialsSetup
@@ -21,6 +21,8 @@ namespace Primordia.Editor
         const string DataFolder = "Assets/_Primordia/Data/Mutations/Floor3";
         const string SourceFolder = "docs/multimedia-temp/floor3-mutations";
         const string LookFolder = "docs/multimedia-temp/floor3-specials-look";
+        const string CapsuleFolder = "docs/multimedia-temp/floor3-capsule";
+        const string DropFolder = "docs/multimedia-temp/floor3-drop";
         const string UIArtFolder = "Assets/_Primordia/Art/UI/Icons";
         const string EffectsArtFolder = "Assets/_Primordia/Art/Effects/Floor3Amber";
         const string ScenePath = "Assets/_Primordia/Scenes/Test_Floor3Specials.unity";
@@ -35,6 +37,7 @@ namespace Primordia.Editor
             var cerci = CreateCerci();
             var capsule = CreateCapsule();
             var gland = CreateGland();
+            DeleteOldArt();
             AssetDatabase.SaveAssets();
 
             // El bloque de la sala del ámbar guarda ya las tres (antes tenía las del piso 2 de prueba).
@@ -76,8 +79,9 @@ namespace Primordia.Editor
                 new AmberCapsuleMutation.CapsuleLevel { heal = 2, perRoom = 1, shardStun = 1f },
                 new AmberCapsuleMutation.CapsuleLevel { heal = 3, perRoom = 2, shardStun = 1f });
             SetIcons(capsule, "AmberCapsule");
-            SetLayers(capsule, "Special", "Special_AmberCapsule");
-            capsule.SetArt(Shell(false), Shell(true), Effect(LookFolder, "level3", "Fx_CapsuleHeal", 48));
+            // Antes de activarse la lleva un halo con alas (objeto aparte), no una capa sobre el cuerpo.
+            capsule.SetCreatureLayers();
+            capsule.SetArt(CapsuleShell(false), CapsuleShell(true), new[] { Heal(1), Heal(2), Heal(3) }, Halo());
             EditorUtility.SetDirty(capsule);
             return capsule;
         }
@@ -96,32 +100,166 @@ namespace Primordia.Editor
                 new AmberGlandMutation.GlandLevel { cooldown = 18f, stunSeconds = 8f, bossSeconds = 2f },
                 new AmberGlandMutation.GlandLevel { cooldown = 15f, stunSeconds = 8f, bossSeconds = 2f, kills = true });
             SetIcons(gland, "AmberDrop");
-            SetLayers(gland, "Special", "Special_AmberGland_Rest");
-            gland.SetFullLayers(Layers("Special", "Special_AmberGland_Full"));
-            gland.SetArt(Shell(false), new AmberShellArt(),
-                Effect(LookFolder, "shell", "Proj_AmberDrop", 16), Effect(LookFolder, "shell", "Fx_AmberDrop_Hit", 24),
-                Effect(LookFolder, "level3", "Fx_AmberStun_Stars", 32), Effect(LookFolder, "level3", "Fx_AmberCrystals_Erupt", 48),
-                Effect(LookFolder, "level3", "Fx_AmberFossil_Front", 48));
+            // El cristal del lomo (vacío, a medias, lleno y cargando) lo pone AmberGlandGlow, no la capa normal del Órgano.
+            gland.SetCreatureLayers();
+            gland.SetCrystalLayers(Layers("glandula", "Special_AmberGland_Empty", DropFolder), Layers("glandula", "Special_AmberGland_Half", DropFolder),
+                Layers("glandula", "Special_AmberGland_Full", DropFolder), Layers("glandula", "Special_AmberGland_Charge", DropFolder));
+            gland.SetArt(DropShell("Normal", false), DropShell("Large", false), DropShell("Normal", true), DropShell("Large", true),
+                DropSheet("disparo", "Proj_AmberDrop", 24, 12, 17, 6), DropSheet("disparo", "Fx_AmberDrop_Hit", 32, 32, 16, 16));
             EditorUtility.SetDirty(gland);
             return gland;
         }
 
         // ---------- Ayudas ----------
 
-        /// <summary>El bloque de dos capas: el de siempre (shell) o el de doble cáscara del nivel III (level3).</summary>
-        static AmberShellArt Shell(bool levelThree)
+        // Tiempos de las animaciones (ms de las hojas, README de floor3-capsule y floor3-drop).
+        static readonly float[] CapsuleFormMs = { 90, 90, 90, 90, 90, 90, 90, 90, 110, 110, 110, 110 };
+        static readonly float[] CapsuleBreakMs = { 110, 110, 110, 110, 90, 70, 70, 70, 70, 70, 70, 70 };
+        static readonly float[] DropFormMs = { 70, 70, 70, 70, 70, 90, 90 };
+        static readonly float[] DropFormThreeMs = { 70, 70, 70, 70, 70, 90, 90, 110 };
+        static readonly float[] DropBreakMs = { 90, 60, 60, 60, 60, 60, 60 };
+        // Cuadro en el que cura cada pulso de la curación (nivel I, II y III) y cuánto se tiñe de dorado la criatura (generar_curacion.py).
+        static readonly int[][] HealPulses = { new[] { 5 }, new[] { 5, 10 }, new[] { 5, 9, 13 } };
+        static readonly float[][] HealTint =
         {
-            string folder = levelThree ? "level3" : "shell";
-            string prefix = levelThree ? "Fx_AmberShell3" : "Fx_AmberShell";
+            new[] { 0f, 0f, 0.1f, 0.2f, 0.3f, 0.2f, 0.1f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0.16f, 0.32f, 0.45f, 0.32f, 0.16f, 0f },
+            new[] { 0f, 0f, 0.1f, 0.2f, 0.3f, 0.2f, 0.1f, 0.1f, 0.2f, 0.3f, 0.2f, 0.1f, 0f, 0f, 0.16f, 0.32f, 0.45f, 0.32f, 0.16f, 0f },
+            new[] { 0f, 0f, 0.1f, 0.2f, 0.3f, 0.2f, 0.2f, 0.2f, 0.3f, 0.2f, 0.2f, 0.2f, 0.3f, 0.2f, 0.26f, 0.32f, 0.45f, 0.32f, 0.16f, 0f },
+        };
+
+        static float[] Seconds(float[] milliseconds) => milliseconds.Select(ms => ms / 1000f).ToArray();
+
+        /// <summary>
+        /// Una hoja del arte nuevo de la Cápsula o de la Gota. <paramref name="pivotX"/> y <paramref name="pivotY"/> son píxeles desde
+        /// la esquina de arriba a la izquierda de cada cuadro (pueden salirse): el punto donde se ancla el dibujo. Los dibujos de
+        /// un mismo bloque comparten ese punto aunque sus celdas sean distintas.
+        /// </summary>
+        static Sprite[] Sheet(string root, string folder, string name, int cellWidth, int cellHeight, float pivotX, float pivotY)
+        {
+            string subfolder = root == CapsuleFolder ? "Capsule" : "Drop";
+            return ArtSetup.ImportLooseSheet($"{root}/{folder}/{name}.png", $"{EffectsArtFolder}/{subfolder}/{name}.png", cellWidth,
+                new Vector2(pivotX / cellWidth, 1f - pivotY / cellHeight));
+        }
+
+        // ---------- Cápsula ----------
+
+        // El cuerpo mide 32×32 y va con su centro en (28, 39) de la celda de 58×60 de la formación y el reposo, y en (47, 39) de la de 96×60
+        // de la rotura y la curación; las vetas del suelo (96×16) empiezan 44 px más abajo que la celda de la cápsula.
+        static Sprite[] Capsule(string folder, string name, bool wide) =>
+            Sheet(CapsuleFolder, folder, name, wide ? 96 : 58, 60, wide ? 47 : 28, 39);
+
+        static Sprite[] Veins(string folder, string name) => Sheet(CapsuleFolder, folder, name, 96, 16, 47, -5);
+
+        static AmberShellArt CapsuleShell(bool levelThree)
+        {
+            string tag = levelThree ? "Fx_AmberCapsule3" : "Fx_AmberCapsule";
             return new AmberShellArt
             {
-                backForm = Effect(LookFolder, folder, $"{prefix}_Back_Form", 48),
-                backHold = Effect(LookFolder, folder, $"{prefix}_Back_Hold", 48),
-                frontForm = Effect(LookFolder, folder, $"{prefix}_Front_Form", 48),
-                frontHold = Effect(LookFolder, folder, $"{prefix}_Front_Hold", 48),
-                crack = Effect(LookFolder, folder, $"{prefix}_Front_Crack", 48),
-                shatter = Effect(LookFolder, "shell", "Fx_AmberShell_Shatter", 80),
+                formBack = Capsule("cristalizacion", $"{tag}_Form_Back", false),
+                formFront = Capsule("cristalizacion", $"{tag}_Form_Front", false),
+                formGlow = Capsule("cristalizacion", "Fx_AmberCapsule_Form_Glow", false),
+                veinsForm = levelThree ? Veins("cristalizacion", "Fx_AmberFloorVeins_Form") : new Sprite[0],
+                formDurations = Seconds(CapsuleFormMs),
+                holdBack = Capsule("reposo", $"{tag}_Idle_Back", false),
+                holdFront = Capsule("reposo", $"{tag}_Idle_Front", false),
+                veinsHold = levelThree ? Veins("reposo", "Fx_AmberFloorVeins_Idle") : new Sprite[0],
+                holdFrame = 0.12f,
+                breakBack = Capsule("rotura", $"{tag}_Break_Back", true),
+                breakFront = Capsule("rotura", $"{tag}_Break_Front", true),
+                breakGlow = Capsule("rotura", "Fx_AmberCapsule_Break_Glow", true),
+                veinsBreak = levelThree ? Veins("rotura", "Fx_AmberFloorVeins_Break") : new Sprite[0],
+                breakDurations = Seconds(CapsuleBreakMs),
+                // El quiebre (5.º cuadro) libera al jugador.
+                breakCountFrame = 4,
             };
+        }
+
+        static AmberHealArt Heal(int level) => new()
+        {
+            back = Capsule("curacion", $"Fx_AmberCapsule_Heal{level}_Back", true),
+            front = Capsule("curacion", $"Fx_AmberCapsule_Heal{level}_Front", true),
+            hearts = Capsule("curacion", $"Fx_AmberCapsule_Heal{level}_Hearts", true),
+            glow = Capsule("curacion", $"Fx_AmberCapsule_Heal{level}_Glow", true),
+            frameSeconds = 0.1f,
+            pulseFrames = HealPulses[level - 1],
+            tint = HealTint[level - 1],
+        };
+
+        // El halo (44×28) se ancla en el centro del anillo (22, 18); su resplandor (56×36), en (28, 20).
+        static AmberHaloArt Halo()
+        {
+            Sprite[] Ring(string name) => Sheet(CapsuleFolder, "halo", name, 44, 28, 22, 18);
+            return new AmberHaloArt
+            {
+                ready = Ring("Fx_AmberHalo_I"),
+                readyFull = Ring("Fx_AmberHalo_III_Full"),
+                readyHalf = Ring("Fx_AmberHalo_III_Half"),
+                off = Ring("Fx_AmberHalo_Off_I").FirstOrDefault(),
+                offThree = Ring("Fx_AmberHalo_Off_III").FirstOrDefault(),
+                fade = Ring("Fx_AmberHalo_Fade_I"),
+                glow = Sheet(CapsuleFolder, "halo", "Fx_AmberHalo_Glow", 56, 36, 28, 20),
+            };
+        }
+
+        // ---------- Gota ----------
+
+        // Bloque normal 48×40 con los pies en (24, 34); grande 56×68 con los pies en (28, 62). Las hojas de la rotura (96×96) llevan el
+        // centro del bloque en (48, 48), así que los pies caen 14 px (normal) o 28 px (grande) más abajo.
+        static Sprite[] DropSheet(string folder, string name, int cellWidth, int cellHeight, float pivotX, float pivotY) =>
+            Sheet(DropFolder, folder, name, cellWidth, cellHeight, pivotX, pivotY);
+
+        static AmberShellArt DropShell(string size, bool levelThree)
+        {
+            bool large = size == "Large";
+            int w = large ? 56 : 48, h = large ? 68 : 40;
+            float feetX = w / 2f, feetY = large ? 62f : 34f;
+            float centerRise = large ? 28f : 14f;
+            string block = levelThree ? "Fx_AmberDropBlock3" : "Fx_AmberDropBlock";
+            string folderHold = levelThree ? "nivel3" : "bloque";
+            string folderForm = levelThree ? "nivel3" : "formacion";
+            string folderBreak = levelThree ? "nivel3" : "rotura";
+
+            Sprite[] Block(string folder, string name) => DropSheet(folder, name, w, h, feetX, feetY);
+            Sprite[] Broken(string name) => DropSheet(folderBreak, name, 96, 96, 48, 48 + centerRise);
+
+            return new AmberShellArt
+            {
+                formBack = Block(folderForm, $"{block}_{size}_Form_Back"),
+                formFront = Block(folderForm, $"{block}_{size}_Form_Front"),
+                formDurations = Seconds(levelThree ? DropFormThreeMs : DropFormMs),
+                holdBack = Block(folderHold, $"{block}_{size}_Back"),
+                holdFront = Block(folderHold, $"{block}_{size}_Front"),
+                crack = Block("grietas", $"Fx_AmberDropBlock_{size}_Crack"),
+                breakBack = Broken($"{block}_{size}_Break_Back"),
+                breakFront = Broken($"{block}_{size}_Break_Front"),
+                breakDurations = Seconds(DropBreakMs),
+                // Cuadro 1: el enemigo queda libre y salen las esquirlas.
+                breakCountFrame = 1,
+                centerRise = centerRise / 16f,
+                // Cuerpo sólido del bloque (el dibujo mide 41×28 px la talla normal y 49×59 la grande): frena al jugador y a los proyectiles.
+                // El cadáver del nivel III tiene el suyo propio.
+                solidSize = levelThree ? Vector2.zero : large ? new Vector2(3f, 3.6f) : new Vector2(2.5f, 1.7f),
+                solidOffset = new Vector2(0f, large ? 1.72f : 0.75f),
+                // Estrellas (32×16, base en la celda): su borde de arriba queda 12 px sobre la punta del bloque.
+                stars = levelThree ? new Sprite[0] : DropSheet("aturdido", "Fx_AmberDropStun_Stars", 32, 16, 16, 16),
+                starsRise = ((large ? 62f - 4f : 34f - 7f) - 4f) / 16f,
+            };
+        }
+
+        /// <summary>Quita el arte que sustituyen las hojas nuevas (capas del lomo, bloque octogonal, gota, cristales y fósil).</summary>
+        static void DeleteOldArt()
+        {
+            string[] oldEffects =
+            {
+                "Fx_AmberCrystals_Erupt", "Fx_AmberDrop_Hit", "Fx_AmberFossil_Front", "Fx_AmberShell3_Back_Form", "Fx_AmberShell3_Back_Hold",
+                "Fx_AmberShell3_Front_Crack", "Fx_AmberShell3_Front_Form", "Fx_AmberShell3_Front_Hold", "Fx_AmberShell_Back_Form",
+                "Fx_AmberShell_Back_Hold", "Fx_AmberShell_Front_Crack", "Fx_AmberShell_Front_Form", "Fx_AmberShell_Front_Hold",
+                "Fx_AmberShell_Shatter", "Fx_AmberStun_Stars", "Fx_CapsuleHeal", "Proj_AmberDrop",
+            };
+            foreach (string name in oldEffects)
+                AssetDatabase.DeleteAsset($"{EffectsArtFolder}/{name}.png");
+            foreach (string layer in new[] { "Special_AmberCapsule", "Special_AmberGland_Rest", "Special_AmberGland_Full" })
+                AssetDatabase.DeleteAsset($"Assets/_Primordia/Art/Characters/Player/Floor3Skins/{layer}");
         }
 
         static Sprite[] Effect(string root, string folder, string name, int cell) =>
@@ -159,7 +297,7 @@ namespace Primordia.Editor
         static void SetLayers(MutationData mutation, string folder, string prefix) => mutation.SetCreatureLayers(Layers(folder, prefix));
 
         /// <summary>La capa sobre cada cuerpo de criatura del piso 3 (el de cada Boca): hojas <c>{prefix}_{cuerpo}_*</c>.</summary>
-        static MutationData.CreatureLayer[] Layers(string folder, string prefix)
+        static MutationData.CreatureLayer[] Layers(string folder, string prefix, string root = SourceFolder)
         {
             var layers = new List<MutationData.CreatureLayer>();
             foreach (var guid in AssetDatabase.FindAssets("t:MutationData", new[] { DataFolder }))
@@ -168,7 +306,7 @@ namespace Primordia.Editor
                 if (mouth == null || mouth.Slot != MutationSlot.Mouth || mouth.CreatureBody == null)
                     continue;
                 string body = mouth.CreatureBody.name.Replace("Player_", "");
-                var layer = ArtSetup.ImportFloor3SkinLayer(prefix, body, folder);
+                var layer = ArtSetup.ImportFloor3SkinLayer(prefix, body, folder, root);
                 if (layer != null)
                     layers.Add(new MutationData.CreatureLayer { body = mouth.CreatureBody, layer = layer });
             }

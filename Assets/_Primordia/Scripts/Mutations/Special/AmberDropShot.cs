@@ -24,12 +24,14 @@ namespace Primordia.Mutations
             public float shardPush;
             public int corpseHealth;
             public float corpseSeconds;
+            [Tooltip("Bloque de los niveles I y II (y de los jefes en el III), en las dos tallas.")]
             public AmberShellArt shell;
+            public AmberShellArt shellLarge;
+            [Tooltip("Bloque-cadáver del nivel III, en las dos tallas.")]
+            public AmberShellArt shellIII;
+            public AmberShellArt shellIIILarge;
             public Sprite[] dropFrames;
             public Sprite[] hitFrames;
-            public Sprite[] starFrames;
-            public Sprite[] crystalFrames;
-            public Sprite[] fossilFrames;
         }
 
         const float Radius = 0.22f;
@@ -69,7 +71,9 @@ namespace Primordia.Mutations
                 var health = hit.collider.GetComponentInParent<Health>();
                 if (enemy != null && health != null && !health.IsDead && health.GetComponentInParent<AmberCocoon>() == null)
                 {
-                    Impact(hit.point);
+                    // La salpicadura va centrada en el enemigo.
+                    var body = health.GetComponentInChildren<Collider2D>();
+                    Impact(body != null ? (Vector2)body.bounds.center : (Vector2)health.transform.position);
                     AmberCocoon.Encase(enemy, health, settings);
                     return;
                 }

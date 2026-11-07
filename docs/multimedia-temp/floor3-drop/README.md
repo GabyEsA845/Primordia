@@ -48,7 +48,7 @@ Todo se dibuja por código (Pillow; Python 3.12 en `%LOCALAPPDATA%\Programs\Pyth
 A los jefes, el nivel III solo los aturde 2 s: usan el bloque normal (I-II) con estrellas.
 
 ## Pendiente
-1. Importar en Unity con un menú `Primordia > Floor 3 > …` (Sonnet): sustituir el arte viejo de la Gota en `AmberCocoon`,
+1. ~~Importar y programar~~ HECHO (2026-11-06, menú `Primordia > Floor 3 > Crear mutaciones especiales del ámbar`; falta probarlo en juego). Lo que se pedía: sustituir el arte viejo de la Gota en `AmberCocoon`,
    `AmberCorpse`, `AmberDropShot`, `AmberGlandGlow` y la capa del Órgano; **cambiar el escalado de `AmberShell`** por elegir talla;
    fases de grietas; glándula con 4 estados; fosilizado por shader. Actualizar `docs/MULTIMEDIA.md`.
 2. Después, los **Cercos** (rediseño) y el contorno dorado/motas común de las especiales del ámbar.

@@ -4,15 +4,15 @@ using UnityEngine;
 namespace Primordia.Mutations
 {
     /// <summary>
-    /// Lleva la carga de la Gota de ámbar: cuánto tiempo se mantiene el clic y, sobre la glándula vacía del cuerpo (la capa normal del
-    /// Órgano), funde la capa de la glándula llena a medida que carga y mientras queda gota lista (la recarga la vacía).
+    /// Lleva la carga de la Gota de ámbar: cuánto tiempo se mantiene el clic y el cristal de ámbar del lomo, que cambia de estado
+    /// (vacío, a medias, lleno o cargando) con la recarga.
     /// </summary>
     public class AmberGlandGlow : MonoBehaviour
     {
         AmberGlandMutation mutation;
         PlayerAbility ability;
         PlayerAnimator animator;
-        CreatureLayerMirror full;
+        CreatureLayerMirror crystal;
         float chargeStart = -1f;
 
         /// <summary>De 0 a 1: lo cargada que está la gota que se está reteniendo.</summary>
@@ -42,29 +42,30 @@ namespace Primordia.Mutations
         {
             if (IsCharging)
                 Charge = Mathf.Clamp01((Time.time - chargeStart) / Mathf.Max(0.05f, mutation.ChargeSeconds));
-
-            // Llena mientras carga y mientras la habilidad está lista; vacía mientras se recarga.
-            float fill = IsCharging ? Charge : ability != null && ability.IsReady ? 0.6f : 0f;
-            UpdateFull(fill);
+            UpdateCrystal();
         }
 
-        void UpdateFull(float fill)
+        /// <summary>El cristal del lomo: carga mientras se mantiene el clic, lleno si la gota está lista, y vacío o a medias mientras se recarga.</summary>
+        void UpdateCrystal()
         {
             if (animator == null || animator.Body == null || mutation == null)
                 return;
-            var layer = mutation.FullLayerFor(animator.CreatureController);
-            if (layer == null && full == null)
+            var state = IsCharging ? AmberGlandMutation.CrystalState.Charge
+                : ability == null || ability.IsReady ? AmberGlandMutation.CrystalState.Full
+                : ability.CooldownProgress < 0.5f ? AmberGlandMutation.CrystalState.Empty
+                : AmberGlandMutation.CrystalState.Half;
+            var layer = mutation.CrystalLayerFor(state, animator.CreatureController);
+            if (layer == null && crystal == null)
                 return;
-            if (full == null)
-                full = CreatureLayerMirror.Create(animator.BodyAnimator, animator.Body, "CreatureGlandFull", 2);
-            full.Controller = layer;
-            full.Tint = new Color(1f, 1f, 1f, fill);
+            if (crystal == null)
+                crystal = CreatureLayerMirror.Create(animator.BodyAnimator, animator.Body, "CreatureGlandCrystal", 1);
+            crystal.Controller = layer;
         }
 
         void OnDestroy()
         {
-            if (full != null)
-                Destroy(full.gameObject);
+            if (crystal != null)
+                Destroy(crystal.gameObject);
         }
     }
 }

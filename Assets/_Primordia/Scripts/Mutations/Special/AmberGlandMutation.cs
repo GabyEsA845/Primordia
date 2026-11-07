@@ -51,19 +51,22 @@ namespace Primordia.Mutations
         [SerializeField, Min(1f)] float corpseSeconds = 10f;
 
         [Header("Arte")]
+        [Tooltip("Bloque de los niveles I y II (y de los jefes): talla normal y grande (plantas).")]
         [SerializeField] AmberShellArt shell = new();
-        [Tooltip("Nivel III: bloque más cristalino que se cierra con cristales del suelo.")]
+        [SerializeField] AmberShellArt shellLarge = new();
+        [Tooltip("Nivel III: bloque-cadáver en ámbar antiguo, talla normal y grande.")]
         [SerializeField] AmberShellArt shellIII = new();
+        [SerializeField] AmberShellArt shellIIILarge = new();
         [SerializeField] Sprite[] dropFrames = Array.Empty<Sprite>();
         [SerializeField] Sprite[] hitFrames = Array.Empty<Sprite>();
-        [Tooltip("Estrellas de aturdido sobre el enemigo (niveles I y II, 32×16).")]
-        [SerializeField] Sprite[] starFrames = Array.Empty<Sprite>();
-        [Tooltip("Nivel III: cristales que brotan del suelo y cierran el bloque.")]
-        [SerializeField] Sprite[] crystalFrames = Array.Empty<Sprite>();
-        [Tooltip("Nivel III: silueta fósil del cadáver por delante.")]
-        [SerializeField] Sprite[] fossilFrames = Array.Empty<Sprite>();
-        [Tooltip("Capas del cuerpo con la glándula llena, por cuerpo de criatura (la vacía va en la ranura normal).")]
+        [Tooltip("Cristal de ámbar del lomo en sus cuatro estados, por cuerpo de criatura.")]
+        [SerializeField] CreatureLayer[] emptyLayers = Array.Empty<CreatureLayer>();
+        [SerializeField] CreatureLayer[] halfLayers = Array.Empty<CreatureLayer>();
         [SerializeField] CreatureLayer[] fullLayers = Array.Empty<CreatureLayer>();
+        [SerializeField] CreatureLayer[] chargeLayers = Array.Empty<CreatureLayer>();
+
+        /// <summary>Estado del cristal del lomo.</summary>
+        public enum CrystalState { Empty, Half, Full, Charge }
 
         public GlandLevel ValuesAt(int level)
         {
@@ -75,11 +78,18 @@ namespace Primordia.Mutations
 
         public float ChargeSeconds => chargeSeconds;
 
-        public RuntimeAnimatorController FullLayerFor(RuntimeAnimatorController body)
+        public RuntimeAnimatorController CrystalLayerFor(CrystalState state, RuntimeAnimatorController body)
         {
-            if (body == null || fullLayers == null)
+            var layers = state switch
+            {
+                CrystalState.Empty => emptyLayers,
+                CrystalState.Half => halfLayers,
+                CrystalState.Charge => chargeLayers,
+                _ => fullLayers,
+            };
+            if (body == null || layers == null)
                 return null;
-            foreach (var layer in fullLayers)
+            foreach (var layer in layers)
             {
                 if (layer.body == body)
                     return layer.layer;
@@ -128,12 +138,12 @@ namespace Primordia.Mutations
                 shardPush = shardPush,
                 corpseHealth = corpseHealth,
                 corpseSeconds = corpseSeconds,
-                shell = level >= 3 && !shellIII.IsEmpty ? shellIII : shell,
+                shell = shell,
+                shellLarge = shellLarge.IsEmpty ? shell : shellLarge,
+                shellIII = shellIII.IsEmpty ? shell : shellIII,
+                shellIIILarge = shellIIILarge.IsEmpty ? shellIII : shellIIILarge,
                 dropFrames = dropFrames,
                 hitFrames = hitFrames,
-                starFrames = level >= 3 ? Array.Empty<Sprite>() : starFrames,
-                crystalFrames = level >= 3 ? crystalFrames : Array.Empty<Sprite>(),
-                fossilFrames = level >= 3 ? fossilFrames : Array.Empty<Sprite>(),
             };
             AmberDropShot.Fire((Vector2)player.transform.position + aim * 0.7f, aim, settings);
             return true;
@@ -145,18 +155,22 @@ namespace Primordia.Mutations
             upgrades = newUpgrades;
         }
 
-        internal void SetArt(AmberShellArt newShell, AmberShellArt newShellIII, Sprite[] drop, Sprite[] hit, Sprite[] stars, Sprite[] crystals,
-            Sprite[] fossil)
+        internal void SetArt(AmberShellArt normal, AmberShellArt large, AmberShellArt normalIII, AmberShellArt largeIII, Sprite[] drop, Sprite[] hit)
         {
-            shell = newShell ?? new AmberShellArt();
-            shellIII = newShellIII ?? new AmberShellArt();
+            shell = normal ?? new AmberShellArt();
+            shellLarge = large ?? new AmberShellArt();
+            shellIII = normalIII ?? new AmberShellArt();
+            shellIIILarge = largeIII ?? new AmberShellArt();
             dropFrames = drop ?? Array.Empty<Sprite>();
             hitFrames = hit ?? Array.Empty<Sprite>();
-            starFrames = stars ?? Array.Empty<Sprite>();
-            crystalFrames = crystals ?? Array.Empty<Sprite>();
-            fossilFrames = fossil ?? Array.Empty<Sprite>();
         }
 
-        internal void SetFullLayers(params CreatureLayer[] layers) => fullLayers = layers ?? Array.Empty<CreatureLayer>();
+        internal void SetCrystalLayers(CreatureLayer[] empty, CreatureLayer[] half, CreatureLayer[] full, CreatureLayer[] charge)
+        {
+            emptyLayers = empty ?? Array.Empty<CreatureLayer>();
+            halfLayers = half ?? Array.Empty<CreatureLayer>();
+            fullLayers = full ?? Array.Empty<CreatureLayer>();
+            chargeLayers = charge ?? Array.Empty<CreatureLayer>();
+        }
     }
 }

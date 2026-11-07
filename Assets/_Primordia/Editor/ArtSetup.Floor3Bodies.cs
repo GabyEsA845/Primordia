@@ -45,12 +45,12 @@ namespace Primordia.Editor
 
         /// <summary>
         /// La capa de una Piel del piso 3 sobre un cuerpo (docs/multimedia-temp/floor3-mutations/Skin, hojas <c>{prefix}_{cuerpo}_*</c>), con
-        /// los mismos estados y ritmo que el cuerpo. Null si no están las hojas.
+        /// los mismos estados y ritmo que el cuerpo. Null si no están las hojas. <paramref name="root"/> es la carpeta temporal que las trae.
         /// </summary>
-        internal static RuntimeAnimatorController ImportFloor3SkinLayer(string prefix, string body, string folder = "Skin")
+        internal static RuntimeAnimatorController ImportFloor3SkinLayer(string prefix, string body, string folder = "Skin", string root = "docs/multimedia-temp/floor3-mutations")
         {
             var template = body == "Frog" ? FrogBody : body == "Diplocaulus" ? DiplocaulusBody : body == "Whipscorpion" ? WhipscorpionBody : null;
-            string source = $"docs/multimedia-temp/floor3-mutations/{folder}";
+            string source = $"{root}/{folder}";
             string name = $"{prefix}_{body}";
             if (template == null || !System.IO.Directory.Exists(source) || System.IO.Directory.GetFiles(source, name + "_*.png").Length == 0)
                 return null;

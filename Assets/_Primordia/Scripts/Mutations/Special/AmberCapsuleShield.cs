@@ -7,8 +7,9 @@ namespace Primordia.Mutations
 {
     /// <summary>
     /// Comportamiento de <see cref="AmberCapsuleMutation"/>: si un golpe deja al jugador a medio corazón o menos (o iba a matarle),
-    /// le encierra en un bloque de ámbar: invulnerable e inmóvil, se cura al empezar y, al romperse, suelta esquirlas y le da
-    /// unos segundos más de invencibilidad. Las activaciones se reponen al entrar en otra sala.
+    /// le encierra en una cápsula de ámbar: el tiempo se detiene mientras se forma, y dentro está invulnerable e inmóvil mientras se
+    /// cura por pulsos de medio corazón. Al romperse suelta esquirlas y le da unos segundos más de invencibilidad. Las activaciones
+    /// se reponen al entrar en otra sala. Antes de activarse, un halo con alas levita sobre su cabeza.
     /// </summary>
     public class AmberCapsuleShield : MonoBehaviour
     {
@@ -22,21 +23,28 @@ namespace Primordia.Mutations
             public float shardRadius;
             public int shardDamage;
             public float shardPush;
+            public bool levelThree;
             public AmberShellArt shell;
-            public Sprite[] healFrames;
+            public AmberHealArt healArt;
+            public AmberHaloArt halo;
         }
 
-        const int SortingOrder = 24;
-        // A medio corazón o menos.
-        const int TriggerHealth = 1;
+        // Dorado hacia el que se tiñe la criatura al curarse.
+        static readonly Color GoldTint = new(1f, 0.94f, 0.69f, 1f);
+        // Pulsos de curación sin dibujo (las pruebas): cada tanto desde que está dentro.
+        const float FallbackPulseSeconds = 0.4f;
 
         Settings settings;
         Health health;
         PlayerController controller;
+        PlayerAnimator animator;
         int left;
         bool pending;
         AmberShell shell;
+        AmberHalo halo;
         bool lockedMovement;
+        bool tinted;
+        int healedPulses;
         Room lastRoom;
 
         /// <summary>Activaciones que quedan en esta sala.</summary>
@@ -48,15 +56,20 @@ namespace Primordia.Mutations
         /// <summary>Veces que se ha encerrado (para las pruebas).</summary>
         public int Encasements { get; private set; }
 
+        /// <summary>El halo sobre la cabeza (null si no hay arte).</summary>
+        public AmberHalo Halo => halo;
+
         internal void Configure(Settings newSettings)
         {
             settings = newSettings;
             health = GetComponent<Health>();
             controller = GetComponent<PlayerController>();
+            animator = GetComponent<PlayerAnimator>();
             left = settings.perRoom;
             health.Damaged += OnDamaged;
             Health.AddLethalInterceptor(Intercept);
             Room.PlayerEnteredAny += OnRoomEntered;
+            halo = AmberHalo.Create(animator, settings.halo, settings.levelThree, left);
         }
 
         void OnDestroy()
@@ -66,8 +79,11 @@ namespace Primordia.Mutations
             Health.RemoveLethalInterceptor(Intercept);
             Room.PlayerEnteredAny -= OnRoomEntered;
             Unlock();
+            ClearTint();
             if (shell != null)
                 Destroy(shell.gameObject);
+            if (halo != null)
+                Destroy(halo.gameObject);
         }
 
         void OnRoomEntered(Room room)
@@ -76,14 +92,16 @@ namespace Primordia.Mutations
                 return;
             lastRoom = room;
             left = settings.perRoom;
+            if (halo != null)
+                halo.SetCharges(left);
         }
 
-        // Un golpe mortal con una activación a mano: no se muere; el bloque lo recoge.
+        // Un golpe mortal con una activación a mano: no se muere; la cápsula lo recoge.
         bool Intercept(Health target) => target == health && left > 0 && shell == null;
 
         void OnDamaged(int amount)
         {
-            if (left > 0 && shell == null && !health.IsDead && health.Current <= TriggerHealth)
+            if (left > 0 && shell == null && !health.IsDead && health.Current <= 1)
                 pending = true;
         }
 
@@ -95,6 +113,11 @@ namespace Primordia.Mutations
                 Encase();
             }
             pending = false;
+
+            if (shell != null && !shell.IsBroken && !shell.IsForming)
+                Heal();
+            else if (shell != null && shell.IsBroken)
+                ClearTint();
         }
 
         /// <summary>Encierra al jugador ya (también para las pruebas).</summary>
@@ -104,20 +127,71 @@ namespace Primordia.Mutations
                 return;
             left--;
             Encasements++;
+            healedPulses = 0;
             controller.MovementLocked = true;
             lockedMovement = true;
-            // Invulnerable mientras dura el bloque y los segundos de después.
-            health.MakeInvulnerable(settings.lockSeconds + settings.exitInvulnerability);
-            health.Heal(settings.heal);
-            if (settings.healFrames != null && settings.healFrames.Length > 0)
-                FrameEffect.Play("CapsuleHeal", settings.healFrames, 0.08f, SortingOrder, transform);
+            if (halo != null)
+                halo.SetCharges(left);
 
-            shell = AmberShell.Create(transform, settings.shell, settings.lockSeconds);
+            var art = settings.shell ?? new AmberShellArt();
+            // Invulnerable mientras está dentro y los segundos de después. La formación no cuenta: el tiempo está detenido.
+            health.MakeInvulnerable(settings.lockSeconds + art.BreakReleaseSeconds + settings.exitInvulnerability);
+
+            shell = AmberShell.Create(transform, art, settings.lockSeconds, AmberShell.Anchor.Center,
+                freezeWorld: art.FormSeconds > 0f, heal: settings.healArt);
             shell.Broken += OnBroken;
+        }
+
+        /// <summary>Cura medio corazón en cada pulso de la curación y tiñe de dorado a la criatura.</summary>
+        void Heal()
+        {
+            float held = shell.HoldTime;
+            while (healedPulses < settings.heal && held >= PulseTime(healedPulses))
+            {
+                health.Heal(1);
+                healedPulses++;
+            }
+
+            var art = settings.healArt;
+            if (art == null || art.tint == null || art.tint.Length == 0 || animator == null || animator.Body == null)
+                return;
+            int frame = Mathf.Min(art.tint.Length - 1, Mathf.FloorToInt(held / Mathf.Max(0.02f, art.frameSeconds)));
+            Color color = Color.Lerp(Color.white, GoldTint, art.tint[frame]);
+            // La transparencia es de quien la usa (el parpadeo tras un golpe, la sombra): solo se tiñe el color.
+            var current = animator.Body.color;
+            animator.Body.color = new Color(color.r, color.g, color.b, current.a);
+            tinted = true;
+        }
+
+        float PulseTime(int index)
+        {
+            var art = settings.healArt;
+            if (art != null && art.pulseFrames != null && art.pulseFrames.Length == settings.heal)
+                return art.pulseFrames[index] * art.frameSeconds;
+            return FallbackPulseSeconds * (index + 1);
+        }
+
+        void ClearTint()
+        {
+            if (!tinted)
+                return;
+            tinted = false;
+            if (animator != null && animator.Body != null)
+            {
+                var current = animator.Body.color;
+                animator.Body.color = new Color(1f, 1f, 1f, current.a);
+            }
         }
 
         void OnBroken(Vector2 center)
         {
+            // Si el bloque se rompe antes de acabar la curación, lo que falte se cura de golpe.
+            if (healedPulses < settings.heal)
+            {
+                health.Heal(settings.heal - healedPulses);
+                healedPulses = settings.heal;
+            }
+            ClearTint();
             Unlock();
             AmberShards.Burst(center, settings.shardRadius, settings.shardDamage, settings.shardPush, settings.shardStun);
         }

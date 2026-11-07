@@ -19,7 +19,7 @@ namespace Primordia.Editor
         static readonly string[] Floor3Groups =
         {
             "floor3-environment", "floor3-reactions", "floor3-bodies", "floor3-enemies",
-            "floor3-lineages", "floor3-mutations", "floor3-bosses", "floor3-spit", "floor3-jet", "floor3-top-clone",
+            "floor3-lineages", "floor3-mutations", "floor3-bosses", "floor3-spit", "floor3-jet", "floor3-top-clone", "floor3-log-stump",
         };
 
         // Carpetas y archivos que son material de revisión (GIF, escenas, vistas previas, cachés de Python), no del juego.
@@ -87,7 +87,7 @@ namespace Primordia.Editor
             foreach (string file in Directory.GetFiles(folder, "*.png"))
             {
                 string name = Path.GetFileName(file);
-                if (name.StartsWith("vista_previa") || name.StartsWith("Escena") || name.StartsWith("Sala_muestra"))
+                if (name.StartsWith("vista_previa") || name.StartsWith("maqueta") || name.StartsWith("Escena") || name.StartsWith("Sala_muestra"))
                     continue;
                 files.Add(file.Replace('\\', '/'));
             }

@@ -90,9 +90,9 @@ namespace Primordia.Editor
             theme.ConfigureBrush(Load("Top", 32), Load("Side", 16), Load("Bottom", 32));
         }
 
-        static RoomTheme ImportFloor3Theme(string themeName, TileBase missing)
+        static RoomTheme ImportFloor3Theme(string themeName, TileBase missing, string folderOverride = null)
         {
-            string folder = $"{Floor3EnvironmentFolder}/{themeName}";
+            string folder = folderOverride ?? $"{Floor3EnvironmentFolder}/{themeName}";
             string tileAssets = $"{folder}/TileAssets";
             if (!Directory.Exists($"{folder}/tiles"))
             {

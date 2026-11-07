@@ -29,6 +29,56 @@ namespace Primordia.Rooms
             public Sprite[] frames = Array.Empty<Sprite>();
         }
 
+        /// <summary>Hoja de cuadros (Unity no serializa arrays de arrays).</summary>
+        [Serializable]
+        public class Frames
+        {
+            public Sprite[] frames = Array.Empty<Sprite>();
+        }
+
+        /// <summary>Un tramo del tronco en el lago: reposo, pisada y casillas vecinas a la pisada.</summary>
+        [Serializable]
+        public class LogPiece
+        {
+            public Frames idle = new();
+            public Frames step = new();
+            public Frames dip = new();
+        }
+
+        [Serializable]
+        public class LogBand
+        {
+            [Tooltip("Tramos del lago (16×48; las filas 8..39 son las dos casillas; pivote (0, 8/48)).")]
+            public LogPiece[] mid = Array.Empty<LogPiece>();
+            [Tooltip("Tramos apoyados en la orilla (16×48, mismo pivote).")]
+            public Sprite[] ground = Array.Empty<Sprite>();
+            [Tooltip("Cepa de la izquierda (40×64, pivote (0, 16/64)).")]
+            public Sprite endLeft;
+            [Tooltip("Copa de la derecha (48×64, pivote (0, 16/64)).")]
+            public Sprite endRight;
+        }
+
+        /// <summary>Cofre de cono de Lepidodendron: reposo (4), apertura (6) y abierto (1).</summary>
+        [Serializable]
+        public class ConeArt
+        {
+            public Sprite[] idle = Array.Empty<Sprite>();
+            public Sprite[] open = Array.Empty<Sprite>();
+            public Sprite opened;
+            public bool IsValid => idle.Length > 0 && open.Length > 0 && opened != null;
+        }
+
+        [Header("Tronco caído: una versión por tramo; burbujas de lodo y rayo de luz del Tocón hueco")]
+        public LogBand[] log = new LogBand[Bands];
+        public Sprite[] mudBubble = Array.Empty<Sprite>();
+        public Sprite[] mudBubbleSmall = Array.Empty<Sprite>();
+        [Tooltip("Rayo de luz sobre el cono del Tocón hueco (64×112, 8 cuadros; el centro del charco, en el pivote).")]
+        public Sprite[] stumpLight = Array.Empty<Sprite>();
+
+        [Header("Cofres de cono de Lepidodendron")]
+        public ConeArt coneBig = new();
+        public ConeArt coneSmall = new();
+
         [Header("Burbujeo: burbuja de metano de cada tramo")]
         public BubbleBand[] bubble = new BubbleBand[Bands];
 
@@ -76,6 +126,9 @@ namespace Primordia.Rooms
         public Sprite[] BubbleFor(int band) =>
             bubble != null && bubble.Length > 0 && bubble[Mathf.Clamp(band, 0, bubble.Length - 1)] != null
                 ? bubble[Mathf.Clamp(band, 0, bubble.Length - 1)].frames : Array.Empty<Sprite>();
+
+        public LogBand LogFor(int band) =>
+            log != null && log.Length > 0 && log[Mathf.Clamp(band, 0, log.Length - 1)] != null ? log[Mathf.Clamp(band, 0, log.Length - 1)] : null;
 
         public CoalBand CoalFor(int band) => coal != null && coal.Length > 0 ? coal[Mathf.Clamp(band, 0, coal.Length - 1)] : null;
 

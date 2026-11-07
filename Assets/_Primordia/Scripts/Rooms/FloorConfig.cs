@@ -196,6 +196,8 @@ namespace Primordia.Rooms
             [Tooltip("Enemigo que sale además de los de siempre (las libélulas del Tronco caído) y cuántos.")]
             public Enemy bonusEnemy;
             [Min(0)] public int bonusCount;
+            [Tooltip("Tileset propio de la sala (el Tocón hueco): sus paredes, suelo y puertas, en vez del de la franja. Vacío: el de siempre.")]
+            public RoomTheme theme;
             [Tooltip("Ladronas (piso 3): sus casillas P son biomasa en el suelo y cucarachas salen de las grietas a robarla.")]
             public bool thieves;
 

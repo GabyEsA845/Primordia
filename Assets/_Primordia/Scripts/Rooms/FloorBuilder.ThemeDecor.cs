@@ -107,7 +107,7 @@ namespace Primordia.Rooms
             return true;
         }
 
-        static int ThemeBand(PlacedRoom placed) => Mathf.Clamp(placed.Theme - FirstBandTheme, 0, ThemeDecorArt.Bands - 1);
+        static int ThemeBand(PlacedRoom placed) => Mathf.Clamp(placed.BaseTheme - FirstBandTheme, 0, ThemeDecorArt.Bands - 1);
 
         static string ThemeKey(PlacedRoom placed) => placed.Layout.Encounter?.signKey ?? "";
 

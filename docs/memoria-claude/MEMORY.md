@@ -20,7 +20,7 @@
 - [Arte de enemigos del piso 3](primordia-floor3-enemy-art-pending.md) — cono del escarabajo en 3 fases y sapo en el lodo: HECHO, integrado y probado; README y MULTIMEDIA.md HECHOS (2026-11-04)
 
 ## En curso
-- [Salas especiales del piso 3 (tanda 1)](primordia-floor3-special-rooms.md) — Veta de carbón, Bosque en humo, Fumarolas y Ladronas PROGRAMADAS 2026-11-06 (escena Test_Floor3SpecialRooms); falta que la usuaria las vea; quedan 6
+- [Salas especiales del piso 3](primordia-floor3-special-rooms.md) — las 10 PROGRAMADAS (commit 84969d99); arte del Tronco caído, Tocón hueco y cofre APROBADO 2026-11-06 (floor3-log-stump/), falta importarlo y programarlo (Sonnet)
 - [Sala de paso del piso 2 → 3](primordia-floor2-transition-room.md) — charca, ambiente del pantano y metamorfosis por pareja HECHOS y subidos
 - **[Estado de Primordia](primordia-project-status.md) — pisos 1-2 en main; piso 3 en feature/floor-3: pasos 1-5 HECHOS y con commit (5 = enemigos y trampas, cerrado con documento v8 y GDD/PLAN); SIGUIENTE paso 6 = salas con tema (Sonnet)**
 - [Sala del ámbar y especiales del ámbar](primordia-floor3-amber.md) — paso 6 bloque 2: decisiones y niveles I-III cerrados 2026-11-04; subpaso 2a (sala+bloque) programado

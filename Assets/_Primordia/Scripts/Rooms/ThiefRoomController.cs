@@ -132,7 +132,7 @@ namespace Primordia.Rooms
                 room.ReleaseHold();
         }
 
-        // El cofre de cono (dibujo PROVISIONAL por código hasta tener el arte): se abre con E y suelta biomasa grande.
-        void SpawnChest() => ConeChest.Spawn(transform, rewardAt, config, small, big);
+        // El cofre de cono pequeño (1 casilla): se abre con E y suelta biomasa grande.
+        void SpawnChest() => ConeChest.Spawn(transform, rewardAt, config, small, big, large: false);
     }
 }

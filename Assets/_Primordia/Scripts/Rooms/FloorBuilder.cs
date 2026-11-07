@@ -103,8 +103,11 @@ namespace Primordia.Rooms
 
             public RoomTemplate Template => Layout.Template;
 
-            /// <summary>Índice de su tileset: el del piso, el del jefe o el de su franja de profundidad.</summary>
+            /// <summary>Índice de su tileset: el del piso, el del jefe, el de su franja de profundidad o el propio de su sala especial.</summary>
             public int Theme;
+
+            /// <summary>Índice del tileset que le tocaría sin el propio de su sala especial (de él salen su franja y su ambiente).</summary>
+            public int BaseTheme;
             public RectInt Rect => new(Origin, new Vector2Int(Template.Width, Template.Height));
 
             public Vector2 FloorCenter
@@ -132,6 +135,7 @@ namespace Primordia.Rooms
             }.Concat(config.BandThemes.Select(band => band != null ? band : config.Theme)).ToArray();
             var placed = Place(layout, config, random);
             AssignThemes(placed, config);
+            themes = AddSpecialThemes(placed, themes);
             var byLayout = placed.ToDictionary(room => room.Layout);
 
             var map = new FloorMap(MapBounds(placed));
@@ -185,6 +189,10 @@ namespace Primordia.Rooms
 
             var decorations = new List<(Vector2Int cell, TileBase tile)>();
             built.MissingCells = Paint(parent, map, themes, noDecoration, random.Next(), decorations);
+            // El tronco del lago se ha pintado como lodo, pero se anda por él sin hundirse: vuelve a ser suelo.
+            foreach (var room in placed)
+                foreach (var cell in room.Template.CellsOf(RoomTemplate.Mark.Log))
+                    map.Set(room.Origin + cell, FloorMap.Kind.Floor);
 
             // Luces de la bioluminiscencia: de la decoración que brilla y, más abajo, de los obstáculos.
             var glows = new List<(Vector2 position, Glow glow)>();
@@ -200,7 +208,7 @@ namespace Primordia.Rooms
             foreach (var room in placed)
             {
                 var builtRoom = BuildRoom(parent, room, themes[room.Theme], config, boss, random, glows, brushes, map);
-                builtRoom.SetDepthBand(room.Theme >= FirstBandTheme ? room.Theme - FirstBandTheme : -1);
+                builtRoom.SetDepthBand(room.BaseTheme >= FirstBandTheme ? room.BaseTheme - FirstBandTheme : -1);
                 builtRoom.SetSignKey(room.Layout.Encounter?.signKey);
                 built.Rooms.Add(builtRoom);
                 var mapRoom = new MapRoom
@@ -266,6 +274,23 @@ namespace Primordia.Rooms
                 else
                     room.Theme = FirstBandTheme + BandOf(room.Layout.Depth, deepest, bands);
             }
+        }
+
+        /// <summary>
+        /// Las salas especiales con tileset propio (el Tocón hueco) lo llevan al final de la lista de tilesets; <see cref="PlacedRoom.BaseTheme"/>
+        /// guarda el que les tocaría de no tenerlo.
+        /// </summary>
+        static RoomTheme[] AddSpecialThemes(List<PlacedRoom> placed, RoomTheme[] themes)
+        {
+            var own = placed.Select(room => room.Layout.Special?.theme).Where(theme => theme != null).Distinct().ToList();
+            foreach (var room in placed)
+            {
+                room.BaseTheme = room.Theme;
+                var special = room.Layout.Special?.theme;
+                if (special != null)
+                    room.Theme = themes.Length + own.IndexOf(special);
+            }
+            return own.Count == 0 ? themes : themes.Concat(own).ToArray();
         }
 
         /// <summary>
@@ -526,7 +551,7 @@ namespace Primordia.Rooms
                     var mark = room.Template.Get(x, y);
                     map.Set(cell, RoomTemplate.IsObstacle(mark) ? FloorMap.Kind.Obstacle
                         : mark == RoomTemplate.Mark.Pit ? FloorMap.Kind.Pit
-                        : mark is RoomTemplate.Mark.Mud or RoomTemplate.Mark.MudPile ? FloorMap.Kind.Mud
+                        : mark is RoomTemplate.Mark.Mud or RoomTemplate.Mark.MudPile or RoomTemplate.Mark.Log ? FloorMap.Kind.Mud
                         : RoomTemplate.IsInterior(mark) ? FloorMap.Kind.Floor
                         : FloorMap.Kind.Wall);
                     map.SetTheme(cell, room.Theme);

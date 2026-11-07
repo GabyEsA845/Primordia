@@ -31,11 +31,12 @@ namespace Primordia.Rooms
             var mudPiles = template.CellsOf(RoomTemplate.Mark.MudPile);
             var bubblers = template.CellsOf(RoomTemplate.Mark.Bubbler);
             var plantCells = template.CellsOf(RoomTemplate.Mark.Plant);
+            var logCells = template.CellsOf(RoomTemplate.Mark.Log);
             bool fireFront = special is { fireFront: true };
             bool cone = special is { coneChest: true };
             var chests = cone ? template.CellsOf(RoomTemplate.Mark.Chest) : new List<Vector2Int>();
             bool smoke = special is { smoke: true };
-            if (coal.Count == 0 && embers.Count == 0 && vents.Count == 0 && piles.Count == 0 && mudPiles.Count == 0 && chests.Count == 0 && bubblers.Count == 0 && plantCells.Count == 0 && !fireFront && !smoke)
+            if (coal.Count == 0 && embers.Count == 0 && vents.Count == 0 && piles.Count == 0 && mudPiles.Count == 0 && chests.Count == 0 && bubblers.Count == 0 && plantCells.Count == 0 && logCells.Count == 0 && !fireFront && !smoke)
                 return;
 
             var root = new GameObject("SpecialRoom").transform;
@@ -43,7 +44,7 @@ namespace Primordia.Rooms
             var presence = root.gameObject.AddComponent<RoomPresence>();
             var art = SpecialRoomArt.Current;
 
-            foreach (var cell in plantCells.Concat(coal).Concat(embers).Concat(vents).Concat(piles).Concat(mudPiles).Concat(chests).Concat(bubblers))
+            foreach (var cell in plantCells.Concat(coal).Concat(embers).Concat(vents).Concat(piles).Concat(mudPiles).Concat(chests).Concat(bubblers).Concat(logCells))
                 taken.Add((CellCenter(placed, cell), SpecialCellRadius));
 
             // En el Bosque en humo las vetas encendidas solo alumbran y dispersan el humo; en la Veta de carbón, además, sueltan chispas.
@@ -62,6 +63,9 @@ namespace Primordia.Rooms
             if (bubblers.Count > 0)
                 BuildBubblers(root, placed, theme, art, bubblers);
 
+            if (logCells.Count > 0)
+                BuildFallenLog(root, placed, art, logCells, presence);
+
             if (fireFront)
             {
                 var size = new Vector3(template.Width, template.Height, 0f);
@@ -69,7 +73,7 @@ namespace Primordia.Rooms
             }
 
             if (chests.Count > 0)
-                BuildConeChests(root, placed, config, chests);
+                BuildConeChests(root, placed, config, art, chests);
 
             if (smoke && art != null && art.HasSmoke)
             {
@@ -142,8 +146,33 @@ namespace Primordia.Rooms
                 Object.Instantiate(prefab, CellCenter(placed, cell), Quaternion.identity, enemiesRoot);
         }
 
-        /// <summary>Cofres de cono en las casillas C (dos seguidas en horizontal, uno grande de 2 casillas).</summary>
-        static void BuildConeChests(Transform root, PlacedRoom placed, FloorConfig config, List<Vector2Int> chests)
+        /// <summary>
+        /// Tronco caído: el tronco ocupa las dos filas de las casillas T (lago) y sigue por la orilla hasta las paredes de los lados (todo
+        /// lo que hay entre la primera y la última casilla de suelo de esas filas).
+        /// </summary>
+        static void BuildFallenLog(Transform root, PlacedRoom placed, SpecialRoomArt art, List<Vector2Int> logCells, RoomPresence presence)
+        {
+            var template = placed.Template;
+            int row = logCells.Min(cell => cell.y);
+            var lake = new HashSet<int>(logCells.Where(cell => cell.y == row).Select(cell => placed.Origin.x + cell.x));
+            // De pared a pared por las dos filas: de la primera a la última casilla de dentro de la sala.
+            int first = int.MaxValue, last = int.MinValue;
+            for (int x = 0; x < template.Width; x++)
+            {
+                if (RoomTemplate.IsInterior(template.Get(x, row)) && RoomTemplate.IsInterior(template.Get(x, row + 1)))
+                {
+                    first = Mathf.Min(first, placed.Origin.x + x);
+                    last = Mathf.Max(last, placed.Origin.x + x);
+                }
+            }
+            if (last - first < 6)
+                return;
+            FallenLog.Create(root, art, ThemeBand(placed), first, last, placed.Origin.y + row, lake.Contains, presence,
+                placed.Origin.x * 13 ^ placed.Origin.y * 7 ^ 0x109);
+        }
+
+        /// <summary>Cofres de cono en las casillas C (dos seguidas en horizontal, uno grande de 2 casillas); en el Tocón hueco, con su rayo de luz.</summary>
+        static void BuildConeChests(Transform root, PlacedRoom placed, FloorConfig config, SpecialRoomArt art, List<Vector2Int> chests)
         {
             var done = new HashSet<Vector2Int>();
             foreach (var cell in chests)
@@ -155,6 +184,9 @@ namespace Primordia.Rooms
                     done.Add(cell + Vector2Int.right);
                 var position = (Vector2)(placed.Origin + cell) + new Vector2(wide ? 1f : 0.5f, 0.5f);
                 ConeChest.Spawn(root, position, config, config.SmallBiomass, config.BigBiomass);
+                // El charco de luz bajo el pie del cono.
+                if (wide && art != null)
+                    StumpLight.Create(root, position + Vector2.down * 0.4f, art.stumpLight);
             }
         }
 

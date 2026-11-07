@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using NUnit.Framework;
 using Primordia.Core;
 using Primordia.Player;
@@ -74,6 +75,85 @@ namespace Primordia.Tests
             Assert.AreEqual(RoomTemplate.Mark.Plant, template.Get(2, 1));
             Assert.IsTrue(RoomTemplate.IsInterior(RoomTemplate.Mark.Bubbler));
             Assert.IsFalse(RoomTemplate.IsObstacle(RoomTemplate.Mark.Plant));
+        }
+
+        [Test]
+        public void Template_LogCells_PaintAsMud_ButAreWalkableInterior()
+        {
+            var template = Track(ScriptableObject.CreateInstance<RoomTemplate>());
+            template.SetLayout("######\n######\n######\n#mT.##\n######\n");
+            Assert.AreEqual(RoomTemplate.Mark.Log, template.Get(2, 1));
+            Assert.IsTrue(RoomTemplate.IsInterior(RoomTemplate.Mark.Log));
+            var map = template.ToFloorMap(Vector2Int.zero, openDoors: false);
+            Assert.AreEqual(FloorMap.Kind.Mud, map.Get(2, 1), "Se pinta como lodo para que el lodo rodee el tronco.");
+        }
+
+        [Test]
+        public void ImportedArt_HasTheLogTheConeChestsAndTheStumpLight()
+        {
+            var art = SpecialRoomArt.Current;
+            Assert.IsNotNull(art, "Falta Resources/SpecialRoomArt: Primordia > Floor 3 > Importar arte de las salas especiales.");
+            for (int band = 0; band < SpecialRoomArt.Bands; band++)
+            {
+                var log = art.LogFor(band);
+                Assert.AreEqual(6, log.mid.Length, $"tramo {band}: 6 variantes del tronco.");
+                Assert.AreEqual(8, log.mid[0].idle.frames.Length);
+                Assert.AreEqual(6, log.mid[0].step.frames.Length);
+                Assert.AreEqual(4, log.mid[0].dip.frames.Length);
+                Assert.IsNotNull(log.endLeft);
+                Assert.IsNotNull(log.endRight);
+            }
+            Assert.AreEqual(7, art.mudBubble.Length);
+            Assert.AreEqual(6, art.mudBubbleSmall.Length);
+            Assert.AreEqual(8, art.stumpLight.Length);
+            Assert.IsTrue(art.coneBig.IsValid && art.coneSmall.IsValid);
+            Assert.AreEqual(4, art.coneBig.idle.Length);
+            Assert.AreEqual(6, art.coneBig.open.Length);
+        }
+
+        [Test]
+        public void ConeChest_UsesTheRealArt_AndReleasesOnTheFourthOpeningFrame()
+        {
+            var parent = Track(new GameObject("Chests")).transform;
+            var big = ConeChest.Spawn(parent, Vector2.zero, null, null, null);
+            var small = ConeChest.Spawn(parent, Vector2.right * 4f, null, null, null, large: false);
+            Assert.AreEqual(SpecialRoomArt.Current.coneBig.idle[0], big.GetComponent<SpriteRenderer>().sprite);
+            Assert.AreEqual(SpecialRoomArt.Current.coneSmall.idle[0], small.GetComponent<SpriteRenderer>().sprite);
+            Assert.AreEqual(new Vector2(2f, 1f), big.GetComponent<BoxCollider2D>().size);
+            Assert.AreEqual(Vector2.one, small.GetComponent<BoxCollider2D>().size);
+        }
+
+        [Test]
+        public void FallenLog_And_HollowStump_AreBuilt_AndTheLogCellsCanBeWalked()
+        {
+            var config = UnityEditor.AssetDatabase.LoadAssetAtPath<FloorConfig>("Assets/_Primordia/Data/Rooms/Floor_3_SpecialRooms.asset");
+            Assert.IsNotNull(config, "falta Floor_3_SpecialRooms: Primordia > Floor 3 > Crear escena de prueba de las salas especiales.");
+            bool log = false, stump = false;
+            for (int seed = 1; seed <= 6 && !(log && stump); seed++)
+            {
+                var parent = Track(new GameObject("Floor")).transform;
+                var layout = FloorLayoutGenerator.Generate(config, new System.Random(seed));
+                var built = FloorBuilder.Build(layout, config, parent, new System.Random(seed));
+                foreach (var room in layout.Rooms)
+                {
+                    if (room.Special is { template: not null } special && special.template.CellsOf(RoomTemplate.Mark.Log).Count > 0)
+                    {
+                        log = true;
+                        Assert.IsNotNull(parent.GetComponentInChildren<FallenLog>(), $"semilla {seed}: falta el tronco.");
+                        var mapRoom = built.MapRooms.First(r => r.Role == room.Role && r.Rect.size == new Vector2Int(room.Template.Width, room.Template.Height));
+                        foreach (var cell in room.Template.CellsOf(RoomTemplate.Mark.Log))
+                            Assert.AreEqual(FloorMap.Kind.Floor, built.Map.Get(mapRoom.Rect.position + cell), "Las casillas del tronco se andan.");
+                    }
+                    if (room.Special is { coneChest: true })
+                    {
+                        stump = true;
+                        Assert.IsNotNull(parent.GetComponentInChildren<StumpLight>(), $"semilla {seed}: falta el rayo de luz.");
+                    }
+                }
+                Object.DestroyImmediate(parent.gameObject);
+                layout.ReleaseGenerated();
+            }
+            Assert.IsTrue(log && stump, "Las dos salas salen en la escena de prueba.");
         }
 
         [Test]

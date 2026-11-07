@@ -29,6 +29,7 @@ namespace Primordia.Rooms
         [SerializeField] MutationPickup mutationPickup;
         [SerializeField] BiomassPickup smallBiomass;
         [SerializeField] BiomassPickup bigBiomass;
+        [SerializeField] int releaseFrame = -1;
 
         Light2D glow;
         float phase;
@@ -43,6 +44,9 @@ namespace Primordia.Rooms
 
         /// <summary>Otro nombre para el cofre (el cono de Lepidodendron de las Ladronas).</summary>
         internal void SetTitle(string title) => titleOverride = title;
+
+        /// <summary>Cuadro de la apertura (desde 0) en el que suelta la biomasa; -1: al acabar la apertura (la almeja).</summary>
+        internal void SetReleaseFrame(int frame) => releaseFrame = frame;
 
         protected override string TooltipTitle => !string.IsNullOrEmpty(titleOverride) ? titleOverride : big ? "Almeja gigante" : "Almeja";
         protected override string TooltipDetails => "E para abrir";
@@ -87,10 +91,16 @@ namespace Primordia.Rooms
         IEnumerator Open(GameObject player)
         {
             Sfx.Play(big ? Sounds.ClamOpenBig : Sounds.ClamOpen);
-            foreach (var frame in open)
+            bool released = false;
+            for (int i = 0; i < open.Length; i++)
             {
                 if (body != null)
-                    body.sprite = frame;
+                    body.sprite = open[i];
+                if (i == releaseFrame)
+                {
+                    released = true;
+                    Release(player);
+                }
                 yield return new WaitForSeconds(OpenFrameDuration);
             }
             if (body != null && opened != null)
@@ -98,7 +108,8 @@ namespace Primordia.Rooms
             if (glow != null)
                 glow.enabled = false;
 
-            Release(player);
+            if (!released)
+                Release(player);
         }
 
         void Release(GameObject player)

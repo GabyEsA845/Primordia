@@ -68,12 +68,14 @@ namespace Primordia.Rooms
             /// <summary>Grieta de burbujas de metano del Burbujeo: suelo.</summary>
             Bubbler,
             /// <summary>Sitio de una planta carnívora del Claro de la carnívora: suelo.</summary>
-            Plant
+            Plant,
+            /// <summary>Casilla del tronco del Tronco caído que cruza el lago: se pinta como lodo, pero se anda sin hundirse.</summary>
+            Log
         }
 
         [Tooltip("Una fila por línea, de arriba abajo. # pared, . suelo, ^ v < > huecos de puerta, o obstáculo 1×1, O obstáculo 2×2, "
             + "~ fosa, F hueso, S esponja, C almeja, H coral del corazón, E entrada de oleadas, A algas, L planta luminosa, K cápsula, "
-            + "R roca que se derrumba, Z suelo que se hunde (zonas de 3×3), m lodo profundo, c veta de carbón, V fumarola, P montón de biomasa, e veta encendida, M lodo con biomasa, b grieta de burbujas, Y planta carnívora.")]
+            + "R roca que se derrumba, Z suelo que se hunde (zonas de 3×3), m lodo profundo, c veta de carbón, V fumarola, P montón de biomasa, e veta encendida, M lodo con biomasa, b grieta de burbujas, Y planta carnívora, T tronco en el lago.")]
         [SerializeField, TextArea(16, 40)] string layout;
 
         Mark[,] cells;
@@ -196,7 +198,7 @@ namespace Primordia.Rooms
                     var kind = mark == Mark.Floor ? FloorMap.Kind.Floor
                         : IsObstacle(mark) ? FloorMap.Kind.Obstacle
                         : mark == Mark.Pit ? FloorMap.Kind.Pit
-                        : mark is Mark.Mud or Mark.MudPile ? FloorMap.Kind.Mud
+                        : mark is Mark.Mud or Mark.MudPile or Mark.Log ? FloorMap.Kind.Mud
                         : IsInterior(mark) ? FloorMap.Kind.Floor
                         : !openDoors || mark == Mark.Wall ? FloorMap.Kind.Wall
                         : mark == Mark.DoorUp ? FloorMap.Kind.Passage
@@ -362,6 +364,7 @@ namespace Primordia.Rooms
                         'M' => Mark.MudPile,
                         'b' => Mark.Bubbler,
                         'Y' => Mark.Plant,
+                        'T' => Mark.Log,
                         _ => Mark.Wall
                     };
                 }

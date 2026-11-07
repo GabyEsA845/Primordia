@@ -95,6 +95,9 @@ namespace Primordia.Editor
             art.wisp = Sheet("smoke", "Fx_SmokeWisp", 48, new Vector2(0.5f, 0.5f));
             art.floatingEmbers = Sheet("smoke", "Fx_FloatingEmbers", 32, new Vector2(0.5f, 0.5f));
 
+            // Tronco caído, rayo de luz del Tocón hueco y cofres de cono (arte de floor3-log-stump y de floor3-environment).
+            ArtSetup.ImportLogStumpArt(art);
+
             if (isNew)
                 AssetDatabase.CreateAsset(art, AssetPath);
             else
@@ -378,13 +381,13 @@ namespace Primordia.Editor
                         Put(rows, x, r, 'm');
                 }
             }
-            // El tronco: dos filas de suelo de pared a pared por el lago.
+            // El tronco: las dos filas del lago que cruza, de pared a pared, son casillas T (se pintan de lodo, pero se andan sin hundirse).
             for (int x = 1; x < width - 1; x++)
             {
                 foreach (int r in new[] { door, door + 1 })
                 {
                     if (rows[r][x] == 'm')
-                        rows[r][x] = '.';
+                        rows[r][x] = 'T';
                 }
             }
             int[][] rocks = { new[] { 5, 5 }, new[] { width - 6, 5 }, new[] { 5, height - 5 }, new[] { width - 6, height - 5 }, new[] { cx > 0 ? (int)cx : 10, 4 } };
@@ -532,6 +535,8 @@ namespace Primordia.Editor
             var stumpRoom = Entry(tocon, false);
             stumpRoom.hidden = true;
             stumpRoom.coneChest = true;
+            // La sala es el interior de un tocón gigante: tileset propio, igual en todos los tramos.
+            stumpRoom.theme = ArtSetup.ImportStumpTheme();
             rooms.Add(stumpRoom);
 
             // Frente de fuego: helechos ×3 y focos al empezar; solo en las dos primeras franjas (en la tercera los helechos ya están quemados).

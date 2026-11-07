@@ -54,12 +54,26 @@ namespace Primordia.Rooms
             /// <summary>Suelo que se puede hundir y volverse fosa en el derrumbe de la cueva del Euriptérido (zonas de 3×3).</summary>
             SinkZone,
             /// <summary>Lodo profundo del piso 3: suelo (provisional hasta que hunda).</summary>
-            Mud
+            Mud,
+            /// <summary>Veta de carbón del piso 3: suelo que arde al prenderle fuego (se pinta con el arte de la veta).</summary>
+            Coal,
+            /// <summary>Fumarola del piso 3: suelo con un agujero que lanza chorros de vapor.</summary>
+            Vent,
+            /// <summary>Montón de biomasa de la sala Ladronas: suelo con biomasa que las cucarachas intentan robar.</summary>
+            Pile,
+            /// <summary>Veta de carbón encendida (brasas fijas): suelo que alumbra y dispersa el humo; en la Veta de carbón suelta chispas.</summary>
+            Ember,
+            /// <summary>Lodo profundo con un montón de biomasa encima (Tesoro hundido): cuenta como lodo.</summary>
+            MudPile,
+            /// <summary>Grieta de burbujas de metano del Burbujeo: suelo.</summary>
+            Bubbler,
+            /// <summary>Sitio de una planta carnívora del Claro de la carnívora: suelo.</summary>
+            Plant
         }
 
         [Tooltip("Una fila por línea, de arriba abajo. # pared, . suelo, ^ v < > huecos de puerta, o obstáculo 1×1, O obstáculo 2×2, "
             + "~ fosa, F hueso, S esponja, C almeja, H coral del corazón, E entrada de oleadas, A algas, L planta luminosa, K cápsula, "
-            + "R roca que se derrumba, Z suelo que se hunde (zonas de 3×3), m lodo profundo.")]
+            + "R roca que se derrumba, Z suelo que se hunde (zonas de 3×3), m lodo profundo, c veta de carbón, V fumarola, P montón de biomasa, e veta encendida, M lodo con biomasa, b grieta de burbujas, Y planta carnívora.")]
         [SerializeField, TextArea(16, 40)] string layout;
 
         Mark[,] cells;
@@ -182,7 +196,7 @@ namespace Primordia.Rooms
                     var kind = mark == Mark.Floor ? FloorMap.Kind.Floor
                         : IsObstacle(mark) ? FloorMap.Kind.Obstacle
                         : mark == Mark.Pit ? FloorMap.Kind.Pit
-                        : mark == Mark.Mud ? FloorMap.Kind.Mud
+                        : mark is Mark.Mud or Mark.MudPile ? FloorMap.Kind.Mud
                         : IsInterior(mark) ? FloorMap.Kind.Floor
                         : !openDoors || mark == Mark.Wall ? FloorMap.Kind.Wall
                         : mark == Mark.DoorUp ? FloorMap.Kind.Passage
@@ -341,6 +355,13 @@ namespace Primordia.Rooms
                         'R' => Mark.CollapsingRock,
                         'Z' => Mark.SinkZone,
                         'm' => Mark.Mud,
+                        'c' => Mark.Coal,
+                        'V' => Mark.Vent,
+                        'P' => Mark.Pile,
+                        'e' => Mark.Ember,
+                        'M' => Mark.MudPile,
+                        'b' => Mark.Bubbler,
+                        'Y' => Mark.Plant,
                         _ => Mark.Wall
                     };
                 }

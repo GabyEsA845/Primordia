@@ -276,10 +276,16 @@ namespace Primordia.Rooms
             if (asCombat.Count > 0)
             {
                 var free = Enumerable.Range(FirstSpecialDepth, Mathf.Max(0, combatCount - FirstSpecialDepth)).OrderBy(_ => random.Next()).ToList();
-                foreach (var special in asCombat.Take(free.Count))
+                foreach (var special in asCombat)
                 {
-                    combatSpecials[free[0]] = special;
-                    free.RemoveAt(0);
+                    // Algunas (el Bosque en humo) solo salen de cierta franja en adelante; si no hay hueco así, esa sala no sale.
+                    int pick = free.FindIndex(depth => !config.HasBands || (special.minBand <= 0
+                        || FloorBuilder.BandOf(depth, combatCount, config.BandThemes.Length) >= special.minBand)
+                        && (special.bandsBelow <= 0 || FloorBuilder.BandOf(depth, combatCount, config.BandThemes.Length) < special.bandsBelow));
+                    if (pick < 0)
+                        continue;
+                    combatSpecials[free[pick]] = special;
+                    free.RemoveAt(pick);
                 }
             }
 

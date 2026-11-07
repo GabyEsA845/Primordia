@@ -176,6 +176,31 @@ namespace Primordia.Tests
         }
 
         [Test]
+        public void CombatSpecialWithMinBand_NeverSitsInTheFirstBand()
+        {
+            floor2.ConfigureSpecialRooms(new[]
+            {
+                new FloorConfig.SpecialRoom
+                {
+                    template = Template(RoomLayouts.Normal), placement = FloorConfig.SpecialPlacement.Path, countsAsCombat = true, enemyMultiplier = 1f,
+                    always = true, band = -1, minBand = 1,
+                },
+            }, new Vector2Int(1, 1));
+            int placed = 0;
+            for (int seed = 1; seed <= 60; seed++)
+            {
+                var layout = FloorLayoutGenerator.Generate(floor2, new System.Random(seed));
+                int combat = layout.Rooms.Count(room => room.Role == RoomRole.Combat);
+                foreach (var room in layout.Rooms.Where(room => room.Special.HasValue))
+                {
+                    placed++;
+                    Assert.GreaterOrEqual(FloorBuilder.BandOf(room.Depth, combat, 3), 1, $"semilla {seed}: de la segunda franja en adelante.");
+                }
+            }
+            Assert.Greater(placed, 0, "Alguna vez sale.");
+        }
+
+        [Test]
         public void EncounterThemes_WithoutThemes_DoNothingToTheLayout()
         {
             for (int seed = 1; seed <= 20; seed++)

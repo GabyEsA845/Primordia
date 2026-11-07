@@ -112,6 +112,22 @@ namespace Primordia.Rooms
             }
         }
 
+        int holds;
+
+        /// <summary>
+        /// Un objetivo que no son enemigos (las Ladronas): mientras haya alguno, entrar cierra las puertas y la sala no se limpia, aunque no
+        /// tenga enemigos. Hay que pedirlo antes de que el jugador entre y soltarlo con <see cref="ReleaseHold"/> al cumplirse.
+        /// </summary>
+        public void AddHold() => holds++;
+
+        public void ReleaseHold()
+        {
+            if (holds > 0)
+                holds--;
+            if (holds == 0 && State == RoomState.Combat && AliveEnemies == 0 && PendingWaves == 0)
+                Clear();
+        }
+
         void HideEnemies()
         {
             if (State == RoomState.Waiting && enemiesRoot != null)
@@ -146,7 +162,7 @@ namespace Primordia.Rooms
                 enemiesRoot.gameObject.SetActive(true);
 
             var enemies = enemiesRoot != null ? enemiesRoot.GetComponentsInChildren<Enemy>() : Array.Empty<Enemy>();
-            if (enemies.Length == 0 && PendingWaves == 0)
+            if (enemies.Length == 0 && PendingWaves == 0 && holds == 0)
             {
                 Clear();
                 return;
@@ -166,7 +182,7 @@ namespace Primordia.Rooms
                 if (enemy.TryGetComponent<EnemyAI>(out var ai))
                     ai.Alert();
             }
-            if (enemies.Length == 0)
+            if (enemies.Length == 0 && PendingWaves > 0)
                 StartCoroutine(NextWave());
         }
 
@@ -234,7 +250,7 @@ namespace Primordia.Rooms
             {
                 if (PendingWaves > 0)
                     StartCoroutine(NextWave());
-                else
+                else if (holds == 0)
                     Clear();
             }
         }

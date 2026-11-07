@@ -179,6 +179,25 @@ namespace Primordia.Rooms
             public bool clamRoom;
             [Tooltip("La sala del ámbar (piso 3): sus casillas C son un bloque de ámbar con una mutación especial, no una almeja.")]
             public bool amber;
+            [Tooltip("Bosque en humo (piso 3): capas de humo que tapan la sala salvo un claro alrededor del jugador.")]
+            public bool smoke;
+            [Tooltip("Primera franja de profundidad en la que puede salir (0 = cualquiera; 1 = de la segunda en adelante). Solo salas de combate del camino.")]
+            [Min(0)] public int minBand;
+            [Tooltip("Frente de fuego (piso 3): helechos mucho más densos y, al empezar el combate, unos focos de fuego que se extienden por ellos.")]
+            public bool fireFront;
+            [Tooltip("Multiplica la cantidad de helechos de la sala (0 = la normal).")]
+            [Min(0f)] public float fernScale;
+            [Tooltip("Solo sale en las franjas anteriores a esta (0 = cualquiera; 2 = solo las dos primeras: los helechos de la tercera ya están quemados). Solo salas de combate del camino.")]
+            [Min(0)] public int bandsBelow;
+            [Tooltip("Tocón hueco (piso 3): la puerta que da a esta sala (en la sala de la que cuelga) está sellada con maleza quemable.")]
+            public bool hidden;
+            [Tooltip("Tocón hueco (piso 3): sus casillas C son un cofre de cono de Lepidodendron (biomasa grande), no una almeja.")]
+            public bool coneChest;
+            [Tooltip("Enemigo que sale además de los de siempre (las libélulas del Tronco caído) y cuántos.")]
+            public Enemy bonusEnemy;
+            [Min(0)] public int bonusCount;
+            [Tooltip("Ladronas (piso 3): sus casillas P son biomasa en el suelo y cucarachas salen de las grietas a robarla.")]
+            public bool thieves;
 
             public bool IsValid => template != null;
         }

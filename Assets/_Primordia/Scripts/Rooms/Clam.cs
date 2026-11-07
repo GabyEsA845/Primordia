@@ -39,7 +39,12 @@ namespace Primordia.Rooms
 
         public override bool IsAvailable => !IsOpen;
 
-        protected override string TooltipTitle => big ? "Almeja gigante" : "Almeja";
+        string titleOverride;
+
+        /// <summary>Otro nombre para el cofre (el cono de Lepidodendron de las Ladronas).</summary>
+        internal void SetTitle(string title) => titleOverride = title;
+
+        protected override string TooltipTitle => !string.IsNullOrEmpty(titleOverride) ? titleOverride : big ? "Almeja gigante" : "Almeja";
         protected override string TooltipDetails => "E para abrir";
         protected override Color TooltipColor => GlowColor;
 

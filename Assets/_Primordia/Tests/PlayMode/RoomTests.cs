@@ -117,6 +117,21 @@ namespace Primordia.Tests
         }
 
         [Test]
+        public void RoomWithAnExternalHold_ClosesItsDoorsOnBegin_AndOpensThemWhenTheHoldIsReleased()
+        {
+            CreateRoom(enemyCount: 0);
+            room.AddHold();
+
+            room.Begin();
+            Assert.AreEqual(Room.RoomState.Combat, room.State, "Sin enemigos pero con un objetivo pendiente, se cierra.");
+            Assert.IsFalse(door.IsOpen);
+
+            room.ReleaseHold();
+            Assert.AreEqual(Room.RoomState.Cleared, room.State);
+            Assert.IsTrue(door.IsOpen);
+        }
+
+        [Test]
         public void Begin_ClosesDoors_AndWakesTheEnemies()
         {
             CreateRoom(enemyCount: 2);

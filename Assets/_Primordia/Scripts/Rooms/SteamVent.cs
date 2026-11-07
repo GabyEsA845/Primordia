@@ -44,7 +44,13 @@ namespace Primordia.Rooms
         /// <summary>True durante el aviso y el chorro (para que el audio y las pruebas lo sepan).</summary>
         public bool IsActive { get; private set; }
 
-        internal static SteamVent Create(Transform parent, Vector2 position, Sprite[] idle, Sprite[] warn, Sprite[] blast)
+        /// <summary>Segundos que espera antes de empezar su ciclo (negativo: uno al azar). La sala Fumarolas lo fija por filas.</summary>
+        float startOffset = -1f;
+
+        /// <summary>Lo que dura un ciclo completo sin el chorro: reposo y aviso.</summary>
+        internal const float CycleSeconds = IdleSeconds + WarnSeconds;
+
+        internal static SteamVent Create(Transform parent, Vector2 position, Sprite[] idle, Sprite[] warn, Sprite[] blast, float startOffset = -1f)
         {
             var obj = new GameObject("SteamVent");
             obj.transform.SetParent(parent, false);
@@ -58,13 +64,14 @@ namespace Primordia.Rooms
             vent.idle = idle;
             vent.warn = warn;
             vent.blast = blast;
+            vent.startOffset = startOffset;
             return vent;
         }
 
         IEnumerator Start()
         {
             // Cada fumarola empieza en un punto distinto del ciclo.
-            yield return new WaitForSeconds(Random.value * (IdleSeconds + WarnSeconds));
+            yield return new WaitForSeconds(startOffset >= 0f ? startOffset : Random.value * CycleSeconds);
             while (true)
             {
                 IsActive = false;

@@ -18,14 +18,20 @@ namespace Primordia.Rooms
         public const int PlayerDamage = 3;
         public const float GroundFireSeconds = 2f;
 
-        public static void Detonate(Vector2 center)
+        public static void Detonate(Vector2 center) => Detonate(center, Radius, EnemyDamage, PlayerDamage, true);
+
+        /// <summary>
+        /// Explosión con otro radio y otros daños (las burbujas del Burbujeo, más pequeñas que un odre). Con <paramref name="leaveFire"/>
+        /// deja un fuego en el suelo; prende siempre lo inflamable que alcance.
+        /// </summary>
+        public static void Detonate(Vector2 center, float radius, int enemyDamage, int playerDamage, bool leaveFire)
         {
             var kit = ReactionKit.Current;
             if (kit != null && kit.Explosion.Length > 0)
                 SpriteFramePlayer.PlayOnce(kit.Explosion, kit.ExplosionFrameSeconds, center, 15);
 
             var seen = new HashSet<Health>();
-            foreach (var hit in Physics2D.OverlapCircleAll(center, Radius))
+            foreach (var hit in Physics2D.OverlapCircleAll(center, radius))
             {
                 if (hit.isTrigger)
                     continue;
@@ -33,11 +39,12 @@ namespace Primordia.Rooms
                 if (health == null || health.IsDead || !seen.Add(health) || FireImmune.Has(health) || ExplosionImmune.Has(health))
                     continue;
                 bool isPlayer = health.GetComponentInParent<PlayerController>() != null;
-                health.TakeDamage(isPlayer ? PlayerDamage : EnemyDamage);
+                health.TakeDamage(isPlayer ? playerDamage : enemyDamage);
             }
 
-            Flammables.IgniteNear(center, Radius);
-            GroundFire.Spawn(center + Vector2.down * 0.3f, GroundFireSeconds);
+            Flammables.IgniteNear(center, radius);
+            if (leaveFire)
+                GroundFire.Spawn(center + Vector2.down * 0.3f, GroundFireSeconds);
         }
     }
 }

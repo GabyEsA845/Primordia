@@ -147,7 +147,8 @@ namespace Primordia.Rooms
             {
                 var (from, to) = layout.Links[link];
                 var direction = layout.Direction(link);
-                if (layout.IsShortcut(link))
+                // Los atajos y las salas ocultas (el Tocón hueco) tienen la puerta sellada con maleza quemable.
+                if (layout.IsShortcut(link) || byLayout[to].Layout.Special is { hidden: true })
                     byLayout[from].BrushDirections.Add(direction);
                 OpenDoor(map, byLayout[from], direction);
                 OpenDoor(map, byLayout[to], -direction);
@@ -525,7 +526,7 @@ namespace Primordia.Rooms
                     var mark = room.Template.Get(x, y);
                     map.Set(cell, RoomTemplate.IsObstacle(mark) ? FloorMap.Kind.Obstacle
                         : mark == RoomTemplate.Mark.Pit ? FloorMap.Kind.Pit
-                        : mark == RoomTemplate.Mark.Mud ? FloorMap.Kind.Mud
+                        : mark is RoomTemplate.Mark.Mud or RoomTemplate.Mark.MudPile ? FloorMap.Kind.Mud
                         : RoomTemplate.IsInterior(mark) ? FloorMap.Kind.Floor
                         : FloorMap.Kind.Wall);
                     map.SetTheme(cell, room.Theme);
@@ -784,6 +785,8 @@ namespace Primordia.Rooms
             // Odres, bulbos y helechos no aparecen unos encima de otros ni de las rocas de cobertura: comparten lo ocupado de la sala.
             var taken = ObstacleFootprints(placed);
             var puddleSpots = new List<(Vector2 position, float radius)>();
+            // Veta de carbón, fumarolas y montones de las salas especiales del piso 3: van antes que el escenario, que las esquiva.
+            BuildSpecialRoomPieces(roomObject.transform, placed, theme, config, taken);
             // La gran charca de la Charca de sapos va primero: lo demás la esquiva.
             var pond = BuildPond(parent, roomObject.transform, placed, taken, puddleSpots);
             BuildMethane(roomObject.transform, placed, theme, random, taken);
@@ -816,6 +819,8 @@ namespace Primordia.Rooms
             var enemiesRoot = new GameObject("Enemies").transform;
             enemiesRoot.SetParent(roomObject.transform, false);
             enemiesRoot.gameObject.SetActive(false);
+            // Las carnívoras del Claro de la carnívora cuelgan de aquí: esperan inactivas hasta que entra el jugador y se marchitan al limpiar.
+            BuildPlantRing(enemiesRoot, placed, config);
             // Los helechos enteros de la sala (en coordenadas de la plantilla): donde pueden esconderse las arañas.
             var fernSpots = roomObject.GetComponentsInChildren<Fern>().Where(fern => fern.Intact)
                 .Select(fern => fern.Position - (Vector2)placed.Origin).ToList();
@@ -910,9 +915,9 @@ namespace Primordia.Rooms
             var floor = placed.Template.FloorBounds();
             var doorCells = placed.DoorCells.Values.SelectMany(cells => cells).Select(cell => cell - placed.Origin);
             var candidates = EncounterPlanner.SpawnCells(placed.Template, doorCells);
-            // No encima de la vaina de la tienda ni pegado a ella.
+            // No encima de la vaina de la tienda ni pegado a ella (la distancia se mide a su centro; avoid es el punto de sus pies).
             if (avoid.HasValue)
-                candidates = candidates.Where(cell => Vector2.Distance((Vector2)(placed.Origin + cell) + new Vector2(0.5f, 0.5f), avoid.Value) >= HeartPodClearance).ToList();
+                candidates = candidates.Where(cell => Vector2.Distance((Vector2)(placed.Origin + cell) + new Vector2(0.5f, 0.5f), avoid.Value + Vector2.up * 0.5f) >= HeartPodClearance).ToList();
             var corner = new Vector2(floor.xMin + 3f, floor.yMin + 3f);
             Vector2 position = placed.FloorCenter;
             if (candidates.Count > 0)
@@ -1092,9 +1097,11 @@ namespace Primordia.Rooms
             var playerMutations = player != null ? player.GetComponent<PlayerMutations>() : null;
             var taken = new HashSet<Vector2Int>();
             bool amberRoom = placed.Layout.Special is { amber: true } && config.Amber.block != null;
+            // Las casillas C del Tocón hueco son el cofre de cono (lo pone BuildSpecialRoomPieces).
+            bool coneRoom = placed.Layout.Special is { coneChest: true };
             foreach (var cell in chests)
             {
-                if (taken.Contains(cell))
+                if (taken.Contains(cell) || coneRoom)
                     continue;
                 if (amberRoom)
                 {
@@ -1441,6 +1448,12 @@ namespace Primordia.Rooms
             // Las especiales cambian la cantidad (el Corazón morado, el doble).
             int budget = Mathf.RoundToInt(EncounterPlanner.Budget(config, placed.Layout.Depth, floorArea) * placed.Layout.EnemyMultiplier);
             var enemies = EncounterPlanner.PickEnemies(config, placed.Layout.Depth, budget, random, EncounterPlanner.HasMud(template), placed.Layout.Encounter);
+            // Los de más de la sala especial (las libélulas del Tronco caído).
+            if (placed.Layout.Special is { bonusEnemy: not null } bonus)
+            {
+                for (int i = 0; i < bonus.bonusCount; i++)
+                    enemies.Add(bonus.bonusEnemy);
+            }
 
             var doorCells = placed.DoorCells.Values.SelectMany(cells => cells).Select(cell => cell - placed.Origin).ToList();
             var candidates = ClearOfHazards(EncounterPlanner.SpawnCells(template, doorCells), hazardSpots);
@@ -1697,7 +1710,7 @@ namespace Primordia.Rooms
             holder.SetParent(parent, false);
 
             // Fumarolas: solo en las salas de combate y laterales (hacen daño).
-            if (art.HasVents && role is RoomRole.Combat or RoomRole.Side)
+            if (art.HasVents && role is RoomRole.Combat or RoomRole.Side && placed.Template.CellsOf(RoomTemplate.Mark.Vent).Count == 0)
             {
                 int vents = Scaled(RandomCount(random, art.ventCount), placed.Layout.Encounter?.ventScale);
                 int placedVents = 0;
@@ -1877,7 +1890,7 @@ namespace Primordia.Rooms
             var candidates = EncounterPlanner.SpawnCells(placed.Template, doorCells);
             if (accept != null)
                 candidates = candidates.Where(accept).ToList();
-            int count = Mathf.RoundToInt(candidates.Count * theme.FernDensity * (placed.Layout.Encounter?.fernScale ?? 1f));
+            int count = Mathf.RoundToInt(candidates.Count * theme.FernDensity * (placed.Layout.Encounter?.fernScale ?? (placed.Layout.Special is { fernScale: > 0f } dense ? dense.fernScale : 1f)));
             var positions = EncounterPlanner.Positions(candidates, count * RetryFactor, random);
             if (positions.Count == 0)
                 return;

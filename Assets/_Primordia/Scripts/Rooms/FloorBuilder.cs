@@ -1641,10 +1641,15 @@ namespace Primordia.Rooms
         static void BuildMethane(Transform parent, PlacedRoom placed, RoomTheme theme, System.Random random, List<(Vector2 position, float radius)> taken)
         {
             var spec = theme.Methane;
-            if (spec == null || placed.Layout.Role is not (RoomRole.Combat or RoomRole.Side))
+            // El jefe del piso 3 también tiene niebla y odres (la Meganeura se quema si prendes el metano bajo ella).
+            if (spec == null || placed.Layout.Role is not (RoomRole.Combat or RoomRole.Side or RoomRole.Boss))
                 return;
             if (!spec.HasSacs && !spec.HasMist)
                 return;
+
+            // La sala del jefe usa su propia semilla: así no cambia lo que sale del resto del piso con la misma semilla.
+            if (placed.Layout.Role == RoomRole.Boss)
+                random = new System.Random(placed.Origin.x * 73856093 ^ placed.Origin.y * 19349663 ^ 5);
 
             var doorCells = placed.DoorCells.Values.SelectMany(cells => cells).Select(cell => cell - placed.Origin);
             var candidates = EncounterPlanner.SpawnCells(placed.Template, doorCells);

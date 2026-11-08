@@ -11,7 +11,7 @@ namespace Primordia.Rooms
     /// enemigos que están dentro los envenena (2 por segundo durante 4 s, renovado); al jugador le llena la barra de veneno
     /// (<see cref="PlayerToxin"/>). La esquiva atraviesa la nube sin llenarla.
     /// </summary>
-    public class ToxicCloud : MonoBehaviour
+    public class ToxicCloud : MonoBehaviour, IWindPushable
     {
         public const float Seconds = 5f;
 
@@ -65,6 +65,14 @@ namespace Primordia.Rooms
             }
             Destroy(gameObject);
         }
+
+        Vector2 IWindPushable.Position => transform.position;
+
+        public void Push(Vector2 delta) => transform.position += (Vector3)delta;
+
+        void OnEnable() => Wind.Register(this);
+
+        void OnDisable() => Wind.Unregister(this);
 
         void Update()
         {

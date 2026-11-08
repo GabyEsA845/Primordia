@@ -111,6 +111,127 @@ namespace Primordia.Tests
             Assert.IsTrue(body.sprite.name.StartsWith("Meganeura_Perch"), body.sprite.name);
         }
 
+        // ---------- Paso 7b: fase 1 ----------
+
+        Health Player(Vector2 position)
+        {
+            var player = new GameObject("Player") { tag = "Player", layer = LayerMask.NameToLayer(CombatLayers.Player) };
+            player.transform.position = position;
+            var body = player.AddComponent<Rigidbody2D>();
+            body.bodyType = RigidbodyType2D.Kinematic;
+            body.position = position;
+            player.AddComponent<CircleCollider2D>().radius = 0.4f;
+            var health = player.AddComponent<Health>();
+            health.SetMax(20, healDifference: false);
+            health.ResetHealth();
+            extras.Add(player);
+            return health;
+        }
+
+        readonly System.Collections.Generic.List<GameObject> extras = new();
+
+        [TearDown]
+        public void TearDownExtras()
+        {
+            foreach (var extra in extras)
+            {
+                if (extra != null)
+                    Object.DestroyImmediate(extra);
+            }
+            extras.Clear();
+        }
+
+        IEnumerator UntilMode(MeganeuraBoss.Mode mode, float timeout, System.Action<MeganeuraBoss.Mode> each = null)
+        {
+            for (float t = 0f; t < timeout && boss.CurrentMode != mode; t += Time.deltaTime)
+            {
+                each?.Invoke(boss.CurrentMode);
+                yield return null;
+            }
+            Assert.AreEqual(mode, boss.CurrentMode, $"no llegó a {mode}");
+        }
+
+        [UnityTest]
+        public IEnumerator ElCicloSubePersigueCaeYQuedaVulnerable()
+        {
+            Player((Vector2)room.transform.position + new Vector2(-10f, -5f));
+            var hit = boss.GetComponent<Collider2D>();
+            boss.BeginFight();
+            var seen = new System.Collections.Generic.HashSet<MeganeuraBoss.Mode>();
+            yield return UntilMode(MeganeuraBoss.Mode.Hover, 14f, mode =>
+            {
+                seen.Add(mode);
+                // Alta o cayendo en picado es invulnerable: sin colisión y con la barra con candado.
+                if (boss.IsHigh)
+                {
+                    Assert.IsFalse(hit.enabled, $"{mode} debería ser invulnerable");
+                    Assert.AreEqual(BossBarStyle.Immune, boss.BarStyle);
+                }
+            });
+            foreach (var mode in new[] { MeganeuraBoss.Mode.Climbing, MeganeuraBoss.Mode.High, MeganeuraBoss.Mode.Marking, MeganeuraBoss.Mode.Diving })
+                Assert.IsTrue(seen.Contains(mode), $"no pasó por {mode}");
+            Assert.IsTrue(hit.enabled, "a ras de suelo se le puede pegar");
+            Assert.AreEqual(BossBarStyle.Normal, boss.BarStyle);
+        }
+
+        [UnityTest]
+        public IEnumerator ElPicadoDanaAlQueSeQuedaEnLaMarca()
+        {
+            var health = Player((Vector2)room.transform.position + new Vector2(-10f, -5f));
+            boss.BeginFight();
+            yield return UntilMode(MeganeuraBoss.Mode.Hover, 14f);
+            Assert.AreEqual(18, health.Current, "el picado quita un corazón entero (2 puntos)");
+        }
+
+        [UnityTest]
+        public IEnumerator SiCaeSobreElTroncoQuedaClavadaYLoArranca()
+        {
+            Player((Vector2)boss.transform.position);
+            boss.BeginFight();
+            yield return UntilMode(MeganeuraBoss.Mode.Stuck, 14f);
+            Assert.IsTrue(boss.GetComponent<Collider2D>().enabled, "clavada es vulnerable");
+            yield return UntilMode(MeganeuraBoss.Mode.Hover, 4f);
+        }
+
+        [UnityTest]
+        public IEnumerator SiSePrendeElMetanoBajoElllaCaeArdiendo()
+        {
+            Player((Vector2)room.transform.position + new Vector2(-10f, -5f));
+            boss.BeginFight();
+            yield return UntilMode(MeganeuraBoss.Mode.Hover, 14f);
+            Assert.IsFalse(boss.Burnt);
+            var mistObject = new GameObject("Mist");
+            extras.Add(mistObject);
+            mistObject.transform.position = boss.transform.position;
+            var mist = mistObject.AddComponent<MethaneMist>();
+            mist.Ignite();
+            yield return new WaitForSeconds(0.3f);
+            Assert.IsTrue(boss.Burnt, "las alas quemadas son permanentes");
+            Assert.IsTrue(boss.CurrentMode is MeganeuraBoss.Mode.BurnFall or MeganeuraBoss.Mode.Grounded, boss.CurrentMode.ToString());
+            Assert.IsTrue(boss.WingVariant.EndsWith("Burnt"));
+            yield return UntilMode(MeganeuraBoss.Mode.Grounded, 2f);
+            Assert.IsTrue(boss.GetComponent<Collider2D>().enabled);
+            // Después se endereza y vuelve al ciclo.
+            yield return UntilMode(MeganeuraBoss.Mode.Climbing, 8f);
+        }
+
+        [Test]
+        public void ElVientoArrastraLaNieblaDentroDelConoYNoFuera()
+        {
+            var inside = new GameObject("MistIn");
+            var outside = new GameObject("MistOut");
+            extras.Add(inside);
+            extras.Add(outside);
+            inside.transform.position = new Vector3(5f, 0f, 0f);
+            outside.transform.position = new Vector3(-5f, 0f, 0f);
+            inside.AddComponent<MethaneMist>();
+            outside.AddComponent<MethaneMist>();
+            // Un frame de viento hacia la derecha: 5 u/s durante 0,2 s = 1 u.
+            Wind.Blow(Vector2.zero, Vector2.right, 9f, 35f, 5f, 0f, 0.2f);
+            Assert.AreEqual(6f, inside.transform.position.x, 0.01f);
+            Assert.AreEqual(-5f, outside.transform.position.x, 0.01f);
+        }
+
         [Test]
         public void ConLaSalaDesactivadaSeMontaSinFallar()
         {

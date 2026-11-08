@@ -23,6 +23,7 @@ namespace Primordia.Editor
         const string DataPath = "Assets/_Primordia/Data/Enemies/Floor3/Enemy_MeganeuraBoss.asset";
         const string TestScenePath = "Assets/_Primordia/Scenes/Test_BossMeganeura.unity";
         const string TestConfigPath = "Assets/_Primordia/Data/Rooms/Floor_BossMeganeuraTest.asset";
+        const string ArtFolder = "Assets/_Primordia/Art/Floor3/floor3-bosses/meganeura";
         const string StumpPath = "Assets/_Primordia/Art/Floor3/floor3-bosses/meganeura/Burnt/Lepido_Split_Idle.png";
 
         // Suelo de 40×24 u: la plantilla rectangular suma 2 de pared a los lados y 4 arriba y abajo.
@@ -106,8 +107,22 @@ namespace Primordia.Editor
             data.ConfigureBiomass(0f, 0f, 10);
             EditorUtility.SetDirty(data);
 
-            // Lepidodendron partido de la sala: 4 cuadros de 64×96, pie en y = 90.
-            var stump = ArtSetup.SliceFloor3Sheet(StumpPath, 64, new Vector2(0.5f, 6f / 96f));
+            // Lepidodendron partido de la sala: 4 cuadros de 64×96, pie en y = 90 (reposo, golpe y herida abierta).
+            var stumpPivot = new Vector2(0.5f, 6f / 96f);
+            var stump = ArtSetup.SliceFloor3Sheet(StumpPath, 64, stumpPivot);
+            var effects = new MeganeuraBoss.Effects
+            {
+                diveMarkFollow = Sheet("Effects/Fx_Meganeura_DiveMark_Follow", 64),
+                diveMarkLocked = Sheet("Effects/Fx_Meganeura_DiveMark_Locked", 64),
+                diveImpact = Sheet("Effects/Fx_Meganeura_DiveImpact", 112),
+                diveCrack = Sheet("Effects/Fx_Meganeura_DiveCrack", 64),
+                // La ráfaga sale del borde izquierdo hacia la derecha: pivote a la izquierda para girarla desde su origen.
+                gust = Sheet("Effects/Fx_Meganeura_Gust", 112, new Vector2(0f, 0.5f)),
+                crash = Sheet("Effects/Fx_Meganeura_Crash", 96),
+                splinters = Sheet("Effects/Fx_Meganeura_Splinters", 64),
+                stumpHit = Sheet("Burnt/Lepido_Split_Hit", 64, stumpPivot),
+                stumpGash = Sheet("Burnt/Lepido_Split_Gash", 64, stumpPivot),
+            };
 
             var root = new GameObject("Boss_Meganeura") { layer = LayerMask.NameToLayer(CombatLayers.Enemy) };
             try
@@ -127,6 +142,15 @@ namespace Primordia.Editor
                 var bodySprite = bodyObject.AddComponent<DirectionalSprite>();
                 bodySprite.Configure(body, art);
 
+                // Capa de fuego sobre el cuerpo (cae y queda en el suelo con las alas ardiendo).
+                var fireObject = new GameObject("Fire") { layer = root.layer };
+                fireObject.transform.SetParent(bodyObject.transform, false);
+                var fire = fireObject.AddComponent<SpriteRenderer>();
+                fire.sortingOrder = 31;
+                fire.enabled = false;
+                var fireSprite = fireObject.AddComponent<DirectionalSprite>();
+                fireSprite.Configure(fire, art);
+
                 // La colisión queda donde se ve el tórax posado (3 u de altura × 0,57 = 1,7 u por encima del punto del suelo).
                 var collider = root.AddComponent<CircleCollider2D>();
                 collider.radius = 1.5f;
@@ -145,6 +169,7 @@ namespace Primordia.Editor
 
                 var boss = root.AddComponent<MeganeuraBoss>();
                 boss.Configure(art, body, bodySprite, shadow, shadowSprite, stump);
+                boss.ConfigureFight(fire, fireSprite, effects);
 
                 Directory.CreateDirectory(Path.GetDirectoryName(PrefabPath));
                 var prefab = PrefabUtility.SaveAsPrefabAsset(root, PrefabPath);
@@ -155,6 +180,9 @@ namespace Primordia.Editor
                 Object.DestroyImmediate(root);
             }
         }
+
+        static Sprite[] Sheet(string relative, int cell, Vector2? pivot = null) =>
+            ArtSetup.SliceFloor3Sheet($"{ArtFolder}/{relative}.png", cell, pivot ?? new Vector2(0.5f, 0.5f));
 
         /// <summary>Copia de Floor_3 con el camino inicio → antesala → Meganeura, sin combates, especiales, tienda ni recompensas.</summary>
         static FloorConfig CreateTestConfig(FloorConfig floor3, FloorConfig.BossEntry entry)

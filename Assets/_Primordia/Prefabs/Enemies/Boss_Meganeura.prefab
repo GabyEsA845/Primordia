@@ -107,6 +107,113 @@ MonoBehaviour:
   m_EditorClassIdentifier: Primordia::Primordia.Enemies.DirectionalSprite
   target: {fileID: 8413461471369307829}
   art: {fileID: 11400000, guid: fd0559cf2e9156b4e8679e9adaf539c7, type: 2}
+--- !u!1 &2128535232334441241
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1759832909316894756}
+  - component: {fileID: 3619498199677076818}
+  - component: {fileID: 8181777686836079728}
+  m_Layer: 7
+  m_Name: Fire
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1759832909316894756
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2128535232334441241}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1323825145731297281}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &3619498199677076818
+SpriteRenderer:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2128535232334441241}
+  m_Enabled: 0
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 31
+  m_MaskInteraction: 0
+  m_Sprite: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 0
+  m_SpriteSortPoint: 0
+  m_BlendShapeWeights: []
+--- !u!114 &8181777686836079728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2128535232334441241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9046671c2be115d49a2e3f73f2a3cb17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Primordia::Primordia.Enemies.DirectionalSprite
+  target: {fileID: 3619498199677076818}
+  art: {fileID: 11400000, guid: fd0559cf2e9156b4e8679e9adaf539c7, type: 2}
 --- !u!1 &4761576600614030917
 GameObject:
   m_ObjectHideFlags: 0
@@ -121,7 +228,7 @@ GameObject:
   - component: {fileID: 1499756073331747008}
   - component: {fileID: 6800956837083922183}
   - component: {fileID: 4774511030030819996}
-  - component: {fileID: 4941848267388605999}
+  - component: {fileID: 6170984780214593831}
   m_Layer: 7
   m_Name: Boss_Meganeura
   m_TagString: Untagged
@@ -261,9 +368,67 @@ MonoBehaviour:
   - {fileID: 906396215167967901, guid: 3d402c52a225f424d88a186d68bced5b, type: 3}
   - {fileID: 2099186295708556717, guid: 3d402c52a225f424d88a186d68bced5b, type: 3}
   - {fileID: 1769766868363106923, guid: 3d402c52a225f424d88a186d68bced5b, type: 3}
+  fireRenderer: {fileID: 3619498199677076818}
+  fireSprite: {fileID: 8181777686836079728}
+  effects:
+    diveMarkFollow:
+    - {fileID: -29386952810382785, guid: 0d88d6c483fec6b45bf23c18d6999660, type: 3}
+    - {fileID: -3272471633141574996, guid: 0d88d6c483fec6b45bf23c18d6999660, type: 3}
+    - {fileID: -397212684990995275, guid: 0d88d6c483fec6b45bf23c18d6999660, type: 3}
+    - {fileID: 1913248908746568793, guid: 0d88d6c483fec6b45bf23c18d6999660, type: 3}
+    diveMarkLocked:
+    - {fileID: -3301019637748606155, guid: e69270d95d132844a9d54e6ecb5b353b, type: 3}
+    - {fileID: 4805592945736382949, guid: e69270d95d132844a9d54e6ecb5b353b, type: 3}
+    - {fileID: -6985734015367981121, guid: e69270d95d132844a9d54e6ecb5b353b, type: 3}
+    - {fileID: -8105499223670741239, guid: e69270d95d132844a9d54e6ecb5b353b, type: 3}
+    diveImpact:
+    - {fileID: -5134028967054960386, guid: 6c5a342362b78894393c85a5a281eb07, type: 3}
+    - {fileID: 4076356795144152911, guid: 6c5a342362b78894393c85a5a281eb07, type: 3}
+    - {fileID: 8215966930830235677, guid: 6c5a342362b78894393c85a5a281eb07, type: 3}
+    - {fileID: 5070362390833056921, guid: 6c5a342362b78894393c85a5a281eb07, type: 3}
+    - {fileID: 6452762171030593434, guid: 6c5a342362b78894393c85a5a281eb07, type: 3}
+    - {fileID: -4696682198494339348, guid: 6c5a342362b78894393c85a5a281eb07, type: 3}
+    - {fileID: 6273220450996718208, guid: 6c5a342362b78894393c85a5a281eb07, type: 3}
+    diveCrack:
+    - {fileID: -8791572498849114487, guid: c6ec03188fdb353408fd204eac7ea773, type: 3}
+    - {fileID: -2891452693987332961, guid: c6ec03188fdb353408fd204eac7ea773, type: 3}
+    - {fileID: 4110936923480201562, guid: c6ec03188fdb353408fd204eac7ea773, type: 3}
+    - {fileID: -6832794691534297801, guid: c6ec03188fdb353408fd204eac7ea773, type: 3}
+    - {fileID: -6305033665186608823, guid: c6ec03188fdb353408fd204eac7ea773, type: 3}
+    gust:
+    - {fileID: 460413558240410794, guid: 5c97fb92fe5e1cc4e8c68f4b98250b7b, type: 3}
+    - {fileID: -172874588777255876, guid: 5c97fb92fe5e1cc4e8c68f4b98250b7b, type: 3}
+    - {fileID: -193520250890416100, guid: 5c97fb92fe5e1cc4e8c68f4b98250b7b, type: 3}
+    - {fileID: -1489772694181785054, guid: 5c97fb92fe5e1cc4e8c68f4b98250b7b, type: 3}
+    - {fileID: -9164009388242027548, guid: 5c97fb92fe5e1cc4e8c68f4b98250b7b, type: 3}
+    - {fileID: 9217051808727772446, guid: 5c97fb92fe5e1cc4e8c68f4b98250b7b, type: 3}
+    crash:
+    - {fileID: -9161300535373119867, guid: 2c35543ec3eb2374fb8fc51512c0e693, type: 3}
+    - {fileID: -8957048455917964936, guid: 2c35543ec3eb2374fb8fc51512c0e693, type: 3}
+    - {fileID: 3732113198052841487, guid: 2c35543ec3eb2374fb8fc51512c0e693, type: 3}
+    - {fileID: -5977322329122173543, guid: 2c35543ec3eb2374fb8fc51512c0e693, type: 3}
+    - {fileID: 4549382534760315917, guid: 2c35543ec3eb2374fb8fc51512c0e693, type: 3}
+    - {fileID: 1807301364, guid: 2c35543ec3eb2374fb8fc51512c0e693, type: 3}
+    splinters:
+    - {fileID: 3431658393124586510, guid: 69dc90466617dde4190285e4c090b0dc, type: 3}
+    - {fileID: -1281019909976825624, guid: 69dc90466617dde4190285e4c090b0dc, type: 3}
+    - {fileID: 5659371251253528499, guid: 69dc90466617dde4190285e4c090b0dc, type: 3}
+    - {fileID: -5357394898833576533, guid: 69dc90466617dde4190285e4c090b0dc, type: 3}
+    - {fileID: -131868507645853424, guid: 69dc90466617dde4190285e4c090b0dc, type: 3}
+    - {fileID: -2903968378427492212, guid: 69dc90466617dde4190285e4c090b0dc, type: 3}
+    stumpHit:
+    - {fileID: 1373989411478335848, guid: 7fd73da2bf36c514caa04b12c3d66148, type: 3}
+    - {fileID: 90192439202870610, guid: 7fd73da2bf36c514caa04b12c3d66148, type: 3}
+    - {fileID: -7726838050529309319, guid: 7fd73da2bf36c514caa04b12c3d66148, type: 3}
+    - {fileID: -6709560531637990430, guid: 7fd73da2bf36c514caa04b12c3d66148, type: 3}
+    stumpGash:
+    - {fileID: -1267066935914808186, guid: f32e1ed4ea532f946b37cf28fe39149f, type: 3}
+    - {fileID: 3975517400560502967, guid: f32e1ed4ea532f946b37cf28fe39149f, type: 3}
+    - {fileID: 5867738580590088801, guid: f32e1ed4ea532f946b37cf28fe39149f, type: 3}
+    - {fileID: 7563039169859337520, guid: f32e1ed4ea532f946b37cf28fe39149f, type: 3}
   torn1Threshold: 0.65
   torn2Threshold: 0.3
---- !u!114 &4941848267388605999
+--- !u!114 &6170984780214593831
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -310,7 +475,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1759832909316894756}
   m_Father: {fileID: 2646512808627628642}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5726257102914947433

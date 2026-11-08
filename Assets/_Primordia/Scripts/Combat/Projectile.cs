@@ -139,6 +139,19 @@ namespace Primordia.Combat
             fixedTarget = target;
         }
 
+        /// <summary>Cambia su velocidad en ese vector (el viento de un jefe): sigue su camino con la nueva dirección.</summary>
+        public void Nudge(Vector2 velocityDelta)
+        {
+            if (!launched || rb == null)
+                return;
+            rb.linearVelocity += velocityDelta;
+            if (rb.linearVelocity.sqrMagnitude > 0.0001f)
+            {
+                direction = rb.linearVelocity.normalized;
+                rb.rotation = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            }
+        }
+
         /// <param name="source">Arma que disparó; recibe el aviso de cada impacto. Puede ser null.</param>
         public void Launch(Vector2 position, Vector2 direction, AttackData attack, int layer, Weapon source)
         {

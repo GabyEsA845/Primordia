@@ -12,8 +12,11 @@ namespace Primordia.Rooms
     /// cerca. El fogonazo la recorre y salta a las manchas vecinas (la cadena corre por la sala): 3 de daño y llamas a los
     /// enemigos, ½ corazón al jugador con la barra de quemado a la mitad. Después la mancha desaparece.
     /// </summary>
-    public class MethaneMist : MonoBehaviour, IFlammable, IToxifiable
+    public class MethaneMist : MonoBehaviour, IFlammable, IToxifiable, IWindPushable
     {
+        /// <summary>Se lanza cuando el fogonazo de una mancha daña: centro y tamaño de lo que cubre (la Meganeura se quema si está encima).</summary>
+        public static event System.Action<Vector2, Vector2> Flashed;
+
         // Lo que cubre la mancha, el retardo hasta que el fogonazo daña (cuadro 1 de 70 ms) y hasta que salta a las vecinas.
         static readonly Vector2 Area = new(3.6f, 1.4f);
         const float DamageDelay = 0.07f;
@@ -60,9 +63,19 @@ namespace Primordia.Rooms
             return mist;
         }
 
-        void OnEnable() => Flammables.Register(this);
+        void OnEnable()
+        {
+            Flammables.Register(this);
+            Wind.Register(this);
+        }
 
-        void OnDisable() => Flammables.Unregister(this);
+        void OnDisable()
+        {
+            Flammables.Unregister(this);
+            Wind.Unregister(this);
+        }
+
+        public void Push(Vector2 delta) => transform.position += (Vector3)delta;
 
         public void Ignite()
         {
@@ -86,6 +99,7 @@ namespace Primordia.Rooms
             }
 
             yield return new WaitForSeconds(DamageDelay);
+            Flashed?.Invoke((Vector2)transform.position + Vector2.up * Area.y / 2f, Area);
             Hurt();
 
             yield return new WaitForSeconds(SpreadDelay - DamageDelay);

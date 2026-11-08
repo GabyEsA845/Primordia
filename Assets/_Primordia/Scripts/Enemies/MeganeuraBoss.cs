@@ -14,7 +14,7 @@ namespace Primordia.Enemies
     /// tormenta) viene en los pasos 7b-7d.
     /// </summary>
     [RequireComponent(typeof(Enemy), typeof(Rigidbody2D))]
-    public class MeganeuraBoss : MonoBehaviour, IBoss
+    public partial class MeganeuraBoss : MonoBehaviour, IBoss
     {
         /// <summary>Unidades que sube el cuerpo en pantalla por cada unidad de altura (cos 55°).</summary>
         public const float AltitudeToY = 0.57f;
@@ -38,6 +38,10 @@ namespace Primordia.Enemies
         [SerializeField] DirectionalSprite shadowSprite;
         [Tooltip("Lepidodendron partido (4 cuadros, pivote abajo): donde se posa en la presentación.")]
         [SerializeField] Sprite[] stumpFrames = System.Array.Empty<Sprite>();
+        [Tooltip("Capa de fuego encima del cuerpo (Fall_Burning y Grounded_Burning).")]
+        [SerializeField] SpriteRenderer fireRenderer;
+        [SerializeField] DirectionalSprite fireSprite;
+        [SerializeField] Effects effects = new();
         [SerializeField, Range(0f, 1f)] float torn1Threshold = 0.65f;
         [SerializeField, Range(0f, 1f)] float torn2Threshold = 0.30f;
 
@@ -51,10 +55,12 @@ namespace Primordia.Enemies
         bool fighting;
         float flashUntil;
         Coroutine intro;
+        SpriteRenderer stumpRenderer;
+        SpriteLoop stumpLoop;
 
         public string DisplayName => displayName;
         public Health Health { get; private set; }
-        public BossBarStyle BarStyle => BossBarStyle.Normal;
+        public BossBarStyle BarStyle => IsHigh ? BossBarStyle.Immune : BossBarStyle.Normal;
         public Vector2 ArenaCenter => arenaCenter != null ? arenaCenter.position : transform.position;
 
         /// <summary>True si ya se le quemaron las alas en el metano (los agujeros son permanentes).</summary>
@@ -68,6 +74,9 @@ namespace Primordia.Enemies
             {
                 if (bodyRenderer != null)
                     bodyRenderer.transform.localPosition = new Vector3(0f, value * AltitudeToY, 0f);
+                // La colisión sigue al tórax: donde se ve es donde se le pega.
+                if (TryGetComponent<CircleCollider2D>(out var hit))
+                    hit.offset = new Vector2(0f, value * AltitudeToY);
             }
         }
 
@@ -91,6 +100,13 @@ namespace Primordia.Enemies
             shadowRenderer = newShadow;
             shadowSprite = newShadowSprite;
             stumpFrames = newStump ?? System.Array.Empty<Sprite>();
+        }
+
+        internal void ConfigureFight(SpriteRenderer newFireRenderer, DirectionalSprite newFireSprite, Effects newEffects)
+        {
+            fireRenderer = newFireRenderer;
+            fireSprite = newFireSprite;
+            effects = newEffects ?? new Effects();
         }
 
         void Awake()
@@ -121,6 +137,7 @@ namespace Primordia.Enemies
             ActiveBoss.Clear(this);
             Health.Damaged -= OnDamaged;
             enemy.Died -= OnDied;
+            StopFight();
             if (intro != null)
                 StopCoroutine(intro);
             intro = null;
@@ -157,6 +174,7 @@ namespace Primordia.Enemies
             intro = null;
             fighting = true;
             Perch();
+            StartFight();
         }
 
         // ---------- Escenario ----------
@@ -173,7 +191,9 @@ namespace Primordia.Enemies
             var renderer = stump.AddComponent<SpriteRenderer>();
             renderer.sprite = stumpFrames[0];
             renderer.sortingOrder = 4;
-            stump.AddComponent<SpriteLoop>().Configure(renderer, stumpFrames, 0.2f, 0f);
+            stumpRenderer = renderer;
+            stumpLoop = stump.AddComponent<SpriteLoop>();
+            stumpLoop.Configure(renderer, stumpFrames, 0.2f, 0f);
             var collider = stump.AddComponent<BoxCollider2D>();
             collider.size = new Vector2(2f, 1f);
             collider.offset = new Vector2(0f, 0.5f);
@@ -192,6 +212,7 @@ namespace Primordia.Enemies
         /// <summary>Posada en el tronco, de cara a la sala.</summary>
         void Perch()
         {
+            CurrentMode = Mode.Perched;
             ShowBody(true);
             Altitude = PerchHeight;
             SetShadow(transform.position, ShadowAlphaGround);
@@ -283,6 +304,9 @@ namespace Primordia.Enemies
         void OnDied(Enemy _)
         {
             fighting = false;
+            CurrentMode = Mode.Dead;
+            StopFight();
+            PlayFire(null, 0f);
             if (intro != null)
                 StopCoroutine(intro);
             intro = null;

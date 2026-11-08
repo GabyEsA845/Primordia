@@ -46,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -119,11 +119,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1
-        width: 640
-        height: 71
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        y: 0
+        width: 128
+        height: 72
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -132,6 +132,94 @@ TextureImporter:
       bones: []
       spriteID: f3600cbff339fe890800000000000000
       internalID: -7426555357494770113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RootWall_InsertHeart_1
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 128
+        height: 72
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e33c2863d4db6c6429a693523f0d7eb8
+      internalID: 50334250
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RootWall_InsertHeart_2
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 128
+        height: 72
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd74180ca634c5545b2edcacfa2330c8
+      internalID: 1230240464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RootWall_InsertHeart_3
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 128
+        height: 72
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0dbcd970eceb0c14c850b49fde0d648f
+      internalID: 889454383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RootWall_InsertHeart_4
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 128
+        height: 72
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d566f9336130fb346b526a514bfc7a5f
+      internalID: -899336091
       vertices: []
       indices: 
       edges: []
@@ -151,6 +239,10 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       RootWall_InsertHeart_0: -7426555357494770113
+      RootWall_InsertHeart_1: 50334250
+      RootWall_InsertHeart_2: 1230240464
+      RootWall_InsertHeart_3: 889454383
+      RootWall_InsertHeart_4: -899336091
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

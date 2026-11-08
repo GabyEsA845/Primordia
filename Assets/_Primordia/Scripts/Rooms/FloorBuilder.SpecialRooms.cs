@@ -36,7 +36,7 @@ namespace Primordia.Rooms
             bool cone = special is { coneChest: true };
             var chests = cone ? template.CellsOf(RoomTemplate.Mark.Chest) : new List<Vector2Int>();
             bool smoke = special is { smoke: true };
-            if (coal.Count == 0 && embers.Count == 0 && vents.Count == 0 && piles.Count == 0 && mudPiles.Count == 0 && chests.Count == 0 && bubblers.Count == 0 && plantCells.Count == 0 && logCells.Count == 0 && !fireFront && !smoke)
+            if (coal.Count == 0 && embers.Count == 0 && vents.Count == 0 && piles.Count == 0 && mudPiles.Count == 0 && chests.Count == 0 && bubblers.Count == 0 && plantCells.Count == 0 && logCells.Count == 0 && !fireFront && special is not { secretReward: true } && !smoke)
                 return;
 
             var root = new GameObject("SpecialRoom").transform;
@@ -65,6 +65,10 @@ namespace Primordia.Rooms
 
             if (logCells.Count > 0)
                 BuildFallenLog(root, placed, art, logCells, presence);
+
+            // Cámara de la sala secreta: la recompensa (provisional) en el centro.
+            if (special is { secretReward: true })
+                SecretReward.Create(root, placed.FloorCenter, config.Pieces.heartCoralIdle, config.Pieces.keyPrompt);
 
             if (fireFront)
             {
@@ -144,6 +148,50 @@ namespace Primordia.Rooms
             }
             foreach (var cell in plants)
                 Object.Instantiate(prefab, CellCenter(placed, cell), Quaternion.identity, enemiesRoot);
+        }
+
+        /// <summary>
+        /// Muro de raíces en la puerta de arriba de la antesala de la sala secreta: toda la pared (8 casillas de ancho, 4 de alto y medio tile
+        /// de pies sobre el suelo) centrada en la puerta, con el colisionador cerrando el hueco de la puerta hasta que se abre.
+        /// </summary>
+        static RootWall BuildRootWall(Transform parent, PlacedRoom placed, FloorConfig config, List<Vector2Int> arch)
+        {
+            var art = SpecialRoomArt.Current != null ? SpecialRoomArt.Current.RootWallFor(ThemeBand(placed)) : null;
+            if (art == null || arch.Count == 0)
+            {
+                Debug.LogWarning($"FloorBuilder: falta el arte del muro de raíces para {placed.Layout.Name} (Primordia > Floor 3 > Importar arte de las salas especiales).");
+                return null;
+            }
+            int minX = arch.Min(c => c.x), minY = arch.Min(c => c.y);
+            int maxX = arch.Max(c => c.x), maxY = arch.Max(c => c.y);
+            var size = new Vector2(maxX - minX + 1, maxY - minY + 1);
+            return RootWall.Create(parent, art, new Vector2(minX, minY) + size / 2f, minY - 0.5f, size, config.Pieces.keyPrompt, 2.4f);
+        }
+
+        /// <summary>
+        /// Camino secreto: tres flores moradas, cada una en una sala de combate o lateral distinta (sin especial), en un punto de suelo libre
+        /// lejos de las puertas. Quedan ocultas hasta que el corazón morado se rompe (<see cref="PurpleTrail"/>).
+        /// </summary>
+        static void BuildPurpleTrail(Transform parent, List<PlacedRoom> placed, FloorConfig config, System.Random random)
+        {
+            var wall = parent.GetComponentInChildren<RootWall>(true);
+            var art = SpecialRoomArt.Current;
+            if (wall == null || art == null || art.purpleFlower.Length == 0)
+                return;
+
+            var rooms = placed.Where(room => room.Layout.Role is RoomRole.Combat or RoomRole.Side && !room.Layout.Special.HasValue)
+                .OrderBy(_ => random.Next()).Take(PurpleTrail.FlowerCount).ToList();
+            var trail = PurpleTrail.Create(parent, wall);
+            foreach (var room in rooms)
+            {
+                var doorCells = room.DoorCells.Values.SelectMany(cells => cells).Select(cell => cell - room.Origin).ToList();
+                var candidates = EncounterPlanner.SpawnCells(room.Template, doorCells);
+                if (candidates.Count == 0)
+                    continue;
+                var cell = candidates[random.Next(candidates.Count)];
+                var foot = (Vector2)(room.Origin + cell) + new Vector2(0.5f, 0.1f);
+                trail.Add(PurpleFlower.Create(trail.transform, foot, art, trail, config.Pieces.keyPrompt));
+            }
         }
 
         /// <summary>

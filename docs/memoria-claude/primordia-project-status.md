@@ -51,3 +51,5 @@ Primordia es un roguelike top-down twin-stick en Unity 6 (6000.6.2f1, 2D URP), r
 
 
 **2026-11-06 (Sonnet, feature/floor-3, SIN commit):** arte del Tronco caído, Tocón hueco y cofre de cono (floor3-log-stump) IMPORTADO Y PROGRAMADO (detalle al final de [[primordia-floor3-special-rooms]]). SIGUIENTE: que la usuaria lo vea y commit; bloque 5 (sala secreta) y 6 (sala de paso del piso 3, Opus).
+
+**2026-11-06 (Sonnet, feature/floor-3, SIN commit):** commit f15a6279 (tronco/tocón/cofre). Bloque 5 (sala secreta: antesala + muro de raíces + flores moradas + semilla + cámara provisional) PROGRAMADO; detalle al final de [[primordia-floor3-special-rooms]]. SIGUIENTE: que la usuaria lo pruebe (en `Test_Floor3SpecialRooms`; con `PurpleHearts`/semilla desde consola de pruebas) y commit; bloque 6 (sala de paso del piso 3, Opus) y paso 7 (jefes, incluido el secreto).

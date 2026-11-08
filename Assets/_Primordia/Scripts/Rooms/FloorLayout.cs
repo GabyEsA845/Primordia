@@ -483,6 +483,8 @@ namespace Primordia.Rooms
                 // Abismo, el Corazón morado podría quedarse sin sitio.
                 var parents = Enumerable.Range(0, slots.Count).Where(i => slots[i].Role == RoomRole.Combat)
                     .Where(i => slots[i].Depth >= FirstSpecialDepth && slots[i].Depth < combatCount && !taken.Contains(i))
+                    // La antesala de la sala secreta, en el último tercio del camino.
+                    .Where(i => special.secretChamber == null || slots[i].Depth * 3 > combatCount * 2)
                     .Where(i => special.band < 0 || bands == 0 || FloorBuilder.BandOf(slots[i].Depth, combatCount, bands) == special.band)
                     .OrderBy(_ => random.Next()).ToList();
 
@@ -491,10 +493,15 @@ namespace Primordia.Rooms
                 {
                     var cell = path[slots[parent].PathIndex];
                     var free = Directions.Select(d => cell + d).Where(c => !used.Contains(c)).ToList();
+                    // La antesala necesita libre la casilla de arriba (su cámara) y su puerta de arriba para ella: no puede colgar desde arriba.
+                    if (special.secretChamber != null)
+                        free = free.Where(c => c != cell + Vector2Int.down && !used.Contains(c + Vector2Int.up)).ToList();
                     if (free.Count == 0)
                         continue;
                     var chosen = free[random.Next(free.Count)];
                     used.Add(chosen);
+                    if (special.secretChamber != null)
+                        used.Add(chosen + Vector2Int.up);
                     taken.Add(parent);
                     result.Add((special, parent, chosen));
                     placed = true;
@@ -608,6 +615,19 @@ namespace Primordia.Rooms
                 var side = new LayoutRoom { Cell = cell, Role = RoomRole.Side, Depth = bySlot[parent].Depth, Special = special, Template = special.template };
                 layout.Rooms.Add(side);
                 layout.Link(bySlot[parent], side);
+
+                // Detrás del muro de raíces de la antesala: la cámara de la sala secreta, una casilla más arriba.
+                if (special.secretChamber != null)
+                {
+                    var chamber = new LayoutRoom
+                    {
+                        Cell = cell + Vector2Int.up, Role = RoomRole.Side, Depth = side.Depth,
+                        Special = new FloorConfig.SpecialRoom { template = special.secretChamber, placement = FloorConfig.SpecialPlacement.Side, secretReward = true },
+                        Template = special.secretChamber,
+                    };
+                    layout.Rooms.Add(chamber);
+                    layout.Link(side, chamber);
+                }
             }
 
             if (shop.HasValue)

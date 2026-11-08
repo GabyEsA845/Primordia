@@ -41,7 +41,10 @@ namespace Primordia.Editor
             var frente = CreateTemplate("Room_Special_FireFront", 40, 24, Open, 88, 4, 3);
             var burbujeo = CreateTemplate("Room_Special_Bubbling", 32, 20, Bubbles, 99, 3, 2);
             var claro = CreateTemplate("Room_Special_PlantClearing", 36, 22, Clearing, 111, 3, 2);
-            Register(veta, humo, fumarolas, ladronas, tronco, tesoro, tocon, frente, burbujeo, claro);
+            // Sala secreta: la antesala (con el muro de raíces en su puerta de arriba) y la cámara de detrás.
+            var antesala = CreateTemplate("Room_Special_SecretAntechamber", 24, 15, (rows, width, height) => { }, 121, 0, 0);
+            var camara = CreateTemplate("Room_Special_SecretChamber", 20, 14, (rows, width, height) => { }, 122, 0, 0);
+            Register(veta, humo, fumarolas, ladronas, tronco, tesoro, tocon, frente, burbujeo, claro, antesala, camara);
         }
 
         // ---------- Arte ----------
@@ -97,6 +100,7 @@ namespace Primordia.Editor
 
             // Tronco caído, rayo de luz del Tocón hueco y cofres de cono (arte de floor3-log-stump y de floor3-environment).
             ArtSetup.ImportLogStumpArt(art);
+            ArtSetup.ImportSecretRoomArt(art);
 
             if (isNew)
                 AssetDatabase.CreateAsset(art, AssetPath);
@@ -505,7 +509,7 @@ namespace Primordia.Editor
         }
 
         static void Register(RoomTemplate veta, RoomTemplate humo, RoomTemplate fumarolas, RoomTemplate ladronas, RoomTemplate tronco, RoomTemplate tesoro,
-            RoomTemplate tocon, RoomTemplate frente, RoomTemplate burbujeo, RoomTemplate claro)
+            RoomTemplate tocon, RoomTemplate frente, RoomTemplate burbujeo, RoomTemplate claro, RoomTemplate antesala, RoomTemplate camara)
         {
             var config = AssetDatabase.LoadAssetAtPath<FloorConfig>(Floor3Setup.Floor3ConfigPath);
             if (config == null)
@@ -514,7 +518,7 @@ namespace Primordia.Editor
                 return;
             }
 
-            var mine = new[] { veta, humo, fumarolas, ladronas, tronco, tesoro, tocon, frente, burbujeo, claro };
+            var mine = new[] { veta, humo, fumarolas, ladronas, tronco, tesoro, tocon, frente, burbujeo, claro, antesala, camara };
             // Se conservan las demás especiales (la del ámbar) y se sustituyen estas cuatro si ya estaban.
             var rooms = config.SpecialRooms.Where(room => !mine.Contains(room.template)).ToList();
             rooms.Add(Entry(veta, true));
@@ -547,6 +551,11 @@ namespace Primordia.Editor
             rooms.Add(fireRoom);
             rooms.Add(Entry(burbujeo, true));
             rooms.Add(WithEnemies(Entry(claro, true), 1.3f));
+            // Sala secreta: siempre sale (cerrada si no tienes el corazón morado ni la semilla), lateral del último tercio; la cámara se añade sola.
+            var secretRoom = Entry(antesala, false);
+            secretRoom.always = true;
+            secretRoom.secretChamber = camara;
+            rooms.Add(secretRoom);
             // De las diez salas especiales salen 3-5 por partida (la del ámbar, que sale siempre, cuenta).
             config.ConfigureSpecialRooms(rooms.ToArray(), new Vector2Int(3, 5));
             EditorUtility.SetDirty(config);

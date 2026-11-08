@@ -43,8 +43,12 @@ namespace Primordia.UI
         readonly List<Image> hearts = new();
         readonly List<Image> barrierHearts = new();
         readonly List<Image> purpleHearts = new();
+        Image purpleSeed;
 
         public IReadOnlyList<Image> Hearts => hearts;
+
+        /// <summary>True si ahora se ve el icono de la semilla morada (la que abre el muro de raíces de la sala secreta).</summary>
+        public bool SeedShown => purpleSeed != null && purpleSeed.gameObject.activeSelf;
 
         /// <summary>Medios corazones verdes que se ven ahora (un corazón verde entero cuenta como dos).</summary>
         public int BarrierShown
@@ -256,6 +260,19 @@ namespace Primordia.UI
                 purpleHearts[i].color = purpleHeart != null ? Color.white : new Color(0.75f, 0.45f, 1f);
                 purpleHearts[i].transform.SetAsLastSibling();
                 purpleHearts[i].gameObject.SetActive(i < icons);
+            }
+
+            // La semilla morada, al final de los corazones. Icono PROVISIONAL hecho por código (falta el dibujo del HUD).
+            if (health.PurpleSeed && purpleSeed == null)
+            {
+                purpleSeed = CreateHeart();
+                purpleSeed.name = "PurpleSeed";
+                purpleSeed.sprite = PurpleSeedIcon.Sprite;
+            }
+            if (purpleSeed != null)
+            {
+                purpleSeed.transform.SetAsLastSibling();
+                purpleSeed.gameObject.SetActive(health.PurpleSeed);
             }
         }
 

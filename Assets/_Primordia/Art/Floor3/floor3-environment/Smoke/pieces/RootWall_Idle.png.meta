@@ -46,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -119,11 +119,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1
-        width: 512
-        height: 71
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        y: 0
+        width: 128
+        height: 72
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -132,6 +132,72 @@ TextureImporter:
       bones: []
       spriteID: eb17e7824d5268310800000000000000
       internalID: 1406853526742528446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RootWall_Idle_1
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 128
+        height: 72
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd5860b09d573b74a956bf1abbe88ca2
+      internalID: 810395071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RootWall_Idle_2
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 128
+        height: 72
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c701f47df1a3c2740bbe89976f394f33
+      internalID: 333655085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RootWall_Idle_3
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 128
+        height: 72
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6cf25edd9e0d6494c878a66ee8b1ad58
+      internalID: 763291973
       vertices: []
       indices: 
       edges: []
@@ -151,6 +217,9 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       RootWall_Idle_0: 1406853526742528446
+      RootWall_Idle_1: 810395071
+      RootWall_Idle_2: 333655085
+      RootWall_Idle_3: 763291973
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

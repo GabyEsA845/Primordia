@@ -82,6 +82,24 @@ namespace Primordia.Core
             }
         }
 
+        bool purpleSeed;
+
+        /// <summary>
+        /// Semilla morada (el camino de las tres flores, cuando el corazón morado se rompió): abre la sala secreta del piso 3 como el corazón.
+        /// Se ve en el HUD.
+        /// </summary>
+        public bool PurpleSeed
+        {
+            get => purpleSeed;
+            set
+            {
+                if (purpleSeed == value)
+                    return;
+                purpleSeed = value;
+                Changed?.Invoke(Current, maxHealth);
+            }
+        }
+
         /// <summary>True si alguna vez cogió un corazón morado (aunque ya lo haya gastado): abrirá una sala secreta del piso 3.</summary>
         public bool PurpleHeartFound { get; private set; }
 

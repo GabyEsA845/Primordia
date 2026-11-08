@@ -88,6 +88,31 @@ namespace Primordia.Editor
             art.coneSmall = ConeArt("Small", 18, 26);
         }
 
+        /// <summary>Muro de raíces de cada tramo y flores moradas del camino secreto (arte de floor3-environment, ya copiado).</summary>
+        internal static void ImportSecretRoomArt(SpecialRoomArt art)
+        {
+            ImportFloor3Art();
+            var foot = new Vector2(0.5f, 0f);
+            art.rootWall = new SpecialRoomArt.RootWallArt[SpecialRoomArt.Bands];
+            for (int band = 0; band < LogBands.Length; band++)
+            {
+                string folder = $"{Floor3EnvironmentFolder}/{LogBands[band]}/pieces";
+                Sprite[] Sheet(string name) => SliceSheet($"{folder}/{name}.png", 128, foot);
+                art.rootWall[band] = new SpecialRoomArt.RootWallArt
+                {
+                    locked = Sheet("RootWall_Locked").FirstOrDefault(),
+                    idle = Sheet("RootWall_Idle"),
+                    insertHeart = Sheet("RootWall_InsertHeart"),
+                    insertSeed = Sheet("RootWall_InsertSeed"),
+                    open = Sheet("RootWall_Open"),
+                    opened = Sheet("RootWall_Opened").FirstOrDefault(),
+                    openedFront = Sheet("RootWall_OpenedFront").FirstOrDefault(),
+                };
+            }
+            art.purpleFlower = SliceSheet($"{ConePiecesFolder}/Flower_Purple_Idle.png", 16, foot);
+            art.purpleFlowerPick = SliceSheet($"{ConePiecesFolder}/Flower_Purple_Pick.png", 16, foot);
+        }
+
         static SpecialRoomArt.ConeArt ConeArt(string size, int width, int height)
         {
             var pivot = new Vector2(0.5f, 8f / height);

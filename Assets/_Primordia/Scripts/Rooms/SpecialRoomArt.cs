@@ -75,6 +75,27 @@ namespace Primordia.Rooms
         [Tooltip("Rayo de luz sobre el cono del Tocón hueco (64×112, 8 cuadros; el centro del charco, en el pivote).")]
         public Sprite[] stumpLight = Array.Empty<Sprite>();
 
+        /// <summary>Muro de raíces de la sala secreta (128×72; pivote abajo en el centro).</summary>
+        [Serializable]
+        public class RootWallArt
+        {
+            public Sprite locked;
+            public Sprite[] idle = Array.Empty<Sprite>();
+            public Sprite[] insertHeart = Array.Empty<Sprite>();
+            public Sprite[] insertSeed = Array.Empty<Sprite>();
+            public Sprite[] open = Array.Empty<Sprite>();
+            public Sprite opened;
+            [Tooltip("El muro abierto con el interior del hueco transparente: va por encima del jugador mientras lo cruza.")]
+            public Sprite openedFront;
+            public bool IsValid => locked != null && open.Length > 0 && opened != null;
+        }
+
+        [Header("Sala secreta: muro de raíces de cada tramo y flores moradas del camino secreto")]
+        public RootWallArt[] rootWall = new RootWallArt[Bands];
+        [Tooltip("Flor morada (16×24, 4 cuadros, pivote abajo) y su recogida (6 cuadros).")]
+        public Sprite[] purpleFlower = Array.Empty<Sprite>();
+        public Sprite[] purpleFlowerPick = Array.Empty<Sprite>();
+
         [Header("Cofres de cono de Lepidodendron")]
         public ConeArt coneBig = new();
         public ConeArt coneSmall = new();
@@ -126,6 +147,9 @@ namespace Primordia.Rooms
         public Sprite[] BubbleFor(int band) =>
             bubble != null && bubble.Length > 0 && bubble[Mathf.Clamp(band, 0, bubble.Length - 1)] != null
                 ? bubble[Mathf.Clamp(band, 0, bubble.Length - 1)].frames : Array.Empty<Sprite>();
+
+        public RootWallArt RootWallFor(int band) =>
+            rootWall != null && rootWall.Length > 0 && rootWall[Mathf.Clamp(band, 0, rootWall.Length - 1)] is { IsValid: true } wall ? wall : null;
 
         public LogBand LogFor(int band) =>
             log != null && log.Length > 0 && log[Mathf.Clamp(band, 0, log.Length - 1)] != null ? log[Mathf.Clamp(band, 0, log.Length - 1)] : null;

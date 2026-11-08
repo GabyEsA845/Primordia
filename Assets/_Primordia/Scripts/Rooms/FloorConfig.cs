@@ -196,6 +196,10 @@ namespace Primordia.Rooms
             [Tooltip("Enemigo que sale además de los de siempre (las libélulas del Tronco caído) y cuántos.")]
             public Enemy bonusEnemy;
             [Min(0)] public int bonusCount;
+            [Tooltip("Antesala de la sala secreta (piso 3): lateral del último tercio del camino con el muro de raíces en su puerta de arriba; detrás, esta sala. Se abre con el corazón morado o con la semilla.")]
+            public RoomTemplate secretChamber;
+            [Tooltip("Cámara de la sala secreta: lleva la recompensa (provisional hasta tener el jefe secreto).")]
+            public bool secretReward;
             [Tooltip("Tileset propio de la sala (el Tocón hueco): sus paredes, suelo y puertas, en vez del de la franja. Vacío: el de siempre.")]
             public RoomTheme theme;
             [Tooltip("Ladronas (piso 3): sus casillas P son biomasa en el suelo y cucarachas salen de las grietas a robarla.")]

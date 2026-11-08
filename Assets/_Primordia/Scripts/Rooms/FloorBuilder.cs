@@ -228,6 +228,8 @@ namespace Primordia.Rooms
                     BuildExit(builtRoom, config);
             }
 
+            BuildPurpleTrail(parent, placed, config, random);
+
             if (glows.Count > 0)
             {
                 var lights = new GameObject("Lights").transform;
@@ -795,7 +797,11 @@ namespace Primordia.Rooms
             foreach (var (direction, cells) in placed.DoorCells)
             {
                 var doorCells = direction == Vector2Int.up ? placed.ArchCells[direction] : cells;
-                doors.Add(BuildDoor(roomObject.transform, theme, direction, doorCells));
+                // La puerta de arriba de la antesala secreta la cierra el muro de raíces, que sustituye al arco y a su marco.
+                bool rootWall = direction == Vector2Int.up && placed.Layout.Special is { secretChamber: not null };
+                doors.Add(BuildDoor(roomObject.transform, theme, direction, doorCells, rootWall));
+                if (rootWall)
+                    BuildRootWall(roomObject.transform, placed, config, doorCells);
                 if (placed.BrushDirections.Contains(direction))
                 {
                     var brush = BuildBrush(roomObject.transform, theme, direction, doorCells);
@@ -1491,14 +1497,14 @@ namespace Primordia.Rooms
         }
 
         /// <summary>Membrana animada sobre el hueco, con su colisión. Arriba, además, el arco fijo de la pared.</summary>
-        static Door BuildDoor(Transform parent, RoomTheme theme, Vector2Int direction, List<Vector2Int> cells)
+        static Door BuildDoor(Transform parent, RoomTheme theme, Vector2Int direction, List<Vector2Int> cells, bool coveredByWall = false)
         {
             int minX = cells.Min(c => c.x), minY = cells.Min(c => c.y);
             int maxX = cells.Max(c => c.x), maxY = cells.Max(c => c.y);
             var size = new Vector2(maxX - minX + 1, maxY - minY + 1);
             var position = new Vector2(minX, minY) + size / 2f;
 
-            if (direction == Vector2Int.up && theme.Doorway != null)
+            if (direction == Vector2Int.up && theme.Doorway != null && !coveredByWall)
             {
                 var doorway = new GameObject("Doorway");
                 doorway.transform.SetParent(parent, false);
@@ -1513,7 +1519,8 @@ namespace Primordia.Rooms
                     DoorwayCrossing.Create(doorway.transform, layers.front, layers.shade);
             }
 
-            BuildDoorFrame(parent, theme, direction, position);
+            if (!coveredByWall)
+                BuildDoorFrame(parent, theme, direction, position);
 
             var doorObject = new GameObject($"Door_{DirectionName(direction)}");
             doorObject.transform.SetParent(parent, false);

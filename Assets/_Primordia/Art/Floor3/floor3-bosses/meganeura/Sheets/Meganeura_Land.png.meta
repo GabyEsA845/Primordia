@@ -124,7 +124,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -152,7 +152,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -193,595 +193,595 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Meganeura_Land_0
+      name: Meganeura_Land_0_0
       rect:
         serializedVersion: 2
-        x: 20
-        y: 1547
-        width: 152
-        height: 124
+        x: 0
+        y: 1536
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: aae1d30c294a48fa0800000000000000
-      internalID: -5799329469948944726
+      spriteID: 6128c525ccc76b74b982a132803eb1ba
+      internalID: 976615413
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Land_1
+      name: Meganeura_Land_0_1
       rect:
         serializedVersion: 2
-        x: 209
-        y: 1550
-        width: 159
-        height: 113
+        x: 192
+        y: 1536
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 4dffc2e06c6337c80800000000000000
-      internalID: -8326251061808660524
+      spriteID: 99ccb431f3531fb429e7c1d031740026
+      internalID: -1568160717
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Land_2
+      name: Meganeura_Land_0_2
       rect:
         serializedVersion: 2
-        x: 399
-        y: 1554
-        width: 162
-        height: 107
+        x: 384
+        y: 1536
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c587db2a4f192dbc0800000000000000
-      internalID: -3759782259012568996
+      spriteID: 061d195f490d95e4ea98cd838498d995
+      internalID: -1681912182
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Land_3
+      name: Meganeura_Land_1_0
       rect:
         serializedVersion: 2
-        x: 15
-        y: 1359
-        width: 152
-        height: 141
+        x: 0
+        y: 1344
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: feeb45d30190b8f70800000000000000
-      internalID: 9190449429932719855
+      spriteID: 4c1812e96f7e92f4f91f51d85619e653
+      internalID: 653661220
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Land_4
+      name: Meganeura_Land_1_1
       rect:
         serializedVersion: 2
-        x: 210
-        y: 1363
-        width: 158
-        height: 132
+        x: 192
+        y: 1344
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 368227d29fa06feb0800000000000000
-      internalID: -4686546296906831773
+      spriteID: 7a2480ab8d608484ab1a07eec23f4cc2
+      internalID: 2055646837
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Land_5
+      name: Meganeura_Land_1_2
       rect:
         serializedVersion: 2
-        x: 400
-        y: 1366
-        width: 162
-        height: 120
+        x: 384
+        y: 1344
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 53cba5fb136bdb510800000000000000
-      internalID: 1566608570174848053
+      spriteID: 8c9dbb1278820e64b9f48c93cd34513a
+      internalID: -394332604
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Land_6
+      name: Meganeura_Land_2_0
       rect:
         serializedVersion: 2
-        x: 22
-        y: 1182
-        width: 133
-        height: 143
+        x: 0
+        y: 1152
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 9dc3298d94fde22b0800000000000000
-      internalID: -5607298977770619687
+      spriteID: 161ce94e315ca29448daf4973304487b
+      internalID: -59143607
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Land_7
+      name: Meganeura_Land_2_1
       rect:
         serializedVersion: 2
-        x: 216
-        y: 1185
-        width: 140
-        height: 136
+        x: 192
+        y: 1152
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: edcc52ad521be4860800000000000000
-      internalID: 7516139604259753182
+      spriteID: 6542be95f4e8609418db6e52ff0b6618
+      internalID: -1214079533
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Land_8
+      name: Meganeura_Land_2_2
       rect:
         serializedVersion: 2
-        x: 407
-        y: 1189
-        width: 144
-        height: 122
+        x: 384
+        y: 1152
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 5a3d5ea12756b7110800000000000000
-      internalID: 1259712061532132261
+      spriteID: 9050f9b486a9c0a4a9a5179ef59b4a67
+      internalID: -1960914856
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Land_9
+      name: Meganeura_Land_3_0
       rect:
         serializedVersion: 2
-        x: 13
-        y: 1000
-        width: 121
-        height: 143
+        x: 0
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 5ee41b16d942034f0800000000000000
-      internalID: -851140071205548315
+      spriteID: 008a062fea6085142969640e55ab8c7b
+      internalID: 1004863521
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Land_10
+      name: Meganeura_Land_3_1
       rect:
         serializedVersion: 2
-        x: 203
-        y: 1011
-        width: 132
-        height: 127
+        x: 192
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 8a5945ec26267a6d0800000000000000
-      internalID: -2979304451974326872
+      spriteID: 570dcb921f203df4688b1628684a2c8c
+      internalID: 424389320
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Land_11
+      name: Meganeura_Land_3_2
       rect:
         serializedVersion: 2
-        x: 394
-        y: 996
-        width: 135
-        height: 132
+        x: 384
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: df9784fe63b02e420800000000000000
-      internalID: 2657699060672657917
+      spriteID: c5164b06b3db8694ba7bff5ddd709d2e
+      internalID: 751881821
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Land_12
+      name: Meganeura_Land_4_0
       rect:
         serializedVersion: 2
-        x: 7
-        y: 812
-        width: 124
-        height: 140
+        x: 0
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 048cafbe97b5204e0800000000000000
-      internalID: -2016949103900309440
+      spriteID: 1480fc89fbbf6864e9a4fdbc877768cd
+      internalID: -1591375812
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Land_13
+      name: Meganeura_Land_4_1
       rect:
         serializedVersion: 2
-        x: 198
-        y: 815
-        width: 126
-        height: 131
+        x: 192
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 9c38786cdfbec3480800000000000000
-      internalID: -8917993686910401591
+      spriteID: 71d68c079e7aefe4a8a66bd47f0a289f
+      internalID: 101807463
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Land_14
+      name: Meganeura_Land_4_2
       rect:
         serializedVersion: 2
-        x: 389
-        y: 802
-        width: 127
-        height: 133
+        x: 384
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 41cc028d69afd87e0800000000000000
-      internalID: -1761476353453929452
+      spriteID: 641405479de391b4dab1fd5924c965ef
+      internalID: 241369804
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Land_15
+      name: Meganeura_Land_5_0
       rect:
         serializedVersion: 2
-        x: 13
-        y: 632
-        width: 121
-        height: 121
+        x: 0
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 68c86736741ae79c0800000000000000
-      internalID: -3927524497037030266
+      spriteID: ddc3735282b7cbb4b925ee81a557db18
+      internalID: 1918894804
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Land_16
+      name: Meganeura_Land_5_1
       rect:
         serializedVersion: 2
-        x: 203
-        y: 623
-        width: 132
-        height: 131
+        x: 192
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6b31081e595e2a140800000000000000
-      internalID: 4729594990588597174
+      spriteID: 5888e1880607286408c3c976d19bc0f0
+      internalID: 414473300
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Land_17
+      name: Meganeura_Land_5_2
       rect:
         serializedVersion: 2
-        x: 394
-        y: 609
-        width: 135
-        height: 135
+        x: 384
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c7add463d71806f40800000000000000
-      internalID: 5719713901542496892
+      spriteID: 2e84c5ec71ca4574dad5fe8c9e84d0f2
+      internalID: 1455445181
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Land_18
+      name: Meganeura_Land_6_0
       rect:
         serializedVersion: 2
-        x: 22
-        y: 441
-        width: 133
-        height: 110
+        x: 0
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 39648694ed2896740800000000000000
-      internalID: 5145787940473423507
+      spriteID: 7eb7dc61449d4424287a25373d0697f8
+      internalID: -1781097746
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Land_19
+      name: Meganeura_Land_6_1
       rect:
         serializedVersion: 2
-        x: 216
-        y: 437
-        width: 140
-        height: 120
+        x: 192
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 4c8d2f6633bc1b020800000000000000
-      internalID: 2355887501722441924
+      spriteID: c2e58f6b37bbc8c46aa3162a294e1595
+      internalID: 1148897011
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Land_20
+      name: Meganeura_Land_6_2
       rect:
         serializedVersion: 2
-        x: 407
-        y: 426
-        width: 144
-        height: 120
+        x: 384
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 5908ab7e604ec1b90800000000000000
-      internalID: -7269684980174126955
+      spriteID: 71f77c5e3aea42946ae4fcae966d6711
+      internalID: -1400981729
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Land_21
+      name: Meganeura_Land_7_0
       rect:
         serializedVersion: 2
-        x: 15
-        y: 246
-        width: 152
-        height: 99
+        x: 0
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7b5ddba309abfe3a0800000000000000
-      internalID: -6633878597469874761
+      spriteID: a9eceb62f76affc43b80fc594577f563
+      internalID: 1934946022
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Land_22
+      name: Meganeura_Land_7_1
       rect:
         serializedVersion: 2
-        x: 210
-        y: 242
-        width: 158
-        height: 110
+        x: 192
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6115882437f9659d0800000000000000
-      internalID: -2785864002095787754
+      spriteID: 1dc2e13a18b29ee4893023257965c055
+      internalID: -21451661
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Land_23
+      name: Meganeura_Land_7_2
       rect:
         serializedVersion: 2
-        x: 400
-        y: 239
-        width: 162
-        height: 117
+        x: 384
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 8dc2966792e764550800000000000000
-      internalID: 6144737458138983640
+      spriteID: 2ae76360ee96e0c4b81038d3eb195827
+      internalID: -1070504387
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Land_24
+      name: Meganeura_Land_8_0
       rect:
         serializedVersion: 2
-        x: 20
-        y: 55
-        width: 152
-        height: 103
+        x: 0
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6509314f07e978da0800000000000000
-      internalID: -5942606975323631530
+      spriteID: ccb6f606bc3121447ba2332b6bfb233b
+      internalID: -242874790
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Land_25
+      name: Meganeura_Land_8_1
       rect:
         serializedVersion: 2
-        x: 208
-        y: 52
-        width: 159
-        height: 111
+        x: 192
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0b7279c1c8016ad00800000000000000
-      internalID: 983491762588166064
+      spriteID: d4c7ddfde9d9f0e499faa0915bbc4b33
+      internalID: -1468133409
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Land_26
+      name: Meganeura_Land_8_2
       rect:
         serializedVersion: 2
-        x: 399
-        y: 49
-        width: 162
-        height: 119
+        x: 384
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 500891878d31fc700800000000000000
-      internalID: 562690298893402117
+      spriteID: d40037e9b9ea04f49a5b75538dd9c535
+      internalID: 150800607
       vertices: []
       indices: 
       edges: []
@@ -800,33 +800,33 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Meganeura_Land_0: -5799329469948944726
-      Meganeura_Land_1: -8326251061808660524
-      Meganeura_Land_10: -2979304451974326872
-      Meganeura_Land_11: 2657699060672657917
-      Meganeura_Land_12: -2016949103900309440
-      Meganeura_Land_13: -8917993686910401591
-      Meganeura_Land_14: -1761476353453929452
-      Meganeura_Land_15: -3927524497037030266
-      Meganeura_Land_16: 4729594990588597174
-      Meganeura_Land_17: 5719713901542496892
-      Meganeura_Land_18: 5145787940473423507
-      Meganeura_Land_19: 2355887501722441924
-      Meganeura_Land_2: -3759782259012568996
-      Meganeura_Land_20: -7269684980174126955
-      Meganeura_Land_21: -6633878597469874761
-      Meganeura_Land_22: -2785864002095787754
-      Meganeura_Land_23: 6144737458138983640
-      Meganeura_Land_24: -5942606975323631530
-      Meganeura_Land_25: 983491762588166064
-      Meganeura_Land_26: 562690298893402117
-      Meganeura_Land_3: 9190449429932719855
-      Meganeura_Land_4: -4686546296906831773
-      Meganeura_Land_5: 1566608570174848053
-      Meganeura_Land_6: -5607298977770619687
-      Meganeura_Land_7: 7516139604259753182
-      Meganeura_Land_8: 1259712061532132261
-      Meganeura_Land_9: -851140071205548315
+      Meganeura_Land_0_0: 976615413
+      Meganeura_Land_0_1: -1568160717
+      Meganeura_Land_0_2: -1681912182
+      Meganeura_Land_1_0: 653661220
+      Meganeura_Land_1_1: 2055646837
+      Meganeura_Land_1_2: -394332604
+      Meganeura_Land_2_0: -59143607
+      Meganeura_Land_2_1: -1214079533
+      Meganeura_Land_2_2: -1960914856
+      Meganeura_Land_3_0: 1004863521
+      Meganeura_Land_3_1: 424389320
+      Meganeura_Land_3_2: 751881821
+      Meganeura_Land_4_0: -1591375812
+      Meganeura_Land_4_1: 101807463
+      Meganeura_Land_4_2: 241369804
+      Meganeura_Land_5_0: 1918894804
+      Meganeura_Land_5_1: 414473300
+      Meganeura_Land_5_2: 1455445181
+      Meganeura_Land_6_0: -1781097746
+      Meganeura_Land_6_1: 1148897011
+      Meganeura_Land_6_2: -1400981729
+      Meganeura_Land_7_0: 1934946022
+      Meganeura_Land_7_1: -21451661
+      Meganeura_Land_7_2: -1070504387
+      Meganeura_Land_8_0: -242874790
+      Meganeura_Land_8_1: -1468133409
+      Meganeura_Land_8_2: 150800607
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

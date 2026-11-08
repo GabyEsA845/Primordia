@@ -151,7 +151,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -179,7 +179,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -220,793 +220,793 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Meganeura_Shadow_Fall_0
+      name: Meganeura_Shadow_Fall_0_0
       rect:
         serializedVersion: 2
-        x: 26
-        y: 1561
-        width: 145
-        height: 98
+        x: 0
+        y: 1536
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7f95454d918b918f0800000000000000
-      internalID: -569221456809666057
+      spriteID: fad49b64153141c4b9b527d7775acee0
+      internalID: 1129869354
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Fall_1
+      name: Meganeura_Shadow_Fall_0_1
       rect:
         serializedVersion: 2
-        x: 263
-        y: 1561
-        width: 71
-        height: 110
+        x: 192
+        y: 1536
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 59b092091b97fb010800000000000000
-      internalID: 1206817028693363605
+      spriteID: c0f40412c2a16db47b687ddae100dd72
+      internalID: -1695531259
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Fall_2
+      name: Meganeura_Shadow_Fall_0_2
       rect:
         serializedVersion: 2
-        x: 420
-        y: 1563
-        width: 127
-        height: 104
+        x: 384
+        y: 1536
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 8ce07387bf07f2ac0800000000000000
-      internalID: -3877756528786731320
+      spriteID: 1b9adad6c1b30b04297971e0b06f037f
+      internalID: 1266117240
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Fall_3
+      name: Meganeura_Shadow_Fall_0_3
       rect:
         serializedVersion: 2
-        x: 596
-        y: 1564
-        width: 159
-        height: 95
+        x: 576
+        y: 1536
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 1524d14341b4e9500800000000000000
-      internalID: 404843566655685201
+      spriteID: dbf38bf77af3a1d408d6997c3e008cf7
+      internalID: 1615910413
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Fall_4
+      name: Meganeura_Shadow_Fall_1_0
       rect:
         serializedVersion: 2
-        x: 41
-        y: 1374
-        width: 120
-        height: 112
+        x: 0
+        y: 1344
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: cbb467ef2fb397010800000000000000
-      internalID: 1187045891626126268
+      spriteID: 7b062b0b3b05e5749bfad0e8e09461bb
+      internalID: -1113928029
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Fall_5
+      name: Meganeura_Shadow_Fall_1_1
       rect:
         serializedVersion: 2
-        x: 249
-        y: 1376
-        width: 80
-        height: 94
+        x: 192
+        y: 1344
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: dd5b1ea5abc31b450800000000000000
-      internalID: 6102725741150057949
+      spriteID: 60462b3336cb88d41a3e6b5a5a9373cf
+      internalID: 751421421
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Fall_6
+      name: Meganeura_Shadow_Fall_1_2
       rect:
         serializedVersion: 2
-        x: 424
-        y: 1378
-        width: 116
-        height: 90
+        x: 384
+        y: 1344
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 8888e514587952060800000000000000
-      internalID: 6928110200362535048
+      spriteID: 1b0daa223c4afed4f9d23ec7305a12eb
+      internalID: 1015871590
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Fall_7
+      name: Meganeura_Shadow_Fall_1_3
       rect:
         serializedVersion: 2
-        x: 595
-        y: 1376
-        width: 160
-        height: 94
+        x: 576
+        y: 1344
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b017b5596725cd2a0800000000000000
-      internalID: -6711398675423465205
+      spriteID: 54e26372cd7c8dc4facd1d5e43ac5102
+      internalID: -189665238
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Fall_8
+      name: Meganeura_Shadow_Fall_2_0
       rect:
         serializedVersion: 2
-        x: 31
-        y: 1186
-        width: 116
-        height: 121
+        x: 0
+        y: 1152
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ba1598829b2cb3f80800000000000000
-      internalID: -8125687002155101781
+      spriteID: 7218bbff62a4c2b419df458a1e97fec8
+      internalID: 137707369
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Fall_9
+      name: Meganeura_Shadow_Fall_2_1
       rect:
         serializedVersion: 2
-        x: 223
-        y: 1200
-        width: 112
-        height: 77
+        x: 192
+        y: 1152
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a69d9a1b7d6b4a610800000000000000
-      internalID: 1631630002529884522
+      spriteID: 9298b20c93c25a34682360d74d910b1c
+      internalID: 1695584294
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Fall_10
+      name: Meganeura_Shadow_Fall_2_2
       rect:
         serializedVersion: 2
-        x: 415
-        y: 1200
-        width: 123
-        height: 84
+        x: 384
+        y: 1152
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a5d61ce1693767820800000000000000
-      internalID: 2915644897367256410
+      spriteID: 198a31f71d56ba24d957d99168b37161
+      internalID: 1105579019
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Fall_11
+      name: Meganeura_Shadow_Fall_2_3
       rect:
         serializedVersion: 2
-        x: 603
-        y: 1198
-        width: 139
-        height: 99
+        x: 576
+        y: 1152
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 5c93499e9ecd8d380800000000000000
-      internalID: -8946157762567194171
+      spriteID: bdde327f75be24f4aba6579b180cbf94
+      internalID: -217280021
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Fall_12
+      name: Meganeura_Shadow_Fall_3_0
       rect:
         serializedVersion: 2
-        x: 15
-        y: 989
-        width: 112
-        height: 130
+        x: 0
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 9483c161da9df5840800000000000000
-      internalID: 5215126230941841481
+      spriteID: 0072094c8e3da7d42abc00124405192e
+      internalID: 1322133542
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Fall_13
+      name: Meganeura_Shadow_Fall_3_1
       rect:
         serializedVersion: 2
-        x: 207
-        y: 1017
-        width: 132
-        height: 65
+        x: 192
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: cddec1ffeb318ca50800000000000000
-      internalID: 6541500169800445404
+      spriteID: ee925603b056bf94a830d7145e65861c
+      internalID: -852429646
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Fall_14
+      name: Meganeura_Shadow_Fall_3_2
       rect:
         serializedVersion: 2
-        x: 400
-        y: 1003
-        width: 134
-        height: 99
+        x: 384
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ec5cd047318f6b100800000000000000
-      internalID: 123558802234394062
+      spriteID: 45f2e2f7b0a3b4f429eabcac5882da34
+      internalID: -517436968
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Fall_15
+      name: Meganeura_Shadow_Fall_3_3
       rect:
         serializedVersion: 2
-        x: 593
-        y: 997
-        width: 126
-        height: 119
+        x: 576
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 39e3741844ad7a440800000000000000
-      internalID: 4947162703451340435
+      spriteID: aab38302c7350e542bce0886b06bc9a3
+      internalID: -793522833
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Fall_16
+      name: Meganeura_Shadow_Fall_4_0
       rect:
         serializedVersion: 2
-        x: 9
-        y: 802
-        width: 119
-        height: 120
+        x: 0
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2facb7c9f0cbfebb0800000000000000
-      internalID: -4904494693947290894
+      spriteID: d0df3653622464543a13dfe453097a64
+      internalID: 152812117
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Fall_17
+      name: Meganeura_Shadow_Fall_4_1
       rect:
         serializedVersion: 2
-        x: 202
-        y: 826
-        width: 133
-        height: 59
+        x: 192
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 1e47ff54d27338ca0800000000000000
-      internalID: -6015904009649425183
+      spriteID: 78834a5f81636e845b963f0673497002
+      internalID: -1566055907
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Fall_18
+      name: Meganeura_Shadow_Fall_4_2
       rect:
         serializedVersion: 2
-        x: 396
-        y: 809
-        width: 126
-        height: 104
+        x: 384
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 70160a41ff0d7f2d0800000000000000
-      internalID: -3244895212515860217
+      spriteID: 727a84935d7b22245b84dd1afb959df3
+      internalID: 885408568
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Fall_19
+      name: Meganeura_Shadow_Fall_4_3
       rect:
         serializedVersion: 2
-        x: 589
-        y: 796
-        width: 116
-        height: 131
+        x: 576
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: dd9a0cf25417113f0800000000000000
-      internalID: -931839105921144355
+      spriteID: cef4fd7bb9693294fb5ca01f52014701
+      internalID: -1071546863
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Fall_20
+      name: Meganeura_Shadow_Fall_5_0
       rect:
         serializedVersion: 2
-        x: 16
-        y: 619
-        width: 136
-        height: 99
+        x: 0
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6dc63924dbce95800800000000000000
-      internalID: 601772322840603862
+      spriteID: 53631593e2caf9a459922c4516a4cc71
+      internalID: 1835707055
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Fall_21
+      name: Meganeura_Shadow_Fall_5_1
       rect:
         serializedVersion: 2
-        x: 210
-        y: 638
-        width: 115
-        height: 66
+        x: 192
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 34cc454966562e8d0800000000000000
-      internalID: -2818578925530854333
+      spriteID: 3df7a6ea55ad3fc4eb7c7898d7d541ae
+      internalID: 171410441
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Fall_22
+      name: Meganeura_Shadow_Fall_5_2
       rect:
         serializedVersion: 2
-        x: 404
-        y: 623
-        width: 110
-        height: 95
+        x: 384
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: cac93e2d35562a830800000000000000
-      internalID: 4080935623045913772
+      spriteID: 67fc2f01b7c780a48befb9a6e7ab63ae
+      internalID: -1545910949
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Fall_23
+      name: Meganeura_Shadow_Fall_5_3
       rect:
         serializedVersion: 2
-        x: 595
-        y: 604
-        width: 113
-        height: 131
+        x: 576
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: cfa6424e3397d7f20800000000000000
-      internalID: 3422024555649329916
+      spriteID: 8f32b2cda4f58ae40b5e79b10d775dde
+      internalID: 574822274
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Fall_24
+      name: Meganeura_Shadow_Fall_6_0
       rect:
         serializedVersion: 2
-        x: 20
-        y: 438
-        width: 148
-        height: 96
+        x: 0
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2932e7275d496bde0800000000000000
-      internalID: -1317702196489477230
+      spriteID: c01c874b3cf26ef44a720bbe62ee7a3a
+      internalID: -1024950995
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Fall_25
+      name: Meganeura_Shadow_Fall_6_1
       rect:
         serializedVersion: 2
-        x: 230
-        y: 442
-        width: 93
-        height: 91
+        x: 192
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d7a35fc296f0ec3e0800000000000000
-      internalID: -2031669437497263491
+      spriteID: 5059db650148ba8428ceaa8302a0dadf
+      internalID: 1737697459
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Fall_26
+      name: Meganeura_Shadow_Fall_6_2
       rect:
         serializedVersion: 2
-        x: 422
-        y: 432
-        width: 101
-        height: 101
+        x: 384
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 27d923d12efe3bbb0800000000000000
-      internalID: -4921326213354316430
+      spriteID: cd779b0769ded9c439f9fe03e495c3d8
+      internalID: -331848797
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Fall_27
+      name: Meganeura_Shadow_Fall_6_3
       rect:
         serializedVersion: 2
-        x: 611
-        y: 422
-        width: 120
-        height: 115
+        x: 576
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 9cb4167d839403230800000000000000
-      internalID: 3616471009258982345
+      spriteID: 5ba0b5ba30a45f94abc5826d0eee7c04
+      internalID: 1839023632
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Fall_28
+      name: Meganeura_Shadow_Fall_7_0
       rect:
         serializedVersion: 2
-        x: 15
-        y: 263
-        width: 158
-        height: 92
+        x: 0
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: facfe1b2b7a0d0f40800000000000000
-      internalID: 5696220627814251695
+      spriteID: c3436a663fd0d0e42ad60ec7e9aac80e
+      internalID: 64400515
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Fall_29
+      name: Meganeura_Shadow_Fall_7_1
       rect:
         serializedVersion: 2
-        x: 241
-        y: 246
-        width: 79
-        height: 109
+        x: 192
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: af16a6afe7be8fdb0800000000000000
-      internalID: -4757794075717246470
+      spriteID: 313674001bb58f844bf6a312096ae2bd
+      internalID: 793539554
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Fall_30
+      name: Meganeura_Shadow_Fall_7_2
       rect:
         serializedVersion: 2
-        x: 415
-        y: 244
-        width: 121
-        height: 110
+        x: 384
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a1afcc0164bbf52b0800000000000000
-      internalID: -5593546302566893030
+      spriteID: a93671dcd0039ba489aa6c7e02272568
+      internalID: 168351343
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Fall_31
+      name: Meganeura_Shadow_Fall_7_3
       rect:
         serializedVersion: 2
-        x: 600
-        y: 249
-        width: 145
-        height: 104
+        x: 576
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 032964aa2865b0510800000000000000
-      internalID: 1516400818742792752
+      spriteID: c41a1dd487e5d05478725a30dcd8b0e8
+      internalID: -136061446
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Fall_32
+      name: Meganeura_Shadow_Fall_8_0
       rect:
         serializedVersion: 2
-        x: 21
-        y: 69
-        width: 145
-        height: 98
+        x: 0
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d55a462674bea1b10800000000000000
-      internalID: 1953132080244499805
+      spriteID: ec3803b424dc621499316dc1f41c6ad6
+      internalID: -218752042
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Fall_33
+      name: Meganeura_Shadow_Fall_8_1
       rect:
         serializedVersion: 2
-        x: 242
-        y: 57
-        width: 71
-        height: 110
+        x: 192
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0e39caf9329c5f950800000000000000
-      internalID: 6482308393509622752
+      spriteID: 00d0cd466629a9446993f94e4ae0658c
+      internalID: 1786281980
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Fall_34
+      name: Meganeura_Shadow_Fall_8_2
       rect:
         serializedVersion: 2
-        x: 413
-        y: 61
-        width: 127
-        height: 104
+        x: 384
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ddfbc1d791c787990800000000000000
-      internalID: -7388018739786235939
+      spriteID: 92a52f3ba5beba746aa27a7b15a727e0
+      internalID: 791133872
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Fall_35
+      name: Meganeura_Shadow_Fall_8_3
       rect:
         serializedVersion: 2
-        x: 589
-        y: 69
-        width: 159
-        height: 95
+        x: 576
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 68c86d26eeaf42270800000000000000
-      internalID: 8224974721252756614
+      spriteID: 540a03887e25c764aa54aed9b2028843
+      internalID: -239738337
       vertices: []
       indices: 
       edges: []
@@ -1025,42 +1025,42 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Meganeura_Shadow_Fall_0: -569221456809666057
-      Meganeura_Shadow_Fall_1: 1206817028693363605
-      Meganeura_Shadow_Fall_10: 2915644897367256410
-      Meganeura_Shadow_Fall_11: -8946157762567194171
-      Meganeura_Shadow_Fall_12: 5215126230941841481
-      Meganeura_Shadow_Fall_13: 6541500169800445404
-      Meganeura_Shadow_Fall_14: 123558802234394062
-      Meganeura_Shadow_Fall_15: 4947162703451340435
-      Meganeura_Shadow_Fall_16: -4904494693947290894
-      Meganeura_Shadow_Fall_17: -6015904009649425183
-      Meganeura_Shadow_Fall_18: -3244895212515860217
-      Meganeura_Shadow_Fall_19: -931839105921144355
-      Meganeura_Shadow_Fall_2: -3877756528786731320
-      Meganeura_Shadow_Fall_20: 601772322840603862
-      Meganeura_Shadow_Fall_21: -2818578925530854333
-      Meganeura_Shadow_Fall_22: 4080935623045913772
-      Meganeura_Shadow_Fall_23: 3422024555649329916
-      Meganeura_Shadow_Fall_24: -1317702196489477230
-      Meganeura_Shadow_Fall_25: -2031669437497263491
-      Meganeura_Shadow_Fall_26: -4921326213354316430
-      Meganeura_Shadow_Fall_27: 3616471009258982345
-      Meganeura_Shadow_Fall_28: 5696220627814251695
-      Meganeura_Shadow_Fall_29: -4757794075717246470
-      Meganeura_Shadow_Fall_3: 404843566655685201
-      Meganeura_Shadow_Fall_30: -5593546302566893030
-      Meganeura_Shadow_Fall_31: 1516400818742792752
-      Meganeura_Shadow_Fall_32: 1953132080244499805
-      Meganeura_Shadow_Fall_33: 6482308393509622752
-      Meganeura_Shadow_Fall_34: -7388018739786235939
-      Meganeura_Shadow_Fall_35: 8224974721252756614
-      Meganeura_Shadow_Fall_4: 1187045891626126268
-      Meganeura_Shadow_Fall_5: 6102725741150057949
-      Meganeura_Shadow_Fall_6: 6928110200362535048
-      Meganeura_Shadow_Fall_7: -6711398675423465205
-      Meganeura_Shadow_Fall_8: -8125687002155101781
-      Meganeura_Shadow_Fall_9: 1631630002529884522
+      Meganeura_Shadow_Fall_0_0: 1129869354
+      Meganeura_Shadow_Fall_0_1: -1695531259
+      Meganeura_Shadow_Fall_0_2: 1266117240
+      Meganeura_Shadow_Fall_0_3: 1615910413
+      Meganeura_Shadow_Fall_1_0: -1113928029
+      Meganeura_Shadow_Fall_1_1: 751421421
+      Meganeura_Shadow_Fall_1_2: 1015871590
+      Meganeura_Shadow_Fall_1_3: -189665238
+      Meganeura_Shadow_Fall_2_0: 137707369
+      Meganeura_Shadow_Fall_2_1: 1695584294
+      Meganeura_Shadow_Fall_2_2: 1105579019
+      Meganeura_Shadow_Fall_2_3: -217280021
+      Meganeura_Shadow_Fall_3_0: 1322133542
+      Meganeura_Shadow_Fall_3_1: -852429646
+      Meganeura_Shadow_Fall_3_2: -517436968
+      Meganeura_Shadow_Fall_3_3: -793522833
+      Meganeura_Shadow_Fall_4_0: 152812117
+      Meganeura_Shadow_Fall_4_1: -1566055907
+      Meganeura_Shadow_Fall_4_2: 885408568
+      Meganeura_Shadow_Fall_4_3: -1071546863
+      Meganeura_Shadow_Fall_5_0: 1835707055
+      Meganeura_Shadow_Fall_5_1: 171410441
+      Meganeura_Shadow_Fall_5_2: -1545910949
+      Meganeura_Shadow_Fall_5_3: 574822274
+      Meganeura_Shadow_Fall_6_0: -1024950995
+      Meganeura_Shadow_Fall_6_1: 1737697459
+      Meganeura_Shadow_Fall_6_2: -331848797
+      Meganeura_Shadow_Fall_6_3: 1839023632
+      Meganeura_Shadow_Fall_7_0: 64400515
+      Meganeura_Shadow_Fall_7_1: 793539554
+      Meganeura_Shadow_Fall_7_2: 168351343
+      Meganeura_Shadow_Fall_7_3: -136061446
+      Meganeura_Shadow_Fall_8_0: -218752042
+      Meganeura_Shadow_Fall_8_1: 1786281980
+      Meganeura_Shadow_Fall_8_2: 791133872
+      Meganeura_Shadow_Fall_8_3: -239738337
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

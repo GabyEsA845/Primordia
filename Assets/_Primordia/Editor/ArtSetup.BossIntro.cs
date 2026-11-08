@@ -27,12 +27,17 @@ namespace Primordia.Editor
         static readonly Color Floor2Band = new(8 / 255f, 16 / 255f, 30 / 255f);
         static readonly Color Floor2Accent = new(120 / 255f, 220 / 255f, 210 / 255f);
 
+        // Piso 3 (pantano carbonífero): banda oscura de tierra quemada y filo de ascua.
+        static readonly Color Floor3Band = new(24 / 255f, 16 / 255f, 14 / 255f);
+        static readonly Color Floor3Accent = new(240 / 255f, 150 / 255f, 60 / 255f);
+
         static readonly (string key, string prefab, string title, Color band, Color accent)[] BossIntros =
         {
             ("Virus", "Boss_Virus", "Plaga primigenia", Floor1Band, Floor1Accent),
             ("Amoeba", "Boss_Amoeba", "La que todo lo engulle", Floor1Band, Floor1Accent),
             ("Anomalocaris", "Boss_Anomalocaris", "Terror del Cámbrico", Floor2Band, Floor2Accent),
             ("Eurypterid", "Boss_Eurypterid", "Escorpión de los mares", Floor2Band, Floor2Accent),
+            ("Meganeura", "Boss_Meganeura", "Señora de la tormenta", Floor3Band, Floor3Accent),
         };
 
         [MenuItem("Primordia/Art/Importar presentaciones de jefes")]

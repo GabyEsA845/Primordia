@@ -151,7 +151,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -179,7 +179,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -220,793 +220,793 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Meganeura_Fall_0
+      name: Meganeura_Fall_0_0
       rect:
         serializedVersion: 2
-        x: 26
-        y: 1573
-        width: 145
-        height: 102
+        x: 0
+        y: 1536
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6115b0e6d312f4b20800000000000000
-      internalID: 3120749614514000150
+      spriteID: 282cf74a3a10dce40bcc020c425fcf19
+      internalID: 1931208053
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fall_1
+      name: Meganeura_Fall_0_1
       rect:
         serializedVersion: 2
-        x: 262
-        y: 1556
-        width: 73
-        height: 155
+        x: 192
+        y: 1536
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ffd99bf1336456810800000000000000
-      internalID: 1757888414947581439
+      spriteID: 8bfbd3f26dc8e374f9191df13d9a3d12
+      internalID: -166272314
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fall_2
+      name: Meganeura_Fall_0_2
       rect:
         serializedVersion: 2
-        x: 420
-        y: 1558
-        width: 127
-        height: 141
+        x: 384
+        y: 1536
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ef3563a1f961e2430800000000000000
-      internalID: 3759967611496322046
+      spriteID: 9d616338eddf375459fdda2302a301c4
+      internalID: -125513950
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fall_3
+      name: Meganeura_Fall_0_3
       rect:
         serializedVersion: 2
-        x: 596
-        y: 1582
-        width: 159
-        height: 85
+        x: 576
+        y: 1536
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: bd378be533ef735a0800000000000000
-      internalID: -6541480437146422309
+      spriteID: aa7a884baf8e0df4a8a18ea1aa148fcc
+      internalID: 2142922464
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fall_4
+      name: Meganeura_Fall_1_0
       rect:
         serializedVersion: 2
-        x: 41
-        y: 1385
-        width: 120
-        height: 118
+        x: 0
+        y: 1344
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7ba38377ec59b98b0800000000000000
-      internalID: -5144353435344684361
+      spriteID: 5bc66d273cef7fc4cba5a366d3875cfa
+      internalID: 1705846467
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fall_5
+      name: Meganeura_Fall_1_1
       rect:
         serializedVersion: 2
-        x: 248
-        y: 1365
-        width: 81
-        height: 145
+        x: 192
+        y: 1344
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 9c16616501c8f2050800000000000000
-      internalID: 5777990848731308489
+      spriteID: 47cf99658bdef11428dda5680f9b1412
+      internalID: 1382093222
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fall_6
+      name: Meganeura_Fall_1_2
       rect:
         serializedVersion: 2
-        x: 424
-        y: 1378
-        width: 116
-        height: 114
+        x: 384
+        y: 1344
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 90a6b8174954fa2a0800000000000000
-      internalID: -6724079214778422775
+      spriteID: 8913b24279748bb4fb5d598cdf83d4d1
+      internalID: 1913113681
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fall_7
+      name: Meganeura_Fall_1_3
       rect:
         serializedVersion: 2
-        x: 595
-        y: 1395
-        width: 160
-        height: 80
+        x: 576
+        y: 1344
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 02c0a50285068a070800000000000000
-      internalID: 8117844259951479840
+      spriteID: 6fa20f08602d11c498f3c4b91301169d
+      internalID: -1365091092
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fall_8
+      name: Meganeura_Fall_2_0
       rect:
         serializedVersion: 2
-        x: 30
-        y: 1179
-        width: 117
-        height: 144
+        x: 0
+        y: 1152
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2d368cd6658187b20800000000000000
-      internalID: 3132280300324283346
+      spriteID: 3bc156ed00b2f6c45b8ddeff07ae0962
+      internalID: -25767050
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fall_9
+      name: Meganeura_Fall_2_1
       rect:
         serializedVersion: 2
-        x: 222
-        y: 1174
-        width: 113
-        height: 132
+        x: 192
+        y: 1152
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d0bfe63f833b99560800000000000000
-      internalID: 7321079726451129101
+      spriteID: 1820b2a9df6870844ab24f5cbd14bf6a
+      internalID: -1189483169
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fall_10
+      name: Meganeura_Fall_2_2
       rect:
         serializedVersion: 2
-        x: 414
-        y: 1203
-        width: 124
-        height: 79
+        x: 384
+        y: 1152
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 5b1943d171eddba80800000000000000
-      internalID: -8449353135021583947
+      spriteID: b4bee9a22d8af734498b5315eb3a3b63
+      internalID: 839352887
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fall_11
+      name: Meganeura_Fall_2_3
       rect:
         serializedVersion: 2
-        x: 603
-        y: 1201
-        width: 139
-        height: 85
+        x: 576
+        y: 1152
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 515910a8279ef5cc0800000000000000
-      internalID: -3719998089033837291
+      spriteID: 1ac89b64726dc2d4dab392129a69af04
+      internalID: 1807207370
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fall_12
+      name: Meganeura_Fall_3_0
       rect:
         serializedVersion: 2
-        x: 14
-        y: 979
-        width: 113
-        height: 157
+        x: 0
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ea966f02139fdf5b0800000000000000
-      internalID: -5332832394335065682
+      spriteID: aa8784856719e344fa77bf39df1428ae
+      internalID: 1595267858
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fall_13
+      name: Meganeura_Fall_3_1
       rect:
         serializedVersion: 2
-        x: 206
-        y: 977
-        width: 133
-        height: 140
+        x: 192
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a90324c6ad1a0e7f0800000000000000
-      internalID: -585289992066944870
+      spriteID: d2069b0475f275f45927793c466b668c
+      internalID: -1634200941
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fall_14
+      name: Meganeura_Fall_3_2
       rect:
         serializedVersion: 2
-        x: 399
-        y: 1029
-        width: 135
-        height: 54
+        x: 384
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 28ce260815900f630800000000000000
-      internalID: 3958674318109633666
+      spriteID: bad2ce77911609b4a90ca4e2386471d2
+      internalID: -819650729
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fall_15
+      name: Meganeura_Fall_3_3
       rect:
         serializedVersion: 2
-        x: 592
-        y: 991
-        width: 127
-        height: 121
+        x: 576
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 9939ce3d4ad7360a0800000000000000
-      internalID: -6889524858063121511
+      spriteID: ebfc3c11a24aed84a935ca1731964f07
+      internalID: 376604125
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fall_16
+      name: Meganeura_Fall_4_0
       rect:
         serializedVersion: 2
-        x: 8
-        y: 782
-        width: 120
-        height: 163
+        x: 0
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b6a94ca63ec4ec8e0800000000000000
-      internalID: -1671313872075318677
+      spriteID: 55105c757e43dcc4ba61fccf6aac5250
+      internalID: -887302345
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fall_17
+      name: Meganeura_Fall_4_1
       rect:
         serializedVersion: 2
-        x: 201
-        y: 784
-        width: 134
-        height: 141
+        x: 192
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f74e724f971944670800000000000000
-      internalID: 8522096347865146495
+      spriteID: 03c20ad8a468a1a48ba3282135195765
+      internalID: 1415080081
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fall_18
+      name: Meganeura_Fall_4_2
       rect:
         serializedVersion: 2
-        x: 395
-        y: 836
-        width: 127
-        height: 54
+        x: 384
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0ed8c9a747a1edf60800000000000000
-      internalID: 8060909470615375328
+      spriteID: 75fd736c798f81c4888871ab99a24e94
+      internalID: -1032029587
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fall_19
+      name: Meganeura_Fall_4_3
       rect:
         serializedVersion: 2
-        x: 588
-        y: 790
-        width: 118
-        height: 141
+        x: 576
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2cdc7d2063f50d4a0800000000000000
-      internalID: -6570647170752983614
+      spriteID: 845699681e8a5cb46a042c4c2a154331
+      internalID: -1303180971
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fall_20
+      name: Meganeura_Fall_5_0
       rect:
         serializedVersion: 2
-        x: 15
-        y: 593
-        width: 137
-        height: 158
+        x: 0
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 05ec9b2432bf78f30800000000000000
-      internalID: 4577903675107298896
+      spriteID: b73f0a951e310ec43b5a53d8ffc17c9e
+      internalID: 1510177678
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fall_21
+      name: Meganeura_Fall_5_1
       rect:
         serializedVersion: 2
-        x: 209
-        y: 597
-        width: 116
-        height: 135
+        x: 192
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b260396cc3633eaf0800000000000000
-      internalID: -368391109856786901
+      spriteID: a80d9dca7ce9dbe4b8d607b94cf0e44d
+      internalID: -858362810
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fall_22
+      name: Meganeura_Fall_5_2
       rect:
         serializedVersion: 2
-        x: 403
-        y: 648
-        width: 112
-        height: 75
+        x: 384
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 928901c394fc1e420800000000000000
-      internalID: 2657633168572586025
+      spriteID: c2eb4e20441687b4aa70fef0efb2e4ac
+      internalID: -771939852
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fall_23
+      name: Meganeura_Fall_5_3
       rect:
         serializedVersion: 2
-        x: 594
-        y: 598
-        width: 114
-        height: 143
+        x: 576
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 5727bb3d5d0139140800000000000000
-      internalID: 4725138944608137845
+      spriteID: 3abd6e2e2015e9b4db2999cc5fe91647
+      internalID: 1274139897
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fall_24
+      name: Meganeura_Fall_6_0
       rect:
         serializedVersion: 2
-        x: 20
-        y: 412
-        width: 148
-        height: 139
+        x: 0
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 5a03ca7566ea39140800000000000000
-      internalID: 4725312188622581925
+      spriteID: 1bd55f2c7df091248b6489d80f1be8dd
+      internalID: -9080670
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fall_25
+      name: Meganeura_Fall_6_1
       rect:
         serializedVersion: 2
-        x: 229
-        y: 415
-        width: 95
-        height: 137
+        x: 192
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 9974a7ed31c5c4bc0800000000000000
-      internalID: -3797559145373481063
+      spriteID: 46cdeed46a4ec224f86e7e2cee10433f
+      internalID: -1511856465
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fall_26
+      name: Meganeura_Fall_6_2
       rect:
         serializedVersion: 2
-        x: 421
-        y: 452
-        width: 102
-        height: 100
+        x: 384
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 8cb3f7ad8f145f430800000000000000
-      internalID: 3816028796339829704
+      spriteID: d2e5b36db6e3d304da07f21afe1eda6e
+      internalID: -2063435836
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fall_27
+      name: Meganeura_Fall_6_3
       rect:
         serializedVersion: 2
-        x: 610
-        y: 416
-        width: 121
-        height: 136
+        x: 576
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 444c17212b3902430800000000000000
-      internalID: 3756164482249901124
+      spriteID: 209d98b53801d8c4fabaae9713f9140d
+      internalID: -1875066925
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fall_28
+      name: Meganeura_Fall_7_0
       rect:
         serializedVersion: 2
-        x: 15
-        y: 237
-        width: 158
-        height: 135
+        x: 0
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ba07e86eae4366d80800000000000000
-      internalID: -8257854683242139477
+      spriteID: 575c3fd18f9106244a5229c2bf85e25f
+      internalID: 13760230
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fall_29
+      name: Meganeura_Fall_7_1
       rect:
         serializedVersion: 2
-        x: 241
-        y: 236
-        width: 80
-        height: 137
+        x: 192
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b5a94d974535a4140800000000000000
-      internalID: 4704664383028238939
+      spriteID: 21740457dd4d01e43be33c3f49d2113d
+      internalID: -134017012
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fall_30
+      name: Meganeura_Fall_7_2
       rect:
         serializedVersion: 2
-        x: 415
-        y: 258
-        width: 121
-        height: 115
+        x: 384
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c581a46afcec19870800000000000000
-      internalID: 8687952547417823324
+      spriteID: 037f83570ea691642936f871aac91a03
+      internalID: -851413648
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fall_31
+      name: Meganeura_Fall_7_3
       rect:
         serializedVersion: 2
-        x: 600
-        y: 242
-        width: 145
-        height: 131
+        x: 576
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 99e3d175a60f52f00800000000000000
-      internalID: 1091542824225947289
+      spriteID: df85bc60b19a47e4ba2d2abcacf796ba
+      internalID: 1736045943
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fall_32
+      name: Meganeura_Fall_8_0
       rect:
         serializedVersion: 2
-        x: 21
-        y: 62
-        width: 145
-        height: 121
+        x: 0
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e8a1fe164b17e0b50800000000000000
-      internalID: 6561306726676503182
+      spriteID: 90b18abaf2e637b4e8c74013bbcc7e87
+      internalID: -1511551657
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fall_33
+      name: Meganeura_Fall_8_1
       rect:
         serializedVersion: 2
-        x: 241
-        y: 58
-        width: 73
-        height: 127
+        x: 192
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c8506c199823481d0800000000000000
-      internalID: -3349496656419224180
+      spriteID: fb928e9dce5c5a04d865a1febd552d5e
+      internalID: -166635235
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fall_34
+      name: Meganeura_Fall_8_2
       rect:
         serializedVersion: 2
-        x: 413
-        y: 63
-        width: 127
-        height: 123
+        x: 384
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 3f3e659f66e59c310800000000000000
-      internalID: 1425774553402369011
+      spriteID: 64ceb73f8a402f94cbda10f565289c75
+      internalID: 1713429628
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fall_35
+      name: Meganeura_Fall_8_3
       rect:
         serializedVersion: 2
-        x: 589
-        y: 64
-        width: 159
-        height: 121
+        x: 576
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 360c2d104ead3cb40800000000000000
-      internalID: 5459447846121160803
+      spriteID: 4395612b07defdc4a840a6582b91e16f
+      internalID: 1836832068
       vertices: []
       indices: 
       edges: []
@@ -1025,42 +1025,42 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Meganeura_Fall_0: 3120749614514000150
-      Meganeura_Fall_1: 1757888414947581439
-      Meganeura_Fall_10: -8449353135021583947
-      Meganeura_Fall_11: -3719998089033837291
-      Meganeura_Fall_12: -5332832394335065682
-      Meganeura_Fall_13: -585289992066944870
-      Meganeura_Fall_14: 3958674318109633666
-      Meganeura_Fall_15: -6889524858063121511
-      Meganeura_Fall_16: -1671313872075318677
-      Meganeura_Fall_17: 8522096347865146495
-      Meganeura_Fall_18: 8060909470615375328
-      Meganeura_Fall_19: -6570647170752983614
-      Meganeura_Fall_2: 3759967611496322046
-      Meganeura_Fall_20: 4577903675107298896
-      Meganeura_Fall_21: -368391109856786901
-      Meganeura_Fall_22: 2657633168572586025
-      Meganeura_Fall_23: 4725138944608137845
-      Meganeura_Fall_24: 4725312188622581925
-      Meganeura_Fall_25: -3797559145373481063
-      Meganeura_Fall_26: 3816028796339829704
-      Meganeura_Fall_27: 3756164482249901124
-      Meganeura_Fall_28: -8257854683242139477
-      Meganeura_Fall_29: 4704664383028238939
-      Meganeura_Fall_3: -6541480437146422309
-      Meganeura_Fall_30: 8687952547417823324
-      Meganeura_Fall_31: 1091542824225947289
-      Meganeura_Fall_32: 6561306726676503182
-      Meganeura_Fall_33: -3349496656419224180
-      Meganeura_Fall_34: 1425774553402369011
-      Meganeura_Fall_35: 5459447846121160803
-      Meganeura_Fall_4: -5144353435344684361
-      Meganeura_Fall_5: 5777990848731308489
-      Meganeura_Fall_6: -6724079214778422775
-      Meganeura_Fall_7: 8117844259951479840
-      Meganeura_Fall_8: 3132280300324283346
-      Meganeura_Fall_9: 7321079726451129101
+      Meganeura_Fall_0_0: 1931208053
+      Meganeura_Fall_0_1: -166272314
+      Meganeura_Fall_0_2: -125513950
+      Meganeura_Fall_0_3: 2142922464
+      Meganeura_Fall_1_0: 1705846467
+      Meganeura_Fall_1_1: 1382093222
+      Meganeura_Fall_1_2: 1913113681
+      Meganeura_Fall_1_3: -1365091092
+      Meganeura_Fall_2_0: -25767050
+      Meganeura_Fall_2_1: -1189483169
+      Meganeura_Fall_2_2: 839352887
+      Meganeura_Fall_2_3: 1807207370
+      Meganeura_Fall_3_0: 1595267858
+      Meganeura_Fall_3_1: -1634200941
+      Meganeura_Fall_3_2: -819650729
+      Meganeura_Fall_3_3: 376604125
+      Meganeura_Fall_4_0: -887302345
+      Meganeura_Fall_4_1: 1415080081
+      Meganeura_Fall_4_2: -1032029587
+      Meganeura_Fall_4_3: -1303180971
+      Meganeura_Fall_5_0: 1510177678
+      Meganeura_Fall_5_1: -858362810
+      Meganeura_Fall_5_2: -771939852
+      Meganeura_Fall_5_3: 1274139897
+      Meganeura_Fall_6_0: -9080670
+      Meganeura_Fall_6_1: -1511856465
+      Meganeura_Fall_6_2: -2063435836
+      Meganeura_Fall_6_3: -1875066925
+      Meganeura_Fall_7_0: 13760230
+      Meganeura_Fall_7_1: -134017012
+      Meganeura_Fall_7_2: -851413648
+      Meganeura_Fall_7_3: 1736045943
+      Meganeura_Fall_8_0: -1511551657
+      Meganeura_Fall_8_1: -166635235
+      Meganeura_Fall_8_2: 1713429628
+      Meganeura_Fall_8_3: 1836832068
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

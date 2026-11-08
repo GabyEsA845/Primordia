@@ -151,7 +151,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -179,7 +179,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -220,793 +220,793 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Meganeura_Shadow_Fly_0
+      name: Meganeura_Shadow_Fly_0_0
       rect:
         serializedVersion: 2
-        x: 19
-        y: 1558
-        width: 154
-        height: 101
+        x: 0
+        y: 1536
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 19d1e087327e24140800000000000000
-      internalID: 4702575100452281745
+      spriteID: 763e2ba23ab20da4a90c666c6c0805a5
+      internalID: 392704508
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Fly_1
+      name: Meganeura_Shadow_Fly_0_1
       rect:
         serializedVersion: 2
-        x: 208
-        y: 1558
-        width: 160
-        height: 101
+        x: 192
+        y: 1536
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 571fc2bb6ccae2b00800000000000000
-      internalID: 805771352889684341
+      spriteID: 8958adda3a8fb5b4ea7aa1cd602fc90b
+      internalID: -1324383429
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Fly_2
+      name: Meganeura_Shadow_Fly_0_2
       rect:
         serializedVersion: 2
-        x: 404
-        y: 1558
-        width: 152
-        height: 101
+        x: 384
+        y: 1536
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: cecb98660746eade0800000000000000
-      internalID: -1320007206853559060
+      spriteID: a4cd0ec9ddbdd82428e318db719c8bb7
+      internalID: 994765514
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Fly_3
+      name: Meganeura_Shadow_Fly_0_3
       rect:
         serializedVersion: 2
-        x: 591
-        y: 1558
-        width: 162
-        height: 101
+        x: 576
+        y: 1536
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 90057c66208351e60800000000000000
-      internalID: 7932307901648424969
+      spriteID: a402e32bdfebaad49ad4e8b31a151553
+      internalID: 1229613555
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Fly_4
+      name: Meganeura_Shadow_Fly_1_0
       rect:
         serializedVersion: 2
-        x: 16
-        y: 1370
-        width: 154
-        height: 108
+        x: 0
+        y: 1344
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 75f8166d8103b0520800000000000000
-      internalID: 2669280087381217111
+      spriteID: f6c5e4051b3e81d44a5fd8a4cd1caa0e
+      internalID: -1131117910
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Fly_5
+      name: Meganeura_Shadow_Fly_1_1
       rect:
         serializedVersion: 2
-        x: 215
-        y: 1370
-        width: 155
-        height: 111
+        x: 192
+        y: 1344
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a2ca3edf3250819f0800000000000000
-      internalID: -497642106682889174
+      spriteID: fdb00e5a3fbf46f47b6048f1583a14ee
+      internalID: -1621829074
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Fly_6
+      name: Meganeura_Shadow_Fly_1_2
       rect:
         serializedVersion: 2
-        x: 400
-        y: 1370
-        width: 158
-        height: 109
+        x: 384
+        y: 1344
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a63650c423df29db0800000000000000
-      internalID: -4786485061475802262
+      spriteID: fa4823bb1bf39aa4f91c2838f59bc102
+      internalID: -1339925650
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Fly_7
+      name: Meganeura_Shadow_Fly_1_3
       rect:
         serializedVersion: 2
-        x: 596
-        y: 1370
-        width: 158
-        height: 111
+        x: 576
+        y: 1344
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 788c91d3834332c00800000000000000
-      internalID: 874600168787921031
+      spriteID: f537397b9976e8e4abe28d8fe8840021
+      internalID: -1787587562
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Fly_8
+      name: Meganeura_Shadow_Fly_2_0
       rect:
         serializedVersion: 2
-        x: 23
-        y: 1188
-        width: 138
-        height: 113
+        x: 0
+        y: 1152
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 4fd869b576e9845d0800000000000000
-      internalID: -3078036178552320524
+      spriteID: 972da936c311200469646bc55bee0703
+      internalID: 699112578
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Fly_9
+      name: Meganeura_Shadow_Fly_2_1
       rect:
         serializedVersion: 2
-        x: 221
-        y: 1193
-        width: 138
-        height: 113
+        x: 192
+        y: 1152
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 638ef3130c72cdb20800000000000000
-      internalID: 3160444744920721462
+      spriteID: cb7bf45e6a434f240bb4bc7328123094
+      internalID: -1591002136
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Fly_10
+      name: Meganeura_Shadow_Fly_2_2
       rect:
         serializedVersion: 2
-        x: 408
-        y: 1188
-        width: 140
-        height: 116
+        x: 384
+        y: 1152
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 61a2beeac6a219a40800000000000000
-      internalID: 5373122476709194262
+      spriteID: 3149b9dd20499b54197757559ce9984d
+      internalID: 1805756073
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Fly_11
+      name: Meganeura_Shadow_Fly_2_3
       rect:
         serializedVersion: 2
-        x: 602
-        y: 1191
-        width: 141
-        height: 116
+        x: 576
+        y: 1152
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 28f5b977d0fcde450800000000000000
-      internalID: 6119775125414567810
+      spriteID: 4b172f7106e7e524c88ef46af34694b8
+      internalID: -505125977
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Fly_12
+      name: Meganeura_Shadow_Fly_3_0
       rect:
         serializedVersion: 2
-        x: 11
-        y: 990
-        width: 131
-        height: 127
+        x: 0
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 92f297198fc88fa80800000000000000
-      internalID: -8432835303030837463
+      spriteID: 4b0d8adb7f4e56b43a52f766a9154aaf
+      internalID: -1292524258
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Fly_13
+      name: Meganeura_Shadow_Fly_3_1
       rect:
         serializedVersion: 2
-        x: 203
-        y: 996
-        width: 134
-        height: 127
+        x: 192
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: bfd3de5cd10935c90800000000000000
-      internalID: -7182238523176698373
+      spriteID: abac9826381c3194b81e27f94080fdcc
+      internalID: 1177552058
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Fly_14
+      name: Meganeura_Shadow_Fly_3_2
       rect:
         serializedVersion: 2
-        x: 395
-        y: 990
-        width: 133
-        height: 130
+        x: 384
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f5dcdbc231d187f80800000000000000
-      internalID: -8108699160888357537
+      spriteID: e8db0afc087122b4996d6d3028c45eb5
+      internalID: 69603449
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Fly_15
+      name: Meganeura_Shadow_Fly_3_3
       rect:
         serializedVersion: 2
-        x: 587
-        y: 993
-        width: 134
-        height: 131
+        x: 576
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b8fa5bcb82332ce00800000000000000
-      internalID: 1063468712070590347
+      spriteID: 874893da630bf12499b86e86d154c49b
+      internalID: -1897280994
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Fly_16
+      name: Meganeura_Shadow_Fly_4_0
       rect:
         serializedVersion: 2
-        x: 6
-        y: 801
-        width: 123
-        height: 126
+        x: 0
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 993a7e4acb0359c80800000000000000
-      internalID: -8316687550091123815
+      spriteID: 9e8e6a86faaf0bf4f8d452fe36d1b02b
+      internalID: -909021958
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Fly_17
+      name: Meganeura_Shadow_Fly_4_1
       rect:
         serializedVersion: 2
-        x: 198
-        y: 798
-        width: 123
-        height: 132
+        x: 192
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: bbb8355ee7823fac0800000000000000
-      internalID: -3822667133228971077
+      spriteID: 7133c03f0788af44cba05a7a573bf993
+      internalID: -1922198990
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Fly_18
+      name: Meganeura_Shadow_Fly_4_2
       rect:
         serializedVersion: 2
-        x: 390
-        y: 801
-        width: 123
-        height: 126
+        x: 384
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 57faa611b344e7840800000000000000
-      internalID: 5223687638282317685
+      spriteID: 7b349043d115fcb4cb3b4bff5ed905c2
+      internalID: -1093498593
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Fly_19
+      name: Meganeura_Shadow_Fly_4_3
       rect:
         serializedVersion: 2
-        x: 582
-        y: 797
-        width: 123
-        height: 134
+        x: 576
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 458914bcc5a4f3a30800000000000000
-      internalID: 4197155140140111956
+      spriteID: eb9bbd4cbba39e54ea985b08937e455e
+      internalID: 1650409938
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Fly_20
+      name: Meganeura_Shadow_Fly_5_0
       rect:
         serializedVersion: 2
-        x: 11
-        y: 611
-        width: 131
-        height: 127
+        x: 0
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a8873c287943a4660800000000000000
-      internalID: 7370761565483792522
+      spriteID: a934500d7c745f340bb94ba46c59974e
+      internalID: -1208678933
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Fly_21
+      name: Meganeura_Shadow_Fly_5_1
       rect:
         serializedVersion: 2
-        x: 203
-        y: 605
-        width: 134
-        height: 127
+        x: 192
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: fbdfbe2511fbe4c90800000000000000
-      internalID: -7183594274482815553
+      spriteID: 397d017945dee8543afe2b94702c1f24
+      internalID: -498723565
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Fly_22
+      name: Meganeura_Shadow_Fly_5_2
       rect:
         serializedVersion: 2
-        x: 395
-        y: 608
-        width: 133
-        height: 130
+        x: 384
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e85db6eddd579d730800000000000000
-      internalID: 4024377337812080014
+      spriteID: 1b9cc2d94fa9ae54f868cbe0d82091c0
+      internalID: 965808191
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Fly_23
+      name: Meganeura_Shadow_Fly_5_3
       rect:
         serializedVersion: 2
-        x: 587
-        y: 604
-        width: 134
-        height: 131
+        x: 576
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 514bda0fdb0c3f100800000000000000
-      internalID: 140667935397884949
+      spriteID: e5387922a14453447bdb9f442558cf1d
+      internalID: 602691853
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Fly_24
+      name: Meganeura_Shadow_Fly_6_0
       rect:
         serializedVersion: 2
-        x: 23
-        y: 427
-        width: 138
-        height: 113
+        x: 0
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 36cac28546330c090800000000000000
-      internalID: -8016350830650413981
+      spriteID: cfb1db255b6f4ef4d9b703768b30c13f
+      internalID: -1530918816
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Fly_25
+      name: Meganeura_Shadow_Fly_6_1
       rect:
         serializedVersion: 2
-        x: 221
-        y: 422
-        width: 138
-        height: 113
+        x: 192
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 4294c2beeb2a8d880800000000000000
-      internalID: -8585933748708816604
+      spriteID: 48ff232d284267843a99fecd1bb6e58f
+      internalID: 578039880
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Fly_26
+      name: Meganeura_Shadow_Fly_6_2
       rect:
         serializedVersion: 2
-        x: 408
-        y: 424
-        width: 140
-        height: 116
+        x: 384
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 232a3e9b716af7670800000000000000
-      internalID: 8538726039350911538
+      spriteID: fca7281388a513844b66626174bc2353
+      internalID: -904653256
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Fly_27
+      name: Meganeura_Shadow_Fly_6_3
       rect:
         serializedVersion: 2
-        x: 602
-        y: 421
-        width: 141
-        height: 116
+        x: 576
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 712a4e2df59dc5170800000000000000
-      internalID: 8168642829726556695
+      spriteID: 5c95dc769a9a40146afdffe2b93977d5
+      internalID: -814985139
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Fly_28
+      name: Meganeura_Shadow_Fly_7_0
       rect:
         serializedVersion: 2
-        x: 16
-        y: 250
-        width: 154
-        height: 108
+        x: 0
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 1881a4f4c01fa2d40800000000000000
-      internalID: 5560521725114456193
+      spriteID: 72e565a74ffda814598b1fc9d4334359
+      internalID: 1332471827
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Fly_29
+      name: Meganeura_Shadow_Fly_7_1
       rect:
         serializedVersion: 2
-        x: 215
-        y: 247
-        width: 155
-        height: 111
+        x: 192
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b629481ea50ff6e70800000000000000
-      internalID: 9110764844315087467
+      spriteID: 9cb1d0c0e2651d74ca4af30119e76730
+      internalID: -1479638458
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Fly_30
+      name: Meganeura_Shadow_Fly_7_2
       rect:
         serializedVersion: 2
-        x: 400
-        y: 249
-        width: 158
-        height: 109
+        x: 384
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6616ff672276b7290800000000000000
-      internalID: -7891600524313665178
+      spriteID: 40d10cdca2ea5144eb766817086d8170
+      internalID: 315081816
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Fly_31
+      name: Meganeura_Shadow_Fly_7_3
       rect:
         serializedVersion: 2
-        x: 596
-        y: 247
-        width: 158
-        height: 111
+        x: 576
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: aa3e05da18e83dcc0800000000000000
-      internalID: -3687446982276619350
+      spriteID: ec7a42fadd4c1e14b8c3aa036d7dca8a
+      internalID: 602268290
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Fly_32
+      name: Meganeura_Shadow_Fly_8_0
       rect:
         serializedVersion: 2
-        x: 19
-        y: 69
-        width: 154
-        height: 101
+        x: 0
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: bf09354c1095ff490800000000000000
-      internalID: -7710346172911349509
+      spriteID: a152f1e76fad0c845a46cb9a80db8bb5
+      internalID: 701116341
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Fly_33
+      name: Meganeura_Shadow_Fly_8_1
       rect:
         serializedVersion: 2
-        x: 208
-        y: 69
-        width: 160
-        height: 101
+        x: 192
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 8286840029793a0e0800000000000000
-      internalID: -2259795934684092376
+      spriteID: ec3de8e8f2c8089489bc0d3307b20a81
+      internalID: 1867633929
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Fly_34
+      name: Meganeura_Shadow_Fly_8_2
       rect:
         serializedVersion: 2
-        x: 404
-        y: 69
-        width: 152
-        height: 101
+        x: 384
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 223630e102cb2b5b0800000000000000
-      internalID: -5354010160861584606
+      spriteID: ed02edd551c8d27418b278e05fc0f90f
+      internalID: -1895048629
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Fly_35
+      name: Meganeura_Shadow_Fly_8_3
       rect:
         serializedVersion: 2
-        x: 591
-        y: 69
-        width: 162
-        height: 101
+        x: 576
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b9484a49f74e52fb0800000000000000
-      internalID: -4673077801721232229
+      spriteID: c7c0b885dfad0384e83d6fc22d7638aa
+      internalID: 204466181
       vertices: []
       indices: 
       edges: []
@@ -1025,42 +1025,42 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Meganeura_Shadow_Fly_0: 4702575100452281745
-      Meganeura_Shadow_Fly_1: 805771352889684341
-      Meganeura_Shadow_Fly_10: 5373122476709194262
-      Meganeura_Shadow_Fly_11: 6119775125414567810
-      Meganeura_Shadow_Fly_12: -8432835303030837463
-      Meganeura_Shadow_Fly_13: -7182238523176698373
-      Meganeura_Shadow_Fly_14: -8108699160888357537
-      Meganeura_Shadow_Fly_15: 1063468712070590347
-      Meganeura_Shadow_Fly_16: -8316687550091123815
-      Meganeura_Shadow_Fly_17: -3822667133228971077
-      Meganeura_Shadow_Fly_18: 5223687638282317685
-      Meganeura_Shadow_Fly_19: 4197155140140111956
-      Meganeura_Shadow_Fly_2: -1320007206853559060
-      Meganeura_Shadow_Fly_20: 7370761565483792522
-      Meganeura_Shadow_Fly_21: -7183594274482815553
-      Meganeura_Shadow_Fly_22: 4024377337812080014
-      Meganeura_Shadow_Fly_23: 140667935397884949
-      Meganeura_Shadow_Fly_24: -8016350830650413981
-      Meganeura_Shadow_Fly_25: -8585933748708816604
-      Meganeura_Shadow_Fly_26: 8538726039350911538
-      Meganeura_Shadow_Fly_27: 8168642829726556695
-      Meganeura_Shadow_Fly_28: 5560521725114456193
-      Meganeura_Shadow_Fly_29: 9110764844315087467
-      Meganeura_Shadow_Fly_3: 7932307901648424969
-      Meganeura_Shadow_Fly_30: -7891600524313665178
-      Meganeura_Shadow_Fly_31: -3687446982276619350
-      Meganeura_Shadow_Fly_32: -7710346172911349509
-      Meganeura_Shadow_Fly_33: -2259795934684092376
-      Meganeura_Shadow_Fly_34: -5354010160861584606
-      Meganeura_Shadow_Fly_35: -4673077801721232229
-      Meganeura_Shadow_Fly_4: 2669280087381217111
-      Meganeura_Shadow_Fly_5: -497642106682889174
-      Meganeura_Shadow_Fly_6: -4786485061475802262
-      Meganeura_Shadow_Fly_7: 874600168787921031
-      Meganeura_Shadow_Fly_8: -3078036178552320524
-      Meganeura_Shadow_Fly_9: 3160444744920721462
+      Meganeura_Shadow_Fly_0_0: 392704508
+      Meganeura_Shadow_Fly_0_1: -1324383429
+      Meganeura_Shadow_Fly_0_2: 994765514
+      Meganeura_Shadow_Fly_0_3: 1229613555
+      Meganeura_Shadow_Fly_1_0: -1131117910
+      Meganeura_Shadow_Fly_1_1: -1621829074
+      Meganeura_Shadow_Fly_1_2: -1339925650
+      Meganeura_Shadow_Fly_1_3: -1787587562
+      Meganeura_Shadow_Fly_2_0: 699112578
+      Meganeura_Shadow_Fly_2_1: -1591002136
+      Meganeura_Shadow_Fly_2_2: 1805756073
+      Meganeura_Shadow_Fly_2_3: -505125977
+      Meganeura_Shadow_Fly_3_0: -1292524258
+      Meganeura_Shadow_Fly_3_1: 1177552058
+      Meganeura_Shadow_Fly_3_2: 69603449
+      Meganeura_Shadow_Fly_3_3: -1897280994
+      Meganeura_Shadow_Fly_4_0: -909021958
+      Meganeura_Shadow_Fly_4_1: -1922198990
+      Meganeura_Shadow_Fly_4_2: -1093498593
+      Meganeura_Shadow_Fly_4_3: 1650409938
+      Meganeura_Shadow_Fly_5_0: -1208678933
+      Meganeura_Shadow_Fly_5_1: -498723565
+      Meganeura_Shadow_Fly_5_2: 965808191
+      Meganeura_Shadow_Fly_5_3: 602691853
+      Meganeura_Shadow_Fly_6_0: -1530918816
+      Meganeura_Shadow_Fly_6_1: 578039880
+      Meganeura_Shadow_Fly_6_2: -904653256
+      Meganeura_Shadow_Fly_6_3: -814985139
+      Meganeura_Shadow_Fly_7_0: 1332471827
+      Meganeura_Shadow_Fly_7_1: -1479638458
+      Meganeura_Shadow_Fly_7_2: 315081816
+      Meganeura_Shadow_Fly_7_3: 602268290
+      Meganeura_Shadow_Fly_8_0: 701116341
+      Meganeura_Shadow_Fly_8_1: 1867633929
+      Meganeura_Shadow_Fly_8_2: -1895048629
+      Meganeura_Shadow_Fly_8_3: 204466181
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

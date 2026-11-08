@@ -151,7 +151,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -179,7 +179,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -220,793 +220,793 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Meganeura_Nymph_Idle_0
+      name: Meganeura_Nymph_Idle_0_0
       rect:
         serializedVersion: 2
-        x: 18
-        y: 524
-        width: 28
-        height: 34
+        x: 0
+        y: 512
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 3f8aedb80522871e0800000000000000
-      internalID: -2199970688631133965
+      spriteID: bb5d0f19cc0cc7946a98c5f606725afb
+      internalID: -394296035
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Nymph_Idle_1
+      name: Meganeura_Nymph_Idle_0_1
       rect:
         serializedVersion: 2
-        x: 82
-        y: 524
-        width: 28
-        height: 34
+        x: 64
+        y: 512
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 26181575668542900800000000000000
-      internalID: 658748642077802850
+      spriteID: 5d8bca40a9085404395fd4e79c0c601c
+      internalID: 944102245
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Nymph_Idle_2
+      name: Meganeura_Nymph_Idle_0_2
       rect:
         serializedVersion: 2
-        x: 146
-        y: 524
-        width: 28
-        height: 34
+        x: 128
+        y: 512
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2db3bb975aba31ac0800000000000000
-      internalID: -3885573326290338862
+      spriteID: 5f5464fc45a297f40889a0dff0f52069
+      internalID: 875513954
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Nymph_Idle_3
+      name: Meganeura_Nymph_Idle_0_3
       rect:
         serializedVersion: 2
-        x: 210
-        y: 524
-        width: 28
-        height: 33
+        x: 192
+        y: 512
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c10272a77c0862470800000000000000
-      internalID: 8369518551750877212
+      spriteID: fce9ce30dd9e09547b31fd01378bcfa1
+      internalID: 734181070
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Nymph_Idle_4
+      name: Meganeura_Nymph_Idle_1_0
       rect:
         serializedVersion: 2
-        x: 16
-        y: 461
-        width: 34
-        height: 33
+        x: 0
+        y: 448
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 10fce535ecc3fa860800000000000000
-      internalID: 7543314757728521985
+      spriteID: 48e23420517df3f4ab3d70fddc40b675
+      internalID: -137589658
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Nymph_Idle_5
+      name: Meganeura_Nymph_Idle_1_1
       rect:
         serializedVersion: 2
-        x: 80
-        y: 461
-        width: 34
-        height: 33
+        x: 64
+        y: 448
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e71a3db7cfdba2110800000000000000
-      internalID: 1237009939773497726
+      spriteID: 57054c4fee4362e43a9f5c11dd63e1f5
+      internalID: -791790931
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Nymph_Idle_6
+      name: Meganeura_Nymph_Idle_1_2
       rect:
         serializedVersion: 2
-        x: 144
-        y: 461
-        width: 34
-        height: 33
+        x: 128
+        y: 448
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 13cece17053f950e0800000000000000
-      internalID: -2280524209452159951
+      spriteID: d0c86f690516b23429bd8e2c94ec7c29
+      internalID: -1069370878
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Nymph_Idle_7
+      name: Meganeura_Nymph_Idle_1_3
       rect:
         serializedVersion: 2
-        x: 208
-        y: 461
-        width: 34
-        height: 33
+        x: 192
+        y: 448
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: fa28b0c31a08c8660800000000000000
-      internalID: 7389422518593618607
+      spriteID: 77fb856f566ad9a4286329ede32a2c11
+      internalID: -78167110
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Nymph_Idle_8
+      name: Meganeura_Nymph_Idle_2_0
       rect:
         serializedVersion: 2
-        x: 13
-        y: 400
-        width: 39
-        height: 31
+        x: 0
+        y: 384
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6ec7d1e8ea081bfc0800000000000000
-      internalID: -3480859549783720730
+      spriteID: 61c583e2ce98495419ca6ea605215486
+      internalID: 217148367
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Nymph_Idle_9
+      name: Meganeura_Nymph_Idle_2_1
       rect:
         serializedVersion: 2
-        x: 77
-        y: 400
-        width: 39
-        height: 31
+        x: 64
+        y: 384
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 01349a3ef142c3e20800000000000000
-      internalID: 3331577543729431312
+      spriteID: ab26c7cd03d874b4ca0c873b6669a70a
+      internalID: -1554936808
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Nymph_Idle_10
+      name: Meganeura_Nymph_Idle_2_2
       rect:
         serializedVersion: 2
-        x: 141
-        y: 400
-        width: 39
-        height: 31
+        x: 128
+        y: 384
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: fcc3b10c011291550800000000000000
-      internalID: 6131968723467844815
+      spriteID: f4bc49d2fb3451e45a8a2775efeccf1f
+      internalID: 131882987
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Nymph_Idle_11
+      name: Meganeura_Nymph_Idle_2_3
       rect:
         serializedVersion: 2
-        x: 205
-        y: 400
-        width: 39
-        height: 31
+        x: 192
+        y: 384
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ac210d4fba95e0cd0800000000000000
-      internalID: -2590034140609899830
+      spriteID: eb917b8cf7426f8448d9e3f92f162c21
+      internalID: -148564353
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Nymph_Idle_12
+      name: Meganeura_Nymph_Idle_3_0
       rect:
         serializedVersion: 2
-        x: 9
-        y: 336
-        width: 42
-        height: 30
+        x: 0
+        y: 320
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 392b55f18f0e152a0800000000000000
-      internalID: -6750367010169441645
+      spriteID: 65aa49aeaad500a4e8249f574b6a78e4
+      internalID: -885119402
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Nymph_Idle_13
+      name: Meganeura_Nymph_Idle_3_1
       rect:
         serializedVersion: 2
-        x: 73
-        y: 336
-        width: 42
-        height: 30
+        x: 64
+        y: 320
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d4a00e80915f1d1c0800000000000000
-      internalID: -4480530666385044915
+      spriteID: de72e4ae1a639f0458664fb7bb6e2aa7
+      internalID: -382169070
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Nymph_Idle_14
+      name: Meganeura_Nymph_Idle_3_2
       rect:
         serializedVersion: 2
-        x: 137
-        y: 336
-        width: 42
-        height: 30
+        x: 128
+        y: 320
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 51ac9489b57dd6050800000000000000
-      internalID: 5795525083892664853
+      spriteID: 2b6808396d1a1264a87f99b9bd96087f
+      internalID: 2037299637
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Nymph_Idle_15
+      name: Meganeura_Nymph_Idle_3_3
       rect:
         serializedVersion: 2
-        x: 201
-        y: 336
-        width: 42
-        height: 30
+        x: 192
+        y: 320
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f46d626ec2f58ba40800000000000000
-      internalID: 5384158000965932623
+      spriteID: 007a57e83d0a8f04995e9a9f19c74aa2
+      internalID: 173295687
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Nymph_Idle_16
+      name: Meganeura_Nymph_Idle_4_0
       rect:
         serializedVersion: 2
-        x: 8
-        y: 274
-        width: 39
-        height: 25
+        x: 0
+        y: 256
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 92cd110b04e7d2f70800000000000000
-      internalID: 9164119633065794601
+      spriteID: 43304ef2760589544ab050b5fffe66b7
+      internalID: 698615704
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Nymph_Idle_17
+      name: Meganeura_Nymph_Idle_4_1
       rect:
         serializedVersion: 2
-        x: 72
-        y: 274
-        width: 39
-        height: 25
+        x: 64
+        y: 256
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0f55521aaa36f45a0800000000000000
-      internalID: -6534894949792131600
+      spriteID: 042d0f1befcd66b479a6a559289a8e69
+      internalID: 1244285311
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Nymph_Idle_18
+      name: Meganeura_Nymph_Idle_4_2
       rect:
         serializedVersion: 2
-        x: 136
-        y: 274
-        width: 39
-        height: 25
+        x: 128
+        y: 256
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 44f22167ccf5ed090800000000000000
-      internalID: -8007857755659292860
+      spriteID: fcd7bd1fb0f4da5458342a6f2d661079
+      internalID: 415961947
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Nymph_Idle_19
+      name: Meganeura_Nymph_Idle_4_3
       rect:
         serializedVersion: 2
-        x: 200
-        y: 274
-        width: 39
-        height: 25
+        x: 192
+        y: 256
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2a3c4fa5a3069f870800000000000000
-      internalID: 8717104357502665634
+      spriteID: 1f23b14bca6abe841934d83e63ce8fdf
+      internalID: -422050710
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Nymph_Idle_20
+      name: Meganeura_Nymph_Idle_5_0
       rect:
         serializedVersion: 2
-        x: 9
-        y: 207
-        width: 42
-        height: 29
+        x: 0
+        y: 192
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 531751fd1f7459b50800000000000000
-      internalID: 6599259933136744757
+      spriteID: 974e596a05a3d31428691dc8eaff79de
+      internalID: -1493099527
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Nymph_Idle_21
+      name: Meganeura_Nymph_Idle_5_1
       rect:
         serializedVersion: 2
-        x: 73
-        y: 207
-        width: 42
-        height: 29
+        x: 64
+        y: 192
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d9af435af01bc7a70800000000000000
-      internalID: 8826124050493667997
+      spriteID: 9c5fe1682ea61dc4290e6a14c65a1e7b
+      internalID: -1059119415
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Nymph_Idle_22
+      name: Meganeura_Nymph_Idle_5_2
       rect:
         serializedVersion: 2
-        x: 137
-        y: 207
-        width: 42
-        height: 29
+        x: 128
+        y: 192
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 75ab8ed2d645ec650800000000000000
-      internalID: 6255029760362592855
+      spriteID: d5a7b983859ef384090dfd0eb85ae788
+      internalID: -1010352942
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Nymph_Idle_23
+      name: Meganeura_Nymph_Idle_5_3
       rect:
         serializedVersion: 2
-        x: 201
-        y: 207
-        width: 42
-        height: 29
+        x: 192
+        y: 192
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: fbab756988fa0fa50800000000000000
-      internalID: 6552930458996816575
+      spriteID: b3406b6a21e544e41a09150f363ea3ea
+      internalID: 976060907
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Nymph_Idle_24
+      name: Meganeura_Nymph_Idle_6_0
       rect:
         serializedVersion: 2
-        x: 13
-        y: 142
-        width: 39
-        height: 34
+        x: 0
+        y: 128
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ba48a2141c9bcbbf0800000000000000
-      internalID: -307166434894904149
+      spriteID: 3246cc272dbf442488610e2458c7bc06
+      internalID: -71775296
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Nymph_Idle_25
+      name: Meganeura_Nymph_Idle_6_1
       rect:
         serializedVersion: 2
-        x: 77
-        y: 142
-        width: 39
-        height: 34
+        x: 64
+        y: 128
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 28d5a47d81ffae4c0800000000000000
-      internalID: -4257310015569109630
+      spriteID: fd5f38a28831f694e9f7b99c56300406
+      internalID: -1056288152
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Nymph_Idle_26
+      name: Meganeura_Nymph_Idle_6_2
       rect:
         serializedVersion: 2
-        x: 141
-        y: 142
-        width: 39
-        height: 34
+        x: 128
+        y: 128
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 8426264b31a97c850800000000000000
-      internalID: 6397251205124481608
+      spriteID: e412f9ab544e9904996a240f0324910c
+      internalID: -1291662458
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Nymph_Idle_27
+      name: Meganeura_Nymph_Idle_6_3
       rect:
         serializedVersion: 2
-        x: 205
-        y: 142
-        width: 39
-        height: 34
+        x: 192
+        y: 128
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 60c241fd3c36b7f00800000000000000
-      internalID: 1115595025616743430
+      spriteID: 00635cfa0be8098438540b13a0cd3047
+      internalID: 410447709
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Nymph_Idle_28
+      name: Meganeura_Nymph_Idle_7_0
       rect:
         serializedVersion: 2
-        x: 16
-        y: 78
-        width: 34
-        height: 37
+        x: 0
+        y: 64
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 9ae10f9200231b810800000000000000
-      internalID: 1779258304073047721
+      spriteID: 645cacaebd08c2b49b5453fbd80b39a4
+      internalID: -813766971
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Nymph_Idle_29
+      name: Meganeura_Nymph_Idle_7_1
       rect:
         serializedVersion: 2
-        x: 80
-        y: 78
-        width: 34
-        height: 38
+        x: 64
+        y: 64
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 106722475eedea850800000000000000
-      internalID: 6390289998362605057
+      spriteID: ec56e055360f06a4c9f0246faa7dc823
+      internalID: 1914196099
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Nymph_Idle_30
+      name: Meganeura_Nymph_Idle_7_2
       rect:
         serializedVersion: 2
-        x: 144
-        y: 78
-        width: 34
-        height: 37
+        x: 128
+        y: 64
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 48524acdcfe065740800000000000000
-      internalID: 5140312503886292356
+      spriteID: dc6e5bf07ea903046aca3512f9b3fa46
+      internalID: -1252997809
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Nymph_Idle_31
+      name: Meganeura_Nymph_Idle_7_3
       rect:
         serializedVersion: 2
-        x: 208
-        y: 78
-        width: 34
-        height: 37
+        x: 192
+        y: 64
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 3fab567f331ab9fc0800000000000000
-      internalID: -3487016241902273805
+      spriteID: 49fb1439d89c8134690a0a0f067cd9fd
+      internalID: 706043111
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Nymph_Idle_32
+      name: Meganeura_Nymph_Idle_8_0
       rect:
         serializedVersion: 2
-        x: 18
-        y: 17
-        width: 28
-        height: 36
+        x: 0
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7d619dacaef9fe180800000000000000
-      internalID: -9083866092608612649
+      spriteID: dedc00ddeb63c544b816794bee2c6f21
+      internalID: -1263277778
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Nymph_Idle_33
+      name: Meganeura_Nymph_Idle_8_1
       rect:
         serializedVersion: 2
-        x: 82
-        y: 17
-        width: 28
-        height: 36
+        x: 64
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 174d4254ffc6d9460800000000000000
-      internalID: 7250070818768868465
+      spriteID: b88d4de99c3bb30459e5c65168045ae4
+      internalID: -1877108903
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Nymph_Idle_34
+      name: Meganeura_Nymph_Idle_8_2
       rect:
         serializedVersion: 2
-        x: 146
-        y: 17
-        width: 28
-        height: 36
+        x: 128
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f28a4931de0cc6670800000000000000
-      internalID: 8533407518428538927
+      spriteID: 46ac258a6c65eb1489c014cba820e3c5
+      internalID: -270448896
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Nymph_Idle_35
+      name: Meganeura_Nymph_Idle_8_3
       rect:
         serializedVersion: 2
-        x: 210
-        y: 17
-        width: 28
-        height: 36
+        x: 192
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 31015651bb5045870800000000000000
-      internalID: 8670561483671015443
+      spriteID: f9630beba01c07044b0f5621c2410790
+      internalID: 1370644369
       vertices: []
       indices: 
       edges: []
@@ -1025,42 +1025,42 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Meganeura_Nymph_Idle_0: -2199970688631133965
-      Meganeura_Nymph_Idle_1: 658748642077802850
-      Meganeura_Nymph_Idle_10: 6131968723467844815
-      Meganeura_Nymph_Idle_11: -2590034140609899830
-      Meganeura_Nymph_Idle_12: -6750367010169441645
-      Meganeura_Nymph_Idle_13: -4480530666385044915
-      Meganeura_Nymph_Idle_14: 5795525083892664853
-      Meganeura_Nymph_Idle_15: 5384158000965932623
-      Meganeura_Nymph_Idle_16: 9164119633065794601
-      Meganeura_Nymph_Idle_17: -6534894949792131600
-      Meganeura_Nymph_Idle_18: -8007857755659292860
-      Meganeura_Nymph_Idle_19: 8717104357502665634
-      Meganeura_Nymph_Idle_2: -3885573326290338862
-      Meganeura_Nymph_Idle_20: 6599259933136744757
-      Meganeura_Nymph_Idle_21: 8826124050493667997
-      Meganeura_Nymph_Idle_22: 6255029760362592855
-      Meganeura_Nymph_Idle_23: 6552930458996816575
-      Meganeura_Nymph_Idle_24: -307166434894904149
-      Meganeura_Nymph_Idle_25: -4257310015569109630
-      Meganeura_Nymph_Idle_26: 6397251205124481608
-      Meganeura_Nymph_Idle_27: 1115595025616743430
-      Meganeura_Nymph_Idle_28: 1779258304073047721
-      Meganeura_Nymph_Idle_29: 6390289998362605057
-      Meganeura_Nymph_Idle_3: 8369518551750877212
-      Meganeura_Nymph_Idle_30: 5140312503886292356
-      Meganeura_Nymph_Idle_31: -3487016241902273805
-      Meganeura_Nymph_Idle_32: -9083866092608612649
-      Meganeura_Nymph_Idle_33: 7250070818768868465
-      Meganeura_Nymph_Idle_34: 8533407518428538927
-      Meganeura_Nymph_Idle_35: 8670561483671015443
-      Meganeura_Nymph_Idle_4: 7543314757728521985
-      Meganeura_Nymph_Idle_5: 1237009939773497726
-      Meganeura_Nymph_Idle_6: -2280524209452159951
-      Meganeura_Nymph_Idle_7: 7389422518593618607
-      Meganeura_Nymph_Idle_8: -3480859549783720730
-      Meganeura_Nymph_Idle_9: 3331577543729431312
+      Meganeura_Nymph_Idle_0_0: -394296035
+      Meganeura_Nymph_Idle_0_1: 944102245
+      Meganeura_Nymph_Idle_0_2: 875513954
+      Meganeura_Nymph_Idle_0_3: 734181070
+      Meganeura_Nymph_Idle_1_0: -137589658
+      Meganeura_Nymph_Idle_1_1: -791790931
+      Meganeura_Nymph_Idle_1_2: -1069370878
+      Meganeura_Nymph_Idle_1_3: -78167110
+      Meganeura_Nymph_Idle_2_0: 217148367
+      Meganeura_Nymph_Idle_2_1: -1554936808
+      Meganeura_Nymph_Idle_2_2: 131882987
+      Meganeura_Nymph_Idle_2_3: -148564353
+      Meganeura_Nymph_Idle_3_0: -885119402
+      Meganeura_Nymph_Idle_3_1: -382169070
+      Meganeura_Nymph_Idle_3_2: 2037299637
+      Meganeura_Nymph_Idle_3_3: 173295687
+      Meganeura_Nymph_Idle_4_0: 698615704
+      Meganeura_Nymph_Idle_4_1: 1244285311
+      Meganeura_Nymph_Idle_4_2: 415961947
+      Meganeura_Nymph_Idle_4_3: -422050710
+      Meganeura_Nymph_Idle_5_0: -1493099527
+      Meganeura_Nymph_Idle_5_1: -1059119415
+      Meganeura_Nymph_Idle_5_2: -1010352942
+      Meganeura_Nymph_Idle_5_3: 976060907
+      Meganeura_Nymph_Idle_6_0: -71775296
+      Meganeura_Nymph_Idle_6_1: -1056288152
+      Meganeura_Nymph_Idle_6_2: -1291662458
+      Meganeura_Nymph_Idle_6_3: 410447709
+      Meganeura_Nymph_Idle_7_0: -813766971
+      Meganeura_Nymph_Idle_7_1: 1914196099
+      Meganeura_Nymph_Idle_7_2: -1252997809
+      Meganeura_Nymph_Idle_7_3: 706043111
+      Meganeura_Nymph_Idle_8_0: -1263277778
+      Meganeura_Nymph_Idle_8_1: -1877108903
+      Meganeura_Nymph_Idle_8_2: -270448896
+      Meganeura_Nymph_Idle_8_3: 1370644369
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

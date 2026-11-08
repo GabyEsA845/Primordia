@@ -67,7 +67,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -95,7 +95,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -136,177 +136,177 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Meganeura_DeathFall_Burnt_0
+      name: Meganeura_DeathFall_Burnt_0_0
       rect:
         serializedVersion: 2
-        x: 14
-        y: 35
-        width: 111
-        height: 134
+        x: 0
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b04c8d34fdd792690800000000000000
-      internalID: -7626426096105765877
+      spriteID: 44c85e159a4de324786c5ede4dbf7154
+      internalID: -529896718
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_DeathFall_Burnt_1
+      name: Meganeura_DeathFall_Burnt_0_1
       rect:
         serializedVersion: 2
-        x: 234
-        y: 40
-        width: 119
-        height: 134
+        x: 192
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6007ebc449120dcd0800000000000000
-      internalID: -2535489669383163898
+      spriteID: 511a931adf643434786ac7bf12155620
+      internalID: 1548518430
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_DeathFall_Burnt_2
+      name: Meganeura_DeathFall_Burnt_0_2
       rect:
         serializedVersion: 2
-        x: 430
-        y: 62
-        width: 108
-        height: 121
+        x: 384
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 78e2b6837e24a4b20800000000000000
-      internalID: 3119379252758916743
+      spriteID: 73a51eadb08540a47bc2784475bc1815
+      internalID: -159827364
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_DeathFall_Burnt_3
+      name: Meganeura_DeathFall_Burnt_0_3
       rect:
         serializedVersion: 2
-        x: 622
-        y: 46
-        width: 131
-        height: 107
+        x: 576
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 53a673733c0471310800000000000000
-      internalID: 1375639418374154805
+      spriteID: 1c3a94feb0687644cbf0edd1ef79676f
+      internalID: 1875130228
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_DeathFall_Burnt_4
+      name: Meganeura_DeathFall_Burnt_0_4
       rect:
         serializedVersion: 2
-        x: 835
-        y: 21
-        width: 105
-        height: 139
+        x: 768
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c4938ca920b18a5f0800000000000000
-      internalID: -745316040329119412
+      spriteID: 0983b5e84b0fd2d44a2d4e01965f9459
+      internalID: 1228526873
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_DeathFall_Burnt_5
+      name: Meganeura_DeathFall_Burnt_0_5
       rect:
         serializedVersion: 2
-        x: 978
-        y: 41
-        width: 116
-        height: 119
+        x: 960
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6038b930c8d454880800000000000000
-      internalID: -8627404247407033594
+      spriteID: 0ef806b27ec13a847a0d84bb696b5d1f
+      internalID: 2030941018
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_DeathFall_Burnt_6
+      name: Meganeura_DeathFall_Burnt_0_6
       rect:
         serializedVersion: 2
-        x: 1179
-        y: 62
-        width: 130
-        height: 79
+        x: 1152
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 82ea99a63d5998ac0800000000000000
-      internalID: -3852383270979654104
+      spriteID: 6d085b31b64d778438a64221ab30d472
+      internalID: 1379408176
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_DeathFall_Burnt_7
+      name: Meganeura_DeathFall_Burnt_0_7
       rect:
         serializedVersion: 2
-        x: 1355
-        y: 25
-        width: 137
-        height: 144
+        x: 1344
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d537d37a34045c770800000000000000
-      internalID: 8630374920238232413
+      spriteID: 49cebc45e5b6e5f4d9d31c6da145d883
+      internalID: 2126243545
       vertices: []
       indices: 
       edges: []
@@ -325,14 +325,14 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Meganeura_DeathFall_Burnt_0: -7626426096105765877
-      Meganeura_DeathFall_Burnt_1: -2535489669383163898
-      Meganeura_DeathFall_Burnt_2: 3119379252758916743
-      Meganeura_DeathFall_Burnt_3: 1375639418374154805
-      Meganeura_DeathFall_Burnt_4: -745316040329119412
-      Meganeura_DeathFall_Burnt_5: -8627404247407033594
-      Meganeura_DeathFall_Burnt_6: -3852383270979654104
-      Meganeura_DeathFall_Burnt_7: 8630374920238232413
+      Meganeura_DeathFall_Burnt_0_0: -529896718
+      Meganeura_DeathFall_Burnt_0_1: 1548518430
+      Meganeura_DeathFall_Burnt_0_2: -159827364
+      Meganeura_DeathFall_Burnt_0_3: 1875130228
+      Meganeura_DeathFall_Burnt_0_4: 1228526873
+      Meganeura_DeathFall_Burnt_0_5: 2030941018
+      Meganeura_DeathFall_Burnt_0_6: 1379408176
+      Meganeura_DeathFall_Burnt_0_7: 2126243545
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

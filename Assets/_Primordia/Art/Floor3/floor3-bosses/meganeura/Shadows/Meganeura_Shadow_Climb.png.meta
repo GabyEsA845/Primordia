@@ -151,7 +151,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -179,7 +179,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -220,793 +220,793 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Meganeura_Shadow_Climb_0
+      name: Meganeura_Shadow_Climb_0_0
       rect:
         serializedVersion: 2
-        x: 20
-        y: 1562
-        width: 152
-        height: 97
+        x: 0
+        y: 1536
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 5e08ff084268d9f50800000000000000
-      internalID: 6889810496287899877
+      spriteID: 759b4d62b3bd5694ea9747b6f5749b96
+      internalID: 2000808057
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Climb_1
+      name: Meganeura_Shadow_Climb_0_1
       rect:
         serializedVersion: 2
-        x: 208
-        y: 1562
-        width: 160
-        height: 97
+        x: 192
+        y: 1536
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 39c113b56990aed50800000000000000
-      internalID: 6767231931457281171
+      spriteID: 6b41060ffb98fa749b6d21e7ee189a8e
+      internalID: -1088095798
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Climb_2
+      name: Meganeura_Shadow_Climb_0_2
       rect:
         serializedVersion: 2
-        x: 404
-        y: 1562
-        width: 152
-        height: 97
+        x: 384
+        y: 1536
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a478507aabe3032c0800000000000000
-      internalID: -4453991060082423990
+      spriteID: 781330dacbb0720468609d2bd4526733
+      internalID: 959919956
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Climb_3
+      name: Meganeura_Shadow_Climb_0_3
       rect:
         serializedVersion: 2
-        x: 591
-        y: 1562
-        width: 162
-        height: 97
+        x: 576
+        y: 1536
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 04e20490b7269ef00800000000000000
-      internalID: 1146555860718202432
+      spriteID: 832d8491aa7830442ad6f4ae3e268949
+      internalID: -1371886165
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Climb_4
+      name: Meganeura_Shadow_Climb_1_0
       rect:
         serializedVersion: 2
-        x: 17
-        y: 1374
-        width: 142
-        height: 92
+        x: 0
+        y: 1344
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: fe76348add4833860800000000000000
-      internalID: 7508491091302377455
+      spriteID: 5a407568644450646868a92ae366f936
+      internalID: 55097063
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Climb_5
+      name: Meganeura_Shadow_Climb_1_1
       rect:
         serializedVersion: 2
-        x: 217
-        y: 1374
-        width: 150
-        height: 101
+        x: 192
+        y: 1344
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: eebe3df7aa2ca7910800000000000000
-      internalID: 1835993835651722222
+      spriteID: 36a7743b9bbcb574fa836dd8fcf6b2d3
+      internalID: -1016257606
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Climb_6
+      name: Meganeura_Shadow_Climb_1_2
       rect:
         serializedVersion: 2
-        x: 399
-        y: 1374
-        width: 153
-        height: 109
+        x: 384
+        y: 1344
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 1c3071cfd76daf8e0800000000000000
-      internalID: -1658777676143983679
+      spriteID: 5d819b922ce32d841b46c4ccbfd267c4
+      internalID: -867936651
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Climb_7
+      name: Meganeura_Shadow_Climb_1_3
       rect:
         serializedVersion: 2
-        x: 602
-        y: 1374
-        width: 151
-        height: 104
+        x: 576
+        y: 1344
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 57c2f011cfaad3e70800000000000000
-      internalID: 9096614821952957557
+      spriteID: b057d232cb4d38946a1c744af9c6e32c
+      internalID: 653408610
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Climb_8
+      name: Meganeura_Shadow_Climb_2_0
       rect:
         serializedVersion: 2
-        x: 25
-        y: 1190
-        width: 114
-        height: 93
+        x: 0
+        y: 1152
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 102d5c6bc49603550800000000000000
-      internalID: 6138522070310834689
+      spriteID: 58b32964cb91b1b42bc8d4d5abc681fa
+      internalID: -1850097451
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Climb_9
+      name: Meganeura_Shadow_Climb_2_1
       rect:
         serializedVersion: 2
-        x: 218
-        y: 1191
-        width: 136
-        height: 111
+        x: 192
+        y: 1152
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 29383393534f9ca10800000000000000
-      internalID: 1930342424735089554
+      spriteID: f7bc14c005946c74da50216374ba17cc
+      internalID: 314644517
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Climb_10
+      name: Meganeura_Shadow_Climb_2_2
       rect:
         serializedVersion: 2
-        x: 404
-        y: 1186
-        width: 143
-        height: 117
+        x: 384
+        y: 1152
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: fd88e7e939d3327b0800000000000000
-      internalID: -5250285036355286817
+      spriteID: 147a115566926604b8d08f2b2565ab00
+      internalID: 1833752070
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Climb_11
+      name: Meganeura_Shadow_Climb_2_3
       rect:
         serializedVersion: 2
-        x: 609
-        y: 1196
-        width: 131
-        height: 108
+        x: 576
+        y: 1152
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b1f3daf1915852af0800000000000000
-      internalID: -421784647137149157
+      spriteID: ad8873470ce227143a0b1a2b808f5e5f
+      internalID: 328190717
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Climb_12
+      name: Meganeura_Shadow_Climb_3_0
       rect:
         serializedVersion: 2
-        x: 16
-        y: 991
-        width: 111
-        height: 117
+        x: 0
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2d2ba41259f2f8b70800000000000000
-      internalID: 8903387305889936082
+      spriteID: bf54274efe2a2694fb5b292750dd5de3
+      internalID: -780807450
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Climb_13
+      name: Meganeura_Shadow_Climb_3_1
       rect:
         serializedVersion: 2
-        x: 208
-        y: 998
-        width: 123
-        height: 123
+        x: 192
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ffcceaa16822c1350800000000000000
-      internalID: 5988699563864542463
+      spriteID: 37be20ef8258a944bb71ca939e702cfd
+      internalID: -1415989951
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Climb_14
+      name: Meganeura_Shadow_Climb_3_2
       rect:
         serializedVersion: 2
-        x: 400
-        y: 989
-        width: 132
-        height: 126
+        x: 384
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e00c875b5e45a2f60800000000000000
-      internalID: 8010308232800681998
+      spriteID: fc6f34ffd1e6d764c91670fa4b19f7bf
+      internalID: 1367333862
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Climb_15
+      name: Meganeura_Shadow_Climb_3_3
       rect:
         serializedVersion: 2
-        x: 592
-        y: 998
-        width: 126
-        height: 124
+        x: 576
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6f5a159839fe94e10800000000000000
-      internalID: 2182538911380776438
+      spriteID: aa4ce92b65c574444996cfe3dae42e6f
+      internalID: -2119717219
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Climb_16
+      name: Meganeura_Shadow_Climb_4_0
       rect:
         serializedVersion: 2
-        x: 11
-        y: 802
-        width: 118
-        height: 124
+        x: 0
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e79b52c252fc1a380800000000000000
-      internalID: -8961654024929166978
+      spriteID: 6de43792d5966664aaebe63e40abd0fd
+      internalID: -1117169235
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Climb_17
+      name: Meganeura_Shadow_Climb_4_1
       rect:
         serializedVersion: 2
-        x: 203
-        y: 798
-        width: 118
-        height: 132
+        x: 192
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 68a32439d074ad250800000000000000
-      internalID: 5970162379663751814
+      spriteID: 99860df0d8aa57846afd943f49dece71
+      internalID: -1129506910
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Climb_18
+      name: Meganeura_Shadow_Climb_4_2
       rect:
         serializedVersion: 2
-        x: 395
-        y: 802
-        width: 118
-        height: 124
+        x: 384
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 40965a2d1b6ecea90800000000000000
-      internalID: -7283192845947279100
+      spriteID: 7580414a2bb36fa4cb7aa29bd3505172
+      internalID: -1166118952
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Climb_19
+      name: Meganeura_Shadow_Climb_4_3
       rect:
         serializedVersion: 2
-        x: 587
-        y: 797
-        width: 118
-        height: 134
+        x: 576
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 127cd35b67443dbd0800000000000000
-      internalID: -2606664482679830751
+      spriteID: 921c96da6bf053942be5f686c780a3a3
+      internalID: 1673996941
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Climb_20
+      name: Meganeura_Shadow_Climb_5_0
       rect:
         serializedVersion: 2
-        x: 16
-        y: 620
-        width: 111
-        height: 117
+        x: 0
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 3a88b5b7cd17ce980800000000000000
-      internalID: -8508300404233369437
+      spriteID: fd7851859e15f5e4686dab6f035d1945
+      internalID: -1429357868
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Climb_21
+      name: Meganeura_Shadow_Climb_5_1
       rect:
         serializedVersion: 2
-        x: 208
-        y: 607
-        width: 123
-        height: 123
+        x: 192
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 555286350b0272ff0800000000000000
-      internalID: -61044128260545195
+      spriteID: e40df5bdd0f68f6448bffd78e2f8e374
+      internalID: -2133479471
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Climb_22
+      name: Meganeura_Shadow_Climb_5_2
       rect:
         serializedVersion: 2
-        x: 400
-        y: 613
-        width: 132
-        height: 126
+        x: 384
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 981408165beb8aa90800000000000000
-      internalID: -7302377109547105911
+      spriteID: ba1dbf60eba42c846a873da02325c206
+      internalID: 2054537357
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Climb_23
+      name: Meganeura_Shadow_Climb_5_3
       rect:
         serializedVersion: 2
-        x: 592
-        y: 606
-        width: 126
-        height: 124
+        x: 576
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b77d8282201e61300800000000000000
-      internalID: 222612630981367675
+      spriteID: 70ad8b5f46d7c6648929a64562952188
+      internalID: -987972343
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Climb_24
+      name: Meganeura_Shadow_Climb_6_0
       rect:
         serializedVersion: 2
-        x: 25
-        y: 445
-        width: 114
-        height: 93
+        x: 0
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 9ac50595c423819a0800000000000000
-      internalID: -6262199978361332567
+      spriteID: 70cfc2d1a35b9e34996f4969f8e9c31b
+      internalID: -370746773
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Climb_25
+      name: Meganeura_Shadow_Climb_6_1
       rect:
         serializedVersion: 2
-        x: 218
-        y: 426
-        width: 136
-        height: 111
+        x: 192
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0a37d264983007340800000000000000
-      internalID: 4859387886055551904
+      spriteID: 76fc816e404075d4cbb1035cb25b05a0
+      internalID: 1081291752
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Climb_26
+      name: Meganeura_Shadow_Climb_6_2
       rect:
         serializedVersion: 2
-        x: 404
-        y: 425
-        width: 143
-        height: 117
+        x: 384
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 9a95c0e8492a1df80800000000000000
-      internalID: -8083501097231296087
+      spriteID: 4bdc69c1dca9209428372a15f930520b
+      internalID: 1912141556
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Climb_27
+      name: Meganeura_Shadow_Climb_6_3
       rect:
         serializedVersion: 2
-        x: 609
-        y: 424
-        width: 131
-        height: 108
+        x: 576
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 62cdba80fb0c7f480800000000000000
-      internalID: -8865405414738764762
+      spriteID: aea74574fca6b0a47ad4d8d32ee0a167
+      internalID: -732565900
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Climb_28
+      name: Meganeura_Shadow_Climb_7_0
       rect:
         serializedVersion: 2
-        x: 17
-        y: 262
-        width: 142
-        height: 92
+        x: 0
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c6ba196457d818490800000000000000
-      internalID: -7745754349265900692
+      spriteID: d2ef42d1764633f4486521d3cd926473
+      internalID: 731358454
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Climb_29
+      name: Meganeura_Shadow_Climb_7_1
       rect:
         serializedVersion: 2
-        x: 217
-        y: 253
-        width: 150
-        height: 101
+        x: 192
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 4e6dc14b26a605af0800000000000000
-      internalID: -409710593929586972
+      spriteID: 91cbc954fbf3b84478ce950780175fff
+      internalID: -901747783
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Climb_30
+      name: Meganeura_Shadow_Climb_7_2
       rect:
         serializedVersion: 2
-        x: 399
-        y: 245
-        width: 153
-        height: 109
+        x: 384
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 80df3d2b250749f40800000000000000
-      internalID: 5734331726039350536
+      spriteID: 4ff2b3e430c49fd4eaf387fcdfa21384
+      internalID: 1430891884
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Climb_31
+      name: Meganeura_Shadow_Climb_7_3
       rect:
         serializedVersion: 2
-        x: 602
-        y: 250
-        width: 151
-        height: 104
+        x: 576
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a4dff5cc1b75d6120800000000000000
-      internalID: 2408677796862754122
+      spriteID: f1c7472c0c427b84c8d8b027abae0555
+      internalID: -2113060539
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Climb_32
+      name: Meganeura_Shadow_Climb_8_0
       rect:
         serializedVersion: 2
-        x: 20
-        y: 69
-        width: 152
-        height: 97
+        x: 0
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2b6dbc04472473050800000000000000
-      internalID: 5780161713824061106
+      spriteID: 985e81351e403b04bb2a3e8357b706c8
+      internalID: -15131962
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Climb_33
+      name: Meganeura_Shadow_Climb_8_1
       rect:
         serializedVersion: 2
-        x: 208
-        y: 69
-        width: 160
-        height: 97
+        x: 192
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f4f06d636a911afc0800000000000000
-      internalID: -3485476434932789425
+      spriteID: 23c35f79771a66d4583eb6a4f1c49b20
+      internalID: 1336274995
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Climb_34
+      name: Meganeura_Shadow_Climb_8_2
       rect:
         serializedVersion: 2
-        x: 404
-        y: 69
-        width: 152
-        height: 97
+        x: 384
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e49fb1ecedfb78e70800000000000000
-      internalID: 9117466934296443214
+      spriteID: 72aa06f46d8d0ef40b2fbe674f72a676
+      internalID: 1523985873
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Climb_35
+      name: Meganeura_Shadow_Climb_8_3
       rect:
         serializedVersion: 2
-        x: 591
-        y: 69
-        width: 162
-        height: 97
+        x: 576
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e4e735b396fd181a0800000000000000
-      internalID: -6808915518547591602
+      spriteID: a80730d6381853d46864be46a0923f72
+      internalID: 865128837
       vertices: []
       indices: 
       edges: []
@@ -1025,42 +1025,42 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Meganeura_Shadow_Climb_0: 6889810496287899877
-      Meganeura_Shadow_Climb_1: 6767231931457281171
-      Meganeura_Shadow_Climb_10: -5250285036355286817
-      Meganeura_Shadow_Climb_11: -421784647137149157
-      Meganeura_Shadow_Climb_12: 8903387305889936082
-      Meganeura_Shadow_Climb_13: 5988699563864542463
-      Meganeura_Shadow_Climb_14: 8010308232800681998
-      Meganeura_Shadow_Climb_15: 2182538911380776438
-      Meganeura_Shadow_Climb_16: -8961654024929166978
-      Meganeura_Shadow_Climb_17: 5970162379663751814
-      Meganeura_Shadow_Climb_18: -7283192845947279100
-      Meganeura_Shadow_Climb_19: -2606664482679830751
-      Meganeura_Shadow_Climb_2: -4453991060082423990
-      Meganeura_Shadow_Climb_20: -8508300404233369437
-      Meganeura_Shadow_Climb_21: -61044128260545195
-      Meganeura_Shadow_Climb_22: -7302377109547105911
-      Meganeura_Shadow_Climb_23: 222612630981367675
-      Meganeura_Shadow_Climb_24: -6262199978361332567
-      Meganeura_Shadow_Climb_25: 4859387886055551904
-      Meganeura_Shadow_Climb_26: -8083501097231296087
-      Meganeura_Shadow_Climb_27: -8865405414738764762
-      Meganeura_Shadow_Climb_28: -7745754349265900692
-      Meganeura_Shadow_Climb_29: -409710593929586972
-      Meganeura_Shadow_Climb_3: 1146555860718202432
-      Meganeura_Shadow_Climb_30: 5734331726039350536
-      Meganeura_Shadow_Climb_31: 2408677796862754122
-      Meganeura_Shadow_Climb_32: 5780161713824061106
-      Meganeura_Shadow_Climb_33: -3485476434932789425
-      Meganeura_Shadow_Climb_34: 9117466934296443214
-      Meganeura_Shadow_Climb_35: -6808915518547591602
-      Meganeura_Shadow_Climb_4: 7508491091302377455
-      Meganeura_Shadow_Climb_5: 1835993835651722222
-      Meganeura_Shadow_Climb_6: -1658777676143983679
-      Meganeura_Shadow_Climb_7: 9096614821952957557
-      Meganeura_Shadow_Climb_8: 6138522070310834689
-      Meganeura_Shadow_Climb_9: 1930342424735089554
+      Meganeura_Shadow_Climb_0_0: 2000808057
+      Meganeura_Shadow_Climb_0_1: -1088095798
+      Meganeura_Shadow_Climb_0_2: 959919956
+      Meganeura_Shadow_Climb_0_3: -1371886165
+      Meganeura_Shadow_Climb_1_0: 55097063
+      Meganeura_Shadow_Climb_1_1: -1016257606
+      Meganeura_Shadow_Climb_1_2: -867936651
+      Meganeura_Shadow_Climb_1_3: 653408610
+      Meganeura_Shadow_Climb_2_0: -1850097451
+      Meganeura_Shadow_Climb_2_1: 314644517
+      Meganeura_Shadow_Climb_2_2: 1833752070
+      Meganeura_Shadow_Climb_2_3: 328190717
+      Meganeura_Shadow_Climb_3_0: -780807450
+      Meganeura_Shadow_Climb_3_1: -1415989951
+      Meganeura_Shadow_Climb_3_2: 1367333862
+      Meganeura_Shadow_Climb_3_3: -2119717219
+      Meganeura_Shadow_Climb_4_0: -1117169235
+      Meganeura_Shadow_Climb_4_1: -1129506910
+      Meganeura_Shadow_Climb_4_2: -1166118952
+      Meganeura_Shadow_Climb_4_3: 1673996941
+      Meganeura_Shadow_Climb_5_0: -1429357868
+      Meganeura_Shadow_Climb_5_1: -2133479471
+      Meganeura_Shadow_Climb_5_2: 2054537357
+      Meganeura_Shadow_Climb_5_3: -987972343
+      Meganeura_Shadow_Climb_6_0: -370746773
+      Meganeura_Shadow_Climb_6_1: 1081291752
+      Meganeura_Shadow_Climb_6_2: 1912141556
+      Meganeura_Shadow_Climb_6_3: -732565900
+      Meganeura_Shadow_Climb_7_0: 731358454
+      Meganeura_Shadow_Climb_7_1: -901747783
+      Meganeura_Shadow_Climb_7_2: 1430891884
+      Meganeura_Shadow_Climb_7_3: -2113060539
+      Meganeura_Shadow_Climb_8_0: -15131962
+      Meganeura_Shadow_Climb_8_1: 1336274995
+      Meganeura_Shadow_Climb_8_2: 1523985873
+      Meganeura_Shadow_Climb_8_3: 865128837
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

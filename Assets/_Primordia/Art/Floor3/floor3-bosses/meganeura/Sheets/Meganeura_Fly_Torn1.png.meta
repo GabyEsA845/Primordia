@@ -151,7 +151,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -179,7 +179,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -220,793 +220,793 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Meganeura_Fly_Torn1_0
+      name: Meganeura_Fly_Torn1_0_0
       rect:
         serializedVersion: 2
-        x: 19
-        y: 1554
-        width: 154
-        height: 122
+        x: 0
+        y: 1536
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e4ccc9df580a5cce0800000000000000
-      internalID: -1385524813000553394
+      spriteID: 43ab54f348d3b5446af15c4c11bbc3be
+      internalID: 1795601247
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fly_Torn1_1
+      name: Meganeura_Fly_Torn1_0_1
       rect:
         serializedVersion: 2
-        x: 208
-        y: 1554
-        width: 161
-        height: 108
+        x: 192
+        y: 1536
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 380766d8ca60f43a0800000000000000
-      internalID: -6679112384190713725
+      spriteID: 1b2a1e140d0eb3a498cbcf8835645b71
+      internalID: 1348422547
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fly_Torn1_2
+      name: Meganeura_Fly_Torn1_0_2
       rect:
         serializedVersion: 2
-        x: 404
-        y: 1554
-        width: 153
-        height: 107
+        x: 384
+        y: 1536
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6fc8389b3d496df80800000000000000
-      internalID: -8082108844198359818
+      spriteID: 8dba987d040471a41bb2ae737585fed8
+      internalID: -239945214
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fly_Torn1_3
+      name: Meganeura_Fly_Torn1_0_3
       rect:
         serializedVersion: 2
-        x: 591
-        y: 1554
-        width: 162
-        height: 106
+        x: 576
+        y: 1536
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c820e653c673f12b0800000000000000
-      internalID: -5611705672787950964
+      spriteID: 42f108e3483e3d1458329f1d21bafaff
+      internalID: -1051239933
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fly_Torn1_4
+      name: Meganeura_Fly_Torn1_1_0
       rect:
         serializedVersion: 2
-        x: 16
-        y: 1366
-        width: 154
-        height: 139
+        x: 0
+        y: 1344
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7ff52fb9548f515c0800000000000000
-      internalID: -4245214095874039817
+      spriteID: 2bc89ca67396cf7408173969968d9790
+      internalID: 10471596
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fly_Torn1_5
+      name: Meganeura_Fly_Torn1_1_1
       rect:
         serializedVersion: 2
-        x: 215
-        y: 1367
-        width: 155
-        height: 126
+        x: 192
+        y: 1344
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 96733c3b58e722c80800000000000000
-      internalID: -8348971646479812759
+      spriteID: 2e1375dbb640c8149b58c8a1233c04fc
+      internalID: 766044838
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fly_Torn1_6
+      name: Meganeura_Fly_Torn1_1_2
       rect:
         serializedVersion: 2
-        x: 400
-        y: 1366
-        width: 158
-        height: 105
+        x: 384
+        y: 1344
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 3c71f33eae915acc0800000000000000
-      internalID: -3700523022189389885
+      spriteID: 6f9589270d05c724b96e988ff7e32ba7
+      internalID: -1365497322
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fly_Torn1_7
+      name: Meganeura_Fly_Torn1_1_3
       rect:
         serializedVersion: 2
-        x: 596
-        y: 1366
-        width: 158
-        height: 122
+        x: 576
+        y: 1344
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 3f81ef9c36d6a4e30800000000000000
-      internalID: 4488520253986183411
+      spriteID: 3001853b24e24cd488247408460366c6
+      internalID: -908344975
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fly_Torn1_8
+      name: Meganeura_Fly_Torn1_2_0
       rect:
         serializedVersion: 2
-        x: 23
-        y: 1189
-        width: 138
-        height: 139
+        x: 0
+        y: 1152
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 07e0c79eafe2a8fa0800000000000000
-      internalID: -5797769915092169104
+      spriteID: a584448c5876f814f999d7de50d92e6b
+      internalID: 96775073
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fly_Torn1_9
+      name: Meganeura_Fly_Torn1_2_1
       rect:
         serializedVersion: 2
-        x: 220
-        y: 1190
-        width: 139
-        height: 129
+        x: 192
+        y: 1152
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 24209be6c91a22c10800000000000000
-      internalID: 2027360475514733122
+      spriteID: 707c8e27074384d44a55d3b071322fce
+      internalID: -1155773032
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fly_Torn1_10
+      name: Meganeura_Fly_Torn1_2_2
       rect:
         serializedVersion: 2
-        x: 408
-        y: 1189
-        width: 140
-        height: 106
+        x: 384
+        y: 1152
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 3ba8e470fc88cf460800000000000000
-      internalID: 7276841520686074547
+      spriteID: f7e63fed217d0aa4eadbed042c80386b
+      internalID: 675723045
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fly_Torn1_11
+      name: Meganeura_Fly_Torn1_2_3
       rect:
         serializedVersion: 2
-        x: 602
-        y: 1182
-        width: 141
-        height: 132
+        x: 576
+        y: 1152
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e53aa9f6665af1c40800000000000000
-      internalID: 5485284730538206046
+      spriteID: 0408e9e4f7ea8a143af37b6b4daf9509
+      internalID: 2110911236
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fly_Torn1_12
+      name: Meganeura_Fly_Torn1_3_0
       rect:
         serializedVersion: 2
-        x: 10
-        y: 999
-        width: 132
-        height: 145
+        x: 0
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c831574e06803c0a0800000000000000
-      internalID: -6862632194939743348
+      spriteID: a8a8a03006591dd49af3137548d85d20
+      internalID: 1885060659
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fly_Torn1_13
+      name: Meganeura_Fly_Torn1_3_1
       rect:
         serializedVersion: 2
-        x: 202
-        y: 1012
-        width: 135
-        height: 124
+        x: 192
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 174e8cdccc18eb000800000000000000
-      internalID: 53622962200831089
+      spriteID: 1b1f1e7fae078224eb4d1461e77cae89
+      internalID: 2071419759
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fly_Torn1_14
+      name: Meganeura_Fly_Torn1_3_2
       rect:
         serializedVersion: 2
-        x: 394
-        y: 994
-        width: 134
-        height: 125
+        x: 384
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 4d8821a4a83bc3320800000000000000
-      internalID: 2539101696459704532
+      spriteID: 39c974ba3422a60459820891cde6b1ec
+      internalID: 1041863841
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fly_Torn1_15
+      name: Meganeura_Fly_Torn1_3_3
       rect:
         serializedVersion: 2
-        x: 586
-        y: 984
-        width: 135
-        height: 147
+        x: 576
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d3589d5b8ebfa8760800000000000000
-      internalID: 7461052709594563901
+      spriteID: 6bd3d3b86b3194c4f9d639a64d235704
+      internalID: 1204844895
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fly_Torn1_16
+      name: Meganeura_Fly_Torn1_4_0
       rect:
         serializedVersion: 2
-        x: 5
-        y: 809
-        width: 125
-        height: 141
+        x: 0
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2a4aed2068c7b7820800000000000000
-      internalID: 2917062098668135586
+      spriteID: e256be9c91cd5c8489e0b018ba7bd692
+      internalID: -182890892
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fly_Torn1_17
+      name: Meganeura_Fly_Torn1_4_1
       rect:
         serializedVersion: 2
-        x: 197
-        y: 810
-        width: 125
-        height: 136
+        x: 192
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e3380b7258268f9a0800000000000000
-      internalID: -6199096563039435970
+      spriteID: 22d768c608114134ba35c6267583dde2
+      internalID: 828182610
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fly_Torn1_18
+      name: Meganeura_Fly_Torn1_4_2
       rect:
         serializedVersion: 2
-        x: 389
-        y: 792
-        width: 125
-        height: 146
+        x: 384
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d80395c7701369490800000000000000
-      internalID: -7739945001368866675
+      spriteID: 9b7bdb79984d90944a68f16f055653ea
+      internalID: -1842529880
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fly_Torn1_19
+      name: Meganeura_Fly_Torn1_4_3
       rect:
         serializedVersion: 2
-        x: 581
-        y: 795
-        width: 125
-        height: 143
+        x: 576
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 55ca330bf070c3f50800000000000000
-      internalID: 6862367696167873621
+      spriteID: 0cc89f545819c184ca58df991a558540
+      internalID: 638188520
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fly_Torn1_20
+      name: Meganeura_Fly_Torn1_5_0
       rect:
         serializedVersion: 2
-        x: 10
-        y: 628
-        width: 132
-        height: 121
+        x: 0
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d0a192d1aaab8e630800000000000000
-      internalID: 3956617512441420301
+      spriteID: fb5492346d4393a45a0e949e437ce753
+      internalID: -975593600
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fly_Torn1_21
+      name: Meganeura_Fly_Torn1_5_1
       rect:
         serializedVersion: 2
-        x: 202
-        y: 618
-        width: 135
-        height: 139
+        x: 192
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 50fc0e7a1f9b808f0800000000000000
-      internalID: -574004504934953211
+      spriteID: 91e35d1fb710e3f4dbb8a66030c68121
+      internalID: -272944676
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fly_Torn1_22
+      name: Meganeura_Fly_Torn1_5_2
       rect:
         serializedVersion: 2
-        x: 394
-        y: 599
-        width: 134
-        height: 150
+        x: 384
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ef15f6ce7d3c7c950800000000000000
-      internalID: 6469354721893110270
+      spriteID: b4fd6a632a9c40345a72c00fbef044c3
+      internalID: -356593193
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fly_Torn1_23
+      name: Meganeura_Fly_Torn1_5_3
       rect:
         serializedVersion: 2
-        x: 586
-        y: 612
-        width: 135
-        height: 124
+        x: 576
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: bffe709162c0099e0800000000000000
-      internalID: -1616778908457766917
+      spriteID: 49e4c9fb1d0f93c458c572a21cda9279
+      internalID: -50678395
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fly_Torn1_24
+      name: Meganeura_Fly_Torn1_6_0
       rect:
         serializedVersion: 2
-        x: 23
-        y: 443
-        width: 138
-        height: 105
+        x: 0
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 85144d64b1d463da0800000000000000
-      internalID: -5965495876857872040
+      spriteID: 0dab3f45d65eb64478671594b54c5256
+      internalID: 433638173
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fly_Torn1_25
+      name: Meganeura_Fly_Torn1_6_1
       rect:
         serializedVersion: 2
-        x: 220
-        y: 435
-        width: 139
-        height: 125
+        x: 192
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ef7718ea8faba7560800000000000000
-      internalID: 7312362522231797758
+      spriteID: 3d5c7bbef49a8d84593826c3b8fdaf4b
+      internalID: 1865150754
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fly_Torn1_26
+      name: Meganeura_Fly_Torn1_6_2
       rect:
         serializedVersion: 2
-        x: 408
-        y: 415
-        width: 140
-        height: 136
+        x: 384
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ff193363aef47e160800000000000000
-      internalID: 7054695208649462271
+      spriteID: e61e3ffaab7e1264ba9281cbd7095357
+      internalID: 1030763350
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fly_Torn1_27
+      name: Meganeura_Fly_Torn1_6_3
       rect:
         serializedVersion: 2
-        x: 602
-        y: 429
-        width: 141
-        height: 104
+        x: 576
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e0696cf770e192240800000000000000
-      internalID: 4767374698105705998
+      spriteID: 8266f783cfc9f4549accb64a91154313
+      internalID: 85670640
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fly_Torn1_28
+      name: Meganeura_Fly_Torn1_7_0
       rect:
         serializedVersion: 2
-        x: 16
-        y: 249
-        width: 154
-        height: 107
+        x: 0
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e32b7536b69583800800000000000000
-      internalID: 592321668762284606
+      spriteID: 6a28a51f73dc39b429f944e268d2b04f
+      internalID: 1511938221
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fly_Torn1_29
+      name: Meganeura_Fly_Torn1_7_1
       rect:
         serializedVersion: 2
-        x: 215
-        y: 249
-        width: 155
-        height: 107
+        x: 192
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 8027fbadd064b5d80800000000000000
-      internalID: -8260932066162544120
+      spriteID: ce2c48fa7369d4a429b43c7b8b7687c7
+      internalID: -345859199
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fly_Torn1_30
+      name: Meganeura_Fly_Torn1_7_2
       rect:
         serializedVersion: 2
-        x: 400
-        y: 240
-        width: 158
-        height: 116
+        x: 384
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 876e5350326b87b10800000000000000
-      internalID: 1979532297756862072
+      spriteID: fdfd1338ba933c742ba74862ac512565
+      internalID: 1708331368
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fly_Torn1_31
+      name: Meganeura_Fly_Torn1_7_3
       rect:
         serializedVersion: 2
-        x: 596
-        y: 249
-        width: 158
-        height: 106
+        x: 576
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7b2dcb40dc51e2730800000000000000
-      internalID: 3976139491306689207
+      spriteID: 5a21f426503371243be0b1afcc9ab0c0
+      internalID: 1986641079
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fly_Torn1_32
+      name: Meganeura_Fly_Torn1_8_0
       rect:
         serializedVersion: 2
-        x: 19
-        y: 58
-        width: 154
-        height: 110
+        x: 0
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e0378adf8dc52b820800000000000000
-      internalID: 2932508394409980686
+      spriteID: 885da90d8e1863a4abc95d181647e40b
+      internalID: 1237056019
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fly_Torn1_33
+      name: Meganeura_Fly_Torn1_8_1
       rect:
         serializedVersion: 2
-        x: 207
-        y: 59
-        width: 161
-        height: 109
+        x: 192
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: aa26d7d8c8129d680800000000000000
-      internalID: -8729909515128053078
+      spriteID: 43d9051f3896e6745a537030db41742e
+      internalID: 1807038971
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fly_Torn1_34
+      name: Meganeura_Fly_Torn1_8_2
       rect:
         serializedVersion: 2
-        x: 403
-        y: 58
-        width: 153
-        height: 110
+        x: 384
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 4359d74fc1b7be900800000000000000
-      internalID: 714800330159527220
+      spriteID: a4d90907b36b420438251e5c046242df
+      internalID: 60256302
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fly_Torn1_35
+      name: Meganeura_Fly_Torn1_8_3
       rect:
         serializedVersion: 2
-        x: 591
-        y: 58
-        width: 162
-        height: 110
+        x: 576
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 5152b75b8e4fdaff0800000000000000
-      internalID: -23093142752647915
+      spriteID: 045bb919752969547b5768d08772ae5b
+      internalID: 1991899156
       vertices: []
       indices: 
       edges: []
@@ -1025,42 +1025,42 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Meganeura_Fly_Torn1_0: -1385524813000553394
-      Meganeura_Fly_Torn1_1: -6679112384190713725
-      Meganeura_Fly_Torn1_10: 7276841520686074547
-      Meganeura_Fly_Torn1_11: 5485284730538206046
-      Meganeura_Fly_Torn1_12: -6862632194939743348
-      Meganeura_Fly_Torn1_13: 53622962200831089
-      Meganeura_Fly_Torn1_14: 2539101696459704532
-      Meganeura_Fly_Torn1_15: 7461052709594563901
-      Meganeura_Fly_Torn1_16: 2917062098668135586
-      Meganeura_Fly_Torn1_17: -6199096563039435970
-      Meganeura_Fly_Torn1_18: -7739945001368866675
-      Meganeura_Fly_Torn1_19: 6862367696167873621
-      Meganeura_Fly_Torn1_2: -8082108844198359818
-      Meganeura_Fly_Torn1_20: 3956617512441420301
-      Meganeura_Fly_Torn1_21: -574004504934953211
-      Meganeura_Fly_Torn1_22: 6469354721893110270
-      Meganeura_Fly_Torn1_23: -1616778908457766917
-      Meganeura_Fly_Torn1_24: -5965495876857872040
-      Meganeura_Fly_Torn1_25: 7312362522231797758
-      Meganeura_Fly_Torn1_26: 7054695208649462271
-      Meganeura_Fly_Torn1_27: 4767374698105705998
-      Meganeura_Fly_Torn1_28: 592321668762284606
-      Meganeura_Fly_Torn1_29: -8260932066162544120
-      Meganeura_Fly_Torn1_3: -5611705672787950964
-      Meganeura_Fly_Torn1_30: 1979532297756862072
-      Meganeura_Fly_Torn1_31: 3976139491306689207
-      Meganeura_Fly_Torn1_32: 2932508394409980686
-      Meganeura_Fly_Torn1_33: -8729909515128053078
-      Meganeura_Fly_Torn1_34: 714800330159527220
-      Meganeura_Fly_Torn1_35: -23093142752647915
-      Meganeura_Fly_Torn1_4: -4245214095874039817
-      Meganeura_Fly_Torn1_5: -8348971646479812759
-      Meganeura_Fly_Torn1_6: -3700523022189389885
-      Meganeura_Fly_Torn1_7: 4488520253986183411
-      Meganeura_Fly_Torn1_8: -5797769915092169104
-      Meganeura_Fly_Torn1_9: 2027360475514733122
+      Meganeura_Fly_Torn1_0_0: 1795601247
+      Meganeura_Fly_Torn1_0_1: 1348422547
+      Meganeura_Fly_Torn1_0_2: -239945214
+      Meganeura_Fly_Torn1_0_3: -1051239933
+      Meganeura_Fly_Torn1_1_0: 10471596
+      Meganeura_Fly_Torn1_1_1: 766044838
+      Meganeura_Fly_Torn1_1_2: -1365497322
+      Meganeura_Fly_Torn1_1_3: -908344975
+      Meganeura_Fly_Torn1_2_0: 96775073
+      Meganeura_Fly_Torn1_2_1: -1155773032
+      Meganeura_Fly_Torn1_2_2: 675723045
+      Meganeura_Fly_Torn1_2_3: 2110911236
+      Meganeura_Fly_Torn1_3_0: 1885060659
+      Meganeura_Fly_Torn1_3_1: 2071419759
+      Meganeura_Fly_Torn1_3_2: 1041863841
+      Meganeura_Fly_Torn1_3_3: 1204844895
+      Meganeura_Fly_Torn1_4_0: -182890892
+      Meganeura_Fly_Torn1_4_1: 828182610
+      Meganeura_Fly_Torn1_4_2: -1842529880
+      Meganeura_Fly_Torn1_4_3: 638188520
+      Meganeura_Fly_Torn1_5_0: -975593600
+      Meganeura_Fly_Torn1_5_1: -272944676
+      Meganeura_Fly_Torn1_5_2: -356593193
+      Meganeura_Fly_Torn1_5_3: -50678395
+      Meganeura_Fly_Torn1_6_0: 433638173
+      Meganeura_Fly_Torn1_6_1: 1865150754
+      Meganeura_Fly_Torn1_6_2: 1030763350
+      Meganeura_Fly_Torn1_6_3: 85670640
+      Meganeura_Fly_Torn1_7_0: 1511938221
+      Meganeura_Fly_Torn1_7_1: -345859199
+      Meganeura_Fly_Torn1_7_2: 1708331368
+      Meganeura_Fly_Torn1_7_3: 1986641079
+      Meganeura_Fly_Torn1_8_0: 1237056019
+      Meganeura_Fly_Torn1_8_1: 1807038971
+      Meganeura_Fly_Torn1_8_2: 60256302
+      Meganeura_Fly_Torn1_8_3: 1991899156
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

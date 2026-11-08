@@ -205,7 +205,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -233,7 +233,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -274,1189 +274,1189 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Meganeura_Shadow_Gust_0
+      name: Meganeura_Shadow_Gust_0_0
       rect:
         serializedVersion: 2
-        x: 23
-        y: 1565
-        width: 146
-        height: 94
+        x: 0
+        y: 1536
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 68b81bf3a1c3397e0800000000000000
-      internalID: -1759996945936315514
+      spriteID: 9012835e6c4946449b9c0e3f65219642
+      internalID: 602217344
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Gust_1
+      name: Meganeura_Shadow_Gust_0_1
       rect:
         serializedVersion: 2
-        x: 233
-        y: 1565
-        width: 110
-        height: 94
+        x: 192
+        y: 1536
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6c9cff91a2e0d03d0800000000000000
-      internalID: -3238916983021909562
+      spriteID: 7884e23e08b0c7c46ad22747f22c1e2f
+      internalID: -95876534
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Gust_2
+      name: Meganeura_Shadow_Gust_0_2
       rect:
         serializedVersion: 2
-        x: 417
-        y: 1565
-        width: 126
-        height: 94
+        x: 384
+        y: 1536
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 721741536d967e3e0800000000000000
-      internalID: -2024533138745298649
+      spriteID: 579aa689bb94b6c4bb8287e6a040b1f5
+      internalID: -224711121
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Gust_3
+      name: Meganeura_Shadow_Gust_0_3
       rect:
         serializedVersion: 2
-        x: 599
-        y: 1565
-        width: 146
-        height: 94
+        x: 576
+        y: 1536
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 72447b1c27d412fb0800000000000000
-      internalID: -4674369782962240473
+      spriteID: 726a92208e53b24468edcdc62db5e381
+      internalID: -446731025
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Gust_4
+      name: Meganeura_Shadow_Gust_0_4
       rect:
         serializedVersion: 2
-        x: 798
-        y: 1565
-        width: 132
-        height: 94
+        x: 768
+        y: 1536
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7e02e7276e01a2c50800000000000000
-      internalID: 6641139182460608743
+      spriteID: 270ac7316b4f5b849abe6e2bc9dbf71e
+      internalID: -1472009283
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Gust_5
+      name: Meganeura_Shadow_Gust_0_5
       rect:
         serializedVersion: 2
-        x: 976
-        y: 1565
-        width: 160
-        height: 94
+        x: 960
+        y: 1536
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a0f188dfc1de7cfd0800000000000000
-      internalID: -2321626374117777654
+      spriteID: ac1b8991a45689744b76e7462b160ad7
+      internalID: 1478051998
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Gust_6
+      name: Meganeura_Shadow_Gust_1_0
       rect:
         serializedVersion: 2
-        x: 15
-        y: 1377
-        width: 146
-        height: 90
+        x: 0
+        y: 1344
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6e08600c511392670800000000000000
-      internalID: 8514390540006359270
+      spriteID: 09e25c6ec41104242a47c026927de55c
+      internalID: 514201951
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Gust_7
+      name: Meganeura_Shadow_Gust_1_1
       rect:
         serializedVersion: 2
-        x: 220
-        y: 1377
-        width: 112
-        height: 90
+        x: 192
+        y: 1344
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2f3c02db68df44ec0800000000000000
-      internalID: -3583460648339586062
+      spriteID: 33976aa1cd3b73049b308d370c67e132
+      internalID: 810639934
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Gust_8
+      name: Meganeura_Shadow_Gust_1_2
       rect:
         serializedVersion: 2
-        x: 416
-        y: 1377
-        width: 121
-        height: 90
+        x: 384
+        y: 1344
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 735980c704992d980800000000000000
-      internalID: -8515575443166292681
+      spriteID: b4066180893a4ef4285dbabc8651c413
+      internalID: 902825789
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Gust_9
+      name: Meganeura_Shadow_Gust_1_3
       rect:
         serializedVersion: 2
-        x: 598
-        y: 1377
-        width: 151
-        height: 107
+        x: 576
+        y: 1344
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2601fff68707f46f0800000000000000
-      internalID: -698215754641764254
+      spriteID: 6173f174cf93f174c85ca31d6bfefe62
+      internalID: 598398920
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Gust_10
+      name: Meganeura_Shadow_Gust_1_4
       rect:
         serializedVersion: 2
-        x: 798
-        y: 1377
-        width: 139
-        height: 108
+        x: 768
+        y: 1344
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 077083b8a93fd2050800000000000000
-      internalID: 5777541742072432496
+      spriteID: 66153cc534168c144a3559865a3322a1
+      internalID: 155215852
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Gust_11
+      name: Meganeura_Shadow_Gust_1_5
       rect:
         serializedVersion: 2
-        x: 980
-        y: 1377
-        width: 157
-        height: 102
+        x: 960
+        y: 1344
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d3a663360a9e4fde0800000000000000
-      internalID: -1300157517334681027
+      spriteID: 49bb47a045804e9408e596e35637d4ea
+      internalID: -1470526539
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Gust_12
+      name: Meganeura_Shadow_Gust_2_0
       rect:
         serializedVersion: 2
-        x: 19
-        y: 1184
-        width: 127
-        height: 105
+        x: 0
+        y: 1152
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 666c7b91257a21b20800000000000000
-      internalID: 3103727064272324198
+      spriteID: 237cb60f80ab4604387dd520cf752b79
+      internalID: 73444665
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Gust_13
+      name: Meganeura_Shadow_Gust_2_1
       rect:
         serializedVersion: 2
-        x: 216
-        y: 1189
-        width: 102
-        height: 84
+        x: 192
+        y: 1152
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a21b20e7c24c9a330800000000000000
-      internalID: 3722722262370136362
+      spriteID: ef7acba6d64cca34183dab92c00865da
+      internalID: -400258630
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Gust_14
+      name: Meganeura_Shadow_Gust_2_2
       rect:
         serializedVersion: 2
-        x: 410
-        y: 1191
-        width: 112
-        height: 91
+        x: 384
+        y: 1152
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 16a948effca97bc40800000000000000
-      internalID: 5528057285739584097
+      spriteID: b2a6d0bc6fd41d74791631af9bfdf838
+      internalID: -440772653
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Gust_15
+      name: Meganeura_Shadow_Gust_2_3
       rect:
         serializedVersion: 2
-        x: 607
-        y: 1195
-        width: 135
-        height: 111
+        x: 576
+        y: 1152
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6ab5d2ae91e3749f0800000000000000
-      internalID: -484350153895093338
+      spriteID: 5d35e8559aaf9274cad4756e0b824a14
+      internalID: 1304408596
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Gust_16
+      name: Meganeura_Shadow_Gust_2_4
       rect:
         serializedVersion: 2
-        x: 803
-        y: 1198
-        width: 130
-        height: 107
+        x: 768
+        y: 1152
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 067d5223ca14c9670800000000000000
-      internalID: 8546778400673879904
+      spriteID: 32cd1120463d89a48a97d235f4a36e51
+      internalID: 1075416812
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Gust_17
+      name: Meganeura_Shadow_Gust_2_5
       rect:
         serializedVersion: 2
-        x: 989
-        y: 1193
-        width: 137
-        height: 112
+        x: 960
+        y: 1152
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 597516643b29e98a0800000000000000
-      internalID: -6296433930339788907
+      spriteID: 72c7983f17a71ec48857b3e82a27d782
+      internalID: -63358688
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Gust_18
+      name: Meganeura_Shadow_Gust_3_0
       rect:
         serializedVersion: 2
-        x: 19
-        y: 990
-        width: 110
-        height: 120
+        x: 0
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a12809f07c250f4c0800000000000000
-      internalID: -4255810632952020454
+      spriteID: 42d72fbd4e103ac41a09c62d1959ef82
+      internalID: -833807732
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Gust_19
+      name: Meganeura_Shadow_Gust_3_1
       rect:
         serializedVersion: 2
-        x: 211
-        y: 1000
-        width: 110
-        height: 93
+        x: 192
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 21a14efdd64f09040800000000000000
-      internalID: 4652487167818603026
+      spriteID: c0aefb4ea576f5341b2e2a2f5e3ce13f
+      internalID: -399600682
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Gust_20
+      name: Meganeura_Shadow_Gust_3_2
       rect:
         serializedVersion: 2
-        x: 403
-        y: 1003
-        width: 110
-        height: 100
+        x: 384
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 674cb95d8f5656f50800000000000000
-      internalID: 6874012525660980342
+      spriteID: d4238ce547eabbb40a92d0d8c6fbb57d
+      internalID: -408336535
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Gust_21
+      name: Meganeura_Shadow_Gust_3_3
       rect:
         serializedVersion: 2
-        x: 595
-        y: 995
-        width: 130
-        height: 124
+        x: 576
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: af5930d120e32acb0800000000000000
-      internalID: -4854249269554342406
+      spriteID: d46373614bbb7b341a3cd4cb853db864
+      internalID: -1450607776
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Gust_22
+      name: Meganeura_Shadow_Gust_3_4
       rect:
         serializedVersion: 2
-        x: 787
-        y: 1002
-        width: 131
-        height: 114
+        x: 768
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c211a71cd862e9d00800000000000000
-      internalID: 981264159091593516
+      spriteID: 6ccdffef7b4e5c942a0ab9cd637bafaf
+      internalID: -737988563
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Gust_23
+      name: Meganeura_Shadow_Gust_3_5
       rect:
         serializedVersion: 2
-        x: 979
-        y: 994
-        width: 125
-        height: 129
+        x: 960
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 3c762fe50a717f270800000000000000
-      internalID: 8284116017126467523
+      spriteID: e57045c174e29054384b547c8f558659
+      internalID: 682700750
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Gust_24
+      name: Meganeura_Shadow_Gust_4_0
       rect:
         serializedVersion: 2
-        x: 14
-        y: 804
-        width: 115
-        height: 120
+        x: 0
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 9fcd4cc3cdf2e3290800000000000000
-      internalID: -7908831272657167111
+      spriteID: 3bd3b6e6f508f064eb52337debd77e99
+      internalID: -502038496
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Gust_25
+      name: Meganeura_Shadow_Gust_4_1
       rect:
         serializedVersion: 2
-        x: 206
-        y: 819
-        width: 115
-        height: 90
+        x: 192
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ecab734196da55ad0800000000000000
-      internalID: -2714072533598487858
+      spriteID: 882a416e546db294aac220cd5f1d98bf
+      internalID: 482819058
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Gust_26
+      name: Meganeura_Shadow_Gust_4_2
       rect:
         serializedVersion: 2
-        x: 398
-        y: 812
-        width: 115
-        height: 104
+        x: 384
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: add9a42eb7b1aece0800000000000000
-      internalID: -1375256517316796966
+      spriteID: 2c24843496775f747aea62661094382b
+      internalID: -1611276431
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Gust_27
+      name: Meganeura_Shadow_Gust_4_3
       rect:
         serializedVersion: 2
-        x: 590
-        y: 804
-        width: 115
-        height: 120
+        x: 576
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 30eb85790ce22ffa0800000000000000
-      internalID: -5768496768000410109
+      spriteID: 4b56d84da14ec0046b1052e27eb5e4a5
+      internalID: -1581821001
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Gust_28
+      name: Meganeura_Shadow_Gust_4_4
       rect:
         serializedVersion: 2
-        x: 782
-        y: 809
-        width: 115
-        height: 110
+        x: 768
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7240f41b0a06f2420800000000000000
-      internalID: 2607408952556586023
+      spriteID: b74d3fc3432b4e442ba9b51dff9abeac
+      internalID: -243220890
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Gust_29
+      name: Meganeura_Shadow_Gust_4_5
       rect:
         serializedVersion: 2
-        x: 974
-        y: 798
-        width: 115
-        height: 132
+        x: 960
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 3c08fbac491966a20800000000000000
-      internalID: 3055289465460195523
+      spriteID: dc5a257bc1482b44ab49e8d49ed1e3c6
+      internalID: 57795750
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Gust_30
+      name: Meganeura_Shadow_Gust_5_0
       rect:
         serializedVersion: 2
-        x: 19
-        y: 618
-        width: 110
-        height: 120
+        x: 0
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d8dc0564c3c9b2c60800000000000000
-      internalID: 7794495362786446733
+      spriteID: e0c9cf2c437336f40999d00cc1fe7a96
+      internalID: 1619622558
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Gust_31
+      name: Meganeura_Shadow_Gust_5_1
       rect:
         serializedVersion: 2
-        x: 211
-        y: 635
-        width: 110
-        height: 93
+        x: 192
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: aa63b6920a9caecd0800000000000000
-      internalID: -2527986551088269654
+      spriteID: e180aa0782f1ef04980c05f0d4ffc875
+      internalID: 1453003294
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Gust_32
+      name: Meganeura_Shadow_Gust_5_2
       rect:
         serializedVersion: 2
-        x: 403
-        y: 625
-        width: 110
-        height: 100
+        x: 384
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 38e4361498dddb9c0800000000000000
-      internalID: -3909725319910437245
+      spriteID: c4c0092b1612e23499528306c5c5b635
+      internalID: 742845148
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Gust_33
+      name: Meganeura_Shadow_Gust_5_3
       rect:
         serializedVersion: 2
-        x: 595
-        y: 609
-        width: 130
-        height: 124
+        x: 576
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a298165ed925097e0800000000000000
-      internalID: -1760816616190146262
+      spriteID: c9096d30b45624d45a403995d6348d01
+      internalID: -542541653
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Gust_34
+      name: Meganeura_Shadow_Gust_5_4
       rect:
         serializedVersion: 2
-        x: 787
-        y: 612
-        width: 131
-        height: 114
+        x: 768
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7aa9388a389eb7c60800000000000000
-      internalID: 7817098329908812455
+      spriteID: 0c106c826499c62479d051cc869122ec
+      internalID: 311075949
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Gust_35
+      name: Meganeura_Shadow_Gust_5_5
       rect:
         serializedVersion: 2
-        x: 979
-        y: 605
-        width: 125
-        height: 129
+        x: 960
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 450e8e5e21be20320800000000000000
-      internalID: 2522837207680082004
+      spriteID: a16e3df6604fd6746b7e0e1f28229cf3
+      internalID: 365245640
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Gust_36
+      name: Meganeura_Shadow_Gust_6_0
       rect:
         serializedVersion: 2
-        x: 19
-        y: 439
-        width: 127
-        height: 105
+        x: 0
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0831bddcadfaa25c0800000000000000
-      internalID: -4239382744924482688
+      spriteID: 2b94ed1b490e3bb4abfc4703f1e675af
+      internalID: 1534839443
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Gust_37
+      name: Meganeura_Shadow_Gust_6_1
       rect:
         serializedVersion: 2
-        x: 216
-        y: 455
-        width: 102
-        height: 84
+        x: 192
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c6e41744fb380e5d0800000000000000
-      internalID: -3035281291337445780
+      spriteID: 3d0e976af3477594291a82d88228845a
+      internalID: -1606385766
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Gust_38
+      name: Meganeura_Shadow_Gust_6_2
       rect:
         serializedVersion: 2
-        x: 410
-        y: 446
-        width: 112
-        height: 91
+        x: 384
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 37d8ffcb898b62d70800000000000000
-      internalID: 9018098270001401203
+      spriteID: 79161d04dc6fd804a9e4c8e0e93812d7
+      internalID: 682500154
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Gust_39
+      name: Meganeura_Shadow_Gust_6_3
       rect:
         serializedVersion: 2
-        x: 607
-        y: 422
-        width: 135
-        height: 111
+        x: 576
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7ab8d596d23d6bb10800000000000000
-      internalID: 1997015676780120999
+      spriteID: 05cb39e625b7b274db8e5b80dc178e5f
+      internalID: -933738762
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Gust_40
+      name: Meganeura_Shadow_Gust_6_4
       rect:
         serializedVersion: 2
-        x: 803
-        y: 423
-        width: 130
-        height: 107
+        x: 768
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 5d1dd5098c2f988d0800000000000000
-      internalID: -2843474746478308907
+      spriteID: e15af480a90fc7c4eae8381ceba4ae91
+      internalID: 236500580
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Gust_41
+      name: Meganeura_Shadow_Gust_6_5
       rect:
         serializedVersion: 2
-        x: 989
-        y: 423
-        width: 137
-        height: 112
+        x: 960
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7ede3c78d08afad00800000000000000
-      internalID: 986191619483233767
+      spriteID: ea7832baf59be084798967dcdcb9de75
+      internalID: -284907337
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Gust_42
+      name: Meganeura_Shadow_Gust_7_0
       rect:
         serializedVersion: 2
-        x: 15
-        y: 261
-        width: 146
-        height: 90
+        x: 0
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 20adfde765e31b790800000000000000
-      internalID: -7516157761887938046
+      spriteID: d251a54a07f7c224fbdd44caed8fd7f0
+      internalID: -690267828
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Gust_43
+      name: Meganeura_Shadow_Gust_7_1
       rect:
         serializedVersion: 2
-        x: 220
-        y: 261
-        width: 112
-        height: 90
+        x: 192
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 849071a9460a38950800000000000000
-      internalID: 6450175445267056968
+      spriteID: 7fe48f24eabb73d44a4ccb7c7bf63f22
+      internalID: 1677232054
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Gust_44
+      name: Meganeura_Shadow_Gust_7_2
       rect:
         serializedVersion: 2
-        x: 416
-        y: 261
-        width: 121
-        height: 90
+        x: 384
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 90881138c88ba1350800000000000000
-      internalID: 5988301568176392201
+      spriteID: f9ca0e15ddde1fd4e9abfc5be2d8e238
+      internalID: -176204954
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Gust_45
+      name: Meganeura_Shadow_Gust_7_3
       rect:
         serializedVersion: 2
-        x: 598
-        y: 244
-        width: 151
-        height: 107
+        x: 576
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 4fe10cd2777faf850800000000000000
-      internalID: 6411709110756056820
+      spriteID: 4a4117e0a4d8769448ea00aa613f7547
+      internalID: 968992012
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Gust_46
+      name: Meganeura_Shadow_Gust_7_4
       rect:
         serializedVersion: 2
-        x: 798
-        y: 243
-        width: 139
-        height: 108
+        x: 768
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 730207da008cc4860800000000000000
-      internalID: 7515601783409877047
+      spriteID: b23e3759b24057345b368e70ccc562c5
+      internalID: -1076821183
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Gust_47
+      name: Meganeura_Shadow_Gust_7_5
       rect:
         serializedVersion: 2
-        x: 980
-        y: 249
-        width: 157
-        height: 102
+        x: 960
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f181549bf74d21d50800000000000000
-      internalID: 6706656440142338079
+      spriteID: c3cf227e9dba0f14fa73ea3c83449956
+      internalID: -821787426
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Gust_48
+      name: Meganeura_Shadow_Gust_8_0
       rect:
         serializedVersion: 2
-        x: 23
-        y: 69
-        width: 146
-        height: 94
+        x: 0
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d375c7dd9cdf02ee0800000000000000
-      internalID: -1287750449981794499
+      spriteID: e98b14265b6c7844bb6aeca2cb1abdb3
+      internalID: 202309504
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Gust_49
+      name: Meganeura_Shadow_Gust_8_1
       rect:
         serializedVersion: 2
-        x: 233
-        y: 69
-        width: 110
-        height: 94
+        x: 192
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7b491a5cd1d25d2e0800000000000000
-      internalID: -2101724045205465929
+      spriteID: dff2f5fb87dbb7947a64fe6284372efa
+      internalID: 2029695562
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Gust_50
+      name: Meganeura_Shadow_Gust_8_2
       rect:
         serializedVersion: 2
-        x: 417
-        y: 69
-        width: 126
-        height: 94
+        x: 384
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 004152f2ac2a9b350800000000000000
-      internalID: 6033032165097542656
+      spriteID: c093c2cf6c04e6d42b794df9cb50898d
+      internalID: -654050532
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Gust_51
+      name: Meganeura_Shadow_Gust_8_3
       rect:
         serializedVersion: 2
-        x: 599
-        y: 69
-        width: 146
-        height: 94
+        x: 576
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: dcbf0ec26e4dea7a0800000000000000
-      internalID: -6363915138367423539
+      spriteID: 9a6120f6fdbdf8140a4bda69d4a472ef
+      internalID: 394452023
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Gust_52
+      name: Meganeura_Shadow_Gust_8_4
       rect:
         serializedVersion: 2
-        x: 798
-        y: 69
-        width: 132
-        height: 94
+        x: 768
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 37862151869e0e0e0800000000000000
-      internalID: -2242535981191108493
+      spriteID: 90e3f8788137e904ca3f35189cf29e27
+      internalID: -468858200
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Gust_53
+      name: Meganeura_Shadow_Gust_8_5
       rect:
         serializedVersion: 2
-        x: 976
-        y: 69
-        width: 160
-        height: 94
+        x: 960
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a9fa585aee9cd95f0800000000000000
-      internalID: -748219936257232998
+      spriteID: 466591db79b90154abd664f8795a21bf
+      internalID: 2039733998
       vertices: []
       indices: 
       edges: []
@@ -1475,60 +1475,60 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Meganeura_Shadow_Gust_0: -1759996945936315514
-      Meganeura_Shadow_Gust_1: -3238916983021909562
-      Meganeura_Shadow_Gust_10: 5777541742072432496
-      Meganeura_Shadow_Gust_11: -1300157517334681027
-      Meganeura_Shadow_Gust_12: 3103727064272324198
-      Meganeura_Shadow_Gust_13: 3722722262370136362
-      Meganeura_Shadow_Gust_14: 5528057285739584097
-      Meganeura_Shadow_Gust_15: -484350153895093338
-      Meganeura_Shadow_Gust_16: 8546778400673879904
-      Meganeura_Shadow_Gust_17: -6296433930339788907
-      Meganeura_Shadow_Gust_18: -4255810632952020454
-      Meganeura_Shadow_Gust_19: 4652487167818603026
-      Meganeura_Shadow_Gust_2: -2024533138745298649
-      Meganeura_Shadow_Gust_20: 6874012525660980342
-      Meganeura_Shadow_Gust_21: -4854249269554342406
-      Meganeura_Shadow_Gust_22: 981264159091593516
-      Meganeura_Shadow_Gust_23: 8284116017126467523
-      Meganeura_Shadow_Gust_24: -7908831272657167111
-      Meganeura_Shadow_Gust_25: -2714072533598487858
-      Meganeura_Shadow_Gust_26: -1375256517316796966
-      Meganeura_Shadow_Gust_27: -5768496768000410109
-      Meganeura_Shadow_Gust_28: 2607408952556586023
-      Meganeura_Shadow_Gust_29: 3055289465460195523
-      Meganeura_Shadow_Gust_3: -4674369782962240473
-      Meganeura_Shadow_Gust_30: 7794495362786446733
-      Meganeura_Shadow_Gust_31: -2527986551088269654
-      Meganeura_Shadow_Gust_32: -3909725319910437245
-      Meganeura_Shadow_Gust_33: -1760816616190146262
-      Meganeura_Shadow_Gust_34: 7817098329908812455
-      Meganeura_Shadow_Gust_35: 2522837207680082004
-      Meganeura_Shadow_Gust_36: -4239382744924482688
-      Meganeura_Shadow_Gust_37: -3035281291337445780
-      Meganeura_Shadow_Gust_38: 9018098270001401203
-      Meganeura_Shadow_Gust_39: 1997015676780120999
-      Meganeura_Shadow_Gust_4: 6641139182460608743
-      Meganeura_Shadow_Gust_40: -2843474746478308907
-      Meganeura_Shadow_Gust_41: 986191619483233767
-      Meganeura_Shadow_Gust_42: -7516157761887938046
-      Meganeura_Shadow_Gust_43: 6450175445267056968
-      Meganeura_Shadow_Gust_44: 5988301568176392201
-      Meganeura_Shadow_Gust_45: 6411709110756056820
-      Meganeura_Shadow_Gust_46: 7515601783409877047
-      Meganeura_Shadow_Gust_47: 6706656440142338079
-      Meganeura_Shadow_Gust_48: -1287750449981794499
-      Meganeura_Shadow_Gust_49: -2101724045205465929
-      Meganeura_Shadow_Gust_5: -2321626374117777654
-      Meganeura_Shadow_Gust_50: 6033032165097542656
-      Meganeura_Shadow_Gust_51: -6363915138367423539
-      Meganeura_Shadow_Gust_52: -2242535981191108493
-      Meganeura_Shadow_Gust_53: -748219936257232998
-      Meganeura_Shadow_Gust_6: 8514390540006359270
-      Meganeura_Shadow_Gust_7: -3583460648339586062
-      Meganeura_Shadow_Gust_8: -8515575443166292681
-      Meganeura_Shadow_Gust_9: -698215754641764254
+      Meganeura_Shadow_Gust_0_0: 602217344
+      Meganeura_Shadow_Gust_0_1: -95876534
+      Meganeura_Shadow_Gust_0_2: -224711121
+      Meganeura_Shadow_Gust_0_3: -446731025
+      Meganeura_Shadow_Gust_0_4: -1472009283
+      Meganeura_Shadow_Gust_0_5: 1478051998
+      Meganeura_Shadow_Gust_1_0: 514201951
+      Meganeura_Shadow_Gust_1_1: 810639934
+      Meganeura_Shadow_Gust_1_2: 902825789
+      Meganeura_Shadow_Gust_1_3: 598398920
+      Meganeura_Shadow_Gust_1_4: 155215852
+      Meganeura_Shadow_Gust_1_5: -1470526539
+      Meganeura_Shadow_Gust_2_0: 73444665
+      Meganeura_Shadow_Gust_2_1: -400258630
+      Meganeura_Shadow_Gust_2_2: -440772653
+      Meganeura_Shadow_Gust_2_3: 1304408596
+      Meganeura_Shadow_Gust_2_4: 1075416812
+      Meganeura_Shadow_Gust_2_5: -63358688
+      Meganeura_Shadow_Gust_3_0: -833807732
+      Meganeura_Shadow_Gust_3_1: -399600682
+      Meganeura_Shadow_Gust_3_2: -408336535
+      Meganeura_Shadow_Gust_3_3: -1450607776
+      Meganeura_Shadow_Gust_3_4: -737988563
+      Meganeura_Shadow_Gust_3_5: 682700750
+      Meganeura_Shadow_Gust_4_0: -502038496
+      Meganeura_Shadow_Gust_4_1: 482819058
+      Meganeura_Shadow_Gust_4_2: -1611276431
+      Meganeura_Shadow_Gust_4_3: -1581821001
+      Meganeura_Shadow_Gust_4_4: -243220890
+      Meganeura_Shadow_Gust_4_5: 57795750
+      Meganeura_Shadow_Gust_5_0: 1619622558
+      Meganeura_Shadow_Gust_5_1: 1453003294
+      Meganeura_Shadow_Gust_5_2: 742845148
+      Meganeura_Shadow_Gust_5_3: -542541653
+      Meganeura_Shadow_Gust_5_4: 311075949
+      Meganeura_Shadow_Gust_5_5: 365245640
+      Meganeura_Shadow_Gust_6_0: 1534839443
+      Meganeura_Shadow_Gust_6_1: -1606385766
+      Meganeura_Shadow_Gust_6_2: 682500154
+      Meganeura_Shadow_Gust_6_3: -933738762
+      Meganeura_Shadow_Gust_6_4: 236500580
+      Meganeura_Shadow_Gust_6_5: -284907337
+      Meganeura_Shadow_Gust_7_0: -690267828
+      Meganeura_Shadow_Gust_7_1: 1677232054
+      Meganeura_Shadow_Gust_7_2: -176204954
+      Meganeura_Shadow_Gust_7_3: 968992012
+      Meganeura_Shadow_Gust_7_4: -1076821183
+      Meganeura_Shadow_Gust_7_5: -821787426
+      Meganeura_Shadow_Gust_8_0: 202309504
+      Meganeura_Shadow_Gust_8_1: 2029695562
+      Meganeura_Shadow_Gust_8_2: -654050532
+      Meganeura_Shadow_Gust_8_3: 394452023
+      Meganeura_Shadow_Gust_8_4: -468858200
+      Meganeura_Shadow_Gust_8_5: 2039733998
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

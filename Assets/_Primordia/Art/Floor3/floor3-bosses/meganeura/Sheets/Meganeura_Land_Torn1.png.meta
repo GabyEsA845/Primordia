@@ -124,7 +124,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -152,7 +152,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -193,595 +193,595 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Meganeura_Land_Torn1_0
+      name: Meganeura_Land_Torn1_0_0
       rect:
         serializedVersion: 2
-        x: 20
-        y: 1547
-        width: 152
-        height: 124
+        x: 0
+        y: 1536
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 8900faa98487476d0800000000000000
-      internalID: -2993635599066398568
+      spriteID: 49e9a19ee0be65e4a8a9f0c85824d234
+      internalID: -1903301523
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Land_Torn1_1
+      name: Meganeura_Land_Torn1_0_1
       rect:
         serializedVersion: 2
-        x: 209
-        y: 1550
-        width: 159
-        height: 113
+        x: 192
+        y: 1536
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 9756ef00bb80642c0800000000000000
-      internalID: -4447857982713207431
+      spriteID: 02adc47af565a6f46b475f1e6bde33b4
+      internalID: -367356873
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Land_Torn1_2
+      name: Meganeura_Land_Torn1_0_2
       rect:
         serializedVersion: 2
-        x: 399
-        y: 1554
-        width: 162
-        height: 107
+        x: 384
+        y: 1536
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2fa4f54c211eb8b20800000000000000
-      internalID: 3137849036113922802
+      spriteID: 0928f0ad0e615a341b894caaa53b76d2
+      internalID: 195109015
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Land_Torn1_3
+      name: Meganeura_Land_Torn1_1_0
       rect:
         serializedVersion: 2
-        x: 15
-        y: 1359
-        width: 152
-        height: 141
+        x: 0
+        y: 1344
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 496ef80b0f70b6df0800000000000000
-      internalID: -186046229269977452
+      spriteID: f83887db8037b1244be37523e91c900d
+      internalID: 256719905
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Land_Torn1_4
+      name: Meganeura_Land_Torn1_1_1
       rect:
         serializedVersion: 2
-        x: 210
-        y: 1363
-        width: 158
-        height: 132
+        x: 192
+        y: 1344
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 5393eeec086632630800000000000000
-      internalID: 3901074405646547253
+      spriteID: b42f8bdd7e8905f44aec1c2c62cae1c8
+      internalID: 532610074
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Land_Torn1_5
+      name: Meganeura_Land_Torn1_1_2
       rect:
         serializedVersion: 2
-        x: 400
-        y: 1366
-        width: 162
-        height: 120
+        x: 384
+        y: 1344
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: de1c2024740f26540800000000000000
-      internalID: 4999822725175493101
+      spriteID: 305f8e86759c5a84da1e8868740e89cb
+      internalID: -707559362
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Land_Torn1_6
+      name: Meganeura_Land_Torn1_2_0
       rect:
         serializedVersion: 2
-        x: 22
-        y: 1182
-        width: 133
-        height: 143
+        x: 0
+        y: 1152
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d83e91f0c7614ee30800000000000000
-      internalID: 4531771847126672269
+      spriteID: aab50b7e3b6db4144b140fad5cc56a69
+      internalID: 1732584592
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Land_Torn1_7
+      name: Meganeura_Land_Torn1_2_1
       rect:
         serializedVersion: 2
-        x: 216
-        y: 1185
-        width: 140
-        height: 136
+        x: 192
+        y: 1152
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 9e29af03d1dbcc630800000000000000
-      internalID: 3948738906370511593
+      spriteID: e9cd49b59beb69242bf4312795f9e8e0
+      internalID: 1018540884
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Land_Torn1_8
+      name: Meganeura_Land_Torn1_2_2
       rect:
         serializedVersion: 2
-        x: 407
-        y: 1189
-        width: 144
-        height: 122
+        x: 384
+        y: 1152
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f1f63092ab3a70440800000000000000
-      internalID: 4902066739363409695
+      spriteID: 8b78b6ac7dbf2aa4b899d3857fe78d64
+      internalID: -2125359521
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Land_Torn1_9
+      name: Meganeura_Land_Torn1_3_0
       rect:
         serializedVersion: 2
-        x: 13
-        y: 1000
-        width: 121
-        height: 143
+        x: 0
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e4e02317234aac040800000000000000
-      internalID: 4668724500277366350
+      spriteID: 37fcfda7e3b64774090b70cde4b6cb84
+      internalID: -561543089
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Land_Torn1_10
+      name: Meganeura_Land_Torn1_3_1
       rect:
         serializedVersion: 2
-        x: 203
-        y: 1011
-        width: 132
-        height: 127
+        x: 192
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a41a92420eafea460800000000000000
-      internalID: 7255011890326774090
+      spriteID: 59bc46bcb6bf01a4d9984425eeeb510c
+      internalID: -2000237427
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Land_Torn1_11
+      name: Meganeura_Land_Torn1_3_2
       rect:
         serializedVersion: 2
-        x: 394
-        y: 996
-        width: 135
-        height: 132
+        x: 384
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e3e9de79330b49e60800000000000000
-      internalID: 7968187376364002878
+      spriteID: 16c414dcf9c842b4283a6dd3d1094d19
+      internalID: -1576039371
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Land_Torn1_12
+      name: Meganeura_Land_Torn1_4_0
       rect:
         serializedVersion: 2
-        x: 7
-        y: 812
-        width: 124
-        height: 140
+        x: 0
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d6adae2e6202d5220800000000000000
-      internalID: 2476170721511529069
+      spriteID: b93b6e387e1ccf94c89e55a2980ffe73
+      internalID: 1423462989
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Land_Torn1_13
+      name: Meganeura_Land_Torn1_4_1
       rect:
         serializedVersion: 2
-        x: 198
-        y: 815
-        width: 126
-        height: 131
+        x: 192
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 8bd14e512e30196b0800000000000000
-      internalID: -5291443817618858568
+      spriteID: 6cd955395d321154e8d3a7136cd64c78
+      internalID: -1862032229
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Land_Torn1_14
+      name: Meganeura_Land_Torn1_4_2
       rect:
         serializedVersion: 2
-        x: 389
-        y: 802
-        width: 127
-        height: 133
+        x: 384
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 60cc95b01c122eb50800000000000000
-      internalID: 6620891515190889478
+      spriteID: eb9a7fb1e74bf604ba6dc0fddc26beaf
+      internalID: 1622309242
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Land_Torn1_15
+      name: Meganeura_Land_Torn1_5_0
       rect:
         serializedVersion: 2
-        x: 13
-        y: 632
-        width: 121
-        height: 121
+        x: 0
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 502ba0473db2ba690800000000000000
-      internalID: -7589924559817887227
+      spriteID: 3ad9a75a1719c674b99a69243b9fce25
+      internalID: 955851602
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Land_Torn1_16
+      name: Meganeura_Land_Torn1_5_1
       rect:
         serializedVersion: 2
-        x: 203
-        y: 623
-        width: 132
-        height: 131
+        x: 192
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7af1ef0201935b700800000000000000
-      internalID: 555412870485909415
+      spriteID: 2a4bad436454015488c7e2a277eeee8c
+      internalID: -1162450045
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Land_Torn1_17
+      name: Meganeura_Land_Torn1_5_2
       rect:
         serializedVersion: 2
-        x: 394
-        y: 609
-        width: 135
-        height: 135
+        x: 384
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 19a9bf0dfd3252e80800000000000000
-      internalID: -8204111701994661231
+      spriteID: 98d0448dd1567b140b93f0fe2335a7d0
+      internalID: 1704735658
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Land_Torn1_18
+      name: Meganeura_Land_Torn1_6_0
       rect:
         serializedVersion: 2
-        x: 22
-        y: 441
-        width: 133
-        height: 110
+        x: 0
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2f1bd304d8b0d7c40800000000000000
-      internalID: 5511574220267434482
+      spriteID: 8b21f122eb629b0449b3b1aa462d280a
+      internalID: -510449258
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Land_Torn1_19
+      name: Meganeura_Land_Torn1_6_1
       rect:
         serializedVersion: 2
-        x: 216
-        y: 437
-        width: 140
-        height: 120
+        x: 192
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d2d0bf1bb54c3ac50800000000000000
-      internalID: 6675394970800295213
+      spriteID: 65f807f96088ea24c8e0af7298e8bc35
+      internalID: 1662355181
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Land_Torn1_20
+      name: Meganeura_Land_Torn1_6_2
       rect:
         serializedVersion: 2
-        x: 407
-        y: 426
-        width: 144
-        height: 120
+        x: 384
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 923fd02bcd8353a40800000000000000
-      internalID: 5347242653103551273
+      spriteID: 2d9fc0e2779abca499f29a48380ab6bb
+      internalID: 773798691
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Land_Torn1_21
+      name: Meganeura_Land_Torn1_7_0
       rect:
         serializedVersion: 2
-        x: 15
-        y: 246
-        width: 152
-        height: 99
+        x: 0
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f9b00d5c0da880320800000000000000
-      internalID: 2524420220417739679
+      spriteID: 11c87db7fd769f041adf2439996af1fd
+      internalID: -1688331034
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Land_Torn1_22
+      name: Meganeura_Land_Torn1_7_1
       rect:
         serializedVersion: 2
-        x: 210
-        y: 242
-        width: 158
-        height: 110
+        x: 192
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 799c746f88fea6d10800000000000000
-      internalID: 2119769946157730199
+      spriteID: 556198d9d532bb94d983f1cef4869d03
+      internalID: 149126978
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Land_Torn1_23
+      name: Meganeura_Land_Torn1_7_2
       rect:
         serializedVersion: 2
-        x: 400
-        y: 239
-        width: 162
-        height: 117
+        x: 384
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7766a1a3e3ae0f250800000000000000
-      internalID: 5976534258504328823
+      spriteID: ee07a58a522301d4bb4016396fc24191
+      internalID: -1462187958
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Land_Torn1_24
+      name: Meganeura_Land_Torn1_8_0
       rect:
         serializedVersion: 2
-        x: 20
-        y: 55
-        width: 152
-        height: 103
+        x: 0
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 8fefd3728c68457f0800000000000000
-      internalID: -624726254087700744
+      spriteID: ee176002a3072114b8430e3b1c6297b8
+      internalID: 1194518282
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Land_Torn1_25
+      name: Meganeura_Land_Torn1_8_1
       rect:
         serializedVersion: 2
-        x: 208
-        y: 52
-        width: 159
-        height: 111
+        x: 192
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 71aa5ad6ab5ba51b0800000000000000
-      internalID: -5667017368784229865
+      spriteID: 148ec7f472152e64b8fa4692fc9b07c7
+      internalID: -1658902758
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Land_Torn1_26
+      name: Meganeura_Land_Torn1_8_2
       rect:
         serializedVersion: 2
-        x: 399
-        y: 49
-        width: 162
-        height: 119
+        x: 384
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 1e1176371ce01b560800000000000000
-      internalID: 7327654292736119265
+      spriteID: f13045428b059114b8aadb4e8348387a
+      internalID: -2006323092
       vertices: []
       indices: 
       edges: []
@@ -800,33 +800,33 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Meganeura_Land_Torn1_0: -2993635599066398568
-      Meganeura_Land_Torn1_1: -4447857982713207431
-      Meganeura_Land_Torn1_10: 7255011890326774090
-      Meganeura_Land_Torn1_11: 7968187376364002878
-      Meganeura_Land_Torn1_12: 2476170721511529069
-      Meganeura_Land_Torn1_13: -5291443817618858568
-      Meganeura_Land_Torn1_14: 6620891515190889478
-      Meganeura_Land_Torn1_15: -7589924559817887227
-      Meganeura_Land_Torn1_16: 555412870485909415
-      Meganeura_Land_Torn1_17: -8204111701994661231
-      Meganeura_Land_Torn1_18: 5511574220267434482
-      Meganeura_Land_Torn1_19: 6675394970800295213
-      Meganeura_Land_Torn1_2: 3137849036113922802
-      Meganeura_Land_Torn1_20: 5347242653103551273
-      Meganeura_Land_Torn1_21: 2524420220417739679
-      Meganeura_Land_Torn1_22: 2119769946157730199
-      Meganeura_Land_Torn1_23: 5976534258504328823
-      Meganeura_Land_Torn1_24: -624726254087700744
-      Meganeura_Land_Torn1_25: -5667017368784229865
-      Meganeura_Land_Torn1_26: 7327654292736119265
-      Meganeura_Land_Torn1_3: -186046229269977452
-      Meganeura_Land_Torn1_4: 3901074405646547253
-      Meganeura_Land_Torn1_5: 4999822725175493101
-      Meganeura_Land_Torn1_6: 4531771847126672269
-      Meganeura_Land_Torn1_7: 3948738906370511593
-      Meganeura_Land_Torn1_8: 4902066739363409695
-      Meganeura_Land_Torn1_9: 4668724500277366350
+      Meganeura_Land_Torn1_0_0: -1903301523
+      Meganeura_Land_Torn1_0_1: -367356873
+      Meganeura_Land_Torn1_0_2: 195109015
+      Meganeura_Land_Torn1_1_0: 256719905
+      Meganeura_Land_Torn1_1_1: 532610074
+      Meganeura_Land_Torn1_1_2: -707559362
+      Meganeura_Land_Torn1_2_0: 1732584592
+      Meganeura_Land_Torn1_2_1: 1018540884
+      Meganeura_Land_Torn1_2_2: -2125359521
+      Meganeura_Land_Torn1_3_0: -561543089
+      Meganeura_Land_Torn1_3_1: -2000237427
+      Meganeura_Land_Torn1_3_2: -1576039371
+      Meganeura_Land_Torn1_4_0: 1423462989
+      Meganeura_Land_Torn1_4_1: -1862032229
+      Meganeura_Land_Torn1_4_2: 1622309242
+      Meganeura_Land_Torn1_5_0: 955851602
+      Meganeura_Land_Torn1_5_1: -1162450045
+      Meganeura_Land_Torn1_5_2: 1704735658
+      Meganeura_Land_Torn1_6_0: -510449258
+      Meganeura_Land_Torn1_6_1: 1662355181
+      Meganeura_Land_Torn1_6_2: 773798691
+      Meganeura_Land_Torn1_7_0: -1688331034
+      Meganeura_Land_Torn1_7_1: 149126978
+      Meganeura_Land_Torn1_7_2: -1462187958
+      Meganeura_Land_Torn1_8_0: 1194518282
+      Meganeura_Land_Torn1_8_1: -1658902758
+      Meganeura_Land_Torn1_8_2: -2006323092
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

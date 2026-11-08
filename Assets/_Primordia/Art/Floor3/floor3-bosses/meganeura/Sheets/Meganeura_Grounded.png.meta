@@ -151,7 +151,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -179,7 +179,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -220,793 +220,793 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Meganeura_Grounded_0
+      name: Meganeura_Grounded_0_0
       rect:
         serializedVersion: 2
-        x: 15
-        y: 1556
-        width: 162
-        height: 119
+        x: 0
+        y: 1536
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 9607ed07545eb60e0800000000000000
-      internalID: -2275473100296523671
+      spriteID: b28898bbc6e54dc428b2f75b7178beb1
+      internalID: 1886670646
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Grounded_1
+      name: Meganeura_Grounded_0_1
       rect:
         serializedVersion: 2
-        x: 207
-        y: 1564
-        width: 162
-        height: 107
+        x: 192
+        y: 1536
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b0e862dff52e49ac0800000000000000
-      internalID: -3849202879597998581
+      spriteID: af6394a5e2ef9124a8b271079ef0ecfe
+      internalID: -1062408505
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Grounded_2
+      name: Meganeura_Grounded_0_2
       rect:
         serializedVersion: 2
-        x: 399
-        y: 1559
-        width: 162
-        height: 116
+        x: 384
+        y: 1536
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 911a32e25f474a790800000000000000
-      internalID: -7519756881411989223
+      spriteID: a2aae0943c3d4894199d68bfa3b41306
+      internalID: -1460790666
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Grounded_3
+      name: Meganeura_Grounded_0_3
       rect:
         serializedVersion: 2
-        x: 591
-        y: 1566
-        width: 162
-        height: 107
+        x: 576
+        y: 1536
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2a35666030057b1a0800000000000000
-      internalID: -6793873538942610526
+      spriteID: 876fa47c493d25a40b64cd126e973205
+      internalID: -628704934
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Grounded_4
+      name: Meganeura_Grounded_1_0
       rect:
         serializedVersion: 2
-        x: 16
-        y: 1369
-        width: 162
-        height: 116
+        x: 0
+        y: 1344
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f84e31342774a81c0800000000000000
-      internalID: -4500706321526168433
+      spriteID: dc6bb3e3f91da2540ac562148489867a
+      internalID: 1176788366
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Grounded_5
+      name: Meganeura_Grounded_1_1
       rect:
         serializedVersion: 2
-        x: 208
-        y: 1376
-        width: 162
-        height: 104
+        x: 192
+        y: 1344
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 805f3caca87c63a40800000000000000
-      internalID: 5347681006470296840
+      spriteID: c9ddb1d3d13012642bac89627aedf048
+      internalID: 2106231268
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Grounded_6
+      name: Meganeura_Grounded_1_2
       rect:
         serializedVersion: 2
-        x: 400
-        y: 1371
-        width: 162
-        height: 114
+        x: 384
+        y: 1344
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 5079266e5a3da6b00800000000000000
-      internalID: 822702591436822277
+      spriteID: 68073b742d951924fb996873c293cb0b
+      internalID: -187630053
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Grounded_7
+      name: Meganeura_Grounded_1_3
       rect:
         serializedVersion: 2
-        x: 592
-        y: 1378
-        width: 162
-        height: 104
+        x: 576
+        y: 1344
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6394cb323f177ac80800000000000000
-      internalID: -8311549298198427338
+      spriteID: ec41fc3a5c2f32647a7e7c18f8081900
+      internalID: 1206402047
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Grounded_8
+      name: Meganeura_Grounded_2_0
       rect:
         serializedVersion: 2
-        x: 23
-        y: 1179
-        width: 144
-        height: 118
+        x: 0
+        y: 1152
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0f68e1267e00318f0800000000000000
-      internalID: -571111733962307856
+      spriteID: cbfb2cfddd67ad74faa354679f4eb5c1
+      internalID: -472044429
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Grounded_9
+      name: Meganeura_Grounded_2_1
       rect:
         serializedVersion: 2
-        x: 215
-        y: 1180
-        width: 144
-        height: 115
+        x: 192
+        y: 1152
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 103f34239527f6eb0800000000000000
-      internalID: -4724431756667391231
+      spriteID: 797dceb4ccea4fb4594a5ccf9984e69b
+      internalID: 859427407
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Grounded_10
+      name: Meganeura_Grounded_2_2
       rect:
         serializedVersion: 2
-        x: 407
-        y: 1179
-        width: 144
-        height: 118
+        x: 384
+        y: 1152
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 87077463987b3b310800000000000000
-      internalID: 1419680107500892280
+      spriteID: ca0a4a3e4054a1543a16237bc70c6c6c
+      internalID: 1242591811
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Grounded_11
+      name: Meganeura_Grounded_2_3
       rect:
         serializedVersion: 2
-        x: 599
-        y: 1178
-        width: 144
-        height: 120
+        x: 576
+        y: 1152
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 059191f358e23cc10800000000000000
-      internalID: 2072551403344697680
+      spriteID: dc6675abeaafbc842abcb079db537733
+      internalID: 1121954648
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Grounded_12
+      name: Meganeura_Grounded_3_0
       rect:
         serializedVersion: 2
-        x: 10
-        y: 981
-        width: 135
-        height: 133
+        x: 0
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f749d7eb13ed307b0800000000000000
-      internalID: -5259115634607942529
+      spriteID: 1eef9bd1aa87c4142b37615861d3a274
+      internalID: -85704701
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Grounded_13
+      name: Meganeura_Grounded_3_1
       rect:
         serializedVersion: 2
-        x: 206
-        y: 982
-        width: 131
-        height: 130
+        x: 192
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f65785190f6d60610800000000000000
-      internalID: 1587192247413667183
+      spriteID: 94bff98386d30094995eab0390e63981
+      internalID: 1056459305
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Grounded_14
+      name: Meganeura_Grounded_3_2
       rect:
         serializedVersion: 2
-        x: 396
-        y: 981
-        width: 133
-        height: 133
+        x: 384
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 5873644005b6b12f0800000000000000
-      internalID: -1001088500746537083
+      spriteID: 520ca7435778d2a47ba722dd4a614730
+      internalID: 1491574323
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Grounded_15
+      name: Meganeura_Grounded_3_3
       rect:
         serializedVersion: 2
-        x: 592
-        y: 979
-        width: 129
-        height: 136
+        x: 576
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f704108ad04cdc050800000000000000
-      internalID: 5822525456192192639
+      spriteID: 23bc77725da42904cbd907a69da79590
+      internalID: -1294691206
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Grounded_16
+      name: Meganeura_Grounded_4_0
       rect:
         serializedVersion: 2
-        x: 5
-        y: 788
-        width: 127
-        height: 133
+        x: 0
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2cae40ea9cfd676d0800000000000000
-      internalID: -2992958845040137534
+      spriteID: c605130901eaddb4f8f955fefdd85645
+      internalID: 1119207944
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Grounded_17
+      name: Meganeura_Grounded_4_1
       rect:
         serializedVersion: 2
-        x: 201
-        y: 786
-        width: 121
-        height: 134
+        x: 192
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0011c8299c1fd0940800000000000000
-      internalID: 5264129387515351296
+      spriteID: b887507ad39070e4abc8bbfa19cee7d9
+      internalID: -847058335
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Grounded_18
+      name: Meganeura_Grounded_4_2
       rect:
         serializedVersion: 2
-        x: 390
-        y: 788
-        width: 126
-        height: 133
+        x: 384
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 728c69955481fa5e0800000000000000
-      internalID: -1896270231964825561
+      spriteID: f8aca8a411bb41644bfba0ace6faf3db
+      internalID: -1319390232
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Grounded_19
+      name: Meganeura_Grounded_4_3
       rect:
         serializedVersion: 2
-        x: 587
-        y: 789
-        width: 119
-        height: 134
+        x: 576
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 176048034f955d1e0800000000000000
-      internalID: -2173732339815545231
+      spriteID: 4aee68a57fe4bdb42bfc865a82624736
+      internalID: 1744348249
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Grounded_20
+      name: Meganeura_Grounded_5_0
       rect:
         serializedVersion: 2
-        x: 10
-        y: 595
-        width: 135
-        height: 134
+        x: 0
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 1916e650e8be8f3b0800000000000000
-      internalID: -5478369951487204975
+      spriteID: 49d85b8788d7a1146a32ab82953eef5d
+      internalID: -1072990037
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Grounded_21
+      name: Meganeura_Grounded_5_1
       rect:
         serializedVersion: 2
-        x: 206
-        y: 593
-        width: 131
-        height: 137
+        x: 192
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 75beabc7abc36fab0800000000000000
-      internalID: -4974721966729925801
+      spriteID: 49f4ea3df84361249bd58a605fe60cfc
+      internalID: 1244206283
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Grounded_22
+      name: Meganeura_Grounded_5_2
       rect:
         serializedVersion: 2
-        x: 396
-        y: 595
-        width: 133
-        height: 134
+        x: 384
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 56b05921f5ec91510800000000000000
-      internalID: 1520473256943225701
+      spriteID: 1d078fa55e7f27d44a1cfbd5c5caea35
+      internalID: 593012560
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Grounded_23
+      name: Meganeura_Grounded_5_3
       rect:
         serializedVersion: 2
-        x: 592
-        y: 596
-        width: 129
-        height: 132
+        x: 576
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ad0e80c6ec4f5a700800000000000000
-      internalID: 551115696835715290
+      spriteID: 52ddf27313941504792611eeffa48800
+      internalID: -1217471324
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Grounded_24
+      name: Meganeura_Grounded_6_0
       rect:
         serializedVersion: 2
-        x: 23
-        y: 412
-        width: 144
-        height: 123
+        x: 0
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 05c0285c301802560800000000000000
-      internalID: 7286966050283981904
+      spriteID: 2c5be054fe83a1d4dab32307dda86df6
+      internalID: 1994920753
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Grounded_25
+      name: Meganeura_Grounded_6_1
       rect:
         serializedVersion: 2
-        x: 215
-        y: 410
-        width: 144
-        height: 127
+        x: 192
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e782ffa464ac662e0800000000000000
-      internalID: -2132794970258593666
+      spriteID: 4c3a5f7467fd9c6439c9aa8814d0fdf2
+      internalID: 391572148
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Grounded_26
+      name: Meganeura_Grounded_6_2
       rect:
         serializedVersion: 2
-        x: 407
-        y: 412
-        width: 144
-        height: 124
+        x: 384
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 698a01fe88f78faa0800000000000000
-      internalID: -6127007066934433642
+      spriteID: 4e31e2c4f10a79943a0b8e496f248ab0
+      internalID: -1786718774
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Grounded_27
+      name: Meganeura_Grounded_6_3
       rect:
         serializedVersion: 2
-        x: 599
-        y: 413
-        width: 144
-        height: 124
+        x: 576
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6eeb84a97fa267ee0800000000000000
-      internalID: -1263775402497098010
+      spriteID: 77f734568efbfce4eb66410711cbc330
+      internalID: 179514228
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Grounded_28
+      name: Meganeura_Grounded_7_0
       rect:
         serializedVersion: 2
-        x: 16
-        y: 237
-        width: 162
-        height: 121
+        x: 0
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6b6d72fc15cce18b0800000000000000
-      internalID: -5179477869689579850
+      spriteID: d101a1bc0f61de142a75d3564c5cae03
+      internalID: -1033954513
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Grounded_29
+      name: Meganeura_Grounded_7_1
       rect:
         serializedVersion: 2
-        x: 208
-        y: 236
-        width: 162
-        height: 123
+        x: 192
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b59a69d9346ef2690800000000000000
-      internalID: -7624622466033866405
+      spriteID: 8d327b155ade2b34da0b35d88ede36aa
+      internalID: -769068948
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Grounded_30
+      name: Meganeura_Grounded_7_2
       rect:
         serializedVersion: 2
-        x: 400
-        y: 237
-        width: 162
-        height: 121
+        x: 384
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 37f324e2e26e81800800000000000000
-      internalID: 583469237763456883
+      spriteID: 23f0e209b6c575f4f8eb05033ef0f84f
+      internalID: -1082922471
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Grounded_31
+      name: Meganeura_Grounded_7_3
       rect:
         serializedVersion: 2
-        x: 592
-        y: 239
-        width: 162
-        height: 120
+        x: 576
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: fd0d5a4ebd919b240800000000000000
-      internalID: 4807902509419319519
+      spriteID: 326120d134f71ca4d864bb7ba4da4d8c
+      internalID: -1194501969
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Grounded_32
+      name: Meganeura_Grounded_8_0
       rect:
         serializedVersion: 2
-        x: 15
-        y: 64
-        width: 162
-        height: 107
+        x: 0
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 09c7f60c477f05b90800000000000000
-      internalID: -7255026918877070192
+      spriteID: f4e2e0ea04c8a7244b0b7c1621bb6170
+      internalID: -1502080475
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Grounded_33
+      name: Meganeura_Grounded_8_1
       rect:
         serializedVersion: 2
-        x: 207
-        y: 64
-        width: 162
-        height: 107
+        x: 192
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 9ffe028a7d6feb280800000000000000
-      internalID: -9025505197104762887
+      spriteID: 4b1013398ef122e448e1f03e9325c433
+      internalID: 608042433
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Grounded_34
+      name: Meganeura_Grounded_8_2
       rect:
         serializedVersion: 2
-        x: 399
-        y: 64
-        width: 162
-        height: 107
+        x: 384
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 4051c7fdf33fedf40800000000000000
-      internalID: 5755304829484012804
+      spriteID: 0fffa1d6eb19087408d8a38818bd255e
+      internalID: 418504383
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Grounded_35
+      name: Meganeura_Grounded_8_3
       rect:
         serializedVersion: 2
-        x: 591
-        y: 64
-        width: 162
-        height: 107
+        x: 576
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 44d93de51f3100a50800000000000000
-      internalID: 6485205390812486980
+      spriteID: 6650b9304fef53c4c80e1c1367661bd8
+      internalID: 887320176
       vertices: []
       indices: 
       edges: []
@@ -1025,42 +1025,42 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Meganeura_Grounded_0: -2275473100296523671
-      Meganeura_Grounded_1: -3849202879597998581
-      Meganeura_Grounded_10: 1419680107500892280
-      Meganeura_Grounded_11: 2072551403344697680
-      Meganeura_Grounded_12: -5259115634607942529
-      Meganeura_Grounded_13: 1587192247413667183
-      Meganeura_Grounded_14: -1001088500746537083
-      Meganeura_Grounded_15: 5822525456192192639
-      Meganeura_Grounded_16: -2992958845040137534
-      Meganeura_Grounded_17: 5264129387515351296
-      Meganeura_Grounded_18: -1896270231964825561
-      Meganeura_Grounded_19: -2173732339815545231
-      Meganeura_Grounded_2: -7519756881411989223
-      Meganeura_Grounded_20: -5478369951487204975
-      Meganeura_Grounded_21: -4974721966729925801
-      Meganeura_Grounded_22: 1520473256943225701
-      Meganeura_Grounded_23: 551115696835715290
-      Meganeura_Grounded_24: 7286966050283981904
-      Meganeura_Grounded_25: -2132794970258593666
-      Meganeura_Grounded_26: -6127007066934433642
-      Meganeura_Grounded_27: -1263775402497098010
-      Meganeura_Grounded_28: -5179477869689579850
-      Meganeura_Grounded_29: -7624622466033866405
-      Meganeura_Grounded_3: -6793873538942610526
-      Meganeura_Grounded_30: 583469237763456883
-      Meganeura_Grounded_31: 4807902509419319519
-      Meganeura_Grounded_32: -7255026918877070192
-      Meganeura_Grounded_33: -9025505197104762887
-      Meganeura_Grounded_34: 5755304829484012804
-      Meganeura_Grounded_35: 6485205390812486980
-      Meganeura_Grounded_4: -4500706321526168433
-      Meganeura_Grounded_5: 5347681006470296840
-      Meganeura_Grounded_6: 822702591436822277
-      Meganeura_Grounded_7: -8311549298198427338
-      Meganeura_Grounded_8: -571111733962307856
-      Meganeura_Grounded_9: -4724431756667391231
+      Meganeura_Grounded_0_0: 1886670646
+      Meganeura_Grounded_0_1: -1062408505
+      Meganeura_Grounded_0_2: -1460790666
+      Meganeura_Grounded_0_3: -628704934
+      Meganeura_Grounded_1_0: 1176788366
+      Meganeura_Grounded_1_1: 2106231268
+      Meganeura_Grounded_1_2: -187630053
+      Meganeura_Grounded_1_3: 1206402047
+      Meganeura_Grounded_2_0: -472044429
+      Meganeura_Grounded_2_1: 859427407
+      Meganeura_Grounded_2_2: 1242591811
+      Meganeura_Grounded_2_3: 1121954648
+      Meganeura_Grounded_3_0: -85704701
+      Meganeura_Grounded_3_1: 1056459305
+      Meganeura_Grounded_3_2: 1491574323
+      Meganeura_Grounded_3_3: -1294691206
+      Meganeura_Grounded_4_0: 1119207944
+      Meganeura_Grounded_4_1: -847058335
+      Meganeura_Grounded_4_2: -1319390232
+      Meganeura_Grounded_4_3: 1744348249
+      Meganeura_Grounded_5_0: -1072990037
+      Meganeura_Grounded_5_1: 1244206283
+      Meganeura_Grounded_5_2: 593012560
+      Meganeura_Grounded_5_3: -1217471324
+      Meganeura_Grounded_6_0: 1994920753
+      Meganeura_Grounded_6_1: 391572148
+      Meganeura_Grounded_6_2: -1786718774
+      Meganeura_Grounded_6_3: 179514228
+      Meganeura_Grounded_7_0: -1033954513
+      Meganeura_Grounded_7_1: -769068948
+      Meganeura_Grounded_7_2: -1082922471
+      Meganeura_Grounded_7_3: -1194501969
+      Meganeura_Grounded_8_0: -1502080475
+      Meganeura_Grounded_8_1: 608042433
+      Meganeura_Grounded_8_2: 418504383
+      Meganeura_Grounded_8_3: 887320176
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -151,7 +151,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -179,7 +179,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -220,793 +220,793 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Meganeura_PerchRage_0
+      name: Meganeura_PerchRage_0_0
       rect:
         serializedVersion: 2
-        x: 15
-        y: 1554
-        width: 162
-        height: 107
+        x: 0
+        y: 1536
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 77bfecb4ec54d25a0800000000000000
-      internalID: -6544497931162027145
+      spriteID: 1aea1bd41a59d3249b2e038af462cc30
+      internalID: 1230889262
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_PerchRage_1
+      name: Meganeura_PerchRage_0_1
       rect:
         serializedVersion: 2
-        x: 207
-        y: 1554
-        width: 162
-        height: 106
+        x: 192
+        y: 1536
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 97acaa222e38a7e70800000000000000
-      internalID: 9113741803205085817
+      spriteID: b1e0674b9c62caf4cb1f8380aaf94f43
+      internalID: -2010077552
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_PerchRage_2
+      name: Meganeura_PerchRage_0_2
       rect:
         serializedVersion: 2
-        x: 399
-        y: 1554
-        width: 162
-        height: 107
+        x: 384
+        y: 1536
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2f9efcbec2b43f7c0800000000000000
-      internalID: -4038801784514287118
+      spriteID: e5116807bb9176a40b15bf954599e1c3
+      internalID: 1757905537
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_PerchRage_3
+      name: Meganeura_PerchRage_0_3
       rect:
         serializedVersion: 2
-        x: 592
-        y: 1554
-        width: 160
-        height: 106
+        x: 576
+        y: 1536
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 3f04c89cca7a03a40800000000000000
-      internalID: 5345957118246404339
+      spriteID: 8c41e197e337c5541a74aada8df82ee5
+      internalID: -915638293
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_PerchRage_4
+      name: Meganeura_PerchRage_1_0
       rect:
         serializedVersion: 2
-        x: 16
-        y: 1366
-        width: 162
-        height: 116
+        x: 0
+        y: 1344
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e524c52dc38966d50800000000000000
-      internalID: 6730234080146506334
+      spriteID: 43da7abdef36b6641b56a00056e15454
+      internalID: 391098402
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_PerchRage_5
+      name: Meganeura_PerchRage_1_1
       rect:
         serializedVersion: 2
-        x: 209
-        y: 1366
-        width: 161
-        height: 119
+        x: 192
+        y: 1344
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 45034150c42377c90800000000000000
-      internalID: -7172208579480113068
+      spriteID: 84fc3b6c6dc86f44e878c7b4e0522a6e
+      internalID: -1617520442
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_PerchRage_6
+      name: Meganeura_PerchRage_1_2
       rect:
         serializedVersion: 2
-        x: 400
-        y: 1366
-        width: 162
-        height: 116
+        x: 384
+        y: 1344
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 25965366e6189f8b0800000000000000
-      internalID: -5117917190368695982
+      spriteID: fbb9a0289dc867f47b91b036281b0973
+      internalID: -1457663405
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_PerchRage_7
+      name: Meganeura_PerchRage_1_3
       rect:
         serializedVersion: 2
-        x: 592
-        y: 1366
-        width: 161
-        height: 113
+        x: 576
+        y: 1344
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 62eeef42d468481c0800000000000000
-      internalID: -4502326061572362714
+      spriteID: d420093882e008b4f847f00f6d0b0cb7
+      internalID: 2034580876
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_PerchRage_8
+      name: Meganeura_PerchRage_2_0
       rect:
         serializedVersion: 2
-        x: 24
-        y: 1189
-        width: 143
-        height: 119
+        x: 0
+        y: 1152
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e483d3c935d8f0c40800000000000000
-      internalID: 5480754661776242766
+      spriteID: b74d9fe4b95a7bf4d8196ced6d3a6c8c
+      internalID: 1406628563
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_PerchRage_9
+      name: Meganeura_PerchRage_2_1
       rect:
         serializedVersion: 2
-        x: 216
-        y: 1186
-        width: 143
-        height: 125
+        x: 192
+        y: 1152
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 23a65ce0c00e54eb0800000000000000
-      internalID: -4736133090718160334
+      spriteID: 4580eaef2513cd7439c858c34a8681b2
+      internalID: 1197222669
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_PerchRage_10
+      name: Meganeura_PerchRage_2_2
       rect:
         serializedVersion: 2
-        x: 408
-        y: 1189
-        width: 143
-        height: 119
+        x: 384
+        y: 1152
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ef365f57515a86890800000000000000
-      internalID: -7464534870774684674
+      spriteID: e042c872a0566ad498bff7eee3bab640
+      internalID: 2134397183
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_PerchRage_11
+      name: Meganeura_PerchRage_2_3
       rect:
         serializedVersion: 2
-        x: 599
-        y: 1189
-        width: 143
-        height: 115
+        x: 576
+        y: 1152
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 61f1244bf961941f0800000000000000
-      internalID: -1060291362089197802
+      spriteID: d62fe42176302d34586bd2f349e3b7f2
+      internalID: 450013155
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_PerchRage_12
+      name: Meganeura_PerchRage_3_0
       rect:
         serializedVersion: 2
-        x: 10
-        y: 990
-        width: 135
-        height: 135
+        x: 0
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0105b77503fb00360800000000000000
-      internalID: 7133912024101900304
+      spriteID: 22fcee55317ca4e4baef6822659d14c5
+      internalID: -2051106832
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_PerchRage_13
+      name: Meganeura_PerchRage_3_1
       rect:
         serializedVersion: 2
-        x: 202
-        y: 988
-        width: 135
-        height: 140
+        x: 192
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 59b1eab12b7c57650800000000000000
-      internalID: 6230105227319450517
+      spriteID: 8e1519f36d46f094fbb603b0045be7ff
+      internalID: 1117146149
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_PerchRage_14
+      name: Meganeura_PerchRage_3_2
       rect:
         serializedVersion: 2
-        x: 394
-        y: 990
-        width: 135
-        height: 135
+        x: 384
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7ad4f43f8fa33f960800000000000000
-      internalID: 7634510634231483815
+      spriteID: 55a7236b609eded41bbbd03437663643
+      internalID: 1326500449
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_PerchRage_15
+      name: Meganeura_PerchRage_3_3
       rect:
         serializedVersion: 2
-        x: 586
-        y: 993
-        width: 135
-        height: 128
+        x: 576
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 35eac4d51828356d0800000000000000
-      internalID: -3002913034398290349
+      spriteID: 64ba6f3f27d276c4f8fd003b0179f37b
+      internalID: -1613311497
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_PerchRage_16
+      name: Meganeura_PerchRage_4_0
       rect:
         serializedVersion: 2
-        x: 5
-        y: 799
-        width: 127
-        height: 133
+        x: 0
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 714d3690047d645b0800000000000000
-      internalID: -5384379634439433193
+      spriteID: b5e9918a73fcbb748a45af3d40d8cede
+      internalID: -822602972
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_PerchRage_17
+      name: Meganeura_PerchRage_4_1
       rect:
         serializedVersion: 2
-        x: 197
-        y: 799
-        width: 130
-        height: 136
+        x: 192
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a716f92b4bdbe3430800000000000000
-      internalID: 3764654922316865914
+      spriteID: f46264df426790349b827de5b1b51c99
+      internalID: -183378623
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_PerchRage_18
+      name: Meganeura_PerchRage_4_2
       rect:
         serializedVersion: 2
-        x: 389
-        y: 799
-        width: 127
-        height: 133
+        x: 384
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 37d78012b14d7bf40800000000000000
-      internalID: 5744293062717767027
+      spriteID: 62aa13afac9a7434c9ff8e585b9384f4
+      internalID: -1104977123
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_PerchRage_19
+      name: Meganeura_PerchRage_4_3
       rect:
         serializedVersion: 2
-        x: 581
-        y: 796
-        width: 130
-        height: 134
+        x: 576
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f96fb4542b6cfa510800000000000000
-      internalID: 1562686064689936031
+      spriteID: 3ab02d865e81a8b4caf7d8581973229e
+      internalID: -209399409
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_PerchRage_20
+      name: Meganeura_PerchRage_5_0
       rect:
         serializedVersion: 2
-        x: 10
-        y: 606
-        width: 135
-        height: 132
+        x: 0
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0ee61e608053ae5c0800000000000000
-      internalID: -4185474595096006944
+      spriteID: d74eec754c723ca43843666e10fb9fe7
+      internalID: -646240205
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_PerchRage_21
+      name: Meganeura_PerchRage_5_1
       rect:
         serializedVersion: 2
-        x: 202
-        y: 609
-        width: 135
-        height: 125
+        x: 192
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 5a97413b50fe5ffa0800000000000000
-      internalID: -5767440940019713627
+      spriteID: 5ef0d5df8c02a5f418130d8543f405a5
+      internalID: -1624581648
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_PerchRage_22
+      name: Meganeura_PerchRage_5_2
       rect:
         serializedVersion: 2
-        x: 394
-        y: 606
-        width: 135
-        height: 132
+        x: 384
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e20e3da2358d5eba0800000000000000
-      internalID: -6060199871844720594
+      spriteID: 13752b00aab8ce84fb4fd0194b582ae8
+      internalID: 1658844400
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_PerchRage_23
+      name: Meganeura_PerchRage_5_3
       rect:
         serializedVersion: 2
-        x: 586
-        y: 604
-        width: 135
-        height: 137
+        x: 576
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 71fce881945807960800000000000000
-      internalID: 7597719120365145879
+      spriteID: d556de28b67c5264eaefc54fbbd3b941
+      internalID: -863613425
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_PerchRage_24
+      name: Meganeura_PerchRage_6_0
       rect:
         serializedVersion: 2
-        x: 24
-        y: 423
-        width: 143
-        height: 117
+        x: 0
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 1ad2ac168793143a0800000000000000
-      internalID: -6682997182841606751
+      spriteID: d7f738d3ac140084286cf7ffff65ded1
+      internalID: 1308620046
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_PerchRage_25
+      name: Meganeura_PerchRage_6_1
       rect:
         serializedVersion: 2
-        x: 216
-        y: 426
-        width: 143
-        height: 110
+        x: 192
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 273d76415d539acd0800000000000000
-      internalID: -2546444925014649998
+      spriteID: bc2b928ca632d1a4ba6b6aa1c8b9ae2d
+      internalID: 1259771214
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_PerchRage_26
+      name: Meganeura_PerchRage_6_2
       rect:
         serializedVersion: 2
-        x: 408
-        y: 423
-        width: 143
-        height: 117
+        x: 384
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 376d5f35cda6506a0800000000000000
-      internalID: -6483658593995991437
+      spriteID: fef5bb8b02add94419408a7d32cef88c
+      internalID: -1094270947
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_PerchRage_27
+      name: Meganeura_PerchRage_6_3
       rect:
         serializedVersion: 2
-        x: 599
-        y: 421
-        width: 143
-        height: 121
+        x: 576
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d2a2ba12a4b6befb0800000000000000
-      internalID: -4617479026801694163
+      spriteID: 4277bd189645f4f44a16ec7a78165de2
+      internalID: 1011498654
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_PerchRage_28
+      name: Meganeura_PerchRage_7_0
       rect:
         serializedVersion: 2
-        x: 16
-        y: 239
-        width: 162
-        height: 117
+        x: 0
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b40c30be512a56ef0800000000000000
-      internalID: -115508000407175093
+      spriteID: 7a411263a95f3a34dabdab3f0d9d5812
+      internalID: 935968272
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_PerchRage_29
+      name: Meganeura_PerchRage_7_1
       rect:
         serializedVersion: 2
-        x: 209
-        y: 239
-        width: 161
-        height: 116
+        x: 192
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: fbf013dcc11c57c40800000000000000
-      internalID: 5509522048603459519
+      spriteID: 0a561b660f5ef404dbdb4729082cb66c
+      internalID: 1301716553
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_PerchRage_30
+      name: Meganeura_PerchRage_7_2
       rect:
         serializedVersion: 2
-        x: 400
-        y: 239
-        width: 162
-        height: 117
+        x: 384
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 1076845ff55c675d0800000000000000
-      internalID: -3065045480451315967
+      spriteID: 8d2c3f5864872ce49ae2890c35ec0077
+      internalID: 61178128
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_PerchRage_31
+      name: Meganeura_PerchRage_7_3
       rect:
         serializedVersion: 2
-        x: 592
-        y: 239
-        width: 161
-        height: 116
+        x: 576
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 22e03120f19110730800000000000000
-      internalID: 3963476768032230946
+      spriteID: 80ad2660a8f09504aaf20d063bb590a5
+      internalID: -633627357
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_PerchRage_32
+      name: Meganeura_PerchRage_8_0
       rect:
         serializedVersion: 2
-        x: 15
-        y: 49
-        width: 162
-        height: 119
+        x: 0
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 928ade777b5342790800000000000000
-      internalID: -7555855212713498583
+      spriteID: a84b0ff71bcbea64e97ac76adf6c19ef
+      internalID: 356353800
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_PerchRage_33
+      name: Meganeura_PerchRage_8_1
       rect:
         serializedVersion: 2
-        x: 207
-        y: 49
-        width: 162
-        height: 119
+        x: 192
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7b692a6a5b5704030800000000000000
-      internalID: 3476908335375226551
+      spriteID: b368b8cd887a81340bb2e44a232fa27f
+      internalID: 320787917
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_PerchRage_34
+      name: Meganeura_PerchRage_8_2
       rect:
         serializedVersion: 2
-        x: 399
-        y: 49
-        width: 162
-        height: 119
+        x: 384
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 203df08214da1c2c0800000000000000
-      internalID: -4413055664489770238
+      spriteID: 336fb20b0b4b6334f88d0cfe281b384e
+      internalID: -1145563290
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_PerchRage_35
+      name: Meganeura_PerchRage_8_3
       rect:
         serializedVersion: 2
-        x: 592
-        y: 49
-        width: 160
-        height: 119
+        x: 576
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c7ca5e88f1bc22780800000000000000
-      internalID: -8709175393079939972
+      spriteID: c84018cf34a81c142878441a49714567
+      internalID: 1099304585
       vertices: []
       indices: 
       edges: []
@@ -1025,42 +1025,42 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Meganeura_PerchRage_0: -6544497931162027145
-      Meganeura_PerchRage_1: 9113741803205085817
-      Meganeura_PerchRage_10: -7464534870774684674
-      Meganeura_PerchRage_11: -1060291362089197802
-      Meganeura_PerchRage_12: 7133912024101900304
-      Meganeura_PerchRage_13: 6230105227319450517
-      Meganeura_PerchRage_14: 7634510634231483815
-      Meganeura_PerchRage_15: -3002913034398290349
-      Meganeura_PerchRage_16: -5384379634439433193
-      Meganeura_PerchRage_17: 3764654922316865914
-      Meganeura_PerchRage_18: 5744293062717767027
-      Meganeura_PerchRage_19: 1562686064689936031
-      Meganeura_PerchRage_2: -4038801784514287118
-      Meganeura_PerchRage_20: -4185474595096006944
-      Meganeura_PerchRage_21: -5767440940019713627
-      Meganeura_PerchRage_22: -6060199871844720594
-      Meganeura_PerchRage_23: 7597719120365145879
-      Meganeura_PerchRage_24: -6682997182841606751
-      Meganeura_PerchRage_25: -2546444925014649998
-      Meganeura_PerchRage_26: -6483658593995991437
-      Meganeura_PerchRage_27: -4617479026801694163
-      Meganeura_PerchRage_28: -115508000407175093
-      Meganeura_PerchRage_29: 5509522048603459519
-      Meganeura_PerchRage_3: 5345957118246404339
-      Meganeura_PerchRage_30: -3065045480451315967
-      Meganeura_PerchRage_31: 3963476768032230946
-      Meganeura_PerchRage_32: -7555855212713498583
-      Meganeura_PerchRage_33: 3476908335375226551
-      Meganeura_PerchRage_34: -4413055664489770238
-      Meganeura_PerchRage_35: -8709175393079939972
-      Meganeura_PerchRage_4: 6730234080146506334
-      Meganeura_PerchRage_5: -7172208579480113068
-      Meganeura_PerchRage_6: -5117917190368695982
-      Meganeura_PerchRage_7: -4502326061572362714
-      Meganeura_PerchRage_8: 5480754661776242766
-      Meganeura_PerchRage_9: -4736133090718160334
+      Meganeura_PerchRage_0_0: 1230889262
+      Meganeura_PerchRage_0_1: -2010077552
+      Meganeura_PerchRage_0_2: 1757905537
+      Meganeura_PerchRage_0_3: -915638293
+      Meganeura_PerchRage_1_0: 391098402
+      Meganeura_PerchRage_1_1: -1617520442
+      Meganeura_PerchRage_1_2: -1457663405
+      Meganeura_PerchRage_1_3: 2034580876
+      Meganeura_PerchRage_2_0: 1406628563
+      Meganeura_PerchRage_2_1: 1197222669
+      Meganeura_PerchRage_2_2: 2134397183
+      Meganeura_PerchRage_2_3: 450013155
+      Meganeura_PerchRage_3_0: -2051106832
+      Meganeura_PerchRage_3_1: 1117146149
+      Meganeura_PerchRage_3_2: 1326500449
+      Meganeura_PerchRage_3_3: -1613311497
+      Meganeura_PerchRage_4_0: -822602972
+      Meganeura_PerchRage_4_1: -183378623
+      Meganeura_PerchRage_4_2: -1104977123
+      Meganeura_PerchRage_4_3: -209399409
+      Meganeura_PerchRage_5_0: -646240205
+      Meganeura_PerchRage_5_1: -1624581648
+      Meganeura_PerchRage_5_2: 1658844400
+      Meganeura_PerchRage_5_3: -863613425
+      Meganeura_PerchRage_6_0: 1308620046
+      Meganeura_PerchRage_6_1: 1259771214
+      Meganeura_PerchRage_6_2: -1094270947
+      Meganeura_PerchRage_6_3: 1011498654
+      Meganeura_PerchRage_7_0: 935968272
+      Meganeura_PerchRage_7_1: 1301716553
+      Meganeura_PerchRage_7_2: 61178128
+      Meganeura_PerchRage_7_3: -633627357
+      Meganeura_PerchRage_8_0: 356353800
+      Meganeura_PerchRage_8_1: 320787917
+      Meganeura_PerchRage_8_2: -1145563290
+      Meganeura_PerchRage_8_3: 1099304585
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

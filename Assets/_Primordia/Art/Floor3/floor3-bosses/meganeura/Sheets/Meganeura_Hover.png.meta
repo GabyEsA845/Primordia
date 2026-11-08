@@ -151,7 +151,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -179,7 +179,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -220,793 +220,793 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Meganeura_Hover_0
+      name: Meganeura_Hover_0_0
       rect:
         serializedVersion: 2
-        x: 18
-        y: 1550
-        width: 156
-        height: 116
+        x: 0
+        y: 1536
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7d876bc9affd84450800000000000000
-      internalID: 6073350364973136087
+      spriteID: 336db9434733a7b4ca621bb6b0f7f1db
+      internalID: -928065372
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Hover_1
+      name: Meganeura_Hover_0_1
       rect:
         serializedVersion: 2
-        x: 207
-        y: 1550
-        width: 162
-        height: 112
+        x: 192
+        y: 1536
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: af9f89f34518d90a0800000000000000
-      internalID: -6873195257453282822
+      spriteID: 9e69ee5b8a5477e41aa0a2a6538005a7
+      internalID: 87113901
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Hover_2
+      name: Meganeura_Hover_0_2
       rect:
         serializedVersion: 2
-        x: 401
-        y: 1550
-        width: 158
-        height: 111
+        x: 384
+        y: 1536
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ac890adb41bfa0320800000000000000
-      internalID: 2525106607593920714
+      spriteID: 8afbed982bc30bb45944791ef1b58525
+      internalID: 600015012
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Hover_3
+      name: Meganeura_Hover_0_3
       rect:
         serializedVersion: 2
-        x: 591
-        y: 1549
-        width: 162
-        height: 112
+        x: 576
+        y: 1536
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 10329278ca91bd1b0800000000000000
-      internalID: -5630878680303983871
+      spriteID: 252ea594c65b601468bf7ca4a10bdbcf
+      internalID: -409922702
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Hover_4
+      name: Meganeura_Hover_1_0
       rect:
         serializedVersion: 2
-        x: 16
-        y: 1362
-        width: 158
-        height: 135
+        x: 0
+        y: 1344
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 8045ed6d190ac9cd0800000000000000
-      internalID: -2549986740762946552
+      spriteID: 067474b7dddafed408020aef09af52ed
+      internalID: -1086299051
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Hover_5
+      name: Meganeura_Hover_1_1
       rect:
         serializedVersion: 2
-        x: 209
-        y: 1362
-        width: 161
-        height: 123
+        x: 192
+        y: 1344
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e82000a9f2739a600800000000000000
-      internalID: 479975512878350990
+      spriteID: 463902676ccd0b84592c0f7a43ad3eaf
+      internalID: 310074503
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Hover_6
+      name: Meganeura_Hover_1_2
       rect:
         serializedVersion: 2
-        x: 399
-        y: 1362
-        width: 161
-        height: 115
+        x: 384
+        y: 1344
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 4c68535fb389de710800000000000000
-      internalID: 1724201615637186244
+      spriteID: 345023c296ae97347bf987f4f7ee3fc3
+      internalID: -47729806
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Hover_7
+      name: Meganeura_Hover_1_3
       rect:
         serializedVersion: 2
-        x: 594
-        y: 1361
-        width: 159
-        height: 128
+        x: 576
+        y: 1344
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 613f29adcec659db0800000000000000
-      internalID: -4785799264476138730
+      spriteID: 39d3037fb52e5f740932b31af36d6427
+      internalID: 448826627
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Hover_8
+      name: Meganeura_Hover_2_0
       rect:
         serializedVersion: 2
-        x: 23
-        y: 1184
-        width: 140
-        height: 138
+        x: 0
+        y: 1152
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 5e79a8fe04dd7d2d0800000000000000
-      internalID: -3253888934785411099
+      spriteID: e47fa87f74b3b6144a11563a69619d37
+      internalID: -1632102125
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Hover_9
+      name: Meganeura_Hover_2_1
       rect:
         serializedVersion: 2
-        x: 215
-        y: 1185
-        width: 144
-        height: 126
+        x: 192
+        y: 1152
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 507d9bcf4407d94e0800000000000000
-      internalID: -1973297620118284539
+      spriteID: 50f08ca1fdec14c4b93ef30cc63d1d0f
+      internalID: -587502955
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Hover_10
+      name: Meganeura_Hover_2_2
       rect:
         serializedVersion: 2
-        x: 406
-        y: 1184
-        width: 144
-        height: 118
+        x: 384
+        y: 1152
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: bcaf37024fc3fbd40800000000000000
-      internalID: 5602263480686344907
+      spriteID: 6400d4e161c5ff0429ef517046a9ff14
+      internalID: -1808549818
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Hover_11
+      name: Meganeura_Hover_2_3
       rect:
         serializedVersion: 2
-        x: 601
-        y: 1184
-        width: 141
-        height: 131
+        x: 576
+        y: 1152
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 9e87b036f23823ba0800000000000000
-      internalID: -6110677504839943959
+      spriteID: d7ff312c92f52bc428c1eff98ad96266
+      internalID: 402561698
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Hover_12
+      name: Meganeura_Hover_3_0
       rect:
         serializedVersion: 2
-        x: 11
-        y: 991
-        width: 130
-        height: 149
+        x: 0
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 082079ff698bbad20800000000000000
-      internalID: 3290926911396971136
+      spriteID: d461f03505461ff49a97ea4938558f06
+      internalID: 1561652703
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Hover_13
+      name: Meganeura_Hover_3_1
       rect:
         serializedVersion: 2
-        x: 203
-        y: 1004
-        width: 134
-        height: 124
+        x: 192
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f69f3c0b99720c950800000000000000
-      internalID: 6467212605953145199
+      spriteID: 5d6c6b381d855b84fbe135a99e2d9e07
+      internalID: 60722010
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Hover_14
+      name: Meganeura_Hover_3_2
       rect:
         serializedVersion: 2
-        x: 395
-        y: 997
-        width: 134
-        height: 122
+        x: 384
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b4541e5d237791e80800000000000000
-      internalID: -8207397785685637813
+      spriteID: 311b556fd07f6f847aa6aa0f42b1192f
+      internalID: -1513441227
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Hover_15
+      name: Meganeura_Hover_3_3
       rect:
         serializedVersion: 2
-        x: 587
-        y: 985
-        width: 133
-        height: 148
+        x: 576
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f28b4b529fe83bff0800000000000000
-      internalID: -21516372476118993
+      spriteID: 089b032ac2d28cd419a2c18db7ea46e0
+      internalID: 2028347826
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Hover_16
+      name: Meganeura_Hover_4_0
       rect:
         serializedVersion: 2
-        x: 6
-        y: 802
-        width: 124
-        height: 146
+        x: 0
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 1b237250a61045420800000000000000
-      internalID: 2617718838273716913
+      spriteID: 71019cbcc80327f43b6907753ab6597d
+      internalID: -668660597
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Hover_17
+      name: Meganeura_Hover_4_1
       rect:
         serializedVersion: 2
-        x: 198
-        y: 802
-        width: 124
-        height: 140
+        x: 192
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7eacc91ad9aa02770800000000000000
-      internalID: 8584048483766160103
+      spriteID: 8e66f8792d977074895f31b7a1a11676
+      internalID: -1462743976
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Hover_18
+      name: Meganeura_Hover_4_2
       rect:
         serializedVersion: 2
-        x: 390
-        y: 796
-        width: 124
-        height: 139
+        x: 384
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: df5c6f3b704fd5710800000000000000
-      internalID: 1683770149627676157
+      spriteID: e875bdac592199342a322137ed605864
+      internalID: -610126721
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Hover_19
+      name: Meganeura_Hover_4_3
       rect:
         serializedVersion: 2
-        x: 582
-        y: 796
-        width: 124
-        height: 144
+        x: 576
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 39961e3e7ab7e34a0800000000000000
-      internalID: -6611711241920353901
+      spriteID: 39762cb0910825e49b98ef803392ee90
+      internalID: 832003152
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Hover_20
+      name: Meganeura_Hover_5_0
       rect:
         serializedVersion: 2
-        x: 11
-        y: 622
-        width: 130
-        height: 125
+        x: 0
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6291b07e0670bb310800000000000000
-      internalID: 1421738220140042534
+      spriteID: a61f34a40586b534db3ca48401d3a165
+      internalID: -1308860581
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Hover_21
+      name: Meganeura_Hover_5_1
       rect:
         serializedVersion: 2
-        x: 203
-        y: 610
-        width: 134
-        height: 143
+        x: 192
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b4d3c7fba75ae0d90800000000000000
-      internalID: -7129579213463732917
+      spriteID: 455fe89b4703fe94a977c0cd93a976fa
+      internalID: -590257445
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Hover_22
+      name: Meganeura_Hover_5_2
       rect:
         serializedVersion: 2
-        x: 395
-        y: 603
-        width: 134
-        height: 143
+        x: 384
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 38411f714c02d4510800000000000000
-      internalID: 1534919074590561411
+      spriteID: 0876f95af17ef334c8dbf27a538880fb
+      internalID: -805700314
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Hover_23
+      name: Meganeura_Hover_5_3
       rect:
         serializedVersion: 2
-        x: 587
-        y: 615
-        width: 133
-        height: 124
+        x: 576
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ee9596ae46e4a7c40800000000000000
-      internalID: 5510803289377692142
+      spriteID: 9a98fefc8183c644ba2a3ee71af9baf7
+      internalID: 1104761147
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Hover_24
+      name: Meganeura_Hover_6_0
       rect:
         serializedVersion: 2
-        x: 23
-        y: 441
-        width: 140
-        height: 100
+        x: 0
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 3f9623cf7ff0f3580800000000000000
-      internalID: -8845333585369863693
+      spriteID: 10a69ec64e08daa4792591764d615e4f
+      internalID: -948194418
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Hover_25
+      name: Meganeura_Hover_6_1
       rect:
         serializedVersion: 2
-        x: 215
-        y: 427
-        width: 144
-        height: 129
+        x: 192
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b0a8ce832bba3c710800000000000000
-      internalID: 1712401065278474763
+      spriteID: 2c3bc249a6e30294d8c26d37a68da96f
+      internalID: 1832262323
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Hover_26
+      name: Meganeura_Hover_6_2
       rect:
         serializedVersion: 2
-        x: 406
-        y: 419
-        width: 144
-        height: 129
+        x: 384
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 89326b1951d3578c0800000000000000
-      internalID: -4002225531000577128
+      spriteID: 62408d83f28bf5844869e33720d8df98
+      internalID: -1105836105
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Hover_27
+      name: Meganeura_Hover_6_3
       rect:
         serializedVersion: 2
-        x: 601
-        y: 432
-        width: 141
-        height: 100
+        x: 576
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 9e8bed2323c4e97f0800000000000000
-      internalID: -603961521535534871
+      spriteID: 99ef7cd910dc1b44689050c067612e96
+      internalID: -53267652
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Hover_28
+      name: Meganeura_Hover_7_0
       rect:
         serializedVersion: 2
-        x: 16
-        y: 246
-        width: 158
-        height: 104
+        x: 0
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7467e1ddd6f048610800000000000000
-      internalID: 1622438730295834183
+      spriteID: 827777ccb20a9764399d08bfc66a3bcf
+      internalID: -10201944
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Hover_29
+      name: Meganeura_Hover_7_1
       rect:
         serializedVersion: 2
-        x: 209
-        y: 247
-        width: 161
-        height: 103
+        x: 192
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 24caf58afee809420800000000000000
-      internalID: 2634762941984910402
+      spriteID: b8b595e571c042b44ba8aac6277dd6fb
+      internalID: -2147063058
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Hover_30
+      name: Meganeura_Hover_7_2
       rect:
         serializedVersion: 2
-        x: 399
-        y: 244
-        width: 161
-        height: 106
+        x: 384
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c7ffbd229a4dafa90800000000000000
-      internalID: -7279272024791580804
+      spriteID: a7ab6c7171d3ee74cbbc846a300e41c3
+      internalID: 159579834
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Hover_31
+      name: Meganeura_Hover_7_3
       rect:
         serializedVersion: 2
-        x: 594
-        y: 246
-        width: 159
-        height: 103
+        x: 576
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 034b042f24ccc72c0800000000000000
-      internalID: -4432443345335176144
+      spriteID: 941179ebefd1d4e4bb3b26123b3ea8eb
+      internalID: -1369608617
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Hover_32
+      name: Meganeura_Hover_8_0
       rect:
         serializedVersion: 2
-        x: 18
-        y: 55
-        width: 156
-        height: 107
+        x: 0
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 1f0f2e236559b99b0800000000000000
-      internalID: -5072296357849272079
+      spriteID: 7b292ea314bd0e24092ff94f4131109c
+      internalID: 1347316606
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Hover_33
+      name: Meganeura_Hover_8_1
       rect:
         serializedVersion: 2
-        x: 207
-        y: 56
-        width: 162
-        height: 107
+        x: 192
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e4e36a35595e63110800000000000000
-      internalID: 1240431176903441998
+      spriteID: 0bb106297f9bb4442b3b3b4a7c3145f0
+      internalID: 286609938
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Hover_34
+      name: Meganeura_Hover_8_2
       rect:
         serializedVersion: 2
-        x: 401
-        y: 55
-        width: 158
-        height: 107
+        x: 384
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 13a8c2088e6475660800000000000000
-      internalID: 7374440879239236145
+      spriteID: 5b4f4c7686b91a147be7bc936c5b3e25
+      internalID: 1098484556
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Hover_35
+      name: Meganeura_Hover_8_3
       rect:
         serializedVersion: 2
-        x: 591
-        y: 55
-        width: 162
-        height: 106
+        x: 576
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0d3acf0a5fc0fe040800000000000000
-      internalID: 4678972786968667088
+      spriteID: b574ab287af399248828455ff3958b0c
+      internalID: 513203631
       vertices: []
       indices: 
       edges: []
@@ -1025,42 +1025,42 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Meganeura_Hover_0: 6073350364973136087
-      Meganeura_Hover_1: -6873195257453282822
-      Meganeura_Hover_10: 5602263480686344907
-      Meganeura_Hover_11: -6110677504839943959
-      Meganeura_Hover_12: 3290926911396971136
-      Meganeura_Hover_13: 6467212605953145199
-      Meganeura_Hover_14: -8207397785685637813
-      Meganeura_Hover_15: -21516372476118993
-      Meganeura_Hover_16: 2617718838273716913
-      Meganeura_Hover_17: 8584048483766160103
-      Meganeura_Hover_18: 1683770149627676157
-      Meganeura_Hover_19: -6611711241920353901
-      Meganeura_Hover_2: 2525106607593920714
-      Meganeura_Hover_20: 1421738220140042534
-      Meganeura_Hover_21: -7129579213463732917
-      Meganeura_Hover_22: 1534919074590561411
-      Meganeura_Hover_23: 5510803289377692142
-      Meganeura_Hover_24: -8845333585369863693
-      Meganeura_Hover_25: 1712401065278474763
-      Meganeura_Hover_26: -4002225531000577128
-      Meganeura_Hover_27: -603961521535534871
-      Meganeura_Hover_28: 1622438730295834183
-      Meganeura_Hover_29: 2634762941984910402
-      Meganeura_Hover_3: -5630878680303983871
-      Meganeura_Hover_30: -7279272024791580804
-      Meganeura_Hover_31: -4432443345335176144
-      Meganeura_Hover_32: -5072296357849272079
-      Meganeura_Hover_33: 1240431176903441998
-      Meganeura_Hover_34: 7374440879239236145
-      Meganeura_Hover_35: 4678972786968667088
-      Meganeura_Hover_4: -2549986740762946552
-      Meganeura_Hover_5: 479975512878350990
-      Meganeura_Hover_6: 1724201615637186244
-      Meganeura_Hover_7: -4785799264476138730
-      Meganeura_Hover_8: -3253888934785411099
-      Meganeura_Hover_9: -1973297620118284539
+      Meganeura_Hover_0_0: -928065372
+      Meganeura_Hover_0_1: 87113901
+      Meganeura_Hover_0_2: 600015012
+      Meganeura_Hover_0_3: -409922702
+      Meganeura_Hover_1_0: -1086299051
+      Meganeura_Hover_1_1: 310074503
+      Meganeura_Hover_1_2: -47729806
+      Meganeura_Hover_1_3: 448826627
+      Meganeura_Hover_2_0: -1632102125
+      Meganeura_Hover_2_1: -587502955
+      Meganeura_Hover_2_2: -1808549818
+      Meganeura_Hover_2_3: 402561698
+      Meganeura_Hover_3_0: 1561652703
+      Meganeura_Hover_3_1: 60722010
+      Meganeura_Hover_3_2: -1513441227
+      Meganeura_Hover_3_3: 2028347826
+      Meganeura_Hover_4_0: -668660597
+      Meganeura_Hover_4_1: -1462743976
+      Meganeura_Hover_4_2: -610126721
+      Meganeura_Hover_4_3: 832003152
+      Meganeura_Hover_5_0: -1308860581
+      Meganeura_Hover_5_1: -590257445
+      Meganeura_Hover_5_2: -805700314
+      Meganeura_Hover_5_3: 1104761147
+      Meganeura_Hover_6_0: -948194418
+      Meganeura_Hover_6_1: 1832262323
+      Meganeura_Hover_6_2: -1105836105
+      Meganeura_Hover_6_3: -53267652
+      Meganeura_Hover_7_0: -10201944
+      Meganeura_Hover_7_1: -2147063058
+      Meganeura_Hover_7_2: 159579834
+      Meganeura_Hover_7_3: -1369608617
+      Meganeura_Hover_8_0: 1347316606
+      Meganeura_Hover_8_1: 286609938
+      Meganeura_Hover_8_2: 1098484556
+      Meganeura_Hover_8_3: 513203631
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

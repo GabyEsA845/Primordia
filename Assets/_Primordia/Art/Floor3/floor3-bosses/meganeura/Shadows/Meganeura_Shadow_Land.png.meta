@@ -124,7 +124,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -152,7 +152,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -193,595 +193,595 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Meganeura_Shadow_Land_0
+      name: Meganeura_Shadow_Land_0_0
       rect:
         serializedVersion: 2
-        x: 20
-        y: 1560
-        width: 152
-        height: 100
+        x: 0
+        y: 1536
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ac168c475b92bbbc0800000000000000
-      internalID: -3766370804040179254
+      spriteID: faa3ef331c2c9c6499249ce05fc898ee
+      internalID: 200347698
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Land_1
+      name: Meganeura_Shadow_Land_0_1
       rect:
         serializedVersion: 2
-        x: 209
-        y: 1559
-        width: 158
-        height: 102
+        x: 192
+        y: 1536
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e9f126de8a0f9f660800000000000000
-      internalID: 7420226469397405598
+      spriteID: c2544e3764a51a340bcf882f664720a9
+      internalID: -408325636
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Land_2
+      name: Meganeura_Shadow_Land_0_2
       rect:
         serializedVersion: 2
-        x: 399
-        y: 1558
-        width: 162
-        height: 103
+        x: 384
+        y: 1536
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d7b982563dd820670800000000000000
-      internalID: 8503514985503693693
+      spriteID: b8e5b336c3e1d874daee0e706cd1a083
+      internalID: 1857297972
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Land_3
+      name: Meganeura_Shadow_Land_1_0
       rect:
         serializedVersion: 2
-        x: 15
-        y: 1372
-        width: 152
-        height: 100
+        x: 0
+        y: 1344
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0ab0629a0e21b2110800000000000000
-      internalID: 1237103278763150240
+      spriteID: 8f45755b12275614db970bcf8f36b1cb
+      internalID: -2112845184
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Land_4
+      name: Meganeura_Shadow_Land_1_1
       rect:
         serializedVersion: 2
-        x: 210
-        y: 1371
-        width: 158
-        height: 107
+        x: 192
+        y: 1344
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 04eddf0ff64d348e0800000000000000
-      internalID: -1710289856221028800
+      spriteID: 72c6d8355ff4be242a0c8877c64875d8
+      internalID: -51583768
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Land_5
+      name: Meganeura_Shadow_Land_1_2
       rect:
         serializedVersion: 2
-        x: 400
-        y: 1370
-        width: 162
-        height: 111
+        x: 384
+        y: 1344
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ea30ab01017761700800000000000000
-      internalID: 510726518636938158
+      spriteID: 8389727c4c09a5e42949042c9c6c19e4
+      internalID: -1108956113
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Land_6
+      name: Meganeura_Shadow_Land_2_0
       rect:
         serializedVersion: 2
-        x: 22
-        y: 1187
-        width: 133
-        height: 109
+        x: 0
+        y: 1152
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 965e6718e43bfeaa0800000000000000
-      internalID: -6129483418067081879
+      spriteID: ac99e7694ca24a6498f4f34dec1082db
+      internalID: 2021858261
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Land_7
+      name: Meganeura_Shadow_Land_2_1
       rect:
         serializedVersion: 2
-        x: 216
-        y: 1189
-        width: 140
-        height: 115
+        x: 192
+        y: 1152
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ba1f304e0dcc9c580800000000000000
-      internalID: -8806282398795566677
+      spriteID: ce856c88cc217bf4f8ba17ffb5df5d32
+      internalID: -1208710104
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Land_8
+      name: Meganeura_Shadow_Land_2_2
       rect:
         serializedVersion: 2
-        x: 407
-        y: 1188
-        width: 144
-        height: 119
+        x: 384
+        y: 1152
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 39f652e2e87979420800000000000000
-      internalID: 2636742743764070291
+      spriteID: a86e7970cc3d914459dafd5d64b902f1
+      internalID: 732700737
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Land_9
+      name: Meganeura_Shadow_Land_3_0
       rect:
         serializedVersion: 2
-        x: 14
-        y: 990
-        width: 120
-        height: 124
+        x: 0
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 49abf73a953834b70800000000000000
-      internalID: 8882087311123135124
+      spriteID: 172e866e55bd3784ab780fd255b66754
+      internalID: -620652513
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Land_10
+      name: Meganeura_Shadow_Land_3_1
       rect:
         serializedVersion: 2
-        x: 204
-        y: 992
-        width: 131
-        height: 130
+        x: 192
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d06bb1a8ee03b7970800000000000000
-      internalID: 8753644101802112525
+      spriteID: 06d61896e844c94439c3d072fadc6523
+      internalID: 299217774
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Land_11
+      name: Meganeura_Shadow_Land_3_2
       rect:
         serializedVersion: 2
-        x: 395
-        y: 990
-        width: 134
-        height: 134
+        x: 384
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 1fc65b3a0fca46e40800000000000000
-      internalID: 5648829982168149233
+      spriteID: 20b1348a85bb0dc44b4347ac63f1ba46
+      internalID: -938353888
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Land_12
+      name: Meganeura_Shadow_Land_4_0
       rect:
         serializedVersion: 2
-        x: 8
-        y: 802
-        width: 122
-        height: 124
+        x: 0
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 82ebd7d64f417b040800000000000000
-      internalID: 4663218979206970920
+      spriteID: 73ebe43ff7a5f3b40b6bb5a8d4de6aa4
+      internalID: -1678408887
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Land_13
+      name: Meganeura_Shadow_Land_4_1
       rect:
         serializedVersion: 2
-        x: 199
-        y: 799
-        width: 124
-        height: 130
+        x: 192
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 9fa65667633e2a2e0800000000000000
-      internalID: -2115879051856614663
+      spriteID: bfbc95accd7e44b40993e38834b8ec1f
+      internalID: -1050940568
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Land_14
+      name: Meganeura_Shadow_Land_4_2
       rect:
         serializedVersion: 2
-        x: 390
-        y: 797
-        width: 125
-        height: 134
+        x: 384
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 9c985e43054113410800000000000000
-      internalID: 1454966489334778313
+      spriteID: 710a5e9be2708034d8ccf4b62bd719a2
+      internalID: -195817490
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Land_15
+      name: Meganeura_Shadow_Land_5_0
       rect:
         serializedVersion: 2
-        x: 14
-        y: 614
-        width: 120
-        height: 124
+        x: 0
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 1703fe29448ed3da0800000000000000
-      internalID: -5963354950348099471
+      spriteID: fd06d4bbdf74d71438b54b08a9868f9e
+      internalID: -1842634549
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Land_16
+      name: Meganeura_Shadow_Land_5_1
       rect:
         serializedVersion: 2
-        x: 204
-        y: 606
-        width: 131
-        height: 130
+        x: 192
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 5d48f84f8a6f082a0800000000000000
-      internalID: -6737113837028277035
+      spriteID: da2d8d35827f63e4a8c2ed545655e76d
+      internalID: -2020819874
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Land_17
+      name: Meganeura_Shadow_Land_5_2
       rect:
         serializedVersion: 2
-        x: 395
-        y: 604
-        width: 134
-        height: 134
+        x: 384
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0f4fc144a4c29f130800000000000000
-      internalID: 3600958074541372656
+      spriteID: 14cc137e47eff0c40b0f2553b598905d
+      internalID: -2071384438
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Land_18
+      name: Meganeura_Shadow_Land_6_0
       rect:
         serializedVersion: 2
-        x: 22
-        y: 432
-        width: 133
-        height: 109
+        x: 0
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 89881472311b8bac0800000000000000
-      internalID: -3839123986512246632
+      spriteID: 05628edae76102e4c8c7b58f88b40cfb
+      internalID: 105013722
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Land_19
+      name: Meganeura_Shadow_Land_6_1
       rect:
         serializedVersion: 2
-        x: 216
-        y: 424
-        width: 140
-        height: 115
+        x: 192
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b1696e5213aa69c10800000000000000
-      internalID: 2060021007634568731
+      spriteID: cdb1f6bde8923d743b28506532e3497d
+      internalID: 1441459286
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Land_20
+      name: Meganeura_Shadow_Land_6_2
       rect:
         serializedVersion: 2
-        x: 407
-        y: 421
-        width: 144
-        height: 119
+        x: 384
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ee780c76968cec1b0800000000000000
-      internalID: -5634345728756119570
+      spriteID: efda81b4c1092b245adaa375ca90f3c3
+      internalID: -714417657
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Land_21
+      name: Meganeura_Shadow_Land_7_0
       rect:
         serializedVersion: 2
-        x: 15
-        y: 256
-        width: 152
-        height: 100
+        x: 0
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d96209b2f97a23c80800000000000000
-      internalID: -8344422857491601763
+      spriteID: 7ad0d30d775cbd74c96c8e2c9413f9a0
+      internalID: 241003209
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Land_22
+      name: Meganeura_Shadow_Land_7_1
       rect:
         serializedVersion: 2
-        x: 210
-        y: 250
-        width: 158
-        height: 107
+        x: 192
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7eee5a9ff8c53c730800000000000000
-      internalID: 4018157065983094503
+      spriteID: a8c3bb28e339254429830964e953585f
+      internalID: -1318577512
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Land_23
+      name: Meganeura_Shadow_Land_7_2
       rect:
         serializedVersion: 2
-        x: 400
-        y: 247
-        width: 162
-        height: 111
+        x: 384
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d4fe72d66735c1d50800000000000000
-      internalID: 6709329312977776461
+      spriteID: ef207d39b6193114aafb7f735c9bce20
+      internalID: -357557662
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Land_24
+      name: Meganeura_Shadow_Land_8_0
       rect:
         serializedVersion: 2
-        x: 20
-        y: 68
-        width: 152
-        height: 100
+        x: 0
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ab6a81cbc2efdede0800000000000000
-      internalID: -1302105249152457030
+      spriteID: 142bcd67f24720040808a24de6648bf3
+      internalID: -1814514212
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Land_25
+      name: Meganeura_Shadow_Land_8_1
       rect:
         serializedVersion: 2
-        x: 209
-        y: 67
-        width: 158
-        height: 102
+        x: 192
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 3a0f244a3da238f70800000000000000
-      internalID: 9188234753248260259
+      spriteID: c7cae9bbdc6249049878a029a07bba65
+      internalID: -396807490
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shadow_Land_26
+      name: Meganeura_Shadow_Land_8_2
       rect:
         serializedVersion: 2
-        x: 399
-        y: 67
-        width: 162
-        height: 103
+        x: 384
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 8c85b621b4242f880800000000000000
-      internalID: -8578721449988368184
+      spriteID: 22c10dc3b41e44f429006aa947c81e5a
+      internalID: -88592745
       vertices: []
       indices: 
       edges: []
@@ -800,33 +800,33 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Meganeura_Shadow_Land_0: -3766370804040179254
-      Meganeura_Shadow_Land_1: 7420226469397405598
-      Meganeura_Shadow_Land_10: 8753644101802112525
-      Meganeura_Shadow_Land_11: 5648829982168149233
-      Meganeura_Shadow_Land_12: 4663218979206970920
-      Meganeura_Shadow_Land_13: -2115879051856614663
-      Meganeura_Shadow_Land_14: 1454966489334778313
-      Meganeura_Shadow_Land_15: -5963354950348099471
-      Meganeura_Shadow_Land_16: -6737113837028277035
-      Meganeura_Shadow_Land_17: 3600958074541372656
-      Meganeura_Shadow_Land_18: -3839123986512246632
-      Meganeura_Shadow_Land_19: 2060021007634568731
-      Meganeura_Shadow_Land_2: 8503514985503693693
-      Meganeura_Shadow_Land_20: -5634345728756119570
-      Meganeura_Shadow_Land_21: -8344422857491601763
-      Meganeura_Shadow_Land_22: 4018157065983094503
-      Meganeura_Shadow_Land_23: 6709329312977776461
-      Meganeura_Shadow_Land_24: -1302105249152457030
-      Meganeura_Shadow_Land_25: 9188234753248260259
-      Meganeura_Shadow_Land_26: -8578721449988368184
-      Meganeura_Shadow_Land_3: 1237103278763150240
-      Meganeura_Shadow_Land_4: -1710289856221028800
-      Meganeura_Shadow_Land_5: 510726518636938158
-      Meganeura_Shadow_Land_6: -6129483418067081879
-      Meganeura_Shadow_Land_7: -8806282398795566677
-      Meganeura_Shadow_Land_8: 2636742743764070291
-      Meganeura_Shadow_Land_9: 8882087311123135124
+      Meganeura_Shadow_Land_0_0: 200347698
+      Meganeura_Shadow_Land_0_1: -408325636
+      Meganeura_Shadow_Land_0_2: 1857297972
+      Meganeura_Shadow_Land_1_0: -2112845184
+      Meganeura_Shadow_Land_1_1: -51583768
+      Meganeura_Shadow_Land_1_2: -1108956113
+      Meganeura_Shadow_Land_2_0: 2021858261
+      Meganeura_Shadow_Land_2_1: -1208710104
+      Meganeura_Shadow_Land_2_2: 732700737
+      Meganeura_Shadow_Land_3_0: -620652513
+      Meganeura_Shadow_Land_3_1: 299217774
+      Meganeura_Shadow_Land_3_2: -938353888
+      Meganeura_Shadow_Land_4_0: -1678408887
+      Meganeura_Shadow_Land_4_1: -1050940568
+      Meganeura_Shadow_Land_4_2: -195817490
+      Meganeura_Shadow_Land_5_0: -1842634549
+      Meganeura_Shadow_Land_5_1: -2020819874
+      Meganeura_Shadow_Land_5_2: -2071384438
+      Meganeura_Shadow_Land_6_0: 105013722
+      Meganeura_Shadow_Land_6_1: 1441459286
+      Meganeura_Shadow_Land_6_2: -714417657
+      Meganeura_Shadow_Land_7_0: 241003209
+      Meganeura_Shadow_Land_7_1: -1318577512
+      Meganeura_Shadow_Land_7_2: -357557662
+      Meganeura_Shadow_Land_8_0: -1814514212
+      Meganeura_Shadow_Land_8_1: -396807490
+      Meganeura_Shadow_Land_8_2: -88592745
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

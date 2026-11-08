@@ -151,7 +151,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -179,7 +179,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -220,793 +220,793 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Meganeura_Perch_Torn1_0
+      name: Meganeura_Perch_Torn1_0_0
       rect:
         serializedVersion: 2
-        x: 15
-        y: 1554
-        width: 162
-        height: 107
+        x: 0
+        y: 1536
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b7fa860ff5dd1bb10800000000000000
-      internalID: 1995619514026864507
+      spriteID: 6bc63161069307247993c4a33c4108f2
+      internalID: 1982100062
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Perch_Torn1_1
+      name: Meganeura_Perch_Torn1_0_1
       rect:
         serializedVersion: 2
-        x: 207
-        y: 1554
-        width: 162
-        height: 106
+        x: 192
+        y: 1536
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 742a38334d4a28e50800000000000000
-      internalID: 6810186817841898055
+      spriteID: e4a1c897a272cb04e9785d83fbdd3745
+      internalID: -214448971
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Perch_Torn1_2
+      name: Meganeura_Perch_Torn1_0_2
       rect:
         serializedVersion: 2
-        x: 399
-        y: 1554
-        width: 162
-        height: 107
+        x: 384
+        y: 1536
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: eac2561a56a4504b0800000000000000
-      internalID: -5474887971639055186
+      spriteID: beed16df0f9e52440948709da95936b1
+      internalID: 120157245
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Perch_Torn1_3
+      name: Meganeura_Perch_Torn1_0_3
       rect:
         serializedVersion: 2
-        x: 592
-        y: 1554
-        width: 161
-        height: 106
+        x: 576
+        y: 1536
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: dfbdf46e94e5e01e0800000000000000
-      internalID: -2229741094012199939
+      spriteID: e51057bdf7ed959428dfaa2d46e39192
+      internalID: -1862412065
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Perch_Torn1_4
+      name: Meganeura_Perch_Torn1_1_0
       rect:
         serializedVersion: 2
-        x: 16
-        y: 1366
-        width: 162
-        height: 116
+        x: 0
+        y: 1344
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f76dc48ddfd1e9ff0800000000000000
-      internalID: -27551571624798593
+      spriteID: 2a005c0cdea57f547b997ed3222a0816
+      internalID: -1087537650
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Perch_Torn1_5
+      name: Meganeura_Perch_Torn1_1_1
       rect:
         serializedVersion: 2
-        x: 209
-        y: 1366
-        width: 161
-        height: 118
+        x: 192
+        y: 1344
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: fd0cb6f8e42ef1150800000000000000
-      internalID: 5845639668391723231
+      spriteID: 1055ec0bce69c744bb8dad3a0eacdb35
+      internalID: 1698578238
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Perch_Torn1_6
+      name: Meganeura_Perch_Torn1_1_2
       rect:
         serializedVersion: 2
-        x: 400
-        y: 1366
-        width: 162
-        height: 116
+        x: 384
+        y: 1344
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7835f5206b28959d0800000000000000
-      internalID: -2785051176316480633
+      spriteID: ba10d32e7676d33408d70ffb47ffed35
+      internalID: 912204924
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Perch_Torn1_7
+      name: Meganeura_Perch_Torn1_1_3
       rect:
         serializedVersion: 2
-        x: 592
-        y: 1366
-        width: 162
-        height: 115
+        x: 576
+        y: 1344
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 63b165199ebc33640800000000000000
-      internalID: 5058611010493356854
+      spriteID: 5aaa1a5d11a117c4481025bc1cc8e5a8
+      internalID: -1930662427
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Perch_Torn1_8
+      name: Meganeura_Perch_Torn1_2_0
       rect:
         serializedVersion: 2
-        x: 24
-        y: 1189
-        width: 143
-        height: 119
+        x: 0
+        y: 1152
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: bb086e89e8a3dd440800000000000000
-      internalID: 4962186748557164731
+      spriteID: a2150d8ced76f6e4d856f7b0fac9f6d5
+      internalID: 81299042
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Perch_Torn1_9
+      name: Meganeura_Perch_Torn1_2_1
       rect:
         serializedVersion: 2
-        x: 216
-        y: 1187
-        width: 143
-        height: 122
+        x: 192
+        y: 1152
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 691cf252afc0527d0800000000000000
-      internalID: -2943932512911507050
+      spriteID: 743234ce7a1215c4cb68a7edf20a6105
+      internalID: 1839060831
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Perch_Torn1_10
+      name: Meganeura_Perch_Torn1_2_2
       rect:
         serializedVersion: 2
-        x: 408
-        y: 1189
-        width: 143
-        height: 119
+        x: 384
+        y: 1152
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 218103723e21ca320800000000000000
-      internalID: 2570450254146050066
+      spriteID: ed3594434d6828944b2426c90e95098c
+      internalID: -358240090
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Perch_Torn1_11
+      name: Meganeura_Perch_Torn1_2_3
       rect:
         serializedVersion: 2
-        x: 599
-        y: 1189
-        width: 144
-        height: 117
+        x: 576
+        y: 1152
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0b4b7fd6e33c36a80800000000000000
-      internalID: -8474715400880802640
+      spriteID: 2f01a0cfd12d2864dbe9f7f537323e11
+      internalID: 924539181
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Perch_Torn1_12
+      name: Meganeura_Perch_Torn1_3_0
       rect:
         serializedVersion: 2
-        x: 10
-        y: 990
-        width: 135
-        height: 135
+        x: 0
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b9a684c2b2c199680800000000000000
-      internalID: -8747929829438362981
+      spriteID: e820b62066af1a54088452ae76483cba
+      internalID: -1059296457
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Perch_Torn1_13
+      name: Meganeura_Perch_Torn1_3_1
       rect:
         serializedVersion: 2
-        x: 202
-        y: 989
-        width: 135
-        height: 137
+        x: 192
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 06911f4988a6d8210800000000000000
-      internalID: 1336841799245830496
+      spriteID: 719d5f29cc87d1f458fd1ae27f4e8405
+      internalID: -1893567279
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Perch_Torn1_14
+      name: Meganeura_Perch_Torn1_3_2
       rect:
         serializedVersion: 2
-        x: 394
-        y: 990
-        width: 135
-        height: 135
+        x: 384
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 8cc5d23040e1bb480800000000000000
-      internalID: -8882472837476164408
+      spriteID: a05d5df0493e89b429b4b0032f13a01e
+      internalID: 413319918
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Perch_Torn1_15
+      name: Meganeura_Perch_Torn1_3_3
       rect:
         serializedVersion: 2
-        x: 586
-        y: 991
-        width: 135
-        height: 132
+        x: 576
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6c5dd86f90ecab9f0800000000000000
-      internalID: -451822270410795578
+      spriteID: 85c117fc5589b19499ad69179977b5c9
+      internalID: -1121375095
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Perch_Torn1_16
+      name: Meganeura_Perch_Torn1_4_0
       rect:
         serializedVersion: 2
-        x: 5
-        y: 799
-        width: 127
-        height: 133
+        x: 0
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2a24b4b5cb02d3b80800000000000000
-      internalID: -8413532535500619102
+      spriteID: fa7075d636b229e4fa60b4ee4fc1d878
+      internalID: 148128407
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Perch_Torn1_17
+      name: Meganeura_Perch_Torn1_4_1
       rect:
         serializedVersion: 2
-        x: 197
-        y: 800
-        width: 127
-        height: 133
+        x: 192
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 757399d48ee52de50800000000000000
-      internalID: 6832627936501774167
+      spriteID: 4e8122a811f90ca4a97ad74bc9ce4ce7
+      internalID: 2102050307
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Perch_Torn1_18
+      name: Meganeura_Perch_Torn1_4_2
       rect:
         serializedVersion: 2
-        x: 389
-        y: 799
-        width: 127
-        height: 133
+        x: 384
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0ed609dba8d30afe0800000000000000
-      internalID: -1179875436275929632
+      spriteID: 6e579cd13c3e42240bcdcd6ca1b34a32
+      internalID: -1634326785
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Perch_Torn1_19
+      name: Meganeura_Perch_Torn1_4_3
       rect:
         serializedVersion: 2
-        x: 581
-        y: 798
-        width: 127
-        height: 132
+        x: 576
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: da32a3f145b7efb20800000000000000
-      internalID: 3170106788946781101
+      spriteID: 27f14711a0b13ce4fb98b384366dc8be
+      internalID: -150365552
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Perch_Torn1_20
+      name: Meganeura_Perch_Torn1_5_0
       rect:
         serializedVersion: 2
-        x: 10
-        y: 606
-        width: 135
-        height: 132
+        x: 0
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f3f3a7fd2d880db20800000000000000
-      internalID: 3157173778060558143
+      spriteID: 445cdd6943db86a43a9aa050de0fd5b2
+      internalID: -146052118
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Perch_Torn1_21
+      name: Meganeura_Perch_Torn1_5_1
       rect:
         serializedVersion: 2
-        x: 202
-        y: 608
-        width: 135
-        height: 128
+        x: 192
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 06cbf9a32c1c28ad0800000000000000
-      internalID: -2701383786517513120
+      spriteID: d1a5e89e0799cfa4295db65d0d558483
+      internalID: 1983999467
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Perch_Torn1_22
+      name: Meganeura_Perch_Torn1_5_2
       rect:
         serializedVersion: 2
-        x: 394
-        y: 606
-        width: 135
-        height: 132
+        x: 384
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: db263876b830fef00800000000000000
-      internalID: 1148140327274767037
+      spriteID: 695f8d5438eac5641bd4ae35badd69c8
+      internalID: 942734339
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Perch_Torn1_23
+      name: Meganeura_Perch_Torn1_5_3
       rect:
         serializedVersion: 2
-        x: 586
-        y: 605
-        width: 135
-        height: 134
+        x: 576
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 415fdb169ed74a530800000000000000
-      internalID: 3865352821511419156
+      spriteID: e506d812962f47d45a4f3e1a7a9dbec8
+      internalID: 2010961065
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Perch_Torn1_24
+      name: Meganeura_Perch_Torn1_6_0
       rect:
         serializedVersion: 2
-        x: 24
-        y: 423
-        width: 143
-        height: 117
+        x: 0
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6160f83a0d5cceb00800000000000000
-      internalID: 859279128808850966
+      spriteID: fc76a653a53163343bd34f5e3b3abba3
+      internalID: 345721229
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Perch_Torn1_25
+      name: Meganeura_Perch_Torn1_6_1
       rect:
         serializedVersion: 2
-        x: 216
-        y: 425
-        width: 143
-        height: 113
+        x: 192
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: aca81508f1de889c0800000000000000
-      internalID: -3924626355700790582
+      spriteID: 39ffdf40008b27b4594905dcda518e7c
+      internalID: 1443076011
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Perch_Torn1_26
+      name: Meganeura_Perch_Torn1_6_2
       rect:
         serializedVersion: 2
-        x: 408
-        y: 423
-        width: 143
-        height: 117
+        x: 384
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 86df8171d38023b40800000000000000
-      internalID: 5418402360153668968
+      spriteID: 1f604be04b11f3048ad1498ad296d8f9
+      internalID: 1330338580
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Perch_Torn1_27
+      name: Meganeura_Perch_Torn1_6_3
       rect:
         serializedVersion: 2
-        x: 599
-        y: 422
-        width: 144
-        height: 119
+        x: 576
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: dfa476c10c27bc4b0800000000000000
-      internalID: -5419111557174441219
+      spriteID: 978f628ca9c609440bbf4c7ff3a0f244
+      internalID: 65056152
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Perch_Torn1_28
+      name: Meganeura_Perch_Torn1_7_0
       rect:
         serializedVersion: 2
-        x: 16
-        y: 239
-        width: 162
-        height: 117
+        x: 0
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7d9f873279caffba0800000000000000
-      internalID: -6052929609027487273
+      spriteID: a272f4f20d5487641b1093c129acfa02
+      internalID: 314586285
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Perch_Torn1_29
+      name: Meganeura_Perch_Torn1_7_1
       rect:
         serializedVersion: 2
-        x: 209
-        y: 239
-        width: 161
-        height: 116
+        x: 192
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 4cc1b224594458050800000000000000
-      internalID: 5802119102787689668
+      spriteID: fd02ea53b4d7b2f4aab8463a6b669b4e
+      internalID: -982091428
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Perch_Torn1_30
+      name: Meganeura_Perch_Torn1_7_2
       rect:
         serializedVersion: 2
-        x: 400
-        y: 239
-        width: 162
-        height: 117
+        x: 384
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 000b4306d4a8e1010800000000000000
-      internalID: 1161517818839347200
+      spriteID: 9329b3e8bb58d214892c5f39aabd0f64
+      internalID: 189337324
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Perch_Torn1_31
+      name: Meganeura_Perch_Torn1_7_3
       rect:
         serializedVersion: 2
-        x: 592
-        y: 239
-        width: 162
-        height: 116
+        x: 576
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 068d2ae9bbfd69c40800000000000000
-      internalID: 5518844390302472288
+      spriteID: e9ce202e7d4a51842a6e1e09ac1961e6
+      internalID: 815427321
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Perch_Torn1_32
+      name: Meganeura_Perch_Torn1_8_0
       rect:
         serializedVersion: 2
-        x: 15
-        y: 49
-        width: 162
-        height: 119
+        x: 0
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 28c0540df02d6dbf0800000000000000
-      internalID: -299821359813030782
+      spriteID: 4150dc32465113b40801851271005942
+      internalID: -1286494729
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Perch_Torn1_33
+      name: Meganeura_Perch_Torn1_8_1
       rect:
         serializedVersion: 2
-        x: 207
-        y: 49
-        width: 162
-        height: 119
+        x: 192
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 50a5ab623b9b719a0800000000000000
-      internalID: -6262332577735353851
+      spriteID: 2c99db214170ed546b38b4db85f7991c
+      internalID: -1967345512
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Perch_Torn1_34
+      name: Meganeura_Perch_Torn1_8_2
       rect:
         serializedVersion: 2
-        x: 399
-        y: 49
-        width: 162
-        height: 119
+        x: 384
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 35896d6d835d5a640800000000000000
-      internalID: 5090709393911486547
+      spriteID: 4aa049b407ceb994cbe4fad64d5d7d49
+      internalID: 1901997980
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Perch_Torn1_35
+      name: Meganeura_Perch_Torn1_8_3
       rect:
         serializedVersion: 2
-        x: 591
-        y: 49
-        width: 161
-        height: 119
+        x: 576
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ffb40b7d3c1e86070800000000000000
-      internalID: 8099972161079364607
+      spriteID: c2a45539a8a66034c81a3843d9be8704
+      internalID: -1759791977
       vertices: []
       indices: 
       edges: []
@@ -1025,42 +1025,42 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Meganeura_Perch_Torn1_0: 1995619514026864507
-      Meganeura_Perch_Torn1_1: 6810186817841898055
-      Meganeura_Perch_Torn1_10: 2570450254146050066
-      Meganeura_Perch_Torn1_11: -8474715400880802640
-      Meganeura_Perch_Torn1_12: -8747929829438362981
-      Meganeura_Perch_Torn1_13: 1336841799245830496
-      Meganeura_Perch_Torn1_14: -8882472837476164408
-      Meganeura_Perch_Torn1_15: -451822270410795578
-      Meganeura_Perch_Torn1_16: -8413532535500619102
-      Meganeura_Perch_Torn1_17: 6832627936501774167
-      Meganeura_Perch_Torn1_18: -1179875436275929632
-      Meganeura_Perch_Torn1_19: 3170106788946781101
-      Meganeura_Perch_Torn1_2: -5474887971639055186
-      Meganeura_Perch_Torn1_20: 3157173778060558143
-      Meganeura_Perch_Torn1_21: -2701383786517513120
-      Meganeura_Perch_Torn1_22: 1148140327274767037
-      Meganeura_Perch_Torn1_23: 3865352821511419156
-      Meganeura_Perch_Torn1_24: 859279128808850966
-      Meganeura_Perch_Torn1_25: -3924626355700790582
-      Meganeura_Perch_Torn1_26: 5418402360153668968
-      Meganeura_Perch_Torn1_27: -5419111557174441219
-      Meganeura_Perch_Torn1_28: -6052929609027487273
-      Meganeura_Perch_Torn1_29: 5802119102787689668
-      Meganeura_Perch_Torn1_3: -2229741094012199939
-      Meganeura_Perch_Torn1_30: 1161517818839347200
-      Meganeura_Perch_Torn1_31: 5518844390302472288
-      Meganeura_Perch_Torn1_32: -299821359813030782
-      Meganeura_Perch_Torn1_33: -6262332577735353851
-      Meganeura_Perch_Torn1_34: 5090709393911486547
-      Meganeura_Perch_Torn1_35: 8099972161079364607
-      Meganeura_Perch_Torn1_4: -27551571624798593
-      Meganeura_Perch_Torn1_5: 5845639668391723231
-      Meganeura_Perch_Torn1_6: -2785051176316480633
-      Meganeura_Perch_Torn1_7: 5058611010493356854
-      Meganeura_Perch_Torn1_8: 4962186748557164731
-      Meganeura_Perch_Torn1_9: -2943932512911507050
+      Meganeura_Perch_Torn1_0_0: 1982100062
+      Meganeura_Perch_Torn1_0_1: -214448971
+      Meganeura_Perch_Torn1_0_2: 120157245
+      Meganeura_Perch_Torn1_0_3: -1862412065
+      Meganeura_Perch_Torn1_1_0: -1087537650
+      Meganeura_Perch_Torn1_1_1: 1698578238
+      Meganeura_Perch_Torn1_1_2: 912204924
+      Meganeura_Perch_Torn1_1_3: -1930662427
+      Meganeura_Perch_Torn1_2_0: 81299042
+      Meganeura_Perch_Torn1_2_1: 1839060831
+      Meganeura_Perch_Torn1_2_2: -358240090
+      Meganeura_Perch_Torn1_2_3: 924539181
+      Meganeura_Perch_Torn1_3_0: -1059296457
+      Meganeura_Perch_Torn1_3_1: -1893567279
+      Meganeura_Perch_Torn1_3_2: 413319918
+      Meganeura_Perch_Torn1_3_3: -1121375095
+      Meganeura_Perch_Torn1_4_0: 148128407
+      Meganeura_Perch_Torn1_4_1: 2102050307
+      Meganeura_Perch_Torn1_4_2: -1634326785
+      Meganeura_Perch_Torn1_4_3: -150365552
+      Meganeura_Perch_Torn1_5_0: -146052118
+      Meganeura_Perch_Torn1_5_1: 1983999467
+      Meganeura_Perch_Torn1_5_2: 942734339
+      Meganeura_Perch_Torn1_5_3: 2010961065
+      Meganeura_Perch_Torn1_6_0: 345721229
+      Meganeura_Perch_Torn1_6_1: 1443076011
+      Meganeura_Perch_Torn1_6_2: 1330338580
+      Meganeura_Perch_Torn1_6_3: 65056152
+      Meganeura_Perch_Torn1_7_0: 314586285
+      Meganeura_Perch_Torn1_7_1: -982091428
+      Meganeura_Perch_Torn1_7_2: 189337324
+      Meganeura_Perch_Torn1_7_3: 815427321
+      Meganeura_Perch_Torn1_8_0: -1286494729
+      Meganeura_Perch_Torn1_8_1: -1967345512
+      Meganeura_Perch_Torn1_8_2: 1901997980
+      Meganeura_Perch_Torn1_8_3: -1759791977
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

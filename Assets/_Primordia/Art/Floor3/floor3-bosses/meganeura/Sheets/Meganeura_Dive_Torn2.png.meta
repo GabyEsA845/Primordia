@@ -124,7 +124,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -152,7 +152,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -193,595 +193,595 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Meganeura_Dive_Torn2_0
+      name: Meganeura_Dive_Torn2_0_0
       rect:
         serializedVersion: 2
-        x: 36
-        y: 1582
-        width: 113
-        height: 73
+        x: 0
+        y: 1536
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0fa555c548f6c1b10800000000000000
-      internalID: 1953558952647416560
+      spriteID: b555b7c3f5e3ee44ea5cc2c1dcc2a972
+      internalID: -2004806693
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Dive_Torn2_1
+      name: Meganeura_Dive_Torn2_0_1
       rect:
         serializedVersion: 2
-        x: 228
-        y: 1582
-        width: 113
-        height: 73
+        x: 192
+        y: 1536
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 972e903978b8d8e20800000000000000
-      internalID: 3354490711864631929
+      spriteID: 394ea0494dd8d224783ea54bb14b1dca
+      internalID: -203584293
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Dive_Torn2_2
+      name: Meganeura_Dive_Torn2_0_2
       rect:
         serializedVersion: 2
-        x: 419
-        y: 1582
-        width: 114
-        height: 73
+        x: 384
+        y: 1536
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 9a537fb7f714201b0800000000000000
-      internalID: -5691914963246434903
+      spriteID: d78065a660c33dd408c1e0411d9ce0cd
+      internalID: 889599846
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Dive_Torn2_3
+      name: Meganeura_Dive_Torn2_1_0
       rect:
         serializedVersion: 2
-        x: 29
-        y: 1394
-        width: 107
-        height: 69
+        x: 0
+        y: 1344
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2ac81adf754f97c80800000000000000
-      internalID: -8324353777463096158
+      spriteID: 6bd648400c9c84e458234bdde1fb5616
+      internalID: 2127896985
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Dive_Torn2_4
+      name: Meganeura_Dive_Torn2_1_1
       rect:
         serializedVersion: 2
-        x: 223
-        y: 1394
-        width: 106
-        height: 72
+        x: 192
+        y: 1344
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 04813870fdfb0fca0800000000000000
-      internalID: -5985072940150745024
+      spriteID: 506a9fb3cecc35940af1798bc0307d95
+      internalID: 2113589465
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Dive_Torn2_5
+      name: Meganeura_Dive_Torn2_1_2
       rect:
         serializedVersion: 2
-        x: 412
-        y: 1394
-        width: 108
-        height: 69
+        x: 384
+        y: 1344
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7d30e6ff1dfd391f0800000000000000
-      internalID: -1039240995965893673
+      spriteID: c68051c448105bc4cbd36690eeeec55a
+      internalID: -764565446
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Dive_Torn2_6
+      name: Meganeura_Dive_Torn2_2_0
       rect:
         serializedVersion: 2
-        x: 32
-        y: 1213
-        width: 92
-        height: 77
+        x: 0
+        y: 1152
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 4c1dafd6ce27b8c30800000000000000
-      internalID: 4362707023821459908
+      spriteID: b1e5b2e119fc7a84f8c8e5654ee97f0f
+      internalID: 1074438465
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Dive_Torn2_7
+      name: Meganeura_Dive_Torn2_2_1
       rect:
         serializedVersion: 2
-        x: 225
-        y: 1213
-        width: 91
-        height: 81
+        x: 192
+        y: 1152
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 378ea6236fb7404f0800000000000000
-      internalID: -863428931210254221
+      spriteID: 933988bc4cba9cb4c839ba572c3f1f98
+      internalID: 199707375
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Dive_Torn2_8
+      name: Meganeura_Dive_Torn2_2_2
       rect:
         serializedVersion: 2
-        x: 414
-        y: 1213
-        width: 94
-        height: 74
+        x: 384
+        y: 1152
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 597e5155dc1e73830800000000000000
-      internalID: 4050954661855094677
+      spriteID: ace905c5777a2c145a8db2cf9f81e9d5
+      internalID: -1383360643
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Dive_Torn2_9
+      name: Meganeura_Dive_Torn2_3_0
       rect:
         serializedVersion: 2
-        x: 17
-        y: 1022
-        width: 109
-        height: 95
+        x: 0
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 14edf1bee0c9eab70800000000000000
-      internalID: 8912232300500999745
+      spriteID: 55eb86ec6213a24428a2e59661a64112
+      internalID: 59582307
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Dive_Torn2_10
+      name: Meganeura_Dive_Torn2_3_1
       rect:
         serializedVersion: 2
-        x: 209
-        y: 1022
-        width: 109
-        height: 97
+        x: 192
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 5d6b1f739dea8b910800000000000000
-      internalID: 1853423494632683221
+      spriteID: f6b1973d8f4e3cb418ff8d5913ff24d4
+      internalID: -1477223241
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Dive_Torn2_11
+      name: Meganeura_Dive_Torn2_3_2
       rect:
         serializedVersion: 2
-        x: 401
-        y: 1022
-        width: 109
-        height: 92
+        x: 384
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 1ab5294521328dde0800000000000000
-      internalID: -1308257130115867743
+      spriteID: f94f74b010d4cac418200b483da5d9c4
+      internalID: -1362070084
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Dive_Torn2_12
+      name: Meganeura_Dive_Torn2_4_0
       rect:
         serializedVersion: 2
-        x: 12
-        y: 830
-        width: 114
-        height: 108
+        x: 0
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7bdb957c33a878930800000000000000
-      internalID: 4145433937010343351
+      spriteID: cd7b93202f1efd84bab2d3dff00a3c79
+      internalID: -2053765754
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Dive_Torn2_13
+      name: Meganeura_Dive_Torn2_4_1
       rect:
         serializedVersion: 2
-        x: 204
-        y: 830
-        width: 114
-        height: 109
+        x: 192
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 426f3218dae28e6c0800000000000000
-      internalID: -4113986936872110556
+      spriteID: d17843e4c65f7244d8bae30ff6d4a976
+      internalID: 651169411
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Dive_Torn2_14
+      name: Meganeura_Dive_Torn2_4_2
       rect:
         serializedVersion: 2
-        x: 396
-        y: 830
-        width: 114
-        height: 106
+        x: 384
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 3e785fcad8745b100800000000000000
-      internalID: 123083238640289763
+      spriteID: c59c43dfc0d6aca498cf386781e51438
+      internalID: 1266109965
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Dive_Torn2_15
+      name: Meganeura_Dive_Torn2_5_0
       rect:
         serializedVersion: 2
-        x: 17
-        y: 636
-        width: 109
-        height: 115
+        x: 0
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: dd59097fc6e5eb7b0800000000000000
-      internalID: -5206620297090787875
+      spriteID: f4a45ddffb9b06a4198c18fd07eabc35
+      internalID: -544801015
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Dive_Torn2_16
+      name: Meganeura_Dive_Torn2_5_1
       rect:
         serializedVersion: 2
-        x: 209
-        y: 636
-        width: 109
-        height: 116
+        x: 192
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2b67b185778bb05a0800000000000000
-      internalID: -6553942009988811086
+      spriteID: 0b2826f1d17602b44854d89c556da028
+      internalID: 586799996
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Dive_Torn2_17
+      name: Meganeura_Dive_Torn2_5_2
       rect:
         serializedVersion: 2
-        x: 401
-        y: 636
-        width: 109
-        height: 114
+        x: 384
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c69a91a304f79db20800000000000000
-      internalID: 3159696527406508396
+      spriteID: ce7147cac56617147aba206aaaa433fc
+      internalID: 2045872369
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Dive_Torn2_18
+      name: Meganeura_Dive_Torn2_6_0
       rect:
         serializedVersion: 2
-        x: 33
-        y: 442
-        width: 91
-        height: 115
+        x: 0
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6bdfee82e5957a890800000000000000
-      internalID: -7446885197885276746
+      spriteID: e48d8fb0c1e0b6849ad030cb1786e2bf
+      internalID: -1854913218
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Dive_Torn2_19
+      name: Meganeura_Dive_Torn2_6_1
       rect:
         serializedVersion: 2
-        x: 225
-        y: 442
-        width: 91
-        height: 115
+        x: 192
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0543c584e8192efd0800000000000000
-      internalID: -2314127218229627824
+      spriteID: fdf8b153a937ad949a9e0cce88c67d8f
+      internalID: 756393572
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Dive_Torn2_20
+      name: Meganeura_Dive_Torn2_6_2
       rect:
         serializedVersion: 2
-        x: 416
-        y: 442
-        width: 92
-        height: 114
+        x: 384
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c60f8146f8f178f60800000000000000
-      internalID: 8036426760786079852
+      spriteID: 4319db20331a83c48870705ecf1b845e
+      internalID: 1741764667
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Dive_Torn2_21
+      name: Meganeura_Dive_Torn2_7_0
       rect:
         serializedVersion: 2
-        x: 38
-        y: 250
-        width: 102
-        height: 123
+        x: 0
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: cb8ed6a46a69f8b40800000000000000
-      internalID: 5444736115471673532
+      spriteID: 3d49a7de79eca524d8d8094fdc00aa86
+      internalID: -969822076
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Dive_Torn2_22
+      name: Meganeura_Dive_Torn2_7_1
       rect:
         serializedVersion: 2
-        x: 231
-        y: 250
-        width: 102
-        height: 123
+        x: 192
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 321ee8682e6a89790800000000000000
-      internalID: -7523079685672083165
+      spriteID: 3e260862bb1d72d429eb20703f59129e
+      internalID: 285171573
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Dive_Torn2_23
+      name: Meganeura_Dive_Torn2_7_2
       rect:
         serializedVersion: 2
-        x: 421
-        y: 250
-        width: 103
-        height: 123
+        x: 384
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 37f7e036d632e8290800000000000000
-      internalID: -7886326944758857869
+      spriteID: f1e610edbd3fe47459494b0ce85048b0
+      internalID: -1764623977
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Dive_Torn2_24
+      name: Meganeura_Dive_Torn2_8_0
       rect:
         serializedVersion: 2
-        x: 43
-        y: 60
-        width: 113
-        height: 125
+        x: 0
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2efb617ff27dc07b0800000000000000
-      internalID: -5256590064039313438
+      spriteID: 547ecb094d252084cad6a765556d32f2
+      internalID: -1620100852
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Dive_Torn2_25
+      name: Meganeura_Dive_Torn2_8_1
       rect:
         serializedVersion: 2
-        x: 235
-        y: 60
-        width: 113
-        height: 125
+        x: 192
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2acebff7f00f2a020800000000000000
-      internalID: 2351705904803212450
+      spriteID: 3117d979441c8384da6e3ed0755bd69e
+      internalID: -1025868507
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Dive_Torn2_26
+      name: Meganeura_Dive_Torn2_8_2
       rect:
         serializedVersion: 2
-        x: 427
-        y: 60
-        width: 114
-        height: 125
+        x: 384
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 41cfdf26fa165b7c0800000000000000
-      internalID: -4056228483469280236
+      spriteID: a2bfd58ae3523a84b810dc65d017bf88
+      internalID: -1270677962
       vertices: []
       indices: 
       edges: []
@@ -800,33 +800,33 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Meganeura_Dive_Torn2_0: 1953558952647416560
-      Meganeura_Dive_Torn2_1: 3354490711864631929
-      Meganeura_Dive_Torn2_10: 1853423494632683221
-      Meganeura_Dive_Torn2_11: -1308257130115867743
-      Meganeura_Dive_Torn2_12: 4145433937010343351
-      Meganeura_Dive_Torn2_13: -4113986936872110556
-      Meganeura_Dive_Torn2_14: 123083238640289763
-      Meganeura_Dive_Torn2_15: -5206620297090787875
-      Meganeura_Dive_Torn2_16: -6553942009988811086
-      Meganeura_Dive_Torn2_17: 3159696527406508396
-      Meganeura_Dive_Torn2_18: -7446885197885276746
-      Meganeura_Dive_Torn2_19: -2314127218229627824
-      Meganeura_Dive_Torn2_2: -5691914963246434903
-      Meganeura_Dive_Torn2_20: 8036426760786079852
-      Meganeura_Dive_Torn2_21: 5444736115471673532
-      Meganeura_Dive_Torn2_22: -7523079685672083165
-      Meganeura_Dive_Torn2_23: -7886326944758857869
-      Meganeura_Dive_Torn2_24: -5256590064039313438
-      Meganeura_Dive_Torn2_25: 2351705904803212450
-      Meganeura_Dive_Torn2_26: -4056228483469280236
-      Meganeura_Dive_Torn2_3: -8324353777463096158
-      Meganeura_Dive_Torn2_4: -5985072940150745024
-      Meganeura_Dive_Torn2_5: -1039240995965893673
-      Meganeura_Dive_Torn2_6: 4362707023821459908
-      Meganeura_Dive_Torn2_7: -863428931210254221
-      Meganeura_Dive_Torn2_8: 4050954661855094677
-      Meganeura_Dive_Torn2_9: 8912232300500999745
+      Meganeura_Dive_Torn2_0_0: -2004806693
+      Meganeura_Dive_Torn2_0_1: -203584293
+      Meganeura_Dive_Torn2_0_2: 889599846
+      Meganeura_Dive_Torn2_1_0: 2127896985
+      Meganeura_Dive_Torn2_1_1: 2113589465
+      Meganeura_Dive_Torn2_1_2: -764565446
+      Meganeura_Dive_Torn2_2_0: 1074438465
+      Meganeura_Dive_Torn2_2_1: 199707375
+      Meganeura_Dive_Torn2_2_2: -1383360643
+      Meganeura_Dive_Torn2_3_0: 59582307
+      Meganeura_Dive_Torn2_3_1: -1477223241
+      Meganeura_Dive_Torn2_3_2: -1362070084
+      Meganeura_Dive_Torn2_4_0: -2053765754
+      Meganeura_Dive_Torn2_4_1: 651169411
+      Meganeura_Dive_Torn2_4_2: 1266109965
+      Meganeura_Dive_Torn2_5_0: -544801015
+      Meganeura_Dive_Torn2_5_1: 586799996
+      Meganeura_Dive_Torn2_5_2: 2045872369
+      Meganeura_Dive_Torn2_6_0: -1854913218
+      Meganeura_Dive_Torn2_6_1: 756393572
+      Meganeura_Dive_Torn2_6_2: 1741764667
+      Meganeura_Dive_Torn2_7_0: -969822076
+      Meganeura_Dive_Torn2_7_1: 285171573
+      Meganeura_Dive_Torn2_7_2: -1764623977
+      Meganeura_Dive_Torn2_8_0: -1620100852
+      Meganeura_Dive_Torn2_8_1: -1025868507
+      Meganeura_Dive_Torn2_8_2: -1270677962
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

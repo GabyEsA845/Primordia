@@ -913,7 +913,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -941,7 +941,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -982,6381 +982,793 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_0
+      name: Meganeura_Grounded_Burning_0_0
       rect:
         serializedVersion: 2
-        x: 104
-        y: 1666
-        width: 10
-        height: 24
+        x: 0
+        y: 1536
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: eac51fdffd40ac120800000000000000
-      internalID: 2434763908631846062
+      spriteID: 7e8497f1f9f26fa4d884acba7041d6d1
+      internalID: -1072839806
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_1
+      name: Meganeura_Grounded_Burning_0_1
       rect:
         serializedVersion: 2
-        x: 487
-        y: 1666
-        width: 11
-        height: 15
+        x: 192
+        y: 1536
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d7899ae9529782400800000000000000
-      internalID: 299622577702803581
+      spriteID: 93a00ff6f95548f4d99a8026ca5fe422
+      internalID: 1193156175
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_2
+      name: Meganeura_Grounded_Burning_0_2
       rect:
         serializedVersion: 2
-        x: 663
-        y: 1651
-        width: 11
-        height: 19
+        x: 384
+        y: 1536
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 9e988009d8224b7d0800000000000000
-      internalID: -2903657868344915479
+      spriteID: 72ffa2d546030d449b4952fbb1513287
+      internalID: -716511303
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_3
+      name: Meganeura_Grounded_Burning_0_3
       rect:
         serializedVersion: 2
-        x: 110
-        y: 1643
-        width: 11
-        height: 13
+        x: 576
+        y: 1536
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ecde2339b4d2faf90800000000000000
-      internalID: -6940278698139259442
+      spriteID: 899d3a944e0712d46b4b77d994728b6f
+      internalID: -1778631397
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_4
+      name: Meganeura_Grounded_Burning_1_0
       rect:
         serializedVersion: 2
-        x: 156
-        y: 1628
-        width: 10
-        height: 23
+        x: 0
+        y: 1344
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ba766b6edd4855800800000000000000
-      internalID: 600532213917181867
+      spriteID: c3fd80de1c223404ea18af2b4b07d098
+      internalID: -828592977
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_5
+      name: Meganeura_Grounded_Burning_1_1
       rect:
         serializedVersion: 2
-        x: 279
-        y: 1651
-        width: 11
-        height: 13
+        x: 192
+        y: 1344
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d90f17016f851f140800000000000000
-      internalID: 4751676895713685661
+      spriteID: 1d258a88b34715346a2bc2c8cf60ca70
+      internalID: -96365740
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_6
+      name: Meganeura_Grounded_Burning_1_2
       rect:
         serializedVersion: 2
-        x: 408
-        y: 1629
-        width: 11
-        height: 24
+        x: 384
+        y: 1344
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: aafcf2eb0b96abf30800000000000000
-      internalID: 4592098977883606954
+      spriteID: 8e979aa7ebb9a904988f508d60e1d41a
+      internalID: 1528783757
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_7
+      name: Meganeura_Grounded_Burning_1_3
       rect:
         serializedVersion: 2
-        x: 485
-        y: 1643
-        width: 20
-        height: 11
+        x: 576
+        y: 1344
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e283dba3db7eab7d0800000000000000
-      internalID: -2901752209966548946
+      spriteID: 463368c1470b8dc42a8131104fbdc863
+      internalID: 2110357422
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_8
+      name: Meganeura_Grounded_Burning_2_0
       rect:
         serializedVersion: 2
-        x: 24
-        y: 1629
-        width: 11
-        height: 19
+        x: 0
+        y: 1152
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 14ec713b173926a60800000000000000
-      internalID: 7665851632283274817
+      spriteID: 8025fbef037b0e843ba15315ede0d322
+      internalID: -1018891503
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_9
+      name: Meganeura_Grounded_Burning_2_1
       rect:
         serializedVersion: 2
-        x: 82
-        y: 1628
-        width: 11
-        height: 21
+        x: 192
+        y: 1152
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 240dafe568ed65260800000000000000
-      internalID: 7086095732414533698
+      spriteID: 19fede36c819694469d9403886a6fd74
+      internalID: 1365944679
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_10
+      name: Meganeura_Grounded_Burning_2_2
       rect:
         serializedVersion: 2
-        x: 97
-        y: 1628
-        width: 10
-        height: 15
+        x: 384
+        y: 1152
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f3ecddb79725aad30800000000000000
-      internalID: 4443454664077069887
+      spriteID: c6b8b70ebfd89f249af0f4f05ee54826
+      internalID: -1914563409
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_11
+      name: Meganeura_Grounded_Burning_2_3
       rect:
         serializedVersion: 2
-        x: 121
-        y: 1626
-        width: 11
-        height: 19
+        x: 576
+        y: 1152
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6a552a2c5a67cce50800000000000000
-      internalID: 6830965189121299878
+      spriteID: ea33e386b4bccef4c857e68a78868e67
+      internalID: 502852214
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_12
+      name: Meganeura_Grounded_Burning_3_0
       rect:
         serializedVersion: 2
-        x: 225
-        y: 1620
-        width: 11
-        height: 26
+        x: 0
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: fed8738aec16414a0800000000000000
-      internalID: -6623561611741786641
+      spriteID: f128a56f3a527df4292845f1534258be
+      internalID: -1402031921
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_13
+      name: Meganeura_Grounded_Burning_3_1
       rect:
         serializedVersion: 2
-        x: 274
-        y: 1628
-        width: 11
-        height: 10
+        x: 192
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c419d315762cddc90800000000000000
-      internalID: -7143339684939329204
+      spriteID: 8a4712351aa2ced459309e9dbd192343
+      internalID: -378944549
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_14
+      name: Meganeura_Grounded_Burning_3_2
       rect:
         serializedVersion: 2
-        x: 299
-        y: 1629
-        width: 11
-        height: 21
+        x: 384
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2209001302b6683c0800000000000000
-      internalID: -4357677803429130206
+      spriteID: 714c792a043b93a4699aee192b60e32f
+      internalID: -1267641961
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_15
+      name: Meganeura_Grounded_Burning_3_3
       rect:
         serializedVersion: 2
-        x: 360
-        y: 1629
-        width: 10
-        height: 15
+        x: 576
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ed26b28c54f9d8a40800000000000000
-      internalID: 5372125052582716126
+      spriteID: df4fa493e88b72341b6c05144d8895b3
+      internalID: -158288442
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_16
+      name: Meganeura_Grounded_Burning_4_0
       rect:
         serializedVersion: 2
-        x: 467
-        y: 1628
-        width: 10
-        height: 19
+        x: 0
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: edf8d3c83565dfd70800000000000000
-      internalID: 9078507340683907038
+      spriteID: d6dc5dce7eb238944bff1b563ab35c99
+      internalID: 1224027033
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_17
+      name: Meganeura_Grounded_Burning_4_1
       rect:
         serializedVersion: 2
-        x: 480
-        y: 1628
-        width: 11
-        height: 13
+        x: 192
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7eb3b20da8bf6d540800000000000000
-      internalID: 5032486207249660903
+      spriteID: 20ff8f7007f205243abdd30b4647b324
+      internalID: -2065268439
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_18
+      name: Meganeura_Grounded_Burning_4_2
       rect:
         serializedVersion: 2
-        x: 505
-        y: 1626
-        width: 11
-        height: 15
+        x: 384
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 85bf12dc3b1280da0800000000000000
-      internalID: -5978491449209914536
+      spriteID: 182a493bc75a29942a0084ea6ec7573f
+      internalID: 1704780917
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_19
+      name: Meganeura_Grounded_Burning_4_3
       rect:
         serializedVersion: 2
-        x: 539
-        y: 1628
-        width: 11
-        height: 12
+        x: 576
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 18e3244a5cd245d80800000000000000
-      internalID: -8262929089430405503
+      spriteID: fe33b0e47054bf34fad73952f344aae8
+      internalID: -269335552
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_20
+      name: Meganeura_Grounded_Burning_5_0
       rect:
         serializedVersion: 2
-        x: 653
-        y: 1614
-        width: 20
-        height: 33
+        x: 0
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7817d9fa6a9eb8600800000000000000
-      internalID: 471727488110522759
+      spriteID: f2b4a1eb982c49849a8d59aba5715705
+      internalID: 939103381
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_21
+      name: Meganeura_Grounded_Burning_5_1
       rect:
         serializedVersion: 2
-        x: 704
-        y: 1619
-        width: 10
-        height: 24
+        x: 192
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ba0a399d3c0636f70800000000000000
-      internalID: 9179286859796422827
+      spriteID: c99f29d8af3346341ba905bed90dbba0
+      internalID: -1665792770
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_22
+      name: Meganeura_Grounded_Burning_5_2
       rect:
         serializedVersion: 2
-        x: 742
-        y: 1630
-        width: 10
-        height: 13
+        x: 384
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: adecee3d736b930e0800000000000000
-      internalID: -2289598584646086950
+      spriteID: 397bef62be714a244996fba70f06a757
+      internalID: -130202264
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_23
+      name: Meganeura_Grounded_Burning_5_3
       rect:
         serializedVersion: 2
-        x: 65
-        y: 1617
-        width: 11
-        height: 10
+        x: 576
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6b4c5e39adb26e190800000000000000
-      internalID: -7933605475782376266
+      spriteID: 1e8fe4b6866d1ec4581d2ddc4f740f09
+      internalID: 652768000
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_24
+      name: Meganeura_Grounded_Burning_6_0
       rect:
         serializedVersion: 2
-        x: 244
-        y: 1618
-        width: 10
-        height: 11
+        x: 0
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 14466167fa5155170800000000000000
-      internalID: 8166457342650901569
+      spriteID: 5b927511aa695f9449d9e198cb2b09e4
+      internalID: 2115311603
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_25
+      name: Meganeura_Grounded_Burning_6_1
       rect:
         serializedVersion: 2
-        x: 292
-        y: 1614
-        width: 11
-        height: 13
+        x: 192
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 752b49be92f854de0800000000000000
-      internalID: -1349515103118773673
+      spriteID: ebbf96f289a50fc4fac97b956bebc1f1
+      internalID: 1473259971
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_26
+      name: Meganeura_Grounded_Burning_6_2
       rect:
         serializedVersion: 2
-        x: 311
-        y: 1602
-        width: 19
-        height: 23
+        x: 384
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 688c101392071a450800000000000000
-      internalID: 6098278692654532742
+      spriteID: 15aa93a253f25c04f8a4455cd91496af
+      internalID: -1512935098
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_27
+      name: Meganeura_Grounded_Burning_6_3
       rect:
         serializedVersion: 2
-        x: 440
-        y: 1617
-        width: 20
-        height: 10
+        x: 576
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 8803d3dfbb8d4c5a0800000000000000
-      internalID: -6501833660097023864
+      spriteID: 9296925425116264e99997955394ce06
+      internalID: -279000332
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_28
+      name: Meganeura_Grounded_Burning_7_0
       rect:
         serializedVersion: 2
-        x: 51
-        y: 1602
-        width: 10
-        height: 15
+        x: 0
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 30e42974cbe750290800000000000000
-      internalID: -7924788622168797693
+      spriteID: ca26abe21d5efaa46900c731d659c342
+      internalID: -370277890
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_29
+      name: Meganeura_Grounded_Burning_7_1
       rect:
         serializedVersion: 2
-        x: 434
-        y: 1602
-        width: 11
-        height: 13
+        x: 192
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 957a9e2ea6a839de0800000000000000
-      internalID: -1327565273466034343
+      spriteID: d1f6afb7609315e4e8bf92ef38b5a070
+      internalID: -346682918
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_30
+      name: Meganeura_Grounded_Burning_7_2
       rect:
         serializedVersion: 2
-        x: 613
-        y: 1600
-        width: 11
-        height: 15
+        x: 384
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b1e72be01a6de9090800000000000000
-      internalID: -8025741498702987749
+      spriteID: d7696156156c1f0439c23979c89fb4ba
+      internalID: -947600333
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_31
+      name: Meganeura_Grounded_Burning_7_3
       rect:
         serializedVersion: 2
-        x: 666
-        y: 1601
-        width: 10
-        height: 11
+        x: 576
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 574ec35e16e8c2180800000000000000
-      internalID: -9138772992732633995
+      spriteID: 1006b493a27c4b04dbb25ec9561c46d1
+      internalID: 585091819
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_32
+      name: Meganeura_Grounded_Burning_8_0
       rect:
         serializedVersion: 2
-        x: 721
-        y: 1600
-        width: 11
-        height: 10
+        x: 0
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 870d3699ed78cf730800000000000000
-      internalID: 4034248756343066744
+      spriteID: bf4bf9bd4a3fe254d8c656bb5163c35a
+      internalID: 247885247
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_33
+      name: Meganeura_Grounded_Burning_8_1
       rect:
         serializedVersion: 2
-        x: 36
-        y: 1460
-        width: 10
-        height: 24
+        x: 192
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e3f747a0448f35240800000000000000
-      internalID: 4779436600687099710
+      spriteID: d6673d1bb5bce0845a4e17c01e260a14
+      internalID: -628190686
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_34
+      name: Meganeura_Grounded_Burning_8_2
       rect:
         serializedVersion: 2
-        x: 56
-        y: 1447
-        width: 11
-        height: 15
+        x: 384
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 421840d383760ef20800000000000000
-      internalID: 3449870805805334820
+      spriteID: 5399cdcd5367fa942b9b5a5d6efc32d6
+      internalID: 2013617704
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_35
+      name: Meganeura_Grounded_Burning_8_3
       rect:
         serializedVersion: 2
-        x: 98
-        y: 1450
-        width: 11
-        height: 17
+        x: 576
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: bd13a50454c131940800000000000000
-      internalID: 5265583473084215771
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_36
-      rect:
-        serializedVersion: 2
-        x: 268
-        y: 1461
-        width: 11
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0986fca3f51b57cb0800000000000000
-      internalID: -4866788799737272176
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_37
-      rect:
-        serializedVersion: 2
-        x: 293
-        y: 1459
-        width: 11
-        height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 22a629cbf969f0030800000000000000
-      internalID: 3463152251278879266
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_38
-      rect:
-        serializedVersion: 2
-        x: 419
-        y: 1460
-        width: 11
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a04793079559bd090800000000000000
-      internalID: -8008643300980853750
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_39
-      rect:
-        serializedVersion: 2
-        x: 440
-        y: 1447
-        width: 11
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 25a4ca0f44bef5e80800000000000000
-      internalID: -8187566916208145838
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_40
-      rect:
-        serializedVersion: 2
-        x: 483
-        y: 1450
-        width: 10
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 857c9ee0872a80d60800000000000000
-      internalID: 7856708186477807448
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_41
-      rect:
-        serializedVersion: 2
-        x: 603
-        y: 1460
-        width: 11
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 06fd19595415184e0800000000000000
-      internalID: -1981213001762349216
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_42
-      rect:
-        serializedVersion: 2
-        x: 42
-        y: 1432
-        width: 11
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: be0382ab762a26950800000000000000
-      internalID: 6440888983481757931
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_43
-      rect:
-        serializedVersion: 2
-        x: 237
-        y: 1449
-        width: 10
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5c032119e8fc55920800000000000000
-      internalID: 2978514939801645253
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_44
-      rect:
-        serializedVersion: 2
-        x: 426
-        y: 1432
-        width: 11
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5c28adb4fdbc2b940800000000000000
-      internalID: 5310531070533993157
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_45
-      rect:
-        serializedVersion: 2
-        x: 107
-        y: 1424
-        width: 11
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5c73dc1b03a791a50800000000000000
-      internalID: 6492354687391315909
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_46
-      rect:
-        serializedVersion: 2
-        x: 120
-        y: 1422
-        width: 10
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f4d5e181103230c10800000000000000
-      internalID: 2018495545598696783
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_47
-      rect:
-        serializedVersion: 2
-        x: 268
-        y: 1422
-        width: 11
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b005904d6034aa6e0800000000000000
-      internalID: -1825573002339069941
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_48
-      rect:
-        serializedVersion: 2
-        x: 292
-        y: 1437
-        width: 11
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 20084e13039157c10800000000000000
-      internalID: 2050572900123312130
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_49
-      rect:
-        serializedVersion: 2
-        x: 316
-        y: 1422
-        width: 10
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b392bce36c5155120800000000000000
-      internalID: 2401849917473237307
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_50
-      rect:
-        serializedVersion: 2
-        x: 503
-        y: 1422
-        width: 11
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 17cf1a944d48e1510800000000000000
-      internalID: 1521799771401092209
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_51
-      rect:
-        serializedVersion: 2
-        x: 616
-        y: 1425
-        width: 10
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: cb5f0b5616da5bae0800000000000000
-      internalID: -1534129464220256836
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_52
-      rect:
-        serializedVersion: 2
-        x: 658
-        y: 1422
-        width: 11
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6a679a8f74fb46c60800000000000000
-      internalID: 7810577969602721446
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_53
-      rect:
-        serializedVersion: 2
-        x: 734
-        y: 1413
-        width: 14
-        height: 29
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: eac3e5a05e66fcd70800000000000000
-      internalID: 9065577708827589806
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_54
-      rect:
-        serializedVersion: 2
-        x: 91
-        y: 1411
-        width: 11
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0007fdf56257507f0800000000000000
-      internalID: -646982163780112384
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_55
-      rect:
-        serializedVersion: 2
-        x: 136
-        y: 1414
-        width: 11
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7afbbb47975714bc0800000000000000
-      internalID: -3800627446014034009
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_56
-      rect:
-        serializedVersion: 2
-        x: 343
-        y: 1413
-        width: 11
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a43867c8c3f2f2c50800000000000000
-      internalID: 6642579912495891274
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_57
-      rect:
-        serializedVersion: 2
-        x: 357
-        y: 1412
-        width: 11
-        height: 22
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 96842a0d9125ddf00800000000000000
-      internalID: 1143160151249930345
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_58
-      rect:
-        serializedVersion: 2
-        x: 476
-        y: 1411
-        width: 10
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4673e4e3f8f2ed550800000000000000
-      internalID: 6187435230325782372
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_59
-      rect:
-        serializedVersion: 2
-        x: 492
-        y: 1424
-        width: 10
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d05a3b07dd3002550800000000000000
-      internalID: 6133906942092092685
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_60
-      rect:
-        serializedVersion: 2
-        x: 520
-        y: 1414
-        width: 11
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0b1bca428921ca8c0800000000000000
-      internalID: -3986791125470105168
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_61
-      rect:
-        serializedVersion: 2
-        x: 674
-        y: 1408
-        width: 10
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1812a0bfaadc98f30800000000000000
-      internalID: 4578416630438699393
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_62
-      rect:
-        serializedVersion: 2
-        x: 282
-        y: 1411
-        width: 11
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e2c524b81341dda60800000000000000
-      internalID: 7700333140895751214
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_63
-      rect:
-        serializedVersion: 2
-        x: 649
-        y: 1408
-        width: 11
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d64c0965e6afa9790800000000000000
-      internalID: -7522424875763317651
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_64
-      rect:
-        serializedVersion: 2
-        x: 688
-        y: 1405
-        width: 11
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1415d66839fad7600800000000000000
-      internalID: 467722984466764097
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_65
-      rect:
-        serializedVersion: 2
-        x: 147
-        y: 1385
-        width: 10
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 11964bfa627b5b820800000000000000
-      internalID: 2933452109086222609
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_66
-      rect:
-        serializedVersion: 2
-        x: 530
-        y: 1385
-        width: 11
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7a8f6895553cc6a10800000000000000
-      internalID: 1904111513812531367
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_67
-      rect:
-        serializedVersion: 2
-        x: 712
-        y: 1386
-        width: 11
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ed1c6e5a786099190800000000000000
-      internalID: -7955320087099555362
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_68
-      rect:
-        serializedVersion: 2
-        x: 58
-        y: 1271
-        width: 10
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d26cef869c0f974b0800000000000000
-      internalID: -5442053926859913683
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_69
-      rect:
-        serializedVersion: 2
-        x: 61
-        y: 1268
-        width: 19
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 86867471245294d70800000000000000
-      internalID: 9027787893829494888
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_70
-      rect:
-        serializedVersion: 2
-        x: 91
-        y: 1258
-        width: 17
-        height: 22
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f2433052cb5a9f770800000000000000
-      internalID: 8645123187207779375
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_71
-      rect:
-        serializedVersion: 2
-        x: 253
-        y: 1271
-        width: 11
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9672760ac7ed3e490800000000000000
-      internalID: -7718080709534472343
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_72
-      rect:
-        serializedVersion: 2
-        x: 304
-        y: 1246
-        width: 14
-        height: 34
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 042e67c13e91ce140800000000000000
-      internalID: 4750200170194854464
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_73
-      rect:
-        serializedVersion: 2
-        x: 441
-        y: 1271
-        width: 11
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 879e1fc2686d60610800000000000000
-      internalID: 1587191790462691704
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_74
-      rect:
-        serializedVersion: 2
-        x: 454
-        y: 1268
-        width: 10
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0bfbe077d9c15c660800000000000000
-      internalID: 7405356624913547184
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_75
-      rect:
-        serializedVersion: 2
-        x: 475
-        y: 1257
-        width: 20
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4be4df6754da83570800000000000000
-      internalID: 8446691614994026164
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_76
-      rect:
-        serializedVersion: 2
-        x: 611
-        y: 1249
-        width: 11
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a8d301c84c692c700800000000000000
-      internalID: 559175074654993802
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_77
-      rect:
-        serializedVersion: 2
-        x: 642
-        y: 1272
-        width: 11
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7c9b42257bee6e1f0800000000000000
-      internalID: -1015862194800903737
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_78
-      rect:
-        serializedVersion: 2
-        x: 75
-        y: 1244
-        width: 11
-        height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8daf1c25e9e1aaad0800000000000000
-      internalID: -2690304162058339624
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_79
-      rect:
-        serializedVersion: 2
-        x: 101
-        y: 1257
-        width: 10
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 98e17a40b32fea3c0800000000000000
-      internalID: -4346270255070896503
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_80
-      rect:
-        serializedVersion: 2
-        x: 226
-        y: 1249
-        width: 10
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 54e0c688af17fd380800000000000000
-      internalID: -8944305014089970107
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_81
-      rect:
-        serializedVersion: 2
-        x: 274
-        y: 1244
-        width: 11
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2158847212e445570800000000000000
-      internalID: 8454468304781214994
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_82
-      rect:
-        serializedVersion: 2
-        x: 450
-        y: 1244
-        width: 20
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c09eb5215d442fc50800000000000000
-      internalID: 6697491277780085004
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_83
-      rect:
-        serializedVersion: 2
-        x: 658
-        y: 1238
-        width: 11
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: eecc997ae814d6290800000000000000
-      internalID: -7895582490757575442
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_84
-      rect:
-        serializedVersion: 2
-        x: 691
-        y: 1246
-        width: 11
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3d03c39f86d225e60800000000000000
-      internalID: 7949466221143666899
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_85
-      rect:
-        serializedVersion: 2
-        x: 62
-        y: 1233
-        width: 10
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: cd18d8fb2c07373b0800000000000000
-      internalID: -5515941136859037220
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_86
-      rect:
-        serializedVersion: 2
-        x: 98
-        y: 1216
-        width: 11
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c88218682b9884510800000000000000
-      internalID: 1533627072973449356
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_87
-      rect:
-        serializedVersion: 2
-        x: 254
-        y: 1233
-        width: 10
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0666edebccd8f0950800000000000000
-      internalID: 6417503904541337184
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_88
-      rect:
-        serializedVersion: 2
-        x: 445
-        y: 1233
-        width: 11
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 00857b88b0c3bd6e0800000000000000
-      internalID: -1811788404850468864
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_89
-      rect:
-        serializedVersion: 2
-        x: 482
-        y: 1216
-        width: 11
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f81fb5f156cf9e840800000000000000
-      internalID: 5254007951552409999
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_90
-      rect:
-        serializedVersion: 2
-        x: 639
-        y: 1233
-        width: 11
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9313585c1413c43a0800000000000000
-      internalID: -6679909988740812487
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_91
-      rect:
-        serializedVersion: 2
-        x: 271
-        y: 1221
-        width: 11
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2233ef618b5436260800000000000000
-      internalID: 7089586895373349666
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_92
-      rect:
-        serializedVersion: 2
-        x: 306
-        y: 1188
-        width: 12
-        height: 34
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2858382e52a7391b0800000000000000
-      internalID: -5651038804287191678
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_93
-      rect:
-        serializedVersion: 2
-        x: 657
-        y: 1221
-        width: 10
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9efe54cc06bec8a90800000000000000
-      internalID: -7310209294152634391
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_94
-      rect:
-        serializedVersion: 2
-        x: 155
-        y: 1199
-        width: 11
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 56e69da2f0a65ac50800000000000000
-      internalID: 6675858636022574693
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_95
-      rect:
-        serializedVersion: 2
-        x: 502
-        y: 1188
-        width: 11
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7dfcb54aee058e4d0800000000000000
-      internalID: -3105142957182038057
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_96
-      rect:
-        serializedVersion: 2
-        x: 540
-        y: 1199
-        width: 10
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f55ffc2141ff42e50800000000000000
-      internalID: 6783827400406857055
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_97
-      rect:
-        serializedVersion: 2
-        x: 672
-        y: 1202
-        width: 11
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e60afe1f7f3ab1510800000000000000
-      internalID: 1520989584478937198
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_98
-      rect:
-        serializedVersion: 2
-        x: 683
-        y: 1192
-        width: 11
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2c38aff973a091420800000000000000
-      internalID: 2601121493806646210
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_99
-      rect:
-        serializedVersion: 2
-        x: 119
-        y: 1188
-        width: 10
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: aa6ec9c9a90602840800000000000000
-      internalID: 5197260187154310826
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_100
-      rect:
-        serializedVersion: 2
-        x: 95
-        y: 1080
-        width: 10
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0bb5d6baac2a8dd90800000000000000
-      internalID: -7072724223442199632
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_101
-      rect:
-        serializedVersion: 2
-        x: 119
-        y: 1062
-        width: 16
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 83950a1965e4c4980800000000000000
-      internalID: -8553375458566055624
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_102
-      rect:
-        serializedVersion: 2
-        x: 274
-        y: 1078
-        width: 11
-        height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b09c4f410e831e740800000000000000
-      internalID: 5179483581528197387
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_103
-      rect:
-        serializedVersion: 2
-        x: 306
-        y: 1062
-        width: 11
-        height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 287d1b5294d8e0fa0800000000000000
-      internalID: -5832569122093672574
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_104
-      rect:
-        serializedVersion: 2
-        x: 478
-        y: 1080
-        width: 11
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8c8d4b38000dbbd10800000000000000
-      internalID: 2142534748373047496
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_105
-      rect:
-        serializedVersion: 2
-        x: 503
-        y: 1062
-        width: 16
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3e37191d4ff2a0610800000000000000
-      internalID: 1588134547136017379
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_106
-      rect:
-        serializedVersion: 2
-        x: 682
-        y: 1077
-        width: 11
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 361e76197998fc300800000000000000
-      internalID: 274589386365460835
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_107
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 1030
-        width: 15
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 281142e1d9177f720800000000000000
-      internalID: 2879895406356205954
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_108
-      rect:
-        serializedVersion: 2
-        x: 76
-        y: 1052
-        width: 11
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1562157d3c4aa99d0800000000000000
-      internalID: -2766717860027750831
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_109
-      rect:
-        serializedVersion: 2
-        x: 253
-        y: 1054
-        width: 10
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 76ecbbcd6f4d908f0800000000000000
-      internalID: -573693320782688665
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_110
-      rect:
-        serializedVersion: 2
-        x: 264
-        y: 1025
-        width: 13
-        height: 29
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d52836dea5c1dbf90800000000000000
-      internalID: -6936356674225339811
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_111
-      rect:
-        serializedVersion: 2
-        x: 269
-        y: 1052
-        width: 16
-        height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6e01a08fed8ff36c0800000000000000
-      internalID: -4161333894139211546
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_112
-      rect:
-        serializedVersion: 2
-        x: 460
-        y: 1052
-        width: 23
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: aa8ca63a3bf32be10800000000000000
-      internalID: 2211900407765715114
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_113
-      rect:
-        serializedVersion: 2
-        x: 637
-        y: 1054
-        width: 10
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 65baeecd520c51c20800000000000000
-      internalID: 3176656381032704854
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_114
-      rect:
-        serializedVersion: 2
-        x: 654
-        y: 1052
-        width: 11
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d10b2a6c3ed41d630800000000000000
-      internalID: 3950023988866101277
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_115
-      rect:
-        serializedVersion: 2
-        x: 672
-        y: 1052
-        width: 11
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 378318bba36f51b90800000000000000
-      internalID: -7271635291205453709
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_116
-      rect:
-        serializedVersion: 2
-        x: 72
-        y: 1039
-        width: 11
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b025e7c268eb062a0800000000000000
-      internalID: -6746182758319631861
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_117
-      rect:
-        serializedVersion: 2
-        x: 92
-        y: 1039
-        width: 10
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e89d07da05bebf550800000000000000
-      internalID: 6195804444118014350
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_118
-      rect:
-        serializedVersion: 2
-        x: 237
-        y: 1036
-        width: 11
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4237ce7e7e8b46550800000000000000
-      internalID: 6153246297062929188
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_119
-      rect:
-        serializedVersion: 2
-        x: 284
-        y: 1039
-        width: 10
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e292506cd7d94ef60800000000000000
-      internalID: 8062742396418730286
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_120
-      rect:
-        serializedVersion: 2
-        x: 430
-        y: 1030
-        width: 15
-        height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e4eb76e10c2926850800000000000000
-      internalID: 6368814176896794190
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_121
-      rect:
-        serializedVersion: 2
-        x: 457
-        y: 1039
-        width: 10
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: cd8598f6a34768270800000000000000
-      internalID: 8252411161531209948
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_122
-      rect:
-        serializedVersion: 2
-        x: 475
-        y: 1039
-        width: 11
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c1687898499361240800000000000000
-      internalID: 4762056966116181532
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_123
-      rect:
-        serializedVersion: 2
-        x: 640
-        y: 1039
-        width: 10
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 28356d89ee52c07d0800000000000000
-      internalID: -2950941949137890430
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_124
-      rect:
-        serializedVersion: 2
-        x: 662
-        y: 1024
-        width: 11
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: db92c3196c1c626c0800000000000000
-      internalID: -4168431346500490819
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_125
-      rect:
-        serializedVersion: 2
-        x: 667
-        y: 1039
-        width: 19
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7db67c6f5ffd17690800000000000000
-      internalID: -7606052048151811113
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_126
-      rect:
-        serializedVersion: 2
-        x: 125
-        y: 1005
-        width: 10
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d95f0e8eea57ca120800000000000000
-      internalID: 2426443693337671069
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_127
-      rect:
-        serializedVersion: 2
-        x: 508
-        y: 1005
-        width: 11
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 74238458cf1f06380800000000000000
-      internalID: -8979911590106615225
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_128
-      rect:
-        serializedVersion: 2
-        x: 291
-        y: 984
-        width: 11
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ba67a7ed7e27d7bf0800000000000000
-      internalID: -324977257905228117
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_129
-      rect:
-        serializedVersion: 2
-        x: 673
-        y: 982
-        width: 11
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5dd0fe82348bd41a0800000000000000
-      internalID: -6823595261807358507
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_130
-      rect:
-        serializedVersion: 2
-        x: 76
-        y: 888
-        width: 10
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3b7888a3596ddfe20800000000000000
-      internalID: 3386098431272978355
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_131
-      rect:
-        serializedVersion: 2
-        x: 79
-        y: 887
-        width: 20
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4805b38ade542ab60800000000000000
-      internalID: 7755838395317440644
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_132
-      rect:
-        serializedVersion: 2
-        x: 119
-        y: 883
-        width: 11
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4231fcc54ce3a17c0800000000000000
-      internalID: -4099895497675828444
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_133
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 889
-        width: 11
-        height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: cd98fdc69e9abe670800000000000000
-      internalID: 8569129536021563868
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_134
-      rect:
-        serializedVersion: 2
-        x: 267
-        y: 888
-        width: 10
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1f699d167d2320d50800000000000000
-      internalID: 6701975096121726705
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_135
-      rect:
-        serializedVersion: 2
-        x: 295
-        y: 889
-        width: 11
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c49b0923139d66150800000000000000
-      internalID: 5865614370021620044
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_136
-      rect:
-        serializedVersion: 2
-        x: 459
-        y: 888
-        width: 11
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: fa80eb09b35023450800000000000000
-      internalID: 6066917401411061935
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_137
-      rect:
-        serializedVersion: 2
-        x: 473
-        y: 887
-        width: 10
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: fe8180ac5b94c20d0800000000000000
-      internalID: -3446298569717835537
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_138
-      rect:
-        serializedVersion: 2
-        x: 503
-        y: 883
-        width: 11
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0c1ad4d508abf66d0800000000000000
-      internalID: -2994970166694141504
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_139
-      rect:
-        serializedVersion: 2
-        x: 637
-        y: 876
-        width: 16
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f3b4d4c42c57733e0800000000000000
-      internalID: -2074059626016584897
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_140
-      rect:
-        serializedVersion: 2
-        x: 651
-        y: 888
-        width: 11
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2c7924a329b4637a0800000000000000
-      internalID: -6397843129218459710
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_141
-      rect:
-        serializedVersion: 2
-        x: 657
-        y: 886
-        width: 16
-        height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ff914ab2b2e8e1800800000000000000
-      internalID: 585061317671655935
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_142
-      rect:
-        serializedVersion: 2
-        x: 38
-        y: 852
-        width: 22
-        height: 29
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d61bf95ace90518e0800000000000000
-      internalID: -1723460370403708563
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_143
-      rect:
-        serializedVersion: 2
-        x: 237
-        y: 853
-        width: 18
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e1368415fb4b50960800000000000000
-      internalID: 7567653482661438238
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_144
-      rect:
-        serializedVersion: 2
-        x: 254
-        y: 852
-        width: 10
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 984ed872c9b17c1d0800000000000000
-      internalID: -3330663041924733815
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_145
-      rect:
-        serializedVersion: 2
-        x: 420
-        y: 852
-        width: 22
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4cf345fe2691344d0800000000000000
-      internalID: -3151647401516449852
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_146
-      rect:
-        serializedVersion: 2
-        x: 634
-        y: 852
-        width: 13
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b13f7fd5b8fe36080800000000000000
-      internalID: -9195242632304397541
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_147
-      rect:
-        serializedVersion: 2
-        x: 649
-        y: 846
-        width: 11
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 39664239c3d9eaea0800000000000000
-      internalID: -5859573181670201709
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_148
-      rect:
-        serializedVersion: 2
-        x: 62
-        y: 793
-        width: 17
-        height: 29
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 144785f92d1b98f50800000000000000
-      internalID: 6884229023587136577
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_149
-      rect:
-        serializedVersion: 2
-        x: 100
-        y: 818
-        width: 11
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8c7e9270fcdc1a070800000000000000
-      internalID: 8115994292560455624
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_150
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 794
-        width: 12
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0496d0f67b33fba50800000000000000
-      internalID: 6539002046900431168
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_151
-      rect:
-        serializedVersion: 2
-        x: 287
-        y: 807
-        width: 11
-        height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 69da874721b1f3210800000000000000
-      internalID: 1314799382292901270
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_152
-      rect:
-        serializedVersion: 2
-        x: 451
-        y: 805
-        width: 12
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ecd7af13014df1190800000000000000
-      internalID: -7989434047908905522
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_153
-      rect:
-        serializedVersion: 2
-        x: 484
-        y: 818
-        width: 11
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b195b104bb2df79f0800000000000000
-      internalID: -468424134546990821
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_154
-      rect:
-        serializedVersion: 2
-        x: 671
-        y: 804
-        width: 15
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 33376ad5ff8265840800000000000000
-      internalID: 5212398695980888883
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_155
-      rect:
-        serializedVersion: 2
-        x: 445
-        y: 793
-        width: 11
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: de627af5cba3e9cb0800000000000000
-      internalID: -4855378767525763347
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_156
-      rect:
-        serializedVersion: 2
-        x: 643
-        y: 793
-        width: 11
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c8d86f89199373be0800000000000000
-      internalID: -1497665053578064500
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_157
-      rect:
-        serializedVersion: 2
-        x: 82
-        y: 696
-        width: 11
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 449b5c6442a783630800000000000000
-      internalID: 3907006972968679748
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_158
-      rect:
-        serializedVersion: 2
-        x: 124
-        y: 706
-        width: 10
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 00ef856ba44a85670800000000000000
-      internalID: 8527746535219854848
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_159
-      rect:
-        serializedVersion: 2
-        x: 289
-        y: 695
-        width: 10
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 311f776e0ead68440800000000000000
-      internalID: 4937874700932477203
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_160
-      rect:
-        serializedVersion: 2
-        x: 316
-        y: 699
-        width: 14
-        height: 29
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 55fcc4597d61deb10800000000000000
-      internalID: 2012289723683098453
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_161
-      rect:
-        serializedVersion: 2
-        x: 507
-        y: 706
-        width: 11
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0a42fe22fba188c50800000000000000
-      internalID: 6667608656549192864
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_162
-      rect:
-        serializedVersion: 2
-        x: 659
-        y: 696
-        width: 10
-        height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b8b9181abc0dcb4d0800000000000000
-      internalID: -3117387269040661621
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_163
-      rect:
-        serializedVersion: 2
-        x: 682
-        y: 695
-        width: 19
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 51bc18bf0d21249b0800000000000000
-      internalID: -5097491139447895275
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_164
-      rect:
-        serializedVersion: 2
-        x: 698
-        y: 706
-        width: 11
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6a5288f06f312c540800000000000000
-      internalID: 5026602081642358182
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_165
-      rect:
-        serializedVersion: 2
-        x: 65
-        y: 672
-        width: 11
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: cd930cef4f798b8e0800000000000000
-      internalID: -1677423782693684772
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_166
-      rect:
-        serializedVersion: 2
-        x: 112
-        y: 682
-        width: 11
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 31fb5ea5d8a8ae880800000000000000
-      internalID: -8580893800281030893
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_167
-      rect:
-        serializedVersion: 2
-        x: 293
-        y: 681
-        width: 14
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 05fa2473901a0e670800000000000000
-      internalID: 8566023552212578128
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_168
-      rect:
-        serializedVersion: 2
-        x: 434
-        y: 674
-        width: 11
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0e546fda59cf223c0800000000000000
-      internalID: -4385665367306517024
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_169
-      rect:
-        serializedVersion: 2
-        x: 465
-        y: 693
-        width: 10
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a3fc28ab4a7fb7da0800000000000000
-      internalID: -5945886596136775878
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_170
-      rect:
-        serializedVersion: 2
-        x: 485
-        y: 681
-        width: 11
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: fd00ab41dc37e9ac0800000000000000
-      internalID: -3846509707074600737
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_171
-      rect:
-        serializedVersion: 2
-        x: 97
-        y: 668
-        width: 11
-        height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 39ff3e218d5f6e0d0800000000000000
-      internalID: -3393754960798417005
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_172
-      rect:
-        serializedVersion: 2
-        x: 288
-        y: 668
-        width: 11
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 812fc5ba09ef67630800000000000000
-      internalID: 3924604022603706904
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_173
-      rect:
-        serializedVersion: 2
-        x: 467
-        y: 668
-        width: 10
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e2121a4940ddae710800000000000000
-      internalID: 1723432819165831470
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_174
-      rect:
-        serializedVersion: 2
-        x: 673
-        y: 665
-        width: 13
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c9af78f5213158ef0800000000000000
-      internalID: -106658046540252516
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_175
-      rect:
-        serializedVersion: 2
-        x: 679
-        y: 681
-        width: 10
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1ca0929bb84cd5bf0800000000000000
-      internalID: -333894692969575743
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_176
-      rect:
-        serializedVersion: 2
-        x: 89
-        y: 641
-        width: 10
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e65f1989870003d00800000000000000
-      internalID: 950260039330952558
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_177
-      rect:
-        serializedVersion: 2
-        x: 241
-        y: 636
-        width: 11
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ec0fb9087bf3e9c50800000000000000
-      internalID: 6673841755178922190
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_178
-      rect:
-        serializedVersion: 2
-        x: 260
-        y: 652
-        width: 10
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4a03f1ae716428200800000000000000
-      internalID: 180784003574345892
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_179
-      rect:
-        serializedVersion: 2
-        x: 294
-        y: 645
-        width: 11
-        height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 92abafe675ef7ecd0800000000000000
-      internalID: -2528773014267708887
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_180
-      rect:
-        serializedVersion: 2
-        x: 452
-        y: 641
-        width: 11
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4b7fcf13269c8bed0800000000000000
-      internalID: -2397945377992149068
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_181
-      rect:
-        serializedVersion: 2
-        x: 628
-        y: 636
-        width: 11
-        height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: faf0d571a28dbac30800000000000000
-      internalID: 4371825538585399215
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_182
-      rect:
-        serializedVersion: 2
-        x: 643
-        y: 652
-        width: 11
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 24f6c62013594d180800000000000000
-      internalID: -9091477710027591870
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_183
-      rect:
-        serializedVersion: 2
-        x: 679
-        y: 645
-        width: 10
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: edb6eaee233349b30800000000000000
-      internalID: 4293112638636714974
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_184
-      rect:
-        serializedVersion: 2
-        x: 39
-        y: 614
-        width: 10
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 902be754d174660e0800000000000000
-      internalID: -2277054370543652343
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_185
-      rect:
-        serializedVersion: 2
-        x: 59
-        y: 629
-        width: 11
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b2473d3fbd5836df0800000000000000
-      internalID: -188159579684375509
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_186
-      rect:
-        serializedVersion: 2
-        x: 86
-        y: 615
-        width: 11
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 94674cddef4c94de0800000000000000
-      internalID: -1348330014499375543
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_187
-      rect:
-        serializedVersion: 2
-        x: 431
-        y: 625
-        width: 10
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d89e78c768fc3d650800000000000000
-      internalID: 6256572483869600141
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_188
-      rect:
-        serializedVersion: 2
-        x: 462
-        y: 612
-        width: 16
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8cea40f506a4eb9b0800000000000000
-      internalID: -5062527153346400568
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_189
-      rect:
-        serializedVersion: 2
-        x: 264
-        y: 599
-        width: 11
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a73604aed8754d5f0800000000000000
-      internalID: -732864572322454662
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_190
-      rect:
-        serializedVersion: 2
-        x: 647
-        y: 600
-        width: 11
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0a7e7beb0b72cbd60800000000000000
-      internalID: 7907238685823199136
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_191
-      rect:
-        serializedVersion: 2
-        x: 158
-        y: 501
-        width: 10
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d889a4d19cc651c80800000000000000
-      internalID: -8352650322853062515
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_192
-      rect:
-        serializedVersion: 2
-        x: 298
-        y: 506
-        width: 15
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b64da6b85caf50660800000000000000
-      internalID: 7351557693106738283
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_193
-      rect:
-        serializedVersion: 2
-        x: 687
-        y: 516
-        width: 11
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 60e7d663e869fb5c0800000000000000
-      internalID: -4197470790143345146
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_194
-      rect:
-        serializedVersion: 2
-        x: 733
-        y: 502
-        width: 10
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: dbb6cdae943adb240800000000000000
-      internalID: 4809179514969811901
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_195
-      rect:
-        serializedVersion: 2
-        x: 120
-        y: 488
-        width: 11
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2d5ee84762d073ea0800000000000000
-      internalID: -5893227128575564334
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_196
-      rect:
-        serializedVersion: 2
-        x: 254
-        y: 493
-        width: 11
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 37845edfe48c22440800000000000000
-      internalID: 4909706785379928179
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_197
-      rect:
-        serializedVersion: 2
-        x: 286
-        y: 489
-        width: 11
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 98ea1312630aff0b0800000000000000
-      internalID: -5692655249627435383
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_198
-      rect:
-        serializedVersion: 2
-        x: 334
-        y: 499
-        width: 10
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4f4a65975fbf0c4d0800000000000000
-      internalID: -3116213910419102476
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_199
-      rect:
-        serializedVersion: 2
-        x: 500
-        y: 480
-        width: 15
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 309824e1d678654d0800000000000000
-      internalID: -3146178386942850813
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_200
-      rect:
-        serializedVersion: 2
-        x: 541
-        y: 501
-        width: 11
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 354d79f7cd11d2310800000000000000
-      internalID: 1381780299403744339
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_201
-      rect:
-        serializedVersion: 2
-        x: 647
-        y: 488
-        width: 11
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: cc54a25b78de78010800000000000000
-      internalID: 1191181793578599884
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_202
-      rect:
-        serializedVersion: 2
-        x: 672
-        y: 490
-        width: 11
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 091a1dd40f54592b0800000000000000
-      internalID: -5578475665028439664
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_203
-      rect:
-        serializedVersion: 2
-        x: 44
-        y: 450
-        width: 10
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d5b27f0fd5827e3b0800000000000000
-      internalID: -5483369637360489635
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_204
-      rect:
-        serializedVersion: 2
-        x: 52
-        y: 459
-        width: 11
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 57af355fff07be800800000000000000
-      internalID: 642731616465320565
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_205
-      rect:
-        serializedVersion: 2
-        x: 77
-        y: 448
-        width: 11
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7a0f52add0a973b80800000000000000
-      internalID: -8415087994433310553
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_206
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 462
-        width: 11
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3cb106d9b2533fcb0800000000000000
-      internalID: -4831459513798222909
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_207
-      rect:
-        serializedVersion: 2
-        x: 112
-        y: 462
-        width: 11
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 71d0b470eb9ce7370800000000000000
-      internalID: 8322310979430583575
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_208
-      rect:
-        serializedVersion: 2
-        x: 213
-        y: 439
-        width: 12
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 955a748547e03ce40800000000000000
-      internalID: 5675395848277042521
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_209
-      rect:
-        serializedVersion: 2
-        x: 249
-        y: 452
-        width: 11
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2351ae0155401ca80800000000000000
-      internalID: -8448466662567832270
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_210
-      rect:
-        serializedVersion: 2
-        x: 275
-        y: 462
-        width: 10
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d2095d652b073dd70800000000000000
-      internalID: 9066714386090266669
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_211
-      rect:
-        serializedVersion: 2
-        x: 432
-        y: 459
-        width: 15
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 499d4e012a6f817f0800000000000000
-      internalID: -641491770971727468
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_212
-      rect:
-        serializedVersion: 2
-        x: 461
-        y: 448
-        width: 11
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f3ef82ca5043c9230800000000000000
-      internalID: 3646846997231107647
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_213
-      rect:
-        serializedVersion: 2
-        x: 480
-        y: 462
-        width: 11
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5409471f3422af850800000000000000
-      internalID: 6411474694724423749
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_214
-      rect:
-        serializedVersion: 2
-        x: 496
-        y: 462
-        width: 11
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2410828b4cd92c480800000000000000
-      internalID: -8880362046992416446
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_215
-      rect:
-        serializedVersion: 2
-        x: 621
-        y: 458
-        width: 10
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 475d720ff2182d050800000000000000
-      internalID: 5823859311036061044
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_216
-      rect:
-        serializedVersion: 2
-        x: 637
-        y: 462
-        width: 11
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b89a3c0ad1939e650800000000000000
-      internalID: 6262599556249397643
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_217
-      rect:
-        serializedVersion: 2
-        x: 688
-        y: 462
-        width: 11
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6e043d86b01cab110800000000000000
-      internalID: 1277545699060433126
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_218
-      rect:
-        serializedVersion: 2
-        x: 63
-        y: 424
-        width: 11
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5c0475811cc8f3830800000000000000
-      internalID: 4053112950621683909
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_219
-      rect:
-        serializedVersion: 2
-        x: 427
-        y: 441
-        width: 14
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 306c580ac11e698a0800000000000000
-      internalID: -6298599515762604541
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_220
-      rect:
-        serializedVersion: 2
-        x: 606
-        y: 439
-        width: 11
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 49e20677fc2a0fb50800000000000000
-      internalID: 6624974063806721684
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_221
-      rect:
-        serializedVersion: 2
-        x: 49
-        y: 419
-        width: 10
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1c177fa6925dbb290800000000000000
-      internalID: -7873465149662203455
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_222
-      rect:
-        serializedVersion: 2
-        x: 432
-        y: 419
-        width: 11
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ec2ceee62b5cdc470800000000000000
-      internalID: 8416600648781316814
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_223
-      rect:
-        serializedVersion: 2
-        x: 448
-        y: 424
-        width: 10
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 28abf5966440c3fd0800000000000000
-      internalID: -2361007404186879358
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_224
-      rect:
-        serializedVersion: 2
-        x: 629
-        y: 420
-        width: 11
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 830d3b0c0bc085fa0800000000000000
-      internalID: -5811881365834837960
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_225
-      rect:
-        serializedVersion: 2
-        x: 67
-        y: 317
-        width: 10
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ee9683c48fc2ca910800000000000000
-      internalID: 1849902991884708334
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_226
-      rect:
-        serializedVersion: 2
-        x: 118
-        y: 307
-        width: 11
-        height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 80ba17a58f2aea360800000000000000
-      internalID: 7182857643255507720
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_227
-      rect:
-        serializedVersion: 2
-        x: 265
-        y: 312
-        width: 11
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 875c6b359586b2db0800000000000000
-      internalID: -4815640643676748424
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_228
-      rect:
-        serializedVersion: 2
-        x: 317
-        y: 310
-        width: 11
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 50d6b1cf050fdea20800000000000000
-      internalID: 3093392749691104517
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_229
-      rect:
-        serializedVersion: 2
-        x: 459
-        y: 312
-        width: 11
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2cbfc5fa9931a23a0800000000000000
-      internalID: -6689512745712419902
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_230
-      rect:
-        serializedVersion: 2
-        x: 484
-        y: 296
-        width: 11
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ac425d761ba593d90800000000000000
-      internalID: -7117558018084625206
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_231
-      rect:
-        serializedVersion: 2
-        x: 518
-        y: 310
-        width: 11
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d3c08b14dd4d219e0800000000000000
-      internalID: -1652024066536108995
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_232
-      rect:
-        serializedVersion: 2
-        x: 649
-        y: 312
-        width: 11
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a61db1a57c50627b0800000000000000
-      internalID: -5249501961885331094
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_233
-      rect:
-        serializedVersion: 2
-        x: 704
-        y: 309
-        width: 10
-        height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 357388dae2c335d80800000000000000
-      internalID: -8263194720117180589
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_234
-      rect:
-        serializedVersion: 2
-        x: 82
-        y: 295
-        width: 11
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7f807cf38ec04f7a0800000000000000
-      internalID: -6344431783416231689
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_235
-      rect:
-        serializedVersion: 2
-        x: 130
-        y: 282
-        width: 11
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1945f174b121d9520800000000000000
-      internalID: 2710342459113559185
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_236
-      rect:
-        serializedVersion: 2
-        x: 252
-        y: 274
-        width: 11
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e49701fb208aec040800000000000000
-      internalID: 4669854593378711886
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_237
-      rect:
-        serializedVersion: 2
-        x: 302
-        y: 297
-        width: 10
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 476592e6c31f50590800000000000000
-      internalID: -7708489945326201228
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_238
-      rect:
-        serializedVersion: 2
-        x: 327
-        y: 282
-        width: 11
-        height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9aad3332a55f18ef0800000000000000
-      internalID: -107535148593718615
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_239
-      rect:
-        serializedVersion: 2
-        x: 412
-        y: 272
-        width: 11
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3064a2339850d4210800000000000000
-      internalID: 1318716352716490243
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_240
-      rect:
-        serializedVersion: 2
-        x: 466
-        y: 284
-        width: 11
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f7f4e3d7f33b37b60800000000000000
-      internalID: 7742729269645561727
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_241
-      rect:
-        serializedVersion: 2
-        x: 527
-        y: 283
-        width: 10
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5318328c34f6dc650800000000000000
-      internalID: 6254777794398748981
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_242
-      rect:
-        serializedVersion: 2
-        x: 658
-        y: 284
-        width: 11
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ab8a496b89b472210800000000000000
-      internalID: 1308097336044726458
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_243
-      rect:
-        serializedVersion: 2
-        x: 676
-        y: 287
-        width: 11
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1f62fe690ecbb2f70800000000000000
-      internalID: 9163625539606357745
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_244
-      rect:
-        serializedVersion: 2
-        x: 721
-        y: 284
-        width: 11
-        height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7825b06acfcd55f40800000000000000
-      internalID: 5716718279692341895
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_245
-      rect:
-        serializedVersion: 2
-        x: 29
-        y: 272
-        width: 10
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7e68baef449f89530800000000000000
-      internalID: 3862110755195946727
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_246
-      rect:
-        serializedVersion: 2
-        x: 66
-        y: 274
-        width: 11
-        height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c7412c8110e3e51c0800000000000000
-      internalID: -4513101602147396484
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_247
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 270
-        width: 11
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ac3022fe0befc7110800000000000000
-      internalID: 1260162031636579274
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_248
-      rect:
-        serializedVersion: 2
-        x: 228
-        y: 273
-        width: 10
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d1d6e39e0780ae680800000000000000
-      internalID: -8725152047034372835
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_249
-      rect:
-        serializedVersion: 2
-        x: 238
-        y: 246
-        width: 11
-        height: 29
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ea493aafeb8c8e0d0800000000000000
-      internalID: -3393241596649302866
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_250
-      rect:
-        serializedVersion: 2
-        x: 288
-        y: 270
-        width: 11
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3e89e3acab55690e0800000000000000
-      internalID: -2263527501961717533
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_251
-      rect:
-        serializedVersion: 2
-        x: 480
-        y: 270
-        width: 11
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b0ea61a13154acb70800000000000000
-      internalID: 8920017960305077771
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_252
-      rect:
-        serializedVersion: 2
-        x: 611
-        y: 272
-        width: 11
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6bd8fc848546edbe0800000000000000
-      internalID: -1450611699625259594
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_253
-      rect:
-        serializedVersion: 2
-        x: 652
-        y: 261
-        width: 11
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e08ea1a15470e1fc0800000000000000
-      internalID: -3522369865185040370
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_254
-      rect:
-        serializedVersion: 2
-        x: 673
-        y: 270
-        width: 10
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d1b0e134ada39d1f0800000000000000
-      internalID: -1019719131519382755
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_255
-      rect:
-        serializedVersion: 2
-        x: 40
-        y: 253
-        width: 11
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 431ebb3344d8f2960800000000000000
-      internalID: 7579432021953077556
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_256
-      rect:
-        serializedVersion: 2
-        x: 53
-        y: 247
-        width: 10
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: dea23e74f07e78640800000000000000
-      internalID: 5082284757327489773
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_257
-      rect:
-        serializedVersion: 2
-        x: 436
-        y: 247
-        width: 11
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 25dee77631d655c60800000000000000
-      internalID: 7806265459224800594
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_258
-      rect:
-        serializedVersion: 2
-        x: 463
-        y: 261
-        width: 10
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6c2da1c706dcf96b0800000000000000
-      internalID: -5287281623226985786
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_259
-      rect:
-        serializedVersion: 2
-        x: 621
-        y: 247
-        width: 11
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a300c7afc93189cb0800000000000000
-      internalID: -4857110633180823494
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_260
-      rect:
-        serializedVersion: 2
-        x: 92
-        y: 148
-        width: 13
-        height: 37
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4009f5564e2c38c60800000000000000
-      internalID: 7819307664254406660
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_261
-      rect:
-        serializedVersion: 2
-        x: 278
-        y: 148
-        width: 17
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 380f4b86248782dd0800000000000000
-      internalID: -2510624565639188349
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_262
-      rect:
-        serializedVersion: 2
-        x: 470
-        y: 160
-        width: 11
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ce531f3950a863470800000000000000
-      internalID: 8374032313703544300
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_263
-      rect:
-        serializedVersion: 2
-        x: 476
-        y: 148
-        width: 11
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7e26dea2b53fcb0c0800000000000000
-      internalID: -4558501149918010649
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_264
-      rect:
-        serializedVersion: 2
-        x: 662
-        y: 160
-        width: 11
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7c3ba4d7be32bb4b0800000000000000
-      internalID: -5423701831911296057
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_265
-      rect:
-        serializedVersion: 2
-        x: 668
-        y: 148
-        width: 11
-        height: 31
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c7261934301082c30800000000000000
-      internalID: 4334715754874233468
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_266
-      rect:
-        serializedVersion: 2
-        x: 57
-        y: 102
-        width: 11
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3e3c5163a0388c220800000000000000
-      internalID: 2506397272511988707
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_267
-      rect:
-        serializedVersion: 2
-        x: 82
-        y: 92
-        width: 11
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c58d457daae19fb60800000000000000
-      internalID: 7780283550365177948
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_268
-      rect:
-        serializedVersion: 2
-        x: 131
-        y: 95
-        width: 11
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5ae486036a307f200800000000000000
-      internalID: 213643519634984613
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_269
-      rect:
-        serializedVersion: 2
-        x: 158
-        y: 103
-        width: 11
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ed0b1fde1bf65fdf0800000000000000
-      internalID: -147088602827738914
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_270
-      rect:
-        serializedVersion: 2
-        x: 318
-        y: 102
-        width: 11
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e15707294b66677c0800000000000000
-      internalID: -4073955887173044962
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_271
-      rect:
-        serializedVersion: 2
-        x: 357
-        y: 104
-        width: 10
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4d3f0bab0f201fa40800000000000000
-      internalID: 5400100661141500884
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_272
-      rect:
-        serializedVersion: 2
-        x: 442
-        y: 102
-        width: 10
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a0b8647e3f3e14050800000000000000
-      internalID: 5783154033217145610
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_273
-      rect:
-        serializedVersion: 2
-        x: 466
-        y: 92
-        width: 11
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 033959369b3ecd4d0800000000000000
-      internalID: -3108359257413283024
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_274
-      rect:
-        serializedVersion: 2
-        x: 514
-        y: 95
-        width: 12
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b2a0b24c327e0b170800000000000000
-      internalID: 8192301862987958827
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_275
-      rect:
-        serializedVersion: 2
-        x: 542
-        y: 96
-        width: 11
-        height: 31
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6febfb2dbc810c9c0800000000000000
-      internalID: -3909097212864381194
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_276
-      rect:
-        serializedVersion: 2
-        x: 632
-        y: 101
-        width: 11
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6fe3d6966c9dc03a0800000000000000
-      internalID: -6697739099611250954
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_277
-      rect:
-        serializedVersion: 2
-        x: 659
-        y: 92
-        width: 10
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 330bb0136c686a2c0800000000000000
-      internalID: -4420697798433066957
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_278
-      rect:
-        serializedVersion: 2
-        x: 711
-        y: 95
-        width: 12
-        height: 31
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 13d4e786d34d30fa0800000000000000
-      internalID: -5835587331930829519
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_279
-      rect:
-        serializedVersion: 2
-        x: 730
-        y: 102
-        width: 11
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 18383853fb3bfe870800000000000000
-      internalID: 8714381437803135873
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_280
-      rect:
-        serializedVersion: 2
-        x: 114
-        y: 77
-        width: 11
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 215875248ae2fadc0800000000000000
-      internalID: -3625627874807544558
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_281
-      rect:
-        serializedVersion: 2
-        x: 161
-        y: 74
-        width: 10
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 24a1f7ddb2d8f8c20800000000000000
-      internalID: 3210940278877657666
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_282
-      rect:
-        serializedVersion: 2
-        x: 219
-        y: 74
-        width: 10
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: eef1ac3108f9c4310800000000000000
-      internalID: 1390661757387284462
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_283
-      rect:
-        serializedVersion: 2
-        x: 241
-        y: 76
-        width: 11
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 22ad924880ab47a80800000000000000
-      internalID: -8469940453437220318
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_284
-      rect:
-        serializedVersion: 2
-        x: 292
-        y: 67
-        width: 11
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d28e202aca03b04d0800000000000000
-      internalID: -3167384394914404307
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_285
-      rect:
-        serializedVersion: 2
-        x: 346
-        y: 68
-        width: 12
-        height: 22
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 208bb6aade90acae0800000000000000
-      internalID: -1528398207167776766
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_286
-      rect:
-        serializedVersion: 2
-        x: 499
-        y: 77
-        width: 10
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 25e21855b1ae28980800000000000000
-      internalID: -8538004540421493166
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_287
-      rect:
-        serializedVersion: 2
-        x: 544
-        y: 74
-        width: 11
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b59182cff1da6ff50800000000000000
-      internalID: 6914904630760053083
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_288
-      rect:
-        serializedVersion: 2
-        x: 698
-        y: 78
-        width: 11
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c7dda957717d74720800000000000000
-      internalID: 2830467386582949244
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Grounded_Burning_289
-      rect:
-        serializedVersion: 2
-        x: 741
-        y: 75
-        width: 11
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 99fd7ab0ed7798570800000000000000
-      internalID: 8469432369808924569
+      spriteID: d5b8f2fa63870c54385729ff40ea6b2d
+      internalID: 2127989444
       vertices: []
       indices: 
       edges: []
@@ -7375,296 +1787,42 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Meganeura_Grounded_Burning_0: 2434763908631846062
-      Meganeura_Grounded_Burning_1: 299622577702803581
-      Meganeura_Grounded_Burning_10: 4443454664077069887
-      Meganeura_Grounded_Burning_100: -7072724223442199632
-      Meganeura_Grounded_Burning_101: -8553375458566055624
-      Meganeura_Grounded_Burning_102: 5179483581528197387
-      Meganeura_Grounded_Burning_103: -5832569122093672574
-      Meganeura_Grounded_Burning_104: 2142534748373047496
-      Meganeura_Grounded_Burning_105: 1588134547136017379
-      Meganeura_Grounded_Burning_106: 274589386365460835
-      Meganeura_Grounded_Burning_107: 2879895406356205954
-      Meganeura_Grounded_Burning_108: -2766717860027750831
-      Meganeura_Grounded_Burning_109: -573693320782688665
-      Meganeura_Grounded_Burning_11: 6830965189121299878
-      Meganeura_Grounded_Burning_110: -6936356674225339811
-      Meganeura_Grounded_Burning_111: -4161333894139211546
-      Meganeura_Grounded_Burning_112: 2211900407765715114
-      Meganeura_Grounded_Burning_113: 3176656381032704854
-      Meganeura_Grounded_Burning_114: 3950023988866101277
-      Meganeura_Grounded_Burning_115: -7271635291205453709
-      Meganeura_Grounded_Burning_116: -6746182758319631861
-      Meganeura_Grounded_Burning_117: 6195804444118014350
-      Meganeura_Grounded_Burning_118: 6153246297062929188
-      Meganeura_Grounded_Burning_119: 8062742396418730286
-      Meganeura_Grounded_Burning_12: -6623561611741786641
-      Meganeura_Grounded_Burning_120: 6368814176896794190
-      Meganeura_Grounded_Burning_121: 8252411161531209948
-      Meganeura_Grounded_Burning_122: 4762056966116181532
-      Meganeura_Grounded_Burning_123: -2950941949137890430
-      Meganeura_Grounded_Burning_124: -4168431346500490819
-      Meganeura_Grounded_Burning_125: -7606052048151811113
-      Meganeura_Grounded_Burning_126: 2426443693337671069
-      Meganeura_Grounded_Burning_127: -8979911590106615225
-      Meganeura_Grounded_Burning_128: -324977257905228117
-      Meganeura_Grounded_Burning_129: -6823595261807358507
-      Meganeura_Grounded_Burning_13: -7143339684939329204
-      Meganeura_Grounded_Burning_130: 3386098431272978355
-      Meganeura_Grounded_Burning_131: 7755838395317440644
-      Meganeura_Grounded_Burning_132: -4099895497675828444
-      Meganeura_Grounded_Burning_133: 8569129536021563868
-      Meganeura_Grounded_Burning_134: 6701975096121726705
-      Meganeura_Grounded_Burning_135: 5865614370021620044
-      Meganeura_Grounded_Burning_136: 6066917401411061935
-      Meganeura_Grounded_Burning_137: -3446298569717835537
-      Meganeura_Grounded_Burning_138: -2994970166694141504
-      Meganeura_Grounded_Burning_139: -2074059626016584897
-      Meganeura_Grounded_Burning_14: -4357677803429130206
-      Meganeura_Grounded_Burning_140: -6397843129218459710
-      Meganeura_Grounded_Burning_141: 585061317671655935
-      Meganeura_Grounded_Burning_142: -1723460370403708563
-      Meganeura_Grounded_Burning_143: 7567653482661438238
-      Meganeura_Grounded_Burning_144: -3330663041924733815
-      Meganeura_Grounded_Burning_145: -3151647401516449852
-      Meganeura_Grounded_Burning_146: -9195242632304397541
-      Meganeura_Grounded_Burning_147: -5859573181670201709
-      Meganeura_Grounded_Burning_148: 6884229023587136577
-      Meganeura_Grounded_Burning_149: 8115994292560455624
-      Meganeura_Grounded_Burning_15: 5372125052582716126
-      Meganeura_Grounded_Burning_150: 6539002046900431168
-      Meganeura_Grounded_Burning_151: 1314799382292901270
-      Meganeura_Grounded_Burning_152: -7989434047908905522
-      Meganeura_Grounded_Burning_153: -468424134546990821
-      Meganeura_Grounded_Burning_154: 5212398695980888883
-      Meganeura_Grounded_Burning_155: -4855378767525763347
-      Meganeura_Grounded_Burning_156: -1497665053578064500
-      Meganeura_Grounded_Burning_157: 3907006972968679748
-      Meganeura_Grounded_Burning_158: 8527746535219854848
-      Meganeura_Grounded_Burning_159: 4937874700932477203
-      Meganeura_Grounded_Burning_16: 9078507340683907038
-      Meganeura_Grounded_Burning_160: 2012289723683098453
-      Meganeura_Grounded_Burning_161: 6667608656549192864
-      Meganeura_Grounded_Burning_162: -3117387269040661621
-      Meganeura_Grounded_Burning_163: -5097491139447895275
-      Meganeura_Grounded_Burning_164: 5026602081642358182
-      Meganeura_Grounded_Burning_165: -1677423782693684772
-      Meganeura_Grounded_Burning_166: -8580893800281030893
-      Meganeura_Grounded_Burning_167: 8566023552212578128
-      Meganeura_Grounded_Burning_168: -4385665367306517024
-      Meganeura_Grounded_Burning_169: -5945886596136775878
-      Meganeura_Grounded_Burning_17: 5032486207249660903
-      Meganeura_Grounded_Burning_170: -3846509707074600737
-      Meganeura_Grounded_Burning_171: -3393754960798417005
-      Meganeura_Grounded_Burning_172: 3924604022603706904
-      Meganeura_Grounded_Burning_173: 1723432819165831470
-      Meganeura_Grounded_Burning_174: -106658046540252516
-      Meganeura_Grounded_Burning_175: -333894692969575743
-      Meganeura_Grounded_Burning_176: 950260039330952558
-      Meganeura_Grounded_Burning_177: 6673841755178922190
-      Meganeura_Grounded_Burning_178: 180784003574345892
-      Meganeura_Grounded_Burning_179: -2528773014267708887
-      Meganeura_Grounded_Burning_18: -5978491449209914536
-      Meganeura_Grounded_Burning_180: -2397945377992149068
-      Meganeura_Grounded_Burning_181: 4371825538585399215
-      Meganeura_Grounded_Burning_182: -9091477710027591870
-      Meganeura_Grounded_Burning_183: 4293112638636714974
-      Meganeura_Grounded_Burning_184: -2277054370543652343
-      Meganeura_Grounded_Burning_185: -188159579684375509
-      Meganeura_Grounded_Burning_186: -1348330014499375543
-      Meganeura_Grounded_Burning_187: 6256572483869600141
-      Meganeura_Grounded_Burning_188: -5062527153346400568
-      Meganeura_Grounded_Burning_189: -732864572322454662
-      Meganeura_Grounded_Burning_19: -8262929089430405503
-      Meganeura_Grounded_Burning_190: 7907238685823199136
-      Meganeura_Grounded_Burning_191: -8352650322853062515
-      Meganeura_Grounded_Burning_192: 7351557693106738283
-      Meganeura_Grounded_Burning_193: -4197470790143345146
-      Meganeura_Grounded_Burning_194: 4809179514969811901
-      Meganeura_Grounded_Burning_195: -5893227128575564334
-      Meganeura_Grounded_Burning_196: 4909706785379928179
-      Meganeura_Grounded_Burning_197: -5692655249627435383
-      Meganeura_Grounded_Burning_198: -3116213910419102476
-      Meganeura_Grounded_Burning_199: -3146178386942850813
-      Meganeura_Grounded_Burning_2: -2903657868344915479
-      Meganeura_Grounded_Burning_20: 471727488110522759
-      Meganeura_Grounded_Burning_200: 1381780299403744339
-      Meganeura_Grounded_Burning_201: 1191181793578599884
-      Meganeura_Grounded_Burning_202: -5578475665028439664
-      Meganeura_Grounded_Burning_203: -5483369637360489635
-      Meganeura_Grounded_Burning_204: 642731616465320565
-      Meganeura_Grounded_Burning_205: -8415087994433310553
-      Meganeura_Grounded_Burning_206: -4831459513798222909
-      Meganeura_Grounded_Burning_207: 8322310979430583575
-      Meganeura_Grounded_Burning_208: 5675395848277042521
-      Meganeura_Grounded_Burning_209: -8448466662567832270
-      Meganeura_Grounded_Burning_21: 9179286859796422827
-      Meganeura_Grounded_Burning_210: 9066714386090266669
-      Meganeura_Grounded_Burning_211: -641491770971727468
-      Meganeura_Grounded_Burning_212: 3646846997231107647
-      Meganeura_Grounded_Burning_213: 6411474694724423749
-      Meganeura_Grounded_Burning_214: -8880362046992416446
-      Meganeura_Grounded_Burning_215: 5823859311036061044
-      Meganeura_Grounded_Burning_216: 6262599556249397643
-      Meganeura_Grounded_Burning_217: 1277545699060433126
-      Meganeura_Grounded_Burning_218: 4053112950621683909
-      Meganeura_Grounded_Burning_219: -6298599515762604541
-      Meganeura_Grounded_Burning_22: -2289598584646086950
-      Meganeura_Grounded_Burning_220: 6624974063806721684
-      Meganeura_Grounded_Burning_221: -7873465149662203455
-      Meganeura_Grounded_Burning_222: 8416600648781316814
-      Meganeura_Grounded_Burning_223: -2361007404186879358
-      Meganeura_Grounded_Burning_224: -5811881365834837960
-      Meganeura_Grounded_Burning_225: 1849902991884708334
-      Meganeura_Grounded_Burning_226: 7182857643255507720
-      Meganeura_Grounded_Burning_227: -4815640643676748424
-      Meganeura_Grounded_Burning_228: 3093392749691104517
-      Meganeura_Grounded_Burning_229: -6689512745712419902
-      Meganeura_Grounded_Burning_23: -7933605475782376266
-      Meganeura_Grounded_Burning_230: -7117558018084625206
-      Meganeura_Grounded_Burning_231: -1652024066536108995
-      Meganeura_Grounded_Burning_232: -5249501961885331094
-      Meganeura_Grounded_Burning_233: -8263194720117180589
-      Meganeura_Grounded_Burning_234: -6344431783416231689
-      Meganeura_Grounded_Burning_235: 2710342459113559185
-      Meganeura_Grounded_Burning_236: 4669854593378711886
-      Meganeura_Grounded_Burning_237: -7708489945326201228
-      Meganeura_Grounded_Burning_238: -107535148593718615
-      Meganeura_Grounded_Burning_239: 1318716352716490243
-      Meganeura_Grounded_Burning_24: 8166457342650901569
-      Meganeura_Grounded_Burning_240: 7742729269645561727
-      Meganeura_Grounded_Burning_241: 6254777794398748981
-      Meganeura_Grounded_Burning_242: 1308097336044726458
-      Meganeura_Grounded_Burning_243: 9163625539606357745
-      Meganeura_Grounded_Burning_244: 5716718279692341895
-      Meganeura_Grounded_Burning_245: 3862110755195946727
-      Meganeura_Grounded_Burning_246: -4513101602147396484
-      Meganeura_Grounded_Burning_247: 1260162031636579274
-      Meganeura_Grounded_Burning_248: -8725152047034372835
-      Meganeura_Grounded_Burning_249: -3393241596649302866
-      Meganeura_Grounded_Burning_25: -1349515103118773673
-      Meganeura_Grounded_Burning_250: -2263527501961717533
-      Meganeura_Grounded_Burning_251: 8920017960305077771
-      Meganeura_Grounded_Burning_252: -1450611699625259594
-      Meganeura_Grounded_Burning_253: -3522369865185040370
-      Meganeura_Grounded_Burning_254: -1019719131519382755
-      Meganeura_Grounded_Burning_255: 7579432021953077556
-      Meganeura_Grounded_Burning_256: 5082284757327489773
-      Meganeura_Grounded_Burning_257: 7806265459224800594
-      Meganeura_Grounded_Burning_258: -5287281623226985786
-      Meganeura_Grounded_Burning_259: -4857110633180823494
-      Meganeura_Grounded_Burning_26: 6098278692654532742
-      Meganeura_Grounded_Burning_260: 7819307664254406660
-      Meganeura_Grounded_Burning_261: -2510624565639188349
-      Meganeura_Grounded_Burning_262: 8374032313703544300
-      Meganeura_Grounded_Burning_263: -4558501149918010649
-      Meganeura_Grounded_Burning_264: -5423701831911296057
-      Meganeura_Grounded_Burning_265: 4334715754874233468
-      Meganeura_Grounded_Burning_266: 2506397272511988707
-      Meganeura_Grounded_Burning_267: 7780283550365177948
-      Meganeura_Grounded_Burning_268: 213643519634984613
-      Meganeura_Grounded_Burning_269: -147088602827738914
-      Meganeura_Grounded_Burning_27: -6501833660097023864
-      Meganeura_Grounded_Burning_270: -4073955887173044962
-      Meganeura_Grounded_Burning_271: 5400100661141500884
-      Meganeura_Grounded_Burning_272: 5783154033217145610
-      Meganeura_Grounded_Burning_273: -3108359257413283024
-      Meganeura_Grounded_Burning_274: 8192301862987958827
-      Meganeura_Grounded_Burning_275: -3909097212864381194
-      Meganeura_Grounded_Burning_276: -6697739099611250954
-      Meganeura_Grounded_Burning_277: -4420697798433066957
-      Meganeura_Grounded_Burning_278: -5835587331930829519
-      Meganeura_Grounded_Burning_279: 8714381437803135873
-      Meganeura_Grounded_Burning_28: -7924788622168797693
-      Meganeura_Grounded_Burning_280: -3625627874807544558
-      Meganeura_Grounded_Burning_281: 3210940278877657666
-      Meganeura_Grounded_Burning_282: 1390661757387284462
-      Meganeura_Grounded_Burning_283: -8469940453437220318
-      Meganeura_Grounded_Burning_284: -3167384394914404307
-      Meganeura_Grounded_Burning_285: -1528398207167776766
-      Meganeura_Grounded_Burning_286: -8538004540421493166
-      Meganeura_Grounded_Burning_287: 6914904630760053083
-      Meganeura_Grounded_Burning_288: 2830467386582949244
-      Meganeura_Grounded_Burning_289: 8469432369808924569
-      Meganeura_Grounded_Burning_29: -1327565273466034343
-      Meganeura_Grounded_Burning_3: -6940278698139259442
-      Meganeura_Grounded_Burning_30: -8025741498702987749
-      Meganeura_Grounded_Burning_31: -9138772992732633995
-      Meganeura_Grounded_Burning_32: 4034248756343066744
-      Meganeura_Grounded_Burning_33: 4779436600687099710
-      Meganeura_Grounded_Burning_34: 3449870805805334820
-      Meganeura_Grounded_Burning_35: 5265583473084215771
-      Meganeura_Grounded_Burning_36: -4866788799737272176
-      Meganeura_Grounded_Burning_37: 3463152251278879266
-      Meganeura_Grounded_Burning_38: -8008643300980853750
-      Meganeura_Grounded_Burning_39: -8187566916208145838
-      Meganeura_Grounded_Burning_4: 600532213917181867
-      Meganeura_Grounded_Burning_40: 7856708186477807448
-      Meganeura_Grounded_Burning_41: -1981213001762349216
-      Meganeura_Grounded_Burning_42: 6440888983481757931
-      Meganeura_Grounded_Burning_43: 2978514939801645253
-      Meganeura_Grounded_Burning_44: 5310531070533993157
-      Meganeura_Grounded_Burning_45: 6492354687391315909
-      Meganeura_Grounded_Burning_46: 2018495545598696783
-      Meganeura_Grounded_Burning_47: -1825573002339069941
-      Meganeura_Grounded_Burning_48: 2050572900123312130
-      Meganeura_Grounded_Burning_49: 2401849917473237307
-      Meganeura_Grounded_Burning_5: 4751676895713685661
-      Meganeura_Grounded_Burning_50: 1521799771401092209
-      Meganeura_Grounded_Burning_51: -1534129464220256836
-      Meganeura_Grounded_Burning_52: 7810577969602721446
-      Meganeura_Grounded_Burning_53: 9065577708827589806
-      Meganeura_Grounded_Burning_54: -646982163780112384
-      Meganeura_Grounded_Burning_55: -3800627446014034009
-      Meganeura_Grounded_Burning_56: 6642579912495891274
-      Meganeura_Grounded_Burning_57: 1143160151249930345
-      Meganeura_Grounded_Burning_58: 6187435230325782372
-      Meganeura_Grounded_Burning_59: 6133906942092092685
-      Meganeura_Grounded_Burning_6: 4592098977883606954
-      Meganeura_Grounded_Burning_60: -3986791125470105168
-      Meganeura_Grounded_Burning_61: 4578416630438699393
-      Meganeura_Grounded_Burning_62: 7700333140895751214
-      Meganeura_Grounded_Burning_63: -7522424875763317651
-      Meganeura_Grounded_Burning_64: 467722984466764097
-      Meganeura_Grounded_Burning_65: 2933452109086222609
-      Meganeura_Grounded_Burning_66: 1904111513812531367
-      Meganeura_Grounded_Burning_67: -7955320087099555362
-      Meganeura_Grounded_Burning_68: -5442053926859913683
-      Meganeura_Grounded_Burning_69: 9027787893829494888
-      Meganeura_Grounded_Burning_7: -2901752209966548946
-      Meganeura_Grounded_Burning_70: 8645123187207779375
-      Meganeura_Grounded_Burning_71: -7718080709534472343
-      Meganeura_Grounded_Burning_72: 4750200170194854464
-      Meganeura_Grounded_Burning_73: 1587191790462691704
-      Meganeura_Grounded_Burning_74: 7405356624913547184
-      Meganeura_Grounded_Burning_75: 8446691614994026164
-      Meganeura_Grounded_Burning_76: 559175074654993802
-      Meganeura_Grounded_Burning_77: -1015862194800903737
-      Meganeura_Grounded_Burning_78: -2690304162058339624
-      Meganeura_Grounded_Burning_79: -4346270255070896503
-      Meganeura_Grounded_Burning_8: 7665851632283274817
-      Meganeura_Grounded_Burning_80: -8944305014089970107
-      Meganeura_Grounded_Burning_81: 8454468304781214994
-      Meganeura_Grounded_Burning_82: 6697491277780085004
-      Meganeura_Grounded_Burning_83: -7895582490757575442
-      Meganeura_Grounded_Burning_84: 7949466221143666899
-      Meganeura_Grounded_Burning_85: -5515941136859037220
-      Meganeura_Grounded_Burning_86: 1533627072973449356
-      Meganeura_Grounded_Burning_87: 6417503904541337184
-      Meganeura_Grounded_Burning_88: -1811788404850468864
-      Meganeura_Grounded_Burning_89: 5254007951552409999
-      Meganeura_Grounded_Burning_9: 7086095732414533698
-      Meganeura_Grounded_Burning_90: -6679909988740812487
-      Meganeura_Grounded_Burning_91: 7089586895373349666
-      Meganeura_Grounded_Burning_92: -5651038804287191678
-      Meganeura_Grounded_Burning_93: -7310209294152634391
-      Meganeura_Grounded_Burning_94: 6675858636022574693
-      Meganeura_Grounded_Burning_95: -3105142957182038057
-      Meganeura_Grounded_Burning_96: 6783827400406857055
-      Meganeura_Grounded_Burning_97: 1520989584478937198
-      Meganeura_Grounded_Burning_98: 2601121493806646210
-      Meganeura_Grounded_Burning_99: 5197260187154310826
+      Meganeura_Grounded_Burning_0_0: -1072839806
+      Meganeura_Grounded_Burning_0_1: 1193156175
+      Meganeura_Grounded_Burning_0_2: -716511303
+      Meganeura_Grounded_Burning_0_3: -1778631397
+      Meganeura_Grounded_Burning_1_0: -828592977
+      Meganeura_Grounded_Burning_1_1: -96365740
+      Meganeura_Grounded_Burning_1_2: 1528783757
+      Meganeura_Grounded_Burning_1_3: 2110357422
+      Meganeura_Grounded_Burning_2_0: -1018891503
+      Meganeura_Grounded_Burning_2_1: 1365944679
+      Meganeura_Grounded_Burning_2_2: -1914563409
+      Meganeura_Grounded_Burning_2_3: 502852214
+      Meganeura_Grounded_Burning_3_0: -1402031921
+      Meganeura_Grounded_Burning_3_1: -378944549
+      Meganeura_Grounded_Burning_3_2: -1267641961
+      Meganeura_Grounded_Burning_3_3: -158288442
+      Meganeura_Grounded_Burning_4_0: 1224027033
+      Meganeura_Grounded_Burning_4_1: -2065268439
+      Meganeura_Grounded_Burning_4_2: 1704780917
+      Meganeura_Grounded_Burning_4_3: -269335552
+      Meganeura_Grounded_Burning_5_0: 939103381
+      Meganeura_Grounded_Burning_5_1: -1665792770
+      Meganeura_Grounded_Burning_5_2: -130202264
+      Meganeura_Grounded_Burning_5_3: 652768000
+      Meganeura_Grounded_Burning_6_0: 2115311603
+      Meganeura_Grounded_Burning_6_1: 1473259971
+      Meganeura_Grounded_Burning_6_2: -1512935098
+      Meganeura_Grounded_Burning_6_3: -279000332
+      Meganeura_Grounded_Burning_7_0: -370277890
+      Meganeura_Grounded_Burning_7_1: -346682918
+      Meganeura_Grounded_Burning_7_2: -947600333
+      Meganeura_Grounded_Burning_7_3: 585091819
+      Meganeura_Grounded_Burning_8_0: 247885247
+      Meganeura_Grounded_Burning_8_1: -628190686
+      Meganeura_Grounded_Burning_8_2: 2013617704
+      Meganeura_Grounded_Burning_8_3: 2127989444
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

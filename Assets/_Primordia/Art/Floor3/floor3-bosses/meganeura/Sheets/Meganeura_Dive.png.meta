@@ -124,7 +124,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -152,7 +152,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -193,595 +193,595 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Meganeura_Dive_0
+      name: Meganeura_Dive_0_0
       rect:
         serializedVersion: 2
-        x: 36
-        y: 1582
-        width: 120
-        height: 73
+        x: 0
+        y: 1536
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 3dd8d1a58654a12f0800000000000000
-      internalID: -1001411652645712429
+      spriteID: 3852c38a24c980342ad2c6a0ba3bf510
+      internalID: 565641740
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Dive_1
+      name: Meganeura_Dive_0_1
       rect:
         serializedVersion: 2
-        x: 228
-        y: 1582
-        width: 120
-        height: 73
+        x: 192
+        y: 1536
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a2b1c7a5d08642720800000000000000
-      internalID: 2820493673202719530
+      spriteID: 2b0824b68d1df734fa9d64f969c4459b
+      internalID: -108079529
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Dive_2
+      name: Meganeura_Dive_0_2
       rect:
         serializedVersion: 2
-        x: 419
-        y: 1582
-        width: 122
-        height: 73
+        x: 384
+        y: 1536
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e4a774b7c7ae908c0800000000000000
-      internalID: -4032434170968442290
+      spriteID: bc4c809c2de40a842a38d9b618b6de02
+      internalID: -1116456034
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Dive_3
+      name: Meganeura_Dive_1_0
       rect:
         serializedVersion: 2
-        x: 29
-        y: 1394
-        width: 111
-        height: 69
+        x: 0
+        y: 1344
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b88910f5042578d60800000000000000
-      internalID: 7892367308415408267
+      spriteID: ae1a2dcb9a10da444bc1ed21f141d345
+      internalID: -1893945568
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Dive_4
+      name: Meganeura_Dive_1_1
       rect:
         serializedVersion: 2
-        x: 223
-        y: 1394
-        width: 110
-        height: 72
+        x: 192
+        y: 1344
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 456ade345efc5aa70800000000000000
-      internalID: 8837698427378574932
+      spriteID: 105657bd6abe94d4bae39c6475b1f68c
+      internalID: -1212014493
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Dive_5
+      name: Meganeura_Dive_1_2
       rect:
         serializedVersion: 2
-        x: 412
-        y: 1394
-        width: 112
-        height: 69
+        x: 384
+        y: 1344
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2bbad153f839e9c40800000000000000
-      internalID: 5521012436483550130
+      spriteID: e17eb1da033f5d0488ec52a99128b2cf
+      internalID: 1387025959
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Dive_6
+      name: Meganeura_Dive_2_0
       rect:
         serializedVersion: 2
-        x: 32
-        y: 1213
-        width: 92
-        height: 77
+        x: 0
+        y: 1152
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f5736bf57bd8fe430800000000000000
-      internalID: 3814423228130408287
+      spriteID: 6cb1bc7ba79043c42903fe7c351409e8
+      internalID: -1662078547
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Dive_7
+      name: Meganeura_Dive_2_1
       rect:
         serializedVersion: 2
-        x: 225
-        y: 1213
-        width: 91
-        height: 81
+        x: 192
+        y: 1152
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b858e42403428ff40800000000000000
-      internalID: 5762395512910022027
+      spriteID: 4a3672162706d164fb986307e08bbaf6
+      internalID: 1093967763
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Dive_8
+      name: Meganeura_Dive_2_2
       rect:
         serializedVersion: 2
-        x: 414
-        y: 1213
-        width: 94
-        height: 74
+        x: 384
+        y: 1152
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0b8d3a6b2250e40d0800000000000000
-      internalID: -3436803818985891664
+      spriteID: a5b249a2bbc8f7d49b1d0f28d65209a7
+      internalID: -1103813295
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Dive_9
+      name: Meganeura_Dive_3_0
       rect:
         serializedVersion: 2
-        x: 17
-        y: 1022
-        width: 109
-        height: 95
+        x: 0
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 3ee46cf872ca73250800000000000000
-      internalID: 5924393120745017059
+      spriteID: 29fbd2cf675cf464492acd76cca3ef30
+      internalID: -109215916
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Dive_10
+      name: Meganeura_Dive_3_1
       rect:
         serializedVersion: 2
-        x: 209
-        y: 1022
-        width: 109
-        height: 97
+        x: 192
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 5042dc0133314e8a0800000000000000
-      internalID: -6276870870601489403
+      spriteID: 9606d6f40abe4a241a8f6e14d7f4ae53
+      internalID: 98780141
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Dive_11
+      name: Meganeura_Dive_3_2
       rect:
         serializedVersion: 2
-        x: 401
-        y: 1022
-        width: 109
-        height: 92
+        x: 384
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ef1e3ef5660a2f5a0800000000000000
-      internalID: -6488947751531585026
+      spriteID: 5494284b5c81f2541b4773bd40927dd6
+      internalID: -751998203
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Dive_12
+      name: Meganeura_Dive_4_0
       rect:
         serializedVersion: 2
-        x: 12
-        y: 830
-        width: 114
-        height: 108
+        x: 0
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: fe2c35768b1a542e0800000000000000
-      internalID: -2142128234365205777
+      spriteID: f2ba9eea20d597b408fcc9ccaf41e323
+      internalID: -1115802893
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Dive_13
+      name: Meganeura_Dive_4_1
       rect:
         serializedVersion: 2
-        x: 204
-        y: 830
-        width: 114
-        height: 109
+        x: 192
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 569290a9f82f89bf0800000000000000
-      internalID: -317237075151083163
+      spriteID: db5a836a1f02f744c8a12d43d95144e5
+      internalID: -220792343
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Dive_14
+      name: Meganeura_Dive_4_2
       rect:
         serializedVersion: 2
-        x: 396
-        y: 830
-        width: 114
-        height: 106
+        x: 384
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c60aeb839b7c8eb10800000000000000
-      internalID: 2011076831955820652
+      spriteID: c178f2399a6800249b008f9dd87ed0c6
+      internalID: 1929950293
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Dive_15
+      name: Meganeura_Dive_5_0
       rect:
         serializedVersion: 2
-        x: 17
-        y: 636
-        width: 109
-        height: 115
+        x: 0
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 52f7211225c9d5e20800000000000000
-      internalID: 3340998375134887717
+      spriteID: aa2f2837e60216a478ea66aeb345adc0
+      internalID: -127800668
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Dive_16
+      name: Meganeura_Dive_5_1
       rect:
         serializedVersion: 2
-        x: 209
-        y: 636
-        width: 109
-        height: 116
+        x: 192
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 5eae0f465f6b6aaf0800000000000000
-      internalID: -385419553016845595
+      spriteID: 5c0439ce075eabb40ab66e4bad023782
+      internalID: 56669731
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Dive_17
+      name: Meganeura_Dive_5_2
       rect:
         serializedVersion: 2
-        x: 401
-        y: 636
-        width: 109
-        height: 114
+        x: 384
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 54336a9571bacb460800000000000000
-      internalID: 7258864816191058757
+      spriteID: ba691b460c093a1469a85db99795610f
+      internalID: 125420616
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Dive_18
+      name: Meganeura_Dive_6_0
       rect:
         serializedVersion: 2
-        x: 32
-        y: 442
-        width: 92
-        height: 118
+        x: 0
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: beb5d725918527d00800000000000000
-      internalID: 968933735619451883
+      spriteID: 934f6c2640090554aa5227cb02d87951
+      internalID: 31568571
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Dive_19
+      name: Meganeura_Dive_6_1
       rect:
         serializedVersion: 2
-        x: 225
-        y: 442
-        width: 91
-        height: 119
+        x: 192
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ee256bac410722d00800000000000000
-      internalID: 946442106303828718
+      spriteID: df4c496364986bb4eb9e66e589e7b2e8
+      internalID: -116176175
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Dive_20
+      name: Meganeura_Dive_6_2
       rect:
         serializedVersion: 2
-        x: 414
-        y: 442
-        width: 94
-        height: 117
+        x: 384
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 07afbe7b322f349e0800000000000000
-      internalID: -1638199604209255824
+      spriteID: 8da1a7ab826dfcb478bbbbdebff9710d
+      internalID: -1376256688
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Dive_21
+      name: Meganeura_Dive_7_0
       rect:
         serializedVersion: 2
-        x: 29
-        y: 250
-        width: 111
-        height: 123
+        x: 0
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 9d2cc809b70122400800000000000000
-      internalID: 297818648252039897
+      spriteID: 01943360dd5f3f74ea768cf1d471f712
+      internalID: -1268058346
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Dive_22
+      name: Meganeura_Dive_7_1
       rect:
         serializedVersion: 2
-        x: 223
-        y: 250
-        width: 110
-        height: 123
+        x: 192
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 4b3bb8288ad2fa160800000000000000
-      internalID: 7038894944371323828
+      spriteID: 22919df1355cea64ebc0c91f9cbb0d40
+      internalID: -2026591578
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Dive_23
+      name: Meganeura_Dive_7_2
       rect:
         serializedVersion: 2
-        x: 412
-        y: 250
-        width: 112
-        height: 123
+        x: 384
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 69c42188605fdb520800000000000000
-      internalID: 2719599158403157142
+      spriteID: d78d3abe59d41564984914f801463787
+      internalID: 1581811905
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Dive_24
+      name: Meganeura_Dive_8_0
       rect:
         serializedVersion: 2
-        x: 36
-        y: 60
-        width: 120
-        height: 125
+        x: 0
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 963947391c85d14c0800000000000000
-      internalID: -4315195279525244055
+      spriteID: 9a4a4d9ca3ca95549a634dc56487f64f
+      internalID: 2092751492
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Dive_25
+      name: Meganeura_Dive_8_1
       rect:
         serializedVersion: 2
-        x: 228
-        y: 60
-        width: 120
-        height: 125
+        x: 192
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 837411ad27e7c6e90800000000000000
-      internalID: -7031105886482249928
+      spriteID: 0b713a5a2ef3e0342b2bde5d638eb2a9
+      internalID: 384403790
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Dive_26
+      name: Meganeura_Dive_8_2
       rect:
         serializedVersion: 2
-        x: 419
-        y: 60
-        width: 122
-        height: 125
+        x: 384
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 373d97fb7266de2d0800000000000000
-      internalID: -3247827435362069645
+      spriteID: 33ae2a94c4690374ea5a61cb02bd6a84
+      internalID: -574226339
       vertices: []
       indices: 
       edges: []
@@ -800,33 +800,33 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Meganeura_Dive_0: -1001411652645712429
-      Meganeura_Dive_1: 2820493673202719530
-      Meganeura_Dive_10: -6276870870601489403
-      Meganeura_Dive_11: -6488947751531585026
-      Meganeura_Dive_12: -2142128234365205777
-      Meganeura_Dive_13: -317237075151083163
-      Meganeura_Dive_14: 2011076831955820652
-      Meganeura_Dive_15: 3340998375134887717
-      Meganeura_Dive_16: -385419553016845595
-      Meganeura_Dive_17: 7258864816191058757
-      Meganeura_Dive_18: 968933735619451883
-      Meganeura_Dive_19: 946442106303828718
-      Meganeura_Dive_2: -4032434170968442290
-      Meganeura_Dive_20: -1638199604209255824
-      Meganeura_Dive_21: 297818648252039897
-      Meganeura_Dive_22: 7038894944371323828
-      Meganeura_Dive_23: 2719599158403157142
-      Meganeura_Dive_24: -4315195279525244055
-      Meganeura_Dive_25: -7031105886482249928
-      Meganeura_Dive_26: -3247827435362069645
-      Meganeura_Dive_3: 7892367308415408267
-      Meganeura_Dive_4: 8837698427378574932
-      Meganeura_Dive_5: 5521012436483550130
-      Meganeura_Dive_6: 3814423228130408287
-      Meganeura_Dive_7: 5762395512910022027
-      Meganeura_Dive_8: -3436803818985891664
-      Meganeura_Dive_9: 5924393120745017059
+      Meganeura_Dive_0_0: 565641740
+      Meganeura_Dive_0_1: -108079529
+      Meganeura_Dive_0_2: -1116456034
+      Meganeura_Dive_1_0: -1893945568
+      Meganeura_Dive_1_1: -1212014493
+      Meganeura_Dive_1_2: 1387025959
+      Meganeura_Dive_2_0: -1662078547
+      Meganeura_Dive_2_1: 1093967763
+      Meganeura_Dive_2_2: -1103813295
+      Meganeura_Dive_3_0: -109215916
+      Meganeura_Dive_3_1: 98780141
+      Meganeura_Dive_3_2: -751998203
+      Meganeura_Dive_4_0: -1115802893
+      Meganeura_Dive_4_1: -220792343
+      Meganeura_Dive_4_2: 1929950293
+      Meganeura_Dive_5_0: -127800668
+      Meganeura_Dive_5_1: 56669731
+      Meganeura_Dive_5_2: 125420616
+      Meganeura_Dive_6_0: 31568571
+      Meganeura_Dive_6_1: -116176175
+      Meganeura_Dive_6_2: -1376256688
+      Meganeura_Dive_7_0: -1268058346
+      Meganeura_Dive_7_1: -2026591578
+      Meganeura_Dive_7_2: 1581811905
+      Meganeura_Dive_8_0: 2092751492
+      Meganeura_Dive_8_1: 384403790
+      Meganeura_Dive_8_2: -574226339
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

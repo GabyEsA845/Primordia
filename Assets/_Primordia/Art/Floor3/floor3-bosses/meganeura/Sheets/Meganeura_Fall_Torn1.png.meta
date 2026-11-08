@@ -151,7 +151,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -179,7 +179,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -220,793 +220,793 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Meganeura_Fall_Torn1_0
+      name: Meganeura_Fall_Torn1_0_0
       rect:
         serializedVersion: 2
-        x: 26
-        y: 1573
-        width: 145
-        height: 102
+        x: 0
+        y: 1536
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 5d86b8434fb22d380800000000000000
-      internalID: -8948041181778188075
+      spriteID: 341e1d2308819814bb81c4db82a63cb0
+      internalID: -404361944
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fall_Torn1_1
+      name: Meganeura_Fall_Torn1_0_1
       rect:
         serializedVersion: 2
-        x: 262
-        y: 1556
-        width: 73
-        height: 155
+        x: 192
+        y: 1536
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 8fe3a944f1e554110800000000000000
-      internalID: 1244504360425766648
+      spriteID: 675f4c6a74b744d41b46c5c1ef3ee4ad
+      internalID: -419742790
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fall_Torn1_2
+      name: Meganeura_Fall_Torn1_0_2
       rect:
         serializedVersion: 2
-        x: 420
-        y: 1558
-        width: 127
-        height: 141
+        x: 384
+        y: 1536
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 1ee4d9227aae68fb0800000000000000
-      internalID: -4645767962024915231
+      spriteID: 1e51b0e01168f4443a0ff5366dff1a52
+      internalID: -789703947
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fall_Torn1_3
+      name: Meganeura_Fall_Torn1_0_3
       rect:
         serializedVersion: 2
-        x: 596
-        y: 1582
-        width: 159
-        height: 85
+        x: 576
+        y: 1536
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0fbc63b2c8d1cd6b0800000000000000
-      internalID: -5270304976072684560
+      spriteID: 16526a8511798f341b9075217ccd788f
+      internalID: -1396883042
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fall_Torn1_4
+      name: Meganeura_Fall_Torn1_1_0
       rect:
         serializedVersion: 2
-        x: 41
-        y: 1385
-        width: 120
-        height: 118
+        x: 0
+        y: 1344
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 1c1a666321936ea90800000000000000
-      internalID: -7285072596840308287
+      spriteID: eb0a8ba8c62202246b0a5ecb34c23cc6
+      internalID: -2084688089
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fall_Torn1_5
+      name: Meganeura_Fall_Torn1_1_1
       rect:
         serializedVersion: 2
-        x: 248
-        y: 1365
-        width: 81
-        height: 145
+        x: 192
+        y: 1344
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 3d387cb49e7cf5f30800000000000000
-      internalID: 4566588351989646291
+      spriteID: 159e8b6aa0eaa2c4386e118374ca6209
+      internalID: 1431713999
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fall_Torn1_6
+      name: Meganeura_Fall_Torn1_1_2
       rect:
         serializedVersion: 2
-        x: 424
-        y: 1378
-        width: 116
-        height: 114
+        x: 384
+        y: 1344
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b70c13f3b25092580800000000000000
-      internalID: -8851537909318041477
+      spriteID: 7d0aea38d81700c4da57d1f4a73b6d77
+      internalID: 341792477
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fall_Torn1_7
+      name: Meganeura_Fall_Torn1_1_3
       rect:
         serializedVersion: 2
-        x: 595
-        y: 1395
-        width: 160
-        height: 80
+        x: 576
+        y: 1344
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 64ecb54a60f8478c0800000000000000
-      internalID: -4002416910135472570
+      spriteID: eb93dcf179b13b0409f9c81e4987a6fb
+      internalID: 498902429
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fall_Torn1_8
+      name: Meganeura_Fall_Torn1_2_0
       rect:
         serializedVersion: 2
-        x: 30
-        y: 1179
-        width: 117
-        height: 144
+        x: 0
+        y: 1152
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: cc5fa37dd9655ff20800000000000000
-      internalID: 3455763524997543372
+      spriteID: f3e7c400ac0821641945e4d9e104d9c5
+      internalID: 877898426
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fall_Torn1_9
+      name: Meganeura_Fall_Torn1_2_1
       rect:
         serializedVersion: 2
-        x: 222
-        y: 1174
-        width: 113
-        height: 132
+        x: 192
+        y: 1152
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b56466ca49b53eda0800000000000000
-      internalID: -5916784791329028517
+      spriteID: 8bec6eb52bba14a4683825185e8c19d3
+      internalID: -1559158543
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fall_Torn1_10
+      name: Meganeura_Fall_Torn1_2_2
       rect:
         serializedVersion: 2
-        x: 414
-        y: 1203
-        width: 124
-        height: 79
+        x: 384
+        y: 1152
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 557eae340d77bb3b0800000000000000
-      internalID: -5495667183899187371
+      spriteID: 849ddbbbeac6deb47ad42b0cd448dc49
+      internalID: -1720844008
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fall_Torn1_11
+      name: Meganeura_Fall_Torn1_2_3
       rect:
         serializedVersion: 2
-        x: 603
-        y: 1201
-        width: 139
-        height: 85
+        x: 576
+        y: 1152
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e2046ba75153767f0800000000000000
-      internalID: -619468057370804178
+      spriteID: 1ff8e0ab639480e488ea0eb9f3ea3f7b
+      internalID: -903425308
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fall_Torn1_12
+      name: Meganeura_Fall_Torn1_3_0
       rect:
         serializedVersion: 2
-        x: 14
-        y: 979
-        width: 113
-        height: 157
+        x: 0
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f172c09434ecaa0a0800000000000000
-      internalID: -6869451493216606433
+      spriteID: de4ad7750e2900646a3125eef84b91bf
+      internalID: -1291756840
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fall_Torn1_13
+      name: Meganeura_Fall_Torn1_3_1
       rect:
         serializedVersion: 2
-        x: 206
-        y: 977
-        width: 133
-        height: 140
+        x: 192
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d87d6df2856954b90800000000000000
-      internalID: -7258229918933788787
+      spriteID: 855642db3527aec4d9b50b64264c7f09
+      internalID: 1660025832
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fall_Torn1_14
+      name: Meganeura_Fall_Torn1_3_2
       rect:
         serializedVersion: 2
-        x: 399
-        y: 1029
-        width: 135
-        height: 54
+        x: 384
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e62f6e7469d7f5050800000000000000
-      internalID: 5791485730226631278
+      spriteID: 207b08c5851e7d142a47b608e1210e08
+      internalID: 2041973638
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fall_Torn1_15
+      name: Meganeura_Fall_Torn1_3_3
       rect:
         serializedVersion: 2
-        x: 592
-        y: 991
-        width: 127
-        height: 121
+        x: 576
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d6bf00f79e8c63ab0800000000000000
-      internalID: -5028611028728874131
+      spriteID: 0e44068ac84996049b69946893f53a76
+      internalID: 548921912
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fall_Torn1_16
+      name: Meganeura_Fall_Torn1_4_0
       rect:
         serializedVersion: 2
-        x: 8
-        y: 782
-        width: 120
-        height: 163
+        x: 0
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 23ffa3088104e62b0800000000000000
-      internalID: -5589459613545464014
+      spriteID: 23b3b9670787cfd498fa61731bc759e5
+      internalID: -378945586
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fall_Torn1_17
+      name: Meganeura_Fall_Torn1_4_1
       rect:
         serializedVersion: 2
-        x: 201
-        y: 784
-        width: 134
-        height: 141
+        x: 192
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 4541e50d7aade1b90800000000000000
-      internalID: -7269132334239181740
+      spriteID: 3dc543ddca79a82498b1903c4cf1c437
+      internalID: 1951744282
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fall_Torn1_18
+      name: Meganeura_Fall_Torn1_4_2
       rect:
         serializedVersion: 2
-        x: 395
-        y: 836
-        width: 127
-        height: 54
+        x: 384
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f26285a4db2e942c0800000000000000
-      internalID: -4446773854427666897
+      spriteID: 5b856bf85bb22be49a942c0492d7f8ce
+      internalID: -342052272
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fall_Torn1_19
+      name: Meganeura_Fall_Torn1_4_3
       rect:
         serializedVersion: 2
-        x: 588
-        y: 790
-        width: 118
-        height: 141
+        x: 576
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 550731d8070a9a870800000000000000
-      internalID: 8694656960879095893
+      spriteID: 5b81f71a115e2284996a0f0c56d49852
+      internalID: -219599744
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fall_Torn1_20
+      name: Meganeura_Fall_Torn1_5_0
       rect:
         serializedVersion: 2
-        x: 15
-        y: 593
-        width: 137
-        height: 158
+        x: 0
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 8c95c5e7c275ef5c0800000000000000
-      internalID: -4179807555543082552
+      spriteID: d8fd0bc6bb3ba144dbdc41709348cf78
+      internalID: -1590262062
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fall_Torn1_21
+      name: Meganeura_Fall_Torn1_5_1
       rect:
         serializedVersion: 2
-        x: 209
-        y: 597
-        width: 116
-        height: 135
+        x: 192
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: fff368447cbcd8d90800000000000000
-      internalID: -7093789781330083841
+      spriteID: bc266a37e909a31409b64a7d3b30d8b5
+      internalID: -876968550
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fall_Torn1_22
+      name: Meganeura_Fall_Torn1_5_2
       rect:
         serializedVersion: 2
-        x: 403
-        y: 648
-        width: 112
-        height: 75
+        x: 384
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 1a364bbd61d6f48a0800000000000000
-      internalID: -6318711807234776159
+      spriteID: b6b1d6f6cd0c89e448ecadbb6344c5b1
+      internalID: -2060236607
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fall_Torn1_23
+      name: Meganeura_Fall_Torn1_5_3
       rect:
         serializedVersion: 2
-        x: 594
-        y: 598
-        width: 114
-        height: 143
+        x: 576
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d976af8fe0b4ce1c0800000000000000
-      internalID: -4473117802206959715
+      spriteID: f30cf4b3e62f6cb4482be05dc782dc98
+      internalID: -1677051419
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fall_Torn1_24
+      name: Meganeura_Fall_Torn1_6_0
       rect:
         serializedVersion: 2
-        x: 20
-        y: 412
-        width: 148
-        height: 139
+        x: 0
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d8ba1de6b43606500800000000000000
-      internalID: 387418743586794381
+      spriteID: 013fed32617cb714d96b107010b263dd
+      internalID: 740206582
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fall_Torn1_25
+      name: Meganeura_Fall_Torn1_6_1
       rect:
         serializedVersion: 2
-        x: 229
-        y: 415
-        width: 95
-        height: 137
+        x: 192
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 9a09a008656db20d0800000000000000
-      internalID: -3446425422818275159
+      spriteID: 3e90e33407bde0b4e80c43cb77360e8a
+      internalID: -2004205898
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fall_Torn1_26
+      name: Meganeura_Fall_Torn1_6_2
       rect:
         serializedVersion: 2
-        x: 421
-        y: 452
-        width: 102
-        height: 100
+        x: 384
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c4cfd34a464e19d50800000000000000
-      internalID: 6742421238053731404
+      spriteID: b62c0b3f684e9574bb4ebe1f186a96ec
+      internalID: -1796182761
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fall_Torn1_27
+      name: Meganeura_Fall_Torn1_6_3
       rect:
         serializedVersion: 2
-        x: 610
-        y: 416
-        width: 121
-        height: 136
+        x: 576
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 909e9e63e1a8d6e30800000000000000
-      internalID: 4498403465187944713
+      spriteID: a7f59f7ef00cd73448b340a75de88aab
+      internalID: -310578388
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fall_Torn1_28
+      name: Meganeura_Fall_Torn1_7_0
       rect:
         serializedVersion: 2
-        x: 15
-        y: 237
-        width: 158
-        height: 135
+        x: 0
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 17e834cff989db860800000000000000
-      internalID: 7547356363442327153
+      spriteID: 52a9360b69dde80458495d8507111e1e
+      internalID: 1263108166
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fall_Torn1_29
+      name: Meganeura_Fall_Torn1_7_1
       rect:
         serializedVersion: 2
-        x: 241
-        y: 236
-        width: 80
-        height: 137
+        x: 192
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b29b6fa8a053bad80800000000000000
-      internalID: -8238432773946820309
+      spriteID: 8dfa93bec0de8f14c82c96b710a9dcdd
+      internalID: -239115831
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fall_Torn1_30
+      name: Meganeura_Fall_Torn1_7_2
       rect:
         serializedVersion: 2
-        x: 415
-        y: 258
-        width: 121
-        height: 115
+        x: 384
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c721c10d972ce9e20800000000000000
-      internalID: 3359336200503300732
+      spriteID: 9603e396fa4c1a841b6b6e71876a53bc
+      internalID: -1576193441
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fall_Torn1_31
+      name: Meganeura_Fall_Torn1_7_3
       rect:
         serializedVersion: 2
-        x: 600
-        y: 242
-        width: 145
-        height: 131
+        x: 576
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: cf723797908ada510800000000000000
-      internalID: 1562089404413192188
+      spriteID: 2deba214ed892c243a2e193745a060fa
+      internalID: 2107194447
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fall_Torn1_32
+      name: Meganeura_Fall_Torn1_8_0
       rect:
         serializedVersion: 2
-        x: 21
-        y: 62
-        width: 145
-        height: 121
+        x: 0
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: fe7a782abdbfbeef0800000000000000
-      internalID: -77691647805642769
+      spriteID: b0aa8f32ae6775047ace6b3ca7038851
+      internalID: -1887369292
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fall_Torn1_33
+      name: Meganeura_Fall_Torn1_8_1
       rect:
         serializedVersion: 2
-        x: 241
-        y: 58
-        width: 73
-        height: 127
+        x: 192
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 1eb7adbf6533fe1c0800000000000000
-      internalID: -4472299456270009375
+      spriteID: af7696c1ea6d21e459be3ce1b8bbd1e1
+      internalID: -1235025490
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fall_Torn1_34
+      name: Meganeura_Fall_Torn1_8_2
       rect:
         serializedVersion: 2
-        x: 413
-        y: 63
-        width: 127
-        height: 123
+        x: 384
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7805eec79de7dc680800000000000000
-      internalID: -8733184629832527737
+      spriteID: 1436e3fda0ef3c24f81ff2a3bbc475c9
+      internalID: -1644326977
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Fall_Torn1_35
+      name: Meganeura_Fall_Torn1_8_3
       rect:
         serializedVersion: 2
-        x: 589
-        y: 64
-        width: 159
-        height: 121
+        x: 576
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d571054ea179e8790800000000000000
-      internalID: -7525911785534122147
+      spriteID: 2fcbde6935e2d7a4fb5e6d38cb0b4508
+      internalID: 1608945550
       vertices: []
       indices: 
       edges: []
@@ -1025,42 +1025,42 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Meganeura_Fall_Torn1_0: -8948041181778188075
-      Meganeura_Fall_Torn1_1: 1244504360425766648
-      Meganeura_Fall_Torn1_10: -5495667183899187371
-      Meganeura_Fall_Torn1_11: -619468057370804178
-      Meganeura_Fall_Torn1_12: -6869451493216606433
-      Meganeura_Fall_Torn1_13: -7258229918933788787
-      Meganeura_Fall_Torn1_14: 5791485730226631278
-      Meganeura_Fall_Torn1_15: -5028611028728874131
-      Meganeura_Fall_Torn1_16: -5589459613545464014
-      Meganeura_Fall_Torn1_17: -7269132334239181740
-      Meganeura_Fall_Torn1_18: -4446773854427666897
-      Meganeura_Fall_Torn1_19: 8694656960879095893
-      Meganeura_Fall_Torn1_2: -4645767962024915231
-      Meganeura_Fall_Torn1_20: -4179807555543082552
-      Meganeura_Fall_Torn1_21: -7093789781330083841
-      Meganeura_Fall_Torn1_22: -6318711807234776159
-      Meganeura_Fall_Torn1_23: -4473117802206959715
-      Meganeura_Fall_Torn1_24: 387418743586794381
-      Meganeura_Fall_Torn1_25: -3446425422818275159
-      Meganeura_Fall_Torn1_26: 6742421238053731404
-      Meganeura_Fall_Torn1_27: 4498403465187944713
-      Meganeura_Fall_Torn1_28: 7547356363442327153
-      Meganeura_Fall_Torn1_29: -8238432773946820309
-      Meganeura_Fall_Torn1_3: -5270304976072684560
-      Meganeura_Fall_Torn1_30: 3359336200503300732
-      Meganeura_Fall_Torn1_31: 1562089404413192188
-      Meganeura_Fall_Torn1_32: -77691647805642769
-      Meganeura_Fall_Torn1_33: -4472299456270009375
-      Meganeura_Fall_Torn1_34: -8733184629832527737
-      Meganeura_Fall_Torn1_35: -7525911785534122147
-      Meganeura_Fall_Torn1_4: -7285072596840308287
-      Meganeura_Fall_Torn1_5: 4566588351989646291
-      Meganeura_Fall_Torn1_6: -8851537909318041477
-      Meganeura_Fall_Torn1_7: -4002416910135472570
-      Meganeura_Fall_Torn1_8: 3455763524997543372
-      Meganeura_Fall_Torn1_9: -5916784791329028517
+      Meganeura_Fall_Torn1_0_0: -404361944
+      Meganeura_Fall_Torn1_0_1: -419742790
+      Meganeura_Fall_Torn1_0_2: -789703947
+      Meganeura_Fall_Torn1_0_3: -1396883042
+      Meganeura_Fall_Torn1_1_0: -2084688089
+      Meganeura_Fall_Torn1_1_1: 1431713999
+      Meganeura_Fall_Torn1_1_2: 341792477
+      Meganeura_Fall_Torn1_1_3: 498902429
+      Meganeura_Fall_Torn1_2_0: 877898426
+      Meganeura_Fall_Torn1_2_1: -1559158543
+      Meganeura_Fall_Torn1_2_2: -1720844008
+      Meganeura_Fall_Torn1_2_3: -903425308
+      Meganeura_Fall_Torn1_3_0: -1291756840
+      Meganeura_Fall_Torn1_3_1: 1660025832
+      Meganeura_Fall_Torn1_3_2: 2041973638
+      Meganeura_Fall_Torn1_3_3: 548921912
+      Meganeura_Fall_Torn1_4_0: -378945586
+      Meganeura_Fall_Torn1_4_1: 1951744282
+      Meganeura_Fall_Torn1_4_2: -342052272
+      Meganeura_Fall_Torn1_4_3: -219599744
+      Meganeura_Fall_Torn1_5_0: -1590262062
+      Meganeura_Fall_Torn1_5_1: -876968550
+      Meganeura_Fall_Torn1_5_2: -2060236607
+      Meganeura_Fall_Torn1_5_3: -1677051419
+      Meganeura_Fall_Torn1_6_0: 740206582
+      Meganeura_Fall_Torn1_6_1: -2004205898
+      Meganeura_Fall_Torn1_6_2: -1796182761
+      Meganeura_Fall_Torn1_6_3: -310578388
+      Meganeura_Fall_Torn1_7_0: 1263108166
+      Meganeura_Fall_Torn1_7_1: -239115831
+      Meganeura_Fall_Torn1_7_2: -1576193441
+      Meganeura_Fall_Torn1_7_3: 2107194447
+      Meganeura_Fall_Torn1_8_0: -1887369292
+      Meganeura_Fall_Torn1_8_1: -1235025490
+      Meganeura_Fall_Torn1_8_2: -1644326977
+      Meganeura_Fall_Torn1_8_3: 1608945550
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

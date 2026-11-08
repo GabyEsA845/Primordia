@@ -151,7 +151,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -179,7 +179,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -220,793 +220,793 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Meganeura_Shocked_Torn1_0
+      name: Meganeura_Shocked_Torn1_0_0
       rect:
         serializedVersion: 2
-        x: 21
-        y: 1550
-        width: 150
-        height: 120
+        x: 0
+        y: 1536
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 3403dd5cc500950d0800000000000000
-      internalID: -3433712842436693949
+      spriteID: 908d64b7bd7a2f04988750d75ad791d1
+      internalID: -1338309770
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shocked_Torn1_1
+      name: Meganeura_Shocked_Torn1_0_1
       rect:
         serializedVersion: 2
-        x: 209
-        y: 1550
-        width: 157
-        height: 118
+        x: 192
+        y: 1536
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: fc5d464221b0d2bc0800000000000000
-      internalID: -3806373937510296113
+      spriteID: 732b394b29f45a8439623bfd90b99768
+      internalID: -1366693097
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shocked_Torn1_2
+      name: Meganeura_Shocked_Torn1_0_2
       rect:
         serializedVersion: 2
-        x: 405
-        y: 1550
-        width: 159
-        height: 121
+        x: 384
+        y: 1536
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: bb822efc226d213b0800000000000000
-      internalID: -5543132746334721861
+      spriteID: 12707a041d450574c97a2deac1669f7c
+      internalID: -1015756532
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shocked_Torn1_3
+      name: Meganeura_Shocked_Torn1_0_3
       rect:
         serializedVersion: 2
-        x: 593
-        y: 1550
-        width: 156
-        height: 117
+        x: 576
+        y: 1536
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 57bb86a2c707d7700800000000000000
-      internalID: 539711208944089973
+      spriteID: 376ab7d8a5aa7f643a573890ddf68cce
+      internalID: 126694111
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shocked_Torn1_4
+      name: Meganeura_Shocked_Torn1_1_0
       rect:
         serializedVersion: 2
-        x: 17
-        y: 1363
-        width: 154
-        height: 141
+        x: 0
+        y: 1344
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 1fdb676545a19f0e0800000000000000
-      internalID: -2235726790482543119
+      spriteID: a5e6ec33f8fe82445866f76b6761b19a
+      internalID: 1281663546
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shocked_Torn1_5
+      name: Meganeura_Shocked_Torn1_1_1
       rect:
         serializedVersion: 2
-        x: 210
-        y: 1363
-        width: 156
-        height: 135
+        x: 192
+        y: 1344
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: bb9aae8c4019ba600800000000000000
-      internalID: 480637234981808571
+      spriteID: 1ad62fcd9e6cd054d9197071f8faf863
+      internalID: 1491626714
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shocked_Torn1_6
+      name: Meganeura_Shocked_Torn1_1_2
       rect:
         serializedVersion: 2
-        x: 401
-        y: 1363
-        width: 154
-        height: 138
+        x: 384
+        y: 1344
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 4fe8eacded128bac0800000000000000
-      internalID: -3839281441264464140
+      spriteID: 39418bfb9133cbe41baf847393e65ac3
+      internalID: 1400531906
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shocked_Torn1_7
+      name: Meganeura_Shocked_Torn1_1_3
       rect:
         serializedVersion: 2
-        x: 594
-        y: 1360
-        width: 156
-        height: 138
+        x: 576
+        y: 1344
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 71a7043cbfc429330800000000000000
-      internalID: 3716117286730365463
+      spriteID: 9cd34e612b4dff645a5b3c2500306e32
+      internalID: -610053786
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shocked_Torn1_8
+      name: Meganeura_Shocked_Torn1_2_0
       rect:
         serializedVersion: 2
-        x: 23
-        y: 1185
-        width: 137
-        height: 140
+        x: 0
+        y: 1152
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 53b16b29d9dc6b210800000000000000
-      internalID: 1348491215099009845
+      spriteID: 81003894d83e82f4ea2d1cbde64644a2
+      internalID: 1912402045
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shocked_Torn1_9
+      name: Meganeura_Shocked_Torn1_2_1
       rect:
         serializedVersion: 2
-        x: 216
-        y: 1185
-        width: 139
-        height: 138
+        x: 192
+        y: 1152
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0307e3cd1dbe7a410800000000000000
-      internalID: 1488417488445009968
+      spriteID: 282ff60347a42384cbc188a9d99a3518
+      internalID: 654229567
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shocked_Torn1_10
+      name: Meganeura_Shocked_Torn1_2_2
       rect:
         serializedVersion: 2
-        x: 407
-        y: 1185
-        width: 137
-        height: 141
+        x: 384
+        y: 1152
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: de863b9a005ab4270800000000000000
-      internalID: 8235857765842774253
+      spriteID: 8740595f508690943944dbc26c2f3800
+      internalID: 141342884
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shocked_Torn1_11
+      name: Meganeura_Shocked_Torn1_2_3
       rect:
         serializedVersion: 2
-        x: 600
-        y: 1185
-        width: 138
-        height: 138
+        x: 576
+        y: 1152
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c40e0ca6bb0f891c0800000000000000
-      internalID: -4496579540188864436
+      spriteID: a85b616290da2fe4b9ecbddf27c91ce1
+      internalID: -745561354
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shocked_Torn1_12
+      name: Meganeura_Shocked_Torn1_3_0
       rect:
         serializedVersion: 2
-        x: 11
-        y: 1006
-        width: 129
-        height: 136
+        x: 0
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2797023fe3879ef00800000000000000
-      internalID: 1146579791904799090
+      spriteID: 4d4b24666a96e694dbcd187ee6e99176
+      internalID: 195542133
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shocked_Torn1_13
+      name: Meganeura_Shocked_Torn1_3_1
       rect:
         serializedVersion: 2
-        x: 203
-        y: 1012
-        width: 130
-        height: 129
+        x: 192
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7e35a8b27371edcb0800000000000000
-      internalID: -4837403424028208153
+      spriteID: 84e544191568e584ab0a94706ba61b74
+      internalID: 1151119653
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shocked_Torn1_14
+      name: Meganeura_Shocked_Torn1_3_2
       rect:
         serializedVersion: 2
-        x: 395
-        y: 1005
-        width: 128
-        height: 137
+        x: 384
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 19c7eb2e8dbb3f2d0800000000000000
-      internalID: -3246044366212531055
+      spriteID: 245120e6f76969a4389372200cd2a810
+      internalID: -136127302
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shocked_Torn1_15
+      name: Meganeura_Shocked_Torn1_3_3
       rect:
         serializedVersion: 2
-        x: 587
-        y: 1011
-        width: 130
-        height: 130
+        x: 576
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b44c4812443687dc0800000000000000
-      internalID: -3641051154457770933
+      spriteID: 5678b3aed81fdae4391bf74251a94b68
+      internalID: 528796790
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shocked_Torn1_16
+      name: Meganeura_Shocked_Torn1_4_0
       rect:
         serializedVersion: 2
-        x: 6
-        y: 818
-        width: 128
-        height: 143
+        x: 0
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7a80c89d3d027fdd0800000000000000
-      internalID: -2452455377819924313
+      spriteID: af9d66a90fbd7d34a8db8cf5f49fea4c
+      internalID: 675945439
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shocked_Torn1_17
+      name: Meganeura_Shocked_Torn1_4_1
       rect:
         serializedVersion: 2
-        x: 198
-        y: 819
-        width: 128
-        height: 130
+        x: 192
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c36acb20fc22e0820800000000000000
-      internalID: 2886282683690559036
+      spriteID: cd39ad0510c6cfe479c86c923a3f18ee
+      internalID: 183539045
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shocked_Torn1_18
+      name: Meganeura_Shocked_Torn1_4_2
       rect:
         serializedVersion: 2
-        x: 390
-        y: 816
-        width: 128
-        height: 134
+        x: 384
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 751335e323ee55c00800000000000000
-      internalID: 888878401036955991
+      spriteID: e98a998b07ba7d14489de4484335083d
+      internalID: -192449274
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shocked_Torn1_19
+      name: Meganeura_Shocked_Torn1_4_3
       rect:
         serializedVersion: 2
-        x: 582
-        y: 821
-        width: 128
-        height: 129
+        x: 576
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 948beeb5bc3a73a10800000000000000
-      internalID: 1889158662521272393
+      spriteID: bea484730a7495c4993dc158ec9de452
+      internalID: -765872612
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shocked_Torn1_20
+      name: Meganeura_Shocked_Torn1_5_0
       rect:
         serializedVersion: 2
-        x: 11
-        y: 631
-        width: 134
-        height: 121
+        x: 0
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e134d08fcec9f8600800000000000000
-      internalID: 472769027485025054
+      spriteID: bae8bde068185c342848ae2b49904ebf
+      internalID: 1678310335
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shocked_Torn1_21
+      name: Meganeura_Shocked_Torn1_5_1
       rect:
         serializedVersion: 2
-        x: 203
-        y: 628
-        width: 130
-        height: 128
+        x: 192
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 771a97877b49ac6e0800000000000000
-      internalID: -1816475983969410697
+      spriteID: d07ad53191f212f44bafddfc09017268
+      internalID: 1543761764
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shocked_Torn1_22
+      name: Meganeura_Shocked_Torn1_5_2
       rect:
         serializedVersion: 2
-        x: 395
-        y: 631
-        width: 128
-        height: 121
+        x: 384
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b256da36ae55a57f0800000000000000
-      internalID: -623091133254376149
+      spriteID: 3756d159fbe1c2a44a65c0bd0f2fc89e
+      internalID: -772634740
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shocked_Torn1_23
+      name: Meganeura_Shocked_Torn1_5_3
       rect:
         serializedVersion: 2
-        x: 587
-        y: 629
-        width: 130
-        height: 126
+        x: 576
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2e7cc61568df6c980800000000000000
-      internalID: -8518842891791185950
+      spriteID: 12438738cb34ec14c9ab404363f5d905
+      internalID: -873073157
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shocked_Torn1_24
+      name: Meganeura_Shocked_Torn1_6_0
       rect:
         serializedVersion: 2
-        x: 23
-        y: 434
-        width: 137
-        height: 121
+        x: 0
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e581688b7b791c780800000000000000
-      internalID: -8664477392753518498
+      spriteID: a23506b7a10203446b4d29ae263df6d3
+      internalID: 79146996
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shocked_Torn1_25
+      name: Meganeura_Shocked_Torn1_6_1
       rect:
         serializedVersion: 2
-        x: 216
-        y: 434
-        width: 139
-        height: 124
+        x: 192
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 440dcd0b4500c1b00800000000000000
-      internalID: 800515197509619780
+      spriteID: b08b9563077ebf548a3fc5fbe7f10930
+      internalID: -1959289503
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shocked_Torn1_26
+      name: Meganeura_Shocked_Torn1_6_2
       rect:
         serializedVersion: 2
-        x: 407
-        y: 434
-        width: 137
-        height: 120
+        x: 384
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f6c3e8ad9883b90d0800000000000000
-      internalID: -3415073727701959569
+      spriteID: e34b08a7b732a8440ae263f2cbc46941
+      internalID: 466911993
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shocked_Torn1_27
+      name: Meganeura_Shocked_Torn1_6_3
       rect:
         serializedVersion: 2
-        x: 600
-        y: 434
-        width: 138
-        height: 123
+        x: 576
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 4c144867f6d6b90a0800000000000000
-      internalID: -6873780080753753660
+      spriteID: 99810ca701f26274e87ce76fd46dc0fc
+      internalID: 1494203166
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shocked_Torn1_28
+      name: Meganeura_Shocked_Torn1_7_0
       rect:
         serializedVersion: 2
-        x: 17
-        y: 239
-        width: 154
-        height: 112
+        x: 0
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 59bc52796791cbc70800000000000000
-      internalID: 8988086953457339285
+      spriteID: dd84f65c0afa751468ad1802cd7e0d52
+      internalID: -1249391813
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shocked_Torn1_29
+      name: Meganeura_Shocked_Torn1_7_1
       rect:
         serializedVersion: 2
-        x: 211
-        y: 239
-        width: 156
-        height: 114
+        x: 192
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 43b6589388c17dd40800000000000000
-      internalID: 5608983232319417140
+      spriteID: ea835bcfa02147941b49b76807cf120e
+      internalID: -1134056695
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shocked_Torn1_30
+      name: Meganeura_Shocked_Torn1_7_2
       rect:
         serializedVersion: 2
-        x: 400
-        y: 239
-        width: 155
-        height: 112
+        x: 384
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 80a8f2b463e23baa0800000000000000
-      internalID: -6146518255706076664
+      spriteID: 738ca773790adc94ea7fc2d6ad01202e
+      internalID: -1139671488
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shocked_Torn1_31
+      name: Meganeura_Shocked_Torn1_7_3
       rect:
         serializedVersion: 2
-        x: 594
-        y: 239
-        width: 156
-        height: 113
+        x: 576
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 965aca3fd49874550800000000000000
-      internalID: 6145031184463996265
+      spriteID: cd302beb200c8ff4a8b9c2b0eac0f96e
+      internalID: -818646654
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shocked_Torn1_32
+      name: Meganeura_Shocked_Torn1_8_0
       rect:
         serializedVersion: 2
-        x: 21
-        y: 49
-        width: 150
-        height: 114
+        x: 0
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 5bf70f4f99ae2f790800000000000000
-      internalID: -7497672482658156619
+      spriteID: ecf9e940f218a9648aa3b21ade103ef2
+      internalID: 831113892
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shocked_Torn1_33
+      name: Meganeura_Shocked_Torn1_8_1
       rect:
         serializedVersion: 2
-        x: 210
-        y: 49
-        width: 157
-        height: 114
+        x: 192
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: be311f7f54e5b3380800000000000000
-      internalID: -8990488576509537301
+      spriteID: 78f791ca8daab094a91e3fa3717671b6
+      internalID: -301874674
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shocked_Torn1_34
+      name: Meganeura_Shocked_Torn1_8_2
       rect:
         serializedVersion: 2
-        x: 404
-        y: 49
-        width: 156
-        height: 114
+        x: 384
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 255bb5627d02c6b90800000000000000
-      internalID: -7247381591912368814
+      spriteID: 0370a556f2f5b6d46bbc98289f61f0a7
+      internalID: -1825697832
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Shocked_Torn1_35
+      name: Meganeura_Shocked_Torn1_8_3
       rect:
         serializedVersion: 2
-        x: 595
-        y: 49
-        width: 156
-        height: 114
+        x: 576
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b856e91361cce9cc0800000000000000
-      internalID: -3702297447958157941
+      spriteID: d63a97712a84cad4cb5d267093447858
+      internalID: -621558834
       vertices: []
       indices: 
       edges: []
@@ -1025,42 +1025,42 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Meganeura_Shocked_Torn1_0: -3433712842436693949
-      Meganeura_Shocked_Torn1_1: -3806373937510296113
-      Meganeura_Shocked_Torn1_10: 8235857765842774253
-      Meganeura_Shocked_Torn1_11: -4496579540188864436
-      Meganeura_Shocked_Torn1_12: 1146579791904799090
-      Meganeura_Shocked_Torn1_13: -4837403424028208153
-      Meganeura_Shocked_Torn1_14: -3246044366212531055
-      Meganeura_Shocked_Torn1_15: -3641051154457770933
-      Meganeura_Shocked_Torn1_16: -2452455377819924313
-      Meganeura_Shocked_Torn1_17: 2886282683690559036
-      Meganeura_Shocked_Torn1_18: 888878401036955991
-      Meganeura_Shocked_Torn1_19: 1889158662521272393
-      Meganeura_Shocked_Torn1_2: -5543132746334721861
-      Meganeura_Shocked_Torn1_20: 472769027485025054
-      Meganeura_Shocked_Torn1_21: -1816475983969410697
-      Meganeura_Shocked_Torn1_22: -623091133254376149
-      Meganeura_Shocked_Torn1_23: -8518842891791185950
-      Meganeura_Shocked_Torn1_24: -8664477392753518498
-      Meganeura_Shocked_Torn1_25: 800515197509619780
-      Meganeura_Shocked_Torn1_26: -3415073727701959569
-      Meganeura_Shocked_Torn1_27: -6873780080753753660
-      Meganeura_Shocked_Torn1_28: 8988086953457339285
-      Meganeura_Shocked_Torn1_29: 5608983232319417140
-      Meganeura_Shocked_Torn1_3: 539711208944089973
-      Meganeura_Shocked_Torn1_30: -6146518255706076664
-      Meganeura_Shocked_Torn1_31: 6145031184463996265
-      Meganeura_Shocked_Torn1_32: -7497672482658156619
-      Meganeura_Shocked_Torn1_33: -8990488576509537301
-      Meganeura_Shocked_Torn1_34: -7247381591912368814
-      Meganeura_Shocked_Torn1_35: -3702297447958157941
-      Meganeura_Shocked_Torn1_4: -2235726790482543119
-      Meganeura_Shocked_Torn1_5: 480637234981808571
-      Meganeura_Shocked_Torn1_6: -3839281441264464140
-      Meganeura_Shocked_Torn1_7: 3716117286730365463
-      Meganeura_Shocked_Torn1_8: 1348491215099009845
-      Meganeura_Shocked_Torn1_9: 1488417488445009968
+      Meganeura_Shocked_Torn1_0_0: -1338309770
+      Meganeura_Shocked_Torn1_0_1: -1366693097
+      Meganeura_Shocked_Torn1_0_2: -1015756532
+      Meganeura_Shocked_Torn1_0_3: 126694111
+      Meganeura_Shocked_Torn1_1_0: 1281663546
+      Meganeura_Shocked_Torn1_1_1: 1491626714
+      Meganeura_Shocked_Torn1_1_2: 1400531906
+      Meganeura_Shocked_Torn1_1_3: -610053786
+      Meganeura_Shocked_Torn1_2_0: 1912402045
+      Meganeura_Shocked_Torn1_2_1: 654229567
+      Meganeura_Shocked_Torn1_2_2: 141342884
+      Meganeura_Shocked_Torn1_2_3: -745561354
+      Meganeura_Shocked_Torn1_3_0: 195542133
+      Meganeura_Shocked_Torn1_3_1: 1151119653
+      Meganeura_Shocked_Torn1_3_2: -136127302
+      Meganeura_Shocked_Torn1_3_3: 528796790
+      Meganeura_Shocked_Torn1_4_0: 675945439
+      Meganeura_Shocked_Torn1_4_1: 183539045
+      Meganeura_Shocked_Torn1_4_2: -192449274
+      Meganeura_Shocked_Torn1_4_3: -765872612
+      Meganeura_Shocked_Torn1_5_0: 1678310335
+      Meganeura_Shocked_Torn1_5_1: 1543761764
+      Meganeura_Shocked_Torn1_5_2: -772634740
+      Meganeura_Shocked_Torn1_5_3: -873073157
+      Meganeura_Shocked_Torn1_6_0: 79146996
+      Meganeura_Shocked_Torn1_6_1: -1959289503
+      Meganeura_Shocked_Torn1_6_2: 466911993
+      Meganeura_Shocked_Torn1_6_3: 1494203166
+      Meganeura_Shocked_Torn1_7_0: -1249391813
+      Meganeura_Shocked_Torn1_7_1: -1134056695
+      Meganeura_Shocked_Torn1_7_2: -1139671488
+      Meganeura_Shocked_Torn1_7_3: -818646654
+      Meganeura_Shocked_Torn1_8_0: 831113892
+      Meganeura_Shocked_Torn1_8_1: -301874674
+      Meganeura_Shocked_Torn1_8_2: -1825697832
+      Meganeura_Shocked_Torn1_8_3: -621558834
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

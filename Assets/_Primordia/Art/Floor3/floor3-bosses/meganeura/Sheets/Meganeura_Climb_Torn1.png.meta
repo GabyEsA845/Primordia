@@ -151,7 +151,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -179,7 +179,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -220,793 +220,793 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Meganeura_Climb_Torn1_0
+      name: Meganeura_Climb_Torn1_0_0
       rect:
         serializedVersion: 2
-        x: 20
-        y: 1544
-        width: 152
-        height: 128
+        x: 0
+        y: 1536
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 4699187005fb7d4d0800000000000000
-      internalID: -3109806667231815324
+      spriteID: 0173684880b8f02408bf9d9faf030f3d
+      internalID: -1337166878
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Climb_Torn1_1
+      name: Meganeura_Climb_Torn1_0_1
       rect:
         serializedVersion: 2
-        x: 208
-        y: 1545
-        width: 161
-        height: 119
+        x: 192
+        y: 1536
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6fe8a96834c2e0f50800000000000000
-      internalID: 6849460751809810166
+      spriteID: e4cd05398f4e57947ad933b483c9b194
+      internalID: 1865277029
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Climb_Torn1_2
+      name: Meganeura_Climb_Torn1_0_2
       rect:
         serializedVersion: 2
-        x: 404
-        y: 1544
-        width: 152
-        height: 119
+        x: 384
+        y: 1536
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7e32a4a7f4dca4fa0800000000000000
-      internalID: -5815610227557784601
+      spriteID: ad8ad15fee99c2b448823c2f190b94ee
+      internalID: -1917665223
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Climb_Torn1_3
+      name: Meganeura_Climb_Torn1_0_3
       rect:
         serializedVersion: 2
-        x: 591
-        y: 1544
-        width: 162
-        height: 119
+        x: 576
+        y: 1536
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: eb58f6757a4e35a00800000000000000
-      internalID: 744189770823861694
+      spriteID: c09e2f45f3fd3bd4e98566eb0ee766b5
+      internalID: -515024667
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Climb_Torn1_4
+      name: Meganeura_Climb_Torn1_1_0
       rect:
         serializedVersion: 2
-        x: 17
-        y: 1356
-        width: 142
-        height: 143
+        x: 0
+        y: 1344
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e7948fd015db40130800000000000000
-      internalID: 3532156163589687678
+      spriteID: 04f8395a62a233e4c84ed40879f0df72
+      internalID: 378031789
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Climb_Torn1_5
+      name: Meganeura_Climb_Torn1_1_1
       rect:
         serializedVersion: 2
-        x: 217
-        y: 1357
-        width: 150
-        height: 134
+        x: 192
+        y: 1344
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 714baa86109415820800000000000000
-      internalID: 2905183505030493207
+      spriteID: 8ed44a56d22a13445b015937350e1deb
+      internalID: -1431003433
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Climb_Torn1_6
+      name: Meganeura_Climb_Torn1_1_2
       rect:
         serializedVersion: 2
-        x: 399
-        y: 1356
-        width: 153
-        height: 115
+        x: 384
+        y: 1344
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 54e7563e3a193d1b0800000000000000
-      internalID: -5632998575829582267
+      spriteID: 7234c172433e91a4a976da8047cbd833
+      internalID: 230417329
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Climb_Torn1_7
+      name: Meganeura_Climb_Torn1_1_3
       rect:
         serializedVersion: 2
-        x: 602
-        y: 1356
-        width: 151
-        height: 131
+        x: 576
+        y: 1344
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a764e5c8e2e14b770800000000000000
-      internalID: 8625552371593660026
+      spriteID: d41ce3213d3178c4594a7e02bf99797d
+      internalID: 1955516608
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Climb_Torn1_8
+      name: Meganeura_Climb_Torn1_2_0
       rect:
         serializedVersion: 2
-        x: 25
-        y: 1178
-        width: 114
-        height: 144
+        x: 0
+        y: 1152
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2d5d2037f06e90e30800000000000000
-      internalID: 4470357059170391506
+      spriteID: 6b4befb5dbab8c943bf4c55e164b7a28
+      internalID: 1746002405
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Climb_Torn1_9
+      name: Meganeura_Climb_Torn1_2_1
       rect:
         serializedVersion: 2
-        x: 218
-        y: 1179
-        width: 136
-        height: 139
+        x: 192
+        y: 1152
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 9136c02499c587300800000000000000
-      internalID: 250051592626922265
+      spriteID: 2f8dcb0bff649144eb94185c9d0e8938
+      internalID: -1690743910
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Climb_Torn1_10
+      name: Meganeura_Climb_Torn1_2_2
       rect:
         serializedVersion: 2
-        x: 404
-        y: 1178
-        width: 143
-        height: 109
+        x: 384
+        y: 1152
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e27c7f4c6b85b78c0800000000000000
-      internalID: -4000506301976688850
+      spriteID: 66a0d9ca2f4b7cf43a3448dddb8804f3
+      internalID: -2111363202
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Climb_Torn1_11
+      name: Meganeura_Climb_Torn1_2_3
       rect:
         serializedVersion: 2
-        x: 608
-        y: 1178
-        width: 132
-        height: 135
+        x: 576
+        y: 1152
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b9033ae1137f62350800000000000000
-      internalID: 5991748144602493083
+      spriteID: 7c110931999f1394cbc3d923c79c0705
+      internalID: 134169874
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Climb_Torn1_12
+      name: Meganeura_Climb_Torn1_3_0
       rect:
         serializedVersion: 2
-        x: 15
-        y: 986
-        width: 113
-        height: 154
+        x: 0
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b73d72849a4e55c30800000000000000
-      internalID: 4347632431007257467
+      spriteID: 229833c3d5a2fbe438b57983632c7f56
+      internalID: 1800419694
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Climb_Torn1_13
+      name: Meganeura_Climb_Torn1_3_1
       rect:
         serializedVersion: 2
-        x: 207
-        y: 1008
-        width: 124
-        height: 128
+        x: 192
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 069731db02b231550800000000000000
-      internalID: 6130290937392494944
+      spriteID: df5e6aece4ef581409596e27a55c07ad
+      internalID: 906264357
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Climb_Torn1_14
+      name: Meganeura_Climb_Torn1_3_2
       rect:
         serializedVersion: 2
-        x: 399
-        y: 997
-        width: 133
-        height: 118
+        x: 384
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 834e0420effc00d80800000000000000
-      internalID: -8286394624495262664
+      spriteID: 7d8526d0aa9f9f34f8cabaf95380d33e
+      internalID: 1733133295
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Climb_Torn1_15
+      name: Meganeura_Climb_Torn1_3_3
       rect:
         serializedVersion: 2
-        x: 591
-        y: 981
-        width: 127
-        height: 150
+        x: 576
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 4169d196ccb7c5f50800000000000000
-      internalID: 6871503249327625748
+      spriteID: 604b50a6914da754a8af424032e778fc
+      internalID: 1152470350
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Climb_Torn1_16
+      name: Meganeura_Climb_Torn1_4_0
       rect:
         serializedVersion: 2
-        x: 10
-        y: 796
-        width: 120
-        height: 155
+        x: 0
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 60a9e592695c25a70800000000000000
-      internalID: 8814324669447313926
+      spriteID: 3130c1a9203777943a1bbbcc814934d2
+      internalID: 1349179058
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Climb_Torn1_17
+      name: Meganeura_Climb_Torn1_4_1
       rect:
         serializedVersion: 2
-        x: 202
-        y: 813
-        width: 120
-        height: 132
+        x: 192
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 9ceebb26ea8469fc0800000000000000
-      internalID: -3488520947533877559
+      spriteID: 734caedffa95e4e4da407b42675a13c9
+      internalID: -2000802797
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Climb_Torn1_18
+      name: Meganeura_Climb_Torn1_4_2
       rect:
         serializedVersion: 2
-        x: 394
-        y: 793
-        width: 120
-        height: 143
+        x: 384
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: fb6c937a46113a7e0800000000000000
-      internalID: -1755540305744378177
+      spriteID: 209c5a53f2f87b94ab90ea10c5fdd3a8
+      internalID: -1405516589
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Climb_Torn1_19
+      name: Meganeura_Climb_Torn1_4_3
       rect:
         serializedVersion: 2
-        x: 586
-        y: 790
-        width: 120
-        height: 149
+        x: 576
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: cda8ece4c5d21f050800000000000000
-      internalID: 5832492866903902940
+      spriteID: efcb760e82d17aa499266a7f73cd3c81
+      internalID: 1621831572
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Climb_Torn1_20
+      name: Meganeura_Climb_Torn1_5_0
       rect:
         serializedVersion: 2
-        x: 15
-        y: 615
-        width: 113
-        height: 141
+        x: 0
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d1704e9259f4183f0800000000000000
-      internalID: -900350948425857251
+      spriteID: 8224fae7b355c654092b1c7c657545fd
+      internalID: 1212711949
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Climb_Torn1_21
+      name: Meganeura_Climb_Torn1_5_1
       rect:
         serializedVersion: 2
-        x: 207
-        y: 622
-        width: 124
-        height: 136
+        x: 192
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6a7a25c6cacdc2560800000000000000
-      internalID: 7290444529915832230
+      spriteID: e0c4bf99599a9c641a7529ad699ee1da
+      internalID: 54812728
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Climb_Torn1_22
+      name: Meganeura_Climb_Torn1_5_2
       rect:
         serializedVersion: 2
-        x: 399
-        y: 597
-        width: 133
-        height: 151
+        x: 384
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 36e281fd4891a3360800000000000000
-      internalID: 7150055416873365091
+      spriteID: b43c79532aa430e4991f21d906b70742
+      internalID: 1780697776
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Climb_Torn1_23
+      name: Meganeura_Climb_Torn1_5_3
       rect:
         serializedVersion: 2
-        x: 591
-        y: 605
-        width: 127
-        height: 133
+        x: 576
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 10df82bfaaa4c26e0800000000000000
-      internalID: -1861030447792194303
+      spriteID: 2f3a56779ca33b24d8474d652c896c0d
+      internalID: -911208864
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Climb_Torn1_24
+      name: Meganeura_Climb_Torn1_6_0
       rect:
         serializedVersion: 2
-        x: 25
-        y: 442
-        width: 114
-        height: 113
+        x: 0
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f821fb75b4e42d360800000000000000
-      internalID: 7192897640365757071
+      spriteID: bfbcb0bdd69827846bcf01903cd7c07e
+      internalID: 1910544431
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Climb_Torn1_25
+      name: Meganeura_Climb_Torn1_6_1
       rect:
         serializedVersion: 2
-        x: 218
-        y: 441
-        width: 136
-        height: 125
+        x: 192
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 074924f00ffc4c110800000000000000
-      internalID: 1280376824035185776
+      spriteID: 8560b072708013a44a8d8d41afb09aea
+      internalID: 1236089617
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Climb_Torn1_26
+      name: Meganeura_Climb_Torn1_6_2
       rect:
         serializedVersion: 2
-        x: 404
-        y: 409
-        width: 143
-        height: 141
+        x: 384
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 481a4f8338ae832e0800000000000000
-      internalID: -2145707373124869756
+      spriteID: ff74e56c11a8d6e48b3a091bb01ad26c
+      internalID: -507005103
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Climb_Torn1_27
+      name: Meganeura_Climb_Torn1_6_3
       rect:
         serializedVersion: 2
-        x: 608
-        y: 427
-        width: 132
-        height: 102
+        x: 576
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 1d80c0b7c5a4e09c0800000000000000
-      internalID: -3959145261350254383
+      spriteID: a7cb2ca7151a192479bb4ce68486b787
+      internalID: -609336680
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Climb_Torn1_28
+      name: Meganeura_Climb_Torn1_7_0
       rect:
         serializedVersion: 2
-        x: 17
-        y: 259
-        width: 142
-        height: 89
+        x: 0
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6fc5b132e1d5d4a80800000000000000
-      internalID: -8481020139249378058
+      spriteID: 7c3f57ea0cd7c3e438da5c351ae4b3f5
+      internalID: 2051903821
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Climb_Torn1_29
+      name: Meganeura_Climb_Torn1_7_1
       rect:
         serializedVersion: 2
-        x: 217
-        y: 260
-        width: 150
-        height: 107
+        x: 192
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 50efedd7c108bb570800000000000000
-      internalID: 8483515182941666821
+      spriteID: 2c7bd061c572d5d41b7e9ef1ca809690
+      internalID: -740223905
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Climb_Torn1_30
+      name: Meganeura_Climb_Torn1_7_2
       rect:
         serializedVersion: 2
-        x: 399
-        y: 230
-        width: 153
-        height: 115
+        x: 384
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 821d187c8518adb80800000000000000
-      internalID: -8369234739210366680
+      spriteID: 83403f2b99d75764d8c029d905780567
+      internalID: -721785584
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Climb_Torn1_31
+      name: Meganeura_Climb_Torn1_7_3
       rect:
         serializedVersion: 2
-        x: 602
-        y: 253
-        width: 151
-        height: 85
+        x: 576
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 76657fb9aab4a27f0800000000000000
-      internalID: -636613201186302361
+      spriteID: abfa1c4b61389c745982e40602b67455
+      internalID: 1059009581
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Climb_Torn1_32
+      name: Meganeura_Climb_Torn1_8_0
       rect:
         serializedVersion: 2
-        x: 20
-        y: 67
-        width: 152
-        height: 83
+        x: 0
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a4be228e62a1b94b0800000000000000
-      internalID: -5432719771086689462
+      spriteID: 94cd36db119100044ad6b1be407cea7d
+      internalID: 746175668
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Climb_Torn1_33
+      name: Meganeura_Climb_Torn1_8_1
       rect:
         serializedVersion: 2
-        x: 207
-        y: 68
-        width: 161
-        height: 93
+        x: 192
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7e5b0701b95300ed0800000000000000
-      internalID: -2449899257177524761
+      spriteID: 57bcab1b1518f7f4bb149a78de4290cc
+      internalID: -1958419406
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Climb_Torn1_34
+      name: Meganeura_Climb_Torn1_8_2
       rect:
         serializedVersion: 2
-        x: 404
-        y: 56
-        width: 152
-        height: 94
+        x: 384
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 26c47b79945106170800000000000000
-      internalID: 8169553129872247906
+      spriteID: c44e99588e369b347857d07246fa662f
+      internalID: -1412858333
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Climb_Torn1_35
+      name: Meganeura_Climb_Torn1_8_3
       rect:
         serializedVersion: 2
-        x: 591
-        y: 67
-        width: 162
-        height: 83
+        x: 576
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a4ac0cccf45cde100800000000000000
-      internalID: 138984110046628426
+      spriteID: e5da408f086a14f4d8b5648751ef26ca
+      internalID: 1477309874
       vertices: []
       indices: 
       edges: []
@@ -1025,42 +1025,42 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Meganeura_Climb_Torn1_0: -3109806667231815324
-      Meganeura_Climb_Torn1_1: 6849460751809810166
-      Meganeura_Climb_Torn1_10: -4000506301976688850
-      Meganeura_Climb_Torn1_11: 5991748144602493083
-      Meganeura_Climb_Torn1_12: 4347632431007257467
-      Meganeura_Climb_Torn1_13: 6130290937392494944
-      Meganeura_Climb_Torn1_14: -8286394624495262664
-      Meganeura_Climb_Torn1_15: 6871503249327625748
-      Meganeura_Climb_Torn1_16: 8814324669447313926
-      Meganeura_Climb_Torn1_17: -3488520947533877559
-      Meganeura_Climb_Torn1_18: -1755540305744378177
-      Meganeura_Climb_Torn1_19: 5832492866903902940
-      Meganeura_Climb_Torn1_2: -5815610227557784601
-      Meganeura_Climb_Torn1_20: -900350948425857251
-      Meganeura_Climb_Torn1_21: 7290444529915832230
-      Meganeura_Climb_Torn1_22: 7150055416873365091
-      Meganeura_Climb_Torn1_23: -1861030447792194303
-      Meganeura_Climb_Torn1_24: 7192897640365757071
-      Meganeura_Climb_Torn1_25: 1280376824035185776
-      Meganeura_Climb_Torn1_26: -2145707373124869756
-      Meganeura_Climb_Torn1_27: -3959145261350254383
-      Meganeura_Climb_Torn1_28: -8481020139249378058
-      Meganeura_Climb_Torn1_29: 8483515182941666821
-      Meganeura_Climb_Torn1_3: 744189770823861694
-      Meganeura_Climb_Torn1_30: -8369234739210366680
-      Meganeura_Climb_Torn1_31: -636613201186302361
-      Meganeura_Climb_Torn1_32: -5432719771086689462
-      Meganeura_Climb_Torn1_33: -2449899257177524761
-      Meganeura_Climb_Torn1_34: 8169553129872247906
-      Meganeura_Climb_Torn1_35: 138984110046628426
-      Meganeura_Climb_Torn1_4: 3532156163589687678
-      Meganeura_Climb_Torn1_5: 2905183505030493207
-      Meganeura_Climb_Torn1_6: -5632998575829582267
-      Meganeura_Climb_Torn1_7: 8625552371593660026
-      Meganeura_Climb_Torn1_8: 4470357059170391506
-      Meganeura_Climb_Torn1_9: 250051592626922265
+      Meganeura_Climb_Torn1_0_0: -1337166878
+      Meganeura_Climb_Torn1_0_1: 1865277029
+      Meganeura_Climb_Torn1_0_2: -1917665223
+      Meganeura_Climb_Torn1_0_3: -515024667
+      Meganeura_Climb_Torn1_1_0: 378031789
+      Meganeura_Climb_Torn1_1_1: -1431003433
+      Meganeura_Climb_Torn1_1_2: 230417329
+      Meganeura_Climb_Torn1_1_3: 1955516608
+      Meganeura_Climb_Torn1_2_0: 1746002405
+      Meganeura_Climb_Torn1_2_1: -1690743910
+      Meganeura_Climb_Torn1_2_2: -2111363202
+      Meganeura_Climb_Torn1_2_3: 134169874
+      Meganeura_Climb_Torn1_3_0: 1800419694
+      Meganeura_Climb_Torn1_3_1: 906264357
+      Meganeura_Climb_Torn1_3_2: 1733133295
+      Meganeura_Climb_Torn1_3_3: 1152470350
+      Meganeura_Climb_Torn1_4_0: 1349179058
+      Meganeura_Climb_Torn1_4_1: -2000802797
+      Meganeura_Climb_Torn1_4_2: -1405516589
+      Meganeura_Climb_Torn1_4_3: 1621831572
+      Meganeura_Climb_Torn1_5_0: 1212711949
+      Meganeura_Climb_Torn1_5_1: 54812728
+      Meganeura_Climb_Torn1_5_2: 1780697776
+      Meganeura_Climb_Torn1_5_3: -911208864
+      Meganeura_Climb_Torn1_6_0: 1910544431
+      Meganeura_Climb_Torn1_6_1: 1236089617
+      Meganeura_Climb_Torn1_6_2: -507005103
+      Meganeura_Climb_Torn1_6_3: -609336680
+      Meganeura_Climb_Torn1_7_0: 2051903821
+      Meganeura_Climb_Torn1_7_1: -740223905
+      Meganeura_Climb_Torn1_7_2: -721785584
+      Meganeura_Climb_Torn1_7_3: 1059009581
+      Meganeura_Climb_Torn1_8_0: 746175668
+      Meganeura_Climb_Torn1_8_1: -1958419406
+      Meganeura_Climb_Torn1_8_2: -1412858333
+      Meganeura_Climb_Torn1_8_3: 1477309874
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

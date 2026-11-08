@@ -67,7 +67,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -95,7 +95,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -136,177 +136,177 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Meganeura_WingDetached_0
+      name: Meganeura_WingDetached_0_0
       rect:
         serializedVersion: 2
-        x: 50
-        y: 33
-        width: 28
-        height: 63
+        x: 0
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 62f99fde32e583ba0800000000000000
-      internalID: -6109029386118652122
+      spriteID: fa5c158dbe4a44244a804e66b3a4de8e
+      internalID: 387617255
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_WingDetached_1
+      name: Meganeura_WingDetached_0_1
       rect:
         serializedVersion: 2
-        x: 165
-        y: 41
-        width: 53
-        height: 46
+        x: 128
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 11959a65ff8fa3260800000000000000
-      internalID: 7078243539920443665
+      spriteID: a142c3ff6d308bb4b8e46ba8fd4160b9
+      internalID: 2123270764
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_WingDetached_2
+      name: Meganeura_WingDetached_0_2
       rect:
         serializedVersion: 2
-        x: 286
-        y: 53
-        width: 67
-        height: 23
+        x: 256
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 500a97aab155ecb40800000000000000
-      internalID: 5462396975359565829
+      spriteID: 1c00836cf505a8b4ab4e2e733bc71206
+      internalID: -1045766493
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_WingDetached_3
+      name: Meganeura_WingDetached_0_3
       rect:
         serializedVersion: 2
-        x: 414
-        y: 37
-        width: 67
-        height: 54
+        x: 384
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 9f4782c340c830930800000000000000
-      internalID: 4108281234909066489
+      spriteID: 130cd292b097e1b45a39e56198eb87b8
+      internalID: -258758378
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_WingDetached_4
+      name: Meganeura_WingDetached_0_4
       rect:
         serializedVersion: 2
-        x: 562
-        y: 33
-        width: 27
-        height: 62
+        x: 512
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 544e87f2e80cf39e0800000000000000
-      internalID: -1639380022425230267
+      spriteID: 7027f45780d2baf42aba021503b81bf3
+      internalID: 1940195617
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_WingDetached_5
+      name: Meganeura_WingDetached_0_5
       rect:
         serializedVersion: 2
-        x: 677
-        y: 41
-        width: 53
-        height: 46
+        x: 640
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a60895ff7c4a2dca0800000000000000
-      internalID: -5993546975187206038
+      spriteID: 6632d59f572fe674a8fa5ac63611e119
+      internalID: 200344434
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_WingDetached_6
+      name: Meganeura_WingDetached_0_6
       rect:
         serializedVersion: 2
-        x: 798
-        y: 53
-        width: 68
-        height: 23
+        x: 768
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 9d50904b6fdd293f0800000000000000
-      internalID: -895409324241123879
+      spriteID: 99392cb5720b61b4bb2a5d7291c3fc06
+      internalID: -1790954028
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_WingDetached_7
+      name: Meganeura_WingDetached_0_7
       rect:
         serializedVersion: 2
-        x: 926
-        y: 37
-        width: 67
-        height: 55
+        x: 896
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 9c3733f589defba50800000000000000
-      internalID: 6539206422653268937
+      spriteID: f96129f7871056843a3fa694a96d5b3f
+      internalID: 327689414
       vertices: []
       indices: 
       edges: []
@@ -325,14 +325,14 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Meganeura_WingDetached_0: -6109029386118652122
-      Meganeura_WingDetached_1: 7078243539920443665
-      Meganeura_WingDetached_2: 5462396975359565829
-      Meganeura_WingDetached_3: 4108281234909066489
-      Meganeura_WingDetached_4: -1639380022425230267
-      Meganeura_WingDetached_5: -5993546975187206038
-      Meganeura_WingDetached_6: -895409324241123879
-      Meganeura_WingDetached_7: 6539206422653268937
+      Meganeura_WingDetached_0_0: 387617255
+      Meganeura_WingDetached_0_1: 2123270764
+      Meganeura_WingDetached_0_2: -1045766493
+      Meganeura_WingDetached_0_3: -258758378
+      Meganeura_WingDetached_0_4: 1940195617
+      Meganeura_WingDetached_0_5: 200344434
+      Meganeura_WingDetached_0_6: -1790954028
+      Meganeura_WingDetached_0_7: 327689414
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -70,7 +70,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -98,7 +98,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -139,199 +139,199 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Meganeura_Dead_0
+      name: Meganeura_Dead_0_0
       rect:
         serializedVersion: 2
-        x: 15
-        y: 1553
-        width: 152
-        height: 106
+        x: 0
+        y: 1536
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 9a0e212f8bac463b0800000000000000
-      internalID: -5520064347565268823
+      spriteID: 038c3db925ff60d4c8d10ec01d19c465
+      internalID: -1561099665
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Dead_1
+      name: Meganeura_Dead_1_0
       rect:
         serializedVersion: 2
-        x: 23
-        y: 1365
-        width: 145
-        height: 119
+        x: 0
+        y: 1344
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7515b4b58be43ef50800000000000000
-      internalID: 6909452807029084503
+      spriteID: ea4588bf461dcaa48999e071092a0187
+      internalID: 1635887610
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Dead_2
+      name: Meganeura_Dead_2_0
       rect:
         serializedVersion: 2
-        x: 28
-        y: 1188
-        width: 131
-        height: 121
+        x: 0
+        y: 1152
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: dfba58e3c4f11fda0800000000000000
-      internalID: -5912910423433827331
+      spriteID: 0dac4a2d023409a4088a664e5e19c5bb
+      internalID: -1142766251
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Dead_3
+      name: Meganeura_Dead_3_0
       rect:
         serializedVersion: 2
-        x: 10
-        y: 1010
-        width: 131
-        height: 116
+        x: 0
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 1e9bf9b7a64510ff0800000000000000
-      internalID: -71683302743885343
+      spriteID: 77305f2a829948b48a054c990b2e5bcf
+      internalID: -322184045
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Dead_4
+      name: Meganeura_Dead_4_0
       rect:
         serializedVersion: 2
-        x: 5
-        y: 809
-        width: 125
-        height: 124
+        x: 0
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 45503694ab4865610800000000000000
-      internalID: 1609619852461540692
+      spriteID: 9d358090d3b1cbd4893e4e4544d237d2
+      internalID: -246897020
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Dead_5
+      name: Meganeura_Dead_5_0
       rect:
         serializedVersion: 2
-        x: 10
-        y: 616
-        width: 135
-        height: 119
+        x: 0
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: bd1c5155b220b8490800000000000000
-      internalID: -7743092749199097381
+      spriteID: 442102baf49ae45479c2696a1f545b8d
+      internalID: -1558589127
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Dead_6
+      name: Meganeura_Dead_6_0
       rect:
         serializedVersion: 2
-        x: 28
-        y: 431
-        width: 139
-        height: 107
+        x: 0
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 4e2196198d4839890800000000000000
-      internalID: -7452466892680654108
+      spriteID: 0f93faf7a02ce7b4eb2f458f76e16d1e
+      internalID: -1365268037
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Dead_7
+      name: Meganeura_Dead_7_0
       rect:
         serializedVersion: 2
-        x: 37
-        y: 254
-        width: 141
-        height: 101
+        x: 0
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: de291ea93cacef5b0800000000000000
-      internalID: -5332601967294180627
+      spriteID: 0c6dccb497661144ca8595833594f1f5
+      internalID: -1415913114
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Dead_8
+      name: Meganeura_Dead_8_0
       rect:
         serializedVersion: 2
-        x: 25
-        y: 63
-        width: 152
-        height: 104
+        x: 0
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 27165d3cefd2f8700800000000000000
-      internalID: 544704652165603698
+      spriteID: ce4f5d71c7c48684387e6ed2e398788a
+      internalID: 1604547993
       vertices: []
       indices: 
       edges: []
@@ -350,15 +350,15 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Meganeura_Dead_0: -5520064347565268823
-      Meganeura_Dead_1: 6909452807029084503
-      Meganeura_Dead_2: -5912910423433827331
-      Meganeura_Dead_3: -71683302743885343
-      Meganeura_Dead_4: 1609619852461540692
-      Meganeura_Dead_5: -7743092749199097381
-      Meganeura_Dead_6: -7452466892680654108
-      Meganeura_Dead_7: -5332601967294180627
-      Meganeura_Dead_8: 544704652165603698
+      Meganeura_Dead_0_0: -1561099665
+      Meganeura_Dead_1_0: 1635887610
+      Meganeura_Dead_2_0: -1142766251
+      Meganeura_Dead_3_0: -322184045
+      Meganeura_Dead_4_0: -246897020
+      Meganeura_Dead_5_0: -1558589127
+      Meganeura_Dead_6_0: -1365268037
+      Meganeura_Dead_7_0: -1415913114
+      Meganeura_Dead_8_0: 1604547993
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

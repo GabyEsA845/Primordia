@@ -97,7 +97,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -125,7 +125,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -166,397 +166,397 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Meganeura_Hurt_Torn1Burnt_0
+      name: Meganeura_Hurt_Torn1Burnt_0_0
       rect:
         serializedVersion: 2
-        x: 19
-        y: 1554
-        width: 154
-        height: 122
+        x: 0
+        y: 1536
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: fc8a845fa33af72b0800000000000000
-      internalID: -5584565539297515313
+      spriteID: 8e87d1c1c1cbacc4aa2a5c25e80932e5
+      internalID: -922270952
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Hurt_Torn1Burnt_1
+      name: Meganeura_Hurt_Torn1Burnt_0_1
       rect:
         serializedVersion: 2
-        x: 211
-        y: 1554
-        width: 154
-        height: 122
+        x: 192
+        y: 1536
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 1dff8442b19872370800000000000000
-      internalID: 8297751588119314385
+      spriteID: 55fe9c10d9820344c9c70f05ab03287f
+      internalID: 1034911482
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Hurt_Torn1Burnt_2
+      name: Meganeura_Hurt_Torn1Burnt_1_0
       rect:
         serializedVersion: 2
-        x: 16
-        y: 1366
-        width: 154
-        height: 139
+        x: 0
+        y: 1344
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: be0c730da95404c70800000000000000
-      internalID: 8953232590433140971
+      spriteID: 9d6c79bcf258c2f428c66ddf4303fe5e
+      internalID: 771572628
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Hurt_Torn1Burnt_3
+      name: Meganeura_Hurt_Torn1Burnt_1_1
       rect:
         serializedVersion: 2
-        x: 208
-        y: 1366
-        width: 154
-        height: 139
+        x: 192
+        y: 1344
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 31d2bbee8200f4e80800000000000000
-      internalID: -8192329021359706861
+      spriteID: 662ffa058a7bff74894c0ea33d9c7a3d
+      internalID: 1146223245
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Hurt_Torn1Burnt_4
+      name: Meganeura_Hurt_Torn1Burnt_2_0
       rect:
         serializedVersion: 2
-        x: 23
-        y: 1189
-        width: 138
-        height: 139
+        x: 0
+        y: 1152
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 05d82e9dc68460710800000000000000
-      internalID: 1659093145081777488
+      spriteID: d69dc9a8201fca84e9c7291c6982001f
+      internalID: 4239435
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Hurt_Torn1Burnt_5
+      name: Meganeura_Hurt_Torn1Burnt_2_1
       rect:
         serializedVersion: 2
-        x: 215
-        y: 1189
-        width: 138
-        height: 139
+        x: 192
+        y: 1152
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 272fd192a48eb0250800000000000000
-      internalID: 5912074341068960370
+      spriteID: 24e851b02a2aa5a45a85a8db0da8a165
+      internalID: 2019741257
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Hurt_Torn1Burnt_6
+      name: Meganeura_Hurt_Torn1Burnt_3_0
       rect:
         serializedVersion: 2
-        x: 10
-        y: 999
-        width: 132
-        height: 145
+        x: 0
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 380c905a889ed1690800000000000000
-      internalID: -7629685420602048381
+      spriteID: e678ef0bb93d60b49a372f09c6492859
+      internalID: -1125300244
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Hurt_Torn1Burnt_7
+      name: Meganeura_Hurt_Torn1Burnt_3_1
       rect:
         serializedVersion: 2
-        x: 202
-        y: 999
-        width: 132
-        height: 145
+        x: 192
+        y: 960
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d7831a66b66163280800000000000000
-      internalID: -9064032549497390979
+      spriteID: daddb64a82d94e3498a3bcf7dccb4b01
+      internalID: 1477359961
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Hurt_Torn1Burnt_8
+      name: Meganeura_Hurt_Torn1Burnt_4_0
       rect:
         serializedVersion: 2
-        x: 5
-        y: 809
-        width: 125
-        height: 141
+        x: 0
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: de28225de4acb8340800000000000000
-      internalID: 4867206262236021485
+      spriteID: cde211dfb097400438ee4c3076e2e6d9
+      internalID: -1599748353
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Hurt_Torn1Burnt_9
+      name: Meganeura_Hurt_Torn1Burnt_4_1
       rect:
         serializedVersion: 2
-        x: 197
-        y: 809
-        width: 125
-        height: 141
+        x: 192
+        y: 768
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6d6c80216dccdff90800000000000000
-      internalID: -6918148232773581098
+      spriteID: 349e4f60f0cc78c44b0b0958a353f572
+      internalID: 2108657270
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Hurt_Torn1Burnt_10
+      name: Meganeura_Hurt_Torn1Burnt_5_0
       rect:
         serializedVersion: 2
-        x: 10
-        y: 628
-        width: 132
-        height: 121
+        x: 0
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0e398930087358f90800000000000000
-      internalID: -6952089426820820000
+      spriteID: 282d5f5716ba96641a606aa92dd0921a
+      internalID: -1081689644
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Hurt_Torn1Burnt_11
+      name: Meganeura_Hurt_Torn1Burnt_5_1
       rect:
         serializedVersion: 2
-        x: 202
-        y: 628
-        width: 132
-        height: 121
+        x: 192
+        y: 576
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 89a8938196e199a40800000000000000
-      internalID: 5375361066970221208
+      spriteID: 82601068c4e15fc41b13847e6fc1792a
+      internalID: -2145667209
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Hurt_Torn1Burnt_12
+      name: Meganeura_Hurt_Torn1Burnt_6_0
       rect:
         serializedVersion: 2
-        x: 23
-        y: 443
-        width: 138
-        height: 105
+        x: 0
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b5fbe9053ab026920800000000000000
-      internalID: 2981958699332845403
+      spriteID: 765414953f4649f41aa71bb821e7dd71
+      internalID: -595415833
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Hurt_Torn1Burnt_13
+      name: Meganeura_Hurt_Torn1Burnt_6_1
       rect:
         serializedVersion: 2
-        x: 215
-        y: 443
-        width: 138
-        height: 105
+        x: 192
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6db893981e009ccd0800000000000000
-      internalID: -2537495946376672298
+      spriteID: d0d7bba4a2551f745bd8bb9b6493dd9c
+      internalID: -1976827476
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Hurt_Torn1Burnt_14
+      name: Meganeura_Hurt_Torn1Burnt_7_0
       rect:
         serializedVersion: 2
-        x: 16
-        y: 249
-        width: 154
-        height: 107
+        x: 0
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c20f0761f230fc0d0800000000000000
-      internalID: -3400495692866588628
+      spriteID: 96d0325aa7b327a49b3cf83f2687bf8b
+      internalID: -63805840
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Hurt_Torn1Burnt_15
+      name: Meganeura_Hurt_Torn1Burnt_7_1
       rect:
         serializedVersion: 2
-        x: 208
-        y: 249
-        width: 154
-        height: 107
+        x: 192
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 42b7a8b1fb15c13e0800000000000000
-      internalID: -2081699046509348060
+      spriteID: f493f93534fba764e9bf8714b3c77a31
+      internalID: 2082580477
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Hurt_Torn1Burnt_16
+      name: Meganeura_Hurt_Torn1Burnt_8_0
       rect:
         serializedVersion: 2
-        x: 19
-        y: 58
-        width: 154
-        height: 110
+        x: 0
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 8c333f59a7fc58b90800000000000000
-      internalID: -7240152700519500856
+      spriteID: ec5dc2fd4942f3742901eb1ca5bb2a2b
+      internalID: -2097452398
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Meganeura_Hurt_Torn1Burnt_17
+      name: Meganeura_Hurt_Torn1Burnt_8_1
       rect:
         serializedVersion: 2
-        x: 211
-        y: 58
-        width: 154
-        height: 110
+        x: 192
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c428f019dc2582200800000000000000
-      internalID: 155465229999768140
+      spriteID: 73e0f4a02bb95eb408deae8098959841
+      internalID: -201725080
       vertices: []
       indices: 
       edges: []
@@ -575,24 +575,24 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Meganeura_Hurt_Torn1Burnt_0: -5584565539297515313
-      Meganeura_Hurt_Torn1Burnt_1: 8297751588119314385
-      Meganeura_Hurt_Torn1Burnt_10: -6952089426820820000
-      Meganeura_Hurt_Torn1Burnt_11: 5375361066970221208
-      Meganeura_Hurt_Torn1Burnt_12: 2981958699332845403
-      Meganeura_Hurt_Torn1Burnt_13: -2537495946376672298
-      Meganeura_Hurt_Torn1Burnt_14: -3400495692866588628
-      Meganeura_Hurt_Torn1Burnt_15: -2081699046509348060
-      Meganeura_Hurt_Torn1Burnt_16: -7240152700519500856
-      Meganeura_Hurt_Torn1Burnt_17: 155465229999768140
-      Meganeura_Hurt_Torn1Burnt_2: 8953232590433140971
-      Meganeura_Hurt_Torn1Burnt_3: -8192329021359706861
-      Meganeura_Hurt_Torn1Burnt_4: 1659093145081777488
-      Meganeura_Hurt_Torn1Burnt_5: 5912074341068960370
-      Meganeura_Hurt_Torn1Burnt_6: -7629685420602048381
-      Meganeura_Hurt_Torn1Burnt_7: -9064032549497390979
-      Meganeura_Hurt_Torn1Burnt_8: 4867206262236021485
-      Meganeura_Hurt_Torn1Burnt_9: -6918148232773581098
+      Meganeura_Hurt_Torn1Burnt_0_0: -922270952
+      Meganeura_Hurt_Torn1Burnt_0_1: 1034911482
+      Meganeura_Hurt_Torn1Burnt_1_0: 771572628
+      Meganeura_Hurt_Torn1Burnt_1_1: 1146223245
+      Meganeura_Hurt_Torn1Burnt_2_0: 4239435
+      Meganeura_Hurt_Torn1Burnt_2_1: 2019741257
+      Meganeura_Hurt_Torn1Burnt_3_0: -1125300244
+      Meganeura_Hurt_Torn1Burnt_3_1: 1477359961
+      Meganeura_Hurt_Torn1Burnt_4_0: -1599748353
+      Meganeura_Hurt_Torn1Burnt_4_1: 2108657270
+      Meganeura_Hurt_Torn1Burnt_5_0: -1081689644
+      Meganeura_Hurt_Torn1Burnt_5_1: -2145667209
+      Meganeura_Hurt_Torn1Burnt_6_0: -595415833
+      Meganeura_Hurt_Torn1Burnt_6_1: -1976827476
+      Meganeura_Hurt_Torn1Burnt_7_0: -63805840
+      Meganeura_Hurt_Torn1Burnt_7_1: 2082580477
+      Meganeura_Hurt_Torn1Burnt_8_0: -2097452398
+      Meganeura_Hurt_Torn1Burnt_8_1: -201725080
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

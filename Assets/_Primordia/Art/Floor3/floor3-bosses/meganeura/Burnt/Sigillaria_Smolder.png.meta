@@ -79,7 +79,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -151,12 +151,12 @@ TextureImporter:
       name: Sigillaria_Smolder_0
       rect:
         serializedVersion: 2
-        x: 43
-        y: 57
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 0
+        width: 72
+        height: 72
+      alignment: 9
+      pivot: {x: 0.5, y: 0.083333336}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -173,12 +173,12 @@ TextureImporter:
       name: Sigillaria_Smolder_1
       rect:
         serializedVersion: 2
-        x: 108
-        y: 51
-        width: 14
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 72
+        y: 0
+        width: 72
+        height: 72
+      alignment: 9
+      pivot: {x: 0.5, y: 0.083333336}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -195,12 +195,12 @@ TextureImporter:
       name: Sigillaria_Smolder_2
       rect:
         serializedVersion: 2
-        x: 176
-        y: 52
-        width: 12
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 144
+        y: 0
+        width: 72
+        height: 72
+      alignment: 9
+      pivot: {x: 0.5, y: 0.083333336}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -217,12 +217,12 @@ TextureImporter:
       name: Sigillaria_Smolder_3
       rect:
         serializedVersion: 2
-        x: 185
-        y: 59
-        width: 10
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 216
+        y: 0
+        width: 72
+        height: 72
+      alignment: 9
+      pivot: {x: 0.5, y: 0.083333336}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -231,182 +231,6 @@ TextureImporter:
       bones: []
       spriteID: ee2cf617bd2904c30800000000000000
       internalID: 4341631511983801070
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sigillaria_Smolder_4
-      rect:
-        serializedVersion: 2
-        x: 250
-        y: 53
-        width: 17
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1258c3b4fb6000300800000000000000
-      internalID: 216180200784561441
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sigillaria_Smolder_5
-      rect:
-        serializedVersion: 2
-        x: 22
-        y: 1
-        width: 34
-        height: 50
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: cd9cd53c53459bdf0800000000000000
-      internalID: -164007321534608932
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sigillaria_Smolder_6
-      rect:
-        serializedVersion: 2
-        x: 34
-        y: 50
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0ae450202d694c7d0800000000000000
-      internalID: -2899026431398556000
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sigillaria_Smolder_7
-      rect:
-        serializedVersion: 2
-        x: 94
-        y: 1
-        width: 27
-        height: 49
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 62a25c768a33f81f0800000000000000
-      internalID: -1040556190510798298
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sigillaria_Smolder_8
-      rect:
-        serializedVersion: 2
-        x: 121
-        y: 42
-        width: 7
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 99e332315460fe6d0800000000000000
-      internalID: -2959139536415539559
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sigillaria_Smolder_9
-      rect:
-        serializedVersion: 2
-        x: 166
-        y: 1
-        width: 27
-        height: 49
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 23148fc443acb8970800000000000000
-      internalID: 8758316226330509618
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sigillaria_Smolder_10
-      rect:
-        serializedVersion: 2
-        x: 193
-        y: 42
-        width: 7
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 531e193d29ff51900800000000000000
-      internalID: 654710326932136245
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sigillaria_Smolder_11
-      rect:
-        serializedVersion: 2
-        x: 238
-        y: 1
-        width: 34
-        height: 50
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 72d688e7497fd1460800000000000000
-      internalID: 7214194395267493159
       vertices: []
       indices: 
       edges: []
@@ -427,16 +251,8 @@ TextureImporter:
     nameFileIdTable:
       Sigillaria_Smolder_0: 6728781023157313763
       Sigillaria_Smolder_1: -4080776252658363225
-      Sigillaria_Smolder_10: 654710326932136245
-      Sigillaria_Smolder_11: 7214194395267493159
       Sigillaria_Smolder_2: 8915714173553681318
       Sigillaria_Smolder_3: 4341631511983801070
-      Sigillaria_Smolder_4: 216180200784561441
-      Sigillaria_Smolder_5: -164007321534608932
-      Sigillaria_Smolder_6: -2899026431398556000
-      Sigillaria_Smolder_7: -1040556190510798298
-      Sigillaria_Smolder_8: -2959139536415539559
-      Sigillaria_Smolder_9: 8758316226330509618
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -64,7 +64,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -136,12 +136,12 @@ TextureImporter:
       name: Puddle_Water_Splash_Grow_0
       rect:
         serializedVersion: 2
-        x: 14
-        y: 10
-        width: 6
-        height: 6
+        x: 0
+        y: 0
+        width: 44
+        height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -158,12 +158,12 @@ TextureImporter:
       name: Puddle_Water_Splash_Grow_1
       rect:
         serializedVersion: 2
-        x: 16
-        y: 10
-        width: 12
-        height: 10
+        x: 44
+        y: 0
+        width: 44
+        height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -180,12 +180,12 @@ TextureImporter:
       name: Puddle_Water_Splash_Grow_2
       rect:
         serializedVersion: 2
-        x: 56
-        y: 8
-        width: 20
-        height: 14
+        x: 88
+        y: 0
+        width: 44
+        height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -202,12 +202,12 @@ TextureImporter:
       name: Puddle_Water_Splash_Grow_3
       rect:
         serializedVersion: 2
-        x: 97
-        y: 6
-        width: 26
-        height: 19
+        x: 132
+        y: 0
+        width: 44
+        height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -224,12 +224,12 @@ TextureImporter:
       name: Puddle_Water_Splash_Grow_4
       rect:
         serializedVersion: 2
-        x: 138
-        y: 3
-        width: 33
-        height: 24
+        x: 176
+        y: 0
+        width: 44
+        height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -246,12 +246,12 @@ TextureImporter:
       name: Puddle_Water_Splash_Grow_5
       rect:
         serializedVersion: 2
-        x: 181
-        y: 2
-        width: 34
-        height: 27
+        x: 220
+        y: 0
+        width: 44
+        height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -260,28 +260,6 @@ TextureImporter:
       bones: []
       spriteID: 8835583fce33ca090800000000000000
       internalID: -8021979743462796408
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Puddle_Water_Splash_Grow_6
-      rect:
-        serializedVersion: 2
-        x: 225
-        y: 2
-        width: 34
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ada5455f7f501b710800000000000000
-      internalID: 1707152296281135834
       vertices: []
       indices: 
       edges: []
@@ -306,7 +284,6 @@ TextureImporter:
       Puddle_Water_Splash_Grow_3: 8444657486885797474
       Puddle_Water_Splash_Grow_4: 6246854549596660141
       Puddle_Water_Splash_Grow_5: -8021979743462796408
-      Puddle_Water_Splash_Grow_6: 1707152296281135834
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

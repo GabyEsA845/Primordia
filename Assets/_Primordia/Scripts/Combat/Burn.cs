@@ -13,6 +13,8 @@ namespace Primordia.Combat
 
         protected override string MarkerKey => Key;
 
+        protected override DamageSource Source => DamageSource.Burn;
+
         // Cada cuánto prende lo inflamable que toca, y a qué distancia (casi pegado: un helecho al que se acerca).
         const float IgniteEvery = 0.25f;
         const float IgniteRadius = 1.1f;

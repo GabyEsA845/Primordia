@@ -15,6 +15,27 @@ namespace Primordia.Core
         Fall
     }
 
+    /// <summary>Qué lo causó, para que un jefe limite cuánto daño por segundo admite de cada fuente (<c>BossDamageLimiter</c>).</summary>
+    public enum DamageSource
+    {
+        /// <summary>Sin etiquetar (golpes, proyectiles, explosiones...): no se limita.</summary>
+        Unknown,
+        /// <summary>Chorro de vinagre.</summary>
+        Jet,
+        /// <summary>Peonza y su bumerán.</summary>
+        Spin,
+        /// <summary>Escupitajo venenoso: bola y estallido.</summary>
+        Spit,
+        /// <summary>Veneno en el tiempo.</summary>
+        Poison,
+        /// <summary>Veneno virulento del Escupitajo: golpes de veneno más rápidos y fuertes.</summary>
+        Venom,
+        /// <summary>Quemadura en el tiempo.</summary>
+        Burn,
+        /// <summary>Fogonazo del metano.</summary>
+        Gas
+    }
+
     /// <summary>
     /// Vida, daño y muerte. Sirve para el jugador, los enemigos y el jefe.
     /// En el jugador, 1 punto equivale a medio corazón (6 puntos = 3 corazones).
@@ -33,6 +54,9 @@ namespace Primordia.Core
 
         /// <summary>Invulnerabilidad controlada desde fuera, por ejemplo durante la esquiva.</summary>
         public bool IsInvulnerable { get; set; }
+
+        /// <summary>Filtro opcional del daño que entra (cantidad, tipo, origen) → cantidad admitida. Lo pone un jefe para limitar fuentes.</summary>
+        public Func<int, DamageKind, DamageSource, int> DamageGate { get; set; }
 
         /// <summary>Escala el daño que recibe (1 normal; 0,5 la libélula en el aire). Si el golpe queda en 0, se desvía.</summary>
         public float DamageTakenMultiplier { get; set; } = 1f;
@@ -239,13 +263,19 @@ namespace Primordia.Core
 
         /// <summary>Aplica daño. Devuelve false si el golpe no tuvo efecto.</summary>
         /// <param name="kind">De dónde viene: solo los golpes llevan el extra de <see cref="ExtraHitDamage"/>.</param>
-        public bool TakeDamage(int amount, DamageKind kind = DamageKind.Hit)
+        public bool TakeDamage(int amount, DamageKind kind = DamageKind.Hit, DamageSource source = DamageSource.Unknown)
         {
             if (amount <= 0 || !CanTakeDamage)
             {
                 if (amount > 0 && !IsDead && IsInvulnerable)
                     Deflected?.Invoke();
                 return false;
+            }
+            if (DamageGate != null)
+            {
+                amount = DamageGate(amount, kind, source);
+                if (amount <= 0)
+                    return false;
             }
 
             amount = ModifiedDamage(amount);

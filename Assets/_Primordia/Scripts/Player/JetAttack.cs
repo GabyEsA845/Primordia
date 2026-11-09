@@ -354,7 +354,7 @@ namespace Primordia.Player
                 // El metano no recibe el golpe: se vuelve nube tóxica en lugar de explotar (directamente, sin depender de la zona).
                 if (venom && ToxifyInstead(target))
                     continue;
-                if (target.TakeDamage(damage))
+                if (target.TakeDamage(damage, DamageKind.Hit, DamageSource.Jet))
                 {
                     weapon.ReportHit(target);
                     if (venom)
@@ -386,7 +386,7 @@ namespace Primordia.Player
                     continue;
                 if (venom && ToxifyInstead(target))
                     continue;
-                if (target.TakeDamage(damage))
+                if (target.TakeDamage(damage, DamageKind.Hit, DamageSource.Jet))
                 {
                     weapon.ReportHit(target);
                     if (venom)

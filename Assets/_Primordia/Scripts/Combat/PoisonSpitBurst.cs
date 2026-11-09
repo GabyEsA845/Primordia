@@ -66,7 +66,7 @@ namespace Primordia.Combat
             if (look == Look.Fire)
                 LeaveFire(position, radius, puddleSeconds);
             else if (puddleSeconds > 0f)
-                PoisonPuddle.SpawnSplat(position, puddleSeconds, small ? SmallPuddleRadius : PuddleRadius, leech: look == Look.Leech);
+                PoisonPuddle.SpawnSplat(position, puddleSeconds, small ? SmallPuddleRadius : PuddleRadius, leech: look == Look.Leech, venom: victims == Team.Enemy);
 
             if (frames.Length == 0)
             {
@@ -115,8 +115,11 @@ namespace Primordia.Combat
                 var health = hit.GetComponentInParent<Health>();
                 if (health == null || health.IsDead || !seen.Add(health))
                     continue;
-                if (health.TakeDamage(damage) && source != null)
+                if (health.TakeDamage(damage, DamageKind.Hit, DamageSource.Spit) && source != null)
                     source.ReportHit(health);
+                // El veneno virulento: lo que sobrevive al estallido sigue sufriendo (también huevos y ninfas, que no son jugador).
+                if (victims == Team.Enemy && look != Look.Fire && !health.IsDead)
+                    Toxins.VenomEnemy(health);
                 if (look == Look.Fire && !health.IsDead && health.TryGetComponent<Enemy>(out _))
                     Burn.Apply(health, FireBurnDamage, FireBurnSeconds, ReactionKit.Current != null ? ReactionKit.Current.BurningMarker : null);
             }

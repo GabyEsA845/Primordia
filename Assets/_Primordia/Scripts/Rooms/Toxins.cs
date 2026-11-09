@@ -28,6 +28,21 @@ namespace Primordia.Rooms
                 health.gameObject.AddComponent<PoisonTint>();
         }
 
+        /// <summary>Veneno virulento del Escupitajo: golpes de <see cref="VenomDamage"/> cada <see cref="VenomTick"/> s durante <see cref="VenomSeconds"/> s.</summary>
+        public const int VenomDamage = 2;
+        public const float VenomTick = 0.5f;
+        public const float VenomSeconds = 3f;
+
+        public static void VenomEnemy(Health health)
+        {
+            if (health == null || health.IsDead)
+                return;
+            var kit = ReactionKit.Current;
+            Poison.ApplyVenom(health, VenomDamage, VenomTick, VenomSeconds, kit != null ? kit.PoisonedMarker : null);
+            if (!health.TryGetComponent<PoisonTint>(out _))
+                health.gameObject.AddComponent<PoisonTint>();
+        }
+
         /// <summary>Frena a un enemigo que anda por el charco.</summary>
         public static void SlowEnemy(Health health, float seconds)
         {

@@ -19,6 +19,23 @@ namespace Primordia.Combat
 
         protected override string MarkerKey => Key;
 
+        bool venom;
+
+        protected override DamageSource Source => venom ? DamageSource.Venom : DamageSource.Poison;
+
+        /// <summary>True si lleva veneno virulento (Escupitajo): sus golpes cuentan como Venom para el límite del jefe.</summary>
+        public bool IsVenom => venom;
+
+        /// <summary>Veneno virulento del Escupitajo: <paramref name="damagePerTick"/> de daño cada <paramref name="tickSeconds"/> durante <paramref name="duration"/> s.</summary>
+        public static Poison ApplyVenom(Health target, int damagePerTick, float tickSeconds, float duration, GameObject effectPrefab = null)
+        {
+            if (Immune(target))
+                return null;
+            var poison = Apply<Poison>(target, damagePerTick, duration, effectPrefab, tickSeconds);
+            poison.venom = true;
+            return poison;
+        }
+
         /// <summary>Contra un jefe el veneno no pasa de 2 de daño por segundo (ajustable aquí).</summary>
         public const int BossDamagePerSecondCap = 2;
 

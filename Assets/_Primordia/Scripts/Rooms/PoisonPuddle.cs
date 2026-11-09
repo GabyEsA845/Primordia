@@ -60,6 +60,8 @@ namespace Primordia.Rooms
         bool harmsPlayer = true;
         bool useSplat;
         bool leech;
+        /// <summary>Charco del Escupitajo: envenena con veneno virulento (más rápido y fuerte) en vez del normal.</summary>
+        bool venom;
         float radius = Radius;
         float endTime;
         float nextCheck;
@@ -96,7 +98,8 @@ namespace Primordia.Rooms
         /// El charco salpicado que deja el reventón del Escupitajo: su cuerpo coincide con <paramref name="effectRadius"/>, el radio
         /// que frena y envenena. Sin dibujo propio, el charco grande reducido. Null si no hay arte del veneno.
         /// </summary>
-        public static PoisonPuddle SpawnSplat(Vector2 position, float seconds, float effectRadius, bool harmsPlayer = false, bool leech = false)
+        public static PoisonPuddle SpawnSplat(Vector2 position, float seconds, float effectRadius, bool harmsPlayer = false, bool leech = false,
+            bool venom = false)
         {
             var kit = ReactionKit.Current;
             if (kit == null)
@@ -105,7 +108,9 @@ namespace Primordia.Rooms
             if (!splat && kit.PuddleIdle.Length == 0)
                 return null;
             // Sanguijuela: charco rojizo con gusanillos (si hay su arte).
-            return Create(kit, position, seconds, effectRadius, harmsPlayer, splat, leech && splat && kit.HasLeechSplat);
+            var puddle = Create(kit, position, seconds, effectRadius, harmsPlayer, splat, leech && splat && kit.HasLeechSplat);
+            puddle.venom = venom;
+            return puddle;
         }
 
         static PoisonPuddle Create(ReactionKit kit, Vector2 position, float seconds, float effectRadius, bool harmsPlayer, bool splat,
@@ -207,7 +212,7 @@ namespace Primordia.Rooms
 
             var seen = new HashSet<Health>();
             foreach (var hit in Physics2D.OverlapCircleAll(transform.position, radius))
-                Affect(hit, harmsPlayer, seen);
+                Affect(hit, harmsPlayer, seen, venom);
         }
 
         /// <summary>
@@ -215,7 +220,7 @@ namespace Primordia.Rooms
         /// ventana de veneno (si <paramref name="harmsPlayer"/> y no esquiva); a los enemigos los frena y los envenena.
         /// <paramref name="seen"/> evita contar dos veces al mismo en una comprobación.
         /// </summary>
-        public static void Affect(Collider2D hit, bool harmsPlayer, HashSet<Health> seen)
+        public static void Affect(Collider2D hit, bool harmsPlayer, HashSet<Health> seen, bool venom = false)
         {
             if (hit.isTrigger)
                 return;
@@ -228,11 +233,15 @@ namespace Primordia.Rooms
             }
 
             var health = hit.GetComponentInParent<Health>();
-            if (health == null || health.IsDead || !seen.Add(health) || health.GetComponentInParent<Enemy>() == null)
+            if (health == null || health.IsDead || !seen.Add(health)
+                || (health.GetComponentInParent<Enemy>() == null && health.GetComponentInParent<MeganeuraEgg>() == null))
                 return;
             Toxins.SlowEnemy(health, CheckEvery * 3f);
             // Los del jugador (sin daño al jugador) hacen más daño con la Sanguijuela.
-            Toxins.PoisonEnemy(health, EnemyDamagePerSecond + (harmsPlayer ? 0 : PlayerBonus), EnemyPoisonSeconds);
+            if (venom)
+                Toxins.VenomEnemy(health);
+            else
+                Toxins.PoisonEnemy(health, EnemyDamagePerSecond + (harmsPlayer ? 0 : PlayerBonus), EnemyPoisonSeconds);
             if (!harmsPlayer)
                 EnemyAffected?.Invoke(health);
         }

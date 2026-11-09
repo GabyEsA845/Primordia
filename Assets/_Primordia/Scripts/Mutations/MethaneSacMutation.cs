@@ -17,7 +17,7 @@ namespace Primordia.Mutations
         [SerializeField] int[] cloudCounts = { 1, 2, 2 };
         [SerializeField] MethaneCloud.Settings cloudSettings = new()
         {
-            damage = 6, lifetime = 8f, speed = 0.9f, explosionRadius = 2f, fireSeconds = 0f,
+            damage = 6, lifetime = 8f, speed = 1.6f, explosionRadius = 2f, fireSeconds = 0f,
         };
         [Tooltip("Incendio (nivel III): segundos que dura el fuego que deja la explosión.")]
         [SerializeField, Min(0f)] float incendioSeconds = 3f;

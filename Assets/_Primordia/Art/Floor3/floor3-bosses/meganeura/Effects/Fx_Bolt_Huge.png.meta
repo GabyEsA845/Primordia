@@ -79,7 +79,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -152,11 +152,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 6
-        width: 136
-        height: 414
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        y: 0
+        width: 192
+        height: 420
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01904762}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -173,12 +173,12 @@ TextureImporter:
       name: Fx_Bolt_Huge_1
       rect:
         serializedVersion: 2
-        x: 199
-        y: 6
-        width: 146
-        height: 414
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 192
+        y: 0
+        width: 192
+        height: 420
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01904762}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -195,12 +195,12 @@ TextureImporter:
       name: Fx_Bolt_Huge_2
       rect:
         serializedVersion: 2
-        x: 383
-        y: 6
-        width: 136
-        height: 414
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 384
+        y: 0
+        width: 192
+        height: 420
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01904762}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -217,12 +217,12 @@ TextureImporter:
       name: Fx_Bolt_Huge_3
       rect:
         serializedVersion: 2
-        x: 583
-        y: 6
-        width: 146
-        height: 414
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 576
+        y: 0
+        width: 192
+        height: 420
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01904762}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -239,12 +239,12 @@ TextureImporter:
       name: Fx_Bolt_Huge_4
       rect:
         serializedVersion: 2
-        x: 767
-        y: 6
-        width: 135
-        height: 414
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 768
+        y: 0
+        width: 192
+        height: 420
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01904762}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -261,12 +261,12 @@ TextureImporter:
       name: Fx_Bolt_Huge_5
       rect:
         serializedVersion: 2
-        x: 968
-        y: 130
-        width: 124
-        height: 290
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 960
+        y: 0
+        width: 192
+        height: 420
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01904762}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -275,138 +275,6 @@ TextureImporter:
       bones: []
       spriteID: 1cc14b639fa9051d0800000000000000
       internalID: -3364018526490452799
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_Bolt_Huge_6
-      rect:
-        serializedVersion: 2
-        x: 1089
-        y: 224
-        width: 23
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d7f300bd1edac7800800000000000000
-      internalID: 611554834969018237
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_Bolt_Huge_7
-      rect:
-        serializedVersion: 2
-        x: 980
-        y: 35
-        width: 41
-        height: 107
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0093e7aec236c2020800000000000000
-      internalID: 2318336952752814336
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_Bolt_Huge_8
-      rect:
-        serializedVersion: 2
-        x: 1023
-        y: 121
-        width: 18
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 923efff21bd638f20800000000000000
-      internalID: 3423700749513646889
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_Bolt_Huge_9
-      rect:
-        serializedVersion: 2
-        x: 1027
-        y: 103
-        width: 9
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ef5a2a8c13e161fb0800000000000000
-      internalID: -4677517963809348098
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_Bolt_Huge_10
-      rect:
-        serializedVersion: 2
-        x: 1020
-        y: 32
-        width: 16
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6d5af6fe9fe0c27f0800000000000000
-      internalID: -636116980739365418
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_Bolt_Huge_11
-      rect:
-        serializedVersion: 2
-        x: 1034
-        y: 6
-        width: 26
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 023399e43ebfeda10800000000000000
-      internalID: 1936261843510702880
       vertices: []
       indices: 
       edges: []
@@ -427,16 +295,10 @@ TextureImporter:
     nameFileIdTable:
       Fx_Bolt_Huge_0: 7334397586979339067
       Fx_Bolt_Huge_1: 4259795049057775980
-      Fx_Bolt_Huge_10: -636116980739365418
-      Fx_Bolt_Huge_11: 1936261843510702880
       Fx_Bolt_Huge_2: -9111630936188766693
       Fx_Bolt_Huge_3: -4794894749938693850
       Fx_Bolt_Huge_4: -6808620684791294148
       Fx_Bolt_Huge_5: -3364018526490452799
-      Fx_Bolt_Huge_6: 611554834969018237
-      Fx_Bolt_Huge_7: 2318336952752814336
-      Fx_Bolt_Huge_8: 3423700749513646889
-      Fx_Bolt_Huge_9: -4677517963809348098
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

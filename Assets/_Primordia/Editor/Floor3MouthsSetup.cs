@@ -124,7 +124,7 @@ namespace Primordia.Editor
             });
             var one = Attack("Attack_PoisonSpit", template, a =>
             {
-                a.Configure(ball, fireRate: 1f / 2.8f, damage: 1, speed: 2f, lifetime: 4f, automatic: true);
+                a.Configure(ball, fireRate: 1f / 2.8f, damage: 1, speed: 3.5f, lifetime: 3f, automatic: true);
                 a.SetPierce(99);
                 a.ConfigureSpit(SlimeTrail.Spacing, 3f, burstDamage: 6, burstRadius: 1.5f, burstPuddleSeconds: 4f);
                 ClearExtras(a);

@@ -42,6 +42,8 @@ namespace Primordia.Enemies
             Grounded,
             /// <summary>Furiosa junto a la charca (fase 2): chillido y ventana de daño.</summary>
             Rage,
+            /// <summary>Electrocutada por un rayo (fase 3): destellos antes de caer.</summary>
+            Shocked,
             Dead
         }
 
@@ -49,6 +51,8 @@ namespace Primordia.Enemies
         [Serializable]
         public class Effects
         {
+            [System.Serializable] public class FrameSet { public Sprite[] frames = Array.Empty<Sprite>(); }
+
             public Sprite[] diveMarkFollow = Array.Empty<Sprite>();
             public Sprite[] diveMarkLocked = Array.Empty<Sprite>();
             public Sprite[] diveImpact = Array.Empty<Sprite>();
@@ -65,6 +69,25 @@ namespace Primordia.Enemies
             public Sprite[] eggBreak = Array.Empty<Sprite>();
             [Tooltip("Ondas del chillido (160×112, centro = la cabeza).")] public Sprite[] screech = Array.Empty<Sprite>();
             [Tooltip("Charcas de agua donde pone los huevos (una imagen cada una).")] public Sprite[] puddles = Array.Empty<Sprite>();
+                        [Tooltip("Fase 3: señal y rayo grande (96×360, pie abajo), impacto, quemadura, corriente circular y trueno gigante.")]
+            public Sprite[] boltBigMark = Array.Empty<Sprite>();
+            public Sprite[] boltBig = Array.Empty<Sprite>();
+            public Sprite[] boltBigImpact = Array.Empty<Sprite>();
+            public Sprite[] boltSmallMark = Array.Empty<Sprite>();
+            public Sprite[] boltSmall = Array.Empty<Sprite>();
+            public Sprite[] boltSmallImpact = Array.Empty<Sprite>();
+            public Sprite[] boltScorch = Array.Empty<Sprite>();
+            public Sprite[] boltRing = Array.Empty<Sprite>();
+            public Sprite[] boltHuge = Array.Empty<Sprite>();
+            [Tooltip("Lluvia y viento con ceniza (mosaicos de 128).")] public Sprite[] rain = Array.Empty<Sprite>();
+            public Sprite[] ash = Array.Empty<Sprite>();
+            [Tooltip("Sigillaria tras el rayo: se raja (8), arde (4), humea (4) y queda partida (1).")] public Sprite[] sigillariaStruck = Array.Empty<Sprite>();
+            public Sprite[] sigillariaBurning = Array.Empty<Sprite>();
+            public Sprite[] sigillariaSmolder = Array.Empty<Sprite>();
+            public Sprite[] sigillariaSplit = Array.Empty<Sprite>();
+            [Tooltip("Charca electrificada: Round, Kidney, Lobed, Splash (6 cuadros cada una).")] public FrameSet[] puddleElectric = Array.Empty<FrameSet>();
+            [Tooltip("Charcos nuevos de la lluvia: Round, Kidney, Splash (6 cuadros; el último = la charca entera).")] public FrameSet[] puddleGrow = Array.Empty<FrameSet>();
+            [Tooltip("Sigillaria quemada en pie (primer cuadro de Sigillaria_Struck; pivote abajo-centro).")] public Sprite[] sigillaria = Array.Empty<Sprite>();
         }
 
         // Alturas (unidades de suelo), tiempos (s) y números del ciclo.
@@ -118,6 +141,7 @@ namespace Primordia.Enemies
 
         void StopFightRoutine()
         {
+            StopStormRoutines();
             if (fight != null)
                 StopCoroutine(fight);
             fight = null;
@@ -137,6 +161,11 @@ namespace Primordia.Enemies
             while (true)
             {
                 // Desde el 65 % de vida: huevos, ninfas y furia (MeganeuraBoss.Phase2.cs).
+                if (PhaseIndex >= 2)
+                {
+                    yield return PhaseThreeCycle();
+                    continue;
+                }
                 if (PhaseIndex >= 1)
                 {
                     yield return PhaseTwoCycle();
@@ -243,8 +272,11 @@ namespace Primordia.Enemies
             Destroy(mark);
             Impact(markPosition);
 
+            var tree = BossSigillaria.Nearest(markPosition, StuckRadius);
             if (stumpBuilt && stumpFrames.Length > 0 && Vector2.Distance(markPosition, stumpGround) <= StuckRadius)
-                yield return StuckRoutine();
+                yield return StuckRoutine(stumpGround, PerchHeight, null);
+            else if (tree != null)
+                yield return StuckRoutine(tree.Position, SigillariaStuckHeight, tree);
             else
                 EnterHover(markPosition);
         }
@@ -263,27 +295,35 @@ namespace Primordia.Enemies
 
         // ---------- Clavada en el tronco ----------
 
-        IEnumerator StuckRoutine()
+        const float SigillariaStuckHeight = 2.2f;
+
+        /// <summary>Clavada en el Lepidodendron partido (tree = null) o en una Sigillaria quemada en pie.</summary>
+        IEnumerator StuckRoutine(Vector2 ground, float height, BossSigillaria tree)
         {
             CurrentMode = Mode.Stuck;
-            MoveTo(stumpGround);
-            Altitude = PerchHeight;
+            MoveTo(ground);
+            Altitude = height;
             SetAngle(-90f);
             SetVulnerable(true);
             PlayBody("Stuck", 70f, loop: true, restart: true);
-            SetStump(effects.stumpHit, 0.07f);
+            if (tree == null)
+                SetStump(effects.stumpHit, 0.07f);
             yield return Wait(0.3f);
-            SetStump(stumpGashed ? effects.stumpGash : stumpFrames, 0.2f);
+            if (tree == null)
+                SetStump(stumpGashed ? effects.stumpGash : stumpFrames, 0.2f);
             yield return Wait(StuckSeconds - 0.3f);
 
             // Se arranca: astillas en el cuadro 2 y el tronco queda con la herida abierta.
             PlayBody("TearFree", 80f, loop: false, restart: true);
             yield return Wait(0.16f);
-            SpriteFramePlayer.PlayOnce(effects.splinters, 0.07f, stumpGround + Vector2.up * WoundHeight, 8);
-            SetStump(effects.stumpGash, 0.2f);
-            stumpGashed = true;
+            SpriteFramePlayer.PlayOnce(effects.splinters, 0.07f, ground + Vector2.up * (tree == null ? WoundHeight : WoundHeight * 0.7f), 8);
+            if (tree == null)
+            {
+                SetStump(effects.stumpGash, 0.2f);
+                stumpGashed = true;
+            }
             yield return Wait(0.24f);
-            EnterHover(stumpGround);
+            EnterHover(ground);
         }
 
         bool stumpGashed;
@@ -373,14 +413,19 @@ namespace Primordia.Enemies
         /// Cae con las alas ardiendo (los agujeros quemados se quedan), se estrella, queda boca arriba unos segundos (vulnerable) y
         /// se endereza para volver a subir.
         /// </summary>
-        IEnumerator BurnRoutine()
+        IEnumerator BurnRoutine() => FallRoutine(burning: true, GroundedSeconds);
+
+        /// <summary>Cae (ardiendo si fue el metano; con electricidad si fue un rayo), se estrella y queda boca arriba, vulnerable.</summary>
+        IEnumerator FallRoutine(bool burning, float groundedSeconds)
         {
-            Burnt = true;
+            if (burning)
+                Burnt = true;
             CurrentMode = Mode.BurnFall;
             SetVulnerable(false);
             ShowBody(true);
             PlayBody("Fall", 70f, loop: true, restart: true);
-            PlayFire("Meganeura_Fall_Burning", 70f);
+            if (burning)
+                PlayFire("Meganeura_Fall_Burning", 70f);
             float from = Altitude;
             const float fallSeconds = 0.6f;
             for (float t = 0f; t < fallSeconds; t += Playing ? Time.deltaTime : 0f)
@@ -394,8 +439,15 @@ namespace Primordia.Enemies
             CurrentMode = Mode.Grounded;
             SetVulnerable(true);
             PlayBody("Grounded", 150f, loop: true, restart: true);
-            PlayFire("Meganeura_Grounded_Burning", 150f);
-            yield return Wait(GroundedSeconds);
+            if (burning)
+                PlayFire("Meganeura_Grounded_Burning", 150f);
+            if (stunWindow)
+                yield return WaitStun(groundedSeconds);
+            else
+                yield return Wait(groundedSeconds);
+            // Se acaba el aturdimiento: vuelve a ser invulnerable (fase 3).
+            stunWindow = false;
+            RefreshInvulnerability();
 
             PlayFire(null, 0f);
             PlayBody("Recover", 80f, loop: false, restart: true);
@@ -437,10 +489,24 @@ namespace Primordia.Enemies
                 SetAngle(Mathf.Atan2(toPlayer.y, toPlayer.x) * Mathf.Rad2Deg);
         }
 
+        bool wantVulnerable = true;
+
+        /// <summary>
+        /// Vulnerable o no: además del collider, la vida pasa a invulnerable (si no, el veneno, el fuego y el gas ya aplicados le seguían
+        /// quitando vida mientras volaba). En la fase 3 solo lo es durante un aturdimiento.
+        /// </summary>
         void SetVulnerable(bool vulnerable)
         {
             if (TryGetComponent<Collider2D>(out var hit))
                 hit.enabled = vulnerable;
+            wantVulnerable = vulnerable;
+            RefreshInvulnerability();
+        }
+
+        void RefreshInvulnerability()
+        {
+            if (Health != null)
+                Health.IsInvulnerable = !wantVulnerable || (PhaseIndex >= 2 && !stunWindow);
         }
 
         void SetShadowAlpha(float alpha)

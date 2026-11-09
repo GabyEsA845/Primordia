@@ -52,8 +52,10 @@ namespace Primordia.Mutations
         /// </summary>
         public static Confusion Apply(Health target, float seconds, bool frenzy, Sprite[] aura, Sprite[] mark, Sprite[] frenzyMark)
         {
-            if (target == null || target.IsDead || !target.TryGetComponent<EnemyAI>(out var enemyAI)
-                || target.GetComponentInParent<IBoss>() != null)
+            // Las ninfas de la Meganeura no llevan EnemyAI: se mueven por su propio cerebro, que consulta esta confusión.
+            bool nymph = target != null && target.TryGetComponent<MeganeuraNymph>(out _);
+            EnemyAI enemyAI = null;
+            if (target == null || target.IsDead || (!nymph && !target.TryGetComponent(out enemyAI)) || target.GetComponentInParent<IBoss>() != null)
                 return null;
 
             var confusion = target.GetComponent<Confusion>();
@@ -73,8 +75,11 @@ namespace Primordia.Mutations
 
         void Begin(Sprite[] aura, Sprite[] mark)
         {
-            ai.IsConfused = true;
-            ai.Alert();
+            if (ai != null)
+            {
+                ai.IsConfused = true;
+                ai.Alert();
+            }
             nextSearch = 0f;
             auraObject ??= LoopFx("ConfusionAura", aura, Vector2.zero);
             markObject ??= LoopFx("ConfusionMark", mark, new Vector2(0f, 0.7f));
@@ -94,7 +99,8 @@ namespace Primordia.Mutations
             {
                 nextSearch = Time.time + SearchEvery;
                 target = NearestEnemy();
-                ai.OverrideTarget = target;
+                if (ai != null)
+                    ai.OverrideTarget = target;
             }
 
             Bite();
@@ -144,7 +150,8 @@ namespace Primordia.Mutations
         /// <summary>Si toca al objetivo, le muerde con el daño de su ataque.</summary>
         void Bite()
         {
-            if (target == null || Time.time < nextBite)
+            // La ninfa no muerde: pega con su labio (MeganeuraNymph).
+            if (ai == null || target == null || Time.time < nextBite)
                 return;
             float reach = ai.BodyRadius + 0.45f + BiteMargin;
             if (((Vector2)target.position - (Vector2)transform.position).sqrMagnitude > reach * reach)

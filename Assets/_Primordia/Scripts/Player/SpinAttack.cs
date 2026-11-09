@@ -171,7 +171,7 @@ namespace Primordia.Player
                 if (target == null || target.IsDead || !struck.Add(target))
                     continue;
 
-                if (target.TakeDamage(damage))
+                if (target.TakeDamage(damage, DamageKind.Hit, DamageSource.Spin))
                     weapon.ReportHit(target);
                 if (target.IsDead || attack.SpinPush <= 0f)
                     continue;

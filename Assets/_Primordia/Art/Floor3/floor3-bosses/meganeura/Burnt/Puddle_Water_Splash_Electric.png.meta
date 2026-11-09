@@ -76,7 +76,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -148,12 +148,12 @@ TextureImporter:
       name: Puddle_Water_Splash_Electric_0
       rect:
         serializedVersion: 2
-        x: 5
-        y: 13
-        width: 33
-        height: 16
+        x: 0
+        y: 0
+        width: 44
+        height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -170,12 +170,12 @@ TextureImporter:
       name: Puddle_Water_Splash_Electric_1
       rect:
         serializedVersion: 2
-        x: 6
-        y: 2
-        width: 33
-        height: 17
+        x: 44
+        y: 0
+        width: 44
+        height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -192,12 +192,12 @@ TextureImporter:
       name: Puddle_Water_Splash_Electric_2
       rect:
         serializedVersion: 2
-        x: 49
-        y: 2
-        width: 22
-        height: 26
+        x: 88
+        y: 0
+        width: 44
+        height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -214,12 +214,12 @@ TextureImporter:
       name: Puddle_Water_Splash_Electric_3
       rect:
         serializedVersion: 2
-        x: 61
-        y: 2
-        width: 23
-        height: 27
+        x: 132
+        y: 0
+        width: 44
+        height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -236,12 +236,12 @@ TextureImporter:
       name: Puddle_Water_Splash_Electric_4
       rect:
         serializedVersion: 2
-        x: 93
-        y: 2
-        width: 23
-        height: 27
+        x: 176
+        y: 0
+        width: 44
+        height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -258,12 +258,12 @@ TextureImporter:
       name: Puddle_Water_Splash_Electric_5
       rect:
         serializedVersion: 2
-        x: 106
-        y: 2
-        width: 21
-        height: 25
+        x: 220
+        y: 0
+        width: 44
+        height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -272,116 +272,6 @@ TextureImporter:
       bones: []
       spriteID: a79a84825870d3950800000000000000
       internalID: 6430304111442831738
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Puddle_Water_Splash_Electric_6
-      rect:
-        serializedVersion: 2
-        x: 137
-        y: 5
-        width: 34
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c678191afe81debf0800000000000000
-      internalID: -293550983222294676
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Puddle_Water_Splash_Electric_7
-      rect:
-        serializedVersion: 2
-        x: 162
-        y: 15
-        width: 8
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5a9595475d7c48760800000000000000
-      internalID: 7459306602426358181
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Puddle_Water_Splash_Electric_8
-      rect:
-        serializedVersion: 2
-        x: 181
-        y: 2
-        width: 34
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ed0d7407fa04b19d0800000000000000
-      internalID: -2802575220860792610
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Puddle_Water_Splash_Electric_9
-      rect:
-        serializedVersion: 2
-        x: 225
-        y: 2
-        width: 34
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2257c12772fa87b50800000000000000
-      internalID: 6591210638609773858
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Puddle_Water_Splash_Electric_10
-      rect:
-        serializedVersion: 2
-        x: 141
-        y: 2
-        width: 26
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f46162fe7e9087990800000000000000
-      internalID: -7388144296946952625
       vertices: []
       indices: 
       edges: []
@@ -402,15 +292,10 @@ TextureImporter:
     nameFileIdTable:
       Puddle_Water_Splash_Electric_0: 8814553453970317881
       Puddle_Water_Splash_Electric_1: 9034291130167613488
-      Puddle_Water_Splash_Electric_10: -7388144296946952625
       Puddle_Water_Splash_Electric_2: -8881764056990724897
       Puddle_Water_Splash_Electric_3: -5216015674223392793
       Puddle_Water_Splash_Electric_4: 1962623707087909146
       Puddle_Water_Splash_Electric_5: 6430304111442831738
-      Puddle_Water_Splash_Electric_6: -293550983222294676
-      Puddle_Water_Splash_Electric_7: 7459306602426358181
-      Puddle_Water_Splash_Electric_8: -2802575220860792610
-      Puddle_Water_Splash_Electric_9: 6591210638609773858
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

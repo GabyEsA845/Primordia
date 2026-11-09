@@ -62,7 +62,7 @@ namespace Primordia.Enemies
 
         public string DisplayName => displayName;
         public Health Health { get; private set; }
-        public BossBarStyle BarStyle => IsHigh ? BossBarStyle.Immune : BossBarStyle.Normal;
+        public BossBarStyle BarStyle => IsHigh || (Health != null && Health.IsInvulnerable) ? BossBarStyle.Immune : BossBarStyle.Normal;
         public Vector2 ArenaCenter => arenaCenter != null ? arenaCenter.position : transform.position;
 
         /// <summary>True si ya se le quemaron las alas en el metano (los agujeros son permanentes).</summary>
@@ -155,6 +155,7 @@ namespace Primordia.Enemies
             stumpGround = (Vector2)center.position + StumpOffset;
             if (!stumpBuilt)
                 BuildStump(center);
+            BuildScenery(center);
             // Empieza donde se posa: la cámara de la presentación mira a la raíz. La sala lo mantiene desactivado hasta que entras
             // (su Awake aún no ha corrido): se pide el cuerpo físico aquí.
             if (TryGetComponent<Rigidbody2D>(out var body))
@@ -305,7 +306,17 @@ namespace Primordia.Enemies
 
         // ---------- Daño y muerte ----------
 
-        void OnDamaged(int _) => flashUntil = Time.time + FlashTime;
+        void OnDamaged(int _)
+        {
+            flashUntil = Time.time + FlashTime;
+            // Cruzar el 30 % cierra la ventana en el acto; y un aturdimiento solo admite su tope de daño: al llegar a él se levanta.
+            if (stunWindow && stunStartHealth - Health.Current >= StunBudget)
+            {
+                stunWindow = false;
+                stunCut = true;
+            }
+            RefreshInvulnerability();
+        }
 
         void OnDied(Enemy _)
         {
@@ -313,6 +324,8 @@ namespace Primordia.Enemies
             CurrentMode = Mode.Dead;
             StopFight();
             ClearSummons();
+            if (storm != null)
+                storm.Calm(2f);
             PlayFire(null, 0f);
             if (intro != null)
                 StopCoroutine(intro);

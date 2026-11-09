@@ -67,7 +67,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -139,12 +139,12 @@ TextureImporter:
       name: Puddle_Water_Round_Electric_0
       rect:
         serializedVersion: 2
-        x: 3
+        x: 0
         y: 0
-        width: 32
+        width: 34
         height: 22
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -161,12 +161,12 @@ TextureImporter:
       name: Puddle_Water_Round_Electric_1
       rect:
         serializedVersion: 2
-        x: 37
+        x: 34
         y: 0
-        width: 31
+        width: 34
         height: 22
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -183,12 +183,12 @@ TextureImporter:
       name: Puddle_Water_Round_Electric_2
       rect:
         serializedVersion: 2
-        x: 71
+        x: 68
         y: 0
-        width: 30
+        width: 34
         height: 22
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -205,12 +205,12 @@ TextureImporter:
       name: Puddle_Water_Round_Electric_3
       rect:
         serializedVersion: 2
-        x: 105
+        x: 102
         y: 0
-        width: 30
+        width: 34
         height: 22
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -227,12 +227,12 @@ TextureImporter:
       name: Puddle_Water_Round_Electric_4
       rect:
         serializedVersion: 2
-        x: 139
+        x: 136
         y: 0
-        width: 31
+        width: 34
         height: 22
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -249,12 +249,12 @@ TextureImporter:
       name: Puddle_Water_Round_Electric_5
       rect:
         serializedVersion: 2
-        x: 173
+        x: 170
         y: 0
-        width: 29
+        width: 34
         height: 22
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -263,50 +263,6 @@ TextureImporter:
       bones: []
       spriteID: d7563cc14b1b06dd0800000000000000
       internalID: -2494798806428457603
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Puddle_Water_Round_Electric_6
-      rect:
-        serializedVersion: 2
-        x: 176
-        y: 16
-        width: 9
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 06e4486de56492870800000000000000
-      internalID: 8658529131736354400
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Puddle_Water_Round_Electric_7
-      rect:
-        serializedVersion: 2
-        x: 5
-        y: 1
-        width: 7
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 22577e2eb90669930800000000000000
-      internalID: 4149610329311507746
       vertices: []
       indices: 
       edges: []
@@ -331,8 +287,6 @@ TextureImporter:
       Puddle_Water_Round_Electric_3: 5586319059935466387
       Puddle_Water_Round_Electric_4: 3424131374531242257
       Puddle_Water_Round_Electric_5: -2494798806428457603
-      Puddle_Water_Round_Electric_6: 8658529131736354400
-      Puddle_Water_Round_Electric_7: 4149610329311507746
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

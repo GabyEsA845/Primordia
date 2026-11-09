@@ -106,7 +106,7 @@ namespace Primordia.Tests
             FireFrom(new Vector2(100f, 100f));
             yield return new WaitForSeconds(0.9f);
 
-            Assert.AreEqual(94, enemy.Current, "Estalla al chocar con la pared, mucho antes de acabar su vida.");
+            Assert.That(enemy.Current, Is.InRange(88, 94), "Estalla al chocar con la pared (6) y deja veneno virulento, mucho antes de acabar su vida.");
         }
 
         [UnityTest]

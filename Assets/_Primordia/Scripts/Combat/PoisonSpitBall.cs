@@ -93,6 +93,8 @@ namespace Primordia.Combat
         {
             attack = launched.Attack;
             alive = attack != null && attack.IsSpit;
+            if (alive)
+                launched.DamageOrigin = DamageSource.Spit;
             if (!alive)
                 return;
 

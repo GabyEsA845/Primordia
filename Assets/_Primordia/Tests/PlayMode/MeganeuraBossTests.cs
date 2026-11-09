@@ -41,6 +41,98 @@ namespace Primordia.Tests
         }
 
         [Test]
+        public void LaSalaTiene5SigillariasSolidasBienRepartidasYLasCharcasDesdeElPrincipio()
+        {
+            var trees = room.GetComponentsInChildren<BossSigillaria>();
+            Assert.AreEqual(5, trees.Length);
+            var stump = (Vector2)room.transform.position + new Vector2(8f, 3f);
+            var center = (Vector2)room.transform.position;
+            foreach (var tree in trees)
+            {
+                Assert.IsNotNull(tree.GetComponent<BoxCollider2D>());
+                var local = tree.Position - center;
+                // Dentro del suelo (40×24), lejos del centro de combate y del Lepidodendron, y sin pegarse a las puertas.
+                Assert.That(Mathf.Abs(local.x), Is.LessThan(18f));
+                Assert.That(Mathf.Abs(local.y), Is.LessThan(11.5f));
+                Assert.That(local.magnitude, Is.GreaterThan(8f));
+                Assert.That(Vector2.Distance(tree.Position, stump), Is.GreaterThan(6f));
+                foreach (var other in trees)
+                {
+                    if (other != tree)
+                        Assert.That(Vector2.Distance(tree.Position, other.Position), Is.GreaterThan(9f));
+                }
+            }
+            Assert.AreEqual(3, room.GetComponentsInChildren<SpriteRenderer>().Count(r => r.name == "MeganeuraPuddle"));
+        }
+
+        [Test]
+        public void UnRayoSueltoNoPuedeCaerCercaDeUnaSigillariaEnPie()
+        {
+            var tree = room.GetComponentInChildren<BossSigillaria>();
+            Assert.IsFalse(BossSigillaria.IsSafeSpot(tree.Position + Vector2.right * (BossSigillaria.SafeRadius - 0.5f)));
+            Assert.IsTrue(BossSigillaria.IsSafeSpot(room.transform.position));
+        }
+        [Test]
+        public void ElArteDeLaTormentaEstaImportadoConSusCuadros()
+        {
+            var fx = boss.EffectsInUse;
+            Assert.AreEqual(10, fx.boltBigMark.Length);
+            Assert.AreEqual(5, fx.boltBig.Length);
+            Assert.AreEqual(16, fx.boltRing.Length);
+            Assert.AreEqual(6, fx.boltHuge.Length);
+            Assert.AreEqual(4, fx.rain.Length);
+            Assert.AreEqual(8, fx.sigillariaStruck.Length);
+            Assert.AreEqual(4, fx.puddleElectric.Length);
+            Assert.AreEqual(3, fx.puddleGrow.Length);
+            foreach (var set in fx.puddleElectric.Concat(fx.puddleGrow))
+                Assert.AreEqual(6, set.frames.Length);
+        }
+
+        [Test]
+        public void LosRayosSueltosCaenSiempreAlejadosDeLasSigillariasEnPie()
+        {
+            for (int run = 0; run < 20; run++)
+            {
+                var spots = boss.PickLooseSpots(room.transform.position + new Vector3(14f, -7f), 4);
+                Assert.That(spots.Count, Is.GreaterThan(0));
+                foreach (var spot in spots)
+                    Assert.IsTrue(BossSigillaria.IsSafeSpot(spot), $"el rayo suelto {spot} cae demasiado cerca de una Sigillaria");
+            }
+        }
+
+        [Test]
+        public void ElRayoGrandeLoAtraeUnaSigillariaCercanaYSoloUnaVez()
+        {
+            var tree = room.GetComponentInChildren<BossSigillaria>();
+            int standing = BossSigillaria.Standing.Count;
+            boss.StrikeBig(tree.Position + new Vector2(2f, 0f));
+            Assert.IsTrue(tree.Struck);
+            Assert.AreEqual(standing - 1, BossSigillaria.Standing.Count);
+            // Ya no atrae ni protege: un segundo rayo cae donde cae y el punto deja de estar vetado.
+            Assert.IsNull(BossSigillaria.Nearest(tree.Position, BossSigillaria.AttractRadius));
+            Assert.IsTrue(BossSigillaria.IsSafeSpot(tree.Position));
+        }
+
+        [Test]
+        public void UnRayoLaDejaAturdidaYCayendo()
+        {
+            boss.TriggerShock();
+            Assert.AreEqual(MeganeuraBoss.Mode.Shocked, boss.CurrentMode);
+        }
+
+        [Test]
+        public void LasCapasDeLaTormentaOscurecenYElDestelloBaja()
+        {
+            var storm = MeganeuraStorm.Create(room.transform, room.transform.position, new Vector2(42f, 28f), boss.EffectsInUse.rain, boss.EffectsInUse.ash);
+            Assert.AreEqual(0f, storm.DarkAlpha);
+            storm.Darken(0.5f, 0.01f);
+            storm.Flash(0.85f);
+            storm.SetRain(true);
+            Assert.IsTrue(storm.Raining);
+            storm.Calm(0.01f);
+            Assert.IsFalse(storm.Raining);
+        }
+        [Test]
         public void LasFilasDeDireccionYElFlipCasanConLosAngulos()
         {
             Assert.AreEqual(0, DirectionalArt.RowFor(90f, out bool flip));
@@ -341,6 +433,90 @@ namespace Primordia.Tests
             Assert.IsFalse(stump.GetComponent<BoxCollider2D>().isTrigger);
             Assert.AreEqual((Vector2)stump.position, (Vector2)boss.transform.position);
         }
-    }
+
+        [UnityTest]
+        public IEnumerator Fase3_EntraEnLaTormentaCaenRayosYUnRayoCercanoLaAturde()
+        {
+            Player((Vector2)room.transform.position + new Vector2(-14f, -8f));
+            var health = boss.GetComponent<Health>();
+            health.TakeDamage(Mathf.CeilToInt(health.Max * 0.75f));
+            Assert.AreEqual(2, boss.PhaseIndex);
+            boss.BeginFight();
+            yield return UntilTrue(() => boss.StormStarted && boss.Storm != null && boss.Storm.Raining, 14f, "no empezó la tormenta");
+            Assert.That(boss.Storm.DarkAlpha, Is.GreaterThan(0.1f));
+            // Con la tormenta en marcha, a ras de suelo, un rayo grande cerca de ella la electrocuta.
+            yield return UntilMode(MeganeuraBoss.Mode.Hover, 20f);
+            boss.StrikeBig(boss.transform.position);
+            Assert.AreEqual(MeganeuraBoss.Mode.Shocked, boss.CurrentMode);
+            yield return UntilMode(MeganeuraBoss.Mode.Grounded, 6f);
+            yield return UntilMode(MeganeuraBoss.Mode.Climbing, 12f);
+        }
+
+        [UnityTest]
+        public IEnumerator VolandoAltaEsInvulnerableDeVerdadYElDanoEnElTiempoNoLeLlega()
+        {
+            Player((Vector2)room.transform.position + new Vector2(-10f, -5f));
+            boss.BeginFight();
+            yield return UntilMode(MeganeuraBoss.Mode.High, 14f);
+            var health = boss.GetComponent<Health>();
+            Assert.IsTrue(health.IsInvulnerable);
+            Assert.AreEqual(BossBarStyle.Immune, boss.BarStyle);
+            int before = health.Current;
+            Assert.IsFalse(health.TakeDamage(5));
+            Assert.IsFalse(health.TakeDamage(5, DamageKind.Tick, DamageSource.Poison));
+            Assert.AreEqual(before, health.Current);
+        }
+
+        [UnityTest]
+        public IEnumerator Fase3_SoloRecibeDanoAturdidaYElAturdimientoTieneTopeDeDano()
+        {
+            Player((Vector2)room.transform.position + new Vector2(-14f, -8f));
+            var health = boss.GetComponent<Health>();
+            health.TakeDamage(Mathf.CeilToInt(health.Max * 0.75f));
+            boss.BeginFight();
+            yield return UntilMode(MeganeuraBoss.Mode.Hover, 20f);
+            // A ras de suelo pero sin ventana: no hay daño y la barra lo dice.
+            int before = health.Current;
+            Assert.IsFalse(health.TakeDamage(3));
+            Assert.AreEqual(before, health.Current);
+            Assert.AreEqual(BossBarStyle.Immune, boss.BarStyle);
+
+            boss.StrikeBig(boss.transform.position);
+            yield return UntilMode(MeganeuraBoss.Mode.Grounded, 6f);
+            Assert.IsTrue(boss.StunWindowOpen);
+            Assert.IsTrue(health.TakeDamage(3));
+            // Al llegar al tope (10 % de la vida) se levanta y vuelve a ser invulnerable, aunque quedara tiempo.
+            health.TakeDamage(Mathf.CeilToInt(health.Max * 0.10f));
+            Assert.IsFalse(boss.StunWindowOpen);
+            Assert.IsTrue(health.IsInvulnerable);
+            yield return UntilMode(MeganeuraBoss.Mode.Climbing, 8f);
+        }
+
+        [UnityTest]
+        public IEnumerator ElVenenoVirulentoQuitaDosCadaMedioSegundo()
+        {
+            var go = new GameObject("Victim");
+            extras.Add(go);
+            var health = go.AddComponent<Health>();
+            health.SetMax(40, healDifference: false);
+            health.ResetHealth();
+            var poison = Poison.ApplyVenom(health, 2, 0.5f, 3f);
+            Assert.IsTrue(poison.IsVenom);
+            Assert.AreEqual(0.5f, poison.TickSeconds);
+            yield return new WaitForSeconds(1.3f);
+            Assert.AreEqual(4, 40 - health.Current, 2, "2 de daño en los golpes de 0,5 s y 1,0 s: unos 4 de daño en 1,3 s");
+        }
+
+        [Test]
+        public void LasFeromonasConfundenALasNinfasYElLabioDanaAlOtroEnemigo()
+        {
+            var nymphA = Object.Instantiate(boss.NymphInUse, room.transform);
+            var nymphB = Object.Instantiate(boss.NymphInUse, room.transform);
+            nymphB.transform.position = nymphA.transform.position + new Vector3(1.5f, 0f, 0f);
+            var confusion = Primordia.Mutations.Confusion.Apply(nymphA.Health, 5f, false, null, null, null);
+            Assert.IsNotNull(confusion, "las ninfas tienen que poder confundirse");
+            Assert.IsTrue(Primordia.Mutations.Confusion.IsConfused(nymphA));
+            Assert.IsNotNull(Primordia.Mutations.Confusion.Apply(nymphB.Health, 5f, true, null, null, null));
+        }    }
 }
 #endif

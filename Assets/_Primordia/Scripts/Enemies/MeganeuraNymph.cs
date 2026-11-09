@@ -101,7 +101,17 @@ namespace Primordia.Enemies
                 player = found.transform;
             }
 
-            Vector2 toPlayer = (Vector2)player.position - rb.position;
+            // Confundida por las Feromonas: va a por el enemigo más cercano y su labio le hace daño a él (con Frenesí, el doble).
+            var confusion = GetComponent<Primordia.Mutations.Confusion>();
+            bool confused = confusion != null && confusion.Active;
+            Transform aimAt = confused ? confusion.Target : player;
+            if (aimAt == null)
+            {
+                // Confundida y sin nadie a quien atacar: se queda quieta.
+                rb.linearVelocity = Vector2.zero;
+                return;
+            }
+            Vector2 toPlayer = (Vector2)aimAt.position - rb.position;
             float distance = toPlayer.magnitude;
             switch (CurrentMode)
             {
@@ -137,7 +147,7 @@ namespace Primordia.Enemies
                     if (!struck && Time.time >= busyUntil - StrikeSeconds + HitAt)
                     {
                         struck = true;
-                        TryHit(toPlayer);
+                        TryHit(toPlayer, aimAt, confused ? confusion : null);
                     }
                     if (Time.time >= busyUntil)
                     {
@@ -149,11 +159,12 @@ namespace Primordia.Enemies
         }
 
         /// <summary>El labio sale disparado: si el jugador está a su alcance, daña y lo tira un poco hacia la ninfa.</summary>
-        void TryHit(Vector2 toPlayer)
+        void TryHit(Vector2 toPlayer, Transform aimAt, Primordia.Mutations.Confusion confusion)
         {
-            if (toPlayer.magnitude > Reach || !player.TryGetComponent<Health>(out var health))
+            if (toPlayer.magnitude > Reach || !aimAt.TryGetComponent<Health>(out var health))
                 return;
-            if (health.TakeDamage(StrikeDamage) && player.TryGetComponent<PlayerController>(out var controller))
+            int damage = confusion != null && confusion.Frenzy ? StrikeDamage * 2 : StrikeDamage;
+            if (health.TakeDamage(damage) && aimAt.TryGetComponent<PlayerController>(out var controller))
                 controller.Shove(-toPlayer.normalized * PullSpeed, 0.25f);
         }
 

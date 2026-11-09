@@ -67,7 +67,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -139,12 +139,12 @@ TextureImporter:
       name: Sigillaria_Burning_0
       rect:
         serializedVersion: 2
-        x: 22
-        y: 1
-        width: 27
-        height: 61
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 0
+        width: 72
+        height: 72
+      alignment: 9
+      pivot: {x: 0.5, y: 0.083333336}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -161,12 +161,12 @@ TextureImporter:
       name: Sigillaria_Burning_1
       rect:
         serializedVersion: 2
-        x: 47
-        y: 42
-        width: 10
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 72
+        y: 0
+        width: 72
+        height: 72
+      alignment: 9
+      pivot: {x: 0.5, y: 0.083333336}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -183,12 +183,12 @@ TextureImporter:
       name: Sigillaria_Burning_2
       rect:
         serializedVersion: 2
-        x: 94
-        y: 1
-        width: 27
-        height: 49
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 144
+        y: 0
+        width: 72
+        height: 72
+      alignment: 9
+      pivot: {x: 0.5, y: 0.083333336}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -205,12 +205,12 @@ TextureImporter:
       name: Sigillaria_Burning_3
       rect:
         serializedVersion: 2
-        x: 119
-        y: 42
-        width: 10
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 216
+        y: 0
+        width: 72
+        height: 72
+      alignment: 9
+      pivot: {x: 0.5, y: 0.083333336}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -219,94 +219,6 @@ TextureImporter:
       bones: []
       spriteID: 22ea4f268be79cd20800000000000000
       internalID: 3299307532424883746
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sigillaria_Burning_4
-      rect:
-        serializedVersion: 2
-        x: 166
-        y: 1
-        width: 27
-        height: 55
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 738adc87a660c31e0800000000000000
-      internalID: -2216889862210082761
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sigillaria_Burning_5
-      rect:
-        serializedVersion: 2
-        x: 191
-        y: 42
-        width: 10
-        height: 22
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 53b97baf58fd87930800000000000000
-      internalID: 4141305623897152309
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sigillaria_Burning_6
-      rect:
-        serializedVersion: 2
-        x: 238
-        y: 1
-        width: 27
-        height: 61
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ba8debb10bb9f5070800000000000000
-      internalID: 8097361835717482667
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sigillaria_Burning_7
-      rect:
-        serializedVersion: 2
-        x: 264
-        y: 42
-        width: 9
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ef5ccf16f8bda4f20800000000000000
-      internalID: 3407777476929963518
       vertices: []
       indices: 
       edges: []
@@ -329,10 +241,6 @@ TextureImporter:
       Sigillaria_Burning_1: 5301958950683724309
       Sigillaria_Burning_2: 6348019320031653026
       Sigillaria_Burning_3: 3299307532424883746
-      Sigillaria_Burning_4: -2216889862210082761
-      Sigillaria_Burning_5: 4141305623897152309
-      Sigillaria_Burning_6: 8097361835717482667
-      Sigillaria_Burning_7: 3407777476929963518
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

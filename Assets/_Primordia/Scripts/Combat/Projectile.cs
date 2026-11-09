@@ -20,6 +20,9 @@ namespace Primordia.Combat
 
         public int Damage { get; private set; }
 
+        /// <summary>Origen que lleva el daño de este proyectil (la bola del Escupitajo lo marca).</summary>
+        public DamageSource DamageOrigin { get; set; }
+
         /// <summary>Ataque con el que se lanzó (null antes del primer lanzamiento).</summary>
         public AttackData Attack => attack;
 
@@ -136,6 +139,7 @@ namespace Primordia.Combat
         public void Redirect(int damage, Transform target)
         {
             Damage = Mathf.Max(0, damage);
+            DamageOrigin = DamageSource.Unknown;
             fixedTarget = target;
         }
 
@@ -180,6 +184,7 @@ namespace Primordia.Combat
             this.attack = attack;
             this.source = source;
             Damage = source != null ? source.DamageOf(attack) : attack.Damage;
+            DamageOrigin = DamageSource.Unknown;
             PoisonMultiplier = source != null ? source.PoisonMultiplier : 1f;
             nextTargetSearch = 0f;
             homingTarget = null;
@@ -350,7 +355,7 @@ namespace Primordia.Combat
             if (struck.Contains(health))
                 return;
 
-            if (!health.TakeDamage(Damage))
+            if (!health.TakeDamage(Damage, DamageKind.Hit, DamageOrigin))
                 return;
 
             struck.Add(health);

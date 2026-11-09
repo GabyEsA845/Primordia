@@ -131,6 +131,27 @@ namespace Primordia.Editor
                 eggHatch = Sheet("Eggs/Meganeura_Eggs_Hatch", 40, eggPivot),
                 eggBreak = Sheet("Eggs/Meganeura_Eggs_Break", 40, eggPivot),
                 screech = Sheet("Effects/Fx_Meganeura_Screech", 160),
+                sigillaria = Sheet("Burnt/Sigillaria_Struck", 72, new Vector2(0.5f, 6f / 72f)).Take(1).ToArray(),
+                sigillariaStruck = Sheet("Burnt/Sigillaria_Struck", 72, new Vector2(0.5f, 6f / 72f)),
+                sigillariaBurning = Sheet("Burnt/Sigillaria_Burning", 72, new Vector2(0.5f, 6f / 72f)),
+                sigillariaSmolder = Sheet("Burnt/Sigillaria_Smolder", 72, new Vector2(0.5f, 6f / 72f)),
+                sigillariaSplit = Sheet("Burnt/Sigillaria_Split", 72, new Vector2(0.5f, 6f / 72f)),
+                // Rayos: el pie del rayo (abajo-centro) en el punto de impacto; el suelo del impacto grande en y = 60 de 96.
+                boltBigMark = Sheet("Effects/Fx_Bolt_Big_Mark", 96),
+                boltBig = Sheet("Effects/Fx_Bolt_Big", 96, new Vector2(0.5f, 8f / 360f)),
+                boltBigImpact = Sheet("Effects/Fx_Bolt_Big_Impact", 128, new Vector2(0.5f, 36f / 96f)),
+                boltSmallMark = Sheet("Effects/Fx_Bolt_Small_Mark", 48),
+                boltSmall = Sheet("Effects/Fx_Bolt_Small", 48, new Vector2(0.5f, 8f / 360f)),
+                boltSmallImpact = Sheet("Effects/Fx_Bolt_Small_Impact", 64, new Vector2(0.5f, 0.3f)),
+                boltScorch = Sheet("Effects/Fx_Bolt_Scorch", 64),
+                boltRing = Sheet("Effects/Fx_Bolt_Ring", 96),
+                boltHuge = Sheet("Effects/Fx_Bolt_Huge", 192, new Vector2(0.5f, 8f / 420f)),
+                rain = Sheet("Effects/Fx_Storm_Rain", 128),
+                ash = Sheet("Effects/Fx_Storm_WindAsh", 128),
+                puddleElectric = new[] { ("Round", 34), ("Kidney", 46), ("Lobed", 46), ("Splash", 44) }
+                    .Select(p => new MeganeuraBoss.Effects.FrameSet { frames = Sheet($"Burnt/Puddle_Water_{p.Item1}_Electric", p.Item2) }).ToArray(),
+                puddleGrow = new[] { ("Round", 34), ("Kidney", 46), ("Splash", 44) }
+                    .Select(p => new MeganeuraBoss.Effects.FrameSet { frames = Sheet($"Burnt/Puddle_Water_{p.Item1}_Grow", p.Item2) }).ToArray(),
                 puddles = new[] { "Round", "Kidney", "Lobed" }.Select(shape => PuddleSprite(shape)).Where(s => s != null).ToArray(),
             };
             var nymph = CreateNymph(art);
@@ -171,6 +192,7 @@ namespace Primordia.Editor
                 rigidbody.gravityScale = 0f;
                 rigidbody.freezeRotation = true;
                 root.AddComponent<Health>();
+                root.AddComponent<BossDamageLimiter>();
 
                 var enemy = root.AddComponent<Enemy>();
                 var serialized = new SerializedObject(enemy);

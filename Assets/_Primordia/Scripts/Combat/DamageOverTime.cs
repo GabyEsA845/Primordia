@@ -15,9 +15,13 @@ namespace Primordia.Combat
         int damagePerTick;
         int ticksLeft;
         float tickTimer;
+        float tickSeconds = 1f;
 
         public int TicksLeft => ticksLeft;
         public int DamagePerTick => damagePerTick;
+
+        /// <summary>Cada cuánto quita vida (1 s; 0,5 s el veneno virulento).</summary>
+        public float TickSeconds => tickSeconds;
 
         /// <summary>La marca que se ve sobre el objetivo (null si no tiene).</summary>
         public GameObject Effect { get; private set; }
@@ -28,15 +32,22 @@ namespace Primordia.Combat
         /// <summary>Lo máximo que quita cada golpe a un jefe (sin tope por defecto); con mejoras el veneno dejaba a los jefes sin vida.</summary>
         protected virtual int BossDamageCap => int.MaxValue;
 
-        protected static T Apply<T>(Health target, int damagePerSecond, float duration, GameObject effectPrefab) where T : DamageOverTime
+        /// <summary>Origen que lleva cada tick (para el límite por fuente de un jefe).</summary>
+        protected virtual DamageSource Source => DamageSource.Unknown;
+
+        protected static T Apply<T>(Health target, int damagePerSecond, float duration, GameObject effectPrefab, float tickSeconds = 1f) where T : DamageOverTime
         {
             if (!target.TryGetComponent<T>(out var dot))
                 dot = target.gameObject.AddComponent<T>();
 
             dot.health = target;
             dot.damagePerTick = Mathf.Max(dot.damagePerTick, damagePerSecond);
+            // Un golpe más rápido (veneno virulento) manda sobre el ritmo normal; los golpes que quedan se cuentan al ritmo nuevo.
+            bool faster = tickSeconds < dot.tickSeconds;
+            if (faster)
+                dot.tickSeconds = Mathf.Max(0.1f, tickSeconds);
             // Se cuentan golpes enteros y no segundos con decimales, para no perder el último por redondeo.
-            dot.ticksLeft = Mathf.Max(dot.ticksLeft, Mathf.Max(1, Mathf.RoundToInt(duration)));
+            dot.ticksLeft = Mathf.Max(faster ? 0 : dot.ticksLeft, Mathf.Max(1, Mathf.RoundToInt(duration / dot.tickSeconds)));
 
             if (dot.Effect == null)
                 dot.Effect = StatusMarkers.Show(target, dot.MarkerKey, effectPrefab, 0f);
@@ -52,15 +63,15 @@ namespace Primordia.Combat
             }
 
             tickTimer += Time.deltaTime;
-            if (tickTimer < 1f)
+            if (tickTimer < tickSeconds)
                 return;
 
-            tickTimer -= 1f;
+            tickTimer -= tickSeconds;
             ticksLeft--;
             int damage = damagePerTick;
             if (BossDamageCap < damage && health.GetComponentInParent<IBoss>() != null)
                 damage = BossDamageCap;
-            health.TakeDamage(damage, DamageKind.Tick);
+            health.TakeDamage(damage, DamageKind.Tick, Source);
 
             if (ticksLeft <= 0)
                 Destroy(this);

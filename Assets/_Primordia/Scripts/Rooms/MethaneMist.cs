@@ -134,7 +134,7 @@ namespace Primordia.Rooms
                 }
                 else if (health.GetComponentInParent<Enemy>() != null)
                 {
-                    health.TakeDamage(EnemyDamage);
+                    health.TakeDamage(EnemyDamage, DamageKind.Hit, DamageSource.Gas);
                     Burn.Apply(health, 1, EnemyBurnSeconds, ReactionKit.Current != null ? ReactionKit.Current.BurningMarker : null);
                 }
             }

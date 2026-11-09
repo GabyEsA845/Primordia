@@ -43,10 +43,13 @@ namespace Primordia.Enemies
 
         IEnumerator PhaseTwoCycle()
         {
+            ClearMethane();
             EnsurePuddles();
             int clusters = Random.Range(3, 5);
             for (int i = 0; i < clusters; i++)
             {
+                if (PhaseIndex >= 2)
+                    yield break;
                 if (!IsHigh)
                     yield return TakeOff();
                 var spot = puddleSpots.Count > 0 ? puddleSpots[i % puddleSpots.Count] : (Vector2)transform.position;
@@ -57,6 +60,8 @@ namespace Primordia.Enemies
             // Mientras queden huevos sigue picando (un picado por vuelta).
             while (EggsAlive > 0)
             {
+                if (PhaseIndex >= 2)
+                    yield break;
                 if (!IsHigh)
                     yield return TakeOff();
                 yield return Chase(0.8f);
@@ -80,6 +85,7 @@ namespace Primordia.Enemies
                 var renderer = puddle.AddComponent<SpriteRenderer>();
                 renderer.sprite = effects.puddles[i % effects.puddles.Length];
                 renderer.sortingOrder = 1;
+                RegisterPuddle(puddleSpots[i], i % effects.puddles.Length);
             }
         }
 

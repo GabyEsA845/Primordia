@@ -228,7 +228,7 @@ GameObject:
   - component: {fileID: 1499756073331747008}
   - component: {fileID: 6800956837083922183}
   - component: {fileID: 4774511030030819996}
-  - component: {fileID: 6170984780214593831}
+  - component: {fileID: 2204312495884258323}
   m_Layer: 7
   m_Name: Boss_Meganeura
   m_TagString: Untagged
@@ -426,9 +426,47 @@ MonoBehaviour:
     - {fileID: 3975517400560502967, guid: f32e1ed4ea532f946b37cf28fe39149f, type: 3}
     - {fileID: 5867738580590088801, guid: f32e1ed4ea532f946b37cf28fe39149f, type: 3}
     - {fileID: 7563039169859337520, guid: f32e1ed4ea532f946b37cf28fe39149f, type: 3}
+    eggAppear:
+    - {fileID: -5510136607114674594, guid: 526734dc915f98f40a68c6ff4fbe8fa4, type: 3}
+    - {fileID: 137311304580266935, guid: 526734dc915f98f40a68c6ff4fbe8fa4, type: 3}
+    - {fileID: 1772950007191190902, guid: 526734dc915f98f40a68c6ff4fbe8fa4, type: 3}
+    - {fileID: -8135679988421249870, guid: 526734dc915f98f40a68c6ff4fbe8fa4, type: 3}
+    eggIdle:
+    - {fileID: 9214178949932983635, guid: c1237bfbaa0e3ee4f87dea0e88787d7d, type: 3}
+    - {fileID: -5036291087575594046, guid: c1237bfbaa0e3ee4f87dea0e88787d7d, type: 3}
+    - {fileID: 3303562311244199168, guid: c1237bfbaa0e3ee4f87dea0e88787d7d, type: 3}
+    - {fileID: 3636081276616686693, guid: c1237bfbaa0e3ee4f87dea0e88787d7d, type: 3}
+    eggHatch:
+    - {fileID: -9039077897951018805, guid: aeeb3a9e2d2611644bfa18e7f70b792d, type: 3}
+    - {fileID: -5866380382649232255, guid: aeeb3a9e2d2611644bfa18e7f70b792d, type: 3}
+    - {fileID: 4176264717658991087, guid: aeeb3a9e2d2611644bfa18e7f70b792d, type: 3}
+    - {fileID: -4947390417189919500, guid: aeeb3a9e2d2611644bfa18e7f70b792d, type: 3}
+    - {fileID: 7088587143298489295, guid: aeeb3a9e2d2611644bfa18e7f70b792d, type: 3}
+    - {fileID: -8214814378645155381, guid: aeeb3a9e2d2611644bfa18e7f70b792d, type: 3}
+    eggBreak:
+    - {fileID: -7104514916997864712, guid: 84997d5cead4c974883ad5c5b3c8245a, type: 3}
+    - {fileID: -5401335945507146377, guid: 84997d5cead4c974883ad5c5b3c8245a, type: 3}
+    - {fileID: 7564255454706194000, guid: 84997d5cead4c974883ad5c5b3c8245a, type: 3}
+    - {fileID: 6023428280480933664, guid: 84997d5cead4c974883ad5c5b3c8245a, type: 3}
+    - {fileID: -7017467866377747712, guid: 84997d5cead4c974883ad5c5b3c8245a, type: 3}
+    - {fileID: -1003930797340489363, guid: 84997d5cead4c974883ad5c5b3c8245a, type: 3}
+    screech:
+    - {fileID: -6344465493618552018, guid: 9d8bd070369e5fe4f8a2e6a799946837, type: 3}
+    - {fileID: -6300335521083383124, guid: 9d8bd070369e5fe4f8a2e6a799946837, type: 3}
+    - {fileID: -4377494094147821909, guid: 9d8bd070369e5fe4f8a2e6a799946837, type: 3}
+    - {fileID: 6609799985348649874, guid: 9d8bd070369e5fe4f8a2e6a799946837, type: 3}
+    - {fileID: -1196450644204940598, guid: 9d8bd070369e5fe4f8a2e6a799946837, type: 3}
+    - {fileID: -2403715556864305785, guid: 9d8bd070369e5fe4f8a2e6a799946837, type: 3}
+    - {fileID: -1562160938216813338, guid: 9d8bd070369e5fe4f8a2e6a799946837, type: 3}
+    - {fileID: 6865353231366709066, guid: 9d8bd070369e5fe4f8a2e6a799946837, type: 3}
+    puddles:
+    - {fileID: 6609075524776229614, guid: 8bc6e36b01694994c8e93688a9944469, type: 3}
+    - {fileID: -1532528301775422125, guid: 99469c5fe1bf85547b2cebbd73a39770, type: 3}
+    - {fileID: 8215538854505975702, guid: 2e5495f15b60ef34eb9a06ea0c35bdbd, type: 3}
+  nymphPrefab: {fileID: 5202172060257503656, guid: 1be85e19cbe5dbe46b3b59dd0ca683ce, type: 3}
   torn1Threshold: 0.65
   torn2Threshold: 0.3
---- !u!114 &6170984780214593831
+--- !u!114 &2204312495884258323
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

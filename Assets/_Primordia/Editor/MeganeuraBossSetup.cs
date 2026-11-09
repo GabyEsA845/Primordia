@@ -20,6 +20,8 @@ namespace Primordia.Editor
         const string RoomName = "Room_Boss_Meganeura";
         const string RoomPath = "Assets/_Primordia/Data/Rooms/Floor3/" + RoomName + ".asset";
         const string PrefabPath = "Assets/_Primordia/Prefabs/Enemies/Boss_Meganeura.prefab";
+        const string NymphPrefabPath = "Assets/_Primordia/Prefabs/Enemies/Enemy_MeganeuraNymph.prefab";
+        const string NymphDataPath = "Assets/_Primordia/Data/Enemies/Floor3/Enemy_MeganeuraNymph.asset";
         const string DataPath = "Assets/_Primordia/Data/Enemies/Floor3/Enemy_MeganeuraBoss.asset";
         const string TestScenePath = "Assets/_Primordia/Scenes/Test_BossMeganeura.unity";
         const string TestConfigPath = "Assets/_Primordia/Data/Rooms/Floor_BossMeganeuraTest.asset";
@@ -109,6 +111,8 @@ namespace Primordia.Editor
 
             // Lepidodendron partido de la sala: 4 cuadros de 64×96, pie en y = 90 (reposo, golpe y herida abierta).
             var stumpPivot = new Vector2(0.5f, 6f / 96f);
+            // Racimos de 40×32 con el pie en y = 26.
+            var eggPivot = new Vector2(0.5f, 6f / 32f);
             var stump = ArtSetup.SliceFloor3Sheet(StumpPath, 64, stumpPivot);
             var effects = new MeganeuraBoss.Effects
             {
@@ -122,7 +126,14 @@ namespace Primordia.Editor
                 splinters = Sheet("Effects/Fx_Meganeura_Splinters", 64),
                 stumpHit = Sheet("Burnt/Lepido_Split_Hit", 64, stumpPivot),
                 stumpGash = Sheet("Burnt/Lepido_Split_Gash", 64, stumpPivot),
+                eggAppear = Sheet("Eggs/Meganeura_Eggs_Appear", 40, eggPivot),
+                eggIdle = Sheet("Eggs/Meganeura_Eggs_Idle", 40, eggPivot),
+                eggHatch = Sheet("Eggs/Meganeura_Eggs_Hatch", 40, eggPivot),
+                eggBreak = Sheet("Eggs/Meganeura_Eggs_Break", 40, eggPivot),
+                screech = Sheet("Effects/Fx_Meganeura_Screech", 160),
+                puddles = new[] { "Round", "Kidney", "Lobed" }.Select(shape => PuddleSprite(shape)).Where(s => s != null).ToArray(),
             };
+            var nymph = CreateNymph(art);
 
             var root = new GameObject("Boss_Meganeura") { layer = LayerMask.NameToLayer(CombatLayers.Enemy) };
             try
@@ -169,11 +180,72 @@ namespace Primordia.Editor
 
                 var boss = root.AddComponent<MeganeuraBoss>();
                 boss.Configure(art, body, bodySprite, shadow, shadowSprite, stump);
-                boss.ConfigureFight(fire, fireSprite, effects);
+                boss.ConfigureFight(fire, fireSprite, effects, nymph);
 
                 Directory.CreateDirectory(Path.GetDirectoryName(PrefabPath));
                 var prefab = PrefabUtility.SaveAsPrefabAsset(root, PrefabPath);
                 return prefab.GetComponent<Enemy>();
+            }
+            finally
+            {
+                Object.DestroyImmediate(root);
+            }
+        }
+
+        /// <summary>Charca de agua del tramo de Tierra quemada (una sola imagen).</summary>
+        static Sprite PuddleSprite(string shape)
+        {
+            string path = $"Assets/_Primordia/Art/Floor3/floor3-environment/Burnt/props/Puddle_Water_{shape}.png";
+            if (AssetDatabase.LoadAssetAtPath<Texture2D>(path) == null)
+                return null;
+            var sprite = AssetDatabase.LoadAssetAtPath<Sprite>(path);
+            return sprite != null ? sprite : AssetDatabase.LoadAllAssetsAtPath(path).OfType<Sprite>().FirstOrDefault();
+        }
+
+        /// <summary>Ninfa de la Meganeura (prefab y datos): 8 de vida, anda deprisa y lanza el labio.</summary>
+        static Enemy CreateNymph(DirectionalArt art)
+        {
+            var data = AssetDatabase.LoadAssetAtPath<EnemyData>(NymphDataPath);
+            if (data == null)
+            {
+                data = ScriptableObject.CreateInstance<EnemyData>();
+                AssetDatabase.CreateAsset(data, NymphDataPath);
+            }
+            data.Configure(EnemyBehaviour.Chaser, maxHealth: 8, moveSpeed: 3.4f, detectionRange: 0f, contactDamage: 0);
+            data.ConfigureSwimming(false);
+            data.ConfigureBiomass(0f, 0f, 0);
+            EditorUtility.SetDirty(data);
+
+            var root = new GameObject("Enemy_MeganeuraNymph") { layer = LayerMask.NameToLayer(CombatLayers.Enemy) };
+            try
+            {
+                var shadowObject = new GameObject("Shadow") { layer = root.layer };
+                shadowObject.transform.SetParent(root.transform, false);
+                var shadow = shadowObject.AddComponent<SpriteRenderer>();
+                shadow.sortingOrder = -3;
+                shadow.color = new Color(1f, 1f, 1f, 0.45f);
+                var shadowSprite = shadowObject.AddComponent<DirectionalSprite>();
+                shadowSprite.Configure(shadow, art);
+
+                var bodyObject = new GameObject("Body") { layer = root.layer };
+                bodyObject.transform.SetParent(root.transform, false);
+                var body = bodyObject.AddComponent<SpriteRenderer>();
+                body.sortingOrder = 6;
+                var bodySprite = bodyObject.AddComponent<DirectionalSprite>();
+                bodySprite.Configure(body, art);
+
+                root.AddComponent<CircleCollider2D>().radius = 0.5f;
+                var rigidbody = root.AddComponent<Rigidbody2D>();
+                rigidbody.gravityScale = 0f;
+                rigidbody.freezeRotation = true;
+                root.AddComponent<Health>();
+                var enemy = root.AddComponent<Enemy>();
+                var serialized = new SerializedObject(enemy);
+                serialized.FindProperty("data").objectReferenceValue = data;
+                serialized.ApplyModifiedPropertiesWithoutUndo();
+                enemy.SetAnimationTimings(0.7f, 0f);
+                root.AddComponent<MeganeuraNymph>().Configure(body, bodySprite, shadowSprite);
+                return PrefabUtility.SaveAsPrefabAsset(root, NymphPrefabPath).GetComponent<Enemy>();
             }
             finally
             {

@@ -70,7 +70,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -142,12 +142,12 @@ TextureImporter:
       name: Meganeura_Eggs_Hatch_0
       rect:
         serializedVersion: 2
-        x: 7
-        y: 2
-        width: 25
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 0
+        width: 40
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -164,12 +164,12 @@ TextureImporter:
       name: Meganeura_Eggs_Hatch_1
       rect:
         serializedVersion: 2
-        x: 47
-        y: 2
-        width: 25
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 40
+        y: 0
+        width: 40
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -186,12 +186,12 @@ TextureImporter:
       name: Meganeura_Eggs_Hatch_2
       rect:
         serializedVersion: 2
-        x: 87
-        y: 8
-        width: 9
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 80
+        y: 0
+        width: 40
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -208,12 +208,12 @@ TextureImporter:
       name: Meganeura_Eggs_Hatch_3
       rect:
         serializedVersion: 2
-        x: 90
-        y: 2
-        width: 21
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 120
+        y: 0
+        width: 40
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -230,12 +230,12 @@ TextureImporter:
       name: Meganeura_Eggs_Hatch_4
       rect:
         serializedVersion: 2
-        x: 102
-        y: 3
-        width: 10
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 160
+        y: 0
+        width: 40
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -252,12 +252,12 @@ TextureImporter:
       name: Meganeura_Eggs_Hatch_5
       rect:
         serializedVersion: 2
-        x: 127
-        y: 3
-        width: 25
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 200
+        y: 0
+        width: 40
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -266,72 +266,6 @@ TextureImporter:
       bones: []
       spriteID: bc19519b8dd1ffd80800000000000000
       internalID: -8214814378645155381
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Eggs_Hatch_6
-      rect:
-        serializedVersion: 2
-        x: 167
-        y: 3
-        width: 24
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e537d46b021dbd1f0800000000000000
-      internalID: -1018990952241597602
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Eggs_Hatch_7
-      rect:
-        serializedVersion: 2
-        x: 208
-        y: 8
-        width: 22
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ec4ed875b190255f0800000000000000
-      internalID: -769542573289249586
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Eggs_Hatch_8
-      rect:
-        serializedVersion: 2
-        x: 210
-        y: 3
-        width: 21
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 53cd5f00cdab3e680800000000000000
-      internalID: -8726926198842205131
       vertices: []
       indices: 
       edges: []
@@ -356,9 +290,6 @@ TextureImporter:
       Meganeura_Eggs_Hatch_3: -4947390417189919500
       Meganeura_Eggs_Hatch_4: 7088587143298489295
       Meganeura_Eggs_Hatch_5: -8214814378645155381
-      Meganeura_Eggs_Hatch_6: -1018990952241597602
-      Meganeura_Eggs_Hatch_7: -769542573289249586
-      Meganeura_Eggs_Hatch_8: -8726926198842205131
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

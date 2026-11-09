@@ -40,6 +40,8 @@ namespace Primordia.Enemies
             BurnFall,
             /// <summary>Boca arriba en el suelo (tras arder), vulnerable.</summary>
             Grounded,
+            /// <summary>Furiosa junto a la charca (fase 2): chillido y ventana de daño.</summary>
+            Rage,
             Dead
         }
 
@@ -56,6 +58,13 @@ namespace Primordia.Enemies
             public Sprite[] splinters = Array.Empty<Sprite>();
             public Sprite[] stumpHit = Array.Empty<Sprite>();
             public Sprite[] stumpGash = Array.Empty<Sprite>();
+            [Tooltip("Racimo de huevos (40×32, pie en y = 26): aparece, reposo, eclosiona (ninfa en el cuadro 3) y se rompe.")]
+            public Sprite[] eggAppear = Array.Empty<Sprite>();
+            public Sprite[] eggIdle = Array.Empty<Sprite>();
+            public Sprite[] eggHatch = Array.Empty<Sprite>();
+            public Sprite[] eggBreak = Array.Empty<Sprite>();
+            [Tooltip("Ondas del chillido (160×112, centro = la cabeza).")] public Sprite[] screech = Array.Empty<Sprite>();
+            [Tooltip("Charcas de agua donde pone los huevos (una imagen cada una).")] public Sprite[] puddles = Array.Empty<Sprite>();
         }
 
         // Alturas (unidades de suelo), tiempos (s) y números del ciclo.
@@ -127,8 +136,16 @@ namespace Primordia.Enemies
             yield return Wait(1.2f);
             while (true)
             {
+                // Desde el 65 % de vida: huevos, ninfas y furia (MeganeuraBoss.Phase2.cs).
+                if (PhaseIndex >= 1)
+                {
+                    yield return PhaseTwoCycle();
+                    continue;
+                }
                 for (int i = 0; i < DivesPerCycle; i++)
                 {
+                    if (PhaseIndex >= 1)
+                        break;
                     yield return TakeOff();
                     yield return Chase(i == 0 ? 1.4f : 0.7f);
                     yield return Dive();
@@ -392,7 +409,11 @@ namespace Primordia.Enemies
                 return;
             fireRenderer.enabled = sheet != null;
             if (sheet != null)
+            {
+                if (bodySprite != null)
+                    fireSprite.Angle = bodySprite.Angle;
                 fireSprite.Play(sheet, milliseconds, true, restart: true);
+            }
         }
 
         // ---------- Utilidades ----------

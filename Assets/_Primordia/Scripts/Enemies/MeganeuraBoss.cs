@@ -42,6 +42,8 @@ namespace Primordia.Enemies
         [SerializeField] SpriteRenderer fireRenderer;
         [SerializeField] DirectionalSprite fireSprite;
         [SerializeField] Effects effects = new();
+        [Tooltip("Ninfa que sale de los huevos de la fase 2.")]
+        [SerializeField] Enemy nymphPrefab;
         [SerializeField, Range(0f, 1f)] float torn1Threshold = 0.65f;
         [SerializeField, Range(0f, 1f)] float torn2Threshold = 0.30f;
 
@@ -102,8 +104,9 @@ namespace Primordia.Enemies
             stumpFrames = newStump ?? System.Array.Empty<Sprite>();
         }
 
-        internal void ConfigureFight(SpriteRenderer newFireRenderer, DirectionalSprite newFireSprite, Effects newEffects)
+        internal void ConfigureFight(SpriteRenderer newFireRenderer, DirectionalSprite newFireSprite, Effects newEffects, Enemy newNymph = null)
         {
+            nymphPrefab = newNymph;
             fireRenderer = newFireRenderer;
             fireSprite = newFireSprite;
             effects = newEffects ?? new Effects();
@@ -245,6 +248,9 @@ namespace Primordia.Enemies
                 bodySprite.Angle = angle;
             if (shadowSprite != null)
                 shadowSprite.Angle = angle;
+            // Las llamas son una capa del cuerpo: giran con él (con otra fila parecían una segunda silueta quieta).
+            if (fireSprite != null)
+                fireSprite.Angle = angle;
         }
 
         /// <summary>Hoja del cuerpo (con el sufijo de las alas dañadas; si no existe esa variante, la sana) y la de su sombra.</summary>
@@ -306,6 +312,7 @@ namespace Primordia.Enemies
             fighting = false;
             CurrentMode = Mode.Dead;
             StopFight();
+            ClearSummons();
             PlayFire(null, 0f);
             if (intro != null)
                 StopCoroutine(intro);

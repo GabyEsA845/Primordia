@@ -1,5 +1,6 @@
 #if UNITY_EDITOR
 using System.Collections;
+using System.Linq;
 using NUnit.Framework;
 using Primordia.Combat;
 using Primordia.Core;
@@ -230,6 +231,88 @@ namespace Primordia.Tests
             Wind.Blow(Vector2.zero, Vector2.right, 9f, 35f, 5f, 0f, 0.2f);
             Assert.AreEqual(6f, inside.transform.position.x, 0.01f);
             Assert.AreEqual(-5f, outside.transform.position.x, 0.01f);
+        }
+
+        // ---------- Paso 7c: fase 2 ----------
+
+        IEnumerator UntilTrue(System.Func<bool> condition, float timeout, string what)
+        {
+            for (float t = 0f; t < timeout && !condition(); t += Time.deltaTime)
+                yield return null;
+            Assert.IsTrue(condition(), what);
+        }
+
+        [UnityTest]
+        public IEnumerator Fase2_PoneHuevosEnLasCharcasYSeRompenAGolpes()
+        {
+            Player((Vector2)room.transform.position + new Vector2(-14f, -8f));
+            boss.GetComponent<Health>().TakeDamage(Mathf.CeilToInt(boss.GetComponent<Health>().Max * 0.40f));
+            Assert.AreEqual(1, boss.PhaseIndex);
+            boss.BeginFight();
+            yield return UntilTrue(() => boss.EggsAlive > 0, 14f, "no puso ningún racimo");
+            Assert.IsNotNull(room.transform.Find("MeganeuraPuddle"), "las charcas están en la sala");
+            var egg = MeganeuraEgg.Alive[0];
+            Assert.IsTrue(egg.TryGetComponent<Health>(out var eggHealth));
+            bool broken = false;
+            egg.Resolved += (_, wasBroken) => broken = wasBroken;
+            eggHealth.TakeDamage(10);
+            // Si aún está apareciendo, se rompe en cuanto acaba de salir (unos 0,4 s).
+            yield return UntilTrue(() => broken, 2f, "romper el racimo lo resuelve como roto");
+            Assert.IsFalse(MeganeuraEgg.Alive.Contains(egg));
+        }
+
+        [UnityTest]
+        public IEnumerator UnRacimoSinRomperEclosionaYSueltaUnaNinfa()
+        {
+            var egg = MeganeuraEgg.Spawn(room.transform, (Vector2)room.transform.position + new Vector2(-12f, 0f), boss.EffectsInUse, boss.NymphInUse, 0.5f);
+            bool broken = true;
+            egg.Resolved += (_, wasBroken) => broken = wasBroken;
+            yield return UntilTrue(() => Object.FindAnyObjectByType<MeganeuraNymph>() != null, 4f, "no salió la ninfa");
+            Assert.IsFalse(broken, "eclosionó, no lo rompieron");
+        }
+
+        [UnityTest]
+        public IEnumerator SinHuevosBajaFuriosaYSePuedeHerir()
+        {
+            Player((Vector2)room.transform.position + new Vector2(-14f, -8f));
+            boss.GetComponent<Health>().TakeDamage(Mathf.CeilToInt(boss.GetComponent<Health>().Max * 0.40f));
+            boss.BeginFight();
+            yield return UntilTrue(() => boss.EggsAlive > 0, 14f, "no puso huevos");
+            // El jugador los rompe todos según salen.
+            yield return UntilTrue(() =>
+            {
+                foreach (var egg in new System.Collections.Generic.List<MeganeuraEgg>(MeganeuraEgg.Alive))
+                    egg.GetComponent<Health>().TakeDamage(10);
+                return boss.CurrentMode == MeganeuraBoss.Mode.Rage;
+            }, 25f, "no bajó furiosa");
+            Assert.IsTrue(boss.GetComponent<Collider2D>().enabled, "furiosa es vulnerable");
+            Assert.AreEqual(BossBarStyle.Normal, boss.BarStyle);
+        }
+
+        [UnityTest]
+        public IEnumerator LaNinfaPersigueYLanzaElLabioHaciendoDano()
+        {
+            var health = Player((Vector2)room.transform.position);
+            var prefab = boss.NymphInUse;
+            var nymph = Object.Instantiate(prefab, (Vector2)room.transform.position + new Vector2(5f, 0f), Quaternion.identity, room.transform);
+            yield return UntilTrue(() => health.Current < 20, 6f, "la ninfa no le pegó");
+            Assert.AreEqual(19, health.Current);
+            Assert.IsNotNull(nymph);
+        }
+
+        [UnityTest]
+        public IEnumerator AlMorirLaMadreSeVanHuevosYNinfas()
+        {
+            var egg = MeganeuraEgg.Spawn(room.transform, (Vector2)room.transform.position + new Vector2(-12f, 0f), boss.EffectsInUse, boss.NymphInUse, 30f);
+            var nymph = Object.Instantiate(boss.NymphInUse, (Vector2)room.transform.position + new Vector2(-12f, 3f), Quaternion.identity, room.transform);
+            yield return null;
+            boss.BeginFight();
+            yield return null;
+            boss.GetComponent<Health>().TakeDamage(9999);
+            yield return new WaitForSeconds(0.2f);
+            Assert.AreEqual(0, MeganeuraEgg.Alive.Count);
+            Assert.IsTrue(nymph.GetComponent<Health>().IsDead);
+            Assert.IsTrue(egg == null || !MeganeuraEgg.Alive.Contains(egg));
         }
 
         [Test]

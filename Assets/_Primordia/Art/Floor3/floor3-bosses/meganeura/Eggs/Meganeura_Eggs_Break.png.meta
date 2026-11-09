@@ -73,7 +73,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -145,12 +145,12 @@ TextureImporter:
       name: Meganeura_Eggs_Break_0
       rect:
         serializedVersion: 2
-        x: 7
-        y: 2
-        width: 25
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 0
+        width: 40
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -167,12 +167,12 @@ TextureImporter:
       name: Meganeura_Eggs_Break_1
       rect:
         serializedVersion: 2
-        x: 47
-        y: 2
-        width: 25
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 40
+        y: 0
+        width: 40
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -189,12 +189,12 @@ TextureImporter:
       name: Meganeura_Eggs_Break_2
       rect:
         serializedVersion: 2
-        x: 87
-        y: 5
-        width: 8
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 80
+        y: 0
+        width: 40
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -211,12 +211,12 @@ TextureImporter:
       name: Meganeura_Eggs_Break_3
       rect:
         serializedVersion: 2
-        x: 90
-        y: 2
-        width: 22
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 120
+        y: 0
+        width: 40
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -233,12 +233,12 @@ TextureImporter:
       name: Meganeura_Eggs_Break_4
       rect:
         serializedVersion: 2
-        x: 127
-        y: 5
-        width: 28
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 160
+        y: 0
+        width: 40
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -255,12 +255,12 @@ TextureImporter:
       name: Meganeura_Eggs_Break_5
       rect:
         serializedVersion: 2
-        x: 130
-        y: 3
-        width: 22
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 200
+        y: 0
+        width: 40
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -269,94 +269,6 @@ TextureImporter:
       bones: []
       spriteID: d69027542425112f0800000000000000
       internalID: -1003930797340489363
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Eggs_Break_6
-      rect:
-        serializedVersion: 2
-        x: 167
-        y: 3
-        width: 29
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8b22c9030081005a0800000000000000
-      internalID: -6557214668356836680
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Eggs_Break_7
-      rect:
-        serializedVersion: 2
-        x: 207
-        y: 3
-        width: 22
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f14d824a0d8d019e0800000000000000
-      internalID: -1652582672626035681
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Eggs_Break_8
-      rect:
-        serializedVersion: 2
-        x: 208
-        y: 10
-        width: 15
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6755cefc93348d5d0800000000000000
-      internalID: -3037604033080830602
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meganeura_Eggs_Break_9
-      rect:
-        serializedVersion: 2
-        x: 216
-        y: 3
-        width: 20
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6a725f978a525baa0800000000000000
-      internalID: -6145964710946330714
       vertices: []
       indices: 
       edges: []
@@ -381,10 +293,6 @@ TextureImporter:
       Meganeura_Eggs_Break_3: 6023428280480933664
       Meganeura_Eggs_Break_4: -7017467866377747712
       Meganeura_Eggs_Break_5: -1003930797340489363
-      Meganeura_Eggs_Break_6: -6557214668356836680
-      Meganeura_Eggs_Break_7: -1652582672626035681
-      Meganeura_Eggs_Break_8: -3037604033080830602
-      Meganeura_Eggs_Break_9: -6145964710946330714
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

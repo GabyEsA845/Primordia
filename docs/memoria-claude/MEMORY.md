@@ -22,7 +22,7 @@
 ## En curso
 - [Salas especiales del piso 3](primordia-floor3-special-rooms.md) — las 10 PROGRAMADAS (commit 84969d99); arte del Tronco caído, Tocón hueco y cofre APROBADO 2026-11-06 (floor3-log-stump/), falta importarlo y programarlo (Sonnet)
 - [Sala de paso del piso 2 → 3](primordia-floor2-transition-room.md) — charca, ambiente del pantano y metamorfosis por pareja HECHOS y subidos
-- **[Estado de Primordia](primordia-project-status.md) — pisos 1-2 en main; piso 3 en feature/floor-3: pasos 1-5 HECHOS y con commit (5 = enemigos y trampas, cerrado con documento v8 y GDD/PLAN); SIGUIENTE paso 6 = salas con tema (Sonnet)**
+- **[Estado de Primordia](primordia-project-status.md) — pisos 1-2 en main; piso 3 en feature/floor-3: pasos 1-6 HECHOS (salvo la sala de paso, Opus) y paso 7 EN CURSO: Meganeura 7a-7c HECHOS; SIGUIENTE 7d (tormenta, fase 3) y 7e; luego Arthropleura, Megarachne, Lepidodendron**
 - [Sala del ámbar y especiales del ámbar](primordia-floor3-amber.md) — paso 6 bloque 2: decisiones y niveles I-III cerrados 2026-11-04; subpaso 2a (sala+bloque) programado
 - **[Rediseño de la Cápsula de ámbar](primordia-floor3-capsule-redesign.md) — 2026-11-06: ARTE CERRADO (forma D, formación, reposo, rotura, curación, halo con alas; floor3-capsule/); falta importar y programar (Sonnet); luego Gota y Cercos**
 - **[Rediseño de la Gota de ámbar](primordia-floor3-drop-redesign.md) — 2026-11-06 (Opus): ARTE CERRADO (bloque C en 2 tallas, cristal del lomo, nivel III en ámbar antiguo; floor3-drop/); falta importar y programar (Sonnet)**

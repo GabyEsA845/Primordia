@@ -64,7 +64,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -136,12 +136,12 @@ TextureImporter:
       name: Fx_Storm_CloudShadow_0
       rect:
         serializedVersion: 2
-        x: 23
-        y: 234
-        width: 81
-        height: 22
+        x: 0
+        y: 0
+        width: 256
+        height: 256
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -150,138 +150,6 @@ TextureImporter:
       bones: []
       spriteID: f56c5a069a78bfd70800000000000000
       internalID: 9077998635436066399
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_Storm_CloudShadow_1
-      rect:
-        serializedVersion: 2
-        x: 103
-        y: 222
-        width: 83
-        height: 34
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4fa013f4f7f61aea0800000000000000
-      internalID: -5863282647279531276
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_Storm_CloudShadow_2
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 60
-        width: 74
-        height: 125
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d227532fc9d879790800000000000000
-      internalID: -7523388947281120723
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_Storm_CloudShadow_3
-      rect:
-        serializedVersion: 2
-        x: 71
-        y: 162
-        width: 99
-        height: 63
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2ffd22028d5c1c260800000000000000
-      internalID: 7116186418264858610
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_Storm_CloudShadow_4
-      rect:
-        serializedVersion: 2
-        x: 99
-        y: 0
-        width: 157
-        height: 181
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f94334e51ee32a510800000000000000
-      internalID: 1558877558693639327
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_Storm_CloudShadow_5
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 32
-        width: 36
-        height: 69
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 699764a45bf81a560800000000000000
-      internalID: 7323292477879122326
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_Storm_CloudShadow_6
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 120
-        height: 61
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8c405560b2ca79670800000000000000
-      internalID: 8545488118748611784
       vertices: []
       indices: 
       edges: []
@@ -301,12 +169,6 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       Fx_Storm_CloudShadow_0: 9077998635436066399
-      Fx_Storm_CloudShadow_1: -5863282647279531276
-      Fx_Storm_CloudShadow_2: -7523388947281120723
-      Fx_Storm_CloudShadow_3: 7116186418264858610
-      Fx_Storm_CloudShadow_4: 1558877558693639327
-      Fx_Storm_CloudShadow_5: 7323292477879122326
-      Fx_Storm_CloudShadow_6: 8545488118748611784
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

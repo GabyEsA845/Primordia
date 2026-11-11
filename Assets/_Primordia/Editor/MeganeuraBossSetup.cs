@@ -206,6 +206,7 @@ namespace Primordia.Editor
                 boss.Configure(art, body, bodySprite, shadow, shadowSprite, stump);
                 boss.ConfigureFight(fire, fireSprite, effects, nymph);
                 boss.ConfigureDeath(ImportDeathEffects());
+                boss.ConfigureStorm(Sheet("Effects/Fx_Storm_CloudShadow", 256).FirstOrDefault());
                 if (barSkin != null)
                     root.AddComponent<BossBarAppearance>().Configure(barSkin);
 
@@ -302,6 +303,34 @@ namespace Primordia.Editor
             }
             AssetDatabase.SaveAssets();
             Debug.Log("Efectos de muerte de la Meganeura importados y asignados.");
+        }
+
+        [MenuItem("Primordia/Boss/Importar ambiente de tormenta de la Meganeura")]
+        public static void ImportStormAtmosphere()
+        {
+            if (AssetDatabase.LoadAssetAtPath<GameObject>(PrefabPath) == null)
+            {
+                Debug.LogError("Falta el prefab Boss_Meganeura.");
+                return;
+            }
+            var cloud = Sheet("Effects/Fx_Storm_CloudShadow", 256).FirstOrDefault();
+            if (cloud == null)
+            {
+                Debug.LogError("Falta la sombra de nubes aprobada de la Meganeura.");
+                return;
+            }
+            var root = PrefabUtility.LoadPrefabContents(PrefabPath);
+            try
+            {
+                root.GetComponent<MeganeuraBoss>().ConfigureStorm(cloud);
+                PrefabUtility.SaveAsPrefabAsset(root, PrefabPath);
+            }
+            finally
+            {
+                PrefabUtility.UnloadPrefabContents(root);
+            }
+            AssetDatabase.SaveAssets();
+            Debug.Log("Ambiente de tormenta de la Meganeura importado y asignado.");
         }
 
         static MeganeuraBoss.DeathEffects ImportDeathEffects() => new()

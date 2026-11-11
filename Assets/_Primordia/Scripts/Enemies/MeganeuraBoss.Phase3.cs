@@ -14,6 +14,34 @@ namespace Primordia.Enemies
     /// </summary>
     public partial class MeganeuraBoss
     {
+        const bool HideBodyWhenHighInStorm = true;
+        [SerializeField] Sprite stormCloudShadow;
+
+        internal void ConfigureStorm(Sprite cloud) => stormCloudShadow = cloud;
+
+        internal GameObject CreateStormSilhouette(Transform parent, float seconds, float frameMs, int order)
+        {
+            if (!IsHigh || bodyRenderer == null || bodySprite == null || art == null)
+                return null;
+            string sheet = "Meganeura_Silhouette_Fly";
+            if (art.Find(sheet + "_" + WingVariant) != null)
+                sheet += "_" + WingVariant;
+            else if (art.Find(sheet + "_Torn2") != null)
+                sheet += "_Torn2";
+            var visual = new GameObject("MeganeuraSilhouette");
+            visual.transform.SetParent(parent, true);
+            visual.transform.position = bodyRenderer.transform.position;
+            var renderer = visual.AddComponent<SpriteRenderer>();
+            renderer.sortingLayerID = bodyRenderer.sortingLayerID;
+            renderer.sortingOrder = order;
+            var animation = visual.AddComponent<DirectionalSprite>();
+            animation.Configure(renderer, art);
+            animation.Angle = bodySprite.Angle;
+            animation.Play(sheet, frameMs, false);
+            Destroy(visual, seconds);
+            return visual;
+        }
+
         // Rayo grande (sigue al jugador).
         const float BigChargeSeconds = 1.5f, BigFixedSeconds = 0.5f, BigMarkSpeed = 8f;
         const float BigDirectRadius = 1.3f;
@@ -137,7 +165,10 @@ namespace Primordia.Enemies
         void EnsureStorm()
         {
             if (storm == null)
+            {
                 storm = MeganeuraStorm.Create(arenaCenter != null ? arenaCenter : transform.parent, ArenaCenter, arenaSize, effects.rain, effects.ash);
+                storm.ConfigureAtmosphere(this, stormCloudShadow);
+            }
         }
 
         /// <summary>Un punto a ≈ 4 u del jugador, dentro del suelo y lejos de las Sigillarias en pie (el trueno no las rompe).</summary>

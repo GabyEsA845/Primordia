@@ -674,6 +674,136 @@ namespace Primordia.Tests
                 Object.DestroyImmediate(mutation);
             }
         }
+        [UnityTest]
+        public IEnumerator Lluvia_ApagaFuegosATripleVelocidadSoloDentroDeLaSala()
+        {
+            var previous = ReactionKit.Current;
+            ReactionKit.Current = UnityEditor.AssetDatabase.LoadAssetAtPath<ReactionKit>("Assets/_Primordia/Data/Rooms/ReactionKit_Floor3.asset");
+            try
+            {
+                boss.SendMessage("EnsureStorm");
+                boss.Storm.SetRain(true);
+                Vector2 center = room.transform.position;
+                var wet = GroundFire.Spawn(center + new Vector2(-5f, 0f), 4f, false);
+                var outside = GroundFire.Spawn(center + new Vector2(100f, 0f), 4f, false);
+                Assert.IsNotNull(wet);
+                Assert.IsNotNull(outside);
+                extras.Add(wet.gameObject);
+                extras.Add(outside.gameObject);
+                yield return new WaitForSeconds(1.7f);
+                Assert.IsTrue(wet == null || !wet.IsBurning, "Con lluvia termina antes de los 2 s, la mitad de los 4 s normales.");
+                Assert.IsTrue(outside.IsBurning, "La otra sala conserva su tiempo normal.");
+                boss.Storm.SetRain(false);
+                var dry = GroundFire.Spawn(center + new Vector2(-8f, 0f), 4f, false);
+                extras.Add(dry.gameObject);
+                yield return new WaitForSeconds(1.7f);
+                Assert.IsTrue(dry.IsBurning, "Sin lluvia no se acelera el apagado.");
+            }
+            finally
+            {
+                ReactionKit.Current = previous;
+            }
+        }
+
+        [UnityTest]
+        public IEnumerator Lluvia_ApagaElQuemadoDelJugadorYNoTocaOtrasSalasNiAlasBurnt()
+        {
+            Vector2 center = room.transform.position;
+            var health = Player(center);
+            var controller = health.gameObject.AddComponent<Primordia.Player.PlayerController>();
+            controller.readInput = false;
+            var burn = health.gameObject.AddComponent<PlayerBurn>();
+            burn.SetOnFire(0.1f);
+            boss.SendMessage("EnsureStorm");
+            yield return new WaitForSeconds(0.3f);
+            Assert.Greater(burn.Bar, 0.1f, "Sin lluvia, la barra no baja sola.");
+            boss.Burnt = true;
+            boss.Storm.SetRain(true);
+            yield return new WaitForSeconds(0.6f);
+            Assert.AreEqual(0f, burn.Bar);
+            Assert.IsFalse(burn.Burning);
+            Assert.IsTrue(boss.Burnt);
+            health.transform.position = center + Vector2.right * 100f;
+            burn.SetOnFire(0.1f);
+            yield return new WaitForSeconds(0.4f);
+            Assert.Greater(burn.Bar, 0.1f, "La lluvia no apaga al jugador de otra sala.");
+            health.transform.position = center;
+            boss.Storm.SetRain(false);
+            yield return new WaitForSeconds(0.4f);
+            Assert.Greater(burn.Bar, 0.1f);
+        }
+
+        IEnumerator HighStorm()
+        {
+            Player((Vector2)room.transform.position + new Vector2(-14f, -8f));
+            boss.Health.TakeDamage(Mathf.CeilToInt(boss.Health.Max * 0.75f));
+            boss.BeginFight();
+            yield return UntilMode(MeganeuraBoss.Mode.High, 14f);
+        }
+
+        [UnityTest]
+        public IEnumerator Relampago_RevelaSiluetaSoloConDestelloFuerteYEnElAire()
+        {
+            yield return HighStorm();
+            var storm = boss.Storm;
+            Assert.IsNull(storm.transform.Find("MeganeuraSilhouette"));
+            storm.Flash(0.49f);
+            Assert.IsNull(storm.transform.Find("MeganeuraSilhouette"));
+            var body = boss.transform.Find("Body").GetComponent<DirectionalSprite>();
+            body.Angle = 135f;
+            storm.Flash(0.5f);
+            var silhouette = storm.transform.Find("MeganeuraSilhouette");
+            Assert.IsNotNull(silhouette);
+            Assert.AreEqual(body.transform.position, silhouette.position);
+            Assert.AreEqual(body.Angle, silhouette.GetComponent<DirectionalSprite>().Angle);
+            Assert.AreEqual("Meganeura_Silhouette_Fly", silhouette.GetComponent<DirectionalSprite>().Current);
+            Assert.GreaterOrEqual(silhouette.GetComponent<SpriteRenderer>().sortingOrder, 26);
+            Assert.IsNull(silhouette.GetComponent<Collider2D>());
+            yield return new WaitForSeconds(0.4f);
+            Assert.IsTrue(silhouette == null);
+            yield return UntilMode(MeganeuraBoss.Mode.Hover, 12f);
+            storm.Flash(0.85f);
+            Assert.IsNull(storm.transform.Find("MeganeuraSilhouette"));
+        }
+
+        [UnityTest]
+        public IEnumerator Tormenta_CuerpoOcultoEnAltoYVisibleAlBajar()
+        {
+            yield return HighStorm();
+            yield return null;
+            var body = boss.transform.Find("Body").GetComponent<SpriteRenderer>();
+            Assert.IsFalse(body.enabled);
+            Assert.IsTrue(boss.transform.Find("Shadow").GetComponent<SpriteRenderer>().enabled);
+            boss.Storm.Flash(0.85f);
+            yield return null;
+            Assert.IsFalse(body.enabled, "El destello revela la silueta, no el cuerpo normal.");
+            yield return UntilMode(MeganeuraBoss.Mode.Hover, 12f);
+            yield return null;
+            Assert.IsTrue(body.enabled);
+        }
+
+        [UnityTest]
+        public IEnumerator Tormenta_NubesSeMuevenBajoPersonajesYSeDesvanecenAlCalmar()
+        {
+            boss.SendMessage("EnsureStorm");
+            var storm = boss.Storm;
+            var cloud = storm.transform.Find("CloudShadow");
+            Assert.IsNotNull(cloud);
+            var renderer = cloud.GetComponent<SpriteRenderer>();
+            Assert.AreEqual(new Vector2(256f, 256f), renderer.sprite.rect.size);
+            Assert.Less(renderer.sortingOrder, 4);
+            Assert.Greater(renderer.sortingOrder, 1);
+            Vector3 start = cloud.localPosition;
+            yield return new WaitForSeconds(0.3f);
+            Assert.Greater(Vector3.Distance(start, cloud.localPosition), 0.1f);
+            storm.Calm(3f);
+            yield return new WaitForSeconds(1.5f);
+            Assert.That(renderer.color.a, Is.GreaterThan(0.2f).And.LessThan(0.8f));
+            yield return new WaitForSeconds(1.7f);
+            Assert.IsTrue(cloud == null);
+            Assert.IsNull(storm.transform.Find("CloudShadow"));
+        }
+
     }
 }
 #endif

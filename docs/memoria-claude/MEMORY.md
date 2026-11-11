@@ -11,7 +11,7 @@
 - [Skill primordia-audio](primordia-audio-skill.md) — usarla en todo audio nuevo
 - [Mutaciones por niveles](primordia-mutation-visual-tiers.md) — normales = efectos sin tocar silueta; pieles retocan dentro; especiales cambian el modelo
 - [Documentos por piso](primordia-floor-docs.md) — actualizar el documento interactivo del piso al terminar cada cosa
-- [Codex RETOMADO (2026-11-11)](primordia-codex-paused.md) — Claude dirige, Codex implementa en ramas codex/*; tareas en docs/codex/, reglas en AGENTS.md
+- [Codex RETOMADO (2026-11-11)](primordia-codex-paused.md) — Claude dirige, Codex implementa en ramas codex/*; tareas 01-03 hechas, 04 pendiente; docs/codex/ y AGENTS.md
 
 - [Pulido del piso 3](primordia-floor3-art-batch-pending.md) — HECHO (commits en feature/floor-3): dónde está cada cosa; franja de agua y rastro de fuego PROGRAMADOS 2026-11-05 (falta probarlos)
 - [Tanda de arte de linajes del piso 3](primordia-floor3-lineage-art-pending.md) — 1.ª y 2.ª tandas (Yesquero) hechas e integradas, la 2.ª a falta de commit; NO queda arte pendiente (tinte real y muerte al revés del Zombi van con los enemigos del paso 5)
@@ -22,11 +22,12 @@
 ## En curso
 - [Salas especiales del piso 3](primordia-floor3-special-rooms.md) — las 10 PROGRAMADAS (commit 84969d99); arte del Tronco caído, Tocón hueco y cofre APROBADO 2026-11-06 (floor3-log-stump/), falta importarlo y programarlo (Sonnet)
 - [Sala de paso del piso 2 → 3](primordia-floor2-transition-room.md) — charca, ambiente del pantano y metamorfosis por pareja HECHOS y subidos
-- **[Estado de Primordia](primordia-project-status.md) — pisos 1-2 en main; piso 3 en feature/floor-3: pasos 1-6 HECHOS (salvo la sala de paso, Opus) y paso 7 EN CURSO: Meganeura 7a-7c HECHOS; SIGUIENTE 7d (tormenta, fase 3) y 7e; luego Arthropleura, Megarachne, Lepidodendron**
+- **[Estado de Primordia](primordia-project-status.md) — pisos 1-2 en main; piso 3 en feature/floor-3: pasos 1-6 HECHOS (salvo la sala de paso, Opus) y paso 7: MEGANEURA CASI CERRADA (7a-7e-3 hechos con Codex, probados); SIGUIENTE: tarea 04 (telarana), arte de Opus del veneno, luego Arthropleura, Megarachne, Lepidodendron**
 - [Sala del ámbar y especiales del ámbar](primordia-floor3-amber.md) — paso 6 bloque 2: decisiones y niveles I-III cerrados 2026-11-04; subpaso 2a (sala+bloque) programado
 - **[Rediseño de la Cápsula de ámbar](primordia-floor3-capsule-redesign.md) — 2026-11-06: ARTE CERRADO (forma D, formación, reposo, rotura, curación, halo con alas; floor3-capsule/); falta importar y programar (Sonnet); luego Gota y Cercos**
 - **[Rediseño de la Gota de ámbar](primordia-floor3-drop-redesign.md) — 2026-11-06 (Opus): ARTE CERRADO (bloque C en 2 tallas, cristal del lomo, nivel III en ámbar antiguo; floor3-drop/); falta importar y programar (Sonnet)**
 - [Aspecto de las especiales del ámbar](primordia-floor3-specials-look.md) — Cápsula y Gota rediseñadas (2026-11-06); Cercos se quedan como están; falta la subtanda 3 (contorno dorado y motas)
+- **[Arte pendiente: veneno + Escamas carbonizadas III](primordia-floor3-poison-fire-art.md) — 2026-11-11: la usuaria quiere arte nuevo de Opus (nube/llama ligera); ideas de codigo sin decidir**
 - [Cucarachas ladronas del piso 3](primordia-floor3-thief-roach.md) — arte APROBADO (2026-11-04, floor3-roach); bloque 3 (almacén + robo del corazón) PROGRAMADO 2026-11-05: parda carbonífera, cenital girada por código, botín a cuestas; las del corazón no se matan
 - [Salas con tema del piso 3](primordia-floor3-room-themes.md) — paso 6 bloque 1 programado (2026-11-04): 5 temas, menú, números; letrero DIBUJADO y aprobado (floor3-room-signs), falta importarlo y programarlo (Sonnet); piezas de escenario pendientes de Opus
 - [Enemigos y trampas del piso 3](primordia-floor3-enemies-decisions.md) — paso 5 HECHO: 6 enemigos + 2 trampas, números, archivos, generador, margen del lodo, matas Cordyceps

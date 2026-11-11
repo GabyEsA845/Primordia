@@ -16,7 +16,14 @@ namespace Primordia.Enemies
         static readonly Color DarkColor = new(0x0C / 255f, 0x14 / 255f, 0x28 / 255f, 1f);
         static readonly Color FlashColor = new(0xE8 / 255f, 0xF4 / 255f, 0xFF / 255f, 1f);
 
+        // Provisionales: duración y reparto del ambiente al terminar la tormenta.
+        const float DrizzleSeconds = 8f, SteamSeconds = 6f, SteamFrameSeconds = 0.12f;
+        const int SteamCount = 10, SteamOrder = 2;
+
         static Sprite white;
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        static void ResetStatics() => white = null;
 
         SpriteRenderer dark;
         SpriteRenderer flash;
@@ -26,6 +33,15 @@ namespace Primordia.Enemies
         readonly List<SpriteRenderer> ash = new();
         Sprite[] rainFrames = System.Array.Empty<Sprite>();
         Sprite[] ashFrames = System.Array.Empty<Sprite>();
+
+        readonly List<SpriteRenderer> steam = new();
+        Sprite[] drizzleFrames = System.Array.Empty<Sprite>();
+        Sprite[] steamFrames = System.Array.Empty<Sprite>();
+        Vector2 floorSize;
+        float calmStarted;
+        bool calming;
+        public bool Drizzling { get; private set; }
+        public int SteamActive => steam.Count;
 
         public float DarkAlpha => dark != null ? dark.color.a : 0f;
         public float FlashAlpha => flash != null ? flash.color.a : 0f;
@@ -38,6 +54,7 @@ namespace Primordia.Enemies
             go.transform.SetParent(parent, true);
             go.transform.position = center;
             var storm = go.AddComponent<MeganeuraStorm>();
+            storm.floorSize = size;
             storm.rainFrames = rainFrames ?? System.Array.Empty<Sprite>();
             storm.ashFrames = ashFrames ?? System.Array.Empty<Sprite>();
             // Un poco más grande que la sala: la cámara ve algo más que el suelo.
@@ -118,11 +135,38 @@ namespace Primordia.Enemies
         public void Flash(float alpha) => flashAlpha = Mathf.Max(flashAlpha, alpha);
 
         /// <summary>La tormenta amaina: se va la oscuridad y la lluvia.</summary>
-        public void Calm(float seconds)
+        public void Calm(float seconds, Sprite[] drizzle = null, Sprite[] newSteam = null)
         {
             SetAsh(false);
             SetRain(false);
             Darken(0f, seconds);
+            if (calming)
+                return;
+            calming = true;
+            calmStarted = Time.time;
+            drizzleFrames = drizzle ?? System.Array.Empty<Sprite>();
+            steamFrames = newSteam ?? System.Array.Empty<Sprite>();
+            Drizzling = drizzleFrames.Length > 0;
+            if (Drizzling)
+            {
+                // Conserva exactamente el mosaico y la capa de la lluvia fuerte.
+                if (rain.Count == 0)
+                    Tile(rain, drizzleFrames, floorSize + new Vector2(24f, 16f), RainOrder);
+                SetTiles(rain, true);
+            }
+            if (steamFrames.Length == 0)
+                return;
+            Vector2 half = new(Mathf.Max(0f, floorSize.x * 0.5f - 2.5f), Mathf.Max(0f, floorSize.y * 0.5f - 3.5f));
+            for (int i = 0; i < SteamCount; i++)
+            {
+                var go = new GameObject("Steam");
+                go.transform.SetParent(transform, false);
+                go.transform.localPosition = new Vector3(Random.Range(-half.x, half.x), Random.Range(-half.y, half.y), 0f);
+                var renderer = go.AddComponent<SpriteRenderer>();
+                renderer.sprite = steamFrames[i % steamFrames.Length];
+                renderer.sortingOrder = SteamOrder;
+                steam.Add(renderer);
+            }
         }
 
         void Update()
@@ -141,7 +185,23 @@ namespace Primordia.Enemies
                 color.a = flashAlpha;
                 flash.color = color;
             }
-            Animate(rain, rainFrames, RainFrameSeconds);
+            if (calming)
+            {
+                float elapsed = Time.time - calmStarted;
+                if (Drizzling && elapsed >= DrizzleSeconds)
+                {
+                    Drizzling = false;
+                    SetTiles(rain, false);
+                }
+                if (steam.Count > 0 && elapsed >= SteamSeconds)
+                {
+                    foreach (var renderer in steam)
+                        Destroy(renderer.gameObject);
+                    steam.Clear();
+                }
+            }
+            Animate(rain, Drizzling ? drizzleFrames : rainFrames, RainFrameSeconds);
+            Animate(steam, steamFrames, SteamFrameSeconds);
             Animate(ash, ashFrames, AshFrameSeconds);
         }
 

@@ -326,8 +326,7 @@ namespace Primordia.Enemies
             CurrentMode = Mode.Dead;
             StopFight();
             ClearSummons();
-            if (storm != null)
-                storm.Calm(2f);
+            StopAllCoroutines();
             PlayFire(null, 0f);
             if (intro != null)
                 StopCoroutine(intro);
@@ -335,8 +334,7 @@ namespace Primordia.Enemies
             foreach (var collider in GetComponentsInChildren<Collider2D>())
                 collider.enabled = false;
             ShowBody(true);
-            // La caída en espiral y la charca llegan con el paso 7e; mientras, cae con su hoja de muerte.
-            PlayBody("DeathFall", DeathFallMs, loop: false, restart: true);
+            CreateDeathPresentation();
         }
 
         void LateUpdate()

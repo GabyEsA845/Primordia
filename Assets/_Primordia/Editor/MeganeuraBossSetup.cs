@@ -205,6 +205,7 @@ namespace Primordia.Editor
                 var boss = root.AddComponent<MeganeuraBoss>();
                 boss.Configure(art, body, bodySprite, shadow, shadowSprite, stump);
                 boss.ConfigureFight(fire, fireSprite, effects, nymph);
+                boss.ConfigureDeath(ImportDeathEffects());
                 if (barSkin != null)
                     root.AddComponent<BossBarAppearance>().Configure(barSkin);
 
@@ -278,6 +279,39 @@ namespace Primordia.Editor
                 Object.DestroyImmediate(root);
             }
         }
+
+        /// <summary>Importa solo los efectos del final y actualiza el prefab sin reconstruir la escena.</summary>
+        [MenuItem("Primordia/Boss/Importar efectos de muerte de la Meganeura")]
+        public static void ImportDeath()
+        {
+            if (AssetDatabase.LoadAssetAtPath<GameObject>(PrefabPath) == null)
+            {
+                Debug.LogError("Falta el prefab Boss_Meganeura.");
+                return;
+            }
+            var effects = ImportDeathEffects();
+            var root = PrefabUtility.LoadPrefabContents(PrefabPath);
+            try
+            {
+                root.GetComponent<MeganeuraBoss>().ConfigureDeath(effects);
+                PrefabUtility.SaveAsPrefabAsset(root, PrefabPath);
+            }
+            finally
+            {
+                PrefabUtility.UnloadPrefabContents(root);
+            }
+            AssetDatabase.SaveAssets();
+            Debug.Log("Efectos de muerte de la Meganeura importados y asignados.");
+        }
+
+        static MeganeuraBoss.DeathEffects ImportDeathEffects() => new()
+        {
+            // El agua queda a 70 px desde arriba: 26 px desde abajo en la celda de 96.
+            splash = Sheet("Effects/Fx_Meganeura_Splash", 128, new Vector2(0.5f, 26f / 96f)),
+            ripple = Sheet("Effects/Fx_Meganeura_DeadRipple", 160),
+            drizzle = Sheet("Effects/Fx_Storm_Drizzle", 128),
+            steam = Sheet("Effects/Fx_Storm_Steam", 48),
+        };
 
         static Sprite[] Sheet(string relative, int cell, Vector2? pivot = null) =>
             ArtSetup.SliceFloor3Sheet($"{ArtFolder}/{relative}.png", cell, pivot ?? new Vector2(0.5f, 0.5f));

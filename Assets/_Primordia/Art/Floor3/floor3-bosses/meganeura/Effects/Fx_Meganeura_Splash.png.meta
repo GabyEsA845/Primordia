@@ -67,7 +67,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -139,12 +139,12 @@ TextureImporter:
       name: Fx_Meganeura_Splash_0
       rect:
         serializedVersion: 2
-        x: 173
-        y: 17
-        width: 38
-        height: 36
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 0
+        width: 128
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.27083334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -161,12 +161,12 @@ TextureImporter:
       name: Fx_Meganeura_Splash_1
       rect:
         serializedVersion: 2
-        x: 184
-        y: 47
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 128
+        y: 0
+        width: 128
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.27083334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -183,12 +183,12 @@ TextureImporter:
       name: Fx_Meganeura_Splash_2
       rect:
         serializedVersion: 2
-        x: 293
-        y: 14
-        width: 54
-        height: 56
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 256
+        y: 0
+        width: 128
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.27083334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -205,12 +205,12 @@ TextureImporter:
       name: Fx_Meganeura_Splash_3
       rect:
         serializedVersion: 2
-        x: 414
-        y: 11
-        width: 69
-        height: 60
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 384
+        y: 0
+        width: 128
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.27083334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -227,12 +227,12 @@ TextureImporter:
       name: Fx_Meganeura_Splash_4
       rect:
         serializedVersion: 2
-        x: 534
-        y: 8
-        width: 84
-        height: 53
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 512
+        y: 0
+        width: 128
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.27083334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -249,12 +249,12 @@ TextureImporter:
       name: Fx_Meganeura_Splash_5
       rect:
         serializedVersion: 2
-        x: 654
-        y: 5
-        width: 100
-        height: 44
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 640
+        y: 0
+        width: 128
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.27083334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -271,12 +271,12 @@ TextureImporter:
       name: Fx_Meganeura_Splash_6
       rect:
         serializedVersion: 2
-        x: 775
-        y: 2
-        width: 115
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 768
+        y: 0
+        width: 128
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.27083334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -285,28 +285,6 @@ TextureImporter:
       bones: []
       spriteID: 820a7bb7e04de71b0800000000000000
       internalID: -5656850923260501976
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_Meganeura_Splash_7
-      rect:
-        serializedVersion: 2
-        x: 53
-        y: 21
-        width: 23
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 10935a6f368a448e0800000000000000
-      internalID: -1710056811200694015
       vertices: []
       indices: 
       edges: []
@@ -332,7 +310,6 @@ TextureImporter:
       Fx_Meganeura_Splash_4: -2938739738651634230
       Fx_Meganeura_Splash_5: 3289555315550301353
       Fx_Meganeura_Splash_6: -5656850923260501976
-      Fx_Meganeura_Splash_7: -1710056811200694015
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

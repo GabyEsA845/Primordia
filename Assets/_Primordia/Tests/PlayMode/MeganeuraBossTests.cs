@@ -517,6 +517,163 @@ namespace Primordia.Tests
             Assert.IsNotNull(confusion, "las ninfas tienen que poder confundirse");
             Assert.IsTrue(Primordia.Mutations.Confusion.IsConfused(nymphA));
             Assert.IsNotNull(Primordia.Mutations.Confusion.Apply(nymphB.Health, 5f, true, null, null, null));
-        }    }
+        }
+
+        MeganeuraCorpse KillForDeath(float altitude, bool burnt = false)
+        {
+            boss.Altitude = altitude;
+            boss.Burnt = burnt;
+            boss.Health.IsInvulnerable = false;
+            boss.Health.TakeDamage(boss.Health.Max);
+            Assert.AreEqual(MeganeuraBoss.Mode.Dead, boss.CurrentMode);
+            Assert.IsFalse(boss.GetComponent<Collider2D>().enabled);
+            var corpse = room.GetComponentInChildren<MeganeuraCorpse>();
+            Assert.IsNotNull(corpse);
+            Assert.AreEqual(room.transform, corpse.transform.parent);
+            return corpse;
+        }
+
+        IEnumerator CheckAirDeath(bool burnt)
+        {
+            // La charca nueva debe ganar a las tres iniciales cuando es la más cercana.
+            boss.SendMessage("GrowPuddles");
+            Vector2 expected = (Vector2)room.transform.position + new Vector2(11f, -1f);
+            boss.transform.position = expected + Vector2.right;
+            boss.GetComponent<Rigidbody2D>().position = boss.transform.position;
+            var corpse = KillForDeath(16f, burnt);
+            string suffix = burnt ? "_Burnt" : "";
+            var wing = corpse.transform.Find("WingDetached");
+            Assert.IsNotNull(wing);
+            Assert.AreEqual(1, corpse.GetComponentsInChildren<DirectionalSprite>().Count(d => d.name == "WingDetached"));
+            Assert.AreEqual("Meganeura_WingDetached" + suffix, wing.GetComponent<DirectionalSprite>().Current);
+            Assert.AreEqual("Meganeura_DeathFall" + suffix, corpse.transform.Find("Body").GetComponent<DirectionalSprite>().Current);
+            Assert.AreEqual(expected, corpse.Impact);
+            yield return new WaitForSeconds(1.35f);
+            Assert.IsTrue(boss == null, "Enemy se destruye como antes, pero la presentacion sigue viva.");
+            Assert.IsFalse(corpse.Landed);
+            yield return new WaitForSeconds(1.1f);
+            Assert.IsTrue(corpse.Landed);
+            Assert.AreEqual(expected.x, corpse.transform.position.x, 0.01f);
+            Assert.AreEqual(expected.y, corpse.transform.position.y, 0.01f);
+            var body = corpse.transform.Find("Body").GetComponent<DirectionalSprite>();
+            Assert.AreEqual("Meganeura_Dead" + suffix, body.Current);
+            Assert.AreEqual(0f, body.Angle);
+            var ripple = corpse.transform.Find("DeadRipple").GetComponent<SpriteRenderer>();
+            Assert.Less(ripple.sortingOrder, body.GetComponent<SpriteRenderer>().sortingOrder);
+            Assert.IsFalse(corpse.transform.Find("Shadow").GetComponent<SpriteRenderer>().enabled);
+            Assert.AreEqual(0f, corpse.Altitude);
+            var splash = corpse.GetComponentsInChildren<SpriteRenderer>().First(r => r.sprite != null && r.sprite.name.StartsWith("Fx_Meganeura_Splash"));
+            Assert.AreEqual(26f, splash.sprite.pivot.y, 0.01f);
+            Assert.AreEqual(expected.y, splash.transform.position.y, 0.01f);
+            Object.DestroyImmediate(room);
+            Assert.IsTrue(corpse == null);
+        }
+
+        [UnityTest]
+        public IEnumerator MuerteEnElAire_AlaCharcaNuevaYRestosPersistentes() => CheckAirDeath(false);
+
+        [UnityTest]
+        public IEnumerator MuerteQuemada_UsaLasTresHojasBurnt() => CheckAirDeath(true);
+
+        [UnityTest]
+        public IEnumerator MuerteEnElSuelo_PrimeroSubeYSinTormentaNoCreaAmbiente()
+        {
+            var corpse = KillForDeath(0f);
+            Assert.IsNull(corpse.transform.Find("WingDetached"));
+            yield return new WaitForSeconds(0.3f);
+            Assert.That(corpse.Altitude, Is.GreaterThan(0f).And.LessThan(16f));
+            Assert.IsNull(corpse.transform.Find("WingDetached"));
+            yield return new WaitForSeconds(0.45f);
+            Assert.IsNotNull(corpse.transform.Find("WingDetached"));
+            Assert.IsNull(room.GetComponentInChildren<MeganeuraStorm>());
+            yield return new WaitForSeconds(2.3f);
+            Assert.IsTrue(corpse.Landed);
+        }
+
+        [UnityTest]
+        public IEnumerator Muerte_LimpiaInvocacionesMarcasRayosYCorutinas()
+        {
+            boss.BeginFight();
+            var fx = boss.EffectsInUse;
+            var egg = MeganeuraEgg.Spawn(room.transform, boss.transform.position, fx, boss.NymphInUse, 10f);
+            var nymph = Object.Instantiate(boss.NymphInUse, room.transform);
+            boss.SendMessage("GrowPuddles");
+            boss.StrikeBig(boss.transform.position);
+            var mark = SpriteFramePlayer.PlayOnce(fx.boltSmallMark, 1f, boss.transform.position, 26);
+            extras.Add(mark.gameObject);
+            var corpse = KillForDeath(16f);
+            yield return null;
+            Assert.AreEqual(0, MeganeuraEgg.Alive.Count);
+            Assert.IsTrue(egg == null || !MeganeuraEgg.Alive.Contains(egg));
+            Assert.IsTrue(nymph == null || nymph.Health.IsDead);
+            Assert.IsTrue(mark == null);
+            Assert.IsNull(typeof(MeganeuraBoss).GetField("fight", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance).GetValue(boss));
+            Assert.IsFalse(Object.FindObjectsByType<SpriteFramePlayer>().Any(p => p.name == "MeganeuraPuddleElectric"));
+            yield return new WaitForSeconds(3f);
+            Assert.IsTrue(corpse.Landed);
+            Assert.IsFalse(Object.FindObjectsByType<GameObject>().Any(g => g.name == "BigBoltMark" || g.name == "LooseBoltMark"));
+        }
+
+        [UnityTest]
+        public IEnumerator MuerteConTormenta_AclaraYLloviznaYVaporSeRetiranSolos()
+        {
+            boss.SendMessage("EnsureStorm");
+            var storm = boss.Storm;
+            Assert.AreEqual(room.transform, storm.transform.parent);
+            storm.SetRain(true);
+            storm.SetAsh(true);
+            storm.Darken(0.5f, 0.01f);
+            yield return new WaitForSeconds(0.05f);
+            Assert.Greater(storm.DarkAlpha, 0.1f);
+            KillForDeath(16f);
+            Assert.IsFalse(storm.Raining);
+            Assert.IsFalse(storm.AshOn);
+            Assert.IsTrue(storm.Drizzling);
+            Assert.AreEqual(10, storm.SteamActive);
+            var steam = storm.GetComponentsInChildren<SpriteRenderer>().First(r => r.name == "Steam");
+            Assert.AreEqual(2, steam.sortingOrder);
+            yield return new WaitForSeconds(3.2f);
+            Assert.AreEqual(0f, storm.DarkAlpha, 0.001f);
+            Assert.IsTrue(storm.Drizzling);
+            Assert.AreEqual(10, storm.SteamActive);
+            yield return new WaitForSeconds(3f);
+            Assert.AreEqual(0, storm.SteamActive);
+            Assert.IsTrue(storm.Drizzling);
+            yield return new WaitForSeconds(2f);
+            Assert.IsFalse(storm.Drizzling);
+            Assert.IsFalse(storm.GetComponentsInChildren<SpriteRenderer>().Any(r => r.enabled && r.name == "Tile"));
+        }
+
+        [UnityTest]
+        public IEnumerator Muerte_RecompensaInmediataEnArenaCenterAunqueCaigaEnOtraParte()
+        {
+            var mutation = ScriptableObject.CreateInstance<Primordia.Mutations.StatMutation>();
+            var pool = ScriptableObject.CreateInstance<Primordia.Mutations.MutationPool>();
+            try
+            {
+                mutation.ConfigureBase("Prueba muerte", "", Primordia.Mutations.MutationSlot.Skin, Color.white);
+                pool.Configure(new[] { mutation });
+                var template = new GameObject("PickupTemplate", typeof(CircleCollider2D));
+                extras.Add(template);
+                var pickup = template.AddComponent<Primordia.Mutations.MutationPickup>();
+                var drop = boss.gameObject.AddComponent<Primordia.Mutations.MutationDrop>();
+                drop.Configure(pool, pickup, 1);
+                Vector2 center = boss.ArenaCenter;
+                var corpse = KillForDeath(16f);
+                Assert.AreEqual(1, drop.Dropped.Count);
+                var reward = drop.Dropped[0];
+                Assert.AreEqual(center + Vector2.up * 3f, (Vector2)reward.transform.position);
+                Assert.IsFalse(corpse.Landed);
+                yield return new WaitForSeconds(2.5f);
+                Assert.IsNotNull(reward);
+                Assert.AreEqual(center + Vector2.up * 3f, (Vector2)reward.transform.position);
+            }
+            finally
+            {
+                Object.DestroyImmediate(pool);
+                Object.DestroyImmediate(mutation);
+            }
+        }
+    }
 }
 #endif

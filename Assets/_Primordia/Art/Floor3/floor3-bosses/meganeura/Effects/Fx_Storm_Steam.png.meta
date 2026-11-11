@@ -97,7 +97,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -169,12 +169,12 @@ TextureImporter:
       name: Fx_Storm_Steam_0
       rect:
         serializedVersion: 2
-        x: 27
-        y: 22
-        width: 13
-        height: 13
+        x: 0
+        y: 0
+        width: 48
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -191,12 +191,12 @@ TextureImporter:
       name: Fx_Storm_Steam_1
       rect:
         serializedVersion: 2
-        x: 65
-        y: 17
-        width: 11
-        height: 12
+        x: 48
+        y: 0
+        width: 48
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -213,12 +213,12 @@ TextureImporter:
       name: Fx_Storm_Steam_2
       rect:
         serializedVersion: 2
-        x: 77
-        y: 28
-        width: 13
-        height: 13
+        x: 96
+        y: 0
+        width: 48
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -235,12 +235,12 @@ TextureImporter:
       name: Fx_Storm_Steam_3
       rect:
         serializedVersion: 2
-        x: 112
-        y: 22
-        width: 12
-        height: 13
+        x: 144
+        y: 0
+        width: 48
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -257,12 +257,12 @@ TextureImporter:
       name: Fx_Storm_Steam_4
       rect:
         serializedVersion: 2
-        x: 153
-        y: 17
-        width: 11
-        height: 12
+        x: 192
+        y: 0
+        width: 48
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -279,12 +279,12 @@ TextureImporter:
       name: Fx_Storm_Steam_5
       rect:
         serializedVersion: 2
-        x: 161
-        y: 28
-        width: 13
-        height: 13
+        x: 240
+        y: 0
+        width: 48
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -293,270 +293,6 @@ TextureImporter:
       bones: []
       spriteID: 08e3c5659ab7f30f0800000000000000
       internalID: -1135052613845500288
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_Storm_Steam_6
-      rect:
-        serializedVersion: 2
-        x: 198
-        y: 22
-        width: 13
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b8e90be2f1803aba0800000000000000
-      internalID: -6079006141999702389
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_Storm_Steam_7
-      rect:
-        serializedVersion: 2
-        x: 246
-        y: 28
-        width: 12
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b26f64a6f445d6f10800000000000000
-      internalID: 2264558887699412523
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_Storm_Steam_8
-      rect:
-        serializedVersion: 2
-        x: 266
-        y: 17
-        width: 12
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3c9047088bd9da510800000000000000
-      internalID: 1562078061522061763
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_Storm_Steam_9
-      rect:
-        serializedVersion: 2
-        x: 19
-        y: 12
-        width: 10
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: bafe2663a18617ec0800000000000000
-      internalID: -3570958567737200725
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_Storm_Steam_10
-      rect:
-        serializedVersion: 2
-        x: 59
-        y: 7
-        width: 9
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1f320772368ee4500800000000000000
-      internalID: 382498530934137841
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_Storm_Steam_11
-      rect:
-        serializedVersion: 2
-        x: 107
-        y: 12
-        width: 10
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f7dcaf8591feee640800000000000000
-      internalID: 5111285519258144127
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_Storm_Steam_12
-      rect:
-        serializedVersion: 2
-        x: 174
-        y: 7
-        width: 9
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 954c973614cbd1fd0800000000000000
-      internalID: -2369530839899192231
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_Storm_Steam_13
-      rect:
-        serializedVersion: 2
-        x: 220
-        y: 12
-        width: 9
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: aed15f35bd4dd2090800000000000000
-      internalID: -8057550119824450070
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_Storm_Steam_14
-      rect:
-        serializedVersion: 2
-        x: 262
-        y: 7
-        width: 8
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5bbda863c865dab40800000000000000
-      internalID: 5453109884026018741
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_Storm_Steam_15
-      rect:
-        serializedVersion: 2
-        x: 11
-        y: 3
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 183b2f75648ce5110800000000000000
-      internalID: 1251657950904365953
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_Storm_Steam_16
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 2
-        width: 7
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8572dbb4ac5c0de90800000000000000
-      internalID: -7002879947916368040
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_Storm_Steam_17
-      rect:
-        serializedVersion: 2
-        x: 214
-        y: 2
-        width: 7
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5dcf4e214476363c0800000000000000
-      internalID: -4367533671546815275
       vertices: []
       indices: 
       edges: []
@@ -577,22 +313,10 @@ TextureImporter:
     nameFileIdTable:
       Fx_Storm_Steam_0: -4515151434961826123
       Fx_Storm_Steam_1: 182150792219715675
-      Fx_Storm_Steam_10: 382498530934137841
-      Fx_Storm_Steam_11: 5111285519258144127
-      Fx_Storm_Steam_12: -2369530839899192231
-      Fx_Storm_Steam_13: -8057550119824450070
-      Fx_Storm_Steam_14: 5453109884026018741
-      Fx_Storm_Steam_15: 1251657950904365953
-      Fx_Storm_Steam_16: -7002879947916368040
-      Fx_Storm_Steam_17: -4367533671546815275
       Fx_Storm_Steam_2: -3600660101539410369
       Fx_Storm_Steam_3: -6230328286720392091
       Fx_Storm_Steam_4: -7698146800303485541
       Fx_Storm_Steam_5: -1135052613845500288
-      Fx_Storm_Steam_6: -6079006141999702389
-      Fx_Storm_Steam_7: 2264558887699412523
-      Fx_Storm_Steam_8: 1562078061522061763
-      Fx_Storm_Steam_9: -3570958567737200725
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

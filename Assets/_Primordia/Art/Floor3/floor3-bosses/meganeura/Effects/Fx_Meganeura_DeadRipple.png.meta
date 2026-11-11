@@ -139,7 +139,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -211,12 +211,12 @@ TextureImporter:
       name: Fx_Meganeura_DeadRipple_0
       rect:
         serializedVersion: 2
-        x: 44
-        y: 61
-        width: 60
-        height: 7
+        x: 0
+        y: 0
+        width: 160
+        height: 80
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -233,12 +233,12 @@ TextureImporter:
       name: Fx_Meganeura_DeadRipple_1
       rect:
         serializedVersion: 2
-        x: 74
-        y: 53
-        width: 47
-        height: 10
+        x: 160
+        y: 0
+        width: 160
+        height: 80
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -255,12 +255,12 @@ TextureImporter:
       name: Fx_Meganeura_DeadRipple_2
       rect:
         serializedVersion: 2
-        x: 195
-        y: 61
-        width: 65
-        height: 9
+        x: 320
+        y: 0
+        width: 160
+        height: 80
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -277,12 +277,12 @@ TextureImporter:
       name: Fx_Meganeura_DeadRipple_3
       rect:
         serializedVersion: 2
-        x: 228
-        y: 56
-        width: 54
-        height: 10
+        x: 480
+        y: 0
+        width: 160
+        height: 80
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -291,622 +291,6 @@ TextureImporter:
       bones: []
       spriteID: 0e8a091d88e98f670800000000000000
       internalID: 8572776201168398560
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_Meganeura_DeadRipple_4
-      rect:
-        serializedVersion: 2
-        x: 362
-        y: 54
-        width: 48
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5e4a4a86f22a1c660800000000000000
-      internalID: 7404377586876589285
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_Meganeura_DeadRipple_5
-      rect:
-        serializedVersion: 2
-        x: 381
-        y: 59
-        width: 59
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5c371e3a629170010800000000000000
-      internalID: 1154919483192734661
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_Meganeura_DeadRipple_6
-      rect:
-        serializedVersion: 2
-        x: 514
-        y: 54
-        width: 52
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e25e2b98d0ee8bf10800000000000000
-      internalID: 2285838552802714926
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_Meganeura_DeadRipple_7
-      rect:
-        serializedVersion: 2
-        x: 533
-        y: 63
-        width: 65
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6a7c6d4e6948a3190800000000000000
-      internalID: -7981921605941540954
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_Meganeura_DeadRipple_8
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 24
-        width: 13
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: bbbd172d75a013d90800000000000000
-      internalID: -7119898163586933829
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_Meganeura_DeadRipple_9
-      rect:
-        serializedVersion: 2
-        x: 27
-        y: 37
-        width: 21
-        height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: caf75aefdaa02cc90800000000000000
-      internalID: -7151141515893047380
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_Meganeura_DeadRipple_10
-      rect:
-        serializedVersion: 2
-        x: 112
-        y: 22
-        width: 22
-        height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5c9d2eb0c935eadf0800000000000000
-      internalID: -167104206486709819
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_Meganeura_DeadRipple_11
-      rect:
-        serializedVersion: 2
-        x: 131
-        y: 29
-        width: 14
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d38a2abace8cd0bd0800000000000000
-      internalID: -2662250885888694211
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_Meganeura_DeadRipple_12
-      rect:
-        serializedVersion: 2
-        x: 170
-        y: 20
-        width: 19
-        height: 29
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6f658ce806caddb30800000000000000
-      internalID: 4313793548803135222
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_Meganeura_DeadRipple_13
-      rect:
-        serializedVersion: 2
-        x: 181
-        y: 34
-        width: 19
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e7d72d1b04f53ac20800000000000000
-      internalID: 3216519290338573694
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_Meganeura_DeadRipple_14
-      rect:
-        serializedVersion: 2
-        x: 280
-        y: 22
-        width: 19
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6f495c9cbcc6418f0800000000000000
-      internalID: -570711630249880330
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_Meganeura_DeadRipple_15
-      rect:
-        serializedVersion: 2
-        x: 291
-        y: 31
-        width: 19
-        height: 29
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 755f9435deac917d0800000000000000
-      internalID: -2947101360483863209
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_Meganeura_DeadRipple_16
-      rect:
-        serializedVersion: 2
-        x: 336
-        y: 31
-        width: 16
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e6016031467538c60800000000000000
-      internalID: 7819189465372823662
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_Meganeura_DeadRipple_17
-      rect:
-        serializedVersion: 2
-        x: 347
-        y: 23
-        width: 17
-        height: 22
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4ae33f240e7cedeb0800000000000000
-      internalID: -4693093995663638876
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_Meganeura_DeadRipple_18
-      rect:
-        serializedVersion: 2
-        x: 436
-        y: 35
-        width: 18
-        height: 22
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 88ef03113fec1fa20800000000000000
-      internalID: 3094481962341039752
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_Meganeura_DeadRipple_19
-      rect:
-        serializedVersion: 2
-        x: 448
-        y: 22
-        width: 17
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2c75133c0b5763f20800000000000000
-      internalID: 3402035970574473154
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_Meganeura_DeadRipple_20
-      rect:
-        serializedVersion: 2
-        x: 490
-        y: 28
-        width: 14
-        height: 29
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 99446a2d65e2aefc0800000000000000
-      internalID: -3464906012871998311
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_Meganeura_DeadRipple_21
-      rect:
-        serializedVersion: 2
-        x: 501
-        y: 20
-        width: 24
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 228867f159bc4a100800000000000000
-      internalID: 118443331556902946
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_Meganeura_DeadRipple_22
-      rect:
-        serializedVersion: 2
-        x: 595
-        y: 37
-        width: 24
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 837dd4e90ded7c070800000000000000
-      internalID: 8126709040203814712
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_Meganeura_DeadRipple_23
-      rect:
-        serializedVersion: 2
-        x: 616
-        y: 23
-        width: 14
-        height: 29
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b97ddc15ededfda60800000000000000
-      internalID: 7701118934263388059
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_Meganeura_DeadRipple_24
-      rect:
-        serializedVersion: 2
-        x: 39
-        y: 17
-        width: 47
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e8cec97fb69acd5e0800000000000000
-      internalID: -1883444262966858610
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_Meganeura_DeadRipple_25
-      rect:
-        serializedVersion: 2
-        x: 56
-        y: 12
-        width: 60
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8caaa1c084f7ce030800000000000000
-      internalID: 3525332555741702856
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_Meganeura_DeadRipple_26
-      rect:
-        serializedVersion: 2
-        x: 199
-        y: 14
-        width: 53
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 302bcf5691a585970800000000000000
-      internalID: 8743837741671559683
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_Meganeura_DeadRipple_27
-      rect:
-        serializedVersion: 2
-        x: 220
-        y: 10
-        width: 65
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: dee421b39d97698f0800000000000000
-      internalID: -534105531890905363
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_Meganeura_DeadRipple_28
-      rect:
-        serializedVersion: 2
-        x: 359
-        y: 12
-        width: 60
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 772f44fd078d4f310800000000000000
-      internalID: 1438012160331805303
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_Meganeura_DeadRipple_29
-      rect:
-        serializedVersion: 2
-        x: 390
-        y: 17
-        width: 48
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 08243e735f52c2070800000000000000
-      internalID: 8082877166358053504
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_Meganeura_DeadRipple_30
-      rect:
-        serializedVersion: 2
-        x: 522
-        y: 10
-        width: 65
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7d25e7d77c2f81fa0800000000000000
-      internalID: -5829642779013262633
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_Meganeura_DeadRipple_31
-      rect:
-        serializedVersion: 2
-        x: 555
-        y: 14
-        width: 51
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9c38c633d017ce9d0800000000000000
-      internalID: -2743693771464211511
       vertices: []
       indices: 
       edges: []
@@ -927,36 +311,8 @@ TextureImporter:
     nameFileIdTable:
       Fx_Meganeura_DeadRipple_0: -3807939928786339630
       Fx_Meganeura_DeadRipple_1: -7607789677833024694
-      Fx_Meganeura_DeadRipple_10: -167104206486709819
-      Fx_Meganeura_DeadRipple_11: -2662250885888694211
-      Fx_Meganeura_DeadRipple_12: 4313793548803135222
-      Fx_Meganeura_DeadRipple_13: 3216519290338573694
-      Fx_Meganeura_DeadRipple_14: -570711630249880330
-      Fx_Meganeura_DeadRipple_15: -2947101360483863209
-      Fx_Meganeura_DeadRipple_16: 7819189465372823662
-      Fx_Meganeura_DeadRipple_17: -4693093995663638876
-      Fx_Meganeura_DeadRipple_18: 3094481962341039752
-      Fx_Meganeura_DeadRipple_19: 3402035970574473154
       Fx_Meganeura_DeadRipple_2: -3535823070927761817
-      Fx_Meganeura_DeadRipple_20: -3464906012871998311
-      Fx_Meganeura_DeadRipple_21: 118443331556902946
-      Fx_Meganeura_DeadRipple_22: 8126709040203814712
-      Fx_Meganeura_DeadRipple_23: 7701118934263388059
-      Fx_Meganeura_DeadRipple_24: -1883444262966858610
-      Fx_Meganeura_DeadRipple_25: 3525332555741702856
-      Fx_Meganeura_DeadRipple_26: 8743837741671559683
-      Fx_Meganeura_DeadRipple_27: -534105531890905363
-      Fx_Meganeura_DeadRipple_28: 1438012160331805303
-      Fx_Meganeura_DeadRipple_29: 8082877166358053504
       Fx_Meganeura_DeadRipple_3: 8572776201168398560
-      Fx_Meganeura_DeadRipple_30: -5829642779013262633
-      Fx_Meganeura_DeadRipple_31: -2743693771464211511
-      Fx_Meganeura_DeadRipple_4: 7404377586876589285
-      Fx_Meganeura_DeadRipple_5: 1154919483192734661
-      Fx_Meganeura_DeadRipple_6: 2285838552802714926
-      Fx_Meganeura_DeadRipple_7: -7981921605941540954
-      Fx_Meganeura_DeadRipple_8: -7119898163586933829
-      Fx_Meganeura_DeadRipple_9: -7151141515893047380
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

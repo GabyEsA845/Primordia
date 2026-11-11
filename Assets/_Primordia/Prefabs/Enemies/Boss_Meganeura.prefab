@@ -384,6 +384,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14af228ce7af5fb438024a7cc825316c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Primordia::Primordia.Enemies.MeganeuraBoss
+  deathEffects:
+    splash:
+    - {fileID: 4699168671625872491, guid: 905bebf7851a50a4b8a65879ec66ac6a, type: 3}
+    - {fileID: 4907229194029809632, guid: 905bebf7851a50a4b8a65879ec66ac6a, type: 3}
+    - {fileID: 4076813848270193838, guid: 905bebf7851a50a4b8a65879ec66ac6a, type: 3}
+    - {fileID: -1598573282917311502, guid: 905bebf7851a50a4b8a65879ec66ac6a, type: 3}
+    - {fileID: -2938739738651634230, guid: 905bebf7851a50a4b8a65879ec66ac6a, type: 3}
+    - {fileID: 3289555315550301353, guid: 905bebf7851a50a4b8a65879ec66ac6a, type: 3}
+    - {fileID: -5656850923260501976, guid: 905bebf7851a50a4b8a65879ec66ac6a, type: 3}
+    ripple:
+    - {fileID: -3807939928786339630, guid: 4667fdb14fa0f9b43b647d997b674672, type: 3}
+    - {fileID: -7607789677833024694, guid: 4667fdb14fa0f9b43b647d997b674672, type: 3}
+    - {fileID: -3535823070927761817, guid: 4667fdb14fa0f9b43b647d997b674672, type: 3}
+    - {fileID: 8572776201168398560, guid: 4667fdb14fa0f9b43b647d997b674672, type: 3}
+    drizzle:
+    - {fileID: -722319247417703641, guid: aff2eaac25700ff42be9537dcb82aa03, type: 3}
+    - {fileID: 4470343681323103057, guid: aff2eaac25700ff42be9537dcb82aa03, type: 3}
+    - {fileID: 852109832959642822, guid: aff2eaac25700ff42be9537dcb82aa03, type: 3}
+    - {fileID: 7838418891289297713, guid: aff2eaac25700ff42be9537dcb82aa03, type: 3}
+    steam:
+    - {fileID: -4515151434961826123, guid: c5888546fcca1954aa6e0012e6280dfd, type: 3}
+    - {fileID: 182150792219715675, guid: c5888546fcca1954aa6e0012e6280dfd, type: 3}
+    - {fileID: -3600660101539410369, guid: c5888546fcca1954aa6e0012e6280dfd, type: 3}
+    - {fileID: -6230328286720392091, guid: c5888546fcca1954aa6e0012e6280dfd, type: 3}
+    - {fileID: -7698146800303485541, guid: c5888546fcca1954aa6e0012e6280dfd, type: 3}
+    - {fileID: -1135052613845500288, guid: c5888546fcca1954aa6e0012e6280dfd, type: 3}
   displayName: Meganeura
   art: {fileID: 11400000, guid: fd0559cf2e9156b4e8679e9adaf539c7, type: 2}
   bodyRenderer: {fileID: 5726257102914947433}

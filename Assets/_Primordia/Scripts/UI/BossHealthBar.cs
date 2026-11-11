@@ -46,6 +46,9 @@ namespace Primordia.UI
 
         // El aspecto propio queda bajo el nombre, a esta distancia del borde de arriba de la barra.
         const float SkinTop = 12f;
+        const float SkinBottomMargin = 24f; // Provisional.
+        const float LowHealthFraction = 0.10f;
+        const float LowHealthShake = 1f;
 
         RectTransform rootRect;
         Vector2 rootPosition;
@@ -100,6 +103,7 @@ namespace Primordia.UI
             if (!alive)
             {
                 shownBoss = null;
+                skinView?.SetVisible(false);
                 return;
             }
 
@@ -114,7 +118,7 @@ namespace Primordia.UI
             if (skinView != null)
             {
                 var phased = boss as IPhasedBoss;
-                skinView.Apply(phased?.PhaseIndex ?? 0, Style == BossBarStyle.Immune, shown, trail, Time.unscaledTime);
+                skinView.Apply(phased?.PhaseIndex ?? 0, Style == BossBarStyle.Immune, shown, trail, Time.unscaledTime, ratio <= LowHealthFraction);
             }
             else
             {
@@ -147,6 +151,10 @@ namespace Primordia.UI
             if (fill != null && fill.parent != null)
                 fill.parent.gameObject.SetActive(skinView == null);
         }
+
+        void OnDisable() => skinView?.SetVisible(false);
+
+        void OnDestroy() => skinView?.Destroy();
 
         void UpdateGhost(float ratio)
         {
@@ -254,6 +262,8 @@ namespace Primordia.UI
             readonly Image frame;
             readonly Image eyes;
             readonly Image phaseChange;
+            readonly Image lowSparks;
+            readonly Vector2 position;
             readonly List<Notch> notches = new();
             bool first = true;
             int lastPhase = -1;
@@ -272,9 +282,11 @@ namespace Primordia.UI
                 Skin = skin;
                 var size = skin.Frame != null ? skin.Frame.rect.size : new Vector2(skin.Window.xMax, skin.Window.yMax);
                 root = new GameObject("BossBarSkin", typeof(RectTransform)).GetComponent<RectTransform>();
-                root.SetParent(parent, false);
-                root.anchorMin = root.anchorMax = root.pivot = new Vector2(0.5f, 1f);
-                root.anchoredPosition = new Vector2(0f, -top);
+                // La raíz de la barra está arriba; el aspecto inferior se ancla al contenedor de pantalla.
+                root.SetParent(skin.BottomAnchored ? parent.parent : parent, false);
+                root.anchorMin = root.anchorMax = root.pivot = new Vector2(0.5f, skin.BottomAnchored ? 0f : 1f);
+                position = new Vector2(0f, skin.BottomAnchored ? SkinBottomMargin : -top);
+                root.anchoredPosition = position;
                 root.sizeDelta = size;
 
                 var window = skin.Window;
@@ -304,15 +316,18 @@ namespace Primordia.UI
                 eyes = Piece("Eyes", null, Vector2.zero, size, Vector2.zero);
                 phaseChange = Piece("PhaseChange", null, Vector2.zero, size, Vector2.zero);
                 phaseChange.enabled = false;
+                lowSparks = Piece("LowSparks", null, Vector2.zero, size, Vector2.zero);
             }
 
-            public void Apply(int phase, bool dark, float shown, float trailRatio, float now)
+            public void Apply(int phase, bool dark, float shown, float trailRatio, float now, bool lowHealth)
             {
+                root.gameObject.SetActive(true);
                 var look = dark ? Skin.Dark : Skin.Phase(phase);
-                frame.sprite = look.frame != null && look.frame.Length > 0 ? Skin.Loop(look.frame, now) : dark ? Skin.FrameDark : Skin.Frame;
-                fill.sprite = Skin.Loop(look.fill, now);
+                var frameLook = dark && Skin.ImmuneUsesPhaseFrame ? Skin.Phase(phase) : look;
+                frame.sprite = frameLook.frame != null && frameLook.frame.Length > 0 ? Skin.Loop(frameLook.frame, now) : dark ? Skin.FrameDark : Skin.Frame;
+                fill.sprite = Skin.Loop(look.fill, now, look.fillFrameTime);
                 fill.enabled = fill.sprite != null;
-                eyes.sprite = Skin.Loop(look.eyes, now);
+                eyes.sprite = Skin.Loop(frameLook.eyes, now, frameLook.eyesFrameTime);
                 eyes.enabled = eyes.sprite != null;
                 fill.fillAmount = Pixels(shown);
                 trail.fillAmount = Pixels(trailRatio);
@@ -339,13 +354,29 @@ namespace Primordia.UI
                 if (phase > lastPhase && !first)
                     phaseChangeStart = now;
                 lastPhase = phase;
-                var change = Skin.PhaseChangeFrame(now - phaseChangeStart);
+                var change = Skin.PhaseChangeFrame(now - phaseChangeStart, lastPhase);
                 phaseChange.sprite = change;
                 phaseChange.enabled = change != null;
+                lowSparks.sprite = lowHealth ? Skin.LowSparksFrame(now) : null;
+                lowSparks.enabled = lowSparks.sprite != null;
+                root.anchoredPosition = position + (lowHealth && Skin.HasLowSparks
+                    ? new Vector2(Random.Range(-1, 2), Random.Range(-1, 2)) * LowHealthShake : Vector2.zero);
                 first = false;
             }
 
-            public void Destroy() => Object.Destroy(root.gameObject);
+            public void SetVisible(bool visible)
+            {
+                if (root != null)
+                    root.gameObject.SetActive(visible);
+            }
+
+            public void Destroy()
+            {
+                if (root == null)
+                    return;
+                root.gameObject.SetActive(false);
+                Object.Destroy(root.gameObject);
+            }
 
             // Redondeado a píxeles enteros de la ventana; con algo de vida, al menos un píxel.
             float Pixels(float ratio)

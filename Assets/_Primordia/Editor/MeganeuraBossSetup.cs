@@ -4,6 +4,7 @@ using Primordia.Combat;
 using Primordia.Core;
 using Primordia.Enemies;
 using Primordia.Rooms;
+using Primordia.UI;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
@@ -155,6 +156,7 @@ namespace Primordia.Editor
                 puddles = new[] { "Round", "Kidney", "Lobed" }.Select(shape => PuddleSprite(shape)).Where(s => s != null).ToArray(),
             };
             var nymph = CreateNymph(art);
+            var barSkin = ArtSetup.CreateMeganeuraBarSkin();
 
             var root = new GameObject("Boss_Meganeura") { layer = LayerMask.NameToLayer(CombatLayers.Enemy) };
             try
@@ -203,6 +205,8 @@ namespace Primordia.Editor
                 var boss = root.AddComponent<MeganeuraBoss>();
                 boss.Configure(art, body, bodySprite, shadow, shadowSprite, stump);
                 boss.ConfigureFight(fire, fireSprite, effects, nymph);
+                if (barSkin != null)
+                    root.AddComponent<BossBarAppearance>().Configure(barSkin);
 
                 Directory.CreateDirectory(Path.GetDirectoryName(PrefabPath));
                 var prefab = PrefabUtility.SaveAsPrefabAsset(root, PrefabPath);

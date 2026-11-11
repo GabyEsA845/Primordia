@@ -17,11 +17,31 @@ namespace Primordia.UI
         {
             [Tooltip("Relleno de la ventana (uno o varios cuadros en bucle), del tamaño de la ventana.")]
             public Sprite[] fill = Array.Empty<Sprite>();
+            public float fillFrameTime;
+            public float eyesFrameTime;
             [Tooltip("Ojos encima del marco (uno o varios cuadros en bucle), del tamaño del marco.")]
             public Sprite[] eyes = Array.Empty<Sprite>();
             [Tooltip("Marco propio de esta fase (uno o varios cuadros en bucle). Vacío: el marco común (o el de silueta).")]
             public Sprite[] frame = Array.Empty<Sprite>();
         }
+
+        [Serializable]
+        public class PhaseEffect
+        {
+            public Sprite[] frames = Array.Empty<Sprite>();
+            public float frameTime = 0.08f;
+        }
+
+        [SerializeField] bool bottomAnchored;
+        [SerializeField] bool immuneUsesPhaseFrame;
+        [SerializeField] PhaseEffect[] phaseChangeByPhase = Array.Empty<PhaseEffect>();
+        [SerializeField] Sprite[] lowSparks = Array.Empty<Sprite>();
+        [SerializeField] float lowSparksFrameTime = 0.09f;
+
+        public bool BottomAnchored => bottomAnchored;
+        public bool ImmuneUsesPhaseFrame => immuneUsesPhaseFrame;
+        public bool HasLowSparks => lowSparks.Length > 0;
+        public Sprite LowSparksFrame(float time) => Loop(lowSparks, time, lowSparksFrameTime);
 
         [Header("Marco")]
         [SerializeField] Sprite frame;
@@ -69,10 +89,18 @@ namespace Primordia.UI
         public Sprite[] PhaseChange => phaseChange;
 
         /// <summary>Cuadro del efecto de cambio de fase a esos segundos de empezar (null al acabar o si no hay).</summary>
-        public Sprite PhaseChangeFrame(float elapsed)
+        public Sprite PhaseChangeFrame(float elapsed) => PhaseChangeFrame(elapsed, -1);
+
+        public Sprite PhaseChangeFrame(float elapsed, int phase)
         {
-            int index = Mathf.FloorToInt(elapsed / phaseChangeFrameTime);
-            return index >= 0 && index < phaseChange.Length ? phaseChange[index] : null;
+            var effect = phase >= 0 && phase < phaseChangeByPhase.Length ? phaseChangeByPhase[phase] : null;
+            var frames = effect != null && effect.frames != null && effect.frames.Length > 0 ? effect.frames : phaseChange;
+            float duration = ReferenceEquals(frames, phaseChange) ? phaseChangeFrameTime : effect.frameTime;
+            // Evita convertir infinito a entero antes de que empiece el efecto.
+            if (float.IsInfinity(elapsed) || elapsed < 0f)
+                return null;
+            int index = Mathf.FloorToInt(elapsed / Mathf.Max(0.01f, duration));
+            return index < frames.Length ? frames[index] : null;
         }
 
         /// <summary>Aspecto de esa fase (la última si hay menos).</summary>
@@ -87,11 +115,11 @@ namespace Primordia.UI
         }
 
         /// <summary>Cuadro de una animación en bucle de este aspecto a esa hora.</summary>
-        public Sprite Loop(Sprite[] frames, float time)
+        public Sprite Loop(Sprite[] frames, float time, float duration = 0f)
         {
             if (frames == null || frames.Length == 0)
                 return null;
-            return frames[Mathf.FloorToInt(time / frameTime) % frames.Length];
+            return frames[Mathf.FloorToInt(time / (duration > 0f ? duration : frameTime)) % frames.Length];
         }
 
         internal void Configure(Sprite newFrame, Sprite newFrameDark, RectInt newWindow, Sprite newBack, Sprite newTrail,
@@ -107,6 +135,15 @@ namespace Primordia.UI
             notch = newNotch;
             notchBroken = newNotchBroken;
             notchBreak = newNotchBreak ?? Array.Empty<Sprite>();
+        }
+
+        internal void ConfigureMeganeura(PhaseEffect[] effects, Sprite[] sparks)
+        {
+            bottomAnchored = true;
+            immuneUsesPhaseFrame = true;
+            phaseChangeByPhase = effects;
+            lowSparks = sparks;
+            lowSparksFrameTime = 0.09f;
         }
 
         /// <summary>Efecto al pasar a la fase siguiente (el caparazón del Euriptérido saltando en pedazos).</summary>

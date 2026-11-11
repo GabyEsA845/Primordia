@@ -230,6 +230,7 @@ GameObject:
   - component: {fileID: 6800956837083922183}
   - component: {fileID: 4774511030030819996}
   - component: {fileID: 2907897117711222393}
+  - component: {fileID: 4009054628751952539}
   m_Layer: 7
   m_Name: Boss_Meganeura
   m_TagString: Untagged
@@ -666,6 +667,19 @@ MonoBehaviour:
   bannerAt: 1
   bannerUntil: 3.2
   skipText: '[E] Saltar'
+--- !u!114 &4009054628751952539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4761576600614030917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67332564f65997f499fcf325871a9d21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Primordia::Primordia.UI.BossBarAppearance
+  skin: {fileID: 11400000, guid: 28520a41a7b0e1546b8bbfe4af07cf10, type: 2}
 --- !u!1 &5424612007621939891
 GameObject:
   m_ObjectHideFlags: 0

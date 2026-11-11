@@ -230,6 +230,145 @@ namespace Primordia.Tests
             Assert.IsFalse(bar.ShowsPhaseChange, "Una sola vez: 3 cuadros de 80 ms.");
         }
 
+        BossBarSkin CreateMeganeuraSkin()
+        {
+            var skin = CreateSkin();
+            for (int i = 0; i < 3; i++)
+                skin.Phase(i).frame = new[] { MakeSprite(300, 32) };
+            skin.Dark.eyes = System.Array.Empty<Sprite>();
+            skin.ConfigureMeganeura(new BossBarSkin.PhaseEffect[]
+            {
+                null,
+                new() { frames = new[] { MakeSprite(300, 32), MakeSprite(300, 32) }, frameTime = 0.08f },
+                new() { frames = new[] { MakeSprite(300, 32), MakeSprite(300, 32) }, frameTime = 0.07f },
+            }, new[] { MakeSprite(300, 32), MakeSprite(300, 32) });
+            return skin;
+        }
+
+        [UnityTest]
+        public IEnumerator MeganeuraSkin_PhasesAndCloudsKeepTheCurrentFrame()
+        {
+            var skin = CreateMeganeuraSkin();
+            var boss = CreateBoss(skin);
+            for (int phase = 0; phase < 3; phase++)
+            {
+                boss.phase = phase;
+                boss.style = BossBarStyle.Normal;
+                yield return null;
+                Assert.AreSame(skin, bar.ActiveSkin);
+                Assert.AreSame(skin.Phase(phase).frame[0], bar.SkinFrameSprite);
+                Assert.Contains(bar.SkinFillSprite, skin.Phase(phase).fill);
+                boss.style = BossBarStyle.Immune;
+                yield return null;
+                Assert.AreSame(skin.Phase(phase).frame[0], bar.SkinFrameSprite);
+                Assert.AreSame(skin.Dark.fill[0], bar.SkinFillSprite);
+                Assert.Contains(bar.SkinEyesSprite, skin.Phase(phase).eyes, "Los ojos de la fase se conservan al volar.");
+            }
+        }
+
+        [UnityTest]
+        public IEnumerator MeganeuraSkin_BottomIsRelativeToScreenAndHidesAfterDeath()
+        {
+            var screen = (RectTransform)bar.transform;
+            screen.sizeDelta = new Vector2(800f, 600f);
+            var original = (RectTransform)bar.Root.transform;
+            original.anchorMin = original.anchorMax = original.pivot = new Vector2(0.5f, 1f);
+            original.anchoredPosition = new Vector2(0f, -6f);
+            var boss = CreateBoss(CreateMeganeuraSkin());
+            yield return null;
+            var view = (RectTransform)screen.Find("BossBarSkin");
+            Assert.IsNotNull(view);
+            Assert.AreEqual(new Vector2(0.5f, 0f), view.anchorMin);
+            Assert.AreEqual(view.anchorMin, view.anchorMax);
+            Assert.AreEqual(view.anchorMin, view.pivot);
+            Assert.AreEqual(new Vector2(0f, 24f), view.anchoredPosition);
+            var corners = new Vector3[4];
+            view.Find("Frame").GetComponent<RectTransform>().GetWorldCorners(corners);
+            Assert.Less(screen.InverseTransformPoint(corners[1]).y, screen.rect.center.y);
+            boss.health.TakeDamage(100);
+            yield return null;
+            Assert.IsFalse(view.gameObject.activeSelf);
+        }
+
+        [UnityTest]
+        public IEnumerator MeganeuraSkin_SparksStartAtTenPercentWithoutWaitingForGhost()
+        {
+            var boss = CreateBoss(CreateMeganeuraSkin());
+            yield return null;
+            var view = (RectTransform)bar.transform.Find("BossBarSkin");
+            var sparks = view.Find("LowSparks").GetComponent<Image>();
+            boss.health.TakeDamage(89);
+            yield return null;
+            Assert.IsFalse(sparks.enabled);
+            boss.health.TakeDamage(1);
+            yield return null;
+            Assert.IsTrue(sparks.enabled);
+            Assert.IsNotNull(sparks.sprite);
+            Assert.LessOrEqual(Mathf.Abs(view.anchoredPosition.x), 1f);
+            Assert.LessOrEqual(Mathf.Abs(view.anchoredPosition.y - 24f), 1f);
+            boss.health.TakeDamage(1);
+            yield return null;
+            Assert.IsTrue(sparks.enabled);
+        }
+
+        [UnityTest]
+        public IEnumerator LegacySkin_StaysAtTopAndHasNoSparksAtLowHealth()
+        {
+            var skin = CreateSkin();
+            var boss = CreateBoss(skin);
+            boss.health.TakeDamage(90);
+            yield return null;
+            var view = (RectTransform)bar.Root.transform.Find("BossBarSkin");
+            Assert.IsFalse(skin.BottomAnchored);
+            Assert.AreEqual(new Vector2(0.5f, 1f), view.anchorMin);
+            Assert.AreEqual(new Vector2(0f, -12f), view.anchoredPosition);
+            Assert.IsFalse(view.Find("LowSparks").GetComponent<Image>().enabled);
+        }
+
+        [Test]
+        public void PhaseEffects_UseDestinationPhaseTimingAndLegacyFallback()
+        {
+            var skin = CreateMeganeuraSkin();
+            var legacy = MakeSprite(300, 32);
+            skin.ConfigurePhaseChange(new[] { legacy }, 0.08f);
+            Assert.AreSame(legacy, skin.PhaseChangeFrame(0f, 0));
+            Assert.IsNotNull(skin.PhaseChangeFrame(0.15f, 1));
+            Assert.IsNull(skin.PhaseChangeFrame(0.16f, 1));
+            Assert.IsNull(skin.PhaseChangeFrame(0.14f, 2));
+            Assert.AreSame(legacy, skin.PhaseChangeFrame(0f, 3));
+            Assert.IsNull(skin.PhaseChangeFrame(float.PositiveInfinity, 1));
+        }
+
+#if UNITY_EDITOR
+        [Test]
+        public void MeganeuraPrefab_HasSkinAndReportsHealthThresholds()
+        {
+            var prefab = UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>(
+                "Assets/_Primordia/Prefabs/Enemies/Boss_Meganeura.prefab");
+            Assert.IsNotNull(prefab);
+            var appearance = prefab.GetComponent<BossBarAppearance>();
+            Assert.IsNotNull(appearance);
+            Assert.IsNotNull(appearance.Skin);
+            Assert.IsTrue(appearance.Skin.BottomAnchored);
+            var instance = Track(Object.Instantiate(prefab));
+            instance.SetActive(false);
+            var boss = instance.GetComponent<MeganeuraBoss>();
+            var phased = boss as IPhasedBoss;
+            Assert.IsNotNull(phased);
+            CollectionAssert.AreEqual(new[] { 0.65f, 0.30f }, phased.PhaseThresholds);
+            var health = instance.GetComponent<Health>();
+            health.IsInvulnerable = false;
+            health.SetMax(100);
+            Assert.AreEqual(0, phased.PhaseIndex);
+            health.TakeDamage(35);
+            Assert.AreEqual(1, phased.PhaseIndex);
+            health.TakeDamage(35);
+            Assert.AreEqual(2, phased.PhaseIndex);
+            Assert.AreEqual(3, appearance.Skin.PhaseCount);
+            Assert.AreEqual(new RectInt(43, 12, 241, 8), appearance.Skin.Window);
+        }
+#endif
+
         [UnityTest]
         public IEnumerator Anomalocaris_ReportsPhasesForTheBar()
         {

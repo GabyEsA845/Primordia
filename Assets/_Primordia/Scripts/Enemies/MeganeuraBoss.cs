@@ -14,7 +14,7 @@ namespace Primordia.Enemies
     /// tormenta) viene en los pasos 7b-7d.
     /// </summary>
     [RequireComponent(typeof(Enemy), typeof(Rigidbody2D))]
-    public partial class MeganeuraBoss : MonoBehaviour, IBoss
+    public partial class MeganeuraBoss : MonoBehaviour, IBoss, IPhasedBoss
     {
         /// <summary>Unidades que sube el cuerpo en pantalla por cada unidad de altura (cos 55°).</summary>
         public const float AltitudeToY = 0.57f;
@@ -62,6 +62,8 @@ namespace Primordia.Enemies
 
         public string DisplayName => displayName;
         public Health Health { get; private set; }
+        public float[] PhaseThresholds => new[] { torn1Threshold, torn2Threshold };
+
         public BossBarStyle BarStyle => IsHigh || (Health != null && Health.IsInvulnerable) ? BossBarStyle.Immune : BossBarStyle.Normal;
         public Vector2 ArenaCenter => arenaCenter != null ? arenaCenter.position : transform.position;
 

@@ -11,7 +11,7 @@
 - [Skill primordia-audio](primordia-audio-skill.md) — usarla en todo audio nuevo
 - [Mutaciones por niveles](primordia-mutation-visual-tiers.md) — normales = efectos sin tocar silueta; pieles retocan dentro; especiales cambian el modelo
 - [Documentos por piso](primordia-floor-docs.md) — actualizar el documento interactivo del piso al terminar cada cosa
-- [Codex aparcado](primordia-codex-paused.md) — trabajar con Codex está archivado; no proponerlo
+- [Codex RETOMADO (2026-11-11)](primordia-codex-paused.md) — Claude dirige, Codex implementa en ramas codex/*; tareas en docs/codex/, reglas en AGENTS.md
 
 - [Pulido del piso 3](primordia-floor3-art-batch-pending.md) — HECHO (commits en feature/floor-3): dónde está cada cosa; franja de agua y rastro de fuego PROGRAMADOS 2026-11-05 (falta probarlos)
 - [Tanda de arte de linajes del piso 3](primordia-floor3-lineage-art-pending.md) — 1.ª y 2.ª tandas (Yesquero) hechas e integradas, la 2.ª a falta de commit; NO queda arte pendiente (tinte real y muerte al revés del Zombi van con los enemigos del paso 5)

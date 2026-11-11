@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Primordia.Rooms;
 
 namespace Primordia.Enemies
 {
@@ -20,10 +21,36 @@ namespace Primordia.Enemies
         const float DrizzleSeconds = 8f, SteamSeconds = 6f, SteamFrameSeconds = 0.12f;
         const int SteamCount = 10, SteamOrder = 2;
 
+        // Provisionales: apagado, revelado a contraluz y desplazamiento de las nubes.
+        const float GroundQuenchSpeed = 3f, RainDouseSpeed = 1.5f, RainCheckEvery = 0.25f;
+        const float SilhouetteSeconds = 0.35f, SilhouetteFrameMs = 90f, RevealFlashAlpha = 0.5f;
+        const int SilhouetteOrder = 26;
+        const float CloudSpeed = 0.6f, CloudFadeSeconds = 3f;
+        const int CloudOrder = 2; // Suelo 1; personajes y troncos desde 4; jugador 10.
+
         static Sprite white;
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
         static void ResetStatics() => white = null;
+
+        MeganeuraBoss boss;
+        readonly List<SpriteRenderer> clouds = new();
+        Vector2 cloudSpan;
+        float wetElapsed;
+        GameObject silhouette;
+
+        internal void ConfigureAtmosphere(MeganeuraBoss owner, Sprite cloud)
+        {
+            boss = owner;
+            if (cloud == null || clouds.Count > 0)
+                return;
+            Vector2 tileSize = cloud.bounds.size;
+            Vector2 cover = floorSize + tileSize * 2f;
+            cloudSpan = new Vector2(Mathf.Ceil(cover.x / tileSize.x) * tileSize.x, Mathf.Ceil(cover.y / tileSize.y) * tileSize.y);
+            Tile(clouds, new[] { cloud }, cover, CloudOrder);
+            foreach (var tile in clouds)
+                tile.name = "CloudShadow";
+        }
 
         SpriteRenderer dark;
         SpriteRenderer flash;
@@ -112,6 +139,8 @@ namespace Primordia.Enemies
 
         public void SetRain(bool on)
         {
+            if (Raining != on)
+                wetElapsed = 0f;
             Raining = on;
             SetTiles(rain, on);
         }
@@ -132,7 +161,16 @@ namespace Primordia.Enemies
         }
 
         /// <summary>Destello de pantalla: sube de golpe y baja en 0,25 s.</summary>
-        public void Flash(float alpha) => flashAlpha = Mathf.Max(flashAlpha, alpha);
+        public void Flash(float alpha)
+        {
+            flashAlpha = Mathf.Max(flashAlpha, alpha);
+            if (!calming && alpha >= RevealFlashAlpha && boss != null && boss.IsHigh && !boss.Health.IsDead)
+            {
+                if (silhouette != null)
+                    Destroy(silhouette);
+                silhouette = boss.CreateStormSilhouette(transform, SilhouetteSeconds, SilhouetteFrameMs, SilhouetteOrder);
+            }
+        }
 
         /// <summary>La tormenta amaina: se va la oscuridad y la lluvia.</summary>
         public void Calm(float seconds, Sprite[] drizzle = null, Sprite[] newSteam = null)
@@ -143,6 +181,8 @@ namespace Primordia.Enemies
             if (calming)
                 return;
             calming = true;
+            if (silhouette != null)
+                Destroy(silhouette);
             calmStarted = Time.time;
             drizzleFrames = drizzle ?? System.Array.Empty<Sprite>();
             steamFrames = newSteam ?? System.Array.Empty<Sprite>();
@@ -169,8 +209,59 @@ namespace Primordia.Enemies
             }
         }
 
+        bool InRoom(Component target)
+        {
+            Vector2 offset = target.transform.position - transform.position;
+            return target.gameObject.scene == gameObject.scene && Mathf.Abs(offset.x) <= floorSize.x * 0.5f
+                && Mathf.Abs(offset.y) <= floorSize.y * 0.5f;
+        }
+
+        void QuenchRain()
+        {
+            if (!Raining)
+                return;
+            // El reloj natural ya descuenta un segundo: solo se suma el desgaste extra para llegar a x3.
+            foreach (var fire in GroundFire.All)
+            {
+                if (fire != null && fire.IsBurning && InRoom(fire))
+                    fire.Quench((GroundQuenchSpeed - 1f) * Time.deltaTime);
+            }
+            wetElapsed += Time.deltaTime;
+            if (wetElapsed < RainCheckEvery)
+                return;
+            foreach (var burn in FindObjectsByType<PlayerBurn>())
+            {
+                if (InRoom(burn))
+                    burn.Douse(RainDouseSpeed * wetElapsed);
+            }
+            wetElapsed = 0f;
+        }
+
+        void MoveClouds()
+        {
+            float alpha = calming ? Mathf.Clamp01(1f - (Time.time - calmStarted) / CloudFadeSeconds) : 1f;
+            if (alpha <= 0f)
+            {
+                foreach (var tile in clouds)
+                    Destroy(tile.gameObject);
+                clouds.Clear();
+                return;
+            }
+            Vector2 step = Vector2.one.normalized * (CloudSpeed * Time.deltaTime);
+            foreach (var tile in clouds)
+            {
+                Vector2 position = (Vector2)tile.transform.localPosition + step;
+                position.x = Mathf.Repeat(position.x + cloudSpan.x * 0.5f, cloudSpan.x) - cloudSpan.x * 0.5f;
+                position.y = Mathf.Repeat(position.y + cloudSpan.y * 0.5f, cloudSpan.y) - cloudSpan.y * 0.5f;
+                tile.transform.localPosition = position;
+                tile.color = new Color(1f, 1f, 1f, alpha);
+            }
+        }
+
         void Update()
         {
+            QuenchRain();
+            MoveClouds();
             if (darkDuration > 0f && dark != null)
             {
                 darkTime += Time.deltaTime;

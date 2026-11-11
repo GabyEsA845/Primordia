@@ -38,6 +38,13 @@ namespace Primordia.Rooms
         /// <summary>True mientras arde (hasta que se acaba su tiempo y empieza a apagarse). Se alarga si otro fuego cae encima.</summary>
         public bool IsBurning => !dying && Time.time < endTime;
 
+        /// <summary>Descuenta tiempo de fuego sin cambiar su desgaste natural ni su animación de apagado.</summary>
+        public void Quench(float seconds)
+        {
+            if (IsBurning)
+                endTime -= Mathf.Max(0f, seconds);
+        }
+
         float nextSpread;
         float nextCheck;
         bool dying;

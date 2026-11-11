@@ -340,7 +340,11 @@ namespace Primordia.Enemies
         void LateUpdate()
         {
             if (bodyRenderer != null)
+            {
                 bodyRenderer.color = Time.time < flashUntil ? new Color(1f, 0.45f, 0.45f) : Color.white;
+                if (storm != null && PhaseIndex >= 2 && CurrentMode != Mode.Dead)
+                    bodyRenderer.enabled = !HideBodyWhenHighInStorm || !IsHigh;
+            }
         }
     }
 }

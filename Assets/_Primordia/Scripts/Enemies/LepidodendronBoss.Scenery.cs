@@ -56,10 +56,17 @@ namespace Primordia.Enemies
                     yield return decor.sheet;
                 for (int wall = 1; wall <= 3; wall++)
                 {
-                    yield return $"Lepido_Wall{wall}_D0";
+                    for (int state = 0; state < 4; state++)
+                        foreach (string prefix in new[] { "D", "Charred_D", "Hurt_D" })
+                            yield return $"Lepido_Wall{wall}_{prefix}{state}";
+                    foreach (string suffix in new[] { "Retract", "Scar", "Crumble", "AshScar" })
+                        yield return $"Lepido_Wall{wall}_{suffix}";
                     for (int knot = 0; knot <= wall; knot++)
-                        yield return $"Lepido_Wall{wall}_Knot{knot}_Idle";
+                        foreach (string suffix in new[] { "Idle", "Hit", "Wound", "WoundCharred" })
+                            yield return $"Lepido_Wall{wall}_Knot{knot}_{suffix}";
                 }
+                yield return "Fx_KnotBurst";
+                yield return "Fx_RootSmolder";
             }
         }
 
@@ -124,8 +131,12 @@ namespace Primordia.Enemies
                     var crop = crops[j];
                     var offset = new Vector2(crop.x + crop.z / 2f - pivotX, pivotY - crop.y - crop.z / 2f) / Ppu;
                     Piece($"Knot{j + 1}", $"Lepido_Wall{i + 1}_Knot{j}_Idle", position + offset,
-                        WallOrder + 1, KnotStep, j, wall.transform);
+                        WallOrder + 1, 0f, j, wall.transform);
                 }
+                var component = wall.gameObject.AddComponent<LepidodendronWall>();
+                component.Configure(this, i, wall, collider, art, encounterConfig != null ? encounterConfig.Reactions : null, crops);
+                walls.Add(component);
+                BuildWallSupplies(i);
             }
         }
 

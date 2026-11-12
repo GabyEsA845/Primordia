@@ -355,7 +355,7 @@ namespace Primordia.Combat
             if (struck.Contains(health))
                 return;
 
-            if (!health.TakeDamage(Damage, DamageKind.Hit, DamageOrigin))
+            if (!health.TakeDamage(Damage, DamageKind.Hit, DamageOrigin, other.ClosestPoint(transform.position)))
                 return;
 
             struck.Add(health);

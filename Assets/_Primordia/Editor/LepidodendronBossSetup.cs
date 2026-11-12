@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Linq;
 using Primordia.Combat;
 using Primordia.Core;
 using Primordia.Enemies;
@@ -31,13 +32,13 @@ namespace Primordia.Editor
                 throw new InvalidOperationException("Falta Floor_3 o su tema de Tierra quemada.");
             var art = ArtSetup.ImportLepidodendronSheets();
             var room = CreateRoom();
-            var prefab = CreatePrefab(art);
+            var prefab = CreatePrefab(art, floor3);
             var entry = new FloorConfig.BossEntry(prefab, room, floor3.BandThemes[2], Vector2.zero);
             CreateTestConfig(floor3, entry);
             AssetDatabase.SaveAssets();
             CreateTestScene();
             AssetDatabase.SaveAssets();
-            Debug.Log("Lepidodendron L1 creado: sala, escenario y Test_BossLepidodendron, sin combate.");
+            Debug.Log("Lepidodendron L2 creado: paredes, nudos, fuego y oleadas; escena L1 ampliada.");
         }
 
         static RoomTemplate CreateRoom()
@@ -68,7 +69,7 @@ namespace Primordia.Editor
             return room;
         }
 
-        static Enemy CreatePrefab(DirectionalArt art)
+        static Enemy CreatePrefab(DirectionalArt art, FloorConfig floor3)
         {
             var data = LoadOrCreate<EnemyData>(DataPath);
             data.Configure(EnemyBehaviour.Chaser, maxHealth: LepidodendronBoss.MaxHealth, moveSpeed: 0f, detectionRange: 0f, contactDamage: 0);
@@ -80,11 +81,23 @@ namespace Primordia.Editor
             {
                 root.AddComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
                 root.AddComponent<Health>().IsInvulnerable = true;
+                root.AddComponent<BossDamageLimiter>();
                 var enemy = root.AddComponent<Enemy>();
                 var serialized = new SerializedObject(enemy);
                 serialized.FindProperty("data").objectReferenceValue = data;
                 serialized.ApplyModifiedPropertiesWithoutUndo();
-                root.AddComponent<LepidodendronBoss>().Configure(art);
+                var boss = root.AddComponent<LepidodendronBoss>();
+                boss.Configure(art);
+                var enemies = new[] { "Calamites", "Toad", "Spider", "Beetle", "Dragonfly" }
+                    .Select(name => AssetDatabase.LoadAssetAtPath<GameObject>($"Assets/_Primordia/Prefabs/Enemies/Enemy_{name}.prefab")?.GetComponent<Enemy>()).ToArray();
+                var fern = floor3.BandThemes.Where(t => t != null).SelectMany(t => t.Ferns).FirstOrDefault(f => f != null && f.IsValid && f.IsBurnable);
+                var methane = floor3.BandThemes.Where(t => t != null).Select(t => t.Methane).FirstOrDefault(m => m != null && m.HasSacs);
+                if (enemies.Any(e => e == null) || fern == null || methane == null || floor3.Reactions == null || floor3.Reactions.GroundFire.Length == 0)
+                    throw new InvalidOperationException("Faltan prefabs o arte aprobado de enemigos, helechos, odres o fuego para L2.");
+                // Los cinco prefabs salen de uno en uno: el tope de seis cuenta enemigos, no grupos.
+                if (enemies.Any(e => floor3.Enemies.Any(entry => entry.prefab == e && entry.GroupSize != 1)))
+                    throw new InvalidOperationException("Una especie de L2 está configurada como grupo; no se puede respetar su cola individual.");
+                boss.ConfigureWallCombat(floor3, enemies, fern, methane);
                 Directory.CreateDirectory(Path.GetDirectoryName(PrefabPath));
                 return PrefabUtility.SaveAsPrefabAsset(root, PrefabPath).GetComponent<Enemy>();
             }

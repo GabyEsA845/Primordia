@@ -767,6 +767,15 @@ namespace Primordia.Tests
         }
 
         [UnityTest]
+        public IEnumerator Relampago_RayoSueltoRevelaSiluetaAunqueElDestelloSeaSuave()
+        {
+            yield return HighStorm();
+            var storm = boss.Storm;
+            storm.Flash(0.3f, reveal: true);
+            Assert.IsNotNull(storm.transform.Find("MeganeuraSilhouette"));
+        }
+
+        [UnityTest]
         public IEnumerator Tormenta_CuerpoOcultoEnAltoYVisibleAlBajar()
         {
             yield return HighStorm();

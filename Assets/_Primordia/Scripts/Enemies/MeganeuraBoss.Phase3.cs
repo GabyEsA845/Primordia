@@ -261,7 +261,7 @@ namespace Primordia.Enemies
             SpriteFramePlayer.PlayOnce(effects.boltSmall, 0.05f, spot, 28);
             SpriteFramePlayer.PlayOnce(effects.boltSmallImpact, 0.06f, spot, 28);
             SpriteFramePlayer.PlayOnce(effects.boltScorch, 0.5f, spot, 2);
-            storm?.Flash(0.3f);
+            storm?.Flash(0.3f, reveal: true);
             ScreenShake.Pulse(2f, 0.12f);
             DamagePlayerNear(spot, LooseRadius, LooseDamage);
             TouchPuddles(spot);
@@ -316,7 +316,7 @@ namespace Primordia.Enemies
             SpriteFramePlayer.PlayOnce(effects.boltBig, 0.05f, target, 28);
             SpriteFramePlayer.PlayOnce(effects.boltBigImpact, 0.06f, target, 28);
             SpriteFramePlayer.PlayOnce(effects.boltScorch, 0.5f, target, 2);
-            storm?.Flash(0.6f);
+            storm?.Flash(0.6f, reveal: true);
             ScreenShake.Pulse(4f, 0.2f);
             DamagePlayerNear(target, BigDirectRadius, BigDamage);
             TouchPuddles(target);

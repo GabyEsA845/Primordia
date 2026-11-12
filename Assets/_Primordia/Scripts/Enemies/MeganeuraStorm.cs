@@ -161,10 +161,11 @@ namespace Primordia.Enemies
         }
 
         /// <summary>Destello de pantalla: sube de golpe y baja en 0,25 s.</summary>
-        public void Flash(float alpha)
+        /// <summary>Destello de pantalla. Con <paramref name="reveal"/> (cada rayo que cae) o un destello fuerte, deja ver la silueta de la Meganeura si vuela alta.</summary>
+        public void Flash(float alpha, bool reveal = false)
         {
             flashAlpha = Mathf.Max(flashAlpha, alpha);
-            if (!calming && alpha >= RevealFlashAlpha && boss != null && boss.IsHigh && !boss.Health.IsDead)
+            if (!calming && (reveal || alpha >= RevealFlashAlpha) && boss != null && boss.IsHigh && !boss.Health.IsDead)
             {
                 if (silhouette != null)
                     Destroy(silhouette);

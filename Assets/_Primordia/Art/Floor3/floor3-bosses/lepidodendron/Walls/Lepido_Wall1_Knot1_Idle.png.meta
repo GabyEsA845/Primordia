@@ -58,9 +58,9 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 16
@@ -86,7 +86,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -130,12 +130,12 @@ TextureImporter:
       name: Lepido_Wall1_Knot1_Idle_0
       rect:
         serializedVersion: 2
-        x: 9
-        y: 1
-        width: 23
-        height: 30
+        x: 0
+        y: 0
+        width: 38
+        height: 38
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -152,12 +152,12 @@ TextureImporter:
       name: Lepido_Wall1_Knot1_Idle_1
       rect:
         serializedVersion: 2
-        x: 47
-        y: 1
-        width: 23
-        height: 30
+        x: 38
+        y: 0
+        width: 38
+        height: 38
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -174,12 +174,12 @@ TextureImporter:
       name: Lepido_Wall1_Knot1_Idle_2
       rect:
         serializedVersion: 2
-        x: 84
-        y: 6
-        width: 25
-        height: 26
+        x: 76
+        y: 0
+        width: 38
+        height: 38
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -196,12 +196,12 @@ TextureImporter:
       name: Lepido_Wall1_Knot1_Idle_3
       rect:
         serializedVersion: 2
-        x: 98
+        x: 114
         y: 0
-        width: 6
-        height: 7
+        width: 38
+        height: 38
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -210,28 +210,6 @@ TextureImporter:
       bones: []
       spriteID: 91668f5b2ea4cb110800000000000000
       internalID: 1277978731842397721
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall1_Knot1_Idle_4
-      rect:
-        serializedVersion: 2
-        x: 123
-        y: 1
-        width: 23
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3d30fbe2e1472b450800000000000000
-      internalID: 6103068118022554579
       vertices: []
       indices: 
       edges: []
@@ -254,7 +232,6 @@ TextureImporter:
       Lepido_Wall1_Knot1_Idle_1: -1438449990285704656
       Lepido_Wall1_Knot1_Idle_2: 35072564534586529
       Lepido_Wall1_Knot1_Idle_3: 1277978731842397721
-      Lepido_Wall1_Knot1_Idle_4: 6103068118022554579
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

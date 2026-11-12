@@ -64,9 +64,9 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 16
@@ -92,7 +92,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -136,12 +136,12 @@ TextureImporter:
       name: Lepido_Wall1_AshScar_0
       rect:
         serializedVersion: 2
-        x: 14
-        y: 6
-        width: 96
-        height: 313
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 0
+        width: 124
+        height: 349
+      alignment: 9
+      pivot: {x: 0.5, y: 0.068767905}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -150,138 +150,6 @@ TextureImporter:
       bones: []
       spriteID: cb9c99c2384e300a0800000000000000
       internalID: -6916433350670825028
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall1_AshScar_1
-      rect:
-        serializedVersion: 2
-        x: 95
-        y: 260
-        width: 11
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 36e0b5e397c0c5da0800000000000000
-      internalID: -5954870892413907357
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall1_AshScar_2
-      rect:
-        serializedVersion: 2
-        x: 98
-        y: 170
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8a32ee959eff7f4b0800000000000000
-      internalID: -5406571449933749336
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall1_AshScar_3
-      rect:
-        serializedVersion: 2
-        x: 98
-        y: 158
-        width: 8
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: cabc351fccd492900800000000000000
-      internalID: 660144363003956140
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall1_AshScar_4
-      rect:
-        serializedVersion: 2
-        x: 98
-        y: 133
-        width: 8
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4e728eda4ca4b94e0800000000000000
-      internalID: -1973901803080112156
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall1_AshScar_5
-      rect:
-        serializedVersion: 2
-        x: 17
-        y: 87
-        width: 7
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e5decf419869eb520800000000000000
-      internalID: 2719776740485164382
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall1_AshScar_6
-      rect:
-        serializedVersion: 2
-        x: 97
-        y: 22
-        width: 7
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 989a9e787d0441610800000000000000
-      internalID: 1590967862811011465
       vertices: []
       indices: 
       edges: []
@@ -301,12 +169,6 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       Lepido_Wall1_AshScar_0: -6916433350670825028
-      Lepido_Wall1_AshScar_1: -5954870892413907357
-      Lepido_Wall1_AshScar_2: -5406571449933749336
-      Lepido_Wall1_AshScar_3: 660144363003956140
-      Lepido_Wall1_AshScar_4: -1973901803080112156
-      Lepido_Wall1_AshScar_5: 2719776740485164382
-      Lepido_Wall1_AshScar_6: 1590967862811011465
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

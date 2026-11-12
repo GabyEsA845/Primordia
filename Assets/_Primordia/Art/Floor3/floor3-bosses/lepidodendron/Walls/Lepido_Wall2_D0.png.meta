@@ -61,9 +61,9 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 16
@@ -89,7 +89,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -133,12 +133,12 @@ TextureImporter:
       name: Lepido_Wall2_D0_0
       rect:
         serializedVersion: 2
-        x: 14
-        y: 2
-        width: 104
-        height: 334
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 0
+        width: 132
+        height: 356
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06741573}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -147,116 +147,6 @@ TextureImporter:
       bones: []
       spriteID: aeeda8f9baea8c870800000000000000
       internalID: 8703398332032802538
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall2_D0_1
-      rect:
-        serializedVersion: 2
-        x: 23
-        y: 271
-        width: 8
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 68cfa810ed97083a0800000000000000
-      internalID: -6665193454092747642
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall2_D0_2
-      rect:
-        serializedVersion: 2
-        x: 14
-        y: 214
-        width: 8
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2858f1e743d173480800000000000000
-      internalID: -8919628425692478078
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall2_D0_3
-      rect:
-        serializedVersion: 2
-        x: 20
-        y: 122
-        width: 7
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 77f024860d4922220800000000000000
-      internalID: 2459691969320980343
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall2_D0_4
-      rect:
-        serializedVersion: 2
-        x: 107
-        y: 82
-        width: 8
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8aac178099fb0ae30800000000000000
-      internalID: 4512817490617813672
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall2_D0_5
-      rect:
-        serializedVersion: 2
-        x: 17
-        y: 45
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 00cd342f6963a58c0800000000000000
-      internalID: -4009832496282477568
       vertices: []
       indices: 
       edges: []
@@ -276,11 +166,6 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       Lepido_Wall2_D0_0: 8703398332032802538
-      Lepido_Wall2_D0_1: -6665193454092747642
-      Lepido_Wall2_D0_2: -8919628425692478078
-      Lepido_Wall2_D0_3: 2459691969320980343
-      Lepido_Wall2_D0_4: 4512817490617813672
-      Lepido_Wall2_D0_5: -4009832496282477568
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

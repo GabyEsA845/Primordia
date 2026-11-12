@@ -16,6 +16,8 @@ namespace Primordia.Core
     /// mutación al azar de la reserva del piso (o sube una que ya se lleva) y F5 una especial de las almejas. F9 derrumba las rocas agrietadas de la sala y F10 pasa el derrumbe de la cueva a su
     /// siguiente fase (calma, crujidos, terremoto, derrumbe; sala del Euriptérido), Av Pág / Re Pág saltan al tramo siguiente o
     /// anterior del piso (piso 3) y F12 prende lo inflamable cercano (maleza y helechos del piso 3; con Mayús, un fuego en el suelo). Arriba a la izquierda se ve qué está activo.
+    /// Solo editor, Lepidodendron: Mayús+F8 recorre pared 1 → pared 2 → pared 3 → arena;
+    /// Mayús+F9 sacude la copa durante 1 s.
     /// </summary>
     public class DebugCheats : MonoBehaviour
     {
@@ -30,6 +32,10 @@ namespace Primordia.Core
         PlayerMutations player;
         string message;
         float messageUntil;
+#if UNITY_EDITOR
+        int lepidoStop;
+        LepidodendronBoss lepidoTestBoss;
+#endif
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
         static void ResetStatics() => instance = null;
@@ -105,10 +111,16 @@ namespace Primordia.Core
                 NextMouth();
             if (keyboard.f7Key.wasPressedThisFrame)
                 Say((invulnerable = !invulnerable) ? "Invulnerable" : "Vulnerable");
-            if (keyboard.f8Key.wasPressedThisFrame)
+            if (keyboard.f8Key.wasPressedThisFrame && !shift)
                 GoToExchange();
-            if (keyboard.f9Key.wasPressedThisFrame)
+            if (keyboard.f9Key.wasPressedThisFrame && !shift)
                 CollapseRocks();
+#if UNITY_EDITOR
+            if (keyboard.f8Key.wasPressedThisFrame && shift)
+                LepidodendronTest(false);
+            if (keyboard.f9Key.wasPressedThisFrame && shift)
+                LepidodendronTest(true);
+#endif
             if (keyboard.f11Key.wasPressedThisFrame)
                 CycleTeleport();
             if (keyboard.f10Key.wasPressedThisFrame)
@@ -132,6 +144,42 @@ namespace Primordia.Core
             if (strong && player.Weapon != null)
                 player.Weapon.SetDamageBonus(this, DamageBoost);
         }
+
+#if UNITY_EDITOR
+        void LepidodendronTest(bool shake)
+        {
+            var bosses = FindObjectsByType<LepidodendronBoss>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+            if (bosses.Length == 0)
+            {
+                Say("No hay Lepidodendron en este piso");
+                return;
+            }
+            var boss = bosses[0];
+            if (lepidoTestBoss != boss)
+            {
+                lepidoTestBoss = boss;
+                lepidoStop = 0;
+            }
+            if (shake)
+            {
+                boss.ShakeCanopy(1f);
+                Say("Copa: sacudida de 1 s");
+                return;
+            }
+            var room = boss.GetComponentInParent<Room>();
+            if (room != null)
+                room.Begin();
+            var position = boss.TestStop(lepidoStop);
+            if (player.TryGetComponent<Rigidbody2D>(out var body))
+            {
+                body.linearVelocity = Vector2.zero;
+                body.position = position;
+            }
+            player.transform.position = position;
+            Say(lepidoStop < 3 ? $"Lepidodendron: delante de pared {lepidoStop + 1}" : "Lepidodendron: arena");
+            lepidoStop = (lepidoStop + 1) % 4;
+        }
+#endif
 
         /// <summary>Mayús+F1: deja un medio corazón de sala unos tiles por delante, en la sala en que estás.</summary>
         void DropRoomHeart()

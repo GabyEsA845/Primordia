@@ -55,9 +55,9 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 16
@@ -83,7 +83,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -127,12 +127,12 @@ TextureImporter:
       name: Lepido_Wall2_Hurt_D1_0
       rect:
         serializedVersion: 2
-        x: 15
-        y: 2
-        width: 103
-        height: 334
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 0
+        width: 132
+        height: 356
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06741573}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -149,12 +149,12 @@ TextureImporter:
       name: Lepido_Wall2_Hurt_D1_1
       rect:
         serializedVersion: 2
-        x: 106
-        y: 88
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 132
+        y: 0
+        width: 132
+        height: 356
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06741573}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -163,50 +163,6 @@ TextureImporter:
       bones: []
       spriteID: d146a65d4ee80abd0800000000000000
       internalID: -2620937869645421539
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall2_Hurt_D1_2
-      rect:
-        serializedVersion: 2
-        x: 147
-        y: 2
-        width: 103
-        height: 334
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: cafd606de9ae94a20800000000000000
-      internalID: 3047224590809358252
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall2_Hurt_D1_3
-      rect:
-        serializedVersion: 2
-        x: 238
-        y: 88
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4132478627c2bf740800000000000000
-      internalID: 5186788265737593620
       vertices: []
       indices: 
       edges: []
@@ -227,8 +183,6 @@ TextureImporter:
     nameFileIdTable:
       Lepido_Wall2_Hurt_D1_0: -5279062438435546229
       Lepido_Wall2_Hurt_D1_1: -2620937869645421539
-      Lepido_Wall2_Hurt_D1_2: 3047224590809358252
-      Lepido_Wall2_Hurt_D1_3: 5186788265737593620
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

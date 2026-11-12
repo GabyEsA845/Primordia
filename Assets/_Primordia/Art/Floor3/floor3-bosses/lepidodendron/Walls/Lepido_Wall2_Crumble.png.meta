@@ -220,9 +220,9 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 16
@@ -248,7 +248,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -292,12 +292,12 @@ TextureImporter:
       name: Lepido_Wall2_Crumble_0
       rect:
         serializedVersion: 2
-        x: 14
-        y: 2
-        width: 104
-        height: 334
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 0
+        width: 132
+        height: 356
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06741573}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -314,12 +314,12 @@ TextureImporter:
       name: Lepido_Wall2_Crumble_1
       rect:
         serializedVersion: 2
-        x: 146
-        y: 2
-        width: 104
-        height: 331
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 132
+        y: 0
+        width: 132
+        height: 356
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06741573}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -336,12 +336,12 @@ TextureImporter:
       name: Lepido_Wall2_Crumble_2
       rect:
         serializedVersion: 2
-        x: 278
-        y: 2
-        width: 104
-        height: 328
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 264
+        y: 0
+        width: 132
+        height: 356
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06741573}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -358,12 +358,12 @@ TextureImporter:
       name: Lepido_Wall2_Crumble_3
       rect:
         serializedVersion: 2
-        x: 410
-        y: 2
-        width: 104
-        height: 325
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 396
+        y: 0
+        width: 132
+        height: 356
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06741573}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -380,12 +380,12 @@ TextureImporter:
       name: Lepido_Wall2_Crumble_4
       rect:
         serializedVersion: 2
-        x: 542
-        y: 2
-        width: 104
-        height: 322
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 528
+        y: 0
+        width: 132
+        height: 356
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06741573}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -402,12 +402,12 @@ TextureImporter:
       name: Lepido_Wall2_Crumble_5
       rect:
         serializedVersion: 2
-        x: 674
-        y: 2
-        width: 104
-        height: 320
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 660
+        y: 0
+        width: 132
+        height: 356
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06741573}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -424,12 +424,12 @@ TextureImporter:
       name: Lepido_Wall2_Crumble_6
       rect:
         serializedVersion: 2
-        x: 806
-        y: 2
-        width: 104
-        height: 319
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 792
+        y: 0
+        width: 132
+        height: 356
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06741573}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -446,12 +446,12 @@ TextureImporter:
       name: Lepido_Wall2_Crumble_7
       rect:
         serializedVersion: 2
-        x: 894
-        y: 282
-        width: 10
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 924
+        y: 0
+        width: 132
+        height: 356
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06741573}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -460,1128 +460,6 @@ TextureImporter:
       bones: []
       spriteID: 65e01f4f11fb226f0800000000000000
       internalID: -710795707326329258
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall2_Crumble_8
-      rect:
-        serializedVersion: 2
-        x: 938
-        y: 2
-        width: 104
-        height: 318
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ddfbb16b3eccb7550800000000000000
-      internalID: 6159742193744199645
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall2_Crumble_9
-      rect:
-        serializedVersion: 2
-        x: 1026
-        y: 282
-        width: 10
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9f3733a75209e9f60800000000000000
-      internalID: 8043024475168666617
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall2_Crumble_10
-      rect:
-        serializedVersion: 2
-        x: 23
-        y: 271
-        width: 8
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ad228ebefb05d5b20800000000000000
-      internalID: 3124742501691826906
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall2_Crumble_11
-      rect:
-        serializedVersion: 2
-        x: 155
-        y: 271
-        width: 8
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5a7783cc500522d00800000000000000
-      internalID: 946406857532536741
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall2_Crumble_12
-      rect:
-        serializedVersion: 2
-        x: 551
-        y: 271
-        width: 8
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 88bc8e3d4919942d0800000000000000
-      internalID: -3293941584048370808
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall2_Crumble_13
-      rect:
-        serializedVersion: 2
-        x: 683
-        y: 271
-        width: 8
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 94639c9a04d517800800000000000000
-      internalID: 608369956979553865
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall2_Crumble_14
-      rect:
-        serializedVersion: 2
-        x: 815
-        y: 271
-        width: 8
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c3eac445329be0680800000000000000
-      internalID: -8786882261563953604
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall2_Crumble_15
-      rect:
-        serializedVersion: 2
-        x: 947
-        y: 271
-        width: 8
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8ea73630367f4b570800000000000000
-      internalID: 8481676002876160744
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall2_Crumble_16
-      rect:
-        serializedVersion: 2
-        x: 550
-        y: 261
-        width: 6
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5b1eff408ab4972b0800000000000000
-      internalID: -5586350677765922379
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall2_Crumble_17
-      rect:
-        serializedVersion: 2
-        x: 892
-        y: 243
-        width: 16
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ca4e6e3a34bc89780800000000000000
-      internalID: -8675961190756195156
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall2_Crumble_18
-      rect:
-        serializedVersion: 2
-        x: 1024
-        y: 243
-        width: 16
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6f31e433779521c30800000000000000
-      internalID: 4328620560353203190
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall2_Crumble_19
-      rect:
-        serializedVersion: 2
-        x: 154
-        y: 226
-        width: 9
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 01957edd6c2812120800000000000000
-      internalID: 2387333068121135376
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall2_Crumble_20
-      rect:
-        serializedVersion: 2
-        x: 14
-        y: 214
-        width: 8
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 537108b9c57f2e4e0800000000000000
-      internalID: -1953727311207459019
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall2_Crumble_21
-      rect:
-        serializedVersion: 2
-        x: 146
-        y: 214
-        width: 8
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 41cdc59fcb7eb16e0800000000000000
-      internalID: -1865642821791458284
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall2_Crumble_22
-      rect:
-        serializedVersion: 2
-        x: 278
-        y: 214
-        width: 8
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f6a059849eb692ad0800000000000000
-      internalID: -2726529449706845585
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall2_Crumble_23
-      rect:
-        serializedVersion: 2
-        x: 410
-        y: 214
-        width: 8
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7d907ab3f3d8cdd70800000000000000
-      internalID: 9069279052340595159
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall2_Crumble_24
-      rect:
-        serializedVersion: 2
-        x: 542
-        y: 214
-        width: 8
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 45235ab31985d35a0800000000000000
-      internalID: -6539973703077907884
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall2_Crumble_25
-      rect:
-        serializedVersion: 2
-        x: 674
-        y: 214
-        width: 8
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1bb5fb30d69488170800000000000000
-      internalID: 8180869455681641393
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall2_Crumble_26
-      rect:
-        serializedVersion: 2
-        x: 806
-        y: 214
-        width: 8
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0b05acdbcce63ee70800000000000000
-      internalID: 9143273494128775344
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall2_Crumble_27
-      rect:
-        serializedVersion: 2
-        x: 938
-        y: 214
-        width: 8
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 04cfac2790fa23330800000000000000
-      internalID: 3689203499885329472
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall2_Crumble_28
-      rect:
-        serializedVersion: 2
-        x: 943
-        y: 205
-        width: 6
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 445b14ede72f55870800000000000000
-      internalID: 8671103284280407364
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall2_Crumble_29
-      rect:
-        serializedVersion: 2
-        x: 415
-        y: 186
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 94300a26e0b6d5420800000000000000
-      internalID: 2620368267727864649
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall2_Crumble_30
-      rect:
-        serializedVersion: 2
-        x: 150
-        y: 149
-        width: 8
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 646f0aaecb6fab270800000000000000
-      internalID: 8267191357242668614
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall2_Crumble_31
-      rect:
-        serializedVersion: 2
-        x: 20
-        y: 122
-        width: 7
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0f3c9201125cb3dd0800000000000000
-      internalID: -2505192021905783824
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall2_Crumble_32
-      rect:
-        serializedVersion: 2
-        x: 152
-        y: 122
-        width: 7
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d2d114741b4f55ab0800000000000000
-      internalID: -5019837167392711379
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall2_Crumble_33
-      rect:
-        serializedVersion: 2
-        x: 284
-        y: 122
-        width: 7
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6c4db80f7a2e91920800000000000000
-      internalID: 2961647440895923398
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall2_Crumble_34
-      rect:
-        serializedVersion: 2
-        x: 416
-        y: 122
-        width: 7
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: fc8f0e2ebd44d8140800000000000000
-      internalID: 4723507295376439503
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall2_Crumble_35
-      rect:
-        serializedVersion: 2
-        x: 548
-        y: 122
-        width: 7
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4ac8b7a0a27e69e00800000000000000
-      internalID: 1051281730788101284
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall2_Crumble_36
-      rect:
-        serializedVersion: 2
-        x: 680
-        y: 122
-        width: 7
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1d095b2839f43b740800000000000000
-      internalID: 5166560692495814865
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall2_Crumble_37
-      rect:
-        serializedVersion: 2
-        x: 812
-        y: 122
-        width: 7
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 21a172c351b9fc210800000000000000
-      internalID: 1355472528367622674
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall2_Crumble_38
-      rect:
-        serializedVersion: 2
-        x: 944
-        y: 122
-        width: 7
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 604c38feb55664520800000000000000
-      internalID: 2685945673307898886
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall2_Crumble_39
-      rect:
-        serializedVersion: 2
-        x: 107
-        y: 82
-        width: 8
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 96076e5cc6639a070800000000000000
-      internalID: 8118079644116611177
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall2_Crumble_40
-      rect:
-        serializedVersion: 2
-        x: 239
-        y: 82
-        width: 8
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f4b7bc92b92fdfab0800000000000000
-      internalID: -4972551665312105649
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall2_Crumble_41
-      rect:
-        serializedVersion: 2
-        x: 371
-        y: 82
-        width: 8
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a45deddbe4e74e240800000000000000
-      internalID: 4820116377851319626
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall2_Crumble_42
-      rect:
-        serializedVersion: 2
-        x: 415
-        y: 85
-        width: 8
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 86122ea0feab5bde0800000000000000
-      internalID: -1317941780093460120
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall2_Crumble_43
-      rect:
-        serializedVersion: 2
-        x: 503
-        y: 82
-        width: 8
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a39f3e81a910248a0800000000000000
-      internalID: -6322489165520570054
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall2_Crumble_44
-      rect:
-        serializedVersion: 2
-        x: 633
-        y: 82
-        width: 10
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: edeb6201b0ad48290800000000000000
-      internalID: -7888940906195796258
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall2_Crumble_45
-      rect:
-        serializedVersion: 2
-        x: 765
-        y: 87
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0616b5fcacc454650800000000000000
-      internalID: 6216459294600814944
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall2_Crumble_46
-      rect:
-        serializedVersion: 2
-        x: 767
-        y: 82
-        width: 8
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 42574e507d6dabd80800000000000000
-      internalID: -8234032749688359644
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall2_Crumble_47
-      rect:
-        serializedVersion: 2
-        x: 897
-        y: 87
-        width: 7
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: da08ee14881b87f00800000000000000
-      internalID: 1114836106554015917
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall2_Crumble_48
-      rect:
-        serializedVersion: 2
-        x: 899
-        y: 82
-        width: 8
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 72973af2d620e6520800000000000000
-      internalID: 2697095894815439143
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall2_Crumble_49
-      rect:
-        serializedVersion: 2
-        x: 1029
-        y: 87
-        width: 7
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: bb59d9496e2e98ab0800000000000000
-      internalID: -5005220030881884741
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall2_Crumble_50
-      rect:
-        serializedVersion: 2
-        x: 1031
-        y: 82
-        width: 8
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d9be988350098cac0800000000000000
-      internalID: -3834656730608178275
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall2_Crumble_51
-      rect:
-        serializedVersion: 2
-        x: 17
-        y: 45
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ed023dabc65be0180800000000000000
-      internalID: -9147174314547404578
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall2_Crumble_52
-      rect:
-        serializedVersion: 2
-        x: 149
-        y: 45
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: cf536196c6a421190800000000000000
-      internalID: -7993244559149222404
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall2_Crumble_53
-      rect:
-        serializedVersion: 2
-        x: 281
-        y: 45
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 399eae3e1786088e0800000000000000
-      internalID: -1693238621526890093
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall2_Crumble_54
-      rect:
-        serializedVersion: 2
-        x: 413
-        y: 41
-        width: 7
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 08b3fcedfee237b20800000000000000
-      internalID: 3130897773722811264
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall2_Crumble_55
-      rect:
-        serializedVersion: 2
-        x: 545
-        y: 45
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 71c008b9e8fb01240800000000000000
-      internalID: 4760515425345735703
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall2_Crumble_56
-      rect:
-        serializedVersion: 2
-        x: 677
-        y: 45
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 65e7f73fc46720540800000000000000
-      internalID: 4972667011445259862
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall2_Crumble_57
-      rect:
-        serializedVersion: 2
-        x: 809
-        y: 45
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7c70843508dd41a40800000000000000
-      internalID: 5338135001563662279
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall2_Crumble_58
-      rect:
-        serializedVersion: 2
-        x: 941
-        y: 45
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c143facb803675c00800000000000000
-      internalID: 889288340605449244
       vertices: []
       indices: 
       edges: []
@@ -1602,63 +480,12 @@ TextureImporter:
     nameFileIdTable:
       Lepido_Wall2_Crumble_0: -921308610263564724
       Lepido_Wall2_Crumble_1: 4835137981885238404
-      Lepido_Wall2_Crumble_10: 3124742501691826906
-      Lepido_Wall2_Crumble_11: 946406857532536741
-      Lepido_Wall2_Crumble_12: -3293941584048370808
-      Lepido_Wall2_Crumble_13: 608369956979553865
-      Lepido_Wall2_Crumble_14: -8786882261563953604
-      Lepido_Wall2_Crumble_15: 8481676002876160744
-      Lepido_Wall2_Crumble_16: -5586350677765922379
-      Lepido_Wall2_Crumble_17: -8675961190756195156
-      Lepido_Wall2_Crumble_18: 4328620560353203190
-      Lepido_Wall2_Crumble_19: 2387333068121135376
       Lepido_Wall2_Crumble_2: -5402317377165600523
-      Lepido_Wall2_Crumble_20: -1953727311207459019
-      Lepido_Wall2_Crumble_21: -1865642821791458284
-      Lepido_Wall2_Crumble_22: -2726529449706845585
-      Lepido_Wall2_Crumble_23: 9069279052340595159
-      Lepido_Wall2_Crumble_24: -6539973703077907884
-      Lepido_Wall2_Crumble_25: 8180869455681641393
-      Lepido_Wall2_Crumble_26: 9143273494128775344
-      Lepido_Wall2_Crumble_27: 3689203499885329472
-      Lepido_Wall2_Crumble_28: 8671103284280407364
-      Lepido_Wall2_Crumble_29: 2620368267727864649
       Lepido_Wall2_Crumble_3: 6639945371938663540
-      Lepido_Wall2_Crumble_30: 8267191357242668614
-      Lepido_Wall2_Crumble_31: -2505192021905783824
-      Lepido_Wall2_Crumble_32: -5019837167392711379
-      Lepido_Wall2_Crumble_33: 2961647440895923398
-      Lepido_Wall2_Crumble_34: 4723507295376439503
-      Lepido_Wall2_Crumble_35: 1051281730788101284
-      Lepido_Wall2_Crumble_36: 5166560692495814865
-      Lepido_Wall2_Crumble_37: 1355472528367622674
-      Lepido_Wall2_Crumble_38: 2685945673307898886
-      Lepido_Wall2_Crumble_39: 8118079644116611177
       Lepido_Wall2_Crumble_4: 3107214764485558587
-      Lepido_Wall2_Crumble_40: -4972551665312105649
-      Lepido_Wall2_Crumble_41: 4820116377851319626
-      Lepido_Wall2_Crumble_42: -1317941780093460120
-      Lepido_Wall2_Crumble_43: -6322489165520570054
-      Lepido_Wall2_Crumble_44: -7888940906195796258
-      Lepido_Wall2_Crumble_45: 6216459294600814944
-      Lepido_Wall2_Crumble_46: -8234032749688359644
-      Lepido_Wall2_Crumble_47: 1114836106554015917
-      Lepido_Wall2_Crumble_48: 2697095894815439143
-      Lepido_Wall2_Crumble_49: -5005220030881884741
       Lepido_Wall2_Crumble_5: 6670395592766185634
-      Lepido_Wall2_Crumble_50: -3834656730608178275
-      Lepido_Wall2_Crumble_51: -9147174314547404578
-      Lepido_Wall2_Crumble_52: -7993244559149222404
-      Lepido_Wall2_Crumble_53: -1693238621526890093
-      Lepido_Wall2_Crumble_54: 3130897773722811264
-      Lepido_Wall2_Crumble_55: 4760515425345735703
-      Lepido_Wall2_Crumble_56: 4972667011445259862
-      Lepido_Wall2_Crumble_57: 5338135001563662279
-      Lepido_Wall2_Crumble_58: 889288340605449244
       Lepido_Wall2_Crumble_6: 5700467734559207681
       Lepido_Wall2_Crumble_7: -710795707326329258
-      Lepido_Wall2_Crumble_8: 6159742193744199645
-      Lepido_Wall2_Crumble_9: 8043024475168666617
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

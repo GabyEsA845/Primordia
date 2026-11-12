@@ -52,9 +52,9 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 16
@@ -80,7 +80,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -124,12 +124,12 @@ TextureImporter:
       name: Remains_Pulmonoscorpius_0
       rect:
         serializedVersion: 2
-        x: 4
-        y: 10
-        width: 50
-        height: 31
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 0
+        width: 68
+        height: 44
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -138,50 +138,6 @@ TextureImporter:
       bones: []
       spriteID: 583fe064ce03ffc80800000000000000
       internalID: -8286850997992623227
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Remains_Pulmonoscorpius_1
-      rect:
-        serializedVersion: 2
-        x: 49
-        y: 28
-        width: 18
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e658e87295b59fce0800000000000000
-      internalID: -1370964173083736722
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Remains_Pulmonoscorpius_2
-      rect:
-        serializedVersion: 2
-        x: 52
-        y: 3
-        width: 13
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 275c641392a819290800000000000000
-      internalID: -7885369563024013966
       vertices: []
       indices: 
       edges: []
@@ -201,8 +157,6 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       Remains_Pulmonoscorpius_0: -8286850997992623227
-      Remains_Pulmonoscorpius_1: -1370964173083736722
-      Remains_Pulmonoscorpius_2: -7885369563024013966
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

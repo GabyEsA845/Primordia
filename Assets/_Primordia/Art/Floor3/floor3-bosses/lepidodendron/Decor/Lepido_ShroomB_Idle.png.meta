@@ -61,9 +61,9 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 16
@@ -89,7 +89,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -133,12 +133,12 @@ TextureImporter:
       name: Lepido_ShroomB_Idle_0
       rect:
         serializedVersion: 2
-        x: 2
-        y: 1
-        width: 25
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 0
+        width: 28
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -155,12 +155,12 @@ TextureImporter:
       name: Lepido_ShroomB_Idle_1
       rect:
         serializedVersion: 2
-        x: 30
-        y: 1
-        width: 25
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 28
+        y: 0
+        width: 28
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -177,12 +177,12 @@ TextureImporter:
       name: Lepido_ShroomB_Idle_2
       rect:
         serializedVersion: 2
-        x: 58
-        y: 1
-        width: 25
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 56
+        y: 0
+        width: 28
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -199,12 +199,12 @@ TextureImporter:
       name: Lepido_ShroomB_Idle_3
       rect:
         serializedVersion: 2
-        x: 86
-        y: 1
-        width: 25
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 84
+        y: 0
+        width: 28
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -221,12 +221,12 @@ TextureImporter:
       name: Lepido_ShroomB_Idle_4
       rect:
         serializedVersion: 2
-        x: 115
-        y: 1
-        width: 24
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 112
+        y: 0
+        width: 28
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -243,12 +243,12 @@ TextureImporter:
       name: Lepido_ShroomB_Idle_5
       rect:
         serializedVersion: 2
-        x: 143
-        y: 1
-        width: 24
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 140
+        y: 0
+        width: 28
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []

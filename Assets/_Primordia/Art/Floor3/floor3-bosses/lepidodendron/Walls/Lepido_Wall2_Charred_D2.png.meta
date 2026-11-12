@@ -61,9 +61,9 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 16
@@ -89,7 +89,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -133,12 +133,12 @@ TextureImporter:
       name: Lepido_Wall2_Charred_D2_0
       rect:
         serializedVersion: 2
-        x: 14
-        y: 2
-        width: 104
-        height: 334
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 0
+        width: 132
+        height: 356
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06741573}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -147,116 +147,6 @@ TextureImporter:
       bones: []
       spriteID: 2621120615312a4f0800000000000000
       internalID: -819070942001950110
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall2_Charred_D2_1
-      rect:
-        serializedVersion: 2
-        x: 23
-        y: 271
-        width: 8
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2c687bcd4e9429900800000000000000
-      internalID: 689694940245493442
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall2_Charred_D2_2
-      rect:
-        serializedVersion: 2
-        x: 14
-        y: 214
-        width: 8
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 11c7147a4a22b75a0800000000000000
-      internalID: -6522581544739963887
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall2_Charred_D2_3
-      rect:
-        serializedVersion: 2
-        x: 20
-        y: 122
-        width: 7
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 89fe540f31941f840800000000000000
-      internalID: 5256062590102400920
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall2_Charred_D2_4
-      rect:
-        serializedVersion: 2
-        x: 107
-        y: 82
-        width: 8
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: fe3d6c1bea6de8de0800000000000000
-      internalID: -1328888794232466449
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall2_Charred_D2_5
-      rect:
-        serializedVersion: 2
-        x: 17
-        y: 45
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c64ec2bbac8673720800000000000000
-      internalID: 2825842511131239532
       vertices: []
       indices: 
       edges: []
@@ -276,11 +166,6 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       Lepido_Wall2_Charred_D2_0: -819070942001950110
-      Lepido_Wall2_Charred_D2_1: 689694940245493442
-      Lepido_Wall2_Charred_D2_2: -6522581544739963887
-      Lepido_Wall2_Charred_D2_3: 5256062590102400920
-      Lepido_Wall2_Charred_D2_4: -1328888794232466449
-      Lepido_Wall2_Charred_D2_5: 2825842511131239532
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

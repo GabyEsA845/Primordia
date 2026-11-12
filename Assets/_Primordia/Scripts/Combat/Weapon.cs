@@ -395,7 +395,7 @@ namespace Primordia.Combat
 
                 Striking = this;
                 bool damaged;
-                try { damaged = health.TakeDamage(damage); }
+                try { damaged = health.TakeDamage(damage, DamageKind.Hit, DamageSource.Unknown, hit.ClosestPoint(center)); }
                 finally { Striking = null; }
                 if (!damaged)
                     continue;

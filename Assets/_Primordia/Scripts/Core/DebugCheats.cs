@@ -18,6 +18,7 @@ namespace Primordia.Core
     /// anterior del piso (piso 3) y F12 prende lo inflamable cercano (maleza y helechos del piso 3; con Mayús, un fuego en el suelo). Arriba a la izquierda se ve qué está activo.
     /// Solo editor, Lepidodendron: Mayús+F8 recorre pared 1 → pared 2 → pared 3 → arena;
     /// Mayús+F9 sacude la copa durante 1 s.
+    /// Mayús+F10 hace 25 de daño a la pared más cercana; Mayús+F11 la rompe según su carbonizado actual.
     /// </summary>
     public class DebugCheats : MonoBehaviour
     {
@@ -121,10 +122,16 @@ namespace Primordia.Core
             if (keyboard.f9Key.wasPressedThisFrame && shift)
                 LepidodendronTest(true);
 #endif
-            if (keyboard.f11Key.wasPressedThisFrame)
+            if (keyboard.f11Key.wasPressedThisFrame && !shift)
                 CycleTeleport();
-            if (keyboard.f10Key.wasPressedThisFrame)
+            if (keyboard.f10Key.wasPressedThisFrame && !shift)
                 NextCaveMode();
+#if UNITY_EDITOR
+            if (keyboard.f10Key.wasPressedThisFrame && shift)
+                DamageLepidodendronWall(false);
+            if (keyboard.f11Key.wasPressedThisFrame && shift)
+                DamageLepidodendronWall(true);
+#endif
             if (keyboard.f12Key.wasPressedThisFrame)
             {
                 // Con Mayús, un fuego en el suelo un par de tiles por delante; sin ella, prende lo inflamable cercano.
@@ -146,6 +153,17 @@ namespace Primordia.Core
         }
 
 #if UNITY_EDITOR
+        const int LepidodendronTestDamage = 25;
+        void DamageLepidodendronWall(bool breakWall)
+        {
+            var boss = FindAnyObjectByType<LepidodendronBoss>();
+            var wall = boss != null ? boss.NearestWall(player.transform.position) : null;
+            if (wall == null) { Say("No quedan paredes del Lepidodendron cerca"); return; }
+            if (breakWall) wall.Health.Kill();
+            else wall.Health.TakeDamage(LepidodendronTestDamage, DamageKind.Tick); // 25 exactos, sin bonus de nudo/carbonizado.
+            Say($"Pared {wall.Index + 1}: {wall.Health.Current}/{wall.Health.Max}");
+        }
+
         void LepidodendronTest(bool shake)
         {
             var bosses = FindObjectsByType<LepidodendronBoss>(FindObjectsInactive.Include, FindObjectsSortMode.None);

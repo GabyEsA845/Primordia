@@ -115,7 +115,7 @@ namespace Primordia.Combat
                 var health = hit.GetComponentInParent<Health>();
                 if (health == null || health.IsDead || !seen.Add(health))
                     continue;
-                if (health.TakeDamage(damage, DamageKind.Hit, DamageSource.Spit) && source != null)
+                if (health.TakeDamage(damage, DamageKind.Hit, DamageSource.Spit, hit.ClosestPoint(position)) && source != null)
                     source.ReportHit(health);
                 // El veneno virulento: lo que sobrevive al estallido sigue sufriendo (también huevos y ninfas, que no son jugador).
                 if (victims == Team.Enemy && look != Look.Fire && !health.IsDead)

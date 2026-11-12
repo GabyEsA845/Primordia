@@ -5,12 +5,12 @@ using UnityEngine;
 
 namespace Primordia.Enemies
 {
-    /// <summary>L1: escenario del jefe secreto, invulnerable y sin combate ni barra activa.</summary>
+    /// <summary>Jefe secreto: escenario L1 y paredes/oleadas L2; el tronco sigue invulnerable.</summary>
     [DefaultExecutionOrder(1000)]
     [RequireComponent(typeof(Health), typeof(Enemy), typeof(Rigidbody2D))]
     public partial class LepidodendronBoss : MonoBehaviour, IBoss
     {
-        public const int MaxHealth = 1000; // Provisional hasta cerrar L2.
+        public const int MaxHealth = 600;
         public const float CorridorLength = 116f, CorridorHeight = 18f;
         public const float ArenaWidth = 40f, ArenaHeight = 26f, FootFromNorth = 10.5f;
         public const float Wall1X = 34f, Wall2X = 64f, Wall3X = 94f;
@@ -69,10 +69,15 @@ namespace Primordia.Enemies
             body.gravityScale = 0f;
         }
 
-        void OnEnable() => Health.IsInvulnerable = true;
+        void OnEnable()
+        {
+            Health.IsInvulnerable = true;
+            ActiveBoss.Set(this);
+        }
 
         void OnDisable()
         {
+            ActiveBoss.Clear(this);
             zoom?.Restore();
             zoom = null;
             if (lookAhead != null)
@@ -82,6 +87,7 @@ namespace Primordia.Enemies
 
         void OnDestroy()
         {
+            ClearWaveFamily();
             foreach (var quad in dappleQuads)
                 if (quad.mesh != null)
                     Destroy(quad.mesh);
@@ -94,13 +100,14 @@ namespace Primordia.Enemies
             if (built)
                 return;
             entrance = (Vector2)center.position - Vector2.right * ((CorridorLength + ArenaWidth) / 2f);
+            wallRoom = center;
             transform.position = Foot;
             BuildScenery();
             built = true;
         }
 
         public void PlayIntroPose(float hold) { }
-        public void BeginFight() { }
+        public void BeginFight() { } // L2 empieza al activarse la sala; la fase final aún no ataca.
 
         public Vector2 TestStop(int index) => index < 3
             ? entrance + Vector2.right * (WallX(index) - WallThickness(index) / 2f - TestClearance)
@@ -136,6 +143,7 @@ namespace Primordia.Enemies
             UpdateCamera();
             Animate();
             UpdateCritters();
+            UpdateWallWaves();
             if (Time.time >= nextFall)
             {
                 nextFall = Time.time + IdleFallEvery;

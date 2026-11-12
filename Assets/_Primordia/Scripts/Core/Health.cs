@@ -55,6 +55,9 @@ namespace Primordia.Core
         /// <summary>Invulnerabilidad controlada desde fuera, por ejemplo durante la esquiva.</summary>
         public bool IsInvulnerable { get; set; }
 
+        /// <summary>Punto del último intento de daño; null si quien lo aplicó no indicó una posición.</summary>
+        public Vector2? LastImpactPoint { get; private set; }
+
         /// <summary>Filtro opcional del daño que entra (cantidad, tipo, origen) → cantidad admitida. Lo pone un jefe para limitar fuentes.</summary>
         public Func<int, DamageKind, DamageSource, int> DamageGate { get; set; }
 
@@ -263,8 +266,13 @@ namespace Primordia.Core
 
         /// <summary>Aplica daño. Devuelve false si el golpe no tuvo efecto.</summary>
         /// <param name="kind">De dónde viene: solo los golpes llevan el extra de <see cref="ExtraHitDamage"/>.</param>
-        public bool TakeDamage(int amount, DamageKind kind = DamageKind.Hit, DamageSource source = DamageSource.Unknown)
+        public bool TakeDamage(int amount, DamageKind kind = DamageKind.Hit, DamageSource source = DamageSource.Unknown) =>
+            TakeDamage(amount, kind, source, null);
+
+        /// <summary>Aplica daño indicando el punto de contacto, sin cambiar las llamadas que no lo conocen.</summary>
+        public bool TakeDamage(int amount, DamageKind kind, DamageSource source, Vector2? impactPoint)
         {
+            LastImpactPoint = impactPoint;
             if (amount <= 0 || !CanTakeDamage)
             {
                 if (amount > 0 && !IsDead && IsInvulnerable)

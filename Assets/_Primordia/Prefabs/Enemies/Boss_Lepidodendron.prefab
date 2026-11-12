@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8721508464919953007}
   - component: {fileID: 6407154673774672515}
   - component: {fileID: 2217853738486418760}
+  - component: {fileID: 1110078564017301985}
   - component: {fileID: 8713613858642645663}
   - component: {fileID: 7458948628302047479}
   m_Layer: 7
@@ -76,6 +77,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: Primordia::Primordia.Core.Health
   maxHealth: 6
   invulnerabilityAfterHit: 0
+--- !u!114 &1110078564017301985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7027750375708143507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0ea832f0a9e99c4eaa49760cf49ab3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Primordia::Primordia.Combat.BossDamageLimiter
+  caps:
+  - source: 1
+    perSecond: 5
+  - source: 2
+    perSecond: 8
+  - source: 3
+    perSecond: 8
+  - source: 4
+    perSecond: 2
+  - source: 5
+    perSecond: 4
+  - source: 6
+    perSecond: 2
+  - source: 7
+    perSecond: 3
 --- !u!114 &8713613858642645663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -103,4 +131,57 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1caa5519dcaff2a428398bc85b1c2501, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Primordia::Primordia.Enemies.LepidodendronBoss
+  encounterConfig: {fileID: 11400000, guid: 60a9a74960b4f7a4c95d495d80291118, type: 2}
+  waveEnemies:
+  - {fileID: 2940776833964867364, guid: 50bb68a91f19387489dbbdd06f38d1bc, type: 3}
+  - {fileID: 7499488381273586071, guid: 678125193e38aeb43a7d34843db73cc9, type: 3}
+  - {fileID: 6997304892591655701, guid: d65c70b707df61644906b88ad04954ec, type: 3}
+  - {fileID: 5591278114451798428, guid: 02e354aed6ea0bc4db71769bc7a522ca, type: 3}
+  - {fileID: 5472151132634873348, guid: 9283a615604ff264cbb1e94ec47b79e9, type: 3}
+  wallFern:
+    name: Leafy
+    sway:
+    - {fileID: 6706148739209556049, guid: 1995e74cbc9ee924ba6faa0e20efd05a, type: 3}
+    - {fileID: 311827654678075889, guid: 1995e74cbc9ee924ba6faa0e20efd05a, type: 3}
+    - {fileID: 5751064635073462681, guid: 1995e74cbc9ee924ba6faa0e20efd05a, type: 3}
+    - {fileID: -4965491047815929729, guid: 1995e74cbc9ee924ba6faa0e20efd05a, type: 3}
+    rustle:
+    - {fileID: -4159067220861895819, guid: 8080961d16b067b4f84e03df63a86e91, type: 3}
+    - {fileID: -845529423054674190, guid: 8080961d16b067b4f84e03df63a86e91, type: 3}
+    - {fileID: -2913017130527850216, guid: 8080961d16b067b4f84e03df63a86e91, type: 3}
+    - {fileID: -5886983665267078261, guid: 8080961d16b067b4f84e03df63a86e91, type: 3}
+    - {fileID: -7902596620757529287, guid: 8080961d16b067b4f84e03df63a86e91, type: 3}
+    - {fileID: 8429398568187664605, guid: 8080961d16b067b4f84e03df63a86e91, type: 3}
+    burn:
+    - {fileID: 5176514961215880243, guid: 3fd9b5bfcad082b45b3c001658bbcd5c, type: 3}
+    - {fileID: -4835695163035968787, guid: 3fd9b5bfcad082b45b3c001658bbcd5c, type: 3}
+    - {fileID: -591277605070258173, guid: 3fd9b5bfcad082b45b3c001658bbcd5c, type: 3}
+    - {fileID: -434887571391110790, guid: 3fd9b5bfcad082b45b3c001658bbcd5c, type: 3}
+    burnt: {fileID: -2219168604861931802, guid: ba7563293037f3e409a3fdc29ac7922f, type: 3}
+    footRadius: 0.4
+    weight: 3
+  wallMethane:
+    sacIdle:
+    - {fileID: -4357448081896897112, guid: 20ac4cdfef0cb304da691bb4da1e2871, type: 3}
+    - {fileID: 6446076642563888805, guid: 20ac4cdfef0cb304da691bb4da1e2871, type: 3}
+    - {fileID: -6289467576226276763, guid: 20ac4cdfef0cb304da691bb4da1e2871, type: 3}
+    - {fileID: -5539291267830686534, guid: 20ac4cdfef0cb304da691bb4da1e2871, type: 3}
+    sacBurst:
+    - {fileID: -7418093019714818548, guid: 20c9b28dd1357e341a9bac5a5c584811, type: 3}
+    - {fileID: 7462704289033570257, guid: 20c9b28dd1357e341a9bac5a5c584811, type: 3}
+    - {fileID: 5706269142380385645, guid: 20c9b28dd1357e341a9bac5a5c584811, type: 3}
+    - {fileID: 5721329496203764564, guid: 20c9b28dd1357e341a9bac5a5c584811, type: 3}
+    - {fileID: 5930052353563706475, guid: 20c9b28dd1357e341a9bac5a5c584811, type: 3}
+    sacRemains: {fileID: -3776662731488166539, guid: 61f79c28e6d6d3148a9bada6f3f2a507, type: 3}
+    mist:
+    - {fileID: -5301034384706175667, guid: 8e4c50621d8c1e94b80bdeeea2c16663, type: 3}
+    - {fileID: 7103979100258950916, guid: 8e4c50621d8c1e94b80bdeeea2c16663, type: 3}
+    - {fileID: -8444408585534177509, guid: 8e4c50621d8c1e94b80bdeeea2c16663, type: 3}
+    - {fileID: -134674290683337440, guid: 8e4c50621d8c1e94b80bdeeea2c16663, type: 3}
+    - {fileID: 7392299999265601707, guid: 8e4c50621d8c1e94b80bdeeea2c16663, type: 3}
+    - {fileID: -6594141133301895292, guid: 8e4c50621d8c1e94b80bdeeea2c16663, type: 3}
+    - {fileID: -4564120339749972388, guid: 8e4c50621d8c1e94b80bdeeea2c16663, type: 3}
+    - {fileID: 1486192425223714107, guid: 8e4c50621d8c1e94b80bdeeea2c16663, type: 3}
+    sacCount: {x: 1, y: 2}
+    mistPerCell: 0.004
   art: {fileID: 11400000, guid: b8d2233714baf494896ef4a89b49eb34, type: 2}

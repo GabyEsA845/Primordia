@@ -218,7 +218,7 @@ namespace Primordia.Combat
                 if (target == null || target.IsDead || !struck.Add(target))
                     continue;
 
-                if (target.TakeDamage(damage, DamageKind.Hit, DamageSource.Spin) && weapon != null)
+                if (target.TakeDamage(damage, DamageKind.Hit, DamageSource.Spin, hit.ClosestPoint(position)) && weapon != null)
                     weapon.ReportHit(target);
                 if (!target.IsDead && stun > 0f && hit.GetComponentInParent<IPushable>() is { } pushable)
                     pushable.Knockback(Vector2.zero, stun);

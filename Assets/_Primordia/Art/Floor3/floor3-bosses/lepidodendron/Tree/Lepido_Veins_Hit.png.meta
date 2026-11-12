@@ -61,9 +61,9 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 16
@@ -89,7 +89,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -133,12 +133,12 @@ TextureImporter:
       name: Lepido_Veins_Hit_0
       rect:
         serializedVersion: 2
-        x: 85
-        y: 27
-        width: 36
-        height: 318
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 0
+        width: 288
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.08333331}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -155,12 +155,12 @@ TextureImporter:
       name: Lepido_Veins_Hit_1
       rect:
         serializedVersion: 2
-        x: 132
-        y: 27
-        width: 25
-        height: 318
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 288
+        y: 0
+        width: 288
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.08333331}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -169,94 +169,6 @@ TextureImporter:
       bones: []
       spriteID: f4bd9e59c31f41f70800000000000000
       internalID: 9157209184866523983
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Veins_Hit_2
-      rect:
-        serializedVersion: 2
-        x: 165
-        y: 27
-        width: 48
-        height: 318
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d9371b5b8f7303cc0800000000000000
-      internalID: -3733422549750418531
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Veins_Hit_3
-      rect:
-        serializedVersion: 2
-        x: 374
-        y: 27
-        width: 35
-        height: 300
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ddf405fae2c285570800000000000000
-      internalID: 8455556879409500125
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Veins_Hit_4
-      rect:
-        serializedVersion: 2
-        x: 421
-        y: 27
-        width: 24
-        height: 300
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0cb78551e39271300800000000000000
-      internalID: 222692053200960448
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Veins_Hit_5
-      rect:
-        serializedVersion: 2
-        x: 454
-        y: 27
-        width: 47
-        height: 300
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0804a974ba92b4a80800000000000000
-      internalID: -8481639657604759424
       vertices: []
       indices: 
       edges: []
@@ -277,10 +189,6 @@ TextureImporter:
     nameFileIdTable:
       Lepido_Veins_Hit_0: -3091321302797785963
       Lepido_Veins_Hit_1: 9157209184866523983
-      Lepido_Veins_Hit_2: -3733422549750418531
-      Lepido_Veins_Hit_3: 8455556879409500125
-      Lepido_Veins_Hit_4: 222692053200960448
-      Lepido_Veins_Hit_5: -8481639657604759424
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

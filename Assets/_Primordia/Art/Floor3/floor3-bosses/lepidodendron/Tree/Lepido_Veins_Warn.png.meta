@@ -190,9 +190,9 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 16
@@ -218,7 +218,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -262,12 +262,12 @@ TextureImporter:
       name: Lepido_Veins_Warn_0
       rect:
         serializedVersion: 2
-        x: 104
-        y: 196
-        width: 80
-        height: 129
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 0
+        width: 288
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.08333331}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -284,12 +284,12 @@ TextureImporter:
       name: Lepido_Veins_Warn_1
       rect:
         serializedVersion: 2
-        x: 111
-        y: 212
-        width: 6
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 288
+        y: 0
+        width: 288
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.08333331}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -306,12 +306,12 @@ TextureImporter:
       name: Lepido_Veins_Warn_2
       rect:
         serializedVersion: 2
-        x: 392
-        y: 196
-        width: 80
-        height: 129
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 576
+        y: 0
+        width: 288
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.08333331}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -328,12 +328,12 @@ TextureImporter:
       name: Lepido_Veins_Warn_3
       rect:
         serializedVersion: 2
-        x: 399
-        y: 212
-        width: 6
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 864
+        y: 0
+        width: 288
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.08333331}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -350,12 +350,12 @@ TextureImporter:
       name: Lepido_Veins_Warn_4
       rect:
         serializedVersion: 2
-        x: 680
-        y: 196
-        width: 80
-        height: 129
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1152
+        y: 0
+        width: 288
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.08333331}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -372,12 +372,12 @@ TextureImporter:
       name: Lepido_Veins_Warn_5
       rect:
         serializedVersion: 2
-        x: 687
-        y: 212
-        width: 6
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1440
+        y: 0
+        width: 288
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.08333331}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -394,12 +394,12 @@ TextureImporter:
       name: Lepido_Veins_Warn_6
       rect:
         serializedVersion: 2
-        x: 968
-        y: 196
-        width: 80
-        height: 129
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1728
+        y: 0
+        width: 288
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.08333331}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -416,12 +416,12 @@ TextureImporter:
       name: Lepido_Veins_Warn_7
       rect:
         serializedVersion: 2
-        x: 975
-        y: 212
-        width: 6
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 2016
+        y: 0
+        width: 288
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.08333331}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -430,908 +430,6 @@ TextureImporter:
       bones: []
       spriteID: acc3bc225f621c730800000000000000
       internalID: 4017535176883780810
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Veins_Warn_8
-      rect:
-        serializedVersion: 2
-        x: 1256
-        y: 196
-        width: 80
-        height: 129
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7e17d21a95a0601f0800000000000000
-      internalID: -1079163680636177945
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Veins_Warn_9
-      rect:
-        serializedVersion: 2
-        x: 1263
-        y: 212
-        width: 6
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b2c568402e295c190800000000000000
-      internalID: -7942780868361823189
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Veins_Warn_10
-      rect:
-        serializedVersion: 2
-        x: 1544
-        y: 196
-        width: 80
-        height: 129
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 274b49c5edaef52a0800000000000000
-      internalID: -6746415476020824974
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Veins_Warn_11
-      rect:
-        serializedVersion: 2
-        x: 1551
-        y: 212
-        width: 6
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e957276ea0452c220800000000000000
-      internalID: 2504656748564084126
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Veins_Warn_12
-      rect:
-        serializedVersion: 2
-        x: 1832
-        y: 27
-        width: 109
-        height: 298
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 658d182ff339ebc00800000000000000
-      internalID: 918333276890978390
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Veins_Warn_13
-      rect:
-        serializedVersion: 2
-        x: 1839
-        y: 212
-        width: 6
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2104b2107c22c7590800000000000000
-      internalID: -7675221426832719854
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Veins_Warn_14
-      rect:
-        serializedVersion: 2
-        x: 2102
-        y: 27
-        width: 37
-        height: 194
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 41ca4f5b2f33e0690800000000000000
-      internalID: -7634107200818598892
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Veins_Warn_15
-      rect:
-        serializedVersion: 2
-        x: 2120
-        y: 27
-        width: 80
-        height: 298
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 615ce2f1813a202d0800000000000000
-      internalID: -3313907051793562346
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Veins_Warn_16
-      rect:
-        serializedVersion: 2
-        x: 2183
-        y: 27
-        width: 46
-        height: 194
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9dd8a6d35cc37c5d0800000000000000
-      internalID: -3042396205428863527
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Veins_Warn_17
-      rect:
-        serializedVersion: 2
-        x: 115
-        y: 188
-        width: 6
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6a9e599242ad42050800000000000000
-      internalID: 5774980471047186854
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Veins_Warn_18
-      rect:
-        serializedVersion: 2
-        x: 130
-        y: 27
-        width: 27
-        height: 166
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: fbb9f9b0896745090800000000000000
-      internalID: -8046676238802117697
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Veins_Warn_19
-      rect:
-        serializedVersion: 2
-        x: 140
-        y: 192
-        width: 7
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a074a541f7c0b7230800000000000000
-      internalID: 3637514863973648138
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Veins_Warn_20
-      rect:
-        serializedVersion: 2
-        x: 171
-        y: 27
-        width: 42
-        height: 170
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: debf1c651e27d4800800000000000000
-      internalID: 598260637658905581
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Veins_Warn_21
-      rect:
-        serializedVersion: 2
-        x: 403
-        y: 188
-        width: 6
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b93426f0da6439160800000000000000
-      internalID: 7031041152356860827
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Veins_Warn_22
-      rect:
-        serializedVersion: 2
-        x: 421
-        y: 27
-        width: 24
-        height: 166
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9d74a3a6864aae170800000000000000
-      internalID: 8208554039201908697
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Veins_Warn_23
-      rect:
-        serializedVersion: 2
-        x: 428
-        y: 192
-        width: 7
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: bd926d3a8ba6a0cd0800000000000000
-      internalID: -2591141294343050789
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Veins_Warn_24
-      rect:
-        serializedVersion: 2
-        x: 459
-        y: 27
-        width: 42
-        height: 170
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 15ea5c9555f81dc90800000000000000
-      internalID: -7146773536919146927
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Veins_Warn_25
-      rect:
-        serializedVersion: 2
-        x: 691
-        y: 188
-        width: 6
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 32ebec680de0d0190800000000000000
-      internalID: -7994717474735079901
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Veins_Warn_26
-      rect:
-        serializedVersion: 2
-        x: 709
-        y: 27
-        width: 26
-        height: 166
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7c36f2754a4d467e0800000000000000
-      internalID: -1773058550974684217
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Veins_Warn_27
-      rect:
-        serializedVersion: 2
-        x: 716
-        y: 192
-        width: 7
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: cd65b2643731811e0800000000000000
-      internalID: -2227008629915298084
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Veins_Warn_28
-      rect:
-        serializedVersion: 2
-        x: 745
-        y: 27
-        width: 44
-        height: 170
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 78347b97e250bcba0800000000000000
-      internalID: -6067750375782923385
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Veins_Warn_29
-      rect:
-        serializedVersion: 2
-        x: 979
-        y: 188
-        width: 6
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9134df0e914f6b900800000000000000
-      internalID: 700015184088744729
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Veins_Warn_30
-      rect:
-        serializedVersion: 2
-        x: 997
-        y: 27
-        width: 26
-        height: 166
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0c65ebf8fefb95480800000000000000
-      internalID: -8909879352146110784
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Veins_Warn_31
-      rect:
-        serializedVersion: 2
-        x: 1004
-        y: 192
-        width: 7
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2f6b4752c8fa5d540800000000000000
-      internalID: 5032121175115085554
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Veins_Warn_32
-      rect:
-        serializedVersion: 2
-        x: 1033
-        y: 27
-        width: 44
-        height: 170
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9bee206bae4f15170800000000000000
-      internalID: 8165576888312590009
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Veins_Warn_33
-      rect:
-        serializedVersion: 2
-        x: 1267
-        y: 188
-        width: 6
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ff34c5e5f1e26cd00800000000000000
-      internalID: 992531480143741951
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Veins_Warn_34
-      rect:
-        serializedVersion: 2
-        x: 1285
-        y: 27
-        width: 24
-        height: 166
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3b9e02b0c268d5d00800000000000000
-      internalID: 963073419050543539
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Veins_Warn_35
-      rect:
-        serializedVersion: 2
-        x: 1292
-        y: 192
-        width: 7
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 10a50b2e253a34180800000000000000
-      internalID: -9132276042991379967
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Veins_Warn_36
-      rect:
-        serializedVersion: 2
-        x: 1323
-        y: 27
-        width: 42
-        height: 170
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: eca24f206b16cfb90800000000000000
-      internalID: -7206777869338137906
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Veins_Warn_37
-      rect:
-        serializedVersion: 2
-        x: 1555
-        y: 188
-        width: 6
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ec27e59ce22207c50800000000000000
-      internalID: 6660861433223213774
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Veins_Warn_38
-      rect:
-        serializedVersion: 2
-        x: 1573
-        y: 27
-        width: 24
-        height: 166
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9bc8a80d060361570800000000000000
-      internalID: 8436984144298937529
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Veins_Warn_39
-      rect:
-        serializedVersion: 2
-        x: 1580
-        y: 192
-        width: 7
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4efe96bb4887bdb10800000000000000
-      internalID: 2007330570398986212
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Veins_Warn_40
-      rect:
-        serializedVersion: 2
-        x: 1611
-        y: 27
-        width: 42
-        height: 170
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1ff4f4c155df11ff0800000000000000
-      internalID: -66993977444839439
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Veins_Warn_41
-      rect:
-        serializedVersion: 2
-        x: 1814
-        y: 27
-        width: 37
-        height: 172
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c53f89a8b2c273cc0800000000000000
-      internalID: -3731465200732671140
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Veins_Warn_42
-      rect:
-        serializedVersion: 2
-        x: 1860
-        y: 27
-        width: 25
-        height: 174
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 53b3ade6fca9b29f0800000000000000
-      internalID: -492129518558233803
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Veins_Warn_43
-      rect:
-        serializedVersion: 2
-        x: 85
-        y: 27
-        width: 33
-        height: 162
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f4ed9b317236d9710800000000000000
-      internalID: 1701625253701738063
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Veins_Warn_44
-      rect:
-        serializedVersion: 2
-        x: 374
-        y: 27
-        width: 32
-        height: 162
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6d54f9371f8faa460800000000000000
-      internalID: 7253883865744229846
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Veins_Warn_45
-      rect:
-        serializedVersion: 2
-        x: 662
-        y: 27
-        width: 32
-        height: 162
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 08e5b56ce55be90d0800000000000000
-      internalID: -3414092048840827264
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Veins_Warn_46
-      rect:
-        serializedVersion: 2
-        x: 950
-        y: 27
-        width: 32
-        height: 162
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1f7c08fdd51263a00800000000000000
-      internalID: 735812276187088881
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Veins_Warn_47
-      rect:
-        serializedVersion: 2
-        x: 1238
-        y: 27
-        width: 32
-        height: 162
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 76745901cf7fd8300800000000000000
-      internalID: 256133415812024167
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Veins_Warn_48
-      rect:
-        serializedVersion: 2
-        x: 1526
-        y: 27
-        width: 32
-        height: 162
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 94cacd27d13e6a4f0800000000000000
-      internalID: -817716566700544951
       vertices: []
       indices: 
       edges: []
@@ -1352,53 +450,12 @@ TextureImporter:
     nameFileIdTable:
       Lepido_Veins_Warn_0: -4750118407705721429
       Lepido_Veins_Warn_1: 166269920153783143
-      Lepido_Veins_Warn_10: -6746415476020824974
-      Lepido_Veins_Warn_11: 2504656748564084126
-      Lepido_Veins_Warn_12: 918333276890978390
-      Lepido_Veins_Warn_13: -7675221426832719854
-      Lepido_Veins_Warn_14: -7634107200818598892
-      Lepido_Veins_Warn_15: -3313907051793562346
-      Lepido_Veins_Warn_16: -3042396205428863527
-      Lepido_Veins_Warn_17: 5774980471047186854
-      Lepido_Veins_Warn_18: -8046676238802117697
-      Lepido_Veins_Warn_19: 3637514863973648138
       Lepido_Veins_Warn_2: -2041722119483898200
-      Lepido_Veins_Warn_20: 598260637658905581
-      Lepido_Veins_Warn_21: 7031041152356860827
-      Lepido_Veins_Warn_22: 8208554039201908697
-      Lepido_Veins_Warn_23: -2591141294343050789
-      Lepido_Veins_Warn_24: -7146773536919146927
-      Lepido_Veins_Warn_25: -7994717474735079901
-      Lepido_Veins_Warn_26: -1773058550974684217
-      Lepido_Veins_Warn_27: -2227008629915298084
-      Lepido_Veins_Warn_28: -6067750375782923385
-      Lepido_Veins_Warn_29: 700015184088744729
       Lepido_Veins_Warn_3: -3226775877207825526
-      Lepido_Veins_Warn_30: -8909879352146110784
-      Lepido_Veins_Warn_31: 5032121175115085554
-      Lepido_Veins_Warn_32: 8165576888312590009
-      Lepido_Veins_Warn_33: 992531480143741951
-      Lepido_Veins_Warn_34: 963073419050543539
-      Lepido_Veins_Warn_35: -9132276042991379967
-      Lepido_Veins_Warn_36: -7206777869338137906
-      Lepido_Veins_Warn_37: 6660861433223213774
-      Lepido_Veins_Warn_38: 8436984144298937529
-      Lepido_Veins_Warn_39: 2007330570398986212
       Lepido_Veins_Warn_4: 6540635996162867726
-      Lepido_Veins_Warn_40: -66993977444839439
-      Lepido_Veins_Warn_41: -3731465200732671140
-      Lepido_Veins_Warn_42: -492129518558233803
-      Lepido_Veins_Warn_43: 1701625253701738063
-      Lepido_Veins_Warn_44: 7253883865744229846
-      Lepido_Veins_Warn_45: -3414092048840827264
-      Lepido_Veins_Warn_46: 735812276187088881
-      Lepido_Veins_Warn_47: 256133415812024167
-      Lepido_Veins_Warn_48: -817716566700544951
       Lepido_Veins_Warn_5: 6731711178932379359
       Lepido_Veins_Warn_6: -7933019574561074786
       Lepido_Veins_Warn_7: 4017535176883780810
-      Lepido_Veins_Warn_8: -1079163680636177945
-      Lepido_Veins_Warn_9: -7942780868361823189
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

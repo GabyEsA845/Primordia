@@ -67,9 +67,9 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 16
@@ -95,7 +95,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -139,12 +139,12 @@ TextureImporter:
       name: Fx_LightShaft_0
       rect:
         serializedVersion: 2
-        x: 7
-        y: 7
-        width: 99
-        height: 241
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 0
+        width: 118
+        height: 248
+      alignment: 9
+      pivot: {x: 0.16101696, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -161,12 +161,12 @@ TextureImporter:
       name: Fx_LightShaft_1
       rect:
         serializedVersion: 2
-        x: 125
-        y: 7
-        width: 99
-        height: 241
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 118
+        y: 0
+        width: 118
+        height: 248
+      alignment: 9
+      pivot: {x: 0.16101696, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -183,12 +183,12 @@ TextureImporter:
       name: Fx_LightShaft_2
       rect:
         serializedVersion: 2
-        x: 243
-        y: 7
-        width: 99
-        height: 241
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 236
+        y: 0
+        width: 118
+        height: 248
+      alignment: 9
+      pivot: {x: 0.16101696, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -205,12 +205,12 @@ TextureImporter:
       name: Fx_LightShaft_3
       rect:
         serializedVersion: 2
-        x: 361
-        y: 7
-        width: 99
-        height: 241
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 354
+        y: 0
+        width: 118
+        height: 248
+      alignment: 9
+      pivot: {x: 0.16101696, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -227,12 +227,12 @@ TextureImporter:
       name: Fx_LightShaft_4
       rect:
         serializedVersion: 2
-        x: 479
-        y: 7
-        width: 99
-        height: 241
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 472
+        y: 0
+        width: 118
+        height: 248
+      alignment: 9
+      pivot: {x: 0.16101696, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -249,12 +249,12 @@ TextureImporter:
       name: Fx_LightShaft_5
       rect:
         serializedVersion: 2
-        x: 597
-        y: 7
-        width: 99
-        height: 241
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 590
+        y: 0
+        width: 118
+        height: 248
+      alignment: 9
+      pivot: {x: 0.16101696, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -271,12 +271,12 @@ TextureImporter:
       name: Fx_LightShaft_6
       rect:
         serializedVersion: 2
-        x: 715
-        y: 7
-        width: 99
-        height: 241
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 708
+        y: 0
+        width: 118
+        height: 248
+      alignment: 9
+      pivot: {x: 0.16101696, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -293,12 +293,12 @@ TextureImporter:
       name: Fx_LightShaft_7
       rect:
         serializedVersion: 2
-        x: 833
-        y: 7
-        width: 99
-        height: 241
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 826
+        y: 0
+        width: 118
+        height: 248
+      alignment: 9
+      pivot: {x: 0.16101696, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []

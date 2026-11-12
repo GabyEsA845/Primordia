@@ -61,9 +61,9 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 16
@@ -89,7 +89,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -134,11 +134,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 4
+        y: 0
         width: 704
-        height: 108
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        height: 112
+      alignment: 9
+      pivot: {x: 0.5, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -155,12 +155,12 @@ TextureImporter:
       name: Canopy_Arena_Shake_1
       rect:
         serializedVersion: 2
-        x: 703
-        y: 7
+        x: 704
+        y: 0
         width: 704
-        height: 105
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        height: 112
+      alignment: 9
+      pivot: {x: 0.5, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -177,12 +177,12 @@ TextureImporter:
       name: Canopy_Arena_Shake_2
       rect:
         serializedVersion: 2
-        x: 1407
-        y: 8
+        x: 1408
+        y: 0
         width: 704
-        height: 104
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        height: 112
+      alignment: 9
+      pivot: {x: 0.5, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -199,12 +199,12 @@ TextureImporter:
       name: Canopy_Arena_Shake_3
       rect:
         serializedVersion: 2
-        x: 2111
-        y: 6
-        width: 706
-        height: 106
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 2112
+        y: 0
+        width: 704
+        height: 112
+      alignment: 9
+      pivot: {x: 0.5, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -221,12 +221,12 @@ TextureImporter:
       name: Canopy_Arena_Shake_4
       rect:
         serializedVersion: 2
-        x: 2815
-        y: 4
-        width: 706
-        height: 108
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 2816
+        y: 0
+        width: 704
+        height: 112
+      alignment: 9
+      pivot: {x: 0.5, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -243,12 +243,12 @@ TextureImporter:
       name: Canopy_Arena_Shake_5
       rect:
         serializedVersion: 2
-        x: 3519
-        y: 6
-        width: 705
-        height: 106
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 3520
+        y: 0
+        width: 704
+        height: 112
+      alignment: 9
+      pivot: {x: 0.5, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []

@@ -1,0 +1,891 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e96620034c076449ba0ec94e567e7ac, type: 3}
+  m_Name: LepidodendronArt
+  m_EditorClassIdentifier: Primordia::Primordia.Enemies.DirectionalArt
+  sheets:
+  - name: Lepido_BackRoots
+    frames: 1
+    rows: 1
+    sprites:
+    - {fileID: -2670385834824973437, guid: 993b2b82510ef3f47aec3b7956374a9d, type: 3}
+  - name: Lepido_Mound
+    frames: 1
+    rows: 1
+    sprites:
+    - {fileID: 8291144599532678470, guid: 110717e10219523448495a0d40603293, type: 3}
+  - name: Lepido_MoundShadow
+    frames: 1
+    rows: 1
+    sprites:
+    - {fileID: 6783029405907416128, guid: b36b611d90b4a3e40b8fa1d5aeb7236e, type: 3}
+  - name: Lepido_Trunk
+    frames: 1
+    rows: 1
+    sprites:
+    - {fileID: 7437035973799996288, guid: c976a29c5bfd9e54f826d80bc7c22d65, type: 3}
+  - name: Lepido_Veins_Hit
+    frames: 2
+    rows: 1
+    sprites:
+    - {fileID: -3091321302797785963, guid: 4fe44c4f92a5336458f7df93ac9748ca, type: 3}
+    - {fileID: 9157209184866523983, guid: 4fe44c4f92a5336458f7df93ac9748ca, type: 3}
+  - name: Lepido_Veins_Rest
+    frames: 1
+    rows: 1
+    sprites:
+    - {fileID: -7944251178925560308, guid: 1fb3673915a94fd48bca6e6b43eaf4e0, type: 3}
+  - name: Lepido_Veins_Warn
+    frames: 8
+    rows: 1
+    sprites:
+    - {fileID: -4750118407705721429, guid: 1935c976c60444c4fa34b692e03607f6, type: 3}
+    - {fileID: 166269920153783143, guid: 1935c976c60444c4fa34b692e03607f6, type: 3}
+    - {fileID: -2041722119483898200, guid: 1935c976c60444c4fa34b692e03607f6, type: 3}
+    - {fileID: -3226775877207825526, guid: 1935c976c60444c4fa34b692e03607f6, type: 3}
+    - {fileID: 6540635996162867726, guid: 1935c976c60444c4fa34b692e03607f6, type: 3}
+    - {fileID: 6731711178932379359, guid: 1935c976c60444c4fa34b692e03607f6, type: 3}
+    - {fileID: -7933019574561074786, guid: 1935c976c60444c4fa34b692e03607f6, type: 3}
+    - {fileID: 4017535176883780810, guid: 1935c976c60444c4fa34b692e03607f6, type: 3}
+  - name: Canopy_Arena_Shake
+    frames: 6
+    rows: 1
+    sprites:
+    - {fileID: 1139043775830267583, guid: 8cb89a6384a95fc459aedf5a2d6d53d9, type: 3}
+    - {fileID: 7538611898972516749, guid: 8cb89a6384a95fc459aedf5a2d6d53d9, type: 3}
+    - {fileID: 2055532758367038469, guid: 8cb89a6384a95fc459aedf5a2d6d53d9, type: 3}
+    - {fileID: 2058578111781194978, guid: 8cb89a6384a95fc459aedf5a2d6d53d9, type: 3}
+    - {fileID: 7340321213239797565, guid: 8cb89a6384a95fc459aedf5a2d6d53d9, type: 3}
+    - {fileID: -615239818596827820, guid: 8cb89a6384a95fc459aedf5a2d6d53d9, type: 3}
+  - name: Canopy_Arena_Sway
+    frames: 8
+    rows: 1
+    sprites:
+    - {fileID: -1614850003515380926, guid: 7ec5d9275a742d646b0725c2b85691be, type: 3}
+    - {fileID: -152312751, guid: 7ec5d9275a742d646b0725c2b85691be, type: 3}
+    - {fileID: -1278049083, guid: 7ec5d9275a742d646b0725c2b85691be, type: 3}
+    - {fileID: 1192165379, guid: 7ec5d9275a742d646b0725c2b85691be, type: 3}
+    - {fileID: 1587303309, guid: 7ec5d9275a742d646b0725c2b85691be, type: 3}
+    - {fileID: 290003163, guid: 7ec5d9275a742d646b0725c2b85691be, type: 3}
+    - {fileID: -705506867, guid: 7ec5d9275a742d646b0725c2b85691be, type: 3}
+    - {fileID: -1086559612, guid: 7ec5d9275a742d646b0725c2b85691be, type: 3}
+  - name: Canopy_StripMid_Sway
+    frames: 8
+    rows: 1
+    sprites:
+    - {fileID: -8201151651146212446, guid: 25f46f2f0a08abb4eb8783d287006fab, type: 3}
+    - {fileID: -525647706, guid: 25f46f2f0a08abb4eb8783d287006fab, type: 3}
+    - {fileID: 629583940, guid: 25f46f2f0a08abb4eb8783d287006fab, type: 3}
+    - {fileID: 890306699, guid: 25f46f2f0a08abb4eb8783d287006fab, type: 3}
+    - {fileID: 1005731705, guid: 25f46f2f0a08abb4eb8783d287006fab, type: 3}
+    - {fileID: 8896977, guid: 25f46f2f0a08abb4eb8783d287006fab, type: 3}
+    - {fileID: -642238267, guid: 25f46f2f0a08abb4eb8783d287006fab, type: 3}
+    - {fileID: -1050651380, guid: 25f46f2f0a08abb4eb8783d287006fab, type: 3}
+  - name: Canopy_StripThin_Sway
+    frames: 8
+    rows: 1
+    sprites:
+    - {fileID: -5392128280208703109, guid: 4373965a67b484f4d86c818f7b76b738, type: 3}
+    - {fileID: -1519266662, guid: 4373965a67b484f4d86c818f7b76b738, type: 3}
+    - {fileID: 674810591, guid: 4373965a67b484f4d86c818f7b76b738, type: 3}
+    - {fileID: 1925279126, guid: 4373965a67b484f4d86c818f7b76b738, type: 3}
+    - {fileID: -678160324, guid: 4373965a67b484f4d86c818f7b76b738, type: 3}
+    - {fileID: -1061804392, guid: 4373965a67b484f4d86c818f7b76b738, type: 3}
+    - {fileID: -1899994831, guid: 4373965a67b484f4d86c818f7b76b738, type: 3}
+    - {fileID: -302868430, guid: 4373965a67b484f4d86c818f7b76b738, type: 3}
+  - name: Fx_Dapple
+    frames: 8
+    rows: 1
+    sprites:
+    - {fileID: -405775283310873757, guid: 26efbd8cc2a8be04999e536c3ffe37bc, type: 3}
+    - {fileID: 1679671747, guid: 26efbd8cc2a8be04999e536c3ffe37bc, type: 3}
+    - {fileID: 299213475, guid: 26efbd8cc2a8be04999e536c3ffe37bc, type: 3}
+    - {fileID: 131427577, guid: 26efbd8cc2a8be04999e536c3ffe37bc, type: 3}
+    - {fileID: 1648106470, guid: 26efbd8cc2a8be04999e536c3ffe37bc, type: 3}
+    - {fileID: -1448435162, guid: 26efbd8cc2a8be04999e536c3ffe37bc, type: 3}
+    - {fileID: 1772151055, guid: 26efbd8cc2a8be04999e536c3ffe37bc, type: 3}
+    - {fileID: -688330581, guid: 26efbd8cc2a8be04999e536c3ffe37bc, type: 3}
+  - name: Fx_FallingLeaf
+    frames: 6
+    rows: 1
+    sprites:
+    - {fileID: 1245293356189248678, guid: 1ed710daf78c5984aa13abe0ff6d363b, type: 3}
+    - {fileID: 7930482545887676795, guid: 1ed710daf78c5984aa13abe0ff6d363b, type: 3}
+    - {fileID: 3058071977797068730, guid: 1ed710daf78c5984aa13abe0ff6d363b, type: 3}
+    - {fileID: -8964293923006775630, guid: 1ed710daf78c5984aa13abe0ff6d363b, type: 3}
+    - {fileID: -1404627688, guid: 1ed710daf78c5984aa13abe0ff6d363b, type: 3}
+    - {fileID: 568463866, guid: 1ed710daf78c5984aa13abe0ff6d363b, type: 3}
+  - name: Fx_FallingSpore
+    frames: 3
+    rows: 1
+    sprites:
+    - {fileID: -3580566797690503013, guid: ac4818d3b7dd86449a0a84c60aaceadf, type: 3}
+    - {fileID: -1290387461, guid: ac4818d3b7dd86449a0a84c60aaceadf, type: 3}
+    - {fileID: -585883906, guid: ac4818d3b7dd86449a0a84c60aaceadf, type: 3}
+  - name: Fx_LightPool
+    frames: 8
+    rows: 1
+    sprites:
+    - {fileID: -793972316307291476, guid: bc9ecb374f6dcbf42ad9bf5e4b85bce8, type: 3}
+    - {fileID: 7707612195303114762, guid: bc9ecb374f6dcbf42ad9bf5e4b85bce8, type: 3}
+    - {fileID: 5359552287751830480, guid: bc9ecb374f6dcbf42ad9bf5e4b85bce8, type: 3}
+    - {fileID: -8702397697734732567, guid: bc9ecb374f6dcbf42ad9bf5e4b85bce8, type: 3}
+    - {fileID: 3044178014206499013, guid: bc9ecb374f6dcbf42ad9bf5e4b85bce8, type: 3}
+    - {fileID: 2364496366526075771, guid: bc9ecb374f6dcbf42ad9bf5e4b85bce8, type: 3}
+    - {fileID: 2010812372811015083, guid: bc9ecb374f6dcbf42ad9bf5e4b85bce8, type: 3}
+    - {fileID: 6230206492816192500, guid: bc9ecb374f6dcbf42ad9bf5e4b85bce8, type: 3}
+  - name: Fx_LightShaft
+    frames: 8
+    rows: 1
+    sprites:
+    - {fileID: -7621379894035096500, guid: f6c9426b9e1431c4298a33d56bbb2de8, type: 3}
+    - {fileID: 6607637473180976291, guid: f6c9426b9e1431c4298a33d56bbb2de8, type: 3}
+    - {fileID: -4763075559856499927, guid: f6c9426b9e1431c4298a33d56bbb2de8, type: 3}
+    - {fileID: 4912030306566611630, guid: f6c9426b9e1431c4298a33d56bbb2de8, type: 3}
+    - {fileID: 2374376519745143359, guid: f6c9426b9e1431c4298a33d56bbb2de8, type: 3}
+    - {fileID: 3040675460270535087, guid: f6c9426b9e1431c4298a33d56bbb2de8, type: 3}
+    - {fileID: -1904412169030844368, guid: f6c9426b9e1431c4298a33d56bbb2de8, type: 3}
+    - {fileID: 3657706979156936692, guid: f6c9426b9e1431c4298a33d56bbb2de8, type: 3}
+  - name: Critter_Dragonfly_Fly
+    frames: 2
+    rows: 1
+    sprites:
+    - {fileID: 1261671122313606687, guid: 6137944a2373ec941a73a4caa96b117b, type: 3}
+    - {fileID: -2611653299362309682, guid: 6137944a2373ec941a73a4caa96b117b, type: 3}
+  - name: Critter_Dragonfly_Perch
+    frames: 1
+    rows: 1
+    sprites:
+    - {fileID: -5450723508327595838, guid: 619132a204adfd441878f0d63164ad1d, type: 3}
+  - name: Critter_Millipede_Crawl
+    frames: 4
+    rows: 1
+    sprites:
+    - {fileID: 8876681714140547436, guid: e450dca050ef5b941842ddf95d947d59, type: 3}
+    - {fileID: 3641541359856989003, guid: e450dca050ef5b941842ddf95d947d59, type: 3}
+    - {fileID: -4193904429017708904, guid: e450dca050ef5b941842ddf95d947d59, type: 3}
+    - {fileID: -8446661424431053541, guid: e450dca050ef5b941842ddf95d947d59, type: 3}
+  - name: Critter_Roach_Idle
+    frames: 2
+    rows: 1
+    sprites:
+    - {fileID: 1338283110669476339, guid: d81e5849dbcba0f468cb720e66f670e9, type: 3}
+    - {fileID: -6346308220485344256, guid: d81e5849dbcba0f468cb720e66f670e9, type: 3}
+  - name: Critter_Roach_Run
+    frames: 4
+    rows: 1
+    sprites:
+    - {fileID: 1466279711879718212, guid: 8542463a2252bbf45b760cda50a7d861, type: 3}
+    - {fileID: -5379405349136780652, guid: 8542463a2252bbf45b760cda50a7d861, type: 3}
+    - {fileID: 7225710508555814515, guid: 8542463a2252bbf45b760cda50a7d861, type: 3}
+    - {fileID: 1620774002248968470, guid: 8542463a2252bbf45b760cda50a7d861, type: 3}
+  - name: Critter_Springtail_Hop
+    frames: 4
+    rows: 1
+    sprites:
+    - {fileID: 147680344560964899, guid: 02c8100653d5e984abe4884b7bdc8ac2, type: 3}
+    - {fileID: 1328234661, guid: 02c8100653d5e984abe4884b7bdc8ac2, type: 3}
+    - {fileID: -1990162016, guid: 02c8100653d5e984abe4884b7bdc8ac2, type: 3}
+    - {fileID: 1197113490, guid: 02c8100653d5e984abe4884b7bdc8ac2, type: 3}
+  - name: Lepido_DarkPuddle
+    frames: 4
+    rows: 1
+    sprites:
+    - {fileID: -7764815362415267338, guid: aaaa72c691a980e41bc9da996afe84f1, type: 3}
+    - {fileID: -7000249845616623707, guid: aaaa72c691a980e41bc9da996afe84f1, type: 3}
+    - {fileID: 5242322030587721433, guid: aaaa72c691a980e41bc9da996afe84f1, type: 3}
+    - {fileID: 2049641749817908549, guid: aaaa72c691a980e41bc9da996afe84f1, type: 3}
+  - name: Lepido_FlowerletsA
+    frames: 4
+    rows: 1
+    sprites:
+    - {fileID: 1568253743031224849, guid: 0a5bb178460a02242a4e952030f0fb6e, type: 3}
+    - {fileID: -8067183386407953150, guid: 0a5bb178460a02242a4e952030f0fb6e, type: 3}
+    - {fileID: -4101223062020427347, guid: 0a5bb178460a02242a4e952030f0fb6e, type: 3}
+    - {fileID: 7062687250809226169, guid: 0a5bb178460a02242a4e952030f0fb6e, type: 3}
+  - name: Lepido_FlowerletsB
+    frames: 4
+    rows: 1
+    sprites:
+    - {fileID: -7881768642733317728, guid: f4947795834c2ac47bb75611dc86d1ff, type: 3}
+    - {fileID: 6968166534795050531, guid: f4947795834c2ac47bb75611dc86d1ff, type: 3}
+    - {fileID: 4139254150346580537, guid: f4947795834c2ac47bb75611dc86d1ff, type: 3}
+    - {fileID: 4899562602604535954, guid: f4947795834c2ac47bb75611dc86d1ff, type: 3}
+  - name: Lepido_FlowerletsC
+    frames: 4
+    rows: 1
+    sprites:
+    - {fileID: -5328730414297264282, guid: ac354cadb7cfd2b449a75562f1c9a2ec, type: 3}
+    - {fileID: -759433544689732399, guid: ac354cadb7cfd2b449a75562f1c9a2ec, type: 3}
+    - {fileID: 7474573811022787660, guid: ac354cadb7cfd2b449a75562f1c9a2ec, type: 3}
+    - {fileID: 6480542850167425015, guid: ac354cadb7cfd2b449a75562f1c9a2ec, type: 3}
+  - name: Lepido_Fungus_L
+    frames: 1
+    rows: 1
+    sprites:
+    - {fileID: 941788232562684344, guid: 855103276d7118a48ae6e82333f8741c, type: 3}
+  - name: Lepido_Fungus_M
+    frames: 1
+    rows: 1
+    sprites:
+    - {fileID: 5484452538189338209, guid: e0559f77e95a0ee42b38adaf68934100, type: 3}
+  - name: Lepido_Fungus_S
+    frames: 1
+    rows: 1
+    sprites:
+    - {fileID: 711432063430778245, guid: c2c146568ef801442a2a34037846fb43, type: 3}
+  - name: Lepido_LianaA_Sway
+    frames: 8
+    rows: 1
+    sprites:
+    - {fileID: 8865120041654974605, guid: 38ed75b5b6b464244a0c919ee42a44ce, type: 3}
+    - {fileID: -3907095010549707431, guid: 38ed75b5b6b464244a0c919ee42a44ce, type: 3}
+    - {fileID: 8033555037796601302, guid: 38ed75b5b6b464244a0c919ee42a44ce, type: 3}
+    - {fileID: -6168531012683199932, guid: 38ed75b5b6b464244a0c919ee42a44ce, type: 3}
+    - {fileID: 2604339628330194862, guid: 38ed75b5b6b464244a0c919ee42a44ce, type: 3}
+    - {fileID: 5074937912471403327, guid: 38ed75b5b6b464244a0c919ee42a44ce, type: 3}
+    - {fileID: 9041858399445199007, guid: 38ed75b5b6b464244a0c919ee42a44ce, type: 3}
+    - {fileID: 5567609300513197099, guid: 38ed75b5b6b464244a0c919ee42a44ce, type: 3}
+  - name: Lepido_LianaB_Sway
+    frames: 8
+    rows: 1
+    sprites:
+    - {fileID: 80968718847566470, guid: db88c3ab87e261449983900c7c15571c, type: 3}
+    - {fileID: -663037396608380411, guid: db88c3ab87e261449983900c7c15571c, type: 3}
+    - {fileID: -49870194158567705, guid: db88c3ab87e261449983900c7c15571c, type: 3}
+    - {fileID: -87359239127556930, guid: db88c3ab87e261449983900c7c15571c, type: 3}
+    - {fileID: 1415213961017175343, guid: db88c3ab87e261449983900c7c15571c, type: 3}
+    - {fileID: -4755406465126600778, guid: db88c3ab87e261449983900c7c15571c, type: 3}
+    - {fileID: -2117295974924927080, guid: db88c3ab87e261449983900c7c15571c, type: 3}
+    - {fileID: 7074072220742073537, guid: db88c3ab87e261449983900c7c15571c, type: 3}
+  - name: Lepido_ShroomA_Hit
+    frames: 2
+    rows: 1
+    sprites:
+    - {fileID: 7527422887135789477, guid: fe400c849db049e41bfbbfae71dd56c1, type: 3}
+    - {fileID: -2327200079317716442, guid: fe400c849db049e41bfbbfae71dd56c1, type: 3}
+  - name: Lepido_ShroomA_Idle
+    frames: 6
+    rows: 1
+    sprites:
+    - {fileID: 7939508993758843889, guid: 29acd4f095c759840aadfe8d0842edd9, type: 3}
+    - {fileID: 6365290248347079667, guid: 29acd4f095c759840aadfe8d0842edd9, type: 3}
+    - {fileID: 4458016742111151938, guid: 29acd4f095c759840aadfe8d0842edd9, type: 3}
+    - {fileID: 8838764637396779755, guid: 29acd4f095c759840aadfe8d0842edd9, type: 3}
+    - {fileID: 8805702946266544240, guid: 29acd4f095c759840aadfe8d0842edd9, type: 3}
+    - {fileID: 688813548474474086, guid: 29acd4f095c759840aadfe8d0842edd9, type: 3}
+  - name: Lepido_ShroomA_Warn
+    frames: 4
+    rows: 1
+    sprites:
+    - {fileID: -8883050661819498852, guid: 0b0ee6c7f907ef34d845e25b37983c00, type: 3}
+    - {fileID: -988425154383422354, guid: 0b0ee6c7f907ef34d845e25b37983c00, type: 3}
+    - {fileID: -8921816996105821096, guid: 0b0ee6c7f907ef34d845e25b37983c00, type: 3}
+    - {fileID: 7782547858903401329, guid: 0b0ee6c7f907ef34d845e25b37983c00, type: 3}
+  - name: Lepido_ShroomB_Hit
+    frames: 2
+    rows: 1
+    sprites:
+    - {fileID: 6262335238382099301, guid: 4130b37901f900f439a4706d7307b639, type: 3}
+    - {fileID: 5773231949439526872, guid: 4130b37901f900f439a4706d7307b639, type: 3}
+  - name: Lepido_ShroomB_Idle
+    frames: 6
+    rows: 1
+    sprites:
+    - {fileID: -7484464788630318324, guid: 62749fd0016b44e4e8b0e799107635e5, type: 3}
+    - {fileID: 4512691108578595341, guid: 62749fd0016b44e4e8b0e799107635e5, type: 3}
+    - {fileID: -4451301805535293767, guid: 62749fd0016b44e4e8b0e799107635e5, type: 3}
+    - {fileID: 2820201463989882874, guid: 62749fd0016b44e4e8b0e799107635e5, type: 3}
+    - {fileID: 2051624407456545960, guid: 62749fd0016b44e4e8b0e799107635e5, type: 3}
+    - {fileID: 7247299938127939234, guid: 62749fd0016b44e4e8b0e799107635e5, type: 3}
+  - name: Lepido_ShroomB_Warn
+    frames: 4
+    rows: 1
+    sprites:
+    - {fileID: 5362511283544929889, guid: bea426c3f14d1b94896822cf69eea236, type: 3}
+    - {fileID: -7104090738744009575, guid: bea426c3f14d1b94896822cf69eea236, type: 3}
+    - {fileID: -685514183707059094, guid: bea426c3f14d1b94896822cf69eea236, type: 3}
+    - {fileID: 2492937278923222130, guid: bea426c3f14d1b94896822cf69eea236, type: 3}
+  - name: Lepido_ShroomC_Hit
+    frames: 2
+    rows: 1
+    sprites:
+    - {fileID: 3150648141624055811, guid: bda8b267fc096d448872c2f60ef45ccf, type: 3}
+    - {fileID: -4154227282715681745, guid: bda8b267fc096d448872c2f60ef45ccf, type: 3}
+  - name: Lepido_ShroomC_Idle
+    frames: 6
+    rows: 1
+    sprites:
+    - {fileID: 6299719427402418946, guid: 7591af687e561e64ba1c2afca78e6a6a, type: 3}
+    - {fileID: 3151175988250512805, guid: 7591af687e561e64ba1c2afca78e6a6a, type: 3}
+    - {fileID: 6164130836312325660, guid: 7591af687e561e64ba1c2afca78e6a6a, type: 3}
+    - {fileID: -5788336575126688700, guid: 7591af687e561e64ba1c2afca78e6a6a, type: 3}
+    - {fileID: -5394378886107505974, guid: 7591af687e561e64ba1c2afca78e6a6a, type: 3}
+    - {fileID: 61131480885861075, guid: 7591af687e561e64ba1c2afca78e6a6a, type: 3}
+  - name: Lepido_ShroomC_Warn
+    frames: 4
+    rows: 1
+    sprites:
+    - {fileID: 1722548334811167056, guid: 97d4b6b922d0fa94b999134a0389d045, type: 3}
+    - {fileID: -4668461096254275722, guid: 97d4b6b922d0fa94b999134a0389d045, type: 3}
+    - {fileID: -4259538965811371454, guid: 97d4b6b922d0fa94b999134a0389d045, type: 3}
+    - {fileID: 3111058626592556180, guid: 97d4b6b922d0fa94b999134a0389d045, type: 3}
+  - name: Remains_AmphibianSkull
+    frames: 1
+    rows: 1
+    sprites:
+    - {fileID: 3372230100897028047, guid: 6e5adad5e37fffd4d99243ea5e0994bf, type: 3}
+  - name: Remains_PaleoWings
+    frames: 1
+    rows: 1
+    sprites:
+    - {fileID: 1592720761072501399, guid: 7f217edf676222f4fa26aff01450eb76, type: 3}
+  - name: Remains_Pulmonoscorpius
+    frames: 1
+    rows: 1
+    sprites:
+    - {fileID: -8286850997992623227, guid: f2c5e5abcbd5a104c8200a92822eaa95, type: 3}
+  - name: Remains_Trigonotarbid
+    frames: 1
+    rows: 1
+    sprites:
+    - {fileID: -4050037063159837834, guid: b99ef57903c79304a8b5380e1172befb, type: 3}
+  - name: Fx_KnotBurst
+    frames: 6
+    rows: 1
+    sprites:
+    - {fileID: -7382486601014170530, guid: 53358d0365a58394eaa855bd732ebd18, type: 3}
+    - {fileID: 928381473851385346, guid: 53358d0365a58394eaa855bd732ebd18, type: 3}
+    - {fileID: -2089902392402535270, guid: 53358d0365a58394eaa855bd732ebd18, type: 3}
+    - {fileID: -1032957805, guid: 53358d0365a58394eaa855bd732ebd18, type: 3}
+    - {fileID: 1270354743, guid: 53358d0365a58394eaa855bd732ebd18, type: 3}
+    - {fileID: 1278971955, guid: 53358d0365a58394eaa855bd732ebd18, type: 3}
+  - name: Fx_RootSmolder
+    frames: 6
+    rows: 1
+    sprites:
+    - {fileID: 7016564262590375626, guid: 09ee2c1591b18854fa80b2c7c1837290, type: 3}
+    - {fileID: -418898445, guid: 09ee2c1591b18854fa80b2c7c1837290, type: 3}
+    - {fileID: -334367181, guid: 09ee2c1591b18854fa80b2c7c1837290, type: 3}
+    - {fileID: 984500413, guid: 09ee2c1591b18854fa80b2c7c1837290, type: 3}
+    - {fileID: 64672684, guid: 09ee2c1591b18854fa80b2c7c1837290, type: 3}
+    - {fileID: -7463105, guid: 09ee2c1591b18854fa80b2c7c1837290, type: 3}
+  - name: Lepido_Wall1_AshScar
+    frames: 1
+    rows: 1
+    sprites:
+    - {fileID: -6916433350670825028, guid: 11beb4968a7b0e74da18a0acb4b50e7e, type: 3}
+  - name: Lepido_Wall1_Charred_D0
+    frames: 1
+    rows: 1
+    sprites:
+    - {fileID: -6363159316586942843, guid: b06f6e99277a5dd4b99e8837cd0292be, type: 3}
+  - name: Lepido_Wall1_Charred_D1
+    frames: 1
+    rows: 1
+    sprites:
+    - {fileID: -358849771078257587, guid: c861f67839b46ab40903b186c0744a60, type: 3}
+  - name: Lepido_Wall1_Charred_D2
+    frames: 1
+    rows: 1
+    sprites:
+    - {fileID: -2053734428156960204, guid: bb49e69ca7ab06340a60c747290d732a, type: 3}
+  - name: Lepido_Wall1_Charred_D3
+    frames: 1
+    rows: 1
+    sprites:
+    - {fileID: -8478873710589636310, guid: 52d2f2e6923f99245985758a399c8614, type: 3}
+  - name: Lepido_Wall1_Crumble
+    frames: 8
+    rows: 1
+    sprites:
+    - {fileID: -6055670966894796097, guid: 66a3daf852eb5304f872f224120c0254, type: 3}
+    - {fileID: -4272067597484914351, guid: 66a3daf852eb5304f872f224120c0254, type: 3}
+    - {fileID: 842978179241824160, guid: 66a3daf852eb5304f872f224120c0254, type: 3}
+    - {fileID: -5753237575303556560, guid: 66a3daf852eb5304f872f224120c0254, type: 3}
+    - {fileID: 1184183700806088319, guid: 66a3daf852eb5304f872f224120c0254, type: 3}
+    - {fileID: 8373674793552690208, guid: 66a3daf852eb5304f872f224120c0254, type: 3}
+    - {fileID: 4744497727762479746, guid: 66a3daf852eb5304f872f224120c0254, type: 3}
+    - {fileID: -8601455157961232895, guid: 66a3daf852eb5304f872f224120c0254, type: 3}
+  - name: Lepido_Wall1_D0
+    frames: 1
+    rows: 1
+    sprites:
+    - {fileID: 6159106923777589341, guid: d5f23e2576163d44e997f123ec4b7787, type: 3}
+  - name: Lepido_Wall1_D1
+    frames: 1
+    rows: 1
+    sprites:
+    - {fileID: -3299546617076031909, guid: 5e38180792c5eef4cace2aea4a652a45, type: 3}
+  - name: Lepido_Wall1_D2
+    frames: 1
+    rows: 1
+    sprites:
+    - {fileID: 183775784900093822, guid: 1853ae32c0934344db63735dc8c9eb04, type: 3}
+  - name: Lepido_Wall1_D3
+    frames: 1
+    rows: 1
+    sprites:
+    - {fileID: -3110546980935939458, guid: 1b34d0e71a91dea4ba7a5bd03d5434e5, type: 3}
+  - name: Lepido_Wall1_Hurt_D0
+    frames: 2
+    rows: 1
+    sprites:
+    - {fileID: 4380860202456162142, guid: ec9cb9ced67432f48a0d3d33a3c7b875, type: 3}
+    - {fileID: -742041324843973854, guid: ec9cb9ced67432f48a0d3d33a3c7b875, type: 3}
+  - name: Lepido_Wall1_Hurt_D1
+    frames: 2
+    rows: 1
+    sprites:
+    - {fileID: 5798184583877310238, guid: a33d7f272294bd34187b7061cd2d0fb3, type: 3}
+    - {fileID: 7829928433300416047, guid: a33d7f272294bd34187b7061cd2d0fb3, type: 3}
+  - name: Lepido_Wall1_Hurt_D2
+    frames: 2
+    rows: 1
+    sprites:
+    - {fileID: 2021991924757158321, guid: 6b6d56b032d72de439ea3cbf870c67a4, type: 3}
+    - {fileID: 6652552483119292086, guid: 6b6d56b032d72de439ea3cbf870c67a4, type: 3}
+  - name: Lepido_Wall1_Hurt_D3
+    frames: 2
+    rows: 1
+    sprites:
+    - {fileID: -3472282873092404694, guid: d9a62128e72553743b64ef0219033b0b, type: 3}
+    - {fileID: -8255492911831824065, guid: d9a62128e72553743b64ef0219033b0b, type: 3}
+  - name: Lepido_Wall1_Knot0_Hit
+    frames: 2
+    rows: 1
+    sprites:
+    - {fileID: -3167685057884970250, guid: f67b31e77356df24494d055b6c84ddcd, type: 3}
+    - {fileID: 6762263900960708149, guid: f67b31e77356df24494d055b6c84ddcd, type: 3}
+  - name: Lepido_Wall1_Knot0_Idle
+    frames: 4
+    rows: 1
+    sprites:
+    - {fileID: 3775458287034759738, guid: 36c4ba72fea05584eb993958bc2becf5, type: 3}
+    - {fileID: -4842704634505481268, guid: 36c4ba72fea05584eb993958bc2becf5, type: 3}
+    - {fileID: 7329796362382489497, guid: 36c4ba72fea05584eb993958bc2becf5, type: 3}
+    - {fileID: -2138205129601106956, guid: 36c4ba72fea05584eb993958bc2becf5, type: 3}
+  - name: Lepido_Wall1_Knot0_Wound
+    frames: 1
+    rows: 1
+    sprites:
+    - {fileID: 9193786417360481796, guid: 3faaa77218a749540a114fe8decf9ef5, type: 3}
+  - name: Lepido_Wall1_Knot0_WoundCharred
+    frames: 1
+    rows: 1
+    sprites:
+    - {fileID: -4515188562688243748, guid: 04dfe9e79615c904799438dda9044b4c, type: 3}
+  - name: Lepido_Wall1_Knot1_Hit
+    frames: 2
+    rows: 1
+    sprites:
+    - {fileID: 2724192457800325029, guid: 199679c88e35fb14daa145746d745022, type: 3}
+    - {fileID: 3262452425449179738, guid: 199679c88e35fb14daa145746d745022, type: 3}
+  - name: Lepido_Wall1_Knot1_Idle
+    frames: 4
+    rows: 1
+    sprites:
+    - {fileID: 2201060233701188322, guid: e9b4bf6513d43e04a8f5f43b17810bee, type: 3}
+    - {fileID: -1438449990285704656, guid: e9b4bf6513d43e04a8f5f43b17810bee, type: 3}
+    - {fileID: 35072564534586529, guid: e9b4bf6513d43e04a8f5f43b17810bee, type: 3}
+    - {fileID: 1277978731842397721, guid: e9b4bf6513d43e04a8f5f43b17810bee, type: 3}
+  - name: Lepido_Wall1_Knot1_Wound
+    frames: 1
+    rows: 1
+    sprites:
+    - {fileID: -4271087636583451017, guid: 62947d8f26b5783428e860b037a2333e, type: 3}
+  - name: Lepido_Wall1_Knot1_WoundCharred
+    frames: 1
+    rows: 1
+    sprites:
+    - {fileID: 2139383364937275285, guid: 048b250aedda569449bc346a9cd8f35d, type: 3}
+  - name: Lepido_Wall1_Retract
+    frames: 8
+    rows: 1
+    sprites:
+    - {fileID: -8649623148417126751, guid: 188724171fd70284db483a630469aaef, type: 3}
+    - {fileID: 8379270704159852892, guid: 188724171fd70284db483a630469aaef, type: 3}
+    - {fileID: -6849893159065351811, guid: 188724171fd70284db483a630469aaef, type: 3}
+    - {fileID: 7229169135747329394, guid: 188724171fd70284db483a630469aaef, type: 3}
+    - {fileID: -9192363608346570082, guid: 188724171fd70284db483a630469aaef, type: 3}
+    - {fileID: 5243726496367013125, guid: 188724171fd70284db483a630469aaef, type: 3}
+    - {fileID: -1475577253594820746, guid: 188724171fd70284db483a630469aaef, type: 3}
+    - {fileID: 3907336799990149518, guid: 188724171fd70284db483a630469aaef, type: 3}
+  - name: Lepido_Wall1_Scar
+    frames: 1
+    rows: 1
+    sprites:
+    - {fileID: 307689003482369251, guid: 90c07130d63461b43a03f913a734d21d, type: 3}
+  - name: Lepido_Wall2_AshScar
+    frames: 1
+    rows: 1
+    sprites:
+    - {fileID: -8984113609006657166, guid: 92fe11116960fcb4c90ed478625e5f1b, type: 3}
+  - name: Lepido_Wall2_Charred_D0
+    frames: 1
+    rows: 1
+    sprites:
+    - {fileID: 3714816378948902391, guid: 0abde1b88216ba449b2f7d6b17909e11, type: 3}
+  - name: Lepido_Wall2_Charred_D1
+    frames: 1
+    rows: 1
+    sprites:
+    - {fileID: -1672499346537827923, guid: 5b11c97eaff91b04b88c74be71848520, type: 3}
+  - name: Lepido_Wall2_Charred_D2
+    frames: 1
+    rows: 1
+    sprites:
+    - {fileID: -819070942001950110, guid: ab0c4e3c95e03d243958fe57841e2b6a, type: 3}
+  - name: Lepido_Wall2_Charred_D3
+    frames: 1
+    rows: 1
+    sprites:
+    - {fileID: 4569767905867439102, guid: 1295f345662bfe541a71ccdf2d69acf0, type: 3}
+  - name: Lepido_Wall2_Crumble
+    frames: 8
+    rows: 1
+    sprites:
+    - {fileID: -921308610263564724, guid: b1d25ef00fd2b3a48bba4b27389b34ad, type: 3}
+    - {fileID: 4835137981885238404, guid: b1d25ef00fd2b3a48bba4b27389b34ad, type: 3}
+    - {fileID: -5402317377165600523, guid: b1d25ef00fd2b3a48bba4b27389b34ad, type: 3}
+    - {fileID: 6639945371938663540, guid: b1d25ef00fd2b3a48bba4b27389b34ad, type: 3}
+    - {fileID: 3107214764485558587, guid: b1d25ef00fd2b3a48bba4b27389b34ad, type: 3}
+    - {fileID: 6670395592766185634, guid: b1d25ef00fd2b3a48bba4b27389b34ad, type: 3}
+    - {fileID: 5700467734559207681, guid: b1d25ef00fd2b3a48bba4b27389b34ad, type: 3}
+    - {fileID: -710795707326329258, guid: b1d25ef00fd2b3a48bba4b27389b34ad, type: 3}
+  - name: Lepido_Wall2_D0
+    frames: 1
+    rows: 1
+    sprites:
+    - {fileID: 8703398332032802538, guid: 147a6eb909b4cc743976a040748e7994, type: 3}
+  - name: Lepido_Wall2_D1
+    frames: 1
+    rows: 1
+    sprites:
+    - {fileID: 6525108860050607989, guid: cd4dfb9d02e8a9a49b43be7c2c976d2f, type: 3}
+  - name: Lepido_Wall2_D2
+    frames: 1
+    rows: 1
+    sprites:
+    - {fileID: -1360771588652460233, guid: 07d60d0b31e3ca148b9b106428d80e9b, type: 3}
+  - name: Lepido_Wall2_D3
+    frames: 1
+    rows: 1
+    sprites:
+    - {fileID: -7232740865308245420, guid: 65c75e144ba548641b74f7a8c3809907, type: 3}
+  - name: Lepido_Wall2_Hurt_D0
+    frames: 2
+    rows: 1
+    sprites:
+    - {fileID: 2683438907457777659, guid: b50f76f3a36716c41a283e2ba61c8844, type: 3}
+    - {fileID: -5650879146728526737, guid: b50f76f3a36716c41a283e2ba61c8844, type: 3}
+  - name: Lepido_Wall2_Hurt_D1
+    frames: 2
+    rows: 1
+    sprites:
+    - {fileID: -5279062438435546229, guid: 9d75eea105046a340822d1ea0bbd0670, type: 3}
+    - {fileID: -2620937869645421539, guid: 9d75eea105046a340822d1ea0bbd0670, type: 3}
+  - name: Lepido_Wall2_Hurt_D2
+    frames: 2
+    rows: 1
+    sprites:
+    - {fileID: -782956668888395440, guid: f0fe3e4c292f53345adbd726d64dc80d, type: 3}
+    - {fileID: 8056827463009674707, guid: f0fe3e4c292f53345adbd726d64dc80d, type: 3}
+  - name: Lepido_Wall2_Hurt_D3
+    frames: 2
+    rows: 1
+    sprites:
+    - {fileID: 3859022562630561884, guid: e7b1061790e94274e9a58bdad8a0918f, type: 3}
+    - {fileID: 2755830078231313296, guid: e7b1061790e94274e9a58bdad8a0918f, type: 3}
+  - name: Lepido_Wall2_Knot0_Hit
+    frames: 2
+    rows: 1
+    sprites:
+    - {fileID: 3018219493809620048, guid: bf7d046f1ec3f9e459fa599b590de4f2, type: 3}
+    - {fileID: 2052894497267034977, guid: bf7d046f1ec3f9e459fa599b590de4f2, type: 3}
+  - name: Lepido_Wall2_Knot0_Idle
+    frames: 4
+    rows: 1
+    sprites:
+    - {fileID: 2150092705005931080, guid: c591088d5c56d4340a5373926bf0c5ab, type: 3}
+    - {fileID: 8611490799340516210, guid: c591088d5c56d4340a5373926bf0c5ab, type: 3}
+    - {fileID: -5117614138509812982, guid: c591088d5c56d4340a5373926bf0c5ab, type: 3}
+    - {fileID: -4274236292317625599, guid: c591088d5c56d4340a5373926bf0c5ab, type: 3}
+  - name: Lepido_Wall2_Knot0_Wound
+    frames: 1
+    rows: 1
+    sprites:
+    - {fileID: 3474538423895885517, guid: fe4bd58408a871744b393b28a696c7bf, type: 3}
+  - name: Lepido_Wall2_Knot0_WoundCharred
+    frames: 1
+    rows: 1
+    sprites:
+    - {fileID: -4882129226040745873, guid: bba0e0067fa753f428d629684de9f99a, type: 3}
+  - name: Lepido_Wall2_Knot1_Hit
+    frames: 2
+    rows: 1
+    sprites:
+    - {fileID: 2499028510120179743, guid: f9a2b6754320cea4695febf178829ed7, type: 3}
+    - {fileID: 5703761621459103870, guid: f9a2b6754320cea4695febf178829ed7, type: 3}
+  - name: Lepido_Wall2_Knot1_Idle
+    frames: 4
+    rows: 1
+    sprites:
+    - {fileID: 994224248563812436, guid: b10c5ccaabc2ddd459d18dc121c2ee50, type: 3}
+    - {fileID: 2865756871781933878, guid: b10c5ccaabc2ddd459d18dc121c2ee50, type: 3}
+    - {fileID: 5489134058343854052, guid: b10c5ccaabc2ddd459d18dc121c2ee50, type: 3}
+    - {fileID: -2134460227234251324, guid: b10c5ccaabc2ddd459d18dc121c2ee50, type: 3}
+  - name: Lepido_Wall2_Knot1_Wound
+    frames: 1
+    rows: 1
+    sprites:
+    - {fileID: -4243485269381627933, guid: 92e7b81549973244481b90b8b14ba558, type: 3}
+  - name: Lepido_Wall2_Knot1_WoundCharred
+    frames: 1
+    rows: 1
+    sprites:
+    - {fileID: -5745803235829095434, guid: 8f533486f19a1574d8e2b5d6eeef8f30, type: 3}
+  - name: Lepido_Wall2_Knot2_Hit
+    frames: 2
+    rows: 1
+    sprites:
+    - {fileID: -7345739090449142652, guid: a938177b13170fb4e923220053699534, type: 3}
+    - {fileID: 6207459828315468576, guid: a938177b13170fb4e923220053699534, type: 3}
+  - name: Lepido_Wall2_Knot2_Idle
+    frames: 4
+    rows: 1
+    sprites:
+    - {fileID: -2257532161300974080, guid: 7f5f08f208bbee8449ace79a765806b3, type: 3}
+    - {fileID: -9112866835282859312, guid: 7f5f08f208bbee8449ace79a765806b3, type: 3}
+    - {fileID: -7143385934777100313, guid: 7f5f08f208bbee8449ace79a765806b3, type: 3}
+    - {fileID: -1550389705229049411, guid: 7f5f08f208bbee8449ace79a765806b3, type: 3}
+  - name: Lepido_Wall2_Knot2_Wound
+    frames: 1
+    rows: 1
+    sprites:
+    - {fileID: -8963910482607952369, guid: 7d85de0790092b241ad1ee076696f62b, type: 3}
+  - name: Lepido_Wall2_Knot2_WoundCharred
+    frames: 1
+    rows: 1
+    sprites:
+    - {fileID: 750728406125618301, guid: 6be50238164f85844be6acfd456784a9, type: 3}
+  - name: Lepido_Wall2_Retract
+    frames: 8
+    rows: 1
+    sprites:
+    - {fileID: 1147331945031476101, guid: e80ec1bbfb493a84aac0871e1b1a52bb, type: 3}
+    - {fileID: 2528909660315438293, guid: e80ec1bbfb493a84aac0871e1b1a52bb, type: 3}
+    - {fileID: 1122484944866652710, guid: e80ec1bbfb493a84aac0871e1b1a52bb, type: 3}
+    - {fileID: 6434731438236746471, guid: e80ec1bbfb493a84aac0871e1b1a52bb, type: 3}
+    - {fileID: -8124288721443827958, guid: e80ec1bbfb493a84aac0871e1b1a52bb, type: 3}
+    - {fileID: -3030994725019776842, guid: e80ec1bbfb493a84aac0871e1b1a52bb, type: 3}
+    - {fileID: -6138986091302113696, guid: e80ec1bbfb493a84aac0871e1b1a52bb, type: 3}
+    - {fileID: -8969387143941391739, guid: e80ec1bbfb493a84aac0871e1b1a52bb, type: 3}
+  - name: Lepido_Wall2_Scar
+    frames: 1
+    rows: 1
+    sprites:
+    - {fileID: -486317361044020355, guid: a86c8cfa02e658c4eaeb5c21da2c0a64, type: 3}
+  - name: Lepido_Wall3_AshScar
+    frames: 1
+    rows: 1
+    sprites:
+    - {fileID: -5155472161212971705, guid: 499b009694a991640acd518c4a66e2b9, type: 3}
+  - name: Lepido_Wall3_Charred_D0
+    frames: 1
+    rows: 1
+    sprites:
+    - {fileID: -552493498624924265, guid: c6657c2e228f7a64489eca5b9a92c6ac, type: 3}
+  - name: Lepido_Wall3_Charred_D1
+    frames: 1
+    rows: 1
+    sprites:
+    - {fileID: -1743642318734396844, guid: 9c7c18483cd47d54a8f311312203f3b0, type: 3}
+  - name: Lepido_Wall3_Charred_D2
+    frames: 1
+    rows: 1
+    sprites:
+    - {fileID: 7332841136691707993, guid: 0035dc8efbd085a4dbf7edeebfa26539, type: 3}
+  - name: Lepido_Wall3_Charred_D3
+    frames: 1
+    rows: 1
+    sprites:
+    - {fileID: 5642735926850506784, guid: 53e1fd122287502468439ad04bbdd627, type: 3}
+  - name: Lepido_Wall3_Crumble
+    frames: 8
+    rows: 1
+    sprites:
+    - {fileID: 5039237808217346938, guid: 95581d662884b3c44b8b8bb5d925801e, type: 3}
+    - {fileID: -1008007695010030880, guid: 95581d662884b3c44b8b8bb5d925801e, type: 3}
+    - {fileID: -2628389094437279164, guid: 95581d662884b3c44b8b8bb5d925801e, type: 3}
+    - {fileID: -4114144435082301879, guid: 95581d662884b3c44b8b8bb5d925801e, type: 3}
+    - {fileID: 4279710627825428710, guid: 95581d662884b3c44b8b8bb5d925801e, type: 3}
+    - {fileID: -2505991484044105172, guid: 95581d662884b3c44b8b8bb5d925801e, type: 3}
+    - {fileID: 8208430392478973553, guid: 95581d662884b3c44b8b8bb5d925801e, type: 3}
+    - {fileID: 2973631368904851748, guid: 95581d662884b3c44b8b8bb5d925801e, type: 3}
+  - name: Lepido_Wall3_D0
+    frames: 1
+    rows: 1
+    sprites:
+    - {fileID: -2779756049433623697, guid: 82675ce703254f641b14172921e81cab, type: 3}
+  - name: Lepido_Wall3_D1
+    frames: 1
+    rows: 1
+    sprites:
+    - {fileID: -2375551417663954345, guid: a08ef73f4141c3b4a86bd4aad25387ac, type: 3}
+  - name: Lepido_Wall3_D2
+    frames: 1
+    rows: 1
+    sprites:
+    - {fileID: 1085612861577951010, guid: f9e46d3611ed48444a91fb579c7d5eaf, type: 3}
+  - name: Lepido_Wall3_D3
+    frames: 1
+    rows: 1
+    sprites:
+    - {fileID: 6832957785564472476, guid: c9d1f5805b876274691733fe2423dc48, type: 3}
+  - name: Lepido_Wall3_Hurt_D0
+    frames: 2
+    rows: 1
+    sprites:
+    - {fileID: 1035484521517164442, guid: ef3d35da18f6b0b4abb72ad2ddaa0a25, type: 3}
+    - {fileID: -5522020645273960743, guid: ef3d35da18f6b0b4abb72ad2ddaa0a25, type: 3}
+  - name: Lepido_Wall3_Hurt_D1
+    frames: 2
+    rows: 1
+    sprites:
+    - {fileID: -2158464414074598057, guid: fc7422b6f10c48341a68bbf4a1f293cc, type: 3}
+    - {fileID: 9183338951146178148, guid: fc7422b6f10c48341a68bbf4a1f293cc, type: 3}
+  - name: Lepido_Wall3_Hurt_D2
+    frames: 2
+    rows: 1
+    sprites:
+    - {fileID: 6127471275571022409, guid: acad9bd80155cac43839a74baa44b8f4, type: 3}
+    - {fileID: -3006956262453594629, guid: acad9bd80155cac43839a74baa44b8f4, type: 3}
+  - name: Lepido_Wall3_Hurt_D3
+    frames: 2
+    rows: 1
+    sprites:
+    - {fileID: -8848468439197571894, guid: c77408411605f2d4181c4b03644b554f, type: 3}
+    - {fileID: 7367505810953853355, guid: c77408411605f2d4181c4b03644b554f, type: 3}
+  - name: Lepido_Wall3_Knot0_Hit
+    frames: 2
+    rows: 1
+    sprites:
+    - {fileID: 6576790583501354811, guid: 88dba0092b0a89d47af9fe9f7bff9f62, type: 3}
+    - {fileID: 2828039042245917387, guid: 88dba0092b0a89d47af9fe9f7bff9f62, type: 3}
+  - name: Lepido_Wall3_Knot0_Idle
+    frames: 4
+    rows: 1
+    sprites:
+    - {fileID: -6937773533730072837, guid: c8e4c4b74b1e1cc4f97984c883586df0, type: 3}
+    - {fileID: -8974194146983098230, guid: c8e4c4b74b1e1cc4f97984c883586df0, type: 3}
+    - {fileID: 5741093562325358625, guid: c8e4c4b74b1e1cc4f97984c883586df0, type: 3}
+    - {fileID: -8014115096096901142, guid: c8e4c4b74b1e1cc4f97984c883586df0, type: 3}
+  - name: Lepido_Wall3_Knot0_Wound
+    frames: 1
+    rows: 1
+    sprites:
+    - {fileID: 2836550616920315851, guid: b951d4f4db68d3147b6dd9bc1001cc53, type: 3}
+  - name: Lepido_Wall3_Knot0_WoundCharred
+    frames: 1
+    rows: 1
+    sprites:
+    - {fileID: 2710526714031775744, guid: aafab184b640c6f4295b0ae80f4e0423, type: 3}
+  - name: Lepido_Wall3_Knot1_Hit
+    frames: 2
+    rows: 1
+    sprites:
+    - {fileID: -8497276294604416797, guid: c1af2417b1d13a44a8e502f8d44ac556, type: 3}
+    - {fileID: 8379058426503201444, guid: c1af2417b1d13a44a8e502f8d44ac556, type: 3}
+  - name: Lepido_Wall3_Knot1_Idle
+    frames: 4
+    rows: 1
+    sprites:
+    - {fileID: -9189181565903507720, guid: be7c44d3e2cc80f47b66cc6c0c21e4b5, type: 3}
+    - {fileID: -1544308539105604216, guid: be7c44d3e2cc80f47b66cc6c0c21e4b5, type: 3}
+    - {fileID: 7672298705445085498, guid: be7c44d3e2cc80f47b66cc6c0c21e4b5, type: 3}
+    - {fileID: 2822817437067174717, guid: be7c44d3e2cc80f47b66cc6c0c21e4b5, type: 3}
+  - name: Lepido_Wall3_Knot1_Wound
+    frames: 1
+    rows: 1
+    sprites:
+    - {fileID: -1009292175980160200, guid: 479b925b7643c0147b9eb1be3d888518, type: 3}
+  - name: Lepido_Wall3_Knot1_WoundCharred
+    frames: 1
+    rows: 1
+    sprites:
+    - {fileID: -1615721009377226654, guid: a6c95776e1b86364c9c8cc3e1e82c488, type: 3}
+  - name: Lepido_Wall3_Knot2_Hit
+    frames: 2
+    rows: 1
+    sprites:
+    - {fileID: -2408164890565916638, guid: 33592c27af26a2a488fa281d3d4ca3a1, type: 3}
+    - {fileID: 7534825083662554847, guid: 33592c27af26a2a488fa281d3d4ca3a1, type: 3}
+  - name: Lepido_Wall3_Knot2_Idle
+    frames: 4
+    rows: 1
+    sprites:
+    - {fileID: 6208262708336032952, guid: 121bddd3e3dc2ca4c88b7ba2b95961ed, type: 3}
+    - {fileID: 8952884641206496290, guid: 121bddd3e3dc2ca4c88b7ba2b95961ed, type: 3}
+    - {fileID: -5923641864068154110, guid: 121bddd3e3dc2ca4c88b7ba2b95961ed, type: 3}
+    - {fileID: -5123655523151251848, guid: 121bddd3e3dc2ca4c88b7ba2b95961ed, type: 3}
+  - name: Lepido_Wall3_Knot2_Wound
+    frames: 1
+    rows: 1
+    sprites:
+    - {fileID: 1808988199977868757, guid: e50600a1bf7b0204b800fe3961c516ad, type: 3}
+  - name: Lepido_Wall3_Knot2_WoundCharred
+    frames: 1
+    rows: 1
+    sprites:
+    - {fileID: 5740269112802708880, guid: e23d5872abcce7b47b4690217a3ce4ec, type: 3}
+  - name: Lepido_Wall3_Knot3_Hit
+    frames: 2
+    rows: 1
+    sprites:
+    - {fileID: 8637901030100604472, guid: 23b5077f925162e47a71a0587eb458ca, type: 3}
+    - {fileID: 1185504312491018712, guid: 23b5077f925162e47a71a0587eb458ca, type: 3}
+  - name: Lepido_Wall3_Knot3_Idle
+    frames: 4
+    rows: 1
+    sprites:
+    - {fileID: 6940490446522289667, guid: 9cc00bffc499ba74b84898a535cbccbb, type: 3}
+    - {fileID: 2251870039414482390, guid: 9cc00bffc499ba74b84898a535cbccbb, type: 3}
+    - {fileID: 6489758176967825028, guid: 9cc00bffc499ba74b84898a535cbccbb, type: 3}
+    - {fileID: 5489342527342033945, guid: 9cc00bffc499ba74b84898a535cbccbb, type: 3}
+  - name: Lepido_Wall3_Knot3_Wound
+    frames: 1
+    rows: 1
+    sprites:
+    - {fileID: -1319551975884634942, guid: 923903bc42af73c4b83b03be6a6868b4, type: 3}
+  - name: Lepido_Wall3_Knot3_WoundCharred
+    frames: 1
+    rows: 1
+    sprites:
+    - {fileID: -4769599647609143897, guid: 0bff0dadfce7c8747b48cd5e15bf2a38, type: 3}
+  - name: Lepido_Wall3_Retract
+    frames: 8
+    rows: 1
+    sprites:
+    - {fileID: 5234239848642295264, guid: 97ea6dc53d11ea14e9034d192977039b, type: 3}
+    - {fileID: -3918435187721095849, guid: 97ea6dc53d11ea14e9034d192977039b, type: 3}
+    - {fileID: 4247621519270548495, guid: 97ea6dc53d11ea14e9034d192977039b, type: 3}
+    - {fileID: -470878689893024535, guid: 97ea6dc53d11ea14e9034d192977039b, type: 3}
+    - {fileID: -6882494678986039357, guid: 97ea6dc53d11ea14e9034d192977039b, type: 3}
+    - {fileID: 2881973224491652810, guid: 97ea6dc53d11ea14e9034d192977039b, type: 3}
+    - {fileID: 8059260090669257797, guid: 97ea6dc53d11ea14e9034d192977039b, type: 3}
+    - {fileID: -1146053169481290935, guid: 97ea6dc53d11ea14e9034d192977039b, type: 3}
+  - name: Lepido_Wall3_Scar
+    frames: 1
+    rows: 1
+    sprites:
+    - {fileID: 6987052275715003443, guid: 349754d63f578534faae54db0794083c, type: 3}

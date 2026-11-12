@@ -61,9 +61,9 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 16
@@ -89,7 +89,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -133,12 +133,12 @@ TextureImporter:
       name: Lepido_Wall2_Knot0_Hit_0
       rect:
         serializedVersion: 2
-        x: 9
-        y: 6
-        width: 27
-        height: 23
+        x: 0
+        y: 0
+        width: 41
+        height: 41
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -155,12 +155,12 @@ TextureImporter:
       name: Lepido_Wall2_Knot0_Hit_1
       rect:
         serializedVersion: 2
-        x: 20
-        y: 27
-        width: 7
-        height: 8
+        x: 41
+        y: 0
+        width: 41
+        height: 41
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -169,94 +169,6 @@ TextureImporter:
       bones: []
       spriteID: 16ba4f62ba85d7c10800000000000000
       internalID: 2052894497267034977
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall2_Knot0_Hit_2
-      rect:
-        serializedVersion: 2
-        x: 50
-        y: 6
-        width: 27
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1be6c7f5cd286a580800000000000000
-      internalID: -8816215337524760911
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall2_Knot0_Hit_3
-      rect:
-        serializedVersion: 2
-        x: 61
-        y: 27
-        width: 7
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 81b06446c1573e110800000000000000
-      internalID: 1289002683159939864
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall2_Knot0_Hit_4
-      rect:
-        serializedVersion: 2
-        x: 19
-        y: 0
-        width: 7
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a671eb4c27ee6a490800000000000000
-      internalID: -7735233133267773590
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall2_Knot0_Hit_5
-      rect:
-        serializedVersion: 2
-        x: 60
-        y: 0
-        width: 7
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 728128a6ded120970800000000000000
-      internalID: 8719564734074066983
       vertices: []
       indices: 
       edges: []
@@ -277,10 +189,6 @@ TextureImporter:
     nameFileIdTable:
       Lepido_Wall2_Knot0_Hit_0: 3018219493809620048
       Lepido_Wall2_Knot0_Hit_1: 2052894497267034977
-      Lepido_Wall2_Knot0_Hit_2: -8816215337524760911
-      Lepido_Wall2_Knot0_Hit_3: 1289002683159939864
-      Lepido_Wall2_Knot0_Hit_4: -7735233133267773590
-      Lepido_Wall2_Knot0_Hit_5: 8719564734074066983
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

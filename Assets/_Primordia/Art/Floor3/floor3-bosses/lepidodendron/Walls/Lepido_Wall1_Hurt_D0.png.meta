@@ -67,9 +67,9 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 16
@@ -95,7 +95,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -139,12 +139,12 @@ TextureImporter:
       name: Lepido_Wall1_Hurt_D0_0
       rect:
         serializedVersion: 2
-        x: 15
-        y: 2
-        width: 95
-        height: 330
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 0
+        width: 124
+        height: 349
+      alignment: 9
+      pivot: {x: 0.5, y: 0.068767905}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -161,12 +161,12 @@ TextureImporter:
       name: Lepido_Wall1_Hurt_D0_1
       rect:
         serializedVersion: 2
-        x: 96
-        y: 261
-        width: 10
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 124
+        y: 0
+        width: 124
+        height: 349
+      alignment: 9
+      pivot: {x: 0.5, y: 0.068767905}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -175,138 +175,6 @@ TextureImporter:
       bones: []
       spriteID: 223c308b85db3b5f0800000000000000
       internalID: -742041324843973854
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall1_Hurt_D0_2
-      rect:
-        serializedVersion: 2
-        x: 139
-        y: 2
-        width: 95
-        height: 330
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: dbe77ac919b7a5470800000000000000
-      internalID: 8384149521632296637
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall1_Hurt_D0_3
-      rect:
-        serializedVersion: 2
-        x: 220
-        y: 261
-        width: 10
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 00adde6692aa10610800000000000000
-      internalID: 1585735638608370176
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall1_Hurt_D0_4
-      rect:
-        serializedVersion: 2
-        x: 98
-        y: 159
-        width: 8
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 17ee719e6e89c01e0800000000000000
-      internalID: -2230239597934678415
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall1_Hurt_D0_5
-      rect:
-        serializedVersion: 2
-        x: 222
-        y: 159
-        width: 8
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3243d7f1b4d7593f0800000000000000
-      internalID: -894671189358857181
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall1_Hurt_D0_6
-      rect:
-        serializedVersion: 2
-        x: 98
-        y: 23
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a492dfce5ec66dfc0800000000000000
-      internalID: -3470466728063063734
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall1_Hurt_D0_7
-      rect:
-        serializedVersion: 2
-        x: 222
-        y: 23
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ef08587d6011471c0800000000000000
-      internalID: -4506958606007697154
       vertices: []
       indices: 
       edges: []
@@ -327,12 +195,6 @@ TextureImporter:
     nameFileIdTable:
       Lepido_Wall1_Hurt_D0_0: 4380860202456162142
       Lepido_Wall1_Hurt_D0_1: -742041324843973854
-      Lepido_Wall1_Hurt_D0_2: 8384149521632296637
-      Lepido_Wall1_Hurt_D0_3: 1585735638608370176
-      Lepido_Wall1_Hurt_D0_4: -2230239597934678415
-      Lepido_Wall1_Hurt_D0_5: -894671189358857181
-      Lepido_Wall1_Hurt_D0_6: -3470466728063063734
-      Lepido_Wall1_Hurt_D0_7: -4506958606007697154
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

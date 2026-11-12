@@ -55,9 +55,9 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 16
@@ -83,7 +83,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -127,12 +127,12 @@ TextureImporter:
       name: Lepido_Wall2_Knot1_Hit_0
       rect:
         serializedVersion: 2
-        x: 7
-        y: 8
-        width: 29
-        height: 27
+        x: 0
+        y: 0
+        width: 41
+        height: 41
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -149,12 +149,12 @@ TextureImporter:
       name: Lepido_Wall2_Knot1_Hit_1
       rect:
         serializedVersion: 2
-        x: 24
-        y: 1
-        width: 7
-        height: 11
+        x: 41
+        y: 0
+        width: 41
+        height: 41
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -163,50 +163,6 @@ TextureImporter:
       bones: []
       spriteID: e70739299f4d72f40800000000000000
       internalID: 5703761621459103870
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall2_Knot1_Hit_2
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 8
-        width: 29
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0c903dc7087198480800000000000000
-      internalID: -8896553748276246080
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Wall2_Knot1_Hit_3
-      rect:
-        serializedVersion: 2
-        x: 65
-        y: 1
-        width: 7
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0bb888cbc071a05e0800000000000000
-      internalID: -1942714945786836048
       vertices: []
       indices: 
       edges: []
@@ -227,8 +183,6 @@ TextureImporter:
     nameFileIdTable:
       Lepido_Wall2_Knot1_Hit_0: 2499028510120179743
       Lepido_Wall2_Knot1_Hit_1: 5703761621459103870
-      Lepido_Wall2_Knot1_Hit_2: -8896553748276246080
-      Lepido_Wall2_Knot1_Hit_3: -1942714945786836048
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

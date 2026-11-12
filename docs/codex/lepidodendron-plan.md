@@ -12,7 +12,7 @@ Jefe secreto del piso 3. Arte terminado y aprobado (`docs/multimedia-temp/floor3
 
 ## Números de combate CERRADOS con la usuaria (2026-11-11)
 - Vida total **600**: 3 paredes × 150 (25 % cada una) + fase final 150 (3 conos × 50).
-- Golpes: daño normal pasando por el `BossDamageLimiter` (mismos topes que la Meganeura). Fuego: **12/s** a la pared, sin tope de `Burn`, carbonizado **×2**; se ajusta probando. Nudos ×2, aguantan 22 sin multiplicar.
+- Golpes: daño normal pasando por el `BossDamageLimiter` (mismos topes que la Meganeura). Fuego: **4/s** a la pared (bajado de 12 el 2026-11-12 tras probar: la quemaba entera y el Hurt blanco se repetía; el fuego ya no activa el Hurt), sin tope de `Burn`, carbonizado **×2**; se ajusta probando. Nudos ×2, aguantan 22 sin multiplicar.
 - Oleadas: 3 por pared, 12 s entre ellas, tope 6 vivos; pared 1 Calamites+sapos, pared 2 arañas+escarabajos, pared 3 mezcla+libélulas; 2 odres + 3 helechos por pared.
 - Daño al jugador (propuesto, se fija en L3/L4): latigazo 2, corro de púas 2, esporas 1, golpe de cono 2.
 - Sin decidir hasta la L5: efecto de la reliquia Raíz ancestral, llave del piso 4.

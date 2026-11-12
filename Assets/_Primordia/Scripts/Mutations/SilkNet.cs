@@ -17,6 +17,7 @@ namespace Primordia.Mutations
 
         readonly HashSet<Health> caught = new();
         List<Vector2> polygon;
+        SilkNetArt.Frames frames;
         int damage;
         float holdSeconds;
         float until;
@@ -49,7 +50,7 @@ namespace Primordia.Mutations
         /// </summary>
         void FillVisual(float seconds, Sprite[] appear, Sprite[] idle, Sprite[] fade)
         {
-            var frames = SilkNetArt.Build(polygon, out var center);
+            frames = SilkNetArt.Build(polygon, out var center);
             if (frames == null)
                 return;
             var obj = new GameObject("NetWeb");
@@ -58,40 +59,39 @@ namespace Primordia.Mutations
             var renderer = obj.AddComponent<SpriteRenderer>();
             renderer.sortingOrder = -1;
             renderer.sprite = frames[0];
-            StartCoroutine(PlayWeb(renderer, frames, seconds));
+            StartCoroutine(PlayWeb(renderer));
         }
 
-        System.Collections.IEnumerator PlayWeb(SpriteRenderer renderer, Sprite[] frames, float seconds)
+        System.Collections.IEnumerator PlayWeb(SpriteRenderer renderer)
         {
-            const float GrowStep = 0.1f, TwinkleStep = 0.25f, FrayStep = 0.2f;
             for (int i = 0; i < SilkNetArt.GrowFrames; i++)
             {
                 renderer.sprite = frames[i];
-                yield return new WaitForSeconds(GrowStep);
+                yield return new WaitForSeconds(SilkNetArt.GrowStep);
             }
-            float fraySeconds = SilkNetArt.FrayFrames * FrayStep;
+            float fraySeconds = SilkNetArt.FrayFrames * SilkNetArt.FrayStep;
             int twinkle = 0;
             while (Time.time < until - fraySeconds)
             {
                 renderer.sprite = frames[SilkNetArt.GrowFrames + twinkle % SilkNetArt.TwinkleFrames];
                 twinkle++;
-                yield return new WaitForSeconds(TwinkleStep);
+                yield return new WaitForSeconds(Mathf.Min(SilkNetArt.TwinkleStep, until - fraySeconds - Time.time));
             }
             for (int i = 0; i < SilkNetArt.FrayFrames; i++)
             {
                 renderer.sprite = frames[SilkNetArt.GrowFrames + SilkNetArt.TwinkleFrames + i];
-                yield return new WaitForSeconds(FrayStep);
+                yield return new WaitForSeconds(SilkNetArt.FrayStep);
             }
+            renderer.sprite = null;
+            ReleaseFrames();
         }
 
-        void OnDestroy()
+        void OnDestroy() => ReleaseFrames();
+
+        void ReleaseFrames()
         {
-            // Los cuadros se crearon por código: se liberan con la red.
-            foreach (var renderer in GetComponentsInChildren<SpriteRenderer>())
-            {
-                if (renderer.sprite != null && renderer.sprite.texture != null && (renderer.sprite.texture.hideFlags & HideFlags.HideAndDontSave) != 0)
-                    Destroy(renderer.sprite.texture);
-            }
+            frames?.Dispose();
+            frames = null;
         }
 
         /// <summary>True si el punto cae dentro del polígono (contorno convexo, en cualquier orden de giro).</summary>

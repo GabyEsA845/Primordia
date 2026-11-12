@@ -2,7 +2,7 @@
 
 - **Rama:** `codex/telarana-ligera` (desde `feature/floor-3`, que ya incluye las tareas 01-03 una vez fusionadas; si la 03 aún no está fusionada, desde donde te diga Claude)
 - **Escrita por:** Claude (2026-11-11) · **Implementa:** Codex
-- **Estado:** pendiente
+- **Estado:** HECHA y fusionada en feature/floor-3 (probada por la usuaria, 2026-11-11)
 
 ## Objetivo
 Cuando se forma la red (3 hilos), hoy el juego da un tirón y el dibujo queda muy cargado. Hay que: (A) quitar el tirón, (B) usar menos cuadros y (C) hacer el diseño más ligero. La mecánica (daño 4 una vez, inmoviliza 3 s a lo de dentro, contorno convexo de los 3 hilos) **no cambia**.

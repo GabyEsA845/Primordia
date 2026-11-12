@@ -653,6 +653,34 @@ namespace Primordia.Tests
 
         // ---------- Toques del piso 3 (tanda 2b): Yesquero ----------
 
+        [UnityTest]
+        public System.Collections.IEnumerator SpitPuddle_WhenItBurns_LeavesTheLowHaze_AndOtherPuddlesDoNot()
+        {
+            var kit = Track(ScriptableObject.CreateInstance<ReactionKit>());
+            kit.ConfigureSpit(FakeFrames(1), FakeFrames(1), FakeFrames(1), FakeFrames(1));
+            kit.ConfigureSpitFire(FakeFrames(6), FakeFrames(2), FakeFrames(2), FakeFrames(2));
+            var previous = ReactionKit.Current;
+            ReactionKit.Current = kit;
+            try
+            {
+                var other = PoisonPuddle.SpawnSplat(new Vector2(40f, 0f), 6f, 0.6f);
+                var spit = PoisonPuddle.SpawnSplat(new Vector2(44f, 0f), 6f, 0.6f, spit: true);
+                other.Ignite();
+                spit.Ignite();
+                yield return new WaitForSeconds(0.6f);
+                var haze = GameObject.Find("ToxicHaze");
+                Assert.IsNotNull(haze, "el charco del Escupitajo suelta la bruma baja");
+                Assert.AreEqual(44f, haze.transform.position.x, 0.01f);
+                Assert.IsNull(GameObject.Find("ToxicCloud"), "el charco normal no usa la bruma");
+                Assert.AreEqual(1, Object.FindObjectsByType<ToxicCloud>(FindObjectsSortMode.None).Length);
+                Object.Destroy(haze);
+            }
+            finally
+            {
+                ReactionKit.Current = previous;
+            }
+        }
+
         static Sprite[] FakeFrames(int count)
         {
             var texture = new Texture2D(1, 1);

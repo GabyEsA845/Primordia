@@ -66,7 +66,7 @@ namespace Primordia.Combat
             if (look == Look.Fire)
                 LeaveFire(position, radius, puddleSeconds);
             else if (puddleSeconds > 0f)
-                PoisonPuddle.SpawnSplat(position, puddleSeconds, small ? SmallPuddleRadius : PuddleRadius, leech: look == Look.Leech, venom: victims == Team.Enemy);
+                PoisonPuddle.SpawnSplat(position, puddleSeconds, small ? SmallPuddleRadius : PuddleRadius, leech: look == Look.Leech, venom: victims == Team.Enemy, spit: true);
 
             if (frames.Length == 0)
             {

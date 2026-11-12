@@ -62,6 +62,8 @@ namespace Primordia.Rooms
         bool leech;
         /// <summary>Charco del Escupitajo: envenena con veneno virulento (más rápido y fuerte) en vez del normal.</summary>
         bool venom;
+        /// <summary>Charco que dejó el reventón del Escupitajo del jugador: al arder usa su fuego y su bruma baja, más ligeros a la vista.</summary>
+        bool spit;
         float radius = Radius;
         float endTime;
         float nextCheck;
@@ -99,7 +101,7 @@ namespace Primordia.Rooms
         /// que frena y envenena. Sin dibujo propio, el charco grande reducido. Null si no hay arte del veneno.
         /// </summary>
         public static PoisonPuddle SpawnSplat(Vector2 position, float seconds, float effectRadius, bool harmsPlayer = false, bool leech = false,
-            bool venom = false)
+            bool venom = false, bool spit = false)
         {
             var kit = ReactionKit.Current;
             if (kit == null)
@@ -110,6 +112,7 @@ namespace Primordia.Rooms
             // Sanguijuela: charco rojizo con gusanillos (si hay su arte).
             var puddle = Create(kit, position, seconds, effectRadius, harmsPlayer, splat, leech && splat && kit.HasLeechSplat);
             puddle.venom = venom;
+            puddle.spit = spit && splat && !puddle.leech;
             return puddle;
         }
 
@@ -182,8 +185,11 @@ namespace Primordia.Rooms
             var player = GetComponent<SpriteFramePlayer>();
             if (player != null)
                 Destroy(player);
-            // El fuego es del tamaño del charco grande: en uno más pequeño se reduce.
-            transform.localScale = Vector3.one * (radius / Radius);
+            // El fuego es del tamaño del charco grande: en uno más pequeño se reduce (el del Escupitajo, del cuerpo del salpicón).
+            var kit = ReactionKit.Current;
+            if (spit && (kit == null || !kit.HasSpitFire))
+                spit = false;
+            transform.localScale = Vector3.one * (spit ? radius / SplatBodyRadius : radius / Radius);
             StartCoroutine(Burn());
         }
 
@@ -191,17 +197,25 @@ namespace Primordia.Rooms
         IEnumerator Burn()
         {
             var kit = ReactionKit.Current;
-            var frames = kit != null ? kit.PuddleIgnite : System.Array.Empty<Sprite>();
+            var frames = kit == null ? System.Array.Empty<Sprite>() : spit ? kit.SplatIgnite : kit.PuddleIgnite;
             for (int i = 0; i < frames.Length; i++)
             {
                 body.sprite = frames[i];
                 if (i == CloudFrame)
-                    ToxicCloud.Spawn(transform.position);
+                    SpawnCloud();
                 yield return new WaitForSeconds(IgniteFrameSeconds);
             }
             if (frames.Length <= CloudFrame)
-                ToxicCloud.Spawn(transform.position);
+                SpawnCloud();
             Destroy(gameObject);
+        }
+
+        void SpawnCloud()
+        {
+            if (spit)
+                ToxicCloud.SpawnHaze(transform.position);
+            else
+                ToxicCloud.Spawn(transform.position);
         }
 
         void Update()

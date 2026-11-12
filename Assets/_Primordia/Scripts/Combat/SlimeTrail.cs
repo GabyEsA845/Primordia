@@ -296,7 +296,7 @@ namespace Primordia.Combat
             }
         }
 
-        // El fuego se come el sello; de cada tanto sale una nube tóxica, como con los charcos sueltos de antes.
+        // El fuego se come el sello; de cada tanto sale la bruma tóxica baja (la del charco del Escupitajo que arde).
         void Burn(Stamp stamp)
         {
             int index = stamps.IndexOf(stamp);
@@ -307,7 +307,7 @@ namespace Primordia.Combat
             bool cloud = stamp.Serial % cloudEvery == 0;
             Remove(index);
             if (cloud)
-                ToxicCloud.Spawn(position);
+                ToxicCloud.SpawnHaze(position);
         }
 
         void Remove(int index)

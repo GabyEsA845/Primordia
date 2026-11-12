@@ -22,7 +22,12 @@ namespace Primordia.Rooms
         const int EnemyDamagePerSecond = 2;
         const float EnemyPoisonSeconds = 4f;
 
+        // La bruma baja del charco del Escupitajo que arde: más ancha y plana, a ras de suelo.
+        const float HazeRadius = 1.1f;
+        const float HazeFormSeconds = 0.09f, HazeIdleSeconds = 0.13f, HazeFadeSeconds = 0.11f;
+
         float nextCheck;
+        bool haze;
         float endTime;
 
         /// <summary>Levanta una nube en ese punto (la base de la columna). Null si no hay arte del veneno.</summary>
@@ -40,6 +45,49 @@ namespace Primordia.Rooms
             cloud.endTime = Time.time + Seconds;
             cloud.StartCoroutine(cloud.Run(renderer, kit));
             return cloud;
+        }
+
+        /// <summary>
+        /// La bruma baja que suelta el charco del Escupitajo al arder (más ligera a la vista que la columna). Hace lo mismo que la
+        /// nube. Sin su arte, la columna de siempre.
+        /// </summary>
+        public static ToxicCloud SpawnHaze(Vector2 position)
+        {
+            var kit = ReactionKit.Current;
+            if (kit == null || !kit.HasSpitFire)
+                return Spawn(position);
+
+            var obj = new GameObject("ToxicHaze");
+            obj.transform.position = position;
+            var renderer = obj.AddComponent<SpriteRenderer>();
+            renderer.sortingOrder = 4;
+            var cloud = obj.AddComponent<ToxicCloud>();
+            cloud.haze = true;
+            cloud.endTime = Time.time + Seconds;
+            cloud.StartCoroutine(cloud.RunHaze(renderer, kit));
+            return cloud;
+        }
+
+        IEnumerator RunHaze(SpriteRenderer renderer, ReactionKit kit)
+        {
+            foreach (var frame in kit.HazeForm)
+            {
+                renderer.sprite = frame;
+                yield return new WaitForSeconds(HazeFormSeconds);
+            }
+            float fadeSeconds = kit.HazeFade.Length * HazeFadeSeconds;
+            float start = Time.time;
+            while (Time.time < endTime - fadeSeconds)
+            {
+                renderer.sprite = kit.HazeIdle[Mathf.FloorToInt((Time.time - start) / HazeIdleSeconds) % kit.HazeIdle.Length];
+                yield return null;
+            }
+            foreach (var frame in kit.HazeFade)
+            {
+                renderer.sprite = frame;
+                yield return new WaitForSeconds(HazeFadeSeconds);
+            }
+            Destroy(gameObject);
         }
 
         IEnumerator Run(SpriteRenderer renderer, ReactionKit kit)
@@ -80,9 +128,9 @@ namespace Primordia.Rooms
                 return;
             nextCheck = Time.time + CheckEvery;
 
-            var center = (Vector2)transform.position + Vector2.up * CenterHeight;
+            var center = (Vector2)transform.position + (haze ? Vector2.zero : Vector2.up * CenterHeight);
             var seen = new HashSet<Health>();
-            foreach (var hit in Physics2D.OverlapCircleAll(center, Radius))
+            foreach (var hit in Physics2D.OverlapCircleAll(center, haze ? HazeRadius : Radius))
             {
                 if (hit.isTrigger)
                     continue;

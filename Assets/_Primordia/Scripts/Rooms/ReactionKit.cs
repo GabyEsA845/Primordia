@@ -37,6 +37,14 @@ namespace Primordia.Rooms
         [SerializeField] Sprite[] puddleFade = System.Array.Empty<Sprite>();
         [Tooltip("El fuego corre por el charco (48×48, una pasada). El cuadro 3 es el que suelta la nube.")]
         [SerializeField] Sprite[] puddleIgnite = System.Array.Empty<Sprite>();
+        [Header("Veneno del Escupitajo que arde (floor3-poison-fire)")]
+        [Tooltip("El charco salpicado del Escupitajo se prende (64×64, 6 cuadros). El cuadro 3 suelta la bruma.")]
+        [SerializeField] Sprite[] splatIgnite = System.Array.Empty<Sprite>();
+        [Tooltip("Bruma tóxica baja (48×32): nace, se mantiene (bucle) y se deshace.")]
+        [SerializeField] Sprite[] hazeForm = System.Array.Empty<Sprite>();
+        [SerializeField] Sprite[] hazeIdle = System.Array.Empty<Sprite>();
+        [SerializeField] Sprite[] hazeFade = System.Array.Empty<Sprite>();
+
         [Tooltip("Nube tóxica (48×64): nace, se mantiene (bucle) y se deshace. Pivote: la base de la columna.")]
         [SerializeField] Sprite[] cloudForm = System.Array.Empty<Sprite>();
         [SerializeField] Sprite[] cloudIdle = System.Array.Empty<Sprite>();
@@ -118,6 +126,14 @@ namespace Primordia.Rooms
         public Sprite[] PuddleAppear => puddleAppear ?? System.Array.Empty<Sprite>();
         public Sprite[] PuddleIdle => puddleIdle ?? System.Array.Empty<Sprite>();
         public Sprite[] PuddleFade => puddleFade ?? System.Array.Empty<Sprite>();
+        public Sprite[] SplatIgnite => Safe(splatIgnite);
+        public Sprite[] HazeForm => Safe(hazeForm);
+        public Sprite[] HazeIdle => Safe(hazeIdle);
+        public Sprite[] HazeFade => Safe(hazeFade);
+
+        /// <summary>Hay arte del charco del Escupitajo ardiendo y de su bruma baja.</summary>
+        public bool HasSpitFire => Safe(splatIgnite).Length > 0 && Safe(hazeForm).Length > 0 && Safe(hazeIdle).Length > 0 && Safe(hazeFade).Length > 0;
+
         public Sprite[] PuddleIgnite => puddleIgnite ?? System.Array.Empty<Sprite>();
         public Sprite[] SplatAppear => splatAppear ?? System.Array.Empty<Sprite>();
         public Sprite[] SplatIdle => splatIdle ?? System.Array.Empty<Sprite>();
@@ -272,6 +288,14 @@ namespace Primordia.Rooms
             splatAppear = appear;
             splatIdle = idle;
             splatFade = fade;
+        }
+
+        internal void ConfigureSpitFire(Sprite[] ignite, Sprite[] form, Sprite[] idle, Sprite[] fade)
+        {
+            splatIgnite = ignite;
+            hazeForm = form;
+            hazeIdle = idle;
+            hazeFade = fade;
         }
 
         internal void ConfigureSlime(Sprite[] rim, Sprite[] body, Sprite[] thinRim, Sprite[] thinBody, Sprite[] shine)

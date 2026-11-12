@@ -83,6 +83,26 @@ namespace Primordia.Editor
         /// Corta en cuadros una hoja del Escupitajo venenoso ya importada (floor3-spit/Effects) con ese pivote (el centro si no se dice).
         /// Vacío si no está.
         /// </summary>
+        /// <summary>Importa el arte del veneno que arde (floor3-poison-fire) y lo pone en el kit de reacciones del piso 3.</summary>
+        [MenuItem("Primordia/Floor 3/Importar veneno ardiendo")]
+        internal static void ImportPoisonFire()
+        {
+            ImportFloor3Art();
+            var kit = AssetDatabase.LoadAssetAtPath<ReactionKit>(Floor3ReactionKitPath);
+            ConfigureSpitKit(kit);
+            AssetDatabase.SaveAssets();
+            Debug.Log($"ArtSetup: veneno ardiendo importado (HasSpitFire={kit != null && kit.HasSpitFire}).");
+        }
+
+        static readonly Vector2 HazePivot = new(0.5f, 12f / 32f);
+
+        /// <summary>Corta una hoja del veneno que arde (floor3-poison-fire/Effects). Vacío si no está.</summary>
+        static Sprite[] Floor3FireSheet(string name, int cell, Vector2? pivot)
+        {
+            string path = $"{Floor3ArtRoot}/floor3-poison-fire/Effects/{name}.png";
+            return System.IO.File.Exists(path) ? SliceSheet(path, cell, pivot ?? new Vector2(0.5f, 0.5f)) : System.Array.Empty<Sprite>();
+        }
+
         internal static Sprite[] Floor3SpitSheet(string name, int cell, Vector2? pivot = null)
         {
             string path = $"{Floor3ArtRoot}/floor3-spit/Effects/{name}.png";
@@ -130,6 +150,9 @@ namespace Primordia.Editor
                 return;
             kit.ConfigureSpit(Floor3SpitSheet("Fx_PoisonSpit_Burst", 64), Floor3SpitSheet("Fx_PoisonSplat_Appear", 64),
                 Floor3SpitSheet("Fx_PoisonSplat_Idle", 64), Floor3SpitSheet("Fx_PoisonSplat_Fade", 64));
+            // La bruma tiene el pivote en el centro de la bruma (24, 20) de la celda de 48×32.
+            kit.ConfigureSpitFire(Floor3FireSheet("Fx_PoisonSplat_Ignite", 64, null), Floor3FireSheet("Fx_PoisonHaze_Form", 48, HazePivot),
+                Floor3FireSheet("Fx_PoisonHaze_Idle", 48, HazePivot), Floor3FireSheet("Fx_PoisonHaze_Fade", 48, HazePivot));
             kit.ConfigureSlime(Floor3SpitVariants("Fx_SlimeTrail_Rim", 6, 20), Floor3SpitVariants("Fx_SlimeTrail_Body", 6, 20),
                 Floor3SpitVariants("Fx_SlimeTrailThin_Rim", 5, 14), Floor3SpitVariants("Fx_SlimeTrailThin_Body", 5, 14),
                 Floor3SpitSheet("Fx_SlimeTrail_Shine", 8));

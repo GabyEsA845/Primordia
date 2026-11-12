@@ -5,7 +5,7 @@ metadata:
   type: project
 ---
 
-**ESTADO 2026-11-11: ARTE DIBUJADO (Opus) en `docs/multimedia-temp/floor3-poison-fire/` (Fx_PoisonHaze Form/Idle/Fade + Fx_PoisonSplat_Ignite); falta importar y programar (Sonnet).**
+**ESTADO 2026-11-11: INTEGRADO Y PROGRAMADO (solo arte, falta que la usuaria lo pruebe). Ver el final de [[primordia-project-status]].**
 
 **Problema (la usuaria, 2026-11-11):** con el Escupitajo venenoso + **Escamas carbonizadas nivel III (Llamarada)** el ataque prende todo lo inflamable por donde pasa y donde impacta; el reventon deja un charco de veneno (`PoisonPuddle`, inflamable) que arde al instante y suelta una `ToxicCloud` que **reutiliza el dibujo del gas del metano**. Con la Camada (muchas bolitas) salen muchas nubes y la pantalla queda muy cargada. No tiene que ver con el linaje Ciempies (solo lo noto ahi).
 

@@ -5,20 +5,28 @@ namespace Primordia.Mutations
 {
     /// <summary>
     /// Dibuja por código la telaraña de la red de las Patas hilanderas con la forma exacta del polígono (el algoritmo aprobado de
-    /// docs/multimedia-temp/floor3-jump/generar_salto_piso3.py): radios del centro a cada esquina (uno cada ~14 px de contorno extra),
-    /// anillos combados entre ellos, un hilo más claro que une las esquinas y gotas de rocío doradas. Da 9 cuadros: 4 en que se teje
-    /// (los radios crecen del centro y los anillos aparecen hacia fuera), 2 en que brilla y 3 en que se deshilacha.
+    /// docs/multimedia-temp/floor3-jump/generar_salto_piso3.py): radios del centro a cada esquina (uno cada ~22 px de contorno extra),
+    /// anillos combados entre ellos, un hilo más claro que une las esquinas y gotas de rocío doradas. Da 5 cuadros: 2 en que se teje
+    /// (los radios crecen del centro y los anillos aparecen hacia fuera), 1 en que brilla y 2 en que se deshilacha.
     /// </summary>
     public static class SilkNetArt
     {
-        public const int GrowFrames = 4;
-        public const int TwinkleFrames = 2;
-        public const int FrayFrames = 3;
+        // Valores visuales provisionales: se ajustan a ojo.
+        public const int GrowFrames = 2;
+        public const int TwinkleFrames = 1;
+        public const int FrayFrames = 2;
+
+        public const float GrowStep = 0.4f / GrowFrames;
+        public const float TwinkleStep = 0.5f / TwinkleFrames;
+        public const float FrayStep = 0.6f / FrayFrames;
+        const double DewChance = 0.12;
+        const byte SpokeAlpha = 170;
+        const byte RingAlpha = 130;
 
         const float PixelsPerUnit = 16f;
         const int Margin = 2;
-        const int RingSpacing = 7;
-        const float SpokeEvery = 14f;
+        const int RingSpacing = 11;
+        const float SpokeEvery = 22f;
 
         static readonly Color32[] Silk =
         {
@@ -28,14 +36,14 @@ namespace Primordia.Mutations
         static readonly Color32 DewLight = new(0xff, 0xe6, 0x80, 255);
         static readonly Color32 White = new(255, 255, 255, 255);
 
-        static readonly float[] Grow = { 0.25f, 0.55f, 0.85f, 1f };
-        static readonly float[] Fray = { 0.3f, 0.6f, 0.85f };
+        static readonly float[] Grow = { 0.5f, 1f };
+        static readonly float[] Fray = { 0.45f, 0.8f };
 
         /// <summary>
         /// Los cuadros de la red sobre ese contorno (en unidades del mundo). El centro del sprite es el centro de la caja del polígono:
         /// <paramref name="center"/> dice dónde ponerlo. Null si el contorno no tiene área.
         /// </summary>
-        public static Sprite[] Build(IReadOnlyList<Vector2> polygon, out Vector2 center)
+        public static Frames Build(IReadOnlyList<Vector2> polygon, out Vector2 center)
         {
             center = Vector2.zero;
             if (polygon == null || polygon.Count < 3)
@@ -59,14 +67,61 @@ namespace Primordia.Mutations
             foreach (var point in polygon)
                 shape.Add((point - min) * PixelsPerUnit + new Vector2(Margin, Margin));
 
-            var frames = new List<Sprite>();
-            foreach (float grow in Grow)
-                frames.Add(Frame(shape, width, height, grow, 0f, 0));
-            for (int i = 1; i <= TwinkleFrames; i++)
-                frames.Add(Frame(shape, width, height, 1f, 0f, i));
-            foreach (float fray in Fray)
-                frames.Add(Frame(shape, width, height, 1f, fray, 0));
-            return frames.ToArray();
+            var frames = new Frames(shape, width, height);
+            _ = frames[0];
+            return frames;
+        }
+
+        /// <summary>Cuadros propios: se generan bajo demanda y se liberan juntos al terminar.</summary>
+        public sealed class Frames : System.IDisposable
+        {
+            readonly List<Vector2> shape;
+            readonly int width, height;
+            readonly Sprite[] cached = new Sprite[GrowFrames + TwinkleFrames + FrayFrames];
+            bool disposed;
+
+            internal Frames(List<Vector2> shape, int width, int height)
+            {
+                this.shape = shape;
+                this.width = width;
+                this.height = height;
+            }
+
+            public int Length => cached.Length;
+            public int CreatedCount { get; private set; }
+
+            public Sprite this[int index]
+            {
+                get
+                {
+                    if (disposed)
+                        throw new System.ObjectDisposedException(nameof(Frames));
+                    if (cached[index] == null)
+                    {
+                        float grow = index < GrowFrames ? Grow[index] : 1f;
+                        float fray = index >= GrowFrames + TwinkleFrames ? Fray[index - GrowFrames - TwinkleFrames] : 0f;
+                        int twinkle = index >= GrowFrames && index < GrowFrames + TwinkleFrames ? index - GrowFrames + 1 : 0;
+                        cached[index] = Frame(shape, width, height, grow, fray, twinkle);
+                        CreatedCount++;
+                    }
+                    return cached[index];
+                }
+            }
+
+            public void Dispose()
+            {
+                if (disposed)
+                    return;
+                disposed = true;
+                foreach (var sprite in cached)
+                {
+                    if (sprite == null)
+                        continue;
+                    Object.Destroy(sprite.texture);
+                    Object.Destroy(sprite);
+                }
+                System.Array.Clear(cached, 0, cached.Length);
+            }
         }
 
         static Sprite Frame(List<Vector2> shape, int width, int height, float grow, float fray, int twinkle)
@@ -77,6 +132,7 @@ namespace Primordia.Mutations
             var rnd = new System.Random(20);
             var texture = new Texture2D(width, height, TextureFormat.RGBA32, false)
             {
+                name = "SilkNetArt.Texture",
                 filterMode = FilterMode.Point,
                 hideFlags = HideFlags.HideAndDontSave,
             };
@@ -97,7 +153,10 @@ namespace Primordia.Mutations
             }
             texture.SetPixels32(data);
             texture.Apply();
-            return Sprite.Create(texture, new Rect(0, 0, width, height), new Vector2(0.5f, 0.5f), PixelsPerUnit);
+            var sprite = Sprite.Create(texture, new Rect(0, 0, width, height), new Vector2(0.5f, 0.5f), PixelsPerUnit);
+            sprite.name = "SilkNetArt.Sprite";
+            sprite.hideFlags = HideFlags.HideAndDontSave;
+            return sprite;
         }
 
         static void Put(Dictionary<Vector2Int, Color32> pixels, int x, int y, Color32 color, byte alpha)
@@ -127,7 +186,7 @@ namespace Primordia.Mutations
                 center += point;
             center /= shape.Count;
 
-            // Anclajes: las esquinas y, en los lados largos, uno cada ~14 px.
+            // Anclajes: las esquinas y, en los lados largos, uno cada ~22 px.
             var anchors = new List<Vector2>();
             for (int i = 0; i < shape.Count; i++)
             {
@@ -146,7 +205,7 @@ namespace Primordia.Mutations
             foreach (var anchor in anchors)
             {
                 foreach (var p in Line(center, center + (anchor - center) * grow))
-                    Put(pixels, p.x, p.y, Silk[2], 235);
+                    Put(pixels, p.x, p.y, Silk[2], SpokeAlpha);
             }
 
             // Anillos, combados un poco hacia el centro entre cada par de radios.
@@ -165,10 +224,10 @@ namespace Primordia.Mutations
                     float sag = 0.1f * Mathf.Min(1f, Vector2.Distance(p0, p1) / 10f);
                     mid += (center - mid) * sag;
                     foreach (var p in Line(p0, mid))
-                        Put(pixels, p.x, p.y, Silk[1], 190);
+                        Put(pixels, p.x, p.y, Silk[1], RingAlpha);
                     foreach (var p in Line(mid, p1))
-                        Put(pixels, p.x, p.y, Silk[1], 190);
-                    if (rnd.NextDouble() < 0.35)
+                        Put(pixels, p.x, p.y, Silk[1], RingAlpha);
+                    if (k % 2 == 0 && rnd.NextDouble() < DewChance)
                         Put(pixels, Mathf.RoundToInt(p0.x), Mathf.RoundToInt(p0.y), rnd.NextDouble() < 0.5 ? DewLight : DewDark, 255);
                 }
             }

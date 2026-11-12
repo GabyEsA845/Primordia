@@ -269,8 +269,8 @@ namespace Primordia.Tests
             Assert.AreEqual(1, Object.FindObjectsByType<SilkThread>(FindObjectsSortMode.None).Length, "Nivel I: el hilo nuevo rompe el viejo.");
         }
 
-        [Test]
-        public void SilkNetArt_WeavesNineFramesOverThePolygon_AndRefusesAnEmptyOne()
+        [UnityTest]
+        public IEnumerator SilkNetArt_WeavesFiveFramesLazilyOverThePolygon_AndRefusesAnEmptyOne()
         {
             var hull = new List<Vector2> { new(0, 0), new(5, 0), new(5, 4), new(0, 4) };
             var frames = SilkNetArt.Build(hull, out var center);
@@ -279,8 +279,90 @@ namespace Primordia.Tests
             Assert.AreEqual(2f, center.y, 0.01f);
             Assert.GreaterOrEqual(frames[0].texture.width, 80, "La textura cubre la caja del polígono (5 u a 16 px).");
             Assert.IsNull(SilkNetArt.Build(new List<Vector2> { new(0, 0), new(1, 0) }, out _));
-            foreach (var frame in frames)
-                Object.DestroyImmediate(frame.texture);
+            Assert.AreEqual(5, frames.Length);
+            Assert.AreEqual(1, frames.CreatedCount);
+            var sprites = new List<Sprite>();
+            var textures = new List<Texture2D>();
+            for (int i = 0; i < frames.Length; i++)
+            {
+                sprites.Add(frames[i]);
+                textures.Add(frames[i].texture);
+                Assert.AreEqual(i + 1, frames.CreatedCount);
+                Assert.AreSame(frames[i], frames[i]);
+                yield return null;
+            }
+            frames.Dispose();
+            frames.Dispose();
+            yield return null;
+            Assert.IsTrue(sprites.TrueForAll(sprite => sprite == null));
+            Assert.IsTrue(textures.TrueForAll(texture => texture == null));
+        }
+
+        static int NetTextureCount()
+        {
+            int count = 0;
+            foreach (var texture in Resources.FindObjectsOfTypeAll<Texture2D>())
+                if (texture.name == "SilkNetArt.Texture")
+                    count++;
+            return count;
+        }
+
+        [UnityTest]
+        public IEnumerator SilkNet_CreatesFramesOverTime_AndReleasesAllResourcesAtTheEnd()
+        {
+            yield return null;
+            int baseline = NetTextureCount();
+            var hull = new List<Vector2> { new(0, 0), new(5, 0), new(5, 4), new(0, 4) };
+            var net = Track(SilkNet.Spawn(hull, 1.8f, 0, 0f, null, null, null).gameObject);
+            Assert.AreEqual(baseline + 1, NetTextureCount());
+            var renderer = net.GetComponentInChildren<SpriteRenderer>();
+            var first = renderer.sprite;
+            yield return new WaitForSeconds(0.25f);
+            Assert.AreEqual(baseline + 2, NetTextureCount());
+            Assert.AreNotSame(first, renderer.sprite);
+            yield return new WaitForSeconds(0.3f);
+            Assert.AreEqual(baseline + 3, NetTextureCount());
+            yield return new WaitForSeconds(1.5f);
+            yield return null;
+            Assert.IsTrue(net == null);
+            Assert.AreEqual(baseline, NetTextureCount());
+        }
+
+        [UnityTest]
+        public IEnumerator SilkNet_DestroyedEarly_ReleasesEveryCreatedSpriteAndTexture()
+        {
+            var hull = new List<Vector2> { new(0, 0), new(5, 0), new(5, 4), new(0, 4) };
+            var net = SilkNet.Spawn(hull, 4f, 0, 0f, null, null, null);
+            var first = net.GetComponentInChildren<SpriteRenderer>().sprite;
+            var texture = first.texture;
+            yield return new WaitForSeconds(0.25f);
+            var second = net.GetComponentInChildren<SpriteRenderer>().sprite;
+            var secondTexture = second.texture;
+            Object.Destroy(net.gameObject);
+            yield return null;
+            yield return null;
+            Assert.IsTrue(first == null && second == null);
+            Assert.IsTrue(texture == null && secondTexture == null);
+        }
+
+        [UnityTest]
+        public IEnumerator SilkNet_DamagesOnce_AndHoldsInsideEnemiesForThreeSeconds()
+        {
+            var inside = Enemy(new Vector2(2.5f, 2f));
+            var ai = inside.gameObject.AddComponent<EnemyAI>();
+            var outside = Enemy(new Vector2(6f, 2f));
+            var hull = new List<Vector2> { new(0, 0), new(5, 0), new(5, 4), new(0, 4) };
+            var net = SilkNet.Spawn(hull, 4f, 4, 3f, null, null, null);
+            yield return new WaitForSeconds(0.2f);
+            Assert.AreEqual(inside.Max - 4, inside.Current);
+            Assert.AreEqual(outside.Max, outside.Current);
+            Assert.IsTrue(ai.IsStunned);
+            Assert.AreEqual(1, net.CaughtCount);
+            yield return new WaitForSeconds(2.5f);
+            Assert.IsTrue(ai.IsStunned);
+            yield return new WaitForSeconds(0.6f);
+            Assert.IsFalse(ai.IsStunned);
+            Assert.AreEqual(inside.Max - 4, inside.Current);
         }
 
         [UnityTest]

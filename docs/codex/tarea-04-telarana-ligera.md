@@ -32,8 +32,8 @@ Cuando se forma la red (3 hilos), hoy el juego da un tirón y el dibujo queda mu
 - Pruebas `Floor3LimbsTests` y `Floor3SkinTests` (para no romper nada vecino). Recuerda los fallos que ya existían (`JumpingLegs` ×2 en `Floor3LimbsTests`, ver `AGENTS.md`).
 - A ojo (usuaria): Patas hilanderas nivel III, soltar 3 hilos: la red debe aparecer **sin tirón**, más sobria y con menos rocío.
 
-## Resultado (lo rellena Codex)
-- Hecho:
-- Archivos tocados:
-- Pruebas (cuántas pasan):
-- Dudas / no comprobado:
+## Resultado
+- Hecho: generación diferida de los cinco cuadros (2 de crecimiento, 1 de brillo y 2 de deshilachado), con el primero disponible al formar la red y caché por animación. Liberación mediante Object.Destroy de todos los sprites y texturas al acabar o destruirse antes. Crecimiento de 0,4 s y deshilachado de 0,6 s conservados; brillo limitado al tiempo restante de la red. Radios cada 22 px, anillos cada 11 px, rocío de probabilidad 0,12 solo en anillos pares y opacidades 170/130; paleta, contorno, centro, filtro Point y 16 px/u conservados. Constantes visuales provisionales al inicio. Sin cambios en daño, inmovilización ni cálculo del polígono.
+- Archivos tocados: `Assets/_Primordia/Scripts/Mutations/SilkNetArt.cs`, `Assets/_Primordia/Scripts/Mutations/SilkNet.cs`, `Assets/_Primordia/Tests/PlayMode/Floor3LimbsTests.cs` y esta tarea. Scripts guardados con CRLF.
+- Pruebas (cuántas pasan): Unity 6000.6.2f1, PlayMode en batchmode autorizado: 21/23 aprobadas. Floor3LimbsTests: 14/16; Floor3SkinTests: 7/7. Pasan las cinco pruebas de SilkNet/SilkNetArt, incluidas generación progresiva, destrucción anticipada, liberación de texturas al final, daño único de 4, inmovilización de 3 s y contorno. Fallan únicamente las dos JumpingLegs ya documentadas: JumpingLegs_JumpsFourUnits_OverLowObstacle_ButNotOverWall y JumpingLegs_LevelTwoDamagesOnLanding. Sin errores CS; git diff --check correcto. Log: `Logs/telarana-tests.log`; resultados conservados en `Logs/telarana-tests.xml`.
+- Dudas / no comprobado: sin dudas de implementación. Pendientes la revisión visual de la usuaria y la medición del tirón en juego; batchmode verifica creación diferida y liberación, pero no la fluidez ni el aspecto percibido.

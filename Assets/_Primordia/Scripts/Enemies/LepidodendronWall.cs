@@ -12,7 +12,7 @@ namespace Primordia.Enemies
     public class LepidodendronWall : MonoBehaviour
     {
         public const int KnotEndurance = 22; // Provisional, daño sin multiplicar.
-        public const int FireDamagePerSecond = 12; // Provisional: vía rápida, fuera del tope Burn.
+        public const int FireDamagePerSecond = 4; // Provisional: ablanda la pared (~37 s en quemarla entera), fuera del tope Burn.
         public const float SpreadSeconds = 3f;
         public const float SegmentHeight = 1.5f; // Cubre también el radio de ignición de 1,3 u del escarabajo.
         const int KnotMultiplier = 2, CharredMultiplier = 2;
@@ -167,7 +167,8 @@ namespace Primordia.Enemies
             owner.WallLostHealth(lost); // Solo vida realmente absorbida, incluso con sobre-daño o Kill de depuración.
             if (health.Current > 0)
             {
-                hurtUntil = Time.time + Sheet($"Hurt_D{DamageState}").Length * HurtStep;
+                // El fuego continuo no repite el destello blanco: ya se ve en la franja quemada y las llamas.
+                if (!applyingFire) hurtUntil = Time.time + Sheet($"Hurt_D{DamageState}").Length * HurtStep;
                 owner.StartWallWaves(this);
             }
             Show();

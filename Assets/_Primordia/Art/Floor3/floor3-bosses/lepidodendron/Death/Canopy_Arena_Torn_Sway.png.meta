@@ -46,9 +46,9 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 16
@@ -74,7 +74,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 16384
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -119,11 +119,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 6
-        width: 5632
-        height: 106
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        y: 0
+        width: 704
+        height: 112
+      alignment: 9
+      pivot: {x: 0.5, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -132,6 +132,160 @@ TextureImporter:
       bones: []
       spriteID: c86edc59143d95c50800000000000000
       internalID: 6654582203056252556
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Canopy_Arena_Torn_Sway_1
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 0
+        width: 704
+        height: 112
+      alignment: 9
+      pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8354c7d0c5b7774c96435bd672e33ad
+      internalID: 1225589769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Canopy_Arena_Torn_Sway_2
+      rect:
+        serializedVersion: 2
+        x: 1408
+        y: 0
+        width: 704
+        height: 112
+      alignment: 9
+      pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8249a9024ccccb945b59efb46d62c390
+      internalID: -1854143869
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Canopy_Arena_Torn_Sway_3
+      rect:
+        serializedVersion: 2
+        x: 2112
+        y: 0
+        width: 704
+        height: 112
+      alignment: 9
+      pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d858975430d615f4385ff5b1862fb22c
+      internalID: -1020686011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Canopy_Arena_Torn_Sway_4
+      rect:
+        serializedVersion: 2
+        x: 2816
+        y: 0
+        width: 704
+        height: 112
+      alignment: 9
+      pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56ee728945a3f3c4caf52ee51edbe6b2
+      internalID: -337894952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Canopy_Arena_Torn_Sway_5
+      rect:
+        serializedVersion: 2
+        x: 3520
+        y: 0
+        width: 704
+        height: 112
+      alignment: 9
+      pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9b563fed6721aa47981663409b8edac
+      internalID: 66723433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Canopy_Arena_Torn_Sway_6
+      rect:
+        serializedVersion: 2
+        x: 4224
+        y: 0
+        width: 704
+        height: 112
+      alignment: 9
+      pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1c949f0062ad804187c8b3957758753
+      internalID: 1117565057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Canopy_Arena_Torn_Sway_7
+      rect:
+        serializedVersion: 2
+        x: 4928
+        y: 0
+        width: 704
+        height: 112
+      alignment: 9
+      pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad9bac421d9e92e42965937612f35413
+      internalID: -1168766256
       vertices: []
       indices: 
       edges: []
@@ -151,6 +305,13 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       Canopy_Arena_Torn_Sway_0: 6654582203056252556
+      Canopy_Arena_Torn_Sway_1: 1225589769
+      Canopy_Arena_Torn_Sway_2: -1854143869
+      Canopy_Arena_Torn_Sway_3: -1020686011
+      Canopy_Arena_Torn_Sway_4: -337894952
+      Canopy_Arena_Torn_Sway_5: 66723433
+      Canopy_Arena_Torn_Sway_6: 1117565057
+      Canopy_Arena_Torn_Sway_7: -1168766256
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

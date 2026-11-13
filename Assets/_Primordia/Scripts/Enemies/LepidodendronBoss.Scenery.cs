@@ -321,8 +321,8 @@ namespace Primordia.Enemies
                 var frames = art.Find(v.sheet).sprites;
                 v.renderer.sprite = frames[(Mathf.FloorToInt(Time.time / v.step + v.phase)) % frames.Length];
             }
-            var canopyFrames = art.Find(IsCanopyShaking ? "Canopy_Arena_Shake" : "Canopy_Arena_Sway").sprites;
-            arenaCanopy.sprite = canopyFrames[Mathf.FloorToInt(Time.time / (IsCanopyShaking ? CanopyShakeStep : CanopySwayStep)) % canopyFrames.Length];
+            var canopyFrames = art.Find(HasCollapsed || fallen != null && fallen.name == "FallenTrunk" ? "Canopy_Arena_Torn_Sway" : IsCanopyShaking ? "Canopy_Arena_Shake" : "Canopy_Arena_Sway").sprites;
+            if (!Collapsing || fallen != null && fallen.name == "FallenTrunk") arenaCanopy.sprite = canopyFrames[Mathf.FloorToInt(Time.time / (IsCanopyShaking ? CanopyShakeStep : CanopySwayStep)) % canopyFrames.Length];
             foreach (var quad in dappleQuads)
                 if (quad.source.sprite != quad.lastSprite)
                     UpdateDappleUV(quad);

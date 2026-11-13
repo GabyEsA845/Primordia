@@ -88,6 +88,8 @@ namespace Primordia.Editor
                 serialized.ApplyModifiedPropertiesWithoutUndo();
                 var boss = root.AddComponent<LepidodendronBoss>();
                 boss.Configure(art);
+                root.AddComponent<Primordia.UI.BossBarAppearance>().Configure(ArtSetup.CreateLepidodendronBarSkin());
+                boss.ConfigureIntro(ArtSetup.CreateLepidodendronIntro());
                 var enemies = new[] { "Calamites", "Toad", "Spider", "Beetle", "Dragonfly" }
                     .Select(name => AssetDatabase.LoadAssetAtPath<GameObject>($"Assets/_Primordia/Prefabs/Enemies/Enemy_{name}.prefab")?.GetComponent<Enemy>()).ToArray();
                 var fern = floor3.BandThemes.Where(t => t != null).SelectMany(t => t.Ferns).FirstOrDefault(f => f != null && f.IsValid && f.IsBurnable);

@@ -25,6 +25,8 @@ namespace Primordia.UI
         Image edgeBottom;
         Image nameImage;
         Text title;
+        Text secretSeal;
+        bool secret;
         Image portrait;
         CanvasGroup group;
         float time;
@@ -90,9 +92,18 @@ namespace Primordia.UI
         }
 
         /// <summary>Entra con los datos de <paramref name="data"/>.</summary>
-        public void Show(BossIntroData data)
+        public void Show(BossIntroData data, bool secret = false)
         {
             Build();
+            this.secret = secret;
+            band.sizeDelta = new Vector2(560f, secret ? 88f : BandHeight);
+            if (secret && secretSeal == null)
+            {
+                secretSeal = NewRect("SecretSeal", transform, Vector2.zero, Vector2.zero, new Vector2(180f, 50f), new Vector2(100f, 12f)).gameObject.AddComponent<Text>();
+                secretSeal.font = title.font; secretSeal.fontSize = 8; secretSeal.text = "JEFE SECRETO";
+                secretSeal.color = new Color(0.8f, 0.5f, 1f); secretSeal.raycastTarget = false;
+            }
+            if (secretSeal != null) secretSeal.gameObject.SetActive(secret);
             bandImage.color = new Color(data.BandColor.r, data.BandColor.g, data.BandColor.b, 0.94f);
             edgeTop.color = edgeBottom.color = data.AccentColor;
             nameImage.sprite = data.NameSprite;
@@ -147,8 +158,13 @@ namespace Primordia.UI
 
             band.anchoredPosition = Snap(new Vector2((bandIn - 1f) * 560f - gone * 600f, 88f));
             nameImage.rectTransform.anchoredPosition = Snap(new Vector2(36f + (nameIn - 1f) * 300f - gone * 500f, 71f));
-            title.rectTransform.anchoredPosition = Snap(new Vector2(42f - gone * 500f, 72f));
+            title.rectTransform.anchoredPosition = Snap(new Vector2(42f - gone * 500f, secret ? 62f : 72f));
             SetAlpha(title, titleIn * (1f - outK));
+            if (secretSeal != null && secret)
+            {
+                secretSeal.rectTransform.anchoredPosition = Snap(new Vector2(180f - gone * 500f, 50f));
+                SetAlpha(secretSeal, titleIn * (1f - outK));
+            }
             portrait.rectTransform.anchoredPosition = Snap(new Vector2(278f + (1f - portraitIn) * 120f + gone * 260f, 222f));
             SetAlpha(portrait, portraitIn * (1f - outK));
 

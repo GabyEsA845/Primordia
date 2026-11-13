@@ -38,6 +38,20 @@ namespace Primordia.UI
         [SerializeField] Sprite[] lowSparks = Array.Empty<Sprite>();
         [SerializeField] float lowSparksFrameTime = 0.09f;
 
+        [SerializeField] Sprite[] knotIdle = Array.Empty<Sprite>(), knotHit = Array.Empty<Sprite>(), headHit = Array.Empty<Sprite>();
+        [SerializeField] Sprite[] coneAppear = Array.Empty<Sprite>(), coneArmor = Array.Empty<Sprite>(), coneCharred = Array.Empty<Sprite>(), coneExposed = Array.Empty<Sprite>(), coneBroken = Array.Empty<Sprite>();
+        public bool IsLepidodendron => coneArmor.Length > 0;
+        public Sprite KnotFrame(float now, bool hit) => Loop(hit ? knotHit : knotIdle, now, hit ? 0.06f : 0.16f);
+        public Sprite HeadHitFrame(float elapsed) => elapsed >= 0f && elapsed < 0.12f ? Loop(headHit, elapsed, 0.06f) : null;
+        public Sprite ConeFrame(int state, float elapsed, float now) => elapsed < 0.36f
+            ? Loop(coneAppear, elapsed, 0.09f) : Loop(state == 3 ? coneBroken : state == 2 ? coneExposed : state == 1 ? coneCharred : coneArmor, now, 0.12f);
+        internal void ConfigureLepidodendron(Sprite[] idle, Sprite[] hit, Sprite[] head, Sprite[][] cones)
+        {
+            bottomAnchored = true;
+            knotIdle = idle; knotHit = hit; headHit = head;
+            coneAppear = cones[0]; coneArmor = cones[1]; coneCharred = cones[2]; coneExposed = cones[3]; coneBroken = cones[4];
+        }
+
         public bool BottomAnchored => bottomAnchored;
         public bool ImmuneUsesPhaseFrame => immuneUsesPhaseFrame;
         public bool HasLowSparks => lowSparks.Length > 0;

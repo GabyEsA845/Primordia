@@ -8,7 +8,7 @@ namespace Primordia.Enemies
     /// <summary>Jefe secreto: escenario L1, paredes/oleadas L2 y fase final de conos L3.</summary>
     [DefaultExecutionOrder(1000)]
     [RequireComponent(typeof(Health), typeof(Enemy), typeof(Rigidbody2D))]
-    public partial class LepidodendronBoss : MonoBehaviour, IBoss
+    public partial class LepidodendronBoss : MonoBehaviour, IBoss, IPhasedBoss
     {
         public const int MaxHealth = 600;
         public const float CorridorLength = 116f, CorridorHeight = 18f;
@@ -74,11 +74,19 @@ namespace Primordia.Enemies
             Health.IsInvulnerable = !FinalPhaseReady || AllConesDestroyed;
             MethaneSubscribe();
             SubscribeAttacks();
+            ConesDestroyed += StartCollapse;
+            Health.Changed += BarHealthChanged;
+            presentation = StartCoroutine(AutoPresentation());
             ActiveBoss.Set(this);
         }
 
         void OnDisable()
         {
+            ConesDestroyed -= StartCollapse;
+            Health.Changed -= BarHealthChanged;
+            StopAllCoroutines();
+            ReleaseCinematic();
+            IntroPlaying = false;
             MethaneUnsubscribe();
             UnsubscribeAttacks();
             ActiveBoss.Clear(this);
@@ -111,7 +119,7 @@ namespace Primordia.Enemies
             built = true;
         }
 
-        public void PlayIntroPose(float hold) { }
+        public void PlayIntroPose(float hold) { WarnCones(Time.time, hold); }
         public void BeginFight() { } // Las paredes activan sus oleadas y la tercera rotura inicia los conos.
 
         public Vector2 TestStop(int index) => index < 3
@@ -145,13 +153,16 @@ namespace Primordia.Enemies
                 if (controller != null)
                     player = controller.transform;
             }
-            UpdateCamera();
+            if (!IntroPlaying && !Collapsing) UpdateCamera();
             Animate();
             UpdateCritters();
-            if (!attacksCancelled) UpdateWallWaves();
-            UpdateCones(Time.time);
-            AnimateConeSignals();
-            TickAttacks(Time.deltaTime);
+            if (FightReady)
+            {
+                if (!attacksCancelled) UpdateWallWaves();
+                UpdateCones(Time.time);
+                TickAttacks(Time.deltaTime);
+            }
+            if (!Collapsing && !HasCollapsed) AnimateConeSignals();
             if (Time.time >= nextFall)
             {
                 nextFall = Time.time + IdleFallEvery;

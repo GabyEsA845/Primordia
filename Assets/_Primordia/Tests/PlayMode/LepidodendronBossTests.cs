@@ -33,7 +33,7 @@ namespace Primordia.Tests
             Assert.IsNotNull(prefab, "Ejecuta Primordia > Boss > Crear Lepidodendron y escena de prueba.");
             boss = Object.Instantiate(prefab, room.transform).GetComponent<LepidodendronBoss>();
             boss.SetArena(room.transform, new Vector2(158f, 30f));
-            // La mayoría de comprobaciones no necesitan enemigos activos. Las pruebas de oleadas reponen su reserva.
+            // La mayorÃ­a de comprobaciones no necesitan enemigos activos. Las pruebas de oleadas reponen su reserva.
             var serialized = new SerializedObject(boss);
             serialized.FindProperty("waveEnemies").arraySize = 0;
             serialized.ApplyModifiedPropertiesWithoutUndo();
@@ -49,6 +49,126 @@ namespace Primordia.Tests
         }
 
         Transform Scenery => boss.transform.Find("Scenery");
+
+        [Test]
+        public void L5SkinUsaSaviaCabezaYLosTresNudosReales()
+        {
+            var skin = boss.GetComponent<Primordia.UI.BossBarAppearance>().Skin;
+            Assert.IsTrue(skin.BottomAnchored);
+            Assert.AreEqual(new Vector2(320, 44), skin.Frame.rect.size);
+            Assert.AreEqual(new RectInt(46, 23, 260, 8), skin.Window);
+            Assert.AreEqual(3, boss.PhaseThresholds.Length);
+            Assert.That(skin.Phase(boss.PhaseIndex).fill[0].name, Does.Contain("Fill_Sap_"));
+            Assert.That(skin.Phase(0).eyes[0].name, Does.Contain("Head_Calm"));
+            boss.Walls[0].Health.TakeDamage(10);
+            Assert.AreEqual(0, boss.PhaseIndex);
+            boss.Walls[0].Health.Kill();
+            Assert.AreEqual(1, boss.PhaseIndex);
+            boss.TestFinalPhase();
+            Assert.That(skin.Phase(boss.PhaseIndex).fill[0].name, Does.Contain("SapGold"));
+            Assert.That(skin.Phase(boss.PhaseIndex).eyes[0].name, Does.Contain("Head_Final"));
+        }
+
+        [Test]
+        public void L5ConosDeBarraReflejanArmaduraCarbonizadoExpuestoYRoto()
+        {
+            var cone = GroundCone();
+            Assert.AreEqual(0, boss.BarConeState(0));
+            cone.Ignite();
+            Assert.AreEqual(1, boss.BarConeState(0));
+            cone.Health.TakeDamage(100);
+            Assert.AreEqual(2, boss.BarConeState(0));
+            cone.Health.Kill();
+            Assert.AreEqual(3, boss.BarConeState(0));
+            Assert.AreEqual(0, boss.BarConeState(1));
+        }
+
+        [UnityTest]
+        public IEnumerator L5PresentacionBloqueaJugadorYCombateHastaVolver()
+        {
+            CreateWalker(boss.TestStop(0));
+            var controller = walker.AddComponent<PlayerController>();
+            controller.readInput = false;
+            var target = new GameObject("CameraTarget").AddComponent<CameraLookAhead>();
+            target.transform.SetParent(room.transform);
+            target.Configure(controller, 0f, 0f);
+            var health = walker.GetComponent<Health>();
+            var body = walker.GetComponent<Rigidbody2D>();
+            var constraints = body.constraints;
+            boss.ReplayPresentation();
+            Assert.IsTrue(boss.IntroPlaying);
+            Assert.IsFalse(boss.FightReady);
+            Assert.IsFalse(health.TakeDamage(1));
+            Assert.AreEqual(RigidbodyConstraints2D.FreezeAll, body.constraints);
+            yield return new WaitForSeconds(4.9f);
+            Assert.IsTrue(boss.IntroPlayed);
+            Assert.IsFalse(boss.IntroPlaying);
+            Assert.IsTrue(boss.FightReady);
+            Assert.AreEqual(0f, target.FocusWeight);
+            Assert.AreEqual(constraints, body.constraints);
+            boss.enabled = false;
+            boss.enabled = true;
+            yield return null;
+            Assert.IsFalse(boss.IntroPlaying);
+        }
+
+        [UnityTest]
+        public IEnumerator L5DesplomeDuraConProteccionYDejaTroncoColisionYAnclaSinRecompensa()
+        {
+            CreateWalker(boss.TestStop(3));
+            walker.AddComponent<PlayerController>().readInput = false;
+            var health = walker.GetComponent<Health>();
+            int completed = 0, died = 0;
+            boss.Collapsed += () => completed++;
+            boss.Health.Died += () => died++;
+            boss.TestEndingAction(0);
+            Assert.IsTrue(boss.Collapsing);
+            Assert.IsFalse(health.TakeDamage(1));
+            yield return new WaitForSeconds(6f);
+            Assert.IsTrue(boss.Collapsing);
+            yield return new WaitForSeconds(1f);
+            Assert.IsTrue(boss.HasCollapsed);
+            Assert.AreEqual(1, completed);
+            Assert.AreEqual(0, died);
+            Assert.AreEqual(0, boss.Health.Current);
+            Assert.IsNotNull(Scenery.Find("FallenTrunk").GetComponent<PolygonCollider2D>());
+            Assert.AreEqual(4, Scenery.Find("FallenTrunk").GetComponent<PolygonCollider2D>().points.Length);
+            Assert.IsNotNull(boss.StumpCrack);
+            Assert.IsNotNull(Scenery.Find("GoldColumn"));
+            Assert.IsNull(ActiveBoss.Current);
+            Assert.IsEmpty(room.GetComponentsInChildren<Primordia.Mutations.MutationPickup>());
+            Assert.IsFalse(health.IsInvulnerable);
+        }
+
+        [UnityTest]
+        public IEnumerator L5DestruirDuranteDesplomeLiberaJugadorYCamara()
+        {
+            CreateWalker(boss.TestStop(3));
+            var controller = walker.AddComponent<PlayerController>(); controller.readInput = false;
+            var target = new GameObject("Target").AddComponent<CameraLookAhead>();
+            cameraRig = target.gameObject;
+            target.Configure(controller);
+            var body = walker.GetComponent<Rigidbody2D>();
+            var constraints = body.constraints;
+            boss.TestEndingAction(0);
+            yield return new WaitForSeconds(0.1f);
+            Object.DestroyImmediate(room);
+            Assert.IsFalse(walker.GetComponent<Health>().IsInvulnerable);
+            Assert.AreEqual(constraints, body.constraints);
+            Assert.AreEqual(0, target.FocusWeight);
+            Assert.IsNull(ActiveBoss.Current);
+        }
+
+        [Test]
+        public void L5AtajosDeVidaMantienenConosYBarraSinDesplomePrematuro()
+        {
+            boss.TestEndingAction(2);
+            Assert.AreEqual(150, boss.Health.Current);
+            boss.TestEndingAction(3);
+            Assert.AreEqual(6, boss.Health.Current);
+            Assert.IsFalse(boss.Collapsing);
+            Assert.AreEqual(6, boss.Cones.Sum(c => c.Health.Current));
+        }
 
         [Test]
         public void ElMenuDejaAssetsCompletosSinReferenciasPerdidas()
@@ -256,7 +376,7 @@ namespace Primordia.Tests
             cameraRig.GetComponentInChildren<AudioListener>().enabled = false;
             var camera = cameraRig.GetComponentInChildren<Camera>();
             var virtualCamera = cameraRig.transform.Find("CinemachineCamera").GetComponent("CinemachineCamera");
-            // El ensamblado de pruebas no referencia Cinemachine: inspección serializada sin cambiar su asmdef.
+            // El ensamblado de pruebas no referencia Cinemachine: inspecciÃ³n serializada sin cambiar su asmdef.
             float LensSize() => new SerializedObject(virtualCamera).FindProperty("Lens").FindPropertyRelative("OrthographicSize").floatValue;
             float normal = LensSize();
             var body = CreateWalker(boss.TestStop(2));
@@ -324,7 +444,7 @@ namespace Primordia.Tests
             Assert.AreEqual(125, first.Health.Current);
             Assert.AreEqual(575, boss.Health.Current);
             first.Health.TakeDamage(1000);
-            Assert.AreEqual(450, boss.Health.Current, "Nunca resta el sobre-daño.");
+            Assert.AreEqual(450, boss.Health.Current, "Nunca resta el sobre-daÃ±o.");
             Assert.IsFalse(boss.Health.TakeDamage(100));
             Assert.AreEqual(450, boss.Health.Current);
         }
@@ -403,10 +523,10 @@ namespace Primordia.Tests
         public IEnumerator ElEstallidoRealCuentaUnaVezYTienePuntoDeImpacto()
         {
             var wall = boss.Walls[0];
-            Scenery.Find("Wall1Supplies").gameObject.SetActive(false); // Aísla el golpe del estallido, sin cadenas de metano.
+            Scenery.Find("Wall1Supplies").gameObject.SetActive(false); // AÃ­sla el golpe del estallido, sin cadenas de metano.
             var position = new Vector2(wall.transform.position.x - wall.BodyCollider.size.x / 2f - 0.4f, wall.KnotPosition(0).y);
             PoisonSpitBurst.Spawn(position, 2, 2f, 0f, null, Team.Enemy);
-            yield return new WaitForSeconds(0.2f); // Después del impacto y antes del primer tick de veneno (0,5 s).
+            yield return new WaitForSeconds(0.2f); // DespuÃ©s del impacto y antes del primer tick de veneno (0,5 s).
             Assert.AreEqual(146, wall.Health.Current);
             Assert.AreEqual(596, boss.Health.Current);
             Assert.IsNotNull(wall.Health.LastImpactPoint);
@@ -811,7 +931,7 @@ namespace Primordia.Tests
             StartL4(LepidodendronBoss.AttackKind.Whip);
             boss.TickAttacks(0.799f);
             Assert.AreEqual(100, health.Current);
-            boss.TickAttacks(0.12f); // Cuadro 2: la punta todavía no llega.
+            boss.TickAttacks(0.12f); // Cuadro 2: la punta todavÃ­a no llega.
             Assert.AreEqual(100, health.Current);
             boss.TickAttacks(0.23f); // Cuadro 6: llega hasta 214 px.
             Assert.AreEqual(98, health.Current);
@@ -1053,7 +1173,7 @@ namespace Primordia.Tests
         }
 
         [Test]
-        public void L4FinDeConosAnulaDanoYDejaTerminarAnimacion()
+        public void L4FinDeConosLimpiaAtaquesAlComenzarDesplome()
         {
             var health = PrepareL4();
             StartL4(LepidodendronBoss.AttackKind.Spikes);
@@ -1062,7 +1182,7 @@ namespace Primordia.Tests
             foreach (var cone in boss.Cones) cone.Health.Kill();
             Assert.IsTrue(boss.AllConesDestroyed);
             Assert.AreEqual(0, boss.PendingAttackCount);
-            Assert.AreEqual(1, boss.ActiveAttackCount);
+            Assert.AreEqual(0, boss.ActiveAttackCount);
             Physics2D.SyncTransforms();
             boss.TickAttacks(0.79f);
             Assert.AreEqual(100, health.Current);
@@ -1251,7 +1371,7 @@ namespace Primordia.Tests
         [UnityTest]
         public IEnumerator LaQuemaduraDeUnArmaPrendeLaBaseSinInventarImpactos()
         {
-            var wall = boss.Walls[2]; // La más gruesa: el registro de la base debe alcanzar también Burn.
+            var wall = boss.Walls[2]; // La mÃ¡s gruesa: el registro de la base debe alcanzar tambiÃ©n Burn.
             Burn.Apply(wall.Health, 1, 2f);
             yield return new WaitForSeconds(0.5f);
             Assert.IsTrue(wall.IsBurning);

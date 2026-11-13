@@ -52,9 +52,9 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 16
@@ -80,7 +80,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 16384
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -124,12 +124,12 @@ TextureImporter:
       name: Lepido_FallenTrunk_0
       rect:
         serializedVersion: 2
-        x: 38
+        x: 0
         y: 0
-        width: 820
-        height: 324
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 1056
+        height: 416
+      alignment: 9
+      pivot: {x: 0.8939394, y: 0.15384614}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -138,50 +138,6 @@ TextureImporter:
       bones: []
       spriteID: 836e09cd61c3752f0800000000000000
       internalID: -984251924669733320
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_FallenTrunk_1
-      rect:
-        serializedVersion: 2
-        x: 162
-        y: 313
-        width: 17
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5552c06ff639fb440800000000000000
-      internalID: 4953840224209478997
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_FallenTrunk_2
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 149
-        width: 14
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e46ca4c7122ae4120800000000000000
-      internalID: 2400033916137948750
       vertices: []
       indices: 
       edges: []
@@ -201,8 +157,6 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       Lepido_FallenTrunk_0: -984251924669733320
-      Lepido_FallenTrunk_1: 4953840224209478997
-      Lepido_FallenTrunk_2: 2400033916137948750
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

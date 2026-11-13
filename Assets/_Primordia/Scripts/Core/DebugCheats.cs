@@ -68,6 +68,18 @@ namespace Primordia.Core
                 return;
 
             #if UNITY_EDITOR
+            // Alt+F1..F4: desplome, presentación, vida al 25 % y al 1 % (tarea 09).
+            if (keyboard.leftAltKey.isPressed || keyboard.rightAltKey.isPressed)
+            {
+                var endingKeys = new[] { keyboard.f1Key, keyboard.f2Key, keyboard.f3Key, keyboard.f4Key };
+                for (int i = 0; i < endingKeys.Length; i++)
+                    if (endingKeys[i].wasPressedThisFrame)
+                    {
+                        var boss = FindAnyObjectByType<LepidodendronBoss>();
+                        Say(boss != null ? boss.TestEndingAction(i) : "No hay Lepidodendron activo");
+                    }
+                return;
+            }
             // Ctrl+F1..F6 queda reservado a L3 y no dispara los atajos normales de esas teclas.
             if (keyboard.leftCtrlKey.isPressed || keyboard.rightCtrlKey.isPressed)
             {

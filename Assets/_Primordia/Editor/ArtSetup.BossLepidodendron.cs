@@ -18,7 +18,7 @@ namespace Primordia.Editor
         {
             // Importación limitada al jefe; no regenera arte ni actualiza otros jefes.
             const string source = "docs/multimedia-temp/floor3-bosses/lepidodendron";
-            foreach (string folder in new[] { "Tree", "Canopy", "Decor", "Walls", "Cones", "Attacks", "Death" })
+            foreach (string folder in new[] { "Tree", "Canopy", "Decor", "Walls", "Cones", "Attacks", "Death", "Reward" })
                 foreach (string file in Directory.GetFiles(source + "/" + folder, "*.png"))
                 {
                     string target = LepidodendronArtFolder + "/" + folder + "/" + Path.GetFileName(file);
@@ -26,7 +26,7 @@ namespace Primordia.Editor
                         CopyArt(file, target);
                 }
             var sheets = new List<DirectionalArt.Sheet>();
-            foreach (string folder in new[] { "Tree", "Canopy", "Decor", "Walls", "Cones", "Attacks", "Death" })
+            foreach (string folder in new[] { "Tree", "Canopy", "Decor", "Walls", "Cones", "Attacks", "Death", "Reward" })
             {
                 var parts = new Dictionary<string, List<Sprite>>();
                 string path = $"{LepidodendronArtFolder}/{folder}";
@@ -191,6 +191,24 @@ namespace Primordia.Editor
                 if (name == "Lepido_WallRubble") return (448, new Vector2(0.5f, 0.5f));
                 if (name == "Fx_GoldColumn") return (128, new Vector2(0.5f, 0f));
                 return (24, new Vector2(0.5f, 0f));
+            }
+            if (folder == "Reward")
+            {
+                Vector2 center = new(0.5f, 0.5f), topLeft = new(0f, 1f);
+                if (name.StartsWith("Lepido_Pedestal_")) return (56, new Vector2(0.5f, 1f - 48f / 52));
+                if (name == "Lepido_StumpRoom" || name == "Fx_StumpRoom_Light" || name == "Fx_StumpRoom_Rays") return (480, topLeft);
+                if (name == "Relic_RootAncestral_Idle") return (24, topLeft);
+                if (name == "Relic_RootAncestral_Big") return (48, center);
+                if (name == "Item_PurpleSpore_Big") return (38, center);
+                if (name.StartsWith("Item_PurpleSpore_")) return (16, new Vector2(0.5f, 0f));
+                if (name == "Title_Key_PurpleSpore") return (184, center);
+                if (name == "Title_Relic_RootAncestral") return (182, center);
+                if (name.StartsWith("UI_RelicFillet_")) return (244, center);
+                if (name == "UI_RelicHalo") return (120, center);
+                if (name == "Lepido_StumpRoom_Exit" || name == "Fx_HeartGlow") return (24, center);
+                if (name == "Fx_RewardShadow" || name.EndsWith("_16")) return (16, center);
+                if (name.EndsWith("_32")) return (32, center);
+                throw new InvalidDataException($"Hoja de recompensa sin medidas: {name}");
             }
             if (folder == "Attacks")
             {

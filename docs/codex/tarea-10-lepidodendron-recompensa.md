@@ -45,5 +45,18 @@ Tras el desplome (tarea 09), el jugador recibe la recompensa del jefe secreto: *
 - Menú `Primordia > Boss > Crear Lepidodendron y escena de prueba`; `LepidodendronBossTests`, `MeganeuraBossTests`, `BossHealthBarTests`.
 - A ojo (usuaria): la bajada de las recompensas, las presentaciones, la sala del tocón (luz, setas, pedestal), la reliquia al cogerla, y la pausa con sus iconos.
 
-## Resultado (lo rellena Codex)
-- Hecho:
+## Resultado (implementada por Claude el 2026-11-13: Codex se quedo sin tokens)
+- **Hecho:** L5b completa en `codex/lepido-5b-recompensa`.
+  - **Recompensa:** al acabar el desplome (`Collapsed` -> `BeginReward`) bajan por la columna de luz el corazon (`Item_HeartContainer_Idle` de la tienda + `Fx_HeartGlow`) y la Espora morada; flotan con sombra y se cogen al tocarlas. Corazon: +2 de vida maxima (`SetMax`). Espora: objeto clave + presentacion pequena «OBJETO CLAVE».
+  - **Sala del tocon:** `PromptInteractable` (E) en la grieta (`StumpCrack`) -> fundido dorado (0,45 s) -> sala interior montada lejos de la arena (origen = entrada + 400 u en y; telon negro, suelo circular r 92 px con `EdgeCollider2D`, setas, rayos, luz, pedestal con la reliquia, salida E). La camara se queda en la sala sin zoom (`InStumpRoom` en `UpdateCamera`). Salir devuelve junto a la grieta.
+  - **Reliquia:** E junto al pedestal -> presentacion con halo (formato comun del README) -> pedestal `Pedestal_Fade` -> `Pedestal_Empty` para siempre; se apaga la luz.
+  - **Sistema minimo:** `Core/RunInventory.cs` (estatico: reliquias, objetos clave y banderas «ya cogido»; se vacia al empezar/reiniciar/volver al menu en `GameManager` y en `SubsystemRegistration`). `RunInventory.OnFloorEntered(player)` cura toda la vida con la Raiz ancestral. `UI/RewardPresenter.cs` (presentacion y fundidos, congela `timeScale` y lo restaura), `UI/PauseRelicsRow.cs` (filas «OBJETOS CLAVE» y «RELIQUIAS» con icono, nombre y efecto en la pausa, ocultas si no hay nada; `GameUI` la anade al panel de pausa).
+- **Archivos:** nuevos `LepidodendronBoss.Reward.cs`, `LepidodendronReward.cs` (`LepidodendronPrompt`, `LepidodendronDrop`), `RunInventory.cs`, `RewardPresenter.cs`, `PauseRelicsRow.cs`; ampliados `LepidodendronBoss.cs` (camara en la sala), `.Death.cs`, `.Scenery.cs` (hojas obligatorias), `GameManager.cs` (reinicio del inventario), `GameUI.cs`, `ArtSetup.BossLepidodendron.cs` (importa `Reward/`, 23 hojas), `LepidodendronBossSetup.cs` (corazon de la tienda y tecla E), `DebugCheats.cs`, pruebas.
+- **Teclas (Alt izquierdo/derecho):** Alt+F5 recompensa (baja lo no cogido), Alt+F6 junto a la grieta, Alt+F7 dentro de la sala, Alt+F8 dar reliquia y espora sin presentacion, Alt+F9 reiniciar el estado de recompensa. Antes: Alt+F1 desplome (hace falta primero).
+- **Pruebas:** `LepidodendronBossTests` + `MeganeuraBossTests` + `BossHealthBarTests`: **135/135** (7 nuevas: recompensa baja y corazon una vez, espora y presentacion, entrada/salida del tocon, reliquia unica y pedestal vacio, OnFloorEntered con y sin reliquia, filas de la pausa, sala no creada antes del desplome).
+- **Dudas / pendiente:**
+  - `OnFloorEntered` NO esta enganchado a un cambio de piso real (el enganche al piso queda fuera, como se acordo); la prueba lo invoca a mano.
+  - El estado «ya cogido» vive en `RunInventory` (provisional hasta el enganche al piso).
+  - La sala interior esta en la misma escena, lejos de la arena; si hay minimapa o salas con camara propia en el piso real, habra que revisarlo al enganchar.
+  - Sin sonido nuevo (se reusa `Sounds.HeartCoral`); el audio es del paso 8.
+  - Falta la comprobacion visual de la usuaria: bajada de las recompensas, presentaciones, sala del tocon (luz, setas, pedestal, colisiones del circulo) y la pausa con sus iconos.

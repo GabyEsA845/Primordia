@@ -69,6 +69,12 @@ namespace Primordia.Enemies
                     "Lepido_Spikes_Warn", "Lepido_Spikes_Erupt", "Lepido_Spikes_Scar",
                     "Proj_LepidoSpore", "Fx_LepidoSporeMark", "Fx_LepidoSporeSplash" })
                     yield return attack;
+                foreach (string reward in new[] { "Fx_HeartGlow", "Fx_RewardShadow", "Fx_StumpRoom_Light", "Fx_StumpRoom_Rays", "Item_PurpleSpore_Big",
+                    "Item_PurpleSpore_Fall", "Item_PurpleSpore_Idle", "Lepido_Pedestal_Empty", "Lepido_Pedestal_Fade", "Lepido_Pedestal_Lit",
+                    "Lepido_StumpRoom", "Lepido_StumpRoom_Exit", "Relic_RootAncestral_Big", "Relic_RootAncestral_Idle", "Title_Key_PurpleSpore",
+                    "Title_Relic_RootAncestral", "UI_RelicFillet_Bottom", "UI_RelicFillet_Top", "UI_RelicHalo", "Icon_PurpleSpore_16",
+                    "Icon_PurpleSpore_32", "Icon_RootAncestral_16", "Icon_RootAncestral_32" })
+                    yield return reward;
                 yield return "Fx_KnotBurst";
                 yield return "Fx_RootSmolder";
                 foreach (string name in new[] { "Lepido_Veins_Warn", "Lepido_Veins_Hit",

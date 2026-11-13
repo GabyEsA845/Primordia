@@ -133,6 +133,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Primordia::Primordia.Enemies.LepidodendronBoss
   introData: {fileID: 11400000, guid: 7448fbaafdf3497409bfc8511aabd5cb, type: 2}
+  heartFrames:
+  - {fileID: 3039545650275437121, guid: 56aa7cb199c1c7549b5548efc197dd5a, type: 3}
+  - {fileID: -2076769524110945384, guid: 56aa7cb199c1c7549b5548efc197dd5a, type: 3}
+  - {fileID: 7211201024347901294, guid: 56aa7cb199c1c7549b5548efc197dd5a, type: 3}
+  - {fileID: 2102265408, guid: 56aa7cb199c1c7549b5548efc197dd5a, type: 3}
+  promptFrames:
+  - {fileID: 7210565139753159747, guid: 2bd51478aa9a64143bfd83ba344d4d81, type: 3}
+  - {fileID: -1199138674, guid: 2bd51478aa9a64143bfd83ba344d4d81, type: 3}
   encounterConfig: {fileID: 11400000, guid: 60a9a74960b4f7a4c95d495d80291118, type: 2}
   waveEnemies:
   - {fileID: 2940776833964867364, guid: 50bb68a91f19387489dbbdd06f38d1bc, type: 3}

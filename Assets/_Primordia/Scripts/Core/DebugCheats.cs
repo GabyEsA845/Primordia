@@ -68,15 +68,15 @@ namespace Primordia.Core
                 return;
 
             #if UNITY_EDITOR
-            // Alt+F1..F4: desplome, presentación, vida al 25 % y al 1 % (tarea 09).
+            // Alt+F1..F4: desplome, presentación, vida al 25 % y al 1 % (tarea 09). Alt+F5..F9: recompensa del jefe (tarea 10).
             if (keyboard.leftAltKey.isPressed || keyboard.rightAltKey.isPressed)
             {
-                var endingKeys = new[] { keyboard.f1Key, keyboard.f2Key, keyboard.f3Key, keyboard.f4Key };
+                var endingKeys = new[] { keyboard.f1Key, keyboard.f2Key, keyboard.f3Key, keyboard.f4Key, keyboard.f5Key, keyboard.f6Key, keyboard.f7Key, keyboard.f8Key, keyboard.f9Key };
                 for (int i = 0; i < endingKeys.Length; i++)
                     if (endingKeys[i].wasPressedThisFrame)
                     {
                         var boss = FindAnyObjectByType<LepidodendronBoss>();
-                        Say(boss != null ? boss.TestEndingAction(i) : "No hay Lepidodendron activo");
+                        Say(boss == null ? "No hay Lepidodendron activo" : i < 4 ? boss.TestEndingAction(i) : boss.TestRewardAction(i - 4));
                     }
                 return;
             }

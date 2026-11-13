@@ -115,6 +115,7 @@ namespace Primordia.Enemies
             // No se emite Died: Enemy destruiría el escenario y MutationDrop daría la recompensa estándar.
             wallRoom.GetComponent<Room>()?.CompleteScriptedBoss(GetComponent<Enemy>());
             Collapsed?.Invoke();
+            BeginReward();
         }
 
         void SetFrame(SpriteRenderer renderer, string sheet, int frame) => renderer.sprite = art.Find(sheet).sprites[frame];

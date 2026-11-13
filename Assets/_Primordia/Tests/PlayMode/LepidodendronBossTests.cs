@@ -27,6 +27,7 @@ namespace Primordia.Tests
         [SetUp]
         public void SetUp()
         {
+            RunInventory.Reset();
             room = new GameObject("SalaLepidodendron");
             room.transform.position = new Vector2(200f, 100f);
             var prefab = AssetDatabase.LoadAssetAtPath<GameObject>(PrefabPath);
@@ -43,6 +44,8 @@ namespace Primordia.Tests
         [TearDown]
         public void TearDown()
         {
+            RunInventory.Reset();
+            Time.timeScale = 1f;
             if (walker != null) Object.DestroyImmediate(walker);
             if (room != null) Object.DestroyImmediate(room);
             if (cameraRig != null) Object.DestroyImmediate(cameraRig);
@@ -1393,6 +1396,153 @@ namespace Primordia.Tests
                 Assert.IsTrue(inactive.Health.IsInvulnerable);
             }
             finally { Object.DestroyImmediate(inactiveRoom); }
+        }
+
+        // ---- L5b: recompensa, sala del tocón y reliquia ----
+
+        IEnumerator CollapseNow()
+        {
+            CreateWalker(boss.TestStop(3));
+            walker.AddComponent<PlayerController>().readInput = false;
+            boss.TestEndingAction(0);
+            yield return new WaitForSeconds(7.2f);
+            Assert.IsTrue(boss.HasCollapsed);
+        }
+
+        LepidodendronPrompt PromptNamed(string title) =>
+            boss.GetComponentsInChildren<LepidodendronPrompt>(true).FirstOrDefault(p => p.Title == title);
+
+        [UnityTest]
+        public IEnumerator L5bLaRecompensaBajaTrasElDesplomeYElCorazonDaUnCorazonUnaVez()
+        {
+            yield return CollapseNow();
+            yield return new WaitForSeconds(0.6f);
+            Assert.IsTrue(boss.HeartDropped);
+            Assert.IsTrue(boss.SporeDropped);
+            var health = walker.GetComponent<Health>();
+            int max = health.Max;
+            var heart = boss.GetComponentsInChildren<LepidodendronDrop>().First(d => d.name == "Drop_Heart");
+            Assert.IsFalse(heart.Landed, "Todavía baja por la luz.");
+            yield return new WaitForSeconds(2.3f);
+            Assert.IsTrue(heart.Landed);
+            walker.transform.position = heart.transform.position;
+            yield return null; yield return null;
+            Assert.AreEqual(max + 2, health.Max);
+            Assert.IsTrue(RunInventory.HasFlag(RunInventory.LepidoHeartTaken));
+            Assert.IsNull(boss.GetComponentsInChildren<LepidodendronDrop>().FirstOrDefault(d => d.name == "Drop_Heart"));
+            boss.TestRewardAction(0); // Lo ya cogido no vuelve a bajar.
+            yield return new WaitForSeconds(0.6f);
+            Assert.IsNull(boss.GetComponentsInChildren<LepidodendronDrop>().FirstOrDefault(d => d.name == "Drop_Heart"));
+            Assert.AreEqual(max + 2, health.Max);
+        }
+
+        [UnityTest]
+        public IEnumerator L5bLaEsporaMoradaEntraEnObjetosClaveYLanzaSuPresentacion()
+        {
+            yield return CollapseNow();
+            yield return new WaitForSeconds(3f);
+            var spore = boss.GetComponentsInChildren<LepidodendronDrop>().First(d => d.name == "Drop_PurpleSpore");
+            walker.transform.position = spore.transform.position;
+            yield return null; yield return null;
+            Assert.IsTrue(RunInventory.Has(RunInventory.PurpleSpore));
+            Assert.AreEqual(1, RunInventory.KeyItems.Count);
+            Assert.IsTrue(Primordia.UI.RewardPresenter.Showing);
+            Assert.AreEqual(0f, Time.timeScale, "El juego se para durante la presentación.");
+            yield return new WaitForSecondsRealtime(4.3f);
+            Assert.IsFalse(Primordia.UI.RewardPresenter.Showing);
+            Assert.AreEqual(1f, Time.timeScale);
+            Assert.IsEmpty(RunInventory.Relics);
+        }
+
+        [UnityTest]
+        public IEnumerator L5bLaGrietaLlevaALaSalaYLaSalidaVuelve()
+        {
+            yield return CollapseNow();
+            var crack = PromptNamed("Grieta del tocón");
+            Assert.IsNotNull(crack);
+            Assert.IsFalse(boss.InStumpRoom);
+            crack.Interact(walker);
+            yield return new WaitForSecondsRealtime(1.8f);
+            Assert.IsTrue(boss.InStumpRoom);
+            Assert.IsNotNull(boss.StumpRoomRoot);
+            Assert.Less(Vector2.Distance(walker.transform.position, boss.StumpRoomPlayerStart), 0.5f);
+            Assert.IsTrue(boss.RelicOnPedestal);
+            Assert.IsNotNull(boss.StumpRoomRoot.Find("Wall").GetComponent<EdgeCollider2D>());
+            var exit = PromptNamed("Salir");
+            Assert.IsNotNull(exit);
+            exit.Interact(walker);
+            yield return new WaitForSecondsRealtime(1.8f);
+            Assert.IsFalse(boss.InStumpRoom);
+            Assert.Less(Vector2.Distance(walker.transform.position, boss.StumpCrack.position), 3f);
+        }
+
+        [UnityTest]
+        public IEnumerator L5bLaReliquiaSeCogeUnaVezDejaElPedestalVacioYCuraAlLlegarAUnPisoNuevo()
+        {
+            yield return CollapseNow();
+            PromptNamed("Grieta del tocón").Interact(walker);
+            yield return new WaitForSecondsRealtime(1.8f);
+            var relic = PromptNamed("Raíz ancestral");
+            Assert.IsTrue(relic.IsAvailable);
+            relic.Interact(walker);
+            yield return null;
+            Assert.IsTrue(RunInventory.Has(RunInventory.RootAncestral));
+            Assert.IsFalse(boss.RelicOnPedestal);
+            Assert.IsFalse(relic.IsAvailable);
+            yield return new WaitForSecondsRealtime(4.6f);
+            Assert.IsFalse(Primordia.UI.RewardPresenter.Showing);
+            var pedestal = boss.StumpRoomRoot.Find("Pedestal").GetComponent<SpriteRenderer>();
+            Assert.That(pedestal.sprite.name, Does.Contain("Pedestal_Empty"));
+            relic.Interact(walker); // Ya no hace nada: una sola reliquia.
+            Assert.AreEqual(1, RunInventory.Relics.Count);
+            var health = walker.GetComponent<Health>();
+            health.TakeDamage(health.Current - 1);
+            RunInventory.OnFloorEntered(walker);
+            Assert.AreEqual(health.Max, health.Current);
+        }
+
+        [Test]
+        public void L5bSinLaReliquiaUnPisoNuevoNoCura()
+        {
+            CreateWalker(boss.TestStop(3));
+            var health = walker.AddComponent<Health>();
+            health.TakeDamage(1);
+            int before = health.Current;
+            RunInventory.OnFloorEntered(walker);
+            Assert.AreEqual(before, health.Current);
+        }
+
+        [Test]
+        public void L5bLaPausaMuestraLasFilasSoloSiHayObjetos()
+        {
+            var panel = new GameObject("Pausa");
+            try
+            {
+                var row = panel.AddComponent<Primordia.UI.PauseRelicsRow>();
+                row.Rebuild();
+                Assert.AreEqual(0, row.RowCount);
+                Assert.IsFalse(row.ShowsRelics);
+                Assert.IsFalse(row.ShowsKeyItems);
+                RunInventory.AddKeyItem(new RunInventory.Entry { Id = RunInventory.PurpleSpore, Name = "Espora morada", Effect = "x" });
+                row.Rebuild();
+                Assert.IsTrue(row.ShowsKeyItems);
+                Assert.IsFalse(row.ShowsRelics);
+                Assert.AreEqual(2, row.RowCount); // encabezado + una fila
+                RunInventory.AddRelic(new RunInventory.Entry { Id = RunInventory.RootAncestral, Name = "Raíz ancestral", Effect = "y" });
+                row.Rebuild();
+                Assert.IsTrue(row.ShowsRelics);
+                Assert.AreEqual(4, row.RowCount);
+            }
+            finally { Object.DestroyImmediate(panel); }
+        }
+
+        [Test]
+        public void L5bLaSalaDelToconNoSeCreaAntesDelDesplome()
+        {
+            Assert.IsNull(boss.StumpRoomRoot);
+            Assert.IsFalse(boss.InStumpRoom);
+            Assert.IsFalse(boss.HeartDropped);
+            Assert.AreEqual("Primero fuerza el desplome (Alt+F1)", boss.TestRewardAction(0));
         }
     }
 }

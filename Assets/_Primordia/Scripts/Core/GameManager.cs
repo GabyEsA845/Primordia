@@ -147,12 +147,24 @@ namespace Primordia.Core
                 SetState(GameState.Playing);
         }
 
-        public void StartGame() => LoadScene(SceneNames.Game, GameState.Playing);
+        public void StartGame()
+        {
+            RunInventory.Reset();
+            LoadScene(SceneNames.Game, GameState.Playing);
+        }
 
         /// <summary>Vuelve a cargar la escena actual desde el principio.</summary>
-        public void RestartLevel() => LoadScene(SceneManager.GetActiveScene().name, GameState.Playing);
+        public void RestartLevel()
+        {
+            RunInventory.Reset();
+            LoadScene(SceneManager.GetActiveScene().name, GameState.Playing);
+        }
 
-        public void GoToMainMenu() => LoadScene(SceneNames.MainMenu, GameState.MainMenu);
+        public void GoToMainMenu()
+        {
+            RunInventory.Reset();
+            LoadScene(SceneNames.MainMenu, GameState.MainMenu);
+        }
 
         public void QuitGame()
         {

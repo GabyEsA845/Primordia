@@ -95,6 +95,7 @@ namespace Primordia.Enemies
             if (lookAhead != null)
                 lookAhead.ClearFocus();
             zoomAmount = 0f;
+            ReleaseRewardAssets();
         }
 
         void OnDestroy()
@@ -201,6 +202,17 @@ namespace Primordia.Enemies
         {
             if (player == null)
                 return;
+            if (InStumpRoom)
+            {
+                // Dentro del tocón la vista es la normal (480×270) y se queda en la sala.
+                if (zoom != null)
+                {
+                    zoomAmount = Mathf.MoveTowards(zoomAmount, 0f, Time.deltaTime / CameraTransition);
+                    zoom.Set(zoomAmount);
+                }
+                lookAhead?.SetFocus(StumpRoomCenter, 1f);
+                return;
+            }
             float x = player.position.x - entrance.x;
             bool inside = x >= 0f && x <= CorridorLength + ArenaWidth && Mathf.Abs(player.position.y - entrance.y) <= ArenaHeight / 2f;
             float target = inside && x >= CorridorLength ? 1f : 0f;

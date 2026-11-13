@@ -116,6 +116,7 @@ namespace Primordia.Enemies
             {
                 if (wave.completed >= WavesPerWall || Time.time < wave.nextAt)
                     return;
+                NoteWallWave(wave.wall);
                 int size = wave.wall.Index == 2 ? LastWallWaveSize : wave.completed == 0 ? FirstWaveSize : LaterWaveSize;
                 int[] pool = WaveSpecies(wave.wall.Index);
                 for (int i = 0; i < size; i++)
@@ -183,7 +184,7 @@ namespace Primordia.Enemies
         {
             child.DropsBiomass = false;
             // También cuentan los retoños que ya produce la IA de Calamites. No se modifica su cerebro.
-            if (LivingWaveEnemies > AliveLimit)
+            if (attacksCancelled || AllConesDestroyed || LivingWaveEnemies > AliveLimit)
             {
                 child.Health.Kill(); // Avisa a Room para deshacer su registro, sin biomasa ni un enemigo invisible vivo.
                 child.gameObject.SetActive(false);

@@ -78,6 +78,14 @@ namespace Primordia.Core
                         var boss = FindAnyObjectByType<LepidodendronBoss>();
                         Say(boss != null ? boss.TestConeAction(i) : "No hay Lepidodendron activo");
                     }
+                // Ctrl+F7..F11: latigazo, corro, lluvia, esquinas y alternar cadencia L4.
+                var attackKeys = new[] { keyboard.f7Key, keyboard.f8Key, keyboard.f9Key, keyboard.f10Key, keyboard.f11Key };
+                for (int i = 0; i < attackKeys.Length; i++)
+                    if (attackKeys[i].wasPressedThisFrame)
+                    {
+                        var boss = FindAnyObjectByType<LepidodendronBoss>();
+                        Say(boss != null ? boss.TestAttackAction(i) : "No hay Lepidodendron activo");
+                    }
                 return;
             }
 #endif

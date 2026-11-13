@@ -73,12 +73,14 @@ namespace Primordia.Enemies
         {
             Health.IsInvulnerable = !FinalPhaseReady || AllConesDestroyed;
             MethaneSubscribe();
+            SubscribeAttacks();
             ActiveBoss.Set(this);
         }
 
         void OnDisable()
         {
             MethaneUnsubscribe();
+            UnsubscribeAttacks();
             ActiveBoss.Clear(this);
             zoom?.Restore();
             zoom = null;
@@ -146,9 +148,10 @@ namespace Primordia.Enemies
             UpdateCamera();
             Animate();
             UpdateCritters();
-            UpdateWallWaves();
+            if (!attacksCancelled) UpdateWallWaves();
             UpdateCones(Time.time);
             AnimateConeSignals();
+            TickAttacks(Time.deltaTime);
             if (Time.time >= nextFall)
             {
                 nextFall = Time.time + IdleFallEvery;

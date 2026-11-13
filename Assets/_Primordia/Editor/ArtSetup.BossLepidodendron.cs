@@ -18,7 +18,7 @@ namespace Primordia.Editor
         {
             ImportFloor3Art();
             var sheets = new List<DirectionalArt.Sheet>();
-            foreach (string folder in new[] { "Tree", "Canopy", "Decor", "Walls", "Cones" })
+            foreach (string folder in new[] { "Tree", "Canopy", "Decor", "Walls", "Cones", "Attacks" })
             {
                 string path = $"{LepidodendronArtFolder}/{folder}";
                 if (!Directory.Exists(path))
@@ -58,6 +58,14 @@ namespace Primordia.Editor
 
         static (int width, Vector2 pivot) LepidodendronCell(string folder, string name, int height)
         {
+            if (folder == "Attacks")
+            {
+                if (name.StartsWith("Lepido_Whip_")) return (352, new Vector2(0f, 1f - 34f / 56));
+                if (name.StartsWith("Lepido_Spikes_")) return (80, new Vector2(0.5f, 1f - 78f / 96));
+                if (name == "Proj_LepidoSpore") return (12, new Vector2(0.5f, 1f - 18f / 24));
+                if (name == "Fx_LepidoSporeSplash") return (24, new Vector2(0.5f, 1f - 11f / 16));
+                return (34, new Vector2(0.5f, 0.5f));
+            }
             if (folder == "Cones")
             {
                 if (name == "Lepido_ConeBranch_Tile") return (72, new Vector2(0.5f, 0.5f));

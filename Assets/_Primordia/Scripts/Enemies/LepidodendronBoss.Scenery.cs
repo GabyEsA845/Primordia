@@ -65,6 +65,10 @@ namespace Primordia.Enemies
                         foreach (string suffix in new[] { "Idle", "Hit", "Wound", "WoundCharred" })
                             yield return $"Lepido_Wall{wall}_Knot{knot}_{suffix}";
                 }
+                foreach (string attack in new[] { "Lepido_Whip_Warn", "Lepido_Whip_Sweep", "Lepido_Whip_Furrow",
+                    "Lepido_Spikes_Warn", "Lepido_Spikes_Erupt", "Lepido_Spikes_Scar",
+                    "Proj_LepidoSpore", "Fx_LepidoSporeMark", "Fx_LepidoSporeSplash" })
+                    yield return attack;
                 yield return "Fx_KnotBurst";
                 yield return "Fx_RootSmolder";
                 foreach (string name in new[] { "Lepido_Veins_Warn", "Lepido_Veins_Hit",

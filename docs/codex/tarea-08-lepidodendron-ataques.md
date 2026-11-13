@@ -46,4 +46,37 @@ Dar al jefe sus ataques propios: **latigazos de raíces**, **corro de púas bajo
 - A ojo (usuaria): cada ataque con su tecla (¿se lee el aviso?, ¿da tiempo a esquivar?), la fase de paredes con esporas, la fase final con todo junto (¿es injusto?, ¿qué intervalo sobra?).
 
 ## Resultado (lo rellena Codex)
-- Hecho:
+- **Hecho:** implementada únicamente L4 en `codex/lepido-4-ataques`, creada desde `codex/lepido-3-conos`. Sin commit, push ni merge.
+- Importadas las nueve hojas aprobadas de `Attacks/` mediante el menú existente, con sus celdas, pivotes y cuadros; ampliados el catálogo y la validación de hojas obligatorias. No se han modificado PNG ni ejecutado generadores.
+- Latigazo alterno izquierda/derecha con aviso, hitbox hasta la punta de cada cuadro, un golpe de 2, sacudida y surco; corro fijo durante el aviso, un golpe de 2 y cicatriz; lluvia de seis esporas con retrasos, marcas por tiempo restante, proyectiles ocultos antes de salir y golpe de 1 en el cuadro 0 de la salpicadura.
+- Lluvia de 3–4 esporas en arco junto a paredes activadas y vivas, fuera de su cuerpo y dentro del pasillo; espera de 3 s tras anunciar una oleada. La retirada de la pared cancela sus esporas.
+- Esquinas: dos especies distintas de la reserva de L2 (sin sapo), aviso morado provisional de 1 s y tope compartido de seis vivos, incluidos descendientes. El sprite y la textura del aviso se destruyen al terminar de usarse.
+- Cola de avisos de L4 con separación mínima de 1,2 s; una lluvia reserva también todo su intervalo de avisos (hasta 2,2 s). L3 conserva su ciclo independiente. Arranque automático a partir de 2 s de la fase final, reloj escalado para pausa, ajuste también de las esperas en curso al romper conos. Muerte del jugador/cambio de sala/desactivación cancelan y limpian; `ConesDestroyed` vacía la cola, limpia enemigos y deja terminar los efectos activos sin daño nuevo.
+
+**Archivos tocados** (rutas de código relativas a `Assets/_Primordia/`):
+- Nuevo `Scripts/Enemies/LepidodendronBoss.Attacks.cs` y su `.meta`.
+- `Scripts/Enemies/LepidodendronBoss.cs`, `.Scenery.cs` y `.Walls.cs`: actualización, ciclo de vida, hojas obligatorias y avisos de oleada/limpieza; sin cambiar las mecánicas de conos ni paredes.
+- `Editor/ArtSetup.BossLepidodendron.cs`, `Scripts/Core/DebugCheats.cs` y `Tests/PlayMode/LepidodendronBossTests.cs`.
+- Generados por el menú: `Data/Bosses/LepidodendronArt.asset` y los nueve `.png.meta` de `Art/Floor3/floor3-bosses/lepidodendron/Attacks/`.
+- Este archivo de tarea. Todos los `.cs` conservan CRLF. No hay cambios adicionales en `Rooms/` ni `Core/`; en `Core/` solo se amplían las teclas solicitadas de `DebugCheats`.
+- Se ejecutó `Primordia > Boss > Crear Lepidodendron y escena de prueba`. Se descartó su regeneración incidental de la escena y su `.meta` para conservar la escena existente y su GUID; no se necesitaba alterar su estructura ni el prefab.
+
+**Teclas de prueba (solo Editor)**
+- `Ctrl+F7`: encolar latigazo (alterna izquierda/derecha).
+- `Ctrl+F8`: encolar corro de púas.
+- `Ctrl+F9`: encolar lluvia de seis esporas.
+- `Ctrl+F10`: encolar enemigos de esquina.
+- `Ctrl+F11`: activar/desactivar cadencia automática L4, incluidas lluvias de pared; al alternar se vacía la cola, sin cortar las animaciones activas. Los ataques manuales respetan la cola y los huecos.
+- Preparación: abrir `Test_BossLepidodendron`; `Mayús+F8` recorre paredes y arena; `Ctrl+F1` activa la fase final. Desactivar L4 con `Ctrl+F11` para probar sus ataques por separado. Los conos de L3 siguen funcionando con sus teclas existentes.
+
+**Pruebas**
+- Menú de importación/creación: terminado con código 0. El primer intento aislado no encontró la licencia; el relanzamiento con acceso a la licencia local funcionó.
+- Primera pasada PlayMode: 120/121 aprobadas. Único fallo: la nueva prueba de cambio de sala construía `Room` sin collider; corregida añadiendo `BoxCollider2D` al objeto de prueba.
+- Verificación final PlayMode: **122/122 aprobadas, 0 fallidas**. `LepidodendronBossTests`: **69/69** (47 anteriores de L1/L2/L3 y 22 casos nuevos de L4); `MeganeuraBossTests`: **40/40**; `BossHealthBarTests`: **13/13**. Compilación sin errores de C#.
+- Logs y XML fuera del repositorio, en `C:\Users\claud\AppData\Local\Temp\`: `primordia-l4-setup.log`, `primordia-l4-tests.log/.xml` y `primordia-l4-tests-final.log/.xml`.
+- Tras la aclaración sobre el tercer cono: se evita incluso reajustar las esperas después de `ConesDestroyed`; prueba de fin de fase reforzada con cadencia automática activa y avance de 30 s sin ataques nuevos. Pruebas dirigidas: **6/6 aprobadas** (`L4CadenciaRestaQuincePuntosConSuelo` y `L4FinDeConosAnulaDanoYDejaTerminarAnimacion`), con `primordia-l4-cadencia.log/.xml` en la misma carpeta TEMP.
+- Comprobación estática: CRLF en todos los C# tocados; `git diff --check -- '*.cs'` sin incidencias. Unity genera espacios al final de ciertos campos vacíos de sus `.meta`; se conserva su serialización.
+
+**Dudas y comprobaciones pendientes**
+- Resuelto con la usuaria: «−15 % acumulativo» resta 15 puntos porcentuales por cono: 100 % → 85 % → 70 %. Al morir el tercer cono, `ConesDestroyed` termina la fase y cancela la cadencia: el 55 % no se aplica. Constantes: 0,15 por cono y suelo de 0,5 como salvaguarda, no alcanzada durante esta fase. La prueba de la fórmula con 3/4 conos solo comprueba el cálculo y el tope, no fases jugables.
+- Sin dudas de diseño pendientes. Queda la revisión visual/jugable de la usuaria: lectura de avisos, orden por altura, trayectoria de las esporas de pared y dificultad de L3+L4 juntas. Batchmode no permite dar por aprobados esos aspectos visuales ni el equilibrio de los intervalos provisionales.

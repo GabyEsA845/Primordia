@@ -67,6 +67,21 @@ namespace Primordia.Enemies
                 }
                 yield return "Fx_KnotBurst";
                 yield return "Fx_RootSmolder";
+                foreach (string name in new[] { "Lepido_Veins_Warn", "Lepido_Veins_Hit",
+                    "Lepido_ShroomA_Warn", "Lepido_ShroomB_Warn", "Lepido_ShroomC_Warn",
+                    "Lepido_ConeBranch_Tile", "Lepido_ConeBranch_Torn", "Lepido_Cone_Shatter", "Lepido_Cone_ShatterCharred",
+                    "Lepido_Cone_Exposed_Idle", "Lepido_Cone_Exposed_Hurt", "Lepido_Cone_Burst", "Lepido_Cone_Husk",
+                    "Fx_ConeShadow", "Fx_ConeSlam", "Fx_ConeCrater", "Fx_ConeLift", "Fx_ArmorChip", "Fx_ArmorChipCharred" })
+                    yield return name;
+                for (int state = 0; state < 3; state++)
+                {
+                    foreach (string prefix in new[] { "Armor", "ArmorCharred" })
+                    {
+                        yield return $"Lepido_Cone_{prefix}{state}";
+                        yield return $"Lepido_Cone_{prefix}{state}_Hurt";
+                    }
+                    yield return $"Lepido_Cone_Burn{state}";
+                }
             }
         }
 

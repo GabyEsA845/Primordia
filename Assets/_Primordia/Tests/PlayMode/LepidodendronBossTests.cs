@@ -425,14 +425,14 @@ namespace Primordia.Tests
         }
 
         [UnityTest]
-        public IEnumerator ElFuegoCubreEnTresSegundosYHace12PorSegundoSinTopeBurn()
+        public IEnumerator ElFuegoCubreEnTresSegundosYRespetaSuDanoPorSegundoSinTopeBurn()
         {
             var wall = boss.Walls[0];
             boss.GetComponent<BossDamageLimiter>().Configure(new[] { new BossDamageLimiter.Cap { source = DamageSource.Burn, perSecond = 0f } });
             float start = Time.time;
             wall.IgniteAt(3f);
             yield return new WaitForSeconds(1.05f);
-            Assert.AreEqual(150 - Mathf.FloorToInt((Time.time - start) * 12f), wall.Health.Current, 2f);
+            Assert.AreEqual(150 - Mathf.FloorToInt((Time.time - start) * LepidodendronWall.FireDamagePerSecond), wall.Health.Current, 2f);
             Assert.IsFalse(wall.FullyCharred);
             var band = wall.transform.Find("CharredBand").GetComponent<MeshFilter>().sharedMesh;
             Assert.AreEqual(4, band.colors.Length);
@@ -443,7 +443,7 @@ namespace Primordia.Tests
             Assert.Less(south.transform.localPosition.y, 3f);
             yield return new WaitForSeconds(2.15f);
             Assert.IsTrue(wall.FullyCharred);
-            Assert.AreEqual(150 - Mathf.FloorToInt((Time.time - start) * 12f), wall.Health.Current, 2f);
+            Assert.AreEqual(150 - Mathf.FloorToInt((Time.time - start) * LepidodendronWall.FireDamagePerSecond), wall.Health.Current, 2f);
             int before = wall.Health.Current;
             wall.Health.TakeDamage(5); // Cuerpo, sin nudo.
             Assert.AreEqual(before - 10, wall.Health.Current);
@@ -498,6 +498,290 @@ namespace Primordia.Tests
             Assert.AreEqual(1, ready);
             boss.Walls[2].Health.Kill();
             Assert.AreEqual(1, ready);
+        }
+
+        LepidodendronCone GroundCone(int index = 0)
+        {
+            boss.TestFinalPhase();
+            var cone = boss.Cones[index];
+            Assert.IsTrue(cone.BeginDrop(LepidodendronCone.WarningSeconds, Vector2.zero, Time.time));
+            cone.Tick(Time.time + LepidodendronCone.WarningSeconds + LepidodendronCone.ShadowSeconds + LepidodendronCone.DescentSeconds + 0.001f);
+            Assert.AreEqual(LepidodendronCone.Phase.Grounded, cone.State);
+            return cone;
+        }
+
+        [Test]
+        public void L3EmpiezaConTresConosDe30Y50YColgadosNoRecibenNiAtacan()
+        {
+            boss.TestFinalPhase();
+            Assert.AreEqual(150, boss.Health.Current);
+            Assert.AreEqual(3, boss.Cones.Count);
+            foreach (var cone in boss.Cones)
+            {
+                Assert.AreEqual(30, cone.ArmorRemaining);
+                Assert.AreEqual(50, cone.Health.Current);
+                Assert.AreEqual(1, cone.GetComponentsInChildren<Health>().Length);
+                Assert.IsFalse(cone.Health.TakeDamage(100));
+                cone.Ignite();
+                Assert.IsFalse(cone.Charred);
+                Assert.IsTrue(cone.GetComponentsInChildren<Collider2D>().All(c => !c.enabled));
+                Assert.AreEqual(30, cone.ArmorRemaining);
+                Assert.AreEqual(50, cone.Health.Current);
+            }
+        }
+
+        [Test]
+        public void L3AvisoDe1500MsFijaPuntoAlEmpezarLos720MsDeSombra()
+        {
+            boss.TestFinalPhase();
+            CreateWalker(boss.ArenaCenter);
+            boss.ConePlayer = walker.transform;
+            var cone = boss.Cones[0];
+            float start = Time.time;
+            cone.BeginDrop(1.5f, Vector2.zero, start);
+            walker.transform.position += Vector3.left;
+            cone.Tick(start + 1.49f);
+            Assert.AreEqual((Vector2)walker.transform.position, cone.LandingPoint);
+            Assert.AreEqual(LepidodendronCone.Phase.Warning, cone.State);
+            cone.Tick(start + 1.501f);
+            Assert.AreEqual(LepidodendronCone.Phase.Shadow, cone.State);
+            var fixedPoint = cone.LandingPoint;
+            walker.transform.position += Vector3.right * 10f;
+            cone.Tick(start + 2.219f);
+            Assert.AreEqual(fixedPoint, cone.LandingPoint);
+            Assert.AreEqual(LepidodendronCone.Phase.Shadow, cone.State);
+            cone.Tick(start + 2.221f);
+            Assert.AreEqual(LepidodendronCone.Phase.Descending, cone.State);
+            Assert.AreEqual(fixedPoint, cone.LandingPoint);
+        }
+
+        [TestCase(0f, 2)]
+        [TestCase(2.2f, 0)]
+        public void L3GolpeSoloHaceDosUnaVezEnCuadroCeroYDentroDelRadio(float distance, int damage)
+        {
+            boss.TestFinalPhase();
+            CreateWalker(boss.ArenaCenter + Vector2.right * distance);
+            var health = walker.AddComponent<Health>();
+            walker.AddComponent<BoxCollider2D>(); // Dos colisionadores no duplican el golpe.
+            int before = health.Current;
+            Physics2D.SyncTransforms();
+            var cone = boss.Cones[0];
+            float start = Time.time;
+            cone.BeginDrop(1.5f, Vector2.zero, start);
+            cone.Tick(start + 2.56f);
+            Assert.AreEqual(before, health.Current);
+            cone.Tick(start + 2.571f);
+            Assert.AreEqual(before - damage, health.Current);
+            Assert.IsNotNull(cone.transform.Find("Fx_ConeSlam"));
+            cone.Tick(start + 2.7f);
+            cone.Tick(start + 3f);
+            Assert.AreEqual(before - damage, health.Current);
+        }
+
+        [Test]
+        public void L3ArmaduraAcumuladaVentanaDeOchoSegundosYSubidaSinCuracion()
+        {
+            float start = Time.time;
+            var cone = GroundCone();
+            cone.Health.TakeDamage(10);
+            Assert.AreEqual(1, cone.ArmorState);
+            cone.Health.TakeDamage(10);
+            Assert.AreEqual(2, cone.ArmorState);
+            Assert.AreEqual(150, boss.Health.Current);
+            cone.Tick(start + 10.56f);
+            Assert.AreEqual(LepidodendronCone.Phase.Grounded, cone.State);
+            cone.Tick(start + 10.571f);
+            Assert.AreEqual(LepidodendronCone.Phase.Rising, cone.State);
+            Assert.IsFalse(cone.Health.TakeDamage(100));
+            cone.Tick(start + 11.571f);
+            Assert.AreEqual(LepidodendronCone.Phase.Hanging, cone.State);
+            cone.BeginDrop(1.5f, Vector2.zero, start + 15f);
+            cone.Tick(start + 17.571f);
+            Assert.AreEqual(10, cone.ArmorRemaining);
+            cone.Health.TakeDamage(10);
+            Assert.AreEqual(0, cone.ArmorRemaining);
+            Assert.AreEqual(50, cone.Health.Current);
+            cone.Health.TakeDamage(10); // Ya vulnerable desde el cuadro 0 de Shatter.
+            Assert.AreEqual(40, cone.Health.Current);
+            Assert.AreEqual(140, boss.Health.Current);
+        }
+
+        [Test]
+        public void L3FuegoCarbonizaSinDanoDuplicaResistenciaYNoRebrota()
+        {
+            float start = Time.time;
+            var cone = GroundCone();
+            Assert.AreEqual(1, Flammables.IgniteNear(cone.Position + Vector2.up * 2.5f, 0.01f));
+            Assert.IsTrue(cone.Charred);
+            Assert.AreEqual(30, cone.ArmorRemaining);
+            cone.Health.TakeDamage(9, DamageKind.Tick, DamageSource.Burn);
+            Assert.AreEqual(30, cone.ArmorRemaining);
+            Assert.AreEqual(150, boss.Health.Current);
+            cone.Health.TakeDamage(10);
+            Assert.AreEqual(10, cone.ArmorRemaining);
+            cone.Tick(start + 11.571f);
+            cone.BeginDrop(1.5f, Vector2.zero, start + 15f);
+            cone.Tick(start + 17.571f);
+            Assert.IsTrue(cone.Charred);
+            Assert.AreEqual(10, cone.ArmorRemaining);
+            Assert.IsTrue(cone.transform.Find("Body").GetComponent<SpriteRenderer>().sprite.name.StartsWith("Lepido_Cone_ArmorCharred2"));
+            cone.Health.TakeDamage(5);
+            cone.Health.TakeDamage(20, DamageKind.Tick, DamageSource.Burn);
+            Assert.AreEqual(50, cone.Health.Current);
+            Assert.IsFalse(cone.CanIgnite);
+        }
+
+        [Test]
+        public void L3LimiteDeFuenteCompartidoEntreConosYTronco()
+        {
+            var first = GroundCone(0);
+            var second = GroundCone(1);
+            first.Health.TakeDamage(30);
+            second.Health.TakeDamage(30);
+            first.Health.TakeDamage(4, DamageKind.Hit, DamageSource.Jet);
+            second.Health.TakeDamage(4, DamageKind.Hit, DamageSource.Jet);
+            boss.Health.TakeDamage(100, DamageKind.Hit, DamageSource.Jet);
+            Assert.AreEqual(145, boss.Health.Current);
+            Assert.AreEqual(46, first.Health.Current);
+            Assert.AreEqual(49, second.Health.Current);
+        }
+
+        [Test]
+        public void L3TroncoAplicaVeintePorCientoAlMasSanoIgnorandoArmaduraYAltura()
+        {
+            boss.TestFinalPhase();
+            boss.Health.TakeDamage(50);
+            Assert.AreEqual(140, boss.Health.Current);
+            Assert.AreEqual(40, boss.Cones[0].Health.Current);
+            boss.Health.TakeDamage(100);
+            Assert.AreEqual(30, boss.Cones[1].Health.Current);
+            Assert.AreEqual(120, boss.Health.Current);
+            Assert.IsTrue(boss.Cones.All(c => c.ArmorRemaining == 30 && c.State == LepidodendronCone.Phase.Hanging));
+        }
+
+        [Test]
+        public void L3TresRoturasDejanCeroEmitenUnaVezSinDiedNiDestruirSala()
+        {
+            int completed = 0, deaths = 0;
+            boss.ConesDestroyed += () => completed++;
+            boss.Health.Died += () => deaths++;
+            for (int i = 0; i < 3; i++)
+            {
+                var cone = GroundCone(i);
+                cone.Health.TakeDamage(30);
+                cone.Health.TakeDamage(1000);
+                Assert.AreEqual(LepidodendronCone.Phase.Husk, cone.State);
+                Assert.IsFalse(cone.BeginDrop(1.5f, Vector2.zero, Time.time));
+            }
+            Assert.AreEqual(0, boss.Health.Current);
+            Assert.AreEqual(1, completed);
+            Assert.AreEqual(0, deaths);
+            Assert.IsFalse(boss.Health.IsDead);
+            Assert.IsTrue(room.activeSelf);
+            Assert.AreSame(boss, ActiveBoss.Current);
+            boss.CheckConesDestroyed();
+            Assert.AreEqual(1, completed);
+        }
+
+        [Test]
+        public void L3PausaCuentaDesdeFinDeSubidaYTrasRoturaPermiteDos()
+        {
+            float start = Time.time;
+            var cone = GroundCone();
+            Assert.AreEqual(4f, boss.CurrentConePause);
+            Assert.AreEqual(1, boss.ConeConcurrency);
+            cone.Tick(start + 11.571f);
+            boss.UpdateCones(start + 15.56f);
+            Assert.IsTrue(boss.Cones.All(c => c.Available));
+            boss.UpdateCones(start + 15.571f);
+            Assert.AreEqual(1, boss.Cones.Count(c => !c.Available));
+            cone.Health.Kill();
+            Assert.AreEqual(3f, boss.CurrentConePause);
+            Assert.AreEqual(2, boss.ConeConcurrency);
+            boss.UpdateCones(Time.time + 3.01f);
+            Assert.AreEqual(2, boss.Cones.Count(c => !c.Broken && !c.Available));
+        }
+
+        [TestCase(-100f)]
+        [TestCase(100f)]
+        public void L3MetanoLejanoNoActuaYCercanoBajaTresSeparadosDentroDeArena(float edge)
+        {
+            boss.TestFinalPhase();
+            CreateWalker(boss.ArenaCenter + Vector2.right * edge);
+            boss.ConePlayer = walker.transform;
+            boss.TriggerConeMethane(boss.Foot + Vector2.right * 5.01f, Time.time);
+            Assert.IsTrue(boss.Cones.All(c => c.Available));
+            boss.TriggerConeMethane(boss.Foot + Vector2.right * 5f, Time.time);
+            Assert.IsTrue(boss.IsCanopyShaking);
+            foreach (var cone in boss.Cones)
+            {
+                Assert.AreEqual(1f, cone.CurrentWarningSeconds);
+                cone.Tick(Time.time + 1.001f);
+                Assert.AreEqual(LepidodendronCone.Phase.Shadow, cone.State);
+                Assert.AreEqual(cone.LandingPoint, boss.ClampConePoint(cone.LandingPoint));
+            }
+            for (int i = 1; i < 3; i++)
+                Assert.GreaterOrEqual(Vector2.Distance(boss.Cones[i - 1].LandingPoint, boss.Cones[i].LandingPoint), 3f);
+        }
+
+        [Test]
+        public void L3OdresRealesAvisanUnaVezYNoSeReponen()
+        {
+            boss.TestFinalPhase();
+            var sacs = Scenery.GetComponentsInChildren<MethaneSac>().Where(s => s.transform.parent == Scenery).ToArray();
+            Assert.AreEqual(3, sacs.Length);
+            foreach (var sac in sacs) Assert.That(Vector2.Distance(sac.transform.position, boss.Foot), Is.InRange(7f, 8f));
+            int notifications = 0;
+            void Count(MethaneSac sac) => notifications++;
+            MethaneSac.BurstStarted += Count;
+            try
+            {
+                sacs[0].transform.position = boss.Foot + Vector2.down * 3f;
+                sacs[0].Ignite();
+                sacs[0].Ignite();
+                Assert.AreEqual(1, notifications);
+                Assert.IsTrue(boss.Cones.All(c => !c.Available));
+            }
+            finally { MethaneSac.BurstStarted -= Count; }
+        }
+
+        [Test]
+        public void L3BaseSolidaTranslucidezYHuskPersistente()
+        {
+            var cone = GroundCone();
+            CreateWalker(cone.LandingPoint + Vector2.up);
+            boss.ConePlayer = walker.transform;
+            cone.Tick(Time.time + 3f);
+            var renderer = cone.transform.Find("Body").GetComponent<SpriteRenderer>();
+            Assert.AreEqual(0.5f, renderer.color.a);
+            var solid = cone.GetComponent<BoxCollider2D>();
+            Assert.LessOrEqual(solid.size.y, 1f);
+            Assert.IsTrue(solid.enabled);
+            cone.Health.Kill();
+            cone.Tick(Time.time + 3f);
+            Assert.IsTrue(renderer.sprite.name.StartsWith("Lepido_Cone_Husk"));
+            Assert.IsTrue(solid.enabled);
+            Assert.IsFalse(cone.transform.Find("ConeTarget").GetComponent<Collider2D>().enabled);
+            walker.transform.position = cone.LandingPoint + Vector2.down;
+            cone.Tick(Time.time + 3f);
+            Assert.AreEqual(1f, renderer.color.a);
+        }
+
+        [UnityTest]
+        public IEnumerator L3DestruirSalaLimpiaConosEfectosYAmbosPuntosInflamables()
+        {
+            var cone = GroundCone();
+            var basePoint = cone.Position;
+            cone.Health.TakeDamage(10);
+            var owned = cone.GetComponentsInChildren<Transform>().ToArray();
+            Assert.AreEqual(1, Flammables.Near(basePoint, 0.01f).Count);
+            Assert.AreEqual(1, Flammables.Near(basePoint + Vector2.up * 2.5f, 0.01f).Count);
+            Object.Destroy(room);
+            yield return null;
+            yield return null;
+            Assert.IsTrue(owned.All(o => o == null));
+            Assert.AreEqual(0, Flammables.Near(basePoint, 3f).Count);
+            Assert.IsFalse(Resources.FindObjectsOfTypeAll<Mesh>().Any(m => m.name.StartsWith("Lepidodendron") && m.hideFlags == HideFlags.HideAndDontSave));
         }
 
         void EnableWaves()

@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Primordia.Enemies
 {
-    /// <summary>Jefe secreto: escenario L1 y paredes/oleadas L2; el tronco sigue invulnerable.</summary>
+    /// <summary>Jefe secreto: escenario L1, paredes/oleadas L2 y fase final de conos L3.</summary>
     [DefaultExecutionOrder(1000)]
     [RequireComponent(typeof(Health), typeof(Enemy), typeof(Rigidbody2D))]
     public partial class LepidodendronBoss : MonoBehaviour, IBoss
@@ -71,12 +71,14 @@ namespace Primordia.Enemies
 
         void OnEnable()
         {
-            Health.IsInvulnerable = true;
+            Health.IsInvulnerable = !FinalPhaseReady || AllConesDestroyed;
+            MethaneSubscribe();
             ActiveBoss.Set(this);
         }
 
         void OnDisable()
         {
+            MethaneUnsubscribe();
             ActiveBoss.Clear(this);
             zoom?.Restore();
             zoom = null;
@@ -103,11 +105,12 @@ namespace Primordia.Enemies
             wallRoom = center;
             transform.position = Foot;
             BuildScenery();
+            BuildCones();
             built = true;
         }
 
         public void PlayIntroPose(float hold) { }
-        public void BeginFight() { } // L2 empieza al activarse la sala; la fase final aún no ataca.
+        public void BeginFight() { } // Las paredes activan sus oleadas y la tercera rotura inicia los conos.
 
         public Vector2 TestStop(int index) => index < 3
             ? entrance + Vector2.right * (WallX(index) - WallThickness(index) / 2f - TestClearance)
@@ -144,6 +147,8 @@ namespace Primordia.Enemies
             Animate();
             UpdateCritters();
             UpdateWallWaves();
+            UpdateCones(Time.time);
+            AnimateConeSignals();
             if (Time.time >= nextFall)
             {
                 nextFall = Time.time + IdleFallEvery;

@@ -67,6 +67,20 @@ namespace Primordia.Core
             if (player == null)
                 return;
 
+            #if UNITY_EDITOR
+            // Ctrl+F1..F6 queda reservado a L3 y no dispara los atajos normales de esas teclas.
+            if (keyboard.leftCtrlKey.isPressed || keyboard.rightCtrlKey.isPressed)
+            {
+                var keys = new[] { keyboard.f1Key, keyboard.f2Key, keyboard.f3Key, keyboard.f4Key, keyboard.f5Key, keyboard.f6Key };
+                for (int i = 0; i < keys.Length; i++)
+                    if (keys[i].wasPressedThisFrame)
+                    {
+                        var boss = FindAnyObjectByType<LepidodendronBoss>();
+                        Say(boss != null ? boss.TestConeAction(i) : "No hay Lepidodendron activo");
+                    }
+                return;
+            }
+#endif
             bool shift = keyboard.leftShiftKey.isPressed;
             // Sin Mayús: F1-F3 rotan Extremidades, Piel y Órganos del piso; F4 rota los linajes; F5 sube de nivel; F7 invulnerable.
             // Con Mayús: lo que antes estaba en F2-F5 (daño ×5, vaciar sala, mutación al azar, especial).

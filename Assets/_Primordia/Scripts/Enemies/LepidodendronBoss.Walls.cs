@@ -60,6 +60,7 @@ namespace Primordia.Enemies
             if (FinalPhaseReady || walls.Count != 3 || walls.Any(w => !w.Fallen))
                 return;
             FinalPhaseReady = true;
+            BeginCones();
             FinalPhaseBecameReady?.Invoke();
         }
 

@@ -38,7 +38,7 @@ namespace Primordia.Editor
             AssetDatabase.SaveAssets();
             CreateTestScene();
             AssetDatabase.SaveAssets();
-            Debug.Log("Lepidodendron L2 creado: paredes, nudos, fuego y oleadas; escena L1 ampliada.");
+            Debug.Log("Lepidodendron L3 creado: paredes, oleadas y fase final de conos con armadura y metano.");
         }
 
         static RoomTemplate CreateRoom()

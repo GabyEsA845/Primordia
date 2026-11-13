@@ -2,7 +2,7 @@
 
 - **Rama:** `codex/lepido-3-conos` (desde `feature/floor-3`, que ya incluye L1 y L2)
 - **Escrita por:** Claude (2026-11-12) · **Implementa:** Codex
-- **Estado:** por implementar
+- **Estado:** implementada y validada en PlayMode
 - **Plan completo:** `docs/codex/lepidodendron-plan.md`. Haz **solo esta** tarea.
 
 ## Objetivo
@@ -55,4 +55,41 @@ Cuando cae la tercera pared (`FinalPhaseReady`, ya existe) empieza la **fase fin
 - A ojo (usuaria), `Test_BossLepidodendron`: salta a la fase final; mira el aviso (¿se ve el sitio de caída?, ¿da tiempo a salir?), el golpe, la ventana de 8 s (¿cuántas bajadas hacen falta por cono?), que la armadura no se cure al subir, el fuego (¿se nota el ×2?), el metano junto al tronco, la translucidez del cono con el jugador detrás y que al romper los 3 el jefe quede en 0 sin romper la sala.
 
 ## Resultado
-(Codex rellena: qué hizo, archivos, teclas de prueba, pruebas lanzadas y resultado, `Dudas`.)
+Implementada L3 y regenerada la escena mediante `Primordia > Boss > Crear Lepidodendron y escena de prueba`. Validación final: 100 casos aprobados entre las tres suites solicitadas.
+
+- Tres conos con resistencia y vida persistentes, carbonizado ×2 sobre la resistencia, ciclo de aviso/sombra/bajada/ventana/subida, rotación y concurrencia tras la primera rotura. El golpe aplica 2 una sola vez; el cono roto conserva su base y su husk.
+- Señales del árbol, rama repetida y desgarrada, efectos con los tiempos de las hojas, colisión en la base y translucidez detrás del cono. El efecto de golpe se divide por el pivote usando sprites derivados del arte aprobado, liberados al destruir el cono. No se han modificado PNG ni ejecutado generadores.
+- Metano: tres odres a 7,5 u y respuesta a ignición/rotura dentro de 5 u; el golpe del tronco deriva el 20 % al cono vivo con más vida, con el limitador compartido.
+- Archivos de código: `LepidodendronCone.cs` y `LepidodendronBoss.Cones.cs` nuevos; `LepidodendronBoss.cs`, `.Walls.cs`, `.Scenery.cs`, `ArtSetup.BossLepidodendron.cs`, `LepidodendronBossSetup.cs`, `DebugCheats.cs` y `LepidodendronBossTests.cs` ampliados.
+- Assets regenerados por menú: catálogo `Data/Bosses/LepidodendronArt.asset`, metadatos de las 31 hojas de `Art/Floor3/floor3-bosses/lepidodendron/Cones/` y `Scenes/Test_BossLepidodendron.unity` con su `.meta`. El prefab y los datos del jefe se regeneraron sin diferencias de contenido. Se incluyen los `.meta` de las dos clases nuevas.
+- Cambios imprescindibles en código común: `Health.Drain` admite `allowZero` opcional (por defecto conserva el mínimo anterior de 1), para terminar L3 sin disparar `Died`; `MethaneSac` emite `BurstStarted` una sola vez, con limpieza estática en `SubsystemRegistration` y desuscripción del jefe al desactivarse.
+
+### Teclas de prueba (editor)
+
+Usar la escena existente y Mayús+F8 para llegar a la arena. Ctrl izquierdo o derecho:
+
+- Ctrl+F1: tirar las paredes restantes e iniciar la fase final.
+- Ctrl+F2: avisar y bajar el siguiente cono disponible.
+- Ctrl+F3: golpe de 10 a la armadura del primer cono en el suelo (20 si quemada).
+- Ctrl+F4: prender la armadura del primer cono en el suelo.
+- Ctrl+F5: romper el primer cono en el suelo.
+- Ctrl+F6: trasladar un odre de prueba todavía intacto junto al tronco y prenderlo; consume ese odre, no crea otro.
+
+### Pruebas y resultado
+
+- Compilación .NET de los ensamblados de juego, editor y PlayMode: **0 errores**. Avisos del proyecto y de referencias duplicadas en las copias temporales de los proyectos; las copias se eliminaron después.
+- Verificadas las dimensiones/división en celdas de las 31 hojas de `Cones/`, los CRLF y `git diff --check` de código/documentación. El YAML de escena conserva los espacios que genera Unity.
+- Añadidas 16 ejecuciones de prueba L3 (incluidos casos parametrizados) sobre estado inicial, tiempos, impacto, persistencia, fuego, limitador compartido, tronco, final sin `Died`, pausas, metano, colisión/translucidez y limpieza.
+- Menú `Primordia.Editor.LepidodendronBossSetup.CreateAll`: terminado correctamente, salida 0, sin errores de compilación (`Logs/lepido-l3-setup.log`). Fue necesario ejecutar fuera del aislamiento para conectar con la licencia local, tras autorizar la usuaria el batchmode.
+- Primera ejecución conjunta: **98/100** (`Logs/lepido-l3-tests.xml`). `MeganeuraBossTests`: **40/40**; `BossHealthBarTests`: **13/13**; `LepidodendronBossTests`: **45/47**.
+- Se corrigieron dos comprobaciones: el colisionador de la prueba nueva fuera del radio aún lo intersectaba (ahora queda completamente fuera); la prueba previa de fuego esperaba 12/s aunque `LepidodendronWall.FireDamagePerSecond` ya era 4 en HEAD. Ahora comprueba la constante vigente; **no se modificó `LepidodendronWall.cs` ni su comportamiento**.
+- Repetición de `LepidodendronBossTests`: **47/47**, sin fallos (`Logs/lepido-l3-retest.xml`). Incluye los 16 casos L3 nuevos y los 31 anteriores L1/L2. No hubo cambios de implementación entre las dos ejecuciones, solo esas correcciones de pruebas.
+- Pendiente únicamente la comprobación visual/jugable de la usuaria indicada en «Cómo probar»: claridad de avisos, sensaciones del ciclo, composición y translucidez.
+
+### Dudas / decisiones a revisar
+
+- La resistencia quemada sigue la aclaración: golpe de 10 descuenta 20. No se traslada el exceso de daño de armadura a vida.
+- Se interpreta el «después» de la sombra literalmente: aviso de 1,5 s (1 s con metano), después 0,72 s de sombra fija y luego bajada de 0,35 s.
+- El daño del tronco ignora la armadura y alcanza conos colgados según la regla provisional; los daños fraccionarios usan el redondeo probabilístico ya existente en `Health.ScaleDamage`.
+- El jefe alcanza 0 sin `Died` ni `IsDead`: emite `ConesDestroyed` y queda invulnerable. La resolución de muerte/sala y la recompensa siguen pendientes de L5.
+- Trabajo en `codex/lepido-3-conos`, sin cambio de rama, push ni fusión.

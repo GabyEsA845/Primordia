@@ -67,9 +67,9 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 16
@@ -95,7 +95,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -139,12 +139,12 @@ TextureImporter:
       name: Fx_ConeLift_0
       rect:
         serializedVersion: 2
-        x: 15
-        y: 4
-        width: 33
-        height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 0
+        width: 64
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.16666669}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -161,12 +161,12 @@ TextureImporter:
       name: Fx_ConeLift_1
       rect:
         serializedVersion: 2
-        x: 26
-        y: 16
-        width: 7
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 64
+        y: 0
+        width: 64
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.16666669}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -183,12 +183,12 @@ TextureImporter:
       name: Fx_ConeLift_2
       rect:
         serializedVersion: 2
-        x: 72
-        y: 3
-        width: 46
-        height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 128
+        y: 0
+        width: 64
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.16666669}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -205,12 +205,12 @@ TextureImporter:
       name: Fx_ConeLift_3
       rect:
         serializedVersion: 2
-        x: 90
-        y: 13
-        width: 7
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 192
+        y: 0
+        width: 64
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.16666669}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -227,12 +227,12 @@ TextureImporter:
       name: Fx_ConeLift_4
       rect:
         serializedVersion: 2
-        x: 128
-        y: 2
-        width: 61
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 256
+        y: 0
+        width: 64
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.16666669}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -249,12 +249,12 @@ TextureImporter:
       name: Fx_ConeLift_5
       rect:
         serializedVersion: 2
-        x: 191
+        x: 320
         y: 0
-        width: 66
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 64
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.16666669}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -263,50 +263,6 @@ TextureImporter:
       bones: []
       spriteID: 5ef6f4d2e401d3fe0800000000000000
       internalID: -1207791197111750683
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_ConeLift_6
-      rect:
-        serializedVersion: 2
-        x: 274
-        y: 4
-        width: 29
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5bc81fe533c3b2a00800000000000000
-      internalID: 732745555711724725
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_ConeLift_7
-      rect:
-        serializedVersion: 2
-        x: 338
-        y: 3
-        width: 29
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 75803c2aeed726ff0800000000000000
-      internalID: -44334582433904553
       vertices: []
       indices: 
       edges: []
@@ -331,8 +287,6 @@ TextureImporter:
       Fx_ConeLift_3: 5294306616031356649
       Fx_ConeLift_4: 1136183736623121271
       Fx_ConeLift_5: -1207791197111750683
-      Fx_ConeLift_6: 732745555711724725
-      Fx_ConeLift_7: -44334582433904553
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

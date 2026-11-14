@@ -170,6 +170,7 @@ namespace Primordia.Enemies
             fireClock += dt;
             TickScenery();
             ExtinguishInMud();
+            TickTrees();
             int open = 0;
             foreach (var piece in firePieces)
             {

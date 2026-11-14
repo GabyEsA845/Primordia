@@ -235,7 +235,7 @@ namespace Primordia.Enemies
                     piece.renderer.sprite = null;
                     continue;
                 }
-                bool walking = Moving && CurrentMode != Mode.Phase2Pending;
+                bool walking = Moving && CurrentMode != Mode.Phase2Pending && CurrentMode != Mode.Stunned;
                 var sheet = hidden ? (i == 0 ? ridgeCap : ridge) : OverrideSheet(i) ?? (walking ? piece.walk : piece.idle);
                 if (sheet == null || sheet.sprites.Length == 0)
                     continue;

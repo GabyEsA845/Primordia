@@ -684,6 +684,77 @@ namespace Primordia.Tests
             Assert.AreEqual(0, boss.BurningPieces);
             Assert.AreEqual(ArthropleuraBoss.FireState.Charred, boss.PieceFire(0));
         }
+
+        [UnityTest]
+        public IEnumerator Phase2_ChargeThroughASigillariaFellsItAndStunsTheHead()
+        {
+            yield return ReachChase();
+            Assert.AreEqual(4, boss.StandingTrees);
+            int before = boss.Health.Current;
+            var trunk = GameObject.FindObjectsByType<BoxCollider2D>(FindObjectsSortMode.None).First(c => c.name == "SigillariaF2");
+            Assert.Greater(trunk.bounds.size.y, 3f, "El tronco entero debe ser sólido, no solo la base.");
+            Vector2 foot = boss.TreeFoot(0);
+            // La cabeza arranca a la izquierda del árbol y embiste hacia él.
+            Vector2 start = boss.WorldToGround(foot + Vector2.left * 5f);
+            typeof(ArthropleuraBoss).GetField("headPos", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(boss, start);
+            typeof(ArthropleuraBoss).GetField("chargeDirection", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(boss, Vector2.right);
+            CallBoss("StartCharge", start);
+            float until = Time.time + 3f;
+            while (boss.CurrentMode != ArthropleuraBoss.Mode.Stunned && Time.time < until) yield return null;
+            Assert.AreEqual(ArthropleuraBoss.Mode.Stunned, boss.CurrentMode);
+            Assert.AreEqual(3, boss.StandingTrees);
+            Assert.AreEqual(before - ArthropleuraBoss.TreeImpactDamage, boss.Health.Current, "Embestir un árbol le cuesta vida al jefe.");
+            until = Time.time + 6f;
+            while (boss.CurrentMode == ArthropleuraBoss.Mode.Stunned && Time.time < until) yield return null;
+            Assert.AreEqual(ArthropleuraBoss.Mode.Chase, boss.CurrentMode, "Tras el aturdimiento vuelve a perseguir.");
+        }
+
+        [UnityTest]
+        public IEnumerator Phase2_FallenLogCoversFromWaves()
+        {
+            yield return ReachChase();
+            boss.Moving = false;
+            Vector2 foot = boss.TreeFoot(0);
+            typeof(ArthropleuraBoss).GetField("headPos", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(boss, boss.WorldToGround(foot + Vector2.left * 5f));
+            Assert.IsFalse(boss.LogBlocks(foot + Vector2.left * 3f, foot + Vector2.right * 6f), "Con el árbol en pie no hay cobertura.");
+            boss.Moving = true;
+            CallBoss("StartCharge", boss.WorldToGround(foot + Vector2.left * 5f));
+            typeof(ArthropleuraBoss).GetField("chargeDirection", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(boss, Vector2.right);
+            float until = Time.time + 3f;
+            while (boss.StandingTrees == 4 && Time.time < until) yield return null;
+            yield return new WaitForSeconds(1.2f);
+            Assert.IsTrue(boss.LogBlocks(foot + Vector2.left * 1f, foot + Vector2.right * 5f), "El tronco tumbado tapa de las ondas.");
+            Assert.IsFalse(boss.LogBlocks(foot + Vector2.up * 4f, foot + Vector2.up * 8f), "Lejos del tronco no hay cobertura.");
+        }
+
+        [UnityTest]
+        public IEnumerator Phase2_ChaseGoesAroundAStandingTree()
+        {
+            boss = BuildInLevel();
+            var player = new GameObject("Player", typeof(Primordia.Player.PlayerController));
+            player.transform.SetParent(room.transform);
+            yield return null;
+            boss.Health.Drain(boss.Health.Current - Mathf.RoundToInt(boss.Health.Max * 0.69f));
+            float until = Time.time + 12f;
+            while (boss.CurrentMode != ArthropleuraBoss.Mode.Chase && Time.time < until) yield return null;
+            Assert.AreEqual(ArthropleuraBoss.Mode.Chase, boss.CurrentMode);
+            typeof(ArthropleuraBoss).GetField("eatCooldownAt", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(boss, 1e9f);
+            Vector2 foot = boss.TreeFoot(3);
+            // Cabeza a la izquierda del árbol y jugador a la derecha, justo detrás: en línea recta pasaría por el tronco.
+            Vector2 start = boss.WorldToGround(foot + Vector2.left * 7f);
+            typeof(ArthropleuraBoss).GetField("headPos", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(boss, start);
+            typeof(ArthropleuraBoss).GetField("heading", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(boss, 0f);
+            player.transform.position = foot + Vector2.right * 5f;
+            float closest = float.MaxValue;
+            for (float t = 0f; t < 4f; t += Time.deltaTime)
+            {
+                Vector2 head = boss.GroundToWorld(boss.NodeGround(0));
+                closest = Mathf.Min(closest, Vector2.Distance(head, foot + Vector2.up * 1.3f));
+                yield return null;
+            }
+            Assert.Greater(closest, 1.2f, "La cabeza no debe atravesar el árbol al perseguir.");
+            Assert.AreEqual(4, boss.StandingTrees);
+        }
     }
 }
 #endif

@@ -63,6 +63,7 @@ namespace Primordia.Enemies
             if (sceneryBuilt)
                 return;
             sceneryBuilt = true;
+            BuildTrees();
             if (fernSpec != null)
                 foreach (var spot in FernSpots)
                 {

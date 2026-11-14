@@ -102,7 +102,7 @@ namespace Primordia.Enemies
         {
             if (!douseReached)
             {
-                Advance(douseCenter, DouseSpeed, DouseTurn, dt);
+                Advance(AvoidTrees(douseCenter), DouseSpeed, DouseTurn, dt);
                 if (Vector2.Distance(headPos, douseCenter) < DouseRadius)
                 {
                     douseReached = true;

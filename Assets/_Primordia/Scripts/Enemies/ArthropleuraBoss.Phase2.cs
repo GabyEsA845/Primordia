@@ -105,7 +105,7 @@ namespace Primordia.Enemies
             Vector2 target = player != null ? WorldToGround(player.position) : Vector2.zero;
             if (TryEatAt(ref target) && CurrentMode == Mode.Eat)
                 return;
-            Advance(target, ChaseSpeed, ChaseTurn, dt);
+            Advance(AvoidTrees(target), ChaseSpeed, ChaseTurn, dt);
             if (chaseTimer < ChaseSeconds)
                 return;
             // Alterna pisotón y embestida.
@@ -209,6 +209,8 @@ namespace Primordia.Enemies
         void HitWithWave(Wave wave)
         {
             if (wave.hit || player == null || playerHealth == null || playerHealth.IsDead)
+                return;
+            if (LogBlocks(GroundToWorld(wave.origin), player.position))
                 return;
             Vector2 offset = WorldToGround(player.position) - wave.origin;
             if (Mathf.Abs(offset.magnitude - wave.radius) > WaveWidth * 0.5f)

@@ -88,6 +88,9 @@ namespace Primordia.Enemies
                 case Mode.Douse:
                     StepDouse(dt);
                     break;
+                case Mode.Stunned:
+                    StepStun();
+                    break;
                 case Mode.Eat:
                     StepEat();
                     break;
@@ -105,6 +108,8 @@ namespace Primordia.Enemies
 
         void StepCharge(Vector2 head, float dt)
         {
+            if (PhaseIndex >= 1 && TryFellTree())
+                return;
             Vector2 next = head + chargeDirection * (ChargeSpeed * dt);
             Vector2 nextWorld = new(next.x, next.y * GroundSquash);
             if (InClearing(nextWorld))

@@ -45,6 +45,13 @@ namespace Primordia.Rooms
         // Escondite (la Araña de las frondas): mientras haya alguien dentro, el helecho se sacude sin parar.
         public bool Intact => CanIgnite;
 
+        public bool IsBurning => state == State.Burning;
+
+        public bool IsBurnt => state == State.Burnt;
+
+        /// <summary>Algo que un bicho se puede comer: entero o ardiendo (no quemado del todo).</summary>
+        public bool IsFood => state != State.Burnt;
+
         public bool Trembling { get; set; }
 
         internal void Configure(SpriteRenderer newBody, FernSpec newSpec, float newPhase)

@@ -35,6 +35,8 @@ namespace Primordia.Enemies
         bool reachedPhase2;
         public event Action ReachedPhase2;
         public bool Phase2Reached => reachedPhase2;
+        /// <summary>El fuego puede prender y dañar en F1 y F2, salvo durante la transición del 70 %.</summary>
+        bool FireOpen => PhaseIndex <= 1 && CurrentMode != Mode.Phase2Pending;
         internal void ConfigureClearing(ClearingArt value) => clearingArt = value;
 
         sealed class FirePiece : IFlammable
@@ -46,8 +48,8 @@ namespace Primordia.Enemies
             public bool charred;
             public SpriteRenderer burning, charcoal, cracks;
             public Vector2 Position => owner.GroundToWorld(owner.NodeGround(index));
-            public bool CanIgnite => owner.isActiveAndEnabled && owner.FireAllowed && !owner.reachedPhase2 &&
-                owner.InClearing(Position - owner.center) && Ready;
+            public bool CanIgnite => owner.isActiveAndEnabled && owner.FireAllowed && owner.FireOpen &&
+                (owner.PhaseIndex >= 1 || owner.InClearing(Position - owner.center)) && Ready;
             public bool Ready => state != FireState.Burning && owner.fireClock >= cooledAt;
             public bool Open => state == FireState.Burning && owner.fireClock >= started + PlateTransitionSeconds &&
                 owner.fireClock < started + PlateTransitionSeconds + PlatesOpenSeconds;
@@ -149,7 +151,7 @@ namespace Primordia.Enemies
 
         void LightPiece(int index)
         {
-            if (index < 0 || index >= firePieces.Count || reachedPhase2) return;
+            if (index < 0 || index >= firePieces.Count || !FireOpen) return;
             var piece = firePieces[index];
             if (!piece.Ready) return;
             piece.state = FireState.Burning;
@@ -166,6 +168,7 @@ namespace Primordia.Enemies
         internal void TickFire(float dt)
         {
             fireClock += dt;
+            TickScenery();
             int open = 0;
             foreach (var piece in firePieces)
             {
@@ -184,13 +187,13 @@ namespace Primordia.Enemies
                     piece.cooledAt = fireClock + CharredCoolSeconds;
                 }
             }
-            if (!reachedPhase2 && open > 0)
+            if (FireOpen && open > 0)
             {
                 burnFraction += open * PieceBurnPerSecond * dt;
                 int requested = Mathf.FloorToInt(burnFraction);
                 burnFraction -= requested; // El exceso de la limitadora se descarta, no se acumula.
                 int allowed = fireLimiter.Apply(requested, DamageSource.Burn, fireClock);
-                int untilPhase2 = Mathf.Max(0, Health.Current - Mathf.RoundToInt(Health.Max * Thresholds[0]));
+                int untilPhase2 = Mathf.Max(0, Health.Current - Mathf.RoundToInt(Health.Max * Thresholds[Mathf.Min(PhaseIndex, 1)]));
                 Health.Drain(Mathf.Min(allowed, untilPhase2));
             }
             else burnFraction = 0f;
@@ -199,7 +202,7 @@ namespace Primordia.Enemies
                 // También recupera odres desinflados por gas para no agotar los recursos.
                 if (slot.sac != null && slot.sac.IsSpent && float.IsPositiveInfinity(slot.regrowAt))
                     slot.regrowAt = fireClock + SacRegrowSeconds;
-                if (!reachedPhase2 && fireClock >= slot.regrowAt) GrowSac(slot);
+                if (PhaseIndex <= 1 && fireClock >= slot.regrowAt) GrowSac(slot);
             }
             if (reachedPhase2 && !transitionStarted && CurrentMode != Mode.Charge)
             {

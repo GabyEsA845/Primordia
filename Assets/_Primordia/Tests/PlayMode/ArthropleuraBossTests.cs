@@ -587,6 +587,58 @@ namespace Primordia.Tests
             while (boss.CurrentMode != ArthropleuraBoss.Mode.Chase && Time.time < until) yield return null;
             Assert.AreEqual(ArthropleuraBoss.Mode.Chase, boss.CurrentMode);
         }
+
+        [UnityTest]
+        public IEnumerator Phase2_FireStillOpensPlatesAndHurtsDownTo35Percent()
+        {
+            yield return ReachChase();
+            Assert.AreEqual(ArthropleuraBoss.Mode.Chase, boss.CurrentMode);
+            Assert.IsTrue(boss.IgnitePiece(10), "En la F2 se puede prender una pieza en cualquier punto de la sala.");
+            int before = boss.Health.Current;
+            Simulate(30f);
+            Assert.Less(boss.Health.Current, before);
+            Assert.GreaterOrEqual(boss.Health.Current, Mathf.RoundToInt(boss.Health.Max * 0.35f));
+        }
+
+        [UnityTest]
+        public IEnumerator Phase2_BuildsFernsAndRegrowsThem()
+        {
+            yield return ReachChase();
+            Assert.AreEqual(6, boss.FernCount);
+            Object.Destroy(boss.FernAt(0).gameObject);
+            yield return null;
+            Assert.AreEqual(5, boss.FernCount);
+            Simulate(26f);
+            Assert.AreEqual(6, boss.FernCount);
+        }
+
+        [UnityTest]
+        public IEnumerator Phase2_EatingABurningFernLightsTheHead()
+        {
+            yield return ReachChase();
+            boss.FernAt(1).Ignite();
+            Assert.IsTrue(boss.FernAt(1).IsBurning);
+            boss.TestEat(1);
+            float until = Time.time + 5f;
+            while (boss.CurrentMode != ArthropleuraBoss.Mode.Chase && Time.time < until) yield return null;
+            Assert.AreEqual(ArthropleuraBoss.Mode.Chase, boss.CurrentMode);
+            Assert.AreEqual(ArthropleuraBoss.FireState.Burning, boss.PieceFire(0));
+            Assert.AreEqual(5, boss.FernCount);
+        }
+
+        [UnityTest]
+        public IEnumerator Phase2_ChargeFromNextToAWallStillTravels()
+        {
+            yield return ReachChase();
+            // La cabeza llega pegada a la pared este y embiste hacia dentro: antes la embestida acababa en el primer cuadro.
+            typeof(ArthropleuraBoss).GetField("headPos", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(boss, new Vector2(27.5f, 0f));
+            typeof(ArthropleuraBoss).GetField("chargeDirection", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(boss, Vector2.left);
+            CallBoss("StartCharge", new Vector2(27.5f, 0f));
+            Assert.AreEqual(ArthropleuraBoss.Mode.Charge, boss.CurrentMode);
+            yield return new WaitForSeconds(0.6f);
+            Assert.AreEqual(ArthropleuraBoss.Mode.Charge, boss.CurrentMode, "La embestida no debe acabar al instante.");
+            Assert.Less(boss.NodeGround(0).x, 20f, "La cabeza debe haber avanzado hacia dentro.");
+        }
     }
 }
 #endif

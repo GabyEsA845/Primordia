@@ -13,7 +13,7 @@ namespace Primordia.Enemies
     /// </summary>
     public partial class ArthropleuraBoss
     {
-        public enum Mode { Circling, Warn, Charge, Phase2Pending, Chase, StompWarn, Stomp }
+        public enum Mode { Circling, Warn, Charge, Phase2Pending, Chase, StompWarn, Stomp, Eat }
 
         /// <summary>Medio claro, en unidades de mundo (28×16 u).</summary>
         public static readonly Vector2 ClearingHalf = new(14f, 8f);
@@ -85,6 +85,7 @@ namespace Primordia.Enemies
                 Mode.Warn => art.Find("Arthropleura_Head_ChargeWarn"),
                 Mode.Charge => art.Find("Arthropleura_Head_Charge"),
                 Mode.Phase2Pending or Mode.StompWarn => art.Find("Arthropleura_Head_Rear"),
+                Mode.Eat => art.Find("Arthropleura_Head_Eat"),
                 _ => null,
             };
         }

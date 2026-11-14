@@ -37,7 +37,7 @@ namespace Primordia.Editor
                 throw new InvalidOperationException("Falta Floor_3 o su tema de Tierra quemada.");
             var art = ArtSetup.ImportArthropleuraSheets();
             var room = CreateRoom();
-            var prefab = CreatePrefab(art);
+            var prefab = CreatePrefab(art, floor3);
             ArtSetup.ImportBossIntro("Arthropleura");
             var entry = new FloorConfig.BossEntry(prefab, room, floor3.BandThemes[2], Vector2.zero);
             CreateTestConfig(floor3, entry);
@@ -58,7 +58,7 @@ namespace Primordia.Editor
             return room;
         }
 
-        static Enemy CreatePrefab(DirectionalArt art)
+        static Enemy CreatePrefab(DirectionalArt art, FloorConfig floor3)
         {
             var data = LoadOrCreate<EnemyData>(DataPath);
             // No anda por la física ni hace daño por contacto: su combate llega con los subpasos B-E.
@@ -80,6 +80,10 @@ namespace Primordia.Editor
                 boss.Configure(art);
                 root.AddComponent<BossIntro>().enabled = false;
                 boss.ConfigureClearing(CreateClearingArt());
+                var fern = floor3.BandThemes.Where(t => t != null).SelectMany(t => t.Ferns).FirstOrDefault(f => f != null && f.IsValid && f.IsBurnable);
+                if (fern == null)
+                    throw new InvalidOperationException("Falta un helecho inflamable aprobado en los temas del piso 3.");
+                boss.ConfigureFern(fern);
                 boss.ConfigureEffects(new ArthropleuraBoss.Effects
                 {
                     edgeBreak = Sheet("Effects/Fx_Arthropleura_EdgeBreak", 96, new Vector2(0.5f, 1f)),

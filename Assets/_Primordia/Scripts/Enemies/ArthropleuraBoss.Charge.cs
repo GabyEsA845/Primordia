@@ -85,6 +85,9 @@ namespace Primordia.Enemies
                 case Mode.Chase:
                     StepChase(dt);
                     break;
+                case Mode.Eat:
+                    StepEat();
+                    break;
                 case Mode.StompWarn:
                 case Mode.Stomp:
                     StepStomp();
@@ -110,7 +113,10 @@ namespace Primordia.Enemies
                 BreakLine(head, chargeDirection, -1f, ChargeBeyond + 4f);
                 SpawnEffect(effects.edgeBreak, GroundToWorld(head), WorldAngle(chargeDirection) - 90f, 0.08f);
             }
-            bool atLimit = Mathf.Abs(next.x) > ArenaWidth / 2f - 2f || Mathf.Abs(nextWorld.y) > ArenaHeight / 2f - 2f;
+            // Solo cuenta el borde si la embestida va hacia él (la cabeza puede arrancar pegada a una pared).
+            float limitX = ArenaWidth / 2f - 2f, limitY = ArenaHeight / 2f - 2f;
+            bool atLimit = next.x > limitX && chargeDirection.x > 0f || next.x < -limitX && chargeDirection.x < 0f
+                || nextWorld.y > limitY && chargeDirection.y > 0f || nextWorld.y < -limitY && chargeDirection.y < 0f;
             if (atLimit || chargeBroke && Vector2.Distance(head, chargeImpact) >= ChargeBeyond || PhaseIndex >= 1 && chargeTravel >= Phase2ChargeDistance)
             {
                 firstCharge = false;

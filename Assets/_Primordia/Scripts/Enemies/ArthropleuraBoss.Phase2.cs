@@ -92,6 +92,7 @@ namespace Primordia.Enemies
 
         void StartChase()
         {
+            BuildPhase2Scenery();
             chaseTimer = 0f;
             SetMode(Mode.Chase);
         }
@@ -100,6 +101,8 @@ namespace Primordia.Enemies
         {
             chaseTimer += dt;
             Vector2 target = player != null ? WorldToGround(player.position) : Vector2.zero;
+            if (TryEatAt(ref target) && CurrentMode == Mode.Eat)
+                return;
             Advance(target, ChaseSpeed, ChaseTurn, dt);
             if (chaseTimer < ChaseSeconds)
                 return;

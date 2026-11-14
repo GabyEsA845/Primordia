@@ -52,7 +52,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -124,12 +124,12 @@ TextureImporter:
       name: Fx_Ignite_0
       rect:
         serializedVersion: 2
-        x: 5
-        y: 4
-        width: 7
-        height: 7
+        x: 0
+        y: 0
+        width: 16
+        height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -146,12 +146,12 @@ TextureImporter:
       name: Fx_Ignite_1
       rect:
         serializedVersion: 2
-        x: 19
-        y: 3
-        width: 10
-        height: 10
+        x: 16
+        y: 0
+        width: 16
+        height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -168,12 +168,12 @@ TextureImporter:
       name: Fx_Ignite_2
       rect:
         serializedVersion: 2
-        x: 33
+        x: 32
         y: 0
-        width: 31
+        width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -182,6 +182,28 @@ TextureImporter:
       bones: []
       spriteID: 0021acfac80a8c7a0800000000000000
       internalID: -6356654347928333824
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fx_Ignite_3
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4abdc963b53bc34f91330fae8491783
+      internalID: -1424839544
       vertices: []
       indices: 
       edges: []
@@ -203,6 +225,7 @@ TextureImporter:
       Fx_Ignite_0: 3708906278182722635
       Fx_Ignite_1: -7424622514670935701
       Fx_Ignite_2: -6356654347928333824
+      Fx_Ignite_3: -1424839544
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,9 +1,13 @@
 #if UNITY_EDITOR
 using System.Collections;
 using System.Linq;
+using System.Collections.Generic;
+using System.Reflection;
 using NUnit.Framework;
 using Primordia.Core;
 using Primordia.Enemies;
+using Primordia.Rooms;
+using Primordia.Combat;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.TestTools;
@@ -31,12 +35,173 @@ namespace Primordia.Tests
         [TearDown]
         public void TearDown() => Object.Destroy(room);
 
+        void CallBoss(string name, params object[] args) => typeof(ArthropleuraBoss)
+            .GetMethod(name, BindingFlags.Instance | BindingFlags.NonPublic).Invoke(boss, args);
+
+        IEnumerator PrepareEntry(int side = -1)
+        {
+            Object.DestroyImmediate(room);
+            room = null;
+            boss = BuildInLevel();
+            var door = new GameObject("Door", typeof(Door));
+            door.transform.SetParent(room.transform);
+            door.transform.position = boss.ArenaCenter + Vector2.right * (side * 30f);
+            var player = new GameObject("Player", typeof(Primordia.Player.PlayerController));
+            player.transform.SetParent(room.transform);
+            player.transform.position = boss.ArenaCenter + Vector2.right * (side * 10f);
+            yield return null;
+        }
+
+        void WakeForTest()
+        {
+            CallBoss("WakeUp");
+            boss.Moving = false;
+        }
+
+        void ReachStage(ArthropleuraBoss.EntryStage stage)
+        {
+            for (int i = 0; i < 2000 && boss.IntroStage != stage; i++) CallBoss("StepIntro", 0.02f);
+            CallBoss("Place");
+            Assert.AreEqual(stage, boss.IntroStage);
+        }
+
+        [UnityTest]
+        public IEnumerator Intro_SleepsInvisibleWithoutBarUntilCenter()
+        {
+            yield return PrepareEntry();
+            var initial = boss.NodeGround(0);
+            Assert.AreEqual(ArthropleuraBoss.EntryStage.Sleeping, boss.IntroStage);
+            Assert.AreNotSame(boss, ActiveBoss.Current);
+            Assert.IsTrue(BodyRenderers().All(r => r.sprite == null));
+            yield return null;
+            Assert.AreEqual(initial, boss.NodeGround(0));
+            room.GetComponentInChildren<Primordia.Player.PlayerController>().transform.position = boss.ArenaCenter;
+            yield return null;
+            Assert.AreEqual(ArthropleuraBoss.EntryStage.Arriving, boss.IntroStage);
+            Assert.IsFalse(boss.GetComponent<BossIntro>().enabled);
+        }
+
+        [UnityTest]
+        public IEnumerator Intro_EntersFromBothSidesOnlyAsRidges()
+        {
+            foreach (int side in new[] { -1, 1 })
+            {
+                yield return PrepareEntry(side);
+                WakeForTest();
+                for (int i = 0; i < boss.PieceCount; i++)
+                    Assert.GreaterOrEqual(boss.NodeGround(i).x * -side, 24f);
+                float elapsed = 0f;
+                while (boss.IntroStage == ArthropleuraBoss.EntryStage.Arriving && elapsed < 20f)
+                {
+                    CallBoss("StepIntro", 0.02f);
+                    CallBoss("Place");
+                    elapsed += 0.02f;
+                    if (boss.IntroStage == ArthropleuraBoss.EntryStage.Arriving) foreach (var r in BodyRenderers())
+                        if (r.sprite != null) StringAssert.Contains("CanopyRidge", r.sprite.name, $"side {side} t {elapsed} node {r.name} at {r.transform.position} stage {boss.IntroStage}");
+                }
+                Assert.AreEqual(ArthropleuraBoss.EntryStage.Peeking, boss.IntroStage);
+                Assert.That(elapsed, Is.InRange(5f, 15f));
+            }
+        }
+
+        [UnityTest]
+        public IEnumerator Intro_PeekKeepsTheBodyVisibleInTheBreach()
+        {
+            yield return PrepareEntry();
+            WakeForTest();
+            ReachStage(ArthropleuraBoss.EntryStage.Roaring);
+            // Las piezas que quedan en el agujero (sin espesura encima) se dibujan enteras: la cabeza no puede parecer suelta.
+            Assert.IsNotNull(BodyRenderers().First().sprite);
+            Assert.IsTrue(BodyRenderers().Skip(1).Take(2).All(r => r.sprite != null));
+        }
+
+        [UnityTest]
+        public IEnumerator Intro_OpensTopBreachWithInvisibleBlockers()
+        {
+            yield return PrepareEntry();
+            WakeForTest();
+            ReachStage(ArthropleuraBoss.EntryStage.Peeking);
+            var walls = room.transform.Find("Walls").GetComponent<Tilemap>();
+            var blocks = room.transform.Find("ThicketBlock").GetComponent<Tilemap>();
+            for (int x = -3; x < 3; x++)
+            {
+                var cell = walls.WorldToCell(boss.ArenaCenter + new Vector2(x + 0.5f, 8.5f));
+                Assert.IsFalse(walls.HasTile(cell));
+                Assert.IsTrue(blocks.HasTile(cell));
+            }
+            Assert.IsFalse(boss.GetComponent<BossIntro>().enabled);
+        }
+
+        [UnityTest]
+        public IEnumerator Intro_RoarStartsBannerAndSkipStartsFirstCharge()
+        {
+            yield return PrepareEntry();
+            var manager = new GameObject("GameManager", typeof(GameManager));
+            manager.transform.SetParent(room.transform);
+            var intro = boss.GetComponent<BossIntro>();
+            Assert.IsNotNull(intro.Data);
+            WakeForTest();
+            ReachStage(ArthropleuraBoss.EntryStage.Roaring);
+            Assert.IsTrue(intro.enabled);
+            Assert.AreSame(boss, ActiveBoss.Current);
+            Assert.That(boss.GroundToWorld(boss.NodeGround(0)).y - boss.ArenaCenter.y, Is.EqualTo(6.5f).Within(0.11f));
+            yield return null;
+            yield return null;
+            Assert.IsTrue(intro.Playing);
+            Assert.AreEqual(GameState.Cinematic, manager.GetComponent<GameManager>().State);
+            yield return new WaitForSeconds(0.3f);
+            intro.skipPressed = true;
+            float until = Time.time + 3f;
+            while (intro.Playing && Time.time < until) yield return null;
+            Assert.IsTrue(intro.Skipped);
+            Assert.AreEqual(ArthropleuraBoss.Mode.Warn, boss.CurrentMode);
+            Assert.IsTrue(Object.FindObjectsByType<SpriteRenderer>(FindObjectsSortMode.None).Any(r => r.name == "Mark" && r.sprite != null));
+            boss.Moving = true;
+            until = Time.time + 8f;
+            bool charged = false;
+            while (Time.time < until)
+            {
+                yield return null;
+                charged |= boss.CurrentMode == ArthropleuraBoss.Mode.Charge;
+                if (charged && boss.CurrentMode == ArthropleuraBoss.Mode.Circling) break;
+            }
+            Assert.IsTrue(charged);
+            Assert.Less(boss.GroundToWorld(boss.NodeGround(0)).y - boss.ArenaCenter.y, -8f);
+        }
+
+        [UnityTest]
+        public IEnumerator Intro_CannotIgniteHeadOrSacsBeforeFight()
+        {
+            yield return PrepareEntry();
+            Assert.IsFalse(boss.IgnitePiece(0));
+            WakeForTest();
+            ReachStage(ArthropleuraBoss.EntryStage.Roaring);
+            Assert.IsFalse(boss.IgnitePiece(0));
+            Flammables.IgniteNear(boss.GroundToWorld(boss.NodeGround(0)), 100f);
+            Assert.AreEqual(ArthropleuraBoss.FireState.Normal, boss.PieceFire(0));
+            Assert.IsFalse(boss.SacAt(0).enabled);
+            Assert.IsFalse(boss.SacAt(0).GetComponent<Health>().TakeDamage(10));
+            boss.BeginFight();
+            Assert.IsTrue(boss.IgnitePiece(0));
+            Assert.IsTrue(boss.SacAt(0).enabled);
+        }
+
+        [UnityTest]
+        public IEnumerator Intro_WithoutDoorsStartsCirclingWithoutPresentation()
+        {
+            yield return null;
+            Assert.AreEqual(ArthropleuraBoss.EntryStage.Complete, boss.IntroStage);
+            Assert.AreEqual(ArthropleuraBoss.Mode.Circling, boss.CurrentMode);
+            Assert.IsFalse(boss.GetComponent<BossIntro>().enabled);
+            Assert.AreSame(boss, ActiveBoss.Current);
+        }
+
         [UnityTest]
         public IEnumerator Chain_HasThirtyPiecesWithSprites()
         {
             yield return null;
             Assert.AreEqual(ArthropleuraBoss.SegmentCount + 2, boss.PieceCount);
-            var renderers = boss.GetComponentsInChildren<SpriteRenderer>();
+            var renderers = BodyRenderers();
             Assert.AreEqual(boss.PieceCount, renderers.Length);
             Assert.IsTrue(renderers.All(r => r.sprite != null), "Alguna pieza no tiene sprite.");
             Assert.AreEqual(600, boss.Health.Max);
@@ -46,7 +211,7 @@ namespace Primordia.Tests
         public IEnumerator Chain_DrawsTailBehindHead()
         {
             yield return null;
-            var renderers = boss.GetComponentsInChildren<SpriteRenderer>();
+            var renderers = BodyRenderers();
             Assert.Greater(renderers[0].sortingOrder, renderers[renderers.Length - 1].sortingOrder);
         }
 
@@ -161,6 +326,191 @@ namespace Primordia.Tests
             Assert.AreEqual(0, boss.PhaseIndex);
             Assert.IsTrue(boss.Health.IsInvulnerable, "El caparazón es invulnerable.");
             CollectionAssert.AreEqual(new[] { 0.7f, 0.35f, 0.1f }, boss.PhaseThresholds);
+        }
+
+        SpriteRenderer[] BodyRenderers() => boss.GetComponentsInChildren<SpriteRenderer>()
+            .Where(r => r.transform.parent == boss.transform &&
+                (r.name == "Head" || r.name == "Tail" || r.name.StartsWith("Segment_"))).ToArray();
+
+        [Test]
+        public void Art_IgnitionHasFourFramesAndDecorHasNoMissingSprites()
+        {
+            var serialized = new SerializedObject(boss);
+            var ignition = serialized.FindProperty("clearingArt.ignite");
+            Assert.AreEqual(4, ignition.arraySize);
+            for (int i = 0; i < ignition.arraySize; i++)
+            {
+                var sprite = ignition.GetArrayElementAtIndex(i).objectReferenceValue as Sprite;
+                Assert.IsNotNull(sprite);
+                Assert.AreEqual(new Vector2(16, 16), sprite.rect.size);
+            }
+            var decor = serialized.FindProperty("clearingArt.decor");
+            Assert.AreEqual(8, decor.arraySize);
+            for (int i = 0; i < decor.arraySize; i++)
+                Assert.IsNotNull(decor.GetArrayElementAtIndex(i).objectReferenceValue);
+            Assert.AreEqual(4, boss.GetComponentsInChildren<MethaneSac>().Length);
+            Assert.AreEqual(0, boss.GetComponentsInChildren<Fern>().Length, "El decorado de F1 no debe poder arder.");
+        }
+
+        void PutPieceInClearing(int index)
+        {
+            boss.Moving = false;
+            var field = typeof(ArthropleuraBoss).GetField("trail", BindingFlags.Instance | BindingFlags.NonPublic);
+            var trail = (List<Vector2>)field.GetValue(boss);
+            Vector2 delta = -boss.NodeGround(index);
+            for (int i = 0; i < trail.Count; i++) trail[i] += delta;
+        }
+
+        void Simulate(float seconds)
+        {
+            // Misma ruta que Update, con pasos pequeños y reloj propio de la limitadora.
+            int steps = Mathf.CeilToInt(seconds / 0.02f);
+            for (int i = 0; i < steps; i++) boss.TickFire(seconds / steps);
+        }
+
+        [Test]
+        public void Fire_OutsideCannotIgniteEvenThroughRegistry()
+        {
+            boss.Moving = false;
+            Assert.IsFalse(boss.IgnitePiece(0));
+            Vector2 position = boss.GroundToWorld(boss.NodeGround(0));
+            Flammables.IgniteNear(position, 0.01f);
+            Assert.AreEqual(ArthropleuraBoss.FireState.Normal, boss.PieceFire(0));
+        }
+
+        [Test]
+        public void Fire_InsideIgnitesAndSpreadsBothWaysAfterDelay()
+        {
+            PutPieceInClearing(14);
+            Flammables.IgniteNear(boss.ArenaCenter, 0.01f);
+            Assert.AreEqual(ArthropleuraBoss.FireState.Burning, boss.PieceFire(14));
+            Simulate(0.38f);
+            Assert.AreEqual(ArthropleuraBoss.FireState.Normal, boss.PieceFire(13));
+            Assert.AreEqual(ArthropleuraBoss.FireState.Normal, boss.PieceFire(15));
+            Simulate(0.04f);
+            Assert.AreEqual(ArthropleuraBoss.FireState.Burning, boss.PieceFire(13));
+            Assert.AreEqual(ArthropleuraBoss.FireState.Burning, boss.PieceFire(15));
+            Simulate(6f);
+            Assert.AreEqual(ArthropleuraBoss.FireState.Burning, boss.PieceFire(0), "La mecha debe cruzar la espesura.");
+            Assert.AreEqual(ArthropleuraBoss.FireState.Burning, boss.PieceFire(29));
+        }
+
+        [Test]
+        public void Fire_OpensForSixSecondsThenClosesAndCools()
+        {
+            PutPieceInClearing(0);
+            Assert.IsTrue(boss.IgnitePiece(0));
+            Assert.IsFalse(boss.PieceOpen(0));
+            Simulate(0.38f);
+            Assert.IsTrue(boss.PieceOpen(0));
+            Simulate(5.9f);
+            Assert.IsTrue(boss.PieceOpen(0));
+            Simulate(0.5f);
+            Assert.AreEqual(ArthropleuraBoss.FireState.Charred, boss.PieceFire(0));
+            Assert.IsFalse(boss.PieceOpen(0));
+            Assert.IsFalse(boss.IgnitePiece(0));
+            Simulate(24.8f);
+            Assert.IsFalse(boss.IgnitePiece(0));
+            Simulate(0.3f);
+            Assert.IsTrue(boss.IgnitePiece(0));
+        }
+
+        [Test]
+        public void Damage_OnlyOpenBurningPiecesAndSixPerRollingSecond()
+        {
+            PutPieceInClearing(0);
+            int before = boss.Health.Current;
+            Simulate(1f);
+            Assert.AreEqual(before, boss.Health.Current);
+            boss.IgnitePiece(0);
+            Simulate(0.34f);
+            Assert.AreEqual(before, boss.Health.Current, "Abrir las placas aún no hace daño.");
+            var samples = new Queue<int>();
+            for (int i = 0; i < 1100; i++)
+            {
+                boss.TickFire(0.02f);
+                samples.Enqueue(boss.Health.Current);
+                if (samples.Count > 50)
+                    Assert.LessOrEqual(samples.Dequeue() - boss.Health.Current, 6, "Tope global en una ventana de un segundo.");
+            }
+            Assert.Less(boss.Health.Current, before);
+            int charredHealth = boss.Health.Current;
+            Simulate(2f);
+            Assert.AreEqual(charredHealth, boss.Health.Current, "Las piezas carbonizadas no hacen daño.");
+        }
+
+        [Test]
+        public void Damage_DirectHitsAndExplosionsDoNotHurtShell()
+        {
+            PutPieceInClearing(0);
+            int before = boss.Health.Current;
+            Assert.IsFalse(boss.Health.TakeDamage(100));
+            Explosion.Detonate(boss.ArenaCenter, ArthropleuraBoss.SacIgnitionRadius, 100, 0, false);
+            Assert.AreEqual(before, boss.Health.Current);
+            Assert.AreEqual(ArthropleuraBoss.FireState.Burning, boss.PieceFire(0));
+            Assert.IsFalse(boss.Health.TakeDamage(100, DamageKind.Tick, DamageSource.Burn));
+        }
+
+        [Test]
+        public void Sacs_RegrowTwentySecondsAfterBurst()
+        {
+            var old = boss.SacAt(0);
+            old.Ignite();
+            Simulate(19.9f);
+            Assert.AreSame(old, boss.SacAt(0));
+            Simulate(0.12f);
+            Assert.AreNotSame(old, boss.SacAt(0));
+            Assert.IsTrue(boss.SacAt(0).CanIgnite);
+        }
+
+        [Test]
+        public void Phase2_EventOnlyOnceAndStopsAtThreshold()
+        {
+            PutPieceInClearing(0);
+            int events = 0;
+            boss.ReachedPhase2 += () => events++;
+            boss.DebugFireAction(1, boss.ArenaCenter);
+            Assert.AreEqual(426, boss.Health.Current);
+            boss.IgnitePiece(0);
+            Simulate(4f);
+            Assert.AreEqual(420, boss.Health.Current);
+            Assert.AreEqual(1, events);
+            Assert.AreEqual(ArthropleuraBoss.Mode.Phase2Pending, boss.CurrentMode);
+            Simulate(20f);
+            Assert.AreEqual(1, events);
+            Assert.AreEqual(420, boss.Health.Current);
+        }
+
+        [Test]
+        public void Fire_TwoFullBurnsReachPhase2WithoutDebugDamage()
+        {
+            PutPieceInClearing(0);
+            boss.IgnitePiece(0);
+            Simulate(20f);
+            int firstBurn = 600 - boss.Health.Current;
+            Assert.That(firstBurn, Is.InRange(90, 110));
+            Simulate(25f);
+            Assert.IsTrue(boss.IgnitePiece(0));
+            Simulate(20f);
+            Assert.AreEqual(420, boss.Health.Current);
+            Assert.IsTrue(boss.Phase2Reached);
+        }
+
+        [UnityTest]
+        public IEnumerator Phase2_FinishesCurrentChargeAndClearsBlockers()
+        {
+            boss = BuildInLevel();
+            yield return null;
+            boss.TestStartCharge();
+            float until = Time.time + 5f;
+            while (boss.CurrentMode != ArthropleuraBoss.Mode.Charge && Time.time < until) yield return null;
+            Assert.AreEqual(ArthropleuraBoss.Mode.Charge, boss.CurrentMode);
+            boss.Health.Drain(180);
+            Assert.AreEqual(ArthropleuraBoss.Mode.Charge, boss.CurrentMode);
+            until = Time.time + 10f;
+            while (boss.CurrentMode != ArthropleuraBoss.Mode.Phase2Pending && Time.time < until) yield return null;
+            Assert.AreEqual(ArthropleuraBoss.Mode.Phase2Pending, boss.CurrentMode);
+            Assert.AreEqual(0, boss.BlockedCells);
         }
     }
 }

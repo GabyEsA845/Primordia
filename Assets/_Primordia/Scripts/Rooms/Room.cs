@@ -239,6 +239,13 @@ namespace Primordia.Rooms
             enemy.ChildSpawned += Register;
         }
 
+        /// <summary>Cierra un jefe de escenario sin destruirlo ni activar sus recompensas de muerte.</summary>
+        internal void CompleteScriptedBoss(Enemy enemy)
+        {
+            if (State != RoomState.Combat || enemy == null) return;
+            OnEnemyDied(enemy);
+        }
+
         void OnEnemyDied(Enemy enemy)
         {
             enemy.Died -= OnEnemyDied;

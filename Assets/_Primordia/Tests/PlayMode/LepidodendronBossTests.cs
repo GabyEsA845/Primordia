@@ -27,13 +27,14 @@ namespace Primordia.Tests
         [SetUp]
         public void SetUp()
         {
+            RunInventory.Reset();
             room = new GameObject("SalaLepidodendron");
             room.transform.position = new Vector2(200f, 100f);
             var prefab = AssetDatabase.LoadAssetAtPath<GameObject>(PrefabPath);
             Assert.IsNotNull(prefab, "Ejecuta Primordia > Boss > Crear Lepidodendron y escena de prueba.");
             boss = Object.Instantiate(prefab, room.transform).GetComponent<LepidodendronBoss>();
             boss.SetArena(room.transform, new Vector2(158f, 30f));
-            // La mayoría de comprobaciones no necesitan enemigos activos. Las pruebas de oleadas reponen su reserva.
+            // La mayorÃ­a de comprobaciones no necesitan enemigos activos. Las pruebas de oleadas reponen su reserva.
             var serialized = new SerializedObject(boss);
             serialized.FindProperty("waveEnemies").arraySize = 0;
             serialized.ApplyModifiedPropertiesWithoutUndo();
@@ -43,12 +44,134 @@ namespace Primordia.Tests
         [TearDown]
         public void TearDown()
         {
+            RunInventory.Reset();
+            Time.timeScale = 1f;
             if (walker != null) Object.DestroyImmediate(walker);
             if (room != null) Object.DestroyImmediate(room);
             if (cameraRig != null) Object.DestroyImmediate(cameraRig);
         }
 
         Transform Scenery => boss.transform.Find("Scenery");
+
+        [Test]
+        public void L5SkinUsaSaviaCabezaYLosTresNudosReales()
+        {
+            var skin = boss.GetComponent<Primordia.UI.BossBarAppearance>().Skin;
+            Assert.IsTrue(skin.BottomAnchored);
+            Assert.AreEqual(new Vector2(320, 44), skin.Frame.rect.size);
+            Assert.AreEqual(new RectInt(46, 23, 260, 8), skin.Window);
+            Assert.AreEqual(3, boss.PhaseThresholds.Length);
+            Assert.That(skin.Phase(boss.PhaseIndex).fill[0].name, Does.Contain("Fill_Sap_"));
+            Assert.That(skin.Phase(0).eyes[0].name, Does.Contain("Head_Calm"));
+            boss.Walls[0].Health.TakeDamage(10);
+            Assert.AreEqual(0, boss.PhaseIndex);
+            boss.Walls[0].Health.Kill();
+            Assert.AreEqual(1, boss.PhaseIndex);
+            boss.TestFinalPhase();
+            Assert.That(skin.Phase(boss.PhaseIndex).fill[0].name, Does.Contain("SapGold"));
+            Assert.That(skin.Phase(boss.PhaseIndex).eyes[0].name, Does.Contain("Head_Final"));
+        }
+
+        [Test]
+        public void L5ConosDeBarraReflejanArmaduraCarbonizadoExpuestoYRoto()
+        {
+            var cone = GroundCone();
+            Assert.AreEqual(0, boss.BarConeState(0));
+            cone.Ignite();
+            Assert.AreEqual(1, boss.BarConeState(0));
+            cone.Health.TakeDamage(100);
+            Assert.AreEqual(2, boss.BarConeState(0));
+            cone.Health.Kill();
+            Assert.AreEqual(3, boss.BarConeState(0));
+            Assert.AreEqual(0, boss.BarConeState(1));
+        }
+
+        [UnityTest]
+        public IEnumerator L5PresentacionBloqueaJugadorYCombateHastaVolver()
+        {
+            CreateWalker(boss.TestStop(0));
+            var controller = walker.AddComponent<PlayerController>();
+            controller.readInput = false;
+            var target = new GameObject("CameraTarget").AddComponent<CameraLookAhead>();
+            target.transform.SetParent(room.transform);
+            target.Configure(controller, 0f, 0f);
+            var health = walker.GetComponent<Health>();
+            var body = walker.GetComponent<Rigidbody2D>();
+            var constraints = body.constraints;
+            boss.ReplayPresentation();
+            Assert.IsTrue(boss.IntroPlaying);
+            Assert.IsFalse(boss.FightReady);
+            Assert.IsFalse(health.TakeDamage(1));
+            Assert.AreEqual(RigidbodyConstraints2D.FreezeAll, body.constraints);
+            yield return new WaitForSeconds(4.9f);
+            Assert.IsTrue(boss.IntroPlayed);
+            Assert.IsFalse(boss.IntroPlaying);
+            Assert.IsTrue(boss.FightReady);
+            Assert.AreEqual(0f, target.FocusWeight);
+            Assert.AreEqual(constraints, body.constraints);
+            boss.enabled = false;
+            boss.enabled = true;
+            yield return null;
+            Assert.IsFalse(boss.IntroPlaying);
+        }
+
+        [UnityTest]
+        public IEnumerator L5DesplomeDuraConProteccionYDejaTroncoColisionYAnclaSinRecompensa()
+        {
+            CreateWalker(boss.TestStop(3));
+            walker.AddComponent<PlayerController>().readInput = false;
+            var health = walker.GetComponent<Health>();
+            int completed = 0, died = 0;
+            boss.Collapsed += () => completed++;
+            boss.Health.Died += () => died++;
+            boss.TestEndingAction(0);
+            Assert.IsTrue(boss.Collapsing);
+            Assert.IsFalse(health.TakeDamage(1));
+            yield return new WaitForSeconds(6f);
+            Assert.IsTrue(boss.Collapsing);
+            yield return new WaitForSeconds(1f);
+            Assert.IsTrue(boss.HasCollapsed);
+            Assert.AreEqual(1, completed);
+            Assert.AreEqual(0, died);
+            Assert.AreEqual(0, boss.Health.Current);
+            Assert.IsNotNull(Scenery.Find("FallenTrunk").GetComponent<PolygonCollider2D>());
+            Assert.AreEqual(4, Scenery.Find("FallenTrunk").GetComponent<PolygonCollider2D>().points.Length);
+            Assert.IsNotNull(boss.StumpCrack);
+            Assert.IsNotNull(Scenery.Find("GoldColumn"));
+            Assert.IsNull(ActiveBoss.Current);
+            Assert.IsEmpty(room.GetComponentsInChildren<Primordia.Mutations.MutationPickup>());
+            Assert.IsFalse(health.IsInvulnerable);
+        }
+
+        [UnityTest]
+        public IEnumerator L5DestruirDuranteDesplomeLiberaJugadorYCamara()
+        {
+            CreateWalker(boss.TestStop(3));
+            var controller = walker.AddComponent<PlayerController>(); controller.readInput = false;
+            var target = new GameObject("Target").AddComponent<CameraLookAhead>();
+            cameraRig = target.gameObject;
+            target.Configure(controller);
+            var body = walker.GetComponent<Rigidbody2D>();
+            var constraints = body.constraints;
+            boss.TestEndingAction(0);
+            yield return new WaitForSeconds(0.1f);
+            Object.DestroyImmediate(room);
+            Assert.IsFalse(walker.GetComponent<Health>().IsInvulnerable);
+            Assert.AreEqual(constraints, body.constraints);
+            Assert.AreEqual(0, target.FocusWeight);
+            Assert.IsNull(ActiveBoss.Current);
+        }
+
+        [Test]
+        public void L5AtajosDeVidaMantienenConosYBarraSinDesplomePrematuro()
+        {
+            boss.TestEndingAction(2);
+            Assert.AreEqual(150, boss.Health.Current);
+            boss.TestEndingAction(3);
+            Assert.AreEqual(6, boss.Health.Current);
+            Assert.IsFalse(boss.Collapsing);
+            Assert.AreEqual(6, boss.Cones.Sum(c => c.Health.Current));
+        }
 
         [Test]
         public void ElMenuDejaAssetsCompletosSinReferenciasPerdidas()
@@ -256,7 +379,7 @@ namespace Primordia.Tests
             cameraRig.GetComponentInChildren<AudioListener>().enabled = false;
             var camera = cameraRig.GetComponentInChildren<Camera>();
             var virtualCamera = cameraRig.transform.Find("CinemachineCamera").GetComponent("CinemachineCamera");
-            // El ensamblado de pruebas no referencia Cinemachine: inspección serializada sin cambiar su asmdef.
+            // El ensamblado de pruebas no referencia Cinemachine: inspecciÃ³n serializada sin cambiar su asmdef.
             float LensSize() => new SerializedObject(virtualCamera).FindProperty("Lens").FindPropertyRelative("OrthographicSize").floatValue;
             float normal = LensSize();
             var body = CreateWalker(boss.TestStop(2));
@@ -324,7 +447,7 @@ namespace Primordia.Tests
             Assert.AreEqual(125, first.Health.Current);
             Assert.AreEqual(575, boss.Health.Current);
             first.Health.TakeDamage(1000);
-            Assert.AreEqual(450, boss.Health.Current, "Nunca resta el sobre-daño.");
+            Assert.AreEqual(450, boss.Health.Current, "Nunca resta el sobre-daÃ±o.");
             Assert.IsFalse(boss.Health.TakeDamage(100));
             Assert.AreEqual(450, boss.Health.Current);
         }
@@ -403,10 +526,10 @@ namespace Primordia.Tests
         public IEnumerator ElEstallidoRealCuentaUnaVezYTienePuntoDeImpacto()
         {
             var wall = boss.Walls[0];
-            Scenery.Find("Wall1Supplies").gameObject.SetActive(false); // Aísla el golpe del estallido, sin cadenas de metano.
+            Scenery.Find("Wall1Supplies").gameObject.SetActive(false); // AÃ­sla el golpe del estallido, sin cadenas de metano.
             var position = new Vector2(wall.transform.position.x - wall.BodyCollider.size.x / 2f - 0.4f, wall.KnotPosition(0).y);
             PoisonSpitBurst.Spawn(position, 2, 2f, 0f, null, Team.Enemy);
-            yield return new WaitForSeconds(0.2f); // Después del impacto y antes del primer tick de veneno (0,5 s).
+            yield return new WaitForSeconds(0.2f); // DespuÃ©s del impacto y antes del primer tick de veneno (0,5 s).
             Assert.AreEqual(146, wall.Health.Current);
             Assert.AreEqual(596, boss.Health.Current);
             Assert.IsNotNull(wall.Health.LastImpactPoint);
@@ -425,14 +548,14 @@ namespace Primordia.Tests
         }
 
         [UnityTest]
-        public IEnumerator ElFuegoCubreEnTresSegundosYHace12PorSegundoSinTopeBurn()
+        public IEnumerator ElFuegoCubreEnTresSegundosYRespetaSuDanoPorSegundoSinTopeBurn()
         {
             var wall = boss.Walls[0];
             boss.GetComponent<BossDamageLimiter>().Configure(new[] { new BossDamageLimiter.Cap { source = DamageSource.Burn, perSecond = 0f } });
             float start = Time.time;
             wall.IgniteAt(3f);
             yield return new WaitForSeconds(1.05f);
-            Assert.AreEqual(150 - Mathf.FloorToInt((Time.time - start) * 12f), wall.Health.Current, 2f);
+            Assert.AreEqual(150 - Mathf.FloorToInt((Time.time - start) * LepidodendronWall.FireDamagePerSecond), wall.Health.Current, 2f);
             Assert.IsFalse(wall.FullyCharred);
             var band = wall.transform.Find("CharredBand").GetComponent<MeshFilter>().sharedMesh;
             Assert.AreEqual(4, band.colors.Length);
@@ -443,7 +566,7 @@ namespace Primordia.Tests
             Assert.Less(south.transform.localPosition.y, 3f);
             yield return new WaitForSeconds(2.15f);
             Assert.IsTrue(wall.FullyCharred);
-            Assert.AreEqual(150 - Mathf.FloorToInt((Time.time - start) * 12f), wall.Health.Current, 2f);
+            Assert.AreEqual(150 - Mathf.FloorToInt((Time.time - start) * LepidodendronWall.FireDamagePerSecond), wall.Health.Current, 2f);
             int before = wall.Health.Current;
             wall.Health.TakeDamage(5); // Cuerpo, sin nudo.
             Assert.AreEqual(before - 10, wall.Health.Current);
@@ -498,6 +621,563 @@ namespace Primordia.Tests
             Assert.AreEqual(1, ready);
             boss.Walls[2].Health.Kill();
             Assert.AreEqual(1, ready);
+        }
+
+        LepidodendronCone GroundCone(int index = 0)
+        {
+            boss.TestFinalPhase();
+            var cone = boss.Cones[index];
+            Assert.IsTrue(cone.BeginDrop(LepidodendronCone.WarningSeconds, Vector2.zero, Time.time));
+            cone.Tick(Time.time + LepidodendronCone.WarningSeconds + LepidodendronCone.ShadowSeconds + LepidodendronCone.DescentSeconds + 0.001f);
+            Assert.AreEqual(LepidodendronCone.Phase.Grounded, cone.State);
+            return cone;
+        }
+
+        [Test]
+        public void L3EmpiezaConTresConosDe30Y50YColgadosNoRecibenNiAtacan()
+        {
+            boss.TestFinalPhase();
+            Assert.AreEqual(150, boss.Health.Current);
+            Assert.AreEqual(3, boss.Cones.Count);
+            foreach (var cone in boss.Cones)
+            {
+                Assert.AreEqual(30, cone.ArmorRemaining);
+                Assert.AreEqual(50, cone.Health.Current);
+                Assert.AreEqual(1, cone.GetComponentsInChildren<Health>().Length);
+                Assert.IsFalse(cone.Health.TakeDamage(100));
+                cone.Ignite();
+                Assert.IsFalse(cone.Charred);
+                Assert.IsTrue(cone.GetComponentsInChildren<Collider2D>().All(c => !c.enabled));
+                Assert.AreEqual(30, cone.ArmorRemaining);
+                Assert.AreEqual(50, cone.Health.Current);
+            }
+        }
+
+        [Test]
+        public void L3AvisoDe1500MsFijaPuntoAlEmpezarLos720MsDeSombra()
+        {
+            boss.TestFinalPhase();
+            CreateWalker(boss.ArenaCenter);
+            boss.ConePlayer = walker.transform;
+            var cone = boss.Cones[0];
+            float start = Time.time;
+            cone.BeginDrop(1.5f, Vector2.zero, start);
+            walker.transform.position += Vector3.left;
+            cone.Tick(start + 1.49f);
+            Assert.AreEqual((Vector2)walker.transform.position, cone.LandingPoint);
+            Assert.AreEqual(LepidodendronCone.Phase.Warning, cone.State);
+            cone.Tick(start + 1.501f);
+            Assert.AreEqual(LepidodendronCone.Phase.Shadow, cone.State);
+            var fixedPoint = cone.LandingPoint;
+            walker.transform.position += Vector3.right * 10f;
+            cone.Tick(start + 2.219f);
+            Assert.AreEqual(fixedPoint, cone.LandingPoint);
+            Assert.AreEqual(LepidodendronCone.Phase.Shadow, cone.State);
+            cone.Tick(start + 2.221f);
+            Assert.AreEqual(LepidodendronCone.Phase.Descending, cone.State);
+            Assert.AreEqual(fixedPoint, cone.LandingPoint);
+        }
+
+        [TestCase(0f, 2)]
+        [TestCase(2.2f, 0)]
+        public void L3GolpeSoloHaceDosUnaVezEnCuadroCeroYDentroDelRadio(float distance, int damage)
+        {
+            boss.TestFinalPhase();
+            CreateWalker(boss.ArenaCenter + Vector2.right * distance);
+            var health = walker.AddComponent<Health>();
+            walker.AddComponent<BoxCollider2D>(); // Dos colisionadores no duplican el golpe.
+            int before = health.Current;
+            Physics2D.SyncTransforms();
+            var cone = boss.Cones[0];
+            float start = Time.time;
+            cone.BeginDrop(1.5f, Vector2.zero, start);
+            cone.Tick(start + 2.56f);
+            Assert.AreEqual(before, health.Current);
+            cone.Tick(start + 2.571f);
+            Assert.AreEqual(before - damage, health.Current);
+            Assert.IsNotNull(cone.transform.Find("Fx_ConeSlam"));
+            cone.Tick(start + 2.7f);
+            cone.Tick(start + 3f);
+            Assert.AreEqual(before - damage, health.Current);
+        }
+
+        [Test]
+        public void L3ArmaduraAcumuladaVentanaDeOchoSegundosYSubidaSinCuracion()
+        {
+            float start = Time.time;
+            var cone = GroundCone();
+            cone.Health.TakeDamage(10);
+            Assert.AreEqual(1, cone.ArmorState);
+            cone.Health.TakeDamage(10);
+            Assert.AreEqual(2, cone.ArmorState);
+            Assert.AreEqual(150, boss.Health.Current);
+            cone.Tick(start + 10.56f);
+            Assert.AreEqual(LepidodendronCone.Phase.Grounded, cone.State);
+            cone.Tick(start + 10.571f);
+            Assert.AreEqual(LepidodendronCone.Phase.Rising, cone.State);
+            Assert.IsFalse(cone.Health.TakeDamage(100));
+            cone.Tick(start + 11.571f);
+            Assert.AreEqual(LepidodendronCone.Phase.Hanging, cone.State);
+            cone.BeginDrop(1.5f, Vector2.zero, start + 15f);
+            cone.Tick(start + 17.571f);
+            Assert.AreEqual(10, cone.ArmorRemaining);
+            cone.Health.TakeDamage(10);
+            Assert.AreEqual(0, cone.ArmorRemaining);
+            Assert.AreEqual(50, cone.Health.Current);
+            cone.Health.TakeDamage(10); // Ya vulnerable desde el cuadro 0 de Shatter.
+            Assert.AreEqual(40, cone.Health.Current);
+            Assert.AreEqual(140, boss.Health.Current);
+        }
+
+        [Test]
+        public void L3FuegoCarbonizaSinDanoDuplicaResistenciaYNoRebrota()
+        {
+            float start = Time.time;
+            var cone = GroundCone();
+            Assert.AreEqual(1, Flammables.IgniteNear(cone.Position + Vector2.up * 2.5f, 0.01f));
+            Assert.IsTrue(cone.Charred);
+            Assert.AreEqual(30, cone.ArmorRemaining);
+            cone.Health.TakeDamage(9, DamageKind.Tick, DamageSource.Burn);
+            Assert.AreEqual(30, cone.ArmorRemaining);
+            Assert.AreEqual(150, boss.Health.Current);
+            cone.Health.TakeDamage(10);
+            Assert.AreEqual(10, cone.ArmorRemaining);
+            cone.Tick(start + 11.571f);
+            cone.BeginDrop(1.5f, Vector2.zero, start + 15f);
+            cone.Tick(start + 17.571f);
+            Assert.IsTrue(cone.Charred);
+            Assert.AreEqual(10, cone.ArmorRemaining);
+            Assert.IsTrue(cone.transform.Find("Body").GetComponent<SpriteRenderer>().sprite.name.StartsWith("Lepido_Cone_ArmorCharred2"));
+            cone.Health.TakeDamage(5);
+            cone.Health.TakeDamage(20, DamageKind.Tick, DamageSource.Burn);
+            Assert.AreEqual(50, cone.Health.Current);
+            Assert.IsFalse(cone.CanIgnite);
+        }
+
+        [Test]
+        public void L3TresRoturasDejanCeroEmitenUnaVezSinDiedNiDestruirSala()
+        {
+            int completed = 0, deaths = 0;
+            boss.ConesDestroyed += () => completed++;
+            boss.Health.Died += () => deaths++;
+            for (int i = 0; i < 3; i++)
+            {
+                var cone = GroundCone(i);
+                cone.Health.TakeDamage(30);
+                cone.Health.TakeDamage(1000);
+                Assert.AreEqual(LepidodendronCone.Phase.Husk, cone.State);
+                Assert.IsFalse(cone.BeginDrop(1.5f, Vector2.zero, Time.time));
+            }
+            Assert.AreEqual(0, boss.Health.Current);
+            Assert.AreEqual(1, completed);
+            Assert.AreEqual(0, deaths);
+            Assert.IsFalse(boss.Health.IsDead);
+            Assert.IsTrue(room.activeSelf);
+            Assert.AreSame(boss, ActiveBoss.Current);
+            boss.CheckConesDestroyed();
+            Assert.AreEqual(1, completed);
+        }
+
+        [Test]
+        public void L3PausaCuentaDesdeFinDeSubidaYTrasRoturaPermiteDos()
+        {
+            float start = Time.time;
+            var cone = GroundCone();
+            Assert.AreEqual(4f, boss.CurrentConePause);
+            Assert.AreEqual(1, boss.ConeConcurrency);
+            cone.Tick(start + 11.571f);
+            boss.UpdateCones(start + 15.56f);
+            Assert.IsTrue(boss.Cones.All(c => c.Available));
+            boss.UpdateCones(start + 15.571f);
+            Assert.AreEqual(1, boss.Cones.Count(c => !c.Available));
+            cone.Health.Kill();
+            Assert.AreEqual(3f, boss.CurrentConePause);
+            Assert.AreEqual(2, boss.ConeConcurrency);
+            boss.UpdateCones(Time.time + 3.01f);
+            Assert.AreEqual(2, boss.Cones.Count(c => !c.Broken && !c.Available));
+        }
+
+        [TestCase(-100f)]
+        [TestCase(100f)]
+        public void L3MetanoLejanoNoActuaYCercanoBajaTresSeparadosDentroDeArena(float edge)
+        {
+            boss.TestFinalPhase();
+            CreateWalker(boss.ArenaCenter + Vector2.right * edge);
+            boss.ConePlayer = walker.transform;
+            boss.TriggerConeMethane(boss.Foot + Vector2.right * 5.01f, Time.time);
+            Assert.IsTrue(boss.Cones.All(c => c.Available));
+            boss.TriggerConeMethane(boss.Foot + Vector2.right * 5f, Time.time);
+            Assert.IsTrue(boss.IsCanopyShaking);
+            foreach (var cone in boss.Cones)
+            {
+                Assert.AreEqual(1f, cone.CurrentWarningSeconds);
+                cone.Tick(Time.time + 1.001f);
+                Assert.AreEqual(LepidodendronCone.Phase.Shadow, cone.State);
+                Assert.AreEqual(cone.LandingPoint, boss.ClampConePoint(cone.LandingPoint));
+            }
+            for (int i = 1; i < 3; i++)
+                Assert.GreaterOrEqual(Vector2.Distance(boss.Cones[i - 1].LandingPoint, boss.Cones[i].LandingPoint), 3f);
+        }
+
+        [Test]
+        public void L3OdresRealesAvisanUnaVezYNoSeReponen()
+        {
+            boss.TestFinalPhase();
+            var sacs = Scenery.GetComponentsInChildren<MethaneSac>().Where(s => s.transform.parent == Scenery).ToArray();
+            Assert.AreEqual(3, sacs.Length);
+            foreach (var sac in sacs) Assert.That(Vector2.Distance(sac.transform.position, boss.Foot), Is.InRange(7f, 8f));
+            int notifications = 0;
+            void Count(MethaneSac sac) => notifications++;
+            MethaneSac.BurstStarted += Count;
+            try
+            {
+                sacs[0].transform.position = boss.Foot + Vector2.down * 3f;
+                sacs[0].Ignite();
+                sacs[0].Ignite();
+                Assert.AreEqual(1, notifications);
+                Assert.IsTrue(boss.Cones.All(c => !c.Available));
+            }
+            finally { MethaneSac.BurstStarted -= Count; }
+        }
+
+        [Test]
+        public void L3BaseSolidaTranslucidezYHuskPersistente()
+        {
+            var cone = GroundCone();
+            CreateWalker(cone.LandingPoint + Vector2.up);
+            boss.ConePlayer = walker.transform;
+            cone.Tick(Time.time + 3f);
+            var renderer = cone.transform.Find("Body").GetComponent<SpriteRenderer>();
+            Assert.AreEqual(0.5f, renderer.color.a);
+            var solid = cone.GetComponent<BoxCollider2D>();
+            Assert.LessOrEqual(solid.size.y, 1f);
+            Assert.IsTrue(solid.enabled);
+            cone.Health.Kill();
+            cone.Tick(Time.time + 3f);
+            Assert.IsTrue(renderer.sprite.name.StartsWith("Lepido_Cone_Husk"));
+            Assert.IsTrue(solid.enabled);
+            Assert.IsFalse(cone.transform.Find("ConeTarget").GetComponent<Collider2D>().enabled);
+            walker.transform.position = cone.LandingPoint + Vector2.down;
+            cone.Tick(Time.time + 3f);
+            Assert.AreEqual(1f, renderer.color.a);
+        }
+
+        [UnityTest]
+        public IEnumerator L3DestruirSalaLimpiaConosEfectosYAmbosPuntosInflamables()
+        {
+            var cone = GroundCone();
+            var basePoint = cone.Position;
+            cone.Health.TakeDamage(10);
+            var owned = cone.GetComponentsInChildren<Transform>().ToArray();
+            Assert.AreEqual(1, Flammables.Near(basePoint, 0.01f).Count);
+            Assert.AreEqual(1, Flammables.Near(basePoint + Vector2.up * 2.5f, 0.01f).Count);
+            Object.Destroy(room);
+            yield return null;
+            yield return null;
+            Assert.IsTrue(owned.All(o => o == null));
+            Assert.AreEqual(0, Flammables.Near(basePoint, 3f).Count);
+            Assert.IsFalse(Resources.FindObjectsOfTypeAll<Mesh>().Any(m => m.name.StartsWith("Lepidodendron") && m.hideFlags == HideFlags.HideAndDontSave));
+        }
+
+        Health PrepareL4(bool final = true)
+        {
+            CreateWalker(boss.ArenaCenter);
+            var health = walker.AddComponent<Health>();
+            health.SetMax(100);
+            health.ResetHealth();
+            boss.ConePlayer = walker.transform;
+            if (final) boss.TestFinalPhase();
+            boss.TestAttackAction(4);
+            return health;
+        }
+
+        void StartL4(LepidodendronBoss.AttackKind kind)
+        {
+            Assert.IsTrue(boss.QueueAttack(kind));
+            boss.TickAttacks(0.001f);
+        }
+
+        [Test]
+        public void L4LatigazoAvisaRespetaPuntaYHaceDosUnaVez()
+        {
+            var health = PrepareL4();
+            walker.transform.position = boss.ArenaCenter + Vector2.left * 10f;
+            Physics2D.SyncTransforms();
+            StartL4(LepidodendronBoss.AttackKind.Whip);
+            boss.TickAttacks(0.799f);
+            Assert.AreEqual(100, health.Current);
+            boss.TickAttacks(0.12f); // Cuadro 2: la punta todavÃ­a no llega.
+            Assert.AreEqual(100, health.Current);
+            boss.TickAttacks(0.23f); // Cuadro 6: llega hasta 214 px.
+            Assert.AreEqual(98, health.Current);
+            boss.TickAttacks(0.3f);
+            boss.TickAttacks(0.25f);
+            Assert.AreEqual(98, health.Current);
+            Assert.IsTrue(boss.IsCanopyShaking);
+        }
+
+        [Test]
+        public void L4LatigazoAlternaLadoYNoGolpeaFueraDeFranja()
+        {
+            var health = PrepareL4();
+            StartL4(LepidodendronBoss.AttackKind.Whip);
+            var first = Scenery.Find("L4_Whip").GetComponent<SpriteRenderer>();
+            Assert.IsFalse(first.flipX);
+            walker.transform.position += Vector3.up * 3f;
+            Physics2D.SyncTransforms();
+            boss.TickAttacks(1.5f);
+            Assert.AreEqual(100, health.Current);
+            boss.TickAttacks(3f);
+            StartL4(LepidodendronBoss.AttackKind.Whip);
+            Assert.IsTrue(Scenery.GetComponentsInChildren<SpriteRenderer>().Single(r => r.gameObject.activeSelf && r.name == "L4_Whip").flipX);
+        }
+
+        [TestCase(false)]
+        [TestCase(true)]
+        public void L4CorroFijaElCentroYPermiteEsquivar(bool dodge)
+        {
+            var health = PrepareL4();
+            Physics2D.SyncTransforms();
+            StartL4(LepidodendronBoss.AttackKind.Spikes);
+            if (dodge) walker.transform.position += Vector3.right * 4f;
+            Physics2D.SyncTransforms();
+            boss.TickAttacks(0.779f);
+            Assert.AreEqual(100, health.Current);
+            boss.TickAttacks(0.002f);
+            Assert.AreEqual(dodge ? 100 : 98, health.Current);
+            boss.TickAttacks(0.2f);
+            Assert.AreEqual(dodge ? 100 : 98, health.Current);
+        }
+
+        [TestCase(false)]
+        [TestCase(true)]
+        public void L4EsporaSoloGolpeaEnCuadroCeroYCerca(bool dodge)
+        {
+            var health = PrepareL4();
+            boss.AddSpore(boss.ArenaCenter, 0.5f);
+            boss.TickAttacks(0.1f);
+            Assert.IsFalse(Scenery.Find("L4_Rain/Espora").GetComponent<SpriteRenderer>().enabled);
+            boss.TickAttacks(0.4f);
+            Assert.IsTrue(Scenery.Find("L4_Rain/Espora").GetComponent<SpriteRenderer>().enabled);
+            if (dodge) walker.transform.position += Vector3.right * 4f;
+            Physics2D.SyncTransforms();
+            boss.TickAttacks(0.99f);
+            Assert.AreEqual(100, health.Current);
+            boss.TickAttacks(0.02f);
+            Assert.AreEqual(dodge ? 100 : 99, health.Current);
+            walker.transform.position = boss.ArenaCenter;
+            Physics2D.SyncTransforms();
+            boss.TickAttacks(0.07f);
+            Assert.AreEqual(dodge ? 100 : 99, health.Current);
+        }
+
+        [Test]
+        public void L4ColaSeparaAvisosIncluidaTodaLaLluvia()
+        {
+            PrepareL4();
+            foreach (var kind in new[] { LepidodendronBoss.AttackKind.Rain, LepidodendronBoss.AttackKind.Whip,
+                LepidodendronBoss.AttackKind.Spikes, LepidodendronBoss.AttackKind.Corners }) boss.QueueAttack(kind);
+            boss.TickAttacks(0.001f);
+            float previous = boss.LastAttackStart, warning = boss.AttackWarningUntil;
+            int starts = 1;
+            for (int i = 0; i < 600; i++)
+            {
+                boss.TickAttacks(0.01f);
+                if (boss.LastAttackStart == previous) continue;
+                Assert.GreaterOrEqual(boss.LastAttackStart - previous, LepidodendronBoss.AttackGap);
+                Assert.GreaterOrEqual(boss.LastAttackStart, warning);
+                previous = boss.LastAttackStart;
+                warning = boss.AttackWarningUntil;
+                starts++;
+            }
+            Assert.AreEqual(4, starts);
+        }
+
+        [TestCase(0, 1f)]
+        [TestCase(1, 0.85f)]
+        [TestCase(2, 0.70f)]
+        [TestCase(3, 0.55f)]
+        [TestCase(4, 0.50f)]
+        public void L4CadenciaRestaQuincePuntosConSuelo(int broken, float expected)
+            => Assert.AreEqual(expected, LepidodendronBoss.AttackCadenceScale(broken), 0.0001f);
+
+        [Test]
+        public void L4CadenciaEmpiezaADosSegundosYSePuedePausar()
+        {
+            PrepareL4();
+            boss.TestAttackAction(4);
+            boss.TickAttacks(1.99f);
+            Assert.AreEqual(0, boss.ActiveAttackCount);
+            boss.TickAttacks(0f);
+            Assert.AreEqual(0, boss.ActiveAttackCount);
+            boss.TickAttacks(0.02f);
+            Assert.AreEqual(1, boss.ActiveAttackCount);
+        }
+
+        [Test]
+        public void L4ConoRotoAcortaIntervalosSinAdelantarElArranque()
+        {
+            PrepareL4();
+            boss.TestAttackAction(4);
+            boss.Cones[0].Health.Kill();
+            Assert.AreEqual(7f * 0.85f, boss.AttackInterval(LepidodendronBoss.AttackKind.Whip), 0.0001f);
+            Assert.AreEqual(9f * 0.85f, boss.AttackInterval(LepidodendronBoss.AttackKind.Spikes), 0.0001f);
+            Assert.AreEqual(12f * 0.85f, boss.AttackInterval(LepidodendronBoss.AttackKind.Rain), 0.0001f);
+            Assert.AreEqual(20f * 0.85f, boss.AttackInterval(LepidodendronBoss.AttackKind.Corners), 0.0001f);
+            boss.TickAttacks(1.9f);
+            Assert.AreEqual(0, boss.ActiveAttackCount);
+            boss.TickAttacks(0.11f);
+            Assert.AreEqual(1, boss.ActiveAttackCount);
+        }
+
+        [Test]
+        public void L4LluviaDeParedSoloActivaVivaYFueraDelCuerpo()
+        {
+            PrepareL4(false);
+            boss.TestAttackAction(4);
+            boss.TickAttacks(11f);
+            Assert.AreEqual(0, boss.ActiveAttackCount);
+            var wall = boss.Walls[0];
+            boss.StartWallWaves(wall);
+            boss.TickAttacks(0.01f);
+            boss.TickAttacks(10f);
+            Assert.That(boss.ActiveAttackCount, Is.InRange(3, 4));
+            foreach (var r in Scenery.GetComponentsInChildren<SpriteRenderer>().Where(r => r.name == "L4_Rain"))
+            {
+                float distance = Mathf.Abs(r.transform.position.x - wall.transform.position.x);
+                Assert.That(distance, Is.InRange(2.5f, 4f));
+                Assert.LessOrEqual(Mathf.Abs(r.transform.position.y - boss.ArenaCenter.y), 7f);
+            }
+            wall.Health.Kill();
+            boss.TickAttacks(0.01f);
+            Assert.AreEqual(0, boss.ActiveAttackCount);
+            boss.TickAttacks(20f);
+            Assert.AreEqual(0, boss.ActiveAttackCount);
+        }
+
+        [Test]
+        public void L4LluviaEsperaTresSegundosDesdeOleadaReciente()
+        {
+            PrepareL4(false);
+            boss.TestAttackAction(4);
+            var wall = boss.Walls[0];
+            boss.StartWallWaves(wall);
+            boss.TickAttacks(0.01f);
+            boss.TickAttacks(9f);
+            boss.NoteWallWave(wall);
+            boss.TickAttacks(1.1f);
+            Assert.AreEqual(0, boss.ActiveAttackCount);
+            boss.TickAttacks(1.8f);
+            Assert.AreEqual(0, boss.ActiveAttackCount);
+            boss.TickAttacks(0.11f);
+            Assert.That(boss.ActiveAttackCount, Is.InRange(3, 4));
+        }
+
+        [Test]
+        public void L4EsquinasDosEspeciesYTopeSeis()
+        {
+            PrepareL4();
+            EnableWaves();
+            for (int i = 0; i < 4; i++)
+            {
+                StartL4(LepidodendronBoss.AttackKind.Corners);
+                boss.TickAttacks(1.01f);
+                boss.TickAttacks(0.21f);
+                Assert.LessOrEqual(boss.LivingWaveEnemies, 6);
+                if (i == 0)
+                {
+                    var enemies = room.GetComponentsInChildren<Enemy>().Where(e => e != boss.GetComponent<Enemy>()).ToArray();
+                    Assert.AreEqual(2, enemies.Length);
+                    Assert.AreNotEqual(enemies[0].name, enemies[1].name);
+                }
+            }
+            Assert.AreEqual(6, boss.LivingWaveEnemies);
+        }
+
+        [UnityTest]
+        public IEnumerator L4MuerteJugadorLimpiaAtaquesEnemigosYTextura()
+        {
+            var health = PrepareL4();
+            EnableWaves();
+            StartL4(LepidodendronBoss.AttackKind.Corners);
+            var sprite = Scenery.Find("L4_Corners").GetComponent<SpriteRenderer>().sprite;
+            var texture = sprite.texture;
+            boss.TickAttacks(1.01f);
+            boss.QueueAttack(LepidodendronBoss.AttackKind.Rain);
+            health.Kill();
+            boss.TickAttacks(0f);
+            Assert.AreEqual(0, boss.ActiveAttackCount);
+            Assert.AreEqual(0, boss.PendingAttackCount);
+            Assert.AreEqual(0, boss.LivingWaveEnemies);
+            yield return null;
+            Assert.IsTrue(sprite == null);
+            Assert.IsTrue(texture == null);
+        }
+
+        [UnityTest]
+        public IEnumerator L4DestruirSalaLimpiaAvisosYTextura()
+        {
+            PrepareL4();
+            EnableWaves();
+            StartL4(LepidodendronBoss.AttackKind.Corners);
+            var sprite = Scenery.Find("L4_Corners").GetComponent<SpriteRenderer>().sprite;
+            var texture = sprite.texture;
+            Object.Destroy(room);
+            yield return null;
+            yield return null;
+            Assert.IsTrue(sprite == null);
+            Assert.IsTrue(texture == null);
+        }
+
+        [Test]
+        public void L4CambiarSalaCancelaColaYActivos()
+        {
+            PrepareL4();
+            StartL4(LepidodendronBoss.AttackKind.Spikes);
+            boss.QueueAttack(LepidodendronBoss.AttackKind.Rain);
+            var other = new GameObject("OtraSala");
+            other.AddComponent<BoxCollider2D>();
+            try
+            {
+                boss.AttackRoomEntered(other.AddComponent<Room>());
+                Assert.AreEqual(0, boss.ActiveAttackCount);
+                Assert.AreEqual(0, boss.PendingAttackCount);
+                Assert.IsFalse(boss.QueueAttack(LepidodendronBoss.AttackKind.Whip));
+            }
+            finally { Object.DestroyImmediate(other); }
+        }
+
+        [Test]
+        public void L4FinDeConosLimpiaAtaquesAlComenzarDesplome()
+        {
+            var health = PrepareL4();
+            StartL4(LepidodendronBoss.AttackKind.Spikes);
+            boss.QueueAttack(LepidodendronBoss.AttackKind.Rain);
+            boss.TestAttackAction(4); // Cadencia activa al terminar la fase.
+            foreach (var cone in boss.Cones) cone.Health.Kill();
+            Assert.IsTrue(boss.AllConesDestroyed);
+            Assert.AreEqual(0, boss.PendingAttackCount);
+            Assert.AreEqual(0, boss.ActiveAttackCount);
+            Physics2D.SyncTransforms();
+            boss.TickAttacks(0.79f);
+            Assert.AreEqual(100, health.Current);
+            boss.TickAttacks(30f);
+            Assert.AreEqual(0, boss.ActiveAttackCount);
+            Assert.AreEqual(0, boss.PendingAttackCount);
+            Assert.IsFalse(boss.QueueAttack(LepidodendronBoss.AttackKind.Whip));
+        }
+
+        [Test]
+        public void L4EsporasNoDananParedesConosNiArmadura()
+        {
+            PrepareL4(false);
+            foreach (var wall in boss.Walls) boss.AddSpore(wall.transform.position, 0f);
+            boss.TickAttacks(1.01f);
+            Assert.IsTrue(boss.Walls.All(w => w.Health.Current == 150));
+            boss.TestFinalPhase();
+            foreach (var cone in boss.Cones) boss.AddSpore(cone.Position, 0f);
+            boss.TickAttacks(1.01f);
+            Assert.IsTrue(boss.Cones.All(c => c.Health.Current == 50 && c.ArmorRemaining == 30));
         }
 
         void EnableWaves()
@@ -666,7 +1346,7 @@ namespace Primordia.Tests
         [UnityTest]
         public IEnumerator LaQuemaduraDeUnArmaPrendeLaBaseSinInventarImpactos()
         {
-            var wall = boss.Walls[2]; // La más gruesa: el registro de la base debe alcanzar también Burn.
+            var wall = boss.Walls[2]; // La mÃ¡s gruesa: el registro de la base debe alcanzar tambiÃ©n Burn.
             Burn.Apply(wall.Health, 1, 2f);
             yield return new WaitForSeconds(0.5f);
             Assert.IsTrue(wall.IsBurning);
@@ -688,6 +1368,279 @@ namespace Primordia.Tests
                 Assert.IsTrue(inactive.Health.IsInvulnerable);
             }
             finally { Object.DestroyImmediate(inactiveRoom); }
+        }
+
+        // ---- L5b: recompensa, sala del tocón y reliquia ----
+
+        IEnumerator CollapseNow()
+        {
+            CreateWalker(boss.TestStop(3));
+            walker.AddComponent<PlayerController>().readInput = false;
+            boss.TestEndingAction(0);
+            yield return new WaitForSeconds(7.2f);
+            Assert.IsTrue(boss.HasCollapsed);
+        }
+
+        LepidodendronPrompt PromptNamed(string title) =>
+            boss.GetComponentsInChildren<LepidodendronPrompt>(true).FirstOrDefault(p => p.Title == title);
+
+        [UnityTest]
+        public IEnumerator L5bLaRecompensaBajaTrasElDesplomeYElCorazonDaUnCorazonUnaVez()
+        {
+            yield return CollapseNow();
+            yield return new WaitForSeconds(0.6f);
+            Assert.IsTrue(boss.HeartDropped);
+            Assert.IsTrue(boss.SporeDropped);
+            var health = walker.GetComponent<Health>();
+            int max = health.Max;
+            var heart = boss.GetComponentsInChildren<LepidodendronDrop>().First(d => d.name == "Drop_Heart");
+            Assert.IsFalse(heart.Landed, "Todavía baja por la luz.");
+            yield return new WaitForSeconds(2.3f);
+            Assert.IsTrue(heart.Landed);
+            walker.transform.position = heart.transform.position;
+            yield return null; yield return null;
+            Assert.AreEqual(max + 2, health.Max);
+            Assert.IsTrue(RunInventory.HasFlag(RunInventory.LepidoHeartTaken));
+            Assert.IsNull(boss.GetComponentsInChildren<LepidodendronDrop>().FirstOrDefault(d => d.name == "Drop_Heart"));
+            boss.TestRewardAction(0); // Lo ya cogido no vuelve a bajar.
+            yield return new WaitForSeconds(0.6f);
+            Assert.IsNull(boss.GetComponentsInChildren<LepidodendronDrop>().FirstOrDefault(d => d.name == "Drop_Heart"));
+            Assert.AreEqual(max + 2, health.Max);
+        }
+
+        [UnityTest]
+        public IEnumerator L5bLaEsporaMoradaEntraEnObjetosClaveYLanzaSuPresentacion()
+        {
+            yield return CollapseNow();
+            yield return new WaitForSeconds(3f);
+            var spore = boss.GetComponentsInChildren<LepidodendronDrop>().First(d => d.name == "Drop_PurpleSpore");
+            walker.transform.position = spore.transform.position;
+            yield return null; yield return null;
+            Assert.IsTrue(RunInventory.Has(RunInventory.PurpleSpore));
+            Assert.AreEqual(1, RunInventory.KeyItems.Count);
+            Assert.IsTrue(Primordia.UI.RewardPresenter.Showing);
+            Assert.AreEqual(0f, Time.timeScale, "El juego se para durante la presentación.");
+            yield return new WaitForSecondsRealtime(4.3f);
+            Assert.IsFalse(Primordia.UI.RewardPresenter.Showing);
+            Assert.AreEqual(1f, Time.timeScale);
+            Assert.IsEmpty(RunInventory.Relics);
+        }
+
+        [UnityTest]
+        public IEnumerator L5bLaGrietaLlevaALaSalaYLaSalidaVuelve()
+        {
+            yield return CollapseNow();
+            var crack = PromptNamed("Grieta del tocón");
+            Assert.IsNotNull(crack);
+            Assert.IsFalse(boss.InStumpRoom);
+            crack.Interact(walker);
+            yield return new WaitForSecondsRealtime(1.8f);
+            Assert.IsTrue(boss.InStumpRoom);
+            Assert.IsNotNull(boss.StumpRoomRoot);
+            Assert.Less(Vector2.Distance(walker.transform.position, boss.StumpRoomPlayerStart), 0.5f);
+            Assert.IsTrue(boss.RelicOnPedestal);
+            Assert.IsNotNull(boss.StumpRoomRoot.Find("Wall").GetComponent<EdgeCollider2D>());
+            var exit = PromptNamed("Salir");
+            Assert.IsNotNull(exit);
+            exit.Interact(walker);
+            yield return new WaitForSecondsRealtime(1.8f);
+            Assert.IsFalse(boss.InStumpRoom);
+            Assert.Less(Vector2.Distance(walker.transform.position, boss.StumpCrack.position), 3f);
+        }
+
+        [UnityTest]
+        public IEnumerator L5bLaReliquiaSeCogeUnaVezDejaElPedestalVacioYCuraAlLlegarAUnPisoNuevo()
+        {
+            yield return CollapseNow();
+            PromptNamed("Grieta del tocón").Interact(walker);
+            yield return new WaitForSecondsRealtime(1.8f);
+            var relic = PromptNamed("Raíz ancestral");
+            Assert.IsTrue(relic.IsAvailable);
+            relic.Interact(walker);
+            yield return null;
+            Assert.IsTrue(RunInventory.Has(RunInventory.RootAncestral));
+            Assert.IsFalse(boss.RelicOnPedestal);
+            Assert.IsFalse(relic.IsAvailable);
+            yield return new WaitForSecondsRealtime(4.6f);
+            Assert.IsFalse(Primordia.UI.RewardPresenter.Showing);
+            var pedestal = boss.StumpRoomRoot.Find("Pedestal").GetComponent<SpriteRenderer>();
+            Assert.That(pedestal.sprite.name, Does.Contain("Pedestal_Empty"));
+            relic.Interact(walker); // Ya no hace nada: una sola reliquia.
+            Assert.AreEqual(1, RunInventory.Relics.Count);
+            var health = walker.GetComponent<Health>();
+            health.TakeDamage(health.Current - 1);
+            RunInventory.OnFloorEntered(walker);
+            Assert.AreEqual(health.Max, health.Current);
+        }
+
+        [Test]
+        public void L5bSinLaReliquiaUnPisoNuevoNoCura()
+        {
+            CreateWalker(boss.TestStop(3));
+            var health = walker.AddComponent<Health>();
+            health.TakeDamage(1);
+            int before = health.Current;
+            RunInventory.OnFloorEntered(walker);
+            Assert.AreEqual(before, health.Current);
+        }
+
+        [Test]
+        public void L5bLaPausaMuestraLasFilasSoloSiHayObjetos()
+        {
+            var panel = new GameObject("Pausa");
+            try
+            {
+                var row = panel.AddComponent<Primordia.UI.PauseRelicsRow>();
+                row.Rebuild();
+                Assert.AreEqual(0, row.RowCount);
+                Assert.IsFalse(row.ShowsRelics);
+                Assert.IsFalse(row.ShowsKeyItems);
+                RunInventory.AddKeyItem(new RunInventory.Entry { Id = RunInventory.PurpleSpore, Name = "Espora morada", Effect = "x" });
+                row.Rebuild();
+                Assert.IsTrue(row.ShowsKeyItems);
+                Assert.IsFalse(row.ShowsRelics);
+                Assert.AreEqual(2, row.RowCount); // encabezado + una fila
+                RunInventory.AddRelic(new RunInventory.Entry { Id = RunInventory.RootAncestral, Name = "Raíz ancestral", Effect = "y" });
+                row.Rebuild();
+                Assert.IsTrue(row.ShowsRelics);
+                Assert.AreEqual(4, row.RowCount);
+            }
+            finally { Object.DestroyImmediate(panel); }
+        }
+
+        [Test]
+        public void L5bLaSalaDelToconNoSeCreaAntesDelDesplome()
+        {
+            Assert.IsNull(boss.StumpRoomRoot);
+            Assert.IsFalse(boss.InStumpRoom);
+            Assert.IsFalse(boss.HeartDropped);
+            Assert.AreEqual("Primero fuerza el desplome (Alt+F1)", boss.TestRewardAction(0));
+        }
+
+        // ---- Correcciones tras la primera prueba de la usuaria ----
+
+        [UnityTest]
+        public IEnumerator FaseFinalSoloEmpiezaAlLlegarAlCentroDeLaArena()
+        {
+            var body = CreateWalker(boss.TestStop(2));
+            walker.AddComponent<PlayerController>().readInput = false;
+            foreach (var wall in boss.Walls) wall.Health.Kill();
+            Assert.IsTrue(boss.FinalPhaseReady);
+            Assert.IsFalse(boss.FinalEngaged);
+            yield return new WaitForSeconds(5f);
+            Assert.IsFalse(boss.FinalEngaged, "Lejos de la arena el jefe no ataca.");
+            Assert.IsTrue(boss.Cones.All(c => c.State == LepidodendronCone.Phase.Hanging));
+            Assert.AreEqual(0, boss.ActiveAttackCount);
+            Assert.AreEqual(0, boss.PendingAttackCount);
+            body.position = boss.ArenaCenter;
+            walker.transform.position = boss.ArenaCenter;
+            yield return new WaitForSeconds(0.5f);
+            Assert.IsTrue(boss.FinalEngaged);
+            Assert.IsTrue(boss.Cones.Any(c => c.State != LepidodendronCone.Phase.Hanging), "Baja un cono al llegar.");
+        }
+
+        [Test]
+        public void ElCartelDelLinajeSeApagaSoloAunqueUnaCinematicaLoDejaraVisible()
+        {
+            var go = new GameObject("Cartel", typeof(CanvasGroup));
+            try
+            {
+                var banner = go.AddComponent<Primordia.UI.LineageBanner>();
+                var group = go.GetComponent<CanvasGroup>();
+                group.alpha = 1f; // Lo que restaura CinematicOverlay tras guardar el alfa con el cartel visible.
+                var update = typeof(Primordia.UI.LineageBanner).GetMethod("Update", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+                update.Invoke(banner, null);
+                Assert.AreEqual(0f, group.alpha);
+            }
+            finally { Object.DestroyImmediate(go); }
+        }
+
+        [Test]
+        public void LaBarraDelJefeSecretoEsMasPequenaYMasBajaQueLaDeLosDemas()
+        {
+            var skin = boss.GetComponent<Primordia.UI.BossBarAppearance>().Skin;
+            Assert.IsTrue(skin.IsLepidodendron);
+            var canvas = new GameObject("Canvas", typeof(RectTransform));
+            try
+            {
+                var bar = new GameObject("Bar", typeof(RectTransform)).GetComponent<RectTransform>();
+                bar.SetParent(canvas.transform, false);
+                var view = System.Activator.CreateInstance(typeof(Primordia.UI.BossHealthBar).GetNestedType("SkinView", System.Reflection.BindingFlags.NonPublic),
+                    skin, bar, boss.PhaseThresholds, 12f);
+                var root = (RectTransform)view.GetType().GetField("root", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic).GetValue(view);
+                Assert.Less(root.localScale.x, 1f);
+                Assert.Less(root.anchoredPosition.y, 24f);
+            }
+            finally { Object.DestroyImmediate(canvas); }
+        }
+
+        [Test]
+        public void ElAvisoDelConoMarcaElSueloDesdeElAvisoHastaElGolpe()
+        {
+            boss.TestFinalPhase();
+            var cone = boss.Cones[0];
+            var marker = cone.transform.Find("Marker").GetComponent<SpriteRenderer>();
+            Assert.IsFalse(marker.enabled);
+            float now = Time.time;
+            Assert.IsTrue(cone.BeginDrop(LepidodendronCone.WarningSeconds, Vector2.zero, now));
+            Assert.IsTrue(marker.enabled, "Marca visible durante el aviso.");
+            cone.Tick(now + LepidodendronCone.WarningSeconds + 0.1f);
+            Assert.AreEqual(LepidodendronCone.Phase.Shadow, cone.State);
+            Assert.IsTrue(marker.enabled);
+            cone.Tick(now + LepidodendronCone.WarningSeconds + LepidodendronCone.ShadowSeconds + LepidodendronCone.DescentSeconds + 0.001f);
+            Assert.IsFalse(marker.enabled, "Tras el golpe la marca desaparece.");
+        }
+
+        [Test]
+        public void ConAlgunConoVivoElJefeNoMuereAunqueSeRompaLaArmaduraDeLosTres()
+        {
+            var cones = new[] { GroundCone(0), GroundCone(1), GroundCone(2) };
+            foreach (var cone in cones) cone.Health.TakeDamage(30); // Rompe la armadura de los tres.
+            Assert.IsTrue(cones.All(c => c.ArmorRemaining == 0));
+            Assert.AreEqual(150, boss.Health.Current);
+            cones[0].Health.TakeDamage(1000);
+            Assert.IsTrue(cones[0].Broken);
+            Assert.IsFalse(cones[1].Broken);
+            Assert.IsFalse(cones[2].Broken);
+            Assert.IsFalse(boss.AllConesDestroyed);
+            Assert.AreEqual(100, boss.Health.Current);
+            cones[1].Health.TakeDamage(1000);
+            Assert.IsFalse(boss.AllConesDestroyed);
+            Assert.AreEqual(50, boss.Health.Current);
+        }
+
+        [Test]
+        public void ElTroncoNoRecibeDanoYHayQueRomperLosTresConosParaVencerAlJefe()
+        {
+            boss.TestFinalPhase();
+            for (int i = 0; i < 100; i++) boss.Health.TakeDamage(1000); // Mucho daño al tronco.
+            Assert.AreEqual(150, boss.Health.Current);
+            Assert.IsTrue(boss.Cones.All(c => !c.Broken && c.Health.Current == 50));
+            for (int i = 0; i < 3; i++)
+            {
+                var cone = GroundCone(i);
+                cone.Health.TakeDamage(30); // Armadura.
+                Assert.IsFalse(boss.AllConesDestroyed);
+                cone.Health.TakeDamage(1000);
+                Assert.IsTrue(cone.Broken);
+                Assert.AreEqual(150 - 50 * (i + 1), boss.Health.Current);
+            }
+            Assert.IsTrue(boss.AllConesDestroyed);
+        }
+
+        [Test]
+        public void LasOleadasDeUnaParedAparecenAlrededorDelJugadorYNoALoLejos()
+        {
+            CreateWalker(boss.TestStop(0)); // Junto a la pared 1, en su tramo.
+            var player = walker.transform.position;
+            walker.AddComponent<PlayerController>().readInput = false;
+            for (int i = 0; i < 30; i++)
+            {
+                Assert.IsTrue(boss.FindWallSpawn(0, out var spot));
+                float distance = Vector2.Distance(player, spot);
+                Assert.GreaterOrEqual(distance, 5f, "Nunca encima del jugador.");
+                Assert.LessOrEqual(distance, 14f, "Dentro de lo que ve el jugador, no al otro lado del pasillo.");
+            }
         }
     }
 }

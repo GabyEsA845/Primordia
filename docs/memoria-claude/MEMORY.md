@@ -49,7 +49,7 @@
 - [Cuerpo evolutivo](primordia-evolving-body.md) — DESCARTADO, no integrar
 
 ## Terminado (detalles de implementación)
-- [Jefe secreto Lepidodendron](primordia-boss-lepidodendron.md) — TERMINADO (commit bf0e8bf): resumen para importarlo e implementarlo
+- [Jefe secreto Lepidodendron](primordia-boss-lepidodendron.md) — arte TERMINADO; CÓDIGO L1-L5b hecho (ramas codex/lepido-3..5b sin fusionar, la usuaria prueba); reglas de combate vigentes (tronco sin daño, fase final al llegar al centro); falta enganche al piso, sonido y documento
 - [Sprites: estado](primordia-sprites-next.md) — personajes, HUD, menús, minimapa, tienda
 - [Biomasa y tienda](primordia-biomass-shop.md)
 - [Esporas y Aguijón](primordia-spores-stinger.md)

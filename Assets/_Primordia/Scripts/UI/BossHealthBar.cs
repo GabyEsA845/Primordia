@@ -47,6 +47,7 @@ namespace Primordia.UI
         // El aspecto propio queda bajo el nombre, a esta distancia del borde de arriba de la barra.
         const float SkinTop = 12f;
         const float SkinBottomMargin = 24f; // Provisional.
+        const float LepidodendronScale = 0.7f, LepidodendronBottomMargin = 6f; // Provisional: la barra del jefe secreto tapaba mucha vista.
         const float LowHealthFraction = 0.10f;
         const float LowHealthShake = 1f;
 
@@ -118,7 +119,7 @@ namespace Primordia.UI
             if (skinView != null)
             {
                 var phased = boss as IPhasedBoss;
-                skinView.Apply(phased?.PhaseIndex ?? 0, Style == BossBarStyle.Immune, shown, trail, Time.unscaledTime, ratio <= LowHealthFraction);
+                skinView.Apply(phased?.PhaseIndex ?? 0, Style == BossBarStyle.Immune, shown, trail, Time.unscaledTime, ratio <= LowHealthFraction, boss as LepidodendronBoss);
             }
             else
             {
@@ -264,6 +265,8 @@ namespace Primordia.UI
             readonly Image phaseChange;
             readonly Image lowSparks;
             readonly Vector2 position;
+            readonly List<Image> cones = new();
+            float conesAt = float.PositiveInfinity;
             readonly List<Notch> notches = new();
             bool first = true;
             int lastPhase = -1;
@@ -285,9 +288,11 @@ namespace Primordia.UI
                 // La raíz de la barra está arriba; el aspecto inferior se ancla al contenedor de pantalla.
                 root.SetParent(skin.BottomAnchored ? parent.parent : parent, false);
                 root.anchorMin = root.anchorMax = root.pivot = new Vector2(0.5f, skin.BottomAnchored ? 0f : 1f);
-                position = new Vector2(0f, skin.BottomAnchored ? SkinBottomMargin : -top);
+                position = new Vector2(0f, skin.BottomAnchored ? (skin.IsLepidodendron ? LepidodendronBottomMargin : SkinBottomMargin) : -top);
                 root.anchoredPosition = position;
                 root.sizeDelta = size;
+                if (skin.IsLepidodendron)
+                    root.localScale = Vector3.one * LepidodendronScale;
 
                 var window = skin.Window;
                 var windowPosition = new Vector2(window.x, window.y);
@@ -307,19 +312,23 @@ namespace Primordia.UI
                         var effectSize = skin.NotchBreak.Length > 0 ? skin.NotchBreak[0].rect.size : plateSize;
                         notches.Add(new Notch
                         {
-                            Plate = Piece("Notch", skin.Notch, new Vector2(x, 0f), plateSize, new Vector2(0.5f, 0f)),
-                            Effect = Piece("NotchBreak", null, new Vector2(x, Mathf.Round(size.y * 0.5f)), effectSize, new Vector2(0.5f, 0.5f)),
+                            Plate = Piece("Notch", skin.Notch, new Vector2(x, skin.IsLepidodendron ? size.y - 27f : 0f), plateSize, new Vector2(0.5f, 0f)),
+                            Effect = Piece("NotchBreak", null, new Vector2(x, skin.IsLepidodendron ? size.y - 17f : Mathf.Round(size.y * 0.5f)), effectSize, new Vector2(0.5f, 0.5f)),
                         });
                     }
                 }
 
-                eyes = Piece("Eyes", null, Vector2.zero, size, Vector2.zero);
+                eyes = Piece("Eyes", null, skin.IsLepidodendron ? new Vector2(0f, size.y - 44f) : Vector2.zero,
+                    skin.IsLepidodendron ? new Vector2(46f, 44f) : size, Vector2.zero);
+                if (skin.IsLepidodendron)
+                    for (int i = 0; i < 3; i++)
+                        cones.Add(Piece($"Cone{i + 1}", null, new Vector2(56f + i * 18f, size.y - 44f), new Vector2(12f, 20f), Vector2.zero));
                 phaseChange = Piece("PhaseChange", null, Vector2.zero, size, Vector2.zero);
                 phaseChange.enabled = false;
                 lowSparks = Piece("LowSparks", null, Vector2.zero, size, Vector2.zero);
             }
 
-            public void Apply(int phase, bool dark, float shown, float trailRatio, float now, bool lowHealth)
+            public void Apply(int phase, bool dark, float shown, float trailRatio, float now, bool lowHealth, LepidodendronBoss lepido)
             {
                 root.gameObject.SetActive(true);
                 var look = dark ? Skin.Dark : Skin.Phase(phase);
@@ -328,6 +337,16 @@ namespace Primordia.UI
                 fill.sprite = Skin.Loop(look.fill, now, look.fillFrameTime);
                 fill.enabled = fill.sprite != null;
                 eyes.sprite = Skin.Loop(frameLook.eyes, now, frameLook.eyesFrameTime);
+                if (lepido != null && Skin.IsLepidodendron)
+                {
+                    eyes.sprite = Skin.HeadHitFrame(now - lepido.BarHitAt) ?? eyes.sprite;
+                    if (lepido.FinalPhaseReady && float.IsPositiveInfinity(conesAt)) conesAt = now;
+                    for (int i = 0; i < cones.Count; i++)
+                    {
+                        cones[i].enabled = lepido.FinalPhaseReady;
+                        if (lepido.FinalPhaseReady) cones[i].sprite = Skin.ConeFrame(lepido.BarConeState(i), now - conesAt, now);
+                    }
+                }
                 eyes.enabled = eyes.sprite != null;
                 fill.fillAmount = Pixels(shown);
                 trail.fillAmount = Pixels(trailRatio);
@@ -335,7 +354,7 @@ namespace Primordia.UI
                 for (int i = 0; i < notches.Count; i++)
                 {
                     var notch = notches[i];
-                    bool broken = phase > i;
+                    bool broken = lepido != null ? lepido.Walls[i].Fallen : phase > i;
                     if (broken != notch.Broken)
                     {
                         notch.Broken = broken;
@@ -346,7 +365,7 @@ namespace Primordia.UI
                     var effect = notch.Broken ? Skin.NotchBreakFrame(now - notch.BreakStart) : null;
                     notch.Effect.sprite = effect;
                     notch.Effect.enabled = effect != null;
-                    notch.Plate.sprite = notch.Broken ? Skin.NotchBroken : Skin.Notch;
+                    notch.Plate.sprite = notch.Broken ? Skin.NotchBroken : lepido != null && Skin.IsLepidodendron ? Skin.KnotFrame(now, lepido.BarKnotHit(i)) : Skin.Notch;
                     notch.Plate.enabled = effect == null && notch.Plate.sprite != null;
                 }
 

@@ -5,10 +5,10 @@ using UnityEngine;
 
 namespace Primordia.Enemies
 {
-    /// <summary>Jefe secreto: escenario L1 y paredes/oleadas L2; el tronco sigue invulnerable.</summary>
+    /// <summary>Jefe secreto: escenario L1, paredes/oleadas L2 y fase final de conos L3.</summary>
     [DefaultExecutionOrder(1000)]
     [RequireComponent(typeof(Health), typeof(Enemy), typeof(Rigidbody2D))]
-    public partial class LepidodendronBoss : MonoBehaviour, IBoss
+    public partial class LepidodendronBoss : MonoBehaviour, IBoss, IPhasedBoss
     {
         public const int MaxHealth = 600;
         public const float CorridorLength = 116f, CorridorHeight = 18f;
@@ -71,18 +71,31 @@ namespace Primordia.Enemies
 
         void OnEnable()
         {
-            Health.IsInvulnerable = true;
+            Health.IsInvulnerable = !FinalPhaseReady || AllConesDestroyed;
+            MethaneSubscribe();
+            SubscribeAttacks();
+            ConesDestroyed += StartCollapse;
+            Health.Changed += BarHealthChanged;
+            presentation = StartCoroutine(AutoPresentation());
             ActiveBoss.Set(this);
         }
 
         void OnDisable()
         {
+            ConesDestroyed -= StartCollapse;
+            Health.Changed -= BarHealthChanged;
+            StopAllCoroutines();
+            ReleaseCinematic();
+            IntroPlaying = false;
+            MethaneUnsubscribe();
+            UnsubscribeAttacks();
             ActiveBoss.Clear(this);
             zoom?.Restore();
             zoom = null;
             if (lookAhead != null)
                 lookAhead.ClearFocus();
             zoomAmount = 0f;
+            ReleaseRewardAssets();
         }
 
         void OnDestroy()
@@ -103,11 +116,12 @@ namespace Primordia.Enemies
             wallRoom = center;
             transform.position = Foot;
             BuildScenery();
+            BuildCones();
             built = true;
         }
 
-        public void PlayIntroPose(float hold) { }
-        public void BeginFight() { } // L2 empieza al activarse la sala; la fase final aún no ataca.
+        public void PlayIntroPose(float hold) { WarnCones(Time.time, hold); }
+        public void BeginFight() { } // Las paredes activan sus oleadas y la tercera rotura inicia los conos.
 
         public Vector2 TestStop(int index) => index < 3
             ? entrance + Vector2.right * (WallX(index) - WallThickness(index) / 2f - TestClearance)
@@ -140,10 +154,17 @@ namespace Primordia.Enemies
                 if (controller != null)
                     player = controller.transform;
             }
-            UpdateCamera();
+            if (!IntroPlaying && !Collapsing) UpdateCamera();
             Animate();
             UpdateCritters();
-            UpdateWallWaves();
+            if (FightReady)
+            {
+                if (!attacksCancelled) UpdateWallWaves();
+                CheckFinalEngagement();
+            UpdateCones(Time.time);
+                TickAttacks(Time.deltaTime);
+            }
+            if (!Collapsing && !HasCollapsed) AnimateConeSignals();
             if (Time.time >= nextFall)
             {
                 nextFall = Time.time + IdleFallEvery;
@@ -182,6 +203,17 @@ namespace Primordia.Enemies
         {
             if (player == null)
                 return;
+            if (InStumpRoom)
+            {
+                // Dentro del tocón la vista es la normal (480×270) y se queda en la sala.
+                if (zoom != null)
+                {
+                    zoomAmount = Mathf.MoveTowards(zoomAmount, 0f, Time.deltaTime / CameraTransition);
+                    zoom.Set(zoomAmount);
+                }
+                lookAhead?.SetFocus(StumpRoomCenter, 1f);
+                return;
+            }
             float x = player.position.x - entrance.x;
             bool inside = x >= 0f && x <= CorridorLength + ArenaWidth && Mathf.Abs(player.position.y - entrance.y) <= ArenaHeight / 2f;
             float target = inside && x >= CorridorLength ? 1f : 0f;

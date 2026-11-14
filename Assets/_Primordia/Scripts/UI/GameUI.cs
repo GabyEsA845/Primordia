@@ -31,6 +31,8 @@ namespace Primordia.UI
                 return;
 
             manager.StateChanged += OnStateChanged;
+            if (pausePanel != null && pausePanel.GetComponent<PauseRelicsRow>() == null)
+                pausePanel.AddComponent<PauseRelicsRow>();
             Show(manager.State);
         }
 

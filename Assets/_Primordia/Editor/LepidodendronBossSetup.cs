@@ -38,7 +38,7 @@ namespace Primordia.Editor
             AssetDatabase.SaveAssets();
             CreateTestScene();
             AssetDatabase.SaveAssets();
-            Debug.Log("Lepidodendron L2 creado: paredes, nudos, fuego y oleadas; escena L1 ampliada.");
+            Debug.Log("Lepidodendron L5b creado: paredes, conos, ataques, desplome y recompensa con la sala del tocón.");
         }
 
         static RoomTemplate CreateRoom()
@@ -88,6 +88,13 @@ namespace Primordia.Editor
                 serialized.ApplyModifiedPropertiesWithoutUndo();
                 var boss = root.AddComponent<LepidodendronBoss>();
                 boss.Configure(art);
+                root.AddComponent<Primordia.UI.BossBarAppearance>().Configure(ArtSetup.CreateLepidodendronBarSkin());
+                boss.ConfigureIntro(ArtSetup.CreateLepidodendronIntro());
+                var heart = AssetDatabase.LoadAllAssetsAtPath("Assets/_Primordia/Art/Shop/Items/Item_HeartContainer_Idle.png")
+                    .OfType<Sprite>().OrderBy(s => int.Parse(s.name.Substring(s.name.LastIndexOf('_') + 1))).ToArray();
+                if (heart.Length == 0)
+                    throw new InvalidOperationException("Falta el corazón de la tienda (Item_HeartContainer_Idle): importa antes la tienda.");
+                boss.ConfigureReward(heart, floor3.Pieces.keyPrompt);
                 var enemies = new[] { "Calamites", "Toad", "Spider", "Beetle", "Dragonfly" }
                     .Select(name => AssetDatabase.LoadAssetAtPath<GameObject>($"Assets/_Primordia/Prefabs/Enemies/Enemy_{name}.prefab")?.GetComponent<Enemy>()).ToArray();
                 var fern = floor3.BandThemes.Where(t => t != null).SelectMany(t => t.Ferns).FirstOrDefault(f => f != null && f.IsValid && f.IsBurnable);

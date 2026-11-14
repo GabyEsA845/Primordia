@@ -103,7 +103,13 @@ namespace Primordia.UI
         void Update()
         {
             if (shownFor < 0f)
+            {
+                // Reposo: invisible siempre. CinematicOverlay restaura el alfa que guardó al empezar una escena y, si el
+                // cartel acabó durante ella, lo dejaba fijo en pantalla.
+                if (group.alpha != 0f)
+                    group.alpha = 0f;
                 return;
+            }
 
             // El saltito, en tiempo real; lo que dura, con el tiempo del juego.
             float pop = Mathf.Clamp01((Time.unscaledTime - popStart) / popDuration);

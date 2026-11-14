@@ -14,6 +14,12 @@ namespace Primordia.Rooms
     /// </summary>
     public class MethaneSac : MonoBehaviour, IFlammable, IToxifiable
     {
+        /// <summary>Un aviso por odre al empezar a reventar, tanto por golpe como por fuego.</summary>
+        public static event System.Action<MethaneSac> BurstStarted;
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        static void ResetStatics() => BurstStarted = null;
+
         const float IdleFrameSeconds = 0.26f;
         const float BurstFrameSeconds = 0.06f;
         // Cuadro de la hinchazón en el que explota.
@@ -165,6 +171,7 @@ namespace Primordia.Rooms
             if (state != State.Idle)
                 return;
             state = State.Bursting;
+            BurstStarted?.Invoke(this);
             Flammables.Unregister(this);
             if (glow != null)
                 glow.gameObject.SetActive(false);

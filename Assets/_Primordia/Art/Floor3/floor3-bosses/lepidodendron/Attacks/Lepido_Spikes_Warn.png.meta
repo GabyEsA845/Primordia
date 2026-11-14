@@ -70,9 +70,9 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 16
@@ -98,7 +98,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -142,12 +142,12 @@ TextureImporter:
       name: Lepido_Spikes_Warn_0
       rect:
         serializedVersion: 2
-        x: 23
-        y: 10
-        width: 17
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 0
+        width: 80
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -164,12 +164,12 @@ TextureImporter:
       name: Lepido_Spikes_Warn_1
       rect:
         serializedVersion: 2
-        x: 39
-        y: 10
-        width: 19
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 80
+        y: 0
+        width: 80
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -186,12 +186,12 @@ TextureImporter:
       name: Lepido_Spikes_Warn_2
       rect:
         serializedVersion: 2
-        x: 99
-        y: 10
-        width: 21
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 160
+        y: 0
+        width: 80
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -208,12 +208,12 @@ TextureImporter:
       name: Lepido_Spikes_Warn_3
       rect:
         serializedVersion: 2
-        x: 119
-        y: 10
-        width: 23
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 240
+        y: 0
+        width: 80
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -230,12 +230,12 @@ TextureImporter:
       name: Lepido_Spikes_Warn_4
       rect:
         serializedVersion: 2
-        x: 179
-        y: 10
-        width: 21
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 320
+        y: 0
+        width: 80
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -252,12 +252,12 @@ TextureImporter:
       name: Lepido_Spikes_Warn_5
       rect:
         serializedVersion: 2
-        x: 195
-        y: 6
-        width: 27
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 400
+        y: 0
+        width: 80
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1875}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -266,72 +266,6 @@ TextureImporter:
       bones: []
       spriteID: 1d6e47272e717d2e0800000000000000
       internalID: -2101184439794735407
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Spikes_Warn_6
-      rect:
-        serializedVersion: 2
-        x: 259
-        y: 6
-        width: 43
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 206e58712dc01efc0800000000000000
-      internalID: -3467476141621254654
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Spikes_Warn_7
-      rect:
-        serializedVersion: 2
-        x: 334
-        y: 6
-        width: 48
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d2276694d9d0d9bc0800000000000000
-      internalID: -3774845943474130387
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lepido_Spikes_Warn_8
-      rect:
-        serializedVersion: 2
-        x: 414
-        y: 6
-        width: 48
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b4c25ed8f2d5d21e0800000000000000
-      internalID: -2221016582398333877
       vertices: []
       indices: 
       edges: []
@@ -356,9 +290,6 @@ TextureImporter:
       Lepido_Spikes_Warn_3: 4467603562939771053
       Lepido_Spikes_Warn_4: -9109545883223290745
       Lepido_Spikes_Warn_5: -2101184439794735407
-      Lepido_Spikes_Warn_6: -3467476141621254654
-      Lepido_Spikes_Warn_7: -3774845943474130387
-      Lepido_Spikes_Warn_8: -2221016582398333877
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

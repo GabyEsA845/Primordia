@@ -67,9 +67,9 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 16
@@ -95,7 +95,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -139,12 +139,12 @@ TextureImporter:
       name: Lepido_Whip_Warn_0
       rect:
         serializedVersion: 2
-        x: 9
-        y: 15
-        width: 59
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 0
+        width: 352
+        height: 56
+      alignment: 9
+      pivot: {x: 0, y: 0.39285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -161,12 +161,12 @@ TextureImporter:
       name: Lepido_Whip_Warn_1
       rect:
         serializedVersion: 2
-        x: 361
-        y: 15
-        width: 110
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 352
+        y: 0
+        width: 352
+        height: 56
+      alignment: 9
+      pivot: {x: 0, y: 0.39285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -183,12 +183,12 @@ TextureImporter:
       name: Lepido_Whip_Warn_2
       rect:
         serializedVersion: 2
-        x: 713
-        y: 15
-        width: 164
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 704
+        y: 0
+        width: 352
+        height: 56
+      alignment: 9
+      pivot: {x: 0, y: 0.39285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -205,12 +205,12 @@ TextureImporter:
       name: Lepido_Whip_Warn_3
       rect:
         serializedVersion: 2
-        x: 1065
-        y: 15
-        width: 218
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1056
+        y: 0
+        width: 352
+        height: 56
+      alignment: 9
+      pivot: {x: 0, y: 0.39285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -227,12 +227,12 @@ TextureImporter:
       name: Lepido_Whip_Warn_4
       rect:
         serializedVersion: 2
-        x: 1417
-        y: 15
-        width: 272
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1408
+        y: 0
+        width: 352
+        height: 56
+      alignment: 9
+      pivot: {x: 0, y: 0.39285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -249,12 +249,12 @@ TextureImporter:
       name: Lepido_Whip_Warn_5
       rect:
         serializedVersion: 2
-        x: 1769
-        y: 14
-        width: 328
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1760
+        y: 0
+        width: 352
+        height: 56
+      alignment: 9
+      pivot: {x: 0, y: 0.39285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -271,12 +271,12 @@ TextureImporter:
       name: Lepido_Whip_Warn_6
       rect:
         serializedVersion: 2
-        x: 2121
-        y: 14
-        width: 327
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 2112
+        y: 0
+        width: 352
+        height: 56
+      alignment: 9
+      pivot: {x: 0, y: 0.39285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -293,12 +293,12 @@ TextureImporter:
       name: Lepido_Whip_Warn_7
       rect:
         serializedVersion: 2
-        x: 2473
-        y: 14
-        width: 327
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 2464
+        y: 0
+        width: 352
+        height: 56
+      alignment: 9
+      pivot: {x: 0, y: 0.39285713}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []

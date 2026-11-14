@@ -65,8 +65,33 @@ namespace Primordia.Enemies
                         foreach (string suffix in new[] { "Idle", "Hit", "Wound", "WoundCharred" })
                             yield return $"Lepido_Wall{wall}_Knot{knot}_{suffix}";
                 }
+                foreach (string attack in new[] { "Lepido_Whip_Warn", "Lepido_Whip_Sweep", "Lepido_Whip_Furrow",
+                    "Lepido_Spikes_Warn", "Lepido_Spikes_Erupt", "Lepido_Spikes_Scar",
+                    "Proj_LepidoSpore", "Fx_LepidoSporeMark", "Fx_LepidoSporeSplash" })
+                    yield return attack;
+                foreach (string reward in new[] { "Fx_HeartGlow", "Fx_RewardShadow", "Fx_StumpRoom_Light", "Fx_StumpRoom_Rays", "Item_PurpleSpore_Big",
+                    "Item_PurpleSpore_Fall", "Item_PurpleSpore_Idle", "Lepido_Pedestal_Empty", "Lepido_Pedestal_Fade", "Lepido_Pedestal_Lit",
+                    "Lepido_StumpRoom", "Lepido_StumpRoom_Exit", "Relic_RootAncestral_Big", "Relic_RootAncestral_Idle", "Title_Key_PurpleSpore",
+                    "Title_Relic_RootAncestral", "UI_RelicFillet_Bottom", "UI_RelicFillet_Top", "UI_RelicHalo", "Icon_PurpleSpore_16",
+                    "Icon_PurpleSpore_32", "Icon_RootAncestral_16", "Icon_RootAncestral_32" })
+                    yield return reward;
                 yield return "Fx_KnotBurst";
                 yield return "Fx_RootSmolder";
+                foreach (string name in new[] { "Lepido_Veins_Warn", "Lepido_Veins_Hit",
+                    "Lepido_ShroomA_Warn", "Lepido_ShroomB_Warn", "Lepido_ShroomC_Warn",
+                    "Lepido_ConeBranch_Tile", "Lepido_ConeBranch_Torn", "Lepido_Cone_Shatter", "Lepido_Cone_ShatterCharred",
+                    "Lepido_Cone_Exposed_Idle", "Lepido_Cone_Exposed_Hurt", "Lepido_Cone_Burst", "Lepido_Cone_Husk",
+                    "Fx_ConeShadow", "Fx_ConeSlam", "Fx_ConeCrater", "Fx_ConeLift", "Fx_ArmorChip", "Fx_ArmorChipCharred" })
+                    yield return name;
+                for (int state = 0; state < 3; state++)
+                {
+                    foreach (string prefix in new[] { "Armor", "ArmorCharred" })
+                    {
+                        yield return $"Lepido_Cone_{prefix}{state}";
+                        yield return $"Lepido_Cone_{prefix}{state}_Hurt";
+                    }
+                    yield return $"Lepido_Cone_Burn{state}";
+                }
             }
         }
 
@@ -302,8 +327,8 @@ namespace Primordia.Enemies
                 var frames = art.Find(v.sheet).sprites;
                 v.renderer.sprite = frames[(Mathf.FloorToInt(Time.time / v.step + v.phase)) % frames.Length];
             }
-            var canopyFrames = art.Find(IsCanopyShaking ? "Canopy_Arena_Shake" : "Canopy_Arena_Sway").sprites;
-            arenaCanopy.sprite = canopyFrames[Mathf.FloorToInt(Time.time / (IsCanopyShaking ? CanopyShakeStep : CanopySwayStep)) % canopyFrames.Length];
+            var canopyFrames = art.Find(HasCollapsed || fallen != null && fallen.name == "FallenTrunk" ? "Canopy_Arena_Torn_Sway" : IsCanopyShaking ? "Canopy_Arena_Shake" : "Canopy_Arena_Sway").sprites;
+            if (!Collapsing || fallen != null && fallen.name == "FallenTrunk") arenaCanopy.sprite = canopyFrames[Mathf.FloorToInt(Time.time / (IsCanopyShaking ? CanopyShakeStep : CanopySwayStep)) % canopyFrames.Length];
             foreach (var quad in dappleQuads)
                 if (quad.source.sprite != quad.lastSprite)
                     UpdateDappleUV(quad);

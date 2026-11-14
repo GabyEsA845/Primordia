@@ -67,9 +67,9 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 16
@@ -95,7 +95,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -139,12 +139,12 @@ TextureImporter:
       name: Relic_RootAncestral_Idle_0
       rect:
         serializedVersion: 2
-        x: 4
-        y: 1
-        width: 15
-        height: 31
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 0
+        width: 24
+        height: 32
+      alignment: 9
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -161,12 +161,12 @@ TextureImporter:
       name: Relic_RootAncestral_Idle_1
       rect:
         serializedVersion: 2
-        x: 27
+        x: 24
         y: 0
-        width: 16
+        width: 24
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -183,12 +183,12 @@ TextureImporter:
       name: Relic_RootAncestral_Idle_2
       rect:
         serializedVersion: 2
-        x: 52
+        x: 48
         y: 0
-        width: 15
+        width: 24
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -205,12 +205,12 @@ TextureImporter:
       name: Relic_RootAncestral_Idle_3
       rect:
         serializedVersion: 2
-        x: 76
+        x: 72
         y: 0
-        width: 15
+        width: 24
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -227,12 +227,12 @@ TextureImporter:
       name: Relic_RootAncestral_Idle_4
       rect:
         serializedVersion: 2
-        x: 100
-        y: 1
-        width: 16
-        height: 31
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 96
+        y: 0
+        width: 24
+        height: 32
+      alignment: 9
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -249,12 +249,12 @@ TextureImporter:
       name: Relic_RootAncestral_Idle_5
       rect:
         serializedVersion: 2
-        x: 124
-        y: 2
-        width: 17
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 120
+        y: 0
+        width: 24
+        height: 32
+      alignment: 9
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -271,12 +271,12 @@ TextureImporter:
       name: Relic_RootAncestral_Idle_6
       rect:
         serializedVersion: 2
-        x: 148
-        y: 2
-        width: 16
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 144
+        y: 0
+        width: 24
+        height: 32
+      alignment: 9
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -293,12 +293,12 @@ TextureImporter:
       name: Relic_RootAncestral_Idle_7
       rect:
         serializedVersion: 2
-        x: 172
-        y: 2
-        width: 15
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 168
+        y: 0
+        width: 24
+        height: 32
+      alignment: 9
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []

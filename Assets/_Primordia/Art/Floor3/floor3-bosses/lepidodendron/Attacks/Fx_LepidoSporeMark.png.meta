@@ -61,9 +61,9 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 16
@@ -89,7 +89,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -133,12 +133,12 @@ TextureImporter:
       name: Fx_LepidoSporeMark_0
       rect:
         serializedVersion: 2
-        x: 1
-        y: 1
-        width: 32
-        height: 19
+        x: 0
+        y: 0
+        width: 34
+        height: 22
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -155,12 +155,12 @@ TextureImporter:
       name: Fx_LepidoSporeMark_1
       rect:
         serializedVersion: 2
-        x: 35
-        y: 2
-        width: 31
-        height: 18
+        x: 34
+        y: 0
+        width: 34
+        height: 22
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -177,12 +177,12 @@ TextureImporter:
       name: Fx_LepidoSporeMark_2
       rect:
         serializedVersion: 2
-        x: 71
-        y: 2
-        width: 29
-        height: 18
+        x: 68
+        y: 0
+        width: 34
+        height: 22
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -199,12 +199,12 @@ TextureImporter:
       name: Fx_LepidoSporeMark_3
       rect:
         serializedVersion: 2
-        x: 105
-        y: 3
-        width: 28
-        height: 16
+        x: 102
+        y: 0
+        width: 34
+        height: 22
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -221,12 +221,12 @@ TextureImporter:
       name: Fx_LepidoSporeMark_4
       rect:
         serializedVersion: 2
-        x: 140
-        y: 4
-        width: 26
-        height: 15
+        x: 136
+        y: 0
+        width: 34
+        height: 22
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -243,12 +243,12 @@ TextureImporter:
       name: Fx_LepidoSporeMark_5
       rect:
         serializedVersion: 2
-        x: 175
-        y: 4
-        width: 24
-        height: 14
+        x: 170
+        y: 0
+        width: 34
+        height: 22
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []

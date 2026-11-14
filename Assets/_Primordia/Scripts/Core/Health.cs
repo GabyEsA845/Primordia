@@ -363,12 +363,13 @@ namespace Primordia.Core
         /// Pierde vida sin que cuente como golpe (no avisa con <see cref="Damaged"/>) y sin morir: se queda en 1 como mínimo.
         /// La barra del último aliento del Euriptérido, que se vacía sola.
         /// </summary>
-        public void Drain(int amount)
+        // allowZero vacía una fase sin disparar Died; por defecto sigue conservando 1 de vida.
+        public void Drain(int amount, bool allowZero = false)
         {
             if (amount <= 0 || IsDead)
                 return;
             int previous = Current;
-            Current = Mathf.Max(1, Current - amount);
+            Current = Mathf.Max(allowZero ? 0 : 1, Current - amount);
             if (Current != previous)
                 Changed?.Invoke(Current, maxHealth);
         }

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1110078564017301985}
   - component: {fileID: 8713613858642645663}
   - component: {fileID: 7458948628302047479}
+  - component: {fileID: 2214308775866188182}
   m_Layer: 7
   m_Name: Boss_Lepidodendron
   m_TagString: Untagged
@@ -131,6 +132,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1caa5519dcaff2a428398bc85b1c2501, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Primordia::Primordia.Enemies.LepidodendronBoss
+  introData: {fileID: 11400000, guid: 7448fbaafdf3497409bfc8511aabd5cb, type: 2}
+  heartFrames:
+  - {fileID: 3039545650275437121, guid: 56aa7cb199c1c7549b5548efc197dd5a, type: 3}
+  - {fileID: -2076769524110945384, guid: 56aa7cb199c1c7549b5548efc197dd5a, type: 3}
+  - {fileID: 7211201024347901294, guid: 56aa7cb199c1c7549b5548efc197dd5a, type: 3}
+  - {fileID: 2102265408, guid: 56aa7cb199c1c7549b5548efc197dd5a, type: 3}
+  promptFrames:
+  - {fileID: 7210565139753159747, guid: 2bd51478aa9a64143bfd83ba344d4d81, type: 3}
+  - {fileID: -1199138674, guid: 2bd51478aa9a64143bfd83ba344d4d81, type: 3}
   encounterConfig: {fileID: 11400000, guid: 60a9a74960b4f7a4c95d495d80291118, type: 2}
   waveEnemies:
   - {fileID: 2940776833964867364, guid: 50bb68a91f19387489dbbdd06f38d1bc, type: 3}
@@ -185,3 +195,16 @@ MonoBehaviour:
     sacCount: {x: 1, y: 2}
     mistPerCell: 0.004
   art: {fileID: 11400000, guid: b8d2233714baf494896ef4a89b49eb34, type: 2}
+--- !u!114 &2214308775866188182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7027750375708143507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67332564f65997f499fcf325871a9d21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Primordia::Primordia.UI.BossBarAppearance
+  skin: {fileID: 11400000, guid: dff7298f80847fc46b1c7c205442d28a, type: 2}

@@ -61,9 +61,9 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 16
@@ -89,7 +89,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -133,12 +133,12 @@ TextureImporter:
       name: Lepido_Pedestal_Fade_0
       rect:
         serializedVersion: 2
-        x: 2
+        x: 0
         y: 0
-        width: 53
-        height: 51
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.07692307}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -155,12 +155,12 @@ TextureImporter:
       name: Lepido_Pedestal_Fade_1
       rect:
         serializedVersion: 2
-        x: 58
+        x: 56
         y: 0
-        width: 53
-        height: 51
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.07692307}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -177,12 +177,12 @@ TextureImporter:
       name: Lepido_Pedestal_Fade_2
       rect:
         serializedVersion: 2
-        x: 114
+        x: 112
         y: 0
-        width: 53
-        height: 51
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.07692307}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -199,12 +199,12 @@ TextureImporter:
       name: Lepido_Pedestal_Fade_3
       rect:
         serializedVersion: 2
-        x: 170
+        x: 168
         y: 0
-        width: 53
-        height: 51
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.07692307}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -221,12 +221,12 @@ TextureImporter:
       name: Lepido_Pedestal_Fade_4
       rect:
         serializedVersion: 2
-        x: 226
+        x: 224
         y: 0
-        width: 53
-        height: 51
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.07692307}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -243,12 +243,12 @@ TextureImporter:
       name: Lepido_Pedestal_Fade_5
       rect:
         serializedVersion: 2
-        x: 282
+        x: 280
         y: 0
-        width: 53
-        height: 43
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 56
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.07692307}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []

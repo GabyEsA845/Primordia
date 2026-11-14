@@ -1,37 +1,52 @@
 fileFormatVersion: 2
-guid: 1fa8af3c70c23f54c84fa09aa3064292
+guid: 8bb91a795742b27478bb0d962ec0f802
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1875909112409632720
-    second: Canopy_Arena_Tear_0
+      213: 524864406659489269
+    second: Lepido_Death_Fall__p1_0
   - first:
-      213: 7203400044669869226
-    second: Canopy_Arena_Tear_1
+      213: -1429359689841841027
+    second: Lepido_Death_Fall__p1_1
   - first:
-      213: 6797409780739982314
-    second: Canopy_Arena_Tear_2
+      213: 3210607192045607118
+    second: Lepido_Death_Fall__p1_2
   - first:
-      213: -2997790610514664860
-    second: Canopy_Arena_Tear_3
+      213: -6846625081695417016
+    second: Lepido_Death_Fall__p1_3
   - first:
-      213: -6160902454835450254
-    second: Canopy_Arena_Tear_4
+      213: 5312385864978840483
+    second: Lepido_Death_Fall__p1_4
   - first:
-      213: 2682073773529368886
-    second: Canopy_Arena_Tear_5
+      213: -9203495416615490381
+    second: Lepido_Death_Fall__p1_5
   - first:
-      213: 4974197533096194475
-    second: Canopy_Arena_Tear_6
+      213: -4580586207912592171
+    second: Lepido_Death_Fall__p1_6
   - first:
-      213: 591952620972626228
-    second: Canopy_Arena_Tear_7
+      213: -6555542695053580456
+    second: Lepido_Death_Fall__p1_7
   - first:
-      213: 62951576302783557
-    second: Canopy_Arena_Tear_8
+      213: -6250169524633158657
+    second: Lepido_Death_Fall__p1_8
   - first:
-      213: -4914777242683749388
-    second: Canopy_Arena_Tear_9
+      213: -6753906391077042829
+    second: Lepido_Death_Fall__p1_9
+  - first:
+      213: 7106765248857136250
+    second: Lepido_Death_Fall__p1_10
+  - first:
+      213: -8322694185122261980
+    second: Lepido_Death_Fall__p1_11
+  - first:
+      213: 811718929925499959
+    second: Lepido_Death_Fall__p1_12
+  - first:
+      213: -4070325299670339963
+    second: Lepido_Death_Fall__p1_13
+  - first:
+      213: -8717189438239164306
+    second: Lepido_Death_Fall__p1_14
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -73,9 +88,9 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 16
@@ -101,7 +116,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 16384
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -142,221 +157,155 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Canopy_Arena_Tear_0
+      name: Lepido_Death_Fall__p1_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 4
-        width: 704
-        height: 108
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0df28141661980a10800000000000000
-      internalID: 1875909112409632720
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Canopy_Arena_Tear_1
-      rect:
-        serializedVersion: 2
-        x: 703
-        y: 7
-        width: 704
-        height: 105
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: aac9495ec2e97f360800000000000000
-      internalID: 7203400044669869226
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Canopy_Arena_Tear_2
-      rect:
-        serializedVersion: 2
-        x: 1407
-        y: 8
-        width: 704
-        height: 104
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ae3c5cd6e20455e50800000000000000
-      internalID: 6797409780739982314
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Canopy_Arena_Tear_3
-      rect:
-        serializedVersion: 2
-        x: 2111
-        y: 6
-        width: 706
-        height: 106
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 462a54d9255b566d0800000000000000
-      internalID: -2997790610514664860
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Canopy_Arena_Tear_4
-      rect:
-        serializedVersion: 2
-        x: 2815
         y: 0
-        width: 706
-        height: 112
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 1056
+        height: 416
+      alignment: 9
+      pivot: {x: 0.8939394, y: 0.15384614}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 27e63b3fbd3108aa0800000000000000
-      internalID: -6160902454835450254
+      spriteID: 5fd5f22a561b84700800000000000000
+      internalID: 524864406659489269
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Canopy_Arena_Tear_5
+      name: Lepido_Death_Fall__p1_1
       rect:
         serializedVersion: 2
-        x: 3519
+        x: 1056
         y: 0
-        width: 706
-        height: 112
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 1056
+        height: 416
+      alignment: 9
+      pivot: {x: 0.8939394, y: 0.15384614}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6390c9403e3a83520800000000000000
-      internalID: 2682073773529368886
+      spriteID: d7ce6b66fe4e92ce0800000000000000
+      internalID: -1429359689841841027
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Canopy_Arena_Tear_6
+      name: Lepido_Death_Fall__p1_2
       rect:
         serializedVersion: 2
-        x: 4223
+        x: 2112
         y: 0
-        width: 706
-        height: 112
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 1056
+        height: 416
+      alignment: 9
+      pivot: {x: 0.8939394, y: 0.15384614}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ba1b2da4d46e70540800000000000000
-      internalID: 4974197533096194475
+      spriteID: ec8513b0b3e5e8c20800000000000000
+      internalID: 3210607192045607118
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Canopy_Arena_Tear_7
+      name: Lepido_Death_Fall__p1_3
       rect:
         serializedVersion: 2
-        x: 4927
-        y: 5
-        width: 1410
-        height: 107
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4315fe0c5c9073800800000000000000
-      internalID: 591952620972626228
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Canopy_Arena_Tear_8
-      rect:
-        serializedVersion: 2
-        x: 6335
+        x: 3168
         y: 0
-        width: 3522
-        height: 112
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 1056
+        height: 416
+      alignment: 9
+      pivot: {x: 0.8939394, y: 0.15384614}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 54c04970026afd000800000000000000
-      internalID: 62951576302783557
+      spriteID: 84dc34f53c6ebf0a0800000000000000
+      internalID: -6846625081695417016
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Canopy_Arena_Tear_9
+      name: Lepido_Death_Fall__p1_4
       rect:
         serializedVersion: 2
-        x: 9855
+        x: 4224
         y: 0
-        width: 2113
-        height: 112
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 1056
+        height: 416
+      alignment: 9
+      pivot: {x: 0.8939394, y: 0.15384614}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4fb49ab23243bcbb0800000000000000
-      internalID: -4914777242683749388
+      spriteID: 3abbed74cc269b940800000000000000
+      internalID: 5312385864978840483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lepido_Death_Fall__p1_5
+      rect:
+        serializedVersion: 2
+        x: 5280
+        y: 0
+        width: 1056
+        height: 416
+      alignment: 9
+      pivot: {x: 0.8939394, y: 0.15384614}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3bca2b84ead964080800000000000000
+      internalID: -9203495416615490381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lepido_Death_Fall__p1_6
+      rect:
+        serializedVersion: 2
+        x: 6336
+        y: 0
+        width: 1056
+        height: 416
+      alignment: 9
+      pivot: {x: 0.8939394, y: 0.15384614}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5dcf056ec1d7e60c0800000000000000
+      internalID: -4580586207912592171
       vertices: []
       indices: 
       edges: []
@@ -365,7 +314,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 74f51b6b0f4863d408b526129d019db5
     internalID: 0
     vertices: []
     indices: 
@@ -375,16 +324,13 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Canopy_Arena_Tear_0: 1875909112409632720
-      Canopy_Arena_Tear_1: 7203400044669869226
-      Canopy_Arena_Tear_2: 6797409780739982314
-      Canopy_Arena_Tear_3: -2997790610514664860
-      Canopy_Arena_Tear_4: -6160902454835450254
-      Canopy_Arena_Tear_5: 2682073773529368886
-      Canopy_Arena_Tear_6: 4974197533096194475
-      Canopy_Arena_Tear_7: 591952620972626228
-      Canopy_Arena_Tear_8: 62951576302783557
-      Canopy_Arena_Tear_9: -4914777242683749388
+      Lepido_Death_Fall__p1_0: 524864406659489269
+      Lepido_Death_Fall__p1_1: -1429359689841841027
+      Lepido_Death_Fall__p1_2: 3210607192045607118
+      Lepido_Death_Fall__p1_3: -6846625081695417016
+      Lepido_Death_Fall__p1_4: 5312385864978840483
+      Lepido_Death_Fall__p1_5: -9203495416615490381
+      Lepido_Death_Fall__p1_6: -4580586207912592171
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

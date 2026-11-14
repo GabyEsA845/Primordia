@@ -13,7 +13,7 @@ namespace Primordia.Enemies
         public const int WallHealth = 150;
         public const float WaveInterval = 12f;
         public const int AliveLimit = 6, WavesPerWall = 3;
-        const float SpawnPlayerClearance = 5f, SpawnRadius = 0.65f, SpawnSpacing = 2f, SpawnMargin = 2f;
+        const float SpawnPlayerClearance = 5f, SpawnNearRange = 9f, SpawnRadius = 0.65f, SpawnSpacing = 2f, SpawnMargin = 2f;
         const float SupplyWest = 2.5f; // Provisional: distancia al eje de la pared.
         // Provisionales: tamaños y composición, odres/helechos y destello de aparición.
         const int FirstWaveSize = 3, LaterWaveSize = 4, LastWallWaveSize = 4;
@@ -60,7 +60,9 @@ namespace Primordia.Enemies
             if (FinalPhaseReady || walls.Count != 3 || walls.Any(w => !w.Fallen))
                 return;
             FinalPhaseReady = true;
+            BeginCones();
             FinalPhaseBecameReady?.Invoke();
+            // Los conos y los ataques empiezan al llegar el jugador al centro de la arena (EngageFinalPhase).
         }
 
         internal void StartWallWaves(LepidodendronWall wall)
@@ -115,6 +117,7 @@ namespace Primordia.Enemies
             {
                 if (wave.completed >= WavesPerWall || Time.time < wave.nextAt)
                     return;
+                NoteWallWave(wave.wall);
                 int size = wave.wall.Index == 2 ? LastWallWaveSize : wave.completed == 0 ? FirstWaveSize : LaterWaveSize;
                 int[] pool = WaveSpecies(wave.wall.Index);
                 for (int i = 0; i < size; i++)
@@ -147,7 +150,7 @@ namespace Primordia.Enemies
             }
         }
 
-        bool FindWallSpawn(int index, out Vector2 position)
+        internal bool FindWallSpawn(int index, out Vector2 position)
         {
             Physics2D.SyncTransforms(); // Las apariciones de esta misma oleada ya deben ocupar su sitio en la consulta siguiente.
             if (player == null)
@@ -157,6 +160,8 @@ namespace Primordia.Enemies
             }
             float west = index == 0 ? 0f : WallX(index - 1) + WallThickness(index - 1) / 2f;
             float east = WallX(index) - WallThickness(index) / 2f;
+            // Todos los sitios libres del tramo; el elegido sale alrededor del jugador, dentro de lo que ve, para que el peligro se lea.
+            var free = new List<Vector2>();
             for (float x = west + SpawnMargin; x <= east - SpawnMargin; x += SpawnSpacing)
                 for (float y = -CorridorHeight / 2f + SpawnMargin; y <= CorridorHeight / 2f - SpawnMargin; y += SpawnSpacing)
                 {
@@ -165,11 +170,29 @@ namespace Primordia.Enemies
                         continue;
                     if (Physics2D.OverlapCircleAll(spot, SpawnRadius).Any(c => !c.isTrigger))
                         continue;
-                    position = spot;
-                    return true;
+                    free.Add(spot);
                 }
-            position = default;
-            return false;
+            if (free.Count == 0)
+            {
+                position = default;
+                return false;
+            }
+            if (player == null)
+            {
+                position = free[UnityEngine.Random.Range(0, free.Count)];
+                return true;
+            }
+            Vector2 center = player.position;
+            var camera = Camera.main;
+            float halfWidth = camera != null ? camera.orthographicSize * camera.aspect - 1f : 14f;
+            float halfHeight = camera != null ? camera.orthographicSize - 1f : 7.5f;
+            var near = free.Where(s => Vector2.Distance(center, s) <= SpawnNearRange
+                && Mathf.Abs(s.x - center.x) <= halfWidth && Mathf.Abs(s.y - center.y) <= halfHeight).ToList();
+            if (near.Count == 0)
+                near = free.Where(s => Mathf.Abs(s.x - center.x) <= halfWidth && Mathf.Abs(s.y - center.y) <= halfHeight).ToList();
+            // Sin nada en pantalla (tramo muy estrecho o lleno), el sitio libre más cercano al jugador.
+            position = near.Count > 0 ? near[UnityEngine.Random.Range(0, near.Count)] : free.OrderBy(s => Vector2.Distance(center, s)).First();
+            return true;
         }
 
         void TrackWaveFamily(Enemy enemy)
@@ -182,7 +205,7 @@ namespace Primordia.Enemies
         {
             child.DropsBiomass = false;
             // También cuentan los retoños que ya produce la IA de Calamites. No se modifica su cerebro.
-            if (LivingWaveEnemies > AliveLimit)
+            if (attacksCancelled || AllConesDestroyed || LivingWaveEnemies > AliveLimit)
             {
                 child.Health.Kill(); // Avisa a Room para deshacer su registro, sin biomasa ni un enemigo invisible vivo.
                 child.gameObject.SetActive(false);

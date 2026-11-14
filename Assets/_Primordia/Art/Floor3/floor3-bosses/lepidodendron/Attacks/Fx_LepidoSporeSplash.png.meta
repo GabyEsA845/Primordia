@@ -46,9 +46,9 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 16
@@ -74,7 +74,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -118,12 +118,12 @@ TextureImporter:
       name: Fx_LepidoSporeSplash_0
       rect:
         serializedVersion: 2
-        x: 6
+        x: 0
         y: 0
-        width: 88
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 24
+        height: 16
+      alignment: 9
+      pivot: {x: 0.5, y: 0.3125}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -132,6 +132,94 @@ TextureImporter:
       bones: []
       spriteID: cef70875cc0b76d30800000000000000
       internalID: 4424699550602657772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fx_LepidoSporeSplash_1
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 0
+        width: 24
+        height: 16
+      alignment: 9
+      pivot: {x: 0.5, y: 0.3125}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b364c9d346cc6644a949aed95377e3f
+      internalID: 423842790
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fx_LepidoSporeSplash_2
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 24
+        height: 16
+      alignment: 9
+      pivot: {x: 0.5, y: 0.3125}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b813ad88c3820ea4897d1405e244144e
+      internalID: 1804505453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fx_LepidoSporeSplash_3
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 0
+        width: 24
+        height: 16
+      alignment: 9
+      pivot: {x: 0.5, y: 0.3125}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de6f65653c668814b9bde9f14b4a5931
+      internalID: -1703331663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fx_LepidoSporeSplash_4
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 24
+        height: 16
+      alignment: 9
+      pivot: {x: 0.5, y: 0.3125}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9cac9127dc23f8d4e936062b8db0af28
+      internalID: -782484970
       vertices: []
       indices: 
       edges: []
@@ -151,6 +239,10 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       Fx_LepidoSporeSplash_0: 4424699550602657772
+      Fx_LepidoSporeSplash_1: 423842790
+      Fx_LepidoSporeSplash_2: 1804505453
+      Fx_LepidoSporeSplash_3: -1703331663
+      Fx_LepidoSporeSplash_4: -782484970
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

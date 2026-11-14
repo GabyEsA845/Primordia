@@ -13,7 +13,7 @@ namespace Primordia.Enemies
         // Provisionales: ritmo, separación, margen y respuesta al golpe del tronco.
         public const float ConePause = 4f, InjuredConePause = 3f, MethaneWarning = 1f;
         public const float MethaneTrunkRadius = 5f, ConeSpacing = 3f;
-        const float ConeWallMargin = 2f, TrunkDamageFraction = 0.2f, ConeShakeSeconds = 1f;
+        const float ConeWallMargin = 2f, ConeShakeSeconds = 1f;
         const float WarnVeinStep = 0.07f, HitVeinStep = 0.06f, WarnShroomStep = 0.07f;
         const int ConeCount = 3, HealthyConcurrency = 1, InjuredConcurrency = 2;
         const int TestArmorDamage = 10;
@@ -78,20 +78,9 @@ namespace Primordia.Enemies
                 EngageFinalPhase();
         }
 
-        int FilterTrunkDamage(int amount, DamageKind kind, DamageSource source)
-        {
-            if (!FinalPhaseReady || AllConesDestroyed) return 0;
-            // El tronco nunca remata un cono: le deja al menos 1 de vida. Cada cono solo se rompe con un golpe directo en su
-            // ventana en el suelo, así que hay que romper los tres para terminar con el jefe.
-            var cone = cones.Where(c => !c.Broken && c.Health.Current > 1).OrderByDescending(c => c.Health.Current).FirstOrDefault();
-            if (cone != null)
-            {
-                int reduced = Health.ScaleDamage(amount, TrunkDamageFraction);
-                int allowed = LimitWallDamage(Mathf.Min(cone.Health.Current - 1, reduced), source);
-                if (allowed > 0) cone.DamageThroughTrunk(allowed);
-            }
-            return 0; // Solo la pérdida de vida del cono modifica la barra del jefe.
-        }
+        // El tronco no recibe daño en la fase final: la barra del jefe solo baja con la vida de los conos, y cada cono se rompe
+        // con golpes directos en su ventana en el suelo. Hay que romper los tres para terminar con el jefe.
+        int FilterTrunkDamage(int amount, DamageKind kind, DamageSource source) => 0;
 
         internal void ConeLostHealth(int amount) => Health.Drain(amount, allowZero: true);
 

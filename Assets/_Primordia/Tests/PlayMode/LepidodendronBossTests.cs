@@ -755,34 +755,6 @@ namespace Primordia.Tests
         }
 
         [Test]
-        public void L3LimiteDeFuenteCompartidoEntreConosYTronco()
-        {
-            var first = GroundCone(0);
-            var second = GroundCone(1);
-            first.Health.TakeDamage(30);
-            second.Health.TakeDamage(30);
-            first.Health.TakeDamage(4, DamageKind.Hit, DamageSource.Jet);
-            second.Health.TakeDamage(4, DamageKind.Hit, DamageSource.Jet);
-            boss.Health.TakeDamage(100, DamageKind.Hit, DamageSource.Jet);
-            Assert.AreEqual(145, boss.Health.Current);
-            Assert.AreEqual(46, first.Health.Current);
-            Assert.AreEqual(49, second.Health.Current);
-        }
-
-        [Test]
-        public void L3TroncoAplicaVeintePorCientoAlMasSanoIgnorandoArmaduraYAltura()
-        {
-            boss.TestFinalPhase();
-            boss.Health.TakeDamage(50);
-            Assert.AreEqual(140, boss.Health.Current);
-            Assert.AreEqual(40, boss.Cones[0].Health.Current);
-            boss.Health.TakeDamage(100);
-            Assert.AreEqual(30, boss.Cones[1].Health.Current);
-            Assert.AreEqual(120, boss.Health.Current);
-            Assert.IsTrue(boss.Cones.All(c => c.ArmorRemaining == 30 && c.State == LepidodendronCone.Phase.Hanging));
-        }
-
-        [Test]
         public void L3TresRoturasDejanCeroEmitenUnaVezSinDiedNiDestruirSala()
         {
             int completed = 0, deaths = 0;
@@ -1638,23 +1610,22 @@ namespace Primordia.Tests
         }
 
         [Test]
-        public void ElTroncoNuncaRematatUnConoSoloLoDejaConUnPuntoYHayQueRomperLosTres()
+        public void ElTroncoNoRecibeDanoYHayQueRomperLosTresConosParaVencerAlJefe()
         {
             boss.TestFinalPhase();
             for (int i = 0; i < 100; i++) boss.Health.TakeDamage(1000); // Mucho daño al tronco.
-            Assert.IsTrue(boss.Cones.All(c => !c.Broken && c.Health.Current == 1));
-            Assert.IsFalse(boss.AllConesDestroyed);
-            Assert.AreEqual(3, boss.Health.Current);
+            Assert.AreEqual(150, boss.Health.Current);
+            Assert.IsTrue(boss.Cones.All(c => !c.Broken && c.Health.Current == 50));
             for (int i = 0; i < 3; i++)
             {
                 var cone = GroundCone(i);
-                cone.Health.TakeDamage(30);
+                cone.Health.TakeDamage(30); // Armadura.
                 Assert.IsFalse(boss.AllConesDestroyed);
-                cone.Health.TakeDamage(1);
+                cone.Health.TakeDamage(1000);
                 Assert.IsTrue(cone.Broken);
+                Assert.AreEqual(150 - 50 * (i + 1), boss.Health.Current);
             }
             Assert.IsTrue(boss.AllConesDestroyed);
-            Assert.AreEqual(0, boss.Health.Current);
         }
     }
 }

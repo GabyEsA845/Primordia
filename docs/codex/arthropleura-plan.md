@@ -29,7 +29,7 @@ Jefe principal del piso 3. Arte aprobado: `docs/multimedia-temp/floor3-bosses/ar
 | C2b-1 | Lagos de lodo profundo (2) y apagar el fuego: pieza ardiendo que pisa lodo se apaga; con 5+ ardiendo la cabeza corre al lago y da vueltas | PROGRAMADO 2026-11-14; falta prueba |
 | C2b-2 | 3 Sigillarias que la embestida tumba (aturdido 3 s, tronco tumbado = obstáculo y cobertura de las ondas) | PROGRAMADO 2026-11-14 (37 pruebas); falta prueba de la usuaria |
 | D1 | F3 (transición, cerco con hueco y apretón, cámara ×1,5) | PROGRAMADO 2026-11-14; falta prueba |
-| D2 | F3 (placas por tramos que laten, daño hasta el 10 %, fuego en F3 con mecha circular, flechas de borde del punto débil) | pendiente |
+| D2 | F3 (placas por tramos que laten, daño hasta el 10 %, fuego en F3) | PROGRAMADO 2026-11-14 (43 pruebas); falta prueba. Las flechas de borde del punto débil pasan al subpaso F |
 | E | Rueda del 10 %, muerte y cuerpo-escenario | pendiente |
 | F | Barra (BossBarSkin), flechas de borde, presentación «rodeo y asomo»; luego sonido (paso 8) | pendiente |
 

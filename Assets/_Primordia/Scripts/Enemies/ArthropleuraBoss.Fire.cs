@@ -36,7 +36,7 @@ namespace Primordia.Enemies
         public event Action ReachedPhase2;
         public bool Phase2Reached => reachedPhase2;
         /// <summary>El fuego puede prender y dañar en F1 y F2, salvo durante la transición del 70 %.</summary>
-        bool FireOpen => PhaseIndex <= 1 && CurrentMode != Mode.Phase2Pending;
+        bool FireOpen => PhaseIndex <= 2 && CurrentMode != Mode.Phase2Pending && CurrentMode != Mode.Phase3Pending;
         internal void ConfigureClearing(ClearingArt value) => clearingArt = value;
 
         sealed class FirePiece : IFlammable
@@ -51,8 +51,13 @@ namespace Primordia.Enemies
             public bool CanIgnite => owner.isActiveAndEnabled && owner.FireAllowed && owner.FireOpen &&
                 (owner.PhaseIndex >= 1 || owner.InClearing(Position - owner.center)) && Ready;
             public bool Ready => state != FireState.Burning && owner.fireClock >= cooledAt;
-            public bool Open => state == FireState.Burning && owner.fireClock >= started + PlateTransitionSeconds &&
+            public float forcedStart = -1000f, forcedSeconds;
+            /// <summary>Tramo que se abre solo (F3): hay animación de placas aunque no arda.</summary>
+            public bool Forced => owner.fireClock >= forcedStart && owner.fireClock < forcedStart + 2 * PlateTransitionSeconds + forcedSeconds;
+            public bool Open => ForcedOpen || state == FireState.Burning && owner.fireClock >= started + PlateTransitionSeconds &&
                 owner.fireClock < started + PlateTransitionSeconds + PlatesOpenSeconds;
+            public bool SectionOpen => ForcedOpen;
+            bool ForcedOpen => owner.fireClock >= forcedStart + PlateTransitionSeconds && owner.fireClock < forcedStart + PlateTransitionSeconds + forcedSeconds;
             public void Ignite() { if (CanIgnite) owner.LightPiece(index); }
         }
 
@@ -167,6 +172,38 @@ namespace Primordia.Enemies
         internal bool PieceOpen(int index) => firePieces[index].Open;
         internal MethaneSac SacAt(int index) => sacs[index].sac;
 
+        // F3: cada tanto se abre solo un tramo de 2-3 piezas (carne rosada que late): el punto débil.
+        // Provisionales (a ojo, pendientes de la prueba de la usuaria).
+        const float SectionEverySeconds = 4f, SectionOpenSeconds = 5f;
+        // En la F3 solo dañan los tramos que se abren solos (el fuego abre placas pero no daña) y más despacio que en F1-F2.
+        const float Phase3PieceDamagePerSecond = 0.8f;
+        float nextSectionAt;
+        public int LastSectionStart { get; private set; } = -1;
+        public int LastSectionLength { get; private set; }
+        public int SectionsOpened { get; private set; }
+
+        void TickSections()
+        {
+            if (PhaseIndex < 2 || !transition3Started || CurrentMode == Mode.Phase3Pending || fireClock < nextSectionAt)
+                return;
+            OpenSection(UnityEngine.Random.Range(2, 4));
+        }
+
+        void OpenSection(int length)
+        {
+            // Solo el tronco (1..28): la cabeza y la cola tienen hoja propia sin placas articuladas.
+            int start = UnityEngine.Random.Range(1, pieces.Count - 1 - length + 1);
+            for (int i = start; i < start + length; i++)
+            {
+                firePieces[i].forcedStart = fireClock;
+                firePieces[i].forcedSeconds = SectionOpenSeconds;
+            }
+            LastSectionStart = start;
+            LastSectionLength = length;
+            SectionsOpened++;
+            nextSectionAt = fireClock + SectionEverySeconds;
+        }
+
         internal void TickFire(float dt)
         {
             fireClock += dt;
@@ -191,13 +228,22 @@ namespace Primordia.Enemies
                     piece.cooledAt = fireClock + CharredCoolSeconds;
                 }
             }
+            foreach (var forced in firePieces)
+                if (forced.state != FireState.Burning && forced.Open) open++;
+            TickSections();
+            if (PhaseIndex >= 2)
+            {
+                open = 0;
+                foreach (var section in firePieces)
+                    if (section.SectionOpen) open++;
+            }
             if (FireOpen && open > 0)
             {
-                burnFraction += open * PieceBurnPerSecond * dt;
+                burnFraction += open * (PhaseIndex >= 2 ? Phase3PieceDamagePerSecond : PieceBurnPerSecond) * dt;
                 int requested = Mathf.FloorToInt(burnFraction);
                 burnFraction -= requested; // El exceso de la limitadora se descarta, no se acumula.
                 int allowed = fireLimiter.Apply(requested, DamageSource.Burn, fireClock);
-                int untilPhase2 = Mathf.Max(0, Health.Current - Mathf.RoundToInt(Health.Max * Thresholds[Mathf.Min(PhaseIndex, 1)]));
+                int untilPhase2 = Mathf.Max(0, Health.Current - Mathf.RoundToInt(Health.Max * Thresholds[Mathf.Min(PhaseIndex, 2)]));
                 Health.Drain(Mathf.Min(allowed, untilPhase2));
             }
             else burnFraction = 0f;
@@ -229,8 +275,10 @@ namespace Primordia.Enemies
             frame = 0;
             var p = firePieces[index];
             // El arte aprobado solo tiene placas articuladas para el tronco; cabeza y cola conservan su hoja propia.
-            if (p.state != FireState.Burning || index == 0 || index == pieces.Count - 1) return null;
-            float elapsed = fireClock - p.started;
+            bool burning = p.state == FireState.Burning;
+            if (!burning && !p.Forced || index == 0 || index == pieces.Count - 1) return null;
+            float start = burning ? p.started : p.forcedStart, openSeconds = burning ? PlatesOpenSeconds : p.forcedSeconds;
+            float elapsed = fireClock - start;
             string pose;
             if (elapsed < PlateTransitionSeconds)
             {
@@ -245,7 +293,7 @@ namespace Primordia.Enemies
             else
             {
                 pose = "PlatesClose";
-                frame = Mathf.Clamp(Mathf.FloorToInt((elapsed - PlateTransitionSeconds - PlatesOpenSeconds) / PlateFrameSeconds), 0, 3);
+                frame = Mathf.Clamp(Mathf.FloorToInt((elapsed - PlateTransitionSeconds - openSeconds) / PlateFrameSeconds), 0, 3);
             }
             return art?.Find("Arthropleura_Segment_" + pose);
         }

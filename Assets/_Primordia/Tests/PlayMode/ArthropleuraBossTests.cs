@@ -832,6 +832,49 @@ namespace Primordia.Tests
             Vector2 offset = boss.WorldToGround(player.transform.position) - boss.RingCenter;
             Assert.Greater(offset.magnitude, 13f, "Sale despedido fuera del anillo.");
         }
+
+        // F3 (D2): tramos que se abren solos y daño hasta el 10 %.
+        [UnityTest]
+        public IEnumerator Phase3_SectionsOpenAndHurtDownTo10Percent()
+        {
+            yield return ReachPhase3();
+            Assert.AreEqual(ArthropleuraBoss.Mode.Chase, boss.CurrentMode);
+            boss.Moving = false;
+            // Simula el reloj de fuego: cada 4 s se abre un tramo de 2-3 piezas y las abiertas dañan.
+            int before = boss.Health.Current;
+            int maxOpen = 0;
+            for (int i = 0; i < 100 * 50; i++)
+            {
+                boss.TickFire(0.02f);
+                int open = 0;
+                for (int p = 0; p < boss.PieceCount; p++) if (boss.PieceOpen(p)) open++;
+                maxOpen = Mathf.Max(maxOpen, open);
+            }
+            Assert.GreaterOrEqual(boss.SectionsOpened, 20);
+            Assert.That(boss.LastSectionLength, Is.InRange(2, 3));
+            Assert.That(maxOpen, Is.InRange(2, 6));
+            Assert.Less(boss.Health.Current, before);
+            Assert.GreaterOrEqual(boss.Health.Current, Mathf.RoundToInt(boss.Health.Max * 0.1f), "La F3 acaba en el 10 %: ahí empieza la rueda.");
+        }
+
+        [UnityTest]
+        public IEnumerator Phase3_FireOpensPlatesButDoesNotHurt()
+        {
+            yield return ReachPhase3();
+            boss.Moving = false;
+            // Sin tramos que se abran solos: así solo queda el efecto del fuego.
+            typeof(ArthropleuraBoss).GetField("nextSectionAt", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(boss, 1e9f);
+            Assert.IsTrue(boss.IgnitePiece(12));
+            int before = boss.Health.Current;
+            bool opened = false;
+            for (int i = 0; i < 20 * 50; i++)
+            {
+                boss.TickFire(0.02f);
+                opened |= boss.PieceOpen(12);
+            }
+            Assert.IsTrue(opened, "El fuego abre las placas.");
+            Assert.AreEqual(before, boss.Health.Current, "En la F3 el fuego abre placas pero no daña.");
+        }
     }
 }
 #endif

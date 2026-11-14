@@ -1,0 +1,20 @@
+---
+name: primordia-boss-arthropleura
+description: "Arthropleura (jefe principal del piso 3): numeros de combate cerrados, plan por subpasos, que esta programado (A y B1) y las decisiones de la usuaria al probarlo"
+metadata:
+  type: project
+---
+
+Arte y diseño: `docs/multimedia-temp/floor3-bosses/arthropleura/README.md` y `primordia-floor3-design.md`. Plan de tareas: `docs/codex/arthropleura-plan.md`. Rama `feature/boss-arthropleura` (desde feature/floor-3). La programa Claude (Codex sin tokens). Menú `Primordia > Boss > Crear Arthropleura y escena de prueba` → escena `Test_BossArthropleura` (NO toca Floor_3; el enganche va al final).
+
+**Numeros cerrados (2026-11-13):** vida 600 con fases por las muescas de la barra: F1 100→70 % (180), F2 70→35 % (210), F3 35→10 % (150), rueda último 10 % (60). Caparazon invulnerable; solo daño en placas abiertas (por `BossDamageLimiter`). Daño al jugador: embestida 2, ola 1, apretón del cerco 2, contacto 1. F1/F2: el fuego abre las placas del tramo ~6 s mientras arde (mecha ~0,4 s por pieza) y luego Charred; daño al jefe 1,5 PV/s por pieza ardiendo y abierta. Al 70 % cinemática corta con jugador invulnerable (va en C).
+
+**Hecho:**
+- **A (commit 72830ac0):** importador `ArtSetup.ImportArthropleuraSheets` (23 hojas direccionales + capas), cadena de cabeza + 28 piezas + cola en `ArthropleuraBoss.cs` (rastro de la cabeza, y de pantalla ×0,82, 16 direcciones, Walk desfasado, orden cola→cabeza), `PhaseIndex` por umbrales 0,7/0,35/0,1, pruebas `ArthropleuraBossTests`.
+- **B1 (F1, movimiento; aprobada por la usuaria 2026-11-14 tras varias vueltas):** `ArthropleuraBoss.Hunt.cs` (claro 28×16, espesura, cámara ×1,3, daño) y `.Charge.cs` (ciclo). La espesura son tiles de pared PROVISIONALES (tile de la sala repetido sobre el tilemap `Walls`; el suelo del piso se llama `Ground`); el cuerpo bajo ella se ve como `CanopyRidge`/`_Cap`. Ciclo: rodea ~8 s por un anillo a ~6 u del claro → aviso 1,4 s QUIETO bajo la espesura (temblor, línea de chevrones, dirección fijada 0,35 s antes) → embestida recta a 20 u/s que revienta la espesura al entrar, cruza el claro entero y la revienta al salir (2 agujeros de 6 u, permanentes), sigue 5 u y vuelve a rodear; con piezas aún en el claro rodea a 16 u/s para despejarlo. **Pared invisible:** los agujeros quedan bloqueados para el jugador con un tilemap hermano `ThicketBlock` (solo colisión, sin renderer; `ClearBlockers()` lo vacía para el 70 %). El pasillo de cada puerta de la sala queda abierto hasta que el jugador entra al claro y entonces se sella.
+
+**Decisiones de la usuaria al probar (no repetir errores):** no le gusta que el jefe pase mucho tiempo visible fuera de la espesura; no quiere que vuelva por el mismo agujero (la embestida debe atravesar la sala); el aviso debe ser desde dentro de la espesura; debe poder esquivar embestidas seguidas; quiere el aspecto de la escena de prueba del arte (claro con espesura de ~6 u, helechos, odres, parches, tocón).
+
+**Pendiente:** B2 (odres de metano que rebrotan a los 20 s, fuego en mecha, placas abiertas, daño al jefe, disparador del 70 %, decorado del claro); C (F2: sala 60×33, cinemática del 70 %, ondas, árboles, helechos); D (F3 anillo, placas por tramos); E (rueda 10 % y muerte; reabrir la puerta); F (barra, flechas, presentación; luego sonido y enganche a Floor_3). Provisional: tiles de espesura, velocidades/tiempos a ojo, sin `CanopyShake` ni restos de brecha.
+
+**Trampas aprendidas:** la posición de la cabeza se guarda aparte (`headPos`) porque el rastro se muestrea cada 0,1 u; el radio de llegada a un punto debe superar velocidad/giro; las pruebas que crean el nivel deben usar los nombres reales de los tilemaps (`Walls`, `Ground`); un fallo en una prueba que deja un jugador suelto rompe las siguientes; los heredoc con comillas rompen Bash (escribir scripts `.py` con Write).

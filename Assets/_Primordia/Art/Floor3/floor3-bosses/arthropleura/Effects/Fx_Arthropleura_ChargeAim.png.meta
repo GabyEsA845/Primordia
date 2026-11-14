@@ -64,7 +64,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -138,10 +138,10 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 5
+        width: 16
         height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -158,12 +158,12 @@ TextureImporter:
       name: Fx_Arthropleura_ChargeAim_1
       rect:
         serializedVersion: 2
-        x: 6
+        x: 16
         y: 0
-        width: 7
+        width: 16
         height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -180,12 +180,12 @@ TextureImporter:
       name: Fx_Arthropleura_ChargeAim_2
       rect:
         serializedVersion: 2
-        x: 14
+        x: 32
         y: 0
-        width: 9
+        width: 16
         height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -202,12 +202,12 @@ TextureImporter:
       name: Fx_Arthropleura_ChargeAim_3
       rect:
         serializedVersion: 2
-        x: 24
+        x: 48
         y: 0
-        width: 7
+        width: 16
         height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -216,72 +216,6 @@ TextureImporter:
       bones: []
       spriteID: afbcdd982b4d0c590800000000000000
       internalID: -7655885503247561734
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_Arthropleura_ChargeAim_4
-      rect:
-        serializedVersion: 2
-        x: 34
-        y: 0
-        width: 7
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1f4c95d06294c8c80800000000000000
-      internalID: -8319193983878576911
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_Arthropleura_ChargeAim_5
-      rect:
-        serializedVersion: 2
-        x: 42
-        y: 0
-        width: 9
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3affc8e19f3029290800000000000000
-      internalID: -7885235629078020189
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_Arthropleura_ChargeAim_6
-      rect:
-        serializedVersion: 2
-        x: 52
-        y: 0
-        width: 12
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a3494fb57ec808d30800000000000000
-      internalID: 4431696958640657466
       vertices: []
       indices: 
       edges: []
@@ -304,9 +238,6 @@ TextureImporter:
       Fx_Arthropleura_ChargeAim_1: 4274230251862293712
       Fx_Arthropleura_ChargeAim_2: -1154107728847457690
       Fx_Arthropleura_ChargeAim_3: -7655885503247561734
-      Fx_Arthropleura_ChargeAim_4: -8319193983878576911
-      Fx_Arthropleura_ChargeAim_5: -7885235629078020189
-      Fx_Arthropleura_ChargeAim_6: 4431696958640657466
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -36,6 +36,7 @@
 - [Bocas del piso 3](primordia-floor3-mouths-decisions.md) — paso 3 HECHO: Escupitajo, Peonza, Chorro; números, archivos y pruebas
 - [Estructura del piso 3](primordia-floor3-structure-decisions.md) — subtandas, decisiones del generador, estado
 - [Diseño del piso 3](primordia-floor3-design.md) — CERRADO; arte COMPLETO en feature/floor3-art (tandas 0-6, 4 jefes); luego documento, GDD/PLAN, ramas (Sonnet)
+- **[Jefe Arthropleura](primordia-boss-arthropleura.md) — EN CURSO (2026-11-14): A y B1 (F1, movimiento y embestida) hechas; SIGUIENTE B2 (fuego y daño al jefe); numeros de combate cerrados**
 - [Jefe Meganeura](primordia-boss-meganeura.md) — combate y arte terminados (2026-11-01), generadores y reglas para el código
 - [Minijefe Megarachne](primordia-boss-megarachne.md) — TERMINADA (2026-11-01): combate, árbol del Nido, cables, reglas para el código
 - [Jefes con mecánicas](primordia-boss-mechanics.md) — desde el piso 3 los jefes usan terreno/reacciones; escenario más vivo

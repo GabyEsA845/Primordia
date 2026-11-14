@@ -22,7 +22,8 @@ Jefe principal del piso 3. Arte aprobado: `docs/multimedia-temp/floor3-bosses/ar
 | | Qué | Estado |
 |---|---|---|
 | A | Importar arte (menú), cadena de 30 piezas con seguimiento de cabeza, 16 direcciones, Walk desfasado, vida/fases/umbrales, escena `Test_BossArthropleura` | HECHO (2026-11-13), 4 pruebas en verde; falta que la usuaria lo pruebe (sin cámara alejada ni combate) |
-| B | F1: sala del claro, espesura/cresta/trama, brecha, asomar, embestida con aviso, odres, fuego-mecha y placas abiertas, paso al 70 % | pendiente |
+| B1 | F1 (movimiento): claro 28×16 con espesura de tiles de pared, cresta de frondas sobre el cuerpo escondido, brecha, ciclo rodear 8 s → asomar → aviso 1,2 s → embestir → retirarse, daño al jugador (contacto 1, embestida 2), cámara ×1,3 | HECHO y APROBADO (2026-11-14), con aviso bajo la espesura, embestida recta que atraviesa el claro (2 agujeros) y pared invisible en los agujeros; 7 pruebas |
+| B2 | F1 (fuego): odres de metano que rebrotan a los 20 s, fuego en mecha, placas abiertas ~6 s, daño al jefe 1,5 PV/s por pieza ardiendo y abierta, paso al 70 % (disparador) | pendiente |
 | C | F2: sala 60×33, ondas, árboles y troncos, helechos, aturdimiento, fuego busca lodo | pendiente |
 | D | F3: anillo con hueco, apretón, placas por tramos, fuego en círculo | pendiente |
 | E | Rueda del 10 %, muerte y cuerpo-escenario | pendiente |

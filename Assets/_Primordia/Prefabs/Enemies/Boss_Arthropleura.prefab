@@ -131,4 +131,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b0b4dd176310c84ba1ad46a73a4b990, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Primordia::Primordia.Enemies.ArthropleuraBoss
+  effects:
+    edgeBreak:
+    - {fileID: 7961739249389783416, guid: df971dcd5b7edd54fbbdd76806694ea0, type: 3}
+    - {fileID: -2533085115248750403, guid: df971dcd5b7edd54fbbdd76806694ea0, type: 3}
+    - {fileID: 1135698732896755533, guid: df971dcd5b7edd54fbbdd76806694ea0, type: 3}
+    - {fileID: 4614158553305159863, guid: df971dcd5b7edd54fbbdd76806694ea0, type: 3}
+    - {fileID: -241544476312906008, guid: df971dcd5b7edd54fbbdd76806694ea0, type: 3}
+    - {fileID: -6595770488382897247, guid: df971dcd5b7edd54fbbdd76806694ea0, type: 3}
+    - {fileID: -2066631471920235344, guid: df971dcd5b7edd54fbbdd76806694ea0, type: 3}
+    - {fileID: 3537566530377668935, guid: df971dcd5b7edd54fbbdd76806694ea0, type: 3}
+    tremor:
+    - {fileID: 4390733747420534897, guid: 346b8f3f19eb06446a100ac7943d9454, type: 3}
+    - {fileID: -4275821519827764054, guid: 346b8f3f19eb06446a100ac7943d9454, type: 3}
+    - {fileID: 1709376682971591744, guid: 346b8f3f19eb06446a100ac7943d9454, type: 3}
+    - {fileID: 991211123781340036, guid: 346b8f3f19eb06446a100ac7943d9454, type: 3}
+    chargeAim:
+    - {fileID: -321956439586071960, guid: a8d88e7b1088aaa4a8c0670c3106f9cd, type: 3}
+    - {fileID: 4274230251862293712, guid: a8d88e7b1088aaa4a8c0670c3106f9cd, type: 3}
+    - {fileID: -1154107728847457690, guid: a8d88e7b1088aaa4a8c0670c3106f9cd, type: 3}
+    - {fileID: -7655885503247561734, guid: a8d88e7b1088aaa4a8c0670c3106f9cd, type: 3}
+    chargeDust:
+    - {fileID: 7861077551914582414, guid: b95ab9931d8d6974096282e5de56c46c, type: 3}
+    - {fileID: -7184716472828299419, guid: b95ab9931d8d6974096282e5de56c46c, type: 3}
+    - {fileID: 2844293264484672144, guid: b95ab9931d8d6974096282e5de56c46c, type: 3}
+    - {fileID: 275078636399396020, guid: b95ab9931d8d6974096282e5de56c46c, type: 3}
+    - {fileID: -5113077825718615000, guid: b95ab9931d8d6974096282e5de56c46c, type: 3}
+    - {fileID: -2441798671505314582, guid: b95ab9931d8d6974096282e5de56c46c, type: 3}
   art: {fileID: 11400000, guid: bf2d425840ae10e48b6265fe17c62c31, type: 2}

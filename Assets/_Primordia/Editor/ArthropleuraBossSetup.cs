@@ -22,6 +22,7 @@ namespace Primordia.Editor
         internal const string DataPath = "Assets/_Primordia/Data/Enemies/Floor3/Enemy_ArthropleuraBoss.asset";
         internal const string TestConfigPath = "Assets/_Primordia/Data/Rooms/Floor_BossArthropleuraTest.asset";
         internal const string TestScenePath = "Assets/_Primordia/Scenes/Test_BossArthropleura.unity";
+        const string ArtFolder = "Assets/_Primordia/Art/Floor3/floor3-bosses/arthropleura";
         // La plantilla rectangular suma 2 de pared a los lados y 4 arriba y abajo.
         const int FloorWidth = 60, FloorHeight = 33;
 
@@ -73,12 +74,23 @@ namespace Primordia.Editor
                 var serialized = new SerializedObject(enemy);
                 serialized.FindProperty("data").objectReferenceValue = data;
                 serialized.ApplyModifiedPropertiesWithoutUndo();
-                root.AddComponent<ArthropleuraBoss>().Configure(art);
+                var boss = root.AddComponent<ArthropleuraBoss>();
+                boss.Configure(art);
+                boss.ConfigureEffects(new ArthropleuraBoss.Effects
+                {
+                    edgeBreak = Sheet("Effects/Fx_Arthropleura_EdgeBreak", 96, new Vector2(0.5f, 1f)),
+                    tremor = Sheet("Effects/Fx_Arthropleura_Tremor", 48, new Vector2(0.5f, 0f)),
+                    chargeAim = Sheet("Effects/Fx_Arthropleura_ChargeAim", 16),
+                    chargeDust = Sheet("Effects/Fx_Arthropleura_ChargeDust", 48, new Vector2(1f, 0.5f)),
+                });
                 Directory.CreateDirectory(Path.GetDirectoryName(PrefabPath));
                 return PrefabUtility.SaveAsPrefabAsset(root, PrefabPath).GetComponent<Enemy>();
             }
             finally { Object.DestroyImmediate(root); }
         }
+
+        static Sprite[] Sheet(string relative, int cell, Vector2? pivot = null) =>
+            ArtSetup.SliceFloor3Sheet($"{ArtFolder}/{relative}.png", cell, pivot ?? new Vector2(0.5f, 0.5f));
 
         static T LoadOrCreate<T>(string path) where T : ScriptableObject
         {

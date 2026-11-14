@@ -23,15 +23,17 @@ namespace Primordia.Enemies
 
         const int FirstOrder = 12;
         const float TrailSpacing = 0.1f;
-        // Provisionales: movimiento de prueba del subpaso A.
-        const float WalkSpeed = 4f, TurnRate = 80f, WallMargin = 6f;
+        const float RidgeStep = 0.14f;
         const float HeadStep = 0.11f, WalkStep = 0.09f, IdleStep = 0.2f;
 
         [SerializeField] DirectionalArt art;
         readonly List<Vector2> trail = new(); // Suelo, relativo al centro; el [0] es la cabeza.
         readonly List<Piece> pieces = new();
         Transform player;
+        Health playerHealth;
+        DirectionalArt.Sheet ridge, ridgeCap;
         Vector2 center;
+        Vector2 headPos; // Posición exacta de la cabeza; el rastro la muestrea cada 0,1 u.
         float heading; // Grados en el suelo, 0° = derecha.
         bool built;
 
@@ -76,7 +78,11 @@ namespace Primordia.Enemies
         }
 
         void OnEnable() => ActiveBoss.Set(this);
-        void OnDisable() => ActiveBoss.Clear(this);
+        void OnDisable()
+        {
+            ActiveBoss.Clear(this);
+            ReleaseCamera();
+        }
 
         public void SetArena(Transform arena, Vector2 size)
         {
@@ -84,6 +90,9 @@ namespace Primordia.Enemies
                 return;
             center = arena.position;
             transform.position = center;
+            wallRoom = arena;
+            ridge = art != null ? art.Find("Arthropleura_CanopyRidge") : null;
+            ridgeCap = art != null ? art.Find("Arthropleura_CanopyRidge_Cap") : null;
             BuildChain();
             built = true;
         }
@@ -100,15 +109,22 @@ namespace Primordia.Enemies
 
         void BuildChain()
         {
-            // Empieza enroscada en un anillo de ~80 u de largo, con la cabeza mirando en sentido horario.
-            const float radius = 13f;
-            float length = (SegmentCount + 3) * Pitch + 2f;
-            int samples = Mathf.CeilToInt(length / TrailSpacing);
-            for (int i = 0; i < samples; i++)
+            // Empieza estirada sobre el anillo de la espesura (cabeza hacia el este, en sentido horario).
+            float theta = 0f, step = 0.00002f; // Fino: junto a los lados planos la curva casi no avanza por cada paso de ángulo.
+            Vector2 last = RingPoint(theta);
+            trail.Add(last);
+            int samples = Mathf.CeilToInt(((SegmentCount + 1) * Pitch + 3f) / TrailSpacing);
+            while (trail.Count < samples)
             {
-                float angle = i * TrailSpacing / radius; // Lo más viejo queda atrás: ángulos mayores.
-                trail.Add(new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * radius);
+                theta += step;
+                Vector2 point = RingPoint(theta);
+                if ((point - last).magnitude >= TrailSpacing)
+                {
+                    trail.Add(point);
+                    last = point;
+                }
             }
+            headPos = trail[0];
             heading = -90f;
             pieces.Add(NewPiece("Head", "Arthropleura_Head_Move", "Arthropleura_Head_Move", HeadStep, 0));
             for (int i = 1; i <= SegmentCount; i++)
@@ -131,30 +147,37 @@ namespace Primordia.Enemies
         {
             if (!built)
                 return;
+            if (!thicketBuilt)
+            {
+                // En el primer frame: las puertas de la sala ya existen y se les deja paso.
+                thicketBuilt = true;
+                BuildThicket();
+            }
             if (player == null)
             {
                 var controller = FindAnyObjectByType<PlayerController>();
                 if (controller != null)
+                {
                     player = controller.transform;
+                    playerHealth = controller.GetComponent<Health>();
+                }
             }
             if (Moving)
-                MoveHead(Time.deltaTime);
+                StepHunt(Time.deltaTime);
+            UpdateCamera();
             Place();
         }
 
-        void MoveHead(float dt)
+        /// <summary>Avanza la cabeza hacia un punto del suelo girando como mucho <paramref name="turnRate"/> grados por segundo.</summary>
+        void Advance(Vector2 target, float speed, float turnRate, float dt)
         {
-            Vector2 head = trail[0];
-            // Hacia el jugador; cerca de una pared, hacia el centro.
-            Vector2 target = player != null ? WorldToGround(player.position) : Vector2.zero;
-            float hx = ArenaWidth / 2f - WallMargin, hy = ArenaHeight / 2f - WallMargin;
-            if (Mathf.Abs(head.x) > hx || Mathf.Abs(head.y) > hy)
-                target = Vector2.zero;
+            Vector2 head = headPos;
             float wanted = Mathf.Atan2(target.y - head.y, target.x - head.x) * Mathf.Rad2Deg;
-            heading = Mathf.MoveTowardsAngle(heading, wanted, TurnRate * dt);
-            Vector2 next = head + new Vector2(Mathf.Cos(heading * Mathf.Deg2Rad), Mathf.Sin(heading * Mathf.Deg2Rad)) * (WalkSpeed * dt);
-            next.x = Mathf.Clamp(next.x, -ArenaWidth / 2f + 2f, ArenaWidth / 2f - 2f);
-            next.y = Mathf.Clamp(next.y, -ArenaHeight / 2f + 2f, ArenaHeight / 2f - 2f);
+            heading = Mathf.MoveTowardsAngle(heading, wanted, turnRate * dt);
+            Vector2 next = head + new Vector2(Mathf.Cos(heading * Mathf.Deg2Rad), Mathf.Sin(heading * Mathf.Deg2Rad)) * (speed * dt);
+            next.x = Mathf.Clamp(next.x, -ArenaWidth / 2f + 1f, ArenaWidth / 2f - 1f);
+            next.y = Mathf.Clamp(next.y, -ArenaHeight / 2f / GroundSquash + 1f, ArenaHeight / 2f / GroundSquash - 1f);
+            headPos = next;
             // Muestras a distancia fija: la cadena sigue exactamente el camino de la cabeza.
             Vector2 last = trail[0];
             float gap = (next - last).magnitude;
@@ -189,12 +212,13 @@ namespace Primordia.Enemies
                 Vector2 look = Vector2.Scale(i == 0 ? ground - behind : ahead - behind, new Vector2(1f, GroundSquash));
                 float angle = look.sqrMagnitude > 1e-6f ? Mathf.Atan2(look.y, look.x) * Mathf.Rad2Deg : 0f;
                 int row = DirectionalArt.RowFor(angle, out bool flip);
-                var sheet = Moving ? piece.walk : piece.idle;
+                bool hidden = IsHidden(ground);
+                var sheet = hidden ? (i == 0 ? ridgeCap : ridge) : OverrideSheet(i) ?? (Moving ? piece.walk : piece.idle);
                 if (sheet == null || sheet.sprites.Length == 0)
                     continue;
                 // Ola de patas: un cuadro de desfase por pieza.
-                float step = Moving ? piece.step : IdleStep;
-                int frame = Mathf.FloorToInt(time / step) + piece.index;
+                float step = hidden ? RidgeStep : Moving ? piece.step : IdleStep;
+                int frame = Mathf.FloorToInt(time / step) + (hidden ? 0 : piece.index);
                 piece.renderer.sprite = sheet.Get(row, frame % sheet.frames);
                 piece.renderer.flipX = flip;
                 piece.renderer.transform.position = GroundToWorld(ground);

@@ -86,6 +86,9 @@ namespace Primordia.Editor
                     tremor = Sheet("Effects/Fx_Arthropleura_Tremor", 48, new Vector2(0.5f, 0f)),
                     chargeAim = Sheet("Effects/Fx_Arthropleura_ChargeAim", 16),
                     chargeDust = Sheet("Effects/Fx_Arthropleura_ChargeDust", 48, new Vector2(1f, 0.5f)),
+                    wallBreak = Sheet("Effects/Fx_Arthropleura_WallBreak", 96),
+                    stomp = Sheet("Effects/Fx_Arthropleura_Stomp", 32, new Vector2(0.5f, 0f)),
+                    shockwave = Sheet("Effects/Fx_Arthropleura_Shockwave", 16),
                 });
                 Directory.CreateDirectory(Path.GetDirectoryName(PrefabPath));
                 return PrefabUtility.SaveAsPrefabAsset(root, PrefabPath).GetComponent<Enemy>();

@@ -201,11 +201,9 @@ namespace Primordia.Enemies
                     slot.regrowAt = fireClock + SacRegrowSeconds;
                 if (!reachedPhase2 && fireClock >= slot.regrowAt) GrowSac(slot);
             }
-            if (reachedPhase2 && CurrentMode != Mode.Charge && CurrentMode != Mode.Phase2Pending)
+            if (reachedPhase2 && !transitionStarted && CurrentMode != Mode.Charge)
             {
-                HideAim();
-                SetMode(Mode.Phase2Pending);
-                ClearBlockers();
+                BeginTransition();
             }
         }
 

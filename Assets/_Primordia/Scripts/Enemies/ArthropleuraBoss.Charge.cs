@@ -79,10 +79,21 @@ namespace Primordia.Enemies
                     if (modeTimer >= WarnSeconds)
                         StartCharge(head);
                     break;
+                case Mode.Phase2Pending:
+                    StepTransition(dt);
+                    break;
+                case Mode.Chase:
+                    StepChase(dt);
+                    break;
+                case Mode.StompWarn:
+                case Mode.Stomp:
+                    StepStomp();
+                    break;
                 case Mode.Charge:
                     StepCharge(head, dt);
                     break;
             }
+            StepWaves(dt);
             DamagePlayer();
         }
 
@@ -100,12 +111,14 @@ namespace Primordia.Enemies
                 SpawnEffect(effects.edgeBreak, GroundToWorld(head), WorldAngle(chargeDirection) - 90f, 0.08f);
             }
             bool atLimit = Mathf.Abs(next.x) > ArenaWidth / 2f - 2f || Mathf.Abs(nextWorld.y) > ArenaHeight / 2f - 2f;
-            if (atLimit || chargeBroke && Vector2.Distance(head, chargeImpact) >= ChargeBeyond)
+            if (atLimit || chargeBroke && Vector2.Distance(head, chargeImpact) >= ChargeBeyond || PhaseIndex >= 1 && chargeTravel >= Phase2ChargeDistance)
             {
                 firstCharge = false;
+                if (PhaseIndex >= 1) { StartChase(); return; }
                 SetMode(Mode.Circling);
                 return;
             }
+            chargeTravel += ChargeSpeed * dt;
             heading = WorldAngleToHeading();
             Advance(next, ChargeSpeed, 720f, dt);
         }
@@ -124,8 +137,8 @@ namespace Primordia.Enemies
         Vector2 AimDirection(Vector2 head)
         {
             Vector2 world = player != null ? (Vector2)player.position - center : Vector2.zero;
-            world.x = Mathf.Clamp(world.x, -ClearingHalf.x + AimMargin, ClearingHalf.x - AimMargin);
-            world.y = Mathf.Clamp(world.y, -ClearingHalf.y + AimMargin, ClearingHalf.y - AimMargin);
+            world.x = Mathf.Clamp(world.x, -RegionHalf.x + AimMargin, RegionHalf.x - AimMargin);
+            world.y = Mathf.Clamp(world.y, -RegionHalf.y + AimMargin, RegionHalf.y - AimMargin);
             Vector2 direction = new Vector2(world.x, world.y / GroundSquash) - head;
             return direction.sqrMagnitude > 0.01f ? direction.normalized : Vector2.right;
         }
@@ -137,7 +150,7 @@ namespace Primordia.Enemies
             exit = float.MaxValue;
             for (int axis = 0; axis < 2; axis++)
             {
-                float o = originWorld[axis], d = directionWorld[axis], half = ClearingHalf[axis];
+                float o = originWorld[axis], d = directionWorld[axis], half = RegionHalf[axis];
                 if (Mathf.Abs(d) < 1e-5f)
                 {
                     if (Mathf.Abs(o) >= half)
@@ -157,11 +170,12 @@ namespace Primordia.Enemies
             chargeHit = false;
             chargeBroke = false;
             chargeEntered = false;
+            chargeTravel = 0f;
             Vector2 origin = new(head.x, head.y * GroundSquash);
             Vector2 worldDirection = new Vector2(chargeDirection.x, chargeDirection.y * GroundSquash).normalized;
             float angle = Mathf.Atan2(worldDirection.y, worldDirection.x) * Mathf.Rad2Deg;
             // Abre la espesura desde donde está hasta el claro: agujero de entrada, para siempre.
-            if (!InClearing(origin) && RayThroughClearing(origin, worldDirection, out float enter, out _))
+            if (PhaseIndex == 0 && !InClearing(origin) && RayThroughClearing(origin, worldDirection, out float enter, out _))
             {
                 BreakLine(head, chargeDirection, -1f, enter + 1f);
                 SpawnEffect(effects.edgeBreak, center + origin + worldDirection * enter, angle + 90f, 0.08f);

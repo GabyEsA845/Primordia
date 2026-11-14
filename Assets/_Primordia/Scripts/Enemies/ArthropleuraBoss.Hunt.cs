@@ -13,7 +13,7 @@ namespace Primordia.Enemies
     /// </summary>
     public partial class ArthropleuraBoss
     {
-        public enum Mode { Circling, Warn, Charge, Phase2Pending }
+        public enum Mode { Circling, Warn, Charge, Phase2Pending, Chase, StompWarn, Stomp }
 
         /// <summary>Medio claro, en unidades de mundo (28×16 u).</summary>
         public static readonly Vector2 ClearingHalf = new(14f, 8f);
@@ -28,7 +28,7 @@ namespace Primordia.Enemies
         [System.Serializable]
         public class Effects
         {
-            public Sprite[] edgeBreak, tremor, chargeAim, chargeDust;
+            public Sprite[] edgeBreak, tremor, chargeAim, chargeDust, wallBreak, stomp, shockwave;
         }
 
         [SerializeField] Effects effects = new();
@@ -84,6 +84,7 @@ namespace Primordia.Enemies
             {
                 Mode.Warn => art.Find("Arthropleura_Head_ChargeWarn"),
                 Mode.Charge => art.Find("Arthropleura_Head_Charge"),
+                Mode.Phase2Pending or Mode.StompWarn => art.Find("Arthropleura_Head_Rear"),
                 _ => null,
             };
         }
@@ -257,7 +258,7 @@ namespace Primordia.Enemies
                 return;
             Vector2 rel = (Vector2)player.position - center;
             bool inside = Mathf.Abs(rel.x) <= ArenaWidth / 2f && Mathf.Abs(rel.y) <= ArenaHeight / 2f;
-            float target = inside && PhaseIndex == 0 ? 1f : 0f;
+            float target = inside && PhaseIndex <= 1 ? 1f : 0f; // x1,3 en F1 y F2 (la F3 usara otra camara)
             if (target > 0f && zoom == null)
             {
                 zoom = new CameraZoom(Camera1Zoom);

@@ -69,12 +69,19 @@ namespace Primordia.Core
 
             #if UNITY_EDITOR
             // Arthropleura: Ctrl+Mayús+F1 prende la pieza disponible más cercana; F2 vida al 71 %;
-            // F3 revienta los odres; F4 reinicia el fuego; F5 fuerza la presentación si sigue dormida.
+            // F3 revienta los odres; F4 reinicia el fuego; F5 fuerza la presentación si sigue dormida;
+            // F6 baja la vida al 69 % (empieza la F2); F7 lanza un pisotón; F8 salta la transición del 70 %.
             if ((keyboard.leftCtrlKey.isPressed || keyboard.rightCtrlKey.isPressed) &&
                 (keyboard.leftShiftKey.isPressed || keyboard.rightShiftKey.isPressed))
             {
                 if (keyboard.f5Key.wasPressedThisFrame)
                     FindAnyObjectByType<ArthropleuraBoss>()?.ForcePresentation();
+                if (keyboard.f6Key.wasPressedThisFrame)
+                    FindAnyObjectByType<ArthropleuraBoss>()?.DebugPhase2(0);
+                if (keyboard.f7Key.wasPressedThisFrame)
+                    FindAnyObjectByType<ArthropleuraBoss>()?.DebugPhase2(1);
+                if (keyboard.f8Key.wasPressedThisFrame)
+                    FindAnyObjectByType<ArthropleuraBoss>()?.DebugPhase2(2);
                 var fireKeys = new[] { keyboard.f1Key, keyboard.f2Key, keyboard.f3Key, keyboard.f4Key };
                 for (int i = 0; i < fireKeys.Length; i++)
                     if (fireKeys[i].wasPressedThisFrame)

@@ -64,7 +64,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -136,12 +136,12 @@ TextureImporter:
       name: Fx_Arthropleura_Stomp_0
       rect:
         serializedVersion: 2
-        x: 5
-        y: 4
-        width: 11
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 0
+        width: 32
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -158,12 +158,12 @@ TextureImporter:
       name: Fx_Arthropleura_Stomp_1
       rect:
         serializedVersion: 2
-        x: 13
-        y: 8
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 32
+        y: 0
+        width: 32
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -180,12 +180,12 @@ TextureImporter:
       name: Fx_Arthropleura_Stomp_2
       rect:
         serializedVersion: 2
-        x: 17
-        y: 4
-        width: 10
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 64
+        y: 0
+        width: 32
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -202,12 +202,12 @@ TextureImporter:
       name: Fx_Arthropleura_Stomp_3
       rect:
         serializedVersion: 2
-        x: 36
-        y: 3
-        width: 24
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 96
+        y: 0
+        width: 32
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -224,12 +224,12 @@ TextureImporter:
       name: Fx_Arthropleura_Stomp_4
       rect:
         serializedVersion: 2
-        x: 67
-        y: 2
-        width: 26
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 128
+        y: 0
+        width: 32
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -238,50 +238,6 @@ TextureImporter:
       bones: []
       spriteID: 452660ff4705ed2d0800000000000000
       internalID: -3252073417489882540
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_Arthropleura_Stomp_5
-      rect:
-        serializedVersion: 2
-        x: 99
-        y: 1
-        width: 26
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4c2e736a589a2ed30800000000000000
-      internalID: 4459312972534637252
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_Arthropleura_Stomp_6
-      rect:
-        serializedVersion: 2
-        x: 130
-        y: 1
-        width: 28
-        height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4c74a303656a34a50800000000000000
-      internalID: 6504225175959652292
       vertices: []
       indices: 
       edges: []
@@ -305,8 +261,6 @@ TextureImporter:
       Fx_Arthropleura_Stomp_2: -7809318918775861055
       Fx_Arthropleura_Stomp_3: -4322204913038803678
       Fx_Arthropleura_Stomp_4: -3252073417489882540
-      Fx_Arthropleura_Stomp_5: 4459312972534637252
-      Fx_Arthropleura_Stomp_6: 6504225175959652292
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

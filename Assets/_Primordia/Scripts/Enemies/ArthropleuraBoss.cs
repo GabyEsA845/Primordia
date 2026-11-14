@@ -247,6 +247,8 @@ namespace Primordia.Enemies
                     row = DirectionalArt.RowFor(-90f, out flip);
                     frame = Mathf.Min(3, Mathf.FloorToInt((Time.time - roarAt) / HeadStep));
                 }
+                if (i == 0 && (CurrentMode == Mode.Phase2Pending || CurrentMode == Mode.StompWarn))
+                    frame = Mathf.Min(sheet.frames - 1, Mathf.FloorToInt(modeTimer / HeadStep));
                 var fireSheet = FireSheet(i, out int fireFrame);
                 piece.renderer.sprite = !hidden && fireSheet != null ? fireSheet.Get(row, fireFrame) : sheet.Get(row, frame % sheet.frames);
                 PaintFire(i, sheet, row, frame, flip, hidden);

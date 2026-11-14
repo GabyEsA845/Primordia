@@ -512,6 +512,81 @@ namespace Primordia.Tests
             Assert.AreEqual(ArthropleuraBoss.Mode.Phase2Pending, boss.CurrentMode);
             Assert.AreEqual(0, boss.BlockedCells);
         }
+
+        // F2 (C1): transición del 70 %, persecución, pisotón con ondas y embestida larga.
+        IEnumerator ReachChase()
+        {
+            boss = BuildInLevel();
+            yield return null;
+            boss.Health.Drain(boss.Health.Current - Mathf.RoundToInt(boss.Health.Max * 0.69f));
+            float until = Time.time + 12f;
+            while (boss.CurrentMode != ArthropleuraBoss.Mode.Chase && Time.time < until) yield return null;
+        }
+
+        [UnityTest]
+        public IEnumerator Phase2_TransitionCollapsesTheThicketAndEndsInChase()
+        {
+            boss = BuildInLevel();
+            yield return null;
+            Assert.Greater(boss.ThicketCells, 1000);
+            boss.Health.Drain(boss.Health.Current - Mathf.RoundToInt(boss.Health.Max * 0.69f));
+            yield return null;
+            yield return null;
+            Assert.IsTrue(boss.TransitionStarted);
+            Assert.AreEqual(ArthropleuraBoss.Mode.Phase2Pending, boss.CurrentMode);
+            float until = Time.time + 12f;
+            while (boss.CurrentMode != ArthropleuraBoss.Mode.Chase && Time.time < until) yield return null;
+            Assert.AreEqual(ArthropleuraBoss.Mode.Chase, boss.CurrentMode);
+            Assert.AreEqual(0, boss.ThicketCells, "La espesura entera debe haber caído.");
+        }
+
+        [UnityTest]
+        public IEnumerator Phase2_StompFiresThreeWavesAndReturnsToChase()
+        {
+            yield return ReachChase();
+            Assert.AreEqual(ArthropleuraBoss.Mode.Chase, boss.CurrentMode);
+            boss.TestStartStomp();
+            float until = Time.time + 12f;
+            while (!(boss.WavesFired >= 3 && boss.ActiveWaves == 0 && boss.CurrentMode == ArthropleuraBoss.Mode.Chase) && Time.time < until) yield return null;
+            Assert.AreEqual(3, boss.WavesFired);
+            Assert.AreEqual(0, boss.ActiveWaves);
+            Assert.AreEqual(ArthropleuraBoss.Mode.Chase, boss.CurrentMode);
+        }
+
+        [UnityTest]
+        public IEnumerator Phase2_WaveHurtsThePlayerInItsArc()
+        {
+            boss = BuildInLevel();
+            var player = new GameObject("Player", typeof(Primordia.Player.PlayerController));
+            player.transform.SetParent(room.transform);
+            player.transform.position = boss.ArenaCenter + Vector2.right * 20f;
+            var health = player.GetComponent<Health>();
+            yield return null;
+            boss.Health.Drain(boss.Health.Current - Mathf.RoundToInt(boss.Health.Max * 0.69f));
+            float until = Time.time + 12f;
+            while (boss.CurrentMode != ArthropleuraBoss.Mode.Chase && Time.time < until) yield return null;
+            boss.Moving = true;
+            boss.TestStartStomp();
+            player.transform.position = boss.GroundToWorld(boss.NodeGround(0) + Vector2.right * 8f);
+            int before = health.Current;
+            until = Time.time + 5f;
+            while (health.Current == before && Time.time < until) yield return null;
+            Assert.Less(health.Current, before, "Una onda en arco debe dañar al jugador que está en su camino.");
+        }
+
+        [UnityTest]
+        public IEnumerator Phase2_ChargeEndsByDistanceAndReturnsToChase()
+        {
+            yield return ReachChase();
+            CallBoss("StartWarn");
+            Assert.AreEqual(ArthropleuraBoss.Mode.Warn, boss.CurrentMode);
+            float until = Time.time + 6f;
+            while (boss.CurrentMode != ArthropleuraBoss.Mode.Charge && Time.time < until) yield return null;
+            Assert.AreEqual(ArthropleuraBoss.Mode.Charge, boss.CurrentMode);
+            until = Time.time + 10f;
+            while (boss.CurrentMode != ArthropleuraBoss.Mode.Chase && Time.time < until) yield return null;
+            Assert.AreEqual(ArthropleuraBoss.Mode.Chase, boss.CurrentMode);
+        }
     }
 }
 #endif

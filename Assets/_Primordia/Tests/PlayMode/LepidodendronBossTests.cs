@@ -1618,6 +1618,44 @@ namespace Primordia.Tests
             cone.Tick(now + LepidodendronCone.WarningSeconds + LepidodendronCone.ShadowSeconds + LepidodendronCone.DescentSeconds + 0.001f);
             Assert.IsFalse(marker.enabled, "Tras el golpe la marca desaparece.");
         }
+
+        [Test]
+        public void ConAlgunConoVivoElJefeNoMuereAunqueSeRompaLaArmaduraDeLosTres()
+        {
+            var cones = new[] { GroundCone(0), GroundCone(1), GroundCone(2) };
+            foreach (var cone in cones) cone.Health.TakeDamage(30); // Rompe la armadura de los tres.
+            Assert.IsTrue(cones.All(c => c.ArmorRemaining == 0));
+            Assert.AreEqual(150, boss.Health.Current);
+            cones[0].Health.TakeDamage(1000);
+            Assert.IsTrue(cones[0].Broken);
+            Assert.IsFalse(cones[1].Broken);
+            Assert.IsFalse(cones[2].Broken);
+            Assert.IsFalse(boss.AllConesDestroyed);
+            Assert.AreEqual(100, boss.Health.Current);
+            cones[1].Health.TakeDamage(1000);
+            Assert.IsFalse(boss.AllConesDestroyed);
+            Assert.AreEqual(50, boss.Health.Current);
+        }
+
+        [Test]
+        public void ElTroncoNuncaRematatUnConoSoloLoDejaConUnPuntoYHayQueRomperLosTres()
+        {
+            boss.TestFinalPhase();
+            for (int i = 0; i < 100; i++) boss.Health.TakeDamage(1000); // Mucho daño al tronco.
+            Assert.IsTrue(boss.Cones.All(c => !c.Broken && c.Health.Current == 1));
+            Assert.IsFalse(boss.AllConesDestroyed);
+            Assert.AreEqual(3, boss.Health.Current);
+            for (int i = 0; i < 3; i++)
+            {
+                var cone = GroundCone(i);
+                cone.Health.TakeDamage(30);
+                Assert.IsFalse(boss.AllConesDestroyed);
+                cone.Health.TakeDamage(1);
+                Assert.IsTrue(cone.Broken);
+            }
+            Assert.IsTrue(boss.AllConesDestroyed);
+            Assert.AreEqual(0, boss.Health.Current);
+        }
     }
 }
 #endif

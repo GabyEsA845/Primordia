@@ -81,11 +81,13 @@ namespace Primordia.Enemies
         int FilterTrunkDamage(int amount, DamageKind kind, DamageSource source)
         {
             if (!FinalPhaseReady || AllConesDestroyed) return 0;
-            var cone = cones.Where(c => !c.Broken).OrderByDescending(c => c.Health.Current).FirstOrDefault();
+            // El tronco nunca remata un cono: le deja al menos 1 de vida. Cada cono solo se rompe con un golpe directo en su
+            // ventana en el suelo, así que hay que romper los tres para terminar con el jefe.
+            var cone = cones.Where(c => !c.Broken && c.Health.Current > 1).OrderByDescending(c => c.Health.Current).FirstOrDefault();
             if (cone != null)
             {
                 int reduced = Health.ScaleDamage(amount, TrunkDamageFraction);
-                int allowed = LimitWallDamage(Mathf.Min(cone.Health.Current, reduced), source);
+                int allowed = LimitWallDamage(Mathf.Min(cone.Health.Current - 1, reduced), source);
                 if (allowed > 0) cone.DamageThroughTrunk(allowed);
             }
             return 0; // Solo la pérdida de vida del cono modifica la barra del jefe.

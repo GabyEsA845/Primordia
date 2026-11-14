@@ -755,6 +755,83 @@ namespace Primordia.Tests
             Assert.Greater(closest, 1.2f, "La cabeza no debe atravesar el árbol al perseguir.");
             Assert.AreEqual(4, boss.StandingTrees);
         }
+
+        // F3 (D1): transición del 35 %, cerco con hueco y apretón.
+        IEnumerator ReachPhase3()
+        {
+            yield return ReachChase();
+            boss.Health.Drain(boss.Health.Current - Mathf.RoundToInt(boss.Health.Max * 0.34f));
+            float until = Time.time + 8f;
+            while ((!boss.Transition3Started || boss.CurrentMode != ArthropleuraBoss.Mode.Chase) && Time.time < until) yield return null;
+        }
+
+        [UnityTest]
+        public IEnumerator Phase3_TransitionInvulnerabilityThenChase()
+        {
+            yield return ReachChase();
+            boss.Health.Drain(boss.Health.Current - Mathf.RoundToInt(boss.Health.Max * 0.34f));
+            yield return null;
+            yield return null;
+            Assert.IsTrue(boss.Transition3Started);
+            Assert.AreEqual(ArthropleuraBoss.Mode.Phase3Pending, boss.CurrentMode);
+            float until = Time.time + 8f;
+            while (boss.CurrentMode == ArthropleuraBoss.Mode.Phase3Pending && Time.time < until) yield return null;
+            Assert.AreEqual(ArthropleuraBoss.Mode.Chase, boss.CurrentMode);
+        }
+
+        [UnityTest]
+        public IEnumerator Phase3_RingFormsHoldsContractsAndReleases()
+        {
+            yield return ReachPhase3();
+            Assert.AreEqual(ArthropleuraBoss.Mode.Chase, boss.CurrentMode);
+            boss.TestStartRing();
+            Assert.AreEqual(ArthropleuraBoss.Mode.RingForm, boss.CurrentMode);
+            float until = Time.time + 6f;
+            while (boss.CurrentMode == ArthropleuraBoss.Mode.RingForm && Time.time < until) yield return null;
+            Assert.AreEqual(ArthropleuraBoss.Mode.RingHold, boss.CurrentMode);
+            // Con el anillo formado, cada pieza queda cerca del radio del anillo (el cuerpo de verdad lo forma).
+            Vector2 c = boss.RingCenter;
+            int onRing = 0;
+            for (int i = 1; i < boss.PieceCount - 1; i++)
+                if (Mathf.Abs(Vector2.Distance(boss.NodeGround(i), c) - boss.RingRadius) < 2.5f) onRing++;
+            Assert.GreaterOrEqual(onRing, 15, "El cuerpo debe formar el anillo (la cola aún sale de la espiral).");
+            until = Time.time + 6f;
+            while (boss.CurrentMode == ArthropleuraBoss.Mode.RingHold && Time.time < until) yield return null;
+            Assert.AreEqual(ArthropleuraBoss.Mode.RingContract, boss.CurrentMode);
+            until = Time.time + 6f;
+            while (boss.CurrentMode == ArthropleuraBoss.Mode.RingContract && Time.time < until) yield return null;
+            Assert.AreEqual(ArthropleuraBoss.Mode.Chase, boss.CurrentMode);
+        }
+
+        [UnityTest]
+        public IEnumerator Phase3_SqueezeHurtsAndThrowsOutAPlayerInsideTheRing()
+        {
+            boss = BuildInLevel();
+            var player = new GameObject("Player", typeof(Primordia.Player.PlayerController));
+            player.transform.SetParent(room.transform);
+            player.transform.position = boss.ArenaCenter;
+            var health = player.GetComponent<Health>();
+            yield return null;
+            boss.Health.Drain(boss.Health.Current - Mathf.RoundToInt(boss.Health.Max * 0.69f));
+            float until = Time.time + 12f;
+            while (boss.CurrentMode != ArthropleuraBoss.Mode.Chase && Time.time < until) yield return null;
+            boss.Health.Drain(boss.Health.Current - Mathf.RoundToInt(boss.Health.Max * 0.34f));
+            until = Time.time + 8f;
+            while (boss.CurrentMode != ArthropleuraBoss.Mode.Phase3Pending && Time.time < until) yield return null;
+            while (boss.CurrentMode == ArthropleuraBoss.Mode.Phase3Pending && Time.time < until + 4f) yield return null;
+            Assert.AreEqual(ArthropleuraBoss.Mode.Chase, boss.CurrentMode);
+            yield return new WaitForSeconds(1.5f); // acaba la invulnerabilidad de la transición
+            health.Heal(health.Max);
+            player.transform.position = boss.ArenaCenter + new Vector2(2f, 0f);
+            boss.TestStartRing();
+            int before = health.Current;
+            until = Time.time + 14f;
+            while (!boss.Squeezed && Time.time < until) yield return null;
+            Assert.IsTrue(boss.Squeezed, "El jugador que sigue dentro al cerrarse recibe el apretón.");
+            Assert.AreEqual(before - ArthropleuraBoss.SqueezeDamage, health.Current);
+            Vector2 offset = boss.WorldToGround(player.transform.position) - boss.RingCenter;
+            Assert.Greater(offset.magnitude, 13f, "Sale despedido fuera del anillo.");
+        }
     }
 }
 #endif

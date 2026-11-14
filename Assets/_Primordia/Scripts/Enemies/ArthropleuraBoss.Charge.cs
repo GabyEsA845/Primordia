@@ -91,6 +91,14 @@ namespace Primordia.Enemies
                 case Mode.Stunned:
                     StepStun();
                     break;
+                case Mode.Phase3Pending:
+                    StepTransition3();
+                    break;
+                case Mode.RingForm:
+                case Mode.RingHold:
+                case Mode.RingContract:
+                    StepRing(dt);
+                    break;
                 case Mode.Eat:
                     StepEat();
                     break;
@@ -254,6 +262,8 @@ namespace Primordia.Enemies
 
         void OnDestroy()
         {
+            if (gapRoot != null)
+                Destroy(gapRoot.gameObject);
             if (aimRoot != null)
                 Destroy(aimRoot.gameObject);
         }

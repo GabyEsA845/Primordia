@@ -116,6 +116,7 @@ namespace Primordia.Enemies
         void EnableFire()
         {
             Health.Changed += CheckPhase2;
+            Health.Changed += CheckPhase3;
             MethaneSac.BurstStarted += SacBurstStarted;
             foreach (var piece in firePieces) Flammables.Register(piece);
         }
@@ -123,6 +124,7 @@ namespace Primordia.Enemies
         void DisableFire()
         {
             Health.Changed -= CheckPhase2;
+            Health.Changed -= CheckPhase3;
             MethaneSac.BurstStarted -= SacBurstStarted;
             foreach (var piece in firePieces) Flammables.Unregister(piece);
         }
@@ -210,6 +212,8 @@ namespace Primordia.Enemies
             {
                 BeginTransition();
             }
+            if (reachedPhase3 && !transition3Started && CurrentMode != Mode.Charge && CurrentMode != Mode.Phase2Pending)
+                BeginTransition3();
         }
 
         void CheckPhase2(int current, int max)
@@ -253,7 +257,7 @@ namespace Primordia.Enemies
             bool openPose = p.state == FireState.Burning;
             PaintLayer(p.burning, baseSheet, "Burning", p.state == FireState.Burning && !hidden, row, frame, flip);
             PaintLayer(p.charcoal, baseSheet, "Charred", p.charred && !openPose && !hidden, row, frame, flip);
-            PaintLayer(p.cracks, baseSheet, "Cracks1", reachedPhase2 && !openPose && !hidden, row, frame, flip);
+            PaintLayer(p.cracks, baseSheet, reachedPhase3 ? "Cracks2" : "Cracks1", reachedPhase2 && !openPose && !hidden, row, frame, flip);
         }
 
         void PaintLayer(SpriteRenderer renderer, DirectionalArt.Sheet sheet, string suffix, bool visible, int row, int frame, bool flip)

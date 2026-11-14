@@ -13,7 +13,7 @@ namespace Primordia.Enemies
     /// </summary>
     public partial class ArthropleuraBoss
     {
-        public enum Mode { Circling, Warn, Charge, Phase2Pending, Chase, StompWarn, Stomp, Eat, Douse, Stunned }
+        public enum Mode { Circling, Warn, Charge, Phase2Pending, Chase, StompWarn, Stomp, Eat, Douse, Stunned, Phase3Pending, RingForm, RingHold, RingContract }
 
         /// <summary>Medio claro, en unidades de mundo (28×16 u).</summary>
         public static readonly Vector2 ClearingHalf = new(14f, 8f);
@@ -41,7 +41,7 @@ namespace Primordia.Enemies
         float modeTimer;
         bool chargeHit;
         CameraZoom zoom;
-        float zoomAmount;
+        float zoomAmount, zoomFactor;
 
         public Mode CurrentMode { get; private set; }
         /// <summary>Celdas de espesura que quedan (para pruebas).</summary>
@@ -84,7 +84,7 @@ namespace Primordia.Enemies
             {
                 Mode.Warn => art.Find("Arthropleura_Head_ChargeWarn"),
                 Mode.Charge => art.Find("Arthropleura_Head_Charge"),
-                Mode.Phase2Pending or Mode.StompWarn => art.Find("Arthropleura_Head_Rear"),
+                Mode.Phase2Pending or Mode.Phase3Pending or Mode.StompWarn => art.Find("Arthropleura_Head_Rear"),
                 Mode.Eat => art.Find("Arthropleura_Head_Eat"),
                 Mode.Stunned => art.Find("Arthropleura_Head_Hurt"),
                 _ => null,
@@ -260,11 +260,22 @@ namespace Primordia.Enemies
                 return;
             Vector2 rel = (Vector2)player.position - center;
             bool inside = Mathf.Abs(rel.x) <= ArenaWidth / 2f && Mathf.Abs(rel.y) <= ArenaHeight / 2f;
-            float target = inside && PhaseIndex <= 1 ? 1f : 0f; // x1,3 en F1 y F2 (la F3 usara otra camara)
+            float target = inside && PhaseIndex <= 2 ? 1f : 0f; // x1,3 en F1 y F2; x1,5 en la F3
+            float wanted = PhaseIndex >= 2 ? Camera3Zoom : Camera1Zoom;
             if (target > 0f && zoom == null)
             {
-                zoom = new CameraZoom(Camera1Zoom);
-                // Fijo el tamaño real de la cámara de ahora: ×1,3.
+                zoom = new CameraZoom(wanted);
+                zoomFactor = wanted;
+            }
+            else if (zoom != null && target > 0f && !Mathf.Approximately(zoomFactor, wanted))
+            {
+                // Pasa de ×1,3 a ×1,5 sin salto: la cámara nueva empieza en el tamaño que tenía la anterior.
+                float now = 1f + (zoomFactor - 1f) * zoomAmount;
+                zoom.Restore();
+                zoom = new CameraZoom(wanted);
+                zoomFactor = wanted;
+                zoomAmount = Mathf.Clamp01((now - 1f) / (wanted - 1f));
+                zoom.Set(zoomAmount);
             }
             if (zoom == null)
                 return;

@@ -235,7 +235,7 @@ namespace Primordia.Enemies
                     piece.renderer.sprite = null;
                     continue;
                 }
-                bool walking = Moving && CurrentMode != Mode.Phase2Pending && CurrentMode != Mode.Stunned;
+                bool walking = Moving && CurrentMode != Mode.Phase2Pending && CurrentMode != Mode.Phase3Pending && CurrentMode != Mode.Stunned;
                 var sheet = hidden ? (i == 0 ? ridgeCap : ridge) : OverrideSheet(i) ?? (walking ? piece.walk : piece.idle);
                 if (sheet == null || sheet.sprites.Length == 0)
                     continue;
@@ -247,7 +247,7 @@ namespace Primordia.Enemies
                     row = DirectionalArt.RowFor(-90f, out flip);
                     frame = Mathf.Min(3, Mathf.FloorToInt((Time.time - roarAt) / HeadStep));
                 }
-                if (i == 0 && (CurrentMode == Mode.Phase2Pending || CurrentMode == Mode.StompWarn || CurrentMode == Mode.Eat))
+                if (i == 0 && (CurrentMode == Mode.Phase2Pending || CurrentMode == Mode.Phase3Pending || CurrentMode == Mode.StompWarn || CurrentMode == Mode.Eat))
                     frame = Mathf.Min(sheet.frames - 1, Mathf.FloorToInt(modeTimer / HeadStep));
                 var fireSheet = FireSheet(i, out int fireFrame);
                 piece.renderer.sprite = !hidden && fireSheet != null ? fireSheet.Get(row, fireFrame) : sheet.Get(row, frame % sheet.frames);

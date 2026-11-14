@@ -108,6 +108,14 @@ namespace Primordia.Enemies
             Advance(AvoidTrees(target), ChaseSpeed, ChaseTurn, dt);
             if (chaseTimer < ChaseSeconds)
                 return;
+            if (PhaseIndex >= 2)
+            {
+                phase3Cycle++;
+                if (phase3Cycle % 3 == 0) StartRing();
+                else if (phase3Cycle % 3 == 1) StartStomp();
+                else StartWarn();
+                return;
+            }
             // Alterna pisotón y embestida.
             phase2Cycle++;
             if (phase2Cycle % 2 == 0)
@@ -252,6 +260,12 @@ namespace Primordia.Enemies
                 TestStartStomp();
             else if (action == 2)
                 TestSkipTransition();
+            else if (action == 3)
+                Health.Drain(Mathf.Max(0, Health.Current - Mathf.RoundToInt(Health.Max * 0.34f)));
+            else if (action == 4 && CurrentMode == Mode.Chase)
+                TestStartRing();
+            else if (action == 5)
+                TestSkipTransition3();
         }
     }
 }

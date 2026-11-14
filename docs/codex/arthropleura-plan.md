@@ -26,7 +26,8 @@ Jefe principal del piso 3. Arte aprobado: `docs/multimedia-temp/floor3-bosses/ar
 | B2 | F1 (fuego): odres de metano que rebrotan a los 20 s, fuego en mecha, placas abiertas ~6 s, daño al jefe 1,5 PV/s por pieza ardiendo y abierta, paso al 70 % (disparador) | tarea 11 escrita (`codex/arthro-b2-fuego`), pendiente de Codex |
 | C1 | F2 (transición y ataques): al 70 % la espesura revienta en cadena con el jugador invulnerable (3,2 s), cámara ×1, la cabeza persigue al jugador y alterna pisotón (3 ondas en arco de 140°, daño 1) y embestida larga con aviso | PROGRAMADO 2026-11-14 (28 pruebas en verde); falta prueba de la usuaria |
 | C2a | F2 (fuego y escenario): el fuego prende y daña en F2 hasta el 35 % (210 PV; mismas reglas que F1), 6 odres por la sala (4 del claro + 2), 6 helechos que la cabeza come al pasar (si arden, se enciende la cabeza; rebrotan a 25 s) | PROGRAMADO 2026-11-14 (31 pruebas); falta prueba de la usuaria |
-| C2b | F2 (obstáculos): 3 Sigillarias que la embestida tumba (aturdido 3 s), troncos tumbados que cubren de las ondas, 2 charcas de lodo grandes (una a cada lado) a las que va el jefe ardiendo (5+ piezas) y se apaga | pendiente |
+| C2b-1 | Lagos de lodo profundo (2) y apagar el fuego: pieza ardiendo que pisa lodo se apaga; con 5+ ardiendo la cabeza corre al lago y da vueltas | PROGRAMADO 2026-11-14; falta prueba |
+| C2b-2 | 3 Sigillarias que la embestida tumba (aturdido 3 s) y troncos tumbados que cubren de las ondas | pendiente |
 | D | F3: anillo con hueco, apretón, placas por tramos, fuego en círculo | pendiente |
 | E | Rueda del 10 %, muerte y cuerpo-escenario | pendiente |
 | F | Barra (BossBarSkin), flechas de borde, presentación «rodeo y asomo»; luego sonido (paso 8) | pendiente |

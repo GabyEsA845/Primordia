@@ -100,6 +100,8 @@ namespace Primordia.Enemies
         void StepChase(float dt)
         {
             chaseTimer += dt;
+            if (TryStartDouse())
+                return;
             Vector2 target = player != null ? WorldToGround(player.position) : Vector2.zero;
             if (TryEatAt(ref target) && CurrentMode == Mode.Eat)
                 return;

@@ -85,6 +85,9 @@ namespace Primordia.Enemies
                 case Mode.Chase:
                     StepChase(dt);
                     break;
+                case Mode.Douse:
+                    StepDouse(dt);
+                    break;
                 case Mode.Eat:
                     StepEat();
                     break;

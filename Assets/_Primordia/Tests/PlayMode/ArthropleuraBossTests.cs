@@ -639,6 +639,51 @@ namespace Primordia.Tests
             Assert.AreEqual(ArthropleuraBoss.Mode.Charge, boss.CurrentMode, "La embestida no debe acabar al instante.");
             Assert.Less(boss.NodeGround(0).x, 20f, "La cabeza debe haber avanzado hacia dentro.");
         }
+
+        [UnityTest]
+        public IEnumerator Phase2_BurningBodyRunsToTheMudAndPutsItselfOut()
+        {
+            yield return ReachChase();
+            Vector2 lake = boss.ArenaCenter + new Vector2(-18f, 6f);
+            boss.MudProbe = p => Vector2.Distance(p, lake) < 5f;
+            for (int i = 0; i < 8; i++) boss.IgnitePiece(i);
+            Simulate(3f);
+            Assert.GreaterOrEqual(boss.BurningPieces, 5);
+            float until = Time.time + 9f;
+            while (boss.CurrentMode != ArthropleuraBoss.Mode.Douse && Time.time < until) yield return null;
+            Assert.AreEqual(ArthropleuraBoss.Mode.Douse, boss.CurrentMode, "Con 5 o más piezas ardiendo debe ir al lago.");
+            until = Time.time + 14f;
+            while (boss.CurrentMode == ArthropleuraBoss.Mode.Douse && Time.time < until) yield return null;
+            Assert.AreNotEqual(ArthropleuraBoss.Mode.Douse, boss.CurrentMode);
+            int charred = 0;
+            for (int i = 0; i < boss.PieceCount; i++)
+                if (boss.PieceFire(i) == ArthropleuraBoss.FireState.Charred) charred++;
+            Assert.GreaterOrEqual(charred, 3, "El lodo debe haber apagado piezas (quedan chamuscadas).");
+        }
+
+        [UnityTest]
+        public IEnumerator Phase2_NoMudNoDouse()
+        {
+            yield return ReachChase();
+            boss.MudProbe = p => false;
+            for (int i = 0; i < 8; i++) boss.IgnitePiece(i);
+            Simulate(3f);
+            yield return new WaitForSeconds(1f);
+            Assert.AreNotEqual(ArthropleuraBoss.Mode.Douse, boss.CurrentMode);
+        }
+
+        [UnityTest]
+        public IEnumerator Phase2_MudPutsOutEveryBurningPieceItTouches()
+        {
+            yield return ReachChase();
+            boss.Moving = false;
+            for (int i = 0; i < 6; i++) boss.IgnitePiece(i);
+            Assert.AreEqual(6, boss.BurningPieces);
+            boss.MudProbe = p => true;
+            boss.TickFire(0.02f);
+            Assert.AreEqual(0, boss.BurningPieces);
+            Assert.AreEqual(ArthropleuraBoss.FireState.Charred, boss.PieceFire(0));
+        }
     }
 }
 #endif

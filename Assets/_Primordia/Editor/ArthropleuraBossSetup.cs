@@ -50,12 +50,32 @@ namespace Primordia.Editor
         static RoomTemplate CreateRoom()
         {
             var room = LoadOrCreate<RoomTemplate>(RoomPath);
-            room.SetLayout(RoomLayouts.Rectangle(FloorWidth + 2, FloorHeight + 4));
+            room.SetLayout(WithMudLakes(RoomLayouts.Rectangle(FloorWidth + 2, FloorHeight + 4)));
             var problems = room.Validate();
             if (problems.Count > 0)
                 throw new InvalidOperationException("Sala Arthropleura inválida:\n" + string.Join("\n", problems));
             EditorUtility.SetDirty(room);
             return room;
+        }
+
+        /// <summary>
+        /// Dos lagos de lodo profundo (marca 'm') en lados opuestos de la sala: el jefe ardiendo corre a uno a apagarse. Quedan
+        /// lejos de las puertas (a media altura) para no tapar la entrada.
+        /// </summary>
+        static string WithMudLakes(string layout)
+        {
+            var rows = layout.Split('\n');
+            int height = rows.Length - 1; // El texto acaba en salto de línea.
+            foreach (var (x0, x1, y0, y1) in new[] { (4, 14, 22, 30), (47, 57, 4, 12) })
+                for (int y = y0; y <= y1; y++)
+                {
+                    var row = rows[height - 1 - y].ToCharArray();
+                    for (int x = x0; x <= x1; x++)
+                        if (row[x] == '.')
+                            row[x] = 'm';
+                    rows[height - 1 - y] = new string(row);
+                }
+            return string.Join("\n", rows);
         }
 
         static Enemy CreatePrefab(DirectionalArt art, FloorConfig floor3)

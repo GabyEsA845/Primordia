@@ -1627,6 +1627,21 @@ namespace Primordia.Tests
             }
             Assert.IsTrue(boss.AllConesDestroyed);
         }
+
+        [Test]
+        public void LasOleadasDeUnaParedAparecenAlrededorDelJugadorYNoALoLejos()
+        {
+            CreateWalker(boss.TestStop(0)); // Junto a la pared 1, en su tramo.
+            var player = walker.transform.position;
+            walker.AddComponent<PlayerController>().readInput = false;
+            for (int i = 0; i < 30; i++)
+            {
+                Assert.IsTrue(boss.FindWallSpawn(0, out var spot));
+                float distance = Vector2.Distance(player, spot);
+                Assert.GreaterOrEqual(distance, 5f, "Nunca encima del jugador.");
+                Assert.LessOrEqual(distance, 14f, "Dentro de lo que ve el jugador, no al otro lado del pasillo.");
+            }
+        }
     }
 }
 #endif

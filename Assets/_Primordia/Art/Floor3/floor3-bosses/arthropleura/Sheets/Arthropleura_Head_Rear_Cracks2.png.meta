@@ -628,7 +628,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -656,7 +656,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -697,4291 +697,1189 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_0
+      name: Arthropleura_Head_Rear_Cracks2_0_0
       rect:
         serializedVersion: 2
-        x: 60
-        y: 1362
-        width: 21
-        height: 18
+        x: 0
+        y: 1280
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ec324eabc3a8c8be0800000000000000
-      internalID: -1473650984618810418
+      spriteID: 8d4c743af7388014cb31e4c2e9c7e102
+      internalID: -701107291
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_1
+      name: Arthropleura_Head_Rear_Cracks2_0_1
       rect:
         serializedVersion: 2
-        x: 94
-        y: 1364
-        width: 11
-        height: 13
+        x: 160
+        y: 1280
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: aa87a1ced85a2cdb0800000000000000
-      internalID: -4773070626089174870
+      spriteID: ade62f781654ed44094003f08923c3cd
+      internalID: 858232067
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_2
+      name: Arthropleura_Head_Rear_Cracks2_0_2
       rect:
         serializedVersion: 2
-        x: 220
-        y: 1363
-        width: 21
-        height: 20
+        x: 320
+        y: 1280
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 289c090c9a0f60300800000000000000
-      internalID: 218126243844901250
+      spriteID: 35486e29314ab524a901fc253d4aae5b
+      internalID: 1174184357
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_3
+      name: Arthropleura_Head_Rear_Cracks2_0_3
       rect:
         serializedVersion: 2
-        x: 254
-        y: 1367
-        width: 11
-        height: 14
+        x: 480
+        y: 1280
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d4ced408a63d74e50800000000000000
-      internalID: 6793631017284267085
+      spriteID: 77dba83cc7cbca54c9d47c0cbf368afb
+      internalID: -911210288
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_4
+      name: Arthropleura_Head_Rear_Cracks2_0_4
       rect:
         serializedVersion: 2
-        x: 380
-        y: 1363
-        width: 21
-        height: 20
+        x: 640
+        y: 1280
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f3dce27a1251decb0800000000000000
-      internalID: -4833183590815707841
+      spriteID: b1d6c9881da38e845bb44d4696808b13
+      internalID: -18298162
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_5
+      name: Arthropleura_Head_Rear_Cracks2_0_5
       rect:
         serializedVersion: 2
-        x: 414
-        y: 1368
-        width: 11
-        height: 13
+        x: 800
+        y: 1280
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f5278d2abf5b61980800000000000000
-      internalID: -8568461148652277153
+      spriteID: f022c8be180b46a40a246b05aa72fdc5
+      internalID: 102923160
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_6
+      name: Arthropleura_Head_Rear_Cracks2_1_0
       rect:
         serializedVersion: 2
-        x: 540
-        y: 1363
-        width: 21
-        height: 20
+        x: 0
+        y: 1120
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 438fbe615cd97b100800000000000000
-      internalID: 123740984594659380
+      spriteID: 1e721d00072eb824bb5e76903e466f02
+      internalID: -1558110919
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_7
+      name: Arthropleura_Head_Rear_Cracks2_1_1
       rect:
         serializedVersion: 2
-        x: 574
-        y: 1368
-        width: 11
-        height: 13
+        x: 160
+        y: 1120
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a38ce58b281685030800000000000000
-      internalID: 3483641525837940794
+      spriteID: c242d2bca3ea0fc41911a2e52aeb91dd
+      internalID: 885393777
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_8
+      name: Arthropleura_Head_Rear_Cracks2_1_2
       rect:
         serializedVersion: 2
-        x: 700
-        y: 1363
-        width: 21
-        height: 20
+        x: 320
+        y: 1120
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 095173401b3c3a530800000000000000
-      internalID: 3865148070261364112
+      spriteID: ad8097baf155c9c46bea8989686c75da
+      internalID: 2137029909
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_9
+      name: Arthropleura_Head_Rear_Cracks2_1_3
       rect:
         serializedVersion: 2
-        x: 734
-        y: 1368
-        width: 11
-        height: 13
+        x: 480
+        y: 1120
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 698094d08a029b890800000000000000
-      internalID: -7441881003103549290
+      spriteID: 7b609aa86efe53248bfd6065bac176ef
+      internalID: -1295640682
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_10
+      name: Arthropleura_Head_Rear_Cracks2_1_4
       rect:
         serializedVersion: 2
-        x: 860
-        y: 1363
-        width: 21
-        height: 19
+        x: 640
+        y: 1120
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 9c87d5df1c7535110800000000000000
-      internalID: 1248438012402825417
+      spriteID: 2c9a409b6d69a4b4396eaaf006d82048
+      internalID: 43186979
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_11
+      name: Arthropleura_Head_Rear_Cracks2_1_5
       rect:
         serializedVersion: 2
-        x: 894
-        y: 1366
-        width: 11
-        height: 13
+        x: 800
+        y: 1120
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 8cb40a4c37aaee100800000000000000
-      internalID: 139236052691864520
+      spriteID: 3a6a74c02a25e7042830ba29efa1a561
+      internalID: -25961543
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_12
+      name: Arthropleura_Head_Rear_Cracks2_2_0
       rect:
         serializedVersion: 2
-        x: 85
-        y: 1356
-        width: 12
-        height: 8
+        x: 0
+        y: 960
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e2d54532bef2e6290800000000000000
-      internalID: -7895320409777349330
+      spriteID: 4e3c30996ad6a6f43872c8f8059494b9
+      internalID: -112768091
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_13
+      name: Arthropleura_Head_Rear_Cracks2_2_1
       rect:
         serializedVersion: 2
-        x: 245
-        y: 1356
-        width: 12
-        height: 9
+        x: 160
+        y: 960
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 08c05af08a5bd9a00800000000000000
-      internalID: 764967245144460416
+      spriteID: 200706c5f5f622c4cb2146a2cd27f2a9
+      internalID: 1456739525
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_14
+      name: Arthropleura_Head_Rear_Cracks2_2_2
       rect:
         serializedVersion: 2
-        x: 405
-        y: 1356
-        width: 12
-        height: 9
+        x: 320
+        y: 960
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 8886b40df24944510800000000000000
-      internalID: 1532512706291787912
+      spriteID: a8e7ff9eb55dc2d40adb66c42d148d20
+      internalID: 1949743155
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_15
+      name: Arthropleura_Head_Rear_Cracks2_2_3
       rect:
         serializedVersion: 2
-        x: 565
-        y: 1356
-        width: 12
-        height: 9
+        x: 480
+        y: 960
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ef30bae10cb05e7a0800000000000000
-      internalID: -6348655179932695554
+      spriteID: 9eb75701887d4df449b05b03150391c4
+      internalID: -142856296
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_16
+      name: Arthropleura_Head_Rear_Cracks2_2_4
       rect:
         serializedVersion: 2
-        x: 725
-        y: 1356
-        width: 12
-        height: 9
+        x: 640
+        y: 960
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 9947a447a7df435d0800000000000000
-      internalID: -3083561142463073127
+      spriteID: 76d0a7944ef0cd24cadc2e25673e5b78
+      internalID: -382242555
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_17
+      name: Arthropleura_Head_Rear_Cracks2_2_5
       rect:
         serializedVersion: 2
-        x: 885
-        y: 1356
-        width: 12
-        height: 9
+        x: 800
+        y: 960
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c04e918773a8c7190800000000000000
-      internalID: -7963338070255082484
+      spriteID: 6d5049dd97074ac44a5961aa24b93f0f
+      internalID: 1416079633
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_18
+      name: Arthropleura_Head_Rear_Cracks2_3_0
       rect:
         serializedVersion: 2
-        x: 59
-        y: 1340
-        width: 21
-        height: 15
+        x: 0
+        y: 800
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 21be5005124d13fb0800000000000000
-      internalID: -4669718099064919278
+      spriteID: 870f9ad83b4478e4e8122d651c6af481
+      internalID: -572032660
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_19
+      name: Arthropleura_Head_Rear_Cracks2_3_1
       rect:
         serializedVersion: 2
-        x: 219
-        y: 1338
-        width: 21
-        height: 17
+        x: 160
+        y: 800
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f3f6dc83eb7538360800000000000000
-      internalID: 7170671506212351807
+      spriteID: d80d469afc6fbc54fa290875ab360d55
+      internalID: 1262248887
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_20
+      name: Arthropleura_Head_Rear_Cracks2_3_2
       rect:
         serializedVersion: 2
-        x: 379
-        y: 1336
-        width: 21
-        height: 18
+        x: 320
+        y: 800
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 00eb0c6e7c5881890800000000000000
-      internalID: -7487087286887072256
+      spriteID: 13774973679aef648b1802070587284d
+      internalID: -2077893605
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_21
+      name: Arthropleura_Head_Rear_Cracks2_3_3
       rect:
         serializedVersion: 2
-        x: 539
-        y: 1336
-        width: 21
-        height: 18
+        x: 480
+        y: 800
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ebe59c48d29e93880800000000000000
-      internalID: -8630610829168255298
+      spriteID: c2d6474e48cdb7d448c256709595920a
+      internalID: -1827247499
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_22
+      name: Arthropleura_Head_Rear_Cracks2_3_4
       rect:
         serializedVersion: 2
-        x: 699
-        y: 1336
-        width: 21
-        height: 18
+        x: 640
+        y: 800
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: df33acfa1c106f580800000000000000
-      internalID: -8793839291004734467
+      spriteID: 11b0dd34a29c1fd45aff1b0ef8730fc9
+      internalID: 1027126745
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_23
+      name: Arthropleura_Head_Rear_Cracks2_3_5
       rect:
         serializedVersion: 2
-        x: 860
-        y: 1339
-        width: 20
-        height: 16
+        x: 800
+        y: 800
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7b8c481a9b204b070800000000000000
-      internalID: 8121119024357886135
+      spriteID: c1426f9d69965b943937c3fdd8b87441
+      internalID: -2011507040
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_24
+      name: Arthropleura_Head_Rear_Cracks2_4_0
       rect:
         serializedVersion: 2
-        x: 60
-        y: 1205
-        width: 10
-        height: 15
+        x: 0
+        y: 640
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: fe0cb03c6e0fd8170800000000000000
-      internalID: 8182460971907530991
+      spriteID: fb64ddd6306fe5d4597e5fb753f8acb9
+      internalID: -282402028
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_25
+      name: Arthropleura_Head_Rear_Cracks2_4_1
       rect:
         serializedVersion: 2
-        x: 70
-        y: 1216
-        width: 13
-        height: 7
+        x: 160
+        y: 640
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f95ed68b7eb811db0800000000000000
-      internalID: -4822919898589174369
+      spriteID: 373a7975ff9d84141b16bbb0e5f713ed
+      internalID: -1185667525
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_26
+      name: Arthropleura_Head_Rear_Cracks2_4_2
       rect:
         serializedVersion: 2
-        x: 218
-        y: 1207
-        width: 10
-        height: 15
+        x: 320
+        y: 640
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 9d29e7856157e22e0800000000000000
-      internalID: -2148651233374727463
+      spriteID: 6e5c35fb4952be546a1b33794c52b737
+      internalID: 1693134720
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_27
+      name: Arthropleura_Head_Rear_Cracks2_4_3
       rect:
         serializedVersion: 2
-        x: 228
-        y: 1218
-        width: 13
-        height: 8
+        x: 480
+        y: 640
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a42db0ee247618d90800000000000000
-      internalID: -7097278000599936438
+      spriteID: fa5ffe0ef9441484292313ba771c3898
+      internalID: 1936160945
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_28
+      name: Arthropleura_Head_Rear_Cracks2_4_4
       rect:
         serializedVersion: 2
-        x: 377
-        y: 1207
-        width: 10
-        height: 16
+        x: 640
+        y: 640
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6b1ae30851f8ace90800000000000000
-      internalID: -7004628947912711754
+      spriteID: 5543416e0dc073a49966bf214d155566
+      internalID: 1152625872
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_29
+      name: Arthropleura_Head_Rear_Cracks2_4_5
       rect:
         serializedVersion: 2
-        x: 386
-        y: 1219
-        width: 12
-        height: 8
+        x: 800
+        y: 640
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 5725899b50bdf9d10800000000000000
-      internalID: 2134665566031991413
+      spriteID: 192c47c4bf4f0994c8caab7a5c5e02c3
+      internalID: 618554943
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_30
+      name: Arthropleura_Head_Rear_Cracks2_5_0
       rect:
         serializedVersion: 2
-        x: 537
-        y: 1207
-        width: 10
-        height: 16
+        x: 0
+        y: 480
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b44737d507ac82e90800000000000000
-      internalID: -7050162632695516085
+      spriteID: 41a750046f1ee6b44aebb693a065dfa9
+      internalID: 1614520348
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_31
+      name: Arthropleura_Head_Rear_Cracks2_5_1
       rect:
         serializedVersion: 2
-        x: 546
-        y: 1219
-        width: 12
-        height: 8
+        x: 160
+        y: 480
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 856d2057b5fb559b0800000000000000
-      internalID: -5091953404146428328
+      spriteID: 495633b6b2f28bb46bd0b106cacdfee1
+      internalID: -1351154691
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_32
+      name: Arthropleura_Head_Rear_Cracks2_5_2
       rect:
         serializedVersion: 2
-        x: 697
-        y: 1207
-        width: 10
-        height: 16
+        x: 320
+        y: 480
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2ae18ae380ecbaa20800000000000000
-      internalID: 3074777705416760994
+      spriteID: 764381d80bf0be94bb5a8f4c732d87aa
+      internalID: -1612485357
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_33
+      name: Arthropleura_Head_Rear_Cracks2_5_3
       rect:
         serializedVersion: 2
-        x: 706
-        y: 1219
-        width: 12
-        height: 8
+        x: 480
+        y: 480
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 173ef17e822e566f0800000000000000
-      internalID: -691898302427307151
+      spriteID: 098ac773cdcccaa428e984421d1178c7
+      internalID: 639599319
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_34
+      name: Arthropleura_Head_Rear_Cracks2_5_4
       rect:
         serializedVersion: 2
-        x: 860
-        y: 1206
-        width: 9
-        height: 15
+        x: 640
+        y: 480
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ad8b7366c3e23a120800000000000000
-      internalID: 2423831861403302106
+      spriteID: b670fd5e53fdbf044b1b41a02441112f
+      internalID: 2015105324
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_35
+      name: Arthropleura_Head_Rear_Cracks2_5_5
       rect:
         serializedVersion: 2
-        x: 869
-        y: 1218
-        width: 13
-        height: 7
+        x: 800
+        y: 480
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: cc939fe3284b8c150800000000000000
-      internalID: 5893158583909562828
+      spriteID: 76e3ceb5dfd621645a4297be3b4895a2
+      internalID: -1188014564
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_36
+      name: Arthropleura_Head_Rear_Cracks2_6_0
       rect:
         serializedVersion: 2
-        x: 54
-        y: 1182
-        width: 15
-        height: 20
+        x: 0
+        y: 320
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 26738204444cb0c20800000000000000
-      internalID: 3173846159825844066
+      spriteID: e04a8a1b9b5aaef4ca9ea59e32e058fd
+      internalID: -1460712832
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_37
+      name: Arthropleura_Head_Rear_Cracks2_6_1
       rect:
         serializedVersion: 2
-        x: 79
-        y: 1193
-        width: 12
-        height: 9
+        x: 160
+        y: 320
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 50ab64106bae275f0800000000000000
-      internalID: -760287319645832699
+      spriteID: fea8b3c7ff7fadc44ba2a8b3895e602a
+      internalID: -1510384224
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_38
+      name: Arthropleura_Head_Rear_Cracks2_6_2
       rect:
         serializedVersion: 2
-        x: 92
-        y: 1198
-        width: 13
-        height: 12
+        x: 320
+        y: 320
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c1d957656c9eac8e0800000000000000
-      internalID: -1672267273551373028
+      spriteID: 41ec21fe11c516642a73a11dc38b137d
+      internalID: 49180971
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_39
+      name: Arthropleura_Head_Rear_Cracks2_6_3
       rect:
         serializedVersion: 2
-        x: 213
-        y: 1180
-        width: 15
-        height: 22
+        x: 480
+        y: 320
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2bc92eb8699a39810800000000000000
-      internalID: 1770945542543809714
+      spriteID: 7fe6815f0673d55438e1087813ef0419
+      internalID: 494373453
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_40
+      name: Arthropleura_Head_Rear_Cracks2_6_4
       rect:
         serializedVersion: 2
-        x: 238
-        y: 1193
-        width: 12
-        height: 10
+        x: 640
+        y: 320
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7c5891aed6478ba10800000000000000
-      internalID: 1925416856128685511
+      spriteID: 1de20fd40c4d4f743bdf54e31141336f
+      internalID: -1350920045
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_41
+      name: Arthropleura_Head_Rear_Cracks2_6_5
       rect:
         serializedVersion: 2
-        x: 250
-        y: 1201
-        width: 13
-        height: 13
+        x: 800
+        y: 320
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 350692c84bc6418c0800000000000000
-      internalID: -4029476243888316333
+      spriteID: b72e9245676877b4493c349be5918a71
+      internalID: 100638835
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_42
+      name: Arthropleura_Head_Rear_Cracks2_7_0
       rect:
         serializedVersion: 2
-        x: 396
-        y: 1193
-        width: 12
-        height: 11
+        x: 0
+        y: 160
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 8dfbb7a4f14ad16c0800000000000000
-      internalID: -4170997225574645800
+      spriteID: 4883c36d6eebfdf49b77b6acea452245
+      internalID: 402064729
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_43
+      name: Arthropleura_Head_Rear_Cracks2_7_1
       rect:
         serializedVersion: 2
-        x: 408
-        y: 1202
-        width: 13
-        height: 12
+        x: 160
+        y: 160
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: aea77adb47e87ba90800000000000000
-      internalID: -7298208039081379094
+      spriteID: 4173ae78b76cf0d4ebbb4440c1485cc2
+      internalID: 1368617589
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_44
+      name: Arthropleura_Head_Rear_Cracks2_7_2
       rect:
         serializedVersion: 2
-        x: 556
-        y: 1193
-        width: 12
-        height: 11
+        x: 320
+        y: 160
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 52c2726151b70d340800000000000000
-      internalID: 4886540926193183781
+      spriteID: cf8b3672d2d9c5a43aae9fa6267aeece
+      internalID: 8333972
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_45
+      name: Arthropleura_Head_Rear_Cracks2_7_3
       rect:
         serializedVersion: 2
-        x: 568
-        y: 1202
-        width: 13
-        height: 12
+        x: 480
+        y: 160
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: eebf2d0856501eeb0800000000000000
-      internalID: -4692463403232199698
+      spriteID: 9ef5f1a0baba1b945a1cc33d6d772e19
+      internalID: 1099771697
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_46
+      name: Arthropleura_Head_Rear_Cracks2_7_4
       rect:
         serializedVersion: 2
-        x: 716
-        y: 1193
-        width: 12
-        height: 11
+        x: 640
+        y: 160
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c55bfeb65d84cd8a0800000000000000
-      internalID: -6279063698985208484
+      spriteID: 3387005770f06a84684329ec40e548a4
+      internalID: 9541466
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_47
+      name: Arthropleura_Head_Rear_Cracks2_7_5
       rect:
         serializedVersion: 2
-        x: 728
-        y: 1202
-        width: 13
-        height: 12
+        x: 800
+        y: 160
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 592352e6c32b10a80800000000000000
-      internalID: -8502318648883072363
+      spriteID: 2a38927f49cd9ee469bb3bbe0fb4728f
+      internalID: 1771716784
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_48
+      name: Arthropleura_Head_Rear_Cracks2_8_0
       rect:
         serializedVersion: 2
-        x: 853
-        y: 1181
-        width: 16
-        height: 21
+        x: 0
+        y: 0
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 1932e3bb339c34a80800000000000000
-      internalID: -8483716049013955695
+      spriteID: db6bc4c13d8921342bf530027d878568
+      internalID: 2110363623
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_49
+      name: Arthropleura_Head_Rear_Cracks2_8_1
       rect:
         serializedVersion: 2
-        x: 878
-        y: 1193
-        width: 12
-        height: 10
+        x: 160
+        y: 0
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 85b4d2708b3591b90800000000000000
-      internalID: -7270688073553458344
+      spriteID: 129856f2063e60f43a6594f7a621006c
+      internalID: -897934552
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_50
+      name: Arthropleura_Head_Rear_Cracks2_8_2
       rect:
         serializedVersion: 2
-        x: 891
-        y: 1200
-        width: 13
-        height: 13
+        x: 320
+        y: 0
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 15f851f3a37478cc0800000000000000
-      internalID: -3708917452624261295
+      spriteID: fd481a5c768cb104d9fc5b8523707e9a
+      internalID: -983298345
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_51
+      name: Arthropleura_Head_Rear_Cracks2_8_3
       rect:
         serializedVersion: 2
-        x: 372
-        y: 1179
-        width: 15
-        height: 22
+        x: 480
+        y: 0
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 4272dca825d05c870800000000000000
-      internalID: 8702376503130531620
+      spriteID: d6623343b5f9fb4459f7037f027fcea9
+      internalID: 1931548435
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_52
+      name: Arthropleura_Head_Rear_Cracks2_8_4
       rect:
         serializedVersion: 2
-        x: 532
-        y: 1179
-        width: 15
-        height: 22
+        x: 640
+        y: 0
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 85d2b4a7e965835f0800000000000000
-      internalID: -776775697064841896
+      spriteID: f6213cc12057b844bbda5a4781630a5b
+      internalID: -1856756346
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_53
+      name: Arthropleura_Head_Rear_Cracks2_8_5
       rect:
         serializedVersion: 2
-        x: 692
-        y: 1179
-        width: 15
-        height: 22
+        x: 800
+        y: 0
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: fd6c401dd606d46e0800000000000000
-      internalID: -1851717847004952865
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_54
-      rect:
-        serializedVersion: 2
-        x: 63
-        y: 1049
-        width: 7
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1b338446ca6fc4d60800000000000000
-      internalID: 7875941068641416113
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_55
-      rect:
-        serializedVersion: 2
-        x: 74
-        y: 1056
-        width: 11
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8d2ca98762f9271b0800000000000000
-      internalID: -5660286794070310184
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_56
-      rect:
-        serializedVersion: 2
-        x: 220
-        y: 1051
-        width: 7
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0256db89196632030800000000000000
-      internalID: 3468728913524253984
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_57
-      rect:
-        serializedVersion: 2
-        x: 229
-        y: 1060
-        width: 11
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2f1533cbc47ac30e0800000000000000
-      internalID: -2288770562594221582
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_58
-      rect:
-        serializedVersion: 2
-        x: 376
-        y: 1053
-        width: 7
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: af83ace5d636d2710800000000000000
-      internalID: 1670100358217218298
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_59
-      rect:
-        serializedVersion: 2
-        x: 385
-        y: 1061
-        width: 11
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 747a491ddde0cf000800000000000000
-      internalID: 70948039997826887
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_60
-      rect:
-        serializedVersion: 2
-        x: 536
-        y: 1053
-        width: 7
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 430818051a3289250800000000000000
-      internalID: 5951546083317481524
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_61
-      rect:
-        serializedVersion: 2
-        x: 545
-        y: 1061
-        width: 11
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 14694a5a06a9d3c90800000000000000
-      internalID: -7188419690326878655
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_62
-      rect:
-        serializedVersion: 2
-        x: 696
-        y: 1053
-        width: 7
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6d61c4ebf648800a0800000000000000
-      internalID: -6915131612358502698
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_63
-      rect:
-        serializedVersion: 2
-        x: 705
-        y: 1061
-        width: 11
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 735956836a61d4e30800000000000000
-      internalID: 4489269306724816183
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_64
-      rect:
-        serializedVersion: 2
-        x: 862
-        y: 1050
-        width: 6
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 91030c9b3cba63190800000000000000
-      internalID: -7983004432344272871
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_65
-      rect:
-        serializedVersion: 2
-        x: 872
-        y: 1058
-        width: 11
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 73e1073498fc8f610800000000000000
-      internalID: 1655301051507547703
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_66
-      rect:
-        serializedVersion: 2
-        x: 49
-        y: 1028
-        width: 12
-        height: 22
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c7f25231cd6b01810800000000000000
-      internalID: 1734086912867905404
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_67
-      rect:
-        serializedVersion: 2
-        x: 74
-        y: 1031
-        width: 10
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a2a2a20e867d17ae0800000000000000
-      internalID: -1553223551028680150
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_68
-      rect:
-        serializedVersion: 2
-        x: 89
-        y: 1034
-        width: 12
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ac6fbb297802f2810800000000000000
-      internalID: 1742647347470137034
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_69
-      rect:
-        serializedVersion: 2
-        x: 207
-        y: 1027
-        width: 12
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b96af9d3ce91f6760800000000000000
-      internalID: 7453204410758309531
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_70
-      rect:
-        serializedVersion: 2
-        x: 231
-        y: 1032
-        width: 10
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5a909d72829ac8ec0800000000000000
-      internalID: -3563287215224583771
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_71
-      rect:
-        serializedVersion: 2
-        x: 244
-        y: 1037
-        width: 13
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 639017b0038610750800000000000000
-      internalID: 6269406711836117302
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_72
-      rect:
-        serializedVersion: 2
-        x: 366
-        y: 1025
-        width: 11
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3c7eb20b6945c5cd0800000000000000
-      internalID: -2568084681330530365
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_73
-      rect:
-        serializedVersion: 2
-        x: 389
-        y: 1033
-        width: 10
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 30f5b5daf825b2190800000000000000
-      internalID: -7986198737169195261
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_74
-      rect:
-        serializedVersion: 2
-        x: 401
-        y: 1039
-        width: 13
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 20cce6f94531a5e60800000000000000
-      internalID: 7951689346249051138
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_75
-      rect:
-        serializedVersion: 2
-        x: 526
-        y: 1025
-        width: 11
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1e1bc8d51217bc650800000000000000
-      internalID: 6254216895651426785
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_76
-      rect:
-        serializedVersion: 2
-        x: 549
-        y: 1033
-        width: 10
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5f80dc861964ed760800000000000000
-      internalID: 7484497221078812917
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_77
-      rect:
-        serializedVersion: 2
-        x: 561
-        y: 1039
-        width: 13
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5cda66aefdd9a4980800000000000000
-      internalID: -8553850957200970299
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_78
-      rect:
-        serializedVersion: 2
-        x: 686
-        y: 1025
-        width: 11
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 55f1bdb885a50f2f0800000000000000
-      internalID: -941152985770418347
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_79
-      rect:
-        serializedVersion: 2
-        x: 709
-        y: 1033
-        width: 10
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e558ee164d2b87540800000000000000
-      internalID: 5005947611068138846
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_80
-      rect:
-        serializedVersion: 2
-        x: 721
-        y: 1039
-        width: 13
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0169c875ab5aa7dd0800000000000000
-      internalID: -2487493624417446384
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_81
-      rect:
-        serializedVersion: 2
-        x: 848
-        y: 1026
-        width: 12
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0527f67035691c0f0800000000000000
-      internalID: -1098431550750494128
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_82
-      rect:
-        serializedVersion: 2
-        x: 873
-        y: 1032
-        width: 9
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7f7a06f0c4c192a30800000000000000
-      internalID: 4190912041246042103
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_83
-      rect:
-        serializedVersion: 2
-        x: 887
-        y: 1036
-        width: 13
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 723b32db2296999c0800000000000000
-      internalID: -3919986402726268121
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_84
-      rect:
-        serializedVersion: 2
-        x: 67
-        y: 893
-        width: 8
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 45392c1cb92588780800000000000000
-      internalID: -8680597452832468140
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_85
-      rect:
-        serializedVersion: 2
-        x: 78
-        y: 894
-        width: 8
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9e606ef0b1f6805e0800000000000000
-      internalID: -1943181077188835607
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_86
-      rect:
-        serializedVersion: 2
-        x: 206
-        y: 875
-        width: 10
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5e48d678b6f38f360800000000000000
-      internalID: 7203577335045260517
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_87
-      rect:
-        serializedVersion: 2
-        x: 222
-        y: 897
-        width: 7
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: fcd7397dabb94e360800000000000000
-      internalID: 7198049331227885007
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_88
-      rect:
-        serializedVersion: 2
-        x: 233
-        y: 900
-        width: 7
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7929f4f4863ba1380800000000000000
-      internalID: -8999683644757929321
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_89
-      rect:
-        serializedVersion: 2
-        x: 365
-        y: 874
-        width: 8
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 15392265a8e29e660800000000000000
-      internalID: 7415509433127703377
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_90
-      rect:
-        serializedVersion: 2
-        x: 379
-        y: 899
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f0268786790ad6610800000000000000
-      internalID: 1616124413449101839
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_91
-      rect:
-        serializedVersion: 2
-        x: 525
-        y: 874
-        width: 8
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 415b8feb5bb947df0800000000000000
-      internalID: -183350479919991532
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_92
-      rect:
-        serializedVersion: 2
-        x: 539
-        y: 899
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d20d5befa8033eda0800000000000000
-      internalID: -5916832111897751507
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_93
-      rect:
-        serializedVersion: 2
-        x: 685
-        y: 874
-        width: 8
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 157eacb01ae3c3ba0800000000000000
-      internalID: -6107938133212731567
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_94
-      rect:
-        serializedVersion: 2
-        x: 699
-        y: 899
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: af075a5c53e25a1c0800000000000000
-      internalID: -4493134244748103430
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_95
-      rect:
-        serializedVersion: 2
-        x: 865
-        y: 896
-        width: 19
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d772935343080c290800000000000000
-      internalID: -7872151186924034179
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_96
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 876
-        width: 11
-        height: 22
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6e9c2b7eea5aa3730800000000000000
-      internalID: 3979675391365401062
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_97
-      rect:
-        serializedVersion: 2
-        x: 69
-        y: 872
-        width: 8
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 303554d0522b98000800000000000000
-      internalID: 38757944015540995
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_98
-      rect:
-        serializedVersion: 2
-        x: 82
-        y: 871
-        width: 12
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e825d6c6fddda2bb0800000000000000
-      internalID: -4959908087928630642
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_99
-      rect:
-        serializedVersion: 2
-        x: 226
-        y: 874
-        width: 7
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: cf8d41bf65294b990800000000000000
-      internalID: -7371105787821369092
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_100
-      rect:
-        serializedVersion: 2
-        x: 238
-        y: 876
-        width: 11
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7fe4a42ebd571af30800000000000000
-      internalID: 4585075482894683895
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_101
-      rect:
-        serializedVersion: 2
-        x: 383
-        y: 875
-        width: 6
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 33b842c042ba90de0800000000000000
-      internalID: -1366372840619341005
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_102
-      rect:
-        serializedVersion: 2
-        x: 393
-        y: 879
-        width: 11
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 180f80d16383bf790800000000000000
-      internalID: -7495335349761544063
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_103
-      rect:
-        serializedVersion: 2
-        x: 543
-        y: 875
-        width: 6
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6222af1700eac1f30800000000000000
-      internalID: 4547701040672809510
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_104
-      rect:
-        serializedVersion: 2
-        x: 553
-        y: 879
-        width: 11
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 58fc78c63aec4fed0800000000000000
-      internalID: -2381051101676318843
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_105
-      rect:
-        serializedVersion: 2
-        x: 703
-        y: 875
-        width: 6
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6ced4906e9130ed30800000000000000
-      internalID: 4458618187391753926
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_106
-      rect:
-        serializedVersion: 2
-        x: 713
-        y: 879
-        width: 11
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 62031b0a8723615c0800000000000000
-      internalID: -4245150105076682714
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_107
-      rect:
-        serializedVersion: 2
-        x: 847
-        y: 876
-        width: 10
-        height: 22
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1af6bd69f8d1d0c10800000000000000
-      internalID: 2021304310307712929
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_108
-      rect:
-        serializedVersion: 2
-        x: 868
-        y: 873
-        width: 7
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6e6ec0086b617ae90800000000000000
-      internalID: -7014612921518070042
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_109
-      rect:
-        serializedVersion: 2
-        x: 880
-        y: 874
-        width: 12
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8585c91e62a6940f0800000000000000
-      internalID: -1132257116080547752
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_110
-      rect:
-        serializedVersion: 2
-        x: 50
-        y: 725
-        width: 15
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6904974121306bdf0800000000000000
-      internalID: -164940960164659050
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_111
-      rect:
-        serializedVersion: 2
-        x: 70
-        y: 733
-        width: 17
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c0d47f61bd28aa480800000000000000
-      internalID: -8887147037167497972
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_112
-      rect:
-        serializedVersion: 2
-        x: 208
-        y: 725
-        width: 13
-        height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: bdf5f0b064bb1aeb0800000000000000
-      internalID: -4710277825745166373
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_113
-      rect:
-        serializedVersion: 2
-        x: 226
-        y: 741
-        width: 15
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: bfa05c8a447c92970800000000000000
-      internalID: 8730728450337606395
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_114
-      rect:
-        serializedVersion: 2
-        x: 367
-        y: 722
-        width: 28
-        height: 37
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7acb474066db0db60800000000000000
-      internalID: 7768917603073178791
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_115
-      rect:
-        serializedVersion: 2
-        x: 527
-        y: 721
-        width: 28
-        height: 38
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: dcfda68008f2401c0800000000000000
-      internalID: -4538450297539076147
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_116
-      rect:
-        serializedVersion: 2
-        x: 687
-        y: 721
-        width: 28
-        height: 38
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b669f30d3a7a669a0800000000000000
-      internalID: -6240115911659907477
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_117
-      rect:
-        serializedVersion: 2
-        x: 849
-        y: 726
-        width: 14
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3836d9d1112215fc0800000000000000
-      internalID: -3507985177838263421
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_118
-      rect:
-        serializedVersion: 2
-        x: 868
-        y: 737
-        width: 16
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 616b6598e3f1edbc0800000000000000
-      internalID: -3756530685727820266
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_119
-      rect:
-        serializedVersion: 2
-        x: 66
-        y: 715
-        width: 6
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5ae1ff9e88c4e7480800000000000000
-      internalID: -8899591662712447323
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_120
-      rect:
-        serializedVersion: 2
-        x: 74
-        y: 711
-        width: 11
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 657cf1ca0bad270a0800000000000000
-      internalID: -6885200427959204010
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_121
-      rect:
-        serializedVersion: 2
-        x: 222
-        y: 719
-        width: 6
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 61ed4cf5c8b948780800000000000000
-      internalID: -8681643154459009514
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_122
-      rect:
-        serializedVersion: 2
-        x: 230
-        y: 717
-        width: 10
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 923bf2871e781c300800000000000000
-      internalID: 270646855072723753
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_123
-      rect:
-        serializedVersion: 2
-        x: 385
-        y: 721
-        width: 10
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 16fab98a7362d2d00800000000000000
-      internalID: 949457116938874721
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_124
-      rect:
-        serializedVersion: 2
-        x: 545
-        y: 721
-        width: 10
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 923efda3665bbf1d0800000000000000
-      internalID: -3315857249949195479
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_125
-      rect:
-        serializedVersion: 2
-        x: 705
-        y: 721
-        width: 10
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: aaf37a704ca1ae480800000000000000
-      internalID: -8869247086908457046
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_126
-      rect:
-        serializedVersion: 2
-        x: 864
-        y: 717
-        width: 7
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3b1839b4488b24be0800000000000000
-      internalID: -1494429247990431309
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_127
-      rect:
-        serializedVersion: 2
-        x: 872
-        y: 714
-        width: 11
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8738f023ff9ec0690800000000000000
-      internalID: -7634469986034023560
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_128
-      rect:
-        serializedVersion: 2
-        x: 54
-        y: 574
-        width: 19
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5bd901285534d5af0800000000000000
-      internalID: -406094356860068427
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_129
-      rect:
-        serializedVersion: 2
-        x: 76
-        y: 579
-        width: 12
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: eebfed71e96cdf170800000000000000
-      internalID: 8213939677701274606
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_130
-      rect:
-        serializedVersion: 2
-        x: 212
-        y: 575
-        width: 18
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4d3c4f58942f00490800000000000000
-      internalID: -7781953758502272044
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_131
-      rect:
-        serializedVersion: 2
-        x: 233
-        y: 581
-        width: 14
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 96fd4f0a0aa510950800000000000000
-      internalID: 6413506990293966697
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_132
-      rect:
-        serializedVersion: 2
-        x: 371
-        y: 575
-        width: 17
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a4fabb54e8d7d4230800000000000000
-      internalID: 3624691325111873354
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_133
-      rect:
-        serializedVersion: 2
-        x: 396
-        y: 588
-        width: 6
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: de963a58ac8272b30800000000000000
-      internalID: 4262420422620047853
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_134
-      rect:
-        serializedVersion: 2
-        x: 531
-        y: 575
-        width: 17
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: cf09dd6ce82415470800000000000000
-      internalID: 8381553562502402300
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_135
-      rect:
-        serializedVersion: 2
-        x: 556
-        y: 588
-        width: 6
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2cab42c285e547a10800000000000000
-      internalID: 1906252275075300034
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_136
-      rect:
-        serializedVersion: 2
-        x: 691
-        y: 575
-        width: 17
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 10e4131bc06af1370800000000000000
-      internalID: 8295531612082359809
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_137
-      rect:
-        serializedVersion: 2
-        x: 716
-        y: 588
-        width: 6
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 13692b1415d9c3160800000000000000
-      internalID: 7006648092601783857
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_138
-      rect:
-        serializedVersion: 2
-        x: 853
-        y: 575
-        width: 18
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: baf2502ec423a86e0800000000000000
-      internalID: -1834598592409161813
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_139
-      rect:
-        serializedVersion: 2
-        x: 875
-        y: 583
-        width: 9
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 225ac64df48cd8fe0800000000000000
-      internalID: -1185070881736710878
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_140
-      rect:
-        serializedVersion: 2
-        x: 882
-        y: 576
-        width: 7
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4aa4cbd6f38786de0800000000000000
-      internalID: -1339688675323393372
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_141
-      rect:
-        serializedVersion: 2
-        x: 84
-        y: 571
-        width: 7
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3878df5bbf45ca520800000000000000
-      internalID: 2714638115464382339
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_142
-      rect:
-        serializedVersion: 2
-        x: 219
-        y: 565
-        width: 8
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 44a58765fc91816b0800000000000000
-      internalID: -5325478181065958844
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_143
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 562
-        width: 9
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3be8f63a35607bc70800000000000000
-      internalID: 8986658537735163571
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_144
-      rect:
-        serializedVersion: 2
-        x: 378
-        y: 571
-        width: 6
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f921279063274be90800000000000000
-      internalID: -7010853143496748385
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_145
-      rect:
-        serializedVersion: 2
-        x: 381
-        y: 568
-        width: 8
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1f8262c45f25e7120800000000000000
-      internalID: 2413457663815198961
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_146
-      rect:
-        serializedVersion: 2
-        x: 537
-        y: 568
-        width: 7
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: de3d36185fad907d0800000000000000
-      internalID: -2951587332792003603
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_147
-      rect:
-        serializedVersion: 2
-        x: 542
-        y: 569
-        width: 7
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: af62c50ca4dd3ea60800000000000000
-      internalID: 7702243100858263290
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_148
-      rect:
-        serializedVersion: 2
-        x: 697
-        y: 568
-        width: 7
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 48c55c214e0696760800000000000000
-      internalID: 7451593591144930436
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_149
-      rect:
-        serializedVersion: 2
-        x: 702
-        y: 569
-        width: 7
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 11223c3b6b05678f0800000000000000
-      internalID: -543157959421386223
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_150
-      rect:
-        serializedVersion: 2
-        x: 860
-        y: 562
-        width: 9
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 501b8c3a5eea1bd80800000000000000
-      internalID: -8236609942165343995
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_151
-      rect:
-        serializedVersion: 2
-        x: 61
-        y: 560
-        width: 9
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 183abcb3f54242e40800000000000000
-      internalID: 5630665425563657089
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_152
-      rect:
-        serializedVersion: 2
-        x: 67
-        y: 552
-        width: 10
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4d97cde42ac7a8d80800000000000000
-      internalID: -8247642731026023980
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_153
-      rect:
-        serializedVersion: 2
-        x: 866
-        y: 557
-        width: 9
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 70fac33713a536aa0800000000000000
-      internalID: -6168987896134193401
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_154
-      rect:
-        serializedVersion: 2
-        x: 61
-        y: 421
-        width: 22
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3610da9f106a8ea20800000000000000
-      internalID: 3091903671603888483
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_155
-      rect:
-        serializedVersion: 2
-        x: 220
-        y: 422
-        width: 16
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d85a9b48744a10340800000000000000
-      internalID: 4828320902594274701
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_156
-      rect:
-        serializedVersion: 2
-        x: 235
-        y: 420
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d7eddaf5169944eb0800000000000000
-      internalID: -4736492264590811523
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_157
-      rect:
-        serializedVersion: 2
-        x: 379
-        y: 414
-        width: 12
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 98ff8e74847868840800000000000000
-      internalID: 5226013162123886473
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_158
-      rect:
-        serializedVersion: 2
-        x: 399
-        y: 429
-        width: 10
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: dd2ed4accfb0166b0800000000000000
-      internalID: -5304945705711967523
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_159
-      rect:
-        serializedVersion: 2
-        x: 537
-        y: 414
-        width: 14
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 987fef7d028b850a0800000000000000
-      internalID: -6892556778488268919
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_160
-      rect:
-        serializedVersion: 2
-        x: 559
-        y: 429
-        width: 10
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c0f5964e4f4ecdfd0800000000000000
-      internalID: -2315724367920013556
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_161
-      rect:
-        serializedVersion: 2
-        x: 697
-        y: 414
-        width: 14
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c0e74d3af232ebd40800000000000000
-      internalID: 5601953674014522892
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_162
-      rect:
-        serializedVersion: 2
-        x: 719
-        y: 429
-        width: 10
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c2fa90c43d8f7f010800000000000000
-      internalID: 1222719410251869996
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_163
-      rect:
-        serializedVersion: 2
-        x: 861
-        y: 422
-        width: 23
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: bcbd26d6797092ce0800000000000000
-      internalID: -1429603059756770357
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_164
-      rect:
-        serializedVersion: 2
-        x: 883
-        y: 415
-        width: 10
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: cf371222ff2dd7a80800000000000000
-      internalID: -8467379731155553284
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_165
-      rect:
-        serializedVersion: 2
-        x: 60
-        y: 406
-        width: 10
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d5ce5475574b495d0800000000000000
-      internalID: -3056619831009350563
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_166
-      rect:
-        serializedVersion: 2
-        x: 83
-        y: 409
-        width: 11
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c65832e97f6ce0fe0800000000000000
-      internalID: -1220819682158475924
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_167
-      rect:
-        serializedVersion: 2
-        x: 218
-        y: 411
-        width: 9
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 247706880a4c255a0800000000000000
-      internalID: -6533943915599333566
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_168
-      rect:
-        serializedVersion: 2
-        x: 221
-        y: 406
-        width: 7
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 56b87db45ffe470c0800000000000000
-      internalID: -4578771084310508699
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_169
-      rect:
-        serializedVersion: 2
-        x: 859
-        y: 408
-        width: 9
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7d2cc7e9b6a454f10800000000000000
-      internalID: 2253289014649733847
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_170
-      rect:
-        serializedVersion: 2
-        x: 861
-        y: 401
-        width: 9
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ce2b32df5ad84db90800000000000000
-      internalID: -7217988558711966996
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_171
-      rect:
-        serializedVersion: 2
-        x: 62
-        y: 395
-        width: 9
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 38d1e64fcee938d40800000000000000
-      internalID: 5585482703419874691
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_172
-      rect:
-        serializedVersion: 2
-        x: 70
-        y: 257
-        width: 28
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 875c5ad277a2f5a90800000000000000
-      internalID: -7323087777725823624
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_173
-      rect:
-        serializedVersion: 2
-        x: 231
-        y: 259
-        width: 25
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c3355659e41ff1390800000000000000
-      internalID: -7845286706039925956
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_174
-      rect:
-        serializedVersion: 2
-        x: 378
-        y: 260
-        width: 7
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 434bf4a8125a2ef20800000000000000
-      internalID: 3450501827992204340
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_175
-      rect:
-        serializedVersion: 2
-        x: 401
-        y: 268
-        width: 12
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ae05c49464cff0990800000000000000
-      internalID: -7417432682448269078
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_176
-      rect:
-        serializedVersion: 2
-        x: 538
-        y: 260
-        width: 7
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 821c903f1205c23c0800000000000000
-      internalID: -4383040230596689624
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_177
-      rect:
-        serializedVersion: 2
-        x: 561
-        y: 268
-        width: 12
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e8dd7e5521934c850800000000000000
-      internalID: 6396300121686400398
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_178
-      rect:
-        serializedVersion: 2
-        x: 698
-        y: 260
-        width: 7
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 76a81fbf86df0b0b0800000000000000
-      internalID: -5714789299787822489
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_179
-      rect:
-        serializedVersion: 2
-        x: 721
-        y: 268
-        width: 12
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 540bee6599cfd25e0800000000000000
-      internalID: -1932610929553395643
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_180
-      rect:
-        serializedVersion: 2
-        x: 864
-        y: 253
-        width: 33
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ed1ffba655fe7d620800000000000000
-      internalID: 2798968843576275422
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_181
-      rect:
-        serializedVersion: 2
-        x: 60
-        y: 251
-        width: 12
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a309dadd2f3695f50800000000000000
-      internalID: 6870632601282777146
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_182
-      rect:
-        serializedVersion: 2
-        x: 82
-        y: 248
-        width: 12
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 44081060a914d1a40800000000000000
-      internalID: 5340496862912806980
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_183
-      rect:
-        serializedVersion: 2
-        x: 218
-        y: 251
-        width: 8
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b9d78ea51b5a88700800000000000000
-      internalID: 542865936251125147
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_184
-      rect:
-        serializedVersion: 2
-        x: 859
-        y: 246
-        width: 8
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 66445c19391f51a60800000000000000
-      internalID: 7644281558639395942
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_185
-      rect:
-        serializedVersion: 2
-        x: 58
-        y: 240
-        width: 9
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 83a0f78ca99055860800000000000000
-      internalID: 7517925713358293560
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_186
-      rect:
-        serializedVersion: 2
-        x: 79
-        y: 87
-        width: 21
-        height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0f23a0f6b8899ef90800000000000000
-      internalID: -6923835227474611472
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_187
-      rect:
-        serializedVersion: 2
-        x: 215
-        y: 98
-        width: 44
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 733c55d1d24d961d0800000000000000
-      internalID: -3356918756997217481
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_188
-      rect:
-        serializedVersion: 2
-        x: 375
-        y: 106
-        width: 44
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f4e3e24f49bad7000800000000000000
-      internalID: 35373028329012815
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_189
-      rect:
-        serializedVersion: 2
-        x: 535
-        y: 106
-        width: 44
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2a7a070c5dc4f2e80800000000000000
-      internalID: -8201251915478030430
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_190
-      rect:
-        serializedVersion: 2
-        x: 695
-        y: 106
-        width: 44
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 64b26423cbce4e210800000000000000
-      internalID: 1361473280414198598
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_191
-      rect:
-        serializedVersion: 2
-        x: 879
-        y: 92
-        width: 22
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 44bdcbd09cbdadc30800000000000000
-      internalID: 4385058843763989316
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_192
-      rect:
-        serializedVersion: 2
-        x: 881
-        y: 102
-        width: 10
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3d7965749fa436890800000000000000
-      internalID: -7466041322745980973
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_193
-      rect:
-        serializedVersion: 2
-        x: 55
-        y: 87
-        width: 19
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 946e8cbb0fc7bfdb0800000000000000
-      internalID: -4757071208002296247
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Rear_Cracks2_194
-      rect:
-        serializedVersion: 2
-        x: 855
-        y: 93
-        width: 10
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f7ec0561a31667f90800000000000000
-      internalID: -6956265672316760449
+      spriteID: ae1853e43c5d548478fbb81fef91df07
+      internalID: -1982158756
       vertices: []
       indices: 
       edges: []
@@ -5000,201 +1898,60 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Arthropleura_Head_Rear_Cracks2_0: -1473650984618810418
-      Arthropleura_Head_Rear_Cracks2_1: -4773070626089174870
-      Arthropleura_Head_Rear_Cracks2_10: 1248438012402825417
-      Arthropleura_Head_Rear_Cracks2_100: 4585075482894683895
-      Arthropleura_Head_Rear_Cracks2_101: -1366372840619341005
-      Arthropleura_Head_Rear_Cracks2_102: -7495335349761544063
-      Arthropleura_Head_Rear_Cracks2_103: 4547701040672809510
-      Arthropleura_Head_Rear_Cracks2_104: -2381051101676318843
-      Arthropleura_Head_Rear_Cracks2_105: 4458618187391753926
-      Arthropleura_Head_Rear_Cracks2_106: -4245150105076682714
-      Arthropleura_Head_Rear_Cracks2_107: 2021304310307712929
-      Arthropleura_Head_Rear_Cracks2_108: -7014612921518070042
-      Arthropleura_Head_Rear_Cracks2_109: -1132257116080547752
-      Arthropleura_Head_Rear_Cracks2_11: 139236052691864520
-      Arthropleura_Head_Rear_Cracks2_110: -164940960164659050
-      Arthropleura_Head_Rear_Cracks2_111: -8887147037167497972
-      Arthropleura_Head_Rear_Cracks2_112: -4710277825745166373
-      Arthropleura_Head_Rear_Cracks2_113: 8730728450337606395
-      Arthropleura_Head_Rear_Cracks2_114: 7768917603073178791
-      Arthropleura_Head_Rear_Cracks2_115: -4538450297539076147
-      Arthropleura_Head_Rear_Cracks2_116: -6240115911659907477
-      Arthropleura_Head_Rear_Cracks2_117: -3507985177838263421
-      Arthropleura_Head_Rear_Cracks2_118: -3756530685727820266
-      Arthropleura_Head_Rear_Cracks2_119: -8899591662712447323
-      Arthropleura_Head_Rear_Cracks2_12: -7895320409777349330
-      Arthropleura_Head_Rear_Cracks2_120: -6885200427959204010
-      Arthropleura_Head_Rear_Cracks2_121: -8681643154459009514
-      Arthropleura_Head_Rear_Cracks2_122: 270646855072723753
-      Arthropleura_Head_Rear_Cracks2_123: 949457116938874721
-      Arthropleura_Head_Rear_Cracks2_124: -3315857249949195479
-      Arthropleura_Head_Rear_Cracks2_125: -8869247086908457046
-      Arthropleura_Head_Rear_Cracks2_126: -1494429247990431309
-      Arthropleura_Head_Rear_Cracks2_127: -7634469986034023560
-      Arthropleura_Head_Rear_Cracks2_128: -406094356860068427
-      Arthropleura_Head_Rear_Cracks2_129: 8213939677701274606
-      Arthropleura_Head_Rear_Cracks2_13: 764967245144460416
-      Arthropleura_Head_Rear_Cracks2_130: -7781953758502272044
-      Arthropleura_Head_Rear_Cracks2_131: 6413506990293966697
-      Arthropleura_Head_Rear_Cracks2_132: 3624691325111873354
-      Arthropleura_Head_Rear_Cracks2_133: 4262420422620047853
-      Arthropleura_Head_Rear_Cracks2_134: 8381553562502402300
-      Arthropleura_Head_Rear_Cracks2_135: 1906252275075300034
-      Arthropleura_Head_Rear_Cracks2_136: 8295531612082359809
-      Arthropleura_Head_Rear_Cracks2_137: 7006648092601783857
-      Arthropleura_Head_Rear_Cracks2_138: -1834598592409161813
-      Arthropleura_Head_Rear_Cracks2_139: -1185070881736710878
-      Arthropleura_Head_Rear_Cracks2_14: 1532512706291787912
-      Arthropleura_Head_Rear_Cracks2_140: -1339688675323393372
-      Arthropleura_Head_Rear_Cracks2_141: 2714638115464382339
-      Arthropleura_Head_Rear_Cracks2_142: -5325478181065958844
-      Arthropleura_Head_Rear_Cracks2_143: 8986658537735163571
-      Arthropleura_Head_Rear_Cracks2_144: -7010853143496748385
-      Arthropleura_Head_Rear_Cracks2_145: 2413457663815198961
-      Arthropleura_Head_Rear_Cracks2_146: -2951587332792003603
-      Arthropleura_Head_Rear_Cracks2_147: 7702243100858263290
-      Arthropleura_Head_Rear_Cracks2_148: 7451593591144930436
-      Arthropleura_Head_Rear_Cracks2_149: -543157959421386223
-      Arthropleura_Head_Rear_Cracks2_15: -6348655179932695554
-      Arthropleura_Head_Rear_Cracks2_150: -8236609942165343995
-      Arthropleura_Head_Rear_Cracks2_151: 5630665425563657089
-      Arthropleura_Head_Rear_Cracks2_152: -8247642731026023980
-      Arthropleura_Head_Rear_Cracks2_153: -6168987896134193401
-      Arthropleura_Head_Rear_Cracks2_154: 3091903671603888483
-      Arthropleura_Head_Rear_Cracks2_155: 4828320902594274701
-      Arthropleura_Head_Rear_Cracks2_156: -4736492264590811523
-      Arthropleura_Head_Rear_Cracks2_157: 5226013162123886473
-      Arthropleura_Head_Rear_Cracks2_158: -5304945705711967523
-      Arthropleura_Head_Rear_Cracks2_159: -6892556778488268919
-      Arthropleura_Head_Rear_Cracks2_16: -3083561142463073127
-      Arthropleura_Head_Rear_Cracks2_160: -2315724367920013556
-      Arthropleura_Head_Rear_Cracks2_161: 5601953674014522892
-      Arthropleura_Head_Rear_Cracks2_162: 1222719410251869996
-      Arthropleura_Head_Rear_Cracks2_163: -1429603059756770357
-      Arthropleura_Head_Rear_Cracks2_164: -8467379731155553284
-      Arthropleura_Head_Rear_Cracks2_165: -3056619831009350563
-      Arthropleura_Head_Rear_Cracks2_166: -1220819682158475924
-      Arthropleura_Head_Rear_Cracks2_167: -6533943915599333566
-      Arthropleura_Head_Rear_Cracks2_168: -4578771084310508699
-      Arthropleura_Head_Rear_Cracks2_169: 2253289014649733847
-      Arthropleura_Head_Rear_Cracks2_17: -7963338070255082484
-      Arthropleura_Head_Rear_Cracks2_170: -7217988558711966996
-      Arthropleura_Head_Rear_Cracks2_171: 5585482703419874691
-      Arthropleura_Head_Rear_Cracks2_172: -7323087777725823624
-      Arthropleura_Head_Rear_Cracks2_173: -7845286706039925956
-      Arthropleura_Head_Rear_Cracks2_174: 3450501827992204340
-      Arthropleura_Head_Rear_Cracks2_175: -7417432682448269078
-      Arthropleura_Head_Rear_Cracks2_176: -4383040230596689624
-      Arthropleura_Head_Rear_Cracks2_177: 6396300121686400398
-      Arthropleura_Head_Rear_Cracks2_178: -5714789299787822489
-      Arthropleura_Head_Rear_Cracks2_179: -1932610929553395643
-      Arthropleura_Head_Rear_Cracks2_18: -4669718099064919278
-      Arthropleura_Head_Rear_Cracks2_180: 2798968843576275422
-      Arthropleura_Head_Rear_Cracks2_181: 6870632601282777146
-      Arthropleura_Head_Rear_Cracks2_182: 5340496862912806980
-      Arthropleura_Head_Rear_Cracks2_183: 542865936251125147
-      Arthropleura_Head_Rear_Cracks2_184: 7644281558639395942
-      Arthropleura_Head_Rear_Cracks2_185: 7517925713358293560
-      Arthropleura_Head_Rear_Cracks2_186: -6923835227474611472
-      Arthropleura_Head_Rear_Cracks2_187: -3356918756997217481
-      Arthropleura_Head_Rear_Cracks2_188: 35373028329012815
-      Arthropleura_Head_Rear_Cracks2_189: -8201251915478030430
-      Arthropleura_Head_Rear_Cracks2_19: 7170671506212351807
-      Arthropleura_Head_Rear_Cracks2_190: 1361473280414198598
-      Arthropleura_Head_Rear_Cracks2_191: 4385058843763989316
-      Arthropleura_Head_Rear_Cracks2_192: -7466041322745980973
-      Arthropleura_Head_Rear_Cracks2_193: -4757071208002296247
-      Arthropleura_Head_Rear_Cracks2_194: -6956265672316760449
-      Arthropleura_Head_Rear_Cracks2_2: 218126243844901250
-      Arthropleura_Head_Rear_Cracks2_20: -7487087286887072256
-      Arthropleura_Head_Rear_Cracks2_21: -8630610829168255298
-      Arthropleura_Head_Rear_Cracks2_22: -8793839291004734467
-      Arthropleura_Head_Rear_Cracks2_23: 8121119024357886135
-      Arthropleura_Head_Rear_Cracks2_24: 8182460971907530991
-      Arthropleura_Head_Rear_Cracks2_25: -4822919898589174369
-      Arthropleura_Head_Rear_Cracks2_26: -2148651233374727463
-      Arthropleura_Head_Rear_Cracks2_27: -7097278000599936438
-      Arthropleura_Head_Rear_Cracks2_28: -7004628947912711754
-      Arthropleura_Head_Rear_Cracks2_29: 2134665566031991413
-      Arthropleura_Head_Rear_Cracks2_3: 6793631017284267085
-      Arthropleura_Head_Rear_Cracks2_30: -7050162632695516085
-      Arthropleura_Head_Rear_Cracks2_31: -5091953404146428328
-      Arthropleura_Head_Rear_Cracks2_32: 3074777705416760994
-      Arthropleura_Head_Rear_Cracks2_33: -691898302427307151
-      Arthropleura_Head_Rear_Cracks2_34: 2423831861403302106
-      Arthropleura_Head_Rear_Cracks2_35: 5893158583909562828
-      Arthropleura_Head_Rear_Cracks2_36: 3173846159825844066
-      Arthropleura_Head_Rear_Cracks2_37: -760287319645832699
-      Arthropleura_Head_Rear_Cracks2_38: -1672267273551373028
-      Arthropleura_Head_Rear_Cracks2_39: 1770945542543809714
-      Arthropleura_Head_Rear_Cracks2_4: -4833183590815707841
-      Arthropleura_Head_Rear_Cracks2_40: 1925416856128685511
-      Arthropleura_Head_Rear_Cracks2_41: -4029476243888316333
-      Arthropleura_Head_Rear_Cracks2_42: -4170997225574645800
-      Arthropleura_Head_Rear_Cracks2_43: -7298208039081379094
-      Arthropleura_Head_Rear_Cracks2_44: 4886540926193183781
-      Arthropleura_Head_Rear_Cracks2_45: -4692463403232199698
-      Arthropleura_Head_Rear_Cracks2_46: -6279063698985208484
-      Arthropleura_Head_Rear_Cracks2_47: -8502318648883072363
-      Arthropleura_Head_Rear_Cracks2_48: -8483716049013955695
-      Arthropleura_Head_Rear_Cracks2_49: -7270688073553458344
-      Arthropleura_Head_Rear_Cracks2_5: -8568461148652277153
-      Arthropleura_Head_Rear_Cracks2_50: -3708917452624261295
-      Arthropleura_Head_Rear_Cracks2_51: 8702376503130531620
-      Arthropleura_Head_Rear_Cracks2_52: -776775697064841896
-      Arthropleura_Head_Rear_Cracks2_53: -1851717847004952865
-      Arthropleura_Head_Rear_Cracks2_54: 7875941068641416113
-      Arthropleura_Head_Rear_Cracks2_55: -5660286794070310184
-      Arthropleura_Head_Rear_Cracks2_56: 3468728913524253984
-      Arthropleura_Head_Rear_Cracks2_57: -2288770562594221582
-      Arthropleura_Head_Rear_Cracks2_58: 1670100358217218298
-      Arthropleura_Head_Rear_Cracks2_59: 70948039997826887
-      Arthropleura_Head_Rear_Cracks2_6: 123740984594659380
-      Arthropleura_Head_Rear_Cracks2_60: 5951546083317481524
-      Arthropleura_Head_Rear_Cracks2_61: -7188419690326878655
-      Arthropleura_Head_Rear_Cracks2_62: -6915131612358502698
-      Arthropleura_Head_Rear_Cracks2_63: 4489269306724816183
-      Arthropleura_Head_Rear_Cracks2_64: -7983004432344272871
-      Arthropleura_Head_Rear_Cracks2_65: 1655301051507547703
-      Arthropleura_Head_Rear_Cracks2_66: 1734086912867905404
-      Arthropleura_Head_Rear_Cracks2_67: -1553223551028680150
-      Arthropleura_Head_Rear_Cracks2_68: 1742647347470137034
-      Arthropleura_Head_Rear_Cracks2_69: 7453204410758309531
-      Arthropleura_Head_Rear_Cracks2_7: 3483641525837940794
-      Arthropleura_Head_Rear_Cracks2_70: -3563287215224583771
-      Arthropleura_Head_Rear_Cracks2_71: 6269406711836117302
-      Arthropleura_Head_Rear_Cracks2_72: -2568084681330530365
-      Arthropleura_Head_Rear_Cracks2_73: -7986198737169195261
-      Arthropleura_Head_Rear_Cracks2_74: 7951689346249051138
-      Arthropleura_Head_Rear_Cracks2_75: 6254216895651426785
-      Arthropleura_Head_Rear_Cracks2_76: 7484497221078812917
-      Arthropleura_Head_Rear_Cracks2_77: -8553850957200970299
-      Arthropleura_Head_Rear_Cracks2_78: -941152985770418347
-      Arthropleura_Head_Rear_Cracks2_79: 5005947611068138846
-      Arthropleura_Head_Rear_Cracks2_8: 3865148070261364112
-      Arthropleura_Head_Rear_Cracks2_80: -2487493624417446384
-      Arthropleura_Head_Rear_Cracks2_81: -1098431550750494128
-      Arthropleura_Head_Rear_Cracks2_82: 4190912041246042103
-      Arthropleura_Head_Rear_Cracks2_83: -3919986402726268121
-      Arthropleura_Head_Rear_Cracks2_84: -8680597452832468140
-      Arthropleura_Head_Rear_Cracks2_85: -1943181077188835607
-      Arthropleura_Head_Rear_Cracks2_86: 7203577335045260517
-      Arthropleura_Head_Rear_Cracks2_87: 7198049331227885007
-      Arthropleura_Head_Rear_Cracks2_88: -8999683644757929321
-      Arthropleura_Head_Rear_Cracks2_89: 7415509433127703377
-      Arthropleura_Head_Rear_Cracks2_9: -7441881003103549290
-      Arthropleura_Head_Rear_Cracks2_90: 1616124413449101839
-      Arthropleura_Head_Rear_Cracks2_91: -183350479919991532
-      Arthropleura_Head_Rear_Cracks2_92: -5916832111897751507
-      Arthropleura_Head_Rear_Cracks2_93: -6107938133212731567
-      Arthropleura_Head_Rear_Cracks2_94: -4493134244748103430
-      Arthropleura_Head_Rear_Cracks2_95: -7872151186924034179
-      Arthropleura_Head_Rear_Cracks2_96: 3979675391365401062
-      Arthropleura_Head_Rear_Cracks2_97: 38757944015540995
-      Arthropleura_Head_Rear_Cracks2_98: -4959908087928630642
-      Arthropleura_Head_Rear_Cracks2_99: -7371105787821369092
+      Arthropleura_Head_Rear_Cracks2_0_0: -701107291
+      Arthropleura_Head_Rear_Cracks2_0_1: 858232067
+      Arthropleura_Head_Rear_Cracks2_0_2: 1174184357
+      Arthropleura_Head_Rear_Cracks2_0_3: -911210288
+      Arthropleura_Head_Rear_Cracks2_0_4: -18298162
+      Arthropleura_Head_Rear_Cracks2_0_5: 102923160
+      Arthropleura_Head_Rear_Cracks2_1_0: -1558110919
+      Arthropleura_Head_Rear_Cracks2_1_1: 885393777
+      Arthropleura_Head_Rear_Cracks2_1_2: 2137029909
+      Arthropleura_Head_Rear_Cracks2_1_3: -1295640682
+      Arthropleura_Head_Rear_Cracks2_1_4: 43186979
+      Arthropleura_Head_Rear_Cracks2_1_5: -25961543
+      Arthropleura_Head_Rear_Cracks2_2_0: -112768091
+      Arthropleura_Head_Rear_Cracks2_2_1: 1456739525
+      Arthropleura_Head_Rear_Cracks2_2_2: 1949743155
+      Arthropleura_Head_Rear_Cracks2_2_3: -142856296
+      Arthropleura_Head_Rear_Cracks2_2_4: -382242555
+      Arthropleura_Head_Rear_Cracks2_2_5: 1416079633
+      Arthropleura_Head_Rear_Cracks2_3_0: -572032660
+      Arthropleura_Head_Rear_Cracks2_3_1: 1262248887
+      Arthropleura_Head_Rear_Cracks2_3_2: -2077893605
+      Arthropleura_Head_Rear_Cracks2_3_3: -1827247499
+      Arthropleura_Head_Rear_Cracks2_3_4: 1027126745
+      Arthropleura_Head_Rear_Cracks2_3_5: -2011507040
+      Arthropleura_Head_Rear_Cracks2_4_0: -282402028
+      Arthropleura_Head_Rear_Cracks2_4_1: -1185667525
+      Arthropleura_Head_Rear_Cracks2_4_2: 1693134720
+      Arthropleura_Head_Rear_Cracks2_4_3: 1936160945
+      Arthropleura_Head_Rear_Cracks2_4_4: 1152625872
+      Arthropleura_Head_Rear_Cracks2_4_5: 618554943
+      Arthropleura_Head_Rear_Cracks2_5_0: 1614520348
+      Arthropleura_Head_Rear_Cracks2_5_1: -1351154691
+      Arthropleura_Head_Rear_Cracks2_5_2: -1612485357
+      Arthropleura_Head_Rear_Cracks2_5_3: 639599319
+      Arthropleura_Head_Rear_Cracks2_5_4: 2015105324
+      Arthropleura_Head_Rear_Cracks2_5_5: -1188014564
+      Arthropleura_Head_Rear_Cracks2_6_0: -1460712832
+      Arthropleura_Head_Rear_Cracks2_6_1: -1510384224
+      Arthropleura_Head_Rear_Cracks2_6_2: 49180971
+      Arthropleura_Head_Rear_Cracks2_6_3: 494373453
+      Arthropleura_Head_Rear_Cracks2_6_4: -1350920045
+      Arthropleura_Head_Rear_Cracks2_6_5: 100638835
+      Arthropleura_Head_Rear_Cracks2_7_0: 402064729
+      Arthropleura_Head_Rear_Cracks2_7_1: 1368617589
+      Arthropleura_Head_Rear_Cracks2_7_2: 8333972
+      Arthropleura_Head_Rear_Cracks2_7_3: 1099771697
+      Arthropleura_Head_Rear_Cracks2_7_4: 9541466
+      Arthropleura_Head_Rear_Cracks2_7_5: 1771716784
+      Arthropleura_Head_Rear_Cracks2_8_0: 2110363623
+      Arthropleura_Head_Rear_Cracks2_8_1: -897934552
+      Arthropleura_Head_Rear_Cracks2_8_2: -983298345
+      Arthropleura_Head_Rear_Cracks2_8_3: 1931548435
+      Arthropleura_Head_Rear_Cracks2_8_4: -1856756346
+      Arthropleura_Head_Rear_Cracks2_8_5: -1982158756
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

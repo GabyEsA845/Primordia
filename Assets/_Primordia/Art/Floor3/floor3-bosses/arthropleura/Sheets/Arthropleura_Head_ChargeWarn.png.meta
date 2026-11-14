@@ -151,7 +151,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -179,7 +179,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -220,793 +220,793 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Arthropleura_Head_ChargeWarn_0
+      name: Arthropleura_Head_ChargeWarn_0_0
       rect:
         serializedVersion: 2
-        x: 33
-        y: 1336
-        width: 94
-        height: 75
+        x: 0
+        y: 1280
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 687d65f64faa90e80800000000000000
-      internalID: -8211844478716684410
+      spriteID: 7724f28c9c48103428ab5dcd197343c2
+      internalID: -1685798039
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_ChargeWarn_1
+      name: Arthropleura_Head_ChargeWarn_0_1
       rect:
         serializedVersion: 2
-        x: 193
-        y: 1336
-        width: 94
-        height: 74
+        x: 160
+        y: 1280
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 20b15bb68d435f110800000000000000
-      internalID: 1293998572063496962
+      spriteID: a423e1f0c957ad142ad26b6ca19933c1
+      internalID: 79483662
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_ChargeWarn_2
+      name: Arthropleura_Head_ChargeWarn_0_2
       rect:
         serializedVersion: 2
-        x: 353
-        y: 1336
-        width: 94
-        height: 74
+        x: 320
+        y: 1280
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: bdd0e6b8f4726fcb0800000000000000
-      internalID: -4830630327713133093
+      spriteID: 5db681c24fe95494c966ec06cc12133a
+      internalID: -153056235
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_ChargeWarn_3
+      name: Arthropleura_Head_ChargeWarn_0_3
       rect:
         serializedVersion: 2
-        x: 513
-        y: 1336
-        width: 94
-        height: 73
+        x: 480
+        y: 1280
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 5d1111d71c5c4fa60800000000000000
-      internalID: 7707002297155391957
+      spriteID: 2b20b89a135a02c4fabdbf8238866d9a
+      internalID: -997697773
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_ChargeWarn_4
+      name: Arthropleura_Head_ChargeWarn_1_0
       rect:
         serializedVersion: 2
-        x: 30
-        y: 1167
-        width: 97
-        height: 89
+        x: 0
+        y: 1120
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 621792a1f06cf4d00800000000000000
-      internalID: 959203013818937638
+      spriteID: 2cfbbea0415e2424ca866b9fe38817c2
+      internalID: 1558404908
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_ChargeWarn_5
+      name: Arthropleura_Head_ChargeWarn_1_1
       rect:
         serializedVersion: 2
-        x: 190
-        y: 1167
-        width: 97
-        height: 88
+        x: 160
+        y: 1120
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6feea739dcd16da70800000000000000
-      internalID: 8851294886423097078
+      spriteID: 48b647de9113e0849baeaf41a85a55c6
+      internalID: -1091195462
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_ChargeWarn_6
+      name: Arthropleura_Head_ChargeWarn_1_2
       rect:
         serializedVersion: 2
-        x: 350
-        y: 1167
-        width: 96
-        height: 88
+        x: 320
+        y: 1120
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f98d05e4a6d8207d0800000000000000
-      internalID: -2953642917881653089
+      spriteID: 5939749ce21b3cf4c8b58839aa377f10
+      internalID: 205342489
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_ChargeWarn_7
+      name: Arthropleura_Head_ChargeWarn_1_3
       rect:
         serializedVersion: 2
-        x: 510
-        y: 1167
-        width: 96
-        height: 87
+        x: 480
+        y: 1120
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 8dd482c00ce9c1ca0800000000000000
-      internalID: -6044782052163170856
+      spriteID: ef55ae046ce4e4c40a0ca3ebc771cb93
+      internalID: -401742212
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_ChargeWarn_8
+      name: Arthropleura_Head_ChargeWarn_2_0
       rect:
         serializedVersion: 2
-        x: 31
-        y: 1003
-        width: 108
-        height: 90
+        x: 0
+        y: 960
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0d93ea8d76109a990800000000000000
-      internalID: -7374361369313920560
+      spriteID: 2cbfd8ca76fe67846b6726885c2c6b6a
+      internalID: -625561434
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_ChargeWarn_9
+      name: Arthropleura_Head_ChargeWarn_2_1
       rect:
         serializedVersion: 2
-        x: 191
-        y: 1003
-        width: 107
-        height: 90
+        x: 160
+        y: 960
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 40dce6a2a87ae0140800000000000000
-      internalID: 4687868473998494980
+      spriteID: 3f8f28a8478a1fd4ca5048f1a4222050
+      internalID: -590913371
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_ChargeWarn_10
+      name: Arthropleura_Head_ChargeWarn_2_2
       rect:
         serializedVersion: 2
-        x: 351
-        y: 1003
-        width: 106
-        height: 89
+        x: 320
+        y: 960
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f7a0c887fce886e20800000000000000
-      internalID: 3344079745054411391
+      spriteID: d74cf76d7f5eef74db0505b27cc375c2
+      internalID: 570063784
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_ChargeWarn_11
+      name: Arthropleura_Head_ChargeWarn_2_3
       rect:
         serializedVersion: 2
-        x: 511
-        y: 1003
-        width: 106
-        height: 89
+        x: 480
+        y: 960
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 65e77b5ca802a8c10800000000000000
-      internalID: 2056491960242765398
+      spriteID: 80adfc92ad2d05a42b74e0d23548bfa3
+      internalID: 176024587
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_ChargeWarn_12
+      name: Arthropleura_Head_ChargeWarn_3_0
       rect:
         serializedVersion: 2
-        x: 37
-        y: 839
-        width: 105
-        height: 85
+        x: 0
+        y: 800
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ff7dd07c33883f190800000000000000
-      internalID: -7929844762905028609
+      spriteID: 28b0719f47ae6494b855ecb29336531f
+      internalID: -1011766720
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_ChargeWarn_13
+      name: Arthropleura_Head_ChargeWarn_3_1
       rect:
         serializedVersion: 2
-        x: 197
-        y: 839
-        width: 104
-        height: 85
+        x: 160
+        y: 800
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6aab5fa2082d41110800000000000000
-      internalID: 1230840046097382054
+      spriteID: e9b18aa14acf96d429c481c03a2809db
+      internalID: -468122325
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_ChargeWarn_14
+      name: Arthropleura_Head_ChargeWarn_3_2
       rect:
         serializedVersion: 2
-        x: 357
-        y: 839
-        width: 103
-        height: 84
+        x: 320
+        y: 800
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e19d26d8ed2b4bc40800000000000000
-      internalID: 5527239311614990622
+      spriteID: c1fc37e7a688b304a96b0f8d3a90bb3d
+      internalID: -1178624921
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_ChargeWarn_15
+      name: Arthropleura_Head_ChargeWarn_3_3
       rect:
         serializedVersion: 2
-        x: 517
-        y: 839
-        width: 103
-        height: 84
+        x: 480
+        y: 800
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0410cba1d01d54570800000000000000
-      internalID: 8450390130043912512
+      spriteID: 6e0cfcc5fdc95f840a07db0eb5f9c459
+      internalID: 804643106
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_ChargeWarn_16
+      name: Arthropleura_Head_ChargeWarn_4_0
       rect:
         serializedVersion: 2
-        x: 48
-        y: 681
-        width: 88
-        height: 79
+        x: 0
+        y: 640
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 09218332261d2a1e0800000000000000
-      internalID: -2187956249520762224
+      spriteID: 22bd6b597c572df4cb775dd48a897461
+      internalID: -2116908023
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_ChargeWarn_17
+      name: Arthropleura_Head_ChargeWarn_4_1
       rect:
         serializedVersion: 2
-        x: 208
-        y: 681
-        width: 87
-        height: 79
+        x: 160
+        y: 640
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 12bf4c7e7e939ec50800000000000000
-      internalID: 6694945989251627809
+      spriteID: 1e3412192da72f24c96b17005b1adf11
+      internalID: -1084532394
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_ChargeWarn_18
+      name: Arthropleura_Head_ChargeWarn_4_2
       rect:
         serializedVersion: 2
-        x: 368
-        y: 681
-        width: 86
-        height: 79
+        x: 320
+        y: 640
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: fd4c6ff1a2faa4c60800000000000000
-      internalID: 7803241899832558815
+      spriteID: 92bfe1e1d7687b948b5cb755115ca249
+      internalID: 879909537
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_ChargeWarn_19
+      name: Arthropleura_Head_ChargeWarn_4_3
       rect:
         serializedVersion: 2
-        x: 528
-        y: 681
-        width: 86
-        height: 79
+        x: 480
+        y: 640
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0cbfa7d5d250ec070800000000000000
-      internalID: 8128440069850332096
+      spriteID: d958cf0fda25cfc4c8360bf92eb39e23
+      internalID: -1712702646
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_ChargeWarn_20
+      name: Arthropleura_Head_ChargeWarn_5_0
       rect:
         serializedVersion: 2
-        x: 37
-        y: 525
-        width: 105
-        height: 77
+        x: 0
+        y: 480
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2b5a8b139354c7430800000000000000
-      internalID: 3781973899034011058
+      spriteID: ed337117148681b479e671d796155e2c
+      internalID: 381900213
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_ChargeWarn_21
+      name: Arthropleura_Head_ChargeWarn_5_1
       rect:
         serializedVersion: 2
-        x: 197
-        y: 525
-        width: 104
-        height: 77
+        x: 160
+        y: 480
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f7621cc122a1b46e0800000000000000
-      internalID: -1852358087919196545
+      spriteID: 018e0651299018f47956623c2c2b1435
+      internalID: -491310805
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_ChargeWarn_22
+      name: Arthropleura_Head_ChargeWarn_5_2
       rect:
         serializedVersion: 2
-        x: 357
-        y: 525
-        width: 103
-        height: 77
+        x: 320
+        y: 480
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6f59023fc43cb3a40800000000000000
-      internalID: 5349083717696525814
+      spriteID: 93f938845e0833f45825894fc30ea119
+      internalID: -1218403587
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_ChargeWarn_23
+      name: Arthropleura_Head_ChargeWarn_5_3
       rect:
         serializedVersion: 2
-        x: 517
-        y: 525
-        width: 103
-        height: 77
+        x: 480
+        y: 480
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f13fd56c38cd75320800000000000000
-      internalID: 2546746572828177183
+      spriteID: 4921cf89c63d5b94e90a810bbd746a87
+      internalID: -1993499771
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_ChargeWarn_24
+      name: Arthropleura_Head_ChargeWarn_6_0
       rect:
         serializedVersion: 2
-        x: 31
-        y: 356
-        width: 108
-        height: 88
+        x: 0
+        y: 320
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 61697c999a7b05c30800000000000000
-      internalID: 4346175579469878806
+      spriteID: 00c8951868523684584b0a39d415ac90
+      internalID: 1018864898
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_ChargeWarn_25
+      name: Arthropleura_Head_ChargeWarn_6_1
       rect:
         serializedVersion: 2
-        x: 191
-        y: 357
-        width: 107
-        height: 87
+        x: 160
+        y: 320
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 63667188eff789bd0800000000000000
-      internalID: -2623206051761658314
+      spriteID: a4f36581142f2c64598f911cdf551184
+      internalID: 40689655
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_ChargeWarn_26
+      name: Arthropleura_Head_ChargeWarn_6_2
       rect:
         serializedVersion: 2
-        x: 351
-        y: 357
-        width: 106
-        height: 87
+        x: 320
+        y: 320
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a3847cd9dfacddf20800000000000000
-      internalID: 3449136080258287674
+      spriteID: fc17e5855f0af674abdb40b2b711f07b
+      internalID: 739869839
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_ChargeWarn_27
+      name: Arthropleura_Head_ChargeWarn_6_3
       rect:
         serializedVersion: 2
-        x: 511
-        y: 357
-        width: 106
-        height: 87
+        x: 480
+        y: 320
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e1cc561994cae73e0800000000000000
-      internalID: -2054014948062409698
+      spriteID: 66dcdce1d2d952f44a6cff46f74d772c
+      internalID: 1351581912
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_ChargeWarn_28
+      name: Arthropleura_Head_ChargeWarn_7_0
       rect:
         serializedVersion: 2
-        x: 30
-        y: 193
-        width: 97
-        height: 86
+        x: 0
+        y: 160
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2dfc0ca7e5ddf7350800000000000000
-      internalID: 6016771025046392786
+      spriteID: 37783b978aad5c14ca6d948204cfe1e1
+      internalID: 403113363
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_ChargeWarn_29
+      name: Arthropleura_Head_ChargeWarn_7_1
       rect:
         serializedVersion: 2
-        x: 190
-        y: 194
-        width: 97
-        height: 85
+        x: 160
+        y: 160
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 195fd5862d08ade40800000000000000
-      internalID: 5681995521063777681
+      spriteID: 349725fd86870474ba50d5c0b6d57b9e
+      internalID: -1332426717
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_ChargeWarn_30
+      name: Arthropleura_Head_ChargeWarn_7_2
       rect:
         serializedVersion: 2
-        x: 350
-        y: 195
-        width: 96
-        height: 84
+        x: 320
+        y: 160
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e46c199a289407350800000000000000
-      internalID: 6012386328079091278
+      spriteID: fc6ccfa12e291904d83435d5b29c231b
+      internalID: 1115765707
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_ChargeWarn_31
+      name: Arthropleura_Head_ChargeWarn_7_3
       rect:
         serializedVersion: 2
-        x: 510
-        y: 195
-        width: 96
-        height: 84
+        x: 480
+        y: 160
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 10c648b997ccf5e60800000000000000
-      internalID: 7953300289631841281
+      spriteID: 5b5904872e3dd034c9021894b128c2ef
+      internalID: 287092404
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_ChargeWarn_32
+      name: Arthropleura_Head_ChargeWarn_8_0
       rect:
         serializedVersion: 2
-        x: 33
-        y: 38
-        width: 94
-        height: 72
+        x: 0
+        y: 0
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c4d7cd3088e4ad250800000000000000
-      internalID: 5970170602120314188
+      spriteID: f4e856afc6883444d9c1d2bc36e5a161
+      internalID: -1020862395
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_ChargeWarn_33
+      name: Arthropleura_Head_ChargeWarn_8_1
       rect:
         serializedVersion: 2
-        x: 193
-        y: 39
-        width: 94
-        height: 71
+        x: 160
+        y: 0
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e30fbb42149b884b0800000000000000
-      internalID: -5437892860609564610
+      spriteID: cd5f6f343f3b8bd4b9e3bd0cb71a5bcd
+      internalID: 2035479251
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_ChargeWarn_34
+      name: Arthropleura_Head_ChargeWarn_8_2
       rect:
         serializedVersion: 2
-        x: 353
-        y: 40
-        width: 94
-        height: 70
+        x: 320
+        y: 0
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: dc080e324f0180f00800000000000000
-      internalID: 1083134351142584525
+      spriteID: 3f407e2804768cb4991e3dcd7fc7b62b
+      internalID: -1846218499
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_ChargeWarn_35
+      name: Arthropleura_Head_ChargeWarn_8_3
       rect:
         serializedVersion: 2
-        x: 513
-        y: 40
-        width: 94
-        height: 70
+        x: 480
+        y: 0
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: cc2a12747be4dfd40800000000000000
-      internalID: 5619734459107615436
+      spriteID: 4cf6f8f8080e882499c08f06dd128e0e
+      internalID: -1413538044
       vertices: []
       indices: 
       edges: []
@@ -1025,42 +1025,42 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Arthropleura_Head_ChargeWarn_0: -8211844478716684410
-      Arthropleura_Head_ChargeWarn_1: 1293998572063496962
-      Arthropleura_Head_ChargeWarn_10: 3344079745054411391
-      Arthropleura_Head_ChargeWarn_11: 2056491960242765398
-      Arthropleura_Head_ChargeWarn_12: -7929844762905028609
-      Arthropleura_Head_ChargeWarn_13: 1230840046097382054
-      Arthropleura_Head_ChargeWarn_14: 5527239311614990622
-      Arthropleura_Head_ChargeWarn_15: 8450390130043912512
-      Arthropleura_Head_ChargeWarn_16: -2187956249520762224
-      Arthropleura_Head_ChargeWarn_17: 6694945989251627809
-      Arthropleura_Head_ChargeWarn_18: 7803241899832558815
-      Arthropleura_Head_ChargeWarn_19: 8128440069850332096
-      Arthropleura_Head_ChargeWarn_2: -4830630327713133093
-      Arthropleura_Head_ChargeWarn_20: 3781973899034011058
-      Arthropleura_Head_ChargeWarn_21: -1852358087919196545
-      Arthropleura_Head_ChargeWarn_22: 5349083717696525814
-      Arthropleura_Head_ChargeWarn_23: 2546746572828177183
-      Arthropleura_Head_ChargeWarn_24: 4346175579469878806
-      Arthropleura_Head_ChargeWarn_25: -2623206051761658314
-      Arthropleura_Head_ChargeWarn_26: 3449136080258287674
-      Arthropleura_Head_ChargeWarn_27: -2054014948062409698
-      Arthropleura_Head_ChargeWarn_28: 6016771025046392786
-      Arthropleura_Head_ChargeWarn_29: 5681995521063777681
-      Arthropleura_Head_ChargeWarn_3: 7707002297155391957
-      Arthropleura_Head_ChargeWarn_30: 6012386328079091278
-      Arthropleura_Head_ChargeWarn_31: 7953300289631841281
-      Arthropleura_Head_ChargeWarn_32: 5970170602120314188
-      Arthropleura_Head_ChargeWarn_33: -5437892860609564610
-      Arthropleura_Head_ChargeWarn_34: 1083134351142584525
-      Arthropleura_Head_ChargeWarn_35: 5619734459107615436
-      Arthropleura_Head_ChargeWarn_4: 959203013818937638
-      Arthropleura_Head_ChargeWarn_5: 8851294886423097078
-      Arthropleura_Head_ChargeWarn_6: -2953642917881653089
-      Arthropleura_Head_ChargeWarn_7: -6044782052163170856
-      Arthropleura_Head_ChargeWarn_8: -7374361369313920560
-      Arthropleura_Head_ChargeWarn_9: 4687868473998494980
+      Arthropleura_Head_ChargeWarn_0_0: -1685798039
+      Arthropleura_Head_ChargeWarn_0_1: 79483662
+      Arthropleura_Head_ChargeWarn_0_2: -153056235
+      Arthropleura_Head_ChargeWarn_0_3: -997697773
+      Arthropleura_Head_ChargeWarn_1_0: 1558404908
+      Arthropleura_Head_ChargeWarn_1_1: -1091195462
+      Arthropleura_Head_ChargeWarn_1_2: 205342489
+      Arthropleura_Head_ChargeWarn_1_3: -401742212
+      Arthropleura_Head_ChargeWarn_2_0: -625561434
+      Arthropleura_Head_ChargeWarn_2_1: -590913371
+      Arthropleura_Head_ChargeWarn_2_2: 570063784
+      Arthropleura_Head_ChargeWarn_2_3: 176024587
+      Arthropleura_Head_ChargeWarn_3_0: -1011766720
+      Arthropleura_Head_ChargeWarn_3_1: -468122325
+      Arthropleura_Head_ChargeWarn_3_2: -1178624921
+      Arthropleura_Head_ChargeWarn_3_3: 804643106
+      Arthropleura_Head_ChargeWarn_4_0: -2116908023
+      Arthropleura_Head_ChargeWarn_4_1: -1084532394
+      Arthropleura_Head_ChargeWarn_4_2: 879909537
+      Arthropleura_Head_ChargeWarn_4_3: -1712702646
+      Arthropleura_Head_ChargeWarn_5_0: 381900213
+      Arthropleura_Head_ChargeWarn_5_1: -491310805
+      Arthropleura_Head_ChargeWarn_5_2: -1218403587
+      Arthropleura_Head_ChargeWarn_5_3: -1993499771
+      Arthropleura_Head_ChargeWarn_6_0: 1018864898
+      Arthropleura_Head_ChargeWarn_6_1: 40689655
+      Arthropleura_Head_ChargeWarn_6_2: 739869839
+      Arthropleura_Head_ChargeWarn_6_3: 1351581912
+      Arthropleura_Head_ChargeWarn_7_0: 403113363
+      Arthropleura_Head_ChargeWarn_7_1: -1332426717
+      Arthropleura_Head_ChargeWarn_7_2: 1115765707
+      Arthropleura_Head_ChargeWarn_7_3: 287092404
+      Arthropleura_Head_ChargeWarn_8_0: -1020862395
+      Arthropleura_Head_ChargeWarn_8_1: 2035479251
+      Arthropleura_Head_ChargeWarn_8_2: -1846218499
+      Arthropleura_Head_ChargeWarn_8_3: -1413538044
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

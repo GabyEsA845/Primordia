@@ -97,7 +97,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -125,7 +125,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -166,397 +166,397 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Arthropleura_Segment_Hurt_0
+      name: Arthropleura_Segment_Hurt_0_0
       rect:
         serializedVersion: 2
-        x: 6
-        y: 933
-        width: 100
-        height: 45
+        x: 0
+        y: 896
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 58caaffcac7c3e1c0800000000000000
-      internalID: -4475513930789507963
+      spriteID: 095a4ec351f64ee4495b7113fda302f7
+      internalID: -2023252786
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Hurt_1
+      name: Arthropleura_Segment_Hurt_0_1
       rect:
         serializedVersion: 2
-        x: 118
-        y: 933
-        width: 100
-        height: 45
+        x: 112
+        y: 896
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: cde1c0bdfab4019d0800000000000000
-      internalID: -2805659349185454372
+      spriteID: c349a5ed4fe174448816e5b78d4f71e5
+      internalID: 940275208
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Hurt_2
+      name: Arthropleura_Segment_Hurt_1_0
       rect:
         serializedVersion: 2
-        x: 2
-        y: 808
-        width: 109
-        height: 68
+        x: 0
+        y: 784
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2dfe55939e4b2eba0800000000000000
-      internalID: -6061083234704953390
+      spriteID: fba1bf0af7117df4aa097acc2b0ddd91
+      internalID: -885208500
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Hurt_3
+      name: Arthropleura_Segment_Hurt_1_1
       rect:
         serializedVersion: 2
-        x: 114
-        y: 808
-        width: 109
-        height: 68
+        x: 112
+        y: 784
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 68724cfaa1c8d5180800000000000000
-      internalID: -9124983223736850554
+      spriteID: 638577274c6013742be6cf2ee082f68b
+      internalID: 1845872270
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Hurt_4
+      name: Arthropleura_Segment_Hurt_2_0
       rect:
         serializedVersion: 2
-        x: 6
-        y: 687
-        width: 102
-        height: 84
+        x: 0
+        y: 672
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 617d693e52db68fc0800000000000000
-      internalID: -3492896490549487850
+      spriteID: 0cf42b4fc08f2b94f8601b16c5b150db
+      internalID: 1640042091
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Hurt_5
+      name: Arthropleura_Segment_Hurt_2_1
       rect:
         serializedVersion: 2
-        x: 118
-        y: 687
-        width: 102
-        height: 84
+        x: 112
+        y: 672
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 92d0456768c178be0800000000000000
-      internalID: -1475178989104132823
+      spriteID: 371792a71610082428eb32ba566f0b14
+      internalID: -1368703383
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Hurt_6
+      name: Arthropleura_Segment_Hurt_3_0
       rect:
         serializedVersion: 2
-        x: 17
-        y: 571
-        width: 80
-        height: 91
+        x: 0
+        y: 560
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e2b82a6e240fce9d0800000000000000
-      internalID: -2743553902847554770
+      spriteID: d9f3cf0c1eecdb2448a73d66675a89ee
+      internalID: 883636090
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Hurt_7
+      name: Arthropleura_Segment_Hurt_3_1
       rect:
         serializedVersion: 2
-        x: 129
-        y: 571
-        width: 80
-        height: 91
+        x: 112
+        y: 560
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 08a4a1bdd4e0186a0800000000000000
-      internalID: -6448857463866635648
+      spriteID: a8cb5de5793882d4c81ea92b83b26a46
+      internalID: -1320612031
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Hurt_8
+      name: Arthropleura_Segment_Hurt_4_0
       rect:
         serializedVersion: 2
-        x: 29
-        y: 462
-        width: 52
-        height: 84
+        x: 0
+        y: 448
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 5758c422b8e014bc0800000000000000
-      internalID: -3800740619785304715
+      spriteID: 9fce6cde2d9d77c48bbc3ccccfb7e67e
+      internalID: 511371627
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Hurt_9
+      name: Arthropleura_Segment_Hurt_4_1
       rect:
         serializedVersion: 2
-        x: 141
-        y: 462
-        width: 52
-        height: 84
+        x: 112
+        y: 448
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 3cb9dd3060e1da4b0800000000000000
-      internalID: -5427648964728087613
+      spriteID: 3b85f945ec118f84d83fd940bbce5f81
+      internalID: 1532755795
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Hurt_10
+      name: Arthropleura_Segment_Hurt_5_0
       rect:
         serializedVersion: 2
-        x: 17
-        y: 347
-        width: 80
-        height: 90
+        x: 0
+        y: 336
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b06d2434c1eecb330800000000000000
-      internalID: 3728116396710876683
+      spriteID: c526a90eaf0d0534b8f8b1b73b7e5b74
+      internalID: 128644066
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Hurt_11
+      name: Arthropleura_Segment_Hurt_5_1
       rect:
         serializedVersion: 2
-        x: 129
-        y: 347
-        width: 80
-        height: 90
+        x: 112
+        y: 336
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: bee2cd160afb16900800000000000000
-      internalID: 676032114639777515
+      spriteID: 587b11bb0b35cb9428aaf1ba8ce29f01
+      internalID: 1215853691
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Hurt_12
+      name: Arthropleura_Segment_Hurt_6_0
       rect:
         serializedVersion: 2
-        x: 6
-        y: 238
-        width: 102
-        height: 84
+        x: 0
+        y: 224
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b8d189723ee6dc480800000000000000
-      internalID: -8877317368576467573
+      spriteID: a338bcbe749d80747a224739d36c5469
+      internalID: -164949213
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Hurt_13
+      name: Arthropleura_Segment_Hurt_6_1
       rect:
         serializedVersion: 2
-        x: 118
-        y: 238
-        width: 102
-        height: 84
+        x: 112
+        y: 224
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d250a5f3dc14ee990800000000000000
-      internalID: -7354868791662475987
+      spriteID: 535d279ba2e6bbe4f90a898f80919470
+      internalID: 1697674312
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Hurt_14
+      name: Arthropleura_Segment_Hurt_7_0
       rect:
         serializedVersion: 2
-        x: 2
-        y: 134
-        width: 109
-        height: 70
+        x: 0
+        y: 112
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 731836176eceb4530800000000000000
-      internalID: 3840423581752459575
+      spriteID: 99a3bb35aaeeec949a5aa8cf0b7e21ec
+      internalID: 1217508914
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Hurt_15
+      name: Arthropleura_Segment_Hurt_7_1
       rect:
         serializedVersion: 2
-        x: 114
-        y: 134
-        width: 109
-        height: 70
+        x: 112
+        y: 112
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f2f050055e4ea09f0800000000000000
-      internalID: -501336734957236433
+      spriteID: 548b540f11fef1c468f62c4e9448c373
+      internalID: -1175486441
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Hurt_16
+      name: Arthropleura_Segment_Hurt_8_0
       rect:
         serializedVersion: 2
-        x: 6
-        y: 36
-        width: 100
-        height: 47
+        x: 0
+        y: 0
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 5497d48ab95bb58c0800000000000000
-      internalID: -4009411363095086779
+      spriteID: 0d7cae3fcb0dda141a7c4087f8dda3ab
+      internalID: -1634187018
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Hurt_17
+      name: Arthropleura_Segment_Hurt_8_1
       rect:
         serializedVersion: 2
-        x: 118
-        y: 36
-        width: 100
-        height: 47
+        x: 112
+        y: 0
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f471162211e1633c0800000000000000
-      internalID: -4380280528631163057
+      spriteID: ac40a89327b7bf24fb4b62e352425910
+      internalID: 797788454
       vertices: []
       indices: 
       edges: []
@@ -575,24 +575,24 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Arthropleura_Segment_Hurt_0: -4475513930789507963
-      Arthropleura_Segment_Hurt_1: -2805659349185454372
-      Arthropleura_Segment_Hurt_10: 3728116396710876683
-      Arthropleura_Segment_Hurt_11: 676032114639777515
-      Arthropleura_Segment_Hurt_12: -8877317368576467573
-      Arthropleura_Segment_Hurt_13: -7354868791662475987
-      Arthropleura_Segment_Hurt_14: 3840423581752459575
-      Arthropleura_Segment_Hurt_15: -501336734957236433
-      Arthropleura_Segment_Hurt_16: -4009411363095086779
-      Arthropleura_Segment_Hurt_17: -4380280528631163057
-      Arthropleura_Segment_Hurt_2: -6061083234704953390
-      Arthropleura_Segment_Hurt_3: -9124983223736850554
-      Arthropleura_Segment_Hurt_4: -3492896490549487850
-      Arthropleura_Segment_Hurt_5: -1475178989104132823
-      Arthropleura_Segment_Hurt_6: -2743553902847554770
-      Arthropleura_Segment_Hurt_7: -6448857463866635648
-      Arthropleura_Segment_Hurt_8: -3800740619785304715
-      Arthropleura_Segment_Hurt_9: -5427648964728087613
+      Arthropleura_Segment_Hurt_0_0: -2023252786
+      Arthropleura_Segment_Hurt_0_1: 940275208
+      Arthropleura_Segment_Hurt_1_0: -885208500
+      Arthropleura_Segment_Hurt_1_1: 1845872270
+      Arthropleura_Segment_Hurt_2_0: 1640042091
+      Arthropleura_Segment_Hurt_2_1: -1368703383
+      Arthropleura_Segment_Hurt_3_0: 883636090
+      Arthropleura_Segment_Hurt_3_1: -1320612031
+      Arthropleura_Segment_Hurt_4_0: 511371627
+      Arthropleura_Segment_Hurt_4_1: 1532755795
+      Arthropleura_Segment_Hurt_5_0: 128644066
+      Arthropleura_Segment_Hurt_5_1: 1215853691
+      Arthropleura_Segment_Hurt_6_0: -164949213
+      Arthropleura_Segment_Hurt_6_1: 1697674312
+      Arthropleura_Segment_Hurt_7_0: 1217508914
+      Arthropleura_Segment_Hurt_7_1: -1175486441
+      Arthropleura_Segment_Hurt_8_0: -1634187018
+      Arthropleura_Segment_Hurt_8_1: 797788454
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

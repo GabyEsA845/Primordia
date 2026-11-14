@@ -1,0 +1,212 @@
+using System.Collections.Generic;
+using Primordia.Core;
+using Primordia.Player;
+using UnityEngine;
+
+namespace Primordia.Enemies
+{
+    /// <summary>
+    /// Arthropleura, jefe principal del piso 3. Subpaso A: la cadena de cabeza + 28 piezas + cola (arte en
+    /// docs/multimedia-temp/floor3-bosses/arthropleura), su vida con fases y un movimiento de prueba. El combate llega después.
+    /// </summary>
+    [DefaultExecutionOrder(1000)]
+    [RequireComponent(typeof(Health), typeof(Enemy), typeof(Rigidbody2D))]
+    public partial class ArthropleuraBoss : MonoBehaviour, IBoss, IPhasedBoss
+    {
+        public const int MaxHealth = 600, SegmentCount = 28;
+        public const float ArenaWidth = 60f, ArenaHeight = 33f;
+        /// <summary>Distancia entre nudos de la cadena (un segmento mide 4 u y se solapan).</summary>
+        public const float Pitch = 2.6f;
+        /// <summary>El arte está en picada: la y de pantalla es la y del suelo por sen 55°.</summary>
+        public const float GroundSquash = 0.82f;
+        public static readonly float[] Thresholds = { 0.7f, 0.35f, 0.1f };
+
+        const int FirstOrder = 12;
+        const float TrailSpacing = 0.1f;
+        // Provisionales: movimiento de prueba del subpaso A.
+        const float WalkSpeed = 4f, TurnRate = 80f, WallMargin = 6f;
+        const float HeadStep = 0.11f, WalkStep = 0.09f, IdleStep = 0.2f;
+
+        [SerializeField] DirectionalArt art;
+        readonly List<Vector2> trail = new(); // Suelo, relativo al centro; el [0] es la cabeza.
+        readonly List<Piece> pieces = new();
+        Transform player;
+        Vector2 center;
+        float heading; // Grados en el suelo, 0° = derecha.
+        bool built;
+
+        public string DisplayName => "Arthropleura";
+        public Health Health => GetComponent<Health>();
+        public BossBarStyle BarStyle => Health.IsInvulnerable ? BossBarStyle.Immune : BossBarStyle.Normal;
+        public Vector2 ArenaCenter => built ? center : (Vector2)transform.position;
+        public float[] PhaseThresholds => Thresholds;
+        public DirectionalArt Art => art;
+        public int PieceCount => pieces.Count;
+        /// <summary>Si anda hacia el jugador o se queda quieta (para pruebas).</summary>
+        public bool Moving { get; set; } = true;
+
+        /// <summary>0 = F1 (hasta el 70 %), 1 = F2 (hasta el 35 %), 2 = F3 (hasta el 10 %), 3 = rueda.</summary>
+        public int PhaseIndex
+        {
+            get
+            {
+                float fraction = Health != null && Health.Max > 0 ? (float)Health.Current / Health.Max : 1f;
+                int phase = 0;
+                foreach (float threshold in Thresholds)
+                    if (fraction <= threshold)
+                        phase++;
+                return phase;
+            }
+        }
+
+        internal static readonly string[] RequiredSheets =
+        {
+            "Arthropleura_Head_Move", "Arthropleura_Segment_Idle", "Arthropleura_Segment_Walk", "Arthropleura_Tail_Idle", "Arthropleura_Tail_Walk",
+        };
+
+        internal void Configure(DirectionalArt newArt) => art = newArt;
+
+        void Awake()
+        {
+            // El caparazón es invulnerable todo el combate; solo las placas abiertas reciben daño (subpasos B-D).
+            Health.IsInvulnerable = true;
+            var body = GetComponent<Rigidbody2D>();
+            body.bodyType = RigidbodyType2D.Kinematic;
+            body.gravityScale = 0f;
+        }
+
+        void OnEnable() => ActiveBoss.Set(this);
+        void OnDisable() => ActiveBoss.Clear(this);
+
+        public void SetArena(Transform arena, Vector2 size)
+        {
+            if (built)
+                return;
+            center = arena.position;
+            transform.position = center;
+            BuildChain();
+            built = true;
+        }
+
+        public void PlayIntroPose(float hold) { }
+        public void BeginFight() { }
+
+        /// <summary>Punto del suelo (relativo al centro de la sala) → posición en el mundo.</summary>
+        public Vector2 GroundToWorld(Vector2 ground) => center + new Vector2(ground.x, ground.y * GroundSquash);
+        public Vector2 WorldToGround(Vector2 world) { var d = world - center; return new Vector2(d.x, d.y / GroundSquash); }
+
+        /// <summary>Posición en el suelo del nudo <paramref name="index"/> (0 = cabeza, 1..28 = tronco, 29 = cola).</summary>
+        public Vector2 NodeGround(int index) => PointAlongTrail(index * Pitch);
+
+        void BuildChain()
+        {
+            // Empieza enroscada en un anillo de ~80 u de largo, con la cabeza mirando en sentido horario.
+            const float radius = 13f;
+            float length = (SegmentCount + 3) * Pitch + 2f;
+            int samples = Mathf.CeilToInt(length / TrailSpacing);
+            for (int i = 0; i < samples; i++)
+            {
+                float angle = i * TrailSpacing / radius; // Lo más viejo queda atrás: ángulos mayores.
+                trail.Add(new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * radius);
+            }
+            heading = -90f;
+            pieces.Add(NewPiece("Head", "Arthropleura_Head_Move", "Arthropleura_Head_Move", HeadStep, 0));
+            for (int i = 1; i <= SegmentCount; i++)
+                pieces.Add(NewPiece($"Segment_{i:00}", "Arthropleura_Segment_Idle", "Arthropleura_Segment_Walk", WalkStep, i));
+            pieces.Add(NewPiece("Tail", "Arthropleura_Tail_Idle", "Arthropleura_Tail_Walk", WalkStep, SegmentCount + 1));
+            Place();
+        }
+
+        Piece NewPiece(string pieceName, string idle, string walk, float step, int index)
+        {
+            var go = new GameObject(pieceName);
+            go.transform.SetParent(transform, false);
+            var renderer = go.AddComponent<SpriteRenderer>();
+            // De la cola a la cabeza: cada placa tapa a la de detrás.
+            renderer.sortingOrder = FirstOrder + (SegmentCount + 1 - index);
+            return new Piece { renderer = renderer, idle = art != null ? art.Find(idle) : null, walk = art != null ? art.Find(walk) : null, step = step, index = index };
+        }
+
+        void Update()
+        {
+            if (!built)
+                return;
+            if (player == null)
+            {
+                var controller = FindAnyObjectByType<PlayerController>();
+                if (controller != null)
+                    player = controller.transform;
+            }
+            if (Moving)
+                MoveHead(Time.deltaTime);
+            Place();
+        }
+
+        void MoveHead(float dt)
+        {
+            Vector2 head = trail[0];
+            // Hacia el jugador; cerca de una pared, hacia el centro.
+            Vector2 target = player != null ? WorldToGround(player.position) : Vector2.zero;
+            float hx = ArenaWidth / 2f - WallMargin, hy = ArenaHeight / 2f - WallMargin;
+            if (Mathf.Abs(head.x) > hx || Mathf.Abs(head.y) > hy)
+                target = Vector2.zero;
+            float wanted = Mathf.Atan2(target.y - head.y, target.x - head.x) * Mathf.Rad2Deg;
+            heading = Mathf.MoveTowardsAngle(heading, wanted, TurnRate * dt);
+            Vector2 next = head + new Vector2(Mathf.Cos(heading * Mathf.Deg2Rad), Mathf.Sin(heading * Mathf.Deg2Rad)) * (WalkSpeed * dt);
+            next.x = Mathf.Clamp(next.x, -ArenaWidth / 2f + 2f, ArenaWidth / 2f - 2f);
+            next.y = Mathf.Clamp(next.y, -ArenaHeight / 2f + 2f, ArenaHeight / 2f - 2f);
+            // Muestras a distancia fija: la cadena sigue exactamente el camino de la cabeza.
+            Vector2 last = trail[0];
+            float gap = (next - last).magnitude;
+            while (gap >= TrailSpacing)
+            {
+                last += (next - last).normalized * TrailSpacing;
+                trail.Insert(0, last);
+                gap = (next - last).magnitude;
+            }
+            int max = Mathf.CeilToInt(((SegmentCount + 1) * Pitch + 3f) / TrailSpacing);
+            if (trail.Count > max)
+                trail.RemoveRange(max, trail.Count - max);
+        }
+
+        Vector2 PointAlongTrail(float distance)
+        {
+            float index = Mathf.Clamp(distance / TrailSpacing, 0f, trail.Count - 1f);
+            int a = Mathf.FloorToInt(index);
+            int b = Mathf.Min(a + 1, trail.Count - 1);
+            return Vector2.Lerp(trail[a], trail[b], index - a);
+        }
+
+        void Place()
+        {
+            float time = Time.time;
+            for (int i = 0; i < pieces.Count; i++)
+            {
+                var piece = pieces[i];
+                Vector2 ground = NodeGround(i);
+                // Dirección de la pieza: de la de detrás a la de delante, vista en pantalla (y × 0,82).
+                Vector2 ahead = NodeGround(Mathf.Max(0, i - 1)), behind = NodeGround(i + 1);
+                Vector2 look = Vector2.Scale(i == 0 ? ground - behind : ahead - behind, new Vector2(1f, GroundSquash));
+                float angle = look.sqrMagnitude > 1e-6f ? Mathf.Atan2(look.y, look.x) * Mathf.Rad2Deg : 0f;
+                int row = DirectionalArt.RowFor(angle, out bool flip);
+                var sheet = Moving ? piece.walk : piece.idle;
+                if (sheet == null || sheet.sprites.Length == 0)
+                    continue;
+                // Ola de patas: un cuadro de desfase por pieza.
+                float step = Moving ? piece.step : IdleStep;
+                int frame = Mathf.FloorToInt(time / step) + piece.index;
+                piece.renderer.sprite = sheet.Get(row, frame % sheet.frames);
+                piece.renderer.flipX = flip;
+                piece.renderer.transform.position = GroundToWorld(ground);
+            }
+        }
+
+        sealed class Piece
+        {
+            public SpriteRenderer renderer;
+            public DirectionalArt.Sheet idle, walk;
+            public float step;
+            public int index;
+        }
+    }
+}

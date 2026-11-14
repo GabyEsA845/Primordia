@@ -70,7 +70,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -98,7 +98,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -139,199 +139,199 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Arthropleura_Segment_Dead_0
+      name: Arthropleura_Segment_Dead_0_0
       rect:
         serializedVersion: 2
-        x: 18
-        y: 933
-        width: 76
-        height: 47
+        x: 0
+        y: 896
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 508f0fed065572600800000000000000
-      internalID: 443416962864838661
+      spriteID: 1cb4c11d24e407640b38f50aef21b0ae
+      internalID: 371802665
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Dead_1
+      name: Arthropleura_Segment_Dead_1_0
       rect:
         serializedVersion: 2
-        x: 11
-        y: 811
-        width: 85
-        height: 62
+        x: 0
+        y: 784
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 4ca9a68f8747e38e0800000000000000
-      internalID: -1711802745441576252
+      spriteID: 537836e7018b6424896379848fcbb0a9
+      internalID: -1753293239
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Dead_2
+      name: Arthropleura_Segment_Dead_2_0
       rect:
         serializedVersion: 2
-        x: 11
-        y: 694
-        width: 85
-        height: 71
+        x: 0
+        y: 672
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7ecfab83566af3510800000000000000
-      internalID: 1531125352002944231
+      spriteID: a12a04092f9345e40859de74879c90ea
+      internalID: -92316840
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Dead_3
+      name: Arthropleura_Segment_Dead_3_0
       rect:
         serializedVersion: 2
-        x: 17
-        y: 582
-        width: 74
-        height: 71
+        x: 0
+        y: 560
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 61223ce50464e9500800000000000000
-      internalID: 404838258791621142
+      spriteID: 38830f301e3fb2a41a59b5d71e3644f9
+      internalID: 1963101826
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Dead_4
+      name: Arthropleura_Segment_Dead_4_0
       rect:
         serializedVersion: 2
-        x: 29
-        y: 475
-        width: 52
-        height: 65
+        x: 0
+        y: 448
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 851ed015941a45130800000000000000
-      internalID: 3554643342166712664
+      spriteID: 4d525261f0d47b8479b4403f1e85e9c5
+      internalID: 1111396761
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Dead_5
+      name: Arthropleura_Segment_Dead_5_0
       rect:
         serializedVersion: 2
-        x: 17
-        y: 362
-        width: 74
-        height: 71
+        x: 0
+        y: 336
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a1d90270c68e5ee90800000000000000
-      internalID: -6996930895376507622
+      spriteID: 7393dd1451eed304aa1b33de78a99db2
+      internalID: -1482874373
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Dead_6
+      name: Arthropleura_Segment_Dead_6_0
       rect:
         serializedVersion: 2
-        x: 11
-        y: 250
-        width: 85
-        height: 71
+        x: 0
+        y: 224
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 5641d3c5029fd7d50800000000000000
-      internalID: 6736814534997906533
+      spriteID: e37b594f797c9c34d8f3d4b95bd9497f
+      internalID: -438834043
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Dead_7
+      name: Arthropleura_Segment_Dead_7_0
       rect:
         serializedVersion: 2
-        x: 11
-        y: 142
-        width: 85
-        height: 62
+        x: 0
+        y: 112
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 91fe42ba869f00d70800000000000000
-      internalID: 9007473482684231449
+      spriteID: f14c532957e421b4aafa7a207056fe3f
+      internalID: -339719501
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Dead_8
+      name: Arthropleura_Segment_Dead_8_0
       rect:
         serializedVersion: 2
-        x: 18
-        y: 39
-        width: 76
-        height: 44
+        x: 0
+        y: 0
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: fc0220e5e69c9f780800000000000000
-      internalID: -8648660133527543601
+      spriteID: a46730d83a2dcfd4483b4a161b00a295
+      internalID: -2107772700
       vertices: []
       indices: 
       edges: []
@@ -350,15 +350,15 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Arthropleura_Segment_Dead_0: 443416962864838661
-      Arthropleura_Segment_Dead_1: -1711802745441576252
-      Arthropleura_Segment_Dead_2: 1531125352002944231
-      Arthropleura_Segment_Dead_3: 404838258791621142
-      Arthropleura_Segment_Dead_4: 3554643342166712664
-      Arthropleura_Segment_Dead_5: -6996930895376507622
-      Arthropleura_Segment_Dead_6: 6736814534997906533
-      Arthropleura_Segment_Dead_7: 9007473482684231449
-      Arthropleura_Segment_Dead_8: -8648660133527543601
+      Arthropleura_Segment_Dead_0_0: 371802665
+      Arthropleura_Segment_Dead_1_0: -1753293239
+      Arthropleura_Segment_Dead_2_0: -92316840
+      Arthropleura_Segment_Dead_3_0: 1963101826
+      Arthropleura_Segment_Dead_4_0: 1111396761
+      Arthropleura_Segment_Dead_5_0: -1482874373
+      Arthropleura_Segment_Dead_6_0: -438834043
+      Arthropleura_Segment_Dead_7_0: -339719501
+      Arthropleura_Segment_Dead_8_0: -2107772700
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

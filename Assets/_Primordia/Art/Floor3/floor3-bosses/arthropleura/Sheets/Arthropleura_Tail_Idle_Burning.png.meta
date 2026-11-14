@@ -406,7 +406,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -434,7 +434,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -475,2663 +475,793 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_0
+      name: Arthropleura_Tail_Idle_Burning_0_0
       rect:
         serializedVersion: 2
-        x: 30
-        y: 952
-        width: 13
-        height: 24
+        x: 0
+        y: 896
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2e1aeebbb4a7fbc50800000000000000
-      internalID: 6683194837735219682
+      spriteID: 2685bd82bb56b9245873a296184aff6a
+      internalID: -1439922135
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_1
+      name: Arthropleura_Tail_Idle_Burning_0_1
       rect:
         serializedVersion: 2
-        x: 46
-        y: 950
-        width: 27
-        height: 43
+        x: 112
+        y: 896
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 8b7c71a38fe346060800000000000000
-      internalID: 6945745761159595960
+      spriteID: 49f52da75120c7144a33cd7c45292b25
+      internalID: 1813461745
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_2
+      name: Arthropleura_Tail_Idle_Burning_0_2
       rect:
         serializedVersion: 2
-        x: 158
-        y: 942
-        width: 27
-        height: 53
+        x: 224
+        y: 896
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 1e0d4ef354397c070800000000000000
-      internalID: 8126625978247336161
+      spriteID: e12aa517be9256343b90ec4322091d6b
+      internalID: -1877179568
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_3
+      name: Arthropleura_Tail_Idle_Burning_0_3
       rect:
         serializedVersion: 2
-        x: 188
-        y: 952
-        width: 14
-        height: 17
+        x: 336
+        y: 896
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d531d3d4706082140800000000000000
-      internalID: 4695009239964128093
+      spriteID: 822eeca4074f2764380106e848a3fa2e
+      internalID: -299137829
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_4
+      name: Arthropleura_Tail_Idle_Burning_1_0
       rect:
         serializedVersion: 2
-        x: 253
-        y: 952
-        width: 14
-        height: 19
+        x: 0
+        y: 784
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f4bb7867d495b4850800000000000000
-      internalID: 6362277087826918223
+      spriteID: 422224adabe6f2745b4929cf74fec0ea
+      internalID: 1606984704
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_5
+      name: Arthropleura_Tail_Idle_Burning_1_1
       rect:
         serializedVersion: 2
-        x: 271
-        y: 950
-        width: 26
-        height: 47
+        x: 112
+        y: 784
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 929be74178d0d8630800000000000000
-      internalID: 3930812923579906345
+      spriteID: 91642947b5aa2964c85ee404e634d095
+      internalID: -596402324
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_6
+      name: Arthropleura_Tail_Idle_Burning_1_2
       rect:
         serializedVersion: 2
-        x: 357
-        y: 951
-        width: 14
-        height: 19
+        x: 224
+        y: 784
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f51cf66bdcf2cbcf0800000000000000
-      internalID: -235260519954529953
+      spriteID: 79bc1128fa52b474698593221dea1223
+      internalID: 940194411
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_7
+      name: Arthropleura_Tail_Idle_Burning_1_3
       rect:
         serializedVersion: 2
-        x: 382
-        y: 950
-        width: 24
-        height: 43
+        x: 336
+        y: 784
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 1d29ec125fdca4200800000000000000
-      internalID: 165170789070312145
+      spriteID: 5bfe79e4f1a18cf488f37636d9b75e4a
+      internalID: -1318803109
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_8
+      name: Arthropleura_Tail_Idle_Burning_2_0
       rect:
         serializedVersion: 2
-        x: 29
-        y: 857
-        width: 13
-        height: 25
+        x: 0
+        y: 672
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0428da431d0c61d30800000000000000
-      internalID: 4401917690565722688
+      spriteID: 8046992047d20b14484531ba3a82a62a
+      internalID: -1608102037
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_9
+      name: Arthropleura_Tail_Idle_Burning_2_1
       rect:
         serializedVersion: 2
-        x: 48
-        y: 849
-        width: 14
-        height: 27
+        x: 112
+        y: 672
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 577f8041a8154f0b0800000000000000
-      internalID: -5695837975233366155
+      spriteID: c27a07a90d5024445b263f3a84020719
+      internalID: -1329714563
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_10
+      name: Arthropleura_Tail_Idle_Burning_2_2
       rect:
         serializedVersion: 2
-        x: 58
-        y: 838
-        width: 14
-        height: 22
+        x: 224
+        y: 672
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 07fc64a288950e2d0800000000000000
-      internalID: -3251500489601790096
+      spriteID: 23e244a68df3bf54485f456e2bd4e4de
+      internalID: 107634276
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_11
+      name: Arthropleura_Tail_Idle_Burning_2_3
       rect:
         serializedVersion: 2
-        x: 70
-        y: 839
-        width: 15
-        height: 38
+        x: 336
+        y: 672
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 56c62d5c522c9d260800000000000000
-      internalID: 7122937753151630437
+      spriteID: 4a8bcd9c6bab9c54595ceac25fe3f8f8
+      internalID: -497075370
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_12
+      name: Arthropleura_Tail_Idle_Burning_3_0
       rect:
         serializedVersion: 2
-        x: 141
-        y: 857
-        width: 13
-        height: 27
+        x: 0
+        y: 560
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b260742e44d98cdb0800000000000000
-      internalID: -4771390886019398101
+      spriteID: 11e61666b65ddbf449963528ff38726b
+      internalID: 668678621
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_13
+      name: Arthropleura_Tail_Idle_Burning_3_1
       rect:
         serializedVersion: 2
-        x: 153
-        y: 849
-        width: 21
-        height: 29
+        x: 112
+        y: 560
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2504e46782f5943d0800000000000000
-      internalID: -3221939431018708910
+      spriteID: f37ad2892571b0942af6d846c4d3ba53
+      internalID: 1023562703
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_14
+      name: Arthropleura_Tail_Idle_Burning_3_2
       rect:
         serializedVersion: 2
-        x: 171
-        y: 838
-        width: 25
-        height: 32
+        x: 224
+        y: 560
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a24fe0b661336b2f0800000000000000
-      internalID: -957521699391212502
+      spriteID: a1f9258c90bd844458fac907aba2865b
+      internalID: 1536352872
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_15
+      name: Arthropleura_Tail_Idle_Burning_3_3
       rect:
         serializedVersion: 2
-        x: 252
-        y: 857
-        width: 14
-        height: 29
+        x: 336
+        y: 560
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7f291d522591dbe30800000000000000
-      internalID: 4520797441562350327
+      spriteID: af3c46422663a834dbb7e0251c5cd58f
+      internalID: -641985784
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_16
+      name: Arthropleura_Tail_Idle_Burning_4_0
       rect:
         serializedVersion: 2
-        x: 265
-        y: 831
-        width: 21
-        height: 43
+        x: 0
+        y: 448
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: fbdf28edcef3b25d0800000000000000
-      internalID: -3086302833054384705
+      spriteID: 07a583b99449a2d44b45a672bf15998d
+      internalID: 1935626278
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_17
+      name: Arthropleura_Tail_Idle_Burning_4_1
       rect:
         serializedVersion: 2
-        x: 283
-        y: 838
-        width: 13
-        height: 20
+        x: 112
+        y: 448
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 8cc7cb59a8e333190800000000000000
-      internalID: -7983968949459190584
+      spriteID: 2c9527d9f0f5cb541a7de6166497f5d8
+      internalID: 733202038
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_18
+      name: Arthropleura_Tail_Idle_Burning_4_2
       rect:
         serializedVersion: 2
-        x: 295
-        y: 839
-        width: 14
-        height: 36
+        x: 224
+        y: 448
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 8652139e1f2405890800000000000000
-      internalID: -7471398175040789144
+      spriteID: 9af5f794fcbc7764fa9fc75dd3da120b
+      internalID: -1062302940
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_19
+      name: Arthropleura_Tail_Idle_Burning_4_3
       rect:
         serializedVersion: 2
-        x: 364
-        y: 857
-        width: 14
-        height: 25
+        x: 336
+        y: 448
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a944ccfcc6c592f10800000000000000
-      internalID: 2245427511633396890
+      spriteID: 68679582326a72e41be10f990255339b
+      internalID: -1999453192
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_20
+      name: Arthropleura_Tail_Idle_Burning_5_0
       rect:
         serializedVersion: 2
-        x: 385
-        y: 849
-        width: 13
-        height: 27
+        x: 0
+        y: 336
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 99630c4a7e5612bb0800000000000000
-      internalID: -4962573268809664871
+      spriteID: a44c94c29c019c5488f556e0874d28c0
+      internalID: 169358627
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_21
+      name: Arthropleura_Tail_Idle_Burning_5_1
       rect:
         serializedVersion: 2
-        x: 395
-        y: 838
-        width: 25
-        height: 39
+        x: 112
+        y: 336
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c9c26d4b4359eb0c0800000000000000
-      internalID: -4558041719247590244
+      spriteID: e34301d1517900a43992fc31dcaa883b
+      internalID: 947537273
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_22
+      name: Arthropleura_Tail_Idle_Burning_5_2
       rect:
         serializedVersion: 2
-        x: 41
-        y: 831
-        width: 13
-        height: 24
+        x: 224
+        y: 336
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d106fb705a7252650800000000000000
-      internalID: 6207411251153166365
+      spriteID: ca6ef81f3b524214895607d7483f4ca7
+      internalID: 1932834587
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_23
+      name: Arthropleura_Tail_Idle_Burning_5_3
       rect:
         serializedVersion: 2
-        x: 375
-        y: 831
-        width: 14
-        height: 24
+        x: 336
+        y: 336
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: aedf0703ff3703e90800000000000000
-      internalID: -7048005876968260118
+      spriteID: 5ccabc228ad7bd64abccb721f8ed555d
+      internalID: 1715925356
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_24
+      name: Arthropleura_Tail_Idle_Burning_6_0
       rect:
         serializedVersion: 2
-        x: 30
-        y: 741
-        width: 13
-        height: 25
+        x: 0
+        y: 224
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 728ac211963bbfc60800000000000000
-      internalID: 7853067639091669031
+      spriteID: 2c20c34bb31f3624fb061314c2de5ed9
+      internalID: 394950406
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_25
+      name: Arthropleura_Tail_Idle_Burning_6_1
       rect:
         serializedVersion: 2
-        x: 38
-        y: 719
-        width: 22
-        height: 32
+        x: 112
+        y: 224
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b5225d2402bcc74c0800000000000000
-      internalID: -4288329405742898597
+      spriteID: 335d1775f3a1f694cb69dcd2ac1ba751
+      internalID: -102255378
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_26
+      name: Arthropleura_Tail_Idle_Burning_6_2
       rect:
         serializedVersion: 2
-        x: 64
-        y: 734
-        width: 14
-        height: 22
+        x: 224
+        y: 224
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6a195dbce029d9420800000000000000
-      internalID: 2638425548955947430
+      spriteID: 1dce59b1dc7a3244098ff4da09ae9681
+      internalID: 1733471120
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_27
+      name: Arthropleura_Tail_Idle_Burning_6_3
       rect:
         serializedVersion: 2
-        x: 142
-        y: 719
-        width: 30
-        height: 49
+        x: 336
+        y: 224
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b19e40ebc008fecc0800000000000000
-      internalID: -3679581578322450149
+      spriteID: 685eefd5de2ad1a4fa2582886b42f45e
+      internalID: 972215678
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_28
+      name: Arthropleura_Tail_Idle_Burning_7_0
       rect:
         serializedVersion: 2
-        x: 175
-        y: 734
-        width: 14
-        height: 24
+        x: 0
+        y: 112
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 4caa8614986b07760800000000000000
-      internalID: 7453658083922324164
+      spriteID: 0659b28c5288b1647b349be6697a408f
+      internalID: -1753637080
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_29
+      name: Arthropleura_Tail_Idle_Burning_7_1
       rect:
         serializedVersion: 2
-        x: 253
-        y: 719
-        width: 31
-        height: 51
+        x: 112
+        y: 112
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b0959e41c2af3c170800000000000000
-      internalID: 8197670813980776715
+      spriteID: 007154ac1ad3a5a42bea6b7c33588f62
+      internalID: 2089095200
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_30
+      name: Arthropleura_Tail_Idle_Burning_7_2
       rect:
         serializedVersion: 2
-        x: 288
-        y: 732
-        width: 14
-        height: 22
+        x: 224
+        y: 112
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: fc01caa4ccfff5b20800000000000000
-      internalID: 3125497919309615311
+      spriteID: 0844f1d5e681f5a43bc91268f6e17aef
+      internalID: 1621021838
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_31
+      name: Arthropleura_Tail_Idle_Burning_7_3
       rect:
         serializedVersion: 2
-        x: 365
-        y: 719
-        width: 31
-        height: 47
+        x: 336
+        y: 112
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 040e55adc756319c0800000000000000
-      internalID: -3957708060615122880
+      spriteID: 6e0cc3b47c28e874194aedf1a396d5e0
+      internalID: -786308018
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_32
+      name: Arthropleura_Tail_Idle_Burning_8_0
       rect:
         serializedVersion: 2
-        x: 401
-        y: 734
-        width: 13
-        height: 22
+        x: 0
+        y: 0
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 5ceef24e07ea35c30800000000000000
-      internalID: 4347009865230577349
+      spriteID: 22302694a859eab46be19206c56e7b14
+      internalID: -2113593518
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_33
+      name: Arthropleura_Tail_Idle_Burning_8_1
       rect:
         serializedVersion: 2
-        x: 69
-        y: 715
-        width: 13
-        height: 14
+        x: 112
+        y: 0
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 72db1fd726f6fa390800000000000000
-      internalID: -7804897160399307481
+      spriteID: bbf065ac7e2c42846ab3d2282579812a
+      internalID: -179574188
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_34
+      name: Arthropleura_Tail_Idle_Burning_8_2
       rect:
         serializedVersion: 2
-        x: 180
-        y: 715
-        width: 13
-        height: 10
+        x: 224
+        y: 0
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 3e4656b076f92b9f0800000000000000
-      internalID: -454125347489356573
+      spriteID: c4c4d4f4c9c4cef44955930a0b3f1814
+      internalID: -1603678604
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_35
+      name: Arthropleura_Tail_Idle_Burning_8_3
       rect:
         serializedVersion: 2
-        x: 293
-        y: 715
-        width: 13
-        height: 12
+        x: 336
+        y: 0
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c7ffafc36b5d4ad40800000000000000
-      internalID: 5594831615784845180
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_36
-      rect:
-        serializedVersion: 2
-        x: 399
-        y: 714
-        width: 14
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ea0a4fa23efc5efd0800000000000000
-      internalID: -2313214258999680850
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_37
-      rect:
-        serializedVersion: 2
-        x: 49
-        y: 634
-        width: 14
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: cc0d7f84a1a4fef60800000000000000
-      internalID: 8065746934397653196
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_38
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 631
-        width: 13
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b2d6c6392a2f75280800000000000000
-      internalID: -9054501745733112533
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_39
-      rect:
-        serializedVersion: 2
-        x: 161
-        y: 635
-        width: 13
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d4b79161dd8e77c80800000000000000
-      internalID: -8324929349914887347
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_40
-      rect:
-        serializedVersion: 2
-        x: 175
-        y: 631
-        width: 14
-        height: 22
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: bfd61883c205db5f0800000000000000
-      internalID: -739346612962103813
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_41
-      rect:
-        serializedVersion: 2
-        x: 272
-        y: 635
-        width: 14
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 429d979a5f03b2d60800000000000000
-      internalID: 7866435005801158948
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_42
-      rect:
-        serializedVersion: 2
-        x: 288
-        y: 631
-        width: 13
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8dae192f181bb8b90800000000000000
-      internalID: -7238496804389393704
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_43
-      rect:
-        serializedVersion: 2
-        x: 379
-        y: 635
-        width: 13
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b93a52a043f7a6fa0800000000000000
-      internalID: -5806688908055567461
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_44
-      rect:
-        serializedVersion: 2
-        x: 400
-        y: 631
-        width: 13
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8400ce15be0d39250800000000000000
-      internalID: 5950329241796870216
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_45
-      rect:
-        serializedVersion: 2
-        x: 46
-        y: 604
-        width: 22
-        height: 29
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1789cd019c5cb89e0800000000000000
-      internalID: -1617982173747570575
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_46
-      rect:
-        serializedVersion: 2
-        x: 71
-        y: 596
-        width: 13
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d58f496c46a02f0d0800000000000000
-      internalID: -3390636141511903139
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_47
-      rect:
-        serializedVersion: 2
-        x: 159
-        y: 604
-        width: 23
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 401956bae0b8a11e0800000000000000
-      internalID: -2226314170659925756
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_48
-      rect:
-        serializedVersion: 2
-        x: 183
-        y: 596
-        width: 13
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e9534915779926970800000000000000
-      internalID: 8746722164055750046
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_49
-      rect:
-        serializedVersion: 2
-        x: 271
-        y: 604
-        width: 21
-        height: 29
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e936d101cb1ea9c10800000000000000
-      internalID: 2061207977315885982
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_50
-      rect:
-        serializedVersion: 2
-        x: 295
-        y: 596
-        width: 13
-        height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 148d306feacc69680800000000000000
-      internalID: -8748580174296786879
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_51
-      rect:
-        serializedVersion: 2
-        x: 382
-        y: 604
-        width: 22
-        height: 29
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4e67fe6b5350458a0800000000000000
-      internalID: -6317418649033410844
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_52
-      rect:
-        serializedVersion: 2
-        x: 407
-        y: 596
-        width: 14
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b4ea88c4f19346a10800000000000000
-      internalID: 1901707749247987275
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_53
-      rect:
-        serializedVersion: 2
-        x: 40
-        y: 502
-        width: 22
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b61d0ca3c3e0b88e0800000000000000
-      internalID: -1690241583300947605
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_54
-      rect:
-        serializedVersion: 2
-        x: 58
-        y: 522
-        width: 13
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d3c9e7e83ffa38ec0800000000000000
-      internalID: -3565813019344724931
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_55
-      rect:
-        serializedVersion: 2
-        x: 159
-        y: 502
-        width: 14
-        height: 34
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4a4b4552b849cce90800000000000000
-      internalID: -7004059995120290652
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_56
-      rect:
-        serializedVersion: 2
-        x: 170
-        y: 522
-        width: 13
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8919fb4a2135f0f90800000000000000
-      internalID: -6985273157489815144
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_57
-      rect:
-        serializedVersion: 2
-        x: 271
-        y: 502
-        width: 15
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 67569d7a5198cd040800000000000000
-      internalID: 4673761239407093110
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_58
-      rect:
-        serializedVersion: 2
-        x: 281
-        y: 522
-        width: 14
-        height: 29
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8ff63e6b7c72bd090800000000000000
-      internalID: -8008763773627961352
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_59
-      rect:
-        serializedVersion: 2
-        x: 382
-        y: 502
-        width: 24
-        height: 45
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0e37213db0321f9a0800000000000000
-      internalID: -6201136678219648032
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_60
-      rect:
-        serializedVersion: 2
-        x: 36
-        y: 494
-        width: 13
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 08e61e77ead42f330800000000000000
-      internalID: 3743139652029214336
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_61
-      rect:
-        serializedVersion: 2
-        x: 59
-        y: 481
-        width: 15
-        height: 28
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 385c47b82784f7870800000000000000
-      internalID: 8682738263396763011
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_62
-      rect:
-        serializedVersion: 2
-        x: 147
-        y: 494
-        width: 14
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 51a203448f75c2220800000000000000
-      internalID: 2462439820072331797
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_63
-      rect:
-        serializedVersion: 2
-        x: 174
-        y: 482
-        width: 14
-        height: 36
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9eb190e886666e5d0800000000000000
-      internalID: -3033624699741856791
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_64
-      rect:
-        serializedVersion: 2
-        x: 259
-        y: 494
-        width: 14
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9153c2c1ee2277480800000000000000
-      internalID: -8901607732404275943
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_65
-      rect:
-        serializedVersion: 2
-        x: 283
-        y: 481
-        width: 15
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 648213fd7e6c91280800000000000000
-      internalID: -9072001275176867770
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_66
-      rect:
-        serializedVersion: 2
-        x: 371
-        y: 494
-        width: 14
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 19ecf792a92abf0a0800000000000000
-      internalID: -6846700025481802095
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_67
-      rect:
-        serializedVersion: 2
-        x: 395
-        y: 481
-        width: 16
-        height: 28
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9fbbd9582234acaf0800000000000000
-      internalID: -375413803382359047
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_68
-      rect:
-        serializedVersion: 2
-        x: 39
-        y: 379
-        width: 17
-        height: 45
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 82d875840aa3ac640800000000000000
-      internalID: 5100953988033383720
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_69
-      rect:
-        serializedVersion: 2
-        x: 57
-        y: 381
-        width: 27
-        height: 38
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 425d23470c603e9a0800000000000000
-      internalID: -6205108437933435612
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_70
-      rect:
-        serializedVersion: 2
-        x: 151
-        y: 379
-        width: 19
-        height: 47
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1bbae8ff5ff5f1bb0800000000000000
-      internalID: -4963142754179830863
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_71
-      rect:
-        serializedVersion: 2
-        x: 170
-        y: 381
-        width: 25
-        height: 34
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b9d2de050ae8990c0800000000000000
-      internalID: -4568463527787024997
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_72
-      rect:
-        serializedVersion: 2
-        x: 262
-        y: 379
-        width: 18
-        height: 49
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b13ffddfe5b1f48b0800000000000000
-      internalID: -5165880152770481381
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_73
-      rect:
-        serializedVersion: 2
-        x: 282
-        y: 381
-        width: 26
-        height: 36
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8ce2d4092c982d380800000000000000
-      internalID: -8947938040894116152
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_74
-      rect:
-        serializedVersion: 2
-        x: 374
-        y: 379
-        width: 17
-        height: 45
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 80ef21ac3c240f7b0800000000000000
-      internalID: -5192576961681883640
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_75
-      rect:
-        serializedVersion: 2
-        x: 393
-        y: 381
-        width: 28
-        height: 38
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: aadc9c81beaef10c0800000000000000
-      internalID: -4602701998695264854
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_76
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 285
-        width: 14
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 894e57f9337bb2010800000000000000
-      internalID: 1165226360951923864
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_77
-      rect:
-        serializedVersion: 2
-        x: 74
-        y: 280
-        width: 15
-        height: 29
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1cc83e8182145b680800000000000000
-      internalID: -8740007861370516287
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_78
-      rect:
-        serializedVersion: 2
-        x: 152
-        y: 286
-        width: 14
-        height: 22
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ea49b98bb124878c0800000000000000
-      internalID: -4001375582089931602
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_79
-      rect:
-        serializedVersion: 2
-        x: 187
-        y: 279
-        width: 14
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: fe64bcd3cef92d7d0800000000000000
-      internalID: -2895075773447977233
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_80
-      rect:
-        serializedVersion: 2
-        x: 257
-        y: 285
-        width: 13
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 068d4686d700f05d0800000000000000
-      internalID: -3094253880357889952
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_81
-      rect:
-        serializedVersion: 2
-        x: 299
-        y: 280
-        width: 14
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 146634567f6271130800000000000000
-      internalID: 3537338876320507457
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_82
-      rect:
-        serializedVersion: 2
-        x: 369
-        y: 282
-        width: 13
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a5ccd1fdf997c4490800000000000000
-      internalID: -7760694330316174246
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_83
-      rect:
-        serializedVersion: 2
-        x: 410
-        y: 280
-        width: 15
-        height: 34
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 932269a8b76306580800000000000000
-      internalID: -8836002564666940871
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_84
-      rect:
-        serializedVersion: 2
-        x: 34
-        y: 258
-        width: 15
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 805735a250db4cd50800000000000000
-      internalID: 6756733170845185288
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_85
-      rect:
-        serializedVersion: 2
-        x: 49
-        y: 259
-        width: 14
-        height: 22
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8750650d9e7852e80800000000000000
-      internalID: -8204001707893062280
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_86
-      rect:
-        serializedVersion: 2
-        x: 146
-        y: 258
-        width: 14
-        height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 133eeddf1c1243950800000000000000
-      internalID: 6427799685236187953
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_87
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 259
-        width: 14
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 624737642ec596150800000000000000
-      internalID: 5866322116541117478
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_88
-      rect:
-        serializedVersion: 2
-        x: 257
-        y: 258
-        width: 16
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: bee17e339930b1a70800000000000000
-      internalID: 8798630253534060267
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_89
-      rect:
-        serializedVersion: 2
-        x: 274
-        y: 259
-        width: 13
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 141927178785298e0800000000000000
-      internalID: -1688189635987861183
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_90
-      rect:
-        serializedVersion: 2
-        x: 368
-        y: 258
-        width: 18
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4507dfa1467f46850800000000000000
-      internalID: 6369487782330331220
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_91
-      rect:
-        serializedVersion: 2
-        x: 386
-        y: 259
-        width: 13
-        height: 22
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ff15ef96c6f690a30800000000000000
-      internalID: 4181996240415642111
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_92
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 155
-        width: 13
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7420b9055f849a580800000000000000
-      internalID: -8815434577144511929
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_93
-      rect:
-        serializedVersion: 2
-        x: 40
-        y: 155
-        width: 21
-        height: 46
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 825221143870721b0800000000000000
-      internalID: -5681564144590772952
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_94
-      rect:
-        serializedVersion: 2
-        x: 60
-        y: 166
-        width: 14
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a34f1a61f2b2c7300800000000000000
-      internalID: 251123160469075002
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_95
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 157
-        width: 13
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ee114c4d0cfe48c20800000000000000
-      internalID: 3207952446077014510
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_96
-      rect:
-        serializedVersion: 2
-        x: 137
-        y: 153
-        width: 19
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c1a517f30d021a120800000000000000
-      internalID: 2423254153291717148
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_97
-      rect:
-        serializedVersion: 2
-        x: 148
-        y: 166
-        width: 23
-        height: 36
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ebf18242b2ee44e00800000000000000
-      internalID: 1028208484004929470
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_98
-      rect:
-        serializedVersion: 2
-        x: 175
-        y: 156
-        width: 13
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3f9863d007cb97570800000000000000
-      internalID: 8465004164063594995
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_99
-      rect:
-        serializedVersion: 2
-        x: 265
-        y: 155
-        width: 20
-        height: 50
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: abd3fb924690d36c0800000000000000
-      internalID: -4162160154818691654
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_100
-      rect:
-        serializedVersion: 2
-        x: 284
-        y: 157
-        width: 17
-        height: 34
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5caeab6791060cd60800000000000000
-      internalID: 7908426608145001157
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_101
-      rect:
-        serializedVersion: 2
-        x: 369
-        y: 155
-        width: 13
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: be584439744426060800000000000000
-      internalID: 6945188649562834411
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_102
-      rect:
-        serializedVersion: 2
-        x: 375
-        y: 155
-        width: 22
-        height: 46
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2afcf81bc8020ab90800000000000000
-      internalID: -7232745212910514270
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_103
-      rect:
-        serializedVersion: 2
-        x: 397
-        y: 166
-        width: 13
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 36fc9498409768c10800000000000000
-      internalID: 2055463340331356003
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_104
-      rect:
-        serializedVersion: 2
-        x: 401
-        y: 157
-        width: 13
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: dc45185f82d5e12f0800000000000000
-      internalID: -1000259636730702643
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_105
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 155
-        width: 13
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f2cf03058658fa790800000000000000
-      internalID: -7516642569989587921
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_106
-      rect:
-        serializedVersion: 2
-        x: 29
-        y: 54
-        width: 14
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 526ce229cde50b9e0800000000000000
-      internalID: -1607680765532912091
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_107
-      rect:
-        serializedVersion: 2
-        x: 46
-        y: 54
-        width: 14
-        height: 29
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 259601184860ddc20800000000000000
-      internalID: 3232747273692670290
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_108
-      rect:
-        serializedVersion: 2
-        x: 58
-        y: 43
-        width: 13
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c648e8c1c03d7f610800000000000000
-      internalID: 1655023437054116972
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_109
-      rect:
-        serializedVersion: 2
-        x: 75
-        y: 47
-        width: 16
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3ac9791a7d2887ac0800000000000000
-      internalID: -3857189218202182493
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_110
-      rect:
-        serializedVersion: 2
-        x: 142
-        y: 54
-        width: 13
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e9ab692ea5b47a300800000000000000
-      internalID: 263261956945132190
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_111
-      rect:
-        serializedVersion: 2
-        x: 158
-        y: 54
-        width: 14
-        height: 22
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5fad943068a648080800000000000000
-      internalID: -9186100216115635467
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_112
-      rect:
-        serializedVersion: 2
-        x: 187
-        y: 47
-        width: 14
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 517351e81c7552070800000000000000
-      internalID: 8080961595210282773
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_113
-      rect:
-        serializedVersion: 2
-        x: 254
-        y: 54
-        width: 13
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 51f28f312000c3050800000000000000
-      internalID: 5781496030561840917
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_114
-      rect:
-        serializedVersion: 2
-        x: 258
-        y: 54
-        width: 32
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f9f321aaa02679920800000000000000
-      internalID: 2996971874980872095
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_115
-      rect:
-        serializedVersion: 2
-        x: 282
-        y: 43
-        width: 13
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e3a152a68e718f0f0800000000000000
-      internalID: -1083089423401936322
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_116
-      rect:
-        serializedVersion: 2
-        x: 300
-        y: 47
-        width: 15
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 37f7a3449d9ef5c20800000000000000
-      internalID: 3197531379818200947
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_117
-      rect:
-        serializedVersion: 2
-        x: 364
-        y: 54
-        width: 13
-        height: 22
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4266f15e4aae8c420800000000000000
-      internalID: 2650626374647113252
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_118
-      rect:
-        serializedVersion: 2
-        x: 375
-        y: 37
-        width: 21
-        height: 51
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: de369994a0e1aa200800000000000000
-      internalID: 191998963649962989
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_119
-      rect:
-        serializedVersion: 2
-        x: 412
-        y: 50
-        width: 14
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 47d3edcccd4b145d0800000000000000
-      internalID: -3079981809721787020
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Burning_120
-      rect:
-        serializedVersion: 2
-        x: 170
-        y: 43
-        width: 13
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2bd1372c9847f78d0800000000000000
-      internalID: -2846428304453198414
+      spriteID: 27b90df46896c1747a26e6e3515f2d83
+      internalID: 1459879594
       vertices: []
       indices: 
       edges: []
@@ -3150,127 +1280,42 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Arthropleura_Tail_Idle_Burning_0: 6683194837735219682
-      Arthropleura_Tail_Idle_Burning_1: 6945745761159595960
-      Arthropleura_Tail_Idle_Burning_10: -3251500489601790096
-      Arthropleura_Tail_Idle_Burning_100: 7908426608145001157
-      Arthropleura_Tail_Idle_Burning_101: 6945188649562834411
-      Arthropleura_Tail_Idle_Burning_102: -7232745212910514270
-      Arthropleura_Tail_Idle_Burning_103: 2055463340331356003
-      Arthropleura_Tail_Idle_Burning_104: -1000259636730702643
-      Arthropleura_Tail_Idle_Burning_105: -7516642569989587921
-      Arthropleura_Tail_Idle_Burning_106: -1607680765532912091
-      Arthropleura_Tail_Idle_Burning_107: 3232747273692670290
-      Arthropleura_Tail_Idle_Burning_108: 1655023437054116972
-      Arthropleura_Tail_Idle_Burning_109: -3857189218202182493
-      Arthropleura_Tail_Idle_Burning_11: 7122937753151630437
-      Arthropleura_Tail_Idle_Burning_110: 263261956945132190
-      Arthropleura_Tail_Idle_Burning_111: -9186100216115635467
-      Arthropleura_Tail_Idle_Burning_112: 8080961595210282773
-      Arthropleura_Tail_Idle_Burning_113: 5781496030561840917
-      Arthropleura_Tail_Idle_Burning_114: 2996971874980872095
-      Arthropleura_Tail_Idle_Burning_115: -1083089423401936322
-      Arthropleura_Tail_Idle_Burning_116: 3197531379818200947
-      Arthropleura_Tail_Idle_Burning_117: 2650626374647113252
-      Arthropleura_Tail_Idle_Burning_118: 191998963649962989
-      Arthropleura_Tail_Idle_Burning_119: -3079981809721787020
-      Arthropleura_Tail_Idle_Burning_12: -4771390886019398101
-      Arthropleura_Tail_Idle_Burning_120: -2846428304453198414
-      Arthropleura_Tail_Idle_Burning_13: -3221939431018708910
-      Arthropleura_Tail_Idle_Burning_14: -957521699391212502
-      Arthropleura_Tail_Idle_Burning_15: 4520797441562350327
-      Arthropleura_Tail_Idle_Burning_16: -3086302833054384705
-      Arthropleura_Tail_Idle_Burning_17: -7983968949459190584
-      Arthropleura_Tail_Idle_Burning_18: -7471398175040789144
-      Arthropleura_Tail_Idle_Burning_19: 2245427511633396890
-      Arthropleura_Tail_Idle_Burning_2: 8126625978247336161
-      Arthropleura_Tail_Idle_Burning_20: -4962573268809664871
-      Arthropleura_Tail_Idle_Burning_21: -4558041719247590244
-      Arthropleura_Tail_Idle_Burning_22: 6207411251153166365
-      Arthropleura_Tail_Idle_Burning_23: -7048005876968260118
-      Arthropleura_Tail_Idle_Burning_24: 7853067639091669031
-      Arthropleura_Tail_Idle_Burning_25: -4288329405742898597
-      Arthropleura_Tail_Idle_Burning_26: 2638425548955947430
-      Arthropleura_Tail_Idle_Burning_27: -3679581578322450149
-      Arthropleura_Tail_Idle_Burning_28: 7453658083922324164
-      Arthropleura_Tail_Idle_Burning_29: 8197670813980776715
-      Arthropleura_Tail_Idle_Burning_3: 4695009239964128093
-      Arthropleura_Tail_Idle_Burning_30: 3125497919309615311
-      Arthropleura_Tail_Idle_Burning_31: -3957708060615122880
-      Arthropleura_Tail_Idle_Burning_32: 4347009865230577349
-      Arthropleura_Tail_Idle_Burning_33: -7804897160399307481
-      Arthropleura_Tail_Idle_Burning_34: -454125347489356573
-      Arthropleura_Tail_Idle_Burning_35: 5594831615784845180
-      Arthropleura_Tail_Idle_Burning_36: -2313214258999680850
-      Arthropleura_Tail_Idle_Burning_37: 8065746934397653196
-      Arthropleura_Tail_Idle_Burning_38: -9054501745733112533
-      Arthropleura_Tail_Idle_Burning_39: -8324929349914887347
-      Arthropleura_Tail_Idle_Burning_4: 6362277087826918223
-      Arthropleura_Tail_Idle_Burning_40: -739346612962103813
-      Arthropleura_Tail_Idle_Burning_41: 7866435005801158948
-      Arthropleura_Tail_Idle_Burning_42: -7238496804389393704
-      Arthropleura_Tail_Idle_Burning_43: -5806688908055567461
-      Arthropleura_Tail_Idle_Burning_44: 5950329241796870216
-      Arthropleura_Tail_Idle_Burning_45: -1617982173747570575
-      Arthropleura_Tail_Idle_Burning_46: -3390636141511903139
-      Arthropleura_Tail_Idle_Burning_47: -2226314170659925756
-      Arthropleura_Tail_Idle_Burning_48: 8746722164055750046
-      Arthropleura_Tail_Idle_Burning_49: 2061207977315885982
-      Arthropleura_Tail_Idle_Burning_5: 3930812923579906345
-      Arthropleura_Tail_Idle_Burning_50: -8748580174296786879
-      Arthropleura_Tail_Idle_Burning_51: -6317418649033410844
-      Arthropleura_Tail_Idle_Burning_52: 1901707749247987275
-      Arthropleura_Tail_Idle_Burning_53: -1690241583300947605
-      Arthropleura_Tail_Idle_Burning_54: -3565813019344724931
-      Arthropleura_Tail_Idle_Burning_55: -7004059995120290652
-      Arthropleura_Tail_Idle_Burning_56: -6985273157489815144
-      Arthropleura_Tail_Idle_Burning_57: 4673761239407093110
-      Arthropleura_Tail_Idle_Burning_58: -8008763773627961352
-      Arthropleura_Tail_Idle_Burning_59: -6201136678219648032
-      Arthropleura_Tail_Idle_Burning_6: -235260519954529953
-      Arthropleura_Tail_Idle_Burning_60: 3743139652029214336
-      Arthropleura_Tail_Idle_Burning_61: 8682738263396763011
-      Arthropleura_Tail_Idle_Burning_62: 2462439820072331797
-      Arthropleura_Tail_Idle_Burning_63: -3033624699741856791
-      Arthropleura_Tail_Idle_Burning_64: -8901607732404275943
-      Arthropleura_Tail_Idle_Burning_65: -9072001275176867770
-      Arthropleura_Tail_Idle_Burning_66: -6846700025481802095
-      Arthropleura_Tail_Idle_Burning_67: -375413803382359047
-      Arthropleura_Tail_Idle_Burning_68: 5100953988033383720
-      Arthropleura_Tail_Idle_Burning_69: -6205108437933435612
-      Arthropleura_Tail_Idle_Burning_7: 165170789070312145
-      Arthropleura_Tail_Idle_Burning_70: -4963142754179830863
-      Arthropleura_Tail_Idle_Burning_71: -4568463527787024997
-      Arthropleura_Tail_Idle_Burning_72: -5165880152770481381
-      Arthropleura_Tail_Idle_Burning_73: -8947938040894116152
-      Arthropleura_Tail_Idle_Burning_74: -5192576961681883640
-      Arthropleura_Tail_Idle_Burning_75: -4602701998695264854
-      Arthropleura_Tail_Idle_Burning_76: 1165226360951923864
-      Arthropleura_Tail_Idle_Burning_77: -8740007861370516287
-      Arthropleura_Tail_Idle_Burning_78: -4001375582089931602
-      Arthropleura_Tail_Idle_Burning_79: -2895075773447977233
-      Arthropleura_Tail_Idle_Burning_8: 4401917690565722688
-      Arthropleura_Tail_Idle_Burning_80: -3094253880357889952
-      Arthropleura_Tail_Idle_Burning_81: 3537338876320507457
-      Arthropleura_Tail_Idle_Burning_82: -7760694330316174246
-      Arthropleura_Tail_Idle_Burning_83: -8836002564666940871
-      Arthropleura_Tail_Idle_Burning_84: 6756733170845185288
-      Arthropleura_Tail_Idle_Burning_85: -8204001707893062280
-      Arthropleura_Tail_Idle_Burning_86: 6427799685236187953
-      Arthropleura_Tail_Idle_Burning_87: 5866322116541117478
-      Arthropleura_Tail_Idle_Burning_88: 8798630253534060267
-      Arthropleura_Tail_Idle_Burning_89: -1688189635987861183
-      Arthropleura_Tail_Idle_Burning_9: -5695837975233366155
-      Arthropleura_Tail_Idle_Burning_90: 6369487782330331220
-      Arthropleura_Tail_Idle_Burning_91: 4181996240415642111
-      Arthropleura_Tail_Idle_Burning_92: -8815434577144511929
-      Arthropleura_Tail_Idle_Burning_93: -5681564144590772952
-      Arthropleura_Tail_Idle_Burning_94: 251123160469075002
-      Arthropleura_Tail_Idle_Burning_95: 3207952446077014510
-      Arthropleura_Tail_Idle_Burning_96: 2423254153291717148
-      Arthropleura_Tail_Idle_Burning_97: 1028208484004929470
-      Arthropleura_Tail_Idle_Burning_98: 8465004164063594995
-      Arthropleura_Tail_Idle_Burning_99: -4162160154818691654
+      Arthropleura_Tail_Idle_Burning_0_0: -1439922135
+      Arthropleura_Tail_Idle_Burning_0_1: 1813461745
+      Arthropleura_Tail_Idle_Burning_0_2: -1877179568
+      Arthropleura_Tail_Idle_Burning_0_3: -299137829
+      Arthropleura_Tail_Idle_Burning_1_0: 1606984704
+      Arthropleura_Tail_Idle_Burning_1_1: -596402324
+      Arthropleura_Tail_Idle_Burning_1_2: 940194411
+      Arthropleura_Tail_Idle_Burning_1_3: -1318803109
+      Arthropleura_Tail_Idle_Burning_2_0: -1608102037
+      Arthropleura_Tail_Idle_Burning_2_1: -1329714563
+      Arthropleura_Tail_Idle_Burning_2_2: 107634276
+      Arthropleura_Tail_Idle_Burning_2_3: -497075370
+      Arthropleura_Tail_Idle_Burning_3_0: 668678621
+      Arthropleura_Tail_Idle_Burning_3_1: 1023562703
+      Arthropleura_Tail_Idle_Burning_3_2: 1536352872
+      Arthropleura_Tail_Idle_Burning_3_3: -641985784
+      Arthropleura_Tail_Idle_Burning_4_0: 1935626278
+      Arthropleura_Tail_Idle_Burning_4_1: 733202038
+      Arthropleura_Tail_Idle_Burning_4_2: -1062302940
+      Arthropleura_Tail_Idle_Burning_4_3: -1999453192
+      Arthropleura_Tail_Idle_Burning_5_0: 169358627
+      Arthropleura_Tail_Idle_Burning_5_1: 947537273
+      Arthropleura_Tail_Idle_Burning_5_2: 1932834587
+      Arthropleura_Tail_Idle_Burning_5_3: 1715925356
+      Arthropleura_Tail_Idle_Burning_6_0: 394950406
+      Arthropleura_Tail_Idle_Burning_6_1: -102255378
+      Arthropleura_Tail_Idle_Burning_6_2: 1733471120
+      Arthropleura_Tail_Idle_Burning_6_3: 972215678
+      Arthropleura_Tail_Idle_Burning_7_0: -1753637080
+      Arthropleura_Tail_Idle_Burning_7_1: 2089095200
+      Arthropleura_Tail_Idle_Burning_7_2: 1621021838
+      Arthropleura_Tail_Idle_Burning_7_3: -786308018
+      Arthropleura_Tail_Idle_Burning_8_0: -2113593518
+      Arthropleura_Tail_Idle_Burning_8_1: -179574188
+      Arthropleura_Tail_Idle_Burning_8_2: -1603678604
+      Arthropleura_Tail_Idle_Burning_8_3: 1459879594
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

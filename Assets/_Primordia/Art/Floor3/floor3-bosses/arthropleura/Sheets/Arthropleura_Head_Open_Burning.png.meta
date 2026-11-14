@@ -739,7 +739,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -767,7 +767,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -808,5105 +808,1189 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_0
+      name: Arthropleura_Head_Open_Burning_0_0
       rect:
         serializedVersion: 2
-        x: 54
-        y: 1340
-        width: 23
-        height: 34
+        x: 0
+        y: 1280
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 184f28040d17686f0800000000000000
-      internalID: -682733154250591103
+      spriteID: 3dfea3f8ef6af5d46939124a189f6714
+      internalID: 1612206022
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_1
+      name: Arthropleura_Head_Open_Burning_0_1
       rect:
         serializedVersion: 2
-        x: 80
-        y: 1371
-        width: 14
-        height: 26
+        x: 160
+        y: 1280
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6ed87d4f64fcb5b00800000000000000
-      internalID: 818475660960304614
+      spriteID: bdaa10277df1ee343ac3bb17e58ba219
+      internalID: -1163091375
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_2
+      name: Arthropleura_Head_Open_Burning_0_2
       rect:
         serializedVersion: 2
-        x: 239
-        y: 1371
-        width: 14
-        height: 22
+        x: 320
+        y: 1280
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d8a77120b615251b0800000000000000
-      internalID: -5669379460867589491
+      spriteID: 4a5560b53958d9b44b27cac220fd7446
+      internalID: 823731169
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_3
+      name: Arthropleura_Head_Open_Burning_0_3
       rect:
         serializedVersion: 2
-        x: 377
-        y: 1360
-        width: 13
-        height: 25
+        x: 480
+        y: 1280
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: fb91d6f0c991c49d0800000000000000
-      internalID: -2788825911184778817
+      spriteID: c56abbd6292540c418c377ea2954cb47
+      internalID: -201473687
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_4
+      name: Arthropleura_Head_Open_Burning_0_4
       rect:
         serializedVersion: 2
-        x: 399
-        y: 1371
-        width: 15
-        height: 21
+        x: 640
+        y: 1280
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 9241b9ab38b3bad70800000000000000
-      internalID: 9055396912715994153
+      spriteID: 3e5001e0103982046b57bda03409a89c
+      internalID: -1213514021
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_5
+      name: Arthropleura_Head_Open_Burning_0_5
       rect:
         serializedVersion: 2
-        x: 535
-        y: 1340
-        width: 15
-        height: 34
+        x: 800
+        y: 1280
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f580b16247487c140800000000000000
-      internalID: 4739902767221114975
+      spriteID: fd55bdd02a9219549aa36d47fad75039
+      internalID: -628286421
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_6
+      name: Arthropleura_Head_Open_Burning_1_0
       rect:
         serializedVersion: 2
-        x: 553
-        y: 1364
-        width: 21
-        height: 38
+        x: 0
+        y: 1120
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: cd405bbb20a6374d0800000000000000
-      internalID: -3138047955375422244
+      spriteID: a5b0f6b16c501f841b3502da9f37e2db
+      internalID: -1849132536
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_7
+      name: Arthropleura_Head_Open_Burning_1_1
       rect:
         serializedVersion: 2
-        x: 720
-        y: 1371
-        width: 14
-        height: 26
+        x: 160
+        y: 1120
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 29baaee3a82d4aa90800000000000000
-      internalID: -7303481204485215342
+      spriteID: 3bcf8c5b9bff7484182af32839198c2c
+      internalID: 1001054712
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_8
+      name: Arthropleura_Head_Open_Burning_1_2
       rect:
         serializedVersion: 2
-        x: 857
-        y: 1360
-        width: 13
-        height: 21
+        x: 320
+        y: 1120
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c9a89021b004fafa0800000000000000
-      internalID: -5787336579856364900
+      spriteID: b776ff51340c9bd418635122a563cc78
+      internalID: -1204320717
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_9
+      name: Arthropleura_Head_Open_Burning_1_3
       rect:
         serializedVersion: 2
-        x: 880
-        y: 1371
-        width: 14
-        height: 21
+        x: 480
+        y: 1120
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 10306f9572ccc2040800000000000000
-      internalID: 4624295386787742465
+      spriteID: ea171e507f975ac469062f60cae1cf0b
+      internalID: 359619923
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_10
+      name: Arthropleura_Head_Open_Burning_1_4
       rect:
         serializedVersion: 2
-        x: 69
-        y: 1349
-        width: 13
-        height: 10
+        x: 640
+        y: 1120
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 3521d5a8974c49380800000000000000
-      internalID: -8965324931896372653
+      spriteID: 90498d26b83d1b743824025824c46d46
+      internalID: 1110309475
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_11
+      name: Arthropleura_Head_Open_Burning_1_5
       rect:
         serializedVersion: 2
-        x: 98
-        y: 1340
-        width: 13
-        height: 14
+        x: 800
+        y: 1120
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 174dfb2bb920fb440800000000000000
-      internalID: 4953680982872937585
+      spriteID: 9c65ca82690484c4f9d43862036ddb2c
+      internalID: -1107278136
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_12
+      name: Arthropleura_Head_Open_Burning_2_0
       rect:
         serializedVersion: 2
-        x: 214
-        y: 1340
-        width: 16
-        height: 30
+        x: 0
+        y: 960
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 886f92591830c3fe0800000000000000
-      internalID: -1208086744953915768
+      spriteID: cf5a89a8cdcf4f7479cbbd2f5b315d1a
+      internalID: 469773998
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_13
+      name: Arthropleura_Head_Open_Burning_2_1
       rect:
         serializedVersion: 2
-        x: 229
-        y: 1349
-        width: 13
-        height: 12
+        x: 160
+        y: 960
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 60a89607605cb52e0800000000000000
-      internalID: -2135896966810727930
+      spriteID: 65f88b70b8de12d4b816747b5977714f
+      internalID: 737436551
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_14
+      name: Arthropleura_Head_Open_Burning_2_2
       rect:
         serializedVersion: 2
-        x: 258
-        y: 1340
-        width: 13
-        height: 10
+        x: 320
+        y: 960
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 17683a2cdcb4b5bc0800000000000000
-      internalID: -3793354914023635343
+      spriteID: ccaf9d97b4b68714186c1ef9e130f0d9
+      internalID: 902985788
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_15
+      name: Arthropleura_Head_Open_Burning_2_3
       rect:
         serializedVersion: 2
-        x: 375
-        y: 1340
-        width: 13
-        height: 20
+        x: 480
+        y: 960
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: cdcccfc9677a26290800000000000000
-      internalID: -7898566668572635940
+      spriteID: 3b975848d70ecfa4a9427bd6cfe09deb
+      internalID: -1795375900
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_16
+      name: Arthropleura_Head_Open_Burning_2_4
       rect:
         serializedVersion: 2
-        x: 388
-        y: 1349
-        width: 14
-        height: 14
+        x: 640
+        y: 960
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 424fc5102063e9e20800000000000000
-      internalID: 3359181754305672228
+      spriteID: 827d2d7b050492b478b177abed27775d
+      internalID: 945548205
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_17
+      name: Arthropleura_Head_Open_Burning_2_5
       rect:
         serializedVersion: 2
-        x: 418
-        y: 1340
-        width: 13
-        height: 21
+        x: 800
+        y: 960
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2b9d11b2a203b76d0800000000000000
-      internalID: -2991744569788212814
+      spriteID: 56d99902f47ee0d4d8f78c51d3574e40
+      internalID: -1629777566
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_18
+      name: Arthropleura_Head_Open_Burning_3_0
       rect:
         serializedVersion: 2
-        x: 549
-        y: 1349
-        width: 13
-        height: 10
+        x: 0
+        y: 800
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 5bef4d6f2295ce730800000000000000
-      internalID: 4029693773294665397
+      spriteID: ca45e484478904d43baf06b3279cdb16
+      internalID: 1017237293
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_19
+      name: Arthropleura_Head_Open_Burning_3_1
       rect:
         serializedVersion: 2
-        x: 577
-        y: 1340
-        width: 14
-        height: 14
+        x: 160
+        y: 800
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 4712f00f2550d5e40800000000000000
-      internalID: 5646675361565450612
+      spriteID: 4c3f98db222859d4da38034322020ca9
+      internalID: -1425809803
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_20
+      name: Arthropleura_Head_Open_Burning_3_2
       rect:
         serializedVersion: 2
-        x: 695
-        y: 1340
-        width: 15
-        height: 30
+        x: 320
+        y: 800
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: cda6fefa47b558330800000000000000
-      internalID: 3712474024562879196
+      spriteID: 978253b4047425e48bd81d9223f032ce
+      internalID: 638496887
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_21
+      name: Arthropleura_Head_Open_Burning_3_3
       rect:
         serializedVersion: 2
-        x: 709
-        y: 1349
-        width: 13
-        height: 12
+        x: 480
+        y: 800
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a01eb05130a6496e0800000000000000
-      internalID: -1831722586962403062
+      spriteID: 2d3cabbf2c2cf7342b573607aa6dbca1
+      internalID: -1625683176
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_22
+      name: Arthropleura_Head_Open_Burning_3_4
       rect:
         serializedVersion: 2
-        x: 738
-        y: 1340
-        width: 13
-        height: 10
+        x: 640
+        y: 800
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a995cec107647a3e0800000000000000
-      internalID: -2042586458653697638
+      spriteID: 0571a4c9a27fa774d94dbb1a48fb02f6
+      internalID: -1018103129
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_23
+      name: Arthropleura_Head_Open_Burning_3_5
       rect:
         serializedVersion: 2
-        x: 854
-        y: 1340
-        width: 14
-        height: 20
+        x: 800
+        y: 800
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e733de4198db15e70800000000000000
-      internalID: 9102264718351741822
+      spriteID: 09c2f34dcd831ab4986d71c118bf565a
+      internalID: -179790192
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_24
+      name: Arthropleura_Head_Open_Burning_4_0
       rect:
         serializedVersion: 2
-        x: 869
-        y: 1349
-        width: 13
-        height: 14
+        x: 0
+        y: 640
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: bcbe327e45f94f160800000000000000
-      internalID: 7058441703000370123
+      spriteID: 1414e15535c03164ca2647d8cb086cd7
+      internalID: -380599522
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_25
+      name: Arthropleura_Head_Open_Burning_4_1
       rect:
         serializedVersion: 2
-        x: 898
-        y: 1340
-        width: 13
-        height: 25
+        x: 160
+        y: 640
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c4cbbcaea169bef90800000000000000
-      internalID: -6923274959799468980
+      spriteID: 9d6dd1f88e6907f4bbf69ef016fa0a3e
+      internalID: -1602484885
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_26
+      name: Arthropleura_Head_Open_Burning_4_2
       rect:
         serializedVersion: 2
-        x: 53
-        y: 1210
-        width: 24
-        height: 27
+        x: 320
+        y: 640
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f7cd9165c88e5f8f0800000000000000
-      internalID: -507243693571711873
+      spriteID: 80745fdc99ea0064ea9c19d513096cfd
+      internalID: 853406790
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_27
+      name: Arthropleura_Head_Open_Burning_4_3
       rect:
         serializedVersion: 2
-        x: 97
-        y: 1200
-        width: 13
-        height: 24
+        x: 480
+        y: 640
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 61c32cf59d4ea4250800000000000000
-      internalID: 5929803481652280342
+      spriteID: ac7071b2c11936748ac83351cd96d1b3
+      internalID: 1176639818
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_28
+      name: Arthropleura_Head_Open_Burning_4_4
       rect:
         serializedVersion: 2
-        x: 214
-        y: 1210
-        width: 23
-        height: 25
+        x: 640
+        y: 640
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 225eb3fc20a34d9c0800000000000000
-      internalID: -3903431193282222814
+      spriteID: c30fd32114d03be42bdd9b39e459edd6
+      internalID: 525197521
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_29
+      name: Arthropleura_Head_Open_Burning_4_5
       rect:
         serializedVersion: 2
-        x: 257
-        y: 1200
-        width: 13
-        height: 12
+        x: 800
+        y: 640
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d7235255e56b6b550800000000000000
-      internalID: 6176324455256896125
+      spriteID: b6b61ccf0d6d22848b737226e05c71cd
+      internalID: 1278928897
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_30
+      name: Arthropleura_Head_Open_Burning_5_0
       rect:
         serializedVersion: 2
-        x: 374
-        y: 1210
-        width: 23
-        height: 27
+        x: 0
+        y: 480
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 582fde94721716110800000000000000
-      internalID: 1252406584943702661
+      spriteID: e7dfe54f143852a4a9015d1b05f7b6b7
+      internalID: 1685016765
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_31
+      name: Arthropleura_Head_Open_Burning_5_1
       rect:
         serializedVersion: 2
-        x: 416
-        y: 1200
-        width: 14
-        height: 14
+        x: 160
+        y: 480
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7b65107dd9e0e8c60800000000000000
-      internalID: 7822205673868973751
+      spriteID: 968c9c67d18e05e4f9a783dc5532e194
+      internalID: 1466777246
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_32
+      name: Arthropleura_Head_Open_Burning_5_2
       rect:
         serializedVersion: 2
-        x: 533
-        y: 1210
-        width: 24
-        height: 32
+        x: 320
+        y: 480
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 3d61b51644b6321c0800000000000000
-      internalID: -4529658858769279277
+      spriteID: f123c7bbbcd42964d8d0c78d134afac8
+      internalID: -1862902464
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_33
+      name: Arthropleura_Head_Open_Burning_5_3
       rect:
         serializedVersion: 2
-        x: 577
-        y: 1200
-        width: 13
-        height: 19
+        x: 480
+        y: 480
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 686cad2206818e1d0800000000000000
-      internalID: -3321377924005050746
+      spriteID: c797d34d0c5dac741937bb280f45c268
+      internalID: 538450009
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_34
+      name: Arthropleura_Head_Open_Burning_5_4
       rect:
         serializedVersion: 2
-        x: 693
-        y: 1210
-        width: 24
-        height: 26
+        x: 640
+        y: 480
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a51341ce4458a25e0800000000000000
-      internalID: -1933586558937190054
+      spriteID: 2a21bfb5837bd0842b2a880983d7f8c6
+      internalID: -1927234896
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_35
+      name: Arthropleura_Head_Open_Burning_5_5
       rect:
         serializedVersion: 2
-        x: 737
-        y: 1199
-        width: 13
-        height: 13
+        x: 800
+        y: 480
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a4fae8677282c1920800000000000000
-      internalID: 2962286804860841802
+      spriteID: c3a30a42ea6a9734ea239c851a8c8cfa
+      internalID: -2091378907
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_36
+      name: Arthropleura_Head_Open_Burning_6_0
       rect:
         serializedVersion: 2
-        x: 853
-        y: 1210
-        width: 24
-        height: 27
+        x: 0
+        y: 320
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 1a6c6e66833e14e10800000000000000
-      internalID: 2180273526008104609
+      spriteID: 3c845c6b7d584994991a5f18570a654e
+      internalID: 878669984
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_37
+      name: Arthropleura_Head_Open_Burning_6_1
       rect:
         serializedVersion: 2
-        x: 897
-        y: 1200
-        width: 13
-        height: 14
+        x: 160
+        y: 320
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d529680533ea38f20800000000000000
-      internalID: 3423771677149270621
+      spriteID: 3398b23ca360eee4198555dd68efef7a
+      internalID: 118185470
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_38
+      name: Arthropleura_Head_Open_Burning_6_2
       rect:
         serializedVersion: 2
-        x: 76
-        y: 1178
-        width: 13
-        height: 24
+        x: 320
+        y: 320
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0c9205b7f77e46180800000000000000
-      internalID: -9122912410430068288
+      spriteID: 8c37aadfb5aab4f44aef25bba4f8d596
+      internalID: -59236195
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_39
+      name: Arthropleura_Head_Open_Burning_6_3
       rect:
         serializedVersion: 2
-        x: 97
-        y: 1181
-        width: 14
-        height: 17
+        x: 480
+        y: 320
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 1f02be7308e7cf3f0800000000000000
-      internalID: -865677939202907919
+      spriteID: 0c553eae985346b448b3c11d425d103f
+      internalID: -1793965991
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_40
+      name: Arthropleura_Head_Open_Burning_6_4
       rect:
         serializedVersion: 2
-        x: 236
-        y: 1178
-        width: 13
-        height: 20
+        x: 640
+        y: 320
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 5a15b8a1b8fde7ff0800000000000000
-      internalID: -36345958433599067
+      spriteID: 194b03dcd5f8d0c498faa6da208adbb0
+      internalID: 2120685559
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_41
+      name: Arthropleura_Head_Open_Burning_6_5
       rect:
         serializedVersion: 2
-        x: 257
-        y: 1181
-        width: 14
-        height: 19
+        x: 800
+        y: 320
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ec6ee2b46c4b356a0800000000000000
-      internalID: -6461622276588640562
+      spriteID: 33cc2cc5a4507e148bb955b3c274970d
+      internalID: -587831775
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_42
+      name: Arthropleura_Head_Open_Burning_7_0
       rect:
         serializedVersion: 2
-        x: 396
-        y: 1178
-        width: 13
-        height: 22
+        x: 0
+        y: 160
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: dbd625ea590b63250800000000000000
-      internalID: 5924116516773719485
+      spriteID: 12f43c805504cc345b961c58711fb86e
+      internalID: 801593438
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_43
+      name: Arthropleura_Head_Open_Burning_7_1
       rect:
         serializedVersion: 2
-        x: 418
-        y: 1181
-        width: 13
-        height: 15
+        x: 160
+        y: 160
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a2e8a8ef260360880800000000000000
-      internalID: -8645169232955666902
+      spriteID: 4d596afdfb2f8cd4f8e3439470360ce0
+      internalID: -1727602057
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_44
+      name: Arthropleura_Head_Open_Burning_7_2
       rect:
         serializedVersion: 2
-        x: 555
-        y: 1178
-        width: 14
-        height: 24
+        x: 320
+        y: 160
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 71905e2707a65aab0800000000000000
-      internalID: -4997471180301203177
+      spriteID: 158dfdaf202585a448b06f31c5407550
+      internalID: -1202368009
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_45
+      name: Arthropleura_Head_Open_Burning_7_3
       rect:
         serializedVersion: 2
-        x: 578
-        y: 1181
-        width: 13
-        height: 17
+        x: 480
+        y: 160
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 643b34ef2e309a5c0800000000000000
-      internalID: -4203824503710305466
+      spriteID: a228162f2265e294ea695d25a7797efb
+      internalID: -1088792660
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_46
+      name: Arthropleura_Head_Open_Burning_7_4
       rect:
         serializedVersion: 2
-        x: 715
-        y: 1178
-        width: 14
-        height: 20
+        x: 640
+        y: 160
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c47e11c3d69fdcda0800000000000000
-      internalID: -5922803687367776436
+      spriteID: 02356815714f6f64c9e59c58fea7012a
+      internalID: 262828292
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_47
+      name: Arthropleura_Head_Open_Burning_7_5
       rect:
         serializedVersion: 2
-        x: 737
-        y: 1181
-        width: 14
-        height: 19
+        x: 800
+        y: 160
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 4d1a4718daadb1bd0800000000000000
-      internalID: -2658290716296044076
+      spriteID: dfe200eeca976a5429a27b072b6150b1
+      internalID: 182276917
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_48
+      name: Arthropleura_Head_Open_Burning_8_0
       rect:
         serializedVersion: 2
-        x: 876
-        y: 1178
-        width: 13
-        height: 25
+        x: 0
+        y: 0
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 867566e52241ba8e0800000000000000
-      internalID: -1681227898047539352
+      spriteID: bfe798b69b6448f4489625f495f32b36
+      internalID: 86085787
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_49
+      name: Arthropleura_Head_Open_Burning_8_1
       rect:
         serializedVersion: 2
-        x: 897
-        y: 1181
-        width: 14
-        height: 15
+        x: 160
+        y: 0
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6fe0fd31f5a35a770800000000000000
-      internalID: 8621361241700372214
+      spriteID: 036bfaff16620b347be2927f08b788a5
+      internalID: 178572130
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_50
+      name: Arthropleura_Head_Open_Burning_8_2
       rect:
         serializedVersion: 2
-        x: 89
-        y: 1074
-        width: 13
-        height: 19
+        x: 320
+        y: 0
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6de1d656abab9da70800000000000000
-      internalID: 8852311852301754070
+      spriteID: 32f63faedbe5c9548bcb9aaa461c9ab4
+      internalID: -868923162
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_51
+      name: Arthropleura_Head_Open_Burning_8_3
       rect:
         serializedVersion: 2
-        x: 249
-        y: 1074
-        width: 13
-        height: 17
+        x: 480
+        y: 0
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7614cd09e20c22000800000000000000
-      internalID: 9781455439544679
+      spriteID: ff20046904c7ce247a333d08e51866a2
+      internalID: -1542403410
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_52
+      name: Arthropleura_Head_Open_Burning_8_4
       rect:
         serializedVersion: 2
-        x: 408
-        y: 1074
-        width: 14
-        height: 19
+        x: 640
+        y: 0
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a72a6561d9b77f440800000000000000
-      internalID: 4969576628441490042
+      spriteID: ea06c2ae208f7134abd9d0a84ac58146
+      internalID: -1623430206
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_53
+      name: Arthropleura_Head_Open_Burning_8_5
       rect:
         serializedVersion: 2
-        x: 568
-        y: 1074
-        width: 14
-        height: 24
+        x: 800
+        y: 0
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c1bb7706eaed3b110800000000000000
-      internalID: 1275607960000117532
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_54
-      rect:
-        serializedVersion: 2
-        x: 699
-        y: 1050
-        width: 13
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 674c40e2bf94d5620800000000000000
-      internalID: 2764447089433035894
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_55
-      rect:
-        serializedVersion: 2
-        x: 729
-        y: 1074
-        width: 13
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c9a51c2dc13072190800000000000000
-      internalID: -7987411991788430692
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_56
-      rect:
-        serializedVersion: 2
-        x: 889
-        y: 1074
-        width: 13
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 187880b4c07fbeed0800000000000000
-      internalID: -2383539945592027263
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_57
-      rect:
-        serializedVersion: 2
-        x: 59
-        y: 1050
-        width: 13
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e6dcf128bf7ddfd60800000000000000
-      internalID: 7925728394461826414
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_58
-      rect:
-        serializedVersion: 2
-        x: 79
-        y: 1040
-        width: 14
-        height: 29
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2d05c4b76242ca1e0800000000000000
-      internalID: -2185331971485577006
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_59
-      rect:
-        serializedVersion: 2
-        x: 98
-        y: 1032
-        width: 13
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c92f41821f61a9f90800000000000000
-      internalID: -6946214250250177892
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_60
-      rect:
-        serializedVersion: 2
-        x: 218
-        y: 1044
-        width: 14
-        height: 28
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e5e28730047ff9320800000000000000
-      internalID: 2567042166932647518
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_61
-      rect:
-        serializedVersion: 2
-        x: 240
-        y: 1040
-        width: 13
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7f501215a918ec160800000000000000
-      internalID: 7047712966667470327
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_62
-      rect:
-        serializedVersion: 2
-        x: 379
-        y: 1050
-        width: 13
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e4aa8ed62b5779320800000000000000
-      internalID: 2564647922019379790
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_63
-      rect:
-        serializedVersion: 2
-        x: 400
-        y: 1040
-        width: 13
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1c5550c07eb414150800000000000000
-      internalID: 5855044446269560257
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_64
-      rect:
-        serializedVersion: 2
-        x: 417
-        y: 1032
-        width: 14
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e33d641188accd7d0800000000000000
-      internalID: -2892214174924483778
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_65
-      rect:
-        serializedVersion: 2
-        x: 539
-        y: 1050
-        width: 13
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a6991505a5b569fa0800000000000000
-      internalID: -5794343427112855190
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_66
-      rect:
-        serializedVersion: 2
-        x: 559
-        y: 1040
-        width: 14
-        height: 29
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 33b46d99f7d4c0380800000000000000
-      internalID: -9003736344583320781
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_67
-      rect:
-        serializedVersion: 2
-        x: 577
-        y: 1032
-        width: 14
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3d433073cb4490dd0800000000000000
-      internalID: -2519406941369584429
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_68
-      rect:
-        serializedVersion: 2
-        x: 719
-        y: 1040
-        width: 14
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f200b660cdcf73850800000000000000
-      internalID: 6356827420987424815
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_69
-      rect:
-        serializedVersion: 2
-        x: 859
-        y: 1050
-        width: 13
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4bc80f4453653ea90800000000000000
-      internalID: -7285884985365459788
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_70
-      rect:
-        serializedVersion: 2
-        x: 879
-        y: 1030
-        width: 14
-        height: 37
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 433289393933a06b0800000000000000
-      internalID: -5329390500110130380
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_71
-      rect:
-        serializedVersion: 2
-        x: 898
-        y: 1032
-        width: 13
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 983b1ef952e4b2810800000000000000
-      internalID: 1741571604411954057
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_72
-      rect:
-        serializedVersion: 2
-        x: 60
-        y: 1021
-        width: 13
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1edd8b0d6bfd2be30800000000000000
-      internalID: 4517919352484847073
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_73
-      rect:
-        serializedVersion: 2
-        x: 219
-        y: 1021
-        width: 14
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e5cebfc5e7b94b8b0800000000000000
-      internalID: -5137310307894694818
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_74
-      rect:
-        serializedVersion: 2
-        x: 257
-        y: 1032
-        width: 14
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ab0f451edf98edbe0800000000000000
-      internalID: -1450570306466549574
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_75
-      rect:
-        serializedVersion: 2
-        x: 540
-        y: 1021
-        width: 13
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 470e31179652bc4c0800000000000000
-      internalID: -4266275087204491148
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_76
-      rect:
-        serializedVersion: 2
-        x: 699
-        y: 1021
-        width: 14
-        height: 22
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 54eb18e6084487b60800000000000000
-      internalID: 7744014877664067141
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_77
-      rect:
-        serializedVersion: 2
-        x: 738
-        y: 1032
-        width: 13
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d27835c958569df60800000000000000
-      internalID: 8059584632683988781
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_78
-      rect:
-        serializedVersion: 2
-        x: 76
-        y: 1009
-        width: 13
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a66427dafea169940800000000000000
-      internalID: 5302455227984791146
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_79
-      rect:
-        serializedVersion: 2
-        x: 380
-        y: 1021
-        width: 13
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: af1958080959afb10800000000000000
-      internalID: 2016088231065784826
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_80
-      rect:
-        serializedVersion: 2
-        x: 396
-        y: 1009
-        width: 13
-        height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2fddc1a3eff4ec100800000000000000
-      internalID: 130129392555580914
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_81
-      rect:
-        serializedVersion: 2
-        x: 555
-        y: 1009
-        width: 14
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9883547e93dd5ab90800000000000000
-      internalID: -7231130385910515575
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_82
-      rect:
-        serializedVersion: 2
-        x: 860
-        y: 1021
-        width: 13
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: af4b4412b4ab6a370800000000000000
-      internalID: 8333552992339145978
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_83
-      rect:
-        serializedVersion: 2
-        x: 876
-        y: 1009
-        width: 13
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0a419651242576f70800000000000000
-      internalID: 9180396809198572704
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_84
-      rect:
-        serializedVersion: 2
-        x: 236
-        y: 1009
-        width: 13
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 84f2ae46a4d88e9c0800000000000000
-      internalID: -3897710126828998840
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_85
-      rect:
-        serializedVersion: 2
-        x: 716
-        y: 1009
-        width: 13
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 39bf9b709908c00e0800000000000000
-      internalID: -2302323914745185389
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_86
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 890
-        width: 25
-        height: 29
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 374f524d236eaedb0800000000000000
-      internalID: -4761740550008867725
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_87
-      rect:
-        serializedVersion: 2
-        x: 78
-        y: 869
-        width: 15
-        height: 38
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b71987d0c1da527a0800000000000000
-      internalID: -6402520959240597125
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_88
-      rect:
-        serializedVersion: 2
-        x: 122
-        y: 880
-        width: 13
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a1d82496a7f534060800000000000000
-      internalID: 6936492830437313818
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_89
-      rect:
-        serializedVersion: 2
-        x: 208
-        y: 890
-        width: 25
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5fc918ffe65ec0360800000000000000
-      internalID: 7137331774371241205
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_90
-      rect:
-        serializedVersion: 2
-        x: 238
-        y: 869
-        width: 15
-        height: 40
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3399c599369aeb990800000000000000
-      internalID: -7368265695091713741
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_91
-      rect:
-        serializedVersion: 2
-        x: 281
-        y: 880
-        width: 14
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4709614fdc44f2570800000000000000
-      internalID: 8444043477697073268
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_92
-      rect:
-        serializedVersion: 2
-        x: 368
-        y: 890
-        width: 25
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9894a588e72201ce0800000000000000
-      internalID: -1436610354282346103
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_93
-      rect:
-        serializedVersion: 2
-        x: 399
-        y: 869
-        width: 14
-        height: 36
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b8023f33e924c5350800000000000000
-      internalID: 6006749250249236619
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_94
-      rect:
-        serializedVersion: 2
-        x: 441
-        y: 880
-        width: 14
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: cfc24b2ced8412910800000000000000
-      internalID: 1810808646766177532
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_95
-      rect:
-        serializedVersion: 2
-        x: 529
-        y: 890
-        width: 24
-        height: 31
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e63c0d4f675755ee0800000000000000
-      internalID: -1272982165888384146
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_96
-      rect:
-        serializedVersion: 2
-        x: 559
-        y: 869
-        width: 14
-        height: 38
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1f5946f7aadebfd70800000000000000
-      internalID: 9078110790432888305
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_97
-      rect:
-        serializedVersion: 2
-        x: 601
-        y: 880
-        width: 14
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8db1b933ec3a69400800000000000000
-      internalID: 330631728682703832
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_98
-      rect:
-        serializedVersion: 2
-        x: 689
-        y: 890
-        width: 24
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 95716232f868355e0800000000000000
-      internalID: -1922044666628925607
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_99
-      rect:
-        serializedVersion: 2
-        x: 718
-        y: 869
-        width: 15
-        height: 40
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 141c4550fba750500800000000000000
-      internalID: 361830305919975745
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_100
-      rect:
-        serializedVersion: 2
-        x: 762
-        y: 880
-        width: 13
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 47d87a2febec2a1a0800000000000000
-      internalID: -6799645167865852556
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_101
-      rect:
-        serializedVersion: 2
-        x: 848
-        y: 890
-        width: 25
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a8bbe0bbd591a77e0800000000000000
-      internalID: -1767072013428540534
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_102
-      rect:
-        serializedVersion: 2
-        x: 878
-        y: 869
-        width: 15
-        height: 36
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 739019ef1c2f1b290800000000000000
-      internalID: -7876247358280758985
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_103
-      rect:
-        serializedVersion: 2
-        x: 922
-        y: 880
-        width: 13
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1eda08a46f9f8b820800000000000000
-      internalID: 2934369993439096289
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_104
-      rect:
-        serializedVersion: 2
-        x: 49
-        y: 709
-        width: 14
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ba222a44f70587980800000000000000
-      internalID: -8540988185765600597
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_105
-      rect:
-        serializedVersion: 2
-        x: 67
-        y: 731
-        width: 16
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 371d62440a89148d0800000000000000
-      internalID: -2863840073925340813
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_106
-      rect:
-        serializedVersion: 2
-        x: 227
-        y: 731
-        width: 16
-        height: 29
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 049bd2e47c71c5080800000000000000
-      internalID: -9197450194219845312
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_107
-      rect:
-        serializedVersion: 2
-        x: 368
-        y: 709
-        width: 15
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1691c4a5ab5fd1be0800000000000000
-      internalID: -1504776519744218783
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_108
-      rect:
-        serializedVersion: 2
-        x: 374
-        y: 731
-        width: 29
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 30e6d68f1280a1d70800000000000000
-      internalID: 9014526546130333187
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_109
-      rect:
-        serializedVersion: 2
-        x: 528
-        y: 709
-        width: 15
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4b39809c16fb10d10800000000000000
-      internalID: 2090162128782136244
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_110
-      rect:
-        serializedVersion: 2
-        x: 546
-        y: 731
-        width: 17
-        height: 31
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c93b97f1961691c10800000000000000
-      internalID: 2024756611607278492
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_111
-      rect:
-        serializedVersion: 2
-        x: 707
-        y: 731
-        width: 16
-        height: 29
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ed96d5d4736f399c0800000000000000
-      internalID: -3921520133127968290
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_112
-      rect:
-        serializedVersion: 2
-        x: 849
-        y: 709
-        width: 14
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 11d707c9c2845bd00800000000000000
-      internalID: 987775049718070545
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_113
-      rect:
-        serializedVersion: 2
-        x: 867
-        y: 731
-        width: 16
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: cd1bd92b2a4ee76f0800000000000000
-      internalID: -684858705881222692
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_114
-      rect:
-        serializedVersion: 2
-        x: 78
-        y: 701
-        width: 14
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b15b08245e0588610800000000000000
-      internalID: 1623636611260527899
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_115
-      rect:
-        serializedVersion: 2
-        x: 127
-        y: 701
-        width: 13
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f74640703066d3170800000000000000
-      internalID: 8159790263053870207
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_116
-      rect:
-        serializedVersion: 2
-        x: 208
-        y: 709
-        width: 15
-        height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0084495be62042300800000000000000
-      internalID: 226308555791419392
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_117
-      rect:
-        serializedVersion: 2
-        x: 238
-        y: 701
-        width: 14
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 07d1df7e0dbda1680800000000000000
-      internalID: -8783466432940925584
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_118
-      rect:
-        serializedVersion: 2
-        x: 287
-        y: 701
-        width: 13
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b74334b558b4abaa0800000000000000
-      internalID: -6144515705459755909
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_119
-      rect:
-        serializedVersion: 2
-        x: 399
-        y: 701
-        width: 13
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6b6f7eae46d1c5f00800000000000000
-      internalID: 1106791927701305014
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_120
-      rect:
-        serializedVersion: 2
-        x: 447
-        y: 701
-        width: 13
-        height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e688a4af48871cb60800000000000000
-      internalID: 7764619745093650542
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_121
-      rect:
-        serializedVersion: 2
-        x: 559
-        y: 701
-        width: 13
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: bdbfe34988cddd7d0800000000000000
-      internalID: -2891912906541171749
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_122
-      rect:
-        serializedVersion: 2
-        x: 606
-        y: 701
-        width: 14
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8f11f132b60f7ab90800000000000000
-      internalID: -7230546333778636296
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_123
-      rect:
-        serializedVersion: 2
-        x: 689
-        y: 709
-        width: 14
-        height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ed05072c5e1625bc0800000000000000
-      internalID: -3795863896482361122
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_124
-      rect:
-        serializedVersion: 2
-        x: 718
-        y: 701
-        width: 14
-        height: 22
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a3879fb538e8ce5f0800000000000000
-      internalID: -726048745078556614
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_125
-      rect:
-        serializedVersion: 2
-        x: 766
-        y: 701
-        width: 14
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 05cfe5db44e1135e0800000000000000
-      internalID: -1931729484581503920
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_126
-      rect:
-        serializedVersion: 2
-        x: 878
-        y: 701
-        width: 14
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b3d5c27c88af66f00800000000000000
-      internalID: 1109849823557475643
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_127
-      rect:
-        serializedVersion: 2
-        x: 927
-        y: 701
-        width: 13
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5ac8a789c28ac7260800000000000000
-      internalID: 7096732022319254693
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_128
-      rect:
-        serializedVersion: 2
-        x: 63
-        y: 581
-        width: 18
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 60cf271715aa80650800000000000000
-      internalID: 6199392153847921670
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_129
-      rect:
-        serializedVersion: 2
-        x: 81
-        y: 571
-        width: 17
-        height: 36
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2a63a0a0063770510800000000000000
-      internalID: 1515306655955957410
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_130
-      rect:
-        serializedVersion: 2
-        x: 223
-        y: 581
-        width: 18
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 48a6d4d7d415b30a0800000000000000
-      internalID: -6900832610758595964
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_131
-      rect:
-        serializedVersion: 2
-        x: 241
-        y: 571
-        width: 17
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ba931dcb720e0c090800000000000000
-      internalID: -8016160875443308117
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_132
-      rect:
-        serializedVersion: 2
-        x: 382
-        y: 581
-        width: 19
-        height: 37
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 01e6abe20657ac510800000000000000
-      internalID: 1570196476053319184
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_133
-      rect:
-        serializedVersion: 2
-        x: 400
-        y: 571
-        width: 18
-        height: 34
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 43270bd1a68901d00800000000000000
-      internalID: 941419903652491828
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_134
-      rect:
-        serializedVersion: 2
-        x: 542
-        y: 581
-        width: 19
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7b97cc997f28feaa0800000000000000
-      internalID: -6129536567879108169
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_135
-      rect:
-        serializedVersion: 2
-        x: 561
-        y: 571
-        width: 17
-        height: 36
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9f70c55de38e943f0800000000000000
-      internalID: -915945692627990535
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_136
-      rect:
-        serializedVersion: 2
-        x: 703
-        y: 581
-        width: 18
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4ec37a43eddc4ee90800000000000000
-      internalID: -6997241566777099036
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_137
-      rect:
-        serializedVersion: 2
-        x: 721
-        y: 571
-        width: 17
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 94e89834a465e2b60800000000000000
-      internalID: 7723205287947636297
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_138
-      rect:
-        serializedVersion: 2
-        x: 863
-        y: 581
-        width: 18
-        height: 37
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5da1b60f6c2ab2a30800000000000000
-      internalID: 4191622853519153877
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_139
-      rect:
-        serializedVersion: 2
-        x: 881
-        y: 571
-        width: 17
-        height: 34
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ce9a5b30b80eb1c10800000000000000
-      internalID: 2025459345100483052
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_140
-      rect:
-        serializedVersion: 2
-        x: 43
-        y: 550
-        width: 14
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 00ee35999374610c0800000000000000
-      internalID: -4605415256228631040
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_141
-      rect:
-        serializedVersion: 2
-        x: 101
-        y: 538
-        width: 13
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3d3fb19e7ed185c50800000000000000
-      internalID: 6654101331325481939
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_142
-      rect:
-        serializedVersion: 2
-        x: 203
-        y: 550
-        width: 14
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f8a2c42df428f3400800000000000000
-      internalID: 306106579026717327
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_143
-      rect:
-        serializedVersion: 2
-        x: 364
-        y: 550
-        width: 13
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3ddf9f01ad7b375e0800000000000000
-      internalID: -1912983269486756397
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_144
-      rect:
-        serializedVersion: 2
-        x: 421
-        y: 538
-        width: 13
-        height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 022f07428dc1c2c20800000000000000
-      internalID: 3182950751293993504
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_145
-      rect:
-        serializedVersion: 2
-        x: 524
-        y: 550
-        width: 13
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b6749896580749ef0800000000000000
-      internalID: -102333173219113109
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_146
-      rect:
-        serializedVersion: 2
-        x: 580
-        y: 538
-        width: 14
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c7688733432314fd0800000000000000
-      internalID: -2359549529982204292
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_147
-      rect:
-        serializedVersion: 2
-        x: 683
-        y: 550
-        width: 14
-        height: 22
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 64c91a3470f37f770800000000000000
-      internalID: 8644447310192942150
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_148
-      rect:
-        serializedVersion: 2
-        x: 843
-        y: 550
-        width: 14
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e55deff03f1e66fc0800000000000000
-      internalID: -3501863226172320418
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_149
-      rect:
-        serializedVersion: 2
-        x: 901
-        y: 538
-        width: 13
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5a54b2efefb48a5d0800000000000000
-      internalID: -3051105188985485915
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_150
-      rect:
-        serializedVersion: 2
-        x: 261
-        y: 538
-        width: 13
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d3e79495461028b80800000000000000
-      internalID: -8394145224958837187
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_151
-      rect:
-        serializedVersion: 2
-        x: 741
-        y: 538
-        width: 13
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c30127a916033d6a0800000000000000
-      internalID: -6425739047566438340
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_152
-      rect:
-        serializedVersion: 2
-        x: 59
-        y: 400
-        width: 14
-        height: 22
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2f8e4bb4cc9a4c9a0800000000000000
-      internalID: -6213654890955872014
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_153
-      rect:
-        serializedVersion: 2
-        x: 88
-        y: 420
-        width: 13
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 18d7b01d1ba718870800000000000000
-      internalID: 8683356460682018177
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_154
-      rect:
-        serializedVersion: 2
-        x: 219
-        y: 400
-        width: 14
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e5d5b139cc25ed7d0800000000000000
-      internalID: -2891782872130429602
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_155
-      rect:
-        serializedVersion: 2
-        x: 248
-        y: 420
-        width: 13
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: eb4f3a77290285d80800000000000000
-      internalID: -8261817702966627138
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_156
-      rect:
-        serializedVersion: 2
-        x: 261
-        y: 393
-        width: 14
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7782cf86917fcc430800000000000000
-      internalID: 3804687473728825463
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_157
-      rect:
-        serializedVersion: 2
-        x: 359
-        y: 390
-        width: 15
-        height: 34
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d5734e3790cefddf0800000000000000
-      internalID: -153144336964110499
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_158
-      rect:
-        serializedVersion: 2
-        x: 379
-        y: 400
-        width: 14
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d7208123921bcbfe0800000000000000
-      internalID: -1171867012530961795
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_159
-      rect:
-        serializedVersion: 2
-        x: 407
-        y: 420
-        width: 14
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f0f114596f3735110800000000000000
-      internalID: 1248469024614981391
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_160
-      rect:
-        serializedVersion: 2
-        x: 421
-        y: 393
-        width: 14
-        height: 29
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: eeca0ba07b6fbc5e0800000000000000
-      internalID: -1888144352732992274
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_161
-      rect:
-        serializedVersion: 2
-        x: 540
-        y: 400
-        width: 13
-        height: 22
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 46e29afa8398c8f20800000000000000
-      internalID: 3426264293080378980
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_162
-      rect:
-        serializedVersion: 2
-        x: 567
-        y: 420
-        width: 14
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1ce7ac6703110ce40800000000000000
-      internalID: 5674554430335909569
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_163
-      rect:
-        serializedVersion: 2
-        x: 700
-        y: 400
-        width: 13
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 97229100252ce08e0800000000000000
-      internalID: -1725227949791567239
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_164
-      rect:
-        serializedVersion: 2
-        x: 728
-        y: 420
-        width: 13
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: fc09e467431b89a90800000000000000
-      internalID: -7306895556527353649
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_165
-      rect:
-        serializedVersion: 2
-        x: 742
-        y: 393
-        width: 13
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 539382d5e599a9ac0800000000000000
-      internalID: -3847594301065774795
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_166
-      rect:
-        serializedVersion: 2
-        x: 839
-        y: 390
-        width: 15
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 323a0635dc1a8c530800000000000000
-      internalID: 3875525382591521571
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_167
-      rect:
-        serializedVersion: 2
-        x: 859
-        y: 400
-        width: 14
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5080488d2f6ee6170800000000000000
-      internalID: 8173724304413034501
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_168
-      rect:
-        serializedVersion: 2
-        x: 888
-        y: 420
-        width: 13
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 85322cd1b3051a9e0800000000000000
-      internalID: -1611918976789372072
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_169
-      rect:
-        serializedVersion: 2
-        x: 902
-        y: 393
-        width: 13
-        height: 29
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: fb6723ebbe6cef650800000000000000
-      internalID: 6268666447156901567
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_170
-      rect:
-        serializedVersion: 2
-        x: 38
-        y: 390
-        width: 16
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ca675d9d8996a9240800000000000000
-      internalID: 4799264458127275692
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_171
-      rect:
-        serializedVersion: 2
-        x: 102
-        y: 393
-        width: 13
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: da193e03de0547f00800000000000000
-      internalID: 1113603987525046701
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_172
-      rect:
-        serializedVersion: 2
-        x: 199
-        y: 390
-        width: 15
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: dac57c75e72296a20800000000000000
-      internalID: 3056011748181499053
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_173
-      rect:
-        serializedVersion: 2
-        x: 518
-        y: 390
-        width: 16
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 46b89b5b6a3d50a10800000000000000
-      internalID: 1875137532836547428
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_174
-      rect:
-        serializedVersion: 2
-        x: 581
-        y: 393
-        width: 14
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8bca4af2ffa22df60800000000000000
-      internalID: 8057549958823587000
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_175
-      rect:
-        serializedVersion: 2
-        x: 679
-        y: 390
-        width: 15
-        height: 22
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9742aac86fb452180800000000000000
-      internalID: -9140816346384554887
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_176
-      rect:
-        serializedVersion: 2
-        x: 92
-        y: 357
-        width: 13
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: bae03cbec9e4d1d00800000000000000
-      internalID: 944997932694965931
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_177
-      rect:
-        serializedVersion: 2
-        x: 252
-        y: 357
-        width: 13
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 15dfaba25841e9b20800000000000000
-      internalID: 3142972152131288401
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_178
-      rect:
-        serializedVersion: 2
-        x: 412
-        y: 357
-        width: 13
-        height: 22
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c048d210c05c28660800000000000000
-      internalID: 7386682994191074316
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_179
-      rect:
-        serializedVersion: 2
-        x: 571
-        y: 357
-        width: 14
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2d7307a0e9e1cb0e0800000000000000
-      internalID: -2252892049463298094
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_180
-      rect:
-        serializedVersion: 2
-        x: 731
-        y: 357
-        width: 14
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 53cabdcedf1046650800000000000000
-      internalID: 6225102775045041205
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_181
-      rect:
-        serializedVersion: 2
-        x: 892
-        y: 357
-        width: 13
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 39af1f8b04cb0d940800000000000000
-      internalID: 5318958146091350675
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_182
-      rect:
-        serializedVersion: 2
-        x: 68
-        y: 249
-        width: 18
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2d2e93e296cc3d310800000000000000
-      internalID: 1428710258925757138
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_183
-      rect:
-        serializedVersion: 2
-        x: 89
-        y: 260
-        width: 13
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d1d6d83fd6770e910800000000000000
-      internalID: 1864621559852657949
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_184
-      rect:
-        serializedVersion: 2
-        x: 228
-        y: 251
-        width: 14
-        height: 22
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c3ede92f72e4aed70800000000000000
-      internalID: 9073150332772474428
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_185
-      rect:
-        serializedVersion: 2
-        x: 249
-        y: 260
-        width: 13
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 198a2819816d55260800000000000000
-      internalID: 7085804989746161809
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_186
-      rect:
-        serializedVersion: 2
-        x: 389
-        y: 251
-        width: 13
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7e25811192e743f40800000000000000
-      internalID: 5707325342630826727
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_187
-      rect:
-        serializedVersion: 2
-        x: 408
-        y: 260
-        width: 21
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4a5ad797ff0fc9870800000000000000
-      internalID: 8691086360963818916
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_188
-      rect:
-        serializedVersion: 2
-        x: 549
-        y: 251
-        width: 13
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d5e23a591a867e590800000000000000
-      internalID: -7645026799228604835
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_189
-      rect:
-        serializedVersion: 2
-        x: 569
-        y: 260
-        width: 13
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 788dc726dd46f8b80800000000000000
-      internalID: -8390376678765045625
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_190
-      rect:
-        serializedVersion: 2
-        x: 709
-        y: 247
-        width: 13
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5bd411c6d78fd2150800000000000000
-      internalID: 5849604708591816117
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_191
-      rect:
-        serializedVersion: 2
-        x: 729
-        y: 260
-        width: 13
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 634bbd1445d1c7230800000000000000
-      internalID: 3637814846727894070
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_192
-      rect:
-        serializedVersion: 2
-        x: 868
-        y: 251
-        width: 14
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f1c72b457983fcc10800000000000000
-      internalID: 2075940175853288479
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_193
-      rect:
-        serializedVersion: 2
-        x: 889
-        y: 257
-        width: 19
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 19a61b42e23facc70800000000000000
-      internalID: 8992266985508268689
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_194
-      rect:
-        serializedVersion: 2
-        x: 70
-        y: 229
-        width: 21
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f4b15ec0f310eaba0800000000000000
-      internalID: -6075917476965311665
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_195
-      rect:
-        serializedVersion: 2
-        x: 99
-        y: 240
-        width: 14
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: aee6174dc0e8abd40800000000000000
-      internalID: 5600945272343588586
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_196
-      rect:
-        serializedVersion: 2
-        x: 230
-        y: 229
-        width: 21
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e9c7c5bdb0c137820800000000000000
-      internalID: 2914704221089332382
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_197
-      rect:
-        serializedVersion: 2
-        x: 260
-        y: 240
-        width: 13
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e613920eb69262200800000000000000
-      internalID: 154856780489896302
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_198
-      rect:
-        serializedVersion: 2
-        x: 390
-        y: 229
-        width: 21
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6ea8d0c70b216ef80800000000000000
-      internalID: -8077748332437599514
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_199
-      rect:
-        serializedVersion: 2
-        x: 420
-        y: 240
-        width: 13
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 36c5ad41a6de30240800000000000000
-      internalID: 4756906671305546851
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_200
-      rect:
-        serializedVersion: 2
-        x: 551
-        y: 229
-        width: 20
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c0cfc7cf58cce99d0800000000000000
-      internalID: -2765548245320139764
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_201
-      rect:
-        serializedVersion: 2
-        x: 579
-        y: 240
-        width: 14
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9f69744881b772f20800000000000000
-      internalID: 3397819789103044345
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_202
-      rect:
-        serializedVersion: 2
-        x: 709
-        y: 229
-        width: 22
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 65105f1ac6aaa7040800000000000000
-      internalID: 4646213349136466262
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_203
-      rect:
-        serializedVersion: 2
-        x: 740
-        y: 240
-        width: 13
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 664181354e3733ce0800000000000000
-      internalID: -1426669232462490522
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_204
-      rect:
-        serializedVersion: 2
-        x: 871
-        y: 220
-        width: 20
-        height: 28
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e11fbefc0f017ee90800000000000000
-      internalID: -6996604869630234338
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_205
-      rect:
-        serializedVersion: 2
-        x: 900
-        y: 240
-        width: 13
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9cd53015045b15200800000000000000
-      internalID: 167113949031128521
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_206
-      rect:
-        serializedVersion: 2
-        x: 70
-        y: 199
-        width: 13
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e76f4b68e4561a0d0800000000000000
-      internalID: -3413335654628264322
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_207
-      rect:
-        serializedVersion: 2
-        x: 230
-        y: 199
-        width: 13
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 285edced6b0d94d10800000000000000
-      internalID: 2110447384240448898
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_208
-      rect:
-        serializedVersion: 2
-        x: 390
-        y: 199
-        width: 13
-        height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c760fcb774cd55930800000000000000
-      internalID: 4131450432760252028
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_209
-      rect:
-        serializedVersion: 2
-        x: 549
-        y: 199
-        width: 14
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a22ee2806a777e120800000000000000
-      internalID: 2443052877857350186
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_210
-      rect:
-        serializedVersion: 2
-        x: 710
-        y: 199
-        width: 13
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0ff4b60eec5929ff0800000000000000
-      internalID: -30797531677241360
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_211
-      rect:
-        serializedVersion: 2
-        x: 870
-        y: 199
-        width: 13
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6cfe6507ee1e43c70800000000000000
-      internalID: 8950026773695229894
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_212
-      rect:
-        serializedVersion: 2
-        x: 50
-        y: 71
-        width: 21
-        height: 53
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: dc002b3ea8cf39370800000000000000
-      internalID: 8328277809393959117
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_213
-      rect:
-        serializedVersion: 2
-        x: 77
-        y: 62
-        width: 13
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4ea781901389bf010800000000000000
-      internalID: 1223739060134640356
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_214
-      rect:
-        serializedVersion: 2
-        x: 211
-        y: 68
-        width: 13
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3221e3947cdda4c00800000000000000
-      internalID: 885764124728758819
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_215
-      rect:
-        serializedVersion: 2
-        x: 214
-        y: 81
-        width: 17
-        height: 45
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4dd349a6b7f876780800000000000000
-      internalID: -8689819195756233260
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_216
-      rect:
-        serializedVersion: 2
-        x: 236
-        y: 62
-        width: 14
-        height: 22
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6121f2216a9f5ec20800000000000000
-      internalID: 3235266399000531478
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_217
-      rect:
-        serializedVersion: 2
-        x: 371
-        y: 71
-        width: 20
-        height: 57
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 90145a6a2517b5f80800000000000000
-      internalID: -8116769303608082167
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_218
-      rect:
-        serializedVersion: 2
-        x: 396
-        y: 62
-        width: 14
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: cd21e1e266561c6c0800000000000000
-      internalID: -4124904294159871268
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_219
-      rect:
-        serializedVersion: 2
-        x: 530
-        y: 71
-        width: 21
-        height: 53
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c2ea9ec51f35aea90800000000000000
-      internalID: -7283917151207313876
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_220
-      rect:
-        serializedVersion: 2
-        x: 556
-        y: 62
-        width: 14
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b3008289b26467340800000000000000
-      internalID: 4861150000843325499
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_221
-      rect:
-        serializedVersion: 2
-        x: 691
-        y: 63
-        width: 13
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 107a7381e47009520800000000000000
-      internalID: 2706671408044812033
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_222
-      rect:
-        serializedVersion: 2
-        x: 695
-        y: 81
-        width: 16
-        height: 45
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 96e505d3a14090cf0800000000000000
-      internalID: -285692590616977815
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_223
-      rect:
-        serializedVersion: 2
-        x: 717
-        y: 62
-        width: 13
-        height: 22
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c65869f0970d7b8a0800000000000000
-      internalID: -6289329136228465300
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_224
-      rect:
-        serializedVersion: 2
-        x: 851
-        y: 71
-        width: 20
-        height: 57
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4a6ff6f7664b30fd0800000000000000
-      internalID: -2376857826003781980
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_225
-      rect:
-        serializedVersion: 2
-        x: 877
-        y: 62
-        width: 13
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ca31cd3524afd97a0800000000000000
-      internalID: -6368659135250295892
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_226
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 39
-        width: 14
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8a8bc136a12cb1560800000000000000
-      internalID: 7285630240789674152
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_227
-      rect:
-        serializedVersion: 2
-        x: 208
-        y: 39
-        width: 14
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c881f4858b107eed0800000000000000
-      internalID: -2384935586402199412
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_228
-      rect:
-        serializedVersion: 2
-        x: 368
-        y: 39
-        width: 14
-        height: 22
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f68800175a7131a20800000000000000
-      internalID: 3031792973483378799
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_229
-      rect:
-        serializedVersion: 2
-        x: 527
-        y: 39
-        width: 15
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c73bfa001b678c940800000000000000
-      internalID: 5316629862703674236
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_230
-      rect:
-        serializedVersion: 2
-        x: 687
-        y: 39
-        width: 15
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8b86997a7879bed20800000000000000
-      internalID: 3308904960121989304
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Open_Burning_231
-      rect:
-        serializedVersion: 2
-        x: 848
-        y: 39
-        width: 14
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5cbe0d41b1504d550800000000000000
-      internalID: 6184573802158025669
+      spriteID: f78a06781e9935740b4ab1827b47cf97
+      internalID: 584173349
       vertices: []
       indices: 
       edges: []
@@ -5925,238 +2009,60 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Arthropleura_Head_Open_Burning_0: -682733154250591103
-      Arthropleura_Head_Open_Burning_1: 818475660960304614
-      Arthropleura_Head_Open_Burning_10: -8965324931896372653
-      Arthropleura_Head_Open_Burning_100: -6799645167865852556
-      Arthropleura_Head_Open_Burning_101: -1767072013428540534
-      Arthropleura_Head_Open_Burning_102: -7876247358280758985
-      Arthropleura_Head_Open_Burning_103: 2934369993439096289
-      Arthropleura_Head_Open_Burning_104: -8540988185765600597
-      Arthropleura_Head_Open_Burning_105: -2863840073925340813
-      Arthropleura_Head_Open_Burning_106: -9197450194219845312
-      Arthropleura_Head_Open_Burning_107: -1504776519744218783
-      Arthropleura_Head_Open_Burning_108: 9014526546130333187
-      Arthropleura_Head_Open_Burning_109: 2090162128782136244
-      Arthropleura_Head_Open_Burning_11: 4953680982872937585
-      Arthropleura_Head_Open_Burning_110: 2024756611607278492
-      Arthropleura_Head_Open_Burning_111: -3921520133127968290
-      Arthropleura_Head_Open_Burning_112: 987775049718070545
-      Arthropleura_Head_Open_Burning_113: -684858705881222692
-      Arthropleura_Head_Open_Burning_114: 1623636611260527899
-      Arthropleura_Head_Open_Burning_115: 8159790263053870207
-      Arthropleura_Head_Open_Burning_116: 226308555791419392
-      Arthropleura_Head_Open_Burning_117: -8783466432940925584
-      Arthropleura_Head_Open_Burning_118: -6144515705459755909
-      Arthropleura_Head_Open_Burning_119: 1106791927701305014
-      Arthropleura_Head_Open_Burning_12: -1208086744953915768
-      Arthropleura_Head_Open_Burning_120: 7764619745093650542
-      Arthropleura_Head_Open_Burning_121: -2891912906541171749
-      Arthropleura_Head_Open_Burning_122: -7230546333778636296
-      Arthropleura_Head_Open_Burning_123: -3795863896482361122
-      Arthropleura_Head_Open_Burning_124: -726048745078556614
-      Arthropleura_Head_Open_Burning_125: -1931729484581503920
-      Arthropleura_Head_Open_Burning_126: 1109849823557475643
-      Arthropleura_Head_Open_Burning_127: 7096732022319254693
-      Arthropleura_Head_Open_Burning_128: 6199392153847921670
-      Arthropleura_Head_Open_Burning_129: 1515306655955957410
-      Arthropleura_Head_Open_Burning_13: -2135896966810727930
-      Arthropleura_Head_Open_Burning_130: -6900832610758595964
-      Arthropleura_Head_Open_Burning_131: -8016160875443308117
-      Arthropleura_Head_Open_Burning_132: 1570196476053319184
-      Arthropleura_Head_Open_Burning_133: 941419903652491828
-      Arthropleura_Head_Open_Burning_134: -6129536567879108169
-      Arthropleura_Head_Open_Burning_135: -915945692627990535
-      Arthropleura_Head_Open_Burning_136: -6997241566777099036
-      Arthropleura_Head_Open_Burning_137: 7723205287947636297
-      Arthropleura_Head_Open_Burning_138: 4191622853519153877
-      Arthropleura_Head_Open_Burning_139: 2025459345100483052
-      Arthropleura_Head_Open_Burning_14: -3793354914023635343
-      Arthropleura_Head_Open_Burning_140: -4605415256228631040
-      Arthropleura_Head_Open_Burning_141: 6654101331325481939
-      Arthropleura_Head_Open_Burning_142: 306106579026717327
-      Arthropleura_Head_Open_Burning_143: -1912983269486756397
-      Arthropleura_Head_Open_Burning_144: 3182950751293993504
-      Arthropleura_Head_Open_Burning_145: -102333173219113109
-      Arthropleura_Head_Open_Burning_146: -2359549529982204292
-      Arthropleura_Head_Open_Burning_147: 8644447310192942150
-      Arthropleura_Head_Open_Burning_148: -3501863226172320418
-      Arthropleura_Head_Open_Burning_149: -3051105188985485915
-      Arthropleura_Head_Open_Burning_15: -7898566668572635940
-      Arthropleura_Head_Open_Burning_150: -8394145224958837187
-      Arthropleura_Head_Open_Burning_151: -6425739047566438340
-      Arthropleura_Head_Open_Burning_152: -6213654890955872014
-      Arthropleura_Head_Open_Burning_153: 8683356460682018177
-      Arthropleura_Head_Open_Burning_154: -2891782872130429602
-      Arthropleura_Head_Open_Burning_155: -8261817702966627138
-      Arthropleura_Head_Open_Burning_156: 3804687473728825463
-      Arthropleura_Head_Open_Burning_157: -153144336964110499
-      Arthropleura_Head_Open_Burning_158: -1171867012530961795
-      Arthropleura_Head_Open_Burning_159: 1248469024614981391
-      Arthropleura_Head_Open_Burning_16: 3359181754305672228
-      Arthropleura_Head_Open_Burning_160: -1888144352732992274
-      Arthropleura_Head_Open_Burning_161: 3426264293080378980
-      Arthropleura_Head_Open_Burning_162: 5674554430335909569
-      Arthropleura_Head_Open_Burning_163: -1725227949791567239
-      Arthropleura_Head_Open_Burning_164: -7306895556527353649
-      Arthropleura_Head_Open_Burning_165: -3847594301065774795
-      Arthropleura_Head_Open_Burning_166: 3875525382591521571
-      Arthropleura_Head_Open_Burning_167: 8173724304413034501
-      Arthropleura_Head_Open_Burning_168: -1611918976789372072
-      Arthropleura_Head_Open_Burning_169: 6268666447156901567
-      Arthropleura_Head_Open_Burning_17: -2991744569788212814
-      Arthropleura_Head_Open_Burning_170: 4799264458127275692
-      Arthropleura_Head_Open_Burning_171: 1113603987525046701
-      Arthropleura_Head_Open_Burning_172: 3056011748181499053
-      Arthropleura_Head_Open_Burning_173: 1875137532836547428
-      Arthropleura_Head_Open_Burning_174: 8057549958823587000
-      Arthropleura_Head_Open_Burning_175: -9140816346384554887
-      Arthropleura_Head_Open_Burning_176: 944997932694965931
-      Arthropleura_Head_Open_Burning_177: 3142972152131288401
-      Arthropleura_Head_Open_Burning_178: 7386682994191074316
-      Arthropleura_Head_Open_Burning_179: -2252892049463298094
-      Arthropleura_Head_Open_Burning_18: 4029693773294665397
-      Arthropleura_Head_Open_Burning_180: 6225102775045041205
-      Arthropleura_Head_Open_Burning_181: 5318958146091350675
-      Arthropleura_Head_Open_Burning_182: 1428710258925757138
-      Arthropleura_Head_Open_Burning_183: 1864621559852657949
-      Arthropleura_Head_Open_Burning_184: 9073150332772474428
-      Arthropleura_Head_Open_Burning_185: 7085804989746161809
-      Arthropleura_Head_Open_Burning_186: 5707325342630826727
-      Arthropleura_Head_Open_Burning_187: 8691086360963818916
-      Arthropleura_Head_Open_Burning_188: -7645026799228604835
-      Arthropleura_Head_Open_Burning_189: -8390376678765045625
-      Arthropleura_Head_Open_Burning_19: 5646675361565450612
-      Arthropleura_Head_Open_Burning_190: 5849604708591816117
-      Arthropleura_Head_Open_Burning_191: 3637814846727894070
-      Arthropleura_Head_Open_Burning_192: 2075940175853288479
-      Arthropleura_Head_Open_Burning_193: 8992266985508268689
-      Arthropleura_Head_Open_Burning_194: -6075917476965311665
-      Arthropleura_Head_Open_Burning_195: 5600945272343588586
-      Arthropleura_Head_Open_Burning_196: 2914704221089332382
-      Arthropleura_Head_Open_Burning_197: 154856780489896302
-      Arthropleura_Head_Open_Burning_198: -8077748332437599514
-      Arthropleura_Head_Open_Burning_199: 4756906671305546851
-      Arthropleura_Head_Open_Burning_2: -5669379460867589491
-      Arthropleura_Head_Open_Burning_20: 3712474024562879196
-      Arthropleura_Head_Open_Burning_200: -2765548245320139764
-      Arthropleura_Head_Open_Burning_201: 3397819789103044345
-      Arthropleura_Head_Open_Burning_202: 4646213349136466262
-      Arthropleura_Head_Open_Burning_203: -1426669232462490522
-      Arthropleura_Head_Open_Burning_204: -6996604869630234338
-      Arthropleura_Head_Open_Burning_205: 167113949031128521
-      Arthropleura_Head_Open_Burning_206: -3413335654628264322
-      Arthropleura_Head_Open_Burning_207: 2110447384240448898
-      Arthropleura_Head_Open_Burning_208: 4131450432760252028
-      Arthropleura_Head_Open_Burning_209: 2443052877857350186
-      Arthropleura_Head_Open_Burning_21: -1831722586962403062
-      Arthropleura_Head_Open_Burning_210: -30797531677241360
-      Arthropleura_Head_Open_Burning_211: 8950026773695229894
-      Arthropleura_Head_Open_Burning_212: 8328277809393959117
-      Arthropleura_Head_Open_Burning_213: 1223739060134640356
-      Arthropleura_Head_Open_Burning_214: 885764124728758819
-      Arthropleura_Head_Open_Burning_215: -8689819195756233260
-      Arthropleura_Head_Open_Burning_216: 3235266399000531478
-      Arthropleura_Head_Open_Burning_217: -8116769303608082167
-      Arthropleura_Head_Open_Burning_218: -4124904294159871268
-      Arthropleura_Head_Open_Burning_219: -7283917151207313876
-      Arthropleura_Head_Open_Burning_22: -2042586458653697638
-      Arthropleura_Head_Open_Burning_220: 4861150000843325499
-      Arthropleura_Head_Open_Burning_221: 2706671408044812033
-      Arthropleura_Head_Open_Burning_222: -285692590616977815
-      Arthropleura_Head_Open_Burning_223: -6289329136228465300
-      Arthropleura_Head_Open_Burning_224: -2376857826003781980
-      Arthropleura_Head_Open_Burning_225: -6368659135250295892
-      Arthropleura_Head_Open_Burning_226: 7285630240789674152
-      Arthropleura_Head_Open_Burning_227: -2384935586402199412
-      Arthropleura_Head_Open_Burning_228: 3031792973483378799
-      Arthropleura_Head_Open_Burning_229: 5316629862703674236
-      Arthropleura_Head_Open_Burning_23: 9102264718351741822
-      Arthropleura_Head_Open_Burning_230: 3308904960121989304
-      Arthropleura_Head_Open_Burning_231: 6184573802158025669
-      Arthropleura_Head_Open_Burning_24: 7058441703000370123
-      Arthropleura_Head_Open_Burning_25: -6923274959799468980
-      Arthropleura_Head_Open_Burning_26: -507243693571711873
-      Arthropleura_Head_Open_Burning_27: 5929803481652280342
-      Arthropleura_Head_Open_Burning_28: -3903431193282222814
-      Arthropleura_Head_Open_Burning_29: 6176324455256896125
-      Arthropleura_Head_Open_Burning_3: -2788825911184778817
-      Arthropleura_Head_Open_Burning_30: 1252406584943702661
-      Arthropleura_Head_Open_Burning_31: 7822205673868973751
-      Arthropleura_Head_Open_Burning_32: -4529658858769279277
-      Arthropleura_Head_Open_Burning_33: -3321377924005050746
-      Arthropleura_Head_Open_Burning_34: -1933586558937190054
-      Arthropleura_Head_Open_Burning_35: 2962286804860841802
-      Arthropleura_Head_Open_Burning_36: 2180273526008104609
-      Arthropleura_Head_Open_Burning_37: 3423771677149270621
-      Arthropleura_Head_Open_Burning_38: -9122912410430068288
-      Arthropleura_Head_Open_Burning_39: -865677939202907919
-      Arthropleura_Head_Open_Burning_4: 9055396912715994153
-      Arthropleura_Head_Open_Burning_40: -36345958433599067
-      Arthropleura_Head_Open_Burning_41: -6461622276588640562
-      Arthropleura_Head_Open_Burning_42: 5924116516773719485
-      Arthropleura_Head_Open_Burning_43: -8645169232955666902
-      Arthropleura_Head_Open_Burning_44: -4997471180301203177
-      Arthropleura_Head_Open_Burning_45: -4203824503710305466
-      Arthropleura_Head_Open_Burning_46: -5922803687367776436
-      Arthropleura_Head_Open_Burning_47: -2658290716296044076
-      Arthropleura_Head_Open_Burning_48: -1681227898047539352
-      Arthropleura_Head_Open_Burning_49: 8621361241700372214
-      Arthropleura_Head_Open_Burning_5: 4739902767221114975
-      Arthropleura_Head_Open_Burning_50: 8852311852301754070
-      Arthropleura_Head_Open_Burning_51: 9781455439544679
-      Arthropleura_Head_Open_Burning_52: 4969576628441490042
-      Arthropleura_Head_Open_Burning_53: 1275607960000117532
-      Arthropleura_Head_Open_Burning_54: 2764447089433035894
-      Arthropleura_Head_Open_Burning_55: -7987411991788430692
-      Arthropleura_Head_Open_Burning_56: -2383539945592027263
-      Arthropleura_Head_Open_Burning_57: 7925728394461826414
-      Arthropleura_Head_Open_Burning_58: -2185331971485577006
-      Arthropleura_Head_Open_Burning_59: -6946214250250177892
-      Arthropleura_Head_Open_Burning_6: -3138047955375422244
-      Arthropleura_Head_Open_Burning_60: 2567042166932647518
-      Arthropleura_Head_Open_Burning_61: 7047712966667470327
-      Arthropleura_Head_Open_Burning_62: 2564647922019379790
-      Arthropleura_Head_Open_Burning_63: 5855044446269560257
-      Arthropleura_Head_Open_Burning_64: -2892214174924483778
-      Arthropleura_Head_Open_Burning_65: -5794343427112855190
-      Arthropleura_Head_Open_Burning_66: -9003736344583320781
-      Arthropleura_Head_Open_Burning_67: -2519406941369584429
-      Arthropleura_Head_Open_Burning_68: 6356827420987424815
-      Arthropleura_Head_Open_Burning_69: -7285884985365459788
-      Arthropleura_Head_Open_Burning_7: -7303481204485215342
-      Arthropleura_Head_Open_Burning_70: -5329390500110130380
-      Arthropleura_Head_Open_Burning_71: 1741571604411954057
-      Arthropleura_Head_Open_Burning_72: 4517919352484847073
-      Arthropleura_Head_Open_Burning_73: -5137310307894694818
-      Arthropleura_Head_Open_Burning_74: -1450570306466549574
-      Arthropleura_Head_Open_Burning_75: -4266275087204491148
-      Arthropleura_Head_Open_Burning_76: 7744014877664067141
-      Arthropleura_Head_Open_Burning_77: 8059584632683988781
-      Arthropleura_Head_Open_Burning_78: 5302455227984791146
-      Arthropleura_Head_Open_Burning_79: 2016088231065784826
-      Arthropleura_Head_Open_Burning_8: -5787336579856364900
-      Arthropleura_Head_Open_Burning_80: 130129392555580914
-      Arthropleura_Head_Open_Burning_81: -7231130385910515575
-      Arthropleura_Head_Open_Burning_82: 8333552992339145978
-      Arthropleura_Head_Open_Burning_83: 9180396809198572704
-      Arthropleura_Head_Open_Burning_84: -3897710126828998840
-      Arthropleura_Head_Open_Burning_85: -2302323914745185389
-      Arthropleura_Head_Open_Burning_86: -4761740550008867725
-      Arthropleura_Head_Open_Burning_87: -6402520959240597125
-      Arthropleura_Head_Open_Burning_88: 6936492830437313818
-      Arthropleura_Head_Open_Burning_89: 7137331774371241205
-      Arthropleura_Head_Open_Burning_9: 4624295386787742465
-      Arthropleura_Head_Open_Burning_90: -7368265695091713741
-      Arthropleura_Head_Open_Burning_91: 8444043477697073268
-      Arthropleura_Head_Open_Burning_92: -1436610354282346103
-      Arthropleura_Head_Open_Burning_93: 6006749250249236619
-      Arthropleura_Head_Open_Burning_94: 1810808646766177532
-      Arthropleura_Head_Open_Burning_95: -1272982165888384146
-      Arthropleura_Head_Open_Burning_96: 9078110790432888305
-      Arthropleura_Head_Open_Burning_97: 330631728682703832
-      Arthropleura_Head_Open_Burning_98: -1922044666628925607
-      Arthropleura_Head_Open_Burning_99: 361830305919975745
+      Arthropleura_Head_Open_Burning_0_0: 1612206022
+      Arthropleura_Head_Open_Burning_0_1: -1163091375
+      Arthropleura_Head_Open_Burning_0_2: 823731169
+      Arthropleura_Head_Open_Burning_0_3: -201473687
+      Arthropleura_Head_Open_Burning_0_4: -1213514021
+      Arthropleura_Head_Open_Burning_0_5: -628286421
+      Arthropleura_Head_Open_Burning_1_0: -1849132536
+      Arthropleura_Head_Open_Burning_1_1: 1001054712
+      Arthropleura_Head_Open_Burning_1_2: -1204320717
+      Arthropleura_Head_Open_Burning_1_3: 359619923
+      Arthropleura_Head_Open_Burning_1_4: 1110309475
+      Arthropleura_Head_Open_Burning_1_5: -1107278136
+      Arthropleura_Head_Open_Burning_2_0: 469773998
+      Arthropleura_Head_Open_Burning_2_1: 737436551
+      Arthropleura_Head_Open_Burning_2_2: 902985788
+      Arthropleura_Head_Open_Burning_2_3: -1795375900
+      Arthropleura_Head_Open_Burning_2_4: 945548205
+      Arthropleura_Head_Open_Burning_2_5: -1629777566
+      Arthropleura_Head_Open_Burning_3_0: 1017237293
+      Arthropleura_Head_Open_Burning_3_1: -1425809803
+      Arthropleura_Head_Open_Burning_3_2: 638496887
+      Arthropleura_Head_Open_Burning_3_3: -1625683176
+      Arthropleura_Head_Open_Burning_3_4: -1018103129
+      Arthropleura_Head_Open_Burning_3_5: -179790192
+      Arthropleura_Head_Open_Burning_4_0: -380599522
+      Arthropleura_Head_Open_Burning_4_1: -1602484885
+      Arthropleura_Head_Open_Burning_4_2: 853406790
+      Arthropleura_Head_Open_Burning_4_3: 1176639818
+      Arthropleura_Head_Open_Burning_4_4: 525197521
+      Arthropleura_Head_Open_Burning_4_5: 1278928897
+      Arthropleura_Head_Open_Burning_5_0: 1685016765
+      Arthropleura_Head_Open_Burning_5_1: 1466777246
+      Arthropleura_Head_Open_Burning_5_2: -1862902464
+      Arthropleura_Head_Open_Burning_5_3: 538450009
+      Arthropleura_Head_Open_Burning_5_4: -1927234896
+      Arthropleura_Head_Open_Burning_5_5: -2091378907
+      Arthropleura_Head_Open_Burning_6_0: 878669984
+      Arthropleura_Head_Open_Burning_6_1: 118185470
+      Arthropleura_Head_Open_Burning_6_2: -59236195
+      Arthropleura_Head_Open_Burning_6_3: -1793965991
+      Arthropleura_Head_Open_Burning_6_4: 2120685559
+      Arthropleura_Head_Open_Burning_6_5: -587831775
+      Arthropleura_Head_Open_Burning_7_0: 801593438
+      Arthropleura_Head_Open_Burning_7_1: -1727602057
+      Arthropleura_Head_Open_Burning_7_2: -1202368009
+      Arthropleura_Head_Open_Burning_7_3: -1088792660
+      Arthropleura_Head_Open_Burning_7_4: 262828292
+      Arthropleura_Head_Open_Burning_7_5: 182276917
+      Arthropleura_Head_Open_Burning_8_0: 86085787
+      Arthropleura_Head_Open_Burning_8_1: 178572130
+      Arthropleura_Head_Open_Burning_8_2: -868923162
+      Arthropleura_Head_Open_Burning_8_3: -1542403410
+      Arthropleura_Head_Open_Burning_8_4: -1623430206
+      Arthropleura_Head_Open_Burning_8_5: 584173349
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

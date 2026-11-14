@@ -409,7 +409,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -437,7 +437,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -478,2685 +478,1189 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_0
+      name: Arthropleura_Tail_Walk_Cracks2_0_0
       rect:
         serializedVersion: 2
-        x: 37
-        y: 947
-        width: 32
-        height: 24
+        x: 0
+        y: 896
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0de1ddef4ca76af90800000000000000
-      internalID: -6942726789036958000
+      spriteID: 5f31ddb4d74ccc146bec2c10a1856c8e
+      internalID: 1099846840
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_1
+      name: Arthropleura_Tail_Walk_Cracks2_0_1
       rect:
         serializedVersion: 2
-        x: 60
-        y: 958
-        width: 13
-        height: 14
+        x: 112
+        y: 896
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e0e4f5fc1f26b66c0800000000000000
-      internalID: -4149113840986010098
+      spriteID: 5bf48cc51b1bf5e49a02018aef1dd3bc
+      internalID: 1354822123
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_2
+      name: Arthropleura_Tail_Walk_Cracks2_0_2
       rect:
         serializedVersion: 2
-        x: 148
-        y: 947
-        width: 33
-        height: 24
+        x: 224
+        y: 896
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d689aa065d6dba600800000000000000
-      internalID: 480713997183260781
+      spriteID: 08e1b948787605545bc5850b9d7d886a
+      internalID: -1837425585
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_3
+      name: Arthropleura_Tail_Walk_Cracks2_0_3
       rect:
         serializedVersion: 2
-        x: 172
-        y: 959
-        width: 13
-        height: 13
+        x: 336
+        y: 896
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6d58d828a33256420800000000000000
-      internalID: 2622541092218570198
+      spriteID: e507f1c256be42a41844c1f8a28f5823
+      internalID: 1040615076
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_4
+      name: Arthropleura_Tail_Walk_Cracks2_0_4
       rect:
         serializedVersion: 2
-        x: 261
-        y: 947
-        width: 32
-        height: 24
+        x: 448
+        y: 896
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 737909c64688cb340800000000000000
-      internalID: 4880926061062297399
+      spriteID: 1de8b3818fea1954bb40c32d4a365fd0
+      internalID: 1083135606
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_5
+      name: Arthropleura_Tail_Walk_Cracks2_0_5
       rect:
         serializedVersion: 2
-        x: 284
-        y: 958
-        width: 13
-        height: 14
+        x: 560
+        y: 896
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 45698d11de4ea0ce0800000000000000
-      internalID: -1438085424133663148
+      spriteID: cc05f0ce0eddb07419860090c7234e18
+      internalID: -1862646139
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_6
+      name: Arthropleura_Tail_Walk_Cracks2_1_0
       rect:
         serializedVersion: 2
-        x: 373
-        y: 947
-        width: 32
-        height: 24
+        x: 0
+        y: 784
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f27c4721ce3e0cbd0800000000000000
-      internalID: -2611837180813457617
+      spriteID: 3c157da58fc72404992534a208c586fa
+      internalID: 1998871042
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_7
+      name: Arthropleura_Tail_Walk_Cracks2_1_1
       rect:
         serializedVersion: 2
-        x: 396
-        y: 958
-        width: 13
-        height: 14
+        x: 112
+        y: 784
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e2f91d4ac05bc1950800000000000000
-      internalID: 6421206234632920878
+      spriteID: f5cbdba56790a864d86a9fd9e192c1eb
+      internalID: -1301871646
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_8
+      name: Arthropleura_Tail_Walk_Cracks2_1_2
       rect:
         serializedVersion: 2
-        x: 485
-        y: 947
-        width: 32
-        height: 24
+        x: 224
+        y: 784
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 3eee0d6b3025f0120800000000000000
-      internalID: 2382212903807807203
+      spriteID: c068554678dcfbc4daf72446ff05a747
+      internalID: 223807797
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_9
+      name: Arthropleura_Tail_Walk_Cracks2_1_3
       rect:
         serializedVersion: 2
-        x: 508
-        y: 959
-        width: 13
-        height: 13
+        x: 336
+        y: 784
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 8c5f41e50a57159a0800000000000000
-      internalID: -6246081876552518200
+      spriteID: 0be1127c75b6dcf46a242121edaceb78
+      internalID: -1967808537
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_10
+      name: Arthropleura_Tail_Walk_Cracks2_1_4
       rect:
         serializedVersion: 2
-        x: 597
-        y: 947
-        width: 32
-        height: 24
+        x: 448
+        y: 784
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b35efc9b49d3664f0800000000000000
-      internalID: -835912971848784581
+      spriteID: bd6cafe775b46364baefe4598ef84563
+      internalID: -675629361
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_11
+      name: Arthropleura_Tail_Walk_Cracks2_1_5
       rect:
         serializedVersion: 2
-        x: 620
-        y: 958
-        width: 13
-        height: 14
+        x: 560
+        y: 784
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 259093a4c87ac8ed0800000000000000
-      internalID: -2410367479567546030
+      spriteID: 81656541ad122fd4c80fef7680eccb76
+      internalID: 740363126
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_12
+      name: Arthropleura_Tail_Walk_Cracks2_2_0
       rect:
         serializedVersion: 2
-        x: 42
-        y: 836
-        width: 24
-        height: 27
+        x: 0
+        y: 672
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: fa3b15210a4b8b9a0800000000000000
-      internalID: -6217020685989858385
+      spriteID: 7667f53eba026d94c8ccd787a71933d0
+      internalID: 1358395094
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_13
+      name: Arthropleura_Tail_Walk_Cracks2_2_1
       rect:
         serializedVersion: 2
-        x: 64
-        y: 842
-        width: 9
-        height: 16
+        x: 112
+        y: 672
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 18dfb4d2335f74050800000000000000
-      internalID: 5784861846532783489
+      spriteID: 38fb4f1d6b926804b9bbf467e368f7a9
+      internalID: -998761808
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_14
+      name: Arthropleura_Tail_Walk_Cracks2_2_2
       rect:
         serializedVersion: 2
-        x: 154
-        y: 836
-        width: 24
-        height: 11
+        x: 224
+        y: 672
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 01841f039981bc370800000000000000
-      internalID: 8343789780864157712
+      spriteID: 6d90d85e5c94c314b8af50c3b08801b3
+      internalID: 1961729615
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_15
+      name: Arthropleura_Tail_Walk_Cracks2_2_3
       rect:
         serializedVersion: 2
-        x: 155
-        y: 845
-        width: 10
-        height: 18
+        x: 336
+        y: 672
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6fb98fe2c9ea05f10800000000000000
-      internalID: 2256495399138794486
+      spriteID: 9d6c1d501657ac04b9dd3640d1d0e821
+      internalID: 1315966302
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_16
+      name: Arthropleura_Tail_Walk_Cracks2_2_4
       rect:
         serializedVersion: 2
-        x: 176
-        y: 842
-        width: 9
-        height: 15
+        x: 448
+        y: 672
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 4acd160fb81e831a0800000000000000
-      internalID: -6829460843757708124
+      spriteID: b210b384d16c261418541d70562a1288
+      internalID: 869208554
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_17
+      name: Arthropleura_Tail_Walk_Cracks2_2_5
       rect:
         serializedVersion: 2
-        x: 266
-        y: 836
-        width: 24
-        height: 27
+        x: 560
+        y: 672
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0c3330a73660fbac0800000000000000
-      internalID: -3837341333177814080
+      spriteID: 780bd51b8d8fbeb4c89dcb5719ba15c4
+      internalID: 462288318
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_18
+      name: Arthropleura_Tail_Walk_Cracks2_3_0
       rect:
         serializedVersion: 2
-        x: 288
-        y: 842
-        width: 9
-        height: 15
+        x: 0
+        y: 560
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e491e053cbc46fc80800000000000000
-      internalID: -8289353692901140146
+      spriteID: b056ad7fbbb902d498e9dc6fc948f2be
+      internalID: 1600262869
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_19
+      name: Arthropleura_Tail_Walk_Cracks2_3_1
       rect:
         serializedVersion: 2
-        x: 378
-        y: 836
-        width: 24
-        height: 27
+        x: 112
+        y: 560
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 61e60196510554c40800000000000000
-      internalID: 5495886973162778134
+      spriteID: 6e4cb2bf2aae34446970783eea95c372
+      internalID: 1911142188
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_20
+      name: Arthropleura_Tail_Walk_Cracks2_3_2
       rect:
         serializedVersion: 2
-        x: 400
-        y: 842
-        width: 9
-        height: 16
+        x: 224
+        y: 560
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d291b2b9b882ef280800000000000000
-      internalID: -9007717624625555155
+      spriteID: af18f9cd7b4ec6f479a0220fa7884bff
+      internalID: -1302398428
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_21
+      name: Arthropleura_Tail_Walk_Cracks2_3_3
       rect:
         serializedVersion: 2
-        x: 490
-        y: 836
-        width: 24
-        height: 11
+        x: 336
+        y: 560
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 5ef6ec7e54f40cc20800000000000000
-      internalID: 3224664494857678821
+      spriteID: 009236c2427c03c4fa9e2cf11bff7aeb
+      internalID: -1524541170
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_22
+      name: Arthropleura_Tail_Walk_Cracks2_3_4
       rect:
         serializedVersion: 2
-        x: 491
-        y: 845
-        width: 10
-        height: 18
+        x: 448
+        y: 560
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6582d4c4f0b95fe20800000000000000
-      internalID: 3383781185045735510
+      spriteID: 95c2675a264c6e640afea208066cd960
+      internalID: -1329380929
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_23
+      name: Arthropleura_Tail_Walk_Cracks2_3_5
       rect:
         serializedVersion: 2
-        x: 512
-        y: 842
-        width: 9
-        height: 15
+        x: 560
+        y: 560
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 8874febfb78290d00800000000000000
-      internalID: 939326510256310152
+      spriteID: 0658a63e74f6e244faf9175cbf4d752c
+      internalID: 354231743
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_24
+      name: Arthropleura_Tail_Walk_Cracks2_4_0
       rect:
         serializedVersion: 2
-        x: 602
-        y: 836
-        width: 24
-        height: 27
+        x: 0
+        y: 448
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 48972ca113f326b40800000000000000
-      internalID: 5431973580697139588
+      spriteID: 61ab4032518f19d478f67e085ca63a23
+      internalID: 1975592493
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_25
+      name: Arthropleura_Tail_Walk_Cracks2_4_1
       rect:
         serializedVersion: 2
-        x: 624
-        y: 842
-        width: 9
-        height: 15
+        x: 112
+        y: 448
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e1f9f704aefe162a0800000000000000
-      internalID: -6745846977440800994
+      spriteID: 2a23847330aae4546b4b2fb48bcd4f09
+      internalID: -1335699825
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_26
+      name: Arthropleura_Tail_Walk_Cracks2_4_2
       rect:
         serializedVersion: 2
-        x: 42
-        y: 723
-        width: 20
-        height: 30
+        x: 224
+        y: 448
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a11da59ecaca956f0800000000000000
-      internalID: -695334808802635494
+      spriteID: 6016c3910e3836549b20448776c76f27
+      internalID: 499516484
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_27
+      name: Arthropleura_Tail_Walk_Cracks2_4_3
       rect:
         serializedVersion: 2
-        x: 65
-        y: 725
-        width: 8
-        height: 16
+        x: 336
+        y: 448
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: fd0fb0949ead28dd0800000000000000
-      internalID: -2485183348867338017
+      spriteID: 456c3d6566915df4aa93ac8097911848
+      internalID: -1203146327
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_28
+      name: Arthropleura_Tail_Walk_Cracks2_4_4
       rect:
         serializedVersion: 2
-        x: 154
-        y: 723
-        width: 21
-        height: 15
+        x: 448
+        y: 448
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: bcd483ca2be0c2c50800000000000000
-      internalID: 6641699711020977611
+      spriteID: d32533e9f09e1ef4fb8241a669c5481d
+      internalID: 268718267
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_29
+      name: Arthropleura_Tail_Walk_Cracks2_4_5
       rect:
         serializedVersion: 2
-        x: 159
-        y: 735
-        width: 12
-        height: 18
+        x: 560
+        y: 448
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 1bfb76fde555f9310800000000000000
-      internalID: 1413942673981030321
+      spriteID: ce03e87e46513fa449e2549866dd7394
+      internalID: 719650906
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_30
+      name: Arthropleura_Tail_Walk_Cracks2_5_0
       rect:
         serializedVersion: 2
-        x: 177
-        y: 725
-        width: 8
-        height: 17
+        x: 0
+        y: 336
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7e025ffd2bbf2db30800000000000000
-      internalID: 4310784539027120359
+      spriteID: 2c0a927d9cdf9314c92df3c0be40542e
+      internalID: 1252921476
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_31
+      name: Arthropleura_Tail_Walk_Cracks2_5_1
       rect:
         serializedVersion: 2
-        x: 266
-        y: 722
-        width: 20
-        height: 16
+        x: 112
+        y: 336
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: aec79ce6664a65320800000000000000
-      internalID: 2546403399176912106
+      spriteID: 2af6796afab756f4f8d9dcdf761a5625
+      internalID: -712693919
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_32
+      name: Arthropleura_Tail_Walk_Cracks2_5_2
       rect:
         serializedVersion: 2
-        x: 271
-        y: 734
-        width: 12
-        height: 19
+        x: 224
+        y: 336
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d98cf9c3b960b5280800000000000000
-      internalID: -9053635362091448163
+      spriteID: 0e8d5b328d95248408672dd31e96e3c8
+      internalID: 200657433
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_33
+      name: Arthropleura_Tail_Walk_Cracks2_5_3
       rect:
         serializedVersion: 2
-        x: 289
-        y: 725
-        width: 8
-        height: 16
+        x: 336
+        y: 336
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f35812ffb67cd9420800000000000000
-      internalID: 2638484223364793663
+      spriteID: 7ed5f4563f1ca0043b544bd71f277237
+      internalID: 184330158
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_34
+      name: Arthropleura_Tail_Walk_Cracks2_5_4
       rect:
         serializedVersion: 2
-        x: 378
-        y: 723
-        width: 20
-        height: 30
+        x: 448
+        y: 336
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e0baa9219449cbbe0800000000000000
-      internalID: -1460129137609233650
+      spriteID: adccac7e79bb3ea48bc8182f08662c43
+      internalID: -240722011
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_35
+      name: Arthropleura_Tail_Walk_Cracks2_5_5
       rect:
         serializedVersion: 2
-        x: 401
-        y: 725
-        width: 8
-        height: 16
+        x: 560
+        y: 336
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 79f2a1f1a7352a9f0800000000000000
-      internalID: -458712428065443945
+      spriteID: 79c138fe1eaebba48851d4d7baa90a30
+      internalID: -1001368599
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_36
+      name: Arthropleura_Tail_Walk_Cracks2_6_0
       rect:
         serializedVersion: 2
-        x: 490
-        y: 723
-        width: 21
-        height: 15
+        x: 0
+        y: 224
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 385e5f8d1114b1d10800000000000000
-      internalID: 2097341596381341059
+      spriteID: e4cfb7d063bfb6a4db23bc1273cae70c
+      internalID: 1433336814
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_37
+      name: Arthropleura_Tail_Walk_Cracks2_6_1
       rect:
         serializedVersion: 2
-        x: 495
-        y: 735
-        width: 12
-        height: 18
+        x: 112
+        y: 224
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 02874be0082b080c0800000000000000
-      internalID: -4575460958336157664
+      spriteID: e709cd29a5ecc6246a9444324189ec30
+      internalID: 707117750
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_38
+      name: Arthropleura_Tail_Walk_Cracks2_6_2
       rect:
         serializedVersion: 2
-        x: 513
-        y: 725
-        width: 8
-        height: 17
+        x: 224
+        y: 224
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7d516cfc532145780800000000000000
-      internalID: -8695304958217153065
+      spriteID: 9ad2fd93e369bdd49b5eec0a17758dfb
+      internalID: -867890321
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_39
+      name: Arthropleura_Tail_Walk_Cracks2_6_3
       rect:
         serializedVersion: 2
-        x: 602
-        y: 722
-        width: 20
-        height: 16
+        x: 336
+        y: 224
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 93230819056d7f1b0800000000000000
-      internalID: -5622789968221949383
+      spriteID: 0347d7d7ec75f5241ad5d7bcb0f50a6b
+      internalID: -1670907952
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_40
+      name: Arthropleura_Tail_Walk_Cracks2_6_4
       rect:
         serializedVersion: 2
-        x: 607
-        y: 734
-        width: 12
-        height: 19
+        x: 448
+        y: 224
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 061b184c9d70b8100800000000000000
-      internalID: 111191247686840672
+      spriteID: 1c86dd73c7d81f34d8d0d6035a42009c
+      internalID: -1171612395
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_41
+      name: Arthropleura_Tail_Walk_Cracks2_6_5
       rect:
         serializedVersion: 2
-        x: 625
-        y: 725
-        width: 8
-        height: 16
+        x: 560
+        y: 224
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b70367b0410992380800000000000000
-      internalID: -8995500364929814405
+      spriteID: d62dffa38d7c6c546be569b13ce454fa
+      internalID: 1630136812
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_42
+      name: Arthropleura_Tail_Walk_Cracks2_7_0
       rect:
         serializedVersion: 2
-        x: 42
-        y: 610
-        width: 23
-        height: 30
+        x: 0
+        y: 112
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a07b19153e1242c20800000000000000
-      internalID: 3180704497040209674
+      spriteID: b26304dd9e8db164f8ca3da5362e9d11
+      internalID: -900019218
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_43
+      name: Arthropleura_Tail_Walk_Cracks2_7_1
       rect:
         serializedVersion: 2
-        x: 63
-        y: 610
-        width: 11
-        height: 14
+        x: 112
+        y: 112
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ddc66b0ec0e947d30800000000000000
-      internalID: 4428338111758888157
+      spriteID: 4f745f8313ead9e4bb3b85db55bcd3c8
+      internalID: -1482560969
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_44
+      name: Arthropleura_Tail_Walk_Cracks2_7_2
       rect:
         serializedVersion: 2
-        x: 154
-        y: 610
-        width: 24
-        height: 30
+        x: 224
+        y: 112
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 46427805bffbc8500800000000000000
-      internalID: 399905553037861988
+      spriteID: 18f068582e56ac247a46b992ba12a767
+      internalID: -1148935265
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_45
+      name: Arthropleura_Tail_Walk_Cracks2_7_3
       rect:
         serializedVersion: 2
-        x: 175
-        y: 610
-        width: 11
-        height: 14
+        x: 336
+        y: 112
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7655a1ea2f1516240800000000000000
-      internalID: 4783194381989074279
+      spriteID: 5d5a476346b779340baaed825eac0d47
+      internalID: -834782488
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_46
+      name: Arthropleura_Tail_Walk_Cracks2_7_4
       rect:
         serializedVersion: 2
-        x: 267
-        y: 610
-        width: 15
-        height: 19
+        x: 448
+        y: 112
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 4b2d71645403c8af0800000000000000
-      internalID: -392885993401232716
+      spriteID: 3921cac659a50394eb5badb1a425660e
+      internalID: -1301895618
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_47
+      name: Arthropleura_Tail_Walk_Cracks2_7_5
       rect:
         serializedVersion: 2
-        x: 274
-        y: 624
-        width: 16
-        height: 16
+        x: 560
+        y: 112
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: dc121b09f40c08230800000000000000
-      internalID: 3639119946877837773
+      spriteID: 92c5c96089cd56e48a978c1b9dcd13a8
+      internalID: 1768581844
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_48
+      name: Arthropleura_Tail_Walk_Cracks2_8_0
       rect:
         serializedVersion: 2
-        x: 287
-        y: 609
-        width: 12
-        height: 15
+        x: 0
+        y: 0
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: aca48696f1911d030800000000000000
-      internalID: 3517620406656191178
+      spriteID: d3ddd4ff83ef478469d83dd894e24ab3
+      internalID: -2134643658
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_49
+      name: Arthropleura_Tail_Walk_Cracks2_8_1
       rect:
         serializedVersion: 2
-        x: 378
-        y: 610
-        width: 23
-        height: 30
+        x: 112
+        y: 0
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: de4f977a63feaf550800000000000000
-      internalID: 6195527255418598637
+      spriteID: 776d70c39fe521d4390ec71acc968d63
+      internalID: 1575881673
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_50
+      name: Arthropleura_Tail_Walk_Cracks2_8_2
       rect:
         serializedVersion: 2
-        x: 399
-        y: 610
-        width: 11
-        height: 14
+        x: 224
+        y: 0
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d73acca0795c43cc0800000000000000
-      internalID: -3732140938671381635
+      spriteID: cd3699f787388964d883a4fd79958cd7
+      internalID: 2009897250
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_51
+      name: Arthropleura_Tail_Walk_Cracks2_8_3
       rect:
         serializedVersion: 2
-        x: 490
-        y: 610
-        width: 24
-        height: 30
+        x: 336
+        y: 0
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b25186fcf32b0d4e0800000000000000
-      internalID: -1958869850773777109
+      spriteID: 06da2096a7ffffa4b92cfb471cd728e5
+      internalID: 1105702644
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_52
+      name: Arthropleura_Tail_Walk_Cracks2_8_4
       rect:
         serializedVersion: 2
-        x: 511
-        y: 610
-        width: 11
-        height: 14
+        x: 448
+        y: 0
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 120a0d321b9fe3680800000000000000
-      internalID: -8773300484865744863
+      spriteID: 594809d0d8b76674d8d18007e214b936
+      internalID: 1215705923
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_53
+      name: Arthropleura_Tail_Walk_Cracks2_8_5
       rect:
         serializedVersion: 2
-        x: 603
-        y: 610
-        width: 15
-        height: 19
+        x: 560
+        y: 0
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 527877b538106ac70800000000000000
-      internalID: 8981868170523936549
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_54
-      rect:
-        serializedVersion: 2
-        x: 610
-        y: 624
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c6d105f53c483b210800000000000000
-      internalID: 1347566688166485356
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_55
-      rect:
-        serializedVersion: 2
-        x: 623
-        y: 609
-        width: 12
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 80398529e6d2475b0800000000000000
-      internalID: -5371618502621228280
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_56
-      rect:
-        serializedVersion: 2
-        x: 44
-        y: 498
-        width: 29
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 624a0736006274690800000000000000
-      internalID: -7618078461563722714
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_57
-      rect:
-        serializedVersion: 2
-        x: 57
-        y: 496
-        width: 17
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e229dba5acaa59ac0800000000000000
-      internalID: -3848982520435731922
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_58
-      rect:
-        serializedVersion: 2
-        x: 156
-        y: 498
-        width: 29
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4a7312b500cbc9390800000000000000
-      internalID: -7810160944052357212
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_59
-      rect:
-        serializedVersion: 2
-        x: 169
-        y: 496
-        width: 17
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1b379d3345ea3e220800000000000000
-      internalID: 2514044693673243569
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_60
-      rect:
-        serializedVersion: 2
-        x: 268
-        y: 498
-        width: 29
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f7a084d655671c370800000000000000
-      internalID: 8341078094144604799
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_61
-      rect:
-        serializedVersion: 2
-        x: 281
-        y: 495
-        width: 17
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d7f4e22ec72ddd8d0800000000000000
-      internalID: -2819866357851598979
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_62
-      rect:
-        serializedVersion: 2
-        x: 380
-        y: 498
-        width: 29
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9b6eac5ac8e9cdc50800000000000000
-      internalID: 6691397473279862457
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_63
-      rect:
-        serializedVersion: 2
-        x: 393
-        y: 496
-        width: 17
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8d3a737219933d290800000000000000
-      internalID: -7866880828495125544
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_64
-      rect:
-        serializedVersion: 2
-        x: 492
-        y: 498
-        width: 29
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7d652a4768374f950800000000000000
-      internalID: 6481932785012594391
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_65
-      rect:
-        serializedVersion: 2
-        x: 505
-        y: 496
-        width: 17
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ca9a60b0effb02500800000000000000
-      internalID: 369506267271965100
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_66
-      rect:
-        serializedVersion: 2
-        x: 604
-        y: 498
-        width: 29
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 62f7549b1efe3d7f0800000000000000
-      internalID: -588863373500383450
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_67
-      rect:
-        serializedVersion: 2
-        x: 617
-        y: 495
-        width: 17
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 687150094b3897460800000000000000
-      internalID: 7239962687508387718
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_68
-      rect:
-        serializedVersion: 2
-        x: 44
-        y: 388
-        width: 34
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7fe616a9ec030eb30800000000000000
-      internalID: 4314502106932408055
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_69
-      rect:
-        serializedVersion: 2
-        x: 51
-        y: 383
-        width: 19
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1fd1aa3b541bf5630800000000000000
-      internalID: 3918045113760751089
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_70
-      rect:
-        serializedVersion: 2
-        x: 156
-        y: 388
-        width: 34
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 49f064b0563b18c00800000000000000
-      internalID: 901198647013019540
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_71
-      rect:
-        serializedVersion: 2
-        x: 164
-        y: 384
-        width: 18
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7e50bb2e75710e950800000000000000
-      internalID: 6476201930392274407
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_72
-      rect:
-        serializedVersion: 2
-        x: 268
-        y: 388
-        width: 34
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6baf89447c0b93290800000000000000
-      internalID: -7910096900603708746
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_73
-      rect:
-        serializedVersion: 2
-        x: 275
-        y: 383
-        width: 20
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 26e50a527b5475c70800000000000000
-      internalID: 8959706636589489762
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_74
-      rect:
-        serializedVersion: 2
-        x: 380
-        y: 388
-        width: 34
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4fbdbecd69aba3c20800000000000000
-      internalID: 3187064843432352756
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_75
-      rect:
-        serializedVersion: 2
-        x: 387
-        y: 383
-        width: 19
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3daa5691d891d3c70800000000000000
-      internalID: 8952339728089590483
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_76
-      rect:
-        serializedVersion: 2
-        x: 492
-        y: 388
-        width: 34
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: af156fa1b0f12eda0800000000000000
-      internalID: -5917132827853958662
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_77
-      rect:
-        serializedVersion: 2
-        x: 500
-        y: 384
-        width: 18
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: efb595c1c870b3100800000000000000
-      internalID: 88672916016290814
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_78
-      rect:
-        serializedVersion: 2
-        x: 604
-        y: 388
-        width: 34
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: cb1260f68f11e5e30800000000000000
-      internalID: 4494049236874568124
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_79
-      rect:
-        serializedVersion: 2
-        x: 611
-        y: 383
-        width: 20
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8eb860b8206783f10800000000000000
-      internalID: 2249677767166036968
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_80
-      rect:
-        serializedVersion: 2
-        x: 44
-        y: 279
-        width: 37
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 98b1eba41feb43f90800000000000000
-      internalID: -6974739979339687031
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_81
-      rect:
-        serializedVersion: 2
-        x: 156
-        y: 279
-        width: 19
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 387a2dbee007259d0800000000000000
-      internalID: -2787042010000611453
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_82
-      rect:
-        serializedVersion: 2
-        x: 170
-        y: 283
-        width: 23
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9c67d75fb595ed170800000000000000
-      internalID: 8205093822611158729
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_83
-      rect:
-        serializedVersion: 2
-        x: 268
-        y: 278
-        width: 37
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: bc2084645d77e9460800000000000000
-      internalID: 7250364208003941067
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_84
-      rect:
-        serializedVersion: 2
-        x: 380
-        y: 279
-        width: 36
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6cc39d85cf6e4e430800000000000000
-      internalID: 3811425156159061190
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_85
-      rect:
-        serializedVersion: 2
-        x: 492
-        y: 279
-        width: 19
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d7bebd19a6a36fd70800000000000000
-      internalID: 9076506328399866749
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_86
-      rect:
-        serializedVersion: 2
-        x: 506
-        y: 283
-        width: 23
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: cfa8b4feee043c0c0800000000000000
-      internalID: -4556727003007710468
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_87
-      rect:
-        serializedVersion: 2
-        x: 604
-        y: 278
-        width: 36
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 93c0971fb13fd5210800000000000000
-      internalID: 1323481166857702457
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_88
-      rect:
-        serializedVersion: 2
-        x: 47
-        y: 271
-        width: 18
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3178193091a91d820800000000000000
-      internalID: 2941301463874373395
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_89
-      rect:
-        serializedVersion: 2
-        x: 158
-        y: 272
-        width: 19
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: dc02446937ce7ad00800000000000000
-      internalID: 984015024790184141
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_90
-      rect:
-        serializedVersion: 2
-        x: 270
-        y: 271
-        width: 19
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 88ea43b9cfded1e60800000000000000
-      internalID: 7934759787688144520
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_91
-      rect:
-        serializedVersion: 2
-        x: 383
-        y: 271
-        width: 18
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: eaf80bf5ef9d54d50800000000000000
-      internalID: 6721017705470660526
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_92
-      rect:
-        serializedVersion: 2
-        x: 494
-        y: 272
-        width: 19
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 276416fb0b959e780800000000000000
-      internalID: -8653286593355757966
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_93
-      rect:
-        serializedVersion: 2
-        x: 606
-        y: 271
-        width: 19
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3c42b71b2e2094ee0800000000000000
-      internalID: -1276485846719322941
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_94
-      rect:
-        serializedVersion: 2
-        x: 43
-        y: 170
-        width: 24
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 31477e3985a99afe0800000000000000
-      internalID: -1177240122351455213
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_95
-      rect:
-        serializedVersion: 2
-        x: 60
-        y: 165
-        width: 20
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e4ff7e5fda41ab8f0800000000000000
-      internalID: -524083669247721650
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_96
-      rect:
-        serializedVersion: 2
-        x: 155
-        y: 170
-        width: 24
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e8ba2eb1a0684b9d0800000000000000
-      internalID: -2759433293695636594
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_97
-      rect:
-        serializedVersion: 2
-        x: 172
-        y: 166
-        width: 20
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 960c603de7297d0f0800000000000000
-      internalID: -1092243311210086295
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_98
-      rect:
-        serializedVersion: 2
-        x: 267
-        y: 165
-        width: 36
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 37c1fc49fc8aaf4e0800000000000000
-      internalID: -1947058279376020365
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_99
-      rect:
-        serializedVersion: 2
-        x: 379
-        y: 170
-        width: 24
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f088e6b07b4d68250800000000000000
-      internalID: 5946674240625215503
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_100
-      rect:
-        serializedVersion: 2
-        x: 396
-        y: 165
-        width: 19
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 96a3b0e8ed38f8740800000000000000
-      internalID: 5156485090251586153
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_101
-      rect:
-        serializedVersion: 2
-        x: 491
-        y: 170
-        width: 24
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 145733e54754e1d20800000000000000
-      internalID: 3251112347107030337
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_102
-      rect:
-        serializedVersion: 2
-        x: 508
-        y: 166
-        width: 20
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4efd11cccd214dbe0800000000000000
-      internalID: -1453516040207999004
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_103
-      rect:
-        serializedVersion: 2
-        x: 603
-        y: 165
-        width: 36
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: cb20d05c523879a40800000000000000
-      internalID: 5374908878532969148
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_104
-      rect:
-        serializedVersion: 2
-        x: 42
-        y: 158
-        width: 17
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4a9dc86c0ecca2a30800000000000000
-      internalID: 4191387668997527972
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_105
-      rect:
-        serializedVersion: 2
-        x: 154
-        y: 159
-        width: 17
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 497fadce44fa1fcd0800000000000000
-      internalID: -2526045205411727468
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_106
-      rect:
-        serializedVersion: 2
-        x: 266
-        y: 158
-        width: 17
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2a8ecb27bb33b6fa0800000000000000
-      internalID: -5806490414387238750
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_107
-      rect:
-        serializedVersion: 2
-        x: 378
-        y: 158
-        width: 17
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4b72285e5b76a4220800000000000000
-      internalID: 2470901376503392180
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_108
-      rect:
-        serializedVersion: 2
-        x: 490
-        y: 159
-        width: 17
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e38b74c87f02255f0800000000000000
-      internalID: -769516338744412098
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_109
-      rect:
-        serializedVersion: 2
-        x: 602
-        y: 158
-        width: 17
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 891b98bd4807e1820800000000000000
-      internalID: 2890871726739665304
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_110
-      rect:
-        serializedVersion: 2
-        x: 39
-        y: 47
-        width: 13
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c5067b3d5b673b4e0800000000000000
-      internalID: -1967098088917606308
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_111
-      rect:
-        serializedVersion: 2
-        x: 43
-        y: 47
-        width: 32
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 25d8d708b4e22d1a0800000000000000
-      internalID: -6786310786680779438
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_112
-      rect:
-        serializedVersion: 2
-        x: 151
-        y: 47
-        width: 13
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3c53dedd147501820800000000000000
-      internalID: 2886903301552289219
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_113
-      rect:
-        serializedVersion: 2
-        x: 155
-        y: 48
-        width: 33
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 852f1ac12fa5b1fb0800000000000000
-      internalID: -4676043792185167272
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_114
-      rect:
-        serializedVersion: 2
-        x: 263
-        y: 47
-        width: 13
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e9e8f3510d514c5e0800000000000000
-      internalID: -1890361960134898018
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_115
-      rect:
-        serializedVersion: 2
-        x: 268
-        y: 47
-        width: 31
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b4a2841fd46243720800000000000000
-      internalID: 2824924982470519371
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_116
-      rect:
-        serializedVersion: 2
-        x: 375
-        y: 47
-        width: 13
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 729e0c2e93b944e70800000000000000
-      internalID: 9098567820114979111
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_117
-      rect:
-        serializedVersion: 2
-        x: 379
-        y: 47
-        width: 32
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ff57cdb715ad81ea0800000000000000
-      internalID: -5901727268163783169
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_118
-      rect:
-        serializedVersion: 2
-        x: 487
-        y: 47
-        width: 13
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3e4a76d5878c7c550800000000000000
-      internalID: 6181129432877999331
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_119
-      rect:
-        serializedVersion: 2
-        x: 491
-        y: 48
-        width: 32
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b34b43e2a519e47e0800000000000000
-      internalID: -1779324986256477125
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_120
-      rect:
-        serializedVersion: 2
-        x: 599
-        y: 47
-        width: 13
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7b3de9a17eed0c840800000000000000
-      internalID: 5242435050424685495
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Walk_Cracks2_121
-      rect:
-        serializedVersion: 2
-        x: 604
-        y: 47
-        width: 31
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9c4fb187563082b10800000000000000
-      internalID: 1956817772434158793
+      spriteID: 1b480a70d4cd0564e8e7b29f886dd804
+      internalID: -397421202
       vertices: []
       indices: 
       edges: []
@@ -3175,128 +1679,60 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Arthropleura_Tail_Walk_Cracks2_0: -6942726789036958000
-      Arthropleura_Tail_Walk_Cracks2_1: -4149113840986010098
-      Arthropleura_Tail_Walk_Cracks2_10: -835912971848784581
-      Arthropleura_Tail_Walk_Cracks2_100: 5156485090251586153
-      Arthropleura_Tail_Walk_Cracks2_101: 3251112347107030337
-      Arthropleura_Tail_Walk_Cracks2_102: -1453516040207999004
-      Arthropleura_Tail_Walk_Cracks2_103: 5374908878532969148
-      Arthropleura_Tail_Walk_Cracks2_104: 4191387668997527972
-      Arthropleura_Tail_Walk_Cracks2_105: -2526045205411727468
-      Arthropleura_Tail_Walk_Cracks2_106: -5806490414387238750
-      Arthropleura_Tail_Walk_Cracks2_107: 2470901376503392180
-      Arthropleura_Tail_Walk_Cracks2_108: -769516338744412098
-      Arthropleura_Tail_Walk_Cracks2_109: 2890871726739665304
-      Arthropleura_Tail_Walk_Cracks2_11: -2410367479567546030
-      Arthropleura_Tail_Walk_Cracks2_110: -1967098088917606308
-      Arthropleura_Tail_Walk_Cracks2_111: -6786310786680779438
-      Arthropleura_Tail_Walk_Cracks2_112: 2886903301552289219
-      Arthropleura_Tail_Walk_Cracks2_113: -4676043792185167272
-      Arthropleura_Tail_Walk_Cracks2_114: -1890361960134898018
-      Arthropleura_Tail_Walk_Cracks2_115: 2824924982470519371
-      Arthropleura_Tail_Walk_Cracks2_116: 9098567820114979111
-      Arthropleura_Tail_Walk_Cracks2_117: -5901727268163783169
-      Arthropleura_Tail_Walk_Cracks2_118: 6181129432877999331
-      Arthropleura_Tail_Walk_Cracks2_119: -1779324986256477125
-      Arthropleura_Tail_Walk_Cracks2_12: -6217020685989858385
-      Arthropleura_Tail_Walk_Cracks2_120: 5242435050424685495
-      Arthropleura_Tail_Walk_Cracks2_121: 1956817772434158793
-      Arthropleura_Tail_Walk_Cracks2_13: 5784861846532783489
-      Arthropleura_Tail_Walk_Cracks2_14: 8343789780864157712
-      Arthropleura_Tail_Walk_Cracks2_15: 2256495399138794486
-      Arthropleura_Tail_Walk_Cracks2_16: -6829460843757708124
-      Arthropleura_Tail_Walk_Cracks2_17: -3837341333177814080
-      Arthropleura_Tail_Walk_Cracks2_18: -8289353692901140146
-      Arthropleura_Tail_Walk_Cracks2_19: 5495886973162778134
-      Arthropleura_Tail_Walk_Cracks2_2: 480713997183260781
-      Arthropleura_Tail_Walk_Cracks2_20: -9007717624625555155
-      Arthropleura_Tail_Walk_Cracks2_21: 3224664494857678821
-      Arthropleura_Tail_Walk_Cracks2_22: 3383781185045735510
-      Arthropleura_Tail_Walk_Cracks2_23: 939326510256310152
-      Arthropleura_Tail_Walk_Cracks2_24: 5431973580697139588
-      Arthropleura_Tail_Walk_Cracks2_25: -6745846977440800994
-      Arthropleura_Tail_Walk_Cracks2_26: -695334808802635494
-      Arthropleura_Tail_Walk_Cracks2_27: -2485183348867338017
-      Arthropleura_Tail_Walk_Cracks2_28: 6641699711020977611
-      Arthropleura_Tail_Walk_Cracks2_29: 1413942673981030321
-      Arthropleura_Tail_Walk_Cracks2_3: 2622541092218570198
-      Arthropleura_Tail_Walk_Cracks2_30: 4310784539027120359
-      Arthropleura_Tail_Walk_Cracks2_31: 2546403399176912106
-      Arthropleura_Tail_Walk_Cracks2_32: -9053635362091448163
-      Arthropleura_Tail_Walk_Cracks2_33: 2638484223364793663
-      Arthropleura_Tail_Walk_Cracks2_34: -1460129137609233650
-      Arthropleura_Tail_Walk_Cracks2_35: -458712428065443945
-      Arthropleura_Tail_Walk_Cracks2_36: 2097341596381341059
-      Arthropleura_Tail_Walk_Cracks2_37: -4575460958336157664
-      Arthropleura_Tail_Walk_Cracks2_38: -8695304958217153065
-      Arthropleura_Tail_Walk_Cracks2_39: -5622789968221949383
-      Arthropleura_Tail_Walk_Cracks2_4: 4880926061062297399
-      Arthropleura_Tail_Walk_Cracks2_40: 111191247686840672
-      Arthropleura_Tail_Walk_Cracks2_41: -8995500364929814405
-      Arthropleura_Tail_Walk_Cracks2_42: 3180704497040209674
-      Arthropleura_Tail_Walk_Cracks2_43: 4428338111758888157
-      Arthropleura_Tail_Walk_Cracks2_44: 399905553037861988
-      Arthropleura_Tail_Walk_Cracks2_45: 4783194381989074279
-      Arthropleura_Tail_Walk_Cracks2_46: -392885993401232716
-      Arthropleura_Tail_Walk_Cracks2_47: 3639119946877837773
-      Arthropleura_Tail_Walk_Cracks2_48: 3517620406656191178
-      Arthropleura_Tail_Walk_Cracks2_49: 6195527255418598637
-      Arthropleura_Tail_Walk_Cracks2_5: -1438085424133663148
-      Arthropleura_Tail_Walk_Cracks2_50: -3732140938671381635
-      Arthropleura_Tail_Walk_Cracks2_51: -1958869850773777109
-      Arthropleura_Tail_Walk_Cracks2_52: -8773300484865744863
-      Arthropleura_Tail_Walk_Cracks2_53: 8981868170523936549
-      Arthropleura_Tail_Walk_Cracks2_54: 1347566688166485356
-      Arthropleura_Tail_Walk_Cracks2_55: -5371618502621228280
-      Arthropleura_Tail_Walk_Cracks2_56: -7618078461563722714
-      Arthropleura_Tail_Walk_Cracks2_57: -3848982520435731922
-      Arthropleura_Tail_Walk_Cracks2_58: -7810160944052357212
-      Arthropleura_Tail_Walk_Cracks2_59: 2514044693673243569
-      Arthropleura_Tail_Walk_Cracks2_6: -2611837180813457617
-      Arthropleura_Tail_Walk_Cracks2_60: 8341078094144604799
-      Arthropleura_Tail_Walk_Cracks2_61: -2819866357851598979
-      Arthropleura_Tail_Walk_Cracks2_62: 6691397473279862457
-      Arthropleura_Tail_Walk_Cracks2_63: -7866880828495125544
-      Arthropleura_Tail_Walk_Cracks2_64: 6481932785012594391
-      Arthropleura_Tail_Walk_Cracks2_65: 369506267271965100
-      Arthropleura_Tail_Walk_Cracks2_66: -588863373500383450
-      Arthropleura_Tail_Walk_Cracks2_67: 7239962687508387718
-      Arthropleura_Tail_Walk_Cracks2_68: 4314502106932408055
-      Arthropleura_Tail_Walk_Cracks2_69: 3918045113760751089
-      Arthropleura_Tail_Walk_Cracks2_7: 6421206234632920878
-      Arthropleura_Tail_Walk_Cracks2_70: 901198647013019540
-      Arthropleura_Tail_Walk_Cracks2_71: 6476201930392274407
-      Arthropleura_Tail_Walk_Cracks2_72: -7910096900603708746
-      Arthropleura_Tail_Walk_Cracks2_73: 8959706636589489762
-      Arthropleura_Tail_Walk_Cracks2_74: 3187064843432352756
-      Arthropleura_Tail_Walk_Cracks2_75: 8952339728089590483
-      Arthropleura_Tail_Walk_Cracks2_76: -5917132827853958662
-      Arthropleura_Tail_Walk_Cracks2_77: 88672916016290814
-      Arthropleura_Tail_Walk_Cracks2_78: 4494049236874568124
-      Arthropleura_Tail_Walk_Cracks2_79: 2249677767166036968
-      Arthropleura_Tail_Walk_Cracks2_8: 2382212903807807203
-      Arthropleura_Tail_Walk_Cracks2_80: -6974739979339687031
-      Arthropleura_Tail_Walk_Cracks2_81: -2787042010000611453
-      Arthropleura_Tail_Walk_Cracks2_82: 8205093822611158729
-      Arthropleura_Tail_Walk_Cracks2_83: 7250364208003941067
-      Arthropleura_Tail_Walk_Cracks2_84: 3811425156159061190
-      Arthropleura_Tail_Walk_Cracks2_85: 9076506328399866749
-      Arthropleura_Tail_Walk_Cracks2_86: -4556727003007710468
-      Arthropleura_Tail_Walk_Cracks2_87: 1323481166857702457
-      Arthropleura_Tail_Walk_Cracks2_88: 2941301463874373395
-      Arthropleura_Tail_Walk_Cracks2_89: 984015024790184141
-      Arthropleura_Tail_Walk_Cracks2_9: -6246081876552518200
-      Arthropleura_Tail_Walk_Cracks2_90: 7934759787688144520
-      Arthropleura_Tail_Walk_Cracks2_91: 6721017705470660526
-      Arthropleura_Tail_Walk_Cracks2_92: -8653286593355757966
-      Arthropleura_Tail_Walk_Cracks2_93: -1276485846719322941
-      Arthropleura_Tail_Walk_Cracks2_94: -1177240122351455213
-      Arthropleura_Tail_Walk_Cracks2_95: -524083669247721650
-      Arthropleura_Tail_Walk_Cracks2_96: -2759433293695636594
-      Arthropleura_Tail_Walk_Cracks2_97: -1092243311210086295
-      Arthropleura_Tail_Walk_Cracks2_98: -1947058279376020365
-      Arthropleura_Tail_Walk_Cracks2_99: 5946674240625215503
+      Arthropleura_Tail_Walk_Cracks2_0_0: 1099846840
+      Arthropleura_Tail_Walk_Cracks2_0_1: 1354822123
+      Arthropleura_Tail_Walk_Cracks2_0_2: -1837425585
+      Arthropleura_Tail_Walk_Cracks2_0_3: 1040615076
+      Arthropleura_Tail_Walk_Cracks2_0_4: 1083135606
+      Arthropleura_Tail_Walk_Cracks2_0_5: -1862646139
+      Arthropleura_Tail_Walk_Cracks2_1_0: 1998871042
+      Arthropleura_Tail_Walk_Cracks2_1_1: -1301871646
+      Arthropleura_Tail_Walk_Cracks2_1_2: 223807797
+      Arthropleura_Tail_Walk_Cracks2_1_3: -1967808537
+      Arthropleura_Tail_Walk_Cracks2_1_4: -675629361
+      Arthropleura_Tail_Walk_Cracks2_1_5: 740363126
+      Arthropleura_Tail_Walk_Cracks2_2_0: 1358395094
+      Arthropleura_Tail_Walk_Cracks2_2_1: -998761808
+      Arthropleura_Tail_Walk_Cracks2_2_2: 1961729615
+      Arthropleura_Tail_Walk_Cracks2_2_3: 1315966302
+      Arthropleura_Tail_Walk_Cracks2_2_4: 869208554
+      Arthropleura_Tail_Walk_Cracks2_2_5: 462288318
+      Arthropleura_Tail_Walk_Cracks2_3_0: 1600262869
+      Arthropleura_Tail_Walk_Cracks2_3_1: 1911142188
+      Arthropleura_Tail_Walk_Cracks2_3_2: -1302398428
+      Arthropleura_Tail_Walk_Cracks2_3_3: -1524541170
+      Arthropleura_Tail_Walk_Cracks2_3_4: -1329380929
+      Arthropleura_Tail_Walk_Cracks2_3_5: 354231743
+      Arthropleura_Tail_Walk_Cracks2_4_0: 1975592493
+      Arthropleura_Tail_Walk_Cracks2_4_1: -1335699825
+      Arthropleura_Tail_Walk_Cracks2_4_2: 499516484
+      Arthropleura_Tail_Walk_Cracks2_4_3: -1203146327
+      Arthropleura_Tail_Walk_Cracks2_4_4: 268718267
+      Arthropleura_Tail_Walk_Cracks2_4_5: 719650906
+      Arthropleura_Tail_Walk_Cracks2_5_0: 1252921476
+      Arthropleura_Tail_Walk_Cracks2_5_1: -712693919
+      Arthropleura_Tail_Walk_Cracks2_5_2: 200657433
+      Arthropleura_Tail_Walk_Cracks2_5_3: 184330158
+      Arthropleura_Tail_Walk_Cracks2_5_4: -240722011
+      Arthropleura_Tail_Walk_Cracks2_5_5: -1001368599
+      Arthropleura_Tail_Walk_Cracks2_6_0: 1433336814
+      Arthropleura_Tail_Walk_Cracks2_6_1: 707117750
+      Arthropleura_Tail_Walk_Cracks2_6_2: -867890321
+      Arthropleura_Tail_Walk_Cracks2_6_3: -1670907952
+      Arthropleura_Tail_Walk_Cracks2_6_4: -1171612395
+      Arthropleura_Tail_Walk_Cracks2_6_5: 1630136812
+      Arthropleura_Tail_Walk_Cracks2_7_0: -900019218
+      Arthropleura_Tail_Walk_Cracks2_7_1: -1482560969
+      Arthropleura_Tail_Walk_Cracks2_7_2: -1148935265
+      Arthropleura_Tail_Walk_Cracks2_7_3: -834782488
+      Arthropleura_Tail_Walk_Cracks2_7_4: -1301895618
+      Arthropleura_Tail_Walk_Cracks2_7_5: 1768581844
+      Arthropleura_Tail_Walk_Cracks2_8_0: -2134643658
+      Arthropleura_Tail_Walk_Cracks2_8_1: 1575881673
+      Arthropleura_Tail_Walk_Cracks2_8_2: 2009897250
+      Arthropleura_Tail_Walk_Cracks2_8_3: 1105702644
+      Arthropleura_Tail_Walk_Cracks2_8_4: 1215705923
+      Arthropleura_Tail_Walk_Cracks2_8_5: -397421202
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

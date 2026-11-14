@@ -898,7 +898,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -926,7 +926,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -967,6271 +967,1585 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_0
+      name: Arthropleura_Head_Eat_Charred_0_0
       rect:
         serializedVersion: 2
-        x: 54
-        y: 1392
-        width: 15
-        height: 19
+        x: 0
+        y: 1280
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 26fa6857f622e0a70800000000000000
-      internalID: 8795004984409632610
+      spriteID: 72443c06654e208428136c3dc1fcf2e5
+      internalID: 416285523
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_1
+      name: Arthropleura_Head_Eat_Charred_0_1
       rect:
         serializedVersion: 2
-        x: 93
-        y: 1393
-        width: 15
-        height: 20
+        x: 160
+        y: 1280
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d9590077b838173f0800000000000000
-      internalID: -904797415104539235
+      spriteID: b6b0a6cb0af3ac44f98705d410f8cf6d
+      internalID: -1329272979
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_2
+      name: Arthropleura_Head_Eat_Charred_0_2
       rect:
         serializedVersion: 2
-        x: 216
-        y: 1392
-        width: 14
-        height: 18
+        x: 320
+        y: 1280
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 404c4fe047ccff100800000000000000
-      internalID: 144058511938339844
+      spriteID: 601da8e2a845cae46995694906ee74d6
+      internalID: 1543395738
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_3
+      name: Arthropleura_Head_Eat_Charred_0_3
       rect:
         serializedVersion: 2
-        x: 253
-        y: 1393
-        width: 15
-        height: 20
+        x: 480
+        y: 1280
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 418314e2572cd7960800000000000000
-      internalID: 7601445554614253588
+      spriteID: ee3447bd3687ab9459476069c60af83c
+      internalID: -1254347016
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_4
+      name: Arthropleura_Head_Eat_Charred_0_4
       rect:
         serializedVersion: 2
-        x: 377
-        y: 1386
-        width: 16
-        height: 24
+        x: 640
+        y: 1280
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e7edcae36feaf2ac0800000000000000
-      internalID: -3877688381506003330
+      spriteID: fce1b1c81ec6b0542b721b9b8ef6522a
+      internalID: 2116007872
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_5
+      name: Arthropleura_Head_Eat_Charred_0_5
       rect:
         serializedVersion: 2
-        x: 412
-        y: 1393
-        width: 15
-        height: 19
+        x: 800
+        y: 1280
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 63732fb6590878140800000000000000
-      internalID: 4721884113570772790
+      spriteID: e040af5122d84ff4a82265495a1c0cde
+      internalID: 1255642387
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_6
+      name: Arthropleura_Head_Eat_Charred_0_6
       rect:
         serializedVersion: 2
-        x: 537
-        y: 1391
-        width: 14
-        height: 19
+        x: 960
+        y: 1280
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ae027416d9264ea80800000000000000
-      internalID: -8438511373704027926
+      spriteID: 1af4f51d879283a4d9764531df556478
+      internalID: 1240128929
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_7
+      name: Arthropleura_Head_Eat_Charred_0_7
       rect:
         serializedVersion: 2
-        x: 571
-        y: 1391
-        width: 15
-        height: 20
+        x: 1120
+        y: 1280
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b2379f024b587afd0800000000000000
-      internalID: -2330747273447115989
+      spriteID: fc8ee892b43ce8c4eb605c241ba8c546
+      internalID: 1284401071
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_8
+      name: Arthropleura_Head_Eat_Charred_1_0
       rect:
         serializedVersion: 2
-        x: 696
-        y: 1391
-        width: 15
-        height: 20
+        x: 0
+        y: 1120
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 64dd8bcd650451b10800000000000000
-      internalID: 1951536755349445958
+      spriteID: 48529071176ddaa4a916797ffe5911dd
+      internalID: 838079280
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_9
+      name: Arthropleura_Head_Eat_Charred_1_1
       rect:
         serializedVersion: 2
-        x: 729
-        y: 1391
-        width: 15
-        height: 20
+        x: 160
+        y: 1120
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 9753fe924524999b0800000000000000
-      internalID: -5072950576007924359
+      spriteID: 8e9272685210f584e9db026d979d2a7a
+      internalID: -370389550
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_10
+      name: Arthropleura_Head_Eat_Charred_1_2
       rect:
         serializedVersion: 2
-        x: 854
-        y: 1396
-        width: 12
-        height: 15
+        x: 320
+        y: 1120
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e554da5513c0265e0800000000000000
-      internalID: -1917957085276060322
+      spriteID: cca71009c58aec34790b028c12acb383
+      internalID: 793795082
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_11
+      name: Arthropleura_Head_Eat_Charred_1_3
       rect:
         serializedVersion: 2
-        x: 863
-        y: 1392
-        width: 6
-        height: 6
+        x: 480
+        y: 1120
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 086251722f934c050800000000000000
-      internalID: 5819840330670089856
+      spriteID: 5c08f116acc44b043a38e726fb4e779a
+      internalID: -651327677
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_12
+      name: Arthropleura_Head_Eat_Charred_1_4
       rect:
         serializedVersion: 2
-        x: 889
-        y: 1391
-        width: 14
-        height: 18
+        x: 640
+        y: 1120
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7fd6a4cb4e5e5d860800000000000000
-      internalID: 7554196720558173687
+      spriteID: 83b71e7c808049843bd9709398067c0f
+      internalID: -1739995954
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_13
+      name: Arthropleura_Head_Eat_Charred_1_5
       rect:
         serializedVersion: 2
-        x: 1013
-        y: 1392
-        width: 15
-        height: 20
+        x: 800
+        y: 1120
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e86db70aa85d07f80800000000000000
-      internalID: -8110748137519589746
+      spriteID: 640c84cf1d59ff24888bdc5577a3800b
+      internalID: -276551192
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_14
+      name: Arthropleura_Head_Eat_Charred_1_6
       rect:
         serializedVersion: 2
-        x: 1047
-        y: 1385
-        width: 16
-        height: 24
+        x: 960
+        y: 1120
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: fffb6ff3e67a3e1f0800000000000000
-      internalID: -1016784998894223361
+      spriteID: 6b41d188bc720f84090ec88d4d320e50
+      internalID: 1666889145
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_15
+      name: Arthropleura_Head_Eat_Charred_1_7
       rect:
         serializedVersion: 2
-        x: 1171
-        y: 1392
-        width: 16
-        height: 20
+        x: 1120
+        y: 1120
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 78a406351853c5c90800000000000000
-      internalID: -7179804876369540473
+      spriteID: 8367928a57ce17048992f922523db7b7
+      internalID: -1527022024
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_16
+      name: Arthropleura_Head_Eat_Charred_2_0
       rect:
         serializedVersion: 2
-        x: 1210
-        y: 1390
-        width: 14
-        height: 19
+        x: 0
+        y: 960
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 93e568acd5b6ce960800000000000000
-      internalID: 7632593519060082233
+      spriteID: 62e4924711236b54b92253af77d0a751
+      internalID: 1188941759
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_17
+      name: Arthropleura_Head_Eat_Charred_2_1
       rect:
         serializedVersion: 2
-        x: 43
-        y: 1337
-        width: 74
-        height: 50
+        x: 160
+        y: 960
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 99d2135c438bfbd30800000000000000
-      internalID: 4449477493651484057
+      spriteID: 39d6aeeaf01ca3143be9ee9e7a2067db
+      internalID: 1008316168
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_18
+      name: Arthropleura_Head_Eat_Charred_2_2
       rect:
         serializedVersion: 2
-        x: 66
-        y: 1386
-        width: 6
-        height: 7
+        x: 320
+        y: 960
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 5a131b6a6d7b03070800000000000000
-      internalID: 8084163463677555109
+      spriteID: 326a977d8e82ecc4d9d34cb59bf8b5eb
+      internalID: 411707487
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_19
+      name: Arthropleura_Head_Eat_Charred_2_3
       rect:
         serializedVersion: 2
-        x: 89
-        y: 1387
-        width: 6
-        height: 7
+        x: 480
+        y: 960
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7833403ada1b13220800000000000000
-      internalID: 2463945830470792071
+      spriteID: 0f269a6e6286f334496ae7c88a29308b
+      internalID: 268904106
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_20
+      name: Arthropleura_Head_Eat_Charred_2_4
       rect:
         serializedVersion: 2
-        x: 203
-        y: 1337
-        width: 74
-        height: 51
+        x: 640
+        y: 960
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 78afbfaddae0e4fd0800000000000000
-      internalID: -2355929415202112889
+      spriteID: 3371667acb260ac4a9d99ac6288ca987
+      internalID: 1460997171
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_21
+      name: Arthropleura_Head_Eat_Charred_2_5
       rect:
         serializedVersion: 2
-        x: 227
-        y: 1386
-        width: 6
-        height: 7
+        x: 800
+        y: 960
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 02405c4632f6bbaf0800000000000000
-      internalID: -379587545777503200
+      spriteID: 7280fda616deb234ab9e07d8af8f6787
+      internalID: -342920398
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_22
+      name: Arthropleura_Head_Eat_Charred_2_6
       rect:
         serializedVersion: 2
-        x: 249
-        y: 1387
-        width: 6
-        height: 7
+        x: 960
+        y: 960
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 770e3cdf2120624b0800000000000000
-      internalID: -5465678817177378697
+      spriteID: 3558cba28b3f7434e9660891d0cdfdee
+      internalID: -778293836
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_23
+      name: Arthropleura_Head_Eat_Charred_2_7
       rect:
         serializedVersion: 2
-        x: 363
-        y: 1337
-        width: 74
-        height: 50
+        x: 1120
+        y: 960
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2abf1535514e867a0800000000000000
-      internalID: -6383601691554350174
+      spriteID: 769b19bd450f1b54e9252bc711285dda
+      internalID: -434696056
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_24
+      name: Arthropleura_Head_Eat_Charred_3_0
       rect:
         serializedVersion: 2
-        x: 408
-        y: 1387
-        width: 7
-        height: 6
+        x: 0
+        y: 800
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: bee74ec521c85b640800000000000000
-      internalID: 5095132563935362795
+      spriteID: c1d67ad9656acbb49af54da1afc454ea
+      internalID: -2127743515
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_25
+      name: Arthropleura_Head_Eat_Charred_3_1
       rect:
         serializedVersion: 2
-        x: 523
-        y: 1337
-        width: 74
-        height: 55
+        x: 160
+        y: 800
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: cde23a0a4acff0e10800000000000000
-      internalID: 2166227729788382940
+      spriteID: 79d41f9471a2c034c8d750e981c88fd2
+      internalID: 1180775832
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_26
+      name: Arthropleura_Head_Eat_Charred_3_2
       rect:
         serializedVersion: 2
-        x: 568
-        y: 1386
-        width: 6
-        height: 7
+        x: 320
+        y: 800
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 06d40bd1e7cf3b740800000000000000
-      internalID: 5166750816118263136
+      spriteID: 0237f4c95b06d994197f0449caa2601a
+      internalID: -1282066004
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_27
+      name: Arthropleura_Head_Eat_Charred_3_3
       rect:
         serializedVersion: 2
-        x: 707
-        y: 1386
-        width: 6
-        height: 6
+        x: 480
+        y: 800
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 081f53005de095050800000000000000
-      internalID: 5789675103955841408
+      spriteID: 0ff48a0b7246d9e4d9f8165381b60268
+      internalID: -1554640986
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_28
+      name: Arthropleura_Head_Eat_Charred_3_4
       rect:
         serializedVersion: 2
-        x: 727
-        y: 1386
-        width: 6
-        height: 6
+        x: 640
+        y: 800
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 63f82490d9b5b4060800000000000000
-      internalID: 6938740380917731126
+      spriteID: 1c8f47be8a22b7546a9951aa21334b9b
+      internalID: -1925073591
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_29
+      name: Arthropleura_Head_Eat_Charred_3_5
       rect:
         serializedVersion: 2
-        x: 843
-        y: 1337
-        width: 74
-        height: 50
+        x: 800
+        y: 800
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 5ac362278b425b720800000000000000
-      internalID: 2861233512871509157
+      spriteID: 15a25e0cdb9521e42ba537a7aa137e4d
+      internalID: 470519104
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_30
+      name: Arthropleura_Head_Eat_Charred_3_6
       rect:
         serializedVersion: 2
-        x: 866
-        y: 1386
-        width: 6
-        height: 7
+        x: 960
+        y: 800
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: afd5c3b385d9312c0800000000000000
-      internalID: -4462049803517534726
+      spriteID: c45111e90e3df224db447ecad2bda186
+      internalID: -1385091248
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_31
+      name: Arthropleura_Head_Eat_Charred_3_7
       rect:
         serializedVersion: 2
-        x: 887
-        y: 1386
-        width: 6
-        height: 6
+        x: 1120
+        y: 800
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 955922f241aa4b1a0800000000000000
-      internalID: -6794618934128372391
+      spriteID: 9ea94dd334c66624eae3ed4b4690f610
+      internalID: 496774804
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_32
+      name: Arthropleura_Head_Eat_Charred_4_0
       rect:
         serializedVersion: 2
-        x: 1003
-        y: 1337
-        width: 74
-        height: 50
+        x: 0
+        y: 640
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: af3b2ff52e4482780800000000000000
-      internalID: -8707634140457815046
+      spriteID: c65c99ec1e3289945bd7f6513ece71bb
+      internalID: 332383167
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_33
+      name: Arthropleura_Head_Eat_Charred_4_1
       rect:
         serializedVersion: 2
-        x: 1025
-        y: 1387
-        width: 7
-        height: 6
+        x: 160
+        y: 640
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2c2d1843c03de09f0800000000000000
-      internalID: -500230459217554750
+      spriteID: f28a7f86b2c794948b1461b27e9a2ffb
+      internalID: -1003757641
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_34
+      name: Arthropleura_Head_Eat_Charred_4_2
       rect:
         serializedVersion: 2
-        x: 1163
-        y: 1338
-        width: 74
-        height: 53
+        x: 320
+        y: 640
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 1e9a8d8b209425b90800000000000000
-      internalID: -7254655773700478495
+      spriteID: 55cd2498f8cb0b142a2bbba699de74e2
+      internalID: 275046541
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_35
+      name: Arthropleura_Head_Eat_Charred_4_3
       rect:
         serializedVersion: 2
-        x: 1185
-        y: 1386
-        width: 6
-        height: 7
+        x: 480
+        y: 640
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 8cc31ef19b9a41090800000000000000
-      internalID: -8064634420144816952
+      spriteID: 62fe40be2cc2ad64ba88a743a8914f31
+      internalID: -858175839
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_36
+      name: Arthropleura_Head_Eat_Charred_4_4
       rect:
         serializedVersion: 2
-        x: 683
-        y: 1337
-        width: 74
-        height: 49
+        x: 640
+        y: 640
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a91aee9754de8a160800000000000000
-      internalID: 7037135300420608410
+      spriteID: 3a82c63447b346b4395cb23af7e4c016
+      internalID: 664166731
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_37
+      name: Arthropleura_Head_Eat_Charred_4_5
       rect:
         serializedVersion: 2
-        x: 34
-        y: 1168
-        width: 75
-        height: 87
+        x: 800
+        y: 640
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: cc3eb8130fe544490800000000000000
-      internalID: -7762975471963479092
+      spriteID: dda5f8408c4b6dc428ce288cdbc8e0fe
+      internalID: -1435205746
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_38
+      name: Arthropleura_Head_Eat_Charred_4_6
       rect:
         serializedVersion: 2
-        x: 105
-        y: 1226
-        width: 22
-        height: 15
+        x: 960
+        y: 640
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a0b24fec6599dc700800000000000000
-      internalID: 562274126609525514
+      spriteID: 2770a2e1ff3617240935ce9f1d228274
+      internalID: -836629380
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_39
+      name: Arthropleura_Head_Eat_Charred_4_7
       rect:
         serializedVersion: 2
-        x: 194
-        y: 1167
-        width: 76
-        height: 88
+        x: 1120
+        y: 640
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6c695211f7cca4ed0800000000000000
-      internalID: -2428904202892372282
+      spriteID: f7d74c1125f32294193b6dc105eaaeb7
+      internalID: -271682724
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_40
+      name: Arthropleura_Head_Eat_Charred_5_0
       rect:
         serializedVersion: 2
-        x: 265
-        y: 1226
-        width: 6
-        height: 6
+        x: 0
+        y: 480
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 33cf5b99cb3c9e250800000000000000
-      internalID: 5974521595483782195
+      spriteID: 3efd62ea3a0cfb44ab2d3648e4744225
+      internalID: 263457624
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_41
+      name: Arthropleura_Head_Eat_Charred_5_1
       rect:
         serializedVersion: 2
-        x: 271
-        y: 1230
-        width: 17
-        height: 11
+        x: 160
+        y: 480
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: da60c7f2a4c4d6db0800000000000000
-      internalID: -4797094146571762003
+      spriteID: 9a7af80ff4402de47bdd95a406ad64bc
+      internalID: -2014852095
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_42
+      name: Arthropleura_Head_Eat_Charred_5_2
       rect:
         serializedVersion: 2
-        x: 354
-        y: 1168
-        width: 75
-        height: 86
+        x: 320
+        y: 480
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 79de2bb0584a565f0800000000000000
-      internalID: -764023670435549801
+      spriteID: e2cf04f36771dfd4c88b7d9f93dcc9e4
+      internalID: 2057646085
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_43
+      name: Arthropleura_Head_Eat_Charred_5_3
       rect:
         serializedVersion: 2
-        x: 424
-        y: 1226
-        width: 6
-        height: 6
+        x: 480
+        y: 480
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0a66ac77ac27a6de0800000000000000
-      internalID: -1339131725270587744
+      spriteID: 31a738e5e974b85429dd39255b34802c
+      internalID: 1959957294
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_44
+      name: Arthropleura_Head_Eat_Charred_5_4
       rect:
         serializedVersion: 2
-        x: 429
-        y: 1229
-        width: 6
-        height: 6
+        x: 640
+        y: 480
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7319791747bf2ebe0800000000000000
-      internalID: -1449319652519341769
+      spriteID: 0d0caddfc9ff6fe4a9bcec36a8e29c7b
+      internalID: -1997273148
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_45
+      name: Arthropleura_Head_Eat_Charred_5_5
       rect:
         serializedVersion: 2
-        x: 434
-        y: 1232
-        width: 14
-        height: 9
+        x: 800
+        y: 480
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f23c6e8256449de50800000000000000
-      internalID: 6834569110780035887
+      spriteID: 26102fc1109e7354e90f207ff7619bee
+      internalID: 2004412882
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_46
+      name: Arthropleura_Head_Eat_Charred_5_6
       rect:
         serializedVersion: 2
-        x: 514
-        y: 1168
-        width: 75
-        height: 86
+        x: 960
+        y: 480
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 902c73a14ba20e0e0800000000000000
-      internalID: -2242745661408165367
+      spriteID: 6220be59078920d4981788d8541d10a8
+      internalID: 433237126
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_47
+      name: Arthropleura_Head_Eat_Charred_5_7
       rect:
         serializedVersion: 2
-        x: 582
-        y: 1225
-        width: 7
-        height: 7
+        x: 1120
+        y: 480
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 9adc01ee611c8abf0800000000000000
-      internalID: -312787869874729559
+      spriteID: 7eac44f137cb00543b5898bfb0822f85
+      internalID: 523997140
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_48
+      name: Arthropleura_Head_Eat_Charred_6_0
       rect:
         serializedVersion: 2
-        x: 587
-        y: 1229
-        width: 17
-        height: 11
+        x: 0
+        y: 320
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 00dfbf92fed1ea460800000000000000
-      internalID: 7254768962779217152
+      spriteID: a0cce64319b892945aa958830ef2ea11
+      internalID: 1020571466
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_49
+      name: Arthropleura_Head_Eat_Charred_6_1
       rect:
         serializedVersion: 2
-        x: 674
-        y: 1168
-        width: 77
-        height: 85
+        x: 160
+        y: 320
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7c0b77a2c9a88a590800000000000000
-      internalID: -7662722362638880569
+      spriteID: 19edec46e3f98ed458560f3b06e7a0ac
+      internalID: -383051782
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_50
+      name: Arthropleura_Head_Eat_Charred_6_2
       rect:
         serializedVersion: 2
-        x: 749
-        y: 1231
-        width: 13
-        height: 9
+        x: 320
+        y: 320
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 941b4ac92b2623550800000000000000
-      internalID: 6139077761331147081
+      spriteID: e7cb3c789aeb74841867fbf1e9b43d24
+      internalID: 1393555972
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_51
+      name: Arthropleura_Head_Eat_Charred_6_3
       rect:
         serializedVersion: 2
-        x: 834
-        y: 1168
-        width: 87
-        height: 87
+        x: 480
+        y: 320
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 1e9a38472a8145510800000000000000
-      internalID: 1536880458858736097
+      spriteID: 0e461ae7527a43e479c5dac5272ceec3
+      internalID: -1047189012
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_52
+      name: Arthropleura_Head_Eat_Charred_6_4
       rect:
         serializedVersion: 2
-        x: 1035
-        y: 1229
-        width: 8
-        height: 27
+        x: 640
+        y: 320
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a7281025ba68bd1e0800000000000000
-      internalID: -2171994324902772102
+      spriteID: b09ef1cb505794d439e0c5da944c1a72
+      internalID: -669202924
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_53
+      name: Arthropleura_Head_Eat_Charred_6_5
       rect:
         serializedVersion: 2
-        x: 1064
-        y: 1228
-        width: 17
-        height: 12
+        x: 800
+        y: 320
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2e75fc722f2cdf390800000000000000
-      internalID: -7782850235720575006
+      spriteID: c4efa5da4c3f20f4886aa988119cdac9
+      internalID: 2018498273
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_54
+      name: Arthropleura_Head_Eat_Charred_6_6
       rect:
         serializedVersion: 2
-        x: 1194
-        y: 1229
-        width: 8
-        height: 28
+        x: 960
+        y: 320
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 06a128fba75c64410800000000000000
-      internalID: 1461072260117961312
+      spriteID: fb98dd8a206a9904da1c9ef9d856c1c0
+      internalID: 1990782621
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_55
+      name: Arthropleura_Head_Eat_Charred_6_7
       rect:
         serializedVersion: 2
-        x: 1225
-        y: 1228
-        width: 17
-        height: 11
+        x: 1120
+        y: 320
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 87493bb8aef512990800000000000000
-      internalID: -7412538050704337800
+      spriteID: e54ad70d838ded74c8e3e06194671176
+      internalID: 1700423211
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_56
+      name: Arthropleura_Head_Eat_Charred_7_0
       rect:
         serializedVersion: 2
-        x: 259
-        y: 1222
-        width: 7
-        height: 6
+        x: 0
+        y: 160
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 05f73dbd7a3a11e70800000000000000
-      internalID: 9084221864725938000
+      spriteID: 440cad9ad4e03474096eef7e0ff4da87
+      internalID: -1075977471
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_57
+      name: Arthropleura_Head_Eat_Charred_7_1
       rect:
         serializedVersion: 2
-        x: 418
-        y: 1221
-        width: 7
-        height: 7
+        x: 160
+        y: 160
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: accdd0ba8188e5f30800000000000000
-      internalID: 4566236711730666698
+      spriteID: 8bf0b78fdcd578140b8896ec239eaacc
+      internalID: -1829664609
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_58
+      name: Arthropleura_Head_Eat_Charred_7_2
       rect:
         serializedVersion: 2
-        x: 577
-        y: 1221
-        width: 7
-        height: 7
+        x: 320
+        y: 160
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: dae95c2b1e66fcef0800000000000000
-      internalID: -85736748343779667
+      spriteID: 81819827b78b4c84fa2ea49fdaa36089
+      internalID: 439216901
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_59
+      name: Arthropleura_Head_Eat_Charred_7_3
       rect:
         serializedVersion: 2
-        x: 741
-        y: 1225
-        width: 6
-        height: 6
+        x: 480
+        y: 160
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d01ee353056ac8c40800000000000000
-      internalID: 5515966507042922765
+      spriteID: d9cfdabfc76cc6f44aeced06e30e1c63
+      internalID: 706508447
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_60
+      name: Arthropleura_Head_Eat_Charred_7_4
       rect:
         serializedVersion: 2
-        x: 900
-        y: 1225
-        width: 6
-        height: 6
+        x: 640
+        y: 160
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: bff5ce9433d57e830800000000000000
-      internalID: 4100348460609069051
+      spriteID: 53fe5d44e3e162f4db2fb1b20e68903e
+      internalID: -10818810
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_61
+      name: Arthropleura_Head_Eat_Charred_7_5
       rect:
         serializedVersion: 2
-        x: 994
-        y: 1168
-        width: 75
-        height: 60
+        x: 800
+        y: 160
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0291f76e6d1024f50800000000000000
-      internalID: 6864050804567775520
+      spriteID: 23091189bbbc1674596821cefb74a45e
+      internalID: 1179632631
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_62
+      name: Arthropleura_Head_Eat_Charred_7_6
       rect:
         serializedVersion: 2
-        x: 1060
-        y: 1225
-        width: 6
-        height: 6
+        x: 960
+        y: 160
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 55aeefa1ca130f140800000000000000
-      internalID: 4751352222132922965
+      spriteID: 79b53fb571636744285351b5d9a0f5a1
+      internalID: 1019819947
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_63
+      name: Arthropleura_Head_Eat_Charred_7_7
       rect:
         serializedVersion: 2
-        x: 1154
-        y: 1168
-        width: 75
-        height: 63
+        x: 1120
+        y: 160
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: cea51e6d6f42ed430800000000000000
-      internalID: 3809522977387666156
+      spriteID: 068cee49ac3696046a28fb4c71f8688f
+      internalID: 1805378979
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_64
+      name: Arthropleura_Head_Eat_Charred_8_0
       rect:
         serializedVersion: 2
-        x: 90
-        y: 1072
-        width: 13
-        height: 20
+        x: 0
+        y: 0
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 63634823a8f55a020800000000000000
-      internalID: 2352391427528603190
+      spriteID: fa286aff47993b049ab4e57c9bcc6d94
+      internalID: -1669384285
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_65
+      name: Arthropleura_Head_Eat_Charred_8_1
       rect:
         serializedVersion: 2
-        x: 251
-        y: 1071
-        width: 6
-        height: 6
+        x: 160
+        y: 0
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a491c78154fce6820800000000000000
-      internalID: 2913493904625768778
+      spriteID: bfb89e27626e20044bb5a8533526cbce
+      internalID: 672414830
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_66
+      name: Arthropleura_Head_Eat_Charred_8_2
       rect:
         serializedVersion: 2
-        x: 253
-        y: 1076
-        width: 11
-        height: 14
+        x: 320
+        y: 0
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6d699f24025451c30800000000000000
-      internalID: 4329442621651523286
+      spriteID: dcc718fae2366024481b4bbcd0822f7c
+      internalID: 173081374
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_67
+      name: Arthropleura_Head_Eat_Charred_8_3
       rect:
         serializedVersion: 2
-        x: 409
-        y: 1065
-        width: 8
-        height: 11
+        x: 480
+        y: 0
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ba8831cb9ab667af0800000000000000
-      internalID: -399013140226668373
+      spriteID: b74cfbbd3ce0f364d809931ffc532d10
+      internalID: 259613314
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_68
+      name: Arthropleura_Head_Eat_Charred_8_4
       rect:
         serializedVersion: 2
-        x: 413
-        y: 1076
-        width: 11
-        height: 13
+        x: 640
+        y: 0
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0f9ea8d9dfab79a10800000000000000
-      internalID: 1916205764902054384
+      spriteID: 489e98fc4c9ac2d4bb007908f98d2805
+      internalID: -1325204848
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_69
+      name: Arthropleura_Head_Eat_Charred_8_5
       rect:
         serializedVersion: 2
-        x: 569
-        y: 1065
-        width: 16
-        height: 25
+        x: 800
+        y: 0
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 3a1d784b3f93b78f0800000000000000
-      internalID: -541775611299376733
+      spriteID: 3370f4919b3d41c45a092f9762ed2d3d
+      internalID: -98291087
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_70
+      name: Arthropleura_Head_Eat_Charred_8_6
       rect:
         serializedVersion: 2
-        x: 729
-        y: 1065
-        width: 16
-        height: 26
+        x: 960
+        y: 0
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: be156c55ecad0b5c0800000000000000
-      internalID: -4201617872599494165
+      spriteID: b52fa338e22a42342aea3d3bcb3d8e9f
+      internalID: -974278929
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_71
+      name: Arthropleura_Head_Eat_Charred_8_7
       rect:
         serializedVersion: 2
-        x: 890
-        y: 1072
-        width: 14
-        height: 21
+        x: 1120
+        y: 0
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f55bef26d4d3aca60800000000000000
-      internalID: 7695030315898549599
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_72
-      rect:
-        serializedVersion: 2
-        x: 1048
-        y: 1067
-        width: 14
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 366214083fea9eaa0800000000000000
-      internalID: -6131177056836180381
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_73
-      rect:
-        serializedVersion: 2
-        x: 1207
-        y: 1067
-        width: 16
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: bd6d6ea8838518eb0800000000000000
-      internalID: -4719393934635772197
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_74
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 1004
-        width: 77
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 702ce56227cbd3650800000000000000
-      internalID: 6214330259297190407
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_75
-      rect:
-        serializedVersion: 2
-        x: 88
-        y: 1066
-        width: 6
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d4f587555576dca70800000000000000
-      internalID: 8848842459056725837
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_76
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 1003
-        width: 78
-        height: 69
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: bcf7edafa7ec190b0800000000000000
-      internalID: -5723566623820972085
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_77
-      rect:
-        serializedVersion: 2
-        x: 352
-        y: 1003
-        width: 78
-        height: 65
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 93de322d74e244ce0800000000000000
-      internalID: -1421960696339108551
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_78
-      rect:
-        serializedVersion: 2
-        x: 512
-        y: 1004
-        width: 77
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c61d24a3f4d9ad570800000000000000
-      internalID: 8492273010965926252
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_79
-      rect:
-        serializedVersion: 2
-        x: 672
-        y: 1003
-        width: 104
-        height: 65
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8a7ef2e93632f3320800000000000000
-      internalID: 2539787625622923176
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_80
-      rect:
-        serializedVersion: 2
-        x: 832
-        y: 1004
-        width: 103
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 33ca43630b70c8ad0800000000000000
-      internalID: -2698773623296709581
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_81
-      rect:
-        serializedVersion: 2
-        x: 888
-        y: 1066
-        width: 6
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f21dbbe5c61f0d6c0800000000000000
-      internalID: -4120528211295874769
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_82
-      rect:
-        serializedVersion: 2
-        x: 992
-        y: 1004
-        width: 101
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d5dc3f4af4972f040800000000000000
-      internalID: 4679936345768185181
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_83
-      rect:
-        serializedVersion: 2
-        x: 1152
-        y: 1004
-        width: 101
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 17a363cf6eb12e800800000000000000
-      internalID: 640104775927872113
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_84
-      rect:
-        serializedVersion: 2
-        x: 105
-        y: 1053
-        width: 13
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: aa21b95b88d55d6f0800000000000000
-      internalID: -660518928596135254
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_85
-      rect:
-        serializedVersion: 2
-        x: 119
-        y: 1057
-        width: 20
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a22194064a4e28e20800000000000000
-      internalID: 3351492467358241322
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_86
-      rect:
-        serializedVersion: 2
-        x: 266
-        y: 1053
-        width: 7
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 060fe8c0a8e511be0800000000000000
-      internalID: -1508320453183213472
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_87
-      rect:
-        serializedVersion: 2
-        x: 273
-        y: 1056
-        width: 27
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 906ca308bd41e6710800000000000000
-      internalID: 1688309843292243465
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_88
-      rect:
-        serializedVersion: 2
-        x: 425
-        y: 1053
-        width: 13
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c5a1ca3cb5f533f20800000000000000
-      internalID: 3401166991324355164
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_89
-      rect:
-        serializedVersion: 2
-        x: 438
-        y: 1057
-        width: 21
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a2a020b482c466e70800000000000000
-      internalID: 9108051032344234538
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_90
-      rect:
-        serializedVersion: 2
-        x: 583
-        y: 1054
-        width: 7
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3b8dcfcda2faa9770800000000000000
-      internalID: 8618393435557910707
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_91
-      rect:
-        serializedVersion: 2
-        x: 590
-        y: 1056
-        width: 28
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 31ce33c650e08e2a0800000000000000
-      internalID: -6708096228515386349
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_92
-      rect:
-        serializedVersion: 2
-        x: 102
-        y: 906
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 139e753baa1d90b60800000000000000
-      internalID: 7712926367932213553
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_93
-      rect:
-        serializedVersion: 2
-        x: 106
-        y: 910
-        width: 16
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7b860aade5ca4eb90800000000000000
-      internalID: -7213451179745843017
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_94
-      rect:
-        serializedVersion: 2
-        x: 198
-        y: 845
-        width: 87
-        height: 75
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e1b751f0210e20ea0800000000000000
-      internalID: -5907913392989570274
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_95
-      rect:
-        serializedVersion: 2
-        x: 422
-        y: 904
-        width: 22
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8f96fb688648abea0800000000000000
-      internalID: -5856222780969752072
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_96
-      rect:
-        serializedVersion: 2
-        x: 518
-        y: 845
-        width: 97
-        height: 74
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f0d5b3983588dd4f0800000000000000
-      internalID: -802335266236048113
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_97
-      rect:
-        serializedVersion: 2
-        x: 745
-        y: 908
-        width: 17
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9ca639e6b0af84e70800000000000000
-      internalID: 9099797974108826313
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_98
-      rect:
-        serializedVersion: 2
-        x: 902
-        y: 906
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a8f23cc5ffdfb08e0800000000000000
-      internalID: -1726006758951669878
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_99
-      rect:
-        serializedVersion: 2
-        x: 906
-        y: 910
-        width: 16
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: beb7a52bec506a630800000000000000
-      internalID: 3937841309495753707
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_100
-      rect:
-        serializedVersion: 2
-        x: 1062
-        y: 907
-        width: 22
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5a64e44fd6ae62800800000000000000
-      internalID: 587414559389533861
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_101
-      rect:
-        serializedVersion: 2
-        x: 1221
-        y: 908
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3643abe87ee1fc6b0800000000000000
-      internalID: -5273962658746715037
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_102
-      rect:
-        serializedVersion: 2
-        x: 1225
-        y: 912
-        width: 17
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 392b46d9c07496af0800000000000000
-      internalID: -402712572167146861
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_103
-      rect:
-        serializedVersion: 2
-        x: 38
-        y: 845
-        width: 68
-        height: 63
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a308bb5b3ca123b30800000000000000
-      internalID: 4265501224943190074
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_104
-      rect:
-        serializedVersion: 2
-        x: 358
-        y: 845
-        width: 69
-        height: 63
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 945337e132b4fdd50800000000000000
-      internalID: 6764207779540579657
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_105
-      rect:
-        serializedVersion: 2
-        x: 678
-        y: 845
-        width: 72
-        height: 65
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 83e4386b32d16fec0800000000000000
-      internalID: -3533604818402456008
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_106
-      rect:
-        serializedVersion: 2
-        x: 838
-        y: 845
-        width: 99
-        height: 63
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 08f86454e225d0980800000000000000
-      internalID: -8571104157131960448
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_107
-      rect:
-        serializedVersion: 2
-        x: 998
-        y: 845
-        width: 101
-        height: 63
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2e66c19fe571ee120800000000000000
-      internalID: 2444917344382510818
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_108
-      rect:
-        serializedVersion: 2
-        x: 1158
-        y: 845
-        width: 101
-        height: 63
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 20b6306da6bcc13c0800000000000000
-      internalID: -4387408277248185598
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_109
-      rect:
-        serializedVersion: 2
-        x: 1217
-        y: 902
-        width: 6
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d8fb4b9234ebf4470800000000000000
-      internalID: 8381126627231580045
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_110
-      rect:
-        serializedVersion: 2
-        x: 107
-        y: 884
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3bfedab38a116bfd0800000000000000
-      internalID: -2326652743236849741
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_111
-      rect:
-        serializedVersion: 2
-        x: 114
-        y: 880
-        width: 31
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6a4acdb6997cabb40800000000000000
-      internalID: 5456893360266323110
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_112
-      rect:
-        serializedVersion: 2
-        x: 282
-        y: 880
-        width: 22
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d3ce427969fa27b20800000000000000
-      internalID: 3130757752291650621
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_113
-      rect:
-        serializedVersion: 2
-        x: 427
-        y: 884
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3e155756da4f5f330800000000000000
-      internalID: 3744167690797142499
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_114
-      rect:
-        serializedVersion: 2
-        x: 434
-        y: 880
-        width: 30
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 22b12aa1499a0a9f0800000000000000
-      internalID: -459180708424705246
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_115
-      rect:
-        serializedVersion: 2
-        x: 615
-        y: 881
-        width: 7
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3a42717789a7334a0800000000000000
-      internalID: -6614808632425503581
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_116
-      rect:
-        serializedVersion: 2
-        x: 751
-        y: 883
-        width: 27
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5bb47f0498b987fb0800000000000000
-      internalID: -4649795601457263691
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_117
-      rect:
-        serializedVersion: 2
-        x: 49
-        y: 692
-        width: 56
-        height: 62
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 89977000c1974c670800000000000000
-      internalID: 8558098353077320088
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_118
-      rect:
-        serializedVersion: 2
-        x: 110
-        y: 736
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: edacb99ce495a6c60800000000000000
-      internalID: 7812154698552298206
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_119
-      rect:
-        serializedVersion: 2
-        x: 115
-        y: 739
-        width: 20
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3aea82e9cb2ffa850800000000000000
-      internalID: 6390593288183262883
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_120
-      rect:
-        serializedVersion: 2
-        x: 209
-        y: 691
-        width: 62
-        height: 63
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0d523bf6432cb0830800000000000000
-      internalID: 4038535021335881168
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_121
-      rect:
-        serializedVersion: 2
-        x: 270
-        y: 735
-        width: 25
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 85666c0247147f000800000000000000
-      internalID: 69596286269417048
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_122
-      rect:
-        serializedVersion: 2
-        x: 369
-        y: 692
-        width: 56
-        height: 62
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 38978b3d9038069b0800000000000000
-      internalID: -5088923500698633853
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_123
-      rect:
-        serializedVersion: 2
-        x: 429
-        y: 734
-        width: 27
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e78c9d363c9b2d660800000000000000
-      internalID: 7409188585822865534
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_124
-      rect:
-        serializedVersion: 2
-        x: 529
-        y: 692
-        width: 61
-        height: 62
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 01c3a95f3fe2a5fc0800000000000000
-      internalID: -3505437734622053360
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_125
-      rect:
-        serializedVersion: 2
-        x: 588
-        y: 735
-        width: 25
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 14bec1ea41d8e7250800000000000000
-      internalID: 5944343678135626561
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_126
-      rect:
-        serializedVersion: 2
-        x: 689
-        y: 692
-        width: 71
-        height: 62
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 26d01ecc6db2e3a30800000000000000
-      internalID: 4196840104316177762
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_127
-      rect:
-        serializedVersion: 2
-        x: 749
-        y: 735
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6375e2e52dddfbed0800000000000000
-      internalID: -2395952581144848586
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_128
-      rect:
-        serializedVersion: 2
-        x: 754
-        y: 737
-        width: 22
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7138bb550e6831a40800000000000000
-      internalID: 5337758281433318167
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_129
-      rect:
-        serializedVersion: 2
-        x: 849
-        y: 692
-        width: 70
-        height: 62
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 84b9af60a54c149a0800000000000000
-      internalID: -6250498916870350008
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_130
-      rect:
-        serializedVersion: 2
-        x: 910
-        y: 736
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 42654b78d80198080800000000000000
-      internalID: -9184791764992240092
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_131
-      rect:
-        serializedVersion: 2
-        x: 915
-        y: 739
-        width: 20
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 979cfd502443b2e90800000000000000
-      internalID: -7049483333547341447
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_132
-      rect:
-        serializedVersion: 2
-        x: 1009
-        y: 692
-        width: 70
-        height: 62
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c88edf228bca94210800000000000000
-      internalID: 1317774272843606156
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_133
-      rect:
-        serializedVersion: 2
-        x: 1064
-        y: 734
-        width: 32
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b04a4909ebab61100800000000000000
-      internalID: 78455371157775371
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_134
-      rect:
-        serializedVersion: 2
-        x: 1169
-        y: 692
-        width: 86
-        height: 62
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 458cc265b3ec23770800000000000000
-      internalID: 8589154193593124948
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_135
-      rect:
-        serializedVersion: 2
-        x: 1224
-        y: 734
-        width: 6
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1199ba61fe442e120800000000000000
-      internalID: 2441589741656447249
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_136
-      rect:
-        serializedVersion: 2
-        x: 1230
-        y: 738
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c0a8d186d908f5e00800000000000000
-      internalID: 1035687852863490572
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_137
-      rect:
-        serializedVersion: 2
-        x: 1236
-        y: 741
-        width: 22
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 42b681a0705161a00800000000000000
-      internalID: 726791509845240612
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_138
-      rect:
-        serializedVersion: 2
-        x: 103
-        y: 733
-        width: 8
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a58518e957c219ce0800000000000000
-      internalID: -1400289125453440934
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_139
-      rect:
-        serializedVersion: 2
-        x: 264
-        y: 732
-        width: 7
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 083f1ee34264d2840800000000000000
-      internalID: 5200890266170553216
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_140
-      rect:
-        serializedVersion: 2
-        x: 423
-        y: 732
-        width: 7
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 197929f3589aba2b0800000000000000
-      internalID: -5572173724178540655
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_141
-      rect:
-        serializedVersion: 2
-        x: 583
-        y: 732
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 948623e759c399c10800000000000000
-      internalID: 2060744917263738953
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_142
-      rect:
-        serializedVersion: 2
-        x: 743
-        y: 732
-        width: 7
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b414cfff024206240800000000000000
-      internalID: 4782862528419742027
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_143
-      rect:
-        serializedVersion: 2
-        x: 903
-        y: 733
-        width: 7
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: dd669aeaed94f0460800000000000000
-      internalID: 7210062749205358301
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_144
-      rect:
-        serializedVersion: 2
-        x: 104
-        y: 714
-        width: 7
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 58af68c97737a4060800000000000000
-      internalID: 6938485133482064517
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_145
-      rect:
-        serializedVersion: 2
-        x: 111
-        y: 710
-        width: 11
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e945b4cd831573b30800000000000000
-      internalID: 4266968476612777118
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_146
-      rect:
-        serializedVersion: 2
-        x: 272
-        y: 712
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 081afc47e37e36cc0800000000000000
-      internalID: -3718874611844144768
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_147
-      rect:
-        serializedVersion: 2
-        x: 278
-        y: 709
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 16772127781e941b0800000000000000
-      internalID: -5671754283845781663
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_148
-      rect:
-        serializedVersion: 2
-        x: 424
-        y: 714
-        width: 7
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8cfe9929fdac20660800000000000000
-      internalID: 7350660603408150472
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_149
-      rect:
-        serializedVersion: 2
-        x: 431
-        y: 701
-        width: 28
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 07fe6f2427142a740800000000000000
-      internalID: 5161760081925566320
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_150
-      rect:
-        serializedVersion: 2
-        x: 589
-        y: 714
-        width: 7
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1ef1a319d1fed5bc0800000000000000
-      internalID: -3792612400906493983
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_151
-      rect:
-        serializedVersion: 2
-        x: 595
-        y: 704
-        width: 20
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ae271de239f9d2f20800000000000000
-      internalID: 3399548748229079786
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_152
-      rect:
-        serializedVersion: 2
-        x: 759
-        y: 704
-        width: 17
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 516091b0757d327f0800000000000000
-      internalID: -638429953308162539
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_153
-      rect:
-        serializedVersion: 2
-        x: 918
-        y: 705
-        width: 17
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 62b28c6f8d4ef1930800000000000000
-      internalID: 4116260204944304934
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_154
-      rect:
-        serializedVersion: 2
-        x: 1078
-        y: 705
-        width: 17
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d84f3f606f08175b0800000000000000
-      internalID: -5372371086309329779
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_155
-      rect:
-        serializedVersion: 2
-        x: 122
-        y: 707
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3be5408550bf83b60800000000000000
-      internalID: 7726201161124175539
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_156
-      rect:
-        serializedVersion: 2
-        x: 127
-        y: 700
-        width: 12
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 487e1ded9a99676e0800000000000000
-      internalID: -1840114442867447932
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_157
-      rect:
-        serializedVersion: 2
-        x: 283
-        y: 701
-        width: 15
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ef02f015701842550800000000000000
-      internalID: 6135170460810158334
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_158
-      rect:
-        serializedVersion: 2
-        x: 38
-        y: 539
-        width: 69
-        height: 62
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 379b961115198cec0800000000000000
-      internalID: -3546424929183745677
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_159
-      rect:
-        serializedVersion: 2
-        x: 106
-        y: 564
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e266add247cfa75d0800000000000000
-      internalID: -3063859020556507602
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_160
-      rect:
-        serializedVersion: 2
-        x: 112
-        y: 565
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d2b3581418b1741e0800000000000000
-      internalID: -2213770449865327827
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_161
-      rect:
-        serializedVersion: 2
-        x: 119
-        y: 563
-        width: 23
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0ddd19c6edd113e70800000000000000
-      internalID: 9093081963779186128
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_162
-      rect:
-        serializedVersion: 2
-        x: 198
-        y: 523
-        width: 103
-        height: 77
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6006ea96cba917d00800000000000000
-      internalID: 968725528878931974
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_163
-      rect:
-        serializedVersion: 2
-        x: 358
-        y: 539
-        width: 69
-        height: 62
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 132bf7ccbff6b20d0800000000000000
-      internalID: -3446537962563587535
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_164
-      rect:
-        serializedVersion: 2
-        x: 425
-        y: 561
-        width: 35
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7224fab393838ea60800000000000000
-      internalID: 7703468981082866215
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_165
-      rect:
-        serializedVersion: 2
-        x: 518
-        y: 527
-        width: 99
-        height: 74
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: bc1fc76e69b6e55b0800000000000000
-      internalID: -5377742609177579061
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_166
-      rect:
-        serializedVersion: 2
-        x: 678
-        y: 539
-        width: 69
-        height: 62
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 509c79068baa80f20800000000000000
-      internalID: 3389146428467562757
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_167
-      rect:
-        serializedVersion: 2
-        x: 745
-        y: 562
-        width: 35
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ab6eac16bb3a9aab0800000000000000
-      internalID: -4996282286395955526
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_168
-      rect:
-        serializedVersion: 2
-        x: 838
-        y: 539
-        width: 73
-        height: 62
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 49d7105842cb49770800000000000000
-      internalID: 8616718852102913428
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_169
-      rect:
-        serializedVersion: 2
-        x: 912
-        y: 565
-        width: 12
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5e11bd036adfb6f60800000000000000
-      internalID: 8028789650944102885
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_170
-      rect:
-        serializedVersion: 2
-        x: 925
-        y: 563
-        width: 17
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7be3438fd06fe2a20800000000000000
-      internalID: 3039637338380844727
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_171
-      rect:
-        serializedVersion: 2
-        x: 998
-        y: 539
-        width: 69
-        height: 62
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 180d39520a3bf2a90800000000000000
-      internalID: -7336447767556665215
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_172
-      rect:
-        serializedVersion: 2
-        x: 1066
-        y: 564
-        width: 6
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b29b7db015eadb0d0800000000000000
-      internalID: -3405374080107955925
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_173
-      rect:
-        serializedVersion: 2
-        x: 1073
-        y: 564
-        width: 31
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a2f42f9233897edf0800000000000000
-      internalID: -150984716979122390
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_174
-      rect:
-        serializedVersion: 2
-        x: 1158
-        y: 540
-        width: 68
-        height: 61
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b668cb6759a6a61a0800000000000000
-      internalID: -6815517895897086357
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_175
-      rect:
-        serializedVersion: 2
-        x: 1226
-        y: 565
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6b149553ef7956910800000000000000
-      internalID: 1830035941668503990
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_176
-      rect:
-        serializedVersion: 2
-        x: 1233
-        y: 566
-        width: 31
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e3f3591198c8ae170800000000000000
-      internalID: 8208527791169552190
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_177
-      rect:
-        serializedVersion: 2
-        x: 102
-        y: 543
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a8a6a99cefda4b8f0800000000000000
-      internalID: -525603946679866742
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_178
-      rect:
-        serializedVersion: 2
-        x: 106
-        y: 524
-        width: 18
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1addd1770a8990040800000000000000
-      internalID: 4614387108178419105
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_179
-      rect:
-        serializedVersion: 2
-        x: 263
-        y: 542
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 401e9976b3f762600800000000000000
-      internalID: 443181506460508420
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_180
-      rect:
-        serializedVersion: 2
-        x: 267
-        y: 538
-        width: 7
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ee404d9f691703770800000000000000
-      internalID: 8588489382645990638
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_181
-      rect:
-        serializedVersion: 2
-        x: 422
-        y: 543
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ea75eb9138d11b220800000000000000
-      internalID: 2499811717077161902
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_182
-      rect:
-        serializedVersion: 2
-        x: 426
-        y: 539
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7006258d1888a4630800000000000000
-      internalID: 3912089317586132999
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_183
-      rect:
-        serializedVersion: 2
-        x: 745
-        y: 542
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c2eba7d94d0bc4200800000000000000
-      internalID: 165701713527488044
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_184
-      rect:
-        serializedVersion: 2
-        x: 749
-        y: 528
-        width: 14
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3ff379583eef27fe0800000000000000
-      internalID: -1192610698147446797
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_185
-      rect:
-        serializedVersion: 2
-        x: 905
-        y: 543
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 859d205e98cc30c30800000000000000
-      internalID: 4324524959830563160
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_186
-      rect:
-        serializedVersion: 2
-        x: 909
-        y: 530
-        width: 14
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3f5315e7cd4b1dad0800000000000000
-      internalID: -2679161444203678221
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_187
-      rect:
-        serializedVersion: 2
-        x: 1065
-        y: 530
-        width: 18
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: daabe86933273d570800000000000000
-      internalID: 8490255288418351789
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_188
-      rect:
-        serializedVersion: 2
-        x: 1224
-        y: 543
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a97024eaf961e0050800000000000000
-      internalID: 5768573047787358106
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_189
-      rect:
-        serializedVersion: 2
-        x: 1228
-        y: 529
-        width: 14
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 80697d6a8f9e5a380800000000000000
-      internalID: -8960498629423426040
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_190
-      rect:
-        serializedVersion: 2
-        x: 430
-        y: 525
-        width: 15
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: bb33aa15385da4810800000000000000
-      internalID: 1750446165174399931
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_191
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 379
-        width: 83
-        height: 63
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 20733e960ae1c6b50800000000000000
-      internalID: 6587674029256292098
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_192
-      rect:
-        serializedVersion: 2
-        x: 116
-        y: 384
-        width: 22
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9c80b17eb8def8290800000000000000
-      internalID: -7885823237368903479
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_193
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 375
-        width: 88
-        height: 67
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c6261397ddfd8bb80800000000000000
-      internalID: -8378700964408761748
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_194
-      rect:
-        serializedVersion: 2
-        x: 280
-        y: 383
-        width: 17
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b406e2dcc8150b420800000000000000
-      internalID: 2643702646446121035
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_195
-      rect:
-        serializedVersion: 2
-        x: 352
-        y: 354
-        width: 82
-        height: 88
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 92c9c4745e683d160800000000000000
-      internalID: 7049126161066794025
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_196
-      rect:
-        serializedVersion: 2
-        x: 433
-        y: 383
-        width: 22
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 511bf760c0cd72e30800000000000000
-      internalID: 4478790298649997589
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_197
-      rect:
-        serializedVersion: 2
-        x: 512
-        y: 357
-        width: 77
-        height: 85
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4a3261566c45e3710800000000000000
-      internalID: 1674869322504610724
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_198
-      rect:
-        serializedVersion: 2
-        x: 587
-        y: 393
-        width: 11
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a67a5e6d315bcb860800000000000000
-      internalID: 7547106172380489578
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_199
-      rect:
-        serializedVersion: 2
-        x: 598
-        y: 384
-        width: 17
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6612b251c63ae0ed0800000000000000
-      internalID: -2445837863008657050
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_200
-      rect:
-        serializedVersion: 2
-        x: 672
-        y: 375
-        width: 81
-        height: 67
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9713f082d644198f0800000000000000
-      internalID: -535571645066169991
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_201
-      rect:
-        serializedVersion: 2
-        x: 754
-        y: 384
-        width: 22
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 058cd357ca0c20d10800000000000000
-      internalID: 2090445023987222608
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_202
-      rect:
-        serializedVersion: 2
-        x: 832
-        y: 379
-        width: 77
-        height: 63
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d3348d3bd4369f170800000000000000
-      internalID: 8212704580867736381
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_203
-      rect:
-        serializedVersion: 2
-        x: 910
-        y: 394
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9f90011bbd098b9e0800000000000000
-      internalID: -1605373993914725895
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_204
-      rect:
-        serializedVersion: 2
-        x: 916
-        y: 393
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3c567b3c9357647d0800000000000000
-      internalID: -2934529216228137533
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_205
-      rect:
-        serializedVersion: 2
-        x: 921
-        y: 384
-        width: 17
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 89f4d2fa57b0e9060800000000000000
-      internalID: 6962014674039426968
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_206
-      rect:
-        serializedVersion: 2
-        x: 992
-        y: 379
-        width: 91
-        height: 63
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7a1f579a9fea33900800000000000000
-      internalID: 663065957466763687
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_207
-      rect:
-        serializedVersion: 2
-        x: 1083
-        y: 385
-        width: 17
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d5513231b1b2550d0800000000000000
-      internalID: -3434791745514957475
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_208
-      rect:
-        serializedVersion: 2
-        x: 1152
-        y: 359
-        width: 76
-        height: 84
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1f1c1a6d6916877c0800000000000000
-      internalID: -4073398562482699791
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_209
-      rect:
-        serializedVersion: 2
-        x: 1224
-        y: 386
-        width: 37
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9cd3f4d8f1fa624a0800000000000000
-      internalID: -6618410052324737591
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_210
-      rect:
-        serializedVersion: 2
-        x: 90
-        y: 377
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 812e8a8d665e2f500800000000000000
-      internalID: 428657144437989912
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_211
-      rect:
-        serializedVersion: 2
-        x: 92
-        y: 354
-        width: 11
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2d7020740be014070800000000000000
-      internalID: 8088762556002469842
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_212
-      rect:
-        serializedVersion: 2
-        x: 893
-        y: 359
-        width: 12
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6b077acff040e9100800000000000000
-      internalID: 116535107068063926
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_213
-      rect:
-        serializedVersion: 2
-        x: 1052
-        y: 376
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c48d5baa79d0263b0800000000000000
-      internalID: -5520835248147539892
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_214
-      rect:
-        serializedVersion: 2
-        x: 1054
-        y: 367
-        width: 8
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 119f4c96f4b2ac440800000000000000
-      internalID: 4956821959951579409
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_215
-      rect:
-        serializedVersion: 2
-        x: 252
-        y: 366
-        width: 8
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: daaa26b9a3aa649e0800000000000000
-      internalID: -1637434245810836819
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_216
-      rect:
-        serializedVersion: 2
-        x: 734
-        y: 370
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 91b8fc2509288ab90800000000000000
-      internalID: -7230385645367096551
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_217
-      rect:
-        serializedVersion: 2
-        x: 736
-        y: 358
-        width: 9
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 95a60894fdc813860800000000000000
-      internalID: 7507936944442075737
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_218
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 355
-        width: 7
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3efff68e2eca2f850800000000000000
-      internalID: 6409375310263877603
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_219
-      rect:
-        serializedVersion: 2
-        x: 1058
-        y: 362
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 986987045b4a4ffb0800000000000000
-      internalID: -4614882619770235255
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_220
-      rect:
-        serializedVersion: 2
-        x: 34
-        y: 191
-        width: 78
-        height: 87
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e95e6bc9f9a472440800000000000000
-      internalID: 4910975968060302750
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_221
-      rect:
-        serializedVersion: 2
-        x: 194
-        y: 189
-        width: 76
-        height: 83
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d16aeb6132db662c0800000000000000
-      internalID: -4438652424323946979
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_222
-      rect:
-        serializedVersion: 2
-        x: 258
-        y: 269
-        width: 6
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c759280afd9b29520800000000000000
-      internalID: 2707430696124847484
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_223
-      rect:
-        serializedVersion: 2
-        x: 354
-        y: 191
-        width: 88
-        height: 87
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 40641b3445fb46f30800000000000000
-      internalID: 4567986290694374916
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_224
-      rect:
-        serializedVersion: 2
-        x: 514
-        y: 193
-        width: 75
-        height: 85
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a7b57ddbe048e0ab0800000000000000
-      internalID: -5039945734131590278
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_225
-      rect:
-        serializedVersion: 2
-        x: 674
-        y: 194
-        width: 75
-        height: 84
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d484292dc96390d00800000000000000
-      internalID: 939342044459059277
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_226
-      rect:
-        serializedVersion: 2
-        x: 834
-        y: 196
-        width: 75
-        height: 82
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 15f1d1e4df7927690800000000000000
-      internalID: -7605849706482294959
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_227
-      rect:
-        serializedVersion: 2
-        x: 994
-        y: 196
-        width: 75
-        height: 82
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6359f4c0abf778c20800000000000000
-      internalID: 3208673696571954486
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_228
-      rect:
-        serializedVersion: 2
-        x: 1154
-        y: 196
-        width: 75
-        height: 82
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 212fd0ccf7e52ae50800000000000000
-      internalID: 6819116688769675794
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_229
-      rect:
-        serializedVersion: 2
-        x: 265
-        y: 220
-        width: 6
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 52d43cf36d35ce520800000000000000
-      internalID: 2732651253564919077
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_230
-      rect:
-        serializedVersion: 2
-        x: 584
-        y: 209
-        width: 18
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c2e8259d79418eef0800000000000000
-      internalID: -78790351060300244
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_231
-      rect:
-        serializedVersion: 2
-        x: 745
-        y: 208
-        width: 18
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 15c2ae66a1237da60800000000000000
-      internalID: 7698677176990313553
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_232
-      rect:
-        serializedVersion: 2
-        x: 907
-        y: 208
-        width: 18
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 70401f603c394ef10800000000000000
-      internalID: 2298124175710159879
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_233
-      rect:
-        serializedVersion: 2
-        x: 1063
-        y: 225
-        width: 7
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a59eab1699c3cf200800000000000000
-      internalID: 215113511674243418
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_234
-      rect:
-        serializedVersion: 2
-        x: 1068
-        y: 208
-        width: 19
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4d35db93bf5f01e40800000000000000
-      internalID: 5625266393940054996
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_235
-      rect:
-        serializedVersion: 2
-        x: 1224
-        y: 226
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 550831b5466070110800000000000000
-      internalID: 1226956451576250453
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_236
-      rect:
-        serializedVersion: 2
-        x: 1229
-        y: 222
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 62e5698bd5a4c4520800000000000000
-      internalID: 2687604844022619686
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_237
-      rect:
-        serializedVersion: 2
-        x: 111
-        y: 208
-        width: 14
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 05e8d3355e36cf8b0800000000000000
-      internalID: -5117105240004522416
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_238
-      rect:
-        serializedVersion: 2
-        x: 270
-        y: 207
-        width: 14
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 83a79f7a7f566fb80800000000000000
-      internalID: -8361383543817274824
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_239
-      rect:
-        serializedVersion: 2
-        x: 396
-        y: 215
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7ff88136ad2ff52d0800000000000000
-      internalID: -3287642183177826313
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_240
-      rect:
-        serializedVersion: 2
-        x: 1234
-        y: 219
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: aef2ad8bc7f14afa0800000000000000
-      internalID: -5790468600353902614
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_241
-      rect:
-        serializedVersion: 2
-        x: 1238
-        y: 209
-        width: 10
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5245233cad73a63b0800000000000000
-      internalID: -5518536980671867867
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_242
-      rect:
-        serializedVersion: 2
-        x: 43
-        y: 59
-        width: 74
-        height: 50
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c2b6500eee37e2b70800000000000000
-      internalID: 8876159385391688492
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_243
-      rect:
-        serializedVersion: 2
-        x: 203
-        y: 100
-        width: 7
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8992e721ac8063f10800000000000000
-      internalID: 2248994727904815512
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_244
-      rect:
-        serializedVersion: 2
-        x: 206
-        y: 62
-        width: 68
-        height: 45
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: eb4e8ce15292d5850800000000000000
-      internalID: 6367290687578760382
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_245
-      rect:
-        serializedVersion: 2
-        x: 270
-        y: 100
-        width: 7
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c5f77dcb29fd126c0800000000000000
-      internalID: -4169805958641909924
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_246
-      rect:
-        serializedVersion: 2
-        x: 363
-        y: 101
-        width: 7
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 490da2619188a2400800000000000000
-      internalID: 300201966501023892
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_247
-      rect:
-        serializedVersion: 2
-        x: 366
-        y: 58
-        width: 68
-        height: 49
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3224c71daf2997e80800000000000000
-      internalID: -8180345642187734493
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_248
-      rect:
-        serializedVersion: 2
-        x: 430
-        y: 101
-        width: 7
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 84a8c4828873f35c0800000000000000
-      internalID: -4233604066773792184
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_249
-      rect:
-        serializedVersion: 2
-        x: 523
-        y: 37
-        width: 74
-        height: 72
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 09b8cd48d0cf248b0800000000000000
-      internalID: -5169292287274087536
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_250
-      rect:
-        serializedVersion: 2
-        x: 683
-        y: 101
-        width: 7
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b10bbcddbc40692f0800000000000000
-      internalID: -966579796378406885
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_251
-      rect:
-        serializedVersion: 2
-        x: 686
-        y: 63
-        width: 68
-        height: 44
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c542b8f9971b6f3a0800000000000000
-      internalID: -6631918265330621348
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_252
-      rect:
-        serializedVersion: 2
-        x: 750
-        y: 101
-        width: 7
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: cfc9decd404b15400800000000000000
-      internalID: 311227782244703484
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_253
-      rect:
-        serializedVersion: 2
-        x: 843
-        y: 63
-        width: 74
-        height: 46
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b3d20319c26cc5c80800000000000000
-      internalID: -8332567315825545925
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_254
-      rect:
-        serializedVersion: 2
-        x: 1003
-        y: 59
-        width: 74
-        height: 50
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b319acde45c6bca00800000000000000
-      internalID: 777834472674070843
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_255
-      rect:
-        serializedVersion: 2
-        x: 1163
-        y: 64
-        width: 74
-        height: 45
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b13c361e9776fe450800000000000000
-      internalID: 6120224191789908763
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_256
-      rect:
-        serializedVersion: 2
-        x: 58
-        y: 53
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 73c4cb9f600fff8a0800000000000000
-      internalID: -6269028243526104009
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_257
-      rect:
-        serializedVersion: 2
-        x: 61
-        y: 58
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1c1569c1c8f756bc0800000000000000
-      internalID: -3790483271610641983
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_258
-      rect:
-        serializedVersion: 2
-        x: 65
-        y: 61
-        width: 6
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d87884d0d7e421340800000000000000
-      internalID: 4833011649122699149
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_259
-      rect:
-        serializedVersion: 2
-        x: 94
-        y: 37
-        width: 12
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 699f09498c592c590800000000000000
-      internalID: -7655391727857895018
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_260
-      rect:
-        serializedVersion: 2
-        x: 222
-        y: 56
-        width: 9
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0654220813f8e6950800000000000000
-      internalID: 6444245559579657568
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_261
-      rect:
-        serializedVersion: 2
-        x: 247
-        y: 58
-        width: 8
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7e72ab08842a9a5f0800000000000000
-      internalID: -744885831072077849
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_262
-      rect:
-        serializedVersion: 2
-        x: 252
-        y: 37
-        width: 12
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d45951cdb07ce7d10800000000000000
-      internalID: 2125354927916422477
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_263
-      rect:
-        serializedVersion: 2
-        x: 379
-        y: 53
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 71e9f983be4244850800000000000000
-      internalID: 6360249166439882263
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_264
-      rect:
-        serializedVersion: 2
-        x: 411
-        y: 38
-        width: 12
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: adf8d9ec3251efec0800000000000000
-      internalID: -3531361814277419046
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_265
-      rect:
-        serializedVersion: 2
-        x: 543
-        y: 59
-        width: 10
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c5dbaa7efbceb03f0800000000000000
-      internalID: -933392188779610788
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_266
-      rect:
-        serializedVersion: 2
-        x: 696
-        y: 38
-        width: 12
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6a21641ea213aa8f0800000000000000
-      internalID: -528555946024758618
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_267
-      rect:
-        serializedVersion: 2
-        x: 705
-        y: 59
-        width: 8
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 99cbfa5d356995530800000000000000
-      internalID: 3844269043748945049
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_268
-      rect:
-        serializedVersion: 2
-        x: 727
-        y: 59
-        width: 8
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 11587263d088bfc40800000000000000
-      internalID: 5547176956361409809
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_269
-      rect:
-        serializedVersion: 2
-        x: 732
-        y: 38
-        width: 12
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e41470b1f6eba7ed0800000000000000
-      internalID: -2415408865726742194
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_270
-      rect:
-        serializedVersion: 2
-        x: 857
-        y: 39
-        width: 14
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 26b85be1c24e10be0800000000000000
-      internalID: -1512677121674867870
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_271
-      rect:
-        serializedVersion: 2
-        x: 887
-        y: 55
-        width: 12
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9ea1fdee97ee77bb0800000000000000
-      internalID: -4938216258922407191
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_272
-      rect:
-        serializedVersion: 2
-        x: 1017
-        y: 39
-        width: 12
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 216417ee650dd0680800000000000000
-      internalID: -8787138226143803886
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_273
-      rect:
-        serializedVersion: 2
-        x: 1055
-        y: 54
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a6ba62788e514a1d0800000000000000
-      internalID: -3340520935158011030
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_274
-      rect:
-        serializedVersion: 2
-        x: 1176
-        y: 40
-        width: 17
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f817d2e70ac94fc50800000000000000
-      internalID: 6698150758932377999
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_275
-      rect:
-        serializedVersion: 2
-        x: 1209
-        y: 59
-        width: 9
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b6e56d724028867b0800000000000000
-      internalID: -5230788012830990741
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_276
-      rect:
-        serializedVersion: 2
-        x: 1216
-        y: 37
-        width: 13
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b65ef11f7fcc8db10800000000000000
-      internalID: 2006578999267943787
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_277
-      rect:
-        serializedVersion: 2
-        x: 51
-        y: 36
-        width: 10
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 37bb8b8882bbe2f70800000000000000
-      internalID: 9164468074512431987
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_278
-      rect:
-        serializedVersion: 2
-        x: 211
-        y: 34
-        width: 13
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: bba4345e08a5148c0800000000000000
-      internalID: -4016829882989065541
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_279
-      rect:
-        serializedVersion: 2
-        x: 372
-        y: 36
-        width: 8
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 829dbc1d352f2f1f0800000000000000
-      internalID: -1012480524388935384
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_280
-      rect:
-        serializedVersion: 2
-        x: 376
-        y: 48
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 72ae36282ff9cc2c0800000000000000
-      internalID: -4409974071184070105
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_281
-      rect:
-        serializedVersion: 2
-        x: 538
-        y: 49
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e6ad306b43c9d5860800000000000000
-      internalID: 7520338702984534638
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_282
-      rect:
-        serializedVersion: 2
-        x: 896
-        y: 37
-        width: 10
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1c1828aec9bcc4840800000000000000
-      internalID: 5209762743770579393
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_283
-      rect:
-        serializedVersion: 2
-        x: 1058
-        y: 49
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c8f64e9b34b961210800000000000000
-      internalID: 1303399857354207116
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Eat_Charred_284
-      rect:
-        serializedVersion: 2
-        x: 1060
-        y: 37
-        width: 8
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ea373922a43d1edc0800000000000000
-      internalID: -3611373110813297746
+      spriteID: 3d38229e74a4cee40b4a85cdd30229dc
+      internalID: 1820410173
       vertices: []
       indices: 
       edges: []
@@ -7250,291 +2564,78 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Arthropleura_Head_Eat_Charred_0: 8795004984409632610
-      Arthropleura_Head_Eat_Charred_1: -904797415104539235
-      Arthropleura_Head_Eat_Charred_10: -1917957085276060322
-      Arthropleura_Head_Eat_Charred_100: 587414559389533861
-      Arthropleura_Head_Eat_Charred_101: -5273962658746715037
-      Arthropleura_Head_Eat_Charred_102: -402712572167146861
-      Arthropleura_Head_Eat_Charred_103: 4265501224943190074
-      Arthropleura_Head_Eat_Charred_104: 6764207779540579657
-      Arthropleura_Head_Eat_Charred_105: -3533604818402456008
-      Arthropleura_Head_Eat_Charred_106: -8571104157131960448
-      Arthropleura_Head_Eat_Charred_107: 2444917344382510818
-      Arthropleura_Head_Eat_Charred_108: -4387408277248185598
-      Arthropleura_Head_Eat_Charred_109: 8381126627231580045
-      Arthropleura_Head_Eat_Charred_11: 5819840330670089856
-      Arthropleura_Head_Eat_Charred_110: -2326652743236849741
-      Arthropleura_Head_Eat_Charred_111: 5456893360266323110
-      Arthropleura_Head_Eat_Charred_112: 3130757752291650621
-      Arthropleura_Head_Eat_Charred_113: 3744167690797142499
-      Arthropleura_Head_Eat_Charred_114: -459180708424705246
-      Arthropleura_Head_Eat_Charred_115: -6614808632425503581
-      Arthropleura_Head_Eat_Charred_116: -4649795601457263691
-      Arthropleura_Head_Eat_Charred_117: 8558098353077320088
-      Arthropleura_Head_Eat_Charred_118: 7812154698552298206
-      Arthropleura_Head_Eat_Charred_119: 6390593288183262883
-      Arthropleura_Head_Eat_Charred_12: 7554196720558173687
-      Arthropleura_Head_Eat_Charred_120: 4038535021335881168
-      Arthropleura_Head_Eat_Charred_121: 69596286269417048
-      Arthropleura_Head_Eat_Charred_122: -5088923500698633853
-      Arthropleura_Head_Eat_Charred_123: 7409188585822865534
-      Arthropleura_Head_Eat_Charred_124: -3505437734622053360
-      Arthropleura_Head_Eat_Charred_125: 5944343678135626561
-      Arthropleura_Head_Eat_Charred_126: 4196840104316177762
-      Arthropleura_Head_Eat_Charred_127: -2395952581144848586
-      Arthropleura_Head_Eat_Charred_128: 5337758281433318167
-      Arthropleura_Head_Eat_Charred_129: -6250498916870350008
-      Arthropleura_Head_Eat_Charred_13: -8110748137519589746
-      Arthropleura_Head_Eat_Charred_130: -9184791764992240092
-      Arthropleura_Head_Eat_Charred_131: -7049483333547341447
-      Arthropleura_Head_Eat_Charred_132: 1317774272843606156
-      Arthropleura_Head_Eat_Charred_133: 78455371157775371
-      Arthropleura_Head_Eat_Charred_134: 8589154193593124948
-      Arthropleura_Head_Eat_Charred_135: 2441589741656447249
-      Arthropleura_Head_Eat_Charred_136: 1035687852863490572
-      Arthropleura_Head_Eat_Charred_137: 726791509845240612
-      Arthropleura_Head_Eat_Charred_138: -1400289125453440934
-      Arthropleura_Head_Eat_Charred_139: 5200890266170553216
-      Arthropleura_Head_Eat_Charred_14: -1016784998894223361
-      Arthropleura_Head_Eat_Charred_140: -5572173724178540655
-      Arthropleura_Head_Eat_Charred_141: 2060744917263738953
-      Arthropleura_Head_Eat_Charred_142: 4782862528419742027
-      Arthropleura_Head_Eat_Charred_143: 7210062749205358301
-      Arthropleura_Head_Eat_Charred_144: 6938485133482064517
-      Arthropleura_Head_Eat_Charred_145: 4266968476612777118
-      Arthropleura_Head_Eat_Charred_146: -3718874611844144768
-      Arthropleura_Head_Eat_Charred_147: -5671754283845781663
-      Arthropleura_Head_Eat_Charred_148: 7350660603408150472
-      Arthropleura_Head_Eat_Charred_149: 5161760081925566320
-      Arthropleura_Head_Eat_Charred_15: -7179804876369540473
-      Arthropleura_Head_Eat_Charred_150: -3792612400906493983
-      Arthropleura_Head_Eat_Charred_151: 3399548748229079786
-      Arthropleura_Head_Eat_Charred_152: -638429953308162539
-      Arthropleura_Head_Eat_Charred_153: 4116260204944304934
-      Arthropleura_Head_Eat_Charred_154: -5372371086309329779
-      Arthropleura_Head_Eat_Charred_155: 7726201161124175539
-      Arthropleura_Head_Eat_Charred_156: -1840114442867447932
-      Arthropleura_Head_Eat_Charred_157: 6135170460810158334
-      Arthropleura_Head_Eat_Charred_158: -3546424929183745677
-      Arthropleura_Head_Eat_Charred_159: -3063859020556507602
-      Arthropleura_Head_Eat_Charred_16: 7632593519060082233
-      Arthropleura_Head_Eat_Charred_160: -2213770449865327827
-      Arthropleura_Head_Eat_Charred_161: 9093081963779186128
-      Arthropleura_Head_Eat_Charred_162: 968725528878931974
-      Arthropleura_Head_Eat_Charred_163: -3446537962563587535
-      Arthropleura_Head_Eat_Charred_164: 7703468981082866215
-      Arthropleura_Head_Eat_Charred_165: -5377742609177579061
-      Arthropleura_Head_Eat_Charred_166: 3389146428467562757
-      Arthropleura_Head_Eat_Charred_167: -4996282286395955526
-      Arthropleura_Head_Eat_Charred_168: 8616718852102913428
-      Arthropleura_Head_Eat_Charred_169: 8028789650944102885
-      Arthropleura_Head_Eat_Charred_17: 4449477493651484057
-      Arthropleura_Head_Eat_Charred_170: 3039637338380844727
-      Arthropleura_Head_Eat_Charred_171: -7336447767556665215
-      Arthropleura_Head_Eat_Charred_172: -3405374080107955925
-      Arthropleura_Head_Eat_Charred_173: -150984716979122390
-      Arthropleura_Head_Eat_Charred_174: -6815517895897086357
-      Arthropleura_Head_Eat_Charred_175: 1830035941668503990
-      Arthropleura_Head_Eat_Charred_176: 8208527791169552190
-      Arthropleura_Head_Eat_Charred_177: -525603946679866742
-      Arthropleura_Head_Eat_Charred_178: 4614387108178419105
-      Arthropleura_Head_Eat_Charred_179: 443181506460508420
-      Arthropleura_Head_Eat_Charred_18: 8084163463677555109
-      Arthropleura_Head_Eat_Charred_180: 8588489382645990638
-      Arthropleura_Head_Eat_Charred_181: 2499811717077161902
-      Arthropleura_Head_Eat_Charred_182: 3912089317586132999
-      Arthropleura_Head_Eat_Charred_183: 165701713527488044
-      Arthropleura_Head_Eat_Charred_184: -1192610698147446797
-      Arthropleura_Head_Eat_Charred_185: 4324524959830563160
-      Arthropleura_Head_Eat_Charred_186: -2679161444203678221
-      Arthropleura_Head_Eat_Charred_187: 8490255288418351789
-      Arthropleura_Head_Eat_Charred_188: 5768573047787358106
-      Arthropleura_Head_Eat_Charred_189: -8960498629423426040
-      Arthropleura_Head_Eat_Charred_19: 2463945830470792071
-      Arthropleura_Head_Eat_Charred_190: 1750446165174399931
-      Arthropleura_Head_Eat_Charred_191: 6587674029256292098
-      Arthropleura_Head_Eat_Charred_192: -7885823237368903479
-      Arthropleura_Head_Eat_Charred_193: -8378700964408761748
-      Arthropleura_Head_Eat_Charred_194: 2643702646446121035
-      Arthropleura_Head_Eat_Charred_195: 7049126161066794025
-      Arthropleura_Head_Eat_Charred_196: 4478790298649997589
-      Arthropleura_Head_Eat_Charred_197: 1674869322504610724
-      Arthropleura_Head_Eat_Charred_198: 7547106172380489578
-      Arthropleura_Head_Eat_Charred_199: -2445837863008657050
-      Arthropleura_Head_Eat_Charred_2: 144058511938339844
-      Arthropleura_Head_Eat_Charred_20: -2355929415202112889
-      Arthropleura_Head_Eat_Charred_200: -535571645066169991
-      Arthropleura_Head_Eat_Charred_201: 2090445023987222608
-      Arthropleura_Head_Eat_Charred_202: 8212704580867736381
-      Arthropleura_Head_Eat_Charred_203: -1605373993914725895
-      Arthropleura_Head_Eat_Charred_204: -2934529216228137533
-      Arthropleura_Head_Eat_Charred_205: 6962014674039426968
-      Arthropleura_Head_Eat_Charred_206: 663065957466763687
-      Arthropleura_Head_Eat_Charred_207: -3434791745514957475
-      Arthropleura_Head_Eat_Charred_208: -4073398562482699791
-      Arthropleura_Head_Eat_Charred_209: -6618410052324737591
-      Arthropleura_Head_Eat_Charred_21: -379587545777503200
-      Arthropleura_Head_Eat_Charred_210: 428657144437989912
-      Arthropleura_Head_Eat_Charred_211: 8088762556002469842
-      Arthropleura_Head_Eat_Charred_212: 116535107068063926
-      Arthropleura_Head_Eat_Charred_213: -5520835248147539892
-      Arthropleura_Head_Eat_Charred_214: 4956821959951579409
-      Arthropleura_Head_Eat_Charred_215: -1637434245810836819
-      Arthropleura_Head_Eat_Charred_216: -7230385645367096551
-      Arthropleura_Head_Eat_Charred_217: 7507936944442075737
-      Arthropleura_Head_Eat_Charred_218: 6409375310263877603
-      Arthropleura_Head_Eat_Charred_219: -4614882619770235255
-      Arthropleura_Head_Eat_Charred_22: -5465678817177378697
-      Arthropleura_Head_Eat_Charred_220: 4910975968060302750
-      Arthropleura_Head_Eat_Charred_221: -4438652424323946979
-      Arthropleura_Head_Eat_Charred_222: 2707430696124847484
-      Arthropleura_Head_Eat_Charred_223: 4567986290694374916
-      Arthropleura_Head_Eat_Charred_224: -5039945734131590278
-      Arthropleura_Head_Eat_Charred_225: 939342044459059277
-      Arthropleura_Head_Eat_Charred_226: -7605849706482294959
-      Arthropleura_Head_Eat_Charred_227: 3208673696571954486
-      Arthropleura_Head_Eat_Charred_228: 6819116688769675794
-      Arthropleura_Head_Eat_Charred_229: 2732651253564919077
-      Arthropleura_Head_Eat_Charred_23: -6383601691554350174
-      Arthropleura_Head_Eat_Charred_230: -78790351060300244
-      Arthropleura_Head_Eat_Charred_231: 7698677176990313553
-      Arthropleura_Head_Eat_Charred_232: 2298124175710159879
-      Arthropleura_Head_Eat_Charred_233: 215113511674243418
-      Arthropleura_Head_Eat_Charred_234: 5625266393940054996
-      Arthropleura_Head_Eat_Charred_235: 1226956451576250453
-      Arthropleura_Head_Eat_Charred_236: 2687604844022619686
-      Arthropleura_Head_Eat_Charred_237: -5117105240004522416
-      Arthropleura_Head_Eat_Charred_238: -8361383543817274824
-      Arthropleura_Head_Eat_Charred_239: -3287642183177826313
-      Arthropleura_Head_Eat_Charred_24: 5095132563935362795
-      Arthropleura_Head_Eat_Charred_240: -5790468600353902614
-      Arthropleura_Head_Eat_Charred_241: -5518536980671867867
-      Arthropleura_Head_Eat_Charred_242: 8876159385391688492
-      Arthropleura_Head_Eat_Charred_243: 2248994727904815512
-      Arthropleura_Head_Eat_Charred_244: 6367290687578760382
-      Arthropleura_Head_Eat_Charred_245: -4169805958641909924
-      Arthropleura_Head_Eat_Charred_246: 300201966501023892
-      Arthropleura_Head_Eat_Charred_247: -8180345642187734493
-      Arthropleura_Head_Eat_Charred_248: -4233604066773792184
-      Arthropleura_Head_Eat_Charred_249: -5169292287274087536
-      Arthropleura_Head_Eat_Charred_25: 2166227729788382940
-      Arthropleura_Head_Eat_Charred_250: -966579796378406885
-      Arthropleura_Head_Eat_Charred_251: -6631918265330621348
-      Arthropleura_Head_Eat_Charred_252: 311227782244703484
-      Arthropleura_Head_Eat_Charred_253: -8332567315825545925
-      Arthropleura_Head_Eat_Charred_254: 777834472674070843
-      Arthropleura_Head_Eat_Charred_255: 6120224191789908763
-      Arthropleura_Head_Eat_Charred_256: -6269028243526104009
-      Arthropleura_Head_Eat_Charred_257: -3790483271610641983
-      Arthropleura_Head_Eat_Charred_258: 4833011649122699149
-      Arthropleura_Head_Eat_Charred_259: -7655391727857895018
-      Arthropleura_Head_Eat_Charred_26: 5166750816118263136
-      Arthropleura_Head_Eat_Charred_260: 6444245559579657568
-      Arthropleura_Head_Eat_Charred_261: -744885831072077849
-      Arthropleura_Head_Eat_Charred_262: 2125354927916422477
-      Arthropleura_Head_Eat_Charred_263: 6360249166439882263
-      Arthropleura_Head_Eat_Charred_264: -3531361814277419046
-      Arthropleura_Head_Eat_Charred_265: -933392188779610788
-      Arthropleura_Head_Eat_Charred_266: -528555946024758618
-      Arthropleura_Head_Eat_Charred_267: 3844269043748945049
-      Arthropleura_Head_Eat_Charred_268: 5547176956361409809
-      Arthropleura_Head_Eat_Charred_269: -2415408865726742194
-      Arthropleura_Head_Eat_Charred_27: 5789675103955841408
-      Arthropleura_Head_Eat_Charred_270: -1512677121674867870
-      Arthropleura_Head_Eat_Charred_271: -4938216258922407191
-      Arthropleura_Head_Eat_Charred_272: -8787138226143803886
-      Arthropleura_Head_Eat_Charred_273: -3340520935158011030
-      Arthropleura_Head_Eat_Charred_274: 6698150758932377999
-      Arthropleura_Head_Eat_Charred_275: -5230788012830990741
-      Arthropleura_Head_Eat_Charred_276: 2006578999267943787
-      Arthropleura_Head_Eat_Charred_277: 9164468074512431987
-      Arthropleura_Head_Eat_Charred_278: -4016829882989065541
-      Arthropleura_Head_Eat_Charred_279: -1012480524388935384
-      Arthropleura_Head_Eat_Charred_28: 6938740380917731126
-      Arthropleura_Head_Eat_Charred_280: -4409974071184070105
-      Arthropleura_Head_Eat_Charred_281: 7520338702984534638
-      Arthropleura_Head_Eat_Charred_282: 5209762743770579393
-      Arthropleura_Head_Eat_Charred_283: 1303399857354207116
-      Arthropleura_Head_Eat_Charred_284: -3611373110813297746
-      Arthropleura_Head_Eat_Charred_29: 2861233512871509157
-      Arthropleura_Head_Eat_Charred_3: 7601445554614253588
-      Arthropleura_Head_Eat_Charred_30: -4462049803517534726
-      Arthropleura_Head_Eat_Charred_31: -6794618934128372391
-      Arthropleura_Head_Eat_Charred_32: -8707634140457815046
-      Arthropleura_Head_Eat_Charred_33: -500230459217554750
-      Arthropleura_Head_Eat_Charred_34: -7254655773700478495
-      Arthropleura_Head_Eat_Charred_35: -8064634420144816952
-      Arthropleura_Head_Eat_Charred_36: 7037135300420608410
-      Arthropleura_Head_Eat_Charred_37: -7762975471963479092
-      Arthropleura_Head_Eat_Charred_38: 562274126609525514
-      Arthropleura_Head_Eat_Charred_39: -2428904202892372282
-      Arthropleura_Head_Eat_Charred_4: -3877688381506003330
-      Arthropleura_Head_Eat_Charred_40: 5974521595483782195
-      Arthropleura_Head_Eat_Charred_41: -4797094146571762003
-      Arthropleura_Head_Eat_Charred_42: -764023670435549801
-      Arthropleura_Head_Eat_Charred_43: -1339131725270587744
-      Arthropleura_Head_Eat_Charred_44: -1449319652519341769
-      Arthropleura_Head_Eat_Charred_45: 6834569110780035887
-      Arthropleura_Head_Eat_Charred_46: -2242745661408165367
-      Arthropleura_Head_Eat_Charred_47: -312787869874729559
-      Arthropleura_Head_Eat_Charred_48: 7254768962779217152
-      Arthropleura_Head_Eat_Charred_49: -7662722362638880569
-      Arthropleura_Head_Eat_Charred_5: 4721884113570772790
-      Arthropleura_Head_Eat_Charred_50: 6139077761331147081
-      Arthropleura_Head_Eat_Charred_51: 1536880458858736097
-      Arthropleura_Head_Eat_Charred_52: -2171994324902772102
-      Arthropleura_Head_Eat_Charred_53: -7782850235720575006
-      Arthropleura_Head_Eat_Charred_54: 1461072260117961312
-      Arthropleura_Head_Eat_Charred_55: -7412538050704337800
-      Arthropleura_Head_Eat_Charred_56: 9084221864725938000
-      Arthropleura_Head_Eat_Charred_57: 4566236711730666698
-      Arthropleura_Head_Eat_Charred_58: -85736748343779667
-      Arthropleura_Head_Eat_Charred_59: 5515966507042922765
-      Arthropleura_Head_Eat_Charred_6: -8438511373704027926
-      Arthropleura_Head_Eat_Charred_60: 4100348460609069051
-      Arthropleura_Head_Eat_Charred_61: 6864050804567775520
-      Arthropleura_Head_Eat_Charred_62: 4751352222132922965
-      Arthropleura_Head_Eat_Charred_63: 3809522977387666156
-      Arthropleura_Head_Eat_Charred_64: 2352391427528603190
-      Arthropleura_Head_Eat_Charred_65: 2913493904625768778
-      Arthropleura_Head_Eat_Charred_66: 4329442621651523286
-      Arthropleura_Head_Eat_Charred_67: -399013140226668373
-      Arthropleura_Head_Eat_Charred_68: 1916205764902054384
-      Arthropleura_Head_Eat_Charred_69: -541775611299376733
-      Arthropleura_Head_Eat_Charred_7: -2330747273447115989
-      Arthropleura_Head_Eat_Charred_70: -4201617872599494165
-      Arthropleura_Head_Eat_Charred_71: 7695030315898549599
-      Arthropleura_Head_Eat_Charred_72: -6131177056836180381
-      Arthropleura_Head_Eat_Charred_73: -4719393934635772197
-      Arthropleura_Head_Eat_Charred_74: 6214330259297190407
-      Arthropleura_Head_Eat_Charred_75: 8848842459056725837
-      Arthropleura_Head_Eat_Charred_76: -5723566623820972085
-      Arthropleura_Head_Eat_Charred_77: -1421960696339108551
-      Arthropleura_Head_Eat_Charred_78: 8492273010965926252
-      Arthropleura_Head_Eat_Charred_79: 2539787625622923176
-      Arthropleura_Head_Eat_Charred_8: 1951536755349445958
-      Arthropleura_Head_Eat_Charred_80: -2698773623296709581
-      Arthropleura_Head_Eat_Charred_81: -4120528211295874769
-      Arthropleura_Head_Eat_Charred_82: 4679936345768185181
-      Arthropleura_Head_Eat_Charred_83: 640104775927872113
-      Arthropleura_Head_Eat_Charred_84: -660518928596135254
-      Arthropleura_Head_Eat_Charred_85: 3351492467358241322
-      Arthropleura_Head_Eat_Charred_86: -1508320453183213472
-      Arthropleura_Head_Eat_Charred_87: 1688309843292243465
-      Arthropleura_Head_Eat_Charred_88: 3401166991324355164
-      Arthropleura_Head_Eat_Charred_89: 9108051032344234538
-      Arthropleura_Head_Eat_Charred_9: -5072950576007924359
-      Arthropleura_Head_Eat_Charred_90: 8618393435557910707
-      Arthropleura_Head_Eat_Charred_91: -6708096228515386349
-      Arthropleura_Head_Eat_Charred_92: 7712926367932213553
-      Arthropleura_Head_Eat_Charred_93: -7213451179745843017
-      Arthropleura_Head_Eat_Charred_94: -5907913392989570274
-      Arthropleura_Head_Eat_Charred_95: -5856222780969752072
-      Arthropleura_Head_Eat_Charred_96: -802335266236048113
-      Arthropleura_Head_Eat_Charred_97: 9099797974108826313
-      Arthropleura_Head_Eat_Charred_98: -1726006758951669878
-      Arthropleura_Head_Eat_Charred_99: 3937841309495753707
+      Arthropleura_Head_Eat_Charred_0_0: 416285523
+      Arthropleura_Head_Eat_Charred_0_1: -1329272979
+      Arthropleura_Head_Eat_Charred_0_2: 1543395738
+      Arthropleura_Head_Eat_Charred_0_3: -1254347016
+      Arthropleura_Head_Eat_Charred_0_4: 2116007872
+      Arthropleura_Head_Eat_Charred_0_5: 1255642387
+      Arthropleura_Head_Eat_Charred_0_6: 1240128929
+      Arthropleura_Head_Eat_Charred_0_7: 1284401071
+      Arthropleura_Head_Eat_Charred_1_0: 838079280
+      Arthropleura_Head_Eat_Charred_1_1: -370389550
+      Arthropleura_Head_Eat_Charred_1_2: 793795082
+      Arthropleura_Head_Eat_Charred_1_3: -651327677
+      Arthropleura_Head_Eat_Charred_1_4: -1739995954
+      Arthropleura_Head_Eat_Charred_1_5: -276551192
+      Arthropleura_Head_Eat_Charred_1_6: 1666889145
+      Arthropleura_Head_Eat_Charred_1_7: -1527022024
+      Arthropleura_Head_Eat_Charred_2_0: 1188941759
+      Arthropleura_Head_Eat_Charred_2_1: 1008316168
+      Arthropleura_Head_Eat_Charred_2_2: 411707487
+      Arthropleura_Head_Eat_Charred_2_3: 268904106
+      Arthropleura_Head_Eat_Charred_2_4: 1460997171
+      Arthropleura_Head_Eat_Charred_2_5: -342920398
+      Arthropleura_Head_Eat_Charred_2_6: -778293836
+      Arthropleura_Head_Eat_Charred_2_7: -434696056
+      Arthropleura_Head_Eat_Charred_3_0: -2127743515
+      Arthropleura_Head_Eat_Charred_3_1: 1180775832
+      Arthropleura_Head_Eat_Charred_3_2: -1282066004
+      Arthropleura_Head_Eat_Charred_3_3: -1554640986
+      Arthropleura_Head_Eat_Charred_3_4: -1925073591
+      Arthropleura_Head_Eat_Charred_3_5: 470519104
+      Arthropleura_Head_Eat_Charred_3_6: -1385091248
+      Arthropleura_Head_Eat_Charred_3_7: 496774804
+      Arthropleura_Head_Eat_Charred_4_0: 332383167
+      Arthropleura_Head_Eat_Charred_4_1: -1003757641
+      Arthropleura_Head_Eat_Charred_4_2: 275046541
+      Arthropleura_Head_Eat_Charred_4_3: -858175839
+      Arthropleura_Head_Eat_Charred_4_4: 664166731
+      Arthropleura_Head_Eat_Charred_4_5: -1435205746
+      Arthropleura_Head_Eat_Charred_4_6: -836629380
+      Arthropleura_Head_Eat_Charred_4_7: -271682724
+      Arthropleura_Head_Eat_Charred_5_0: 263457624
+      Arthropleura_Head_Eat_Charred_5_1: -2014852095
+      Arthropleura_Head_Eat_Charred_5_2: 2057646085
+      Arthropleura_Head_Eat_Charred_5_3: 1959957294
+      Arthropleura_Head_Eat_Charred_5_4: -1997273148
+      Arthropleura_Head_Eat_Charred_5_5: 2004412882
+      Arthropleura_Head_Eat_Charred_5_6: 433237126
+      Arthropleura_Head_Eat_Charred_5_7: 523997140
+      Arthropleura_Head_Eat_Charred_6_0: 1020571466
+      Arthropleura_Head_Eat_Charred_6_1: -383051782
+      Arthropleura_Head_Eat_Charred_6_2: 1393555972
+      Arthropleura_Head_Eat_Charred_6_3: -1047189012
+      Arthropleura_Head_Eat_Charred_6_4: -669202924
+      Arthropleura_Head_Eat_Charred_6_5: 2018498273
+      Arthropleura_Head_Eat_Charred_6_6: 1990782621
+      Arthropleura_Head_Eat_Charred_6_7: 1700423211
+      Arthropleura_Head_Eat_Charred_7_0: -1075977471
+      Arthropleura_Head_Eat_Charred_7_1: -1829664609
+      Arthropleura_Head_Eat_Charred_7_2: 439216901
+      Arthropleura_Head_Eat_Charred_7_3: 706508447
+      Arthropleura_Head_Eat_Charred_7_4: -10818810
+      Arthropleura_Head_Eat_Charred_7_5: 1179632631
+      Arthropleura_Head_Eat_Charred_7_6: 1019819947
+      Arthropleura_Head_Eat_Charred_7_7: 1805378979
+      Arthropleura_Head_Eat_Charred_8_0: -1669384285
+      Arthropleura_Head_Eat_Charred_8_1: 672414830
+      Arthropleura_Head_Eat_Charred_8_2: 173081374
+      Arthropleura_Head_Eat_Charred_8_3: 259613314
+      Arthropleura_Head_Eat_Charred_8_4: -1325204848
+      Arthropleura_Head_Eat_Charred_8_5: -98291087
+      Arthropleura_Head_Eat_Charred_8_6: -974278929
+      Arthropleura_Head_Eat_Charred_8_7: 1820410173
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

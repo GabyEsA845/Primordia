@@ -367,7 +367,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -395,7 +395,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -436,2377 +436,793 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_0
+      name: Arthropleura_Head_Charge_Cracks1_0_0
       rect:
         serializedVersion: 2
-        x: 59
-        y: 1347
-        width: 15
-        height: 24
+        x: 0
+        y: 1280
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2c134a796c2e010c0800000000000000
-      internalID: -4606933076224495166
+      spriteID: e8e1ff4825ac2974ab4ebd69e15d2416
+      internalID: 1632206280
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_1
+      name: Arthropleura_Head_Charge_Cracks1_0_1
       rect:
         serializedVersion: 2
-        x: 85
-        y: 1349
-        width: 16
-        height: 35
+        x: 160
+        y: 1280
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d5b4c7b43c10cb340800000000000000
-      internalID: 4880778034459462493
+      spriteID: cd01c09886f3f4e4eaef758e85979e49
+      internalID: 1867983434
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_2
+      name: Arthropleura_Head_Charge_Cracks1_0_2
       rect:
         serializedVersion: 2
-        x: 219
-        y: 1347
-        width: 12
-        height: 8
+        x: 320
+        y: 1280
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 9a87b4c774c3faa80800000000000000
-      internalID: -8453471697825466199
+      spriteID: 9867d3a5febb40e4184e6c6c040c7423
+      internalID: -1204929545
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_3
+      name: Arthropleura_Head_Charge_Cracks1_0_3
       rect:
         serializedVersion: 2
-        x: 220
-        y: 1349
-        width: 41
-        height: 36
+        x: 480
+        y: 1280
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 4268f0761cedcca60800000000000000
-      internalID: 7695770785508460068
+      spriteID: f2bd08e2cae128647869709981a3a4ea
+      internalID: -1374699220
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_4
+      name: Arthropleura_Head_Charge_Cracks1_1_0
       rect:
         serializedVersion: 2
-        x: 379
-        y: 1347
-        width: 12
-        height: 8
+        x: 0
+        y: 1120
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b4953c162dc9027b0800000000000000
-      internalID: -5251024738116740789
+      spriteID: 9498a4df9afb5a444a6c78a140316fd2
+      internalID: 701418668
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_5
+      name: Arthropleura_Head_Charge_Cracks1_1_1
       rect:
         serializedVersion: 2
-        x: 380
-        y: 1349
-        width: 41
-        height: 36
+        x: 160
+        y: 1120
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 89c347349038ebb10800000000000000
-      internalID: 1999179360408714392
+      spriteID: ae4742596edeb1e41b192cc976d1a4d7
+      internalID: -978753754
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_6
+      name: Arthropleura_Head_Charge_Cracks1_1_2
       rect:
         serializedVersion: 2
-        x: 539
-        y: 1347
-        width: 15
-        height: 24
+        x: 320
+        y: 1120
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 228fbfd186da50f10800000000000000
-      internalID: 2235383452750575650
+      spriteID: 8026ab5c67d6acf478394abb51f497d8
+      internalID: 416250008
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_7
+      name: Arthropleura_Head_Charge_Cracks1_1_3
       rect:
         serializedVersion: 2
-        x: 565
-        y: 1349
-        width: 16
-        height: 35
+        x: 480
+        y: 1120
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a2b2b872cc30feca0800000000000000
-      internalID: -5985561204380456150
+      spriteID: 5148330db016b5f4782d298804045a69
+      internalID: -1730433903
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_8
+      name: Arthropleura_Head_Charge_Cracks1_2_0
       rect:
         serializedVersion: 2
-        x: 62
-        y: 1208
-        width: 43
-        height: 11
+        x: 0
+        y: 960
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 9551764fda5e40c20800000000000000
-      internalID: 3171912572868171097
+      spriteID: c10d38effe0072f41b02ec9a2e1c779c
+      internalID: -1237447812
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_9
+      name: Arthropleura_Head_Charge_Cracks1_2_1
       rect:
         serializedVersion: 2
-        x: 223
-        y: 1209
-        width: 43
-        height: 11
+        x: 160
+        y: 960
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 019ffdcddd97a3110800000000000000
-      internalID: 1241438641094392080
+      spriteID: 01898041f6d001a4c8766743aab305df
+      internalID: 19451289
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_10
+      name: Arthropleura_Head_Charge_Cracks1_2_2
       rect:
         serializedVersion: 2
-        x: 383
-        y: 1209
-        width: 43
-        height: 11
+        x: 320
+        y: 960
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7ae50088f2bc76cf0800000000000000
-      internalID: -259015048544887129
+      spriteID: 3163233522f80a54a9e35f6e4dc57841
+      internalID: -253770341
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_11
+      name: Arthropleura_Head_Charge_Cracks1_2_3
       rect:
         serializedVersion: 2
-        x: 542
-        y: 1208
-        width: 43
-        height: 11
+        x: 480
+        y: 960
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: cc950d092a0594ed0800000000000000
-      internalID: -2429321864845174324
+      spriteID: d7c092d6163155346aff1d97e8c7f437
+      internalID: 1774647656
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_12
+      name: Arthropleura_Head_Charge_Cracks1_3_0
       rect:
         serializedVersion: 2
-        x: 55
-        y: 1188
-        width: 36
-        height: 14
+        x: 0
+        y: 800
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 99081a9a00a5a9620800000000000000
-      internalID: 2781634678747136153
+      spriteID: 34c2c261325e372499e7bbdefb194321
+      internalID: -493452874
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_13
+      name: Arthropleura_Head_Charge_Cracks1_3_1
       rect:
         serializedVersion: 2
-        x: 215
-        y: 1188
-        width: 36
-        height: 14
+        x: 160
+        y: 800
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c70aefe7cb1851280800000000000000
-      internalID: -9073203227683544964
+      spriteID: 0c61878101237d141916ca3b5b6828ab
+      internalID: -683070152
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_14
+      name: Arthropleura_Head_Charge_Cracks1_3_2
       rect:
         serializedVersion: 2
-        x: 375
-        y: 1188
-        width: 36
-        height: 14
+        x: 320
+        y: 800
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 8213d2854331d32b0800000000000000
-      internalID: -5603301245840445144
+      spriteID: ac883e08eaa959341a7dba2d254ccf81
+      internalID: 349195115
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_15
+      name: Arthropleura_Head_Charge_Cracks1_3_3
       rect:
         serializedVersion: 2
-        x: 535
-        y: 1188
-        width: 36
-        height: 14
+        x: 480
+        y: 800
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 9cf8271d2145f25c0800000000000000
-      internalID: -4238076284532256823
+      spriteID: f05c8ea98474ee949a35039f0a1f4211
+      internalID: -2082193970
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_16
+      name: Arthropleura_Head_Charge_Cracks1_4_0
       rect:
         serializedVersion: 2
-        x: 67
-        y: 1050
-        width: 10
-        height: 10
+        x: 0
+        y: 640
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: be96bce943cea7890800000000000000
-      internalID: -7459390122039219733
+      spriteID: 91272b95b9053c845acda7f70b4bf541
+      internalID: 1086002743
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_17
+      name: Arthropleura_Head_Charge_Cracks1_4_1
       rect:
         serializedVersion: 2
-        x: 100
-        y: 1042
-        width: 6
-        height: 11
+        x: 160
+        y: 640
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 575550a90223dc470800000000000000
-      internalID: 8416438394229708149
+      spriteID: 78b1191474f27cf48898684ab58ee080
+      internalID: -372751153
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_18
+      name: Arthropleura_Head_Charge_Cracks1_4_2
       rect:
         serializedVersion: 2
-        x: 228
-        y: 1051
-        width: 10
-        height: 10
+        x: 320
+        y: 640
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 54cb73c4255f26060800000000000000
-      internalID: 6945383309173570629
+      spriteID: 28ff032bf7380ba45b7665557cc1d198
+      internalID: -600785341
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_19
+      name: Arthropleura_Head_Charge_Cracks1_4_3
       rect:
         serializedVersion: 2
-        x: 261
-        y: 1043
-        width: 6
-        height: 11
+        x: 480
+        y: 640
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 4a6f1e9729b034a00800000000000000
-      internalID: 739447487556875940
+      spriteID: 06eb07f51c6cefd44aaea061913e2f10
+      internalID: 680298092
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_20
+      name: Arthropleura_Head_Charge_Cracks1_5_0
       rect:
         serializedVersion: 2
-        x: 388
-        y: 1051
-        width: 10
-        height: 10
+        x: 0
+        y: 480
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 28f2127edd5a81140800000000000000
-      internalID: 4690681384390438786
+      spriteID: 72a5bb23ba8c29342b6334ee121b42d8
+      internalID: 2108298139
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_21
+      name: Arthropleura_Head_Charge_Cracks1_5_1
       rect:
         serializedVersion: 2
-        x: 421
-        y: 1043
-        width: 6
-        height: 11
+        x: 160
+        y: 480
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0553cdc1e5bbbc6b0800000000000000
-      internalID: -5274916525648890544
+      spriteID: 619ad900b86aa9a4a8bcf5585c77f722
+      internalID: 1898857626
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_22
+      name: Arthropleura_Head_Charge_Cracks1_5_2
       rect:
         serializedVersion: 2
-        x: 547
-        y: 1050
-        width: 10
-        height: 10
+        x: 320
+        y: 480
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 5b0bf753db34d20d0800000000000000
-      internalID: -3446023659943120715
+      spriteID: cfd7ca64d5d21004cb9f2ed5eb8e5376
+      internalID: -414734893
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_23
+      name: Arthropleura_Head_Charge_Cracks1_5_3
       rect:
         serializedVersion: 2
-        x: 580
-        y: 1042
-        width: 6
-        height: 11
+        x: 480
+        y: 480
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: bf51bc7449ee63850800000000000000
-      internalID: 6356530244707096059
+      spriteID: e961393fa047bcd43aac3667834ae66b
+      internalID: -877619061
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_24
+      name: Arthropleura_Head_Charge_Cracks1_6_0
       rect:
         serializedVersion: 2
-        x: 54
-        y: 1038
-        width: 7
-        height: 11
+        x: 0
+        y: 320
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a746add5f1e4758d0800000000000000
-      internalID: -2857729541917744006
+      spriteID: a06b656b8b33f094ab8a954dc8e1c1ad
+      internalID: -1143798748
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_25
+      name: Arthropleura_Head_Charge_Cracks1_6_1
       rect:
         serializedVersion: 2
-        x: 214
-        y: 1038
-        width: 7
-        height: 11
+        x: 160
+        y: 320
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6376a7e4492b99820800000000000000
-      internalID: 2925565782995396406
+      spriteID: 7964bfa392b10f045910ed39aa163ddf
+      internalID: -605811351
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_26
+      name: Arthropleura_Head_Charge_Cracks1_6_2
       rect:
         serializedVersion: 2
-        x: 374
-        y: 1038
-        width: 7
-        height: 11
+        x: 320
+        y: 320
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d59bc83a349eb8600800000000000000
-      internalID: 471727062706338141
+      spriteID: 9470bfb7c96ea454d9931ce6cb9b90de
+      internalID: 1973360212
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_27
+      name: Arthropleura_Head_Charge_Cracks1_6_3
       rect:
         serializedVersion: 2
-        x: 534
-        y: 1038
-        width: 7
-        height: 11
+        x: 480
+        y: 320
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 5738287a7d8df0750800000000000000
-      internalID: 6273471226690306933
+      spriteID: e9639c96ff014ba4d9d3196c9effa78b
+      internalID: -1812332879
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_28
+      name: Arthropleura_Head_Charge_Cracks1_7_0
       rect:
         serializedVersion: 2
-        x: 70
-        y: 1026
-        width: 13
-        height: 8
+        x: 0
+        y: 160
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a3d1207af75559450800000000000000
-      internalID: 6094871677466975546
+      spriteID: cd94709a4116dc24fb0a75e00386560f
+      internalID: -705091445
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_29
+      name: Arthropleura_Head_Charge_Cracks1_7_1
       rect:
         serializedVersion: 2
-        x: 230
-        y: 1026
-        width: 13
-        height: 8
+        x: 160
+        y: 160
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 39b1cf161da8d5e30800000000000000
-      internalID: 4493900635082333075
+      spriteID: ae25eb37c0edacc4c862b82b7bc2a1e8
+      internalID: -914730139
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_30
+      name: Arthropleura_Head_Charge_Cracks1_7_2
       rect:
         serializedVersion: 2
-        x: 390
-        y: 1026
-        width: 13
-        height: 8
+        x: 320
+        y: 160
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a5aeff7b83417b080800000000000000
-      internalID: -9171839882278999462
+      spriteID: 27802a53b587dc64cb53f7e7f7ceff9a
+      internalID: 1589340946
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_31
+      name: Arthropleura_Head_Charge_Cracks1_7_3
       rect:
         serializedVersion: 2
-        x: 550
-        y: 1026
-        width: 13
-        height: 8
+        x: 480
+        y: 160
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 547c739959d11d680800000000000000
-      internalID: -8732165674136778939
+      spriteID: 37ec38ded6170d44fbf871423f980897
+      internalID: -652337766
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_32
+      name: Arthropleura_Head_Charge_Cracks1_8_0
       rect:
         serializedVersion: 2
-        x: 55
-        y: 885
-        width: 6
-        height: 11
+        x: 0
+        y: 0
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c5c03ab2284343de0800000000000000
-      internalID: -1354399854249178020
+      spriteID: bffce094b04b0704998b3c659b49777b
+      internalID: 1113089568
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_33
+      name: Arthropleura_Head_Charge_Cracks1_8_1
       rect:
         serializedVersion: 2
-        x: 65
-        y: 867
-        width: 10
-        height: 10
+        x: 160
+        y: 0
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ca987a81cbc427ed0800000000000000
-      internalID: -2417785679193339476
+      spriteID: 58d4a4bca80baf145b9a2a6d14c8e23c
+      internalID: -421313165
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_34
+      name: Arthropleura_Head_Charge_Cracks1_8_2
       rect:
         serializedVersion: 2
-        x: 73
-        y: 875
-        width: 31
-        height: 27
+        x: 320
+        y: 0
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0507536828d67b570800000000000000
-      internalID: 8482368830540443728
+      spriteID: 0b65718be29f0da489fddbe90bb81f43
+      internalID: -356478986
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_35
+      name: Arthropleura_Head_Charge_Cracks1_8_3
       rect:
         serializedVersion: 2
-        x: 215
-        y: 885
-        width: 6
-        height: 11
+        x: 480
+        y: 0
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 3cdf92d445f726180800000000000000
-      internalID: -9123589895050625597
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_36
-      rect:
-        serializedVersion: 2
-        x: 225
-        y: 867
-        width: 10
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 921de6ae9627cde30800000000000000
-      internalID: 4529621124458139945
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_37
-      rect:
-        serializedVersion: 2
-        x: 234
-        y: 876
-        width: 32
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c2661583b396f1490800000000000000
-      internalID: -7773378728749341140
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_38
-      rect:
-        serializedVersion: 2
-        x: 375
-        y: 885
-        width: 6
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2813f13095b9e8080800000000000000
-      internalID: -9183231783555092094
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_39
-      rect:
-        serializedVersion: 2
-        x: 385
-        y: 867
-        width: 10
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 181b9ce9cda446380800000000000000
-      internalID: -8978969445652647551
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_40
-      rect:
-        serializedVersion: 2
-        x: 394
-        y: 876
-        width: 32
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6d664d6daad63c7a0800000000000000
-      internalID: -6358117668400896298
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_41
-      rect:
-        serializedVersion: 2
-        x: 535
-        y: 885
-        width: 6
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5dfa2fe39749e7450800000000000000
-      internalID: 6088466994719535061
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_42
-      rect:
-        serializedVersion: 2
-        x: 545
-        y: 867
-        width: 10
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 650ed1ebe2a9bce30800000000000000
-      internalID: 4524879776172597334
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_43
-      rect:
-        serializedVersion: 2
-        x: 553
-        y: 875
-        width: 31
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 604fd90671ff2a050800000000000000
-      internalID: 5810486945131656198
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_44
-      rect:
-        serializedVersion: 2
-        x: 58
-        y: 731
-        width: 26
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 453a0e600cf8db000800000000000000
-      internalID: 53356825510191956
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_45
-      rect:
-        serializedVersion: 2
-        x: 218
-        y: 731
-        width: 27
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2dd6e5be8de6c6dd0800000000000000
-      internalID: -2491494615901901358
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_46
-      rect:
-        serializedVersion: 2
-        x: 378
-        y: 731
-        width: 27
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2b63f8f4a6956af30800000000000000
-      internalID: 4586451583659620018
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_47
-      rect:
-        serializedVersion: 2
-        x: 538
-        y: 731
-        width: 26
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 76357609d543444e0800000000000000
-      internalID: -1998414758186364057
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_48
-      rect:
-        serializedVersion: 2
-        x: 60
-        y: 710
-        width: 8
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 732a57b015e741b10800000000000000
-      internalID: 1951323425107976759
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_49
-      rect:
-        serializedVersion: 2
-        x: 93
-        y: 709
-        width: 8
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7268fd1f946976960800000000000000
-      internalID: 7595204540918367783
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_50
-      rect:
-        serializedVersion: 2
-        x: 220
-        y: 710
-        width: 8
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6dd776b67ba38d080800000000000000
-      internalID: -9162508882429903402
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_51
-      rect:
-        serializedVersion: 2
-        x: 255
-        y: 709
-        width: 7
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 90bdcdccd86c1a180800000000000000
-      internalID: -9105778659236717815
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_52
-      rect:
-        serializedVersion: 2
-        x: 380
-        y: 710
-        width: 8
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 001fd5b60270fac50800000000000000
-      internalID: 6678564608235401472
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_53
-      rect:
-        serializedVersion: 2
-        x: 415
-        y: 709
-        width: 7
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a089f45a5b1dfd6b0800000000000000
-      internalID: -5269262460907448310
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_54
-      rect:
-        serializedVersion: 2
-        x: 540
-        y: 710
-        width: 8
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7765e3bc8a398c750800000000000000
-      internalID: 6325468029815510647
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_55
-      rect:
-        serializedVersion: 2
-        x: 573
-        y: 709
-        width: 8
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 65ba32ddc6aefdf30800000000000000
-      internalID: 4602655097483406166
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_56
-      rect:
-        serializedVersion: 2
-        x: 63
-        y: 579
-        width: 12
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8a29488b176092e80800000000000000
-      internalID: -8203018160781880664
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_57
-      rect:
-        serializedVersion: 2
-        x: 82
-        y: 571
-        width: 8
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 301e9f0ff33ec1850800000000000000
-      internalID: 6349199438450909443
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_58
-      rect:
-        serializedVersion: 2
-        x: 223
-        y: 579
-        width: 12
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4362ee7de372c2c90800000000000000
-      internalID: -7193331353953360332
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_59
-      rect:
-        serializedVersion: 2
-        x: 243
-        y: 570
-        width: 8
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3deda04c52fda3f60800000000000000
-      internalID: 8014963840155049683
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_60
-      rect:
-        serializedVersion: 2
-        x: 383
-        y: 579
-        width: 12
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 047248faff6330580800000000000000
-      internalID: -8862179169945770176
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_61
-      rect:
-        serializedVersion: 2
-        x: 403
-        y: 570
-        width: 8
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 619e05d8721d9b650800000000000000
-      internalID: 6249255925758093590
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_62
-      rect:
-        serializedVersion: 2
-        x: 543
-        y: 579
-        width: 12
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 44a26f29f48ec06d0800000000000000
-      internalID: -3022785821406778812
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_63
-      rect:
-        serializedVersion: 2
-        x: 562
-        y: 571
-        width: 8
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a8b700aa8ebf0a800800000000000000
-      internalID: 621773725280271242
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_64
-      rect:
-        serializedVersion: 2
-        x: 58
-        y: 556
-        width: 6
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 86c46c04aee9d9d20800000000000000
-      internalID: 3286958031996603496
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_65
-      rect:
-        serializedVersion: 2
-        x: 218
-        y: 556
-        width: 6
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b4267a057e754a0b0800000000000000
-      internalID: -5718348975851478453
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_66
-      rect:
-        serializedVersion: 2
-        x: 378
-        y: 556
-        width: 6
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6e3eae5c2ac369690800000000000000
-      internalID: -7595817051710888986
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_67
-      rect:
-        serializedVersion: 2
-        x: 538
-        y: 556
-        width: 6
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 65584fce1ea4bef90800000000000000
-      internalID: -6923357667948460714
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_68
-      rect:
-        serializedVersion: 2
-        x: 85
-        y: 546
-        width: 10
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a89d18c0f9129d1b0800000000000000
-      internalID: -5631432892056741494
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_69
-      rect:
-        serializedVersion: 2
-        x: 246
-        y: 545
-        width: 11
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 93038bb886ef1c5d0800000000000000
-      internalID: -3043872148151586759
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_70
-      rect:
-        serializedVersion: 2
-        x: 406
-        y: 545
-        width: 11
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: efd5518c02a6c8b00800000000000000
-      internalID: 832156720185040382
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_71
-      rect:
-        serializedVersion: 2
-        x: 565
-        y: 546
-        width: 10
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: bb20ce3a3a5718750800000000000000
-      internalID: 6305450298985677499
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_72
-      rect:
-        serializedVersion: 2
-        x: 71
-        y: 421
-        width: 13
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: acdbd77fe01f58600800000000000000
-      internalID: 470046782714133962
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_73
-      rect:
-        serializedVersion: 2
-        x: 231
-        y: 421
-        width: 13
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a15120fbd314d7ff0800000000000000
-      internalID: -36801488495700710
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_74
-      rect:
-        serializedVersion: 2
-        x: 391
-        y: 421
-        width: 13
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 600e989161e104a10800000000000000
-      internalID: 1891544923762188294
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_75
-      rect:
-        serializedVersion: 2
-        x: 551
-        y: 421
-        width: 13
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 963ca996bc85ee590800000000000000
-      internalID: -7643073886927797399
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_76
-      rect:
-        serializedVersion: 2
-        x: 56
-        y: 403
-        width: 9
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6f256e9141d051600800000000000000
-      internalID: 438270918723523318
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_77
-      rect:
-        serializedVersion: 2
-        x: 84
-        y: 410
-        width: 11
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7cc0ea762842e9ed0800000000000000
-      internalID: -2405445008465457977
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_78
-      rect:
-        serializedVersion: 2
-        x: 216
-        y: 403
-        width: 9
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d01e32494d0025470800000000000000
-      internalID: 8381762769508360461
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_79
-      rect:
-        serializedVersion: 2
-        x: 245
-        y: 409
-        width: 11
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f7ee640b5f0ea92f0800000000000000
-      internalID: -965211824288502145
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_80
-      rect:
-        serializedVersion: 2
-        x: 376
-        y: 403
-        width: 9
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 14fba2d37ecc55ce0800000000000000
-      internalID: -1417001214202429631
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_81
-      rect:
-        serializedVersion: 2
-        x: 405
-        y: 409
-        width: 11
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: dbe49de20a246d700800000000000000
-      internalID: 564712059029769917
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_82
-      rect:
-        serializedVersion: 2
-        x: 536
-        y: 403
-        width: 9
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d78604e791d2eba40800000000000000
-      internalID: 5385791791897274493
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_83
-      rect:
-        serializedVersion: 2
-        x: 564
-        y: 410
-        width: 11
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 808fe5ea6c6cc0cf0800000000000000
-      internalID: -284634119799900152
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_84
-      rect:
-        serializedVersion: 2
-        x: 75
-        y: 385
-        width: 14
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e8528cff3e65ae000800000000000000
-      internalID: 65960681799165326
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_85
-      rect:
-        serializedVersion: 2
-        x: 236
-        y: 384
-        width: 12
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 665a9d5dae7beed40800000000000000
-      internalID: 5615628004615628134
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_86
-      rect:
-        serializedVersion: 2
-        x: 396
-        y: 384
-        width: 12
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b0d2f0191e905fed0800000000000000
-      internalID: -2380985963589456629
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_87
-      rect:
-        serializedVersion: 2
-        x: 555
-        y: 385
-        width: 12
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: fe3d10461c51a6960800000000000000
-      internalID: 7595907641864475631
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_88
-      rect:
-        serializedVersion: 2
-        x: 57
-        y: 250
-        width: 12
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7c968125f66f41560800000000000000
-      internalID: 7283717455344069063
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_89
-      rect:
-        serializedVersion: 2
-        x: 66
-        y: 227
-        width: 33
-        height: 40
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 82e0be343eb809930800000000000000
-      internalID: 4147969065021541928
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_90
-      rect:
-        serializedVersion: 2
-        x: 217
-        y: 250
-        width: 12
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4668560742facd960800000000000000
-      internalID: 7628164439898162788
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_91
-      rect:
-        serializedVersion: 2
-        x: 227
-        y: 226
-        width: 32
-        height: 41
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2d47fd6c989c2aeb0800000000000000
-      internalID: -4709980666691881774
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_92
-      rect:
-        serializedVersion: 2
-        x: 377
-        y: 250
-        width: 12
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a32e05ca6f25290d0800000000000000
-      internalID: -3417577947814370758
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_93
-      rect:
-        serializedVersion: 2
-        x: 387
-        y: 226
-        width: 32
-        height: 41
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 991f19c3da84af420800000000000000
-      internalID: 2664522038425809305
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_94
-      rect:
-        serializedVersion: 2
-        x: 537
-        y: 250
-        width: 12
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 62c435b92d1e92490800000000000000
-      internalID: -7770431387385770970
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_95
-      rect:
-        serializedVersion: 2
-        x: 546
-        y: 227
-        width: 33
-        height: 40
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: fd606ce832a92cc50800000000000000
-      internalID: 6684074274481112799
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_96
-      rect:
-        serializedVersion: 2
-        x: 61
-        y: 96
-        width: 14
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ebd64bc03451fa9b0800000000000000
-      internalID: -5066807678048375362
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_97
-      rect:
-        serializedVersion: 2
-        x: 86
-        y: 84
-        width: 14
-        height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b6aa4be340a2cfa10800000000000000
-      internalID: 1944475336837474923
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_98
-      rect:
-        serializedVersion: 2
-        x: 221
-        y: 96
-        width: 14
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1eddcceca4f9278d0800000000000000
-      internalID: -2850040470526173727
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_99
-      rect:
-        serializedVersion: 2
-        x: 246
-        y: 82
-        width: 14
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ff590b52acf7fd290800000000000000
-      internalID: -7863425918173145601
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_100
-      rect:
-        serializedVersion: 2
-        x: 381
-        y: 96
-        width: 14
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a57a05b1655195170800000000000000
-      internalID: 8167582858782746458
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_101
-      rect:
-        serializedVersion: 2
-        x: 406
-        y: 82
-        width: 14
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 76bc4601b391b6fc0800000000000000
-      internalID: -3500676543881622681
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_102
-      rect:
-        serializedVersion: 2
-        x: 541
-        y: 96
-        width: 14
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4350ea1923fdd78b0800000000000000
-      internalID: -5152716990356519628
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_103
-      rect:
-        serializedVersion: 2
-        x: 566
-        y: 84
-        width: 14
-        height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 67b2d2496ae04c890800000000000000
-      internalID: -7438804575895868554
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_104
-      rect:
-        serializedVersion: 2
-        x: 59
-        y: 69
-        width: 13
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 87183516730ace000800000000000000
-      internalID: 66604254220222840
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_105
-      rect:
-        serializedVersion: 2
-        x: 219
-        y: 68
-        width: 13
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e24c2ddf4d944f1e0800000000000000
-      internalID: -2165024341718023122
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_106
-      rect:
-        serializedVersion: 2
-        x: 379
-        y: 68
-        width: 13
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 400dca427826a2510800000000000000
-      internalID: 1525139756393746436
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Head_Charge_Cracks1_107
-      rect:
-        serializedVersion: 2
-        x: 539
-        y: 70
-        width: 12
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: cba0d0e55694dd4a0800000000000000
-      internalID: -6567011981917877572
+      spriteID: 00fc6c0fc2cdb704a904aadb496f1044
+      internalID: 2127174394
       vertices: []
       indices: 
       edges: []
@@ -2825,114 +1241,42 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Arthropleura_Head_Charge_Cracks1_0: -4606933076224495166
-      Arthropleura_Head_Charge_Cracks1_1: 4880778034459462493
-      Arthropleura_Head_Charge_Cracks1_10: -259015048544887129
-      Arthropleura_Head_Charge_Cracks1_100: 8167582858782746458
-      Arthropleura_Head_Charge_Cracks1_101: -3500676543881622681
-      Arthropleura_Head_Charge_Cracks1_102: -5152716990356519628
-      Arthropleura_Head_Charge_Cracks1_103: -7438804575895868554
-      Arthropleura_Head_Charge_Cracks1_104: 66604254220222840
-      Arthropleura_Head_Charge_Cracks1_105: -2165024341718023122
-      Arthropleura_Head_Charge_Cracks1_106: 1525139756393746436
-      Arthropleura_Head_Charge_Cracks1_107: -6567011981917877572
-      Arthropleura_Head_Charge_Cracks1_11: -2429321864845174324
-      Arthropleura_Head_Charge_Cracks1_12: 2781634678747136153
-      Arthropleura_Head_Charge_Cracks1_13: -9073203227683544964
-      Arthropleura_Head_Charge_Cracks1_14: -5603301245840445144
-      Arthropleura_Head_Charge_Cracks1_15: -4238076284532256823
-      Arthropleura_Head_Charge_Cracks1_16: -7459390122039219733
-      Arthropleura_Head_Charge_Cracks1_17: 8416438394229708149
-      Arthropleura_Head_Charge_Cracks1_18: 6945383309173570629
-      Arthropleura_Head_Charge_Cracks1_19: 739447487556875940
-      Arthropleura_Head_Charge_Cracks1_2: -8453471697825466199
-      Arthropleura_Head_Charge_Cracks1_20: 4690681384390438786
-      Arthropleura_Head_Charge_Cracks1_21: -5274916525648890544
-      Arthropleura_Head_Charge_Cracks1_22: -3446023659943120715
-      Arthropleura_Head_Charge_Cracks1_23: 6356530244707096059
-      Arthropleura_Head_Charge_Cracks1_24: -2857729541917744006
-      Arthropleura_Head_Charge_Cracks1_25: 2925565782995396406
-      Arthropleura_Head_Charge_Cracks1_26: 471727062706338141
-      Arthropleura_Head_Charge_Cracks1_27: 6273471226690306933
-      Arthropleura_Head_Charge_Cracks1_28: 6094871677466975546
-      Arthropleura_Head_Charge_Cracks1_29: 4493900635082333075
-      Arthropleura_Head_Charge_Cracks1_3: 7695770785508460068
-      Arthropleura_Head_Charge_Cracks1_30: -9171839882278999462
-      Arthropleura_Head_Charge_Cracks1_31: -8732165674136778939
-      Arthropleura_Head_Charge_Cracks1_32: -1354399854249178020
-      Arthropleura_Head_Charge_Cracks1_33: -2417785679193339476
-      Arthropleura_Head_Charge_Cracks1_34: 8482368830540443728
-      Arthropleura_Head_Charge_Cracks1_35: -9123589895050625597
-      Arthropleura_Head_Charge_Cracks1_36: 4529621124458139945
-      Arthropleura_Head_Charge_Cracks1_37: -7773378728749341140
-      Arthropleura_Head_Charge_Cracks1_38: -9183231783555092094
-      Arthropleura_Head_Charge_Cracks1_39: -8978969445652647551
-      Arthropleura_Head_Charge_Cracks1_4: -5251024738116740789
-      Arthropleura_Head_Charge_Cracks1_40: -6358117668400896298
-      Arthropleura_Head_Charge_Cracks1_41: 6088466994719535061
-      Arthropleura_Head_Charge_Cracks1_42: 4524879776172597334
-      Arthropleura_Head_Charge_Cracks1_43: 5810486945131656198
-      Arthropleura_Head_Charge_Cracks1_44: 53356825510191956
-      Arthropleura_Head_Charge_Cracks1_45: -2491494615901901358
-      Arthropleura_Head_Charge_Cracks1_46: 4586451583659620018
-      Arthropleura_Head_Charge_Cracks1_47: -1998414758186364057
-      Arthropleura_Head_Charge_Cracks1_48: 1951323425107976759
-      Arthropleura_Head_Charge_Cracks1_49: 7595204540918367783
-      Arthropleura_Head_Charge_Cracks1_5: 1999179360408714392
-      Arthropleura_Head_Charge_Cracks1_50: -9162508882429903402
-      Arthropleura_Head_Charge_Cracks1_51: -9105778659236717815
-      Arthropleura_Head_Charge_Cracks1_52: 6678564608235401472
-      Arthropleura_Head_Charge_Cracks1_53: -5269262460907448310
-      Arthropleura_Head_Charge_Cracks1_54: 6325468029815510647
-      Arthropleura_Head_Charge_Cracks1_55: 4602655097483406166
-      Arthropleura_Head_Charge_Cracks1_56: -8203018160781880664
-      Arthropleura_Head_Charge_Cracks1_57: 6349199438450909443
-      Arthropleura_Head_Charge_Cracks1_58: -7193331353953360332
-      Arthropleura_Head_Charge_Cracks1_59: 8014963840155049683
-      Arthropleura_Head_Charge_Cracks1_6: 2235383452750575650
-      Arthropleura_Head_Charge_Cracks1_60: -8862179169945770176
-      Arthropleura_Head_Charge_Cracks1_61: 6249255925758093590
-      Arthropleura_Head_Charge_Cracks1_62: -3022785821406778812
-      Arthropleura_Head_Charge_Cracks1_63: 621773725280271242
-      Arthropleura_Head_Charge_Cracks1_64: 3286958031996603496
-      Arthropleura_Head_Charge_Cracks1_65: -5718348975851478453
-      Arthropleura_Head_Charge_Cracks1_66: -7595817051710888986
-      Arthropleura_Head_Charge_Cracks1_67: -6923357667948460714
-      Arthropleura_Head_Charge_Cracks1_68: -5631432892056741494
-      Arthropleura_Head_Charge_Cracks1_69: -3043872148151586759
-      Arthropleura_Head_Charge_Cracks1_7: -5985561204380456150
-      Arthropleura_Head_Charge_Cracks1_70: 832156720185040382
-      Arthropleura_Head_Charge_Cracks1_71: 6305450298985677499
-      Arthropleura_Head_Charge_Cracks1_72: 470046782714133962
-      Arthropleura_Head_Charge_Cracks1_73: -36801488495700710
-      Arthropleura_Head_Charge_Cracks1_74: 1891544923762188294
-      Arthropleura_Head_Charge_Cracks1_75: -7643073886927797399
-      Arthropleura_Head_Charge_Cracks1_76: 438270918723523318
-      Arthropleura_Head_Charge_Cracks1_77: -2405445008465457977
-      Arthropleura_Head_Charge_Cracks1_78: 8381762769508360461
-      Arthropleura_Head_Charge_Cracks1_79: -965211824288502145
-      Arthropleura_Head_Charge_Cracks1_8: 3171912572868171097
-      Arthropleura_Head_Charge_Cracks1_80: -1417001214202429631
-      Arthropleura_Head_Charge_Cracks1_81: 564712059029769917
-      Arthropleura_Head_Charge_Cracks1_82: 5385791791897274493
-      Arthropleura_Head_Charge_Cracks1_83: -284634119799900152
-      Arthropleura_Head_Charge_Cracks1_84: 65960681799165326
-      Arthropleura_Head_Charge_Cracks1_85: 5615628004615628134
-      Arthropleura_Head_Charge_Cracks1_86: -2380985963589456629
-      Arthropleura_Head_Charge_Cracks1_87: 7595907641864475631
-      Arthropleura_Head_Charge_Cracks1_88: 7283717455344069063
-      Arthropleura_Head_Charge_Cracks1_89: 4147969065021541928
-      Arthropleura_Head_Charge_Cracks1_9: 1241438641094392080
-      Arthropleura_Head_Charge_Cracks1_90: 7628164439898162788
-      Arthropleura_Head_Charge_Cracks1_91: -4709980666691881774
-      Arthropleura_Head_Charge_Cracks1_92: -3417577947814370758
-      Arthropleura_Head_Charge_Cracks1_93: 2664522038425809305
-      Arthropleura_Head_Charge_Cracks1_94: -7770431387385770970
-      Arthropleura_Head_Charge_Cracks1_95: 6684074274481112799
-      Arthropleura_Head_Charge_Cracks1_96: -5066807678048375362
-      Arthropleura_Head_Charge_Cracks1_97: 1944475336837474923
-      Arthropleura_Head_Charge_Cracks1_98: -2850040470526173727
-      Arthropleura_Head_Charge_Cracks1_99: -7863425918173145601
+      Arthropleura_Head_Charge_Cracks1_0_0: 1632206280
+      Arthropleura_Head_Charge_Cracks1_0_1: 1867983434
+      Arthropleura_Head_Charge_Cracks1_0_2: -1204929545
+      Arthropleura_Head_Charge_Cracks1_0_3: -1374699220
+      Arthropleura_Head_Charge_Cracks1_1_0: 701418668
+      Arthropleura_Head_Charge_Cracks1_1_1: -978753754
+      Arthropleura_Head_Charge_Cracks1_1_2: 416250008
+      Arthropleura_Head_Charge_Cracks1_1_3: -1730433903
+      Arthropleura_Head_Charge_Cracks1_2_0: -1237447812
+      Arthropleura_Head_Charge_Cracks1_2_1: 19451289
+      Arthropleura_Head_Charge_Cracks1_2_2: -253770341
+      Arthropleura_Head_Charge_Cracks1_2_3: 1774647656
+      Arthropleura_Head_Charge_Cracks1_3_0: -493452874
+      Arthropleura_Head_Charge_Cracks1_3_1: -683070152
+      Arthropleura_Head_Charge_Cracks1_3_2: 349195115
+      Arthropleura_Head_Charge_Cracks1_3_3: -2082193970
+      Arthropleura_Head_Charge_Cracks1_4_0: 1086002743
+      Arthropleura_Head_Charge_Cracks1_4_1: -372751153
+      Arthropleura_Head_Charge_Cracks1_4_2: -600785341
+      Arthropleura_Head_Charge_Cracks1_4_3: 680298092
+      Arthropleura_Head_Charge_Cracks1_5_0: 2108298139
+      Arthropleura_Head_Charge_Cracks1_5_1: 1898857626
+      Arthropleura_Head_Charge_Cracks1_5_2: -414734893
+      Arthropleura_Head_Charge_Cracks1_5_3: -877619061
+      Arthropleura_Head_Charge_Cracks1_6_0: -1143798748
+      Arthropleura_Head_Charge_Cracks1_6_1: -605811351
+      Arthropleura_Head_Charge_Cracks1_6_2: 1973360212
+      Arthropleura_Head_Charge_Cracks1_6_3: -1812332879
+      Arthropleura_Head_Charge_Cracks1_7_0: -705091445
+      Arthropleura_Head_Charge_Cracks1_7_1: -914730139
+      Arthropleura_Head_Charge_Cracks1_7_2: 1589340946
+      Arthropleura_Head_Charge_Cracks1_7_3: -652337766
+      Arthropleura_Head_Charge_Cracks1_8_0: 1113089568
+      Arthropleura_Head_Charge_Cracks1_8_1: -421313165
+      Arthropleura_Head_Charge_Cracks1_8_2: -356478986
+      Arthropleura_Head_Charge_Cracks1_8_3: 2127174394
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

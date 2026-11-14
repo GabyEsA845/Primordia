@@ -70,7 +70,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -98,7 +98,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -139,199 +139,199 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Arthropleura_Head_Dead_0
+      name: Arthropleura_Head_Dead_0_0
       rect:
         serializedVersion: 2
-        x: 42
-        y: 1335
-        width: 76
-        height: 77
+        x: 0
+        y: 1280
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f99e64d0e24044480800000000000000
-      internalID: -8915996766448981601
+      spriteID: 35ecd7d4179eb9047b9a577ad4f5600e
+      internalID: 1195024040
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Dead_1
+      name: Arthropleura_Head_Dead_1_0
       rect:
         serializedVersion: 2
-        x: 33
-        y: 1166
-        width: 93
-        height: 91
+        x: 0
+        y: 1120
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e18f76b9bd4ef9fa0800000000000000
-      internalID: -5791658963918915554
+      spriteID: b002e66b653b6104ebd3d0ab0dfce7b4
+      internalID: 264874287
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Dead_2
+      name: Arthropleura_Head_Dead_2_0
       rect:
         serializedVersion: 2
-        x: 31
-        y: 1002
-        width: 107
-        height: 92
+        x: 0
+        y: 960
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7440583aac5b1a8d0800000000000000
-      internalID: -2836786408335276985
+      spriteID: 177d09216a31ce547838702e1c063a41
+      internalID: 600906809
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Dead_3
+      name: Arthropleura_Head_Dead_3_0
       rect:
         serializedVersion: 2
-        x: 37
-        y: 843
-        width: 104
-        height: 81
+        x: 0
+        y: 800
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c35bb27d115dee820800000000000000
-      internalID: 2949529078575379772
+      spriteID: 938d8095e7499f242b8e49c5393e2df3
+      internalID: -866879078
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Dead_4
+      name: Arthropleura_Head_Dead_4_0
       rect:
         serializedVersion: 2
-        x: 48
-        y: 690
-        width: 90
-        height: 64
+        x: 0
+        y: 640
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a56545a04dc55b180800000000000000
-      internalID: -9100265406256097702
+      spriteID: bf50c269f52500a42aa967cdcb33e609
+      internalID: -133188634
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Dead_5
+      name: Arthropleura_Head_Dead_5_0
       rect:
         serializedVersion: 2
-        x: 37
-        y: 526
-        width: 107
-        height: 75
+        x: 0
+        y: 480
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7affa2e3daa107670800000000000000
-      internalID: 8534350625241759655
+      spriteID: 010179a491ec98746a017eec3a5817b0
+      internalID: 283560916
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Dead_6
+      name: Arthropleura_Head_Dead_6_0
       rect:
         serializedVersion: 2
-        x: 31
-        y: 356
-        width: 110
-        height: 87
+        x: 0
+        y: 320
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7de443088d173f950800000000000000
-      internalID: 6481649463394062039
+      spriteID: 644ee78625b84374ca4b14abc95bd4f7
+      internalID: -1596955876
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Dead_7
+      name: Arthropleura_Head_Dead_7_0
       rect:
         serializedVersion: 2
-        x: 33
-        y: 193
-        width: 96
-        height: 85
+        x: 0
+        y: 160
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 9eef53c7a4d85f9d0800000000000000
-      internalID: -2741129447134069015
+      spriteID: 1e08ae9938a8bca42af277fae72011bd
+      internalID: 2069285338
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Head_Dead_8
+      name: Arthropleura_Head_Dead_8_0
       rect:
         serializedVersion: 2
-        x: 42
-        y: 36
-        width: 76
-        height: 73
+        x: 0
+        y: 0
+        width: 160
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: cbcff77a29205f240800000000000000
-      internalID: 4824765404696018108
+      spriteID: 131a91632b00b1542b6180885fd0ec9a
+      internalID: 279343624
       vertices: []
       indices: 
       edges: []
@@ -350,15 +350,15 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Arthropleura_Head_Dead_0: -8915996766448981601
-      Arthropleura_Head_Dead_1: -5791658963918915554
-      Arthropleura_Head_Dead_2: -2836786408335276985
-      Arthropleura_Head_Dead_3: 2949529078575379772
-      Arthropleura_Head_Dead_4: -9100265406256097702
-      Arthropleura_Head_Dead_5: 8534350625241759655
-      Arthropleura_Head_Dead_6: 6481649463394062039
-      Arthropleura_Head_Dead_7: -2741129447134069015
-      Arthropleura_Head_Dead_8: 4824765404696018108
+      Arthropleura_Head_Dead_0_0: 1195024040
+      Arthropleura_Head_Dead_1_0: 264874287
+      Arthropleura_Head_Dead_2_0: 600906809
+      Arthropleura_Head_Dead_3_0: -866879078
+      Arthropleura_Head_Dead_4_0: -133188634
+      Arthropleura_Head_Dead_5_0: 283560916
+      Arthropleura_Head_Dead_6_0: -1596955876
+      Arthropleura_Head_Dead_7_0: 2069285338
+      Arthropleura_Head_Dead_8_0: 279343624
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

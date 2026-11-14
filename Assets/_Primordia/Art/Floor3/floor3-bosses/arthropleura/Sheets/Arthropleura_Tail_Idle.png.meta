@@ -151,7 +151,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -179,7 +179,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -220,793 +220,793 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_0
+      name: Arthropleura_Tail_Idle_0_0
       rect:
         serializedVersion: 2
-        x: 10
-        y: 925
-        width: 92
-        height: 52
+        x: 0
+        y: 896
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 28813b7af3e35b520800000000000000
-      internalID: 2717146393305356418
+      spriteID: 9dc3811f37f6a5841938a816e5d61fcf
+      internalID: -1830653699
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_1
+      name: Arthropleura_Tail_Idle_0_1
       rect:
         serializedVersion: 2
-        x: 122
-        y: 926
-        width: 92
-        height: 51
+        x: 112
+        y: 896
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 057ea00764a4f09a0800000000000000
-      internalID: -6264706890261141680
+      spriteID: 51a697705fa1155449f3645d10b4430b
+      internalID: -376043135
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_2
+      name: Arthropleura_Tail_Idle_0_2
       rect:
         serializedVersion: 2
-        x: 234
-        y: 925
-        width: 92
-        height: 52
+        x: 224
+        y: 896
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: fcf5dc0ee138aea60800000000000000
-      internalID: 7704114281214468047
+      spriteID: fa4ce75fca3b6f944bc561d0d8afb48c
+      internalID: -248193466
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_3
+      name: Arthropleura_Tail_Idle_0_3
       rect:
         serializedVersion: 2
-        x: 346
-        y: 925
-        width: 92
-        height: 52
+        x: 336
+        y: 896
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 1dd2d18de0263eb50800000000000000
-      internalID: 6621243693059616209
+      spriteID: 8e833217f2c93d046bda3746427384ef
+      internalID: -1516999283
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_4
+      name: Arthropleura_Tail_Idle_1_0
       rect:
         serializedVersion: 2
-        x: 17
-        y: 812
-        width: 90
-        height: 61
+        x: 0
+        y: 784
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 3a6f1c3bb3a7022a0800000000000000
-      internalID: -6764272243472992605
+      spriteID: 43dc64d43ca6f5d4faaa1c54dc9b3c3a
+      internalID: -844606775
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_5
+      name: Arthropleura_Tail_Idle_1_1
       rect:
         serializedVersion: 2
-        x: 129
-        y: 813
-        width: 90
-        height: 60
+        x: 112
+        y: 784
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 1fdf3e4640ce0fdd0800000000000000
-      internalID: -2454202293300232719
+      spriteID: e576aab0b148a9240a8d3aa4c937fca4
+      internalID: -2083330215
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_6
+      name: Arthropleura_Tail_Idle_1_2
       rect:
         serializedVersion: 2
-        x: 241
-        y: 812
-        width: 90
-        height: 61
+        x: 224
+        y: 784
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: fa799cb3101fe4a10800000000000000
-      internalID: 1895717480769886127
+      spriteID: 5489033b5a70ba84489507af1729c5ec
+      internalID: 548619233
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_7
+      name: Arthropleura_Tail_Idle_1_3
       rect:
         serializedVersion: 2
-        x: 353
-        y: 812
-        width: 90
-        height: 61
+        x: 336
+        y: 784
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b2c268e32932c6920800000000000000
-      internalID: 2984799764060974123
+      spriteID: eed491edf77016442afbda2f7794bf77
+      internalID: 230884860
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_8
+      name: Arthropleura_Tail_Idle_2_0
       rect:
         serializedVersion: 2
-        x: 23
-        y: 703
-        width: 81
-        height: 65
+        x: 0
+        y: 672
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 9cb0693ac32f9fdd0800000000000000
-      internalID: -2451662179870045239
+      spriteID: e9452ca91b4630244bd90ecbe6cc4133
+      internalID: -82332259
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_9
+      name: Arthropleura_Tail_Idle_2_1
       rect:
         serializedVersion: 2
-        x: 135
-        y: 704
-        width: 81
-        height: 64
+        x: 112
+        y: 672
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 3698892e77f220020800000000000000
-      internalID: 2306458151116376419
+      spriteID: 7c81c4aa714d3814e9662e3a17af5386
+      internalID: 688475883
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_10
+      name: Arthropleura_Tail_Idle_2_2
       rect:
         serializedVersion: 2
-        x: 247
-        y: 703
-        width: 81
-        height: 65
+        x: 224
+        y: 672
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 173c2c4ce61502730800000000000000
-      internalID: 3972264407530128241
+      spriteID: c367665856ab9874fa561237708be2c8
+      internalID: 1965893429
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_11
+      name: Arthropleura_Tail_Idle_2_3
       rect:
         serializedVersion: 2
-        x: 359
-        y: 703
-        width: 81
-        height: 65
+        x: 336
+        y: 672
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2447a98c6f5e90fc0800000000000000
-      internalID: -3528035984977791934
+      spriteID: 46e616e78ea6136479de5e9b4b39b3b0
+      internalID: 172336811
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_12
+      name: Arthropleura_Tail_Idle_3_0
       rect:
         serializedVersion: 2
-        x: 19
-        y: 583
-        width: 75
-        height: 75
+        x: 0
+        y: 560
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 69e49b893016ea480800000000000000
-      internalID: -8886058346680332650
+      spriteID: 869745278affa6e43bae9d3d377d7a7c
+      internalID: -427803068
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_13
+      name: Arthropleura_Tail_Idle_3_1
       rect:
         serializedVersion: 2
-        x: 131
-        y: 583
-        width: 75
-        height: 75
+        x: 112
+        y: 560
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 97f5bfd2e64b33990800000000000000
-      internalID: -7407378576783483015
+      spriteID: 844c7ed35d14fbe43ae2d25d6e2ff8ca
+      internalID: 348617940
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_14
+      name: Arthropleura_Tail_Idle_3_2
       rect:
         serializedVersion: 2
-        x: 243
-        y: 583
-        width: 75
-        height: 75
+        x: 224
+        y: 560
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2eff4a44ee4f48780800000000000000
-      internalID: -8681544877472415774
+      spriteID: f226d04e5eea46f499c36075052cc444
+      internalID: 616722491
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_15
+      name: Arthropleura_Tail_Idle_3_3
       rect:
         serializedVersion: 2
-        x: 355
-        y: 583
-        width: 75
-        height: 75
+        x: 336
+        y: 560
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a2364d4064a4eff80800000000000000
-      internalID: -8070931817612156118
+      spriteID: 002d5536e87a9f74792490877070aa0d
+      internalID: 658903978
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_16
+      name: Arthropleura_Tail_Idle_4_0
       rect:
         serializedVersion: 2
-        x: 21
-        y: 466
-        width: 58
-        height: 77
+        x: 0
+        y: 448
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 90bda26fcf50f5f80800000000000000
-      internalID: -8115761419478443255
+      spriteID: bdb55c1c7d7b42a4dbdb6fdaa7aec516
+      internalID: -959880213
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_17
+      name: Arthropleura_Tail_Idle_4_1
       rect:
         serializedVersion: 2
-        x: 133
-        y: 466
-        width: 58
-        height: 77
+        x: 112
+        y: 448
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d16b759ed40f73130800000000000000
-      internalID: 3546567448995542557
+      spriteID: 85c029cd585e9d54090f21ea8c0f63d3
+      internalID: 2140301437
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_18
+      name: Arthropleura_Tail_Idle_4_2
       rect:
         serializedVersion: 2
-        x: 245
-        y: 466
-        width: 58
-        height: 77
+        x: 224
+        y: 448
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7c47451918701be70800000000000000
-      internalID: 9129086172727112903
+      spriteID: 4d25491d39c04b046a32c181b7db57c8
+      internalID: -53360878
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_19
+      name: Arthropleura_Tail_Idle_4_3
       rect:
         serializedVersion: 2
-        x: 357
-        y: 466
-        width: 58
-        height: 77
+        x: 336
+        y: 448
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 40d7be49d73f03ea0800000000000000
-      internalID: -5894944191533056764
+      spriteID: d74e8b3bddfa8cb4fad4a8872a4b0498
+      internalID: 525817341
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_20
+      name: Arthropleura_Tail_Idle_5_0
       rect:
         serializedVersion: 2
-        x: 19
-        y: 350
-        width: 75
-        height: 75
+        x: 0
+        y: 336
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c8325278b9fb432c0800000000000000
-      internalID: -4452723456854383732
+      spriteID: 0d32e87433e9fea43a005337a9b30410
+      internalID: -1261261426
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_21
+      name: Arthropleura_Tail_Idle_5_1
       rect:
         serializedVersion: 2
-        x: 131
-        y: 350
-        width: 75
-        height: 76
+        x: 112
+        y: 336
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 216fc06d757eb25e0800000000000000
-      internalID: -1933197250586151406
+      spriteID: 92a77db1b7a575f4e98b3057662b34e4
+      internalID: -573359986
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_22
+      name: Arthropleura_Tail_Idle_5_2
       rect:
         serializedVersion: 2
-        x: 243
-        y: 350
-        width: 75
-        height: 75
+        x: 224
+        y: 336
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6654ee1efb63cc980800000000000000
-      internalID: -8517372597507308186
+      spriteID: 104a10620d42a9747a41268595d04204
+      internalID: 298022751
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_23
+      name: Arthropleura_Tail_Idle_5_3
       rect:
         serializedVersion: 2
-        x: 355
-        y: 350
-        width: 75
-        height: 75
+        x: 336
+        y: 336
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 312de8dede776fe30800000000000000
-      internalID: 4536945538398867987
+      spriteID: b700aeee15d0c8940992f2a3863a203b
+      internalID: -389062746
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_24
+      name: Arthropleura_Tail_Idle_6_0
       rect:
         serializedVersion: 2
-        x: 23
-        y: 241
-        width: 81
-        height: 69
+        x: 0
+        y: 224
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d3b339ca6adb3ecb0800000000000000
-      internalID: -4835813051308229827
+      spriteID: 7c97d05f5abf37544914f98fa6fb93cc
+      internalID: -900494240
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_25
+      name: Arthropleura_Tail_Idle_6_1
       rect:
         serializedVersion: 2
-        x: 135
-        y: 241
-        width: 81
-        height: 70
+        x: 112
+        y: 224
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 50298da37b628f620800000000000000
-      internalID: 2808036936073646597
+      spriteID: 69a9ec532b9445c4b9f7895cbda01d13
+      internalID: -1989993440
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_26
+      name: Arthropleura_Tail_Idle_6_2
       rect:
         serializedVersion: 2
-        x: 247
-        y: 241
-        width: 81
-        height: 69
+        x: 224
+        y: 224
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d4331db0852cbd740800000000000000
-      internalID: 5177945880003687245
+      spriteID: 896579273f1eff54b9e595851811797d
+      internalID: 1146393413
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_27
+      name: Arthropleura_Tail_Idle_6_3
       rect:
         serializedVersion: 2
-        x: 359
-        y: 241
-        width: 81
-        height: 69
+        x: 336
+        y: 224
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ed7faa1d54fcc8120800000000000000
-      internalID: 2417534998768449502
+      spriteID: a69600a10df42584b8e4f3e6a3ba6fa8
+      internalID: 1019092791
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_28
+      name: Arthropleura_Tail_Idle_7_0
       rect:
         serializedVersion: 2
-        x: 17
-        y: 137
-        width: 90
-        height: 64
+        x: 0
+        y: 112
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 898eb1ce6d277ba00800000000000000
-      internalID: 772212128527149208
+      spriteID: 5b168271a84075744b8bb3dd1bfc1d2d
+      internalID: -1950153346
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_29
+      name: Arthropleura_Tail_Idle_7_1
       rect:
         serializedVersion: 2
-        x: 129
-        y: 137
-        width: 90
-        height: 65
+        x: 112
+        y: 112
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 4ac41ccf2598c83f0800000000000000
-      internalID: -897191236232721244
+      spriteID: b63416e189eb3f6458c5b9f6817c2177
+      internalID: 1245404334
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_30
+      name: Arthropleura_Tail_Idle_7_2
       rect:
         serializedVersion: 2
-        x: 241
-        y: 137
-        width: 90
-        height: 64
+        x: 224
+        y: 112
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6e3ef5f3af4c2a6e0800000000000000
-      internalID: -1827681919674883098
+      spriteID: d3674515da18c3f4c8eec8b86f89738b
+      internalID: -2097421826
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_31
+      name: Arthropleura_Tail_Idle_7_3
       rect:
         serializedVersion: 2
-        x: 353
-        y: 137
-        width: 90
-        height: 64
+        x: 336
+        y: 112
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0ecef1be3414ac110800000000000000
-      internalID: 1281908803903679712
+      spriteID: 5de6b729df6333a4a8a46fd2f273b220
+      internalID: -1260537199
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_32
+      name: Arthropleura_Tail_Idle_8_0
       rect:
         serializedVersion: 2
-        x: 10
-        y: 37
-        width: 92
-        height: 51
+        x: 0
+        y: 0
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6bd9c0357b41d8da0800000000000000
-      internalID: -5941069555826909770
+      spriteID: d8f2e700c35d95c4b849778a63d1197e
+      internalID: 983363812
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_33
+      name: Arthropleura_Tail_Idle_8_1
       rect:
         serializedVersion: 2
-        x: 122
-        y: 37
-        width: 92
-        height: 51
+        x: 112
+        y: 0
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2f04303a1783b9230800000000000000
-      internalID: 3646570384003907826
+      spriteID: 605564336afbe8a4e97be69d2ef8c029
+      internalID: 712456124
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_34
+      name: Arthropleura_Tail_Idle_8_2
       rect:
         serializedVersion: 2
-        x: 234
-        y: 37
-        width: 92
-        height: 51
+        x: 224
+        y: 0
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c05da1a569baa1c70800000000000000
-      internalID: 8942648672342693132
+      spriteID: f2bdbe79cb5948c4186c8a9491af05ab
+      internalID: -1186177357
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_35
+      name: Arthropleura_Tail_Idle_8_3
       rect:
         serializedVersion: 2
-        x: 346
-        y: 37
-        width: 92
-        height: 51
+        x: 336
+        y: 0
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0a9f99f12880dcc10800000000000000
-      internalID: 2075324358256621984
+      spriteID: 87c716e1d3dbd3f4b87dd3e794a1a48f
+      internalID: 1166153643
       vertices: []
       indices: 
       edges: []
@@ -1025,42 +1025,42 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Arthropleura_Tail_Idle_0: 2717146393305356418
-      Arthropleura_Tail_Idle_1: -6264706890261141680
-      Arthropleura_Tail_Idle_10: 3972264407530128241
-      Arthropleura_Tail_Idle_11: -3528035984977791934
-      Arthropleura_Tail_Idle_12: -8886058346680332650
-      Arthropleura_Tail_Idle_13: -7407378576783483015
-      Arthropleura_Tail_Idle_14: -8681544877472415774
-      Arthropleura_Tail_Idle_15: -8070931817612156118
-      Arthropleura_Tail_Idle_16: -8115761419478443255
-      Arthropleura_Tail_Idle_17: 3546567448995542557
-      Arthropleura_Tail_Idle_18: 9129086172727112903
-      Arthropleura_Tail_Idle_19: -5894944191533056764
-      Arthropleura_Tail_Idle_2: 7704114281214468047
-      Arthropleura_Tail_Idle_20: -4452723456854383732
-      Arthropleura_Tail_Idle_21: -1933197250586151406
-      Arthropleura_Tail_Idle_22: -8517372597507308186
-      Arthropleura_Tail_Idle_23: 4536945538398867987
-      Arthropleura_Tail_Idle_24: -4835813051308229827
-      Arthropleura_Tail_Idle_25: 2808036936073646597
-      Arthropleura_Tail_Idle_26: 5177945880003687245
-      Arthropleura_Tail_Idle_27: 2417534998768449502
-      Arthropleura_Tail_Idle_28: 772212128527149208
-      Arthropleura_Tail_Idle_29: -897191236232721244
-      Arthropleura_Tail_Idle_3: 6621243693059616209
-      Arthropleura_Tail_Idle_30: -1827681919674883098
-      Arthropleura_Tail_Idle_31: 1281908803903679712
-      Arthropleura_Tail_Idle_32: -5941069555826909770
-      Arthropleura_Tail_Idle_33: 3646570384003907826
-      Arthropleura_Tail_Idle_34: 8942648672342693132
-      Arthropleura_Tail_Idle_35: 2075324358256621984
-      Arthropleura_Tail_Idle_4: -6764272243472992605
-      Arthropleura_Tail_Idle_5: -2454202293300232719
-      Arthropleura_Tail_Idle_6: 1895717480769886127
-      Arthropleura_Tail_Idle_7: 2984799764060974123
-      Arthropleura_Tail_Idle_8: -2451662179870045239
-      Arthropleura_Tail_Idle_9: 2306458151116376419
+      Arthropleura_Tail_Idle_0_0: -1830653699
+      Arthropleura_Tail_Idle_0_1: -376043135
+      Arthropleura_Tail_Idle_0_2: -248193466
+      Arthropleura_Tail_Idle_0_3: -1516999283
+      Arthropleura_Tail_Idle_1_0: -844606775
+      Arthropleura_Tail_Idle_1_1: -2083330215
+      Arthropleura_Tail_Idle_1_2: 548619233
+      Arthropleura_Tail_Idle_1_3: 230884860
+      Arthropleura_Tail_Idle_2_0: -82332259
+      Arthropleura_Tail_Idle_2_1: 688475883
+      Arthropleura_Tail_Idle_2_2: 1965893429
+      Arthropleura_Tail_Idle_2_3: 172336811
+      Arthropleura_Tail_Idle_3_0: -427803068
+      Arthropleura_Tail_Idle_3_1: 348617940
+      Arthropleura_Tail_Idle_3_2: 616722491
+      Arthropleura_Tail_Idle_3_3: 658903978
+      Arthropleura_Tail_Idle_4_0: -959880213
+      Arthropleura_Tail_Idle_4_1: 2140301437
+      Arthropleura_Tail_Idle_4_2: -53360878
+      Arthropleura_Tail_Idle_4_3: 525817341
+      Arthropleura_Tail_Idle_5_0: -1261261426
+      Arthropleura_Tail_Idle_5_1: -573359986
+      Arthropleura_Tail_Idle_5_2: 298022751
+      Arthropleura_Tail_Idle_5_3: -389062746
+      Arthropleura_Tail_Idle_6_0: -900494240
+      Arthropleura_Tail_Idle_6_1: -1989993440
+      Arthropleura_Tail_Idle_6_2: 1146393413
+      Arthropleura_Tail_Idle_6_3: 1019092791
+      Arthropleura_Tail_Idle_7_0: -1950153346
+      Arthropleura_Tail_Idle_7_1: 1245404334
+      Arthropleura_Tail_Idle_7_2: -2097421826
+      Arthropleura_Tail_Idle_7_3: -1260537199
+      Arthropleura_Tail_Idle_8_0: 983363812
+      Arthropleura_Tail_Idle_8_1: 712456124
+      Arthropleura_Tail_Idle_8_2: -1186177357
+      Arthropleura_Tail_Idle_8_3: 1166153643
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

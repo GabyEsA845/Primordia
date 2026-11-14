@@ -166,7 +166,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -194,7 +194,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -235,903 +235,793 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Charred_0
+      name: Arthropleura_Tail_Idle_Charred_0_0
       rect:
         serializedVersion: 2
-        x: 21
-        y: 926
-        width: 70
-        height: 49
+        x: 0
+        y: 896
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 55dc80ded94e4a540800000000000000
-      internalID: 5018387251735350613
+      spriteID: 5ef2c9b999ba734458110854ab3830d7
+      internalID: -571104765
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Charred_1
+      name: Arthropleura_Tail_Idle_Charred_0_1
       rect:
         serializedVersion: 2
-        x: 133
-        y: 927
-        width: 70
-        height: 48
+        x: 112
+        y: 896
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 66d833af8d3b046a0800000000000000
-      internalID: -6466971320412041882
+      spriteID: d3a0275b9c9048341820e4e50a55dd80
+      internalID: 144261757
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Charred_2
+      name: Arthropleura_Tail_Idle_Charred_0_2
       rect:
         serializedVersion: 2
-        x: 245
-        y: 926
-        width: 70
-        height: 49
+        x: 224
+        y: 896
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c3497fb3c666d2a10800000000000000
-      internalID: 1886276433986688060
+      spriteID: 2fbdfbbebf61ac544b94b5ca0a1a3a3d
+      internalID: 1143863061
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Charred_3
+      name: Arthropleura_Tail_Idle_Charred_0_3
       rect:
         serializedVersion: 2
-        x: 357
-        y: 926
-        width: 70
-        height: 49
+        x: 336
+        y: 896
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 98b05f76217eb9f50800000000000000
-      internalID: 6889354121232845705
+      spriteID: 6c08813246ebcdb40938ce185452ddac
+      internalID: 1184385039
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Charred_4
+      name: Arthropleura_Tail_Idle_Charred_1_0
       rect:
         serializedVersion: 2
-        x: 21
-        y: 813
-        width: 68
-        height: 52
+        x: 0
+        y: 784
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 71f9465069d614b50800000000000000
-      internalID: 6575657422040637207
+      spriteID: b714c08e782f9a946aadeb9cc7ef61e8
+      internalID: 2023362074
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Charred_5
+      name: Arthropleura_Tail_Idle_Charred_1_1
       rect:
         serializedVersion: 2
-        x: 133
-        y: 814
-        width: 68
-        height: 52
+        x: 112
+        y: 784
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 855f27267f2c009d0800000000000000
-      internalID: -2810031799714777768
+      spriteID: 8963684759b3aba44b98322b0cf39897
+      internalID: -2035707879
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Charred_6
+      name: Arthropleura_Tail_Idle_Charred_1_2
       rect:
         serializedVersion: 2
-        x: 245
-        y: 813
-        width: 68
-        height: 52
+        x: 224
+        y: 784
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 4f5e51309079c8750800000000000000
-      internalID: 6308583243001488884
+      spriteID: 2b8226e935abb1e41b00ed0f80f56624
+      internalID: -1924861908
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Charred_7
+      name: Arthropleura_Tail_Idle_Charred_1_3
       rect:
         serializedVersion: 2
-        x: 357
-        y: 813
-        width: 68
-        height: 52
+        x: 336
+        y: 784
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 9368debacaabdbe10800000000000000
-      internalID: 2215131842517763641
+      spriteID: a8eefcb6f4e8d4d478b3a350611e001f
+      internalID: 319803904
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Charred_8
+      name: Arthropleura_Tail_Idle_Charred_2_0
       rect:
         serializedVersion: 2
-        x: 24
-        y: 704
-        width: 64
-        height: 54
+        x: 0
+        y: 672
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 70a52372964d546e0800000000000000
-      internalID: -1853842123498825209
+      spriteID: 4b381dc93fc699f4d9e9ed3b2020f648
+      internalID: -655372164
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Charred_9
+      name: Arthropleura_Tail_Idle_Charred_2_1
       rect:
         serializedVersion: 2
-        x: 136
-        y: 705
-        width: 64
-        height: 53
+        x: 112
+        y: 672
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: eeb42ea652e181510800000000000000
-      internalID: 1519998020293381102
+      spriteID: d005b704e5df10a4983dbc05d0e93573
+      internalID: -1224046825
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Charred_10
+      name: Arthropleura_Tail_Idle_Charred_2_2
       rect:
         serializedVersion: 2
-        x: 248
-        y: 704
-        width: 64
-        height: 54
+        x: 224
+        y: 672
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: bcfbe56d58e614930800000000000000
-      internalID: 4125700254754324427
+      spriteID: f6447ae21baaa7e4ca1fe1dc7ad9332e
+      internalID: 2132761001
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Charred_11
+      name: Arthropleura_Tail_Idle_Charred_2_3
       rect:
         serializedVersion: 2
-        x: 360
-        y: 704
-        width: 64
-        height: 53
+        x: 336
+        y: 672
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 70f46bdba15ec5eb0800000000000000
-      internalID: -4729653605631111417
+      spriteID: 517ae4f56fa811546929a84a704b9396
+      internalID: -1249775666
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Charred_12
+      name: Arthropleura_Tail_Idle_Charred_3_0
       rect:
         serializedVersion: 2
-        x: 20
-        y: 591
-        width: 62
-        height: 56
+        x: 0
+        y: 560
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: bcefe8f13b7f32d80800000000000000
-      internalID: -8276499341476167989
+      spriteID: e3a10389f56f5644bbb2153832f3cc2f
+      internalID: 29121957
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Charred_13
+      name: Arthropleura_Tail_Idle_Charred_3_1
       rect:
         serializedVersion: 2
-        x: 132
-        y: 591
-        width: 62
-        height: 56
+        x: 112
+        y: 560
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 744c403b1fef08690800000000000000
-      internalID: -7601795856957389753
+      spriteID: 901a63766c772ae44a3683b237ee7753
+      internalID: 904846052
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Charred_14
+      name: Arthropleura_Tail_Idle_Charred_3_2
       rect:
         serializedVersion: 2
-        x: 244
-        y: 591
-        width: 62
-        height: 56
+        x: 224
+        y: 560
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2b9a93246a6d76390800000000000000
-      internalID: -7825049817968957006
+      spriteID: 532b0a29e0f51d845b4f1b4ddfdae063
+      internalID: -809535309
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Charred_15
+      name: Arthropleura_Tail_Idle_Charred_3_3
       rect:
         serializedVersion: 2
-        x: 356
-        y: 590
-        width: 62
-        height: 57
+        x: 336
+        y: 560
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 4ed9227f82cbc8e80800000000000000
-      internalID: -8174952339453338140
+      spriteID: 3f6d1d479175c684c9d060577e5105af
+      internalID: -673537531
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Charred_16
+      name: Arthropleura_Tail_Idle_Charred_4_0
       rect:
         serializedVersion: 2
-        x: 22
-        y: 478
-        width: 56
-        height: 59
+        x: 0
+        y: 448
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 48dca3330798eea90800000000000000
-      internalID: -7282732432422679164
+      spriteID: 1ff8404889e05d143a81f6b4f2a2df72
+      internalID: -892017163
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Charred_17
+      name: Arthropleura_Tail_Idle_Charred_4_1
       rect:
         serializedVersion: 2
-        x: 134
-        y: 478
-        width: 56
-        height: 59
+        x: 112
+        y: 448
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 5fa6cc426a2004f60800000000000000
-      internalID: 8016410249324686069
+      spriteID: cbe761b1f4b0d344883dfba686a29932
+      internalID: 310148043
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Charred_18
+      name: Arthropleura_Tail_Idle_Charred_4_2
       rect:
         serializedVersion: 2
-        x: 246
-        y: 478
-        width: 56
-        height: 59
+        x: 224
+        y: 448
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 49c763378da71eb30800000000000000
-      internalID: 4314864988062121108
+      spriteID: b38a4538c30953e4da25cae0cb24d98b
+      internalID: 225717374
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Charred_19
+      name: Arthropleura_Tail_Idle_Charred_4_3
       rect:
         serializedVersion: 2
-        x: 358
-        y: 478
-        width: 56
-        height: 59
+        x: 336
+        y: 448
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 58e0e5dd39c19d060800000000000000
-      internalID: 6978640518986993285
+      spriteID: dc7474d1434726049964e121ae6530ef
+      internalID: 633119562
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Charred_20
+      name: Arthropleura_Tail_Idle_Charred_5_0
       rect:
         serializedVersion: 2
-        x: 20
-        y: 367
-        width: 63
-        height: 57
+        x: 0
+        y: 336
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6fcb7de38fac7dce0800000000000000
-      internalID: -1380411593210741514
+      spriteID: 506d5c2d9cfb8de4e9e8dc483f929f32
+      internalID: -1400019827
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Charred_21
+      name: Arthropleura_Tail_Idle_Charred_5_1
       rect:
         serializedVersion: 2
-        x: 132
-        y: 368
-        width: 63
-        height: 57
+        x: 112
+        y: 336
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 40222ff07c10c7310800000000000000
-      internalID: 1403999138310398468
+      spriteID: 0f74db129a258af42ad7620cc428db16
+      internalID: -707819657
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Charred_22
+      name: Arthropleura_Tail_Idle_Charred_5_2
       rect:
         serializedVersion: 2
-        x: 244
-        y: 367
-        width: 63
-        height: 57
+        x: 224
+        y: 336
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 93430b92cc53a2110800000000000000
-      internalID: 1236860198655636537
+      spriteID: fdfa4c96b16d8f34a98bcf798b29ed1e
+      internalID: 201664178
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Charred_23
+      name: Arthropleura_Tail_Idle_Charred_5_3
       rect:
         serializedVersion: 2
-        x: 356
-        y: 367
-        width: 63
-        height: 57
+        x: 336
+        y: 336
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7850baa58bb196c00800000000000000
-      internalID: 894276479618844039
+      spriteID: cf4908fe473204a49ae6df0bd56e5a7f
+      internalID: 507594720
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Charred_24
+      name: Arthropleura_Tail_Idle_Charred_6_0
       rect:
         serializedVersion: 2
-        x: 24
-        y: 258
-        width: 64
-        height: 51
+        x: 0
+        y: 224
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 5b7e830699394d180800000000000000
-      internalID: -9091479460800567371
+      spriteID: e260cff1da7508e4fa6ee234d7a3c5e9
+      internalID: -1621033427
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Charred_25
+      name: Arthropleura_Tail_Idle_Charred_6_1
       rect:
         serializedVersion: 2
-        x: 47
-        y: 257
-        width: 8
-        height: 6
+        x: 112
+        y: 224
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 884d07c5c75e49ba0800000000000000
-      internalID: -6082984874381093752
+      spriteID: 41fc66b02164cb042900357dab81dbbf
+      internalID: 836538278
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Charred_26
+      name: Arthropleura_Tail_Idle_Charred_6_2
       rect:
         serializedVersion: 2
-        x: 136
-        y: 257
-        width: 64
-        height: 53
+        x: 224
+        y: 224
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6d5a7375266e473c0800000000000000
-      internalID: -4362608828970719786
+      spriteID: 3c8f3cc38d1a1004ab4eae1f01f23cbc
+      internalID: 2128445541
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Charred_27
+      name: Arthropleura_Tail_Idle_Charred_6_3
       rect:
         serializedVersion: 2
-        x: 248
-        y: 258
-        width: 64
-        height: 51
+        x: 336
+        y: 224
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 1e9ce0e5b4bb047a0800000000000000
-      internalID: -6394905538491135519
+      spriteID: 2a9c4dfa81ef125448d1fb4fa9693759
+      internalID: -947044932
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Charred_28
+      name: Arthropleura_Tail_Idle_Charred_7_0
       rect:
         serializedVersion: 2
-        x: 271
-        y: 257
-        width: 8
-        height: 6
+        x: 0
+        y: 112
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 1e4bc196df4ea5890800000000000000
-      internalID: -7468405254999198495
+      spriteID: 78eca56d621abf846a22f059701a4909
+      internalID: 268274932
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Charred_29
+      name: Arthropleura_Tail_Idle_Charred_7_1
       rect:
         serializedVersion: 2
-        x: 360
-        y: 257
-        width: 64
-        height: 52
+        x: 112
+        y: 112
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b7a962ac4423d3f30800000000000000
-      internalID: 4556853668999502459
+      spriteID: b9d4a8221674e3b4cac647012124e4b4
+      internalID: -805660144
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Charred_30
+      name: Arthropleura_Tail_Idle_Charred_7_2
       rect:
         serializedVersion: 2
-        x: 21
-        y: 149
-        width: 68
-        height: 51
+        x: 224
+        y: 112
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 17dfaf0f4ce5609a0800000000000000
-      internalID: -6267217631489884815
+      spriteID: 703bceb98ac6f8246be87c0cddae2dc0
+      internalID: 2040137520
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Charred_31
+      name: Arthropleura_Tail_Idle_Charred_7_3
       rect:
         serializedVersion: 2
-        x: 133
-        y: 149
-        width: 68
-        height: 52
+        x: 336
+        y: 112
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d93851e529ede50f0800000000000000
-      internalID: -1126218136570985571
+      spriteID: 162c9fbc4ade84c40bcce4911382aad5
+      internalID: 377650160
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Charred_32
+      name: Arthropleura_Tail_Idle_Charred_8_0
       rect:
         serializedVersion: 2
-        x: 245
-        y: 149
-        width: 68
-        height: 51
+        x: 0
+        y: 0
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 3aeaff1fb45b3cfe0800000000000000
-      internalID: -1169892140398956893
+      spriteID: c9ce5a51f8d62d44d9981d071a9468f9
+      internalID: -2076560909
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Charred_33
+      name: Arthropleura_Tail_Idle_Charred_8_1
       rect:
         serializedVersion: 2
-        x: 357
-        y: 149
-        width: 68
-        height: 51
+        x: 112
+        y: 0
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e573766861f9addc0800000000000000
-      internalID: -3613400831918393506
+      spriteID: a19b7e2d3bff81746833dcc87cb966f8
+      internalID: -358863576
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Charred_34
+      name: Arthropleura_Tail_Idle_Charred_8_2
       rect:
         serializedVersion: 2
-        x: 21
-        y: 58
-        width: 7
-        height: 8
+        x: 224
+        y: 0
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 69d2bb30c987c6fd0800000000000000
-      internalID: -2347368694294041194
+      spriteID: 5bf8e3dacff759540884c7f5ed72ea90
+      internalID: -1419135093
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Charred_35
+      name: Arthropleura_Tail_Idle_Charred_8_3
       rect:
         serializedVersion: 2
-        x: 24
-        y: 41
-        width: 67
-        height: 46
+        x: 336
+        y: 0
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e5886dd9999d19da0800000000000000
-      internalID: -5939727179723667362
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Charred_36
-      rect:
-        serializedVersion: 2
-        x: 133
-        y: 41
-        width: 70
-        height: 46
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7e07c7a76202dfec0800000000000000
-      internalID: -3531631183152779033
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Charred_37
-      rect:
-        serializedVersion: 2
-        x: 245
-        y: 58
-        width: 7
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 21fb497dd744eeba0800000000000000
-      internalID: -6057829141488287982
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Charred_38
-      rect:
-        serializedVersion: 2
-        x: 248
-        y: 41
-        width: 67
-        height: 46
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0c5441a5c05780220800000000000000
-      internalID: 2452338693014570432
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Charred_39
-      rect:
-        serializedVersion: 2
-        x: 357
-        y: 57
-        width: 7
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: fa407bfc17e423d60800000000000000
-      internalID: 7868437749692826799
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Tail_Idle_Charred_40
-      rect:
-        serializedVersion: 2
-        x: 360
-        y: 40
-        width: 67
-        height: 47
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5709a9363f0b21a90800000000000000
-      internalID: -7344613482893242251
+      spriteID: 15bb566429c936a4ebe0e698711c3426
+      internalID: -1509036978
       vertices: []
       indices: 
       edges: []
@@ -1150,47 +1040,42 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Arthropleura_Tail_Idle_Charred_0: 5018387251735350613
-      Arthropleura_Tail_Idle_Charred_1: -6466971320412041882
-      Arthropleura_Tail_Idle_Charred_10: 4125700254754324427
-      Arthropleura_Tail_Idle_Charred_11: -4729653605631111417
-      Arthropleura_Tail_Idle_Charred_12: -8276499341476167989
-      Arthropleura_Tail_Idle_Charred_13: -7601795856957389753
-      Arthropleura_Tail_Idle_Charred_14: -7825049817968957006
-      Arthropleura_Tail_Idle_Charred_15: -8174952339453338140
-      Arthropleura_Tail_Idle_Charred_16: -7282732432422679164
-      Arthropleura_Tail_Idle_Charred_17: 8016410249324686069
-      Arthropleura_Tail_Idle_Charred_18: 4314864988062121108
-      Arthropleura_Tail_Idle_Charred_19: 6978640518986993285
-      Arthropleura_Tail_Idle_Charred_2: 1886276433986688060
-      Arthropleura_Tail_Idle_Charred_20: -1380411593210741514
-      Arthropleura_Tail_Idle_Charred_21: 1403999138310398468
-      Arthropleura_Tail_Idle_Charred_22: 1236860198655636537
-      Arthropleura_Tail_Idle_Charred_23: 894276479618844039
-      Arthropleura_Tail_Idle_Charred_24: -9091479460800567371
-      Arthropleura_Tail_Idle_Charred_25: -6082984874381093752
-      Arthropleura_Tail_Idle_Charred_26: -4362608828970719786
-      Arthropleura_Tail_Idle_Charred_27: -6394905538491135519
-      Arthropleura_Tail_Idle_Charred_28: -7468405254999198495
-      Arthropleura_Tail_Idle_Charred_29: 4556853668999502459
-      Arthropleura_Tail_Idle_Charred_3: 6889354121232845705
-      Arthropleura_Tail_Idle_Charred_30: -6267217631489884815
-      Arthropleura_Tail_Idle_Charred_31: -1126218136570985571
-      Arthropleura_Tail_Idle_Charred_32: -1169892140398956893
-      Arthropleura_Tail_Idle_Charred_33: -3613400831918393506
-      Arthropleura_Tail_Idle_Charred_34: -2347368694294041194
-      Arthropleura_Tail_Idle_Charred_35: -5939727179723667362
-      Arthropleura_Tail_Idle_Charred_36: -3531631183152779033
-      Arthropleura_Tail_Idle_Charred_37: -6057829141488287982
-      Arthropleura_Tail_Idle_Charred_38: 2452338693014570432
-      Arthropleura_Tail_Idle_Charred_39: 7868437749692826799
-      Arthropleura_Tail_Idle_Charred_4: 6575657422040637207
-      Arthropleura_Tail_Idle_Charred_40: -7344613482893242251
-      Arthropleura_Tail_Idle_Charred_5: -2810031799714777768
-      Arthropleura_Tail_Idle_Charred_6: 6308583243001488884
-      Arthropleura_Tail_Idle_Charred_7: 2215131842517763641
-      Arthropleura_Tail_Idle_Charred_8: -1853842123498825209
-      Arthropleura_Tail_Idle_Charred_9: 1519998020293381102
+      Arthropleura_Tail_Idle_Charred_0_0: -571104765
+      Arthropleura_Tail_Idle_Charred_0_1: 144261757
+      Arthropleura_Tail_Idle_Charred_0_2: 1143863061
+      Arthropleura_Tail_Idle_Charred_0_3: 1184385039
+      Arthropleura_Tail_Idle_Charred_1_0: 2023362074
+      Arthropleura_Tail_Idle_Charred_1_1: -2035707879
+      Arthropleura_Tail_Idle_Charred_1_2: -1924861908
+      Arthropleura_Tail_Idle_Charred_1_3: 319803904
+      Arthropleura_Tail_Idle_Charred_2_0: -655372164
+      Arthropleura_Tail_Idle_Charred_2_1: -1224046825
+      Arthropleura_Tail_Idle_Charred_2_2: 2132761001
+      Arthropleura_Tail_Idle_Charred_2_3: -1249775666
+      Arthropleura_Tail_Idle_Charred_3_0: 29121957
+      Arthropleura_Tail_Idle_Charred_3_1: 904846052
+      Arthropleura_Tail_Idle_Charred_3_2: -809535309
+      Arthropleura_Tail_Idle_Charred_3_3: -673537531
+      Arthropleura_Tail_Idle_Charred_4_0: -892017163
+      Arthropleura_Tail_Idle_Charred_4_1: 310148043
+      Arthropleura_Tail_Idle_Charred_4_2: 225717374
+      Arthropleura_Tail_Idle_Charred_4_3: 633119562
+      Arthropleura_Tail_Idle_Charred_5_0: -1400019827
+      Arthropleura_Tail_Idle_Charred_5_1: -707819657
+      Arthropleura_Tail_Idle_Charred_5_2: 201664178
+      Arthropleura_Tail_Idle_Charred_5_3: 507594720
+      Arthropleura_Tail_Idle_Charred_6_0: -1621033427
+      Arthropleura_Tail_Idle_Charred_6_1: 836538278
+      Arthropleura_Tail_Idle_Charred_6_2: 2128445541
+      Arthropleura_Tail_Idle_Charred_6_3: -947044932
+      Arthropleura_Tail_Idle_Charred_7_0: 268274932
+      Arthropleura_Tail_Idle_Charred_7_1: -805660144
+      Arthropleura_Tail_Idle_Charred_7_2: 2040137520
+      Arthropleura_Tail_Idle_Charred_7_3: 377650160
+      Arthropleura_Tail_Idle_Charred_8_0: -2076560909
+      Arthropleura_Tail_Idle_Charred_8_1: -358863576
+      Arthropleura_Tail_Idle_Charred_8_2: -1419135093
+      Arthropleura_Tail_Idle_Charred_8_3: -1509036978
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -643,7 +643,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -671,7 +671,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -712,4401 +712,1189 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_0
+      name: Arthropleura_Segment_Walk_Burning_0_0
       rect:
         serializedVersion: 2
-        x: 35
-        y: 950
-        width: 20
-        height: 27
+        x: 0
+        y: 896
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c1d8b0bd3061ec480800000000000000
-      internalID: -8877133609684988644
+      spriteID: fbcf475fc3e92224a93cc88f414640a3
+      internalID: -403265903
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_1
+      name: Arthropleura_Segment_Walk_Burning_0_1
       rect:
         serializedVersion: 2
-        x: 47
-        y: 969
-        width: 13
-        height: 19
+        x: 112
+        y: 896
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 5c95a067ec3d47f70800000000000000
-      internalID: 9184198423812397509
+      spriteID: 17212e6c986260d4d8d8c2a00171c29f
+      internalID: -1725254139
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_2
+      name: Arthropleura_Segment_Walk_Burning_0_2
       rect:
         serializedVersion: 2
-        x: 159
-        y: 969
-        width: 13
-        height: 17
+        x: 224
+        y: 896
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 557d850a61d2b0600800000000000000
-      internalID: 435491364174092117
+      spriteID: 47710eddec02a9d4084b9976c834faff
+      internalID: 100741558
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_3
+      name: Arthropleura_Segment_Walk_Burning_0_3
       rect:
         serializedVersion: 2
-        x: 170
-        y: 950
-        width: 13
-        height: 20
+        x: 336
+        y: 896
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6501200642a5a8ab0800000000000000
-      internalID: -5005088923592814506
+      spriteID: dbc78e389cd3e2d4c8a6b4cbbe189105
+      internalID: -1778348409
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_4
+      name: Arthropleura_Segment_Walk_Burning_0_4
       rect:
         serializedVersion: 2
-        x: 181
-        y: 961
-        width: 14
-        height: 29
+        x: 448
+        y: 896
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: dd87025bafe0862d0800000000000000
-      internalID: -3285359458223359779
+      spriteID: bb90458991133a244b58ea809467a292
+      internalID: -874984421
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_5
+      name: Arthropleura_Segment_Walk_Burning_0_5
       rect:
         serializedVersion: 2
-        x: 270
-        y: 969
-        width: 14
-        height: 19
+        x: 560
+        y: 896
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 482ec19a5365476b0800000000000000
-      internalID: -5299516073037733244
+      spriteID: 5867077418eda6a4d8c2ae959d736a10
+      internalID: 79175088
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_6
+      name: Arthropleura_Segment_Walk_Burning_1_0
       rect:
         serializedVersion: 2
-        x: 282
-        y: 950
-        width: 22
-        height: 36
+        x: 0
+        y: 784
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7da5eb056f327e320800000000000000
-      internalID: 2587076051771218647
+      spriteID: cbd258a53b85b08448a11d37549563b9
+      internalID: -1488539378
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_7
+      name: Arthropleura_Segment_Walk_Burning_1_1
       rect:
         serializedVersion: 2
-        x: 372
-        y: 950
-        width: 13
-        height: 27
+        x: 112
+        y: 784
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 95dfc3b33d4756e10800000000000000
-      internalID: 2190285244366388569
+      spriteID: d71f4b34cf4361640a41cc41396d457f
+      internalID: -23521058
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_8
+      name: Arthropleura_Segment_Walk_Burning_1_2
       rect:
         serializedVersion: 2
-        x: 382
-        y: 969
-        width: 14
-        height: 24
+        x: 224
+        y: 784
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f91993581adf67b50800000000000000
-      internalID: 6590733974870004127
+      spriteID: 7036172491a50234d9f3b61418fd4405
+      internalID: -2086748774
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_9
+      name: Arthropleura_Segment_Walk_Burning_1_3
       rect:
         serializedVersion: 2
-        x: 484
-        y: 950
-        width: 13
-        height: 29
+        x: 336
+        y: 784
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c50a74803a5fb4140800000000000000
-      internalID: 4705124316286001244
+      spriteID: fd1fd90fb76667646b57434930ace819
+      internalID: -1487050971
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_10
+      name: Arthropleura_Segment_Walk_Burning_1_4
       rect:
         serializedVersion: 2
-        x: 495
-        y: 969
-        width: 13
-        height: 17
+        x: 448
+        y: 784
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a64c50201ce913580800000000000000
-      internalID: -8849117241006504854
+      spriteID: c112c97e85bf5554c9ab2a193d2a00ea
+      internalID: -33211125
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_11
+      name: Arthropleura_Segment_Walk_Burning_1_5
       rect:
         serializedVersion: 2
-        x: 595
-        y: 950
-        width: 14
-        height: 25
+        x: 560
+        y: 784
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2e31f7f7d8eebbd00800000000000000
-      internalID: 989646834634789858
+      spriteID: 350621f441ff2ee4cb89cc479fa36784
+      internalID: -1933159610
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_12
+      name: Arthropleura_Segment_Walk_Burning_2_0
       rect:
         serializedVersion: 2
-        x: 607
-        y: 969
-        width: 13
-        height: 19
+        x: 0
+        y: 672
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b10317645b3db05f0800000000000000
-      internalID: -789304534149025765
+      spriteID: 9ab317271d36127478dce3cf4cba2dc1
+      internalID: 1066543507
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_13
+      name: Arthropleura_Segment_Walk_Burning_2_1
       rect:
         serializedVersion: 2
-        x: 42
-        y: 932
-        width: 18
-        height: 22
+        x: 112
+        y: 672
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e3fdbfe22cd5040d0800000000000000
-      internalID: -3440647026717761730
+      spriteID: d37145b37e6693d4e9bc9a0ed655ddc9
+      internalID: 1366957301
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_14
+      name: Arthropleura_Segment_Walk_Burning_2_2
       rect:
         serializedVersion: 2
-        x: 60
-        y: 939
-        width: 14
-        height: 24
+        x: 224
+        y: 672
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 41b786123e4659060800000000000000
-      internalID: 6959579725851818772
+      spriteID: 08c290044f3dc3a4b857ba7d0dd2ab33
+      internalID: -1646288653
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_15
+      name: Arthropleura_Segment_Walk_Burning_2_3
       rect:
         serializedVersion: 2
-        x: 72
-        y: 933
-        width: 13
-        height: 12
+        x: 336
+        y: 672
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d2a130c60612ba230800000000000000
-      internalID: 3651048620926638637
+      spriteID: 98942b6cefbce3b40a9321c4a76afa46
+      internalID: -213150055
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_16
+      name: Arthropleura_Segment_Walk_Burning_2_4
       rect:
         serializedVersion: 2
-        x: 158
-        y: 939
-        width: 14
-        height: 17
+        x: 448
+        y: 672
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 227ad8221db1b48b0800000000000000
-      internalID: -5167005562435688670
+      spriteID: bfc2497844c4b604f9840c78bb26a2bc
+      internalID: -1028622821
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_17
+      name: Arthropleura_Segment_Walk_Burning_2_5
       rect:
         serializedVersion: 2
-        x: 180
-        y: 933
-        width: 14
-        height: 24
+        x: 560
+        y: 672
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c362912e7547475c0800000000000000
-      internalID: -4218619030135036356
+      spriteID: f01b3b99cecc5354bbd317901af6a859
+      internalID: -773869735
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_18
+      name: Arthropleura_Segment_Walk_Burning_3_0
       rect:
         serializedVersion: 2
-        x: 270
-        y: 939
-        width: 14
-        height: 19
+        x: 0
+        y: 560
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6bb9f56ebd5d1fb00800000000000000
-      internalID: 860704144244054966
+      spriteID: 7b68bf477f835fe4e958408b61ba3d2f
+      internalID: 705035900
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_19
+      name: Arthropleura_Segment_Walk_Burning_3_1
       rect:
         serializedVersion: 2
-        x: 289
-        y: 933
-        width: 20
-        height: 17
+        x: 112
+        y: 560
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0ca9f8a4422fbbc60800000000000000
-      internalID: 7835122214424779456
+      spriteID: f7f2176fa0abf1a45b84d111bf0959d8
+      internalID: 40920747
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_20
+      name: Arthropleura_Segment_Walk_Burning_3_2
       rect:
         serializedVersion: 2
-        x: 377
-        y: 932
-        width: 19
-        height: 26
+        x: 224
+        y: 560
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: bcd1458bc206d1780800000000000000
-      internalID: -8710700359077323317
+      spriteID: c109fddf55e15be4dacdd5bde1f73d7e
+      internalID: -1819285450
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_21
+      name: Arthropleura_Segment_Walk_Burning_3_3
       rect:
         serializedVersion: 2
-        x: 396
-        y: 939
-        width: 14
-        height: 24
+        x: 336
+        y: 560
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 1ee67ba4812d24de0800000000000000
-      internalID: -1350285936483143967
+      spriteID: 4036013a35b0e0744b6d0edae4a894b0
+      internalID: 1851300877
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_22
+      name: Arthropleura_Segment_Walk_Burning_3_4
       rect:
         serializedVersion: 2
-        x: 408
-        y: 933
-        width: 13
-        height: 12
+        x: 448
+        y: 560
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 882fab34c37883c30800000000000000
-      internalID: 4339366933875585672
+      spriteID: 57c87ba7eb2b1394aae3bd145e584bea
+      internalID: 2023358960
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_23
+      name: Arthropleura_Segment_Walk_Burning_3_5
       rect:
         serializedVersion: 2
-        x: 490
-        y: 932
-        width: 18
-        height: 24
+        x: 560
+        y: 560
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 64ca99e31a252ac50800000000000000
-      internalID: 6674988450209967174
+      spriteID: 70dc42c9dd29b0d4c9b75002b1095c0e
+      internalID: -1621360975
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_24
+      name: Arthropleura_Segment_Walk_Burning_4_0
       rect:
         serializedVersion: 2
-        x: 508
-        y: 933
-        width: 21
-        height: 26
+        x: 0
+        y: 448
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ffabfe366c67bc720800000000000000
-      internalID: 2867516182203710207
+      spriteID: 0d195d270c36b214185ac474f6577442
+      internalID: 1233820850
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_25
+      name: Arthropleura_Segment_Walk_Burning_4_1
       rect:
         serializedVersion: 2
-        x: 602
-        y: 932
-        width: 18
-        height: 26
+        x: 112
+        y: 448
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ef513b813933770d0800000000000000
-      internalID: -3425212284724374018
+      spriteID: bcf470294c966c242893bb43873ff6af
+      internalID: -1327880751
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_26
+      name: Arthropleura_Segment_Walk_Burning_4_2
       rect:
         serializedVersion: 2
-        x: 619
-        y: 939
-        width: 14
-        height: 22
+        x: 224
+        y: 448
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 41979b79443308770800000000000000
-      internalID: 8610938857228695828
+      spriteID: 95603c49021a778478ef3cfe2bddfb78
+      internalID: 700176668
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_27
+      name: Arthropleura_Segment_Walk_Burning_4_3
       rect:
         serializedVersion: 2
-        x: 632
-        y: 933
-        width: 13
-        height: 10
+        x: 336
+        y: 448
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 42b44d0ea9c75d2e0800000000000000
-      internalID: -2101636646459651292
+      spriteID: cf2de817f7781244eba467e1d2006059
+      internalID: -475274824
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_28
+      name: Arthropleura_Segment_Walk_Burning_4_4
       rect:
         serializedVersion: 2
-        x: 41
-        y: 821
-        width: 19
-        height: 30
+        x: 448
+        y: 448
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 456b9046ff7a982c0800000000000000
-      internalID: -4428824043205314988
+      spriteID: c5daa49c85abc184aaed4daa44a45acf
+      internalID: 531903026
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_29
+      name: Arthropleura_Segment_Walk_Burning_4_5
       rect:
         serializedVersion: 2
-        x: 57
-        y: 827
-        width: 16
-        height: 25
+        x: 560
+        y: 448
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7fcdc9a72164a1ba0800000000000000
-      internalID: -6117500098648941321
+      spriteID: 04a68062ecd8cf749adb1ffca150b481
+      internalID: -1732419959
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_30
+      name: Arthropleura_Segment_Walk_Burning_5_0
       rect:
         serializedVersion: 2
-        x: 73
-        y: 840
-        width: 19
-        height: 28
+        x: 0
+        y: 336
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ee0eb0fd4254fa3e0800000000000000
-      internalID: -2040336081512308498
+      spriteID: 0e16a7b8ea89f7f46a0c3cb1b07a9cd8
+      internalID: 1094623899
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_31
+      name: Arthropleura_Segment_Walk_Burning_5_1
       rect:
         serializedVersion: 2
-        x: 153
-        y: 821
-        width: 31
-        height: 32
+        x: 112
+        y: 336
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c3d98cdeb7460cd20800000000000000
-      internalID: 3296745410668305724
+      spriteID: 84c197e444443034c9df5af6d58e52a0
+      internalID: 984548797
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_32
+      name: Arthropleura_Segment_Walk_Burning_5_2
       rect:
         serializedVersion: 2
-        x: 185
-        y: 840
-        width: 20
-        height: 26
+        x: 224
+        y: 336
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 1a665c60180ccfe20800000000000000
-      internalID: 3385792680272684705
+      spriteID: bf0eff90808256b4190fe8eafa5722d8
+      internalID: -1292583491
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_33
+      name: Arthropleura_Segment_Walk_Burning_5_3
       rect:
         serializedVersion: 2
-        x: 282
-        y: 827
-        width: 14
-        height: 23
+        x: 336
+        y: 336
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0cc80b609eeb2b580800000000000000
-      internalID: -8812771612761748288
+      spriteID: e05f4bbf1fe58cc4ea351835faec507e
+      internalID: 1387464478
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_34
+      name: Arthropleura_Segment_Walk_Burning_5_4
       rect:
         serializedVersion: 2
-        x: 286
-        y: 849
-        width: 24
-        height: 19
+        x: 448
+        y: 336
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 87d2cb9b98b016ac0800000000000000
-      internalID: -3863794319152632456
+      spriteID: 022d98bca1fd87b4abf99d1e045cc9aa
+      internalID: 76071016
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_35
+      name: Arthropleura_Segment_Walk_Burning_5_5
       rect:
         serializedVersion: 2
-        x: 305
-        y: 840
-        width: 13
-        height: 10
+        x: 560
+        y: 336
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 19587fd6752bf1ae0800000000000000
-      internalID: -1576345255979547247
+      spriteID: 3958483b918c7ef4db94dc44d7dd2aaa
+      internalID: 378273874
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_36
+      name: Arthropleura_Segment_Walk_Burning_6_0
       rect:
         serializedVersion: 2
-        x: 393
-        y: 827
-        width: 16
-        height: 25
+        x: 0
+        y: 224
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 00c135f73c8567810800000000000000
-      internalID: 1762693900840147968
+      spriteID: 8bb30bcd1b3cc8c4da0927ea9e90e4cb
+      internalID: 1283306865
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_37
+      name: Arthropleura_Segment_Walk_Burning_6_1
       rect:
         serializedVersion: 2
-        x: 408
-        y: 849
-        width: 14
-        height: 24
+        x: 112
+        y: 224
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 86869a5490d32ead0800000000000000
-      internalID: -2674508118671923096
+      spriteID: 42666f920464a724ea23a2f404889b33
+      internalID: 1829261154
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_38
+      name: Arthropleura_Segment_Walk_Burning_6_2
       rect:
         serializedVersion: 2
-        x: 420
-        y: 840
-        width: 13
-        height: 12
+        x: 224
+        y: 224
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 333df624f3b85db40800000000000000
-      internalID: 5464426826697790259
+      spriteID: 24a63a21a5a7bd4408bb51e36c3d4154
+      internalID: 325357638
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_39
+      name: Arthropleura_Segment_Walk_Burning_6_3
       rect:
         serializedVersion: 2
-        x: 506
-        y: 827
-        width: 16
-        height: 22
+        x: 336
+        y: 224
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0302df992f2b7f6b0800000000000000
-      internalID: -5262540884523802576
+      spriteID: 378a808848741a34c82e3388465fa450
+      internalID: 421727899
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_40
+      name: Arthropleura_Segment_Walk_Burning_6_4
       rect:
         serializedVersion: 2
-        x: 521
-        y: 849
-        width: 16
-        height: 17
+        x: 448
+        y: 224
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b62ec582c7ebf7b80800000000000000
-      internalID: -8394781739932917141
+      spriteID: 9aa79456666d9474e83ed8c916571df4
+      internalID: 252218084
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_41
+      name: Arthropleura_Segment_Walk_Burning_6_5
       rect:
         serializedVersion: 2
-        x: 529
-        y: 840
-        width: 13
-        height: 14
+        x: 560
+        y: 224
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 82f83d0947d319260800000000000000
-      internalID: 7102525658195267368
+      spriteID: c617f53d5b95cb84f9bc8c3de363b154
+      internalID: -985688548
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_42
+      name: Arthropleura_Segment_Walk_Burning_7_0
       rect:
         serializedVersion: 2
-        x: 633
-        y: 849
-        width: 13
-        height: 19
+        x: 0
+        y: 112
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 618c478f82256f4e0800000000000000
-      internalID: -1948279452870588394
+      spriteID: efde60487c0f4fb47a8004ac417e1897
+      internalID: 1426608150
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_43
+      name: Arthropleura_Segment_Walk_Burning_7_1
       rect:
         serializedVersion: 2
-        x: 635
-        y: 838
-        width: 13
-        height: 12
+        x: 112
+        y: 112
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b49ca0280b36e7350800000000000000
-      internalID: 6016355761960700235
+      spriteID: 169b2062f6b652d47b1699ff923f43d5
+      internalID: -2042960544
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_44
+      name: Arthropleura_Segment_Walk_Burning_7_2
       rect:
         serializedVersion: 2
-        x: 265
-        y: 821
-        width: 19
-        height: 22
+        x: 224
+        y: 112
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f20445b02c2d83150800000000000000
-      internalID: 5852659446623518767
+      spriteID: ae78d05bc9eca7b43bcf076ac4a09180
+      internalID: 717728285
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_45
+      name: Arthropleura_Segment_Walk_Burning_7_3
       rect:
         serializedVersion: 2
-        x: 376
-        y: 821
-        width: 20
-        height: 25
+        x: 336
+        y: 112
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b238d81c737b7caa0800000000000000
-      internalID: -6140738116798020821
+      spriteID: 8a039e507853ab44291582575efcc91c
+      internalID: 75709176
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_46
+      name: Arthropleura_Segment_Walk_Burning_7_4
       rect:
         serializedVersion: 2
-        x: 488
-        y: 821
-        width: 20
-        height: 20
+        x: 448
+        y: 112
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 702c987e94b7fa7c0800000000000000
-      internalID: -4057889181890133497
+      spriteID: b71c2591e335878418a3c874716b317d
+      internalID: 459717899
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_47
+      name: Arthropleura_Segment_Walk_Burning_7_5
       rect:
         serializedVersion: 2
-        x: 601
-        y: 821
-        width: 19
-        height: 25
+        x: 560
+        y: 112
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 099be6f17b9d16230800000000000000
-      internalID: 3630422155166923152
+      spriteID: 4c95d67130fc9ba48874e8ed6976126f
+      internalID: 1441699761
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_48
+      name: Arthropleura_Segment_Walk_Burning_8_0
       rect:
         serializedVersion: 2
-        x: 618
-        y: 827
-        width: 15
-        height: 21
+        x: 0
+        y: 0
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7909bb24fdb9bad00800000000000000
-      internalID: 985052326710186135
+      spriteID: b4f60779113648c45bbd7e22f6f04448
+      internalID: 1243416376
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_49
+      name: Arthropleura_Segment_Walk_Burning_8_1
       rect:
         serializedVersion: 2
-        x: 22
-        y: 719
-        width: 29
-        height: 45
+        x: 112
+        y: 0
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f96815f814a5d30f0800000000000000
-      internalID: -1135652293403638113
+      spriteID: bc301772834baa94f81dcaa994ae38af
+      internalID: 875967485
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_50
+      name: Arthropleura_Segment_Walk_Burning_8_2
       rect:
         serializedVersion: 2
-        x: 75
-        y: 727
-        width: 14
-        height: 14
+        x: 224
+        y: 0
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 75ace572360f41730800000000000000
-      internalID: 3969061480273201751
+      spriteID: 324616ec8cd80ec4c9687b1ae71c4852
+      internalID: -574048211
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_51
+      name: Arthropleura_Segment_Walk_Burning_8_3
       rect:
         serializedVersion: 2
-        x: 131
-        y: 736
-        width: 14
-        height: 19
+        x: 336
+        y: 0
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: bb2deac1a14fdd550800000000000000
-      internalID: 6187369856064475835
+      spriteID: a18ef1a5d06a42445853bb5a8d2e86a0
+      internalID: 386522374
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_52
+      name: Arthropleura_Segment_Walk_Burning_8_4
       rect:
         serializedVersion: 2
-        x: 136
-        y: 719
-        width: 28
-        height: 39
+        x: 448
+        y: 0
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2cb2d729c94c2a850800000000000000
-      internalID: 6386883398316403650
+      spriteID: 024e0e4723778094293d2ccddbd95f95
+      internalID: -1752715739
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_53
+      name: Arthropleura_Segment_Walk_Burning_8_5
       rect:
         serializedVersion: 2
-        x: 189
-        y: 726
-        width: 13
-        height: 12
+        x: 560
+        y: 0
+        width: 112
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b701d139214701c80800000000000000
-      internalID: -8354049685645881221
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_54
-      rect:
-        serializedVersion: 2
-        x: 246
-        y: 719
-        width: 26
-        height: 40
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 61ebaaa8d2fdd0190800000000000000
-      internalID: -7994488376819794410
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_55
-      rect:
-        serializedVersion: 2
-        x: 263
-        y: 726
-        width: 13
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: af146783447fd8ec0800000000000000
-      internalID: -3562919857803083270
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_56
-      rect:
-        serializedVersion: 2
-        x: 298
-        y: 725
-        width: 14
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 617cc442e0918e800800000000000000
-      internalID: 641790495429543702
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_57
-      rect:
-        serializedVersion: 2
-        x: 359
-        y: 719
-        width: 28
-        height: 50
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 319becf32a0fdb990800000000000000
-      internalID: -7368468835662382829
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_58
-      rect:
-        serializedVersion: 2
-        x: 415
-        y: 726
-        width: 13
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 464e8ab576f1fceb0800000000000000
-      internalID: -4697501357544250268
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_59
-      rect:
-        serializedVersion: 2
-        x: 476
-        y: 719
-        width: 24
-        height: 44
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6853b5c43d157bd70800000000000000
-      internalID: 9058799143440037254
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_60
-      rect:
-        serializedVersion: 2
-        x: 524
-        y: 725
-        width: 13
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d4818259e5f05f260800000000000000
-      internalID: 7130622483914823757
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_61
-      rect:
-        serializedVersion: 2
-        x: 589
-        y: 716
-        width: 31
-        height: 46
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: dfcdad7a6146fa6f0800000000000000
-      internalID: -671207770986717955
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_62
-      rect:
-        serializedVersion: 2
-        x: 57
-        y: 698
-        width: 13
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: cb9a7491dd8e08960800000000000000
-      internalID: 7602332207310940604
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_63
-      rect:
-        serializedVersion: 2
-        x: 168
-        y: 698
-        width: 13
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8fc3d9899de066db0800000000000000
-      internalID: -4799132025185551112
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_64
-      rect:
-        serializedVersion: 2
-        x: 281
-        y: 698
-        width: 13
-        height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4a899dff47cb8c740800000000000000
-      internalID: 5172591382729693348
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_65
-      rect:
-        serializedVersion: 2
-        x: 392
-        y: 698
-        width: 14
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0a39c0039189b7cd0800000000000000
-      internalID: -2559284729282260064
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_66
-      rect:
-        serializedVersion: 2
-        x: 503
-        y: 698
-        width: 14
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3dcc6d6358e1d8cf0800000000000000
-      internalID: -248508846935978797
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_67
-      rect:
-        serializedVersion: 2
-        x: 619
-        y: 706
-        width: 13
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e24c4d74c96a720d0800000000000000
-      internalID: -3447603799578590162
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_68
-      rect:
-        serializedVersion: 2
-        x: 29
-        y: 633
-        width: 14
-        height: 29
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d86e645faa59982f0800000000000000
-      internalID: -970079683229587827
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_69
-      rect:
-        serializedVersion: 2
-        x: 44
-        y: 635
-        width: 13
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c5be6d44015462a80800000000000000
-      internalID: -8492024111183762596
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_70
-      rect:
-        serializedVersion: 2
-        x: 59
-        y: 635
-        width: 17
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ef59264f5a0739750800000000000000
-      internalID: 6310511360948213246
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_71
-      rect:
-        serializedVersion: 2
-        x: 67
-        y: 604
-        width: 14
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 12a530fd8a736b1a0800000000000000
-      internalID: -6794181789406242271
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_72
-      rect:
-        serializedVersion: 2
-        x: 140
-        y: 633
-        width: 13
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 649c7bc39704ccff0800000000000000
-      internalID: -14565809335056058
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_73
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 635
-        width: 24
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: cfde1009a718b7490800000000000000
-      internalID: -7747456370558767620
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_74
-      rect:
-        serializedVersion: 2
-        x: 177
-        y: 603
-        width: 16
-        height: 38
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: bbc1046f7275d5b60800000000000000
-      internalID: 7736435564039118011
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_75
-      rect:
-        serializedVersion: 2
-        x: 251
-        y: 633
-        width: 13
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 74098010f4be7c590800000000000000
-      internalID: -7653890317140586425
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_76
-      rect:
-        serializedVersion: 2
-        x: 273
-        y: 634
-        width: 17
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8b293fabdd1b7fc60800000000000000
-      internalID: 7851940041226162872
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_77
-      rect:
-        serializedVersion: 2
-        x: 288
-        y: 603
-        width: 17
-        height: 40
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ad3b960490f70baa0800000000000000
-      internalID: -6147273813648624678
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_78
-      rect:
-        serializedVersion: 2
-        x: 362
-        y: 633
-        width: 14
-        height: 29
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: afca03a7284f4a690800000000000000
-      internalID: -7591674230606877446
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_79
-      rect:
-        serializedVersion: 2
-        x: 379
-        y: 614
-        width: 26
-        height: 46
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b82ff8bbc7bab15c0800000000000000
-      internalID: -4243609671655492981
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_80
-      rect:
-        serializedVersion: 2
-        x: 403
-        y: 614
-        width: 16
-        height: 29
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f944e2877b0707710800000000000000
-      internalID: 1688973793561560223
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_81
-      rect:
-        serializedVersion: 2
-        x: 474
-        y: 633
-        width: 14
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5886875ac8f07c9f0800000000000000
-      internalID: -448372541154105211
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_82
-      rect:
-        serializedVersion: 2
-        x: 500
-        y: 604
-        width: 29
-        height: 59
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 995b0ac656a6fadf0800000000000000
-      internalID: -166797677342706279
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_83
-      rect:
-        serializedVersion: 2
-        x: 579
-        y: 632
-        width: 14
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f4d266ec3b6e8ba40800000000000000
-      internalID: 5384307014457765199
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_84
-      rect:
-        serializedVersion: 2
-        x: 603
-        y: 635
-        width: 13
-        height: 29
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 19fcf17f7e992b890800000000000000
-      internalID: -7443718012527456367
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_85
-      rect:
-        serializedVersion: 2
-        x: 615
-        y: 614
-        width: 28
-        height: 36
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6b2dba21171120f10800000000000000
-      internalID: 2234367542471414454
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_86
-      rect:
-        serializedVersion: 2
-        x: 34
-        y: 603
-        width: 13
-        height: 29
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6dd90dabaac93bbe0800000000000000
-      internalID: -1462653196872671786
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_87
-      rect:
-        serializedVersion: 2
-        x: 145
-        y: 603
-        width: 14
-        height: 29
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d1420fb7270e3d740800000000000000
-      internalID: 5175727179089060893
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_88
-      rect:
-        serializedVersion: 2
-        x: 258
-        y: 603
-        width: 13
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 676a125077ec33cd0800000000000000
-      internalID: -2579491150970640778
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_89
-      rect:
-        serializedVersion: 2
-        x: 481
-        y: 603
-        width: 14
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 865d476312cf42610800000000000000
-      internalID: 1595677387573745000
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_90
-      rect:
-        serializedVersion: 2
-        x: 28
-        y: 502
-        width: 24
-        height: 41
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: bae7bda68170e0a40800000000000000
-      internalID: 5336210409933995691
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_91
-      rect:
-        serializedVersion: 2
-        x: 60
-        y: 482
-        width: 21
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0c3e066dcb2542620800000000000000
-      internalID: 2748412643606848448
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_92
-      rect:
-        serializedVersion: 2
-        x: 141
-        y: 502
-        width: 27
-        height: 44
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c94ea72b9942c7d20800000000000000
-      internalID: 3277534871361873052
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_93
-      rect:
-        serializedVersion: 2
-        x: 171
-        y: 491
-        width: 14
-        height: 22
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c5b413320790134c0800000000000000
-      internalID: -4309652991185433764
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_94
-      rect:
-        serializedVersion: 2
-        x: 253
-        y: 502
-        width: 23
-        height: 46
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 03f409d15b625ab80800000000000000
-      internalID: -8384252571953377488
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_95
-      rect:
-        serializedVersion: 2
-        x: 280
-        y: 491
-        width: 16
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 45dcea8d78d79bc00800000000000000
-      internalID: 916902021555998036
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_96
-      rect:
-        serializedVersion: 2
-        x: 363
-        y: 502
-        width: 15
-        height: 45
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: cbe7f8b11952a8810800000000000000
-      internalID: 1768267108859215548
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_97
-      rect:
-        serializedVersion: 2
-        x: 375
-        y: 513
-        width: 13
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 043ae387a516a31f0800000000000000
-      internalID: -1064431320727379136
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_98
-      rect:
-        serializedVersion: 2
-        x: 476
-        y: 502
-        width: 23
-        height: 44
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 32d8ba36bb25ba730800000000000000
-      internalID: 4011390857888107811
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_99
-      rect:
-        serializedVersion: 2
-        x: 505
-        y: 491
-        width: 18
-        height: 22
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1c4d49becb0a15fc0800000000000000
-      internalID: -3507845901478210367
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_100
-      rect:
-        serializedVersion: 2
-        x: 594
-        y: 491
-        width: 15
-        height: 56
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 394377f6f971f5e90800000000000000
-      internalID: -7034878119392103277
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_101
-      rect:
-        serializedVersion: 2
-        x: 606
-        y: 513
-        width: 14
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6a2a364642414d320800000000000000
-      internalID: 2581710632925766310
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_102
-      rect:
-        serializedVersion: 2
-        x: 52
-        y: 483
-        width: 13
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 08615c5d2da140340800000000000000
-      internalID: 4829014193279932032
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_103
-      rect:
-        serializedVersion: 2
-        x: 159
-        y: 482
-        width: 14
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 84ca3de09584c99f0800000000000000
-      internalID: -460413514560590776
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_104
-      rect:
-        serializedVersion: 2
-        x: 273
-        y: 482
-        width: 13
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2b84a9bbe79519c90800000000000000
-      internalID: -7164847131321546574
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_105
-      rect:
-        serializedVersion: 2
-        x: 288
-        y: 481
-        width: 13
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: fc8d7e2fc133a66b0800000000000000
-      internalID: -5302369411847956273
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_106
-      rect:
-        serializedVersion: 2
-        x: 382
-        y: 482
-        width: 14
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8d44f17c4e1d66350800000000000000
-      internalID: 6009721533295969496
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_107
-      rect:
-        serializedVersion: 2
-        x: 394
-        y: 491
-        width: 14
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f0f4eacde72049ca0800000000000000
-      internalID: -6011176858741223665
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_108
-      rect:
-        serializedVersion: 2
-        x: 404
-        y: 483
-        width: 13
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a1256ab0a021ce6e0800000000000000
-      internalID: -1807049516127989222
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_109
-      rect:
-        serializedVersion: 2
-        x: 499
-        y: 482
-        width: 13
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3d47789437a053460800000000000000
-      internalID: 7220689067829589203
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_110
-      rect:
-        serializedVersion: 2
-        x: 513
-        y: 482
-        width: 14
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a7145b2cdf7cf4a70800000000000000
-      internalID: 8813482888494662010
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_111
-      rect:
-        serializedVersion: 2
-        x: 596
-        y: 480
-        width: 13
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d984c1cc4a59681a0800000000000000
-      internalID: -6807589251692345187
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_112
-      rect:
-        serializedVersion: 2
-        x: 626
-        y: 481
-        width: 13
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9c40a1c1831ff0f90800000000000000
-      internalID: -6985099273736420151
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_113
-      rect:
-        serializedVersion: 2
-        x: 176
-        y: 480
-        width: 13
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 21853f0cd2acd9560800000000000000
-      internalID: 7322230867033806866
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_114
-      rect:
-        serializedVersion: 2
-        x: 51
-        y: 419
-        width: 13
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a377a8178f37420e0800000000000000
-      internalID: -2295582399158126790
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_115
-      rect:
-        serializedVersion: 2
-        x: 147
-        y: 410
-        width: 13
-        height: 22
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 760f534f883c053a0800000000000000
-      internalID: -6678623254410301337
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_116
-      rect:
-        serializedVersion: 2
-        x: 176
-        y: 390
-        width: 18
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 203671e57fd3af440800000000000000
-      internalID: 4970353271401571074
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_117
-      rect:
-        serializedVersion: 2
-        x: 259
-        y: 410
-        width: 14
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7cd4f8c3a4b4db570800000000000000
-      internalID: 8484020055251570119
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_118
-      rect:
-        serializedVersion: 2
-        x: 273
-        y: 401
-        width: 13
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8edfdea86fa5d1a80800000000000000
-      internalID: -8494533307211579928
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_119
-      rect:
-        serializedVersion: 2
-        x: 370
-        y: 410
-        width: 14
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: aef181faed61fc990800000000000000
-      internalID: -7363641720051326998
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_120
-      rect:
-        serializedVersion: 2
-        x: 383
-        y: 401
-        width: 14
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: dd9ee8b5b27df9dd0800000000000000
-      internalID: -2477024688810825251
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_121
-      rect:
-        serializedVersion: 2
-        x: 484
-        y: 410
-        width: 13
-        height: 22
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0531e112bba74c180800000000000000
-      internalID: -9096010403248467120
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_122
-      rect:
-        serializedVersion: 2
-        x: 513
-        y: 390
-        width: 19
-        height: 37
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e6dd93dd8349283e0800000000000000
-      internalID: -2052915508176888466
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_123
-      rect:
-        serializedVersion: 2
-        x: 596
-        y: 410
-        width: 13
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7686e41c6ded905f0800000000000000
-      internalID: -789855245679302553
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_124
-      rect:
-        serializedVersion: 2
-        x: 608
-        y: 401
-        width: 14
-        height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6b07a4dadbf5b8850800000000000000
-      internalID: 6380298565361234102
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_125
-      rect:
-        serializedVersion: 2
-        x: 33
-        y: 380
-        width: 17
-        height: 29
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 34d69052baeaa12a0800000000000000
-      internalID: -6765903440086733501
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_126
-      rect:
-        serializedVersion: 2
-        x: 63
-        y: 371
-        width: 15
-        height: 36
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 35ef623c0e2935260800000000000000
-      internalID: 7085168132828364371
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_127
-      rect:
-        serializedVersion: 2
-        x: 75
-        y: 394
-        width: 14
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a34beae414214b0f0800000000000000
-      internalID: -1102235937096682438
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_128
-      rect:
-        serializedVersion: 2
-        x: 150
-        y: 380
-        width: 14
-        height: 29
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6193b28d2d58bda90800000000000000
-      internalID: -7288084431352678122
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_129
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 401
-        width: 13
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8d7816bb6c4625860800000000000000
-      internalID: 7517181532744812504
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_130
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 380
-        width: 13
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b56f951e11a627a20800000000000000
-      internalID: 3058623721965745755
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_131
-      rect:
-        serializedVersion: 2
-        x: 288
-        y: 390
-        width: 21
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9dedaf39063069df0800000000000000
-      internalID: -173947822272749863
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_132
-      rect:
-        serializedVersion: 2
-        x: 367
-        y: 380
-        width: 13
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c86f6a8666cc2c700800000000000000
-      internalID: 559234043961865868
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_133
-      rect:
-        serializedVersion: 2
-        x: 400
-        y: 390
-        width: 14
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5b7e9ba06ceba1720800000000000000
-      internalID: 2817774274666424245
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_134
-      rect:
-        serializedVersion: 2
-        x: 410
-        y: 401
-        width: 13
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 975915b8abfa08720800000000000000
-      internalID: 2846468180234311033
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_135
-      rect:
-        serializedVersion: 2
-        x: 483
-        y: 369
-        width: 23
-        height: 40
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ac0e5b4eb39057030800000000000000
-      internalID: 3491707238940532938
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_136
-      rect:
-        serializedVersion: 2
-        x: 495
-        y: 401
-        width: 14
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 34aea3752eca267c0800000000000000
-      internalID: -4079508224318182845
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_137
-      rect:
-        serializedVersion: 2
-        x: 594
-        y: 380
-        width: 14
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 89bb6b982a7f1dec0800000000000000
-      internalID: -3543779154296652904
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_138
-      rect:
-        serializedVersion: 2
-        x: 625
-        y: 390
-        width: 20
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 43f833d37d91c9740800000000000000
-      internalID: 5160027685295198004
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_139
-      rect:
-        serializedVersion: 2
-        x: 163
-        y: 369
-        width: 13
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1a636ed3472546d80800000000000000
-      internalID: -8258385157482465631
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_140
-      rect:
-        serializedVersion: 2
-        x: 273
-        y: 368
-        width: 13
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e0fb54101884f0260800000000000000
-      internalID: 7065946059276926734
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_141
-      rect:
-        serializedVersion: 2
-        x: 386
-        y: 369
-        width: 14
-        height: 29
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e69b445af8420be80800000000000000
-      internalID: -8164985925051041426
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_142
-      rect:
-        serializedVersion: 2
-        x: 609
-        y: 370
-        width: 13
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3ca329e8ff441f400800000000000000
-      internalID: 356141709938277059
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_143
-      rect:
-        serializedVersion: 2
-        x: 39
-        y: 289
-        width: 13
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: decfbe1292f2f3540800000000000000
-      internalID: 4989758765859077357
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_144
-      rect:
-        serializedVersion: 2
-        x: 58
-        y: 278
-        width: 33
-        height: 41
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4a56d5530e38580c0800000000000000
-      internalID: -4574104847533644380
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_145
-      rect:
-        serializedVersion: 2
-        x: 151
-        y: 289
-        width: 13
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5312c4720f7427bc0800000000000000
-      internalID: -3786885239888142027
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_146
-      rect:
-        serializedVersion: 2
-        x: 169
-        y: 278
-        width: 22
-        height: 41
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 432ccadf4023ea360800000000000000
-      internalID: 7182733452719735348
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_147
-      rect:
-        serializedVersion: 2
-        x: 193
-        y: 288
-        width: 14
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 91a1ed2e6700b1e10800000000000000
-      internalID: 2169328156121373209
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_148
-      rect:
-        serializedVersion: 2
-        x: 263
-        y: 289
-        width: 13
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2435cb948694eae20800000000000000
-      internalID: 3363706683954844482
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_149
-      rect:
-        serializedVersion: 2
-        x: 277
-        y: 276
-        width: 24
-        height: 42
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8f48c7c63951a7420800000000000000
-      internalID: 2628437055448581368
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_150
-      rect:
-        serializedVersion: 2
-        x: 300
-        y: 288
-        width: 14
-        height: 29
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: fd2a9ed37a20a7480800000000000000
-      internalID: -8900798796222848289
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_151
-      rect:
-        serializedVersion: 2
-        x: 374
-        y: 289
-        width: 14
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 20c4a10d5f4aed1e0800000000000000
-      internalID: -2171116594680673278
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_152
-      rect:
-        serializedVersion: 2
-        x: 394
-        y: 278
-        width: 30
-        height: 46
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: bf6999172558d8860800000000000000
-      internalID: 7533824340800411387
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_153
-      rect:
-        serializedVersion: 2
-        x: 487
-        y: 289
-        width: 13
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 07289ff3a1a88b300800000000000000
-      internalID: 268116023175643760
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_154
-      rect:
-        serializedVersion: 2
-        x: 502
-        y: 278
-        width: 23
-        height: 44
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: aa5f0fc0fea7cbc70800000000000000
-      internalID: 8988194123457557930
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_155
-      rect:
-        serializedVersion: 2
-        x: 523
-        y: 289
-        width: 14
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: bff7978be3d72e110800000000000000
-      internalID: 1288730151717797883
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_156
-      rect:
-        serializedVersion: 2
-        x: 599
-        y: 289
-        width: 13
-        height: 29
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 385717c052cb647c0800000000000000
-      internalID: -4087372744483572349
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_157
-      rect:
-        serializedVersion: 2
-        x: 615
-        y: 278
-        width: 17
-        height: 40
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b5f9defd364bc9690800000000000000
-      internalID: -7593996530601844901
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_158
-      rect:
-        serializedVersion: 2
-        x: 631
-        y: 289
-        width: 17
-        height: 22
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ae8288f93c352bbe0800000000000000
-      internalID: -1463014829281761046
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_159
-      rect:
-        serializedVersion: 2
-        x: 51
-        y: 258
-        width: 13
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c05436f6c0792ea90800000000000000
-      internalID: -7286095167467862772
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_160
-      rect:
-        serializedVersion: 2
-        x: 159
-        y: 259
-        width: 13
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d309c74f04fa66980800000000000000
-      internalID: -8545950549374365635
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_161
-      rect:
-        serializedVersion: 2
-        x: 275
-        y: 259
-        width: 13
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 41892a00c20bf1f00800000000000000
-      internalID: 1089783337882654740
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_162
-      rect:
-        serializedVersion: 2
-        x: 381
-        y: 258
-        width: 14
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: cdd5376b81f545c50800000000000000
-      internalID: 6653047109277933020
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_163
-      rect:
-        serializedVersion: 2
-        x: 493
-        y: 258
-        width: 14
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d06cc817e6a27aae0800000000000000
-      internalID: -1538214093883914739
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_164
-      rect:
-        serializedVersion: 2
-        x: 612
-        y: 258
-        width: 13
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d270028b32b28f580800000000000000
-      internalID: -8793230840027936979
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_165
-      rect:
-        serializedVersion: 2
-        x: 14
-        y: 167
-        width: 19
-        height: 22
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b4b0eaf9a630dd550800000000000000
-      internalID: 6187105219557329739
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_166
-      rect:
-        serializedVersion: 2
-        x: 29
-        y: 176
-        width: 13
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 91b26efc60651d8a0800000000000000
-      internalID: -6282145417947370727
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_167
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 155
-        width: 22
-        height: 29
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4f9af3ca423c02550800000000000000
-      internalID: 6134117254754707956
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_168
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 155
-        width: 26
-        height: 43
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: bf00ae6cab8878ae0800000000000000
-      internalID: -1547117611195956997
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_169
-      rect:
-        serializedVersion: 2
-        x: 159
-        y: 155
-        width: 22
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0a5017a97ae3ec8a0800000000000000
-      internalID: -6283015540563704416
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_170
-      rect:
-        serializedVersion: 2
-        x: 240
-        y: 153
-        width: 25
-        height: 47
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 07157ece890335af0800000000000000
-      internalID: -408929707792838288
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_171
-      rect:
-        serializedVersion: 2
-        x: 354
-        y: 154
-        width: 25
-        height: 46
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d28ff7fe723fb4a10800000000000000
-      internalID: 1894875421086840877
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_172
-      rect:
-        serializedVersion: 2
-        x: 466
-        y: 154
-        width: 24
-        height: 44
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b3e55d7f0c8a56d00800000000000000
-      internalID: 965363241885982267
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_173
-      rect:
-        serializedVersion: 2
-        x: 496
-        y: 155
-        width: 21
-        height: 22
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 364d38732597811f0800000000000000
-      internalID: -1073975117102197661
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_174
-      rect:
-        serializedVersion: 2
-        x: 578
-        y: 159
-        width: 23
-        height: 41
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d71c310385c175f80800000000000000
-      internalID: -8117988638222728835
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_175
-      rect:
-        serializedVersion: 2
-        x: 609
-        y: 155
-        width: 21
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 40558f80ce2ca97a0800000000000000
-      internalID: -6369564403943582460
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_176
-      rect:
-        serializedVersion: 2
-        x: 28
-        y: 158
-        width: 13
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 844196d86bc9bcdb0800000000000000
-      internalID: -4770547072398453688
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_177
-      rect:
-        serializedVersion: 2
-        x: 272
-        y: 155
-        width: 22
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e81c80f5ce9e104f0800000000000000
-      internalID: -864152452062461554
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_178
-      rect:
-        serializedVersion: 2
-        x: 383
-        y: 155
-        width: 23
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 69717dffd412172a0800000000000000
-      internalID: -6741570548308437098
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_179
-      rect:
-        serializedVersion: 2
-        x: 38
-        y: 65
-        width: 14
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f8a55c3a249a71b80800000000000000
-      internalID: -8424078474292667761
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_180
-      rect:
-        serializedVersion: 2
-        x: 50
-        y: 54
-        width: 19
-        height: 44
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e8aa29578bf1209b0800000000000000
-      internalID: -5115491349632472434
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_181
-      rect:
-        serializedVersion: 2
-        x: 150
-        y: 65
-        width: 14
-        height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 77277faedde58f2d0800000000000000
-      internalID: -3244739224297573769
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_182
-      rect:
-        serializedVersion: 2
-        x: 157
-        y: 73
-        width: 15
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 27e031c9cec4f19f0800000000000000
-      internalID: -495592854872977806
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_183
-      rect:
-        serializedVersion: 2
-        x: 158
-        y: 37
-        width: 22
-        height: 42
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e14011eed9246ce30800000000000000
-      internalID: 4523376121811633182
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_184
-      rect:
-        serializedVersion: 2
-        x: 263
-        y: 36
-        width: 21
-        height: 65
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e3c7ac19a98378140800000000000000
-      internalID: 4721804970843339838
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_185
-      rect:
-        serializedVersion: 2
-        x: 280
-        y: 54
-        width: 13
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 01254ad2c399c46c0800000000000000
-      internalID: -4157779872226979312
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_186
-      rect:
-        serializedVersion: 2
-        x: 353
-        y: 49
-        width: 28
-        height: 47
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 30295f10e7e0ef7f0800000000000000
-      internalID: -577007767895305725
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_187
-      rect:
-        serializedVersion: 2
-        x: 391
-        y: 54
-        width: 14
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a56f55657b3cfd1a0800000000000000
-      internalID: -6782487321601771942
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_188
-      rect:
-        serializedVersion: 2
-        x: 464
-        y: 49
-        width: 23
-        height: 45
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e2e96e0458cf43fe0800000000000000
-      internalID: -1210064750606115282
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_189
-      rect:
-        serializedVersion: 2
-        x: 489
-        y: 73
-        width: 13
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8c4e6feafba7589b0800000000000000
-      internalID: -5078518041097607992
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_190
-      rect:
-        serializedVersion: 2
-        x: 502
-        y: 54
-        width: 14
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8ff68db664b26d070800000000000000
-      internalID: 8130733758721060856
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_191
-      rect:
-        serializedVersion: 2
-        x: 598
-        y: 65
-        width: 17
-        height: 36
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e0b7ad319effada60800000000000000
-      internalID: 7699747889468832526
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_192
-      rect:
-        serializedVersion: 2
-        x: 602
-        y: 36
-        width: 27
-        height: 45
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 45d75cd23b0294690800000000000000
-      internalID: -7617521340781331116
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_193
-      rect:
-        serializedVersion: 2
-        x: 46
-        y: 37
-        width: 14
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6742da65c7723dd40800000000000000
-      internalID: 5607869375990015094
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_194
-      rect:
-        serializedVersion: 2
-        x: 66
-        y: 37
-        width: 13
-        height: 29
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: edb9960811dd32080800000000000000
-      internalID: -9213277345431315490
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_195
-      rect:
-        serializedVersion: 2
-        x: 177
-        y: 37
-        width: 13
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3b8d78b02e87aafd0800000000000000
-      internalID: -2329916944959416141
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_196
-      rect:
-        serializedVersion: 2
-        x: 290
-        y: 37
-        width: 13
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a5d67fd864468ecc0800000000000000
-      internalID: -3681582441183089318
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_197
-      rect:
-        serializedVersion: 2
-        x: 411
-        y: 42
-        width: 14
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a8d17288b19b86110800000000000000
-      internalID: 1254456024122203530
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_198
-      rect:
-        serializedVersion: 2
-        x: 530
-        y: 47
-        width: 13
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 34367eee7a993b180800000000000000
-      internalID: -9100761475438910653
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arthropleura_Segment_Walk_Burning_199
-      rect:
-        serializedVersion: 2
-        x: 625
-        y: 37
-        width: 14
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: be87b0972cb32ae30800000000000000
-      internalID: 4513235483019147499
+      spriteID: f86987592b06fae41928d2998ac36159
+      internalID: -674588140
       vertices: []
       indices: 
       edges: []
@@ -5125,206 +1913,60 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Arthropleura_Segment_Walk_Burning_0: -8877133609684988644
-      Arthropleura_Segment_Walk_Burning_1: 9184198423812397509
-      Arthropleura_Segment_Walk_Burning_10: -8849117241006504854
-      Arthropleura_Segment_Walk_Burning_100: -7034878119392103277
-      Arthropleura_Segment_Walk_Burning_101: 2581710632925766310
-      Arthropleura_Segment_Walk_Burning_102: 4829014193279932032
-      Arthropleura_Segment_Walk_Burning_103: -460413514560590776
-      Arthropleura_Segment_Walk_Burning_104: -7164847131321546574
-      Arthropleura_Segment_Walk_Burning_105: -5302369411847956273
-      Arthropleura_Segment_Walk_Burning_106: 6009721533295969496
-      Arthropleura_Segment_Walk_Burning_107: -6011176858741223665
-      Arthropleura_Segment_Walk_Burning_108: -1807049516127989222
-      Arthropleura_Segment_Walk_Burning_109: 7220689067829589203
-      Arthropleura_Segment_Walk_Burning_11: 989646834634789858
-      Arthropleura_Segment_Walk_Burning_110: 8813482888494662010
-      Arthropleura_Segment_Walk_Burning_111: -6807589251692345187
-      Arthropleura_Segment_Walk_Burning_112: -6985099273736420151
-      Arthropleura_Segment_Walk_Burning_113: 7322230867033806866
-      Arthropleura_Segment_Walk_Burning_114: -2295582399158126790
-      Arthropleura_Segment_Walk_Burning_115: -6678623254410301337
-      Arthropleura_Segment_Walk_Burning_116: 4970353271401571074
-      Arthropleura_Segment_Walk_Burning_117: 8484020055251570119
-      Arthropleura_Segment_Walk_Burning_118: -8494533307211579928
-      Arthropleura_Segment_Walk_Burning_119: -7363641720051326998
-      Arthropleura_Segment_Walk_Burning_12: -789304534149025765
-      Arthropleura_Segment_Walk_Burning_120: -2477024688810825251
-      Arthropleura_Segment_Walk_Burning_121: -9096010403248467120
-      Arthropleura_Segment_Walk_Burning_122: -2052915508176888466
-      Arthropleura_Segment_Walk_Burning_123: -789855245679302553
-      Arthropleura_Segment_Walk_Burning_124: 6380298565361234102
-      Arthropleura_Segment_Walk_Burning_125: -6765903440086733501
-      Arthropleura_Segment_Walk_Burning_126: 7085168132828364371
-      Arthropleura_Segment_Walk_Burning_127: -1102235937096682438
-      Arthropleura_Segment_Walk_Burning_128: -7288084431352678122
-      Arthropleura_Segment_Walk_Burning_129: 7517181532744812504
-      Arthropleura_Segment_Walk_Burning_13: -3440647026717761730
-      Arthropleura_Segment_Walk_Burning_130: 3058623721965745755
-      Arthropleura_Segment_Walk_Burning_131: -173947822272749863
-      Arthropleura_Segment_Walk_Burning_132: 559234043961865868
-      Arthropleura_Segment_Walk_Burning_133: 2817774274666424245
-      Arthropleura_Segment_Walk_Burning_134: 2846468180234311033
-      Arthropleura_Segment_Walk_Burning_135: 3491707238940532938
-      Arthropleura_Segment_Walk_Burning_136: -4079508224318182845
-      Arthropleura_Segment_Walk_Burning_137: -3543779154296652904
-      Arthropleura_Segment_Walk_Burning_138: 5160027685295198004
-      Arthropleura_Segment_Walk_Burning_139: -8258385157482465631
-      Arthropleura_Segment_Walk_Burning_14: 6959579725851818772
-      Arthropleura_Segment_Walk_Burning_140: 7065946059276926734
-      Arthropleura_Segment_Walk_Burning_141: -8164985925051041426
-      Arthropleura_Segment_Walk_Burning_142: 356141709938277059
-      Arthropleura_Segment_Walk_Burning_143: 4989758765859077357
-      Arthropleura_Segment_Walk_Burning_144: -4574104847533644380
-      Arthropleura_Segment_Walk_Burning_145: -3786885239888142027
-      Arthropleura_Segment_Walk_Burning_146: 7182733452719735348
-      Arthropleura_Segment_Walk_Burning_147: 2169328156121373209
-      Arthropleura_Segment_Walk_Burning_148: 3363706683954844482
-      Arthropleura_Segment_Walk_Burning_149: 2628437055448581368
-      Arthropleura_Segment_Walk_Burning_15: 3651048620926638637
-      Arthropleura_Segment_Walk_Burning_150: -8900798796222848289
-      Arthropleura_Segment_Walk_Burning_151: -2171116594680673278
-      Arthropleura_Segment_Walk_Burning_152: 7533824340800411387
-      Arthropleura_Segment_Walk_Burning_153: 268116023175643760
-      Arthropleura_Segment_Walk_Burning_154: 8988194123457557930
-      Arthropleura_Segment_Walk_Burning_155: 1288730151717797883
-      Arthropleura_Segment_Walk_Burning_156: -4087372744483572349
-      Arthropleura_Segment_Walk_Burning_157: -7593996530601844901
-      Arthropleura_Segment_Walk_Burning_158: -1463014829281761046
-      Arthropleura_Segment_Walk_Burning_159: -7286095167467862772
-      Arthropleura_Segment_Walk_Burning_16: -5167005562435688670
-      Arthropleura_Segment_Walk_Burning_160: -8545950549374365635
-      Arthropleura_Segment_Walk_Burning_161: 1089783337882654740
-      Arthropleura_Segment_Walk_Burning_162: 6653047109277933020
-      Arthropleura_Segment_Walk_Burning_163: -1538214093883914739
-      Arthropleura_Segment_Walk_Burning_164: -8793230840027936979
-      Arthropleura_Segment_Walk_Burning_165: 6187105219557329739
-      Arthropleura_Segment_Walk_Burning_166: -6282145417947370727
-      Arthropleura_Segment_Walk_Burning_167: 6134117254754707956
-      Arthropleura_Segment_Walk_Burning_168: -1547117611195956997
-      Arthropleura_Segment_Walk_Burning_169: -6283015540563704416
-      Arthropleura_Segment_Walk_Burning_17: -4218619030135036356
-      Arthropleura_Segment_Walk_Burning_170: -408929707792838288
-      Arthropleura_Segment_Walk_Burning_171: 1894875421086840877
-      Arthropleura_Segment_Walk_Burning_172: 965363241885982267
-      Arthropleura_Segment_Walk_Burning_173: -1073975117102197661
-      Arthropleura_Segment_Walk_Burning_174: -8117988638222728835
-      Arthropleura_Segment_Walk_Burning_175: -6369564403943582460
-      Arthropleura_Segment_Walk_Burning_176: -4770547072398453688
-      Arthropleura_Segment_Walk_Burning_177: -864152452062461554
-      Arthropleura_Segment_Walk_Burning_178: -6741570548308437098
-      Arthropleura_Segment_Walk_Burning_179: -8424078474292667761
-      Arthropleura_Segment_Walk_Burning_18: 860704144244054966
-      Arthropleura_Segment_Walk_Burning_180: -5115491349632472434
-      Arthropleura_Segment_Walk_Burning_181: -3244739224297573769
-      Arthropleura_Segment_Walk_Burning_182: -495592854872977806
-      Arthropleura_Segment_Walk_Burning_183: 4523376121811633182
-      Arthropleura_Segment_Walk_Burning_184: 4721804970843339838
-      Arthropleura_Segment_Walk_Burning_185: -4157779872226979312
-      Arthropleura_Segment_Walk_Burning_186: -577007767895305725
-      Arthropleura_Segment_Walk_Burning_187: -6782487321601771942
-      Arthropleura_Segment_Walk_Burning_188: -1210064750606115282
-      Arthropleura_Segment_Walk_Burning_189: -5078518041097607992
-      Arthropleura_Segment_Walk_Burning_19: 7835122214424779456
-      Arthropleura_Segment_Walk_Burning_190: 8130733758721060856
-      Arthropleura_Segment_Walk_Burning_191: 7699747889468832526
-      Arthropleura_Segment_Walk_Burning_192: -7617521340781331116
-      Arthropleura_Segment_Walk_Burning_193: 5607869375990015094
-      Arthropleura_Segment_Walk_Burning_194: -9213277345431315490
-      Arthropleura_Segment_Walk_Burning_195: -2329916944959416141
-      Arthropleura_Segment_Walk_Burning_196: -3681582441183089318
-      Arthropleura_Segment_Walk_Burning_197: 1254456024122203530
-      Arthropleura_Segment_Walk_Burning_198: -9100761475438910653
-      Arthropleura_Segment_Walk_Burning_199: 4513235483019147499
-      Arthropleura_Segment_Walk_Burning_2: 435491364174092117
-      Arthropleura_Segment_Walk_Burning_20: -8710700359077323317
-      Arthropleura_Segment_Walk_Burning_21: -1350285936483143967
-      Arthropleura_Segment_Walk_Burning_22: 4339366933875585672
-      Arthropleura_Segment_Walk_Burning_23: 6674988450209967174
-      Arthropleura_Segment_Walk_Burning_24: 2867516182203710207
-      Arthropleura_Segment_Walk_Burning_25: -3425212284724374018
-      Arthropleura_Segment_Walk_Burning_26: 8610938857228695828
-      Arthropleura_Segment_Walk_Burning_27: -2101636646459651292
-      Arthropleura_Segment_Walk_Burning_28: -4428824043205314988
-      Arthropleura_Segment_Walk_Burning_29: -6117500098648941321
-      Arthropleura_Segment_Walk_Burning_3: -5005088923592814506
-      Arthropleura_Segment_Walk_Burning_30: -2040336081512308498
-      Arthropleura_Segment_Walk_Burning_31: 3296745410668305724
-      Arthropleura_Segment_Walk_Burning_32: 3385792680272684705
-      Arthropleura_Segment_Walk_Burning_33: -8812771612761748288
-      Arthropleura_Segment_Walk_Burning_34: -3863794319152632456
-      Arthropleura_Segment_Walk_Burning_35: -1576345255979547247
-      Arthropleura_Segment_Walk_Burning_36: 1762693900840147968
-      Arthropleura_Segment_Walk_Burning_37: -2674508118671923096
-      Arthropleura_Segment_Walk_Burning_38: 5464426826697790259
-      Arthropleura_Segment_Walk_Burning_39: -5262540884523802576
-      Arthropleura_Segment_Walk_Burning_4: -3285359458223359779
-      Arthropleura_Segment_Walk_Burning_40: -8394781739932917141
-      Arthropleura_Segment_Walk_Burning_41: 7102525658195267368
-      Arthropleura_Segment_Walk_Burning_42: -1948279452870588394
-      Arthropleura_Segment_Walk_Burning_43: 6016355761960700235
-      Arthropleura_Segment_Walk_Burning_44: 5852659446623518767
-      Arthropleura_Segment_Walk_Burning_45: -6140738116798020821
-      Arthropleura_Segment_Walk_Burning_46: -4057889181890133497
-      Arthropleura_Segment_Walk_Burning_47: 3630422155166923152
-      Arthropleura_Segment_Walk_Burning_48: 985052326710186135
-      Arthropleura_Segment_Walk_Burning_49: -1135652293403638113
-      Arthropleura_Segment_Walk_Burning_5: -5299516073037733244
-      Arthropleura_Segment_Walk_Burning_50: 3969061480273201751
-      Arthropleura_Segment_Walk_Burning_51: 6187369856064475835
-      Arthropleura_Segment_Walk_Burning_52: 6386883398316403650
-      Arthropleura_Segment_Walk_Burning_53: -8354049685645881221
-      Arthropleura_Segment_Walk_Burning_54: -7994488376819794410
-      Arthropleura_Segment_Walk_Burning_55: -3562919857803083270
-      Arthropleura_Segment_Walk_Burning_56: 641790495429543702
-      Arthropleura_Segment_Walk_Burning_57: -7368468835662382829
-      Arthropleura_Segment_Walk_Burning_58: -4697501357544250268
-      Arthropleura_Segment_Walk_Burning_59: 9058799143440037254
-      Arthropleura_Segment_Walk_Burning_6: 2587076051771218647
-      Arthropleura_Segment_Walk_Burning_60: 7130622483914823757
-      Arthropleura_Segment_Walk_Burning_61: -671207770986717955
-      Arthropleura_Segment_Walk_Burning_62: 7602332207310940604
-      Arthropleura_Segment_Walk_Burning_63: -4799132025185551112
-      Arthropleura_Segment_Walk_Burning_64: 5172591382729693348
-      Arthropleura_Segment_Walk_Burning_65: -2559284729282260064
-      Arthropleura_Segment_Walk_Burning_66: -248508846935978797
-      Arthropleura_Segment_Walk_Burning_67: -3447603799578590162
-      Arthropleura_Segment_Walk_Burning_68: -970079683229587827
-      Arthropleura_Segment_Walk_Burning_69: -8492024111183762596
-      Arthropleura_Segment_Walk_Burning_7: 2190285244366388569
-      Arthropleura_Segment_Walk_Burning_70: 6310511360948213246
-      Arthropleura_Segment_Walk_Burning_71: -6794181789406242271
-      Arthropleura_Segment_Walk_Burning_72: -14565809335056058
-      Arthropleura_Segment_Walk_Burning_73: -7747456370558767620
-      Arthropleura_Segment_Walk_Burning_74: 7736435564039118011
-      Arthropleura_Segment_Walk_Burning_75: -7653890317140586425
-      Arthropleura_Segment_Walk_Burning_76: 7851940041226162872
-      Arthropleura_Segment_Walk_Burning_77: -6147273813648624678
-      Arthropleura_Segment_Walk_Burning_78: -7591674230606877446
-      Arthropleura_Segment_Walk_Burning_79: -4243609671655492981
-      Arthropleura_Segment_Walk_Burning_8: 6590733974870004127
-      Arthropleura_Segment_Walk_Burning_80: 1688973793561560223
-      Arthropleura_Segment_Walk_Burning_81: -448372541154105211
-      Arthropleura_Segment_Walk_Burning_82: -166797677342706279
-      Arthropleura_Segment_Walk_Burning_83: 5384307014457765199
-      Arthropleura_Segment_Walk_Burning_84: -7443718012527456367
-      Arthropleura_Segment_Walk_Burning_85: 2234367542471414454
-      Arthropleura_Segment_Walk_Burning_86: -1462653196872671786
-      Arthropleura_Segment_Walk_Burning_87: 5175727179089060893
-      Arthropleura_Segment_Walk_Burning_88: -2579491150970640778
-      Arthropleura_Segment_Walk_Burning_89: 1595677387573745000
-      Arthropleura_Segment_Walk_Burning_9: 4705124316286001244
-      Arthropleura_Segment_Walk_Burning_90: 5336210409933995691
-      Arthropleura_Segment_Walk_Burning_91: 2748412643606848448
-      Arthropleura_Segment_Walk_Burning_92: 3277534871361873052
-      Arthropleura_Segment_Walk_Burning_93: -4309652991185433764
-      Arthropleura_Segment_Walk_Burning_94: -8384252571953377488
-      Arthropleura_Segment_Walk_Burning_95: 916902021555998036
-      Arthropleura_Segment_Walk_Burning_96: 1768267108859215548
-      Arthropleura_Segment_Walk_Burning_97: -1064431320727379136
-      Arthropleura_Segment_Walk_Burning_98: 4011390857888107811
-      Arthropleura_Segment_Walk_Burning_99: -3507845901478210367
+      Arthropleura_Segment_Walk_Burning_0_0: -403265903
+      Arthropleura_Segment_Walk_Burning_0_1: -1725254139
+      Arthropleura_Segment_Walk_Burning_0_2: 100741558
+      Arthropleura_Segment_Walk_Burning_0_3: -1778348409
+      Arthropleura_Segment_Walk_Burning_0_4: -874984421
+      Arthropleura_Segment_Walk_Burning_0_5: 79175088
+      Arthropleura_Segment_Walk_Burning_1_0: -1488539378
+      Arthropleura_Segment_Walk_Burning_1_1: -23521058
+      Arthropleura_Segment_Walk_Burning_1_2: -2086748774
+      Arthropleura_Segment_Walk_Burning_1_3: -1487050971
+      Arthropleura_Segment_Walk_Burning_1_4: -33211125
+      Arthropleura_Segment_Walk_Burning_1_5: -1933159610
+      Arthropleura_Segment_Walk_Burning_2_0: 1066543507
+      Arthropleura_Segment_Walk_Burning_2_1: 1366957301
+      Arthropleura_Segment_Walk_Burning_2_2: -1646288653
+      Arthropleura_Segment_Walk_Burning_2_3: -213150055
+      Arthropleura_Segment_Walk_Burning_2_4: -1028622821
+      Arthropleura_Segment_Walk_Burning_2_5: -773869735
+      Arthropleura_Segment_Walk_Burning_3_0: 705035900
+      Arthropleura_Segment_Walk_Burning_3_1: 40920747
+      Arthropleura_Segment_Walk_Burning_3_2: -1819285450
+      Arthropleura_Segment_Walk_Burning_3_3: 1851300877
+      Arthropleura_Segment_Walk_Burning_3_4: 2023358960
+      Arthropleura_Segment_Walk_Burning_3_5: -1621360975
+      Arthropleura_Segment_Walk_Burning_4_0: 1233820850
+      Arthropleura_Segment_Walk_Burning_4_1: -1327880751
+      Arthropleura_Segment_Walk_Burning_4_2: 700176668
+      Arthropleura_Segment_Walk_Burning_4_3: -475274824
+      Arthropleura_Segment_Walk_Burning_4_4: 531903026
+      Arthropleura_Segment_Walk_Burning_4_5: -1732419959
+      Arthropleura_Segment_Walk_Burning_5_0: 1094623899
+      Arthropleura_Segment_Walk_Burning_5_1: 984548797
+      Arthropleura_Segment_Walk_Burning_5_2: -1292583491
+      Arthropleura_Segment_Walk_Burning_5_3: 1387464478
+      Arthropleura_Segment_Walk_Burning_5_4: 76071016
+      Arthropleura_Segment_Walk_Burning_5_5: 378273874
+      Arthropleura_Segment_Walk_Burning_6_0: 1283306865
+      Arthropleura_Segment_Walk_Burning_6_1: 1829261154
+      Arthropleura_Segment_Walk_Burning_6_2: 325357638
+      Arthropleura_Segment_Walk_Burning_6_3: 421727899
+      Arthropleura_Segment_Walk_Burning_6_4: 252218084
+      Arthropleura_Segment_Walk_Burning_6_5: -985688548
+      Arthropleura_Segment_Walk_Burning_7_0: 1426608150
+      Arthropleura_Segment_Walk_Burning_7_1: -2042960544
+      Arthropleura_Segment_Walk_Burning_7_2: 717728285
+      Arthropleura_Segment_Walk_Burning_7_3: 75709176
+      Arthropleura_Segment_Walk_Burning_7_4: 459717899
+      Arthropleura_Segment_Walk_Burning_7_5: 1441699761
+      Arthropleura_Segment_Walk_Burning_8_0: 1243416376
+      Arthropleura_Segment_Walk_Burning_8_1: 875967485
+      Arthropleura_Segment_Walk_Burning_8_2: -574048211
+      Arthropleura_Segment_Walk_Burning_8_3: 386522374
+      Arthropleura_Segment_Walk_Burning_8_4: -1752715739
+      Arthropleura_Segment_Walk_Burning_8_5: -674588140
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

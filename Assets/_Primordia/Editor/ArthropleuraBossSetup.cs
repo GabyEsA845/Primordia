@@ -104,6 +104,7 @@ namespace Primordia.Editor
                 if (fern == null)
                     throw new InvalidOperationException("Falta un helecho inflamable aprobado en los temas del piso 3.");
                 boss.ConfigureFern(fern);
+                boss.ConfigureDeathSmoke(Sheet("Effects/Fx_Arthropleura_DeathSmoke", 24, new Vector2(0.5f, 0f)));
                 boss.ConfigureTrees(new ArthropleuraBoss.TreeArt
                 {
                     fall = Sheet("Smoke/Sigillaria_Fall", 112, new Vector2(0.25f, 0.125f)),

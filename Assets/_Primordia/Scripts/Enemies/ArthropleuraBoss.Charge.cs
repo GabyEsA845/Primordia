@@ -99,6 +99,12 @@ namespace Primordia.Enemies
                 case Mode.RingContract:
                     StepRing(dt);
                     break;
+                case Mode.Phase4Pending:
+                case Mode.WheelWarn:
+                case Mode.WheelRoll:
+                case Mode.WheelStun:
+                    StepWheel(dt);
+                    break;
                 case Mode.Eat:
                     StepEat();
                     break;

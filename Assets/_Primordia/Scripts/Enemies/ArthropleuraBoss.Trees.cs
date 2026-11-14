@@ -142,7 +142,7 @@ namespace Primordia.Enemies
         }
 
         /// <summary>La embestida pasa junto a un árbol en pie: lo tumba y la cabeza queda aturdida.</summary>
-        bool TryFellTree()
+        bool TryFellTree(bool fromWheel = false)
         {
             Vector2 head = GroundToWorld(headPos);
             foreach (var tree in trees)
@@ -155,8 +155,8 @@ namespace Primordia.Enemies
                 tree.renderer.flipX = tree.direction < 0;
                 if (tree.collider != null) tree.collider.enabled = false;
                 ScreenShake.Pulse(3f, 0.3f);
-                HurtByTree();
-                StartStun();
+                if (!fromWheel) HurtByTree();
+                if (!fromWheel) StartStun();
                 return true;
             }
             return false;

@@ -122,6 +122,7 @@ namespace Primordia.Enemies
         {
             Health.Changed += CheckPhase2;
             Health.Changed += CheckPhase3;
+            Health.Changed += CheckPhase4;
             MethaneSac.BurstStarted += SacBurstStarted;
             foreach (var piece in firePieces) Flammables.Register(piece);
         }
@@ -130,6 +131,7 @@ namespace Primordia.Enemies
         {
             Health.Changed -= CheckPhase2;
             Health.Changed -= CheckPhase3;
+            Health.Changed -= CheckPhase4;
             MethaneSac.BurstStarted -= SacBurstStarted;
             foreach (var piece in firePieces) Flammables.Unregister(piece);
         }
@@ -260,6 +262,8 @@ namespace Primordia.Enemies
             }
             if (reachedPhase3 && !transition3Started && CurrentMode != Mode.Charge && CurrentMode != Mode.Phase2Pending)
                 BeginTransition3();
+            if (reachedPhase4 && !transition4Started && transition3Started && CurrentMode != Mode.Charge && CurrentMode != Mode.Phase3Pending)
+                BeginTransition4();
         }
 
         void CheckPhase2(int current, int max)

@@ -13,7 +13,7 @@ namespace Primordia.Enemies
     /// </summary>
     public partial class ArthropleuraBoss
     {
-        public enum Mode { Circling, Warn, Charge, Phase2Pending, Chase, StompWarn, Stomp, Eat, Douse, Stunned, Phase3Pending, RingForm, RingHold, RingContract }
+        public enum Mode { Circling, Warn, Charge, Phase2Pending, Chase, StompWarn, Stomp, Eat, Douse, Stunned, Phase3Pending, RingForm, RingHold, RingContract, Phase4Pending, WheelWarn, WheelRoll, WheelStun, Dead }
 
         /// <summary>Medio claro, en unidades de mundo (28×16 u).</summary>
         public static readonly Vector2 ClearingHalf = new(14f, 8f);
@@ -222,7 +222,7 @@ namespace Primordia.Enemies
         /// <summary>Contacto con el cuerpo visible (1) y con la cabeza al embestir (2).</summary>
         void DamagePlayer()
         {
-            if (player == null || playerHealth == null || playerHealth.IsDead)
+            if (wheelActive || player == null || playerHealth == null || playerHealth.IsDead)
                 return;
             Vector2 target = WorldToGround(player.position);
             if (CurrentMode == Mode.Charge && !chargeHit && Vector2.Distance(headPos, target) <= ChargeHitRadius)

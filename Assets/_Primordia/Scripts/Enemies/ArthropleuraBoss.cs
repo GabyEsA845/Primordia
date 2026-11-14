@@ -75,6 +75,8 @@ namespace Primordia.Enemies
             var body = GetComponent<Rigidbody2D>();
             body.bodyType = RigidbodyType2D.Kinematic;
             body.gravityScale = 0f;
+            if (TryGetComponent<Enemy>(out var enemy))
+                enemy.Died += _ => BuildCorpse();
         }
 
         void OnEnable() { EnableFire(); if (awake && IntroStage == EntryStage.Complete) ActiveBoss.Set(this); }
@@ -214,6 +216,8 @@ namespace Primordia.Enemies
 
         void Place()
         {
+            if (wheelActive)
+                return;
             float time = Time.time;
             for (int i = 0; i < pieces.Count; i++)
             {

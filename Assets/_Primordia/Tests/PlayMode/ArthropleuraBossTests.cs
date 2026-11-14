@@ -875,6 +875,80 @@ namespace Primordia.Tests
             Assert.IsTrue(opened, "El fuego abre las placas.");
             Assert.AreEqual(before, boss.Health.Current, "En la F3 el fuego abre placas pero no daña.");
         }
+
+        // Rueda del último 10 % (E1) y muerte (E2).
+        IEnumerator ReachWheel()
+        {
+            yield return ReachPhase3();
+            boss.Health.Drain(boss.Health.Current - Mathf.RoundToInt(boss.Health.Max * 0.1f));
+            float until = Time.time + 8f;
+            while ((!boss.Transition4Started || boss.CurrentMode == ArthropleuraBoss.Mode.Phase4Pending) && Time.time < until) yield return null;
+        }
+
+        [UnityTest]
+        public IEnumerator Phase4_BodyBecomesAWheelThatWarnsThenRolls()
+        {
+            yield return ReachChase();
+            boss.Health.Drain(boss.Health.Current - Mathf.RoundToInt(boss.Health.Max * 0.34f));
+            float until = Time.time + 8f;
+            while ((!boss.Transition3Started || boss.CurrentMode != ArthropleuraBoss.Mode.Chase) && Time.time < until) yield return null;
+            boss.Health.Drain(boss.Health.Current - Mathf.RoundToInt(boss.Health.Max * 0.1f));
+            yield return null;
+            yield return null;
+            Assert.IsTrue(boss.Transition4Started);
+            Assert.IsTrue(boss.WheelActive);
+            Assert.AreEqual(ArthropleuraBoss.Mode.Phase4Pending, boss.CurrentMode);
+            Assert.IsTrue(BodyRenderers().All(r => !r.gameObject.activeSelf), "Las piezas desaparecen: el cuerpo es una rueda.");
+            until = Time.time + 6f;
+            while (boss.CurrentMode != ArthropleuraBoss.Mode.WheelWarn && Time.time < until) yield return null;
+            Assert.AreEqual(ArthropleuraBoss.Mode.WheelWarn, boss.CurrentMode);
+            until = Time.time + 4f;
+            while (boss.CurrentMode != ArthropleuraBoss.Mode.WheelRoll && Time.time < until) yield return null;
+            Assert.AreEqual(ArthropleuraBoss.Mode.WheelRoll, boss.CurrentMode);
+        }
+
+        [UnityTest]
+        public IEnumerator Phase4_WallCrashCostsHealthAndStuns()
+        {
+            yield return ReachChase();
+            boss.Health.Drain(boss.Health.Current - Mathf.RoundToInt(boss.Health.Max * 0.34f));
+            float until = Time.time + 8f;
+            while ((!boss.Transition3Started || boss.CurrentMode != ArthropleuraBoss.Mode.Chase) && Time.time < until) yield return null;
+            boss.Health.Drain(boss.Health.Current - Mathf.RoundToInt(boss.Health.Max * 0.1f));
+            until = Time.time + 8f;
+            while (boss.CurrentMode != ArthropleuraBoss.Mode.WheelRoll && Time.time < until) yield return null;
+            Assert.AreEqual(ArthropleuraBoss.Mode.WheelRoll, boss.CurrentMode);
+            int before = boss.Health.Current;
+            until = Time.time + 8f;
+            while (boss.CurrentMode == ArthropleuraBoss.Mode.WheelRoll && Time.time < until) yield return null;
+            Assert.AreEqual(ArthropleuraBoss.Mode.WheelStun, boss.CurrentMode, "Choca contra una pared y queda aturdida.");
+            Assert.AreEqual(before - ArthropleuraBoss.WheelHitDamage, boss.Health.Current);
+        }
+
+        [UnityTest]
+        public IEnumerator Phase4_SixCrashesKillItAndLeaveASolidCorpse()
+        {
+            yield return ReachChase();
+            boss.Health.Drain(boss.Health.Current - Mathf.RoundToInt(boss.Health.Max * 0.34f));
+            float until = Time.time + 8f;
+            while ((!boss.Transition3Started || boss.CurrentMode != ArthropleuraBoss.Mode.Chase) && Time.time < until) yield return null;
+            boss.Health.Drain(boss.Health.Current - Mathf.RoundToInt(boss.Health.Max * 0.1f));
+            Assert.AreEqual(60, boss.Health.Max / 10);
+            var enemy = boss.GetComponent<Enemy>();
+            bool died = false;
+            enemy.Died += _ => died = true;
+            Transform parent = boss.transform.parent;
+            for (int i = 0; i < 6; i++) boss.TestCrashWheel();
+            Assert.IsTrue(died);
+            yield return null;
+            yield return new WaitForSeconds(0.2f);
+            var corpse = Object.FindAnyObjectByType<ArthropleuraCorpse>();
+            Assert.IsNotNull(corpse, "Queda un cadáver aunque el jefe se destruya.");
+            yield return new WaitForSeconds(3.4f);
+            Assert.AreEqual(corpse.PieceCount, corpse.DeadPieces, "Todas las piezas acaban muertas.");
+            Assert.IsTrue(corpse.HeadDead);
+            Assert.GreaterOrEqual(corpse.ColliderCount, corpse.PieceCount + 1, "Cada pieza del cuerpo y la cabeza son sólidas.");
+        }
     }
 }
 #endif

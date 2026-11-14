@@ -266,6 +266,10 @@ namespace Primordia.Enemies
                 TestStartRing();
             else if (action == 5)
                 TestSkipTransition3();
+            else if (action == 6)
+                Health.Drain(Mathf.Max(0, Health.Current - Mathf.RoundToInt(Health.Max * 0.1f)));
+            else if (action == 7)
+                TestCrashWheel();
         }
     }
 }

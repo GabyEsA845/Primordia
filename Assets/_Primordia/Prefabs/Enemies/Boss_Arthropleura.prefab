@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 9180744323035111747}
   - component: {fileID: 7296380599794490421}
   - component: {fileID: 6875955374729090412}
+  - component: {fileID: 497789542479396921}
   m_Layer: 7
   m_Name: Boss_Arthropleura
   m_TagString: Untagged
@@ -131,6 +132,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b0b4dd176310c84ba1ad46a73a4b990, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Primordia::Primordia.Enemies.ArthropleuraBoss
+  clearingArt:
+    sacIdle:
+    - {fileID: -4357448081896897112, guid: 6c7e4860ec5f33e4fa3bcf5aac1e7387, type: 3}
+    - {fileID: 6446076642563888805, guid: 6c7e4860ec5f33e4fa3bcf5aac1e7387, type: 3}
+    - {fileID: -6289467576226276763, guid: 6c7e4860ec5f33e4fa3bcf5aac1e7387, type: 3}
+    - {fileID: -5539291267830686534, guid: 6c7e4860ec5f33e4fa3bcf5aac1e7387, type: 3}
+    sacBurst:
+    - {fileID: -7418093019714818548, guid: e8f5ebb779030b5438af49b0d5f25339, type: 3}
+    - {fileID: 7462704289033570257, guid: e8f5ebb779030b5438af49b0d5f25339, type: 3}
+    - {fileID: 5706269142380385645, guid: e8f5ebb779030b5438af49b0d5f25339, type: 3}
+    - {fileID: 5721329496203764564, guid: e8f5ebb779030b5438af49b0d5f25339, type: 3}
+    - {fileID: 5930052353563706475, guid: e8f5ebb779030b5438af49b0d5f25339, type: 3}
+    ignite:
+    - {fileID: 3708906278182722635, guid: 765e08f78890ed540b872b4b12970751, type: 3}
+    - {fileID: -7424622514670935701, guid: 765e08f78890ed540b872b4b12970751, type: 3}
+    - {fileID: -6356654347928333824, guid: 765e08f78890ed540b872b4b12970751, type: 3}
+    - {fileID: -1424839544, guid: 765e08f78890ed540b872b4b12970751, type: 3}
+    sacRemains: {fileID: -3776662731488166539, guid: 3a57b96e00094a442844e8096fb0cbce, type: 3}
+    decor:
+    - {fileID: 6706148739209556049, guid: e642ff4b8041687408f578b64428ecdc, type: 3}
+    - {fileID: -6652660435962727612, guid: df2664b1620fcd448a2a1c6d5b3e7eae, type: 3}
+    - {fileID: 4453764933617009859, guid: 900f7e1e11d8f5b40a420815f7053846, type: 3}
+    - {fileID: -8234366752475521535, guid: 78db8f60540ea2c4caa8eb4bc93f2bbf, type: 3}
+    - {fileID: 4046801973738626016, guid: 5c433c9ff5b70354a82de3bbdf5b2d77, type: 3}
+    - {fileID: -7707836861658895697, guid: a593555108b8d1c4495f8c869700c9f8, type: 3}
+    - {fileID: -7707836861658895697, guid: a593555108b8d1c4495f8c869700c9f8, type: 3}
+    - {fileID: 2412109894261598016, guid: eefb90edf5fe4914293e30b9611d1d83, type: 3}
+    decorPositions:
+    - {x: -10, y: 5}
+    - {x: 10, y: 2}
+    - {x: -7, y: -6}
+    - {x: 7, y: -6}
+    - {x: 12, y: -3}
+    - {x: 0, y: -6.5}
+    - {x: -10, y: -4}
+    - {x: 11, y: 6}
   effects:
     edgeBreak:
     - {fileID: 7961739249389783416, guid: df971dcd5b7edd54fbbdd76806694ea0, type: 3}
@@ -159,3 +196,20 @@ MonoBehaviour:
     - {fileID: -5113077825718615000, guid: b95ab9931d8d6974096282e5de56c46c, type: 3}
     - {fileID: -2441798671505314582, guid: b95ab9931d8d6974096282e5de56c46c, type: 3}
   art: {fileID: 11400000, guid: bf2d425840ae10e48b6265fe17c62c31, type: 2}
+--- !u!114 &497789542479396921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7479201933812388599}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0f72950862b78c4dae7c086cbbd21fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Primordia::Primordia.Enemies.BossIntro
+  data: {fileID: 11400000, guid: 53462842c995b8943b5aee042a0575f4, type: 2}
+  panTime: 0.6
+  bannerAt: 1
+  bannerUntil: 3.2
+  skipText: '[E] Saltar'

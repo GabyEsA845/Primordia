@@ -39,15 +39,23 @@ namespace Primordia.Enemies
             return false;
         }
 
+        /// <summary>Con el jugador ya dentro del claro, la espesura se cierra tras él.</summary>
+        void WatchEntry()
+        {
+            if (entriesSealed || entryCells.Count == 0 || player == null)
+                return;
+            Vector2 inside = (Vector2)player.position - center;
+            if (Mathf.Abs(inside.x) < ClearingHalf.x - 1.5f && Mathf.Abs(inside.y) < ClearingHalf.y - 1.5f)
+            {
+                entrySide = inside.x < 0f ? -1 : 1;
+                SealEntries();
+            }
+        }
+
         void StepHunt(float dt)
         {
             modeTimer += dt;
-            if (!entriesSealed && entryCells.Count > 0 && player != null)
-            {
-                Vector2 inside = (Vector2)player.position - center;
-                if (Mathf.Abs(inside.x) < ClearingHalf.x - 1.5f && Mathf.Abs(inside.y) < ClearingHalf.y - 1.5f)
-                    SealEntries();
-            }
+            WatchEntry();
             Vector2 head = headPos;
             switch (CurrentMode)
             {
@@ -59,7 +67,7 @@ namespace Primordia.Enemies
                     break;
                 case Mode.Warn:
                     // Se queda quieto bajo la espesura: tiembla el suelo y una línea marca la trayectoria (se fija un poco antes).
-                    if (modeTimer < WarnSeconds - LockBefore)
+                    if (!firstCharge && modeTimer < WarnSeconds - LockBefore)
                         chargeDirection = AimDirection(head);
                     FaceHead(chargeDirection);
                     UpdateAim(head);
@@ -94,6 +102,7 @@ namespace Primordia.Enemies
             bool atLimit = Mathf.Abs(next.x) > ArenaWidth / 2f - 2f || Mathf.Abs(nextWorld.y) > ArenaHeight / 2f - 2f;
             if (atLimit || chargeBroke && Vector2.Distance(head, chargeImpact) >= ChargeBeyond)
             {
+                firstCharge = false;
                 SetMode(Mode.Circling);
                 return;
             }
@@ -152,7 +161,7 @@ namespace Primordia.Enemies
             Vector2 worldDirection = new Vector2(chargeDirection.x, chargeDirection.y * GroundSquash).normalized;
             float angle = Mathf.Atan2(worldDirection.y, worldDirection.x) * Mathf.Rad2Deg;
             // Abre la espesura desde donde está hasta el claro: agujero de entrada, para siempre.
-            if (RayThroughClearing(origin, worldDirection, out float enter, out _))
+            if (!InClearing(origin) && RayThroughClearing(origin, worldDirection, out float enter, out _))
             {
                 BreakLine(head, chargeDirection, -1f, enter + 1f);
                 SpawnEffect(effects.edgeBreak, center + origin + worldDirection * enter, angle + 90f, 0.08f);

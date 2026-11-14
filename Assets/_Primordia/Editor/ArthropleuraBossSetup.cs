@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Linq;
 using Primordia.Combat;
 using Primordia.Core;
 using Primordia.Enemies;
@@ -37,12 +38,13 @@ namespace Primordia.Editor
             var art = ArtSetup.ImportArthropleuraSheets();
             var room = CreateRoom();
             var prefab = CreatePrefab(art);
+            ArtSetup.ImportBossIntro("Arthropleura");
             var entry = new FloorConfig.BossEntry(prefab, room, floor3.BandThemes[2], Vector2.zero);
             CreateTestConfig(floor3, entry);
             AssetDatabase.SaveAssets();
             CreateTestScene();
             AssetDatabase.SaveAssets();
-            Debug.Log("Arthropleura A creada: cadena de 30 piezas en la sala de 60×33 u (Test_BossArthropleura).");
+            Debug.Log("Arthropleura creada: presentación, cadena, fuego, odres y decorado del claro (Test_BossArthropleura).");
         }
 
         static RoomTemplate CreateRoom()
@@ -76,6 +78,8 @@ namespace Primordia.Editor
                 serialized.ApplyModifiedPropertiesWithoutUndo();
                 var boss = root.AddComponent<ArthropleuraBoss>();
                 boss.Configure(art);
+                root.AddComponent<BossIntro>().enabled = false;
+                boss.ConfigureClearing(CreateClearingArt());
                 boss.ConfigureEffects(new ArthropleuraBoss.Effects
                 {
                     edgeBreak = Sheet("Effects/Fx_Arthropleura_EdgeBreak", 96, new Vector2(0.5f, 1f)),
@@ -91,6 +95,40 @@ namespace Primordia.Editor
 
         static Sprite[] Sheet(string relative, int cell, Vector2? pivot = null) =>
             ArtSetup.SliceFloor3Sheet($"{ArtFolder}/{relative}.png", cell, pivot ?? new Vector2(0.5f, 0.5f));
+
+        static Sprite[] ExistingSprites(string relative)
+        {
+            string path = "Assets/_Primordia/Art/Floor3/" + relative + ".png";
+            var sprites = AssetDatabase.LoadAllAssetsAtPath(path).OfType<Sprite>()
+                .OrderBy(s => int.TryParse(s.name.Substring(s.name.LastIndexOf('_') + 1), out int frame) ? frame : 0).ToArray();
+            if (sprites.Length == 0)
+                throw new InvalidOperationException("Falta arte aprobado importado: " + path);
+            return sprites;
+        }
+
+        static ArthropleuraBoss.ClearingArt CreateClearingArt()
+        {
+            const string props = "floor3-environment/Smoke/props/";
+            return new ArthropleuraBoss.ClearingArt
+            {
+                sacIdle = ExistingSprites(props + "Methane_Sac_Idle"),
+                sacBurst = ExistingSprites("floor3-reactions/Smoke/Methane_Sac_Burst"),
+                sacRemains = ExistingSprites("floor3-reactions/Smoke/Methane_Sac_Remains")[0],
+                ignite = ArtSetup.SliceFloor3Sheet("Assets/_Primordia/Art/Floor3/floor3-reactions/Effects/Fx_Ignite.png", 16, new Vector2(0.5f, 0.5f)),
+                decor = new[]
+                {
+                    ExistingSprites(props + "Fern_Leafy_Sway")[0], ExistingSprites(props + "Fern_Tree_Sway")[0],
+                    ExistingSprites(props + "Fern_Bent_Sway")[0], ExistingSprites(props + "Fern_Young_Sway")[0],
+                    ExistingSprites(props + "Fern_Sparse_Sway")[0], ExistingSprites(props + "Puddle_Sludge_Island")[0],
+                    ExistingSprites(props + "Puddle_Sludge_Island")[0], ExistingSprites(props + "Obstacle_Stump")[0],
+                },
+                decorPositions = new[]
+                {
+                    new Vector2(-10f, 5f), new Vector2(10f, 2f), new Vector2(-7f, -6f), new Vector2(7f, -6f),
+                    new Vector2(12f, -3f), new Vector2(0f, -6.5f), new Vector2(-10f, -4f), new Vector2(11f, 6f),
+                },
+            };
+        }
 
         static T LoadOrCreate<T>(string path) where T : ScriptableObject
         {

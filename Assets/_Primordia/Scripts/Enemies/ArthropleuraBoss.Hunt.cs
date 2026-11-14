@@ -13,7 +13,7 @@ namespace Primordia.Enemies
     /// </summary>
     public partial class ArthropleuraBoss
     {
-        public enum Mode { Circling, Warn, Charge }
+        public enum Mode { Circling, Warn, Charge, Phase2Pending }
 
         /// <summary>Medio claro, en unidades de mundo (28×16 u).</summary>
         public static readonly Vector2 ClearingHalf = new(14f, 8f);
@@ -79,6 +79,7 @@ namespace Primordia.Enemies
         {
             if (piece != 0 || art == null)
                 return null;
+            if (IntroStage == EntryStage.Roaring) return art.Find("Arthropleura_Head_Rear");
             return CurrentMode switch
             {
                 Mode.Warn => art.Find("Arthropleura_Head_ChargeWarn"),
@@ -125,7 +126,7 @@ namespace Primordia.Enemies
                     var rel = new Vector2Int(x, y);
                     var cell = wallMap.WorldToCell(center + new Vector2(x + 0.5f, y + 0.5f));
                     bool insideClearing = Mathf.Abs(x + 0.5f) < ClearingHalf.x && Mathf.Abs(y + 0.5f) < ClearingHalf.y;
-                    if (insideClearing || !floorMap.HasTile(cell) || wallMap.HasTile(cell))
+                    if (insideClearing || !floorMap.HasTile(cell))
                         continue;
                     if (InEntryCorridor(entries, x + 0.5f, y + 0.5f))
                     {
@@ -242,10 +243,11 @@ namespace Primordia.Enemies
             if (frames == null || frames.Length == 0)
                 return;
             var go = new GameObject("Fx_Arthropleura");
+            go.transform.SetParent(transform, false);
             go.transform.position = world;
             go.transform.rotation = Quaternion.Euler(0f, 0f, angle);
             var renderer = go.AddComponent<SpriteRenderer>();
-            renderer.sortingOrder = 60;
+            renderer.sortingOrder = 60 * 4; // Por encima de las piezas y sus tres capas.
             go.AddComponent<OneShotSprite>().Play(frames, step);
         }
 

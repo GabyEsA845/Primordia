@@ -33,6 +33,7 @@ namespace Primordia.Editor
 
         static readonly (string key, string prefab, string title, Color band, Color accent)[] BossIntros =
         {
+            ("Arthropleura", "Boss_Arthropleura", "Coloso del Carbonífero", Floor3Band, Floor3Accent),
             ("Virus", "Boss_Virus", "Plaga primigenia", Floor1Band, Floor1Accent),
             ("Amoeba", "Boss_Amoeba", "La que todo lo engulle", Floor1Band, Floor1Accent),
             ("Anomalocaris", "Boss_Anomalocaris", "Terror del Cámbrico", Floor2Band, Floor2Accent),

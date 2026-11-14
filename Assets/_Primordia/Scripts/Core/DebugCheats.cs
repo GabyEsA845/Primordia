@@ -68,6 +68,22 @@ namespace Primordia.Core
                 return;
 
             #if UNITY_EDITOR
+            // Arthropleura: Ctrl+Mayús+F1 prende la pieza disponible más cercana; F2 vida al 71 %;
+            // F3 revienta los odres; F4 reinicia el fuego; F5 fuerza la presentación si sigue dormida.
+            if ((keyboard.leftCtrlKey.isPressed || keyboard.rightCtrlKey.isPressed) &&
+                (keyboard.leftShiftKey.isPressed || keyboard.rightShiftKey.isPressed))
+            {
+                if (keyboard.f5Key.wasPressedThisFrame)
+                    FindAnyObjectByType<ArthropleuraBoss>()?.ForcePresentation();
+                var fireKeys = new[] { keyboard.f1Key, keyboard.f2Key, keyboard.f3Key, keyboard.f4Key };
+                for (int i = 0; i < fireKeys.Length; i++)
+                    if (fireKeys[i].wasPressedThisFrame)
+                    {
+                        var arthro = FindAnyObjectByType<ArthropleuraBoss>();
+                        Say(arthro != null ? arthro.DebugFireAction(i, player.transform.position) : "No hay Arthropleura activa");
+                    }
+                return;
+            }
             // Alt+F1..F4: desplome, presentación, vida al 25 % y al 1 % (tarea 09). Alt+F5..F9: recompensa del jefe (tarea 10).
             if (keyboard.leftAltKey.isPressed || keyboard.rightAltKey.isPressed)
             {

@@ -6,8 +6,8 @@ using UnityEngine;
 namespace Primordia.Enemies
 {
     /// <summary>
-    /// Arthropleura, jefe principal del piso 3. Subpaso A: la cadena de cabeza + 28 piezas + cola (arte en
-    /// docs/multimedia-temp/floor3-bosses/arthropleura), su vida con fases y un movimiento de prueba. El combate llega después.
+    /// Arthropleura, jefe principal del piso 3: cadena de cabeza + 28 piezas + cola. Hunt/Charge llevan la embestida de F1;
+    /// Fire lleva la mecha, las placas, los odres y la transición pendiente al 70 %.
     /// </summary>
     [DefaultExecutionOrder(1000)]
     [RequireComponent(typeof(Health), typeof(Enemy), typeof(Rigidbody2D))]
@@ -35,7 +35,7 @@ namespace Primordia.Enemies
         Vector2 center;
         Vector2 headPos; // Posición exacta de la cabeza; el rastro la muestrea cada 0,1 u.
         float heading; // Grados en el suelo, 0° = derecha.
-        bool built;
+        bool built, awake; // awake: el jefe no se ve ni se mueve hasta que el jugador entra al claro.
 
         public string DisplayName => "Arthropleura";
         public Health Health => GetComponent<Health>();
@@ -70,18 +70,20 @@ namespace Primordia.Enemies
 
         void Awake()
         {
-            // El caparazón es invulnerable todo el combate; solo las placas abiertas reciben daño (subpasos B-D).
+            // El caparazón es invulnerable; Fire aplica por separado el daño limitado de las placas abiertas.
             Health.IsInvulnerable = true;
             var body = GetComponent<Rigidbody2D>();
             body.bodyType = RigidbodyType2D.Kinematic;
             body.gravityScale = 0f;
         }
 
-        void OnEnable() => ActiveBoss.Set(this);
+        void OnEnable() { EnableFire(); if (awake && IntroStage == EntryStage.Complete) ActiveBoss.Set(this); }
         void OnDisable()
         {
             ActiveBoss.Clear(this);
+            DisableFire();
             ReleaseCamera();
+            ScreenShake.ClearRumble(this);
         }
 
         public void SetArena(Transform arena, Vector2 size)
@@ -94,11 +96,11 @@ namespace Primordia.Enemies
             ridge = art != null ? art.Find("Arthropleura_CanopyRidge") : null;
             ridgeCap = art != null ? art.Find("Arthropleura_CanopyRidge_Cap") : null;
             BuildChain();
+            BuildFire();
             built = true;
+            Place();
         }
 
-        public void PlayIntroPose(float hold) { }
-        public void BeginFight() { }
 
         /// <summary>Punto del suelo (relativo al centro de la sala) → posición en el mundo.</summary>
         public Vector2 GroundToWorld(Vector2 ground) => center + new Vector2(ground.x, ground.y * GroundSquash);
@@ -130,7 +132,6 @@ namespace Primordia.Enemies
             for (int i = 1; i <= SegmentCount; i++)
                 pieces.Add(NewPiece($"Segment_{i:00}", "Arthropleura_Segment_Idle", "Arthropleura_Segment_Walk", WalkStep, i));
             pieces.Add(NewPiece("Tail", "Arthropleura_Tail_Idle", "Arthropleura_Tail_Walk", WalkStep, SegmentCount + 1));
-            Place();
         }
 
         Piece NewPiece(string pieceName, string idle, string walk, float step, int index)
@@ -162,8 +163,19 @@ namespace Primordia.Enemies
                     playerHealth = controller.GetComponent<Health>();
                 }
             }
-            if (Moving)
-                StepHunt(Time.deltaTime);
+            SetSacsAvailable(FireAllowed);
+            if (FireAllowed) TickFire(Time.deltaTime);
+            if (!awake && Moving)
+            {
+                WatchEntry();
+                if (entryCells.Count == 0 || entriesSealed && player != null && Vector2.Distance(player.position, center) < IntroCenterRadius)
+                    WakeUp();
+            }
+            if (awake && Moving)
+            {
+                if (IntroStage != EntryStage.Complete) StepIntro(Time.deltaTime);
+                else StepHunt(Time.deltaTime);
+            }
             UpdateCamera();
             Place();
         }
@@ -206,6 +218,11 @@ namespace Primordia.Enemies
             for (int i = 0; i < pieces.Count; i++)
             {
                 var piece = pieces[i];
+                if (!awake && (Moving || !FireAllowed))
+                {
+                    piece.renderer.sprite = null; // Aún no ha salido por el borde.
+                    continue;
+                }
                 Vector2 ground = NodeGround(i);
                 // Dirección de la pieza: de la de detrás a la de delante, vista en pantalla (y × 0,82).
                 Vector2 ahead = NodeGround(Mathf.Max(0, i - 1)), behind = NodeGround(i + 1);
@@ -213,13 +230,26 @@ namespace Primordia.Enemies
                 float angle = look.sqrMagnitude > 1e-6f ? Mathf.Atan2(look.y, look.x) * Mathf.Rad2Deg : 0f;
                 int row = DirectionalArt.RowFor(angle, out bool flip);
                 bool hidden = IsHidden(ground);
-                var sheet = hidden ? (i == 0 ? ridgeCap : ridge) : OverrideSheet(i) ?? (Moving ? piece.walk : piece.idle);
+                if (IntroStage == EntryStage.Arriving && !hidden)
+                {
+                    piece.renderer.sprite = null;
+                    continue;
+                }
+                bool walking = Moving && CurrentMode != Mode.Phase2Pending;
+                var sheet = hidden ? (i == 0 ? ridgeCap : ridge) : OverrideSheet(i) ?? (walking ? piece.walk : piece.idle);
                 if (sheet == null || sheet.sprites.Length == 0)
                     continue;
                 // Ola de patas: un cuadro de desfase por pieza.
-                float step = hidden ? RidgeStep : Moving ? piece.step : IdleStep;
+                float step = hidden ? RidgeStep : walking ? piece.step : IdleStep;
                 int frame = Mathf.FloorToInt(time / step) + (hidden ? 0 : piece.index);
-                piece.renderer.sprite = sheet.Get(row, frame % sheet.frames);
+                if (i == 0 && IntroStage == EntryStage.Roaring)
+                {
+                    row = DirectionalArt.RowFor(-90f, out flip);
+                    frame = Mathf.Min(3, Mathf.FloorToInt((Time.time - roarAt) / HeadStep));
+                }
+                var fireSheet = FireSheet(i, out int fireFrame);
+                piece.renderer.sprite = !hidden && fireSheet != null ? fireSheet.Get(row, fireFrame) : sheet.Get(row, frame % sheet.frames);
+                PaintFire(i, sheet, row, frame, flip, hidden);
                 piece.renderer.flipX = flip;
                 piece.renderer.transform.position = GroundToWorld(ground);
             }

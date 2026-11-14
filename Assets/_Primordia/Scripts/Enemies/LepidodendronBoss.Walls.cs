@@ -62,6 +62,7 @@ namespace Primordia.Enemies
             FinalPhaseReady = true;
             BeginCones();
             FinalPhaseBecameReady?.Invoke();
+            // Los conos y los ataques empiezan al llegar el jugador al centro de la arena (EngageFinalPhase).
         }
 
         internal void StartWallWaves(LepidodendronWall wall)

@@ -61,6 +61,7 @@ namespace Primordia.Enemies
             BuildSlamFrames();
             body = Drawing("Body");
             shadow = Drawing("Shadow");
+            BuildMarker();
             crater = Drawing("Crater");
             branch = Drawing("Branch");
             torn = Drawing("TornBranch");
@@ -89,6 +90,63 @@ namespace Primordia.Enemies
             var obj = new GameObject(name);
             obj.transform.SetParent(transform, false);
             return obj.AddComponent<SpriteRenderer>();
+        }
+
+        // Marca de aviso en el suelo (provisional, dibujada por código con el rojo de aviso de la espora): sigue al jugador durante
+        // el aviso, parpadea más fuerte al fijarse el punto y se queda hasta el golpe. Radio = el del daño.
+        const int MarkerPixels = 64;
+        const float MarkerFollowAlpha = 0.45f, MarkerShadowAlpha = 0.95f;
+        SpriteRenderer marker;
+        Texture2D markerTexture;
+        Sprite markerSprite;
+
+        void BuildMarker()
+        {
+            markerTexture = new Texture2D(MarkerPixels, MarkerPixels, TextureFormat.RGBA32, false) { filterMode = FilterMode.Point };
+            var pixels = new Color32[MarkerPixels * MarkerPixels];
+            float c = (MarkerPixels - 1) / 2f;
+            for (int y = 0; y < MarkerPixels; y++)
+                for (int x = 0; x < MarkerPixels; x++)
+                {
+                    float dx = x - c, dy = y - c, r = Mathf.Sqrt(dx * dx + dy * dy);
+                    float angle = Mathf.Atan2(dy, dx) * Mathf.Rad2Deg;
+                    bool dash = Mathf.FloorToInt((angle + 180f) / 15f) % 2 == 0;
+                    if (r >= c - 2.5f && r <= c && dash) pixels[y * MarkerPixels + x] = new Color32(255, 80, 60, 255);
+                    else if (r < c - 2.5f) pixels[y * MarkerPixels + x] = new Color32(255, 60, 40, 40);
+                }
+            markerTexture.SetPixels32(pixels);
+            markerTexture.Apply();
+            markerSprite = Sprite.Create(markerTexture, new Rect(0, 0, MarkerPixels, MarkerPixels), new Vector2(0.5f, 0.5f), MarkerPixels / (2f * SlamRadius));
+            marker = Drawing("Marker");
+            marker.sprite = markerSprite;
+            marker.enabled = false;
+        }
+
+        void RenderMarker(float now)
+        {
+            bool show = State == Phase.Warning || State == Phase.Shadow || State == Phase.Descending;
+            marker.enabled = show;
+            if (!show) return;
+            marker.sortingOrder = GroundOrder + 1;
+            float age = now - phaseAt;
+            float alpha, scale = 1f;
+            if (State == Phase.Warning)
+            {
+                // Pulso lento que se acelera al acercarse el final del aviso.
+                float left = Mathf.Max(0f, CurrentWarningSeconds - age);
+                float rate = Mathf.Lerp(2f, 6f, 1f - Mathf.Clamp01(left / CurrentWarningSeconds));
+                alpha = MarkerFollowAlpha * (0.7f + 0.3f * Mathf.Sin(now * rate * Mathf.PI * 2f));
+            }
+            else if (State == Phase.Shadow)
+            {
+                alpha = MarkerShadowAlpha * (Mathf.Sin(now * 14f * Mathf.PI) > 0f ? 1f : 0.55f);
+                scale = Mathf.Lerp(1.2f, 1f, Mathf.Clamp01(age / ShadowSeconds));
+            }
+            else alpha = 1f;
+            marker.color = new Color(1f, 1f, 1f, alpha);
+            marker.transform.localScale = Vector3.one * scale;
+            marker.transform.rotation = Quaternion.Euler(0f, 0f, now * 45f);
+            marker.transform.position = LandingPoint;
         }
 
         Sprite[] Frames(string name) => owner.Art.Find(name).sprites;
@@ -257,6 +315,7 @@ namespace Primordia.Enemies
 
         void Render(float now)
         {
+            RenderMarker(now);
             bool ground = State == Phase.Grounded || State == Phase.Husk;
             bool visible = ground || State == Phase.Descending || State == Phase.Rising;
             body.enabled = visible;
@@ -307,6 +366,8 @@ namespace Primordia.Enemies
         void OnDisable() { foreach (var point in ignitionPoints) Flammables.Unregister(point); }
         void OnDestroy()
         {
+            if (markerSprite != null) Destroy(markerSprite);
+            if (markerTexture != null) Destroy(markerTexture);
             if (slamFront != null) foreach (var sprite in slamFront) if (sprite != null) Destroy(sprite);
             if (slamBack != null) foreach (var sprite in slamBack) if (sprite != null) Destroy(sprite);
             if (Health == null) return;

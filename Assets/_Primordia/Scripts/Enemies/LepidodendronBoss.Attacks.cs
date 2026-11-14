@@ -54,14 +54,12 @@ namespace Primordia.Enemies
 
         void SubscribeAttacks()
         {
-            FinalPhaseBecameReady += StartFinalAttacks;
             ConesDestroyed += FinishAttacks;
             Room.PlayerEnteredAny += AttackRoomEntered;
         }
 
         void UnsubscribeAttacks()
         {
-            FinalPhaseBecameReady -= StartFinalAttacks;
             ConesDestroyed -= FinishAttacks;
             Room.PlayerEnteredAny -= AttackRoomEntered;
             CancelAttacks();
@@ -73,7 +71,7 @@ namespace Primordia.Enemies
                 CancelAttacks();
         }
 
-        void StartFinalAttacks()
+        internal void StartFinalAttacks()
         {
             attacksStarted = true;
             finalAttacksAt = attackClock + AttackStartDelay;

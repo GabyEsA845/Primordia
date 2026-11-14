@@ -160,7 +160,8 @@ namespace Primordia.Enemies
             if (FightReady)
             {
                 if (!attacksCancelled) UpdateWallWaves();
-                UpdateCones(Time.time);
+                CheckFinalEngagement();
+            UpdateCones(Time.time);
                 TickAttacks(Time.deltaTime);
             }
             if (!Collapsing && !HasCollapsed) AnimateConeSignals();

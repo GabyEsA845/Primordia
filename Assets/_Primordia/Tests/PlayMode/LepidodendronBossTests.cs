@@ -1544,6 +1544,80 @@ namespace Primordia.Tests
             Assert.IsFalse(boss.HeartDropped);
             Assert.AreEqual("Primero fuerza el desplome (Alt+F1)", boss.TestRewardAction(0));
         }
+
+        // ---- Correcciones tras la primera prueba de la usuaria ----
+
+        [UnityTest]
+        public IEnumerator FaseFinalSoloEmpiezaAlLlegarAlCentroDeLaArena()
+        {
+            var body = CreateWalker(boss.TestStop(2));
+            walker.AddComponent<PlayerController>().readInput = false;
+            foreach (var wall in boss.Walls) wall.Health.Kill();
+            Assert.IsTrue(boss.FinalPhaseReady);
+            Assert.IsFalse(boss.FinalEngaged);
+            yield return new WaitForSeconds(5f);
+            Assert.IsFalse(boss.FinalEngaged, "Lejos de la arena el jefe no ataca.");
+            Assert.IsTrue(boss.Cones.All(c => c.State == LepidodendronCone.Phase.Hanging));
+            Assert.AreEqual(0, boss.ActiveAttackCount);
+            Assert.AreEqual(0, boss.PendingAttackCount);
+            body.position = boss.ArenaCenter;
+            walker.transform.position = boss.ArenaCenter;
+            yield return new WaitForSeconds(0.5f);
+            Assert.IsTrue(boss.FinalEngaged);
+            Assert.IsTrue(boss.Cones.Any(c => c.State != LepidodendronCone.Phase.Hanging), "Baja un cono al llegar.");
+        }
+
+        [Test]
+        public void ElCartelDelLinajeSeApagaSoloAunqueUnaCinematicaLoDejaraVisible()
+        {
+            var go = new GameObject("Cartel", typeof(CanvasGroup));
+            try
+            {
+                var banner = go.AddComponent<Primordia.UI.LineageBanner>();
+                var group = go.GetComponent<CanvasGroup>();
+                group.alpha = 1f; // Lo que restaura CinematicOverlay tras guardar el alfa con el cartel visible.
+                var update = typeof(Primordia.UI.LineageBanner).GetMethod("Update", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+                update.Invoke(banner, null);
+                Assert.AreEqual(0f, group.alpha);
+            }
+            finally { Object.DestroyImmediate(go); }
+        }
+
+        [Test]
+        public void LaBarraDelJefeSecretoEsMasPequenaYMasBajaQueLaDeLosDemas()
+        {
+            var skin = boss.GetComponent<Primordia.UI.BossBarAppearance>().Skin;
+            Assert.IsTrue(skin.IsLepidodendron);
+            var canvas = new GameObject("Canvas", typeof(RectTransform));
+            try
+            {
+                var bar = new GameObject("Bar", typeof(RectTransform)).GetComponent<RectTransform>();
+                bar.SetParent(canvas.transform, false);
+                var view = System.Activator.CreateInstance(typeof(Primordia.UI.BossHealthBar).GetNestedType("SkinView", System.Reflection.BindingFlags.NonPublic),
+                    skin, bar, boss.PhaseThresholds, 12f);
+                var root = (RectTransform)view.GetType().GetField("root", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic).GetValue(view);
+                Assert.Less(root.localScale.x, 1f);
+                Assert.Less(root.anchoredPosition.y, 24f);
+            }
+            finally { Object.DestroyImmediate(canvas); }
+        }
+
+        [Test]
+        public void ElAvisoDelConoMarcaElSueloDesdeElAvisoHastaElGolpe()
+        {
+            boss.TestFinalPhase();
+            var cone = boss.Cones[0];
+            var marker = cone.transform.Find("Marker").GetComponent<SpriteRenderer>();
+            Assert.IsFalse(marker.enabled);
+            float now = Time.time;
+            Assert.IsTrue(cone.BeginDrop(LepidodendronCone.WarningSeconds, Vector2.zero, now));
+            Assert.IsTrue(marker.enabled, "Marca visible durante el aviso.");
+            cone.Tick(now + LepidodendronCone.WarningSeconds + 0.1f);
+            Assert.AreEqual(LepidodendronCone.Phase.Shadow, cone.State);
+            Assert.IsTrue(marker.enabled);
+            cone.Tick(now + LepidodendronCone.WarningSeconds + LepidodendronCone.ShadowSeconds + LepidodendronCone.DescentSeconds + 0.001f);
+            Assert.IsFalse(marker.enabled, "Tras el golpe la marca desaparece.");
+        }
     }
 }
 #endif

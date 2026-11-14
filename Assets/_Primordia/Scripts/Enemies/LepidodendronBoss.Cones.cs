@@ -57,7 +57,25 @@ namespace Primordia.Enemies
         {
             Health.IsInvulnerable = false;
             Health.DamageGate = FilterTrunkDamage;
+        }
+
+        /// <summary>El jugador ya llegó al centro de la arena: los conos y los ataques de la fase final están en marcha.</summary>
+        public bool FinalEngaged { get; private set; }
+        public const float EngageMargin = 2f; // Provisional: a cuántas u antes del centro de la arena se considera «llegado».
+
+        internal void EngageFinalPhase()
+        {
+            if (!FinalPhaseReady || FinalEngaged || AllConesDestroyed) return;
+            FinalEngaged = true;
             nextConeAt = Time.time;
+            StartFinalAttacks();
+        }
+
+        void CheckFinalEngagement()
+        {
+            if (!FinalPhaseReady || FinalEngaged || player == null) return;
+            if (player.position.x >= ArenaCenter.x - EngageMargin && Mathf.Abs(player.position.y - ArenaCenter.y) <= ArenaHeight / 2f)
+                EngageFinalPhase();
         }
 
         int FilterTrunkDamage(int amount, DamageKind kind, DamageSource source)
@@ -87,7 +105,7 @@ namespace Primordia.Enemies
 
         internal void UpdateCones(float now)
         {
-            if (!FinalPhaseReady || AllConesDestroyed || now < nextConeAt) return;
+            if (!FinalEngaged || AllConesDestroyed || now < nextConeAt) return;
             int busy = cones.Count(c => !c.Available && !c.Broken);
             // Tras la primera rotura se admiten dos ciclos simultáneos al finalizar la pausa.
             while (busy < ConeConcurrency)
@@ -132,7 +150,7 @@ namespace Primordia.Enemies
 
         internal void TriggerConeMethane(Vector2 position, float now)
         {
-            if (!FinalPhaseReady || AllConesDestroyed || Vector2.Distance(position, Foot) > MethaneTrunkRadius) return;
+            if (!FinalEngaged || AllConesDestroyed || Vector2.Distance(position, Foot) > MethaneTrunkRadius) return;
             var free = cones.Where(c => c.Available).ToArray();
             for (int i = 0; i < free.Length; i++)
                 free[i].BeginDrop(MethaneWarning, Vector2.right * ((i - (free.Length - 1) / 2f) * ConeSpacing), now, spread: true);
@@ -168,6 +186,7 @@ namespace Primordia.Enemies
         internal void TestFinalPhase()
         {
             foreach (var wall in walls) if (!wall.Fallen) wall.Health.Kill();
+            EngageFinalPhase(); // Los atajos de prueba saltan directamente a la fase en marcha.
         }
 
         internal string TestConeAction(int action)

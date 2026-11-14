@@ -47,6 +47,7 @@ namespace Primordia.UI
         // El aspecto propio queda bajo el nombre, a esta distancia del borde de arriba de la barra.
         const float SkinTop = 12f;
         const float SkinBottomMargin = 24f; // Provisional.
+        const float LepidodendronScale = 0.7f, LepidodendronBottomMargin = 6f; // Provisional: la barra del jefe secreto tapaba mucha vista.
         const float LowHealthFraction = 0.10f;
         const float LowHealthShake = 1f;
 
@@ -287,9 +288,11 @@ namespace Primordia.UI
                 // La raíz de la barra está arriba; el aspecto inferior se ancla al contenedor de pantalla.
                 root.SetParent(skin.BottomAnchored ? parent.parent : parent, false);
                 root.anchorMin = root.anchorMax = root.pivot = new Vector2(0.5f, skin.BottomAnchored ? 0f : 1f);
-                position = new Vector2(0f, skin.BottomAnchored ? SkinBottomMargin : -top);
+                position = new Vector2(0f, skin.BottomAnchored ? (skin.IsLepidodendron ? LepidodendronBottomMargin : SkinBottomMargin) : -top);
                 root.anchoredPosition = position;
                 root.sizeDelta = size;
+                if (skin.IsLepidodendron)
+                    root.localScale = Vector3.one * LepidodendronScale;
 
                 var window = skin.Window;
                 var windowPosition = new Vector2(window.x, window.y);

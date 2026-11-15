@@ -151,6 +151,9 @@ namespace Primordia.UI
             notchBreak = newNotchBreak ?? Array.Empty<Sprite>();
         }
 
+        /// <summary>Solo el efecto al pasar a cada fase (la Arthropleura: la pared que revienta y las placas que se abren).</summary>
+        internal void ConfigurePhaseEffects(PhaseEffect[] effects) => phaseChangeByPhase = effects;
+
         internal void ConfigureMeganeura(PhaseEffect[] effects, Sprite[] sparks)
         {
             bottomAnchored = true;

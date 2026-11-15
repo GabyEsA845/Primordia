@@ -41,6 +41,8 @@ namespace Primordia.Tests
             boss.DebugPhase2(0); // 69 %
             yield return new WaitForSeconds(5f);
             Assert.IsTrue(boss.TransitionStarted, "F2 empieza.");
+            Assert.IsNotNull(boss.EdgeArrows, "Las flechas del borde existen durante el combate.");
+            Assert.IsTrue(boss.EdgeArrows.HeadShown || boss.EdgeArrows.TailShown, "El cuerpo es mayor que la pantalla: alguna flecha apunta fuera de cámara.");
             boss.DebugPhase2(2);
             yield return new WaitForSeconds(2f);
             boss.DebugPhase2(3); // 34 %

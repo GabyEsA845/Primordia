@@ -1,0 +1,123 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fea4fa6ecd96c2841bc129a71802911a, type: 3}
+  m_Name: BossBar_Arthropleura
+  m_EditorClassIdentifier: Primordia::Primordia.UI.BossBarSkin
+  bottomAnchored: 0
+  immuneUsesPhaseFrame: 0
+  phaseChangeByPhase:
+  - frames: []
+    frameTime: 0.08
+  - frames:
+    - {fileID: -7726011006258275059, guid: 9b624909d7d79bd43a4fba6b40ec63c9, type: 3}
+    - {fileID: 4906314613834342170, guid: 9b624909d7d79bd43a4fba6b40ec63c9, type: 3}
+    - {fileID: -5294547866176855303, guid: 9b624909d7d79bd43a4fba6b40ec63c9, type: 3}
+    - {fileID: -1701285997516265456, guid: 9b624909d7d79bd43a4fba6b40ec63c9, type: 3}
+    - {fileID: -2484455809083738949, guid: 9b624909d7d79bd43a4fba6b40ec63c9, type: 3}
+    - {fileID: -3195532532787308517, guid: 9b624909d7d79bd43a4fba6b40ec63c9, type: 3}
+    frameTime: 0.08
+  - frames:
+    - {fileID: -4280735255027586972, guid: d3fb9716a76fadb41aa5f8e175de0aa8, type: 3}
+    - {fileID: -6198366187505931034, guid: d3fb9716a76fadb41aa5f8e175de0aa8, type: 3}
+    - {fileID: -5073441601487606034, guid: d3fb9716a76fadb41aa5f8e175de0aa8, type: 3}
+    - {fileID: 7284384587684329094, guid: d3fb9716a76fadb41aa5f8e175de0aa8, type: 3}
+    - {fileID: -6292860826866247213, guid: d3fb9716a76fadb41aa5f8e175de0aa8, type: 3}
+    - {fileID: 1421126968554043887, guid: d3fb9716a76fadb41aa5f8e175de0aa8, type: 3}
+    frameTime: 0.08
+  - frames: []
+    frameTime: 0.08
+  lowSparks: []
+  lowSparksFrameTime: 0.09
+  knotIdle: []
+  knotHit: []
+  headHit: []
+  coneAppear: []
+  coneArmor: []
+  coneCharred: []
+  coneExposed: []
+  coneBroken: []
+  frame: {fileID: -4324582208638120166, guid: 219c5100d141b81458a7bb8dd33c11f3, type: 3}
+  frameDark: {fileID: -4324582208638120166, guid: 219c5100d141b81458a7bb8dd33c11f3, type: 3}
+  window:
+    x: 46
+    y: 12
+    width: 260
+    height: 8
+  back: {fileID: 7459710484229117400, guid: a2c03e07501fde24881456eb7794e9ad, type: 3}
+  trail: {fileID: -5755236964791360739, guid: 215f8c7faab3ff04dbb2fe5bd0bccab2, type: 3}
+  phases:
+  - fill:
+    - {fileID: 1744954661698534949, guid: 5f31841f2ded733478c9d19cecbbd3ec, type: 3}
+    fillFrameTime: 0
+    eyesFrameTime: 0
+    eyes:
+    - {fileID: 7893703671912991655, guid: f344b290f61cfe14c96921d0fe116a48, type: 3}
+    frame:
+    - {fileID: -4324582208638120166, guid: 219c5100d141b81458a7bb8dd33c11f3, type: 3}
+  - fill:
+    - {fileID: 2127280019377772858, guid: 44c63bc4dc6e0d1408d8e6b1e6540ba7, type: 3}
+    - {fileID: -935972347, guid: 44c63bc4dc6e0d1408d8e6b1e6540ba7, type: 3}
+    - {fileID: 995674988, guid: 44c63bc4dc6e0d1408d8e6b1e6540ba7, type: 3}
+    fillFrameTime: 0.12
+    eyesFrameTime: 0.26
+    eyes:
+    - {fileID: 3720832813358645357, guid: 24a4e8c834e9ef149b5d74531b12ae5a, type: 3}
+    - {fileID: -1435601356708155132, guid: 24a4e8c834e9ef149b5d74531b12ae5a, type: 3}
+    frame:
+    - {fileID: -7826537120304453208, guid: a13eaea95c106724ca45816fb7b99bc0, type: 3}
+    - {fileID: -7217825982230023083, guid: a13eaea95c106724ca45816fb7b99bc0, type: 3}
+    - {fileID: -4320790687947301951, guid: a13eaea95c106724ca45816fb7b99bc0, type: 3}
+  - fill:
+    - {fileID: -2952295889765661505, guid: 56ca7953f4f5cb942a53a776da7883f4, type: 3}
+    - {fileID: -963405340, guid: 56ca7953f4f5cb942a53a776da7883f4, type: 3}
+    fillFrameTime: 0.26
+    eyesFrameTime: 0.26
+    eyes:
+    - {fileID: 2262322090007500488, guid: fa338611ee4a9fb4bab672fa5b5cdc34, type: 3}
+    - {fileID: -6120486699154748569, guid: fa338611ee4a9fb4bab672fa5b5cdc34, type: 3}
+    frame:
+    - {fileID: 3525034268410191921, guid: e411d852b8363df45b06608cc0db4582, type: 3}
+    - {fileID: -44732706805419134, guid: e411d852b8363df45b06608cc0db4582, type: 3}
+  - fill:
+    - {fileID: -3821771839729023390, guid: 94e143c8535334e4aaa63df6dff60120, type: 3}
+    - {fileID: 840203314, guid: 94e143c8535334e4aaa63df6dff60120, type: 3}
+    fillFrameTime: 0.2
+    eyesFrameTime: 0.11
+    eyes:
+    - {fileID: 387919590900927398, guid: 0893e63380e9fd84f9fee4491976b421, type: 3}
+    - {fileID: -8903634641434138626, guid: 0893e63380e9fd84f9fee4491976b421, type: 3}
+    - {fileID: 4609172447789763270, guid: 0893e63380e9fd84f9fee4491976b421, type: 3}
+    - {fileID: 6419551432892824633, guid: 0893e63380e9fd84f9fee4491976b421, type: 3}
+    frame:
+    - {fileID: -8906941544987575564, guid: a0a9c7b911d457a40aa0f8eb24880287, type: 3}
+    - {fileID: 5334031106284063340, guid: a0a9c7b911d457a40aa0f8eb24880287, type: 3}
+  dark:
+    fill:
+    - {fileID: 1744954661698534949, guid: 5f31841f2ded733478c9d19cecbbd3ec, type: 3}
+    fillFrameTime: 0
+    eyesFrameTime: 0
+    eyes:
+    - {fileID: 7893703671912991655, guid: f344b290f61cfe14c96921d0fe116a48, type: 3}
+    frame:
+    - {fileID: -4324582208638120166, guid: 219c5100d141b81458a7bb8dd33c11f3, type: 3}
+  frameTime: 0.15
+  notch: {fileID: 3013744934519108689, guid: 81679a4b6dec75941b3586e0844a9e31, type: 3}
+  notchBroken: {fileID: 8365481809320828579, guid: 90cac702652734d40a72f0d7eb215806, type: 3}
+  notchBreak:
+  - {fileID: -8065736472005019372, guid: b2afccf7627a1ec47be9f713967d5bc2, type: 3}
+  - {fileID: 3640013993833987811, guid: b2afccf7627a1ec47be9f713967d5bc2, type: 3}
+  - {fileID: -3442689807249941155, guid: b2afccf7627a1ec47be9f713967d5bc2, type: 3}
+  - {fileID: 7665256234716069025, guid: b2afccf7627a1ec47be9f713967d5bc2, type: 3}
+  - {fileID: -5426823029635461367, guid: b2afccf7627a1ec47be9f713967d5bc2, type: 3}
+  notchBreakFrameTime: 0.07
+  phaseChange: []
+  phaseChangeFrameTime: 0.08

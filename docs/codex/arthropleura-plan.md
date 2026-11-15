@@ -31,6 +31,6 @@ Jefe principal del piso 3. Arte aprobado: `docs/multimedia-temp/floor3-bosses/ar
 | D1 | F3 (transición, cerco con hueco y apretón, cámara ×1,5) | PROGRAMADO 2026-11-14; falta prueba |
 | D2 | F3 (placas por tramos que laten, daño hasta el 10 %, fuego en F3) | PROGRAMADO 2026-11-14 (43 pruebas); falta prueba. Las flechas de borde del punto débil pasan al subpaso F |
 | E | Rueda del 10 % (E1) y muerte con cuerpo-escenario (E2) | PROGRAMADO 2026-11-14 (46 pruebas); falta prueba |
-| F | Barra (BossBarSkin), flechas de borde, presentación «rodeo y asomo»; luego sonido (paso 8) | pendiente |
+| F | Barra de vida con el arte aprobado (4 fases + efectos del 70 % y 35 %) y flechas del borde de pantalla (cabeza, cola, punto débil) | PROGRAMADO 2026-11-14 (60 pruebas con la escena real); falta prueba. Presentación de entrada ya hecha (tarea 12) |
 
 Pendiente de cerrar al llegar a cada subpaso: tiempos de ciclo de ataques, tamaño del hueco del cerco, velocidades.

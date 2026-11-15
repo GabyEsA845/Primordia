@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7296380599794490421}
   - component: {fileID: 6875955374729090412}
   - component: {fileID: 497789542479396921}
+  - component: {fileID: 3818342148570265822}
   m_Layer: 7
   m_Name: Boss_Arthropleura
   m_TagString: Untagged
@@ -132,6 +133,69 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b0b4dd176310c84ba1ad46a73a4b990, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Primordia::Primordia.Enemies.ArthropleuraBoss
+  edgeArrowArt:
+    badgeHead:
+    - {fileID: -2637598412124664551, guid: 81659e224f733e149be89b7009ed6efb, type: 3}
+    badgeHeadWarn:
+    - {fileID: 3069282303545417915, guid: 6c9c92d64001d7d4596e3897df948044, type: 3}
+    - {fileID: -2071756840, guid: 6c9c92d64001d7d4596e3897df948044, type: 3}
+    badgeTail:
+    - {fileID: 6256482198137199098, guid: 9020424297fb35c408551392c71b6a5c, type: 3}
+    badgeWeak:
+    - {fileID: -3466685212714326693, guid: 8d614599ed462d34dbe3662feec9c4fc, type: 3}
+    - {fileID: 482955053, guid: 8d614599ed462d34dbe3662feec9c4fc, type: 3}
+    - {fileID: -843660868, guid: 8d614599ed462d34dbe3662feec9c4fc, type: 3}
+    pointerHead:
+    - {fileID: -1214789932628001778, guid: e46f036b0a4c2854494b49d89bbc68ef, type: 3}
+    - {fileID: 4921871840815101009, guid: e46f036b0a4c2854494b49d89bbc68ef, type: 3}
+    - {fileID: -749987982337436946, guid: e46f036b0a4c2854494b49d89bbc68ef, type: 3}
+    - {fileID: 8331511946950313612, guid: e46f036b0a4c2854494b49d89bbc68ef, type: 3}
+    - {fileID: -6588853678556227875, guid: e46f036b0a4c2854494b49d89bbc68ef, type: 3}
+    - {fileID: 9089488876495854411, guid: e46f036b0a4c2854494b49d89bbc68ef, type: 3}
+    - {fileID: -4797451596289496161, guid: e46f036b0a4c2854494b49d89bbc68ef, type: 3}
+    - {fileID: -5275638708405781090, guid: e46f036b0a4c2854494b49d89bbc68ef, type: 3}
+    - {fileID: -8923646725534958482, guid: e46f036b0a4c2854494b49d89bbc68ef, type: 3}
+    - {fileID: -1154938693035478373, guid: e46f036b0a4c2854494b49d89bbc68ef, type: 3}
+    - {fileID: 4010357548083426727, guid: e46f036b0a4c2854494b49d89bbc68ef, type: 3}
+    - {fileID: 5775922699680222163, guid: e46f036b0a4c2854494b49d89bbc68ef, type: 3}
+    - {fileID: -2252567184221854459, guid: e46f036b0a4c2854494b49d89bbc68ef, type: 3}
+    - {fileID: -1742123566332591090, guid: e46f036b0a4c2854494b49d89bbc68ef, type: 3}
+    - {fileID: -8208372484258959630, guid: e46f036b0a4c2854494b49d89bbc68ef, type: 3}
+    - {fileID: -4491000663864205692, guid: e46f036b0a4c2854494b49d89bbc68ef, type: 3}
+    pointerTail:
+    - {fileID: 6804928362003783983, guid: faf2b02e6f420774d8a8b08e20ad4e2b, type: 3}
+    - {fileID: -210010236746025333, guid: faf2b02e6f420774d8a8b08e20ad4e2b, type: 3}
+    - {fileID: -456239414443095004, guid: faf2b02e6f420774d8a8b08e20ad4e2b, type: 3}
+    - {fileID: 5133616136614867124, guid: faf2b02e6f420774d8a8b08e20ad4e2b, type: 3}
+    - {fileID: -5167336955494087150, guid: faf2b02e6f420774d8a8b08e20ad4e2b, type: 3}
+    - {fileID: -4610355597148156726, guid: faf2b02e6f420774d8a8b08e20ad4e2b, type: 3}
+    - {fileID: -1837137868938345715, guid: faf2b02e6f420774d8a8b08e20ad4e2b, type: 3}
+    - {fileID: -2735111184650789236, guid: faf2b02e6f420774d8a8b08e20ad4e2b, type: 3}
+    - {fileID: -4663128844709017078, guid: faf2b02e6f420774d8a8b08e20ad4e2b, type: 3}
+    - {fileID: 2847728508752726196, guid: faf2b02e6f420774d8a8b08e20ad4e2b, type: 3}
+    - {fileID: -7394973109143134529, guid: faf2b02e6f420774d8a8b08e20ad4e2b, type: 3}
+    - {fileID: -1727211218620760709, guid: faf2b02e6f420774d8a8b08e20ad4e2b, type: 3}
+    - {fileID: -8239975960828480144, guid: faf2b02e6f420774d8a8b08e20ad4e2b, type: 3}
+    - {fileID: -8201817386323609005, guid: faf2b02e6f420774d8a8b08e20ad4e2b, type: 3}
+    - {fileID: -706335249283058758, guid: faf2b02e6f420774d8a8b08e20ad4e2b, type: 3}
+    - {fileID: 4303606594578030643, guid: faf2b02e6f420774d8a8b08e20ad4e2b, type: 3}
+    pointerWeak:
+    - {fileID: -2423732314332704658, guid: a9392a110f209e8428d5064750f094f9, type: 3}
+    - {fileID: -4010959175488345575, guid: a9392a110f209e8428d5064750f094f9, type: 3}
+    - {fileID: -9061981171299341930, guid: a9392a110f209e8428d5064750f094f9, type: 3}
+    - {fileID: -6461318608708304719, guid: a9392a110f209e8428d5064750f094f9, type: 3}
+    - {fileID: 7503677411044373562, guid: a9392a110f209e8428d5064750f094f9, type: 3}
+    - {fileID: -9019972475830214313, guid: a9392a110f209e8428d5064750f094f9, type: 3}
+    - {fileID: -4053867044385516707, guid: a9392a110f209e8428d5064750f094f9, type: 3}
+    - {fileID: -7911511887299918970, guid: a9392a110f209e8428d5064750f094f9, type: 3}
+    - {fileID: -5308732419784272064, guid: a9392a110f209e8428d5064750f094f9, type: 3}
+    - {fileID: -5317142426311080073, guid: a9392a110f209e8428d5064750f094f9, type: 3}
+    - {fileID: -1099971250010776184, guid: a9392a110f209e8428d5064750f094f9, type: 3}
+    - {fileID: -7838186571225027379, guid: a9392a110f209e8428d5064750f094f9, type: 3}
+    - {fileID: 2753220792931229881, guid: a9392a110f209e8428d5064750f094f9, type: 3}
+    - {fileID: -2778137210219459341, guid: a9392a110f209e8428d5064750f094f9, type: 3}
+    - {fileID: -3656292498688625937, guid: a9392a110f209e8428d5064750f094f9, type: 3}
+    - {fileID: -1188209576820224296, guid: a9392a110f209e8428d5064750f094f9, type: 3}
   deathSmoke:
   - {fileID: 3625149797576768652, guid: e86b6e69616e9a44eb8e54de05ae82c0, type: 3}
   - {fileID: -6349264496594873538, guid: e86b6e69616e9a44eb8e54de05ae82c0, type: 3}
@@ -274,3 +338,16 @@ MonoBehaviour:
   bannerAt: 1
   bannerUntil: 3.2
   skipText: '[E] Saltar'
+--- !u!114 &3818342148570265822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7479201933812388599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67332564f65997f499fcf325871a9d21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Primordia::Primordia.UI.BossBarAppearance
+  skin: {fileID: 11400000, guid: bd88e284743dd9b4ca99ea7b57a4ab78, type: 2}

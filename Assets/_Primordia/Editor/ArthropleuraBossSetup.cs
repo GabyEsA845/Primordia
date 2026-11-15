@@ -5,6 +5,7 @@ using Primordia.Combat;
 using Primordia.Core;
 using Primordia.Enemies;
 using Primordia.Rooms;
+using Primordia.UI;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
@@ -99,11 +100,15 @@ namespace Primordia.Editor
                 var boss = root.AddComponent<ArthropleuraBoss>();
                 boss.Configure(art);
                 root.AddComponent<BossIntro>().enabled = false;
+                var barSkin = ArtSetup.CreateArthropleuraBarSkin();
+                if (barSkin != null)
+                    root.AddComponent<BossBarAppearance>().Configure(barSkin);
                 boss.ConfigureClearing(CreateClearingArt());
                 var fern = floor3.BandThemes.Where(t => t != null).SelectMany(t => t.Ferns).FirstOrDefault(f => f != null && f.IsValid && f.IsBurnable);
                 if (fern == null)
                     throw new InvalidOperationException("Falta un helecho inflamable aprobado en los temas del piso 3.");
                 boss.ConfigureFern(fern);
+                boss.ConfigureEdgeArrows(ArtSetup.CreateArthropleuraArrowArt());
                 boss.ConfigureDeathSmoke(Sheet("Effects/Fx_Arthropleura_DeathSmoke", 24, new Vector2(0.5f, 0f)));
                 boss.ConfigureTrees(new ArthropleuraBoss.TreeArt
                 {

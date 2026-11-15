@@ -39,7 +39,7 @@ namespace Primordia.Enemies
 
         public string DisplayName => "Arthropleura";
         public Health Health => GetComponent<Health>();
-        public BossBarStyle BarStyle => Health.IsInvulnerable ? BossBarStyle.Immune : BossBarStyle.Normal;
+        public BossBarStyle BarStyle => BossBarStyle.Normal; // El caparazón es invulnerable, pero la barra va con el aspecto de cada fase.
         public Vector2 ArenaCenter => built ? center : (Vector2)transform.position;
         public float[] PhaseThresholds => Thresholds;
         public DirectionalArt Art => art;
@@ -179,6 +179,7 @@ namespace Primordia.Enemies
                 else StepHunt(Time.deltaTime);
             }
             UpdateCamera();
+            UpdateEdgeArrows();
             Place();
         }
 

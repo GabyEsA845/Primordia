@@ -55,7 +55,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -83,7 +83,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -124,89 +124,89 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Megarachne_Shadow_Drop_0
+      name: Megarachne_Shadow_Drop_0_0
       rect:
         serializedVersion: 2
-        x: 30
-        y: 30
-        width: 68
-        height: 66
+        x: 0
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 8de3f86aae6a9f800800000000000000
-      internalID: 646731548251340504
+      spriteID: 1f2fb5aa0b9ff754cb031a5b46bd3a01
+      internalID: 1935116917
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Drop_1
+      name: Megarachne_Shadow_Drop_0_1
       rect:
         serializedVersion: 2
-        x: 160
-        y: 30
-        width: 64
-        height: 66
+        x: 128
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ae7cc4e0b93425ce0800000000000000
-      internalID: -1417996599429380118
+      spriteID: 4d57ca8969785bb408a3e14e3128d0f1
+      internalID: -485156687
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Drop_2
+      name: Megarachne_Shadow_Drop_0_2
       rect:
         serializedVersion: 2
-        x: 286
-        y: 30
-        width: 68
-        height: 66
+        x: 256
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 9a86a686a57ab6cd0800000000000000
-      internalID: -2563771556116666199
+      spriteID: b2270d92d619f4b4db971c50874e47c9
+      internalID: -1825558589
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Drop_3
+      name: Megarachne_Shadow_Drop_0_3
       rect:
         serializedVersion: 2
-        x: 412
-        y: 30
-        width: 72
-        height: 66
+        x: 384
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: dfd1d3ec6a85d2400800000000000000
-      internalID: 300994223551618557
+      spriteID: 2e3fe9751f71e5a4396a1ba3d6701162
+      internalID: 1954967809
       vertices: []
       indices: 
       edges: []
@@ -225,10 +225,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Megarachne_Shadow_Drop_0: 646731548251340504
-      Megarachne_Shadow_Drop_1: -1417996599429380118
-      Megarachne_Shadow_Drop_2: -2563771556116666199
-      Megarachne_Shadow_Drop_3: 300994223551618557
+      Megarachne_Shadow_Drop_0_0: 1935116917
+      Megarachne_Shadow_Drop_0_1: -485156687
+      Megarachne_Shadow_Drop_0_2: -1825558589
+      Megarachne_Shadow_Drop_0_3: 1954967809
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -124,7 +124,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -152,7 +152,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -193,595 +193,595 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Megarachne_Shadow_DropWarn_0
+      name: Megarachne_Shadow_DropWarn_0_0
       rect:
         serializedVersion: 2
-        x: 16
-        y: 1054
-        width: 96
-        height: 72
+        x: 0
+        y: 1024
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 8c7e05253a5924580800000000000000
-      internalID: -8844342189508991032
+      spriteID: 2cb7e10b98ed20e46b52264ccb720fdb
+      internalID: -1495752143
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_DropWarn_1
+      name: Megarachne_Shadow_DropWarn_0_1
       rect:
         serializedVersion: 2
-        x: 142
-        y: 1054
-        width: 100
-        height: 72
+        x: 128
+        y: 1024
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 38e75ffb697234090800000000000000
-      internalID: -8051548180389200253
+      spriteID: b501e158c615be44cb35fe582366ccbf
+      internalID: -1683356835
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_DropWarn_2
+      name: Megarachne_Shadow_DropWarn_0_2
       rect:
         serializedVersion: 2
-        x: 268
-        y: 1054
-        width: 104
-        height: 71
+        x: 256
+        y: 1024
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 198265c8e93a05a20800000000000000
-      internalID: 3049116849084442769
+      spriteID: e5bcd6189ce0542429ea08de73ffbe54
+      internalID: -465890262
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_DropWarn_3
+      name: Megarachne_Shadow_DropWarn_1_0
       rect:
         serializedVersion: 2
-        x: 19
-        y: 929
-        width: 99
-        height: 75
+        x: 0
+        y: 896
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b601835a4520735c0800000000000000
-      internalID: -4235914361946238869
+      spriteID: 30ccfeef54ee79a429d21b586cf74986
+      internalID: 592458510
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_DropWarn_4
+      name: Megarachne_Shadow_DropWarn_1_1
       rect:
         serializedVersion: 2
-        x: 145
-        y: 929
-        width: 103
-        height: 76
+        x: 128
+        y: 896
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 108df7c72337592f0800000000000000
-      internalID: -966739884326791167
+      spriteID: 8705a29c55027fe4eb885c83e1e8fa99
+      internalID: 1512694901
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_DropWarn_5
+      name: Megarachne_Shadow_DropWarn_1_2
       rect:
         serializedVersion: 2
-        x: 271
-        y: 928
-        width: 106
-        height: 77
+        x: 256
+        y: 896
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 9c9625050738c10b0800000000000000
-      internalID: -5756581705279182391
+      spriteID: 66bc576fa2c2aca4296469cfe467be20
+      internalID: -1644731360
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_DropWarn_6
+      name: Megarachne_Shadow_DropWarn_2_0
       rect:
         serializedVersion: 2
-        x: 21
-        y: 796
-        width: 96
-        height: 80
+        x: 0
+        y: 768
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: cd85fe8f60f25ed40800000000000000
-      internalID: 5612944217579935964
+      spriteID: 074b0040e9ee3174292bf4f1bacebe2c
+      internalID: -1754711201
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_DropWarn_7
+      name: Megarachne_Shadow_DropWarn_2_1
       rect:
         serializedVersion: 2
-        x: 147
-        y: 795
-        width: 99
-        height: 82
+        x: 128
+        y: 768
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ac2b77cc2f9f29390800000000000000
-      internalID: -7812907582326590774
+      spriteID: b89b0fe7ac6d920449702475faf5d7aa
+      internalID: 687306430
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_DropWarn_8
+      name: Megarachne_Shadow_DropWarn_2_2
       rect:
         serializedVersion: 2
-        x: 274
-        y: 794
-        width: 101
-        height: 84
+        x: 256
+        y: 768
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 5f309e5d3ed07ab80800000000000000
-      internalID: -8383716909129333771
+      spriteID: d3d17c1b70c792342a1ee88a357383e0
+      internalID: 1680459783
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_DropWarn_9
+      name: Megarachne_Shadow_DropWarn_3_0
       rect:
         serializedVersion: 2
-        x: 26
-        y: 667
-        width: 92
-        height: 81
+        x: 0
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ad0682bc22c2f5d40800000000000000
-      internalID: 5575223391656894682
+      spriteID: 0ae46221a00193f478af1d13a912b980
+      internalID: -1241540229
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_DropWarn_10
+      name: Megarachne_Shadow_DropWarn_3_1
       rect:
         serializedVersion: 2
-        x: 154
-        y: 665
-        width: 92
-        height: 85
+        x: 128
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 9786440585b5005b0800000000000000
-      internalID: -5404219117982685063
+      spriteID: 6a752e26175c52543baffbef00948072
+      internalID: -1172905440
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_DropWarn_11
+      name: Megarachne_Shadow_DropWarn_3_2
       rect:
         serializedVersion: 2
-        x: 282
-        y: 664
-        width: 92
-        height: 87
+        x: 256
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0ee76d8aaf421f7c0800000000000000
-      internalID: -4039406731781570848
+      spriteID: e9d2528bd17c9f742aae66c03e818fef
+      internalID: 1284214074
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_DropWarn_12
+      name: Megarachne_Shadow_DropWarn_4_0
       rect:
         serializedVersion: 2
-        x: 23
-        y: 536
-        width: 87
-        height: 80
+        x: 0
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 5bbae02bf2960b470800000000000000
-      internalID: 8408336157872401333
+      spriteID: fe0ffcfeb4720cd4b99560aaafa520d5
+      internalID: -1918802099
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_DropWarn_13
+      name: Megarachne_Shadow_DropWarn_4_1
       rect:
         serializedVersion: 2
-        x: 151
-        y: 535
-        width: 87
-        height: 82
+        x: 128
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d67f8a44d429c5280800000000000000
-      internalID: -9053200290359478419
+      spriteID: abdfa0ceef6083c4da45818001dfdd05
+      internalID: 1681733485
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_DropWarn_14
+      name: Megarachne_Shadow_DropWarn_4_2
       rect:
         serializedVersion: 2
-        x: 279
-        y: 533
-        width: 86
-        height: 86
+        x: 256
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c4ba674e9fc6280d0800000000000000
-      internalID: -3422052946312516788
+      spriteID: 992e7c490629eb241979f8055b3975a7
+      internalID: -1857151355
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_DropWarn_15
+      name: Megarachne_Shadow_DropWarn_5_0
       rect:
         serializedVersion: 2
-        x: 26
-        y: 404
-        width: 92
-        height: 81
+        x: 0
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: dd493a87d643ea440800000000000000
-      internalID: 4948950685306819805
+      spriteID: 8f2d12343bf9a0042bcde6ac3b7a518b
+      internalID: 369928266
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_DropWarn_16
+      name: Megarachne_Shadow_DropWarn_5_1
       rect:
         serializedVersion: 2
-        x: 154
-        y: 402
-        width: 92
-        height: 85
+        x: 128
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 9c24c659488bf3830800000000000000
-      internalID: 4053161069238829769
+      spriteID: 3080be0f62ee50a469ea43e98220dbb7
+      internalID: 1758219895
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_DropWarn_17
+      name: Megarachne_Shadow_DropWarn_5_2
       rect:
         serializedVersion: 2
-        x: 282
-        y: 401
-        width: 92
-        height: 87
+        x: 256
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b2c0868b4cc560590800000000000000
-      internalID: -7708371712220853205
+      spriteID: 2d79113509f80f042892822f583a505a
+      internalID: -885560011
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_DropWarn_18
+      name: Megarachne_Shadow_DropWarn_6_0
       rect:
         serializedVersion: 2
-        x: 21
-        y: 276
-        width: 96
-        height: 80
+        x: 0
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 9865080d45b2d7860800000000000000
-      internalID: 7529221795308656265
+      spriteID: c2a7be8748edb9a4f9ab79433b79f6aa
+      internalID: -1222389720
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_DropWarn_19
+      name: Megarachne_Shadow_DropWarn_6_1
       rect:
         serializedVersion: 2
-        x: 147
-        y: 275
-        width: 99
-        height: 82
+        x: 128
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: cbf7ffa56fe215bf0800000000000000
-      internalID: -337436861452550212
+      spriteID: f0189f0394a14bb49997a72ffa54a370
+      internalID: -1363984272
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_DropWarn_20
+      name: Megarachne_Shadow_DropWarn_6_2
       rect:
         serializedVersion: 2
-        x: 274
-        y: 274
-        width: 101
-        height: 84
+        x: 256
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a30d2f89397ee3e30800000000000000
-      internalID: 4485276900019851322
+      spriteID: 73b8a728f5c232e4eb63be74430d2446
+      internalID: -184185530
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_DropWarn_21
+      name: Megarachne_Shadow_DropWarn_7_0
       rect:
         serializedVersion: 2
-        x: 19
-        y: 148
-        width: 99
-        height: 75
+        x: 0
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 4c0f0dac3e279db60800000000000000
-      internalID: 7771368954690334916
+      spriteID: 733bfbd174bae754486b8b22216bd700
+      internalID: -1358351830
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_DropWarn_22
+      name: Megarachne_Shadow_DropWarn_7_1
       rect:
         serializedVersion: 2
-        x: 145
-        y: 147
-        width: 103
-        height: 76
+        x: 128
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7d4229f0f8d29f3c0800000000000000
-      internalID: -4325375874647841577
+      spriteID: d13cf5ee844d63645a0dbe6f271b377a
+      internalID: -53143926
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_DropWarn_23
+      name: Megarachne_Shadow_DropWarn_7_2
       rect:
         serializedVersion: 2
-        x: 271
-        y: 147
-        width: 106
-        height: 77
+        x: 256
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 8fe1cae1f96f50170800000000000000
-      internalID: 8144186664444239608
+      spriteID: 3cbcd2de3922c7848ab16d1fc76796c7
+      internalID: -435229664
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_DropWarn_24
+      name: Megarachne_Shadow_DropWarn_8_0
       rect:
         serializedVersion: 2
-        x: 16
-        y: 26
-        width: 96
-        height: 72
+        x: 0
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a5feddb498520e0a0800000000000000
-      internalID: -6854437361244311718
+      spriteID: ea5557fc9d86f6c4fa0c3080c4770bf3
+      internalID: -1388639824
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_DropWarn_25
+      name: Megarachne_Shadow_DropWarn_8_1
       rect:
         serializedVersion: 2
-        x: 142
-        y: 26
-        width: 100
-        height: 72
+        x: 128
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 242a401ab751d0b00800000000000000
-      internalID: 796316329841041986
+      spriteID: d34aeddd327cce9408a0c17a0bab9998
+      internalID: -718115590
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_DropWarn_26
+      name: Megarachne_Shadow_DropWarn_8_2
       rect:
         serializedVersion: 2
-        x: 268
-        y: 27
-        width: 104
-        height: 71
+        x: 256
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 31df70af043429010800000000000000
-      internalID: 1194090797558398227
+      spriteID: a5069a6df7591584fa9d49f15ffa0664
+      internalID: -1912604389
       vertices: []
       indices: 
       edges: []
@@ -800,33 +800,33 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Megarachne_Shadow_DropWarn_0: -8844342189508991032
-      Megarachne_Shadow_DropWarn_1: -8051548180389200253
-      Megarachne_Shadow_DropWarn_10: -5404219117982685063
-      Megarachne_Shadow_DropWarn_11: -4039406731781570848
-      Megarachne_Shadow_DropWarn_12: 8408336157872401333
-      Megarachne_Shadow_DropWarn_13: -9053200290359478419
-      Megarachne_Shadow_DropWarn_14: -3422052946312516788
-      Megarachne_Shadow_DropWarn_15: 4948950685306819805
-      Megarachne_Shadow_DropWarn_16: 4053161069238829769
-      Megarachne_Shadow_DropWarn_17: -7708371712220853205
-      Megarachne_Shadow_DropWarn_18: 7529221795308656265
-      Megarachne_Shadow_DropWarn_19: -337436861452550212
-      Megarachne_Shadow_DropWarn_2: 3049116849084442769
-      Megarachne_Shadow_DropWarn_20: 4485276900019851322
-      Megarachne_Shadow_DropWarn_21: 7771368954690334916
-      Megarachne_Shadow_DropWarn_22: -4325375874647841577
-      Megarachne_Shadow_DropWarn_23: 8144186664444239608
-      Megarachne_Shadow_DropWarn_24: -6854437361244311718
-      Megarachne_Shadow_DropWarn_25: 796316329841041986
-      Megarachne_Shadow_DropWarn_26: 1194090797558398227
-      Megarachne_Shadow_DropWarn_3: -4235914361946238869
-      Megarachne_Shadow_DropWarn_4: -966739884326791167
-      Megarachne_Shadow_DropWarn_5: -5756581705279182391
-      Megarachne_Shadow_DropWarn_6: 5612944217579935964
-      Megarachne_Shadow_DropWarn_7: -7812907582326590774
-      Megarachne_Shadow_DropWarn_8: -8383716909129333771
-      Megarachne_Shadow_DropWarn_9: 5575223391656894682
+      Megarachne_Shadow_DropWarn_0_0: -1495752143
+      Megarachne_Shadow_DropWarn_0_1: -1683356835
+      Megarachne_Shadow_DropWarn_0_2: -465890262
+      Megarachne_Shadow_DropWarn_1_0: 592458510
+      Megarachne_Shadow_DropWarn_1_1: 1512694901
+      Megarachne_Shadow_DropWarn_1_2: -1644731360
+      Megarachne_Shadow_DropWarn_2_0: -1754711201
+      Megarachne_Shadow_DropWarn_2_1: 687306430
+      Megarachne_Shadow_DropWarn_2_2: 1680459783
+      Megarachne_Shadow_DropWarn_3_0: -1241540229
+      Megarachne_Shadow_DropWarn_3_1: -1172905440
+      Megarachne_Shadow_DropWarn_3_2: 1284214074
+      Megarachne_Shadow_DropWarn_4_0: -1918802099
+      Megarachne_Shadow_DropWarn_4_1: 1681733485
+      Megarachne_Shadow_DropWarn_4_2: -1857151355
+      Megarachne_Shadow_DropWarn_5_0: 369928266
+      Megarachne_Shadow_DropWarn_5_1: 1758219895
+      Megarachne_Shadow_DropWarn_5_2: -885560011
+      Megarachne_Shadow_DropWarn_6_0: -1222389720
+      Megarachne_Shadow_DropWarn_6_1: -1363984272
+      Megarachne_Shadow_DropWarn_6_2: -184185530
+      Megarachne_Shadow_DropWarn_7_0: -1358351830
+      Megarachne_Shadow_DropWarn_7_1: -53143926
+      Megarachne_Shadow_DropWarn_7_2: -435229664
+      Megarachne_Shadow_DropWarn_8_0: -1388639824
+      Megarachne_Shadow_DropWarn_8_1: -718115590
+      Megarachne_Shadow_DropWarn_8_2: -1912604389
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

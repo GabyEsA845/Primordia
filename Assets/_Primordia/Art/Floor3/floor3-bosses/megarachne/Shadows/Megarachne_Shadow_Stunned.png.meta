@@ -151,7 +151,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -179,7 +179,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -220,793 +220,793 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Megarachne_Shadow_Stunned_0
+      name: Megarachne_Shadow_Stunned_0_0
       rect:
         serializedVersion: 2
-        x: 13
-        y: 1055
-        width: 99
-        height: 70
+        x: 0
+        y: 1024
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: dc9064c3916102280800000000000000
-      internalID: -9070225351882962483
+      spriteID: 9d21dcab0c392454d9971bf171f8aee0
+      internalID: -1095198213
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Stunned_1
+      name: Megarachne_Shadow_Stunned_0_1
       rect:
         serializedVersion: 2
-        x: 141
-        y: 1055
-        width: 98
-        height: 70
+        x: 128
+        y: 1024
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: dc35e85e8e9c0d7c0800000000000000
-      internalID: -4048514062885170227
+      spriteID: a7ff4fe2a5ce1a34c889876e222d03a3
+      internalID: -1229466922
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Stunned_2
+      name: Megarachne_Shadow_Stunned_0_2
       rect:
         serializedVersion: 2
-        x: 269
-        y: 1055
-        width: 99
-        height: 70
+        x: 256
+        y: 1024
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e6fc90bb7a6ca29b0800000000000000
-      internalID: -5104048803971215506
+      spriteID: 45a948f3f73d8ac4b886e85b298c5d93
+      internalID: -1707472650
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Stunned_3
+      name: Megarachne_Shadow_Stunned_0_3
       rect:
         serializedVersion: 2
-        x: 397
-        y: 1055
-        width: 100
-        height: 70
+        x: 384
+        y: 1024
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b5503a1206fd6b390800000000000000
-      internalID: -7802803700398619301
+      spriteID: ca589930cc3d9f84dba4d49f5850118b
+      internalID: 1597108908
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Stunned_4
+      name: Megarachne_Shadow_Stunned_1_0
       rect:
         serializedVersion: 2
-        x: 17
-        y: 931
-        width: 100
-        height: 74
+        x: 0
+        y: 896
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 5ea828317c8448150800000000000000
-      internalID: 5873899833860983525
+      spriteID: aa01b74078b8882448d3b225a8efa713
+      internalID: 1903928747
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Stunned_5
+      name: Megarachne_Shadow_Stunned_1_1
       rect:
         serializedVersion: 2
-        x: 146
-        y: 931
-        width: 98
-        height: 74
+        x: 128
+        y: 896
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e626b2988414ae530800000000000000
-      internalID: 3884989408355246702
+      spriteID: db94c921684e24d4a863d412556969c9
+      internalID: -35955056
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Stunned_6
+      name: Megarachne_Shadow_Stunned_1_2
       rect:
         serializedVersion: 2
-        x: 273
-        y: 931
-        width: 100
-        height: 74
+        x: 256
+        y: 896
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: faf63eb2ec523bdd0800000000000000
-      internalID: -2471590203066454097
+      spriteID: ff4fd864944f1a445b7d999986c7d045
+      internalID: -978293389
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Stunned_7
+      name: Megarachne_Shadow_Stunned_1_3
       rect:
         serializedVersion: 2
-        x: 401
-        y: 930
-        width: 102
-        height: 75
+        x: 384
+        y: 896
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 5b9cfa0a2498778a0800000000000000
-      internalID: -6307421833852368459
+      spriteID: d24cf739fe526ce48940aace01f02514
+      internalID: 50069486
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Stunned_8
+      name: Megarachne_Shadow_Stunned_2_0
       rect:
         serializedVersion: 2
-        x: 21
-        y: 798
-        width: 96
-        height: 80
+        x: 0
+        y: 768
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 9ce3716d96fe15d70800000000000000
-      internalID: 9030261965697007305
+      spriteID: e4372a76e6e34d64f873c9eb771de884
+      internalID: 1278097724
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Stunned_9
+      name: Megarachne_Shadow_Stunned_2_1
       rect:
         serializedVersion: 2
-        x: 149
-        y: 799
-        width: 95
-        height: 79
+        x: 128
+        y: 768
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: eaa6b881d2d0a2090800000000000000
-      internalID: -8058614095889601874
+      spriteID: 06f4b089ba6294c4f8f0ddb0e0c8f94f
+      internalID: 1271202766
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Stunned_10
+      name: Megarachne_Shadow_Stunned_2_2
       rect:
         serializedVersion: 2
-        x: 277
-        y: 798
-        width: 96
-        height: 80
+        x: 256
+        y: 768
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7646de6d4844ab9e0800000000000000
-      internalID: -1604894979871906713
+      spriteID: 34180051890e8f644a230f54e6d3d21e
+      internalID: 939951493
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Stunned_11
+      name: Megarachne_Shadow_Stunned_2_3
       rect:
         serializedVersion: 2
-        x: 405
-        y: 798
-        width: 97
-        height: 80
+        x: 384
+        y: 768
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 303ec39d077574770800000000000000
-      internalID: 8594934556052480771
+      spriteID: 9d7b0ad45d324f1479e05147ee4d6e1f
+      internalID: -944261195
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Stunned_12
+      name: Megarachne_Shadow_Stunned_3_0
       rect:
         serializedVersion: 2
-        x: 26
-        y: 668
-        width: 91
-        height: 82
+        x: 0
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 4cd16d20073b40380800000000000000
-      internalID: -9005876061168853564
+      spriteID: dd1bff48307ad134d99d777a2f3d5da0
+      internalID: 1191901265
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Stunned_13
+      name: Megarachne_Shadow_Stunned_3_1
       rect:
         serializedVersion: 2
-        x: 153
-        y: 669
-        width: 92
-        height: 81
+        x: 128
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 5533b0eb9ddb92a10800000000000000
-      internalID: 1885246661925221205
+      spriteID: ed1f5ff651a8fef4d8ba757274f64343
+      internalID: 116055733
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Stunned_14
+      name: Megarachne_Shadow_Stunned_3_2
       rect:
         serializedVersion: 2
-        x: 282
-        y: 668
-        width: 91
-        height: 82
+        x: 256
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c3ed6e0ce882a11a0800000000000000
-      internalID: -6838108490621854148
+      spriteID: ab975f24be8865245b330c8347e79c4a
+      internalID: 316697412
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Stunned_15
+      name: Megarachne_Shadow_Stunned_3_3
       rect:
         serializedVersion: 2
-        x: 410
-        y: 667
-        width: 91
-        height: 83
+        x: 384
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ce0f159e411767170800000000000000
-      internalID: 8175846508165460204
+      spriteID: 1b3e07e1717451446a6205585d6600d9
+      internalID: 1779789089
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Stunned_16
+      name: Megarachne_Shadow_Stunned_4_0
       rect:
         serializedVersion: 2
-        x: 24
-        y: 537
-        width: 85
-        height: 81
+        x: 0
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 87e5d48e782328120800000000000000
-      internalID: 2414547909523365496
+      spriteID: 3caf0d3986f64f1408da972d7c7f4ac4
+      internalID: 1518948000
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Stunned_17
+      name: Megarachne_Shadow_Stunned_4_1
       rect:
         serializedVersion: 2
-        x: 152
-        y: 538
-        width: 85
-        height: 80
+        x: 128
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2ce780b091c355360800000000000000
-      internalID: 7157693261032226498
+      spriteID: 99c79b7dabc32754d94c79b5bc4ec8f8
+      internalID: -739590691
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Stunned_18
+      name: Megarachne_Shadow_Stunned_4_2
       rect:
         serializedVersion: 2
-        x: 280
-        y: 537
-        width: 85
-        height: 81
+        x: 256
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ca513fb2956ce9680800000000000000
-      internalID: -8746335340015184468
+      spriteID: 422f71f848cd31942be62d7fe65fcaf4
+      internalID: 84635476
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Stunned_19
+      name: Megarachne_Shadow_Stunned_4_3
       rect:
         serializedVersion: 2
-        x: 408
-        y: 535
-        width: 85
-        height: 83
+        x: 384
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 87fdbcdac50cc1300800000000000000
-      internalID: 224265585747025784
+      spriteID: 33bb00c39567c5c42a1c9684723ea799
+      internalID: -656425885
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Stunned_20
+      name: Megarachne_Shadow_Stunned_5_0
       rect:
         serializedVersion: 2
-        x: 28
-        y: 404
-        width: 90
-        height: 83
+        x: 0
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 97dfc6c1fb6082220800000000000000
-      internalID: 2461224614243401081
+      spriteID: c17c282d39fc66e41927ac4ed19c8dc5
+      internalID: 661217639
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Stunned_21
+      name: Megarachne_Shadow_Stunned_5_1
       rect:
         serializedVersion: 2
-        x: 157
-        y: 405
-        width: 89
-        height: 81
+        x: 128
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f9e0cb190a83ae370800000000000000
-      internalID: 8352550721202949791
+      spriteID: 69a0cfd14084d674eabec73c73fc2700
+      internalID: -726898565
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Stunned_22
+      name: Megarachne_Shadow_Stunned_5_2
       rect:
         serializedVersion: 2
-        x: 284
-        y: 404
-        width: 90
-        height: 83
+        x: 256
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 1f1a2f6daf270bc10800000000000000
-      internalID: 2067278650636673521
+      spriteID: a539a57f139a5914a8fb5fc6fea82dfb
+      internalID: -310316666
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Stunned_23
+      name: Megarachne_Shadow_Stunned_5_3
       rect:
         serializedVersion: 2
-        x: 412
-        y: 403
-        width: 90
-        height: 84
+        x: 384
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 9f1f84a3b74d82980800000000000000
-      internalID: -8563361065721073159
+      spriteID: 0d3ff42dd8aa6ed4cac4804d88f8c37a
+      internalID: 1385613657
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Stunned_24
+      name: Megarachne_Shadow_Stunned_6_0
       rect:
         serializedVersion: 2
-        x: 23
-        y: 276
-        width: 96
-        height: 80
+        x: 0
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2703ba749cbd11cf0800000000000000
-      internalID: -283203644010319758
+      spriteID: 800be369e64e1db4fba65c5b5e9cc7a3
+      internalID: -1990595240
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Stunned_25
+      name: Megarachne_Shadow_Stunned_6_1
       rect:
         serializedVersion: 2
-        x: 152
-        y: 277
-        width: 96
-        height: 78
+        x: 128
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 8192e2c61ab2cd620800000000000000
-      internalID: 2800161040622299416
+      spriteID: 354864643e3730b4199cf75e55db1b9c
+      internalID: -1351011580
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Stunned_26
+      name: Megarachne_Shadow_Stunned_6_2
       rect:
         serializedVersion: 2
-        x: 279
-        y: 276
-        width: 96
-        height: 80
+        x: 256
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6c9807e256ffe8d00800000000000000
-      internalID: 976998979221883334
+      spriteID: cc8673ba7ea700240a6012b576427cc3
+      internalID: 452199476
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Stunned_27
+      name: Megarachne_Shadow_Stunned_6_3
       rect:
         serializedVersion: 2
-        x: 406
-        y: 275
-        width: 98
-        height: 80
+        x: 384
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 16b4e06e16d6003d0800000000000000
-      internalID: -3242471464467805343
+      spriteID: 60edee3dd12401540b511c891bdab5ff
+      internalID: 1635335018
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Stunned_28
+      name: Megarachne_Shadow_Stunned_7_0
       rect:
         serializedVersion: 2
-        x: 20
-        y: 148
-        width: 100
-        height: 76
+        x: 0
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 4d2417bd66ed6d4a0800000000000000
-      internalID: -6568818473123626284
+      spriteID: f75e349a6e13b3344b2dc88c542db3c1
+      internalID: 124986660
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Stunned_29
+      name: Megarachne_Shadow_Stunned_7_1
       rect:
         serializedVersion: 2
-        x: 150
-        y: 149
-        width: 98
-        height: 75
+        x: 128
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 25d4ce0017b486320800000000000000
-      internalID: 2551372137624259922
+      spriteID: 1270e22cd0d431349b73b4aaca300844
+      internalID: 208538217
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Stunned_30
+      name: Megarachne_Shadow_Stunned_7_2
       rect:
         serializedVersion: 2
-        x: 276
-        y: 148
-        width: 100
-        height: 76
+        x: 256
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 807fa697ebda8e490800000000000000
-      internalID: -7716726927906900216
+      spriteID: 7cebe19893475cb4b8ab21ceddbf7de7
+      internalID: 30210720
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Stunned_31
+      name: Megarachne_Shadow_Stunned_7_3
       rect:
         serializedVersion: 2
-        x: 403
-        y: 148
-        width: 101
-        height: 75
+        x: 384
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e8cf6adfdcd2c2b10800000000000000
-      internalID: 1957990300746448014
+      spriteID: 365d688db1043224e8dc0cc847affce3
+      internalID: 392341390
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Stunned_32
+      name: Megarachne_Shadow_Stunned_8_0
       rect:
         serializedVersion: 2
-        x: 16
-        y: 27
-        width: 99
-        height: 70
+        x: 0
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c993d1a136e3b6800800000000000000
-      internalID: 606647170172271004
+      spriteID: 72ac21dc24b3290439bf3edd72623722
+      internalID: -914845351
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Stunned_33
+      name: Megarachne_Shadow_Stunned_8_1
       rect:
         serializedVersion: 2
-        x: 145
-        y: 27
-        width: 98
-        height: 70
+        x: 128
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 3b6e32f3cbacc4990800000000000000
-      internalID: -7400317177814587725
+      spriteID: d80d0c426b889ad44a82a440f85b8798
+      internalID: -1745616828
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Stunned_34
+      name: Megarachne_Shadow_Stunned_8_2
       rect:
         serializedVersion: 2
-        x: 272
-        y: 27
-        width: 99
-        height: 70
+        x: 256
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d38e1097c827edfc0800000000000000
-      internalID: -3468208715377547203
+      spriteID: d8fe71a3a5713914185c31fc6885655e
+      internalID: -348143400
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Stunned_35
+      name: Megarachne_Shadow_Stunned_8_3
       rect:
         serializedVersion: 2
-        x: 399
-        y: 27
-        width: 100
-        height: 70
+        x: 384
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e32a30033e7895a00800000000000000
-      internalID: 745776623139398206
+      spriteID: 8adf62d21b4d358448ec0231be5f40a8
+      internalID: 1458238982
       vertices: []
       indices: 
       edges: []
@@ -1025,42 +1025,42 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Megarachne_Shadow_Stunned_0: -9070225351882962483
-      Megarachne_Shadow_Stunned_1: -4048514062885170227
-      Megarachne_Shadow_Stunned_10: -1604894979871906713
-      Megarachne_Shadow_Stunned_11: 8594934556052480771
-      Megarachne_Shadow_Stunned_12: -9005876061168853564
-      Megarachne_Shadow_Stunned_13: 1885246661925221205
-      Megarachne_Shadow_Stunned_14: -6838108490621854148
-      Megarachne_Shadow_Stunned_15: 8175846508165460204
-      Megarachne_Shadow_Stunned_16: 2414547909523365496
-      Megarachne_Shadow_Stunned_17: 7157693261032226498
-      Megarachne_Shadow_Stunned_18: -8746335340015184468
-      Megarachne_Shadow_Stunned_19: 224265585747025784
-      Megarachne_Shadow_Stunned_2: -5104048803971215506
-      Megarachne_Shadow_Stunned_20: 2461224614243401081
-      Megarachne_Shadow_Stunned_21: 8352550721202949791
-      Megarachne_Shadow_Stunned_22: 2067278650636673521
-      Megarachne_Shadow_Stunned_23: -8563361065721073159
-      Megarachne_Shadow_Stunned_24: -283203644010319758
-      Megarachne_Shadow_Stunned_25: 2800161040622299416
-      Megarachne_Shadow_Stunned_26: 976998979221883334
-      Megarachne_Shadow_Stunned_27: -3242471464467805343
-      Megarachne_Shadow_Stunned_28: -6568818473123626284
-      Megarachne_Shadow_Stunned_29: 2551372137624259922
-      Megarachne_Shadow_Stunned_3: -7802803700398619301
-      Megarachne_Shadow_Stunned_30: -7716726927906900216
-      Megarachne_Shadow_Stunned_31: 1957990300746448014
-      Megarachne_Shadow_Stunned_32: 606647170172271004
-      Megarachne_Shadow_Stunned_33: -7400317177814587725
-      Megarachne_Shadow_Stunned_34: -3468208715377547203
-      Megarachne_Shadow_Stunned_35: 745776623139398206
-      Megarachne_Shadow_Stunned_4: 5873899833860983525
-      Megarachne_Shadow_Stunned_5: 3884989408355246702
-      Megarachne_Shadow_Stunned_6: -2471590203066454097
-      Megarachne_Shadow_Stunned_7: -6307421833852368459
-      Megarachne_Shadow_Stunned_8: 9030261965697007305
-      Megarachne_Shadow_Stunned_9: -8058614095889601874
+      Megarachne_Shadow_Stunned_0_0: -1095198213
+      Megarachne_Shadow_Stunned_0_1: -1229466922
+      Megarachne_Shadow_Stunned_0_2: -1707472650
+      Megarachne_Shadow_Stunned_0_3: 1597108908
+      Megarachne_Shadow_Stunned_1_0: 1903928747
+      Megarachne_Shadow_Stunned_1_1: -35955056
+      Megarachne_Shadow_Stunned_1_2: -978293389
+      Megarachne_Shadow_Stunned_1_3: 50069486
+      Megarachne_Shadow_Stunned_2_0: 1278097724
+      Megarachne_Shadow_Stunned_2_1: 1271202766
+      Megarachne_Shadow_Stunned_2_2: 939951493
+      Megarachne_Shadow_Stunned_2_3: -944261195
+      Megarachne_Shadow_Stunned_3_0: 1191901265
+      Megarachne_Shadow_Stunned_3_1: 116055733
+      Megarachne_Shadow_Stunned_3_2: 316697412
+      Megarachne_Shadow_Stunned_3_3: 1779789089
+      Megarachne_Shadow_Stunned_4_0: 1518948000
+      Megarachne_Shadow_Stunned_4_1: -739590691
+      Megarachne_Shadow_Stunned_4_2: 84635476
+      Megarachne_Shadow_Stunned_4_3: -656425885
+      Megarachne_Shadow_Stunned_5_0: 661217639
+      Megarachne_Shadow_Stunned_5_1: -726898565
+      Megarachne_Shadow_Stunned_5_2: -310316666
+      Megarachne_Shadow_Stunned_5_3: 1385613657
+      Megarachne_Shadow_Stunned_6_0: -1990595240
+      Megarachne_Shadow_Stunned_6_1: -1351011580
+      Megarachne_Shadow_Stunned_6_2: 452199476
+      Megarachne_Shadow_Stunned_6_3: 1635335018
+      Megarachne_Shadow_Stunned_7_0: 124986660
+      Megarachne_Shadow_Stunned_7_1: 208538217
+      Megarachne_Shadow_Stunned_7_2: 30210720
+      Megarachne_Shadow_Stunned_7_3: 392341390
+      Megarachne_Shadow_Stunned_8_0: -914845351
+      Megarachne_Shadow_Stunned_8_1: -1745616828
+      Megarachne_Shadow_Stunned_8_2: -348143400
+      Megarachne_Shadow_Stunned_8_3: 1458238982
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

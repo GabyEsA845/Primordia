@@ -32,8 +32,17 @@ Ataques, red, saco, crías, fuego, enfado, entrada, barra, muerte, recompensa, s
 ## Cómo probar
 Menú de importación, menú de sala, abrir `Test_BossMegarachne`, jugar: ella persigue en el suelo y se sube/baja de cables; en cable no recibe daño. Lanzar `MegarachneBossTests` (batchmode permitido, ver `primordia-unity-batchmode.md`).
 
-## Resultado (lo rellena Codex)
-- Hecho:
+## Resultado
+- Hecho: implementado M1 en `codex/mega-1-base` (descendiente de `feature/boss-megarachne`), sin commit, push ni merge. Menús `Primordia > Art > Importar Megarachne` y `Primordia > Boss > Crear sala Megarachne`; 22 hojas direccionales de cuerpo/sombra (9 filas, salvo Drop/Climb de una fila), árbol Wet/Web/Eyes y cables Normal/Thin. No se modificaron PNG ni se ejecutaron generadores.
+- Jefe: 150 PV, `Enemy` y `BossDamageLimiter`, sin daño por contacto ni ataques; persecución a 5 u/s, espera de 6 s en suelo, aproximación a un extremo accesible, Climb, recorrido a 7 u/s y Drop. Invulnerable durante el recorrido elevado; vulnerable en suelo. Sombra en suelo e hilo hasta las hileras. Velocidades/transiciones marcadas provisionales. Ctrl+Mayús+F1 deja 77 PV (redondeo superior del 51 % de 150), F2 solicita subida y F3 solicita bajada; solo en la escena de prueba.
+- Sala: suelo 32×20 u con tema Bosque humeante y cámara base ×1; tronco sólido, copa y seda al 0,45 cuando un jugador/enemigo del suelo pasa debajo, pie del árbol opaco mediante recortes de la misma textura, cinco cables visuales desde las anclas del README hasta Sigillarias. Escena independiente, sin conexión a Floor_3, presentación, barra ni recompensa propia.
 - Archivos tocados:
-- Pruebas (cuántas pasan):
-- Dudas / no comprobado:
+  - `Assets/_Primordia/Scripts/Enemies/MegarachneBoss.cs`, `MegarachneBoss.Cables.cs`, `MegarachneBossCanopy.cs` y sus `.meta`.
+  - `Assets/_Primordia/Editor/ArtSetup.BossMegarachne.cs`, `MegarachneBossSetup.cs` y sus `.meta`.
+  - `Assets/_Primordia/Tests/PlayMode/MegarachneBossTests.cs` y su `.meta`.
+  - `Assets/_Primordia/Data/Bosses/MegarachneArt.asset`, `MegarachneCable.mat`; `Data/Enemies/Floor3/Enemy_MegarachneBoss.asset`; `Data/Rooms/Floor3/Room_Boss_Megarachne.asset`; `Data/Rooms/Floor_BossMegarachneTest.asset`, con sus `.meta`.
+  - `Assets/_Primordia/Prefabs/Enemies/Boss_Megarachne.prefab`, `Assets/_Primordia/Scenes/Test_BossMegarachne.unity` y sus `.meta`.
+  - 27 `.png.meta` del arte de Megarachne: las 22 hojas de cuerpo/sombra indicadas, Wet/Web/Eyes y Normal/Thin. Este archivo de tarea.
+- Pruebas: menú de creación ejecutado en Unity 6000.6.2f1 batchmode, compilación sin errores CS. `MegarachneBossTests`: **7 de 7 pasan**, 0 fallos, en PlayMode con recarga de dominio desactivada. Cubren vida/limitador/ausencia de contacto, hojas y direcciones, persecución, subida y bajada natural sin teletransporte, invulnerabilidad/vulnerabilidad, ciclo automático y bajada forzada, transparencia con jugador y enemigo y restauración de opacidad. La primera ejecución dio 5/7 y permitió corregir la elección de un cable cuyo acceso estaba bloqueado por el tronco. Registros: `Logs/Megarachne-setup.log`, `Logs/Megarachne-tests.log`, `Logs/Megarachne-tests.xml`.
+- Reimportación: menú ejecutado de nuevo correctamente (`Logs/Megarachne-reimport.log`); los identificadores de los sprites de copa/tronco y las referencias del prefab se conservan. C# nuevos verificados con CRLF. Los espacios finales que señala `git diff --check` están en campos vacíos de `.meta` serializados por Unity.
+- Dudas / no comprobado: pendiente revisión visual jugando en el editor y pulsación manual de los atajos; no se ha lanzado la suite general. `DebugCheats` existente también interpreta Ctrl+Mayús+F1/F2/F3 como atajos de Arthropleura y puede mostrar «No hay Arthropleura activa», aunque los atajos de Megarachne se ejecutan; no se ha tocado ese archivo, fuera del alcance. El primer arranque aislado falló por licencia; se ejecutó correctamente fuera del aislamiento tras la autorización de batchmode. No se modificó `ProjectSettings/ProjectSettings.asset` ni los archivos ajenos sin seguimiento.

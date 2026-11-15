@@ -151,7 +151,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -179,7 +179,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -220,793 +220,793 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Megarachne_Shadow_Fall_0
+      name: Megarachne_Shadow_Fall_0_0
       rect:
         serializedVersion: 2
-        x: 29
-        y: 1055
-        width: 74
-        height: 71
+        x: 0
+        y: 1024
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 68c129f32b8c310c0800000000000000
-      internalID: -4606117325973611386
+      spriteID: ca176bcc435e2d246927d6f3f5134f40
+      internalID: 848369721
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Fall_1
+      name: Megarachne_Shadow_Fall_0_1
       rect:
         serializedVersion: 2
-        x: 167
-        y: 1055
-        width: 61
-        height: 69
+        x: 128
+        y: 1024
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 06232a4d3a95d6860800000000000000
-      internalID: 7524769112587907680
+      spriteID: 7a5ad96d63fa6f24781f3452d4693eee
+      internalID: 586081499
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Fall_2
+      name: Megarachne_Shadow_Fall_0_2
       rect:
         serializedVersion: 2
-        x: 309
-        y: 1055
-        width: 40
-        height: 73
+        x: 256
+        y: 1024
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 44c2e5517b1587730800000000000000
-      internalID: 3997034516070673476
+      spriteID: d92b6ca3c612faf41a384d9176e4230b
+      internalID: -414121193
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Fall_3
+      name: Megarachne_Shadow_Fall_0_3
       rect:
         serializedVersion: 2
-        x: 428
-        y: 1055
-        width: 51
-        height: 70
+        x: 384
+        y: 1024
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d3d2556d05e3665b0800000000000000
-      internalID: -5375540588305896131
+      spriteID: 1cb297d466f83024bbccc8d3afdbf264
+      internalID: -2023534594
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Fall_4
+      name: Megarachne_Shadow_Fall_1_0
       rect:
         serializedVersion: 2
-        x: 31
-        y: 930
-        width: 78
-        height: 71
+        x: 0
+        y: 896
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 66e6f3d11d7fd7270800000000000000
-      internalID: 8250022569923538534
+      spriteID: 34601d6e491b0944796a8db12ccd957d
+      internalID: 235517186
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Fall_5
+      name: Megarachne_Shadow_Fall_1_1
       rect:
         serializedVersion: 2
-        x: 169
-        y: 931
-        width: 63
-        height: 62
+        x: 128
+        y: 896
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b13fec015729b9970800000000000000
-      internalID: 8762758531470258971
+      spriteID: 64b36e5c0495dda4f88c0766507ccf30
+      internalID: -1910355936
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Fall_6
+      name: Megarachne_Shadow_Fall_1_2
       rect:
         serializedVersion: 2
-        x: 297
-        y: 931
-        width: 58
-        height: 67
+        x: 256
+        y: 896
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c136d7ede87d87a60800000000000000
-      internalID: 7672118973843727132
+      spriteID: cff0bb4a3345c8c42bbc4a1280e4fed1
+      internalID: 1386045509
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Fall_7
+      name: Megarachne_Shadow_Fall_1_3
       rect:
         serializedVersion: 2
-        x: 425
-        y: 931
-        width: 61
-        height: 65
+        x: 384
+        y: 896
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 559bcb2f40319d690800000000000000
-      internalID: -7577003986100897451
+      spriteID: b1bc106a09a367646a7051dfd5284022
+      internalID: 1186427452
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Fall_8
+      name: Megarachne_Shadow_Fall_2_0
       rect:
         serializedVersion: 2
-        x: 31
-        y: 806
-        width: 80
-        height: 64
+        x: 0
+        y: 768
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7ef55f331474bedc0800000000000000
-      internalID: -3608712331037155353
+      spriteID: ef5e6bf2209ddf54d922166e8682fd48
+      internalID: -1787365475
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Fall_9
+      name: Megarachne_Shadow_Fall_2_1
       rect:
         serializedVersion: 2
-        x: 159
-        y: 808
-        width: 76
-        height: 52
+        x: 128
+        y: 768
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 8998ce4a20a9d1780800000000000000
-      internalID: -8710636768117093992
+      spriteID: 7a49c7ca919bbb44fa8236d4c39756a3
+      internalID: 1010685549
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Fall_10
+      name: Megarachne_Shadow_Fall_2_2
       rect:
         serializedVersion: 2
-        x: 286
-        y: 812
-        width: 76
-        height: 50
+        x: 256
+        y: 768
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 01127725a1a908bc0800000000000000
-      internalID: -3782854249147850480
+      spriteID: cb1cd20a91067d14083fb57bb2693dea
+      internalID: -1518222602
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Fall_11
+      name: Megarachne_Shadow_Fall_2_3
       rect:
         serializedVersion: 2
-        x: 414
-        y: 811
-        width: 78
-        height: 53
+        x: 384
+        y: 768
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7d23911fd0926bc00800000000000000
-      internalID: 915964714072748759
+      spriteID: 959357fd5add5944cb8922286ca3d5bc
+      internalID: 1551661354
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Fall_12
+      name: Megarachne_Shadow_Fall_3_0
       rect:
         serializedVersion: 2
-        x: 25
-        y: 676
-        width: 89
-        height: 63
+        x: 0
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2ebf9349fc47f37a0800000000000000
-      internalID: -6395264510948934686
+      spriteID: 3cd57de05a60f744a9f0f3071b6b2aec
+      internalID: -1470842895
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Fall_13
+      name: Megarachne_Shadow_Fall_3_1
       rect:
         serializedVersion: 2
-        x: 152
-        y: 680
-        width: 85
-        height: 47
+        x: 128
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 5961aba3b5f9f5800800000000000000
-      internalID: 603376089267050133
+      spriteID: e02e711291fabec4e94ff709874963d9
+      internalID: -1225575647
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Fall_14
+      name: Megarachne_Shadow_Fall_3_2
       rect:
         serializedVersion: 2
-        x: 280
-        y: 684
-        width: 84
-        height: 39
+        x: 256
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 76a8d5343715f65a0800000000000000
-      internalID: -6525907779543266713
+      spriteID: 4a80946271c27234c97d7f803a500f58
+      internalID: 1801560348
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Fall_15
+      name: Megarachne_Shadow_Fall_3_3
       rect:
         serializedVersion: 2
-        x: 408
-        y: 682
-        width: 85
-        height: 46
+        x: 384
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: fa1374f02d101ab60800000000000000
-      internalID: 7755482035019788719
+      spriteID: 670a8003c1d6b49448cc0eb7932ed90d
+      internalID: -353270561
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Fall_16
+      name: Megarachne_Shadow_Fall_4_0
       rect:
         serializedVersion: 2
-        x: 24
-        y: 544
-        width: 86
-        height: 61
+        x: 0
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 592d93b2709636bf0800000000000000
-      internalID: -332306467984387435
+      spriteID: 042617529bf83424d9787626bc74adf8
+      internalID: -2005005421
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Fall_17
+      name: Megarachne_Shadow_Fall_4_1
       rect:
         serializedVersion: 2
-        x: 152
-        y: 546
-        width: 83
-        height: 50
+        x: 128
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 09bd1f81151633b60800000000000000
-      internalID: 7724624786809281424
+      spriteID: 93eae68f22cd487409cb6c4d41e7a781
+      internalID: -1017219685
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Fall_18
+      name: Megarachne_Shadow_Fall_4_2
       rect:
         serializedVersion: 2
-        x: 280
-        y: 552
-        width: 88
-        height: 34
+        x: 256
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 4adb1d9a3a1400130800000000000000
-      internalID: 3530894279043038628
+      spriteID: d6fc5005ce9ad8c4b99822fa190a38d8
+      internalID: 1923140067
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Fall_19
+      name: Megarachne_Shadow_Fall_4_3
       rect:
         serializedVersion: 2
-        x: 408
-        y: 550
-        width: 84
-        height: 43
+        x: 384
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b1973c106a3a37040800000000000000
-      internalID: 4644235574138599707
+      spriteID: da13104885c3f9641b7dfe8cbf7809a8
+      internalID: -1393566201
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Fall_20
+      name: Megarachne_Shadow_Fall_5_0
       rect:
         serializedVersion: 2
-        x: 28
-        y: 411
-        width: 85
-        height: 64
+        x: 0
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c48649f9cdf4ce1d0800000000000000
-      internalID: -3320191016290195380
+      spriteID: f6e653239f5522f4fa4360e482fc1e7a
+      internalID: -1321921231
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Fall_21
+      name: Megarachne_Shadow_Fall_5_1
       rect:
         serializedVersion: 2
-        x: 157
-        y: 415
-        width: 75
-        height: 52
+        x: 128
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 62811a36e5d97b9a0800000000000000
-      internalID: -6217327731837691866
+      spriteID: c8e60512b49af1248806f21cff73b684
+      internalID: 560581240
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Fall_22
+      name: Megarachne_Shadow_Fall_5_2
       rect:
         serializedVersion: 2
-        x: 285
-        y: 419
-        width: 81
-        height: 48
+        x: 256
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 85f6e98bc35059ad0800000000000000
-      internalID: -2696243043557806248
+      spriteID: 7e22701dfd0d1844bbdb6c5fb24ef209
+      internalID: -1983618872
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Fall_23
+      name: Megarachne_Shadow_Fall_5_3
       rect:
         serializedVersion: 2
-        x: 413
-        y: 416
-        width: 78
-        height: 51
+        x: 384
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: bee213247de1f1720800000000000000
-      internalID: 2819005801634541291
+      spriteID: ff0e3bba7dcf493448cb044e0c272ff5
+      internalID: -1270439600
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Fall_24
+      name: Megarachne_Shadow_Fall_6_0
       rect:
         serializedVersion: 2
-        x: 32
-        y: 281
-        width: 78
-        height: 66
+        x: 0
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 3417c85a4103a2150800000000000000
-      internalID: 5848539931328934211
+      spriteID: 76c2e14ea91cfbb41b16650276bb7293
+      internalID: -45990261
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Fall_25
+      name: Megarachne_Shadow_Fall_6_1
       rect:
         serializedVersion: 2
-        x: 163
-        y: 284
-        width: 63
-        height: 64
+        x: 128
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 704060ecb91aff500800000000000000
-      internalID: 432241779799360519
+      spriteID: 3c08c107ee5203145b8ab7054b202fc8
+      internalID: -778175884
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Fall_26
+      name: Megarachne_Shadow_Fall_6_2
       rect:
         serializedVersion: 2
-        x: 296
-        y: 286
-        width: 60
-        height: 62
+        x: 256
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 5c3f83e2f1851a460800000000000000
-      internalID: 7251173765985924037
+      spriteID: 4fa5efe054f28b64f85b95c086006d4a
+      internalID: 1950088786
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Fall_27
+      name: Megarachne_Shadow_Fall_6_3
       rect:
         serializedVersion: 2
-        x: 423
-        y: 284
-        width: 63
-        height: 64
+        x: 384
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 472aa453329af7c20800000000000000
-      internalID: 3206467428394115700
+      spriteID: 0eaea90b194b5a8468e018219194109b
+      internalID: -1340889498
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Fall_28
+      name: Megarachne_Shadow_Fall_7_0
       rect:
         serializedVersion: 2
-        x: 30
-        y: 151
-        width: 76
-        height: 73
+        x: 0
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6369f97b5d7f537f0800000000000000
-      internalID: -633327675294902730
+      spriteID: 4af5bcba23661ae4eb5774123d0fa48b
+      internalID: -93308029
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Fall_29
+      name: Megarachne_Shadow_Fall_7_1
       rect:
         serializedVersion: 2
-        x: 163
-        y: 155
-        width: 57
-        height: 70
+        x: 128
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2032674114c900a20800000000000000
-      internalID: 3026590752923067138
+      spriteID: dc3d5b3602b187c4fa603d85943d033d
+      internalID: 1548945179
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Fall_30
+      name: Megarachne_Shadow_Fall_7_2
       rect:
         serializedVersion: 2
-        x: 296
-        y: 156
-        width: 47
-        height: 69
+        x: 256
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 1168e014553404da0800000000000000
-      internalID: -5962691873195784687
+      spriteID: 925ef3dbcfdd2164e87601d144d47675
+      internalID: 1374549083
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Fall_31
+      name: Megarachne_Shadow_Fall_7_3
       rect:
         serializedVersion: 2
-        x: 422
-        y: 155
-        width: 55
-        height: 70
+        x: 384
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 3a4d445e8b86be090800000000000000
-      internalID: -8004188769391160157
+      spriteID: 8d8162e9fc4f1544ab7d2b7ae09071cc
+      internalID: 1545639091
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Fall_32
+      name: Megarachne_Shadow_Fall_8_0
       rect:
         serializedVersion: 2
-        x: 25
-        y: 26
-        width: 74
-        height: 71
+        x: 0
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: fcf39af91d8fa85f0800000000000000
-      internalID: -753516408420614193
+      spriteID: 11b6c4b8e50542a43a10b43f8e3b0968
+      internalID: 640933340
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Fall_33
+      name: Megarachne_Shadow_Fall_8_1
       rect:
         serializedVersion: 2
-        x: 156
-        y: 28
-        width: 61
-        height: 69
+        x: 128
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 1344af6947e8eb9d0800000000000000
-      internalID: -2756609290503830479
+      spriteID: 2348503ba01edce43acd32da21f9e80c
+      internalID: -2048034987
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Fall_34
+      name: Megarachne_Shadow_Fall_8_2
       rect:
         serializedVersion: 2
-        x: 291
-        y: 24
-        width: 40
-        height: 73
+        x: 256
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 78d8058842e7db400800000000000000
-      internalID: 341567842120928647
+      spriteID: 0cbe6b1cb337f924baeb9eda49afaa0c
+      internalID: -962503408
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Fall_35
+      name: Megarachne_Shadow_Fall_8_3
       rect:
         serializedVersion: 2
-        x: 417
-        y: 27
-        width: 51
-        height: 70
+        x: 384
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 15d2c77b237be8c70800000000000000
-      internalID: 8975312535850593617
+      spriteID: ed33badcc1989b04b85ddeb2a3f04984
+      internalID: -807391745
       vertices: []
       indices: 
       edges: []
@@ -1025,42 +1025,42 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Megarachne_Shadow_Fall_0: -4606117325973611386
-      Megarachne_Shadow_Fall_1: 7524769112587907680
-      Megarachne_Shadow_Fall_10: -3782854249147850480
-      Megarachne_Shadow_Fall_11: 915964714072748759
-      Megarachne_Shadow_Fall_12: -6395264510948934686
-      Megarachne_Shadow_Fall_13: 603376089267050133
-      Megarachne_Shadow_Fall_14: -6525907779543266713
-      Megarachne_Shadow_Fall_15: 7755482035019788719
-      Megarachne_Shadow_Fall_16: -332306467984387435
-      Megarachne_Shadow_Fall_17: 7724624786809281424
-      Megarachne_Shadow_Fall_18: 3530894279043038628
-      Megarachne_Shadow_Fall_19: 4644235574138599707
-      Megarachne_Shadow_Fall_2: 3997034516070673476
-      Megarachne_Shadow_Fall_20: -3320191016290195380
-      Megarachne_Shadow_Fall_21: -6217327731837691866
-      Megarachne_Shadow_Fall_22: -2696243043557806248
-      Megarachne_Shadow_Fall_23: 2819005801634541291
-      Megarachne_Shadow_Fall_24: 5848539931328934211
-      Megarachne_Shadow_Fall_25: 432241779799360519
-      Megarachne_Shadow_Fall_26: 7251173765985924037
-      Megarachne_Shadow_Fall_27: 3206467428394115700
-      Megarachne_Shadow_Fall_28: -633327675294902730
-      Megarachne_Shadow_Fall_29: 3026590752923067138
-      Megarachne_Shadow_Fall_3: -5375540588305896131
-      Megarachne_Shadow_Fall_30: -5962691873195784687
-      Megarachne_Shadow_Fall_31: -8004188769391160157
-      Megarachne_Shadow_Fall_32: -753516408420614193
-      Megarachne_Shadow_Fall_33: -2756609290503830479
-      Megarachne_Shadow_Fall_34: 341567842120928647
-      Megarachne_Shadow_Fall_35: 8975312535850593617
-      Megarachne_Shadow_Fall_4: 8250022569923538534
-      Megarachne_Shadow_Fall_5: 8762758531470258971
-      Megarachne_Shadow_Fall_6: 7672118973843727132
-      Megarachne_Shadow_Fall_7: -7577003986100897451
-      Megarachne_Shadow_Fall_8: -3608712331037155353
-      Megarachne_Shadow_Fall_9: -8710636768117093992
+      Megarachne_Shadow_Fall_0_0: 848369721
+      Megarachne_Shadow_Fall_0_1: 586081499
+      Megarachne_Shadow_Fall_0_2: -414121193
+      Megarachne_Shadow_Fall_0_3: -2023534594
+      Megarachne_Shadow_Fall_1_0: 235517186
+      Megarachne_Shadow_Fall_1_1: -1910355936
+      Megarachne_Shadow_Fall_1_2: 1386045509
+      Megarachne_Shadow_Fall_1_3: 1186427452
+      Megarachne_Shadow_Fall_2_0: -1787365475
+      Megarachne_Shadow_Fall_2_1: 1010685549
+      Megarachne_Shadow_Fall_2_2: -1518222602
+      Megarachne_Shadow_Fall_2_3: 1551661354
+      Megarachne_Shadow_Fall_3_0: -1470842895
+      Megarachne_Shadow_Fall_3_1: -1225575647
+      Megarachne_Shadow_Fall_3_2: 1801560348
+      Megarachne_Shadow_Fall_3_3: -353270561
+      Megarachne_Shadow_Fall_4_0: -2005005421
+      Megarachne_Shadow_Fall_4_1: -1017219685
+      Megarachne_Shadow_Fall_4_2: 1923140067
+      Megarachne_Shadow_Fall_4_3: -1393566201
+      Megarachne_Shadow_Fall_5_0: -1321921231
+      Megarachne_Shadow_Fall_5_1: 560581240
+      Megarachne_Shadow_Fall_5_2: -1983618872
+      Megarachne_Shadow_Fall_5_3: -1270439600
+      Megarachne_Shadow_Fall_6_0: -45990261
+      Megarachne_Shadow_Fall_6_1: -778175884
+      Megarachne_Shadow_Fall_6_2: 1950088786
+      Megarachne_Shadow_Fall_6_3: -1340889498
+      Megarachne_Shadow_Fall_7_0: -93308029
+      Megarachne_Shadow_Fall_7_1: 1548945179
+      Megarachne_Shadow_Fall_7_2: 1374549083
+      Megarachne_Shadow_Fall_7_3: 1545639091
+      Megarachne_Shadow_Fall_8_0: 640933340
+      Megarachne_Shadow_Fall_8_1: -2048034987
+      Megarachne_Shadow_Fall_8_2: -962503408
+      Megarachne_Shadow_Fall_8_3: -807391745
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

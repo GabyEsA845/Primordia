@@ -55,7 +55,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -83,7 +83,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -124,89 +124,89 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Megarachne_Shadow_Climb_0
+      name: Megarachne_Shadow_Climb_0_0
       rect:
         serializedVersion: 2
-        x: 28
-        y: 28
-        width: 72
-        height: 68
+        x: 0
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 64dd630add2aefae0800000000000000
-      internalID: -1513593351990485690
+      spriteID: fe6174fdee564774d8cdbd7d7296e353
+      internalID: -1073222477
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Climb_1
+      name: Megarachne_Shadow_Climb_0_1
       rect:
         serializedVersion: 2
-        x: 156
-        y: 30
-        width: 72
-        height: 66
+        x: 128
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0cbc800b97ecc04d0800000000000000
-      internalID: -3166929415908570176
+      spriteID: d9b895acff0a79843b8fd46a572955ca
+      internalID: 225733804
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Climb_2
+      name: Megarachne_Shadow_Climb_0_2
       rect:
         serializedVersion: 2
-        x: 284
-        y: 30
-        width: 72
-        height: 66
+        x: 256
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 77f5107b913a35c70800000000000000
-      internalID: 8958683414609878903
+      spriteID: 1fcaa009dff324d4298136b9eb593aa4
+      internalID: 1794918164
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Climb_3
+      name: Megarachne_Shadow_Climb_0_3
       rect:
         serializedVersion: 2
-        x: 412
-        y: 28
-        width: 72
-        height: 68
+        x: 384
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c874c8190f8592540800000000000000
-      internalID: 4983612252919449484
+      spriteID: ef290181cbfbb7b469cf1366e6af168e
+      internalID: -835543206
       vertices: []
       indices: 
       edges: []
@@ -225,10 +225,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Megarachne_Shadow_Climb_0: -1513593351990485690
-      Megarachne_Shadow_Climb_1: -3166929415908570176
-      Megarachne_Shadow_Climb_2: 8958683414609878903
-      Megarachne_Shadow_Climb_3: 4983612252919449484
+      Megarachne_Shadow_Climb_0_0: -1073222477
+      Megarachne_Shadow_Climb_0_1: 225733804
+      Megarachne_Shadow_Climb_0_2: 1794918164
+      Megarachne_Shadow_Climb_0_3: -835543206
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

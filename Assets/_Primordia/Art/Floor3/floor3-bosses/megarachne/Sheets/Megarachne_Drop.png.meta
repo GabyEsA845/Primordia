@@ -55,7 +55,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -83,7 +83,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -124,89 +124,89 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Megarachne_Drop_0
+      name: Megarachne_Drop_0_0
       rect:
         serializedVersion: 2
-        x: 29
-        y: 31
-        width: 70
-        height: 64
+        x: 0
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 103b6978f245854b0800000000000000
-      internalID: -5451514785816988927
+      spriteID: fd62715a87442d441b4a3906b6354024
+      internalID: 134523501
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Drop_1
+      name: Megarachne_Drop_0_1
       rect:
         serializedVersion: 2
-        x: 159
-        y: 31
-        width: 66
-        height: 64
+        x: 128
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 4ca77c57ac6d8ba10800000000000000
-      internalID: 1925525005748632260
+      spriteID: 53acf42eec70a2944812275f01331a2f
+      internalID: 68842779
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Drop_2
+      name: Megarachne_Drop_0_2
       rect:
         serializedVersion: 2
-        x: 285
-        y: 31
-        width: 70
-        height: 64
+        x: 256
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 9e9cba07b9934c2e0800000000000000
-      internalID: -2106495385929528855
+      spriteID: cb9c4183dc13774429d295ae902555bf
+      internalID: 931546458
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Drop_3
+      name: Megarachne_Drop_0_3
       rect:
         serializedVersion: 2
-        x: 411
-        y: 31
-        width: 74
-        height: 64
+        x: 384
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 184587dfe85de8df0800000000000000
-      internalID: -175968525306276735
+      spriteID: 0f7044a69cb6d7147b5500dd146d37c3
+      internalID: -249798869
       vertices: []
       indices: 
       edges: []
@@ -225,10 +225,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Megarachne_Drop_0: -5451514785816988927
-      Megarachne_Drop_1: 1925525005748632260
-      Megarachne_Drop_2: -2106495385929528855
-      Megarachne_Drop_3: -175968525306276735
+      Megarachne_Drop_0_0: 134523501
+      Megarachne_Drop_0_1: 68842779
+      Megarachne_Drop_0_2: 931546458
+      Megarachne_Drop_0_3: -249798869
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

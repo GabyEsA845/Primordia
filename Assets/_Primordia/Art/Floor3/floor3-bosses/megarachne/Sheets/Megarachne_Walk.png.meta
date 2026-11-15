@@ -259,7 +259,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -287,7 +287,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -328,1585 +328,1585 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Megarachne_Walk_0
+      name: Megarachne_Walk_0_0
       rect:
         serializedVersion: 2
-        x: 17
-        y: 1057
-        width: 94
-        height: 80
+        x: 0
+        y: 1024
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d15c4d5373ed9a800800000000000000
-      internalID: 624274352075228445
+      spriteID: ec4cb0f494f0ce84d94e3190a2b83419
+      internalID: 1746220924
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Walk_1
+      name: Megarachne_Walk_0_1
       rect:
         serializedVersion: 2
-        x: 145
-        y: 1056
-        width: 94
-        height: 80
+        x: 128
+        y: 1024
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0882a4fbc36a94640800000000000000
-      internalID: 5064762035792390272
+      spriteID: d2120eb5151668c42b1462d5e8f763c0
+      internalID: -140695284
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Walk_2
+      name: Megarachne_Walk_0_2
       rect:
         serializedVersion: 2
-        x: 273
-        y: 1057
-        width: 94
-        height: 80
+        x: 256
+        y: 1024
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b5fd92dc04bd60f60800000000000000
-      internalID: 8000322859436728155
+      spriteID: c167bc1808127794e81c10211a695edf
+      internalID: -150265237
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Walk_3
+      name: Megarachne_Walk_0_3
       rect:
         serializedVersion: 2
-        x: 401
-        y: 1056
-        width: 94
-        height: 81
+        x: 384
+        y: 1024
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ef93ff09d8ec501e0800000000000000
-      internalID: -2232150932873856514
+      spriteID: 7757d95bc0f29b84d8f98ddb01c18c48
+      internalID: -1900030002
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Walk_4
+      name: Megarachne_Walk_0_4
       rect:
         serializedVersion: 2
-        x: 529
-        y: 1057
-        width: 94
-        height: 80
+        x: 512
+        y: 1024
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 68b62c9bf20cb8200800000000000000
-      internalID: 183451521051159430
+      spriteID: 5ef3a4e76539e5a45b1d8cdaa473fb49
+      internalID: -562012308
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Walk_5
+      name: Megarachne_Walk_0_5
       rect:
         serializedVersion: 2
-        x: 657
-        y: 1056
-        width: 94
-        height: 80
+        x: 640
+        y: 1024
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 5614c59d69bfba560800000000000000
-      internalID: 7326225844158611813
+      spriteID: 27dbc7e679f6c3649a4a433ec318ed14
+      internalID: 294449260
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Walk_6
+      name: Megarachne_Walk_0_6
       rect:
         serializedVersion: 2
-        x: 785
-        y: 1057
-        width: 94
-        height: 80
+        x: 768
+        y: 1024
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 623ae63717df23190800000000000000
-      internalID: -7984040525664705754
+      spriteID: 54d184f2b9415944fb06cd292cc3e12b
+      internalID: 1946858443
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Walk_7
+      name: Megarachne_Walk_0_7
       rect:
         serializedVersion: 2
-        x: 913
-        y: 1056
-        width: 94
-        height: 81
+        x: 896
+        y: 1024
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d074aacf8eb8e9cc0800000000000000
-      internalID: -3702368010864277747
+      spriteID: 745809f197c0ff24099b33edaa22def0
+      internalID: -1979253304
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Walk_8
+      name: Megarachne_Walk_1_0
       rect:
         serializedVersion: 2
-        x: 20
-        y: 931
-        width: 99
-        height: 80
+        x: 0
+        y: 896
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 3b0e0c1a5f81845b0800000000000000
-      internalID: -5384025911261601613
+      spriteID: 679e689eb0652384db0befd7e64a6b57
+      internalID: 2067336626
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Walk_9
+      name: Megarachne_Walk_1_1
       rect:
         serializedVersion: 2
-        x: 149
-        y: 931
-        width: 97
-        height: 79
+        x: 128
+        y: 896
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 478f6e589a82544e0800000000000000
-      internalID: -1998146151107856268
+      spriteID: 4f1d2fcdd751f0241a1f06bb3f38f40a
+      internalID: 363731943
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Walk_10
+      name: Megarachne_Walk_1_2
       rect:
         serializedVersion: 2
-        x: 276
-        y: 929
-        width: 97
-        height: 81
+        x: 256
+        y: 896
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ca80ae0746407d4a0800000000000000
-      internalID: -6568776702058952532
+      spriteID: cedabb00f7ed6534d8e06767ecf4fd14
+      internalID: -111718548
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Walk_11
+      name: Megarachne_Walk_1_3
       rect:
         serializedVersion: 2
-        x: 403
-        y: 927
-        width: 97
-        height: 82
+        x: 384
+        y: 896
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ea1d22dc4c940bd60800000000000000
-      internalID: 7903898455639249326
+      spriteID: ac3670731a985764180d72ece10632e5
+      internalID: 1411363024
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Walk_12
+      name: Megarachne_Walk_1_4
       rect:
         serializedVersion: 2
-        x: 530
-        y: 925
-        width: 97
-        height: 83
+        x: 512
+        y: 896
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 4e1244443baf921f0800000000000000
-      internalID: -1069047788672376348
+      spriteID: a72bdc803f26b6a4cb5896fc0bd71b95
+      internalID: -102590707
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Walk_13
+      name: Megarachne_Walk_1_5
       rect:
         serializedVersion: 2
-        x: 659
-        y: 930
-        width: 97
-        height: 80
+        x: 640
+        y: 896
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 46ed08bb90f586940800000000000000
-      internalID: 5289582257751776868
+      spriteID: 964c6a3a8cdedaa46b8dd9565bf627c9
+      internalID: 2055601718
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Walk_14
+      name: Megarachne_Walk_1_6
       rect:
         serializedVersion: 2
-        x: 788
-        y: 931
-        width: 97
-        height: 80
+        x: 768
+        y: 896
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 3a0e83168d4d29c00800000000000000
-      internalID: 906020500864032931
+      spriteID: dd05c445d6379c14687a5ab95dad39b8
+      internalID: 18093711
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Walk_15
+      name: Megarachne_Walk_1_7
       rect:
         serializedVersion: 2
-        x: 917
-        y: 931
-        width: 97
-        height: 81
+        x: 896
+        y: 896
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0cf191c94b767a690800000000000000
-      internalID: -7590984621499015232
+      spriteID: bc02a17daaa78454c841c364b66fb9d4
+      internalID: -1764279390
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Walk_16
+      name: Megarachne_Walk_2_0
       rect:
         serializedVersion: 2
-        x: 18
-        y: 799
-        width: 101
-        height: 82
+        x: 0
+        y: 768
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: fff712d560b9e0c00800000000000000
-      internalID: 868802229763670015
+      spriteID: a876bd973120b4b45a234fd74d1c4c7a
+      internalID: 1669793356
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Walk_17
+      name: Megarachne_Walk_2_1
       rect:
         serializedVersion: 2
-        x: 148
-        y: 798
-        width: 97
-        height: 83
+        x: 128
+        y: 768
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 546740e4ccf456670800000000000000
-      internalID: 8531312808024110661
+      spriteID: 57d6be670ce89cb449902167b1368e7a
+      internalID: -1880974514
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Walk_18
+      name: Megarachne_Walk_2_2
       rect:
         serializedVersion: 2
-        x: 277
-        y: 796
-        width: 96
-        height: 86
+        x: 256
+        y: 768
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c378eb95681b57f00800000000000000
-      internalID: 1113991673433458492
+      spriteID: a67e5c703d385244a94e43a8a5e1f37b
+      internalID: -268769695
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Walk_19
+      name: Megarachne_Walk_2_3
       rect:
         serializedVersion: 2
-        x: 407
-        y: 795
-        width: 96
-        height: 87
+        x: 384
+        y: 768
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7eeafb3524e16f940800000000000000
-      internalID: 5329480479261306599
+      spriteID: 028a61b250019334abfaac857ba6ccc7
+      internalID: -460134744
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Walk_20
+      name: Megarachne_Walk_2_4
       rect:
         serializedVersion: 2
-        x: 537
-        y: 794
-        width: 96
-        height: 88
+        x: 512
+        y: 768
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 550795ed2dafd32f0800000000000000
-      internalID: -991360559371161515
+      spriteID: b25cca85c56a31a4a9d936d5cc1018e7
+      internalID: 529083045
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Walk_21
+      name: Megarachne_Walk_2_5
       rect:
         serializedVersion: 2
-        x: 663
-        y: 798
-        width: 96
-        height: 83
+        x: 640
+        y: 768
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b49d854e1534421c0800000000000000
-      internalID: -4529421306225436341
+      spriteID: 6f36f227cd12b7f46a958ecd2432f7b3
+      internalID: 2063634862
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Walk_22
+      name: Megarachne_Walk_2_6
       rect:
         serializedVersion: 2
-        x: 789
-        y: 800
-        width: 96
-        height: 82
+        x: 768
+        y: 768
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: fcb1e889577c6f840800000000000000
-      internalID: 5257608922886183887
+      spriteID: ecdc636b305f17447ab59903d2922436
+      internalID: 813127155
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Walk_23
+      name: Megarachne_Walk_2_7
       rect:
         serializedVersion: 2
-        x: 916
-        y: 801
-        width: 97
-        height: 81
+        x: 896
+        y: 768
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c317005e5f62596d0800000000000000
-      internalID: -2984436340512231108
+      spriteID: bda46413f5ffc1746ab44f8a1251b0ab
+      internalID: -1548039409
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Walk_24
+      name: Megarachne_Walk_3_0
       rect:
         serializedVersion: 2
-        x: 22
-        y: 666
-        width: 92
-        height: 84
+        x: 0
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d5a5043f7679dd700800000000000000
-      internalID: 566775600837057117
+      spriteID: 137f8a8c51c91604cadb128a66d2eed2
+      internalID: -944065934
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Walk_25
+      name: Megarachne_Walk_3_1
       rect:
         serializedVersion: 2
-        x: 153
-        y: 669
-        width: 91
-        height: 82
+        x: 128
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7529b7b594acb9050800000000000000
-      internalID: 5808458560840634967
+      spriteID: 2844c7ef82f3ffe49a5c43ff06fabeec
+      internalID: -310524761
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Walk_26
+      name: Megarachne_Walk_3_2
       rect:
         serializedVersion: 2
-        x: 281
-        y: 669
-        width: 94
-        height: 84
+        x: 256
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ccfacbccbf88ffe80800000000000000
-      internalID: -8142638986209480756
+      spriteID: e8b8693e40c0b6d4fadbf5d55926330d
+      internalID: -1021998860
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Walk_27
+      name: Megarachne_Walk_3_3
       rect:
         serializedVersion: 2
-        x: 409
-        y: 668
-        width: 96
-        height: 84
+        x: 384
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b37fa0a58c7bd0090800000000000000
-      internalID: -8066589286418680005
+      spriteID: 457298df2974b344995d2541bf3cfd28
+      internalID: -2063501856
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Walk_28
+      name: Megarachne_Walk_3_4
       rect:
         serializedVersion: 2
-        x: 537
-        y: 667
-        width: 98
-        height: 84
+        x: 512
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 84cb1b7b3d1eee470800000000000000
-      internalID: 8425920252293004360
+      spriteID: 8ece27cdd8741b1408e9410d887386be
+      internalID: 1693860485
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Walk_29
+      name: Megarachne_Walk_3_5
       rect:
         serializedVersion: 2
-        x: 665
-        y: 668
-        width: 96
-        height: 83
+        x: 640
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 80e98634b202e42f0800000000000000
-      internalID: -986815898160947704
+      spriteID: e80a996f177569843a8cbeb0ae25f43f
+      internalID: 1811201202
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Walk_30
+      name: Megarachne_Walk_3_6
       rect:
         serializedVersion: 2
-        x: 793
-        y: 667
-        width: 94
-        height: 84
+        x: 768
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7040d5cc082db25e0800000000000000
-      internalID: -1933220164399201273
+      spriteID: 948a0023d371c254e884622f69e55249
+      internalID: 987600952
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Walk_31
+      name: Megarachne_Walk_3_7
       rect:
         serializedVersion: 2
-        x: 921
-        y: 667
-        width: 91
-        height: 83
+        x: 896
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 904f1e3e80cbc7590800000000000000
-      internalID: -7675052918577171447
+      spriteID: 68cc84bc0dd2ec648bcccfd46314b06a
+      internalID: -1433530096
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Walk_32
+      name: Megarachne_Walk_4_0
       rect:
         serializedVersion: 2
-        x: 22
-        y: 537
-        width: 95
-        height: 80
+        x: 0
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c54ecde4fdcbfdfd0800000000000000
-      internalID: -2314924016158317476
+      spriteID: b696c71d23008c544965d4f50c2cb714
+      internalID: 373770505
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Walk_33
+      name: Megarachne_Walk_4_1
       rect:
         serializedVersion: 2
-        x: 150
-        y: 537
-        width: 93
-        height: 82
+        x: 128
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: cb59ea2b98769bb80800000000000000
-      internalID: -8378551790640130628
+      spriteID: 946705db471671643aa964516a537bcf
+      internalID: 613424944
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Walk_34
+      name: Megarachne_Walk_4_2
       rect:
         serializedVersion: 2
-        x: 278
-        y: 537
-        width: 90
-        height: 83
+        x: 256
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 3c8c6b432c7e1ab70800000000000000
-      internalID: 8908656359209617603
+      spriteID: 9ce284d373fcc4b4b99b1a870c9c84e6
+      internalID: 609229389
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Walk_35
+      name: Megarachne_Walk_4_3
       rect:
         serializedVersion: 2
-        x: 406
-        y: 537
-        width: 93
-        height: 82
+        x: 384
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6dcdb80fe3a119100800000000000000
-      internalID: 112900323286965462
+      spriteID: c4ddce61fdba52e4f8f9ebce47325c7a
+      internalID: 1540977532
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Walk_36
+      name: Megarachne_Walk_4_4
       rect:
         serializedVersion: 2
-        x: 534
-        y: 537
-        width: 95
-        height: 80
+        x: 512
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 258c5ad505ba2fb20800000000000000
-      internalID: 3166781849651759186
+      spriteID: 68c4c33caf6ce4a4485db16555b50fad
+      internalID: 1252988661
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Walk_37
+      name: Megarachne_Walk_4_5
       rect:
         serializedVersion: 2
-        x: 662
-        y: 537
-        width: 93
-        height: 82
+        x: 640
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 546203ce38318bdd0800000000000000
-      internalID: -2470202938288495035
+      spriteID: 6555f50e32e14324cade175fa99626f6
+      internalID: 2105082091
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Walk_38
+      name: Megarachne_Walk_4_6
       rect:
         serializedVersion: 2
-        x: 790
-        y: 537
-        width: 90
-        height: 83
+        x: 768
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d8ed6cef520cfab30800000000000000
-      internalID: 4300867438582881933
+      spriteID: a3834eb023d85cf47842ab2156765006
+      internalID: 530852990
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Walk_39
+      name: Megarachne_Walk_4_7
       rect:
         serializedVersion: 2
-        x: 918
-        y: 537
-        width: 93
-        height: 82
+        x: 896
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6fa4f963498c1d5e0800000000000000
-      internalID: -1886506229994403082
+      spriteID: 63dfccb781686fe45bcf89150e8b18ee
+      internalID: 1308532351
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Walk_40
+      name: Megarachne_Walk_5_0
       rect:
         serializedVersion: 2
-        x: 25
-        y: 403
-        width: 98
-        height: 83
+        x: 0
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: af30d92809f07b890800000000000000
-      internalID: -7442462745865419782
+      spriteID: 89a29e7833388074ebb72c4325f82f0d
+      internalID: -432814417
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Walk_41
+      name: Megarachne_Walk_5_1
       rect:
         serializedVersion: 2
-        x: 153
-        y: 403
-        width: 96
-        height: 84
+        x: 128
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 67b337acaf4cfa6e0800000000000000
-      internalID: -1824022742644343946
+      spriteID: ab05560783cfb7944af32d9261a7e6ab
+      internalID: 181870904
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Walk_42
+      name: Megarachne_Walk_5_2
       rect:
         serializedVersion: 2
-        x: 281
-        y: 404
-        width: 94
-        height: 84
+        x: 256
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f86b84243a212dea0800000000000000
-      internalID: -5849592473599822193
+      spriteID: c1e9d0bd7575b9c4facd530f8f0537ff
+      internalID: -166444184
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Walk_43
+      name: Megarachne_Walk_5_3
       rect:
         serializedVersion: 2
-        x: 409
-        y: 405
-        width: 91
-        height: 81
+        x: 384
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 69ac38a29f8940490800000000000000
-      internalID: -7780926060261815658
+      spriteID: 65c01bf6ec6d9c04f92ecb4ea4f501cd
+      internalID: 1391851081
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Walk_44
+      name: Megarachne_Walk_5_4
       rect:
         serializedVersion: 2
-        x: 534
-        y: 406
-        width: 92
-        height: 81
+        x: 512
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 8e2c1d4ef4ed92930800000000000000
-      internalID: 4119067768929764072
+      spriteID: 83466d0463685584392c177e1afe55d4
+      internalID: -730341664
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Walk_45
+      name: Megarachne_Walk_5_5
       rect:
         serializedVersion: 2
-        x: 665
-        y: 408
-        width: 91
-        height: 80
+        x: 640
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a369c94e50784f4f0800000000000000
-      internalID: -795862774757681606
+      spriteID: 6620ceb83aee65e4b900b3eaf0a08437
+      internalID: -314626171
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Walk_46
+      name: Megarachne_Walk_5_6
       rect:
         serializedVersion: 2
-        x: 793
-        y: 408
-        width: 94
-        height: 81
+        x: 768
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 727ec92dbd08920e0800000000000000
-      internalID: -2294160853548865753
+      spriteID: 788da0151695cdf47b246805f8a3dfd3
+      internalID: -1923096434
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Walk_47
+      name: Megarachne_Walk_5_7
       rect:
         serializedVersion: 2
-        x: 921
-        y: 406
-        width: 96
-        height: 81
+        x: 896
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a2fd7d1b58d3ff1a0800000000000000
-      internalID: -6773627670118277334
+      spriteID: 6c5a7f2b5f9052e4b9714a2e7a49e015
+      internalID: -330283021
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Walk_48
+      name: Megarachne_Walk_6_0
       rect:
         serializedVersion: 2
-        x: 25
-        y: 275
-        width: 96
-        height: 83
+        x: 0
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2c6b687ee51ceeec0800000000000000
-      internalID: -3535676044083808574
+      spriteID: d60988a1c61991549aa878f2d3ddfefa
+      internalID: -278560939
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Walk_49
+      name: Megarachne_Walk_6_1
       rect:
         serializedVersion: 2
-        x: 151
-        y: 276
-        width: 96
-        height: 84
+        x: 128
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 1ec357df54280b820800000000000000
-      internalID: 2931986594534866145
+      spriteID: 0ab4c95b676d2cc43b945fd7fa6cccbc
+      internalID: -2102274010
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Walk_50
+      name: Megarachne_Walk_6_2
       rect:
         serializedVersion: 2
-        x: 277
-        y: 278
-        width: 96
-        height: 82
+        x: 256
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 06d02df4d8b5261b0800000000000000
-      internalID: -5664864718790980256
+      spriteID: 76f083fa8afa8e94c918e6be290bea7e
+      internalID: 179763197
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Walk_51
+      name: Megarachne_Walk_6_3
       rect:
         serializedVersion: 2
-        x: 404
-        y: 277
-        width: 97
-        height: 80
+        x: 384
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ca09008de7a71ee50800000000000000
-      internalID: 6836880394533507244
+      spriteID: 12ed328aaae923c4ab52a14544b50d5f
+      internalID: 36874921
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Walk_52
+      name: Megarachne_Walk_6_4
       rect:
         serializedVersion: 2
-        x: 530
-        y: 273
-        width: 101
-        height: 80
+        x: 512
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 80dbb42650659c470800000000000000
-      internalID: 8415351959842438408
+      spriteID: 230d3dae3c9306040adeb487999cbf49
+      internalID: 1713333896
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Walk_53
+      name: Megarachne_Walk_6_5
       rect:
         serializedVersion: 2
-        x: 660
-        y: 274
-        width: 97
-        height: 80
+        x: 640
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: cba50ab337417a8f0800000000000000
-      internalID: -529431946038584644
+      spriteID: 9f562f6366272b3419c0072b9bf1690b
+      internalID: -595918521
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Walk_54
+      name: Megarachne_Walk_6_6
       rect:
         serializedVersion: 2
-        x: 789
-        y: 276
-        width: 96
-        height: 80
+        x: 768
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 63cdb508b94102eb0800000000000000
-      internalID: -4746771349142512586
+      spriteID: 1883dfb8fc1530b46a961d0687fcc8a3
+      internalID: 645893940
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Walk_55
+      name: Megarachne_Walk_6_7
       rect:
         serializedVersion: 2
-        x: 919
-        y: 277
-        width: 96
-        height: 80
+        x: 896
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 01cfcba2cf2dd28e0800000000000000
-      internalID: -1716483902467671024
+      spriteID: e99aff51283904a46a12a9470edbfba7
+      internalID: -1060948470
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Walk_56
+      name: Megarachne_Walk_7_0
       rect:
         serializedVersion: 2
-        x: 18
-        y: 150
-        width: 97
-        height: 78
+        x: 0
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ef7871d169496cf00800000000000000
-      internalID: 1136759328411715582
+      spriteID: 9068e215e2d4c8b4ca00f7d28fc46ee2
+      internalID: -1469759249
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Walk_57
+      name: Megarachne_Walk_7_1
       rect:
         serializedVersion: 2
-        x: 147
-        y: 151
-        width: 97
-        height: 77
+        x: 128
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 34212e6dea18c6680800000000000000
-      internalID: -8760484587213024701
+      spriteID: a529f60b2e67c6c4aa1e64d3edaf0245
+      internalID: -366959732
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Walk_58
+      name: Megarachne_Walk_7_2
       rect:
         serializedVersion: 2
-        x: 276
-        y: 151
-        width: 97
-        height: 77
+        x: 256
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 79cff90c3da303630800000000000000
-      internalID: 3904685558074440855
+      spriteID: 277c21f9deb283e419eae19959842517
+      internalID: -107398025
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Walk_59
+      name: Megarachne_Walk_7_3
       rect:
         serializedVersion: 2
-        x: 405
-        y: 148
-        width: 97
-        height: 80
+        x: 384
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 927189c1885d2d7e0800000000000000
-      internalID: -1742095325266962647
+      spriteID: e610f9964481ad94287a675419163580
+      internalID: -1215405927
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Walk_60
+      name: Megarachne_Walk_7_4
       rect:
         serializedVersion: 2
-        x: 532
-        y: 143
-        width: 99
-        height: 85
+        x: 512
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 3a1219e8964c92110800000000000000
-      internalID: 1236735530332397987
+      spriteID: 20ea7da1aae82a14794da9ef889901ed
+      internalID: -1881138381
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Walk_61
+      name: Megarachne_Walk_7_5
       rect:
         serializedVersion: 2
-        x: 661
-        y: 145
-        width: 97
-        height: 83
+        x: 640
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b7de6a46c9ef1ff40800000000000000
-      internalID: 5760665346040589691
+      spriteID: 808bd40aeea8b4e499ed22c7c5586a1a
+      internalID: -2033024841
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Walk_62
+      name: Megarachne_Walk_7_6
       rect:
         serializedVersion: 2
-        x: 788
-        y: 147
-        width: 97
-        height: 81
+        x: 768
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d54003b5c72dd8030800000000000000
-      internalID: 3498683917084394589
+      spriteID: 98bd83f76d79ec144b4b9dd73fe0e3c0
+      internalID: -3700572
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Walk_63
+      name: Megarachne_Walk_7_7
       rect:
         serializedVersion: 2
-        x: 915
-        y: 149
-        width: 97
-        height: 79
+        x: 896
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e50a2d577dee82f80800000000000000
-      internalID: -8130986518055313314
+      spriteID: 1c185b4557890bd45bd95a3566c9b2db
+      internalID: 1076593775
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Walk_64
+      name: Megarachne_Walk_8_0
       rect:
         serializedVersion: 2
-        x: 17
-        y: 20
-        width: 94
-        height: 83
+        x: 0
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: edabd0067b5897810800000000000000
-      internalID: 1763587751729281758
+      spriteID: 77714e505ffc45f428c7e1339fa01dcb
+      internalID: -921042323
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Walk_65
+      name: Megarachne_Walk_8_1
       rect:
         serializedVersion: 2
-        x: 145
-        y: 22
-        width: 94
-        height: 80
+        x: 128
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 208b5abdc46bcb420800000000000000
-      internalID: 2647191122205849602
+      spriteID: 94be855a4a366064b89c3a85892aae77
+      internalID: -1131783738
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Walk_66
+      name: Megarachne_Walk_8_2
       rect:
         serializedVersion: 2
-        x: 273
-        y: 24
-        width: 94
-        height: 79
+        x: 256
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2d101bcef0661c940800000000000000
-      internalID: 5314641253855461842
+      spriteID: e0b31b0022b8f3c42985f3592e17cc50
+      internalID: 1844458492
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Walk_67
+      name: Megarachne_Walk_8_3
       rect:
         serializedVersion: 2
-        x: 401
-        y: 25
-        width: 94
-        height: 77
+        x: 384
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 37bfb9ebec34ff110800000000000000
-      internalID: 1296829772946209651
+      spriteID: d40a05150ec19b6409781910f3ae0a69
+      internalID: 1106648350
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Walk_68
+      name: Megarachne_Walk_8_4
       rect:
         serializedVersion: 2
-        x: 529
-        y: 20
-        width: 94
-        height: 83
+        x: 512
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 766380b3ed3fb6010800000000000000
-      internalID: 1183307462913570407
+      spriteID: 8a7c0287d5eea6748b910ccb55e1682d
+      internalID: 314274048
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Walk_69
+      name: Megarachne_Walk_8_5
       rect:
         serializedVersion: 2
-        x: 657
-        y: 22
-        width: 94
-        height: 80
+        x: 640
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7df28dd6da19976a0800000000000000
-      internalID: -6450964817173270569
+      spriteID: 76b778d99958ca94680c7fa0db3de70f
+      internalID: -1590360143
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Walk_70
+      name: Megarachne_Walk_8_6
       rect:
         serializedVersion: 2
-        x: 785
-        y: 24
-        width: 94
-        height: 79
+        x: 768
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d074578e0a2672e30800000000000000
-      internalID: 4478656797677537037
+      spriteID: 1a4530bd4f43183468f0a65324533ca2
+      internalID: -296071579
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Walk_71
+      name: Megarachne_Walk_8_7
       rect:
         serializedVersion: 2
-        x: 913
-        y: 25
-        width: 94
-        height: 77
+        x: 896
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 9c42ed647c775cf60800000000000000
-      internalID: 8053975206393160905
+      spriteID: 15120c90850347445bb912ed64631355
+      internalID: 1115635426
       vertices: []
       indices: 
       edges: []
@@ -1925,78 +1925,78 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Megarachne_Walk_0: 624274352075228445
-      Megarachne_Walk_1: 5064762035792390272
-      Megarachne_Walk_10: -6568776702058952532
-      Megarachne_Walk_11: 7903898455639249326
-      Megarachne_Walk_12: -1069047788672376348
-      Megarachne_Walk_13: 5289582257751776868
-      Megarachne_Walk_14: 906020500864032931
-      Megarachne_Walk_15: -7590984621499015232
-      Megarachne_Walk_16: 868802229763670015
-      Megarachne_Walk_17: 8531312808024110661
-      Megarachne_Walk_18: 1113991673433458492
-      Megarachne_Walk_19: 5329480479261306599
-      Megarachne_Walk_2: 8000322859436728155
-      Megarachne_Walk_20: -991360559371161515
-      Megarachne_Walk_21: -4529421306225436341
-      Megarachne_Walk_22: 5257608922886183887
-      Megarachne_Walk_23: -2984436340512231108
-      Megarachne_Walk_24: 566775600837057117
-      Megarachne_Walk_25: 5808458560840634967
-      Megarachne_Walk_26: -8142638986209480756
-      Megarachne_Walk_27: -8066589286418680005
-      Megarachne_Walk_28: 8425920252293004360
-      Megarachne_Walk_29: -986815898160947704
-      Megarachne_Walk_3: -2232150932873856514
-      Megarachne_Walk_30: -1933220164399201273
-      Megarachne_Walk_31: -7675052918577171447
-      Megarachne_Walk_32: -2314924016158317476
-      Megarachne_Walk_33: -8378551790640130628
-      Megarachne_Walk_34: 8908656359209617603
-      Megarachne_Walk_35: 112900323286965462
-      Megarachne_Walk_36: 3166781849651759186
-      Megarachne_Walk_37: -2470202938288495035
-      Megarachne_Walk_38: 4300867438582881933
-      Megarachne_Walk_39: -1886506229994403082
-      Megarachne_Walk_4: 183451521051159430
-      Megarachne_Walk_40: -7442462745865419782
-      Megarachne_Walk_41: -1824022742644343946
-      Megarachne_Walk_42: -5849592473599822193
-      Megarachne_Walk_43: -7780926060261815658
-      Megarachne_Walk_44: 4119067768929764072
-      Megarachne_Walk_45: -795862774757681606
-      Megarachne_Walk_46: -2294160853548865753
-      Megarachne_Walk_47: -6773627670118277334
-      Megarachne_Walk_48: -3535676044083808574
-      Megarachne_Walk_49: 2931986594534866145
-      Megarachne_Walk_5: 7326225844158611813
-      Megarachne_Walk_50: -5664864718790980256
-      Megarachne_Walk_51: 6836880394533507244
-      Megarachne_Walk_52: 8415351959842438408
-      Megarachne_Walk_53: -529431946038584644
-      Megarachne_Walk_54: -4746771349142512586
-      Megarachne_Walk_55: -1716483902467671024
-      Megarachne_Walk_56: 1136759328411715582
-      Megarachne_Walk_57: -8760484587213024701
-      Megarachne_Walk_58: 3904685558074440855
-      Megarachne_Walk_59: -1742095325266962647
-      Megarachne_Walk_6: -7984040525664705754
-      Megarachne_Walk_60: 1236735530332397987
-      Megarachne_Walk_61: 5760665346040589691
-      Megarachne_Walk_62: 3498683917084394589
-      Megarachne_Walk_63: -8130986518055313314
-      Megarachne_Walk_64: 1763587751729281758
-      Megarachne_Walk_65: 2647191122205849602
-      Megarachne_Walk_66: 5314641253855461842
-      Megarachne_Walk_67: 1296829772946209651
-      Megarachne_Walk_68: 1183307462913570407
-      Megarachne_Walk_69: -6450964817173270569
-      Megarachne_Walk_7: -3702368010864277747
-      Megarachne_Walk_70: 4478656797677537037
-      Megarachne_Walk_71: 8053975206393160905
-      Megarachne_Walk_8: -5384025911261601613
-      Megarachne_Walk_9: -1998146151107856268
+      Megarachne_Walk_0_0: 1746220924
+      Megarachne_Walk_0_1: -140695284
+      Megarachne_Walk_0_2: -150265237
+      Megarachne_Walk_0_3: -1900030002
+      Megarachne_Walk_0_4: -562012308
+      Megarachne_Walk_0_5: 294449260
+      Megarachne_Walk_0_6: 1946858443
+      Megarachne_Walk_0_7: -1979253304
+      Megarachne_Walk_1_0: 2067336626
+      Megarachne_Walk_1_1: 363731943
+      Megarachne_Walk_1_2: -111718548
+      Megarachne_Walk_1_3: 1411363024
+      Megarachne_Walk_1_4: -102590707
+      Megarachne_Walk_1_5: 2055601718
+      Megarachne_Walk_1_6: 18093711
+      Megarachne_Walk_1_7: -1764279390
+      Megarachne_Walk_2_0: 1669793356
+      Megarachne_Walk_2_1: -1880974514
+      Megarachne_Walk_2_2: -268769695
+      Megarachne_Walk_2_3: -460134744
+      Megarachne_Walk_2_4: 529083045
+      Megarachne_Walk_2_5: 2063634862
+      Megarachne_Walk_2_6: 813127155
+      Megarachne_Walk_2_7: -1548039409
+      Megarachne_Walk_3_0: -944065934
+      Megarachne_Walk_3_1: -310524761
+      Megarachne_Walk_3_2: -1021998860
+      Megarachne_Walk_3_3: -2063501856
+      Megarachne_Walk_3_4: 1693860485
+      Megarachne_Walk_3_5: 1811201202
+      Megarachne_Walk_3_6: 987600952
+      Megarachne_Walk_3_7: -1433530096
+      Megarachne_Walk_4_0: 373770505
+      Megarachne_Walk_4_1: 613424944
+      Megarachne_Walk_4_2: 609229389
+      Megarachne_Walk_4_3: 1540977532
+      Megarachne_Walk_4_4: 1252988661
+      Megarachne_Walk_4_5: 2105082091
+      Megarachne_Walk_4_6: 530852990
+      Megarachne_Walk_4_7: 1308532351
+      Megarachne_Walk_5_0: -432814417
+      Megarachne_Walk_5_1: 181870904
+      Megarachne_Walk_5_2: -166444184
+      Megarachne_Walk_5_3: 1391851081
+      Megarachne_Walk_5_4: -730341664
+      Megarachne_Walk_5_5: -314626171
+      Megarachne_Walk_5_6: -1923096434
+      Megarachne_Walk_5_7: -330283021
+      Megarachne_Walk_6_0: -278560939
+      Megarachne_Walk_6_1: -2102274010
+      Megarachne_Walk_6_2: 179763197
+      Megarachne_Walk_6_3: 36874921
+      Megarachne_Walk_6_4: 1713333896
+      Megarachne_Walk_6_5: -595918521
+      Megarachne_Walk_6_6: 645893940
+      Megarachne_Walk_6_7: -1060948470
+      Megarachne_Walk_7_0: -1469759249
+      Megarachne_Walk_7_1: -366959732
+      Megarachne_Walk_7_2: -107398025
+      Megarachne_Walk_7_3: -1215405927
+      Megarachne_Walk_7_4: -1881138381
+      Megarachne_Walk_7_5: -2033024841
+      Megarachne_Walk_7_6: -3700572
+      Megarachne_Walk_7_7: 1076593775
+      Megarachne_Walk_8_0: -921042323
+      Megarachne_Walk_8_1: -1131783738
+      Megarachne_Walk_8_2: 1844458492
+      Megarachne_Walk_8_3: 1106648350
+      Megarachne_Walk_8_4: 314274048
+      Megarachne_Walk_8_5: -1590360143
+      Megarachne_Walk_8_6: -296071579
+      Megarachne_Walk_8_7: 1115635426
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

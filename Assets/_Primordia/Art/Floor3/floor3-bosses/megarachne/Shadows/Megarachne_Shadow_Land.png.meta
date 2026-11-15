@@ -124,7 +124,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -152,7 +152,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -193,595 +193,595 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Megarachne_Shadow_Land_0
+      name: Megarachne_Shadow_Land_0_0
       rect:
         serializedVersion: 2
-        x: 13
-        y: 1054
-        width: 102
-        height: 73
+        x: 0
+        y: 1024
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 80f48f34227e2f8b0800000000000000
-      internalID: -5119775692011581688
+      spriteID: f164454e8c99f8e448a9a4015ff42b0a
+      internalID: 1967530538
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Land_1
+      name: Megarachne_Shadow_Land_0_1
       rect:
         serializedVersion: 2
-        x: 143
-        y: 1054
-        width: 98
-        height: 73
+        x: 128
+        y: 1024
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0ae2f5417a64176b0800000000000000
-      internalID: -5300377603023098208
+      spriteID: 94ce0dd1f6ffd6641acec995cbe4b507
+      internalID: -1636607317
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Land_2
+      name: Megarachne_Shadow_Land_0_2
       rect:
         serializedVersion: 2
-        x: 273
-        y: 1054
-        width: 94
-        height: 73
+        x: 256
+        y: 1024
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7a6d16ef33db7e360800000000000000
-      internalID: 7198930560383833767
+      spriteID: 96cd55d7fdd74964fb7f05c4da8f3465
+      internalID: 1581450036
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Land_3
+      name: Megarachne_Shadow_Land_1_0
       rect:
         serializedVersion: 2
-        x: 16
-        y: 929
-        width: 105
-        height: 77
+        x: 0
+        y: 896
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e65bc89269abfab00800000000000000
-      internalID: 842096809446520174
+      spriteID: c6c5a9ae494cbfc4db3bf6aaf1e77a37
+      internalID: 1819974766
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Land_4
+      name: Megarachne_Shadow_Land_1_1
       rect:
         serializedVersion: 2
-        x: 146
-        y: 929
-        width: 101
-        height: 76
+        x: 128
+        y: 896
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0313b38ae0af8ac40800000000000000
-      internalID: 5523939883828850992
+      spriteID: 8ddb0d2a730d5494999e5b96e972fd32
+      internalID: 1777215564
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Land_5
+      name: Megarachne_Shadow_Land_1_2
       rect:
         serializedVersion: 2
-        x: 276
-        y: 929
-        width: 97
-        height: 76
+        x: 256
+        y: 896
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 36d72618f80ee0220800000000000000
-      internalID: 2454145753919159651
+      spriteID: 9ca7a7580a25e3a4ebd4b6974a12e91f
+      internalID: -2111188153
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Land_6
+      name: Megarachne_Shadow_Land_2_0
       rect:
         serializedVersion: 2
-        x: 19
-        y: 795
-        width: 101
-        height: 83
+        x: 0
+        y: 768
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6293a7c38e6ba8230800000000000000
-      internalID: 3641924357245778214
+      spriteID: 4f6b79004c4544a4e9dfed452310673b
+      internalID: 354097812
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Land_7
+      name: Megarachne_Shadow_Land_2_1
       rect:
         serializedVersion: 2
-        x: 148
-        y: 796
-        width: 98
-        height: 81
+        x: 128
+        y: 768
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 39a75387812c5bec0800000000000000
-      internalID: -3551719320759993709
+      spriteID: ab2bfd9eb454fae4bb9b4556265c5bca
+      internalID: -1483671772
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Land_8
+      name: Megarachne_Shadow_Land_2_2
       rect:
         serializedVersion: 2
-        x: 278
-        y: 797
-        width: 95
-        height: 79
+        x: 256
+        y: 768
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 22b1a5a0828db0900800000000000000
-      internalID: 651852237569137442
+      spriteID: fda0ed8228eafc245861f48d876058b3
+      internalID: 917814080
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Land_9
+      name: Megarachne_Shadow_Land_3_0
       rect:
         serializedVersion: 2
-        x: 26
-        y: 665
-        width: 94
-        height: 86
+        x: 0
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 82ed4e4c038a64f30800000000000000
-      internalID: 4559516600174435880
+      spriteID: 99e9c7b7634630e49809f3e73f0db925
+      internalID: -726920779
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Land_10
+      name: Megarachne_Shadow_Land_3_1
       rect:
         serializedVersion: 2
-        x: 154
-        y: 666
-        width: 93
-        height: 83
+        x: 128
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 4ca518b1d36e5ea10800000000000000
-      internalID: 1938208364781722308
+      spriteID: b5d5625e082797a44a58336977b87c89
+      internalID: -982424772
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Land_11
+      name: Megarachne_Shadow_Land_3_2
       rect:
         serializedVersion: 2
-        x: 282
-        y: 668
-        width: 92
-        height: 80
+        x: 256
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 100ad5280d69eb870800000000000000
-      internalID: 8700557352410914817
+      spriteID: a81a04ab629e7c34caa5d791545e11a7
+      internalID: 1035912285
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Land_12
+      name: Megarachne_Shadow_Land_4_0
       rect:
         serializedVersion: 2
-        x: 23
-        y: 534
-        width: 88
-        height: 84
+        x: 0
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e83afab68306dcfb0800000000000000
-      internalID: -4625935446798523506
+      spriteID: 041c28251b58b0c4d8518eb6893ae2dd
+      internalID: -580107544
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Land_13
+      name: Megarachne_Shadow_Land_4_1
       rect:
         serializedVersion: 2
-        x: 151
-        y: 536
-        width: 88
-        height: 80
+        x: 128
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0c9f7b10aefadbb60800000000000000
-      internalID: 7763554752242645440
+      spriteID: 4b0db0210c883ba459a8e4c900f71f3f
+      internalID: 1679100045
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Land_14
+      name: Megarachne_Shadow_Land_4_2
       rect:
         serializedVersion: 2
-        x: 279
-        y: 537
-        width: 88
-        height: 78
+        x: 256
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c45db654c196a6b90800000000000000
-      internalID: -7247865080154696372
+      spriteID: a0c5f367433d66d45813392250625cc1
+      internalID: -1401749766
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Land_15
+      name: Megarachne_Shadow_Land_5_0
       rect:
         serializedVersion: 2
-        x: 26
-        y: 401
-        width: 94
-        height: 86
+        x: 0
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 00c48ea471c6dabd0800000000000000
-      internalID: -2617316961135604736
+      spriteID: 7010996dca3b4134fa1c401f0e0be741
+      internalID: 685445172
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Land_16
+      name: Megarachne_Shadow_Land_5_1
       rect:
         serializedVersion: 2
-        x: 154
-        y: 403
-        width: 93
-        height: 83
+        x: 128
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: cefb4fba02ea31e50800000000000000
-      internalID: 6778953319469858796
+      spriteID: 89190f85dc55b6047b341330a46d4e29
+      internalID: -894309820
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Land_17
+      name: Megarachne_Shadow_Land_5_2
       rect:
         serializedVersion: 2
-        x: 282
-        y: 404
-        width: 92
-        height: 80
+        x: 256
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: bd5d72c9786e8b900800000000000000
-      internalID: 700563212170941915
+      spriteID: 3f0f67c298b2c674689902237afb2cef
+      internalID: -2049232921
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Land_18
+      name: Megarachne_Shadow_Land_6_0
       rect:
         serializedVersion: 2
-        x: 19
-        y: 274
-        width: 101
-        height: 83
+        x: 0
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: bb22524ef73ccf4a0800000000000000
-      internalID: -6558152003302382917
+      spriteID: cb5ec82ddc9968849ac6f256d9031c42
+      internalID: 1500571785
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Land_19
+      name: Megarachne_Shadow_Land_6_1
       rect:
         serializedVersion: 2
-        x: 148
-        y: 275
-        width: 98
-        height: 81
+        x: 128
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e4e931aea5c16a160800000000000000
-      internalID: 7036342644612767310
+      spriteID: 3df252224ac190e4b87be9f557eae5d3
+      internalID: 1521250361
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Land_20
+      name: Megarachne_Shadow_Land_6_2
       rect:
         serializedVersion: 2
-        x: 278
-        y: 276
-        width: 95
-        height: 79
+        x: 256
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 784319e3ad12ef1a0800000000000000
-      internalID: -6773939568282356601
+      spriteID: 3b9750a1a19a40a49ae6b5c37ab1ae46
+      internalID: -739006297
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Land_21
+      name: Megarachne_Shadow_Land_7_0
       rect:
         serializedVersion: 2
-        x: 16
-        y: 146
-        width: 105
-        height: 77
+        x: 0
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 59faa47fb5b691a80800000000000000
-      internalID: -8495641179322667115
+      spriteID: 5199ba9e77ec5a64081edf9588b6009f
+      internalID: -862225698
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Land_22
+      name: Megarachne_Shadow_Land_7_1
       rect:
         serializedVersion: 2
-        x: 146
-        y: 147
-        width: 101
-        height: 76
+        x: 128
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f0bd60c5d47e7caf0800000000000000
-      internalID: -376077724419695857
+      spriteID: a1f7e10e721a52449b8759730e982c65
+      internalID: -930348856
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Land_23
+      name: Megarachne_Shadow_Land_7_2
       rect:
         serializedVersion: 2
-        x: 276
-        y: 147
-        width: 97
-        height: 76
+        x: 256
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 8a4202f2ec7085df0800000000000000
-      internalID: -191394402027952984
+      spriteID: 41733497c3323354fa1547554a7f04f1
+      internalID: 307379503
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Land_24
+      name: Megarachne_Shadow_Land_8_0
       rect:
         serializedVersion: 2
-        x: 13
-        y: 25
-        width: 102
-        height: 73
+        x: 0
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 66a04a521069e3180800000000000000
-      internalID: -9133698062590145946
+      spriteID: 13d3f6151776a784f87879300fa12d6d
+      internalID: 342631431
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Land_25
+      name: Megarachne_Shadow_Land_8_1
       rect:
         serializedVersion: 2
-        x: 143
-        y: 25
-        width: 98
-        height: 73
+        x: 128
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 245aefb584cedd3c0800000000000000
-      internalID: -4333047470935333566
+      spriteID: 9d9de3cf103a6794bbfb4b52ec66df32
+      internalID: -1474761075
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Land_26
+      name: Megarachne_Shadow_Land_8_2
       rect:
         serializedVersion: 2
-        x: 273
-        y: 25
-        width: 94
-        height: 73
+        x: 256
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7979b71312bd38b60800000000000000
-      internalID: 7747276719617972119
+      spriteID: 876716167473f4a4e8900abd3b5af2d6
+      internalID: -1447949302
       vertices: []
       indices: 
       edges: []
@@ -800,33 +800,33 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Megarachne_Shadow_Land_0: -5119775692011581688
-      Megarachne_Shadow_Land_1: -5300377603023098208
-      Megarachne_Shadow_Land_10: 1938208364781722308
-      Megarachne_Shadow_Land_11: 8700557352410914817
-      Megarachne_Shadow_Land_12: -4625935446798523506
-      Megarachne_Shadow_Land_13: 7763554752242645440
-      Megarachne_Shadow_Land_14: -7247865080154696372
-      Megarachne_Shadow_Land_15: -2617316961135604736
-      Megarachne_Shadow_Land_16: 6778953319469858796
-      Megarachne_Shadow_Land_17: 700563212170941915
-      Megarachne_Shadow_Land_18: -6558152003302382917
-      Megarachne_Shadow_Land_19: 7036342644612767310
-      Megarachne_Shadow_Land_2: 7198930560383833767
-      Megarachne_Shadow_Land_20: -6773939568282356601
-      Megarachne_Shadow_Land_21: -8495641179322667115
-      Megarachne_Shadow_Land_22: -376077724419695857
-      Megarachne_Shadow_Land_23: -191394402027952984
-      Megarachne_Shadow_Land_24: -9133698062590145946
-      Megarachne_Shadow_Land_25: -4333047470935333566
-      Megarachne_Shadow_Land_26: 7747276719617972119
-      Megarachne_Shadow_Land_3: 842096809446520174
-      Megarachne_Shadow_Land_4: 5523939883828850992
-      Megarachne_Shadow_Land_5: 2454145753919159651
-      Megarachne_Shadow_Land_6: 3641924357245778214
-      Megarachne_Shadow_Land_7: -3551719320759993709
-      Megarachne_Shadow_Land_8: 651852237569137442
-      Megarachne_Shadow_Land_9: 4559516600174435880
+      Megarachne_Shadow_Land_0_0: 1967530538
+      Megarachne_Shadow_Land_0_1: -1636607317
+      Megarachne_Shadow_Land_0_2: 1581450036
+      Megarachne_Shadow_Land_1_0: 1819974766
+      Megarachne_Shadow_Land_1_1: 1777215564
+      Megarachne_Shadow_Land_1_2: -2111188153
+      Megarachne_Shadow_Land_2_0: 354097812
+      Megarachne_Shadow_Land_2_1: -1483671772
+      Megarachne_Shadow_Land_2_2: 917814080
+      Megarachne_Shadow_Land_3_0: -726920779
+      Megarachne_Shadow_Land_3_1: -982424772
+      Megarachne_Shadow_Land_3_2: 1035912285
+      Megarachne_Shadow_Land_4_0: -580107544
+      Megarachne_Shadow_Land_4_1: 1679100045
+      Megarachne_Shadow_Land_4_2: -1401749766
+      Megarachne_Shadow_Land_5_0: 685445172
+      Megarachne_Shadow_Land_5_1: -894309820
+      Megarachne_Shadow_Land_5_2: -2049232921
+      Megarachne_Shadow_Land_6_0: 1500571785
+      Megarachne_Shadow_Land_6_1: 1521250361
+      Megarachne_Shadow_Land_6_2: -739006297
+      Megarachne_Shadow_Land_7_0: -862225698
+      Megarachne_Shadow_Land_7_1: -930348856
+      Megarachne_Shadow_Land_7_2: 307379503
+      Megarachne_Shadow_Land_8_0: 342631431
+      Megarachne_Shadow_Land_8_1: -1474761075
+      Megarachne_Shadow_Land_8_2: -1447949302
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

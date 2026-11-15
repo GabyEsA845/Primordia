@@ -58,7 +58,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -130,12 +130,12 @@ TextureImporter:
       name: Nido_Eyes_0
       rect:
         serializedVersion: 2
-        x: 235
-        y: 67
-        width: 166
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 0
+        width: 160
+        height: 176
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06818182}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -152,12 +152,12 @@ TextureImporter:
       name: Nido_Eyes_1
       rect:
         serializedVersion: 2
-        x: 400
-        y: 67
-        width: 11
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 160
+        y: 0
+        width: 160
+        height: 176
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06818182}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -174,12 +174,12 @@ TextureImporter:
       name: Nido_Eyes_2
       rect:
         serializedVersion: 2
-        x: 547
-        y: 66
-        width: 27
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 320
+        y: 0
+        width: 160
+        height: 176
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06818182}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -196,12 +196,12 @@ TextureImporter:
       name: Nido_Eyes_3
       rect:
         serializedVersion: 2
-        x: 707
-        y: 66
-        width: 27
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 480
+        y: 0
+        width: 160
+        height: 176
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06818182}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -218,12 +218,12 @@ TextureImporter:
       name: Nido_Eyes_4
       rect:
         serializedVersion: 2
-        x: 867
-        y: 66
-        width: 27
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 640
+        y: 0
+        width: 160
+        height: 176
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06818182}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -232,6 +232,28 @@ TextureImporter:
       bones: []
       spriteID: 265e97ea293027260800000000000000
       internalID: 7093736291589285218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nido_Eyes_5
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 0
+        width: 160
+        height: 176
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06818182}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e46cfa285daf5048aab15f5636ed489
+      internalID: 50530517
       vertices: []
       indices: 
       edges: []
@@ -255,6 +277,7 @@ TextureImporter:
       Nido_Eyes_2: -5089617594752856135
       Nido_Eyes_3: 5701020253995673360
       Nido_Eyes_4: 7093736291589285218
+      Nido_Eyes_5: 50530517
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

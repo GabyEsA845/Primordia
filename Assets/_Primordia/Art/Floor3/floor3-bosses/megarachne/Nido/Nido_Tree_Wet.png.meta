@@ -46,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -118,12 +118,12 @@ TextureImporter:
       name: Nido_Tree_Wet_0
       rect:
         serializedVersion: 2
-        x: 7
-        y: 1
-        width: 144
-        height: 126
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 0
+        width: 160
+        height: 176
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06818182}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -132,6 +132,50 @@ TextureImporter:
       bones: []
       spriteID: 4f33c453666c181b0800000000000000
       internalID: -5656021514717481996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nido_Tree_Wet_Tronco
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 160
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5fb8652189980c24c84c569393a2286c
+      internalID: 1126799676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nido_Tree_Wet_Copa
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 32
+        width: 160
+        height: 144
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a18bcfdd6277beb4ab199f7528a41105
+      internalID: 1496858180
       vertices: []
       indices: 
       edges: []
@@ -151,6 +195,8 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       Nido_Tree_Wet_0: -5656021514717481996
+      Nido_Tree_Wet_Copa: 1496858180
+      Nido_Tree_Wet_Tronco: 1126799676
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

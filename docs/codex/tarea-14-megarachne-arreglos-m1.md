@@ -16,8 +16,10 @@ Corregir lo que la usuaria vio al probar `Test_BossMegarachne`.
 ## Fuera de alcance
 Ataques, entrada, fuego, etc. (la animación de aparición es del subpaso M6, no ahora). No tocar `DebugCheats`.
 
-## Resultado (lo rellena Codex)
-- Hecho:
-- Archivos tocados:
-- Pruebas:
-- Dudas:
+## Resultado
+- Hecho: reproducido el bloqueo en `Test_BossMegarachne`: con el jugador a 8 u detrás del tronco, avanzaba solo 2,985 u en 3 s; hacia la derecha sí perseguía. `MoveGround` ahora filtra la matriz de colisión, ignora triggers y colliders propios, conserva una esquina de desvío hasta alcanzarla y desliza por X/Y cuando hay contacto. No se cambió la velocidad ni se añadieron ataques.
+- Escenario: tronco sólido de 2 × 1,2 u y cinco bases de Sigillaria de 1 × 0,8 u, en `Default`, la misma capa que `FloorBuilder` utiliza para `Walls`. Los extremos se calculan al 80 % de los bounds del sprite importado; la altura de recorrido se deriva de cada anclaje y el pie de subida queda fuera de la base sólida. Todo se construye en ejecución: no fue necesario regenerar prefabs ni escenas ni modificar arte.
+- Archivos tocados: `Assets/_Primordia/Scripts/Enemies/MegarachneBoss.cs`, `Assets/_Primordia/Scripts/Enemies/MegarachneBoss.Cables.cs`, `Assets/_Primordia/Tests/PlayMode/MegarachneBossTests.cs` y esta tarea. Conservados CRLF en los tres `.cs`, la rama `codex/mega-1-base` y los cambios previos de M1. Sin commit, push ni merge.
+- Pruebas: suite `MegarachneBossTests`, **10/10 pasaron** (`Logs/mega14-tests-final.xml`): incluye rodeo sin penetrar el tronco, desplazamiento mínimo, bloqueo físico del jugador en las seis bases, capas/matriz, anclajes y ciclos de subida/bajada. Diagnóstico aislado `MegarachneBossSceneTests`: **1/1 pasó**, con **6,66 u en 3 s** en la escena real (`Logs/mega14-scene-final.xml`). Esta clase es explícita y se ejecuta sola mediante `-testFilter MegarachneBossSceneTests`, porque carga gestores globales de partida. El diagnóstico previo falló como se esperaba (`Logs/mega14-trunk-before.xml`). Unity autorizado por la usuaria; sin errores CS en las ejecuciones finales.
+- Comprobación visual: captura renderizada de la escena real en `Logs/mega14-scene.png`, revisada a ojo: los cinco extremos quedan sobre la parte alta visible de las Sigillaria, sin flotar por encima. La captura se genera desde la prueba aislada cuando Unity dispone de dispositivo gráfico.
+- Dudas: ninguna decisión de diseño pendiente. La validación de esta tarea no implica aprobación de M1 por la usuaria. No se ejecutó la suite completa del proyecto.

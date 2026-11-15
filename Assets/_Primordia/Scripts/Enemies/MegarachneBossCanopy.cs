@@ -1,0 +1,43 @@
+using Primordia.Player;
+using UnityEngine;
+
+namespace Primordia.Enemies
+{
+    /// <summary>La copa y la seda dejan ver a los actores del suelo, incluidos los de varios colliders.</summary>
+    public class MegarachneBossCanopy : MonoBehaviour
+    {
+        public const float CoveredAlpha = 0.45f;
+        SpriteRenderer crown, nest;
+        readonly Collider2D[] occupants = new Collider2D[128];
+        public float Alpha => crown != null ? crown.color.a : 1f;
+        internal void Configure(SpriteRenderer tree, SpriteRenderer web) { crown = tree; nest = web; }
+        void LateUpdate() => Refresh();
+        public void Refresh()
+        {
+            Vector2 center = (Vector2)transform.position + Vector2.up * 4f;
+            int count = Physics2D.OverlapCircle(center, 4f, new ContactFilter2D().NoFilter(), occupants);
+            bool covered = false;
+            for (int i = 0; i < count; i++)
+            {
+                var collider = occupants[i];
+                var enemy = collider.GetComponentInParent<Enemy>();
+                var player = collider.GetComponentInParent<PlayerController>();
+                if (enemy == null && player == null) continue;
+                var mega = collider.GetComponentInParent<MegarachneBoss>();
+                if (mega != null && mega.CurrentMode == MegarachneBoss.Mode.OnCable) continue;
+                Vector2 delta = (Vector2)collider.bounds.center - center;
+                if (delta.x * delta.x / 16f + delta.y * delta.y / (2.75f * 2.75f) <= 1f)
+                { covered = true; break; }
+            }
+            SetAlpha(crown, covered ? CoveredAlpha : 1f);
+            SetAlpha(nest, covered ? CoveredAlpha : 1f);
+        }
+        static void SetAlpha(SpriteRenderer renderer, float alpha)
+        {
+            if (renderer == null) return;
+            var color = renderer.color;
+            color.a = alpha;
+            renderer.color = color;
+        }
+    }
+}

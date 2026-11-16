@@ -42,6 +42,22 @@ namespace Primordia.Editor
             Debug.Log("Megarachne M1: prefab y Test_BossMegarachne creados (32×20 u, cámara ×1).");
         }
 
+        [MenuItem("Primordia/Boss/Actualizar ataques Megarachne (M2)")]
+        public static void UpdateAttacks()
+        {
+            ArtSetup.ImportMegarachneSheets();
+            var effects = ArtSetup.ImportMegarachneAttacks();
+            var root = PrefabUtility.LoadPrefabContents(PrefabPath);
+            try
+            {
+                root.GetComponent<MegarachneBoss>().ConfigureAttacks(effects);
+                PrefabUtility.SaveAsPrefabAsset(root, PrefabPath);
+            }
+            finally { PrefabUtility.UnloadPrefabContents(root); }
+            AssetDatabase.SaveAssets();
+            Debug.Log("Megarachne M2: ataques y efectos actualizados; Ctrl+Mayus+F4 salto, F5 rafaga, F6 red.");
+        }
+
         static Enemy CreatePrefab(DirectionalArt art)
         {
             var data = LoadOrCreate<EnemyData>(DataPath);
@@ -75,6 +91,7 @@ namespace Primordia.Editor
                 boss.ConfigureScenery(TreePiece("Copa"), TreePiece("Tronco"),
                     SpriteAt(ArtSetup.MegarachneFolder + "/Nido/Nido_Web.png"),
                     SpriteAt("Assets/_Primordia/Art/Floor3/floor3-environment/Smoke/props/Obstacle_Sigillaria.png"), material);
+                boss.ConfigureAttacks(ArtSetup.ImportMegarachneAttacks());
                 root.SetActive(true);
                 Directory.CreateDirectory(Path.GetDirectoryName(PrefabPath));
                 return PrefabUtility.SaveAsPrefabAsset(root, PrefabPath).GetComponent<Enemy>();

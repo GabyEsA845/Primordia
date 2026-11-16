@@ -31,8 +31,8 @@ Saco y crías, fuego en cables, enfado, entrada, barra, muerte, recompensa, soni
 ## Cómo probar
 `Test_BossMegarachne`: ella corre por los cables y alterna salto/ráfaga/red; solo se le puede dañar tras el salto. Lanzar `MegarachneBossTests`.
 
-## Resultado (lo rellena Codex)
-- Hecho:
-- Archivos tocados:
-- Pruebas:
-- Dudas:
+## Resultado (Codex empezó; la terminó Claude el 2026-11-15 al acabarse los tokens de Codex)
+- Hecho por Codex: `MegarachneBoss.Attacks.cs` (ciclo 4 s salto → ráfaga → red; bolitas que dejan telaraña a la distancia del jugador, mín. 3 y máx. 14 u; límite 18 telarañas por sala), `MegarachneBossWeb.cs` (8 s de vida, −40 % mientras se pisa, se quema), importador `ImportMegarachneAttacks` y menú `Primordia > Boss > Actualizar ataques Megarachne (M2)`, el jefe vive en los cables (`PlaceOnCable`), teclas Ctrl+Mayús+F4/F5/F6, 19 pruebas.
+- Hecho por Claude: Codex lo dejó sin compilar (faltaba `SpawnDistance` en `SetArena`; ahora llama a `PlaceOnCable`); ejecuté el menú de actualización (prefab con efectos); amplié el margen de la prueba del ciclo (3,8-4,15 s, el reloj empieza en el SetUp); limpié signos `?` de comentarios.
+- Pruebas: `MegarachneBossTests` 19 de 19 en verde (`Logs/mega15-tests.xml`). Suite completa sin lanzar.
+- Pendiente: que la usuaria pruebe en `Test_BossMegarachne`; sin commit.

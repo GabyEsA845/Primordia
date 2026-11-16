@@ -15,6 +15,9 @@ namespace Primordia.Enemies
         Vector2 routeStart, routeEnd;
         LineRenderer thread;
         float dropHeight;
+        Vector2 climbFrom;
+        bool outward;
+        float crossHeight;
         GameObject scenery;
         public MegarachneBossCanopy Canopy { get; private set; }
         public int CableCount => starts != null ? starts.Length : 0;
@@ -68,9 +71,8 @@ namespace Primordia.Enemies
             }
             thread = MakeLine("HiloColgante", 0.08f);
             thread.enabled = false;
-            // El centro está ocupado por el tronco; el jefe empieza delante del árbol.
-            transform.position = ArenaCenter + Vector2.down * SpawnDistance;
-            if (TryGetComponent<Rigidbody2D>(out var rb)) rb.position = transform.position;
+            // Vive en los cables: empieza sobre el más cercano al jugador (el centro lo ocupa el tronco).
+            PlaceOnCable();
         }
 
         SpriteRenderer MakeSprite(string objectName, Sprite sprite, Vector2 position, int order)
@@ -98,34 +100,58 @@ namespace Primordia.Enemies
             return line;
         }
 
+        static Vector2 ClosestOnSegment(Vector2 point, Vector2 a, Vector2 b)
+        {
+            Vector2 delta = b - a;
+            return a + delta * Mathf.Clamp01(Vector2.Dot(point - a, delta) / Mathf.Max(delta.sqrMagnitude, Mathf.Epsilon));
+        }
+
+        int NearestCable(Vector2 point)
+        {
+            int selected = 0;
+            float best = float.PositiveInfinity;
+            for (int i = 0; i < CableCount; i++)
+            {
+                Vector2 lift = Vector2.up * cableHeights[i];
+                float distance = (ClosestOnSegment(point, starts[i] - lift, ends[i] - lift) - point).sqrMagnitude;
+                if (distance < best) { best = distance; selected = i; }
+            }
+            return selected;
+        }
+
+        void PlaceOnCable()
+        {
+            cableIndex = NearestCable(target != null ? (Vector2)target.position : ArenaCenter);
+            Vector2 point = starts[cableIndex] - Vector2.up * cableHeights[cableIndex];
+            body.position = point;
+            transform.position = point;
+            SetHeight(cableHeights[cableIndex] - SpinneretOffset);
+            CurrentMode = Mode.OnCable;
+            Health.IsInvulnerable = true;
+            hit.isTrigger = true;
+            outward = true;
+            travel = Travel.Run;
+            thread.enabled = false;
+        }
+
         public bool ForceClimb()
         {
             if (CurrentMode != Mode.Ground || travel != Travel.None || CableCount == 0) return false;
-            // Primero llega andando al pie del extremo más cercano; nunca salta de posición.
-            float nearest = float.PositiveInfinity;
-            int selected = -1;
-            for (int i = 0; i < CableCount; i++)
-            {
-                Vector2 delta = ends[i] - Vector2.up * cableHeights[i] - body.position;
-                float distance = delta.magnitude;
-                if (distance < nearest) { nearest = distance; selected = i; }
-            }
-            if (selected < 0) return false;
-            cableIndex = selected;
-            detour = null;
-            routeStart = ends[cableIndex];
-            routeEnd = starts[cableIndex];
-            travel = Travel.Approach;
+            cableIndex = NearestCable(body.position);
+            Vector2 lift = Vector2.up * cableHeights[cableIndex];
+            routeStart = ClosestOnSegment(body.position, starts[cableIndex] - lift, ends[cableIndex] - lift) + lift;
+            climbFrom = body.position;
+            travelTime = 0f;
+            travel = Travel.Climb;
+            CurrentMode = Mode.OnCable;
+            Health.IsInvulnerable = true;
+            hit.isTrigger = true;
             return true;
         }
 
         public void ForceDrop()
         {
-            if (CurrentMode != Mode.OnCable)
-            {
-                if (travel == Travel.Approach) Land();
-                return;
-            }
+            if (CurrentMode != Mode.OnCable || attack != AttackStage.None) return;
             routeStart = body.position + Vector2.up * (VisualHeight + SpinneretOffset);
             dropHeight = VisualHeight;
             travelTime = 0f;
@@ -137,30 +163,44 @@ namespace Primordia.Enemies
             travelTime += dt;
             switch (travel)
             {
-                case Travel.Approach:
-                    Vector2 delta = routeStart - Vector2.up * cableHeights[cableIndex] - body.position;
-                    MoveGround(delta, GroundSpeed * dt);
-                    Play("Walk", WalkMs);
-                    if (delta.magnitude <= GroundSpeed * dt + ContactMargin)
-                    {
-                        CurrentMode = Mode.OnCable;
-                        Health.IsInvulnerable = true;
-                        travel = Travel.Climb;
-                        travelTime = 0f;
-                    }
-                    break;
                 case Travel.Climb:
-                    SetHeight(Mathf.Lerp(0f, cableHeights[cableIndex] - SpinneretOffset, travelTime / ClimbSeconds));
+                    float progress = Mathf.Clamp01(travelTime / ClimbSeconds);
+                    body.MovePosition(Vector2.Lerp(climbFrom, routeStart - Vector2.up * cableHeights[cableIndex], progress));
+                    SetHeight(Mathf.Lerp(0f, cableHeights[cableIndex] - SpinneretOffset, progress));
                     Play("Climb", ClimbMs);
                     DrawThread(routeStart);
-                    if (travelTime >= ClimbSeconds) { travel = Travel.Run; thread.enabled = false; }
+                    if (progress >= 1f) { travel = Travel.Run; outward = false; thread.enabled = false; }
                     break;
                 case Travel.Run:
-                    Vector2 destination = routeEnd - Vector2.up * cableHeights[cableIndex];
+                    int wanted = target != null ? NearestCable(target.position) : cableIndex;
+                    if (wanted != cableIndex) outward = false;
+                    Vector2 destination = (outward ? ends[cableIndex] : starts[cableIndex]) - Vector2.up * cableHeights[cableIndex];
                     facing = (destination - body.position).normalized;
                     body.MovePosition(Vector2.MoveTowards(body.position, destination, CableSpeed * dt));
                     Play("Walk", WalkMs);
-                    if (Vector2.Distance(body.position, destination) <= CableSpeed * dt) ForceDrop();
+                    if (Vector2.Distance(body.position, destination) <= CableSpeed * dt)
+                    {
+                        if (!outward && wanted != cableIndex)
+                        {
+                            // Cruza la copa entre las ramas; nunca baja al suelo para cambiar de cable.
+                            routeStart = destination;
+                            crossHeight = VisualHeight;
+                            cableIndex = wanted;
+                            routeEnd = starts[cableIndex] - Vector2.up * cableHeights[cableIndex];
+                            travel = Travel.Cross;
+                            travelTime = 0f;
+                        }
+                        outward = !outward;
+                    }
+                    break;
+                case Travel.Cross:
+                    float length = Vector2.Distance(routeStart, routeEnd);
+                    float t = length > 0f ? Mathf.Clamp01(travelTime * CableSpeed / length) : 1f;
+                    facing = (routeEnd - routeStart).normalized;
+                    body.MovePosition(Vector2.Lerp(routeStart, routeEnd, t));
+                    SetHeight(Mathf.Lerp(crossHeight, cableHeights[cableIndex] - SpinneretOffset, t));
+                    Play("Walk", WalkMs);
+                    if (t >= 1f) travel = Travel.Run;
                     break;
                 case Travel.Drop:
                     SetHeight(Mathf.Lerp(dropHeight, 0f, travelTime / DropSeconds));

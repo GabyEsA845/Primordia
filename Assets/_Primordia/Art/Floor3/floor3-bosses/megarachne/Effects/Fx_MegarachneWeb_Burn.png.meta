@@ -100,7 +100,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -172,12 +172,12 @@ TextureImporter:
       name: Fx_MegarachneWeb_Burn_0
       rect:
         serializedVersion: 2
-        x: 2
-        y: 3
-        width: 36
-        height: 30
+        x: 0
+        y: 0
+        width: 40
+        height: 36
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -194,12 +194,12 @@ TextureImporter:
       name: Fx_MegarachneWeb_Burn_1
       rect:
         serializedVersion: 2
-        x: 42
-        y: 3
-        width: 36
-        height: 30
+        x: 40
+        y: 0
+        width: 40
+        height: 36
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -216,12 +216,12 @@ TextureImporter:
       name: Fx_MegarachneWeb_Burn_2
       rect:
         serializedVersion: 2
-        x: 82
-        y: 3
-        width: 36
-        height: 30
+        x: 80
+        y: 0
+        width: 40
+        height: 36
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -238,12 +238,12 @@ TextureImporter:
       name: Fx_MegarachneWeb_Burn_3
       rect:
         serializedVersion: 2
-        x: 122
-        y: 4
-        width: 16
-        height: 18
+        x: 120
+        y: 0
+        width: 40
+        height: 36
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -260,12 +260,12 @@ TextureImporter:
       name: Fx_MegarachneWeb_Burn_4
       rect:
         serializedVersion: 2
-        x: 124
-        y: 20
-        width: 13
-        height: 11
+        x: 160
+        y: 0
+        width: 40
+        height: 36
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -282,12 +282,12 @@ TextureImporter:
       name: Fx_MegarachneWeb_Burn_5
       rect:
         serializedVersion: 2
-        x: 129
-        y: 12
-        width: 11
-        height: 10
+        x: 200
+        y: 0
+        width: 40
+        height: 36
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -296,292 +296,6 @@ TextureImporter:
       bones: []
       spriteID: 6602cda602cabeff0800000000000000
       internalID: -5721719279181722
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_MegarachneWeb_Burn_6
-      rect:
-        serializedVersion: 2
-        x: 136
-        y: 19
-        width: 15
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8fe614def1fd5c9c0800000000000000
-      internalID: -3907471773456568584
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_MegarachneWeb_Burn_7
-      rect:
-        serializedVersion: 2
-        x: 136
-        y: 17
-        width: 9
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e6b9e6822e19875b0800000000000000
-      internalID: -5370382155112342674
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_MegarachneWeb_Burn_8
-      rect:
-        serializedVersion: 2
-        x: 139
-        y: 15
-        width: 8
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2adf7d2a97a57c430800000000000000
-      internalID: 3803107888807280034
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_MegarachneWeb_Burn_9
-      rect:
-        serializedVersion: 2
-        x: 139
-        y: 9
-        width: 13
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f4fd571b46598ee50800000000000000
-      internalID: 6838880293868658511
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_MegarachneWeb_Burn_10
-      rect:
-        serializedVersion: 2
-        x: 149
-        y: 20
-        width: 8
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: add37d5a70c0d4da0800000000000000
-      internalID: -5959093504954647078
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_MegarachneWeb_Burn_11
-      rect:
-        serializedVersion: 2
-        x: 151
-        y: 13
-        width: 7
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: da4e1168cfe05c810800000000000000
-      internalID: 1784849305066136749
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_MegarachneWeb_Burn_12
-      rect:
-        serializedVersion: 2
-        x: 162
-        y: 18
-        width: 13
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5fd504e81a412ca20800000000000000
-      internalID: 3081047779183713781
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_MegarachneWeb_Burn_13
-      rect:
-        serializedVersion: 2
-        x: 163
-        y: 3
-        width: 35
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b6b1843dfa3d6e430800000000000000
-      internalID: 3811966886733159275
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_MegarachneWeb_Burn_14
-      rect:
-        serializedVersion: 2
-        x: 203
-        y: 7
-        width: 35
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4856a651a58e71bd0800000000000000
-      internalID: -2659401581334993532
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_MegarachneWeb_Burn_15
-      rect:
-        serializedVersion: 2
-        x: 213
-        y: 12
-        width: 9
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 10bb17b255affd220800000000000000
-      internalID: 2513002360804064001
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_MegarachneWeb_Burn_16
-      rect:
-        serializedVersion: 2
-        x: 136
-        y: 3
-        width: 10
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5a7578a400a7542e0800000000000000
-      internalID: -2142171906075830363
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_MegarachneWeb_Burn_17
-      rect:
-        serializedVersion: 2
-        x: 146
-        y: 5
-        width: 9
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9fe9c39375af07ed0800000000000000
-      internalID: -2418157747368583431
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_MegarachneWeb_Burn_18
-      rect:
-        serializedVersion: 2
-        x: 211
-        y: 5
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 983d3254fe1152b30800000000000000
-      internalID: 4261832341730874249
       vertices: []
       indices: 
       edges: []
@@ -602,23 +316,10 @@ TextureImporter:
     nameFileIdTable:
       Fx_MegarachneWeb_Burn_0: 4433881662289248399
       Fx_MegarachneWeb_Burn_1: -5183008182115525319
-      Fx_MegarachneWeb_Burn_10: -5959093504954647078
-      Fx_MegarachneWeb_Burn_11: 1784849305066136749
-      Fx_MegarachneWeb_Burn_12: 3081047779183713781
-      Fx_MegarachneWeb_Burn_13: 3811966886733159275
-      Fx_MegarachneWeb_Burn_14: -2659401581334993532
-      Fx_MegarachneWeb_Burn_15: 2513002360804064001
-      Fx_MegarachneWeb_Burn_16: -2142171906075830363
-      Fx_MegarachneWeb_Burn_17: -2418157747368583431
-      Fx_MegarachneWeb_Burn_18: 4261832341730874249
       Fx_MegarachneWeb_Burn_2: -8907886119311294108
       Fx_MegarachneWeb_Burn_3: -6191471248587334418
       Fx_MegarachneWeb_Burn_4: -7589196109315814875
       Fx_MegarachneWeb_Burn_5: -5721719279181722
-      Fx_MegarachneWeb_Burn_6: -3907471773456568584
-      Fx_MegarachneWeb_Burn_7: -5370382155112342674
-      Fx_MegarachneWeb_Burn_8: 3803107888807280034
-      Fx_MegarachneWeb_Burn_9: 6838880293868658511
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

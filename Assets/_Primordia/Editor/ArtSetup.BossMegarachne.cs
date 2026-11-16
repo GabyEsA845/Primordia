@@ -19,7 +19,7 @@ namespace Primordia.Editor
 
         internal static DirectionalArt ImportMegarachneSheets()
         {
-            string[] animations = { "Idle", "Walk", "Weave", "Hurt", "Stunned", "Recover", "Drop", "Climb", "DropWarn", "Land", "Fall" };
+            string[] animations = { "Idle", "Walk", "Weave", "Hurt", "Stunned", "Recover", "Drop", "Climb", "DropWarn", "Land", "Fall", "SilkShoot" };
             var files = new List<string>();
             foreach (string animation in animations)
             {
@@ -63,9 +63,44 @@ namespace Primordia.Editor
             art.SetSheets(sheets.ToArray());
             EditorUtility.SetDirty(art);
             AssetDatabase.SaveAssets();
-            Debug.Log("Megarachne: 22 hojas de cuerpo/sombra y 5 hojas del Nido/cables importadas.");
+            Debug.Log("Megarachne: 24 hojas de cuerpo/sombra y 5 hojas del Nido/cables importadas.");
             return art;
         }
+        internal static MegarachneBoss.EffectSheet[] ImportMegarachneAttacks()
+        {
+            var specs = new (string name, int width, Vector2 pivot)[]
+            {
+                ("Proj_MegarachneSilk", 10, new Vector2(0.5f, 0.5f)),
+                ("Fx_MegarachneSilk_Muzzle", 24, new Vector2(0.5f, 0.5f)),
+                ("Fx_MegarachneWeb_Appear", 40, new Vector2(0.5f, 0.5f)),
+                ("Fx_MegarachneWeb_Idle", 40, new Vector2(0.5f, 0.5f)),
+                ("Fx_MegarachneWeb_Burn", 40, new Vector2(0.5f, 0.5f)),
+                ("Fx_MegarachneNet_Shadow", 64, new Vector2(0.5f, 0.5f)),
+                ("Fx_MegarachneNet_Fall", 64, new Vector2(0.5f, 24f / 88f)),
+                ("Fx_MegarachneNet_Idle", 64, new Vector2(0.5f, 0.5f)),
+                ("Fx_MegarachneNet_Trapped", 40, new Vector2(0.5f, 0.5f)),
+                ("Fx_MegarachneNet_Break", 64, new Vector2(0.5f, 0.5f)),
+                ("Fx_MegarachneDrop_Track", 40, new Vector2(0.5f, 0.5f)),
+                ("Fx_MegarachneDrop_Locked", 40, new Vector2(0.5f, 0.5f)),
+                ("Fx_MegarachneDust", 72, new Vector2(0.5f, 0.5f))
+            };
+            foreach (var spec in specs)
+                if (!File.Exists(MegarachneSource + "/Effects/" + spec.name + ".png"))
+                    throw new FileNotFoundException("Falta el arte aprobado: " + spec.name);
+            var result = new List<MegarachneBoss.EffectSheet>();
+            foreach (var spec in specs)
+            {
+                string source = MegarachneSource + "/Effects/" + spec.name + ".png";
+                string destination = MegarachneFolder + "/Effects/" + spec.name + ".png";
+                if (!File.Exists(destination) || !File.ReadAllBytes(source).SequenceEqual(File.ReadAllBytes(destination)))
+                    File.Copy(source, destination, true);
+                AssetDatabase.ImportAsset(destination);
+                result.Add(new MegarachneBoss.EffectSheet { name = spec.name,
+                    frames = SliceFloor3Sheet(destination, spec.width, spec.pivot) });
+            }
+            return result.ToArray();
+        }
+
         // Dos recortes de la misma imagen, sin modificar píxeles: el pie no pierde opacidad con la copa.
         static void SliceMegarachneTree()
         {

@@ -10,16 +10,16 @@ namespace Primordia.Enemies
     public partial class MegarachneBoss : MonoBehaviour, IBoss
     {
         public const int MaxHealth = 150;
-        // PROVISIONALES: movimiento del subpaso M1, sin ataques.
-        public const float GroundSpeed = 5f, CableSpeed = 7f, GroundSeconds = 6f;
+        public const float CableSpeed = 7f;
+        // PROVISIONALES: tiempos visuales de subida y caida.
         const float ClimbSeconds = 0.4f, DropSeconds = 0.48f;
-        const float SpawnDistance = 4f, SpinneretOffset = 1.5f;
+        const float SpinneretOffset = 1.5f;
         const float IdleMs = 180f, WalkMs = 80f, ClimbMs = 100f, DropMs = 120f;
         const float ShadowAlpha = 120f / 255f, DebugHealthFraction = 0.51f;
         const float HitRadius = 1f, ContactMargin = 0.02f;
 
         public enum Mode { Ground, OnCable }
-        enum Travel { None, Approach, Climb, Run, Drop }
+        enum Travel { None, Climb, Run, Cross, Drop }
         [SerializeField] DirectionalSprite bodySprite, shadowSprite;
         [SerializeField] SpriteRenderer bodyRenderer, shadowRenderer;
         [SerializeField] bool testKeys;
@@ -30,8 +30,6 @@ namespace Primordia.Enemies
         float groundedTime, travelTime;
         Travel travel;
         Vector2 facing = Vector2.down;
-        Vector2? detour;
-        readonly RaycastHit2D[] hits = new RaycastHit2D[16];
         public Mode CurrentMode { get; private set; }
         public Health Health { get; private set; }
         public string DisplayName => "Megarachne";
@@ -63,9 +61,17 @@ namespace Primordia.Enemies
             GetComponent<Enemy>().DropsBiomass = false;
         }
 
-        void OnEnable() => Land();
+        void OnEnable()
+        {
+            attackClock = 0f;
+            nextAttack = AttackKind.Jump;
+            attack = AttackStage.None;
+            if (CableCount > 0) PlaceOnCable();
+            else Health.IsInvulnerable = true;
+        }
         void OnDisable()
         {
+            ClearAttacks();
             if (Health != null) Health.IsInvulnerable = false;
             if (thread != null) thread.enabled = false;
         }
@@ -91,6 +97,9 @@ namespace Primordia.Enemies
                     if (keyboard.f1Key.wasPressedThisFrame) SetTestHealth();
                     if (keyboard.f2Key.wasPressedThisFrame) ForceClimb();
                     if (keyboard.f3Key.wasPressedThisFrame) ForceDrop();
+                    if (keyboard.f4Key.wasPressedThisFrame) ForceAttack(AttackKind.Jump);
+                    if (keyboard.f5Key.wasPressedThisFrame) ForceAttack(AttackKind.Silk);
+                    if (keyboard.f6Key.wasPressedThisFrame) ForceAttack(AttackKind.Net);
                 }
             }
 #endif
@@ -98,77 +107,18 @@ namespace Primordia.Enemies
 
         void FixedUpdate()
         {
-            if (Health.IsDead) return;
+            if (Health.IsDead) { ClearAttacks(); return; }
             float dt = Time.fixedDeltaTime;
+            TickProjectiles(dt);
+            TickAttack(dt);
+            if (attack != AttackStage.None) return;
             if (travel != Travel.None) { TickCable(dt); return; }
-            groundedTime += dt;
-            if (groundedTime >= GroundSeconds && ForceClimb()) return;
-            if (target != null)
+            if (CurrentMode == Mode.Ground)
             {
-                Vector2 delta = (Vector2)target.position - body.position;
-                MoveGround(delta, GroundSpeed * dt);
-                Play(delta.sqrMagnitude > ContactMargin ? "Walk" : "Idle", delta.sqrMagnitude > ContactMargin ? WalkMs : IdleMs);
+                groundedTime += dt;
+                Play(groundedTime < LandSeconds ? "Land" : "Idle", groundedTime < LandSeconds ? LandMs : IdleMs);
+                if (groundedTime >= VulnerableSeconds) ForceClimb();
             }
-            else Play("Idle", IdleMs);
-        }
-
-        void MoveGround(Vector2 delta, float distance)
-        {
-            if (delta.sqrMagnitude < ContactMargin * ContactMargin) return;
-            Vector2 destination = body.position + delta;
-            float direct = GroundCast(delta.normalized, delta.magnitude, out var obstacle);
-            if (direct >= delta.magnitude || obstacle != null && obstacle.transform == target) detour = null;
-            if (detour.HasValue && Vector2.Distance(body.position, detour.Value) <= ContactMargin)
-                detour = null;
-            if (!detour.HasValue && obstacle != null && obstacle.transform != target)
-            {
-                // Conserva la esquina elegida para no alternar de lado al llegar al tronco.
-                var bounds = obstacle.bounds;
-                bounds.Expand((HitRadius + ContactMargin * 2f) * 2f);
-                float best = float.PositiveInfinity;
-                for (int x = 0; x < 2; x++)
-                    for (int y = 0; y < 2; y++)
-                    {
-                        Vector2 corner = new Vector2(x == 0 ? bounds.min.x : bounds.max.x, y == 0 ? bounds.min.y : bounds.max.y);
-                        Vector2 step = corner - body.position;
-                        if (step.magnitude <= ContactMargin) continue;
-                        if (GroundCast(step.normalized, step.magnitude, out _) < step.magnitude) continue;
-                        float cost = step.magnitude + Vector2.Distance(corner, destination);
-                        if (cost < best) { best = cost; detour = corner; }
-                    }
-            }
-            if (detour.HasValue) delta = detour.Value - body.position;
-            facing = delta.normalized;
-            distance = Mathf.Min(distance, delta.magnitude);
-            float allowed = GroundCast(facing, distance, out _);
-            Vector2 movement = facing * allowed;
-            if (allowed < distance)
-            {
-                // Desliza por un eje libre sin atravesar el collider.
-                Vector2 horizontal = new Vector2(facing.x, 0f).normalized;
-                Vector2 vertical = new Vector2(0f, facing.y).normalized;
-                float dx = horizontal == Vector2.zero ? 0f : GroundCast(horizontal, distance, out _);
-                float dy = vertical == Vector2.zero ? 0f : GroundCast(vertical, distance, out _);
-                if (dx > allowed && dx >= dy) movement = horizontal * dx;
-                else if (dy > allowed) movement = vertical * dy;
-            }
-            body.MovePosition(body.position + movement);
-        }
-
-        float GroundCast(Vector2 direction, float distance, out Collider2D obstacle)
-        {
-            obstacle = null;
-            var filter = new ContactFilter2D { useTriggers = false };
-            filter.SetLayerMask(Physics2D.GetLayerCollisionMask(gameObject.layer));
-            int count = body.Cast(direction, filter, hits, distance + ContactMargin);
-            for (int i = 0; i < count; i++)
-            {
-                var other = hits[i].collider;
-                if (other == null || other.isTrigger || other.attachedRigidbody == body || other.transform.IsChildOf(transform)) continue;
-                float available = Mathf.Max(0f, hits[i].distance - ContactMargin);
-                if (available < distance) { distance = available; obstacle = other; }
-            }
-            return distance;
         }
 
         void Play(string animation, float milliseconds)
@@ -203,8 +153,8 @@ namespace Primordia.Enemies
             CurrentMode = Mode.Ground;
             travel = Travel.None;
             groundedTime = 0f;
-            detour = null;
             Health.IsInvulnerable = false;
+            hit.isTrigger = false;
             SetHeight(0f);
             if (thread != null) thread.enabled = false;
             Play("Idle", IdleMs);

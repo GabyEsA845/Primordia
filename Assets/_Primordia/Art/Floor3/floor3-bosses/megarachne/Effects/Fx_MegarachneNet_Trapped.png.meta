@@ -103,7 +103,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -175,12 +175,12 @@ TextureImporter:
       name: Fx_MegarachneNet_Trapped_0
       rect:
         serializedVersion: 2
-        x: 4
-        y: 2
-        width: 17
-        height: 25
+        x: 0
+        y: 0
+        width: 40
+        height: 40
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -197,12 +197,12 @@ TextureImporter:
       name: Fx_MegarachneNet_Trapped_1
       rect:
         serializedVersion: 2
-        x: 5
-        y: 24
-        width: 12
-        height: 10
+        x: 40
+        y: 0
+        width: 40
+        height: 40
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -219,12 +219,12 @@ TextureImporter:
       name: Fx_MegarachneNet_Trapped_2
       rect:
         serializedVersion: 2
-        x: 15
-        y: 8
-        width: 21
-        height: 26
+        x: 80
+        y: 0
+        width: 40
+        height: 40
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -241,12 +241,12 @@ TextureImporter:
       name: Fx_MegarachneNet_Trapped_3
       rect:
         serializedVersion: 2
-        x: 45
-        y: 2
-        width: 17
-        height: 25
+        x: 120
+        y: 0
+        width: 40
+        height: 40
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -255,358 +255,6 @@ TextureImporter:
       bones: []
       spriteID: aed332ef1811c4ae0800000000000000
       internalID: -1563855720592228886
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_MegarachneNet_Trapped_4
-      rect:
-        serializedVersion: 2
-        x: 46
-        y: 24
-        width: 12
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 988ac79a162114770800000000000000
-      internalID: 8593169774664263817
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_MegarachneNet_Trapped_5
-      rect:
-        serializedVersion: 2
-        x: 56
-        y: 8
-        width: 21
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 301c13a94e059fa20800000000000000
-      internalID: 3096595161563644163
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_MegarachneNet_Trapped_6
-      rect:
-        serializedVersion: 2
-        x: 84
-        y: 2
-        width: 17
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5b325497479c60da0800000000000000
-      internalID: -5978869953199791179
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_MegarachneNet_Trapped_7
-      rect:
-        serializedVersion: 2
-        x: 85
-        y: 24
-        width: 12
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7f02fa11d0bf11e50800000000000000
-      internalID: 6778474947719143671
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_MegarachneNet_Trapped_8
-      rect:
-        serializedVersion: 2
-        x: 95
-        y: 8
-        width: 21
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 829ec136d818f0510800000000000000
-      internalID: 1517574043700357416
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_MegarachneNet_Trapped_9
-      rect:
-        serializedVersion: 2
-        x: 123
-        y: 2
-        width: 17
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: dd5447a1a97576a10800000000000000
-      internalID: 1902585686967731677
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_MegarachneNet_Trapped_10
-      rect:
-        serializedVersion: 2
-        x: 124
-        y: 24
-        width: 12
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5a04b23dbaac22bd0800000000000000
-      internalID: -2656337990864125787
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_MegarachneNet_Trapped_11
-      rect:
-        serializedVersion: 2
-        x: 134
-        y: 8
-        width: 21
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 28ce091b71c519270800000000000000
-      internalID: 8255480848779897986
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_MegarachneNet_Trapped_12
-      rect:
-        serializedVersion: 2
-        x: 19
-        y: 2
-        width: 15
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e4197a99f4b9fd730800000000000000
-      internalID: 4026107358075130190
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_MegarachneNet_Trapped_13
-      rect:
-        serializedVersion: 2
-        x: 30
-        y: 13
-        width: 6
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 519d8fc5a82b6d680800000000000000
-      internalID: -8730594520276084459
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_MegarachneNet_Trapped_14
-      rect:
-        serializedVersion: 2
-        x: 60
-        y: 2
-        width: 15
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 172360dca34f9f1a0800000000000000
-      internalID: -6775115631017184655
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_MegarachneNet_Trapped_15
-      rect:
-        serializedVersion: 2
-        x: 71
-        y: 13
-        width: 6
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 95e62f6e6b8f8bad0800000000000000
-      internalID: -2686123713284116903
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_MegarachneNet_Trapped_16
-      rect:
-        serializedVersion: 2
-        x: 99
-        y: 2
-        width: 15
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9126c613315c5a770800000000000000
-      internalID: 8621513747894919705
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_MegarachneNet_Trapped_17
-      rect:
-        serializedVersion: 2
-        x: 110
-        y: 13
-        width: 6
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9b6d3356b45b64070800000000000000
-      internalID: 8090353116042745529
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_MegarachneNet_Trapped_18
-      rect:
-        serializedVersion: 2
-        x: 138
-        y: 2
-        width: 15
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 876b7d3602182f300800000000000000
-      internalID: 284431702591780472
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fx_MegarachneNet_Trapped_19
-      rect:
-        serializedVersion: 2
-        x: 149
-        y: 13
-        width: 6
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3e94a37187b8dc060800000000000000
-      internalID: 6975384745768798691
       vertices: []
       indices: 
       edges: []
@@ -627,24 +275,8 @@ TextureImporter:
     nameFileIdTable:
       Fx_MegarachneNet_Trapped_0: 9096462362923923246
       Fx_MegarachneNet_Trapped_1: 497153788885594971
-      Fx_MegarachneNet_Trapped_10: -2656337990864125787
-      Fx_MegarachneNet_Trapped_11: 8255480848779897986
-      Fx_MegarachneNet_Trapped_12: 4026107358075130190
-      Fx_MegarachneNet_Trapped_13: -8730594520276084459
-      Fx_MegarachneNet_Trapped_14: -6775115631017184655
-      Fx_MegarachneNet_Trapped_15: -2686123713284116903
-      Fx_MegarachneNet_Trapped_16: 8621513747894919705
-      Fx_MegarachneNet_Trapped_17: 8090353116042745529
-      Fx_MegarachneNet_Trapped_18: 284431702591780472
-      Fx_MegarachneNet_Trapped_19: 6975384745768798691
       Fx_MegarachneNet_Trapped_2: 6142580793196357627
       Fx_MegarachneNet_Trapped_3: -1563855720592228886
-      Fx_MegarachneNet_Trapped_4: 8593169774664263817
-      Fx_MegarachneNet_Trapped_5: 3096595161563644163
-      Fx_MegarachneNet_Trapped_6: -5978869953199791179
-      Fx_MegarachneNet_Trapped_7: 6778474947719143671
-      Fx_MegarachneNet_Trapped_8: 1517574043700357416
-      Fx_MegarachneNet_Trapped_9: 1902585686967731677
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

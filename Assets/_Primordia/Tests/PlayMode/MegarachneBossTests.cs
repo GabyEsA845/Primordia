@@ -6,6 +6,7 @@ using Primordia.Combat;
 using Primordia.Core;
 using Primordia.Enemies;
 using Primordia.Player;
+using Primordia.Rooms;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine.SceneManagement;
@@ -27,6 +28,7 @@ namespace Primordia.Tests
             Assert.IsNotNull(prefab, "Ejecuta Primordia > Boss > Crear sala Megarachne.");
             boss = Object.Instantiate(prefab, room.transform).GetComponent<MegarachneBoss>();
             boss.SetArena(room.transform, new Vector2(32f, 20f));
+            boss.AutomaticAttacks = false;
             Physics2D.SyncTransforms();
         }
         [TearDown]
@@ -36,21 +38,21 @@ namespace Primordia.Tests
             if (room != null) Object.DestroyImmediate(room);
         }
         [Test]
-        public void Vida150SinAtaquesYConLimitador()
+        public void Vida150EnCableYConLimitador()
         {
             Assert.AreEqual(150, boss.Health.Max);
             Assert.AreEqual(150, boss.Health.Current);
             Assert.IsNotNull(boss.GetComponent<BossDamageLimiter>());
             Assert.AreEqual(0, boss.GetComponent<Enemy>().Data.ContactDamage);
             Assert.AreEqual(5, boss.CableCount);
-            Assert.IsTrue(boss.Health.TakeDamage(10));
-            Assert.AreEqual(140, boss.Health.Current);
+            Assert.IsFalse(boss.Health.TakeDamage(10));
+            Assert.AreEqual(150, boss.Health.Current);
         }
         [Test]
         public void ArteTieneNueveFilasYDropClimbUna()
         {
             var art = AssetDatabase.LoadAssetAtPath<DirectionalArt>("Assets/_Primordia/Data/Bosses/MegarachneArt.asset");
-            Assert.AreEqual(22, art.Sheets.Count);
+            Assert.AreEqual(24, art.Sheets.Count);
             foreach (var sheet in art.Sheets)
             {
                 Assert.AreEqual(sheet.name.EndsWith("_Drop") || sheet.name.EndsWith("_Climb") ? 1 : 9, sheet.rows);
@@ -60,39 +62,234 @@ namespace Primordia.Tests
             Assert.AreEqual(4, DirectionalArt.RowFor(180f, out bool flip));
             Assert.IsTrue(flip);
         }
-        [UnityTest]
-        public IEnumerator SubeInvulnerableYBajaVulnerableSinTeletransporte()
+        PlayerController MakePlayer(Vector2 point)
         {
-            Assert.IsTrue(boss.ForceClimb());
-            Vector2 previous = boss.transform.position;
-            float until = Time.time + 12f;
-            while (boss.CurrentMode == MegarachneBoss.Mode.Ground && Time.time < until)
+            actor = new GameObject("JugadorPrueba");
+            actor.transform.position = point;
+            var player = actor.AddComponent<PlayerController>();
+            player.readInput = false;
+            player.Inertia = 0f;
+            actor.AddComponent<CircleCollider2D>().radius = 0.2f;
+            actor.GetComponent<Health>().SetMax(100, false);
+            actor.GetComponent<Health>().ResetHealth();
+            boss.Target = actor.transform;
+            Physics2D.SyncTransforms();
+            return player;
+        }
+
+        static IEnumerator Until(System.Func<bool> condition, float seconds)
+        {
+            float end = Time.time + seconds;
+            while (!condition() && Time.time < end) yield return new WaitForFixedUpdate();
+            Assert.IsTrue(condition(), "No se alcanz? el estado esperado dentro del tiempo l?mite.");
+        }
+
+        [UnityTest]
+        public IEnumerator SaltoHaceDosUnaVezYVentanaDeUnSegundoYMedioSinPerseguir()
+        {
+            var player = MakePlayer((Vector2)room.transform.position + new Vector2(-6f, -5f));
+            Assert.IsTrue(boss.ForceAttack(MegarachneBoss.AttackKind.Jump));
+            Assert.IsFalse(boss.Health.TakeDamage(10));
+            yield return Until(() => boss.CurrentMode == MegarachneBoss.Mode.Ground, 2f);
+            float landed = Time.time;
+            Assert.AreEqual(98, actor.GetComponent<Health>().Current);
+            Assert.IsTrue(boss.Health.TakeDamage(10));
+            Vector2 landing = boss.GetComponent<Rigidbody2D>().position;
+            player.SetInput(Vector2.right, Vector2.right);
+            while (Time.time - landed < 1.3f)
             {
                 yield return new WaitForFixedUpdate();
-                Vector2 current = boss.transform.position;
-                Assert.LessOrEqual(Vector2.Distance(previous, current), MegarachneBoss.GroundSpeed * Time.fixedDeltaTime + 0.05f);
-                previous = current;
+                Assert.AreEqual(MegarachneBoss.Mode.Ground, boss.CurrentMode);
+                Assert.Less(Vector2.Distance(landing, boss.GetComponent<Rigidbody2D>().position), 0.001f);
+                Assert.AreEqual(98, actor.GetComponent<Health>().Current);
             }
-            Assert.AreEqual(MegarachneBoss.Mode.OnCable, boss.CurrentMode);
+            yield return Until(() => boss.CurrentMode == MegarachneBoss.Mode.OnCable, 0.4f);
+            Assert.That(Time.time - landed, Is.InRange(1.45f, 1.6f));
             Assert.IsFalse(boss.Health.TakeDamage(10));
-            until = Time.time + 8f;
-            while (boss.CurrentMode == MegarachneBoss.Mode.OnCable && Time.time < until) yield return null;
-            Assert.AreEqual(MegarachneBoss.Mode.Ground, boss.CurrentMode);
-            Assert.AreEqual(0f, boss.VisualHeight);
-            Assert.IsTrue(boss.Health.TakeDamage(10));
-        }
-        [UnityTest]
-        public IEnumerator CicloAutomaticoYBajadaForzada()
-        {
-            float until = Time.time + 18f;
-            while (boss.CurrentMode != MegarachneBoss.Mode.OnCable && Time.time < until) yield return null;
-            Assert.AreEqual(MegarachneBoss.Mode.OnCable, boss.CurrentMode);
             yield return new WaitForSeconds(0.5f);
-            boss.ForceDrop();
-            yield return new WaitForSeconds(0.6f);
-            Assert.AreEqual(MegarachneBoss.Mode.Ground, boss.CurrentMode);
-            Assert.IsTrue(boss.Health.CanTakeDamage);
+            Assert.Greater(boss.VisualHeight, 0f);
         }
+
+        [UnityTest]
+        public IEnumerator MarcaSaltoSeFijaLosUltimosTresDecimosYSePuedeEsquivar()
+        {
+            MakePlayer((Vector2)room.transform.position + new Vector2(-6f, -5f));
+            Assert.IsTrue(boss.ForceAttack(MegarachneBoss.AttackKind.Jump));
+            yield return new WaitForSeconds(0.4f);
+            actor.transform.position += Vector3.right;
+            yield return new WaitForSeconds(0.2f);
+            Assert.Less(Vector2.Distance(actor.transform.position, boss.AttackPoint), 0.01f);
+            yield return new WaitForSeconds(0.2f);
+            Vector2 locked = boss.AttackPoint;
+            actor.transform.position += Vector3.right * 3f;
+            Physics2D.SyncTransforms();
+            yield return Until(() => boss.CurrentMode == MegarachneBoss.Mode.Ground, 1f);
+            Assert.Less(Vector2.Distance(locked, boss.transform.position), 0.01f);
+            Assert.AreEqual(100, actor.GetComponent<Health>().Current);
+        }
+
+        [UnityTest]
+        public IEnumerator SaltoNoDanyaFueraDelRadio()
+        {
+            MakePlayer((Vector2)room.transform.position + new Vector2(-6f, -5f));
+            boss.ForceAttack(MegarachneBoss.AttackKind.Jump);
+            yield return new WaitForSeconds(1.1f);
+            actor.transform.position = boss.AttackPoint + Vector2.right * (MegarachneBoss.JumpRadius + 0.05f);
+            Physics2D.SyncTransforms();
+            yield return Until(() => boss.CurrentMode == MegarachneBoss.Mode.Ground, 1f);
+            Assert.AreEqual(100, actor.GetComponent<Health>().Current);
+        }
+
+        [UnityTest]
+        public IEnumerator RafagaCreaSeisBolitasYUnaTelaranaPorBolita()
+        {
+            MakePlayer((Vector2)room.transform.position + new Vector2(-6f, -5f));
+            Assert.IsTrue(boss.ForceAttack(MegarachneBoss.AttackKind.Silk));
+            yield return Until(() => boss.ActiveSilkCount > 0, 0.6f);
+            Assert.AreEqual(6, boss.ActiveSilkCount);
+            yield return Until(() => boss.ActiveSilkCount == 0, 2f);
+            Assert.AreEqual(6, room.GetComponentsInChildren<MegarachneBossWeb>().Length);
+        }
+
+        [UnityTest]
+        public IEnumerator TelaranaFrenaCuarentaPorCientoSinAcumularNiDejarResiduo()
+        {
+            Vector2 point = (Vector2)room.transform.position + new Vector2(-6f, -5f);
+            var player = MakePlayer(point);
+            boss.CreateWeb(point);
+            boss.CreateWeb(point);
+            player.SetInput(Vector2.right, Vector2.right);
+            yield return new WaitForFixedUpdate();
+            yield return new WaitForFixedUpdate();
+            Assert.AreEqual(player.MoveSpeed * 0.6f, actor.GetComponent<Rigidbody2D>().linearVelocity.x, 0.01f);
+            actor.transform.position = point + Vector2.right * 3f;
+            Physics2D.SyncTransforms();
+            yield return new WaitForFixedUpdate();
+            yield return new WaitForFixedUpdate();
+            Assert.AreEqual(player.MoveSpeed, actor.GetComponent<Rigidbody2D>().linearVelocity.x, 0.01f);
+            Assert.IsFalse(player.IsSlowed);
+        }
+
+        [UnityTest]
+        public IEnumerator TelaranaNoAlargaNiIntensificaVenenoAlSalir()
+        {
+            Vector2 point = (Vector2)room.transform.position + new Vector2(-6f, -5f);
+            var player = MakePlayer(point);
+            player.Slow(0.7f, 5f);
+            boss.CreateWeb(point);
+            player.SetInput(Vector2.right, Vector2.right);
+            yield return new WaitForFixedUpdate();
+            yield return new WaitForFixedUpdate();
+            actor.transform.position = point + Vector2.right * 3f;
+            Physics2D.SyncTransforms();
+            yield return new WaitForFixedUpdate();
+            yield return new WaitForFixedUpdate();
+            Assert.AreEqual(0.7f, player.SlowFactor, 0.001f);
+            Assert.AreEqual(player.MoveSpeed * 0.7f, actor.GetComponent<Rigidbody2D>().linearVelocity.x, 0.01f);
+        }
+
+        [UnityTest]
+        public IEnumerator TelaranaArdeConElSistemaExistenteYDejaDeFrenar()
+        {
+            Vector2 point = (Vector2)room.transform.position + new Vector2(-6f, -5f);
+            var player = MakePlayer(point);
+            var web = boss.CreateWeb(point);
+            Assert.AreEqual(1, Flammables.IgniteNear(point, 0.1f));
+            Assert.IsTrue(web.IsBurning);
+            player.SetInput(Vector2.right, Vector2.right);
+            yield return new WaitForFixedUpdate();
+            yield return new WaitForFixedUpdate();
+            Assert.AreEqual(player.MoveSpeed, actor.GetComponent<Rigidbody2D>().linearVelocity.x, 0.01f);
+            yield return new WaitForSeconds(0.7f);
+            Assert.IsTrue(web == null);
+        }
+
+        [UnityTest]
+        public IEnumerator TelaranasDuranOchoSegundosYElLimiteRetiraLaMasAntigua()
+        {
+            var first = boss.CreateWeb(room.transform.position);
+            yield return new WaitForSeconds(0.05f);
+            for (int i = 0; i < 18; i++) boss.CreateWeb(room.transform.position);
+            yield return null;
+            Assert.IsTrue(first == null);
+            Assert.AreEqual(18, room.GetComponentsInChildren<MegarachneBossWeb>().Length);
+            yield return new WaitForSeconds(7.8f);
+            Assert.AreEqual(18, room.GetComponentsInChildren<MegarachneBossWeb>().Length);
+            yield return new WaitForSeconds(0.3f);
+            Assert.AreEqual(0, room.GetComponentsInChildren<MegarachneBossWeb>().Length);
+        }
+
+        [UnityTest]
+        public IEnumerator RedHaceUnoEInmovilizaUnSegundoSinBloquearAtaques()
+        {
+            var player = MakePlayer((Vector2)room.transform.position + new Vector2(-6f, -5f));
+            Assert.IsTrue(boss.ForceAttack(MegarachneBoss.AttackKind.Net));
+            yield return Until(() => player.MovementLocked, 2f);
+            float trappedAt = Time.time;
+            Assert.AreEqual(99, actor.GetComponent<Health>().Current);
+            Assert.IsTrue(player.CanAct);
+            Assert.IsFalse(player.CanDodge);
+            Vector2 point = actor.transform.position;
+            player.SetInput(Vector2.right, Vector2.up);
+            yield return new WaitForSeconds(0.8f);
+            Assert.IsTrue(player.MovementLocked);
+            Assert.Less(Vector2.Distance(point, actor.transform.position), 0.01f);
+            Assert.AreEqual(Vector2.up, player.AimDirection);
+            yield return Until(() => !player.MovementLocked, 0.4f);
+            Assert.That(Time.time - trappedAt, Is.InRange(0.95f, 1.1f));
+            yield return new WaitForSeconds(0.1f);
+            Assert.Greater(Vector2.Distance(point, actor.transform.position), 0.1f);
+            Assert.AreEqual(99, actor.GetComponent<Health>().Current);
+        }
+
+        [UnityTest]
+        public IEnumerator RedFijaSuCentroYNoAtrapaFuera()
+        {
+            var player = MakePlayer((Vector2)room.transform.position + new Vector2(-6f, -5f));
+            boss.ForceAttack(MegarachneBoss.AttackKind.Net);
+            yield return new WaitForSeconds(0.9f);
+            Vector2 locked = boss.AttackPoint;
+            actor.transform.position = locked + Vector2.right * 3f;
+            Physics2D.SyncTransforms();
+            yield return new WaitForSeconds(0.9f);
+            Assert.AreEqual(locked, boss.AttackPoint);
+            Assert.IsFalse(player.MovementLocked);
+            Assert.AreEqual(100, actor.GetComponent<Health>().Current);
+        }
+
+        [UnityTest]
+        public IEnumerator DesactivarLiberaRedYLimpiaEfectos()
+        {
+            var player = MakePlayer((Vector2)room.transform.position + new Vector2(-6f, -5f));
+            var constraints = actor.GetComponent<Rigidbody2D>().constraints;
+            boss.CreateWeb(actor.transform.position);
+            boss.ForceAttack(MegarachneBoss.AttackKind.Net);
+            yield return Until(() => player.MovementLocked, 2f);
+            boss.enabled = false;
+            yield return null;
+            Assert.IsFalse(player.MovementLocked);
+            Assert.AreEqual(constraints, actor.GetComponent<Rigidbody2D>().constraints);
+            Assert.AreEqual(0, room.GetComponentsInChildren<MegarachneBossWeb>().Length);
+        }
+
+        [UnityTest]
+        public IEnumerator CicloAlternaSaltoRafagaRedCadaCuatroSegundos()
+        {
+            MakePlayer((Vector2)room.transform.position + new Vector2(-6f, -5f));
+            boss.AutomaticAttacks = true;
+            float previous = Time.time;
+            var expected = new[] { MegarachneBoss.AttackKind.Jump, MegarachneBoss.AttackKind.Silk,
+                MegarachneBoss.AttackKind.Net, MegarachneBoss.AttackKind.Jump };
+            for (int i = 0; i < expected.Length; i++)
+            {
+                int count = i + 1;
+                yield return Until(() => boss.AttacksStarted == count, 4.2f);
+                Assert.AreEqual(expected[i], boss.LastAttack);
+                Assert.That(Time.time - previous, Is.InRange(3.8f, 4.15f));
+                previous = Time.time;
+            }
+        }
+
         [Test]
         public void CopaDetectaEnemigoYRestauraOpacidad()
         {
@@ -122,25 +319,6 @@ namespace Primordia.Tests
             boss.Canopy.Refresh();
             Assert.AreEqual(0.45f, boss.Canopy.Alpha, 0.001f);
         }
-        [UnityTest]
-        public IEnumerator RodeaTroncoYAvanzaSeisUnidadesEnTresSegundos()
-        {
-            actor = new GameObject("ObjetivoTrasTronco");
-            actor.transform.position = boss.transform.position + Vector3.up * 8f;
-            boss.Target = actor.transform;
-            Vector2 start = boss.GetComponent<Rigidbody2D>().position;
-            var trunk = room.transform.Find("NidoMegarachne/Tronco").GetComponent<Collider2D>();
-            float until = Time.time + 3f;
-            while (Time.time < until)
-            {
-                yield return new WaitForFixedUpdate();
-                var separation = boss.GetComponent<Collider2D>().Distance(trunk);
-                Assert.GreaterOrEqual(separation.distance, -0.001f, $"Posicion {boss.GetComponent<Rigidbody2D>().position}, separacion {separation.distance}");
-            }
-            Assert.GreaterOrEqual(Vector2.Distance(start, boss.GetComponent<Rigidbody2D>().position), 6f);
-            Assert.Less(Vector2.Distance(boss.transform.position, actor.transform.position), 2f);
-        }
-
         [Test]
         public void CablesAmarradosAlOchentaPorCientoDelSprite()
         {
@@ -186,81 +364,24 @@ namespace Primordia.Tests
         }
 
         [UnityTest]
-        public IEnumerator PersigueJugadorEnSuelo()
+        public IEnumerator PermaneceEnCablesSinBajadaAutomaticaYCorreASiete()
         {
-            actor = new GameObject("Objetivo");
-            actor.transform.position = boss.transform.position + Vector3.right * 5f;
-            boss.Target = actor.transform;
-            float before = Vector2.Distance(boss.transform.position, actor.transform.position);
-            yield return new WaitForSeconds(0.5f);
-            Assert.Less(Vector2.Distance(boss.transform.position, actor.transform.position), before - 1f);
-        }
-    }
-    // Se ejecuta sola: la escena real contiene gestores globales de partida.
-    [Explicit("Ejecutar aislada con testFilter MegarachneBossSceneTests.")]
-    public class MegarachneBossSceneTests
-    {
-        const string ScenePath = "Assets/_Primordia/Scenes/Test_BossMegarachne.unity";
-        [UnityTest]
-        public IEnumerator EscenaRealPersigueOchoUnidadesEnTresSegundos()
-        {
-            yield return EditorSceneManager.LoadSceneAsyncInPlayMode(ScenePath, new LoadSceneParameters(LoadSceneMode.Single));
-            var boss = Object.FindAnyObjectByType<MegarachneBoss>(FindObjectsInactive.Include);
-            Assert.IsNotNull(boss);
-            var player = Object.FindAnyObjectByType<PlayerController>();
-            Assert.IsNotNull(player);
-            player.readInput = false;
-            var rb = player.GetComponent<Rigidbody2D>();
-            rb.position = (Vector2)boss.transform.position + Vector2.up * 8f;
-            player.transform.position = rb.position;
-            boss.transform.parent.gameObject.SetActive(true);
-            yield return null;
-            Physics2D.SyncTransforms();
-            Vector2 start = boss.GetComponent<Rigidbody2D>().position;
-            var hits = new RaycastHit2D[32];
-            int count = boss.GetComponent<Rigidbody2D>().Cast(Vector2.up, new ContactFilter2D { useTriggers = false }, hits, 0.12f);
-            for (int i = 0; i < count; i++)
-                Debug.Log($"Diagnostico M1: {hits[i].collider.name}, distancia {hits[i].distance}, trigger {hits[i].collider.isTrigger}");
-            yield return new WaitForSeconds(3f);
-            Assert.AreEqual(player.transform, boss.Target);
-            float moved = Vector2.Distance(start, boss.GetComponent<Rigidbody2D>().position);
-            Debug.Log($"Diagnostico M1: desplazamiento {moved} u en 3 s; inicio {start}; final {boss.transform.position}");
-            Assert.GreaterOrEqual(moved, 6f);
-            if (SystemInfo.graphicsDeviceType != UnityEngine.Rendering.GraphicsDeviceType.Null)
+            Vector2 previous = boss.GetComponent<Rigidbody2D>().position;
+            float distance = 0f;
+            float end = Time.time + 7f;
+            while (Time.time < end)
             {
-                // Camara de inspeccion temporal: no modifica la escena guardada.
-                var cameraObject = new GameObject("CapturaMegarachneM1");
-                var camera = cameraObject.AddComponent<Camera>();
-                camera.orthographic = true;
-                camera.orthographicSize = 12f;
-                camera.depth = 100f;
-                camera.transform.position = new Vector3(boss.ArenaCenter.x, boss.ArenaCenter.y, -10f);
-                yield return null;
-                var texture = new RenderTexture(1600, 1000, 24);
-                var pixels = new Texture2D(1600, 1000, TextureFormat.RGB24, false);
-                var previous = RenderTexture.active;
-                try
-                {
-                    camera.aspect = 1.6f;
-                    cameraObject.AddComponent<UnityEngine.Rendering.Universal.UniversalAdditionalCameraData>();
-                    var request = new UnityEngine.Rendering.Universal.UniversalRenderPipeline.SingleCameraRequest { destination = texture };
-                    UnityEngine.Rendering.RenderPipeline.SubmitRenderRequest(camera, request);
-                    RenderTexture.active = texture;
-                    pixels.ReadPixels(new Rect(0, 0, 1600, 1000), 0, 0);
-                    pixels.Apply();
-                    System.IO.File.WriteAllBytes("Logs/mega14-scene.png", pixels.EncodeToPNG());
-                }
-                finally
-                {
-                    RenderTexture.active = previous;
-                    texture.Release();
-                    Object.Destroy(texture);
-                    Object.Destroy(pixels);
-                    Object.Destroy(cameraObject);
-                }
+                yield return new WaitForFixedUpdate();
+                Vector2 point = boss.GetComponent<Rigidbody2D>().position;
+                float step = Vector2.Distance(previous, point);
+                Assert.LessOrEqual(step, MegarachneBoss.CableSpeed * Time.fixedDeltaTime + 0.01f);
+                distance += step;
+                previous = point;
+                Assert.AreEqual(MegarachneBoss.Mode.OnCable, boss.CurrentMode);
+                Assert.IsFalse(boss.Health.CanTakeDamage);
             }
+            Assert.Greater(distance, 40f);
         }
     }
-
 }
 #endif

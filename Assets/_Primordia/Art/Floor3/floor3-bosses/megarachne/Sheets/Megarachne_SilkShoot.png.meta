@@ -259,7 +259,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -287,7 +287,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -328,1585 +328,1585 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Megarachne_SilkShoot_0
+      name: Megarachne_SilkShoot_0_0
       rect:
         serializedVersion: 2
-        x: 17
-        y: 1057
-        width: 94
-        height: 78
+        x: 0
+        y: 1024
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d70bb9127e7ad4020800000000000000
-      internalID: 2327701193563549821
+      spriteID: 2d1f84269e3f4bc48982616a99c9d9dc
+      internalID: -1858601878
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_SilkShoot_1
+      name: Megarachne_SilkShoot_0_1
       rect:
         serializedVersion: 2
-        x: 145
-        y: 1066
-        width: 94
-        height: 69
+        x: 128
+        y: 1024
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b47fcd0ef1ace44f0800000000000000
-      internalID: -842513842006329525
+      spriteID: f2cbcfa53356cf241a93f97c2ca313d4
+      internalID: -1638915265
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_SilkShoot_2
+      name: Megarachne_SilkShoot_0_2
       rect:
         serializedVersion: 2
-        x: 273
-        y: 1066
-        width: 94
-        height: 69
+        x: 256
+        y: 1024
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b6de1958164fd3d40800000000000000
-      internalID: 5565873414189739371
+      spriteID: 3e32a987aadc9ed448263e0276b132a8
+      internalID: 14860942
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_SilkShoot_3
+      name: Megarachne_SilkShoot_0_3
       rect:
         serializedVersion: 2
-        x: 401
-        y: 1066
-        width: 94
-        height: 69
+        x: 384
+        y: 1024
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d9c4683a092b6a070800000000000000
-      internalID: 8117371712670420125
+      spriteID: 5f43ed35db8f3aa4cb23e4e6e88411b1
+      internalID: 1005086318
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_SilkShoot_4
+      name: Megarachne_SilkShoot_0_4
       rect:
         serializedVersion: 2
-        x: 529
-        y: 1066
-        width: 94
-        height: 69
+        x: 512
+        y: 1024
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 3928b2744b1488860800000000000000
-      internalID: 7532342619321107091
+      spriteID: b33decacf21e70840ab97e80343f7358
+      internalID: -1730131021
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_SilkShoot_5
+      name: Megarachne_SilkShoot_0_5
       rect:
         serializedVersion: 2
-        x: 657
-        y: 1066
-        width: 94
-        height: 69
+        x: 640
+        y: 1024
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 8e1d3553b75adc1f0800000000000000
-      internalID: -1022979591748988440
+      spriteID: 6b93cbde6a5aa774b889c80c83c93646
+      internalID: 1964141615
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_SilkShoot_6
+      name: Megarachne_SilkShoot_0_6
       rect:
         serializedVersion: 2
-        x: 785
-        y: 1066
-        width: 94
-        height: 69
+        x: 768
+        y: 1024
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f03ba76e9e335d1a0800000000000000
-      internalID: -6785460183876586737
+      spriteID: 8c2e1fa1df9ba64428f72b76e9907787
+      internalID: 2078314153
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_SilkShoot_7
+      name: Megarachne_SilkShoot_0_7
       rect:
         serializedVersion: 2
-        x: 913
-        y: 1066
-        width: 94
-        height: 69
+        x: 896
+        y: 1024
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: be4f856049c7f4690800000000000000
-      internalID: -7615731469656722197
+      spriteID: a18d9f9ff9b8caf43871de5870941da4
+      internalID: 1672686181
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_SilkShoot_8
+      name: Megarachne_SilkShoot_1_0
       rect:
         serializedVersion: 2
-        x: 20
-        y: 929
-        width: 97
-        height: 81
+        x: 0
+        y: 896
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f9dcb855ec46095a0800000000000000
-      internalID: -6516597823443841633
+      spriteID: a23496f211e801a479f9d45fe5616df2
+      internalID: -1824090402
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_SilkShoot_9
+      name: Megarachne_SilkShoot_1_1
       rect:
         serializedVersion: 2
-        x: 148
-        y: 929
-        width: 97
-        height: 81
+        x: 128
+        y: 896
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a4ab06fc92b75b920800000000000000
-      internalID: 3005443745842772554
+      spriteID: 91da8edad33b6fc48af3464a9fff34fd
+      internalID: -1131692407
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_SilkShoot_10
+      name: Megarachne_SilkShoot_1_2
       rect:
         serializedVersion: 2
-        x: 276
-        y: 929
-        width: 97
-        height: 80
+        x: 256
+        y: 896
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: cc0df777373adcad0800000000000000
-      internalID: -2680306486894145332
+      spriteID: dd8b36977277bf840aa37a6046078688
+      internalID: -1053019894
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_SilkShoot_11
+      name: Megarachne_SilkShoot_1_3
       rect:
         serializedVersion: 2
-        x: 404
-        y: 929
-        width: 97
-        height: 81
+        x: 384
+        y: 896
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 90142044678007fd0800000000000000
-      internalID: -2346366101819866871
+      spriteID: 0f4eb77628ec292439db76a353ff736d
+      internalID: 132743024
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_SilkShoot_12
+      name: Megarachne_SilkShoot_1_4
       rect:
         serializedVersion: 2
-        x: 532
-        y: 929
-        width: 97
-        height: 80
+        x: 512
+        y: 896
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 85505e7e24e516090800000000000000
-      internalID: -8043043818055596712
+      spriteID: d8b236b1a83162d4a8dc2159922ab6af
+      internalID: -12837696
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_SilkShoot_13
+      name: Megarachne_SilkShoot_1_5
       rect:
         serializedVersion: 2
-        x: 660
-        y: 929
-        width: 97
-        height: 81
+        x: 640
+        y: 896
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: dbc8c9c08f481d120800000000000000
-      internalID: 2436875074282491069
+      spriteID: f14033e8445285c428996589b0b04f8b
+      internalID: 459141086
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_SilkShoot_14
+      name: Megarachne_SilkShoot_1_6
       rect:
         serializedVersion: 2
-        x: 788
-        y: 929
-        width: 97
-        height: 80
+        x: 768
+        y: 896
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 472bcc906d6dc3bb0800000000000000
-      internalID: -4954849275238632844
+      spriteID: 03507e483f485ae4081f376b0c826400
+      internalID: -1619075781
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_SilkShoot_15
+      name: Megarachne_SilkShoot_1_7
       rect:
         serializedVersion: 2
-        x: 916
-        y: 929
-        width: 97
-        height: 81
+        x: 896
+        y: 896
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2aa015791a1bcd950800000000000000
-      internalID: 6475245671838452386
+      spriteID: f5660b5c2cbba8b4c982f7aad0d30b33
+      internalID: 1001614272
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_SilkShoot_16
+      name: Megarachne_SilkShoot_2_0
       rect:
         serializedVersion: 2
-        x: 21
-        y: 796
-        width: 96
-        height: 84
+        x: 0
+        y: 768
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c0451571f57d56480800000000000000
-      internalID: -8906475884642216948
+      spriteID: 8e5c6170df0f6674bbb346b10feeff14
+      internalID: 1485946354
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_SilkShoot_17
+      name: Megarachne_SilkShoot_2_1
       rect:
         serializedVersion: 2
-        x: 149
-        y: 796
-        width: 96
-        height: 84
+        x: 128
+        y: 768
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c3b92ea2dc148f940800000000000000
-      internalID: 5330082508436577084
+      spriteID: e5581a09f95265647a1de3aa2ddf0c65
+      internalID: -1163357464
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_SilkShoot_18
+      name: Megarachne_SilkShoot_2_2
       rect:
         serializedVersion: 2
-        x: 277
-        y: 796
-        width: 96
-        height: 84
+        x: 256
+        y: 768
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d20c27848fafd9430800000000000000
-      internalID: 3791462405590138925
+      spriteID: c25fd98d052fa174787a22fd5eb7419c
+      internalID: -1761419814
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_SilkShoot_19
+      name: Megarachne_SilkShoot_2_3
       rect:
         serializedVersion: 2
-        x: 405
-        y: 796
-        width: 96
-        height: 84
+        x: 384
+        y: 768
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7dc9b8b7dd82705e0800000000000000
-      internalID: -1943539782461449001
+      spriteID: 627917987df3e794ca62b7f0bc0e7bc1
+      internalID: 2115728254
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_SilkShoot_20
+      name: Megarachne_SilkShoot_2_4
       rect:
         serializedVersion: 2
-        x: 533
-        y: 796
-        width: 96
-        height: 84
+        x: 512
+        y: 768
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 29eeb91e892f1c7d0800000000000000
-      internalID: -2899769946615845230
+      spriteID: cd7af8f0bb3064f4d9d711aa06fc1d97
+      internalID: 574130526
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_SilkShoot_21
+      name: Megarachne_SilkShoot_2_5
       rect:
         serializedVersion: 2
-        x: 661
-        y: 796
-        width: 96
-        height: 84
+        x: 640
+        y: 768
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2ef09f4472156fbf0800000000000000
-      internalID: -290955896816070686
+      spriteID: cd03a071bde27cb43a65c0ef0c3bacd2
+      internalID: 1441787720
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_SilkShoot_22
+      name: Megarachne_SilkShoot_2_6
       rect:
         serializedVersion: 2
-        x: 789
-        y: 796
-        width: 96
-        height: 84
+        x: 768
+        y: 768
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 09d52d8b521036590800000000000000
-      internalID: -7682295277837722224
+      spriteID: dfa993c31f5990748ab2321e02e10904
+      internalID: -2034404480
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_SilkShoot_23
+      name: Megarachne_SilkShoot_2_7
       rect:
         serializedVersion: 2
-        x: 917
-        y: 796
-        width: 96
-        height: 84
+        x: 896
+        y: 768
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: fc1bd4445cb66fe40800000000000000
-      internalID: 5689853674227872207
+      spriteID: 4e9ee9eb8d94e6f4bba5addf0fe0e75f
+      internalID: -123885749
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_SilkShoot_24
+      name: Megarachne_SilkShoot_3_0
       rect:
         serializedVersion: 2
-        x: 25
-        y: 667
-        width: 94
-        height: 84
+        x: 0
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 363e4b47f3abfd8e0800000000000000
-      internalID: -1666408555400076445
+      spriteID: bc23f73bdbb61a74c8763c525b641403
+      internalID: -1408625093
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_SilkShoot_25
+      name: Megarachne_SilkShoot_3_1
       rect:
         serializedVersion: 2
-        x: 155
-        y: 667
-        width: 92
-        height: 83
+        x: 128
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 3d2238111bca4a730800000000000000
-      internalID: 4009519444769579731
+      spriteID: 07988956c393dbd4e847b4a3aa466bda
+      internalID: 418142912
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_SilkShoot_26
+      name: Megarachne_SilkShoot_3_2
       rect:
         serializedVersion: 2
-        x: 283
-        y: 667
-        width: 92
-        height: 83
+        x: 256
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6648851665a01ebd0800000000000000
-      internalID: -2602787743526779802
+      spriteID: 3cd7de421e4151347a42cbf5605eecf5
+      internalID: -1226475053
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_SilkShoot_27
+      name: Megarachne_SilkShoot_3_3
       rect:
         serializedVersion: 2
-        x: 411
-        y: 667
-        width: 91
-        height: 83
+        x: 384
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 92105f7f9e8c79e90800000000000000
-      internalID: -7018920587020664535
+      spriteID: 75e44e8e7ad705c4ebe115e0445c84bc
+      internalID: 1606862526
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_SilkShoot_28
+      name: Megarachne_SilkShoot_3_4
       rect:
         serializedVersion: 2
-        x: 539
-        y: 667
-        width: 91
-        height: 83
+        x: 512
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b3daded1f409f87e0800000000000000
-      internalID: -1761030259799642821
+      spriteID: 15813b54b01451a44bf4797cbc54240e
+      internalID: 245214697
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_SilkShoot_29
+      name: Megarachne_SilkShoot_3_5
       rect:
         serializedVersion: 2
-        x: 667
-        y: 667
-        width: 91
-        height: 83
+        x: 640
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 03effc76ac38318e0800000000000000
-      internalID: -1723889327004451280
+      spriteID: f7e680247bf9e1f4fa8bbf67b40d1f45
+      internalID: -1109611052
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_SilkShoot_30
+      name: Megarachne_SilkShoot_3_6
       rect:
         serializedVersion: 2
-        x: 795
-        y: 667
-        width: 92
-        height: 83
+        x: 768
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a76ad718114c2a780800000000000000
-      internalID: -8673154352896170374
+      spriteID: d8404c77e998f3046a44bba0d4893299
+      internalID: 365054916
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_SilkShoot_31
+      name: Megarachne_SilkShoot_3_7
       rect:
         serializedVersion: 2
-        x: 923
-        y: 667
-        width: 92
-        height: 84
+        x: 896
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 5718b7ac99772f460800000000000000
-      internalID: 7274007850567565685
+      spriteID: 2ec919dd7175c64419854725b2d6462d
+      internalID: 1812590739
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_SilkShoot_32
+      name: Megarachne_SilkShoot_4_0
       rect:
         serializedVersion: 2
-        x: 22
-        y: 537
-        width: 90
-        height: 80
+        x: 0
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b87d2ba78e4d99e90800000000000000
-      internalID: -7018344449324165237
+      spriteID: ae65622345ceb4849ab3ca84ca59be88
+      internalID: 1099804295
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_SilkShoot_33
+      name: Megarachne_SilkShoot_4_1
       rect:
         serializedVersion: 2
-        x: 159
-        y: 537
-        width: 81
-        height: 80
+        x: 128
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 98b1fcf64dbaada90800000000000000
-      internalID: -7288324118048466039
+      spriteID: 84214e035a872b9489e8c42e1d8e69bf
+      internalID: -61211220
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_SilkShoot_34
+      name: Megarachne_SilkShoot_4_2
       rect:
         serializedVersion: 2
-        x: 294
-        y: 537
-        width: 74
-        height: 80
+        x: 256
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: daf5fc50dd8f52330800000000000000
-      internalID: 3685625498241556397
+      spriteID: 93bad2c436f161540a9638f7383a08c9
+      internalID: -1892590955
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_SilkShoot_35
+      name: Megarachne_SilkShoot_4_3
       rect:
         serializedVersion: 2
-        x: 422
-        y: 537
-        width: 73
-        height: 80
+        x: 384
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: aa68fded51632b550800000000000000
-      internalID: 6175057506639775402
+      spriteID: 7767ce38fbe61004b8603d9cf877aee2
+      internalID: 395397484
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_SilkShoot_36
+      name: Megarachne_SilkShoot_4_4
       rect:
         serializedVersion: 2
-        x: 550
-        y: 537
-        width: 74
-        height: 80
+        x: 512
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 45364e57733d474f0800000000000000
-      internalID: -831807796002135212
+      spriteID: e2a9f691686c9c14cbbe77464e372a63
+      internalID: 697391576
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_SilkShoot_37
+      name: Megarachne_SilkShoot_4_5
       rect:
         serializedVersion: 2
-        x: 678
-        y: 537
-        width: 74
-        height: 80
+        x: 640
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 24f8dd94925067390800000000000000
-      internalID: -7821058027991232702
+      spriteID: 0a2a4b5983ec5ba468232266bda4aaef
+      internalID: -263534723
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_SilkShoot_38
+      name: Megarachne_SilkShoot_4_6
       rect:
         serializedVersion: 2
-        x: 806
-        y: 537
-        width: 74
-        height: 80
+        x: 768
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: cbbe6a7082568e840800000000000000
-      internalID: 5253560187929160636
+      spriteID: 99188bbf96534b9499cf61e75bc8d7c2
+      internalID: -534482348
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_SilkShoot_39
+      name: Megarachne_SilkShoot_4_7
       rect:
         serializedVersion: 2
-        x: 920
-        y: 537
-        width: 88
-        height: 80
+        x: 896
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d9060462df3d7f040800000000000000
-      internalID: 4681443421896859805
+      spriteID: 466012e4c82d99c4bb8838acf4233d3c
+      internalID: 1404652776
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_SilkShoot_40
+      name: Megarachne_SilkShoot_5_0
       rect:
         serializedVersion: 2
-        x: 25
-        y: 404
-        width: 94
-        height: 82
+        x: 0
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: bcd2feec925825850800000000000000
-      internalID: 6364295638039866827
+      spriteID: 79922f1a5699cb242b9840dda8cb8129
+      internalID: -1852673794
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_SilkShoot_41
+      name: Megarachne_SilkShoot_5_1
       rect:
         serializedVersion: 2
-        x: 155
-        y: 404
-        width: 92
-        height: 81
+        x: 128
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e5a37073ecdce2350800000000000000
-      internalID: 5993954439646886494
+      spriteID: 04edeef33b444f1448e39d9f25427b9f
+      internalID: -1316808731
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_SilkShoot_42
+      name: Megarachne_SilkShoot_5_2
       rect:
         serializedVersion: 2
-        x: 283
-        y: 404
-        width: 92
-        height: 81
+        x: 256
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a9a5924d9e9adf990800000000000000
-      internalID: -7350532195046827366
+      spriteID: 096dce539aed48b458eb558d65d786b8
+      internalID: -666976650
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_SilkShoot_43
+      name: Megarachne_SilkShoot_5_3
       rect:
         serializedVersion: 2
-        x: 411
-        y: 404
-        width: 91
-        height: 81
+        x: 384
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 094a7477fab656e00800000000000000
-      internalID: 1037353690543400080
+      spriteID: b9d06abec79dd7b4d8216c9ae8643189
+      internalID: -1744532532
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_SilkShoot_44
+      name: Megarachne_SilkShoot_5_4
       rect:
         serializedVersion: 2
-        x: 539
-        y: 404
-        width: 91
-        height: 81
+        x: 512
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b5ddb6ee10a9ea660800000000000000
-      internalID: 7399020570901994843
+      spriteID: 28e17853d35cdfc4da85e3c1582a895b
+      internalID: -1817996325
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_SilkShoot_45
+      name: Megarachne_SilkShoot_5_5
       rect:
         serializedVersion: 2
-        x: 667
-        y: 404
-        width: 91
-        height: 81
+        x: 640
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 81a877c9173b802d0800000000000000
-      internalID: -3312200225393243624
+      spriteID: 5ad3d72dc9aaeb54d8c9236fa343bafd
+      internalID: -536290946
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_SilkShoot_46
+      name: Megarachne_SilkShoot_5_6
       rect:
         serializedVersion: 2
-        x: 795
-        y: 404
-        width: 92
-        height: 82
+        x: 768
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 3bbc6cd66a3bd2190800000000000000
-      internalID: -7985529036870333517
+      spriteID: 437270d16d3508943ab223fcb36b8445
+      internalID: -863944722
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_SilkShoot_47
+      name: Megarachne_SilkShoot_5_7
       rect:
         serializedVersion: 2
-        x: 923
-        y: 404
-        width: 92
-        height: 82
+        x: 896
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 3b153d3d6d5f39ad0800000000000000
-      internalID: -2696541448839147085
+      spriteID: 080c42f7a9f4ce44981a24ef120921ec
+      internalID: -1906700354
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_SilkShoot_48
+      name: Megarachne_SilkShoot_6_0
       rect:
         serializedVersion: 2
-        x: 21
-        y: 276
-        width: 96
-        height: 80
+        x: 0
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 629d4baa2fa9ba3e0800000000000000
-      internalID: -2041367639045646042
+      spriteID: e9f2ae2db4d7cc745bc7eef366898a1a
+      internalID: -2128432822
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_SilkShoot_49
+      name: Megarachne_SilkShoot_6_1
       rect:
         serializedVersion: 2
-        x: 149
-        y: 276
-        width: 96
-        height: 85
+        x: 128
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 36b6a58a0b40a8c40800000000000000
-      internalID: 5515225850453846883
+      spriteID: 74bff3cba1e5a084f88c744d4f2e2df0
+      internalID: 2127245806
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_SilkShoot_50
+      name: Megarachne_SilkShoot_6_2
       rect:
         serializedVersion: 2
-        x: 277
-        y: 276
-        width: 96
-        height: 81
+        x: 256
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 9ebbcf8774d6d73e0800000000000000
-      internalID: -2054365701271143447
+      spriteID: 36db2137fcad44a43a0b72f606187bc4
+      internalID: 1925344623
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_SilkShoot_51
+      name: Megarachne_SilkShoot_6_3
       rect:
         serializedVersion: 2
-        x: 405
-        y: 278
-        width: 96
-        height: 78
+        x: 384
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 1e1c2a72a8abadcf0800000000000000
-      internalID: -226663728695557663
+      spriteID: 26fd6453abb79de458db386922f0b02f
+      internalID: 1514931619
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_SilkShoot_52
+      name: Megarachne_SilkShoot_6_4
       rect:
         serializedVersion: 2
-        x: 533
-        y: 277
-        width: 96
-        height: 79
+        x: 512
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7e9cd05a096732e80800000000000000
-      internalID: -8204583732522399257
+      spriteID: b91c962fce6c453439e4cb60d34e42aa
+      internalID: 1051966473
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_SilkShoot_53
+      name: Megarachne_SilkShoot_6_5
       rect:
         serializedVersion: 2
-        x: 661
-        y: 277
-        width: 96
-        height: 79
+        x: 640
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: cedc73a4640017e30800000000000000
-      internalID: 4499377804612718060
+      spriteID: 683f96a7703010349985736293e579a1
+      internalID: -1385309691
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_SilkShoot_54
+      name: Megarachne_SilkShoot_6_6
       rect:
         serializedVersion: 2
-        x: 789
-        y: 276
-        width: 96
-        height: 84
+        x: 768
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 737880c19e4fd9930800000000000000
-      internalID: 4151743713540343607
+      spriteID: 996e2be57de569a40b922c00addcb1ea
+      internalID: 1772018120
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_SilkShoot_55
+      name: Megarachne_SilkShoot_6_7
       rect:
         serializedVersion: 2
-        x: 917
-        y: 276
-        width: 96
-        height: 82
+        x: 896
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 183e18aa342376740800000000000000
-      internalID: 5145136365498917761
+      spriteID: ae98e8bece355f74cb93d28de25f2f60
+      internalID: -1450933588
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_SilkShoot_56
+      name: Megarachne_SilkShoot_7_0
       rect:
         serializedVersion: 2
-        x: 20
-        y: 147
-        width: 97
-        height: 81
+        x: 0
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e6fd68579e24ed1a0800000000000000
-      internalID: -6782910418306801810
+      spriteID: db455bdd26d35b244b68bf8f2f499b72
+      internalID: 553800189
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_SilkShoot_57
+      name: Megarachne_SilkShoot_7_1
       rect:
         serializedVersion: 2
-        x: 148
-        y: 147
-        width: 97
-        height: 91
+        x: 128
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f7ddd123fc9644bd0800000000000000
-      internalID: -2646874342367044225
+      spriteID: a8915981d3cab114e876705c9f4b5a95
+      internalID: 255826272
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_SilkShoot_58
+      name: Megarachne_SilkShoot_7_2
       rect:
         serializedVersion: 2
-        x: 276
-        y: 147
-        width: 97
-        height: 83
+        x: 256
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b9ef8e7bdc44e3f30800000000000000
-      internalID: 4557155523290005147
+      spriteID: 9e0d5a3fedb93d44d921a41e5ec1a082
+      internalID: 1149869583
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_SilkShoot_59
+      name: Megarachne_SilkShoot_7_3
       rect:
         serializedVersion: 2
-        x: 404
-        y: 149
-        width: 97
-        height: 74
+        x: 384
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 1c793e4238d273480800000000000000
-      internalID: -8919610495701116991
+      spriteID: 44e5eb5a325308b4fbb4ebe18744e132
+      internalID: -1877721796
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_SilkShoot_60
+      name: Megarachne_SilkShoot_7_4
       rect:
         serializedVersion: 2
-        x: 532
-        y: 148
-        width: 97
-        height: 75
+        x: 512
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: de215842fe0f21d90800000000000000
-      internalID: -7128370350273522963
+      spriteID: a71c30be8d05f5f4c9a208e7e9f1fbec
+      internalID: -471089416
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_SilkShoot_61
+      name: Megarachne_SilkShoot_7_5
       rect:
         serializedVersion: 2
-        x: 660
-        y: 148
-        width: 97
-        height: 75
+        x: 640
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 4ea6e70fdf04f9810800000000000000
-      internalID: 1774208237612985060
+      spriteID: 1aab0d0e6b9bacd4fa5ce21d65c4cc38
+      internalID: -1618442266
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_SilkShoot_62
+      name: Megarachne_SilkShoot_7_6
       rect:
         serializedVersion: 2
-        x: 788
-        y: 147
-        width: 97
-        height: 89
+        x: 768
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 3fa159e2544688bc0800000000000000
-      internalID: -3780661638880486669
+      spriteID: 7686db4f0e16122468706bbeaf0e1417
+      internalID: -308971073
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_SilkShoot_63
+      name: Megarachne_SilkShoot_7_7
       rect:
         serializedVersion: 2
-        x: 916
-        y: 147
-        width: 97
-        height: 89
+        x: 896
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 68bd08c9688b83d60800000000000000
-      internalID: 7870243237120760710
+      spriteID: b5db5c356a3397447900af6c3443f6a9
+      internalID: -1669748855
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_SilkShoot_64
+      name: Megarachne_SilkShoot_8_0
       rect:
         serializedVersion: 2
-        x: 17
-        y: 24
-        width: 94
-        height: 79
+        x: 0
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 766e24024313f0020800000000000000
-      internalID: 2310119233813669479
+      spriteID: e152258ca5a28bf4da5b3f3e13283003
+      internalID: -998150852
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_SilkShoot_65
+      name: Megarachne_SilkShoot_8_1
       rect:
         serializedVersion: 2
-        x: 145
-        y: 24
-        width: 94
-        height: 88
+        x: 128
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b2b77e2ca3e34c4f0800000000000000
-      internalID: -809453610920871125
+      spriteID: b61b48481dd174c43b2b457b35b0590c
+      internalID: -1817338046
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_SilkShoot_66
+      name: Megarachne_SilkShoot_8_2
       rect:
         serializedVersion: 2
-        x: 273
-        y: 24
-        width: 94
-        height: 79
+        x: 256
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a18591bac68a73b70800000000000000
-      internalID: 8878750375064721434
+      spriteID: 77de8174fea58b04b81b073735eafffb
+      internalID: 180513728
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_SilkShoot_67
+      name: Megarachne_SilkShoot_8_3
       rect:
         serializedVersion: 2
-        x: 401
-        y: 26
-        width: 94
-        height: 64
+        x: 384
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 18c0d55c4134e46b0800000000000000
-      internalID: -5310233154133619583
+      spriteID: f5e0e0047401fa045a84f1d43f8793ff
+      internalID: -1150874274
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_SilkShoot_68
+      name: Megarachne_SilkShoot_8_4
       rect:
         serializedVersion: 2
-        x: 529
-        y: 26
-        width: 94
-        height: 60
+        x: 512
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 34a073bda88c113e0800000000000000
-      internalID: -2084664653786969533
+      spriteID: 25ed2960685c1ce48b78e90d2855639b
+      internalID: 1991178934
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_SilkShoot_69
+      name: Megarachne_SilkShoot_8_5
       rect:
         serializedVersion: 2
-        x: 657
-        y: 26
-        width: 94
-        height: 64
+        x: 640
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: aa1d949bcdd8932e0800000000000000
-      internalID: -2145527768324386390
+      spriteID: c757e645c3ed2374f8f362a598594866
+      internalID: -862252742
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_SilkShoot_70
+      name: Megarachne_SilkShoot_8_6
       rect:
         serializedVersion: 2
-        x: 785
-        y: 24
-        width: 94
-        height: 85
+        x: 768
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6b33ad661eab87380800000000000000
-      internalID: -8973216780279729226
+      spriteID: 287d0ca7f4abf8247bff01767d0027d8
+      internalID: -1660266631
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_SilkShoot_71
+      name: Megarachne_SilkShoot_8_7
       rect:
         serializedVersion: 2
-        x: 913
-        y: 24
-        width: 94
-        height: 87
+        x: 896
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b1091e634919d1060800000000000000
-      internalID: 6925851867727630363
+      spriteID: 5d5e59388f96a274fba56c54f41f1cf1
+      internalID: 1482344685
       vertices: []
       indices: 
       edges: []
@@ -1925,78 +1925,78 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Megarachne_SilkShoot_0: 2327701193563549821
-      Megarachne_SilkShoot_1: -842513842006329525
-      Megarachne_SilkShoot_10: -2680306486894145332
-      Megarachne_SilkShoot_11: -2346366101819866871
-      Megarachne_SilkShoot_12: -8043043818055596712
-      Megarachne_SilkShoot_13: 2436875074282491069
-      Megarachne_SilkShoot_14: -4954849275238632844
-      Megarachne_SilkShoot_15: 6475245671838452386
-      Megarachne_SilkShoot_16: -8906475884642216948
-      Megarachne_SilkShoot_17: 5330082508436577084
-      Megarachne_SilkShoot_18: 3791462405590138925
-      Megarachne_SilkShoot_19: -1943539782461449001
-      Megarachne_SilkShoot_2: 5565873414189739371
-      Megarachne_SilkShoot_20: -2899769946615845230
-      Megarachne_SilkShoot_21: -290955896816070686
-      Megarachne_SilkShoot_22: -7682295277837722224
-      Megarachne_SilkShoot_23: 5689853674227872207
-      Megarachne_SilkShoot_24: -1666408555400076445
-      Megarachne_SilkShoot_25: 4009519444769579731
-      Megarachne_SilkShoot_26: -2602787743526779802
-      Megarachne_SilkShoot_27: -7018920587020664535
-      Megarachne_SilkShoot_28: -1761030259799642821
-      Megarachne_SilkShoot_29: -1723889327004451280
-      Megarachne_SilkShoot_3: 8117371712670420125
-      Megarachne_SilkShoot_30: -8673154352896170374
-      Megarachne_SilkShoot_31: 7274007850567565685
-      Megarachne_SilkShoot_32: -7018344449324165237
-      Megarachne_SilkShoot_33: -7288324118048466039
-      Megarachne_SilkShoot_34: 3685625498241556397
-      Megarachne_SilkShoot_35: 6175057506639775402
-      Megarachne_SilkShoot_36: -831807796002135212
-      Megarachne_SilkShoot_37: -7821058027991232702
-      Megarachne_SilkShoot_38: 5253560187929160636
-      Megarachne_SilkShoot_39: 4681443421896859805
-      Megarachne_SilkShoot_4: 7532342619321107091
-      Megarachne_SilkShoot_40: 6364295638039866827
-      Megarachne_SilkShoot_41: 5993954439646886494
-      Megarachne_SilkShoot_42: -7350532195046827366
-      Megarachne_SilkShoot_43: 1037353690543400080
-      Megarachne_SilkShoot_44: 7399020570901994843
-      Megarachne_SilkShoot_45: -3312200225393243624
-      Megarachne_SilkShoot_46: -7985529036870333517
-      Megarachne_SilkShoot_47: -2696541448839147085
-      Megarachne_SilkShoot_48: -2041367639045646042
-      Megarachne_SilkShoot_49: 5515225850453846883
-      Megarachne_SilkShoot_5: -1022979591748988440
-      Megarachne_SilkShoot_50: -2054365701271143447
-      Megarachne_SilkShoot_51: -226663728695557663
-      Megarachne_SilkShoot_52: -8204583732522399257
-      Megarachne_SilkShoot_53: 4499377804612718060
-      Megarachne_SilkShoot_54: 4151743713540343607
-      Megarachne_SilkShoot_55: 5145136365498917761
-      Megarachne_SilkShoot_56: -6782910418306801810
-      Megarachne_SilkShoot_57: -2646874342367044225
-      Megarachne_SilkShoot_58: 4557155523290005147
-      Megarachne_SilkShoot_59: -8919610495701116991
-      Megarachne_SilkShoot_6: -6785460183876586737
-      Megarachne_SilkShoot_60: -7128370350273522963
-      Megarachne_SilkShoot_61: 1774208237612985060
-      Megarachne_SilkShoot_62: -3780661638880486669
-      Megarachne_SilkShoot_63: 7870243237120760710
-      Megarachne_SilkShoot_64: 2310119233813669479
-      Megarachne_SilkShoot_65: -809453610920871125
-      Megarachne_SilkShoot_66: 8878750375064721434
-      Megarachne_SilkShoot_67: -5310233154133619583
-      Megarachne_SilkShoot_68: -2084664653786969533
-      Megarachne_SilkShoot_69: -2145527768324386390
-      Megarachne_SilkShoot_7: -7615731469656722197
-      Megarachne_SilkShoot_70: -8973216780279729226
-      Megarachne_SilkShoot_71: 6925851867727630363
-      Megarachne_SilkShoot_8: -6516597823443841633
-      Megarachne_SilkShoot_9: 3005443745842772554
+      Megarachne_SilkShoot_0_0: -1858601878
+      Megarachne_SilkShoot_0_1: -1638915265
+      Megarachne_SilkShoot_0_2: 14860942
+      Megarachne_SilkShoot_0_3: 1005086318
+      Megarachne_SilkShoot_0_4: -1730131021
+      Megarachne_SilkShoot_0_5: 1964141615
+      Megarachne_SilkShoot_0_6: 2078314153
+      Megarachne_SilkShoot_0_7: 1672686181
+      Megarachne_SilkShoot_1_0: -1824090402
+      Megarachne_SilkShoot_1_1: -1131692407
+      Megarachne_SilkShoot_1_2: -1053019894
+      Megarachne_SilkShoot_1_3: 132743024
+      Megarachne_SilkShoot_1_4: -12837696
+      Megarachne_SilkShoot_1_5: 459141086
+      Megarachne_SilkShoot_1_6: -1619075781
+      Megarachne_SilkShoot_1_7: 1001614272
+      Megarachne_SilkShoot_2_0: 1485946354
+      Megarachne_SilkShoot_2_1: -1163357464
+      Megarachne_SilkShoot_2_2: -1761419814
+      Megarachne_SilkShoot_2_3: 2115728254
+      Megarachne_SilkShoot_2_4: 574130526
+      Megarachne_SilkShoot_2_5: 1441787720
+      Megarachne_SilkShoot_2_6: -2034404480
+      Megarachne_SilkShoot_2_7: -123885749
+      Megarachne_SilkShoot_3_0: -1408625093
+      Megarachne_SilkShoot_3_1: 418142912
+      Megarachne_SilkShoot_3_2: -1226475053
+      Megarachne_SilkShoot_3_3: 1606862526
+      Megarachne_SilkShoot_3_4: 245214697
+      Megarachne_SilkShoot_3_5: -1109611052
+      Megarachne_SilkShoot_3_6: 365054916
+      Megarachne_SilkShoot_3_7: 1812590739
+      Megarachne_SilkShoot_4_0: 1099804295
+      Megarachne_SilkShoot_4_1: -61211220
+      Megarachne_SilkShoot_4_2: -1892590955
+      Megarachne_SilkShoot_4_3: 395397484
+      Megarachne_SilkShoot_4_4: 697391576
+      Megarachne_SilkShoot_4_5: -263534723
+      Megarachne_SilkShoot_4_6: -534482348
+      Megarachne_SilkShoot_4_7: 1404652776
+      Megarachne_SilkShoot_5_0: -1852673794
+      Megarachne_SilkShoot_5_1: -1316808731
+      Megarachne_SilkShoot_5_2: -666976650
+      Megarachne_SilkShoot_5_3: -1744532532
+      Megarachne_SilkShoot_5_4: -1817996325
+      Megarachne_SilkShoot_5_5: -536290946
+      Megarachne_SilkShoot_5_6: -863944722
+      Megarachne_SilkShoot_5_7: -1906700354
+      Megarachne_SilkShoot_6_0: -2128432822
+      Megarachne_SilkShoot_6_1: 2127245806
+      Megarachne_SilkShoot_6_2: 1925344623
+      Megarachne_SilkShoot_6_3: 1514931619
+      Megarachne_SilkShoot_6_4: 1051966473
+      Megarachne_SilkShoot_6_5: -1385309691
+      Megarachne_SilkShoot_6_6: 1772018120
+      Megarachne_SilkShoot_6_7: -1450933588
+      Megarachne_SilkShoot_7_0: 553800189
+      Megarachne_SilkShoot_7_1: 255826272
+      Megarachne_SilkShoot_7_2: 1149869583
+      Megarachne_SilkShoot_7_3: -1877721796
+      Megarachne_SilkShoot_7_4: -471089416
+      Megarachne_SilkShoot_7_5: -1618442266
+      Megarachne_SilkShoot_7_6: -308971073
+      Megarachne_SilkShoot_7_7: -1669748855
+      Megarachne_SilkShoot_8_0: -998150852
+      Megarachne_SilkShoot_8_1: -1817338046
+      Megarachne_SilkShoot_8_2: 180513728
+      Megarachne_SilkShoot_8_3: -1150874274
+      Megarachne_SilkShoot_8_4: 1991178934
+      Megarachne_SilkShoot_8_5: -862252742
+      Megarachne_SilkShoot_8_6: -1660266631
+      Megarachne_SilkShoot_8_7: 1482344685
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

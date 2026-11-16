@@ -277,6 +277,84 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6125630f3765e1446a1b09fe2bc805e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Primordia::Primordia.Enemies.MegarachneBoss
+  attackEffects:
+  - name: Proj_MegarachneSilk
+    frames:
+    - {fileID: -6936003906733470636, guid: 69c09d3da59117f4dbce0ede96e2b66d, type: 3}
+    - {fileID: 611748519, guid: 69c09d3da59117f4dbce0ede96e2b66d, type: 3}
+    - {fileID: 753610713, guid: 69c09d3da59117f4dbce0ede96e2b66d, type: 3}
+    - {fileID: 1056489199, guid: 69c09d3da59117f4dbce0ede96e2b66d, type: 3}
+  - name: Fx_MegarachneSilk_Muzzle
+    frames:
+    - {fileID: 4573752542651355859, guid: ba4506dd47e7e3a41afe007b937b3c36, type: 3}
+    - {fileID: 6131520939937451698, guid: ba4506dd47e7e3a41afe007b937b3c36, type: 3}
+    - {fileID: -7424074623093751813, guid: ba4506dd47e7e3a41afe007b937b3c36, type: 3}
+    - {fileID: -341317368846216742, guid: ba4506dd47e7e3a41afe007b937b3c36, type: 3}
+  - name: Fx_MegarachneWeb_Appear
+    frames:
+    - {fileID: 8658957113569831234, guid: 9ff3d912d4eb21f40b7fcb03ed645908, type: 3}
+    - {fileID: -790545567456460830, guid: 9ff3d912d4eb21f40b7fcb03ed645908, type: 3}
+    - {fileID: 6599415073755009050, guid: 9ff3d912d4eb21f40b7fcb03ed645908, type: 3}
+  - name: Fx_MegarachneWeb_Idle
+    frames:
+    - {fileID: 6858384221820304892, guid: 6e33676a5fbb6ce4a9bbf781f872dcbc, type: 3}
+  - name: Fx_MegarachneWeb_Burn
+    frames:
+    - {fileID: 4433881662289248399, guid: 8a64c5b5059372047aa2bbfca105d355, type: 3}
+    - {fileID: -5183008182115525319, guid: 8a64c5b5059372047aa2bbfca105d355, type: 3}
+    - {fileID: -8907886119311294108, guid: 8a64c5b5059372047aa2bbfca105d355, type: 3}
+    - {fileID: -6191471248587334418, guid: 8a64c5b5059372047aa2bbfca105d355, type: 3}
+    - {fileID: -7589196109315814875, guid: 8a64c5b5059372047aa2bbfca105d355, type: 3}
+    - {fileID: -5721719279181722, guid: 8a64c5b5059372047aa2bbfca105d355, type: 3}
+  - name: Fx_MegarachneNet_Shadow
+    frames:
+    - {fileID: -2262958842966636220, guid: d4cdba01622409a4dafb9b045d87e572, type: 3}
+    - {fileID: 8494118955380480651, guid: d4cdba01622409a4dafb9b045d87e572, type: 3}
+    - {fileID: 3268607294173523273, guid: d4cdba01622409a4dafb9b045d87e572, type: 3}
+    - {fileID: 6885261987705430948, guid: d4cdba01622409a4dafb9b045d87e572, type: 3}
+    - {fileID: -2150362493384630114, guid: d4cdba01622409a4dafb9b045d87e572, type: 3}
+    - {fileID: 374394216288039210, guid: d4cdba01622409a4dafb9b045d87e572, type: 3}
+  - name: Fx_MegarachneNet_Fall
+    frames:
+    - {fileID: -2973350167770498326, guid: cb965e5be44c75442b71839e1f3a2369, type: 3}
+    - {fileID: -9223001433461540318, guid: cb965e5be44c75442b71839e1f3a2369, type: 3}
+    - {fileID: -2435696434543449717, guid: cb965e5be44c75442b71839e1f3a2369, type: 3}
+    - {fileID: 2454568540852710275, guid: cb965e5be44c75442b71839e1f3a2369, type: 3}
+    - {fileID: -1020573080053911163, guid: cb965e5be44c75442b71839e1f3a2369, type: 3}
+  - name: Fx_MegarachneNet_Idle
+    frames:
+    - {fileID: 5456635789951128720, guid: d6c556db9e57c894a87f523926b1008c, type: 3}
+  - name: Fx_MegarachneNet_Trapped
+    frames:
+    - {fileID: 9096462362923923246, guid: 367706402e889524cbfcd67108b2da1f, type: 3}
+    - {fileID: 497153788885594971, guid: 367706402e889524cbfcd67108b2da1f, type: 3}
+    - {fileID: 6142580793196357627, guid: 367706402e889524cbfcd67108b2da1f, type: 3}
+    - {fileID: -1563855720592228886, guid: 367706402e889524cbfcd67108b2da1f, type: 3}
+  - name: Fx_MegarachneNet_Break
+    frames:
+    - {fileID: -8684048643826306015, guid: 0a43d9cc561948e48b57564a85f810e4, type: 3}
+    - {fileID: -4579833944155031157, guid: 0a43d9cc561948e48b57564a85f810e4, type: 3}
+    - {fileID: -8194209570672816192, guid: 0a43d9cc561948e48b57564a85f810e4, type: 3}
+    - {fileID: 506099517868867617, guid: 0a43d9cc561948e48b57564a85f810e4, type: 3}
+    - {fileID: 1172682809488912195, guid: 0a43d9cc561948e48b57564a85f810e4, type: 3}
+  - name: Fx_MegarachneDrop_Track
+    frames:
+    - {fileID: 1619167407257822110, guid: 2f00233b52dd03746b0c71cde76c807e, type: 3}
+    - {fileID: -4590268040869002138, guid: 2f00233b52dd03746b0c71cde76c807e, type: 3}
+    - {fileID: 1257990963037324416, guid: 2f00233b52dd03746b0c71cde76c807e, type: 3}
+    - {fileID: 4874522739621240552, guid: 2f00233b52dd03746b0c71cde76c807e, type: 3}
+  - name: Fx_MegarachneDrop_Locked
+    frames:
+    - {fileID: 8401848925197781085, guid: 7f5341387fd450342a8a8f799442865b, type: 3}
+    - {fileID: 1918500575032976226, guid: 7f5341387fd450342a8a8f799442865b, type: 3}
+  - name: Fx_MegarachneDust
+    frames:
+    - {fileID: -1546126835898851043, guid: 8faf6fc80df969f448d5279068564a8f, type: 3}
+    - {fileID: 4458357432351074461, guid: 8faf6fc80df969f448d5279068564a8f, type: 3}
+    - {fileID: -690036679763971073, guid: 8faf6fc80df969f448d5279068564a8f, type: 3}
+    - {fileID: -2996624183990900878, guid: 8faf6fc80df969f448d5279068564a8f, type: 3}
+    - {fileID: 3576642091368216952, guid: 8faf6fc80df969f448d5279068564a8f, type: 3}
+    - {fileID: -3319517467914802749, guid: 8faf6fc80df969f448d5279068564a8f, type: 3}
   tree: {fileID: 1496858180, guid: 828d108f23c9caa4b8899cb50b634978, type: 3}
   trunkSprite: {fileID: 1126799676, guid: 828d108f23c9caa4b8899cb50b634978, type: 3}
   web: {fileID: 8684780150092339144, guid: 502933d2c9633fd42897d0d247119532, type: 3}

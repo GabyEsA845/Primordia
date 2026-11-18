@@ -243,7 +243,7 @@ namespace Primordia.Enemies
             int row = DirectionalArt.RowFor(Mathf.Atan2(facing.y, facing.x) * Mathf.Rad2Deg, out bool flip);
             float yaw = (90f - row * directionStep) * Mathf.Deg2Rad;
             Vector2 offset = new Vector2(Mathf.Round(x * Mathf.Cos(yaw)) * (flip ? -1f : 1f),
-                Mathf.Round(x * Mathf.Sin(yaw) * Mathf.Sin(elevation * Mathf.Deg2Rad) + z * Mathf.Cos(elevation * Mathf.Deg2Rad))) / PixelsPerUnit;
+                Mathf.Round(x * Mathf.Sin(yaw) * Mathf.Sin(elevation * Mathf.Deg2Rad) + z * Mathf.Cos(elevation * Mathf.Deg2Rad))) / PixelsPerUnit * BodyScale;
             return body.position + Vector2.up * VisualHeight + offset;
         }
 

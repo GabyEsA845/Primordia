@@ -13,7 +13,9 @@ namespace Primordia.Enemies
         public const float CableSpeed = 7f;
         // PROVISIONALES: tiempos visuales de subida y caida.
         const float ClimbSeconds = 0.4f, DropSeconds = 0.48f;
-        const float SpinneretOffset = 1.5f;
+        // Tamaño visual del minijefe respecto al arte aprobado (6 u): más pequeño, para que camine sobre el cable.
+        public const float BodyScale = 0.75f;
+        const float SpinneretOffset = 1.5f * BodyScale;
         const float IdleMs = 180f, WalkMs = 80f, ClimbMs = 100f, DropMs = 120f;
         const float ShadowAlpha = 120f / 255f, DebugHealthFraction = 0.51f;
         const float HitRadius = 1f, ContactMargin = 0.02f;
@@ -59,6 +61,8 @@ namespace Primordia.Enemies
             hit = GetComponent<CircleCollider2D>();
             hit.radius = HitRadius;
             GetComponent<Enemy>().DropsBiomass = false;
+            if (bodyRenderer != null) bodyRenderer.transform.localScale = Vector3.one * BodyScale;
+            if (shadowRenderer != null) shadowRenderer.transform.localScale = Vector3.one * BodyScale;
         }
 
         void OnEnable()

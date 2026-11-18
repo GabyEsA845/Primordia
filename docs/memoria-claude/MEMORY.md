@@ -67,3 +67,4 @@
 - [Jefe Anomalocaris](primordia-boss-anomalocaris.md) — BossBarSkin/IPhasedBoss
 - [Jefe Euriptérido](primordia-boss-eurypterid.md) — derrumbe, bullet hell
 - [Audio del piso 2](primordia-floor2-audio.md) — Sfx.Stop
+- **[Cables v2 de la Megarachne](primordia-megarachne-cable-art-pending.md) — 2026-11-18: arte HECHO (estilo B: haz de hebras + abanicos `Nido_CableRoot`); falta importar y programar (material 0.25, cuadros en vertical, orden 22)**

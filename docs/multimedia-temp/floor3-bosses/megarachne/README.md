@@ -76,11 +76,42 @@ Los cables nacen en las puntas de las ramas: `anchor(nombre)` en el generador (N
 | Nido_Tree_Charred_Smolder | 4 | Copa carbonizada que humea (bucle) |
 | Nido_WebDecay | 6 | Capa: la seda se descuelga y desaparece (muerte) |
 
+## Cables v2 y arranques (`generar_cables_megarachne.py piezas` → `Effects/Cable_*`, `Nido/Nido_CableRoot`) · 6l, 2026-11-18
+
+Sustituyen a los tramos de la 6j (la cinta con rombos parecía una pasarela y se estiraba ×2 a lo ancho). Estilo **B**
+elegido por la usuaria: **haz de hebras de seda** casi paralelas que se cruzan poco, con pelusas y gotas de rocío; y un
+**abanico de seda** en cada arranque que tapa el corte del cable en la copa.
+
+| Hoja | Cuadros | Celda | Uso |
+|---|---|---|---|
+| `Effects/Cable_Normal` | 1 | 64×29 | Tramo del cable (1,8 u = 29 px de ancho, sin estirar) |
+| `Effects/Cable_Thin` | 3 | 64×4 | Hilo fino al tejer (brillo que recorre el hilo) |
+| `Effects/Cable_Grow` | 6 | 64×29 | Hilo fino → haz: las hebras salen de una en una |
+| `Effects/Cable_Burning` | 3 | 64×29 | Al rojo bajo las llamas (bucle) |
+| `Effects/Cable_Charred` | 3 | 64×29 | Negro y fino con ascuas que laten (bucle) |
+| `Nido/Nido_CableRoot` | 5 | 256×224 | Arranque en abanico de cada cable: NO, N, NE, SO, SE (el orden de `SetArena`) |
+
+- **Los tramos van en VERTICAL** (un cuadro debajo de otro): un LineRenderer en mosaico repite la textura entera, así
+  que el cuadro se elige con el material: `mainTextureScale = (16/64 = 0.25, 1/cuadros)` y
+  `mainTextureOffset.y = (cuadros - 1 - i) / cuadros` (Unity cuenta la V desde abajo). `wrapMode` Repeat, Point.
+  Con 0,25 la textura da una vuelta cada 4 u y cada píxel de la textura es un píxel de pantalla.
+- **Ancho del cable**: sigue en 1,8 u; la curva de ancho ya **no se afina en la rama** (el abanico tapa la unión):
+  1 → 1 (0,9) → 0,7 en el tocón.
+- **`Nido_CableRoot`**: celda 256×224 con **pivote = pie del tronco, (128, 188)** desde arriba = **(0,5, 36/224)**; se
+  pone en el mismo sitio que el árbol, **orden 22** (encima de la copa 20 y la telaraña 21), uno por cable, para
+  **ocultar el de un cable que arde** (queda el `Cable_Stub`) y volver a mostrarlo cuando lo teje de nuevo. Con la
+  copa translúcida y en `Nido_WebDecay` se desvanece igual que la telaraña. Los abanicos están dibujados para la
+  dirección de cada cable hacia su Sigillaria (posiciones `outer` de `SetArena`): si se mueven las Sigillarias, se
+  regenera.
+- El hilo colgante (`HiloColgante`, 0,08 u) no debe usar el material del cable grueso (saldría a trozos): mejor uno
+  con `Cable_Thin`.
+- Vistas: `vista_previa_6l_propuestas.png` (A, B, C), `vista_previa_6l_escena.png` (la sala de prueba simulada:
+  actual, A, B, C) y `vista_previa_6l_piezas.png`; GIF `gif/Cable_Grow|Burning|Charred.gif`.
+
 ## Efectos (`generar_efectos_megarachne.py [cables rafaga resto]` → `Effects/`)
 
-- **Cable** (LineRenderer con textura en mosaico y varios puntos para la caída): `Cable_Normal` 32×14 (se repite cada
-  32 px), `Cable_Thin` 32×4 (3), `Cable_Grow` 32×14 (6: hilo fino → cable), `Cable_Burning` (3, bajo las llamas),
-  `Cable_Charred` (3, negro y fino). Encima y **sin girar con el cable**: `Fx_CableFlame` 16×24 (6, una cada ~16 px
+- **Cable**: los tramos `Cable_*` de este generador quedan **sustituidos por los de la 6l** (arriba; no ejecutar
+  `generar_efectos_megarachne.py cables` o los machacaría). Encima y **sin girar con el cable**: `Fx_CableFlame` 16×24 (6, una cada ~16 px
   del tramo que arde), `Fx_CableFront` 24×24 (4, en cada frente), `Fx_CableAsh` 16×32 (6), `Cable_Stub` 16×40 (4, el
   ancla arriba en el centro), `Fx_CableSmoke` 24×40 (6, junto al Nido empapado).
 - **Ráfaga**: `Proj_MegarachneSilk` 10×10 (4), `Fx_MegarachneSilk_Muzzle` 24×24 (4, en las hileras),

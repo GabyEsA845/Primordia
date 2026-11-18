@@ -6,7 +6,12 @@ namespace Primordia.Enemies
     {
         // Provisionales: bases solidas y punto de amarre del subpaso M1.
         const float TrunkWidth = 2f, TrunkHeight = 1.2f, StumpWidth = 1f, StumpHeight = 0.8f;
-        const float AnchorFraction = 0.8f, StumpLift = 1.5f;
+        const float AnchorFraction = 0.8f, StumpLift = 1.5f, CableWidth = 1.8f;
+        // Cuánto queda el pivote del cuerpo por debajo de la línea central del cable (0 = patas repartidas a ambos lados).
+        // SpinneretOffset solo sirve ahora para el hilo colgante.
+        const float CableSeat = 0f;
+        // Los cables van DETRÁS de la copa (orden 20) para que las hojas tapen la unión.
+        const int CableOrder = 19, ThreadOrder = 22;
         float[] cableHeights;
         [SerializeField] Sprite tree, trunkSprite, web, stump;
         [SerializeField] Material cableMaterial;
@@ -65,14 +70,15 @@ namespace Primordia.Enemies
                 stumpHit.offset = new Vector2(0f, bounds.min.y - anchor.transform.position.y + StumpHeight * 0.5f);
                 // El pie de subida queda delante de la base solida, a un radio del jefe.
                 cableHeights[i] = ends[i].y - (bounds.min.y - HitRadius - ContactMargin * 2f);
-                var line = MakeLine("Cable_" + i, 1f);
+                var line = MakeLine("Cable_" + i, CableWidth, CableOrder, true);
                 line.SetPosition(0, starts[i]);
                 line.SetPosition(1, ends[i]);
             }
-            thread = MakeLine("HiloColgante", 0.08f);
+            thread = MakeLine("HiloColgante", 0.08f, ThreadOrder, false);
             thread.enabled = false;
             // Vive en los cables: empieza sobre el más cercano al jugador (el centro lo ocupa el tronco).
-            PlaceOnCable();
+            // Si la sala aún está desactivada (FloorBuilder), Awake no ha corrido: OnEnable lo colocará al entrar el jugador.
+            if (isActiveAndEnabled) PlaceOnCable();
         }
 
         SpriteRenderer MakeSprite(string objectName, Sprite sprite, Vector2 position, int order)
@@ -86,7 +92,7 @@ namespace Primordia.Enemies
             return renderer;
         }
 
-        LineRenderer MakeLine(string objectName, float width)
+        LineRenderer MakeLine(string objectName, float width, int order, bool taper)
         {
             var go = new GameObject(objectName);
             go.transform.SetParent(scenery.transform, false);
@@ -96,7 +102,14 @@ namespace Primordia.Enemies
             line.positionCount = 2;
             line.startWidth = line.endWidth = width;
             line.textureMode = LineTextureMode.Tile;
-            line.sortingOrder = 22;
+            line.sortingOrder = order;
+            // Punta fina donde nace en la rama (índice 0) y un poco fina en el tocón: parece una rama que engorda.
+            if (taper)
+            {
+                line.widthMultiplier = width;
+                line.widthCurve = new AnimationCurve(new Keyframe(0f, 0.45f), new Keyframe(0.12f, 1f),
+                    new Keyframe(0.9f, 1f), new Keyframe(1f, 0.7f));
+            }
             return line;
         }
 
@@ -125,7 +138,7 @@ namespace Primordia.Enemies
             Vector2 point = starts[cableIndex] - Vector2.up * cableHeights[cableIndex];
             body.position = point;
             transform.position = point;
-            SetHeight(cableHeights[cableIndex] - SpinneretOffset);
+            SetHeight(cableHeights[cableIndex] - CableSeat);
             CurrentMode = Mode.OnCable;
             Health.IsInvulnerable = true;
             hit.isTrigger = true;
@@ -166,7 +179,7 @@ namespace Primordia.Enemies
                 case Travel.Climb:
                     float progress = Mathf.Clamp01(travelTime / ClimbSeconds);
                     body.MovePosition(Vector2.Lerp(climbFrom, routeStart - Vector2.up * cableHeights[cableIndex], progress));
-                    SetHeight(Mathf.Lerp(0f, cableHeights[cableIndex] - SpinneretOffset, progress));
+                    SetHeight(Mathf.Lerp(0f, cableHeights[cableIndex] - CableSeat, progress));
                     Play("Climb", ClimbMs);
                     DrawThread(routeStart);
                     if (progress >= 1f) { travel = Travel.Run; outward = false; thread.enabled = false; }
@@ -198,7 +211,7 @@ namespace Primordia.Enemies
                     float t = length > 0f ? Mathf.Clamp01(travelTime * CableSpeed / length) : 1f;
                     facing = (routeEnd - routeStart).normalized;
                     body.MovePosition(Vector2.Lerp(routeStart, routeEnd, t));
-                    SetHeight(Mathf.Lerp(crossHeight, cableHeights[cableIndex] - SpinneretOffset, t));
+                    SetHeight(Mathf.Lerp(crossHeight, cableHeights[cableIndex] - CableSeat, t));
                     Play("Walk", WalkMs);
                     if (t >= 1f) travel = Travel.Run;
                     break;

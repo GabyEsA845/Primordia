@@ -290,6 +290,76 @@ namespace Primordia.Tests
             }
         }
 
+        SpriteRenderer[] CableRoots() => boss.Canopy.GetComponentsInChildren<SpriteRenderer>()
+            .Where(renderer => renderer.name.StartsWith("Nido_CableRoot_"))
+            .OrderBy(renderer => renderer.name).ToArray();
+
+        [Test]
+        public void CincoArranquesConSpriteSobreLaTelarana()
+        {
+            var roots = CableRoots();
+            Assert.AreEqual(5, roots.Length);
+            for (int i = 0; i < roots.Length; i++)
+            {
+                Assert.AreEqual("Nido_CableRoot_" + i, roots[i].name);
+                Assert.IsNotNull(roots[i].sprite);
+                Assert.AreEqual(roots[i].name, roots[i].sprite.name);
+                Assert.AreEqual(22, roots[i].sortingOrder);
+            }
+        }
+
+        [Test]
+        public void MaterialDelCableRepiteCadaCuatroUnidades()
+        {
+            var cable = boss.Canopy.transform.Find("Cable_0").GetComponent<LineRenderer>();
+            Assert.AreEqual(new Vector2(0.25f, 1f), cable.sharedMaterial.mainTextureScale);
+        }
+
+        [Test]
+        public void HiloUsaMaterialFinoPropio()
+        {
+            var cable = boss.Canopy.transform.Find("Cable_0").GetComponent<LineRenderer>();
+            var thread = boss.Canopy.transform.Find("HiloColgante").GetComponent<LineRenderer>();
+            Assert.AreNotSame(cable.sharedMaterial, thread.sharedMaterial);
+            Assert.AreEqual("Cable_Thin", thread.sharedMaterial.mainTexture.name);
+            Assert.AreEqual(23, thread.sortingOrder);
+        }
+
+        [Test]
+        public void ArranquesSiguenElAlfaDeLaCopa()
+        {
+            actor = new GameObject("EnemigoBajoCopa");
+            actor.AddComponent<Enemy>();
+            actor.AddComponent<CircleCollider2D>();
+            actor.transform.position = (Vector2)room.transform.position + Vector2.up * 4f;
+            Physics2D.SyncTransforms();
+
+            var roots = CableRoots();
+            Assert.AreEqual(5, roots.Length);
+            boss.Canopy.Refresh();
+            Assert.AreEqual(MegarachneBossCanopy.CoveredAlpha, boss.Canopy.Alpha);
+            foreach (var root in roots) Assert.AreEqual(boss.Canopy.Alpha, root.color.a);
+
+            actor.SetActive(false);
+            Physics2D.SyncTransforms();
+            boss.Canopy.Refresh();
+            Assert.AreEqual(1f, boss.Canopy.Alpha);
+            foreach (var root in roots) Assert.AreEqual(boss.Canopy.Alpha, root.color.a);
+        }
+
+        [Test]
+        public void OcultarArranqueSoloApagaElCableElegido()
+        {
+            var roots = CableRoots();
+            Assert.AreEqual(5, roots.Length);
+            boss.SetCableRootVisible(2, false);
+            for (int i = 0; i < roots.Length; i++)
+                Assert.AreEqual(i != 2, roots[i].enabled);
+
+            boss.SetCableRootVisible(2, true);
+            Assert.IsTrue(roots[2].enabled);
+        }
+
         [Test]
         public void CopaDetectaEnemigoYRestauraOpacidad()
         {

@@ -8,9 +8,15 @@ namespace Primordia.Enemies
     {
         public const float CoveredAlpha = 0.45f;
         SpriteRenderer crown, nest;
+        SpriteRenderer[] cableRoots;
         readonly Collider2D[] occupants = new Collider2D[128];
         public float Alpha => crown != null ? crown.color.a : 1f;
-        internal void Configure(SpriteRenderer tree, SpriteRenderer web) { crown = tree; nest = web; }
+        internal void Configure(SpriteRenderer tree, SpriteRenderer web, SpriteRenderer[] roots)
+        {
+            crown = tree;
+            nest = web;
+            cableRoots = roots;
+        }
         void LateUpdate() => Refresh();
         public void Refresh()
         {
@@ -29,8 +35,11 @@ namespace Primordia.Enemies
                 if (delta.x * delta.x / 16f + delta.y * delta.y / (2.75f * 2.75f) <= 1f)
                 { covered = true; break; }
             }
-            SetAlpha(crown, covered ? CoveredAlpha : 1f);
-            SetAlpha(nest, covered ? CoveredAlpha : 1f);
+            float alpha = covered ? CoveredAlpha : 1f;
+            SetAlpha(crown, alpha);
+            SetAlpha(nest, alpha);
+            if (cableRoots != null)
+                foreach (var root in cableRoots) SetAlpha(root, alpha);
         }
         static void SetAlpha(SpriteRenderer renderer, float alpha)
         {

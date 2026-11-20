@@ -26,32 +26,15 @@ namespace Primordia.Editor
                 files.Add("Sheets/Megarachne_" + animation + ".png");
                 files.Add("Shadows/Megarachne_Shadow_" + animation + ".png");
             }
-            files.AddRange(new[] { "Nido/Nido_Tree_Wet.png", "Nido/Nido_Web.png", "Nido/Nido_Eyes.png",
-                "Effects/Cable_Normal.png", "Effects/Cable_Thin.png" });
-            // Se valida todo antes de importar; nunca se genera ni se sustituye arte.
-            foreach (string file in files)
-                if (!File.Exists(MegarachneSource + "/" + file)) throw new FileNotFoundException("Falta el arte aprobado: " + file);
-            foreach (string file in files)
-            {
-                string source = MegarachneSource + "/" + file, destination = MegarachneFolder + "/" + file;
-                Directory.CreateDirectory(Path.GetDirectoryName(destination));
-                if (!File.Exists(destination) || !File.ReadAllBytes(source).SequenceEqual(File.ReadAllBytes(destination)))
-                    File.Copy(source, destination, true);
-                AssetDatabase.ImportAsset(destination);
-            }
+            files.AddRange(new[] { "Nido/Nido_Tree_Wet.png", "Nido/Nido_Web.png", "Nido/Nido_Eyes.png" });
+            CopyMegarachneFiles(files.Concat(MegarachneCableFiles));
             var sheets = new List<DirectionalArt.Sheet>();
             foreach (string file in files.Where(f => f.StartsWith("Sheets/") || f.StartsWith("Shadows/")))
                 sheets.Add(SliceDirectional(MegarachneFolder + "/" + file));
             foreach (string file in files.Where(f => f.StartsWith("Nido/")))
                 if (!file.EndsWith("Nido_Tree_Wet.png") || !AssetDatabase.LoadAllAssetsAtPath(MegarachneFolder + "/" + file).OfType<Sprite>().Any(s => s.name == "Nido_Tree_Wet_Copa"))
                     SliceFloor3Sheet(MegarachneFolder + "/" + file, 160, new Vector2(0.5f, 12f / 176f));
-            foreach (string file in files.Where(f => f.StartsWith("Effects/")))
-            {
-                SliceFloor3Sheet(MegarachneFolder + "/" + file, 32, new Vector2(0.5f, 0.5f));
-                var importer = (TextureImporter)AssetImporter.GetAtPath(MegarachneFolder + "/" + file);
-                importer.wrapMode = TextureWrapMode.Repeat;
-                importer.SaveAndReimport();
-            }
+            ImportMegarachneCables(copyFiles: false);
             SliceMegarachneTree();
             Directory.CreateDirectory(Path.GetDirectoryName(MegarachneArtPath));
             var art = AssetDatabase.LoadAssetAtPath<DirectionalArt>(MegarachneArtPath);
@@ -63,9 +46,50 @@ namespace Primordia.Editor
             art.SetSheets(sheets.ToArray());
             EditorUtility.SetDirty(art);
             AssetDatabase.SaveAssets();
-            Debug.Log("Megarachne: 24 hojas de cuerpo/sombra y 5 hojas del Nido/cables importadas.");
+            Debug.Log("Megarachne: 24 hojas de cuerpo/sombra y 9 archivos del Nido/cables importados.");
             return art;
         }
+        static string[] MegarachneCableFiles => new[]
+        {
+            "Nido/Nido_CableRoot.png", "Effects/Cable_Normal.png", "Effects/Cable_Thin.png",
+            "Effects/Cable_Grow.png", "Effects/Cable_Burning.png", "Effects/Cable_Charred.png"
+        };
+
+        internal static Sprite[] ImportMegarachneCables(bool copyFiles = true)
+        {
+            var files = MegarachneCableFiles;
+            if (copyFiles) CopyMegarachneFiles(files);
+            foreach (string file in files.Skip(1))
+            {
+                var importer = (TextureImporter)AssetImporter.GetAtPath(MegarachneFolder + "/" + file);
+                importer.textureType = TextureImporterType.Default;
+                importer.spriteImportMode = SpriteImportMode.None;
+                importer.npotScale = TextureImporterNPOTScale.None;
+                importer.wrapMode = TextureWrapMode.Repeat;
+                importer.filterMode = FilterMode.Point;
+                importer.textureCompression = TextureImporterCompression.Uncompressed;
+                importer.mipmapEnabled = false;
+                importer.alphaIsTransparency = true;
+                importer.SaveAndReimport();
+            }
+            return SliceFloor3Sheet(MegarachneFolder + "/" + files[0], 256, new Vector2(0.5f, 36f / 224f));
+        }
+
+        static void CopyMegarachneFiles(IEnumerable<string> files)
+        {
+            // Se valida todo antes de importar; nunca se genera ni se sustituye arte.
+            foreach (string file in files)
+                if (!File.Exists(MegarachneSource + "/" + file)) throw new FileNotFoundException("Falta el arte aprobado: " + file);
+            foreach (string file in files)
+            {
+                string source = MegarachneSource + "/" + file, destination = MegarachneFolder + "/" + file;
+                Directory.CreateDirectory(Path.GetDirectoryName(destination));
+                if (!File.Exists(destination) || !File.ReadAllBytes(source).SequenceEqual(File.ReadAllBytes(destination)))
+                    File.Copy(source, destination, true);
+                AssetDatabase.ImportAsset(destination);
+            }
+        }
+
         internal static MegarachneBoss.EffectSheet[] ImportMegarachneAttacks()
         {
             var specs = new (string name, int width, Vector2 pivot)[]

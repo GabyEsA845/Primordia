@@ -21,6 +21,9 @@ namespace Primordia.Editor
         internal const string TestScenePath = "Assets/_Primordia/Scenes/Test_BossMegarachne.unity";
         const string MaterialPath = "Assets/_Primordia/Data/Bosses/MegarachneCable.mat";
 
+        const string ThinMaterialPath = "Assets/_Primordia/Data/Bosses/MegarachneCableThin.mat";
+        const string CableRootPath = ArtSetup.MegarachneFolder + "/Nido/Nido_CableRoot.png";
+
         [MenuItem("Primordia/Boss/Crear sala Megarachne")]
         public static void CreateAll()
         {
@@ -58,6 +61,46 @@ namespace Primordia.Editor
             Debug.Log("Megarachne M2: ataques y efectos actualizados; Ctrl+Mayus+F4 salto, F5 rafaga, F6 red.");
         }
 
+        [MenuItem("Primordia/Boss/Actualizar cables Megarachne (v2)")]
+        public static void UpdateCables()
+        {
+            var roots = ArtSetup.ImportMegarachneCables();
+            if (roots.Length != 5) throw new InvalidOperationException("Se esperaban cinco arranques de cable.");
+            var (material, thinMaterial) = PrepareCableMaterials();
+            var root = PrefabUtility.LoadPrefabContents(PrefabPath);
+            try
+            {
+                root.GetComponent<MegarachneBoss>().ConfigureCableArt(roots, material, thinMaterial);
+                PrefabUtility.SaveAsPrefabAsset(root, PrefabPath, out bool saved);
+                if (!saved) throw new InvalidOperationException("No se pudo guardar el prefab de Megarachne.");
+            }
+            finally { PrefabUtility.UnloadPrefabContents(root); }
+            AssetDatabase.SaveAssets();
+            Debug.Log("Megarachne: cables v2 importados y prefab actualizado.");
+        }
+
+        static (Material cable, Material thread) PrepareCableMaterials() =>
+            (PrepareCableMaterial(MaterialPath, "Cable_Normal", 1),
+             PrepareCableMaterial(ThinMaterialPath, "Cable_Thin", 3));
+
+        static Material PrepareCableMaterial(string path, string textureName, int frames)
+        {
+            // El shader aplica la escala y el desplazamiento de la textura a las UV de la línea.
+            var shader = Shader.Find("Unlit/Transparent");
+            var material = AssetDatabase.LoadAssetAtPath<Material>(path);
+            if (material == null)
+            {
+                material = new Material(shader);
+                AssetDatabase.CreateAsset(material, path);
+            }
+            material.shader = shader;
+            material.mainTexture = AssetDatabase.LoadAssetAtPath<Texture2D>(ArtSetup.MegarachneFolder + "/Effects/" + textureName + ".png");
+            material.mainTextureScale = new Vector2(0.25f, 1f / frames);
+            material.mainTextureOffset = Vector2.zero;
+            EditorUtility.SetDirty(material);
+            return material;
+        }
+
         static Enemy CreatePrefab(DirectionalArt art)
         {
             var data = LoadOrCreate<EnemyData>(DataPath);
@@ -65,15 +108,9 @@ namespace Primordia.Editor
             data.ConfigureSwimming(false);
             data.ConfigureBiomass(0f, 0f, 0);
             EditorUtility.SetDirty(data);
-            var material = AssetDatabase.LoadAssetAtPath<Material>(MaterialPath);
-            if (material == null)
-            {
-                material = new Material(Shader.Find("Sprites/Default"));
-                AssetDatabase.CreateAsset(material, MaterialPath);
-            }
-            material.mainTexture = AssetDatabase.LoadAssetAtPath<Texture2D>(ArtSetup.MegarachneFolder + "/Effects/Cable_Normal.png");
-            material.mainTextureScale = new Vector2(0.5f, 1f);
-            EditorUtility.SetDirty(material);
+            var roots = AssetDatabase.LoadAllAssetsAtPath(CableRootPath).OfType<Sprite>().OrderBy(sprite => sprite.name).ToArray();
+            var (material, thinMaterial) = PrepareCableMaterials();
+
             var root = new GameObject("Boss_Megarachne") { layer = LayerMask.NameToLayer(CombatLayers.Enemy) };
             root.SetActive(false);
             try
@@ -90,7 +127,7 @@ namespace Primordia.Editor
                     AddSprite(root, "Sombra", art, "Megarachne_Shadow_Idle", 1), true);
                 boss.ConfigureScenery(TreePiece("Copa"), TreePiece("Tronco"),
                     SpriteAt(ArtSetup.MegarachneFolder + "/Nido/Nido_Web.png"),
-                    SpriteAt("Assets/_Primordia/Art/Floor3/floor3-environment/Smoke/props/Obstacle_Sigillaria.png"), material);
+                    SpriteAt("Assets/_Primordia/Art/Floor3/floor3-environment/Smoke/props/Obstacle_Sigillaria.png"), roots, material, thinMaterial);
                 boss.ConfigureAttacks(ArtSetup.ImportMegarachneAttacks());
                 root.SetActive(true);
                 Directory.CreateDirectory(Path.GetDirectoryName(PrefabPath));

@@ -5,16 +5,22 @@ namespace Primordia.Enemies
     public partial class MegarachneBoss
     {
         // Provisionales: bases solidas y punto de amarre del subpaso M1.
-        const float TrunkWidth = 2f, TrunkHeight = 1.2f, StumpWidth = 1f, StumpHeight = 0.8f;
+        const float TrunkWidth = 2f, TrunkBottom = -0.45f, TrunkTop = 1.25f, StumpWidth = 1f;
         const float AnchorFraction = 0.8f, StumpLift = 1.5f, CableWidth = 1.8f;
         // Cuánto queda el pivote del cuerpo por debajo de la línea central del cable (0 = patas repartidas a ambos lados).
         // SpinneretOffset solo sirve ahora para el hilo colgante.
         const float CableSeat = 0f;
         // Los cables van DETRÁS de la copa (orden 20) para que las hojas tapen la unión.
-        const int CableOrder = 19, ThreadOrder = 22;
+        const int CableOrder = 19, CableRootOrder = 22, ThreadOrder = 23;
+        const float CableRootInset = 2f;
+        const float CableTaperStart = 0.9f, CableTipWidth = 0.7f, ThreadWidth = 0.08f;
+        const int ThreadFrames = 3, ThreadFps = 8;
         float[] cableHeights;
         [SerializeField] Sprite tree, trunkSprite, web, stump;
-        [SerializeField] Material cableMaterial;
+        [SerializeField] Sprite[] cableRootSprites;
+        [SerializeField] Material cableMaterial, threadMaterial;
+        SpriteRenderer[] cableRoots;
+        Material animatedThreadMaterial;
         Vector2[] starts, ends;
         int cableIndex;
         Vector2 routeStart, routeEnd;
@@ -27,9 +33,17 @@ namespace Primordia.Enemies
         public MegarachneBossCanopy Canopy { get; private set; }
         public int CableCount => starts != null ? starts.Length : 0;
 
-        internal void ConfigureScenery(Sprite wetTree, Sprite wetTrunk, Sprite nestWeb, Sprite anchorStump, Material material)
+        internal void ConfigureScenery(Sprite wetTree, Sprite wetTrunk, Sprite nestWeb, Sprite anchorStump, Sprite[] roots, Material material, Material thinMaterial)
         {
-            tree = wetTree; trunkSprite = wetTrunk; web = nestWeb; stump = anchorStump; cableMaterial = material;
+            tree = wetTree; trunkSprite = wetTrunk; web = nestWeb; stump = anchorStump;
+            ConfigureCableArt(roots, material, thinMaterial);
+        }
+
+        internal void ConfigureCableArt(Sprite[] roots, Material material, Material thinMaterial)
+        {
+            cableRootSprites = roots;
+            cableMaterial = material;
+            threadMaterial = thinMaterial;
         }
 
         public void SetArena(Transform center, Vector2 size)
@@ -41,21 +55,21 @@ namespace Primordia.Enemies
             var trunk = new GameObject("Tronco");
             trunk.transform.SetParent(scenery.transform, false);
             var trunkHit = trunk.AddComponent<BoxCollider2D>();
-            trunkHit.size = new Vector2(TrunkWidth, TrunkHeight);
-            trunkHit.offset = Vector2.up * (TrunkHeight * 0.5f);
+            // Todo el tronco visible: desde el pie (bajo el origen) hasta donde empieza la copa (la copa es aérea, se pasa por debajo).
+            trunkHit.size = new Vector2(TrunkWidth, TrunkTop - TrunkBottom);
+            trunkHit.offset = new Vector2(0f, (TrunkTop + TrunkBottom) * 0.5f);
             // FloorBuilder crea Walls en Default; las bases comparten esa capa.
             trunk.layer = LayerMask.NameToLayer("Default");
             MakeSprite("BaseTronco", trunkSprite, Vector2.zero, 4);
             var crown = MakeSprite("Copa", tree, Vector2.up * 1.25f, 20);
             var nest = MakeSprite("Telarana", web, Vector2.zero, 21);
-            Canopy = scenery.AddComponent<MegarachneBossCanopy>();
-            Canopy.Configure(crown, nest);
             // Anclas exactas de anchor() del arte aprobado (coordenadas de pantalla, Y invertida).
             float[] angles = { 205f, 268f, 330f, 140f, 35f };
             Vector2[] outer = { new(-12f, 2f), new(0f, 4f), new(12f, 2f), new(-13f, -7f), new(13f, -7f) };
             starts = new Vector2[angles.Length];
             ends = new Vector2[angles.Length];
             cableHeights = new float[angles.Length];
+            cableRoots = new SpriteRenderer[angles.Length];
             for (int i = 0; i < angles.Length; i++)
             {
                 float angle = angles[i] * Mathf.Deg2Rad;
@@ -66,19 +80,41 @@ namespace Primordia.Enemies
                 var bounds = anchor.bounds;
                 ends[i] = new Vector2(bounds.center.x, Mathf.Lerp(bounds.min.y, bounds.max.y, AnchorFraction));
                 var stumpHit = anchor.gameObject.AddComponent<BoxCollider2D>();
-                stumpHit.size = new Vector2(StumpWidth, StumpHeight);
-                stumpHit.offset = new Vector2(0f, bounds.min.y - anchor.transform.position.y + StumpHeight * 0.5f);
+                // Sigillaria entera: del pie hasta el punto de amarre del cable (arriba del tocón).
+                float stumpHeight = ends[i].y - bounds.min.y;
+                stumpHit.size = new Vector2(StumpWidth, stumpHeight);
+                stumpHit.offset = new Vector2(0f, bounds.min.y - anchor.transform.position.y + stumpHeight * 0.5f);
                 // El pie de subida queda delante de la base solida, a un radio del jefe.
                 cableHeights[i] = ends[i].y - (bounds.min.y - HitRadius - ContactMargin * 2f);
-                var line = MakeLine("Cable_" + i, CableWidth, CableOrder, true);
-                line.SetPosition(0, starts[i]);
+                if (cableRootSprites != null && i < cableRootSprites.Length)
+                    cableRoots[i] = MakeSprite("Nido_CableRoot_" + i, cableRootSprites[i], Vector2.zero, CableRootOrder);
+                var line = MakeLine("Cable_" + i, CableWidth, CableOrder, cableMaterial);
+                line.widthMultiplier = CableWidth;
+                line.widthCurve = new AnimationCurve(new Keyframe(0f, 1f),
+                    new Keyframe(CableTaperStart, 1f), new Keyframe(1f, CableTipWidth));
+                // Solo el dibujo: el corte recto del cable se mete bajo la copa y la telaraña; el recorrido del jefe sigue en starts[i].
+                line.SetPosition(0, starts[i] + (starts[i] - ends[i]).normalized * CableRootInset);
                 line.SetPosition(1, ends[i]);
             }
-            thread = MakeLine("HiloColgante", 0.08f, ThreadOrder, false);
+            Canopy = scenery.AddComponent<MegarachneBossCanopy>();
+            Canopy.Configure(crown, nest, cableRoots);
+            if (threadMaterial != null) animatedThreadMaterial = new Material(threadMaterial);
+            thread = MakeLine("HiloColgante", ThreadWidth, ThreadOrder, animatedThreadMaterial ?? cableMaterial);
             thread.enabled = false;
             // Vive en los cables: empieza sobre el más cercano al jugador (el centro lo ocupa el tronco).
             // Si la sala aún está desactivada (FloorBuilder), Awake no ha corrido: OnEnable lo colocará al entrar el jugador.
             if (isActiveAndEnabled) PlaceOnCable();
+        }
+
+        public void SetCableRootVisible(int i, bool visible)
+        {
+            if (cableRoots == null || i < 0 || i >= cableRoots.Length || cableRoots[i] == null) return;
+            cableRoots[i].enabled = visible;
+        }
+
+        void OnDestroy()
+        {
+            if (animatedThreadMaterial != null) Destroy(animatedThreadMaterial);
         }
 
         SpriteRenderer MakeSprite(string objectName, Sprite sprite, Vector2 position, int order)
@@ -92,24 +128,17 @@ namespace Primordia.Enemies
             return renderer;
         }
 
-        LineRenderer MakeLine(string objectName, float width, int order, bool taper)
+        LineRenderer MakeLine(string objectName, float width, int order, Material material)
         {
             var go = new GameObject(objectName);
             go.transform.SetParent(scenery.transform, false);
             var line = go.AddComponent<LineRenderer>();
-            line.sharedMaterial = cableMaterial;
+            line.sharedMaterial = material;
             line.useWorldSpace = true;
             line.positionCount = 2;
-            line.startWidth = line.endWidth = width;
+            line.widthMultiplier = width;
             line.textureMode = LineTextureMode.Tile;
             line.sortingOrder = order;
-            // Punta fina donde nace en la rama (índice 0) y un poco fina en el tocón: parece una rama que engorda.
-            if (taper)
-            {
-                line.widthMultiplier = width;
-                line.widthCurve = new AnimationCurve(new Keyframe(0f, 0.45f), new Keyframe(0.12f, 1f),
-                    new Keyframe(0.9f, 1f), new Keyframe(1f, 0.7f));
-            }
             return line;
         }
 
@@ -227,6 +256,11 @@ namespace Primordia.Enemies
         void DrawThread(Vector2 anchor)
         {
             thread.enabled = true;
+            if (animatedThreadMaterial != null)
+            {
+                int frame = Mathf.FloorToInt(Time.time * ThreadFps) % ThreadFrames;
+                animatedThreadMaterial.mainTextureOffset = new Vector2(0f, (ThreadFrames - 1 - frame) / (float)ThreadFrames);
+            }
             thread.SetPosition(0, anchor);
             thread.SetPosition(1, body.position + Vector2.up * (VisualHeight + SpinneretOffset));
         }

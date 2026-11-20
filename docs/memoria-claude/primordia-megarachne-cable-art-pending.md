@@ -1,28 +1,22 @@
 ---
 name: primordia-megarachne-cable-art-pending
-description: Cables v2 de la Megarachne (2026-11-18) - arte hecho por Opus (haz de hebras + abanicos de arranque sobre la copa); falta importar y programar
+description: Cables v2 de la Megarachne (2026-11-18 arte, 2026-11-20 código) - HECHO, importado, programado y probado por la usuaria
 metadata:
   type: project
 ---
 
-**2026-11-18 (Opus): ARTE HECHO, falta importar y programar.** La usuaria no veía bien la unión de los cables con la
-copa del Nido en `Test_BossMegarachne` y la textura parecía una pasarela. Eligió el **estilo B** entre 3 propuestas:
-- Textura: **haz de hebras de seda** casi paralelas, 64×29 (= 1,8 u, sin estirar). La antigua (32×14) se estiraba ×2 a
-  lo ancho por el ancho del cable: por eso parecía una tabla.
-- **Abanico de seda** en cada arranque (`Nido/Nido_CableRoot`, 5 cuadros de 256×224, pivote = pie del tronco),
-  encima de la copa: las hebras se despegan del cable y se pegan a las hojas.
-- Variantes Thin/Grow/Burning/Charred rehechas con el mismo estilo; **cuadros en VERTICAL** (el LineRenderer repite la
-  textura entera; el cuadro se elige con `mainTextureOffset.y`).
-- Generador: `docs/multimedia-temp/floor3-bosses/megarachne/generar_cables_megarachne.py piezas`. Detalle para el
-  código en el README de esa carpeta (sección «Cables v2»). **No ejecutar `generar_efectos_megarachne.py cables`**
-  (machacaría los tramos nuevos).
+**2026-11-20: HECHO (arte + código, probado por la usuaria).** Arte de Opus del 2026-11-18 (estilo B: haz de hebras
+64×29 en vertical + abanicos `Nido/Nido_CableRoot` 5×256×224, pivote (0,5, 36/224)); importado y programado por Codex
+(tarea 16, `docs/codex/tarea-16-megarachne-cables-v2.md`): material `MegarachneCable.mat` con `mainTextureScale (0.25, 1)`,
+`MegarachneCableThin.mat` para el hilo colgante (animado a 8 fps), 5 `Nido_CableRoot_i` en orden 22 que siguen el alfa de
+la copa, `SetCableRootVisible(i, bool)` listo para M4 (cable que arde = abanico oculto), hilo en orden 23. Menú
+`Primordia > Boss > Actualizar cables Megarachne (v2)`. `MegarachneBossTests` 24 pruebas.
+`Cable_Grow/Burning/Charred` ya están importados para M4.
 
-**Falta (Sonnet/Codex):** importador (`ArtSetup.BossMegarachne.cs`: añadir `Nido_CableRoot` con celda 256 y pivote
-(0,5, 36/224); los `Cable_*` sin cortar en sprites de 32), material `mainTextureScale = (0.25, 1)`, curva de ancho
-sin afinar en la rama, 5 `SpriteRenderer` de arranque en orden 22 (ocultar el del cable que arde; alfa con la copa),
-material propio con `Cable_Thin` para el hilo colgante. Después, que la usuaria lo pruebe.
+**Ajustes de Claude tras la prueba visual:** el cable se veía cortado en la copa → el dibujo del cable empieza
+`CableRootInset = 2` u más adentro (solo visual). Hitbox: tronco de −0,45 a 1,25 u y Sigillaria del pie al amarre del cable.
+Si el abanico se pierde sobre la telaraña blanca sería arte (abanico más grande/oscuro; preguntar antes).
 
-Estado previo del código (rama `codex/mega-2-ataques`, sin commit): `BodyScale = 0.75`, `CableWidth = 1.8`,
-`CableSeat = 0`, `CableOrder = 19` detrás de la copa (20).
+**No ejecutar** `generar_efectos_megarachne.py cables` (machacaría los tramos nuevos).
 
 Relacionado: [[primordia-boss-megarachne]], [[primordia-provisional-art]].

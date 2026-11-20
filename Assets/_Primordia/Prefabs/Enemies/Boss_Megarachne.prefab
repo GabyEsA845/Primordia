@@ -359,7 +359,14 @@ MonoBehaviour:
   trunkSprite: {fileID: 1126799676, guid: 828d108f23c9caa4b8899cb50b634978, type: 3}
   web: {fileID: 8684780150092339144, guid: 502933d2c9633fd42897d0d247119532, type: 3}
   stump: {fileID: 1246647418288044170, guid: 3882c940b017dad44a8825d675e31d43, type: 3}
+  cableRootSprites:
+  - {fileID: -23187532193412055, guid: 7c70c4debe30d7940ae2b729432ce70b, type: 3}
+  - {fileID: 8255197184028087404, guid: 7c70c4debe30d7940ae2b729432ce70b, type: 3}
+  - {fileID: -6699222809627026875, guid: 7c70c4debe30d7940ae2b729432ce70b, type: 3}
+  - {fileID: -4672339011322254347, guid: 7c70c4debe30d7940ae2b729432ce70b, type: 3}
+  - {fileID: -3639621887285183741, guid: 7c70c4debe30d7940ae2b729432ce70b, type: 3}
   cableMaterial: {fileID: 2100000, guid: 6ea1b4aa2eea1d74bbc3b733610ee9c4, type: 2}
+  threadMaterial: {fileID: 2100000, guid: 8911c145ff71add469cd07a26f43dd28, type: 2}
   bodySprite: {fileID: 6937354316982153534}
   shadowSprite: {fileID: 428458217188991573}
   bodyRenderer: {fileID: 4399486962728544620}

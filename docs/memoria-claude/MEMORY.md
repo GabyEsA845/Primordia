@@ -22,7 +22,7 @@
 ## En curso
 - [Salas especiales del piso 3](primordia-floor3-special-rooms.md) — las 10 PROGRAMADAS (commit 84969d99); arte del Tronco caído, Tocón hueco y cofre APROBADO 2026-11-06 (floor3-log-stump/), falta importarlo y programarlo (Sonnet)
 - [Sala de paso del piso 2 → 3](primordia-floor2-transition-room.md) — charca, ambiente del pantano y metamorfosis por pareja HECHOS y subidos
-- **[Estado de Primordia](primordia-project-status.md) — PRÓXIMA SESIÓN: Megarachne M3 en curso (tarea 17, ver última sección)** · — pisos 1-2 en main; piso 3 en feature/floor-3: pasos 1-6 HECHOS (salvo la sala de paso, Opus) y paso 7: MEGANEURA CASI CERRADA (7a-7e-3 hechos con Codex, probados); SIGUIENTE: tarea 04 (telarana), arte de Opus del veneno, luego Arthropleura, Megarachne, Lepidodendron**
+- **[Estado de Primordia](primordia-project-status.md) — PRÓXIMA SESIÓN: Megarachne M4 (tarea 18, ver última sección)** · — pisos 1-2 en main; piso 3 en feature/floor-3: pasos 1-6 HECHOS (salvo la sala de paso, Opus) y paso 7: MEGANEURA CASI CERRADA (7a-7e-3 hechos con Codex, probados); SIGUIENTE: tarea 04 (telarana), arte de Opus del veneno, luego Arthropleura, Megarachne, Lepidodendron**
 - [Sala del ámbar y especiales del ámbar](primordia-floor3-amber.md) — paso 6 bloque 2: decisiones y niveles I-III cerrados 2026-11-04; subpaso 2a (sala+bloque) programado
 - **[Rediseño de la Cápsula de ámbar](primordia-floor3-capsule-redesign.md) — 2026-11-06: ARTE CERRADO (forma D, formación, reposo, rotura, curación, halo con alas; floor3-capsule/); falta importar y programar (Sonnet); luego Gota y Cercos**
 - **[Rediseño de la Gota de ámbar](primordia-floor3-drop-redesign.md) — 2026-11-06 (Opus): ARTE CERRADO (bloque C en 2 tallas, cristal del lomo, nivel III en ámbar antiguo; floor3-drop/); falta importar y programar (Sonnet)**
@@ -38,7 +38,7 @@
 - [Diseño del piso 3](primordia-floor3-design.md) — CERRADO; arte COMPLETO en feature/floor3-art (tandas 0-6, 4 jefes); luego documento, GDD/PLAN, ramas (Sonnet)
 - **[Jefe Arthropleura](primordia-boss-arthropleura.md) — EN CURSO (2026-11-14): A y B1 (F1, movimiento y embestida) hechas; SIGUIENTE B2 (fuego y daño al jefe); numeros de combate cerrados**
 - [Jefe Meganeura](primordia-boss-meganeura.md) — combate y arte terminados (2026-11-01), generadores y reglas para el código
-- [Minijefe Megarachne](primordia-boss-megarachne.md) — arte TERMINADO; CODIGO EN CURSO (2026-11-15): M1, M2 y cables v2 hechos y probados; M3 (saco y crías) = tarea 17; plan en docs/codex/megarachne-plan.md
+- [Minijefe Megarachne](primordia-boss-megarachne.md) — arte TERMINADO; CODIGO EN CURSO (2026-11-15): M1, M2, cables v2 y M3 (saco y crías) hechos y probados; SIGUIENTE M4 fuego en cables = tarea 18; plan en docs/codex/megarachne-plan.md
 - [Jefes con mecánicas](primordia-boss-mechanics.md) — desde el piso 3 los jefes usan terreno/reacciones; escenario más vivo
 
 ## Diseño general (consulta)

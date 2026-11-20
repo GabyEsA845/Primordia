@@ -28,7 +28,7 @@ namespace Primordia.Enemies
                 var collider = occupants[i];
                 var enemy = collider.GetComponentInParent<Enemy>();
                 var player = collider.GetComponentInParent<PlayerController>();
-                if (enemy == null && player == null) continue;
+                if (enemy == null && player == null && collider.GetComponentInParent<MegarachneBrood>() == null) continue;
                 var mega = collider.GetComponentInParent<MegarachneBoss>();
                 if (mega != null && mega.CurrentMode == MegarachneBoss.Mode.OnCable) continue;
                 Vector2 delta = (Vector2)collider.bounds.center - center;

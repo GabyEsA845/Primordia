@@ -76,6 +76,13 @@ namespace Primordia.Enemies
         void OnDisable()
         {
             ClearAttacks();
+            if (ActiveSac != null)
+            {
+                ActiveSac.gameObject.SetActive(false);
+                Destroy(ActiveSac.gameObject);
+                ActiveSac = null;
+            }
+            KillAllBrood();
             if (Health != null) Health.IsInvulnerable = false;
             if (thread != null) thread.enabled = false;
         }
@@ -95,6 +102,7 @@ namespace Primordia.Enemies
             if (testKeys && gameObject.scene.name == "Test_BossMegarachne")
             {
                 var keyboard = Keyboard.current;
+                if (keyboard != null && keyboard.f8Key.wasPressedThisFrame && ActiveSac != null) ActiveSac.Burst();
                 if (keyboard != null && (keyboard.leftCtrlKey.isPressed || keyboard.rightCtrlKey.isPressed)
                     && (keyboard.leftShiftKey.isPressed || keyboard.rightShiftKey.isPressed))
                 {
@@ -104,6 +112,7 @@ namespace Primordia.Enemies
                     if (keyboard.f4Key.wasPressedThisFrame) ForceAttack(AttackKind.Jump);
                     if (keyboard.f5Key.wasPressedThisFrame) ForceAttack(AttackKind.Silk);
                     if (keyboard.f6Key.wasPressedThisFrame) ForceAttack(AttackKind.Net);
+                    if (keyboard.f7Key.wasPressedThisFrame) ForceAttack(AttackKind.Sac);
                 }
             }
 #endif

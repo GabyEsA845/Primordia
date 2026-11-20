@@ -79,6 +79,22 @@ namespace Primordia.Editor
             Debug.Log("Megarachne: cables v2 importados y prefab actualizado.");
         }
 
+        [MenuItem("Primordia/Boss/Actualizar saco y crías Megarachne (M3)")]
+        public static void UpdateBrood()
+        {
+            var effects = ArtSetup.ImportMegarachneBrood();
+            var root = PrefabUtility.LoadPrefabContents(PrefabPath);
+            try
+            {
+                root.GetComponent<MegarachneBoss>().ConfigureBrood(effects);
+                PrefabUtility.SaveAsPrefabAsset(root, PrefabPath, out bool saved);
+                if (!saved) throw new InvalidOperationException("No se pudo guardar el prefab de Megarachne.");
+            }
+            finally { PrefabUtility.UnloadPrefabContents(root); }
+            AssetDatabase.SaveAssets();
+            Debug.Log("Megarachne M3: ocho hojas importadas y prefab actualizado.");
+        }
+
         static (Material cable, Material thread) PrepareCableMaterials() =>
             (PrepareCableMaterial(MaterialPath, "Cable_Normal", 1),
              PrepareCableMaterial(ThinMaterialPath, "Cable_Thin", 3));
@@ -129,6 +145,7 @@ namespace Primordia.Editor
                     SpriteAt(ArtSetup.MegarachneFolder + "/Nido/Nido_Web.png"),
                     SpriteAt("Assets/_Primordia/Art/Floor3/floor3-environment/Smoke/props/Obstacle_Sigillaria.png"), roots, material, thinMaterial);
                 boss.ConfigureAttacks(ArtSetup.ImportMegarachneAttacks());
+                boss.ConfigureBrood(ArtSetup.ImportMegarachneBrood());
                 root.SetActive(true);
                 Directory.CreateDirectory(Path.GetDirectoryName(PrefabPath));
                 return PrefabUtility.SaveAsPrefabAsset(root, PrefabPath).GetComponent<Enemy>();

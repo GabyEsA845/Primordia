@@ -273,13 +273,13 @@ namespace Primordia.Tests
         }
 
         [UnityTest]
-        public IEnumerator CicloAlternaSaltoRafagaRedCadaCuatroSegundos()
+        public IEnumerator CicloAlternaSaltoRafagaRedSacoCadaCuatroSegundos()
         {
             MakePlayer((Vector2)room.transform.position + new Vector2(-6f, -5f));
             boss.AutomaticAttacks = true;
             float previous = Time.time;
             var expected = new[] { MegarachneBoss.AttackKind.Jump, MegarachneBoss.AttackKind.Silk,
-                MegarachneBoss.AttackKind.Net, MegarachneBoss.AttackKind.Jump };
+                MegarachneBoss.AttackKind.Net, MegarachneBoss.AttackKind.Sac, MegarachneBoss.AttackKind.Jump };
             for (int i = 0; i < expected.Length; i++)
             {
                 int count = i + 1;
@@ -287,7 +287,91 @@ namespace Primordia.Tests
                 Assert.AreEqual(expected[i], boss.LastAttack);
                 Assert.That(Time.time - previous, Is.InRange(3.8f, 4.15f));
                 previous = Time.time;
+                if (expected[i] == MegarachneBoss.AttackKind.Sac)
+                {
+                    yield return Until(() => boss.ActiveSac != null, 1.1f);
+                    Assert.AreEqual(count, boss.AttacksStarted);
+                }
             }
+        }
+
+        MegarachneBrood[] Brood() => room.GetComponentsInChildren<MegarachneBrood>();
+
+        IEnumerator WeaveSac()
+        {
+            Assert.IsTrue(boss.ForceAttack(MegarachneBoss.AttackKind.Sac));
+            yield return Until(() => boss.ActiveSac != null, 1.1f);
+        }
+
+        [UnityTest]
+        public IEnumerator SacoUnicoEnRangoRevientaEnElTercerCuadro()
+        {
+            MakePlayer((Vector2)room.transform.position + new Vector2(-6f, -5f));
+            yield return WeaveSac();
+            var sac = boss.ActiveSac;
+            float distance = Vector2.Distance(actor.transform.position, sac.GetComponent<BoxCollider2D>().bounds.center);
+            Assert.That(distance, Is.InRange(2.99f, 8.01f));
+            Assert.IsFalse(boss.ForceAttack(MegarachneBoss.AttackKind.Sac));
+            var sprite = sac.GetComponent<SpriteRenderer>();
+            Assert.AreEqual("Megarachne_Sac_Idle_0", sprite.sprite.name);
+            yield return Until(() => sprite.sprite.name.StartsWith("Megarachne_Sac_Tremble"), 6.2f);
+            Assert.AreEqual(0, Brood().Length);
+            yield return Until(() => sprite.sprite.name == "Megarachne_Sac_Burst_0", 1.1f);
+            Assert.AreEqual(0, Brood().Length);
+            yield return Until(() => Brood().Length == 4, 0.25f);
+            Assert.AreEqual("Megarachne_Sac_Burst_2", sprite.sprite.name);
+        }
+
+        [UnityTest]
+        public IEnumerator TresDanosRompenElSacoSinCrias()
+        {
+            MakePlayer((Vector2)room.transform.position + new Vector2(-6f, -5f));
+            yield return WeaveSac();
+            var sac = boss.ActiveSac;
+            for (int i = 0; i < 3; i++) Assert.IsTrue(sac.Health.TakeDamage(1));
+            Assert.AreEqual("Megarachne_Sac_Break_0", sac.GetComponent<SpriteRenderer>().sprite.name);
+            sac.Burst();
+            yield return Until(() => sac == null, 0.6f);
+            Assert.IsEmpty(Brood());
+        }
+
+        [Test]
+        public void EclosionesRespetanElTopeYKillAllBroodLasElimina()
+        {
+            Vector2 point = (Vector2)room.transform.position + new Vector2(-6f, -5f);
+            boss.ReleaseBrood(point);
+            Assert.AreEqual(4, Brood().Length);
+            boss.ReleaseBrood(point);
+            Assert.AreEqual(MegarachneBoss.BroodLimit, Brood().Length);
+            boss.ReleaseBrood(point);
+            Assert.AreEqual(MegarachneBoss.BroodLimit, Brood().Length);
+            var children = Brood();
+            children[0].Health.Kill();
+            children[1].Health.Kill();
+            boss.ReleaseBrood(point);
+            Assert.AreEqual(MegarachneBoss.BroodLimit, Brood().Count(child => !child.Health.IsDead));
+            var live = Brood().Where(child => !child.Health.IsDead).ToArray();
+            boss.KillAllBrood();
+            Assert.IsTrue(live.All(child => child.Health.IsDead && !child.gameObject.activeSelf));
+        }
+
+        [UnityTest]
+        public IEnumerator CriaPersigueYMuerdeUnPuntoConRecarga()
+        {
+            Vector2 point = (Vector2)room.transform.position + new Vector2(-6f, -5f);
+            var player = MakePlayer(point + Vector2.right * 4f);
+            var health = player.GetComponent<Health>();
+            health.InvulnerabilityAfterHit = 0f;
+            // Dejar una sola cría para medir su recarga.
+            boss.ReleaseBrood(point);
+            var children = Brood();
+            foreach (var child in children.Skip(1)) child.Remove();
+            var start = children[0].transform.position;
+            yield return Until(() => health.Current == 99, 2f);
+            Assert.That(Vector2.Distance(start, children[0].transform.position), Is.GreaterThan(1f));
+            float first = Time.time;
+            yield return Until(() => health.Current == 98, 1.4f);
+            Assert.That(Time.time - first, Is.InRange(1.17f, 1.26f));
         }
 
         SpriteRenderer[] CableRoots() => boss.Canopy.GetComponentsInChildren<SpriteRenderer>()

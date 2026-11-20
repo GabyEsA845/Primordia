@@ -125,6 +125,37 @@ namespace Primordia.Editor
             return result.ToArray();
         }
 
+        internal static MegarachneBoss.EffectSheet[] ImportMegarachneBrood()
+        {
+            var specs = new (string name, int height, int count)[]
+            {
+                ("Megarachne_Sac_Idle", 32, 4),
+                ("Megarachne_Sac_Tremble", 32, 4),
+                ("Megarachne_Sac_Burst", 32, 5),
+                ("Megarachne_Sac_Break", 32, 5),
+                ("Megarachne_Brood_Move", 24, 4),
+                ("Megarachne_Brood_Bite", 24, 4),
+                ("Megarachne_Brood_Hurt", 24, 2),
+                ("Megarachne_Brood_Death", 24, 5)
+            };
+            const int cellWidth = 24;
+            foreach (var spec in specs)
+            {
+                string path = MegarachneFolder + "/Effects/" + spec.name + ".png";
+                var importer = AssetImporter.GetAtPath(path) as TextureImporter;
+                if (importer == null) throw new FileNotFoundException("Falta la hoja aprobada: " + path);
+                importer.GetSourceTextureWidthAndHeight(out int width, out int height);
+                if (width != cellWidth * spec.count || height != spec.height)
+                    throw new InvalidDataException("Dimensiones inesperadas en " + path);
+            }
+            return specs.Select(spec => new MegarachneBoss.EffectSheet
+            {
+                name = spec.name,
+                frames = SliceFloor3Sheet(MegarachneFolder + "/Effects/" + spec.name + ".png", cellWidth,
+                    new Vector2(0.5f, spec.height == 32 ? 1f : 0.5f))
+            }).ToArray();
+        }
+
         // Dos recortes de la misma imagen, sin modificar píxeles: el pie no pierde opacidad con la copa.
         static void SliceMegarachneTree()
         {

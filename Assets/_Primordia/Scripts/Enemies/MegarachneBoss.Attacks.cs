@@ -17,14 +17,16 @@ namespace Primordia.Enemies
         public const int WebLimit = 18;
         const float SilkMs = 90f, LandMs = 90f, LandSeconds = 0.27f, WarnMs = 120f, WeaveMs = 110f;
         const float SilkRelease = 4f * SilkMs / 1000f, SilkSeconds = 8f * SilkMs / 1000f;
-        const float NetFallSeconds = 0.4f, FxFrameSeconds = 0.08f, PixelsPerUnit = 16f;
+        const float NetFallSeconds = 0.4f, PixelsPerUnit = 16f;
+        internal const float FxFrameSeconds = 0.08f;
         const int GroundFxOrder = 2, AirFxOrder = 32;
 
-        public enum AttackKind { Jump, Silk, Net }
-        enum AttackStage { None, JumpWarn, JumpFall, Silk, NetWarn, NetFall, NetTrap }
+        public enum AttackKind { Jump, Silk, Net, Sac }
+        enum AttackStage { None, JumpWarn, JumpFall, Silk, NetWarn, NetFall, NetTrap, SacWeave }
         [Serializable]
         public struct EffectSheet { public string name; public Sprite[] frames; }
         [SerializeField] EffectSheet[] attackEffects = Array.Empty<EffectSheet>();
+        [SerializeField] EffectSheet[] broodEffects = Array.Empty<EffectSheet>();
         readonly List<SilkBall> silkBalls = new();
         readonly List<TransientFx> transientEffects = new();
         readonly List<MegarachneBossWeb> groundWebs = new();
@@ -46,9 +48,13 @@ namespace Primordia.Enemies
         internal Vector2 AttackPoint => attackPoint;
         internal void ConfigureAttacks(EffectSheet[] sheets) => attackEffects = sheets;
 
+        internal void ConfigureBrood(EffectSheet[] sheets) => broodEffects = sheets;
+
         Sprite[] EffectFrames(string name)
         {
             foreach (var sheet in attackEffects)
+                if (sheet.name == name) return sheet.frames;
+            foreach (var sheet in broodEffects)
                 if (sheet.name == name) return sheet.frames;
             return Array.Empty<Sprite>();
         }
@@ -63,7 +69,7 @@ namespace Primordia.Enemies
             return renderer;
         }
 
-        void Frame(SpriteRenderer renderer, string name, float age, bool loop = true)
+        internal void Frame(SpriteRenderer renderer, string name, float age, bool loop = true)
         {
             if (renderer == null) return;
             var frames = EffectFrames(name);
@@ -82,11 +88,13 @@ namespace Primordia.Enemies
         public bool ForceAttack(AttackKind kind)
         {
             if (Health.IsDead || target == null || CurrentMode != Mode.OnCable || travel != Travel.Run || IsAttacking) return false;
+            if (kind == AttackKind.Sac && !WeaveSac()) return false;
             LastAttack = kind;
             AttacksStarted++;
             attackClock = 0f;
             stageTime = 0f;
             attackPoint = target.position;
+            if (kind == AttackKind.Sac) return true;
             facing = (attackPoint - body.position).normalized;
             if (kind == AttackKind.Jump)
             {
@@ -114,13 +122,26 @@ namespace Primordia.Enemies
             attackClock += dt;
             if (attack == AttackStage.None)
             {
-                if (AutomaticAttacks && attackClock >= AttackInterval && ForceAttack(nextAttack))
-                    nextAttack = (AttackKind)(((int)nextAttack + 1) % 3);
+                if (AutomaticAttacks && attackClock >= AttackInterval && CurrentMode == Mode.OnCable
+                    && travel == Travel.Run && target != null)
+                {
+                    if (nextAttack == AttackKind.Sac)
+                    {
+                        // Si ya hay un saco, se consume la vuelta y se reanuda el ciclo.
+                        ForceAttack(AttackKind.Sac);
+                        attackClock = 0f;
+                        nextAttack = AttackKind.Jump;
+                    }
+                    else if (ForceAttack(nextAttack)) nextAttack++;
+                }
                 return;
             }
             stageTime += dt;
             switch (attack)
             {
+                case AttackStage.SacWeave:
+                    TickSacWeave();
+                    break;
                 case AttackStage.JumpWarn:
                     if (stageTime < JumpWarning - JumpLocked && target != null) attackPoint = target.position;
                     marker.transform.position = attackPoint;
@@ -284,7 +305,8 @@ namespace Primordia.Enemies
                 foreach (var contact in Physics2D.CircleCastAll(ball.position, SilkRadius, ball.direction, step))
                 {
                     var collider = contact.collider;
-                    if (collider.isTrigger || collider.GetComponentInParent<Enemy>() != null) continue;
+                    if (collider.isTrigger || collider.GetComponentInParent<Enemy>() != null
+                        || collider.GetComponentInParent<MegarachneBrood>() != null) continue;
                     var player = collider.GetComponentInParent<PlayerController>();
                     if (player != null)
                     {

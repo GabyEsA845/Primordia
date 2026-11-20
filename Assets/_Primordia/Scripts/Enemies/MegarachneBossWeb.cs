@@ -75,7 +75,7 @@ namespace Primordia.Enemies
                 {
                     if (player.IsDodging || player.IsLunging) continue;
                 }
-                else if (!rb.TryGetComponent<EnemyAI>(out _)) continue;
+                else if (!rb.TryGetComponent<EnemyAI>(out _) && !rb.TryGetComponent<MegarachneBrood>(out _)) continue;
                 // Una sola reducci?n por paso aunque pise varias; al salir no queda ning?n estado residual.
                 if (affected.Add(rb)) rb.linearVelocity *= SpeedFactor;
             }

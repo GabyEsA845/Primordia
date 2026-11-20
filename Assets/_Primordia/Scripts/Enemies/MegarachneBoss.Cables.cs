@@ -49,6 +49,7 @@ namespace Primordia.Enemies
         public void SetArena(Transform center, Vector2 size)
         {
             arena = center;
+            arenaSize = size;
             if (scenery != null) return;
             scenery = new GameObject("NidoMegarachne");
             scenery.transform.SetParent(center, false);
@@ -253,7 +254,9 @@ namespace Primordia.Enemies
             }
         }
 
-        void DrawThread(Vector2 anchor)
+        void DrawThread(Vector2 anchor) => DrawThread(anchor, body.position + Vector2.up * (VisualHeight + SpinneretOffset));
+
+        void DrawThread(Vector2 anchor, Vector2 end)
         {
             thread.enabled = true;
             if (animatedThreadMaterial != null)
@@ -262,7 +265,7 @@ namespace Primordia.Enemies
                 animatedThreadMaterial.mainTextureOffset = new Vector2(0f, (ThreadFrames - 1 - frame) / (float)ThreadFrames);
             }
             thread.SetPosition(0, anchor);
-            thread.SetPosition(1, body.position + Vector2.up * (VisualHeight + SpinneretOffset));
+            thread.SetPosition(1, end);
         }
     }
 }

@@ -37,6 +37,185 @@ namespace Primordia.Tests
             if (actor != null) Object.DestroyImmediate(actor);
             if (room != null) Object.DestroyImmediate(room);
         }
+        LineRenderer CableLine(int index) => boss.Canopy.transform.Find("Cable_" + index).GetComponent<LineRenderer>();
+
+        MegarachneCableNode[] CableNodes(int index) => CableLine(index).GetComponentsInChildren<MegarachneCableNode>();
+
+        SpriteRenderer[] FireSprites(string objectName) => boss.Canopy.GetComponentsInChildren<SpriteRenderer>()
+            .Where(sprite => sprite.name == objectName && sprite.enabled && sprite.sprite != null).ToArray();
+
+        void PutBossAlongCurrentCable(float fraction)
+        {
+            var nodes = CableNodes(boss.CurrentCable);
+            Vector2 point = Vector2.Lerp(nodes[0].Position, nodes[^1].Position, fraction);
+            point -= Vector2.up * boss.VisualHeight;
+            boss.GetComponent<Rigidbody2D>().position = point;
+            boss.transform.position = point;
+        }
+
+        [UnityTest]
+        public IEnumerator NodoPrendeYLosDosFrentesAvanzanASeisUnidadesPorSegundo()
+        {
+            const int cable = 0;
+            var nodes = CableNodes(cable);
+            Assert.AreEqual(6, nodes.Length);
+            Flammables.IgniteNear(nodes[2].Position, 0.02f);
+            Assert.AreEqual(MegarachneBoss.CableState.Burning, boss.FireStateAt(cable));
+            Assert.IsFalse(nodes.Any(n => n.CanIgnite));
+            Vector2 start = boss.FireFrontsAt(cable);
+            float time = Time.fixedTime;
+            yield return new WaitForSeconds(0.2f);
+            float distance = MegarachneBoss.FuseSpeed * (Time.fixedTime - time);
+            Vector2 current = boss.FireFrontsAt(cable);
+            Assert.That(start.x - current.x, Is.EqualTo(distance).Within(0.13f));
+            Assert.That(current.y - start.y, Is.EqualTo(distance).Within(0.13f));
+            Assert.AreEqual(2, FireSprites("Fx_CableFront").Length);
+            Assert.IsNotEmpty(FireSprites("Fx_CableFlame"));
+        }
+
+        [UnityTest]
+        public IEnumerator FrenteInteriorSeApagaAntesDeLaCopaConHumo()
+        {
+            const int cable = 0;
+            var node = CableNodes(cable)[1];
+            node.Ignite();
+            yield return Until(() => FireSprites("Fx_CableSmoke").Length == 1, 1f);
+            float stopped = boss.FireFrontsAt(cable).x;
+            Assert.Greater(stopped, 0f);
+            Assert.AreEqual(1, FireSprites("Fx_CableFront").Length);
+            yield return new WaitForSeconds(0.2f);
+            Assert.AreEqual(stopped, boss.FireFrontsAt(cable).x);
+        }
+
+        [UnityTest]
+        public IEnumerator CableCaeDejaDosCabosYSeTejeTrasDiezSegundos()
+        {
+            const int cable = 4;
+            var line = CableLine(cable);
+            Vector3 end = line.GetPosition(1);
+            var root = boss.Canopy.transform.Find("Nido_CableRoot_" + cable).GetComponent<SpriteRenderer>();
+            var node = CableNodes(cable)[2];
+            node.Ignite();
+            yield return Until(() => boss.FireStateAt(cable) == MegarachneBoss.CableState.Missing, 3f);
+            float fellAt = Time.fixedTime;
+            Assert.AreEqual(2, FireSprites("Cable_Stub").Length);
+            Assert.IsFalse(line.enabled);
+            Assert.IsFalse(root.enabled);
+            Assert.IsFalse(node.CanIgnite);
+            yield return new WaitForSeconds(3.1f);
+            Assert.IsEmpty(FireSprites("Cable_Stub"));
+            yield return Until(() => boss.FireStateAt(cable) == MegarachneBoss.CableState.Growing, 7.5f);
+            float beganGrowing = Time.fixedTime;
+            Assert.That(beganGrowing - fellAt, Is.EqualTo(10f).Within(0.08f));
+            Assert.IsFalse(node.CanIgnite);
+            Assert.IsFalse(root.enabled);
+            yield return Until(() => node.CanIgnite, 3.2f);
+            Assert.That(Time.fixedTime - beganGrowing, Is.EqualTo(3f).Within(0.08f));
+            Assert.IsTrue(line.enabled);
+            Assert.IsTrue(root.enabled);
+            Assert.AreEqual(end, line.GetPosition(1));
+        }
+
+        [UnityTest]
+        public IEnumerator ElFrenteLaAlcanzaYCaeVulnerableTresSegundos()
+        {
+            int cable = boss.CurrentCable;
+            PutBossAlongCurrentCable(0.5f);
+            Assert.IsTrue(boss.IgniteOccupiedCable());
+            yield return Until(() => boss.CurrentMode == MegarachneBoss.Mode.Falling, 0.25f);
+            yield return Until(() => boss.IsFireStunned, 0.5f);
+            Assert.AreEqual(0f, boss.VisualHeight);
+            Assert.AreEqual(1, FireSprites("Fx_Megarachne_Stunned").Length);
+            Assert.IsTrue(boss.Health.TakeDamage(1));
+            float stunnedAt = Time.fixedTime;
+            yield return Until(() => boss.CurrentMode == MegarachneBoss.Mode.Recovering, 3.2f);
+            Assert.That(Time.fixedTime - stunnedAt, Is.EqualTo(3f).Within(0.08f));
+            yield return Until(() => boss.CurrentMode == MegarachneBoss.Mode.OnCable, 0.6f);
+            Assert.AreNotEqual(cable, boss.CurrentCable);
+            Assert.IsTrue(boss.Health.IsInvulnerable);
+        }
+
+        [UnityTest]
+        public IEnumerator LlegaAlExtremoAntesQueElFrenteYPuedeBajarSinAturdirse()
+        {
+            int cable = boss.CurrentCable;
+            PutBossAlongCurrentCable(0.75f);
+            float length = Vector2.Distance(CableNodes(cable)[0].Position, CableNodes(cable)[^1].Position);
+            Assert.That(MegarachneBoss.CableSpeed, Is.GreaterThan(MegarachneBoss.FuseSpeed));
+            Assert.IsTrue(boss.IgniteCable(cable, 0.5f + 0.5f * length));
+            yield return Until(() => boss.CurrentMode == MegarachneBoss.Mode.Ground, 2f);
+            Assert.IsFalse(boss.IsFireStunned);
+            Assert.IsFalse(boss.Health.IsInvulnerable);
+        }
+
+        [UnityTest]
+        public IEnumerator LaRafagaEnCursoTerminaAntesDeQueCaiga()
+        {
+            MakePlayer(boss.ArenaCenter + Vector2.right * 10f);
+            PutBossAlongCurrentCable(0.5f);
+            Assert.IsTrue(boss.ForceAttack(MegarachneBoss.AttackKind.Silk));
+            Assert.IsTrue(boss.IgniteOccupiedCable());
+            yield return new WaitForSeconds(0.2f);
+            Assert.IsTrue(boss.IsAttacking);
+            Assert.AreEqual(MegarachneBoss.Mode.OnCable, boss.CurrentMode);
+            yield return Until(() => boss.CurrentMode == MegarachneBoss.Mode.Falling, 0.9f);
+            Assert.IsFalse(boss.IsAttacking);
+        }
+
+        [UnityTest]
+        public IEnumerator AnteCablesQuemadosNearestCableYLaSubidaEsperanUnCableNuevo()
+        {
+            for (int i = 0; i < boss.CableCount; i++) CableNodes(i)[2].Ignite();
+            yield return Until(() => Enumerable.Range(0, boss.CableCount)
+                .All(i => boss.FireStateAt(i) == MegarachneBoss.CableState.Missing), 3f);
+            Assert.AreEqual(-1, boss.NearestCable(boss.ArenaCenter));
+            yield return Until(() => boss.CurrentMode == MegarachneBoss.Mode.Ground, 4f);
+            Assert.IsFalse(boss.ForceClimb());
+            Assert.IsFalse(boss.Health.IsInvulnerable);
+        }
+
+        [UnityTest]
+        public IEnumerator AscuaQueCaePrendeLaTelaranaSinDanyarAlJugador()
+        {
+            const int cable = 4;
+            CableNodes(cable)[2].Ignite();
+            yield return Until(() => FireSprites("Fx_CableAsh").Length > 0, 1.2f);
+            Vector2 ash = FireSprites("Fx_CableAsh")[0].transform.position;
+            var player = MakePlayer(boss.ProjectCablePointToGround(cable, ash));
+            var tile = new GameObject("TelarañaPrueba");
+            tile.transform.SetParent(room.transform);
+            tile.transform.position = player.transform.position;
+            tile.AddComponent<SpriteRenderer>();
+            var web = tile.AddComponent<MegarachneBossWeb>();
+            yield return Until(() => web.IsBurning, 0.6f);
+            Assert.AreEqual(100, player.GetComponent<Health>().Current);
+        }
+
+        [UnityTest]
+        public IEnumerator TresOdresPrendenCablesYRebrotanTrasVeinteSegundos()
+        {
+            var sacs = room.GetComponentsInChildren<MethaneSac>();
+            Assert.AreEqual(3, sacs.Length);
+            var stumps = Enumerable.Range(0, boss.CableCount)
+                .Select(i => (Vector2)boss.Canopy.transform.Find("Sigillaria_" + i).position);
+            foreach (var sac in sacs)
+            {
+                Vector2 point = sac.transform.position;
+                Assert.That(Vector2.Distance(point, boss.ArenaCenter), Is.GreaterThanOrEqualTo(4.5f));
+                Assert.IsTrue(stumps.All(stump => Vector2.Distance(point, stump) >= 4.5f));
+                Assert.IsNotEmpty(Flammables.Near(sac.Position, Explosion.Radius).OfType<MegarachneCableNode>());
+            }
+            var first = sacs[0];
+            Vector2 position = first.Position;
+            float burstAt = Time.fixedTime;
+            first.GetComponent<Health>().TakeDamage(1);
+            yield return Until(() => Enumerable.Range(0, boss.CableCount)
+                .Any(i => boss.FireStateAt(i) == MegarachneBoss.CableState.Burning), 1f);
+            yield return Until(() => room.GetComponentsInChildren<MethaneSac>()
+                .Any(sac => sac != first && sac.Position == position && sac.CanIgnite), 20.3f);
+            Assert.That(Time.fixedTime - burstAt, Is.EqualTo(20f).Within(0.08f));
+        }
+
         [Test]
         public void Vida150EnCableYConLimitador()
         {
@@ -496,10 +675,14 @@ namespace Primordia.Tests
             var player = actor.GetComponent<PlayerController>();
             player.readInput = false;
             var rb = actor.GetComponent<Rigidbody2D>();
-            var boxes = room.transform.Find("NidoMegarachne").GetComponentsInChildren<BoxCollider2D>();
+            // Las bases son hijas directas del Nido; sus odres tienen colisionadores propios.
+            var boxes = boss.Canopy.transform.Cast<Transform>()
+                .Where(child => child.name == "Tronco" || child.name.StartsWith("Sigillaria_", System.StringComparison.Ordinal))
+                .Select(child => child.GetComponent<BoxCollider2D>()).ToArray();
             Assert.AreEqual(6, boxes.Length);
             foreach (var box in boxes)
             {
+                Assert.IsNotNull(box);
                 Assert.IsFalse(box.isTrigger);
                 Assert.AreEqual(LayerMask.NameToLayer("Default"), box.gameObject.layer);
                 Assert.IsFalse(Physics2D.GetIgnoreLayerCollision(actor.layer, box.gameObject.layer));

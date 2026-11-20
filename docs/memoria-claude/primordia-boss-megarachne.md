@@ -61,3 +61,5 @@ Minijefe opcional del piso 3 ([[primordia-floor3-design]]), tanda 6 de arte, pro
 **2026-11-20 — Cables v2 importados y probados (tarea 16); M3 = tarea 17.** Ver [[primordia-megarachne-cable-art-pending]]. Colliders: tronco −0,45..1,25 u, Sigillaria del pie al amarre del cable. `MegarachneBossTests` 24.
 
 **2026-11-20 — M3 hecho (tarea 17):** saco y crías probados; M4 (fuego en cables) = tarea 18. Ver `primordia-project-status.md`.
+
+**2026-11-20 — M4 hecho (tarea 18):** fuego en cables probado (mecha 6 u/s, cae aturdida 3 s, cable se re-teje a los 10 s, 3 odres que rebrotan a los 20 s). SIGUIENTE M5 (enfado). Ver `primordia-project-status.md`.

@@ -56,6 +56,8 @@ namespace Primordia.Enemies
                 if (sheet.name == name) return sheet.frames;
             foreach (var sheet in broodEffects)
                 if (sheet.name == name) return sheet.frames;
+            foreach (var sheet in cableFireArt.effects)
+                if (sheet.name == name) return sheet.frames;
             return Array.Empty<Sprite>();
         }
 
@@ -88,6 +90,7 @@ namespace Primordia.Enemies
         public bool ForceAttack(AttackKind kind)
         {
             if (Health.IsDead || target == null || CurrentMode != Mode.OnCable || travel != Travel.Run || IsAttacking) return false;
+            if (!CableAvailable(cableIndex)) return false;
             if (kind == AttackKind.Sac && !WeaveSac()) return false;
             LastAttack = kind;
             AttacksStarted++;
@@ -122,6 +125,7 @@ namespace Primordia.Enemies
             attackClock += dt;
             if (attack == AttackStage.None)
             {
+                if (CurrentMode != Mode.OnCable || !CableAvailable(cableIndex)) return;
                 if (AutomaticAttacks && attackClock >= AttackInterval && CurrentMode == Mode.OnCable
                     && travel == Travel.Run && target != null)
                 {

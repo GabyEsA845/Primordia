@@ -1,6 +1,7 @@
 using Primordia.Combat;
 using Primordia.Core;
 using Primordia.Player;
+using Primordia.Rooms;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -20,7 +21,7 @@ namespace Primordia.Enemies
         const float ShadowAlpha = 120f / 255f, DebugHealthFraction = 0.51f;
         const float HitRadius = 1f, ContactMargin = 0.02f;
 
-        public enum Mode { Ground, OnCable }
+        public enum Mode { Ground, OnCable, Falling, Stunned, Recovering }
         enum Travel { None, Climb, Run, Cross, Drop }
         [SerializeField] DirectionalSprite bodySprite, shadowSprite;
         [SerializeField] SpriteRenderer bodyRenderer, shadowRenderer;
@@ -67,6 +68,7 @@ namespace Primordia.Enemies
 
         void OnEnable()
         {
+            MethaneSac.BurstStarted += OnFireSacBurst;
             attackClock = 0f;
             nextAttack = AttackKind.Jump;
             attack = AttackStage.None;
@@ -75,6 +77,9 @@ namespace Primordia.Enemies
         }
         void OnDisable()
         {
+            MethaneSac.BurstStarted -= OnFireSacBurst;
+            fireHitPending = false;
+            if (stunEffect != null) stunEffect.enabled = false;
             ClearAttacks();
             if (ActiveSac != null)
             {
@@ -113,6 +118,8 @@ namespace Primordia.Enemies
                     if (keyboard.f5Key.wasPressedThisFrame) ForceAttack(AttackKind.Silk);
                     if (keyboard.f6Key.wasPressedThisFrame) ForceAttack(AttackKind.Net);
                     if (keyboard.f7Key.wasPressedThisFrame) ForceAttack(AttackKind.Sac);
+                    if (keyboard.f9Key.wasPressedThisFrame) IgniteOccupiedCable();
+                    if (keyboard.f10Key.wasPressedThisFrame) IgniteNearPlayer();
                 }
             }
 #endif
@@ -123,8 +130,9 @@ namespace Primordia.Enemies
             if (Health.IsDead) { ClearAttacks(); return; }
             float dt = Time.fixedDeltaTime;
             TickProjectiles(dt);
-            TickAttack(dt);
-            if (attack != AttackStage.None) return;
+            TickFire(dt);
+            if (IsAttacking || !fireHitPending) TickAttack(dt);
+            if (IsAttacking || TickFireReaction(dt)) return;
             if (travel != Travel.None) { TickCable(dt); return; }
             if (CurrentMode == Mode.Ground)
             {

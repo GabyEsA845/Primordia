@@ -125,6 +125,67 @@ namespace Primordia.Editor
             return result.ToArray();
         }
 
+        internal static MegarachneBoss.CableFireArt ImportMegarachneFire()
+        {
+            var art = new MegarachneBoss.CableFireArt
+            {
+                burning = LoadCableTexture("Cable_Burning", 3),
+                charred = LoadCableTexture("Cable_Charred", 3),
+                growing = LoadCableTexture("Cable_Grow", 6),
+                sacIdle = LoadMethaneSprites("floor3-environment/Smoke/props/Methane_Sac_Idle"),
+                sacBurst = LoadMethaneSprites("floor3-reactions/Smoke/Methane_Sac_Burst"),
+                sacRemains = LoadMethaneSprites("floor3-reactions/Smoke/Methane_Sac_Remains").Single()
+            };
+            var specs = new (string name, int width, int height, int frames, Vector2 pivot)[]
+            {
+                ("Cable_Stub", 16, 40, 4, new Vector2(0.5f, 1f)),
+                ("Fx_CableFlame", 16, 24, 6, new Vector2(0.5f, 0.25f)),
+                ("Fx_CableFront", 24, 24, 4, new Vector2(0.5f, 0.5f)),
+                ("Fx_CableAsh", 16, 32, 6, new Vector2(0.5f, 0.5f)),
+                ("Fx_CableSmoke", 24, 40, 6, new Vector2(0.5f, 0f)),
+                ("Fx_Megarachne_Stunned", 64, 28, 8, new Vector2(0.5f, 0.5f))
+            };
+            foreach (var spec in specs) FireImporter(spec.name, spec.width * spec.frames, spec.height);
+            art.effects = specs.Select(spec => new MegarachneBoss.EffectSheet
+            {
+                name = spec.name,
+                frames = SliceFloor3Sheet(MegarachneFolder + "/Effects/" + spec.name + ".png", spec.width, spec.pivot)
+            }).ToArray();
+            return art;
+        }
+
+        static TextureImporter FireImporter(string name, int width, int height)
+        {
+            string path = MegarachneFolder + "/Effects/" + name + ".png";
+            var importer = AssetImporter.GetAtPath(path) as TextureImporter;
+            if (importer == null) throw new FileNotFoundException("Falta la hoja aprobada: " + path);
+            importer.GetSourceTextureWidthAndHeight(out int actualWidth, out int actualHeight);
+            if (actualWidth != width || actualHeight != height)
+                throw new InvalidDataException("Dimensiones inesperadas en " + path);
+            return importer;
+        }
+
+        static Texture2D LoadCableTexture(string name, int frames)
+        {
+            var importer = FireImporter(name, 64, 29 * frames);
+            var texture = AssetDatabase.LoadAssetAtPath<Texture2D>(importer.assetPath);
+            if (importer.textureType != TextureImporterType.Default || importer.spriteImportMode != SpriteImportMode.None ||
+                importer.npotScale != TextureImporterNPOTScale.None || importer.wrapMode != TextureWrapMode.Repeat ||
+                importer.filterMode != FilterMode.Point || importer.mipmapEnabled || !importer.alphaIsTransparency ||
+                importer.textureCompression != TextureImporterCompression.Uncompressed)
+                throw new InvalidDataException("La textura del cable requiere los ajustes de importación de cables v2: " + name);
+            return texture;
+        }
+
+        static Sprite[] LoadMethaneSprites(string relative)
+        {
+            string path = Floor3ArtRoot + "/" + relative + ".png";
+            var sprites = AssetDatabase.LoadAllAssetsAtPath(path).OfType<Sprite>()
+                .OrderBy(s => int.TryParse(s.name.Substring(s.name.LastIndexOf('_') + 1), out int frame) ? frame : 0).ToArray();
+            if (sprites.Length == 0) throw new FileNotFoundException("Falta el arte importado del odre de metano: " + path);
+            return sprites;
+        }
+
         internal static MegarachneBoss.EffectSheet[] ImportMegarachneBrood()
         {
             var specs = new (string name, int height, int count)[]

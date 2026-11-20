@@ -71,6 +71,7 @@ namespace Primordia.Enemies
             ends = new Vector2[angles.Length];
             cableHeights = new float[angles.Length];
             cableRoots = new SpriteRenderer[angles.Length];
+            BuildCableFire();
             for (int i = 0; i < angles.Length; i++)
             {
                 float angle = angles[i] * Mathf.Deg2Rad;
@@ -96,12 +97,14 @@ namespace Primordia.Enemies
                 // Solo el dibujo: el corte recto del cable se mete bajo la copa y la telaraña; el recorrido del jefe sigue en starts[i].
                 line.SetPosition(0, starts[i] + (starts[i] - ends[i]).normalized * CableRootInset);
                 line.SetPosition(1, ends[i]);
+                BuildCableNodes(i, line);
             }
             Canopy = scenery.AddComponent<MegarachneBossCanopy>();
             Canopy.Configure(crown, nest, cableRoots);
             if (threadMaterial != null) animatedThreadMaterial = new Material(threadMaterial);
             thread = MakeLine("HiloColgante", ThreadWidth, ThreadOrder, animatedThreadMaterial ?? cableMaterial);
             thread.enabled = false;
+            BuildFireSacs();
             // Vive en los cables: empieza sobre el más cercano al jugador (el centro lo ocupa el tronco).
             // Si la sala aún está desactivada (FloorBuilder), Awake no ha corrido: OnEnable lo colocará al entrar el jugador.
             if (isActiveAndEnabled) PlaceOnCable();
@@ -116,6 +119,11 @@ namespace Primordia.Enemies
         void OnDestroy()
         {
             if (animatedThreadMaterial != null) Destroy(animatedThreadMaterial);
+            if (burningCableMaterial != null) Destroy(burningCableMaterial);
+            if (charredCableMaterial != null) Destroy(charredCableMaterial);
+            if (cableFire != null)
+                foreach (var cable in cableFire)
+                    if (cable.growingMaterial != null) Destroy(cable.growingMaterial);
         }
 
         SpriteRenderer MakeSprite(string objectName, Sprite sprite, Vector2 position, int order)
@@ -149,12 +157,13 @@ namespace Primordia.Enemies
             return a + delta * Mathf.Clamp01(Vector2.Dot(point - a, delta) / Mathf.Max(delta.sqrMagnitude, Mathf.Epsilon));
         }
 
-        int NearestCable(Vector2 point)
+        internal int NearestCable(Vector2 point)
         {
-            int selected = 0;
+            int selected = -1;
             float best = float.PositiveInfinity;
             for (int i = 0; i < CableCount; i++)
             {
+                if (!CableAvailable(i)) continue;
                 Vector2 lift = Vector2.up * cableHeights[i];
                 float distance = (ClosestOnSegment(point, starts[i] - lift, ends[i] - lift) - point).sqrMagnitude;
                 if (distance < best) { best = distance; selected = i; }
@@ -165,7 +174,8 @@ namespace Primordia.Enemies
         void PlaceOnCable()
         {
             cableIndex = NearestCable(target != null ? (Vector2)target.position : ArenaCenter);
-            Vector2 point = starts[cableIndex] - Vector2.up * cableHeights[cableIndex];
+            if (cableIndex < 0) { Land(); return; }
+            Vector2 point = ProjectCablePointToGround(cableIndex, starts[cableIndex]);
             body.position = point;
             transform.position = point;
             SetHeight(cableHeights[cableIndex] - CableSeat);
@@ -180,7 +190,9 @@ namespace Primordia.Enemies
         public bool ForceClimb()
         {
             if (CurrentMode != Mode.Ground || travel != Travel.None || CableCount == 0) return false;
-            cableIndex = NearestCable(body.position);
+            int next = NearestCable(body.position);
+            if (next < 0) return false;
+            cableIndex = next;
             Vector2 lift = Vector2.up * cableHeights[cableIndex];
             routeStart = ClosestOnSegment(body.position, starts[cableIndex] - lift, ends[cableIndex] - lift) + lift;
             climbFrom = body.position;
@@ -201,8 +213,25 @@ namespace Primordia.Enemies
             travel = Travel.Drop;
         }
 
+        void BeginCross(Vector2 origin, int next)
+        {
+            routeStart = origin;
+            crossHeight = VisualHeight;
+            cableIndex = next;
+            routeEnd = starts[next] - Vector2.up * cableHeights[next];
+            travel = Travel.Cross;
+            travelTime = 0f;
+            outward = true;
+        }
+
         void TickCable(float dt)
         {
+            if (travel != Travel.Drop && !CableAvailable(cableIndex))
+            {
+                if (IsAttacking && (fireHitPending || cableFire[cableIndex].state != CableState.Burning)) return;
+                if (!IsAttacking && travel == Travel.Run && TryFleeCable(dt)) return;
+                if (travel != Travel.Run || cableFire[cableIndex].state != CableState.Burning) ForceDrop();
+            }
             travelTime += dt;
             switch (travel)
             {
@@ -216,24 +245,16 @@ namespace Primordia.Enemies
                     break;
                 case Travel.Run:
                     int wanted = target != null ? NearestCable(target.position) : cableIndex;
-                    if (wanted != cableIndex) outward = false;
-                    Vector2 destination = (outward ? ends[cableIndex] : starts[cableIndex]) - Vector2.up * cableHeights[cableIndex];
+                    if (wanted >= 0 && wanted != cableIndex && CableAvailable(cableIndex)) outward = false;
+                    Vector2 destination = ProjectCablePointToGround(cableIndex, outward ? ends[cableIndex] : starts[cableIndex]);
                     facing = (destination - body.position).normalized;
                     body.MovePosition(Vector2.MoveTowards(body.position, destination, CableSpeed * dt));
                     Play("Walk", WalkMs);
                     if (Vector2.Distance(body.position, destination) <= CableSpeed * dt)
                     {
-                        if (!outward && wanted != cableIndex)
-                        {
-                            // Cruza la copa entre las ramas; nunca baja al suelo para cambiar de cable.
-                            routeStart = destination;
-                            crossHeight = VisualHeight;
-                            cableIndex = wanted;
-                            routeEnd = starts[cableIndex] - Vector2.up * cableHeights[cableIndex];
-                            travel = Travel.Cross;
-                            travelTime = 0f;
-                        }
-                        outward = !outward;
+                        // Cruza la copa entre ramas que aún se pueden usar.
+                        if (!outward && wanted >= 0 && wanted != cableIndex) BeginCross(destination, wanted);
+                        else outward = !outward;
                     }
                     break;
                 case Travel.Cross:

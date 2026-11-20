@@ -417,6 +417,69 @@ MonoBehaviour:
   - {fileID: -3639621887285183741, guid: 7c70c4debe30d7940ae2b729432ce70b, type: 3}
   cableMaterial: {fileID: 2100000, guid: 6ea1b4aa2eea1d74bbc3b733610ee9c4, type: 2}
   threadMaterial: {fileID: 2100000, guid: 8911c145ff71add469cd07a26f43dd28, type: 2}
+  cableFireArt:
+    burning: {fileID: 2800000, guid: d9e1a27f218871745887c944a136200d, type: 3}
+    charred: {fileID: 2800000, guid: 5aa0bf51478b8514380540c22316320d, type: 3}
+    growing: {fileID: 2800000, guid: ad7795fe6e4e96642ae7ce512220635c, type: 3}
+    effects:
+    - name: Cable_Stub
+      frames:
+      - {fileID: -1072084696476324620, guid: dbdac2a13ad200d46950979318b6ffb8, type: 3}
+      - {fileID: 8409405691089638503, guid: dbdac2a13ad200d46950979318b6ffb8, type: 3}
+      - {fileID: 4080939349679909471, guid: dbdac2a13ad200d46950979318b6ffb8, type: 3}
+      - {fileID: -1974039032, guid: dbdac2a13ad200d46950979318b6ffb8, type: 3}
+    - name: Fx_CableFlame
+      frames:
+      - {fileID: 5357537821018389598, guid: 991133dc2c92de545818f59a8265cf90, type: 3}
+      - {fileID: -1301557938436463145, guid: 991133dc2c92de545818f59a8265cf90, type: 3}
+      - {fileID: 1152529602313265007, guid: 991133dc2c92de545818f59a8265cf90, type: 3}
+      - {fileID: 434379034130902047, guid: 991133dc2c92de545818f59a8265cf90, type: 3}
+      - {fileID: -2913426836444566345, guid: 991133dc2c92de545818f59a8265cf90, type: 3}
+      - {fileID: -972457854, guid: 991133dc2c92de545818f59a8265cf90, type: 3}
+    - name: Fx_CableFront
+      frames:
+      - {fileID: 2951576640834696598, guid: 5e35bed19041413489c0f1a187cfd40f, type: 3}
+      - {fileID: -269729166506460547, guid: 5e35bed19041413489c0f1a187cfd40f, type: 3}
+      - {fileID: -2037162073341412449, guid: 5e35bed19041413489c0f1a187cfd40f, type: 3}
+      - {fileID: -444088687089073658, guid: 5e35bed19041413489c0f1a187cfd40f, type: 3}
+    - name: Fx_CableAsh
+      frames:
+      - {fileID: 7669545414944435851, guid: e28c47100912f2f45bfb11de64d0235b, type: 3}
+      - {fileID: 1354348743, guid: e28c47100912f2f45bfb11de64d0235b, type: 3}
+      - {fileID: -416714080, guid: e28c47100912f2f45bfb11de64d0235b, type: 3}
+      - {fileID: -1582371187, guid: e28c47100912f2f45bfb11de64d0235b, type: 3}
+      - {fileID: 1305416129, guid: e28c47100912f2f45bfb11de64d0235b, type: 3}
+      - {fileID: 1342515831, guid: e28c47100912f2f45bfb11de64d0235b, type: 3}
+    - name: Fx_CableSmoke
+      frames:
+      - {fileID: 82722108600758682, guid: 9143242bf367c58468bf4f43b9fbe923, type: 3}
+      - {fileID: -3341184738304034407, guid: 9143242bf367c58468bf4f43b9fbe923, type: 3}
+      - {fileID: 8683176831949868277, guid: 9143242bf367c58468bf4f43b9fbe923, type: 3}
+      - {fileID: -1131875192093578124, guid: 9143242bf367c58468bf4f43b9fbe923, type: 3}
+      - {fileID: -3596075913375519319, guid: 9143242bf367c58468bf4f43b9fbe923, type: 3}
+      - {fileID: -4376616657156780239, guid: 9143242bf367c58468bf4f43b9fbe923, type: 3}
+    - name: Fx_Megarachne_Stunned
+      frames:
+      - {fileID: -8057416488673662400, guid: 633ec242441650548b70094db176338d, type: 3}
+      - {fileID: -4452118991817373470, guid: 633ec242441650548b70094db176338d, type: 3}
+      - {fileID: 3235518930770182852, guid: 633ec242441650548b70094db176338d, type: 3}
+      - {fileID: -238424137088356081, guid: 633ec242441650548b70094db176338d, type: 3}
+      - {fileID: 3764928411870510982, guid: 633ec242441650548b70094db176338d, type: 3}
+      - {fileID: -2303778800416599277, guid: 633ec242441650548b70094db176338d, type: 3}
+      - {fileID: 7574659358585745841, guid: 633ec242441650548b70094db176338d, type: 3}
+      - {fileID: 385963483012759381, guid: 633ec242441650548b70094db176338d, type: 3}
+    sacIdle:
+    - {fileID: -4357448081896897112, guid: 6c7e4860ec5f33e4fa3bcf5aac1e7387, type: 3}
+    - {fileID: 6446076642563888805, guid: 6c7e4860ec5f33e4fa3bcf5aac1e7387, type: 3}
+    - {fileID: -6289467576226276763, guid: 6c7e4860ec5f33e4fa3bcf5aac1e7387, type: 3}
+    - {fileID: -5539291267830686534, guid: 6c7e4860ec5f33e4fa3bcf5aac1e7387, type: 3}
+    sacBurst:
+    - {fileID: -7418093019714818548, guid: e8f5ebb779030b5438af49b0d5f25339, type: 3}
+    - {fileID: 7462704289033570257, guid: e8f5ebb779030b5438af49b0d5f25339, type: 3}
+    - {fileID: 5706269142380385645, guid: e8f5ebb779030b5438af49b0d5f25339, type: 3}
+    - {fileID: 5721329496203764564, guid: e8f5ebb779030b5438af49b0d5f25339, type: 3}
+    - {fileID: 5930052353563706475, guid: e8f5ebb779030b5438af49b0d5f25339, type: 3}
+    sacRemains: {fileID: -3776662731488166539, guid: 3a57b96e00094a442844e8096fb0cbce, type: 3}
   bodySprite: {fileID: 6937354316982153534}
   shadowSprite: {fileID: 428458217188991573}
   bodyRenderer: {fileID: 4399486962728544620}

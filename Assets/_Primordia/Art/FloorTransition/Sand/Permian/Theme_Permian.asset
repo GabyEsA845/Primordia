@@ -1,0 +1,155 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e1209f1fc89bf44e913fd5d9be7da6d, type: 3}
+  m_Name: Theme_Permian
+  m_EditorClassIdentifier: Primordia::Primordia.Rooms.RoomTheme
+  rippleBorders: 0
+  blendFloorTiles: []
+  blendCapTiles: []
+  blendFaces: []
+  blendDecals: []
+  floor: {fileID: 11400000, guid: d1121f78ddf77d14fbcf2c45c19cfd40, type: 2}
+  floorVariants:
+  - {fileID: 11400000, guid: ca7ea1f6f6b39c8468e16c5c4222b1ae, type: 2}
+  - {fileID: 11400000, guid: cd42e3ba1e076f84bb4d901bb45a7913, type: 2}
+  - {fileID: 11400000, guid: c50f248529e10b144933403029f07fa9, type: 2}
+  - {fileID: 11400000, guid: 096fe28cb9cdd624eb211ed8b25a8d30, type: 2}
+  - {fileID: 11400000, guid: 561f3f0922219de43b1318eb7a3b32b6, type: 2}
+  floorShadow:
+  - {fileID: 11400000, guid: 2876a0418e0572f4cbb2dbc9cee24f9e, type: 2}
+  - {fileID: 11400000, guid: 1f1493751ad065948aa420c1bca1dc59, type: 2}
+  cap: {fileID: 11400000, guid: b9b7bf588266cc340b45d2e3e33f9745, type: 2}
+  capVariants:
+  - {fileID: 11400000, guid: 7b2fd26cd3e509a448fdf2d19d7643a3, type: 2}
+  - {fileID: 11400000, guid: d1cedf7872b3cbd4982b6d51e2a5f830, type: 2}
+  - {fileID: 11400000, guid: c4700456a07dbd144aa7a3234a043717, type: 2}
+  faceUpper:
+  - {fileID: 11400000, guid: c3f80e672480fe74b8086ab0746dedbe, type: 2}
+  - {fileID: 11400000, guid: c080bb7a8bd42a54698b7bba2242da31, type: 2}
+  - {fileID: 11400000, guid: e16af68eab7df274589882e6f7580daa, type: 2}
+  - {fileID: 11400000, guid: 0d39dd99dda6e604cbbe4d73efcc0bf2, type: 2}
+  faceLower:
+  - {fileID: 11400000, guid: 9e813bc3c8fca1b44a45de1cb9501275, type: 2}
+  - {fileID: 11400000, guid: d776f6d019201564db12db3184a09b6c, type: 2}
+  - {fileID: 11400000, guid: 55086e6ed7754b3408f0f3f19953bb7a, type: 2}
+  - {fileID: 11400000, guid: 6dec70712c472c24f99acfc5b202f2bd, type: 2}
+  edgeLeft: {fileID: 11400000, guid: cce1d616ed13c9a4cae745841fbce932, type: 2}
+  edgeRight: {fileID: 11400000, guid: 38bf833b8d322044e87b001e0e1e28b5, type: 2}
+  edgeBottom: {fileID: 11400000, guid: f8ea9197bd0af4846823c753921e3103, type: 2}
+  cornerBottomLeft: {fileID: 11400000, guid: 6f8a3a3248b198c47a99d20fff53d731, type: 2}
+  cornerBottomRight: {fileID: 11400000, guid: 3d327774893087c4d90871d89591d61a, type: 2}
+  faceUpperEndLeft: {fileID: 11400000, guid: fca15e1bfd6963645b76fbface6682a3, type: 2}
+  faceUpperEndRight: {fileID: 11400000, guid: 40fac79755f31ec449e3f434c38159e8, type: 2}
+  faceLowerEndLeft: {fileID: 11400000, guid: 8ace31dd815af684390d1a5b724048f3, type: 2}
+  faceLowerEndRight: {fileID: 11400000, guid: 2e21d3b275c29d24bb1985f8c4662599, type: 2}
+  outerTopLeft: {fileID: 11400000, guid: 1c2092ff816c617429d7f388aa15bb16, type: 2}
+  outerTopRight: {fileID: 11400000, guid: 2d2cad7aea60a1b48942381f4d71f392, type: 2}
+  edgeLeftFaceUpper: {fileID: 11400000, guid: 81a5f0750e82ff54fa6abec511ae9f24, type: 2}
+  edgeLeftFaceLower: {fileID: 11400000, guid: fb143b62cd9a90b488da81c264b915bf, type: 2}
+  edgeRightFaceUpper: {fileID: 11400000, guid: b9bda27e3b604044e8615e49f688ddae, type: 2}
+  edgeRightFaceLower: {fileID: 11400000, guid: 32b95b1e5fe1f9242ab611c686a61017, type: 2}
+  missing: {fileID: 11400000, guid: 3724e1c7198527a4dbb54cfc33c72bc0, type: 2}
+  doorCrown: {fileID: 0}
+  doorSideBack: {fileID: 0}
+  doorSideFront: {fileID: 0}
+  wallSideDeco: []
+  decorations: []
+  decorationChance: 0.09
+  doorway: {fileID: 0}
+  doorTop: []
+  doorBottom: []
+  doorSide: []
+  slabTop:
+    close: []
+    closeDurations: []
+    open: []
+    openDurations: []
+  slabBottom:
+    close: []
+    closeDurations: []
+    open: []
+    openDurations: []
+  slabSide:
+    close: []
+    closeDurations: []
+    open: []
+    openDurations: []
+  smallObstacles: []
+  bigObstacles: []
+  smallObstacleOutlines: []
+  bigObstacleOutlines: []
+  obstacleOutline: {r: 0.95, g: 0.77, b: 0.35, a: 0.85}
+  pitTiles: []
+  pitCorners: []
+  pitMotes: {fileID: 0}
+  pitMotesChance: 0.12
+  brushTop:
+    idle: {fileID: 0}
+    burn: []
+    durations: []
+    gone: {fileID: 0}
+    opensAtFrame: 5
+  brushSide:
+    idle: {fileID: 0}
+    burn: []
+    durations: []
+    gone: {fileID: 0}
+    opensAtFrame: 5
+  brushBottom:
+    idle: {fileID: 0}
+    burn: []
+    durations: []
+    gone: {fileID: 0}
+    opensAtFrame: 5
+  ferns: []
+  fernDensity: 0
+  methane:
+    sacIdle: []
+    sacBurst: []
+    sacRemains: {fileID: 0}
+    mist: []
+    sacCount: {x: 0, y: 0}
+    mistPerCell: 0
+  poison:
+    bulbIdle: []
+    bulbBurst: []
+    bulbStump: {fileID: 0}
+    bulbRegrow: []
+    bulbCount: {x: 0, y: 0}
+  scenery:
+    ventIdle: []
+    ventWarn: []
+    ventBlast: []
+    ventCount: {x: 0, y: 0}
+    puddles: []
+    puddleCount: {x: 0, y: 0}
+    waterShare: 0
+    gnatChance: 0
+    gnats: []
+    beetleIdle: []
+    beetleRun: []
+    beetleCount: {x: 0, y: 0}
+    embers: []
+    emberCount: {x: 0, y: 0}
+    dripMoss: []
+    mossChance: 0
+    stump: {fileID: 0}
+    stumpSmoke: []
+  mudTiles: []
+  mudCorners: []
+  mudBubbles: {fileID: 0}
+  mudBubblesChance: 0.1
+  caustics: []
+  lightRay: []
+  lightRayFrameDuration: 0.25
+  marineSnow: 0
+  glows: []

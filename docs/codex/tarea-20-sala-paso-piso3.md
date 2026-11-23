@@ -2,7 +2,7 @@
 
 - **Rama:** `codex/piso3-salida` (crearla desde `feature/arthropleura-canopy-art`, que trae el arte aprobado y todo el código del piso 3)
 - **Escrita por:** Claude (2026-11-23) · **Implementa:** Codex
-- **Estado:** pendiente
+- **Estado:** implementada y comprobada en batchmode; pendiente de prueba manual de la usuaria
 
 ## Objetivo
 La sala de paso del piso 3 es una cueva con **tres franjas seguidas**: tierra quemada (`Burnt`, ya existe) → arena intermedia (`BurntSand`) → arena roja del Pérmico (`Permian`), con un **sumidero de arena** (la fosa) en la última. Hoy `Floor_3` no tiene sala de paso (`Floor3Setup.cs:102` llama a `ConfigureTransition(null, null, null, null)`). Hay que importar el arte ya aprobado y programar el sistema para que **la frontera entre franjas nunca sea una línea de corte** (regla de la usuaria, `docs/memoria-claude/primordia-theme-transitions.md`: «luce muy poco natural» si es una línea).
@@ -44,4 +44,36 @@ Piso 4 y sus Bocas, audio (ambiente/sonido del sumidero), calor que ondula sobre
 Ejecutar el menú del paso 6 y abrir `Test_Floor3Transition`: desde la puerta se ve la cueva `Burnt` → arena que entra con borde ondulado → `Permian` con el sumidero; **sin ninguna línea recta de cambio de tema** en suelo ni en paredes (revisa especialmente las caras de las paredes en la frontera); calcomanías de arena sueltas; el sumidero gira y suelta polvo; al saltar dentro, victoria. Comparar con `docs/multimedia-temp/floor3-exit/vista_previa_sala.png`. Lanzar las pruebas nuevas y las suites de transición/pisos existentes.
 
 ## Resultado
-(Codex lo rellena al terminar: qué hizo, menú ejecutado, pruebas y resultados, archivos tocados, qué queda.)
+
+Implementada el 2026-11-23 en `codex/piso3-salida`.
+
+### Implementación
+- Importados `BurntSand`, `Permian`, solapas, cuatro juegos de máscaras/esquinas, ocho caras de frontera, tres calcomanías, sumidero y polvo. Los **187 PNG importados coinciden byte por byte** con sus fuentes aprobadas. No se ejecutaron generadores ni se retocaron imágenes.
+- `RoomTheme` incorpora reglas opcionales `BlendSet` y `rippleBorders`. Las reglas viven en `BurntSand`, con referencias a los temas participantes; el asset compartido de `Burnt` queda intacto.
+- Frontera por coordenadas relativas a la entrada, ondulada con dos senos (amplitud máxima 3,5 celdas, periodos 12 y 8), más grano por celda. Funciona con las cuatro orientaciones de entrada. Las caras inferiores heredan el tema de las superiores.
+- Máscaras de suelo en ambos sentidos, capas separadas para las cuatro esquinas simultáneas, tapas y caras de pared emparejadas. Calcomanías deterministas con frecuencia provisional de 1/32 entre candidatas cercanas a fronteras; su huella evita puertas y la zona reservada de la fosa.
+- `Floor_3` usa la cueva existente y `TransitionPit_Sand`, con entrada `Burnt` (la selección existente ya toma la última franja), intermedio `BurntSand` y final `Permian`. El prefab tiene ocho cuadros a 167 ms y polvo de cuatro cuadros, con los dos finales de desvanecimiento (`SetBubblePop(2)`).
+- El icono habitual ya estaba asignado en `GameUI`; se reutiliza. Los temas nuevos no tienen lodo, maleza ni helechos; el filtro existente de helechos ya omite temas sin vegetación. Las puertas utilizan el tema de entrada de la sala.
+- **No existe piso 4:** `nextFloor = null`, `ConfigureNextFloor` con Bocas vacías; se conserva la victoria de `LeaveFloor`. No se modificó la selección ni la configuración de jefes de `Floor_3`, ni audio.
+
+### Menús ejecutados y escena
+- `Primordia > Floor transition > Crear sala de paso del piso 3 (sumidero) y escena de prueba` (`FloorTransitionSetup.CreateFloor3Transition`), ejecutado en Unity 6000.6.2f1, batchmode, con el editor cerrado. Resultado correcto; log: `Logs/tarea20-import.log`.
+- Generados `Test_Floor3Transition.unity` y `Floor_3TransitionTest.asset`: inicio, jefe perseguidor y sala de paso, con HUD y equipamiento de prueba.
+- `Primordia > Floor transition > Capturar revisión de la sala del piso 3` (`CaptureFloor3Transition`), batchmode con renderizado. Captura: `Logs/tarea20-sala.png`; log: `Logs/tarea20-captura.log`. Revisada visualmente junto a `vista_previa_sala.png`: fronteras onduladas en suelo y paredes, mezcla de arena/ceniza y sumidero en Permian. La captura no modifica el arte ni guarda cambios de escena.
+
+### Pruebas y comprobaciones
+- PlayMode, filtro `Floor`: **263 ejecutadas, 257 pasaron, 6 fallaron**. Son las seis ya documentadas: `Floor3EnemiesTests` (Calamites ×2, Dragonfly ×2) y `Floor3LimbsTests` (JumpingLegs ×2). `FloorTransitionTests`: **8/8**. XML/log: `Logs/tarea20-tests.xml` y `.log`.
+- Verificación final PlayMode, `FloorTransitionPiso3Tests;RoomArtTests`: **27/27 pasaron** (**15/15 nuevas**, **12/12 de arte**). XML/log: `Logs/tarea20-final-tests.xml` y `.log`.
+- Las nuevas pruebas cubren piezas obligatorias y arrays sin nulos, ausencia de vegetación, máscaras/esquinas simultáneas, tapas y pares de caras en ambos sentidos, ondulación de al menos tres celdas y orden de las tres franjas en las cuatro orientaciones, generación real de `Floor_3` con jefe y fosa (semillas 7, 42 y 91), escena/prefab guardados y comparación celda por celda con el algoritmo anterior de las transiciones de `Floor_1` y `Floor_2`.
+- La primera tentativa de baseline no ejecutó pruebas por conexión al cliente de licencias dentro del aislamiento; se resolvió ejecutando Unity con acceso a la licencia. Una compilación inicial del test se corrigió (`RectInt.PositionEnumerator` no admite `Cast`). En la primera comprobación adicional de arte pasaron 25/27: los dos tests nuevos esperaban erróneamente colisión `Sprite`; se corrigió a `Grid`, el criterio ya utilizado por `CreateTile`, y la ejecución final pasó completa.
+- Revisadas las referencias de 160 assets/prefab/escena: resueltas en Assets o en los paquetes de Unity. C# conservado en CRLF. `Floor_1.asset`, `Floor_2.asset` y `ProjectSettings/ProjectSettings.asset` sin cambios.
+
+### Archivos tocados
+- Nuevos: `Editor/ArtSetup.Floor3Exit.cs`, `Editor/FloorTransitionSetup.Floor3.cs`, `Tests/PlayMode/FloorTransitionPiso3Tests.cs` y sus `.meta` (bajo `Assets/_Primordia/`).
+- Modificados: `Scripts/Rooms/RoomTheme.cs`, `RoomPainter.cs`, `FloorBuilder.cs` y `Data/Rooms/Floor_3.asset`.
+- Generados: `Art/FloorTransition/Sand/` (PNG, tiles, temas y metadatos), `Prefabs/Rooms/TransitionPit_Sand.prefab`, `Data/Rooms/Floor_3TransitionTest.asset`, `Scenes/Test_Floor3Transition.unity` y sus `.meta`.
+- Esta tarea. Los logs/XML/captura de comprobación quedan en `Logs/`, fuera del commit. Los cambios ajenos presentes en el directorio se dejan intactos y fuera del commit.
+
+### Qué queda
+- Prueba manual de la usuaria en `Test_Floor3Transition`: movimiento, animación/polvo y salto interactivo hasta victoria. Se han comprobado los datos de animación y la lógica mediante las suites; no se ha realizado una sesión manual interactiva.
+- Piso 4, sus Bocas y audio siguen fuera de alcance. Sin dudas de diseño pendientes. Commit en la rama solicitada; sin push ni merge.

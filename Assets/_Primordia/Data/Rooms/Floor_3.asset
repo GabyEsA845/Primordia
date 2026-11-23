@@ -712,11 +712,11 @@ MonoBehaviour:
   shopDepth: {x: 0.33333334, y: 0.6666667}
   exchangeCapsule: {fileID: 6612489931785259953, guid: 8796ce71248124a4d88f0e9c10c78564, type: 3}
   teleporterPrefab: {fileID: 5755237045130047665, guid: 43e86884a118e5243b78a86796f5111c, type: 3}
-  transitionRoom: {fileID: 0}
-  transitionPit: {fileID: 0}
-  transitionMidTheme: {fileID: 0}
-  nextFloorTheme: {fileID: 0}
+  transitionRoom: {fileID: 11400000, guid: a1cc0837e3579584189ff066928ff179, type: 2}
+  transitionPit: {fileID: 5413735273365125961, guid: 9b4f98691dabe70449cb727080323eea, type: 3}
+  transitionMidTheme: {fileID: 11400000, guid: c05bcfd6c4b39054fb11ded93a32ae7f, type: 2}
+  nextFloorTheme: {fileID: 11400000, guid: 10b460ee2812e2f46ad58676dbee5582, type: 2}
   nextFloorMouths: []
-  nextFloorName: "oc\xE9ano c\xE1mbrico"
+  nextFloorName: 
   exitSprite: {fileID: 21300000, guid: bc9bd159743ed944e9321a5b368508a5, type: 3}
   exitColor: {r: 0.3, g: 0.95, b: 0.8, a: 1}

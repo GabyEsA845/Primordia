@@ -10,6 +10,27 @@ namespace Primordia.Rooms
     [CreateAssetMenu(menuName = "Primordia/Rooms/Room Theme", fileName = "Theme_")]
     public class RoomTheme : ScriptableObject
     {
+        [Header("Mezcla entre franjas (opcional)")]
+        [SerializeField] bool rippleBorders;
+        [SerializeField] BlendSet[] blendFloorTiles = System.Array.Empty<BlendSet>();
+        [SerializeField] BlendSet[] blendCapTiles = System.Array.Empty<BlendSet>();
+        [SerializeField] TileBase[] blendFaces = System.Array.Empty<TileBase>();
+        [SerializeField] Sprite[] blendDecals = System.Array.Empty<Sprite>();
+        public bool RippleBorders => rippleBorders;
+        public BlendSet[] BlendFloorTiles => blendFloorTiles;
+        public BlendSet[] BlendCapTiles => blendCapTiles;
+        public TileBase[] BlendFaces => blendFaces;
+        public Sprite[] BlendDecals => blendDecals;
+
+        internal void ConfigureBlend(BlendSet[] floors, BlendSet[] caps, TileBase[] faces, Sprite[] decals)
+        {
+            rippleBorders = true;
+            blendFloorTiles = floors;
+            blendCapTiles = caps;
+            blendFaces = faces;
+            blendDecals = decals;
+        }
+
         [Header("Suelo")]
         [SerializeField] TileBase floor;
         [Tooltip("Variantes que salen más o menos en 1 de cada 3 tiles de suelo.")]
@@ -365,6 +386,24 @@ namespace Primordia.Rooms
             lightRayFrameDuration = Mathf.Max(0.01f, newLightRayFrameDuration);
             marineSnow = Mathf.Max(0, newMarineSnow);
             glows = newGlows ?? System.Array.Empty<Glow>();
+        }
+    }
+
+    /// <summary>Una capa de mezcla: se dibuja en el tema de origen junto a cualquiera de los temas de destino.</summary>
+    [System.Serializable]
+    public class BlendSet
+    {
+        public RoomTheme source;
+        public RoomTheme[] neighbors;
+        public TileBase[] tiles;
+        public TileBase[] corners;
+
+        public BlendSet(RoomTheme source, RoomTheme[] neighbors, TileBase[] tiles, TileBase[] corners)
+        {
+            this.source = source;
+            this.neighbors = neighbors;
+            this.tiles = tiles;
+            this.corners = corners;
         }
     }
 

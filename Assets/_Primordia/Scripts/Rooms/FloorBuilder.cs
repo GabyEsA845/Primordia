@@ -91,7 +91,7 @@ namespace Primordia.Rooms
         }
 
         /// <summary>Una sala del plano ya colocada en el mapa.</summary>
-        class PlacedRoom
+        internal class PlacedRoom
         {
             public LayoutRoom Layout;
             public Vector2Int Origin;
@@ -467,7 +467,7 @@ namespace Primordia.Rooms
         /// piso siguiente alrededor de la fosa y más allá. También el relleno de pared de alrededor que queda más cerca de
         /// esta sala que de las demás, para que desde dentro no se vea el corte.
         /// </summary>
-        static void ThemeTransition(FloorMap map, PlacedRoom room, List<PlacedRoom> placed, FloorConfig config)
+        internal static void ThemeTransition(FloorMap map, PlacedRoom room, List<PlacedRoom> placed, FloorConfig config)
         {
             // Se entra con el tileset del piso; con franjas (piso 2), con el de la última, la más honda (el Abismo).
             int entryTheme = config.HasBands ? FirstBandTheme + config.BandThemes.Length - 1 : SoupTheme;
@@ -495,8 +495,29 @@ namespace Primordia.Rooms
 
                 float t = Vector2.Distance(cell + Vector2.one * 0.5f, door) / span
                     + ((CellNoise(cell) & 1023) / 1023f * 2f - 1f) * ThemeNoise;
+                if (config.TransitionMidTheme != null && config.TransitionMidTheme.RippleBorders)
+                    t = RippleTransitionDistance(cell, door, room.FloorCenter) / span;
                 map.SetTheme(cell, t < MidThemeFrom ? entryTheme : t < NextThemeFrom ? MidTheme : NextTheme);
             }
+
+            if (config.TransitionMidTheme != null && config.TransitionMidTheme.RippleBorders)
+                foreach (var cell in area.allPositionsWithin)
+                    if (RoomPainter.IsLowerFace(WallRules.Classify(map, cell))
+                        && (room.Rect.Contains(cell) || (map.Get(cell) == FloorMap.Kind.Wall
+                            && !others.Any(other => Distance(other, cell) <= Distance(room.Rect, cell)))))
+                        map.SetTheme(cell, map.GetTheme(cell + Vector2Int.up));
+        }
+
+        // Provisional: amplitud máxima 3,5 celdas, periodos de 12 y 8 filas y grano de media celda.
+        // Coordenadas relativas a la entrada: funciona también al entrar por arriba, abajo o la derecha.
+        internal static float RippleTransitionDistance(Vector2Int cell, Vector2 door, Vector2 center)
+        {
+            var forward = (center - door).normalized;
+            var offset = cell + Vector2.one * 0.5f - door;
+            float row = Vector2.Dot(offset, new Vector2(-forward.y, forward.x));
+            float wave = 2.75f * Mathf.Sin(row * 2f * Mathf.PI / 12f) + 0.75f * Mathf.Sin(row * 2f * Mathf.PI / 8f);
+            float grain = ((CellNoise(cell) & 1023) / 1023f - 0.5f) * 0.5f;
+            return Vector2.Dot(offset, forward) - wave + grain;
         }
 
         static float Distance(RectInt rect, Vector2Int cell)

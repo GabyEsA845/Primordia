@@ -91,7 +91,104 @@ namespace Primordia.Rooms
                 }
             }
 
+            PaintBlends(map, themes, floor, walls, decorationFree);
             return missing;
+        }
+
+        // Cada esquina tiene su capa: una celda puede necesitar varias, además de la máscara cardinal.
+        static void PaintBlends(FloorMap map, IReadOnlyList<RoomTheme> themes, Tilemap floor, Tilemap walls,
+            ISet<Vector2Int> decorationFree)
+        {
+            foreach (var provider in themes)
+            {
+                if (provider == null || !provider.RippleBorders)
+                    continue;
+                var ground = BlendLayers(floor.transform.parent, "BlendFloor", -14);
+                var caps = BlendLayers(floor.transform.parent, "BlendCap", -9);
+                foreach (var cell in map.Bounds.allPositionsWithin)
+                {
+                    var theme = themes[Mathf.Clamp(map.GetTheme(cell), 0, themes.Count - 1)];
+                    var piece = WallRules.Classify(map, cell);
+                    bool wall = WallRules.IsWall(piece);
+                    var sets = wall ? provider.BlendCapTiles : provider.BlendFloorTiles;
+                    if (!wall && map.Get(cell) != FloorMap.Kind.Floor)
+                        continue;
+                    foreach (var set in sets)
+                    {
+                        if (set.source != theme)
+                            continue;
+                        bool Neighbor(Vector2Int at) => map.Bounds.Contains(at)
+                            && (wall ? WallRules.IsWall(WallRules.Classify(map, at)) : map.Get(at) == FloorMap.Kind.Floor)
+                            && System.Array.IndexOf(set.neighbors, themes[map.GetTheme(at)]) >= 0;
+                        var position = new Vector3Int(cell.x, cell.y, 0);
+                        if (wall && IsFace(piece))
+                        {
+                            // El mismo hash en las dos mitades conserva la juntura del par.
+                            bool lower = IsLowerFace(piece);
+                            int variant = CellHash(lower ? cell + Vector2Int.up : cell) % 2;
+                            bool FaceNeighbor(Vector2Int at) => Neighbor(at) && IsFace(WallRules.Classify(map, at));
+                            int side = FaceNeighbor(cell + Vector2Int.right) ? 0 : FaceNeighbor(cell + Vector2Int.left) ? 1 : -1;
+                            if (side >= 0 && provider.BlendFaces.Length == 8)
+                                walls.SetTile(position, provider.BlendFaces[(side * 2 + (lower ? 1 : 0)) * 2 + variant]);
+                            continue;
+                        }
+                        int mask = BlendMask(cell, Neighbor);
+                        var layers = wall ? caps : ground;
+                        if (mask != 0)
+                            layers[0].SetTile(position, set.tiles[mask]);
+                        for (int corner = 0; corner < 4; corner++)
+                        {
+                            int dx = corner % 2 == 0 ? 1 : -1, dy = corner < 2 ? 1 : -1;
+                            if (!Neighbor(cell + new Vector2Int(dx, 0)) && !Neighbor(cell + new Vector2Int(0, dy))
+                                && Neighbor(cell + new Vector2Int(dx, dy)))
+                                layers[corner + 1].SetTile(position, set.corners[corner]);
+                        }
+                    }
+                    // Provisional: una calcomanía cada 32 celdas candidatas, sin invadir puertas ni el sumidero.
+                    if (wall || provider.BlendDecals.Length == 0 || CellHash(cell) % 32 != 0)
+                        continue;
+                    bool near = false, free = true;
+                    for (int dx = -2; dx <= 2; dx++)
+                        for (int dy = -2; dy <= 2; dy++)
+                        {
+                            var at = cell + new Vector2Int(dx, dy);
+                            if (map.Get(at) != FloorMap.Kind.Floor || (decorationFree != null && decorationFree.Contains(at)))
+                                free = false;
+                            var other = themes[Mathf.Clamp(map.GetTheme(at), 0, themes.Count - 1)];
+                            foreach (var set in provider.BlendFloorTiles)
+                                if (set.source == theme && System.Array.IndexOf(set.neighbors, other) >= 0)
+                                    near = true;
+                        }
+                    if (!free || !near)
+                        continue;
+                    var decal = new GameObject("SandDrift").AddComponent<SpriteRenderer>();
+                    decal.transform.SetParent(floor.transform.parent, false);
+                    decal.transform.localPosition = new Vector3(cell.x + 0.5f, cell.y + 0.5f, 0);
+                    decal.sprite = provider.BlendDecals[(CellHash(cell) / 32) % provider.BlendDecals.Length];
+                    decal.sortingOrder = -13;
+                }
+            }
+        }
+
+        internal static bool IsLowerFace(Piece piece) => piece is Piece.FaceLower or Piece.FaceLowerEndLeft or Piece.FaceLowerEndRight;
+        static bool IsFace(Piece piece) => IsLowerFace(piece)
+            || piece is Piece.FaceUpper or Piece.FaceUpperEndLeft or Piece.FaceUpperEndRight;
+
+        internal static int BlendMask(Vector2Int cell, System.Func<Vector2Int, bool> neighbor) =>
+            (neighbor(cell + Vector2Int.up) ? 1 : 0) | (neighbor(cell + Vector2Int.right) ? 2 : 0)
+            | (neighbor(cell + Vector2Int.down) ? 4 : 0) | (neighbor(cell + Vector2Int.left) ? 8 : 0);
+
+        static Tilemap[] BlendLayers(Transform parent, string name, int order)
+        {
+            var layers = new Tilemap[5];
+            for (int i = 0; i < layers.Length; i++)
+            {
+                var child = new GameObject(name + i, typeof(Tilemap), typeof(TilemapRenderer));
+                child.transform.SetParent(parent, false);
+                child.GetComponent<TilemapRenderer>().sortingOrder = order;
+                layers[i] = child.GetComponent<Tilemap>();
+            }
+            return layers;
         }
 
         /// <summary>

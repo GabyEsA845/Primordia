@@ -480,6 +480,109 @@ MonoBehaviour:
     - {fileID: 5721329496203764564, guid: e8f5ebb779030b5438af49b0d5f25339, type: 3}
     - {fileID: 5930052353563706475, guid: e8f5ebb779030b5438af49b0d5f25339, type: 3}
     sacRemains: {fileID: -3776662731488166539, guid: 3a57b96e00094a442844e8096fb0cbce, type: 3}
+  rageEffects:
+  - name: Nido_Tree_Dry
+    frames:
+    - {fileID: -212899620, guid: ba3707afb04bc8c4cbd69439012611e5, type: 3}
+  - name: Nido_Tree_Dry_Tronco
+    frames:
+    - {fileID: -1703833492, guid: ba3707afb04bc8c4cbd69439012611e5, type: 3}
+  - name: Nido_Tree_Charred
+    frames:
+    - {fileID: -793777248, guid: 27907366e01595e4dbb1589992fbc706, type: 3}
+  - name: Nido_Tree_Charred_Tronco
+    frames:
+    - {fileID: -823549263, guid: 27907366e01595e4dbb1589992fbc706, type: 3}
+  - name: Nido_Tree_Shake
+    frames:
+    - {fileID: 859248080, guid: ff446d3ddc8a64c41a1ee96a0370cbfa, type: 3}
+    - {fileID: -1295988208, guid: ff446d3ddc8a64c41a1ee96a0370cbfa, type: 3}
+    - {fileID: -1800506766, guid: ff446d3ddc8a64c41a1ee96a0370cbfa, type: 3}
+    - {fileID: -1497343810, guid: ff446d3ddc8a64c41a1ee96a0370cbfa, type: 3}
+    - {fileID: -1162952331, guid: ff446d3ddc8a64c41a1ee96a0370cbfa, type: 3}
+    - {fileID: -740289712, guid: ff446d3ddc8a64c41a1ee96a0370cbfa, type: 3}
+  - name: Nido_Tree_Shake_Tronco
+    frames:
+    - {fileID: -1486155129, guid: ff446d3ddc8a64c41a1ee96a0370cbfa, type: 3}
+    - {fileID: 428087049, guid: ff446d3ddc8a64c41a1ee96a0370cbfa, type: 3}
+    - {fileID: -152023121, guid: ff446d3ddc8a64c41a1ee96a0370cbfa, type: 3}
+    - {fileID: 71218992, guid: ff446d3ddc8a64c41a1ee96a0370cbfa, type: 3}
+    - {fileID: -1584730667, guid: ff446d3ddc8a64c41a1ee96a0370cbfa, type: 3}
+    - {fileID: 744469786, guid: ff446d3ddc8a64c41a1ee96a0370cbfa, type: 3}
+  - name: Nido_Tree_Drying
+    frames:
+    - {fileID: 2049674447, guid: f9bffd3f9c304ba4d982031f6fdcd717, type: 3}
+    - {fileID: -1382427417, guid: f9bffd3f9c304ba4d982031f6fdcd717, type: 3}
+    - {fileID: -1364657114, guid: f9bffd3f9c304ba4d982031f6fdcd717, type: 3}
+    - {fileID: 253785366, guid: f9bffd3f9c304ba4d982031f6fdcd717, type: 3}
+    - {fileID: 1941073695, guid: f9bffd3f9c304ba4d982031f6fdcd717, type: 3}
+    - {fileID: -653971947, guid: f9bffd3f9c304ba4d982031f6fdcd717, type: 3}
+  - name: Nido_Tree_Drying_Tronco
+    frames:
+    - {fileID: 670128991, guid: f9bffd3f9c304ba4d982031f6fdcd717, type: 3}
+    - {fileID: 1204375868, guid: f9bffd3f9c304ba4d982031f6fdcd717, type: 3}
+    - {fileID: -2027755, guid: f9bffd3f9c304ba4d982031f6fdcd717, type: 3}
+    - {fileID: 595698737, guid: f9bffd3f9c304ba4d982031f6fdcd717, type: 3}
+    - {fileID: -2122521110, guid: f9bffd3f9c304ba4d982031f6fdcd717, type: 3}
+    - {fileID: -1352055775, guid: f9bffd3f9c304ba4d982031f6fdcd717, type: 3}
+  - name: Nido_Burn
+    frames:
+    - {fileID: 235645838, guid: 68ad1e3fa5e5801499833f17be3fe54c, type: 3}
+    - {fileID: 1744306283, guid: 68ad1e3fa5e5801499833f17be3fe54c, type: 3}
+    - {fileID: 65014400, guid: 68ad1e3fa5e5801499833f17be3fe54c, type: 3}
+    - {fileID: 750161705, guid: 68ad1e3fa5e5801499833f17be3fe54c, type: 3}
+    - {fileID: 2140788575, guid: 68ad1e3fa5e5801499833f17be3fe54c, type: 3}
+    - {fileID: 1920617546, guid: 68ad1e3fa5e5801499833f17be3fe54c, type: 3}
+    - {fileID: 500972559, guid: 68ad1e3fa5e5801499833f17be3fe54c, type: 3}
+    - {fileID: 1998861153, guid: 68ad1e3fa5e5801499833f17be3fe54c, type: 3}
+  - name: Nido_Burn_Tronco
+    frames:
+    - {fileID: 1409037877, guid: 68ad1e3fa5e5801499833f17be3fe54c, type: 3}
+    - {fileID: -222959240, guid: 68ad1e3fa5e5801499833f17be3fe54c, type: 3}
+    - {fileID: -60245724, guid: 68ad1e3fa5e5801499833f17be3fe54c, type: 3}
+    - {fileID: -751282060, guid: 68ad1e3fa5e5801499833f17be3fe54c, type: 3}
+    - {fileID: -1260537415, guid: 68ad1e3fa5e5801499833f17be3fe54c, type: 3}
+    - {fileID: 1781957130, guid: 68ad1e3fa5e5801499833f17be3fe54c, type: 3}
+    - {fileID: 886114228, guid: 68ad1e3fa5e5801499833f17be3fe54c, type: 3}
+    - {fileID: 410877876, guid: 68ad1e3fa5e5801499833f17be3fe54c, type: 3}
+  - name: Nido_Tree_Charred_Smolder
+    frames:
+    - {fileID: 201434258, guid: ba36f35707d9859499dab98eee335831, type: 3}
+    - {fileID: 697901680, guid: ba36f35707d9859499dab98eee335831, type: 3}
+    - {fileID: 1922797910, guid: ba36f35707d9859499dab98eee335831, type: 3}
+    - {fileID: -673253104, guid: ba36f35707d9859499dab98eee335831, type: 3}
+  - name: Nido_Tree_Charred_Smolder_Tronco
+    frames:
+    - {fileID: -1140896575, guid: ba36f35707d9859499dab98eee335831, type: 3}
+    - {fileID: 42031099, guid: ba36f35707d9859499dab98eee335831, type: 3}
+    - {fileID: 335146854, guid: ba36f35707d9859499dab98eee335831, type: 3}
+    - {fileID: 1543412180, guid: ba36f35707d9859499dab98eee335831, type: 3}
+  - name: Fx_Nido_Rain
+    frames:
+    - {fileID: -6190613356641037883, guid: b73b102f96c0fba45be3d60ab7119f93, type: 3}
+    - {fileID: -1161899576, guid: b73b102f96c0fba45be3d60ab7119f93, type: 3}
+    - {fileID: -599320315, guid: b73b102f96c0fba45be3d60ab7119f93, type: 3}
+    - {fileID: 172224192, guid: b73b102f96c0fba45be3d60ab7119f93, type: 3}
+    - {fileID: 999095972, guid: b73b102f96c0fba45be3d60ab7119f93, type: 3}
+    - {fileID: -872208733, guid: b73b102f96c0fba45be3d60ab7119f93, type: 3}
+    - {fileID: 235213294, guid: b73b102f96c0fba45be3d60ab7119f93, type: 3}
+    - {fileID: 1692128946, guid: b73b102f96c0fba45be3d60ab7119f93, type: 3}
+  - name: Nido_WebDecay
+    frames:
+    - {fileID: -6908796080386164479, guid: 44a91aaa600e4f7438cf35939d04b287, type: 3}
+    - {fileID: -1651829413880334617, guid: 44a91aaa600e4f7438cf35939d04b287, type: 3}
+    - {fileID: 2149752528483320313, guid: 44a91aaa600e4f7438cf35939d04b287, type: 3}
+    - {fileID: 1279454231149461638, guid: 44a91aaa600e4f7438cf35939d04b287, type: 3}
+    - {fileID: 4291574932246682954, guid: 44a91aaa600e4f7438cf35939d04b287, type: 3}
+    - {fileID: 658040069, guid: 44a91aaa600e4f7438cf35939d04b287, type: 3}
+  - name: Fx_Megarachne_Screech
+    frames:
+    - {fileID: 1230895773475332159, guid: ae3d131c6e4610c42b83262b9a044745, type: 3}
+    - {fileID: -2050999046065956884, guid: ae3d131c6e4610c42b83262b9a044745, type: 3}
+    - {fileID: -649489518156373627, guid: ae3d131c6e4610c42b83262b9a044745, type: 3}
+    - {fileID: 8780409923914695822, guid: ae3d131c6e4610c42b83262b9a044745, type: 3}
+    - {fileID: -6511046114380391634, guid: ae3d131c6e4610c42b83262b9a044745, type: 3}
+    - {fileID: 4070094962413174584, guid: ae3d131c6e4610c42b83262b9a044745, type: 3}
   bodySprite: {fileID: 6937354316982153534}
   shadowSprite: {fileID: 428458217188991573}
   bodyRenderer: {fileID: 4399486962728544620}

@@ -101,6 +101,7 @@ namespace Primordia.Enemies
             }
             Canopy = scenery.AddComponent<MegarachneBossCanopy>();
             Canopy.Configure(crown, nest, cableRoots);
+            BuildNest();
             if (threadMaterial != null) animatedThreadMaterial = new Material(threadMaterial);
             thread = MakeLine("HiloColgante", ThreadWidth, ThreadOrder, animatedThreadMaterial ?? cableMaterial);
             thread.enabled = false;
@@ -189,7 +190,7 @@ namespace Primordia.Enemies
 
         public bool ForceClimb()
         {
-            if (CurrentMode != Mode.Ground || travel != Travel.None || CableCount == 0) return false;
+            if (IsEnraging || CurrentMode != Mode.Ground || travel != Travel.None || CableCount == 0) return false;
             int next = NearestCable(body.position);
             if (next < 0) return false;
             cableIndex = next;
@@ -206,7 +207,7 @@ namespace Primordia.Enemies
 
         public void ForceDrop()
         {
-            if (CurrentMode != Mode.OnCable || attack != AttackStage.None) return;
+            if (IsEnraging || CurrentMode != Mode.OnCable || attack != AttackStage.None) return;
             routeStart = body.position + Vector2.up * (VisualHeight + SpinneretOffset);
             dropHeight = VisualHeight;
             travelTime = 0f;
@@ -236,7 +237,7 @@ namespace Primordia.Enemies
             switch (travel)
             {
                 case Travel.Climb:
-                    float progress = Mathf.Clamp01(travelTime / ClimbSeconds);
+                    float progress = Mathf.Clamp01(travelTime * MovementMultiplier / ClimbSeconds);
                     body.MovePosition(Vector2.Lerp(climbFrom, routeStart - Vector2.up * cableHeights[cableIndex], progress));
                     SetHeight(Mathf.Lerp(0f, cableHeights[cableIndex] - CableSeat, progress));
                     Play("Climb", ClimbMs);
@@ -248,9 +249,9 @@ namespace Primordia.Enemies
                     if (wanted >= 0 && wanted != cableIndex && CableAvailable(cableIndex)) outward = false;
                     Vector2 destination = ProjectCablePointToGround(cableIndex, outward ? ends[cableIndex] : starts[cableIndex]);
                     facing = (destination - body.position).normalized;
-                    body.MovePosition(Vector2.MoveTowards(body.position, destination, CableSpeed * dt));
+                    body.MovePosition(Vector2.MoveTowards(body.position, destination, CurrentCableSpeed * dt));
                     Play("Walk", WalkMs);
-                    if (Vector2.Distance(body.position, destination) <= CableSpeed * dt)
+                    if (Vector2.Distance(body.position, destination) <= CurrentCableSpeed * dt)
                     {
                         // Cruza la copa entre ramas que aún se pueden usar.
                         if (!outward && wanted >= 0 && wanted != cableIndex) BeginCross(destination, wanted);
@@ -259,7 +260,7 @@ namespace Primordia.Enemies
                     break;
                 case Travel.Cross:
                     float length = Vector2.Distance(routeStart, routeEnd);
-                    float t = length > 0f ? Mathf.Clamp01(travelTime * CableSpeed / length) : 1f;
+                    float t = length > 0f ? Mathf.Clamp01(travelTime * CurrentCableSpeed / length) : 1f;
                     facing = (routeEnd - routeStart).normalized;
                     body.MovePosition(Vector2.Lerp(routeStart, routeEnd, t));
                     SetHeight(Mathf.Lerp(crossHeight, cableHeights[cableIndex] - CableSeat, t));

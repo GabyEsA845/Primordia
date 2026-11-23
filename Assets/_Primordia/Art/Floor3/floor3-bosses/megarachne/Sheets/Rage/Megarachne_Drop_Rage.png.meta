@@ -55,7 +55,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -83,7 +83,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -124,89 +124,89 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Megarachne_Drop_Rage_0
+      name: Megarachne_Drop_Rage_0_0
       rect:
         serializedVersion: 2
-        x: 29
-        y: 31
-        width: 70
-        height: 64
+        x: 0
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 9d313cac692dc0a30800000000000000
-      internalID: 4182949699009057753
+      spriteID: 2eb45f701e795224798d7e929933a96e
+      internalID: 2001935281
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Drop_Rage_1
+      name: Megarachne_Drop_Rage_0_1
       rect:
         serializedVersion: 2
-        x: 159
-        y: 31
-        width: 66
-        height: 64
+        x: 128
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7a807aa76793b2370800000000000000
-      internalID: 8298789919386962087
+      spriteID: 86697328913226247877f9a192f09b00
+      internalID: 883564923
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Drop_Rage_2
+      name: Megarachne_Drop_Rage_0_2
       rect:
         serializedVersion: 2
-        x: 285
-        y: 31
-        width: 70
-        height: 64
+        x: 256
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f0ff344219829b620800000000000000
-      internalID: 2790306047976537871
+      spriteID: accb6185871ab6745b349622b15a66b0
+      internalID: -1960156928
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Drop_Rage_3
+      name: Megarachne_Drop_Rage_0_3
       rect:
         serializedVersion: 2
-        x: 411
-        y: 31
-        width: 74
-        height: 64
+        x: 384
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 56f8fba4c10509be0800000000000000
-      internalID: -1472588995706777755
+      spriteID: 64108574fca485f47a5b75051a2ce08c
+      internalID: -922462013
       vertices: []
       indices: 
       edges: []
@@ -225,10 +225,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Megarachne_Drop_Rage_0: 4182949699009057753
-      Megarachne_Drop_Rage_1: 8298789919386962087
-      Megarachne_Drop_Rage_2: 2790306047976537871
-      Megarachne_Drop_Rage_3: -1472588995706777755
+      Megarachne_Drop_Rage_0_0: 2001935281
+      Megarachne_Drop_Rage_0_1: 883564923
+      Megarachne_Drop_Rage_0_2: -1960156928
+      Megarachne_Drop_Rage_0_3: -922462013
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

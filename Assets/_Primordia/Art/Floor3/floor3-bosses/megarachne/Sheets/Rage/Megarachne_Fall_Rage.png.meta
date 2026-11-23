@@ -151,7 +151,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -179,7 +179,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -220,793 +220,793 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Megarachne_Fall_Rage_0
+      name: Megarachne_Fall_Rage_0_0
       rect:
         serializedVersion: 2
-        x: 28
-        y: 1055
-        width: 76
-        height: 84
+        x: 0
+        y: 1024
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 4636c46bfbd96ea80800000000000000
-      internalID: -8437883405109271708
+      spriteID: b377910d17a674d4ba7509115b920e77
+      internalID: -245533876
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Fall_Rage_1
+      name: Megarachne_Fall_Rage_0_1
       rect:
         serializedVersion: 2
-        x: 166
-        y: 1056
-        width: 63
-        height: 82
+        x: 128
+        y: 1024
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 8d30923fe5fa3c290800000000000000
-      internalID: -7871254901372156968
+      spriteID: a36f7434b323fbb4ab929f4c71fcdf72
+      internalID: -1570727084
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Fall_Rage_2
+      name: Megarachne_Fall_Rage_0_2
       rect:
         serializedVersion: 2
-        x: 308
-        y: 1058
-        width: 42
-        height: 83
+        x: 256
+        y: 1024
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ebb6e3fcfa50943e0800000000000000
-      internalID: -2069116301145642050
+      spriteID: 54379032c6fe13a49ba761dcc70d0541
+      internalID: 554150028
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Fall_Rage_3
+      name: Megarachne_Fall_Rage_0_3
       rect:
         serializedVersion: 2
-        x: 427
-        y: 1060
-        width: 53
-        height: 84
+        x: 384
+        y: 1024
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 1a2e39faa21f275c0800000000000000
-      internalID: -4219044735256108383
+      spriteID: ad848490ac2d91045b4d2d9f40f55633
+      internalID: -1120579987
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Fall_Rage_4
+      name: Megarachne_Fall_Rage_1_0
       rect:
         serializedVersion: 2
-        x: 30
-        y: 930
-        width: 81
-        height: 83
+        x: 0
+        y: 896
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a14ff1d92f4eb7510800000000000000
-      internalID: 1548082627601232922
+      spriteID: cc22c0132f6775441852546ceedf33a7
+      internalID: -1297681659
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Fall_Rage_5
+      name: Megarachne_Fall_Rage_1_1
       rect:
         serializedVersion: 2
-        x: 168
-        y: 929
-        width: 65
-        height: 81
+        x: 128
+        y: 896
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 149c6e3fa88600120800000000000000
-      internalID: 2378015549258385729
+      spriteID: 788abfe2273273a42b351dc242a1cbb9
+      internalID: -1861620641
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Fall_Rage_6
+      name: Megarachne_Fall_Rage_1_2
       rect:
         serializedVersion: 2
-        x: 296
-        y: 934
-        width: 60
-        height: 80
+        x: 256
+        y: 896
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 68d937a2972192f20800000000000000
-      internalID: 3398267705440312710
+      spriteID: ffe1e05667004d04ca059426a0436195
+      internalID: -573802237
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Fall_Rage_7
+      name: Megarachne_Fall_Rage_1_3
       rect:
         serializedVersion: 2
-        x: 424
-        y: 936
-        width: 63
-        height: 74
+        x: 384
+        y: 896
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 661f1ad1f29920440800000000000000
-      internalID: 4900647772172185958
+      spriteID: df8ece54abc17c04f8d9f00858923ebc
+      internalID: 1564694125
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Fall_Rage_8
+      name: Megarachne_Fall_Rage_2_0
       rect:
         serializedVersion: 2
-        x: 30
-        y: 804
-        width: 82
-        height: 79
+        x: 0
+        y: 768
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 8e486e0a7377c64f0800000000000000
-      internalID: -834160750164015896
+      spriteID: 2ddac4a490b14264a97ee3ccc5f27913
+      internalID: -1919328923
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Fall_Rage_9
+      name: Megarachne_Fall_Rage_2_1
       rect:
         serializedVersion: 2
-        x: 158
-        y: 799
-        width: 79
-        height: 84
+        x: 128
+        y: 768
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6800de7cc46482080800000000000000
-      internalID: -9212035742200692602
+      spriteID: b0727537c25afd147b26f33ee8129baf
+      internalID: 1651943614
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Fall_Rage_10
+      name: Megarachne_Fall_Rage_2_2
       rect:
         serializedVersion: 2
-        x: 285
-        y: 807
-        width: 78
-        height: 76
+        x: 256
+        y: 768
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e9f59d361b72be920800000000000000
-      internalID: 3020551617919934366
+      spriteID: 08d06b0e47e24ba4e83cfcecc3327972
+      internalID: -670056994
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Fall_Rage_11
+      name: Megarachne_Fall_Rage_2_3
       rect:
         serializedVersion: 2
-        x: 413
-        y: 812
-        width: 80
-        height: 60
+        x: 384
+        y: 768
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 259b616c5ec6b36f0800000000000000
-      internalID: -703849182626662062
+      spriteID: 38dae08551bda824eacd94536a6abc38
+      internalID: 575141234
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Fall_Rage_12
+      name: Megarachne_Fall_Rage_3_0
       rect:
         serializedVersion: 2
-        x: 24
-        y: 672
-        width: 91
-        height: 83
+        x: 0
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 3ff4ae9b1b04b5850800000000000000
-      internalID: 6366753630290857971
+      spriteID: e59a1f31d6e7b754b87b171fa9efba11
+      internalID: 755745486
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Fall_Rage_13
+      name: Megarachne_Fall_Rage_3_1
       rect:
         serializedVersion: 2
-        x: 151
-        y: 673
-        width: 87
-        height: 79
+        x: 128
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 542975331019fbfe0800000000000000
-      internalID: -1171057943750667707
+      spriteID: 3335bb2ad5df68f40a1120c25f2b8236
+      internalID: -314768113
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Fall_Rage_14
+      name: Megarachne_Fall_Rage_3_2
       rect:
         serializedVersion: 2
-        x: 279
-        y: 676
-        width: 86
-        height: 74
+        x: 256
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a11cd2f56876273e0800000000000000
-      internalID: -2057468252934782694
+      spriteID: 312b5291a85ac1f4dbf18c98226a2ff4
+      internalID: -1135256394
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Fall_Rage_15
+      name: Megarachne_Fall_Rage_3_3
       rect:
         serializedVersion: 2
-        x: 407
-        y: 681
-        width: 87
-        height: 52
+        x: 384
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c188318e96ecd8bc0800000000000000
-      internalID: -3779137558033496036
+      spriteID: 889517ffa492fdf47a320c7a5df4c670
+      internalID: -349470036
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Fall_Rage_16
+      name: Megarachne_Fall_Rage_4_0
       rect:
         serializedVersion: 2
-        x: 23
-        y: 538
-        width: 88
-        height: 83
+        x: 0
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 89807f632cfe8d870800000000000000
-      internalID: 8707973496945707160
+      spriteID: 2ad6cb6044cfb2f439c93ff2f3c1016f
+      internalID: 1807420110
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Fall_Rage_17
+      name: Megarachne_Fall_Rage_4_1
       rect:
         serializedVersion: 2
-        x: 151
-        y: 542
-        width: 85
-        height: 77
+        x: 128
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: cf70c30b7f9c62170800000000000000
-      internalID: 8153426241051691004
+      spriteID: 2940c87d77c9c84429a0870484c1c45e
+      internalID: -1874238041
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Fall_Rage_18
+      name: Megarachne_Fall_Rage_4_2
       rect:
         serializedVersion: 2
-        x: 279
-        y: 543
-        width: 90
-        height: 71
+        x: 256
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7d929249bdc0c5510800000000000000
-      internalID: 1539119309876963799
+      spriteID: a2b6801a7ee46284595d151866b4960e
+      internalID: 146158178
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Fall_Rage_19
+      name: Megarachne_Fall_Rage_4_3
       rect:
         serializedVersion: 2
-        x: 407
-        y: 550
-        width: 86
-        height: 48
+        x: 384
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 337f4f78456edb330800000000000000
-      internalID: 3728389317265258291
+      spriteID: 2015603859fdb3e4ab73e31584f82431
+      internalID: -663258643
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Fall_Rage_20
+      name: Megarachne_Fall_Rage_5_0
       rect:
         serializedVersion: 2
-        x: 27
-        y: 404
-        width: 87
-        height: 85
+        x: 0
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0330ada9936fbfa20800000000000000
-      internalID: 3097339896018895664
+      spriteID: 4aead95da47a73f4686777b797f606ae
+      internalID: -106317703
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Fall_Rage_21
+      name: Megarachne_Fall_Rage_5_1
       rect:
         serializedVersion: 2
-        x: 156
-        y: 410
-        width: 77
-        height: 79
+        x: 128
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7c7b6c3935945a380800000000000000
-      internalID: -8960675260273346617
+      spriteID: abee4b0e9e92c5042910c18349d9dbdd
+      internalID: -1667577219
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Fall_Rage_22
+      name: Megarachne_Fall_Rage_5_2
       rect:
         serializedVersion: 2
-        x: 284
-        y: 412
-        width: 83
-        height: 68
+        x: 256
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 229e97c29114b5e70800000000000000
-      internalID: 9104942648035764514
+      spriteID: 22438f69604cb364b9db5fc8b14f6d5c
+      internalID: 977099184
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Fall_Rage_23
+      name: Megarachne_Fall_Rage_5_3
       rect:
         serializedVersion: 2
-        x: 412
-        y: 415
-        width: 80
-        height: 60
+        x: 384
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 1d74d1d9efd624c20800000000000000
-      internalID: 3189232426456795089
+      spriteID: 696026f6dac6e5345b000d90cab4cc04
+      internalID: 1217045398
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Fall_Rage_24
+      name: Megarachne_Fall_Rage_6_0
       rect:
         serializedVersion: 2
-        x: 31
-        y: 276
-        width: 80
-        height: 85
+        x: 0
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 512c77276a8e85510800000000000000
-      internalID: 1538235074329690645
+      spriteID: 3a909c10ec8bde14b9e3427bc4ab328d
+      internalID: -874230566
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Fall_Rage_25
+      name: Megarachne_Fall_Rage_6_1
       rect:
         serializedVersion: 2
-        x: 162
-        y: 280
-        width: 65
-        height: 77
+        x: 128
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 508b3511b2a0241e0800000000000000
-      internalID: -2215196886622291963
+      spriteID: e91477036c1fc7344af095fc59600d15
+      internalID: 2088507521
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Fall_Rage_26
+      name: Megarachne_Fall_Rage_6_2
       rect:
         serializedVersion: 2
-        x: 295
-        y: 281
-        width: 62
-        height: 74
+        x: 256
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 354e3456510a4e460800000000000000
-      internalID: 7270111712236528723
+      spriteID: be7831f38d4a79d4a940f34e343e85c5
+      internalID: 646711518
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Fall_Rage_27
+      name: Megarachne_Fall_Rage_6_3
       rect:
         serializedVersion: 2
-        x: 422
-        y: 283
-        width: 65
-        height: 73
+        x: 384
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a8c18a115d5307000800000000000000
-      internalID: 31584386632129674
+      spriteID: 9f5ba8e4440347d4ab9ce9148fd09e80
+      internalID: 542882963
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Fall_Rage_28
+      name: Megarachne_Fall_Rage_7_0
       rect:
         serializedVersion: 2
-        x: 29
-        y: 146
-        width: 78
-        height: 83
+        x: 0
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c346bd0cfe07b0eb0800000000000000
-      internalID: -4752580806724328388
+      spriteID: 8689d39f83b8c9641af3083ddef3a262
+      internalID: -753246800
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Fall_Rage_29
+      name: Megarachne_Fall_Rage_7_1
       rect:
         serializedVersion: 2
-        x: 160
-        y: 148
-        width: 61
-        height: 82
+        x: 128
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ae24a87ceb5677fa0800000000000000
-      internalID: -5803057724777676054
+      spriteID: 754fdf4716eee8a4fa8f573c96fa37ba
+      internalID: -790955744
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Fall_Rage_30
+      name: Megarachne_Fall_Rage_7_2
       rect:
         serializedVersion: 2
-        x: 295
-        y: 147
-        width: 49
-        height: 84
+        x: 256
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 5fec37fa7b9c66dd0800000000000000
-      internalID: -2493083552943190283
+      spriteID: b24005a4e12c4834c8c7575f16b18624
+      internalID: -166253348
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Fall_Rage_31
+      name: Megarachne_Fall_Rage_7_3
       rect:
         serializedVersion: 2
-        x: 421
-        y: 152
-        width: 57
-        height: 81
+        x: 384
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 548b2c07dadbdca50800000000000000
-      internalID: 6543094386257999941
+      spriteID: 4c1ae0a7b5d7c7f44b8a77d3c4caf44e
+      internalID: 1879244071
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Fall_Rage_32
+      name: Megarachne_Fall_Rage_8_0
       rect:
         serializedVersion: 2
-        x: 24
-        y: 22
-        width: 76
-        height: 78
+        x: 0
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2ecbdf05b52ed4480800000000000000
-      internalID: -8913219205667635998
+      spriteID: 952ae77f40748774ab795fe83f1dd7d0
+      internalID: -1481352776
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Fall_Rage_33
+      name: Megarachne_Fall_Rage_8_1
       rect:
         serializedVersion: 2
-        x: 155
-        y: 21
-        width: 63
-        height: 80
+        x: 128
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 80d97f64f17ced5f0800000000000000
-      internalID: -729927152438895352
+      spriteID: bd76389996504374c93b6282b4858207
+      internalID: -170702543
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Fall_Rage_34
+      name: Megarachne_Fall_Rage_8_2
       rect:
         serializedVersion: 2
-        x: 290
-        y: 15
-        width: 42
-        height: 88
+        x: 256
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 48f83f0acfbb55f60800000000000000
-      internalID: 8022525004936875908
+      spriteID: 603331a6f6a463440af2cdb76c042c7d
+      internalID: 575343727
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Fall_Rage_35
+      name: Megarachne_Fall_Rage_8_3
       rect:
         serializedVersion: 2
-        x: 416
-        y: 21
-        width: 53
-        height: 84
+        x: 384
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d60cb0efa0e7a3d70800000000000000
-      internalID: 9023663389067165805
+      spriteID: 3a43a8f140556bd4da65c69607297ea2
+      internalID: -1101267918
       vertices: []
       indices: 
       edges: []
@@ -1025,42 +1025,42 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Megarachne_Fall_Rage_0: -8437883405109271708
-      Megarachne_Fall_Rage_1: -7871254901372156968
-      Megarachne_Fall_Rage_10: 3020551617919934366
-      Megarachne_Fall_Rage_11: -703849182626662062
-      Megarachne_Fall_Rage_12: 6366753630290857971
-      Megarachne_Fall_Rage_13: -1171057943750667707
-      Megarachne_Fall_Rage_14: -2057468252934782694
-      Megarachne_Fall_Rage_15: -3779137558033496036
-      Megarachne_Fall_Rage_16: 8707973496945707160
-      Megarachne_Fall_Rage_17: 8153426241051691004
-      Megarachne_Fall_Rage_18: 1539119309876963799
-      Megarachne_Fall_Rage_19: 3728389317265258291
-      Megarachne_Fall_Rage_2: -2069116301145642050
-      Megarachne_Fall_Rage_20: 3097339896018895664
-      Megarachne_Fall_Rage_21: -8960675260273346617
-      Megarachne_Fall_Rage_22: 9104942648035764514
-      Megarachne_Fall_Rage_23: 3189232426456795089
-      Megarachne_Fall_Rage_24: 1538235074329690645
-      Megarachne_Fall_Rage_25: -2215196886622291963
-      Megarachne_Fall_Rage_26: 7270111712236528723
-      Megarachne_Fall_Rage_27: 31584386632129674
-      Megarachne_Fall_Rage_28: -4752580806724328388
-      Megarachne_Fall_Rage_29: -5803057724777676054
-      Megarachne_Fall_Rage_3: -4219044735256108383
-      Megarachne_Fall_Rage_30: -2493083552943190283
-      Megarachne_Fall_Rage_31: 6543094386257999941
-      Megarachne_Fall_Rage_32: -8913219205667635998
-      Megarachne_Fall_Rage_33: -729927152438895352
-      Megarachne_Fall_Rage_34: 8022525004936875908
-      Megarachne_Fall_Rage_35: 9023663389067165805
-      Megarachne_Fall_Rage_4: 1548082627601232922
-      Megarachne_Fall_Rage_5: 2378015549258385729
-      Megarachne_Fall_Rage_6: 3398267705440312710
-      Megarachne_Fall_Rage_7: 4900647772172185958
-      Megarachne_Fall_Rage_8: -834160750164015896
-      Megarachne_Fall_Rage_9: -9212035742200692602
+      Megarachne_Fall_Rage_0_0: -245533876
+      Megarachne_Fall_Rage_0_1: -1570727084
+      Megarachne_Fall_Rage_0_2: 554150028
+      Megarachne_Fall_Rage_0_3: -1120579987
+      Megarachne_Fall_Rage_1_0: -1297681659
+      Megarachne_Fall_Rage_1_1: -1861620641
+      Megarachne_Fall_Rage_1_2: -573802237
+      Megarachne_Fall_Rage_1_3: 1564694125
+      Megarachne_Fall_Rage_2_0: -1919328923
+      Megarachne_Fall_Rage_2_1: 1651943614
+      Megarachne_Fall_Rage_2_2: -670056994
+      Megarachne_Fall_Rage_2_3: 575141234
+      Megarachne_Fall_Rage_3_0: 755745486
+      Megarachne_Fall_Rage_3_1: -314768113
+      Megarachne_Fall_Rage_3_2: -1135256394
+      Megarachne_Fall_Rage_3_3: -349470036
+      Megarachne_Fall_Rage_4_0: 1807420110
+      Megarachne_Fall_Rage_4_1: -1874238041
+      Megarachne_Fall_Rage_4_2: 146158178
+      Megarachne_Fall_Rage_4_3: -663258643
+      Megarachne_Fall_Rage_5_0: -106317703
+      Megarachne_Fall_Rage_5_1: -1667577219
+      Megarachne_Fall_Rage_5_2: 977099184
+      Megarachne_Fall_Rage_5_3: 1217045398
+      Megarachne_Fall_Rage_6_0: -874230566
+      Megarachne_Fall_Rage_6_1: 2088507521
+      Megarachne_Fall_Rage_6_2: 646711518
+      Megarachne_Fall_Rage_6_3: 542882963
+      Megarachne_Fall_Rage_7_0: -753246800
+      Megarachne_Fall_Rage_7_1: -790955744
+      Megarachne_Fall_Rage_7_2: -166253348
+      Megarachne_Fall_Rage_7_3: 1879244071
+      Megarachne_Fall_Rage_8_0: -1481352776
+      Megarachne_Fall_Rage_8_1: -170702543
+      Megarachne_Fall_Rage_8_2: 575343727
+      Megarachne_Fall_Rage_8_3: -1101267918
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

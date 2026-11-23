@@ -127,7 +127,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -196,617 +196,177 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Nido_Tree_Charred_Smolder_0
+      name: Nido_Tree_Charred_Smolder_Copa_0
       rect:
         serializedVersion: 2
-        x: 24
-        y: 1
-        width: 114
-        height: 122
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 32
+        width: 160
+        height: 144
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 65deb7f414c9c3c20800000000000000
-      internalID: 3187594440591797590
+      spriteID: 6037363539be3cf44aa95427b6bb9c55
+      internalID: 201434258
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Nido_Tree_Charred_Smolder_1
+      name: Nido_Tree_Charred_Smolder_Copa_1
       rect:
         serializedVersion: 2
-        x: 132
-        y: 88
-        width: 9
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 160
+        y: 32
+        width: 160
+        height: 144
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 00d4e96e7f8814890800000000000000
-      internalID: -7475543308150878976
+      spriteID: 247818d26e26bfc4da254b0ed59a66bc
+      internalID: 697901680
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Nido_Tree_Charred_Smolder_2
+      name: Nido_Tree_Charred_Smolder_Copa_2
       rect:
         serializedVersion: 2
-        x: 184
-        y: 1
-        width: 114
-        height: 122
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 320
+        y: 32
+        width: 160
+        height: 144
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 870072c9384a5a220800000000000000
-      internalID: 2496582453614280824
+      spriteID: ce09214de97decb4fa17843278af8bc8
+      internalID: 1922797910
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Nido_Tree_Charred_Smolder_3
+      name: Nido_Tree_Charred_Smolder_Copa_3
       rect:
         serializedVersion: 2
-        x: 292
-        y: 88
-        width: 9
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 480
+        y: 32
+        width: 160
+        height: 144
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0071f87f8698855f0800000000000000
-      internalID: -767712652543715584
+      spriteID: f5c751f1143d9a247a04970c97b78693
+      internalID: -673253104
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Nido_Tree_Charred_Smolder_4
+      name: Nido_Tree_Charred_Smolder_Tronco_0
       rect:
         serializedVersion: 2
-        x: 344
-        y: 1
-        width: 114
-        height: 122
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 0
+        width: 160
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.375}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 8e08de385dfdb7050800000000000000
-      internalID: 5799475053304053992
+      spriteID: 469828cfb2d54e249bcde7a334165c39
+      internalID: -1140896575
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Nido_Tree_Charred_Smolder_5
+      name: Nido_Tree_Charred_Smolder_Tronco_1
       rect:
         serializedVersion: 2
-        x: 452
-        y: 88
-        width: 9
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 160
+        y: 0
+        width: 160
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.375}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f49e8fd38722bca30800000000000000
-      internalID: 4236517774303226191
+      spriteID: 2bf22ad16c71bff4994aab3aa7e5f460
+      internalID: 42031099
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Nido_Tree_Charred_Smolder_6
+      name: Nido_Tree_Charred_Smolder_Tronco_2
       rect:
         serializedVersion: 2
-        x: 504
-        y: 1
-        width: 114
-        height: 122
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 320
+        y: 0
+        width: 160
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.375}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2c0a4d954844f4bd0800000000000000
-      internalID: -2643819121009712958
+      spriteID: 55772f853febf4145840349d5dee1f32
+      internalID: 335146854
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Nido_Tree_Charred_Smolder_7
+      name: Nido_Tree_Charred_Smolder_Tronco_3
       rect:
         serializedVersion: 2
-        x: 612
-        y: 88
-        width: 9
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 480
+        y: 0
+        width: 160
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.375}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: eb1b90479bec8cb00800000000000000
-      internalID: 849155825670402494
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Nido_Tree_Charred_Smolder_8
-      rect:
-        serializedVersion: 2
-        x: 10
-        y: 69
-        width: 11
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a29be8070cc848b30800000000000000
-      internalID: 4288707503313565994
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Nido_Tree_Charred_Smolder_9
-      rect:
-        serializedVersion: 2
-        x: 13
-        y: 78
-        width: 10
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 33a94fda18afca270800000000000000
-      internalID: 8263254851194231347
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Nido_Tree_Charred_Smolder_10
-      rect:
-        serializedVersion: 2
-        x: 170
-        y: 69
-        width: 11
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f4b70df3c545c2050800000000000000
-      internalID: 5777085177193855823
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Nido_Tree_Charred_Smolder_11
-      rect:
-        serializedVersion: 2
-        x: 173
-        y: 78
-        width: 10
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 059b13f7dcfb532d0800000000000000
-      internalID: -3299520262655854256
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Nido_Tree_Charred_Smolder_12
-      rect:
-        serializedVersion: 2
-        x: 330
-        y: 69
-        width: 11
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9d188f23cbb034c90800000000000000
-      internalID: -7186887677416275495
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Nido_Tree_Charred_Smolder_13
-      rect:
-        serializedVersion: 2
-        x: 333
-        y: 78
-        width: 10
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9a95db489bf82e130800000000000000
-      internalID: 3594593479553800617
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Nido_Tree_Charred_Smolder_14
-      rect:
-        serializedVersion: 2
-        x: 490
-        y: 69
-        width: 11
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 522f48a2558ed0840800000000000000
-      internalID: 5192061397911269925
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Nido_Tree_Charred_Smolder_15
-      rect:
-        serializedVersion: 2
-        x: 493
-        y: 78
-        width: 10
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5515b57ec4d7443b0800000000000000
-      internalID: -5529156673251618475
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Nido_Tree_Charred_Smolder_16
-      rect:
-        serializedVersion: 2
-        x: 18
-        y: 62
-        width: 10
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0b2992b398fbed830800000000000000
-      internalID: 4097923307077735088
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Nido_Tree_Charred_Smolder_17
-      rect:
-        serializedVersion: 2
-        x: 130
-        y: 52
-        width: 9
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 319ac39869c4de7b0800000000000000
-      internalID: -5193410585857054445
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Nido_Tree_Charred_Smolder_18
-      rect:
-        serializedVersion: 2
-        x: 139
-        y: 59
-        width: 11
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 820d0d6b7033408e0800000000000000
-      internalID: -1728200248778502104
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Nido_Tree_Charred_Smolder_19
-      rect:
-        serializedVersion: 2
-        x: 178
-        y: 62
-        width: 10
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 21d521cc1696dd310800000000000000
-      internalID: 1431416125330185490
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Nido_Tree_Charred_Smolder_20
-      rect:
-        serializedVersion: 2
-        x: 290
-        y: 52
-        width: 9
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1ebd51f5872a8a4e0800000000000000
-      internalID: -1970146199099548703
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Nido_Tree_Charred_Smolder_21
-      rect:
-        serializedVersion: 2
-        x: 299
-        y: 59
-        width: 11
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 00aa2721e84ef9a90800000000000000
-      internalID: -7304868771725661696
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Nido_Tree_Charred_Smolder_22
-      rect:
-        serializedVersion: 2
-        x: 338
-        y: 62
-        width: 10
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1447fdd10f7b2e710800000000000000
-      internalID: 1721140249530168385
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Nido_Tree_Charred_Smolder_23
-      rect:
-        serializedVersion: 2
-        x: 450
-        y: 52
-        width: 9
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3f6c6fbb6356856f0800000000000000
-      internalID: -695694856672590093
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Nido_Tree_Charred_Smolder_24
-      rect:
-        serializedVersion: 2
-        x: 459
-        y: 59
-        width: 11
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 63816252f657416a0800000000000000
-      internalID: -6479424843654227914
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Nido_Tree_Charred_Smolder_25
-      rect:
-        serializedVersion: 2
-        x: 498
-        y: 62
-        width: 10
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 518b5119813d7eae0800000000000000
-      internalID: -1520014246747457515
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Nido_Tree_Charred_Smolder_26
-      rect:
-        serializedVersion: 2
-        x: 610
-        y: 52
-        width: 9
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0dce609a1b1a32760800000000000000
-      internalID: 7431961594508537040
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Nido_Tree_Charred_Smolder_27
-      rect:
-        serializedVersion: 2
-        x: 619
-        y: 59
-        width: 11
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8fe84766aca8da5e0800000000000000
-      internalID: -1896707266146169096
+      spriteID: 79b5c6fe58967bf4a8f1b6c78714608c
+      internalID: 1543412180
       vertices: []
       indices: 
       edges: []
@@ -825,34 +385,14 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Nido_Tree_Charred_Smolder_0: 3187594440591797590
-      Nido_Tree_Charred_Smolder_1: -7475543308150878976
-      Nido_Tree_Charred_Smolder_10: 5777085177193855823
-      Nido_Tree_Charred_Smolder_11: -3299520262655854256
-      Nido_Tree_Charred_Smolder_12: -7186887677416275495
-      Nido_Tree_Charred_Smolder_13: 3594593479553800617
-      Nido_Tree_Charred_Smolder_14: 5192061397911269925
-      Nido_Tree_Charred_Smolder_15: -5529156673251618475
-      Nido_Tree_Charred_Smolder_16: 4097923307077735088
-      Nido_Tree_Charred_Smolder_17: -5193410585857054445
-      Nido_Tree_Charred_Smolder_18: -1728200248778502104
-      Nido_Tree_Charred_Smolder_19: 1431416125330185490
-      Nido_Tree_Charred_Smolder_2: 2496582453614280824
-      Nido_Tree_Charred_Smolder_20: -1970146199099548703
-      Nido_Tree_Charred_Smolder_21: -7304868771725661696
-      Nido_Tree_Charred_Smolder_22: 1721140249530168385
-      Nido_Tree_Charred_Smolder_23: -695694856672590093
-      Nido_Tree_Charred_Smolder_24: -6479424843654227914
-      Nido_Tree_Charred_Smolder_25: -1520014246747457515
-      Nido_Tree_Charred_Smolder_26: 7431961594508537040
-      Nido_Tree_Charred_Smolder_27: -1896707266146169096
-      Nido_Tree_Charred_Smolder_3: -767712652543715584
-      Nido_Tree_Charred_Smolder_4: 5799475053304053992
-      Nido_Tree_Charred_Smolder_5: 4236517774303226191
-      Nido_Tree_Charred_Smolder_6: -2643819121009712958
-      Nido_Tree_Charred_Smolder_7: 849155825670402494
-      Nido_Tree_Charred_Smolder_8: 4288707503313565994
-      Nido_Tree_Charred_Smolder_9: 8263254851194231347
+      Nido_Tree_Charred_Smolder_Copa_0: 201434258
+      Nido_Tree_Charred_Smolder_Copa_1: 697901680
+      Nido_Tree_Charred_Smolder_Copa_2: 1922797910
+      Nido_Tree_Charred_Smolder_Copa_3: -673253104
+      Nido_Tree_Charred_Smolder_Tronco_0: -1140896575
+      Nido_Tree_Charred_Smolder_Tronco_1: 42031099
+      Nido_Tree_Charred_Smolder_Tronco_2: 335146854
+      Nido_Tree_Charred_Smolder_Tronco_3: 1543412180
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

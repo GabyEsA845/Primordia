@@ -124,7 +124,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -152,7 +152,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -193,595 +193,595 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Megarachne_DropWarn_Rage_0
+      name: Megarachne_DropWarn_Rage_0_0
       rect:
         serializedVersion: 2
-        x: 15
-        y: 1056
-        width: 98
-        height: 79
+        x: 0
+        y: 1024
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 3efa43c456ee6f5f0800000000000000
-      internalID: -723128571308757021
+      spriteID: cb8d3b184194b9c42a10f09ae10444cf
+      internalID: 214068300
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_DropWarn_Rage_1
+      name: Megarachne_DropWarn_Rage_0_1
       rect:
         serializedVersion: 2
-        x: 141
-        y: 1054
-        width: 102
-        height: 81
+        x: 128
+        y: 1024
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: cf68898e61c1042d0800000000000000
-      internalID: -3296604042518034692
+      spriteID: f21e0641b96ed97448fda2f40ac1cac0
+      internalID: -602055860
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_DropWarn_Rage_2
+      name: Megarachne_DropWarn_Rage_0_2
       rect:
         serializedVersion: 2
-        x: 267
-        y: 1053
-        width: 106
-        height: 83
+        x: 256
+        y: 1024
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7ff4a7820d9e86f50800000000000000
-      internalID: 6875001911422636023
+      spriteID: ea4b5679b288590488ea9aca30499c1e
+      internalID: 1810448158
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_DropWarn_Rage_3
+      name: Megarachne_DropWarn_Rage_1_0
       rect:
         serializedVersion: 2
-        x: 18
-        y: 929
-        width: 101
-        height: 82
+        x: 0
+        y: 896
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e68166c5566c20780800000000000000
-      internalID: -8718187789991667602
+      spriteID: 1f4312ffdf7507a448ffdfd8a8eedbb3
+      internalID: 1349677950
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_DropWarn_Rage_4
+      name: Megarachne_DropWarn_Rage_1_1
       rect:
         serializedVersion: 2
-        x: 144
-        y: 928
-        width: 105
-        height: 84
+        x: 128
+        y: 896
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b5460718637d134a0800000000000000
-      internalID: -6615269748530715557
+      spriteID: 554fa3ce5c9c22c4193e5649e063dd63
+      internalID: -742608097
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_DropWarn_Rage_5
+      name: Megarachne_DropWarn_Rage_1_2
       rect:
         serializedVersion: 2
-        x: 270
-        y: 927
-        width: 108
-        height: 86
+        x: 256
+        y: 896
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 5801a25298bdd0900800000000000000
-      internalID: 652418903119106181
+      spriteID: 9d85753ae9ce9f84794f83669ec2b6f6
+      internalID: 711804993
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_DropWarn_Rage_6
+      name: Megarachne_DropWarn_Rage_2_0
       rect:
         serializedVersion: 2
-        x: 20
-        y: 795
-        width: 98
-        height: 88
+        x: 0
+        y: 768
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 5742ce3fa9d3e40e0800000000000000
-      internalID: -2283820225303665547
+      spriteID: 1cbfc7d50593e70489ae113cbe39d2d1
+      internalID: -151381882
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_DropWarn_Rage_7
+      name: Megarachne_DropWarn_Rage_2_1
       rect:
         serializedVersion: 2
-        x: 146
-        y: 794
-        width: 101
-        height: 90
+        x: 128
+        y: 768
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2b12b8f1ea2df3130800000000000000
-      internalID: 3548786676686594482
+      spriteID: f3eb9415581f75b4f9b85ffa83047f30
+      internalID: 1388807445
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_DropWarn_Rage_8
+      name: Megarachne_DropWarn_Rage_2_2
       rect:
         serializedVersion: 2
-        x: 273
-        y: 793
-        width: 103
-        height: 93
+        x: 256
+        y: 768
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d51f0868388df45e0800000000000000
-      internalID: -1923080456454999715
+      spriteID: e331d075de9c71e4abbd9d8720d5ced3
+      internalID: -2024289933
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_DropWarn_Rage_9
+      name: Megarachne_DropWarn_Rage_3_0
       rect:
         serializedVersion: 2
-        x: 25
-        y: 666
-        width: 94
-        height: 87
+        x: 0
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 532ed432066271750800000000000000
-      internalID: 6275526800115098165
+      spriteID: ec3f52aba2df7114eae1a3f1712a3590
+      internalID: -184965107
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_DropWarn_Rage_10
+      name: Megarachne_DropWarn_Rage_3_1
       rect:
         serializedVersion: 2
-        x: 153
-        y: 664
-        width: 94
-        height: 90
+        x: 128
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ba36b726b66308230800000000000000
-      internalID: 3638968333757014955
+      spriteID: 54259a0ed1024a64bac954f5bc772048
+      internalID: -431029424
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_DropWarn_Rage_11
+      name: Megarachne_DropWarn_Rage_3_2
       rect:
         serializedVersion: 2
-        x: 281
-        y: 663
-        width: 94
-        height: 92
+        x: 256
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 4d233844bfe8ca930800000000000000
-      internalID: 4155853765993509588
+      spriteID: 0bdd186ead9fb834cb1cf44e8eaf1e47
+      internalID: 822697966
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_DropWarn_Rage_12
+      name: Megarachne_DropWarn_Rage_4_0
       rect:
         serializedVersion: 2
-        x: 22
-        y: 535
-        width: 89
-        height: 86
+        x: 0
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c67e242b2c58a8cc0800000000000000
-      internalID: -3708004271925303444
+      spriteID: b03c1310502d2354685e55ae172712e8
+      internalID: 1944467525
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_DropWarn_Rage_13
+      name: Megarachne_DropWarn_Rage_4_1
       rect:
         serializedVersion: 2
-        x: 150
-        y: 534
-        width: 89
-        height: 88
+        x: 128
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6df4cb79aec5792d0800000000000000
-      internalID: -3272044441623572522
+      spriteID: 3c0e89d75cd86fc439a24157a66e1a3e
+      internalID: -731707265
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_DropWarn_Rage_14
+      name: Megarachne_DropWarn_Rage_4_2
       rect:
         serializedVersion: 2
-        x: 278
-        y: 532
-        width: 88
-        height: 90
+        x: 256
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 3315a42505c805050800000000000000
-      internalID: 5787279797776961843
+      spriteID: 4b89ac49b9124314e9349d05b7781303
+      internalID: -1182113230
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_DropWarn_Rage_15
+      name: Megarachne_DropWarn_Rage_5_0
       rect:
         serializedVersion: 2
-        x: 25
-        y: 403
-        width: 94
-        height: 86
+        x: 0
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b62b9bfc4110cdf80800000000000000
-      internalID: -8080582442513485205
+      spriteID: 8732f1b4327024e458445f255f9e1512
+      internalID: -864754361
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_DropWarn_Rage_16
+      name: Megarachne_DropWarn_Rage_5_1
       rect:
         serializedVersion: 2
-        x: 153
-        y: 401
-        width: 94
-        height: 89
+        x: 128
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 34299e6a9381a7480800000000000000
-      internalID: -8900775077651836349
+      spriteID: 8a469767f10474d44b16725b47938c2d
+      internalID: -201480985
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_DropWarn_Rage_17
+      name: Megarachne_DropWarn_Rage_5_2
       rect:
         serializedVersion: 2
-        x: 281
-        y: 400
-        width: 94
-        height: 90
+        x: 256
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e1034cc9f0797eff0800000000000000
-      internalID: -6870781107359714
+      spriteID: 38526f753de089245b0d2acb4c3d96f4
+      internalID: 388959193
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_DropWarn_Rage_18
+      name: Megarachne_DropWarn_Rage_6_0
       rect:
         serializedVersion: 2
-        x: 20
-        y: 276
-        width: 98
-        height: 81
+        x: 0
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 820aa8f8cf2f71cf0800000000000000
-      internalID: -281489285133459416
+      spriteID: a9e9107773af48e41956bf5b37b09be0
+      internalID: 2021545859
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_DropWarn_Rage_19
+      name: Megarachne_DropWarn_Rage_6_1
       rect:
         serializedVersion: 2
-        x: 146
-        y: 275
-        width: 101
-        height: 83
+        x: 128
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c60bd33b482bf2d20800000000000000
-      internalID: 3256017338624749676
+      spriteID: b2b1f8e21e50f734ba9338af9dd3c5b5
+      internalID: 549403872
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_DropWarn_Rage_20
+      name: Megarachne_DropWarn_Rage_6_2
       rect:
         serializedVersion: 2
-        x: 273
-        y: 274
-        width: 103
-        height: 85
+        x: 256
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: cb6c521670ec93ad0800000000000000
-      internalID: -2721917968678795588
+      spriteID: 374f96f71cf03f4408b6f043a974c558
+      internalID: -1132692708
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_DropWarn_Rage_21
+      name: Megarachne_DropWarn_Rage_7_0
       rect:
         serializedVersion: 2
-        x: 18
-        y: 148
-        width: 101
-        height: 79
+        x: 0
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 4f6f1a2c54dee00d0800000000000000
-      internalID: -3454562980272670988
+      spriteID: 787db0a020e0074418a4aae739849e32
+      internalID: -1908221401
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_DropWarn_Rage_22
+      name: Megarachne_DropWarn_Rage_7_1
       rect:
         serializedVersion: 2
-        x: 144
-        y: 150
-        width: 105
-        height: 76
+        x: 128
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 1275e72ffcf2fa330800000000000000
-      internalID: 3724247987031791393
+      spriteID: 950c4581e71a74246a2a73855f55a4d7
+      internalID: 71613488
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_DropWarn_Rage_23
+      name: Megarachne_DropWarn_Rage_7_2
       rect:
         serializedVersion: 2
-        x: 270
-        y: 152
-        width: 108
-        height: 73
+        x: 256
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: de24c2e9bfcd50da0800000000000000
-      internalID: -5979129957015862547
+      spriteID: 327fd88df8dd3e14992d9ba896613a45
+      internalID: -1701358572
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_DropWarn_Rage_24
+      name: Megarachne_DropWarn_Rage_8_0
       rect:
         serializedVersion: 2
-        x: 15
-        y: 26
-        width: 98
-        height: 76
+        x: 0
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: cb348fd5cce0e9b50800000000000000
-      internalID: 6601730374684394428
+      spriteID: 54f50881dc2ec2e4d8efcd2ec71cdb8c
+      internalID: 1184146273
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_DropWarn_Rage_25
+      name: Megarachne_DropWarn_Rage_8_1
       rect:
         serializedVersion: 2
-        x: 141
-        y: 28
-        width: 102
-        height: 72
+        x: 128
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ba21803e2c69acf10800000000000000
-      internalID: 2290809124248097451
+      spriteID: 326a609226c37494c84960c2ab757422
+      internalID: 1026049843
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_DropWarn_Rage_26
+      name: Megarachne_DropWarn_Rage_8_2
       rect:
         serializedVersion: 2
-        x: 267
-        y: 27
-        width: 106
-        height: 72
+        x: 256
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 355f658a478720910800000000000000
-      internalID: 1802135243337430355
+      spriteID: 28f20688f7bdf32479f4ef6276b3628f
+      internalID: -274072487
       vertices: []
       indices: 
       edges: []
@@ -800,33 +800,33 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Megarachne_DropWarn_Rage_0: -723128571308757021
-      Megarachne_DropWarn_Rage_1: -3296604042518034692
-      Megarachne_DropWarn_Rage_10: 3638968333757014955
-      Megarachne_DropWarn_Rage_11: 4155853765993509588
-      Megarachne_DropWarn_Rage_12: -3708004271925303444
-      Megarachne_DropWarn_Rage_13: -3272044441623572522
-      Megarachne_DropWarn_Rage_14: 5787279797776961843
-      Megarachne_DropWarn_Rage_15: -8080582442513485205
-      Megarachne_DropWarn_Rage_16: -8900775077651836349
-      Megarachne_DropWarn_Rage_17: -6870781107359714
-      Megarachne_DropWarn_Rage_18: -281489285133459416
-      Megarachne_DropWarn_Rage_19: 3256017338624749676
-      Megarachne_DropWarn_Rage_2: 6875001911422636023
-      Megarachne_DropWarn_Rage_20: -2721917968678795588
-      Megarachne_DropWarn_Rage_21: -3454562980272670988
-      Megarachne_DropWarn_Rage_22: 3724247987031791393
-      Megarachne_DropWarn_Rage_23: -5979129957015862547
-      Megarachne_DropWarn_Rage_24: 6601730374684394428
-      Megarachne_DropWarn_Rage_25: 2290809124248097451
-      Megarachne_DropWarn_Rage_26: 1802135243337430355
-      Megarachne_DropWarn_Rage_3: -8718187789991667602
-      Megarachne_DropWarn_Rage_4: -6615269748530715557
-      Megarachne_DropWarn_Rage_5: 652418903119106181
-      Megarachne_DropWarn_Rage_6: -2283820225303665547
-      Megarachne_DropWarn_Rage_7: 3548786676686594482
-      Megarachne_DropWarn_Rage_8: -1923080456454999715
-      Megarachne_DropWarn_Rage_9: 6275526800115098165
+      Megarachne_DropWarn_Rage_0_0: 214068300
+      Megarachne_DropWarn_Rage_0_1: -602055860
+      Megarachne_DropWarn_Rage_0_2: 1810448158
+      Megarachne_DropWarn_Rage_1_0: 1349677950
+      Megarachne_DropWarn_Rage_1_1: -742608097
+      Megarachne_DropWarn_Rage_1_2: 711804993
+      Megarachne_DropWarn_Rage_2_0: -151381882
+      Megarachne_DropWarn_Rage_2_1: 1388807445
+      Megarachne_DropWarn_Rage_2_2: -2024289933
+      Megarachne_DropWarn_Rage_3_0: -184965107
+      Megarachne_DropWarn_Rage_3_1: -431029424
+      Megarachne_DropWarn_Rage_3_2: 822697966
+      Megarachne_DropWarn_Rage_4_0: 1944467525
+      Megarachne_DropWarn_Rage_4_1: -731707265
+      Megarachne_DropWarn_Rage_4_2: -1182113230
+      Megarachne_DropWarn_Rage_5_0: -864754361
+      Megarachne_DropWarn_Rage_5_1: -201480985
+      Megarachne_DropWarn_Rage_5_2: 388959193
+      Megarachne_DropWarn_Rage_6_0: 2021545859
+      Megarachne_DropWarn_Rage_6_1: 549403872
+      Megarachne_DropWarn_Rage_6_2: -1132692708
+      Megarachne_DropWarn_Rage_7_0: -1908221401
+      Megarachne_DropWarn_Rage_7_1: 71613488
+      Megarachne_DropWarn_Rage_7_2: -1701358572
+      Megarachne_DropWarn_Rage_8_0: 1184146273
+      Megarachne_DropWarn_Rage_8_1: 1026049843
+      Megarachne_DropWarn_Rage_8_2: -274072487
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

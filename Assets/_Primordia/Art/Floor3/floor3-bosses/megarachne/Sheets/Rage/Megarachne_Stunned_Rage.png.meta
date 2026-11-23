@@ -151,7 +151,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -179,7 +179,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -220,793 +220,793 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Megarachne_Stunned_Rage_0
+      name: Megarachne_Stunned_Rage_0_0
       rect:
         serializedVersion: 2
-        x: 12
-        y: 1050
-        width: 101
-        height: 86
+        x: 0
+        y: 1024
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e6b71eac408234200800000000000000
-      internalID: 163018012564224878
+      spriteID: 3db990d40466e7444a934d894e9598d3
+      internalID: -1901442041
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Stunned_Rage_1
+      name: Megarachne_Stunned_Rage_0_1
       rect:
         serializedVersion: 2
-        x: 140
-        y: 1050
-        width: 100
-        height: 86
+        x: 128
+        y: 1024
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 62370deb431ee5920800000000000000
-      internalID: 2981067620021728038
+      spriteID: 79efcb3114c181c4c9ed32427feffa92
+      internalID: -196726511
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Stunned_Rage_2
+      name: Megarachne_Stunned_Rage_0_2
       rect:
         serializedVersion: 2
-        x: 268
-        y: 1050
-        width: 101
-        height: 86
+        x: 256
+        y: 1024
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 44d44e8e073f14a10800000000000000
-      internalID: 1892060984741481796
+      spriteID: ad196be77975de94dbf1685455506852
+      internalID: -1537036647
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Stunned_Rage_3
+      name: Megarachne_Stunned_Rage_0_3
       rect:
         serializedVersion: 2
-        x: 396
-        y: 1049
-        width: 102
-        height: 86
+        x: 384
+        y: 1024
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 29334150fa6d31a50800000000000000
-      internalID: 6490767535163847570
+      spriteID: 1f2917011cd578248a8f8801325be34e
+      internalID: -2057621833
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Stunned_Rage_4
+      name: Megarachne_Stunned_Rage_1_0
       rect:
         serializedVersion: 2
-        x: 16
-        y: 925
-        width: 102
-        height: 87
+        x: 0
+        y: 896
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6e6fb879a44046d30800000000000000
-      internalID: 4423665452401293030
+      spriteID: b809f8cbcb4f5914981029407e84dad4
+      internalID: -1487922975
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Stunned_Rage_5
+      name: Megarachne_Stunned_Rage_1_1
       rect:
         serializedVersion: 2
-        x: 145
-        y: 926
-        width: 100
-        height: 87
+        x: 128
+        y: 896
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0f7c56d310581b9a0800000000000000
-      internalID: -6219043370050402320
+      spriteID: c1815c30cb3395342b73a25464f7dacc
+      internalID: 2030283516
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Stunned_Rage_6
+      name: Megarachne_Stunned_Rage_1_2
       rect:
         serializedVersion: 2
-        x: 272
-        y: 925
-        width: 102
-        height: 87
+        x: 256
+        y: 896
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 04293b20aa31d5460800000000000000
-      internalID: 7231958197537575488
+      spriteID: 69ea44ced8e6cc84d9d69439bdc8fe64
+      internalID: -779639239
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Stunned_Rage_7
+      name: Megarachne_Stunned_Rage_1_3
       rect:
         serializedVersion: 2
-        x: 400
-        y: 924
-        width: 104
-        height: 87
+        x: 384
+        y: 896
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 1b097b102ff555820800000000000000
-      internalID: 2906334627553054897
+      spriteID: becd635d8d98ad049996ac717e4da48f
+      internalID: -948762419
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Stunned_Rage_8
+      name: Megarachne_Stunned_Rage_2_0
       rect:
         serializedVersion: 2
-        x: 20
-        y: 794
-        width: 98
-        height: 91
+        x: 0
+        y: 768
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c91676b1820a05360800000000000000
-      internalID: 7156395902010614172
+      spriteID: 138d83075e8fb6b4ca751f5d399b8c74
+      internalID: -1203862249
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Stunned_Rage_9
+      name: Megarachne_Stunned_Rage_2_1
       rect:
         serializedVersion: 2
-        x: 148
-        y: 792
-        width: 97
-        height: 94
+        x: 128
+        y: 768
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 518c0dc1274ac0ba0800000000000000
-      internalID: -6121336983486674923
+      spriteID: a5f752bf2d8bd4b468887b4352b56d80
+      internalID: -1589509333
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Stunned_Rage_10
+      name: Megarachne_Stunned_Rage_2_2
       rect:
         serializedVersion: 2
-        x: 276
-        y: 794
-        width: 98
-        height: 91
+        x: 256
+        y: 768
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c093bc0eb1ad916a0800000000000000
-      internalID: -6477906775725360884
+      spriteID: d5df71515a129b7478db534d10e920fe
+      internalID: -1130862610
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Stunned_Rage_11
+      name: Megarachne_Stunned_Rage_2_3
       rect:
         serializedVersion: 2
-        x: 404
-        y: 794
-        width: 99
-        height: 89
+        x: 384
+        y: 768
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e06610279c3931c00800000000000000
-      internalID: 870201646423041550
+      spriteID: 13ea5bc95b9a83c4db3a44cc4d6aff52
+      internalID: 1361257029
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Stunned_Rage_12
+      name: Megarachne_Stunned_Rage_3_0
       rect:
         serializedVersion: 2
-        x: 25
-        y: 662
-        width: 93
-        height: 97
+        x: 0
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 45e9b5b39b4efadf0800000000000000
-      internalID: -166663176973476268
+      spriteID: 646d35fa2a1ca274f920cc73b326d33d
+      internalID: -1319601156
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Stunned_Rage_13
+      name: Megarachne_Stunned_Rage_3_1
       rect:
         serializedVersion: 2
-        x: 152
-        y: 661
-        width: 94
-        height: 99
+        x: 128
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e4b20f0d8aea006a0800000000000000
-      internalID: -6484991423330374834
+      spriteID: c9e62442117995c47a79dceab1d709ce
+      internalID: 834793981
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Stunned_Rage_14
+      name: Megarachne_Stunned_Rage_3_2
       rect:
         serializedVersion: 2
-        x: 281
-        y: 662
-        width: 93
-        height: 97
+        x: 256
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 71877c3cae8e1e7e0800000000000000
-      internalID: -1737851886183679977
+      spriteID: 39b8aeeb15d083b4c89176c716751e98
+      internalID: 1906946075
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Stunned_Rage_15
+      name: Megarachne_Stunned_Rage_3_3
       rect:
         serializedVersion: 2
-        x: 409
-        y: 663
-        width: 93
-        height: 93
+        x: 384
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 9adae1e3b3a8f7170800000000000000
-      internalID: 8178407435378011561
+      spriteID: ddfd87730ced6dc459769e64c5c0d14b
+      internalID: -1569457364
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Stunned_Rage_16
+      name: Megarachne_Stunned_Rage_4_0
       rect:
         serializedVersion: 2
-        x: 23
-        y: 531
-        width: 87
-        height: 95
+        x: 0
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 40f700d3b53696b90800000000000000
-      internalID: -7248152881759486204
+      spriteID: b2295e2f4e02a6140878da0b2312b01c
+      internalID: 1136708913
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Stunned_Rage_17
+      name: Megarachne_Stunned_Rage_4_1
       rect:
         serializedVersion: 2
-        x: 151
-        y: 530
-        width: 87
-        height: 98
+        x: 128
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f7bf0a5748460dcc0800000000000000
-      internalID: -3688337574744491137
+      spriteID: 2f6562d341489174e83ea32f9e9b311f
+      internalID: -1589321407
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Stunned_Rage_18
+      name: Megarachne_Stunned_Rage_4_2
       rect:
         serializedVersion: 2
-        x: 279
-        y: 531
-        width: 87
-        height: 95
+        x: 256
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7fdeff81f948caff0800000000000000
-      internalID: -23498079189602825
+      spriteID: c318730d19453db418ae987924e644b1
+      internalID: -2126104102
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Stunned_Rage_19
+      name: Megarachne_Stunned_Rage_4_3
       rect:
         serializedVersion: 2
-        x: 407
-        y: 532
-        width: 87
-        height: 92
+        x: 384
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0762055b7170651b0800000000000000
-      internalID: -5668335282591619472
+      spriteID: 2af51075f9fc0f64e89ee112f7ed7451
+      internalID: -1094970532
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Stunned_Rage_20
+      name: Megarachne_Stunned_Rage_5_0
       rect:
         serializedVersion: 2
-        x: 27
-        y: 398
-        width: 92
-        height: 96
+        x: 0
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f2a14aa2a68d62390800000000000000
-      internalID: -7843343750525609425
+      spriteID: 2439b941d4c4e8447ba78850f5f2814b
+      internalID: -888475085
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Stunned_Rage_21
+      name: Megarachne_Stunned_Rage_5_1
       rect:
         serializedVersion: 2
-        x: 156
-        y: 398
-        width: 91
-        height: 99
+        x: 128
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 4137a42b4b94f2810800000000000000
-      internalID: 1742692621249835796
+      spriteID: 7e81372bf547e6d4e9682d64b7c3771f
+      internalID: 897657209
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Stunned_Rage_22
+      name: Megarachne_Stunned_Rage_5_2
       rect:
         serializedVersion: 2
-        x: 283
-        y: 398
-        width: 92
-        height: 96
+        x: 256
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a92448960b2f06710800000000000000
-      internalID: 1684613100135006874
+      spriteID: 834d627ac613eee499d636cab697f0c4
+      internalID: 1127624050
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Stunned_Rage_23
+      name: Megarachne_Stunned_Rage_5_3
       rect:
         serializedVersion: 2
-        x: 411
-        y: 400
-        width: 92
-        height: 93
+        x: 384
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 161273373209f14a0800000000000000
-      internalID: -6620414445280091807
+      spriteID: 9230a50c586693444b949d0bd0cbad4c
+      internalID: -1196555239
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Stunned_Rage_24
+      name: Megarachne_Stunned_Rage_6_0
       rect:
         serializedVersion: 2
-        x: 22
-        y: 272
-        width: 98
-        height: 90
+        x: 0
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: dc3b648eb239718a0800000000000000
-      internalID: -6334432534083488819
+      spriteID: 0544ca93f0a912a4ba4f2bd4c9e05e41
+      internalID: 1122256324
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Stunned_Rage_25
+      name: Megarachne_Stunned_Rage_6_1
       rect:
         serializedVersion: 2
-        x: 151
-        y: 271
-        width: 98
-        height: 94
+        x: 128
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 1805fcc108531c3a0800000000000000
-      internalID: -6646972750666706815
+      spriteID: d1dc722aba1b9e3409eba44fe6c65581
+      internalID: -1555348196
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Stunned_Rage_26
+      name: Megarachne_Stunned_Rage_6_2
       rect:
         serializedVersion: 2
-        x: 278
-        y: 272
-        width: 98
-        height: 90
+        x: 256
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d76c7ddc782e26160800000000000000
-      internalID: 7017420242298586749
+      spriteID: 64f0815c34949ed40a6eee5b80337018
+      internalID: -743790275
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Stunned_Rage_27
+      name: Megarachne_Stunned_Rage_6_3
       rect:
         serializedVersion: 2
-        x: 405
-        y: 273
-        width: 100
-        height: 88
+        x: 384
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7094cdb6bdc5bbb90800000000000000
-      internalID: -7225079079708636921
+      spriteID: b3ecc0d56a2671d478cbba8d68917c71
+      internalID: 752171932
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Stunned_Rage_28
+      name: Megarachne_Stunned_Rage_7_0
       rect:
         serializedVersion: 2
-        x: 19
-        y: 144
-        width: 102
-        height: 83
+        x: 0
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0710401bafe938f30800000000000000
-      internalID: 4576676445887398256
+      spriteID: b4b957ee86387fb4ab1ceb292d13e6a9
+      internalID: 1195500959
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Stunned_Rage_29
+      name: Megarachne_Stunned_Rage_7_1
       rect:
         serializedVersion: 2
-        x: 149
-        y: 143
-        width: 100
-        height: 87
+        x: 128
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 539c6e4b947c1eb30800000000000000
-      internalID: 4314949037379209525
+      spriteID: c022df571aedd7040b76129b14b558c8
+      internalID: -2049476140
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Stunned_Rage_30
+      name: Megarachne_Stunned_Rage_7_2
       rect:
         serializedVersion: 2
-        x: 275
-        y: 144
-        width: 102
-        height: 83
+        x: 256
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 8585d0612a3c0b220800000000000000
-      internalID: 2499712894112716888
+      spriteID: 8562b5f2099ef76428f17c4a9dbe494b
+      internalID: 392329243
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Stunned_Rage_31
+      name: Megarachne_Stunned_Rage_7_3
       rect:
         serializedVersion: 2
-        x: 402
-        y: 145
-        width: 103
-        height: 81
+        x: 384
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 5151cfa7b51190360800000000000000
-      internalID: 7136254169148298517
+      spriteID: e3379cf9c20f5444bab44c609f4ba5f6
+      internalID: 1002969196
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Stunned_Rage_32
+      name: Megarachne_Stunned_Rage_8_0
       rect:
         serializedVersion: 2
-        x: 15
-        y: 23
-        width: 101
-        height: 70
+        x: 0
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7353eeca168b8f410800000000000000
-      internalID: 1511160404635432247
+      spriteID: c2750b00e74b56247ab1f8e5ab706e31
+      internalID: 1036831203
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Stunned_Rage_33
+      name: Megarachne_Stunned_Rage_8_1
       rect:
         serializedVersion: 2
-        x: 144
-        y: 21
-        width: 100
-        height: 73
+        x: 128
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b2d12501644ab3a80800000000000000
-      internalID: -8486008452021084885
+      spriteID: 91dfcf6b1f2ad45419dcb23266795009
+      internalID: 1115607383
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Stunned_Rage_34
+      name: Megarachne_Stunned_Rage_8_2
       rect:
         serializedVersion: 2
-        x: 271
-        y: 23
-        width: 101
-        height: 70
+        x: 256
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 91355267fd2dd49a0800000000000000
-      internalID: -6247105250891312359
+      spriteID: 7285896de109cec4582f57cd1094078c
+      internalID: 883333333
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Stunned_Rage_35
+      name: Megarachne_Stunned_Rage_8_3
       rect:
         serializedVersion: 2
-        x: 398
-        y: 24
-        width: 102
-        height: 69
+        x: 384
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 3d392a46e3f1c1f50800000000000000
-      internalID: 6853387085787861971
+      spriteID: a025f54f30aa7dc469ef672991d36e0b
+      internalID: -394624954
       vertices: []
       indices: 
       edges: []
@@ -1025,42 +1025,42 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Megarachne_Stunned_Rage_0: 163018012564224878
-      Megarachne_Stunned_Rage_1: 2981067620021728038
-      Megarachne_Stunned_Rage_10: -6477906775725360884
-      Megarachne_Stunned_Rage_11: 870201646423041550
-      Megarachne_Stunned_Rage_12: -166663176973476268
-      Megarachne_Stunned_Rage_13: -6484991423330374834
-      Megarachne_Stunned_Rage_14: -1737851886183679977
-      Megarachne_Stunned_Rage_15: 8178407435378011561
-      Megarachne_Stunned_Rage_16: -7248152881759486204
-      Megarachne_Stunned_Rage_17: -3688337574744491137
-      Megarachne_Stunned_Rage_18: -23498079189602825
-      Megarachne_Stunned_Rage_19: -5668335282591619472
-      Megarachne_Stunned_Rage_2: 1892060984741481796
-      Megarachne_Stunned_Rage_20: -7843343750525609425
-      Megarachne_Stunned_Rage_21: 1742692621249835796
-      Megarachne_Stunned_Rage_22: 1684613100135006874
-      Megarachne_Stunned_Rage_23: -6620414445280091807
-      Megarachne_Stunned_Rage_24: -6334432534083488819
-      Megarachne_Stunned_Rage_25: -6646972750666706815
-      Megarachne_Stunned_Rage_26: 7017420242298586749
-      Megarachne_Stunned_Rage_27: -7225079079708636921
-      Megarachne_Stunned_Rage_28: 4576676445887398256
-      Megarachne_Stunned_Rage_29: 4314949037379209525
-      Megarachne_Stunned_Rage_3: 6490767535163847570
-      Megarachne_Stunned_Rage_30: 2499712894112716888
-      Megarachne_Stunned_Rage_31: 7136254169148298517
-      Megarachne_Stunned_Rage_32: 1511160404635432247
-      Megarachne_Stunned_Rage_33: -8486008452021084885
-      Megarachne_Stunned_Rage_34: -6247105250891312359
-      Megarachne_Stunned_Rage_35: 6853387085787861971
-      Megarachne_Stunned_Rage_4: 4423665452401293030
-      Megarachne_Stunned_Rage_5: -6219043370050402320
-      Megarachne_Stunned_Rage_6: 7231958197537575488
-      Megarachne_Stunned_Rage_7: 2906334627553054897
-      Megarachne_Stunned_Rage_8: 7156395902010614172
-      Megarachne_Stunned_Rage_9: -6121336983486674923
+      Megarachne_Stunned_Rage_0_0: -1901442041
+      Megarachne_Stunned_Rage_0_1: -196726511
+      Megarachne_Stunned_Rage_0_2: -1537036647
+      Megarachne_Stunned_Rage_0_3: -2057621833
+      Megarachne_Stunned_Rage_1_0: -1487922975
+      Megarachne_Stunned_Rage_1_1: 2030283516
+      Megarachne_Stunned_Rage_1_2: -779639239
+      Megarachne_Stunned_Rage_1_3: -948762419
+      Megarachne_Stunned_Rage_2_0: -1203862249
+      Megarachne_Stunned_Rage_2_1: -1589509333
+      Megarachne_Stunned_Rage_2_2: -1130862610
+      Megarachne_Stunned_Rage_2_3: 1361257029
+      Megarachne_Stunned_Rage_3_0: -1319601156
+      Megarachne_Stunned_Rage_3_1: 834793981
+      Megarachne_Stunned_Rage_3_2: 1906946075
+      Megarachne_Stunned_Rage_3_3: -1569457364
+      Megarachne_Stunned_Rage_4_0: 1136708913
+      Megarachne_Stunned_Rage_4_1: -1589321407
+      Megarachne_Stunned_Rage_4_2: -2126104102
+      Megarachne_Stunned_Rage_4_3: -1094970532
+      Megarachne_Stunned_Rage_5_0: -888475085
+      Megarachne_Stunned_Rage_5_1: 897657209
+      Megarachne_Stunned_Rage_5_2: 1127624050
+      Megarachne_Stunned_Rage_5_3: -1196555239
+      Megarachne_Stunned_Rage_6_0: 1122256324
+      Megarachne_Stunned_Rage_6_1: -1555348196
+      Megarachne_Stunned_Rage_6_2: -743790275
+      Megarachne_Stunned_Rage_6_3: 752171932
+      Megarachne_Stunned_Rage_7_0: 1195500959
+      Megarachne_Stunned_Rage_7_1: -2049476140
+      Megarachne_Stunned_Rage_7_2: 392329243
+      Megarachne_Stunned_Rage_7_3: 1002969196
+      Megarachne_Stunned_Rage_8_0: 1036831203
+      Megarachne_Stunned_Rage_8_1: 1115607383
+      Megarachne_Stunned_Rage_8_2: 883333333
+      Megarachne_Stunned_Rage_8_3: -394624954
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

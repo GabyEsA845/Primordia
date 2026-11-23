@@ -2,7 +2,7 @@
 
 - **Rama:** `codex/mega-5-enfado` (ya creada desde `feature/boss-megarachne`, que incluye M1-M4)
 - **Escrita por:** Claude (2026-11-21) · **Implementa:** Codex
-- **Estado:** pendiente
+- **Estado:** implementada y probada en batchmode; pendiente prueba manual de la usuaria (sin commit)
 
 ## Objetivo
 Al bajar a la mitad de vida (75 de 150) ella **se enfada**: vuelve al Nido, chilla, sale en **Rage** (más rápida, ciclo más corto) y el **Nido puede arder UNA vez** (solo en el enfado): eso tira todos los cables y la deja aturdida mucho tiempo (la gran ventana de daño); después teje cables nuevos desde las ramas, más rápidos y ya sin refugio. Sin entrada, barra, muerte, recompensa (M6) ni sonido.
@@ -43,4 +43,34 @@ Entrada del jefe (M6, aunque uses `IntroEmerge` para salir del embudo), barra de
 `Test_BossMegarachne`: baja su vida con F1-F3 hasta 75 o pulsa Ctrl+Mayús+F11: se mete al Nido, chilla, sale roja y más rápida con 2 cables nuevos. Prende el Nido (Ctrl+Mayús+F12 o con un odre): arde, caen los cables, ella cae aturdida 6 s y se le puede dañar; luego teje 2 cables nuevos. Lanzar `MegarachneBossTests`.
 
 ## Resultado
-(Pendiente: lo rellena quien la implemente.)
+Implementado por Codex el 2026-11-21. Todo sin commit en `codex/mega-5-enfado`; pendiente la prueba visual de la usuaria en `Test_BossMegarachne`.
+
+### Qué se hizo
+- Disparador único a ≤75 PV y Ctrl+Mayús+F11; Ctrl+Mayús+F1 deja exactamente 75 PV mediante `DebugHealthFraction`. Cancela el ataque y los proyectiles, libera al jugador si estaba atrapado y conserva telarañas ya depositadas, saco y crías vivas.
+- Retirada por cable o por el suelo a velocidad normal, acceso al embudo, chillido de 2,5 s con sacudida, lluvia, onda roja, secado y temblor corto de cámara. Invulnerable y sin ataques durante toda la transición; emerge y baja usando Rage.
+- Hojas Rage, movimiento/huida/trepada ×1,4, reloj de ataque de 3 s, saco cada tercera vuelta manteniendo la rotación salto/seda/red, cinco crías por saco, tope diez y velocidad de las crías ×1,2. El salto conserva sus tiempos: si sigue recuperándose/trepando al vencer el reloj, el siguiente ataque espera a que termine (aprox. 3,34 s entre esos ataques en batch).
+- Dos cables nuevos con `Cable_Grow`, hacia dos Sigillarias nuevas al sur (anclas exteriores a ≥6 u de las existentes). Inflamables al terminar el tejido, como en M4.
+- Nodo inflamable del Nido con radio de 2,5 u, habilitado tras la transición Rage y hasta el primer incendio. Lo prenden el sistema compartido de fuego, la mecha de un cable o Ctrl+Mayús+F12.
+- Incendio único, seda que cae, árbol carbonizado humeante y todos los cables caídos con cabos. Aturdimiento vulnerable de 6 s, Recover y, cuatro segundos después, dos cables tejidos en 2 s desde las ramas. Los otros cinco quedan retirados; el Nido y el embudo no reaparecen. Los frentes de cable mantienen su aturdimiento de 3 s y el retejido en Rage espera 7 s.
+- Menú `Primordia > Boss > Actualizar enfado Megarachne (M5)` ejecutado correctamente: importó el arte aprobado, guardó prefab y escena. Copa y tronco se recortan por separado para mantener la transparencia de la copa. La escena se guardó sin diferencias de contenido: genera el Nido desde el prefab en ejecución.
+
+### Archivos tocados
+- `Assets/_Primordia/Scripts/Enemies/MegarachneBoss.cs`, `.Cables.cs`, `.Attacks.cs`, `.Sac.cs`, `.Fire.cs`; nuevos `MegarachneBoss.Rage.cs` y `MegarachneBossNest.cs` con sus `.meta`; `MegarachneBossCanopy.cs`.
+- `Assets/_Primordia/Editor/ArtSetup.BossMegarachne.cs` y `MegarachneBossSetup.cs`.
+- `Assets/_Primordia/Tests/PlayMode/MegarachneBossTests.cs`: ocho pruebas nuevas; la prueba de importación anterior mantiene la comprobación de las 24 hojas originales y comprueba también las 15 nuevas (39 en total).
+- Ampliaciones **autorizadas expresamente por la usuaria**: `MegarachneBrood.cs`, únicamente para aplicar velocidad ×1,2 durante Rage; `Assets/_Primordia/Scripts/Rooms/IFlammable.cs` y `Flammables.cs`, mediante la interfaz opcional `IFlammableRadius`. Los implementadores existentes conservan radio cero y no requieren cambios.
+- Generados exclusivamente por el menú: `Assets/_Primordia/Data/Bosses/MegarachneArt.asset`, `Assets/_Primordia/Prefabs/Enemies/Boss_Megarachne.prefab` y 24 `.png.meta` del arte de Rage, IntroEmerge, Screech, Nido y onda roja. Ningún PNG modificado; los 24 archivos importados son idénticos a sus fuentes aprobadas.
+- Este archivo de tarea. `ProjectSettings/ProjectSettings.asset` permanece sin cambios; se respetaron los archivos sin seguimiento que ya había al comenzar.
+
+### Pruebas y verificaciones
+- Unity 6000.6.2f1: menú M5 completado con salida 0, sin errores CS (`Logs/MegarachneM5-menu.log`).
+- **MegarachneBossTests: 45/45 pasaron, 0 fallos**, incluidas las 37 anteriores y ocho nuevas (`Logs/MegarachneM5-final.xml`, `Logs/MegarachneM5-final.log`). Comprueban umbral, invulnerabilidad/cancelación, Rage y arte, anclas nuevas, radio, incendio único, tiempos de aturdimiento/retejido, conservación y velocidad de crías, ciclo y retorno sin cables.
+- Suites existentes que usan `Flammables`/`IFlammable`: **211/211 pasaron** en `Logs/MegarachneM5-tests.xml`: ArthropleuraBossTests 46, FireTests 2, Floor3LineageTests 49, Floor3SkinTests 7, LepidodendronBossTests 87, SlimeTrailTests 7, SpecialRoomsTests 13.
+- La primera tanda conjunta dio 254/256: fallaban la expectativa antigua de 24 hojas y la tolerancia demasiado corta de la nueva prueba de cadencia tras el salto. Se actualizaron esas expectativas conservando las comprobaciones originales y los tiempos del salto; la repetición completa de Megarachne pasó 45/45.
+- Los 14 archivos C# modificados/nuevos conservan CRLF. `git diff --check -- '*.cs'` pasa; el chequeo general solo señala espacios finales en `.meta` serializados por Unity (no se retocaron manualmente).
+
+### Dudas y comprobaciones pendientes
+- Sin decisiones de diseño pendientes. Falta la revisión visual y jugable de la usuaria (chillido, alineación de capas, retorno, incendio con odres/disparos reales y sensación del combate); batchmode no sustituye esa comprobación. No se ha abierto Unity con ventana para probar la escena.
+- `git pull` se intentó antes de implementar: la rama local no tiene upstream; `git pull origin codex/mega-5-enfado` informa que no existe esa referencia remota. Se trabajó en la rama local existente, sin crear otra, commit, push ni merge.
+- El primer arranque de Unity dentro del entorno restringido falló por licencia (198). Con acceso autorizado a la licencia local, menú y pruebas se completaron. Unity queda cerrado.
+- No se ejecutaron generadores `.py`, no se editaron PNG ni se implementó contenido de M6, sonido o conexión a Floor_3.

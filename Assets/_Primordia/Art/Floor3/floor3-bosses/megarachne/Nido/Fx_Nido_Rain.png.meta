@@ -46,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -118,12 +118,12 @@ TextureImporter:
       name: Fx_Nido_Rain_0
       rect:
         serializedVersion: 2
-        x: 27
-        y: 6
-        width: 1218
-        height: 69
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 0
+        width: 160
+        height: 176
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06818182}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -132,6 +132,160 @@ TextureImporter:
       bones: []
       spriteID: 5c15f9f83f5861aa0800000000000000
       internalID: -6190613356641037883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fx_Nido_Rain_1
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 160
+        height: 176
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06818182}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4cb78eff69ac341488dace3120f6d4d3
+      internalID: -1161899576
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fx_Nido_Rain_2
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 160
+        height: 176
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06818182}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7d09485586f3cc468b29702c6e23681
+      internalID: -599320315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fx_Nido_Rain_3
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 0
+        width: 160
+        height: 176
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06818182}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b79996510cd1fae49aae52df2554d6bb
+      internalID: 172224192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fx_Nido_Rain_4
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 0
+        width: 160
+        height: 176
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06818182}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d77a218ee58e3694497a56907a5bdc9a
+      internalID: 999095972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fx_Nido_Rain_5
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 0
+        width: 160
+        height: 176
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06818182}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49e5b879c43a27441b9cd98e6eeff8d2
+      internalID: -872208733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fx_Nido_Rain_6
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 0
+        width: 160
+        height: 176
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06818182}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d31f9d224bd35143a9961654495ac77
+      internalID: 235213294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fx_Nido_Rain_7
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 0
+        width: 160
+        height: 176
+      alignment: 9
+      pivot: {x: 0.5, y: 0.06818182}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c780fd9c3d903741949a15bb85b9341
+      internalID: 1692128946
       vertices: []
       indices: 
       edges: []
@@ -151,6 +305,13 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       Fx_Nido_Rain_0: -6190613356641037883
+      Fx_Nido_Rain_1: -1161899576
+      Fx_Nido_Rain_2: -599320315
+      Fx_Nido_Rain_3: 172224192
+      Fx_Nido_Rain_4: 999095972
+      Fx_Nido_Rain_5: -872208733
+      Fx_Nido_Rain_6: 235213294
+      Fx_Nido_Rain_7: 1692128946
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

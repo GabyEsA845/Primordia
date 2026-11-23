@@ -61,7 +61,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -89,7 +89,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -130,133 +130,133 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Megarachne_Screech_0
+      name: Megarachne_Screech_0_0
       rect:
         serializedVersion: 2
-        x: 19
-        y: 41
-        width: 90
-        height: 45
+        x: 0
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e4e4d2278c4efbe50800000000000000
-      internalID: 6827427109677125198
+      spriteID: a761a7d70a0cbbd438fc3b7522392522
+      internalID: 1932495991
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Screech_1
+      name: Megarachne_Screech_0_1
       rect:
         serializedVersion: 2
-        x: 147
-        y: 41
-        width: 90
-        height: 45
+        x: 128
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f41b694c5dffe5110800000000000000
-      internalID: 1251719040046903631
+      spriteID: 9c23f6aed22bb604bb1f948807d8bac3
+      internalID: 492443351
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Screech_2
+      name: Megarachne_Screech_0_2
       rect:
         serializedVersion: 2
-        x: 275
-        y: 41
-        width: 90
-        height: 45
+        x: 256
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 3bfdef9d9331c5c80800000000000000
-      internalID: -8332764071350837325
+      spriteID: 746d1021bf3fc414baa8e1863b731ca1
+      internalID: 639261052
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Screech_3
+      name: Megarachne_Screech_0_3
       rect:
         serializedVersion: 2
-        x: 403
-        y: 41
-        width: 90
-        height: 45
+        x: 384
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f89d19a8744150c50800000000000000
-      internalID: 6630728323872971151
+      spriteID: a928f811d83d00442bf8b2d429787bc9
+      internalID: -923831681
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Screech_4
+      name: Megarachne_Screech_0_4
       rect:
         serializedVersion: 2
-        x: 531
-        y: 41
-        width: 90
-        height: 45
+        x: 512
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 4caa6fd6aee1924d0800000000000000
-      internalID: -3158959671407629628
+      spriteID: a28e991d023bed24abc1fa8dd566319e
+      internalID: 1451797373
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Screech_5
+      name: Megarachne_Screech_0_5
       rect:
         serializedVersion: 2
-        x: 659
-        y: 41
-        width: 90
-        height: 45
+        x: 640
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7fa1e86db61045180800000000000000
-      internalID: -9127668982100387081
+      spriteID: 8d0cdb472e96a49409e2a9d70845f0bb
+      internalID: 2035106138
       vertices: []
       indices: 
       edges: []
@@ -275,12 +275,12 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Megarachne_Screech_0: 6827427109677125198
-      Megarachne_Screech_1: 1251719040046903631
-      Megarachne_Screech_2: -8332764071350837325
-      Megarachne_Screech_3: 6630728323872971151
-      Megarachne_Screech_4: -3158959671407629628
-      Megarachne_Screech_5: -9127668982100387081
+      Megarachne_Screech_0_0: 1932495991
+      Megarachne_Screech_0_1: 492443351
+      Megarachne_Screech_0_2: 639261052
+      Megarachne_Screech_0_3: -923831681
+      Megarachne_Screech_0_4: 1451797373
+      Megarachne_Screech_0_5: 2035106138
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

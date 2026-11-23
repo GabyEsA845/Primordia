@@ -67,7 +67,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -95,7 +95,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -136,177 +136,177 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Megarachne_IntroEmerge_0
+      name: Megarachne_IntroEmerge_0_0
       rect:
         serializedVersion: 2
-        x: 26
-        y: 53
-        width: 76
-        height: 39
+        x: 0
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 412ffd375e8a9ec50800000000000000
-      internalID: 6695068024507986452
+      spriteID: 80b944a34ef870d4b95cc07306ef3bc2
+      internalID: 144025403
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_IntroEmerge_1
+      name: Megarachne_IntroEmerge_0_1
       rect:
         serializedVersion: 2
-        x: 150
-        y: 51
-        width: 84
-        height: 39
+        x: 128
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b762480f9e5c61000800000000000000
-      internalID: 6410058040878715
+      spriteID: ff51fd2b15f36574589c913eeed1b80e
+      internalID: -1725729187
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_IntroEmerge_2
+      name: Megarachne_IntroEmerge_0_2
       rect:
         serializedVersion: 2
-        x: 276
-        y: 47
-        width: 88
-        height: 39
+        x: 256
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f4109cdd30e9234e0800000000000000
-      internalID: -2003365144783421105
+      spriteID: 72bed54b9789ac2469f2cde8d24b34e4
+      internalID: 1030405681
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_IntroEmerge_3
+      name: Megarachne_IntroEmerge_0_3
       rect:
         serializedVersion: 2
-        x: 403
-        y: 41
-        width: 90
-        height: 45
+        x: 384
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 79c736add1add25d0800000000000000
-      internalID: -3085570347926061929
+      spriteID: 0717bab670220924591fd2878d453c9b
+      internalID: 1020776222
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_IntroEmerge_4
+      name: Megarachne_IntroEmerge_0_4
       rect:
         serializedVersion: 2
-        x: 530
-        y: 37
-        width: 92
-        height: 49
+        x: 512
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 8bb33f1a96d1e8a80800000000000000
-      internalID: -8462794310256739400
+      spriteID: e1071f7ec2e154f43bca5b26ff0fc8a9
+      internalID: -579667550
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_IntroEmerge_5
+      name: Megarachne_IntroEmerge_0_5
       rect:
         serializedVersion: 2
-        x: 658
-        y: 31
-        width: 92
-        height: 64
+        x: 640
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 98246e1172a6eadf0800000000000000
-      internalID: -167079420129557879
+      spriteID: 0b9698ed01da2dd4abe2fe44801e587f
+      internalID: 846658074
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_IntroEmerge_6
+      name: Megarachne_IntroEmerge_0_6
       rect:
         serializedVersion: 2
-        x: 785
-        y: 27
-        width: 94
-        height: 73
+        x: 768
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: da38e95af37596cc0800000000000000
-      internalID: -3717344086544448595
+      spriteID: 0504e11a5af93334883bd5f5a36971f6
+      internalID: -1637498273
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_IntroEmerge_7
+      name: Megarachne_IntroEmerge_0_7
       rect:
         serializedVersion: 2
-        x: 913
-        y: 24
-        width: 94
-        height: 79
+        x: 896
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a8e6a04c0c74fa1b0800000000000000
-      internalID: -5643212914823631222
+      spriteID: 7d319c7046a2dc84e93e522dae91ddbe
+      internalID: 1446499667
       vertices: []
       indices: 
       edges: []
@@ -325,14 +325,14 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Megarachne_IntroEmerge_0: 6695068024507986452
-      Megarachne_IntroEmerge_1: 6410058040878715
-      Megarachne_IntroEmerge_2: -2003365144783421105
-      Megarachne_IntroEmerge_3: -3085570347926061929
-      Megarachne_IntroEmerge_4: -8462794310256739400
-      Megarachne_IntroEmerge_5: -167079420129557879
-      Megarachne_IntroEmerge_6: -3717344086544448595
-      Megarachne_IntroEmerge_7: -5643212914823631222
+      Megarachne_IntroEmerge_0_0: 144025403
+      Megarachne_IntroEmerge_0_1: -1725729187
+      Megarachne_IntroEmerge_0_2: 1030405681
+      Megarachne_IntroEmerge_0_3: 1020776222
+      Megarachne_IntroEmerge_0_4: -579667550
+      Megarachne_IntroEmerge_0_5: 846658074
+      Megarachne_IntroEmerge_0_6: -1637498273
+      Megarachne_IntroEmerge_0_7: 1446499667
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

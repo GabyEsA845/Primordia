@@ -20,7 +20,7 @@ namespace Primordia.Enemies
         const int BurningFrames = 3, CharredFrames = 3, GrowFrames = 6;
         const float FallMs = 80f, StunnedMs = 140f, RecoverMs = 110f;
         const float FallSeconds = 4 * FallMs / 1000f, RecoverSeconds = 3 * RecoverMs / 1000f;
-        const bool NestCanBurn = false;
+        public bool NestCanBurn => IsRage && !IsEnraging && !NestBurned;
 
         internal enum CableState { Intact, Burning, Missing, Growing }
         sealed class CableFire
@@ -28,7 +28,8 @@ namespace Primordia.Enemies
             public CableState state;
             public float length, low, high, age, nextAsh;
             public float nestLimit;
-            public bool smoked;
+            public bool smoked, retired;
+            public float growSeconds = ReweaveSeconds;
             public Material growingMaterial;
             public LineRenderer normal, outer, charred, leftBurn, rightBurn;
             public SpriteRenderer leftFront, rightFront;
@@ -171,7 +172,7 @@ namespace Primordia.Enemies
                             Frame(cable.nestStub, "Cable_Stub", age, false);
                             Frame(cable.outerStub, "Cable_Stub", age, false);
                         }
-                        if (cable.age >= ReweaveDelay)
+                        if (!IsEnraging && !cable.retired && cable.age >= (IsRage ? RageReweaveDelay : ReweaveDelay))
                         {
                             cable.state = CableState.Growing;
                             cable.age = 0f;
@@ -183,13 +184,13 @@ namespace Primordia.Enemies
                     case CableState.Growing:
                         SetCableSegment(cable.outer, cable.normal.GetPosition(0), ends[i]);
                         AnimateCable(cable.growingMaterial, GrowFrames, Mathf.Min(GrowFrames - 1,
-                            Mathf.FloorToInt(cable.age / ReweaveSeconds * GrowFrames)));
-                        if (cable.age >= ReweaveSeconds)
+                            Mathf.FloorToInt(cable.age / cable.growSeconds * GrowFrames)));
+                        if (cable.age >= cable.growSeconds)
                         {
                             cable.state = CableState.Intact;
                             cable.outer.enabled = false;
                             SetCableSegment(cable.normal, cable.normal.GetPosition(0), ends[i]);
-                            SetCableRootVisible(i, true);
+                            SetCableRootVisible(i, !NestBurned);
                         }
                         break;
                 }
@@ -200,11 +201,12 @@ namespace Primordia.Enemies
         {
             cable.low = Mathf.Max(cable.nestLimit, cable.low - FuseSpeed * dt);
             cable.high = Mathf.Min(cable.length, cable.high + FuseSpeed * dt);
-            if (cableIndex == i && CurrentMode == Mode.OnCable && travel == Travel.Run && attack != AttackStage.JumpFall)
+            if (!IsEnraging && cableIndex == i && CurrentMode == Mode.OnCable && travel == Travel.Run && attack != AttackStage.JumpFall)
             {
                 float position = BossDistanceOnCable();
                 if (position >= cable.low && position <= cable.high) fireHitPending = true;
             }
+            if (NestCanBurn && cable.low <= cable.nestLimit) { IgniteNest(); return; }
             if (!NestCanBurn && !cable.smoked && cable.low <= cable.nestLimit)
             {
                 cable.smoked = true;
@@ -340,9 +342,9 @@ namespace Primordia.Enemies
             Vector2 destination = (escapeOutward ? ends[cableIndex] : starts[cableIndex]) - Vector2.up * cableHeights[cableIndex];
             Vector2 delta = destination - body.position;
             if (delta.sqrMagnitude > Mathf.Epsilon) facing = delta.normalized;
-            body.MovePosition(Vector2.MoveTowards(body.position, destination, CableSpeed * dt));
+            body.MovePosition(Vector2.MoveTowards(body.position, destination, CurrentCableSpeed * dt));
             Play("Walk", WalkMs);
-            if (delta.magnitude <= CableSpeed * dt)
+            if (delta.magnitude <= CurrentCableSpeed * dt)
             {
                 int next = NearestCable(destination);
                 if (!escapeOutward && next >= 0) BeginCross(destination, next);
@@ -384,7 +386,7 @@ namespace Primordia.Enemies
                 case Mode.Stunned:
                     Play("Stunned", StunnedMs);
                     ShowFireSprite(ref stunEffect, "Fx_Megarachne_Stunned", body.position + Vector2.up * BodyScale * 2f, fireReactionTime);
-                    if (fireReactionTime >= StunSeconds)
+                    if (fireReactionTime >= (nestStun ? NestStunSeconds : StunSeconds))
                     {
                         stunEffect.enabled = false;
                         CurrentMode = Mode.Recovering;
@@ -395,6 +397,11 @@ namespace Primordia.Enemies
                     Play("Recover", RecoverMs);
                     if (fireReactionTime >= RecoverSeconds)
                     {
+                        if (nestStun)
+                        {
+                            nestStun = false;
+                            postNestWeaveTime = PostNestWeaveDelay;
+                        }
                         Land();
                         groundedTime = VulnerableSeconds;
                         ForceClimb();

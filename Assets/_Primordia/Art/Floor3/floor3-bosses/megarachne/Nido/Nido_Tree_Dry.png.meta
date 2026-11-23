@@ -46,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -115,23 +115,45 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Nido_Tree_Dry_0
+      name: Nido_Tree_Dry_Copa_0
       rect:
         serializedVersion: 2
-        x: 7
-        y: 1
-        width: 144
-        height: 126
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 32
+        width: 160
+        height: 144
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 50643498ade59bc00800000000000000
-      internalID: 916868291845375493
+      spriteID: fa4137caaf8175544a229ebe13ace9b6
+      internalID: -212899620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nido_Tree_Dry_Tronco_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 160
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be3c09c99f7dcad4ba7518e9d5136d0f
+      internalID: -1703833492
       vertices: []
       indices: 
       edges: []
@@ -150,7 +172,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Nido_Tree_Dry_0: 916868291845375493
+      Nido_Tree_Dry_Copa_0: -212899620
+      Nido_Tree_Dry_Tronco_0: -1703833492
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

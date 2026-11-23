@@ -111,6 +111,25 @@ namespace Primordia.Editor
             Debug.Log("Megarachne M4: fuego importado y prefab actualizado.");
         }
 
+        [MenuItem("Primordia/Boss/Actualizar enfado Megarachne (M5)")]
+        public static void UpdateRage()
+        {
+            if (!Application.isBatchMode && !EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo()) return;
+            var effects = ArtSetup.ImportMegarachneRage();
+            var root = PrefabUtility.LoadPrefabContents(PrefabPath);
+            try
+            {
+                root.GetComponent<MegarachneBoss>().ConfigureRage(effects);
+                PrefabUtility.SaveAsPrefabAsset(root, PrefabPath, out bool saved);
+                if (!saved) throw new InvalidOperationException("No se pudo guardar el prefab de Megarachne.");
+            }
+            finally { PrefabUtility.UnloadPrefabContents(root); }
+            var scene = EditorSceneManager.OpenScene(TestScenePath, OpenSceneMode.Single);
+            EditorSceneManager.SaveScene(scene);
+            AssetDatabase.SaveAssets();
+            Debug.Log("Megarachne M5: arte de enfado importado, prefab y escena guardados. Ctrl+Mayús+F11 enfado; F12 incendio del Nido.");
+        }
+
         static (Material cable, Material thread) PrepareCableMaterials() =>
             (PrepareCableMaterial(MaterialPath, "Cable_Normal", 1),
              PrepareCableMaterial(ThinMaterialPath, "Cable_Thin", 3));

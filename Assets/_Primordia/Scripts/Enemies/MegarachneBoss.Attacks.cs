@@ -33,6 +33,7 @@ namespace Primordia.Enemies
         AttackStage attack;
         AttackKind nextAttack;
         float attackClock, stageTime;
+        int rageAttackSlot;
         Vector2 attackPoint, jumpFrom, jumpAnchor;
         float jumpHeight;
         bool silkReleased;
@@ -55,6 +56,8 @@ namespace Primordia.Enemies
             foreach (var sheet in attackEffects)
                 if (sheet.name == name) return sheet.frames;
             foreach (var sheet in broodEffects)
+                if (sheet.name == name) return sheet.frames;
+            foreach (var sheet in rageEffects)
                 if (sheet.name == name) return sheet.frames;
             foreach (var sheet in cableFireArt.effects)
                 if (sheet.name == name) return sheet.frames;
@@ -89,7 +92,7 @@ namespace Primordia.Enemies
 
         public bool ForceAttack(AttackKind kind)
         {
-            if (Health.IsDead || target == null || CurrentMode != Mode.OnCable || travel != Travel.Run || IsAttacking) return false;
+            if (IsEnraging || Health.IsDead || target == null || CurrentMode != Mode.OnCable || travel != Travel.Run || IsAttacking) return false;
             if (!CableAvailable(cableIndex)) return false;
             if (kind == AttackKind.Sac && !WeaveSac()) return false;
             LastAttack = kind;
@@ -126,10 +129,26 @@ namespace Primordia.Enemies
             if (attack == AttackStage.None)
             {
                 if (CurrentMode != Mode.OnCable || !CableAvailable(cableIndex)) return;
-                if (AutomaticAttacks && attackClock >= AttackInterval && CurrentMode == Mode.OnCable
+                if (AutomaticAttacks && attackClock >= CurrentAttackInterval && CurrentMode == Mode.OnCable
                     && travel == Travel.Run && target != null)
                 {
-                    if (nextAttack == AttackKind.Sac)
+                    if (IsRage)
+                    {
+                        // Inserta un saco cada tercera vuelta sin perder salto/seda/red.
+                        bool sacTurn = rageAttackSlot % RageSacEvery == RageSacEvery - 1;
+                        if (sacTurn)
+                        {
+                            ForceAttack(AttackKind.Sac);
+                            attackClock = 0f;
+                            rageAttackSlot++;
+                        }
+                        else if (ForceAttack(nextAttack))
+                        {
+                            nextAttack = (AttackKind)(((int)nextAttack + 1) % (int)AttackKind.Sac);
+                            rageAttackSlot++;
+                        }
+                    }
+                    else if (nextAttack == AttackKind.Sac)
                     {
                         // Si ya hay un saco, se consume la vuelta y se reanuda el ciclo.
                         ForceAttack(AttackKind.Sac);
@@ -363,17 +382,20 @@ namespace Primordia.Enemies
             marker = null;
         }
 
-        void ClearAttacks()
+        void ClearAttacks(bool clearWebs = true)
         {
             ReleasePlayer();
             RemoveMarker();
             foreach (var ball in silkBalls) if (ball.renderer != null) Destroy(ball.renderer.gameObject);
             foreach (var fx in transientEffects) if (fx.renderer != null) Destroy(fx.renderer.gameObject);
-            foreach (var groundWeb in groundWebs)
-                if (groundWeb != null) { groundWeb.gameObject.SetActive(false); Destroy(groundWeb.gameObject); }
+            if (clearWebs)
+            {
+                foreach (var groundWeb in groundWebs)
+                    if (groundWeb != null) { groundWeb.gameObject.SetActive(false); Destroy(groundWeb.gameObject); }
+                groundWebs.Clear();
+            }
             silkBalls.Clear();
             transientEffects.Clear();
-            groundWebs.Clear();
             attack = AttackStage.None;
         }
 

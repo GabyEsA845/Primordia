@@ -22,6 +22,7 @@ namespace Primordia.Enemies
         CircleCollider2D hit;
         bool bit;
         internal Health Health { get; private set; }
+        internal float CurrentSpeed => Speed * (boss != null && boss.IsRage ? MegarachneBoss.RageBroodSpeedMultiplier : 1f);
 
         internal void Configure(MegarachneBoss owner)
         {
@@ -102,7 +103,7 @@ namespace Primordia.Enemies
             else if (target != null)
             {
                 if (Mathf.Abs(delta.x) > Mathf.Epsilon) sprite.flipX = delta.x < 0f;
-                body.linearVelocity = close ? Vector2.zero : Steer(delta.normalized) * Speed;
+                body.linearVelocity = close ? Vector2.zero : Steer(delta.normalized) * CurrentSpeed;
                 if (close && Time.fixedTime >= nextBite)
                 {
                     nextBite = Time.fixedTime + BiteCooldown;

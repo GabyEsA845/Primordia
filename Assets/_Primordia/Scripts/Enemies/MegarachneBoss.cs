@@ -18,10 +18,10 @@ namespace Primordia.Enemies
         public const float BodyScale = 0.75f;
         const float SpinneretOffset = 1.5f * BodyScale;
         const float IdleMs = 180f, WalkMs = 80f, ClimbMs = 100f, DropMs = 120f;
-        const float ShadowAlpha = 120f / 255f, DebugHealthFraction = 0.51f;
+        const float ShadowAlpha = 120f / 255f, DebugHealthFraction = 0.5f;
         const float HitRadius = 1f, ContactMargin = 0.02f;
 
-        public enum Mode { Ground, OnCable, Falling, Stunned, Recovering }
+        public enum Mode { Ground, OnCable, Falling, Stunned, Recovering, Enraging }
         enum Travel { None, Climb, Run, Cross, Drop }
         [SerializeField] DirectionalSprite bodySprite, shadowSprite;
         [SerializeField] SpriteRenderer bodyRenderer, shadowRenderer;
@@ -69,6 +69,7 @@ namespace Primordia.Enemies
         void OnEnable()
         {
             MethaneSac.BurstStarted += OnFireSacBurst;
+            Health.Changed += CheckRageHealth;
             attackClock = 0f;
             nextAttack = AttackKind.Jump;
             attack = AttackStage.None;
@@ -78,6 +79,8 @@ namespace Primordia.Enemies
         void OnDisable()
         {
             MethaneSac.BurstStarted -= OnFireSacBurst;
+            Health.Changed -= CheckRageHealth;
+            RestoreRageVisibility();
             fireHitPending = false;
             if (stunEffect != null) stunEffect.enabled = false;
             ClearAttacks();
@@ -120,6 +123,8 @@ namespace Primordia.Enemies
                     if (keyboard.f7Key.wasPressedThisFrame) ForceAttack(AttackKind.Sac);
                     if (keyboard.f9Key.wasPressedThisFrame) IgniteOccupiedCable();
                     if (keyboard.f10Key.wasPressedThisFrame) IgniteNearPlayer();
+                    if (keyboard.f11Key.wasPressedThisFrame) ForceRage();
+                    if (keyboard.f12Key.wasPressedThisFrame) IgniteNest();
                 }
             }
 #endif
@@ -129,6 +134,9 @@ namespace Primordia.Enemies
         {
             if (Health.IsDead) { ClearAttacks(); return; }
             float dt = Time.fixedDeltaTime;
+            CheckRageHealth(Health.Current, Health.Max);
+            TickNest(dt);
+            if (TickRage(dt)) { TickFire(dt); return; }
             TickProjectiles(dt);
             TickFire(dt);
             if (IsAttacking || !fireHitPending) TickAttack(dt);
@@ -144,11 +152,12 @@ namespace Primordia.Enemies
 
         void Play(string animation, float milliseconds)
         {
+            if (animation == "Walk" || animation == "Climb") milliseconds /= MovementMultiplier;
             float angle = Mathf.Atan2(facing.y, facing.x) * Mathf.Rad2Deg;
             if (bodySprite != null)
             {
                 bodySprite.Angle = angle;
-                bodySprite.Play("Megarachne_" + animation, milliseconds, true);
+                bodySprite.Play("Megarachne_" + animation + (IsRage ? "_Rage" : ""), milliseconds, true);
             }
             if (shadowSprite != null)
             {
@@ -183,7 +192,7 @@ namespace Primordia.Enemies
 
         internal void SetTestHealth()
         {
-            // La vida es entera: 77 PV es el entero más próximo por encima del 51 %.
+            // El atajo deja la vida justo en el umbral provisional de M5.
             int desired = Mathf.CeilToInt(MaxHealth * DebugHealthFraction);
             Health.SetMax(desired, false);
             Health.ResetHealth();

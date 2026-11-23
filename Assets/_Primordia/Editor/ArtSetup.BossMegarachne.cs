@@ -55,6 +55,70 @@ namespace Primordia.Editor
             "Effects/Cable_Grow.png", "Effects/Cable_Burning.png", "Effects/Cable_Charred.png"
         };
 
+        internal static MegarachneBoss.EffectSheet[] ImportMegarachneRage()
+        {
+            string[] animations = { "Idle", "Walk", "Weave", "Hurt", "Stunned", "Recover", "Drop", "Climb", "DropWarn", "Land", "Fall", "SilkShoot", "Threat" };
+            string[] trees = { "Nido_Tree_Dry", "Nido_Tree_Charred", "Nido_Tree_Shake", "Nido_Tree_Drying", "Nido_Burn", "Nido_Tree_Charred_Smolder" };
+            var bodyFiles = animations.Select(a => "Sheets/Rage/Megarachne_" + a + "_Rage.png")
+                .Concat(new[] { "Sheets/Megarachne_Screech.png", "Sheets/Megarachne_IntroEmerge.png" }).ToArray();
+            CopyMegarachneFiles(bodyFiles.Concat(trees.Select(t => "Nido/" + t + ".png"))
+                .Concat(new[] { "Nido/Fx_Nido_Rain.png", "Nido/Nido_WebDecay.png", "Effects/Fx_Megarachne_Screech.png" }));
+            var art = AssetDatabase.LoadAssetAtPath<DirectionalArt>(MegarachneArtPath);
+            if (art == null) throw new FileNotFoundException("Falta el arte base de Megarachne (M1).");
+            var sheets = art.Sheets.ToDictionary(s => s.name);
+            foreach (string file in bodyFiles)
+            {
+                var sheet = SliceDirectional(MegarachneFolder + "/" + file);
+                sheets[sheet.name] = sheet;
+            }
+            art.SetSheets(sheets.Values.ToArray());
+            EditorUtility.SetDirty(art);
+            var result = new List<MegarachneBoss.EffectSheet>();
+            foreach (string name in trees) SliceRageTree(name, result);
+            foreach (string name in new[] { "Fx_Nido_Rain", "Nido_WebDecay" })
+                result.Add(new MegarachneBoss.EffectSheet { name = name,
+                    frames = SliceFloor3Sheet(MegarachneFolder + "/Nido/" + name + ".png", 160, new Vector2(0.5f, 12f / 176f)) });
+            result.Add(new MegarachneBoss.EffectSheet { name = "Fx_Megarachne_Screech",
+                frames = SliceFloor3Sheet(MegarachneFolder + "/Effects/Fx_Megarachne_Screech.png", 192, new Vector2(0.5f, 0.5f)) });
+            AssetDatabase.SaveAssets();
+            return result.ToArray();
+        }
+
+        // Recorta copa y pie por separado para conservar la transparencia solo sobre la copa.
+        static void SliceRageTree(string name, List<MegarachneBoss.EffectSheet> result)
+        {
+            string path = MegarachneFolder + "/Nido/" + name + ".png";
+            if (!AssetDatabase.LoadAllAssetsAtPath(path).OfType<Sprite>().Any(s => s.name == name + "_Copa_0"))
+                SliceFloor3Sheet(path, 160, new Vector2(0.5f, 12f / 176f));
+            var importer = (TextureImporter)AssetImporter.GetAtPath(path);
+            importer.GetSourceTextureWidthAndHeight(out int width, out int height);
+            if (height != 176 || width % 160 != 0) throw new InvalidDataException("Dimensiones inesperadas: " + path);
+            int count = width / 160;
+            var factory = new SpriteDataProviderFactories();
+            factory.Init();
+            var provider = factory.GetSpriteEditorDataProviderFromObject(importer);
+            provider.InitSpriteEditorDataProvider();
+            var previous = provider.GetSpriteRects().ToDictionary(r => r.name, r => r.spriteID);
+            var rects = new List<SpriteRect>();
+            foreach (bool crown in new[] { true, false })
+                for (int i = 0; i < count; i++)
+                {
+                    string spriteName = name + (crown ? "_Copa_" : "_Tronco_") + i;
+                    rects.Add(new SpriteRect { name = spriteName,
+                        rect = crown ? new Rect(i * 160, 32, 160, 144) : new Rect(i * 160, 0, 160, 32),
+                        alignment = SpriteAlignment.Custom,
+                        pivot = crown ? new Vector2(0.5f, 0f) : new Vector2(0.5f, 12f / 32f),
+                        spriteID = previous.TryGetValue(spriteName, out var id) ? id : GUID.Generate() });
+                }
+            provider.SetSpriteRects(rects.ToArray());
+            provider.GetDataProvider<ISpriteNameFileIdDataProvider>()?.SetNameFileIdPairs(rects.Select(r => new SpriteNameFileIdPair(r.name, r.spriteID)));
+            provider.Apply();
+            importer.SaveAndReimport();
+            var sprites = AssetDatabase.LoadAllAssetsAtPath(path).OfType<Sprite>().ToDictionary(s => s.name);
+            result.Add(new MegarachneBoss.EffectSheet { name = name, frames = rects.Take(count).Select(r => sprites[r.name]).ToArray() });
+            result.Add(new MegarachneBoss.EffectSheet { name = name + "_Tronco", frames = rects.Skip(count).Select(r => sprites[r.name]).ToArray() });
+        }
+
         internal static Sprite[] ImportMegarachneCables(bool copyFiles = true)
         {
             var files = MegarachneCableFiles;

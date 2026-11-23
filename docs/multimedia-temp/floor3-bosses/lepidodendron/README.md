@@ -163,6 +163,24 @@ final: se ve cuántos quedan.
 Láminas: `vista_previa_6n1_muestra.png`, `vista_previa_6n1_estados.png`, `vista_previa_6n1_animaciones.png`,
 `vista_previa_6n1_escena_{romper,fuego}.png` + `gif/escenas/Lepido_cono_{romper,fuego}.gif`.
 
+## Marca de aviso del cono (2026-11-23: `generar_marca_cono.py` → `Cones/`)
+
+Sustituye la marca provisional que dibuja `LepidodendronCone.BuildMarker()`. Anillo orgánico de polvo de esporas rojas
+(rojo de aviso `(255, 80, 60)`, el de `Fx_LepidoSporeMark`) con grumos que se meten hacia dentro, velo rojo tenue y
+motas que titilan. **Elipse en picada (alto = 0,7 × ancho)**, por coherencia con la sombra del cono y la marca de la
+espora. **El borde de fuera es el área del golpe: semiejes 1,6 × 1,12 u** → el código debe cambiar el daño del golpe
+(hoy círculo de `SlamRadius`) a esa elipse.
+
+| Hoja | Cuadros | Celda | ms | Uso |
+|---|---|---|---|---|
+| Fx_ConeMark_Follow | 6 | 64×48, centro (32, 24) | 110 | Fase `Warning`: sigue al jugador; bucle. El pulso de alfa que se acelera puede quedarse en código |
+| Fx_ConeMark_Lock | 8 | 64×48, centro | 90 | Fase `Shadow` (0,72 s = 8 × 90 ms, igual que `ShadowStep`): el anillo se cierra desde 1,18 × hasta su tamaño, se espesa y se enciende; el cuadro 7 destella. Una vez |
+| Fx_ConeMark_Hold | 2 | 64×48, centro | 60 | Fase `Descending`: encendido / destello en bucle |
+
+Reglas para el código: 16 PPU, centro en `LandingPoint`, orden `GroundOrder + 1` (encima de `Fx_ConeShadow`); **sin
+giro ni escala por código** (rompen el píxel); se oculta al tocar el suelo. Escena: `vista_previa_marca_cono_escena.png`
++ `gif/escenas/Lepido_cono_marca.gif`; hojas: `vista_previa_marca_cono.png`.
+
 ## Ataques de la fase final (6n-2: `generar_ataques_lepidodendron.py piezas escenas` → `Attacks/`)
 
 Las raíces de los ataques usan la paleta oliva de las paredes, trenzado irregular con musgo, tierra pegada y espinas,

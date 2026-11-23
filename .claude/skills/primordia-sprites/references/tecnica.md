@@ -50,6 +50,19 @@ Aseprite) y adaptadas a nuestro estilo. Lo que ya hacíamos bien sigue igual; lo
 - Sin antialiasing en sprites pequeños; en piezas de 64 px o más, solo en curvas largas y con un tono intermedio de
   la propia rampa (no semitransparente).
 
+## Transiciones entre temas de escenario
+
+Cuando dos temas se tocan (franjas de una sala de paso entre pisos, tramos de un piso), **nunca una línea de corte**
+entre celdas (regla de la usuaria). Receta, ya hecha en `docs/multimedia-temp/floor3-exit/generar_salida_piso3.py`
+(`blend_sets`, `border_face`, `sand_decal`, `sample_room`); reutilizarla cambiando paletas:
+- Frontera irregular decidida por el código con ruido (no una columna fija); las caras usan el tema de su fila de arriba.
+- Capas de suelo por máscara de vecinos de la otra franja (N=1, E=2, S=4, O=8: 15 piezas + 4 esquinas), como el lodo;
+  borde ondulado de periodo 16 y en trama. En los dos sentidos: lo nuevo invade lo viejo y lo viejo deja restos en lo nuevo.
+- Paredes: capa de tapa por máscaras (la tapa nueva avanza sobre la vieja) y caras de frontera en pares (viejo→nuevo,
+  nuevo→viejo) con juntura que ondula y restos medio enterrados.
+- Calcomanías grandes sueltas cerca de la frontera; en la franja intermedia, granos sueltos y no manchas periódicas.
+- Revisar con una sala de muestra y un recorte ampliado de la frontera.
+
 ## Animación
 
 - Cuadros de pocos en pocos: reposo 4, moverse 4, ataque 6 (2 de preparación, 2 de golpe, 2 de recuperación),

@@ -9,6 +9,7 @@
 - [Multimedia temporal](primordia-multimedia-temp.md) — arte/audio/generadores en docs/multimedia-temp/, se importan con menús Primordia
 - [Skill primordia-sprites](primordia-sprites-skill.md) — usarla en todo arte nuevo; PREGUNTAR SIEMPRE antes de cualquier sprite o animación
 - [Skill primordia-audio](primordia-audio-skill.md) — usarla en todo audio nuevo
+- [Transiciones entre temas](primordia-theme-transitions.md) — NUNCA línea de corte: borde irregular + máscaras de mezcla en los dos sentidos + tapa y caras de frontera + calcomanías (receta en floor3-exit/)
 - [Mutaciones por niveles](primordia-mutation-visual-tiers.md) — normales = efectos sin tocar silueta; pieles retocan dentro; especiales cambian el modelo
 - [Documentos por piso](primordia-floor-docs.md) — actualizar el documento interactivo del piso al terminar cada cosa
 - [Codex RETOMADO (2026-11-11)](primordia-codex-paused.md) — Claude dirige, Codex implementa en ramas codex/*; tareas 01-03 hechas, 04 pendiente; docs/codex/ y AGENTS.md
@@ -20,6 +21,7 @@
 - [Arte de enemigos del piso 3](primordia-floor3-enemy-art-pending.md) — cono del escarabajo en 3 fases y sapo en el lodo: HECHO, integrado y probado; README y MULTIMEDIA.md HECHOS (2026-11-04)
 
 ## En curso
+- **[Tanda de arte 2026-11-23](primordia-art-session-2026-11-23.md) — orden: sala de paso piso 3 → espesura Arthropleura → cono Lepidodendron → iconos ámbar → área de la Peonza; Veta de carbón y Bosque en humo APROBADOS**
 - [Salas especiales del piso 3](primordia-floor3-special-rooms.md) — las 10 PROGRAMADAS (commit 84969d99); arte del Tronco caído, Tocón hueco y cofre APROBADO 2026-11-06 (floor3-log-stump/), falta importarlo y programarlo (Sonnet)
 - [Sala de paso del piso 2 → 3](primordia-floor2-transition-room.md) — charca, ambiente del pantano y metamorfosis por pareja HECHOS y subidos
 - **[Estado de Primordia](primordia-project-status.md) — PRÓXIMA SESIÓN: Megarachne M5 enfado = tarea 19 (ver última sección)** · — pisos 1-2 en main; piso 3 en feature/floor-3: pasos 1-6 HECHOS (salvo la sala de paso, Opus) y paso 7: MEGANEURA CASI CERRADA (7a-7e-3 hechos con Codex, probados); SIGUIENTE: tarea 04 (telarana), arte de Opus del veneno, luego Arthropleura, Megarachne, Lepidodendron**

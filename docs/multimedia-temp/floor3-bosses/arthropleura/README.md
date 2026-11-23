@@ -175,3 +175,45 @@ Vistas: `vista_previa_6c2_barra.png`, `vista_previa_6c2_flechas.png`. Regenerar:
 
 Vistas previas: `vista_previa_6c1.png`, `vista_previa_6b_capas.png`, `vista_previa_6b_animaciones.png`, `vista_previa_6b_curva.png` (estados mezclados), `vista_previa_6a_animaciones.png` (lado), `vista_previa_6a_direcciones.png`, `vista_previa_6a_curva.png`
 (las 16 direcciones encadenadas), `vista_previa_6a_cadena.png` y `vista_previa_escala_*.png`; `gif/` (no va a git).
+
+## Arte final de la sala (2026-11-23, aprobado): espesura, brechas, caída y lodo
+
+Generadores: `generar_espesura_arthropleura.py` (subtandas A-C) y `generar_lodo_arthropleura.py` (D). Tramo: **Bosque
+humeante** (el código usa hoy `BandThemes[2]`, tierra quemada: cambiarlo a `BandThemes[1]`). Vistas: `vista_previa_espesura.png`,
+`vista_previa_brechas*.png`, `vista_previa_caida*.png`, `vista_previa_lodo.png`, escena `escenas/Arthropleura_F2_lodo.gif`.
+Sustituye a los tiles provisionales de la espesura y a `Smoke/Breach_*` (quedan sin uso; `Smoke/Rubble_Brush_*` sigue valiendo).
+
+### A. Espesura (`Thicket/`, autotile como el lodo)
+
+| Pieza | Uso |
+|---|---|
+| `Thicket_Inner_0..5` (16×16) | Interior. 0-3 = la tapa aprobada del tramo (`Wall_Cap`, `_1.._3`); 4 mata clara; 5 humo. Elegir por hash de celda |
+| `Thicket_Edge_<m>_<c>` (46) + `_v1`/`_v2` en las que tienen cortina abajo | m = lados abiertos (N=1, E=2, S=4, O=8), c = esquinas abiertas (NE=1, SE=2, SO=4, NO=8; solo si sus dos lados están cerrados). Lo abierto es transparente (se ve el suelo) con sombra translúcida; abajo, cortina de frondas. Variante `v` por hash de celda (si no existe, la 0) |
+| `Thicket_Crown_0..3` (40×40) y `Thicket_TreeCrown_0..2` (48×48) | Coronas de helecho y copas de Lepidodendron: sprites encima, centrados en bloques de 2×2 celdas cuyo entorno de 4×4 sea todo espesura, desplazados ±4 px por hash; ~4 de cada 5 bloques, 2 de cada 5 árboles. Se quitan si se rompe alguna de sus celdas |
+| `Thicket_Tileset.png` + `.txt` | Todas las piezas en una hoja y su orden |
+
+Sobre el suelo junto a la espesura, las solapas del tramo (`floor3-environment/Smoke/deco/Spill_*`), como en las paredes.
+
+### B. Brechas (`Breach/`)
+
+| Pieza | Uso |
+|---|---|
+| `Thicket_Break_<m>_<c>[_v]` | Capa encima del borde (misma máscara y variante) en la espesura que toca celdas abiertas por una embestida: tallos partidos con pulpa, frondas desgarradas, copa aplastada. El claro conserva el filo limpio |
+| `Breach_Debris_Dense_0..3` / `_Light_0..3` (16×16) | Restos en las celdas de la brecha: densos si tocan espesura (8 vecinas), ligeros si no |
+| `Breach_Track_0..1` (32×16, hacia la derecha) | Surcos de las patas: girar a la dirección de la embestida y poner cada 2 u por el eje de la brecha, solo en celdas de brecha |
+
+### C. Caída de la F2 (`Fallen/`)
+
+Solo en las celdas que eran espesura (todo `thicket`, pasillos de entrada incluidos); **los muros reales de la sala no
+llevan nada**. `Fallen_Mat_0..3` (16×16, encajan en mosaico) en el interior; `Fallen_Edge_<m>_<c>` donde la máscara cuenta
+como abiertas **solo las celdas de suelo que nunca fueron espesura** (claro, brechas) **y las de lodo** (los lagos que se
+revelan); junto a los muros reales la alfombra sigue entera. `Fallen_Tree_0/1` (60×30, Flip X), `Fallen_Tree_V` (30×60) y
+`Fallen_Fern_0/1` (40×28): decorado **sin colisión** donde había copas en la F1 (árbol → tronco caído; helecho → helecho
+tumbado), desplazados ±6 px.
+
+### D. Lodo (`Effects/`)
+
+| Hoja | Cuadros | Celda | ms | Pivote | Uso |
+|---|---|---|---|---|---|
+| `Fx_Arthropleura_MudDouse` | 7 | 48×48 | 90 | (24, 33) | Una pieza ardiendo entra en el lodo y se apaga (`ExtinguishInMud`). **Cuenta el 0** |
+| `Fx_Arthropleura_MudWake` | 6 | 128×80 | 100 | centro | Onda que se abre más allá del cuerpo; una cada ~0,3 s por pieza que avanza por el lodo, sin girar. **Recortarla al lodo** (no debe pisar la orilla) |

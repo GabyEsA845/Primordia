@@ -281,8 +281,57 @@ def escena_fuego():
         frames.append(im)
     save_gif('Arthropleura_fuego', frames, 80)
 
+def escena_lodo():
+    """F2: ardiendo, corre al lago de lodo y da vueltas encima; cada pieza se apaga al entrar (MudDouse) y el lodo se
+    revuelve detrás de las piezas (MudWake)."""
+    base = floor_room(10)
+    MUDD = os.path.join(MT, 'floor3-environment', 'Smoke', 'mud')
+    mudt = {m: Image.open(os.path.join(MUDD, f'Mud_{m}.png')).convert('RGBA') for m in range(16)}
+    corner = {c: Image.open(os.path.join(MUDD, f'Mud_Corner_{c}.png')).convert('RGBA') for c in ('NE', 'NO', 'SE', 'SO')}
+    bub = [sheet_frame(os.path.join(MUDD, 'Mud_Bubbles.png'), k, 16, 16) for k in range(6)]
+    lake = {(x, y) for y in range(17) for x in range(30) if ((x + .5 - 16) / 9.5) ** 2 + ((y + .5 - 9) / 5.6) ** 2 <= 1}
+    for (x, y) in lake:
+        m = (0 if (x, y - 1) in lake else 1) | (0 if (x + 1, y) in lake else 2) | (0 if (x, y + 1) in lake else 4) | (0 if (x - 1, y) in lake else 8)
+        base.alpha_composite(mudt[m], (x * 16, y * 16))
+        for c, (dx, dy) in (('NE', (1, -1)), ('NO', (-1, -1)), ('SE', (1, 1)), ('SO', (-1, 1))):
+            if (x + dx, y) in lake and (x, y + dy) in lake and (x + dx, y + dy) not in lake: base.alpha_composite(corner[c], (x * 16, y * 16))
+    in_mud = lambda x, y: (int(x // 16), int(y // 16)) in lake
+    cx, cy, R = 256, 148, 96
+    loop = [(cx - R * math.cos(t), cy - R * SE * math.sin(t)) for t in [k * 2 * math.pi / 48 for k in range(1, 97)]]
+    path = Path([(-900, cy), (cx - R - 60, cy)] + loop)
+    douse = [fx('Fx_Arthropleura_MudDouse', k, 48, 48) for k in range(7)]
+    wake = [fx('Fx_Arthropleura_MudWake', k, 128, 80) for k in range(6)]
+    frames, cache, n = [], {}, 12
+    doused = {}                                                                  # pieza -> cuadro en que se apaga
+    d0 = path.acc[1] - 40
+    for f in range(64):
+        im = base.copy()
+        for (x, y) in list(lake)[::9]: im.alpha_composite(bub[(f + x + y) % 6], (x * 16, y * 16))
+        head_d = d0 + f * 9
+        for i in range(1, n + 1):                                                # ¿qué piezas entran ya en el lodo?
+            x, y, _ = path.at(head_d - i * A.STEP_PX)
+            if i not in doused and in_mud(x, y): doused[i] = f
+        for i in range(0, n + 2):                                                # ondas que se abren en el lodo por donde pasan
+            for age in range(6):
+                f0 = f - age
+                if (f0 + i * 2) % 4: continue                                    # una cada 4 cuadros por pieza
+                x, y, _ = path.at(d0 + f0 * 9 - i * A.STEP_PX)
+                if in_mud(x, y): put(im, wake[age], x, y + 6)
+        def st(i):
+            walk = dict(A.SEG_ANIMS['Walk'][(f + i) % 6], _k=f)
+            if i in doused and f >= doused[i]: return walk, ('Charred',)
+            return walk, ('Burning',)
+        chain(im, path, head_d, f, cache, n=n, state=st)
+        for i, f0 in doused.items():                                             # salpicadura y vapor al apagarse
+            if f0 <= f < f0 + 7:
+                x, y, _ = path.at(head_d - i * A.STEP_PX); put(im, douse[f - f0], x, y + 4, 24 / 48, 33 / 48)
+        put(im, FROG, 420, 236)
+        frames.append(im)
+    save_gif('Arthropleura_F2_lodo', frames, 80)
+
 if __name__ == '__main__':
     which = sys.argv[1:] or ['f1', 'ola', 'embestida', 'fuego']
+    if 'lodo' in which: escena_lodo()
     if 'f1' in which: escena_f1()
     if 'ola' in which: escena_ola()
     if 'embestida' in which: escena_embestida()

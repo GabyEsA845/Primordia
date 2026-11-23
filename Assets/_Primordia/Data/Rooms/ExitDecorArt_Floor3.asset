@@ -1,0 +1,217 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6853b1bfc5829ad44a61fdff1224fd1b, type: 3}
+  m_Name: ExitDecorArt_Floor3
+  m_EditorClassIdentifier: Primordia::Primordia.Rooms.ExitDecorArt
+  pieces:
+  - id: Deco_BuriedLog_0
+    frames:
+    - {fileID: 6233866416193221243, guid: 875cfdf54a865964bacc281af3f2d356, type: 3}
+  - id: Deco_BuriedLog_1
+    frames:
+    - {fileID: -5895192405504977419, guid: c259a88856564c643b60d700fcb0f9a2, type: 3}
+  - id: Deco_BuriedLog_2
+    frames:
+    - {fileID: 1316836453711505103, guid: 75d496dcc317c154986dfc375d669ba5, type: 3}
+  - id: Deco_BuriedStump_0
+    frames:
+    - {fileID: -1057798550939543565, guid: 2d14c12cea12d104a91e524d5aec732b, type: 3}
+  - id: Deco_BuriedStump_1
+    frames:
+    - {fileID: 5861856718338410628, guid: 3438296e2498f2c4f92a9b7cb6b3a775, type: 3}
+  - id: Deco_Charcoal_0
+    frames:
+    - {fileID: -3113003165640356195, guid: 9217c44bda3c01a448278121c25f15f6, type: 3}
+  - id: Deco_Charcoal_1
+    frames:
+    - {fileID: -5671887996996852526, guid: 38721644c1290f74f94a1fa8c2da3575, type: 3}
+  - id: Deco_Charcoal_2
+    frames:
+    - {fileID: 8142755733794215379, guid: c7cab10c4b88bb94e9bedab63b677d66, type: 3}
+  - id: Deco_DeadFern_0
+    frames:
+    - {fileID: 4121538874057852431, guid: b95fd1f7b4a035f408c0b85a98512a54, type: 3}
+  - id: Deco_DeadFern_1
+    frames:
+    - {fileID: 5619059880818659479, guid: cf7d8d24fe8645f44bba94975eedbd1c, type: 3}
+  - id: Deco_DeadFern_2
+    frames:
+    - {fileID: 7660158957957893853, guid: 84352b6ba11625e46af4d52ba831862d, type: 3}
+  - id: Deco_Gravel_0
+    frames:
+    - {fileID: -2276009055413940261, guid: efee3bd956be8ff4faf1974c11e2c4bc, type: 3}
+  - id: Deco_Gravel_1
+    frames:
+    - {fileID: 6365663307013499267, guid: 0867c5e6d13f3c24599456bf3e61735a, type: 3}
+  - id: Deco_Gravel_2
+    frames:
+    - {fileID: -6252123218112314867, guid: 9056f79afab71c14a96255c4e2545229, type: 3}
+  - id: Deco_MudCracks_0
+    frames:
+    - {fileID: -5072544109552815331, guid: c7b7183d7e5c82e4d9e4dd5c0fcca952, type: 3}
+  - id: Deco_MudCracks_1
+    frames:
+    - {fileID: -4237397942495785940, guid: 92c1ca8edf69f33439a9e3ec60ca881e, type: 3}
+  - id: Deco_MudCracks_2
+    frames:
+    - {fileID: -5920065480829270775, guid: 805ffddd3d3c5f04381faac6ac0a312c, type: 3}
+  - id: Deco_SaltCrust_0
+    frames:
+    - {fileID: 6933527311034054271, guid: 1484ded8179193c4d8ac506e2e7ea56d, type: 3}
+  - id: Deco_SaltCrust_1
+    frames:
+    - {fileID: 7887922402554274923, guid: 74c3aba0d3b21e5409199117c0bc2137, type: 3}
+  - id: Deco_Slab_0
+    frames:
+    - {fileID: 4562792134102404494, guid: ff55d967535a26346b673aa5a7aa68a1, type: 3}
+  - id: Deco_Slab_1
+    frames:
+    - {fileID: 7774643609167763765, guid: 0f9ac4136482e85418fce3a9b8de8fd2, type: 3}
+  - id: Deco_Slab_2
+    frames:
+    - {fileID: -6682249922511003432, guid: 678e0db728d15ea40a272e40adf03712, type: 3}
+  - id: Deco_Stone_0
+    frames:
+    - {fileID: 2940226365056444888, guid: c5fa9a7033056274aa27d6f7fbaddec4, type: 3}
+  - id: Deco_Stone_1
+    frames:
+    - {fileID: -6034947216234540721, guid: a599363366f45d54f93eef78893834a5, type: 3}
+  - id: Deco_Stone_2
+    frames:
+    - {fileID: -8499922440941256527, guid: 6934931615ec45040a1cdab5581cdd21, type: 3}
+  - id: Deco_TailDrag_E
+    frames:
+    - {fileID: 8613441428741505337, guid: fcc0c09840bd6734395884ddd4b1898b, type: 3}
+  - id: Deco_TailDrag_NE
+    frames:
+    - {fileID: 714814348114285195, guid: 69cf3ffe040442a47a01dd9e3329d3df, type: 3}
+  - id: Deco_Track_Fore_E
+    frames:
+    - {fileID: -7841737731554576290, guid: 3ba9ae67023b6b64d882b15ce1a1be8e, type: 3}
+  - id: Deco_Track_Fore_NE
+    frames:
+    - {fileID: -3325382142880227648, guid: 059f8d71b0167bb46bef1d829871918f, type: 3}
+  - id: Deco_Track_Hind_E
+    frames:
+    - {fileID: 4594183213016379791, guid: 6ed8f0170f330014fa64874bece7df6b, type: 3}
+  - id: Deco_Track_Hind_NE
+    frames:
+    - {fileID: 3627213357440900271, guid: 4e9a48194201b0743a0f9efeb2eff22c, type: 3}
+  - id: Fx_SandGust
+    frames:
+    - {fileID: -2445223453069386267, guid: 0d13d0b46014fd8459d34e138c95e395, type: 3}
+    - {fileID: 5543515658676004118, guid: 0d13d0b46014fd8459d34e138c95e395, type: 3}
+    - {fileID: -7472059389450518633, guid: 0d13d0b46014fd8459d34e138c95e395, type: 3}
+    - {fileID: 942977646801806916, guid: 0d13d0b46014fd8459d34e138c95e395, type: 3}
+    - {fileID: 5590300135652087564, guid: 0d13d0b46014fd8459d34e138c95e395, type: 3}
+    - {fileID: 8215274573225852040, guid: 0d13d0b46014fd8459d34e138c95e395, type: 3}
+  - id: Fx_SandGust_Small
+    frames:
+    - {fileID: -5146450786640833925, guid: 1ee16b8646fb023449938044dd6ad642, type: 3}
+    - {fileID: -4604330716994794610, guid: 1ee16b8646fb023449938044dd6ad642, type: 3}
+    - {fileID: -435614618866052421, guid: 1ee16b8646fb023449938044dd6ad642, type: 3}
+    - {fileID: -962089332056473035, guid: 1ee16b8646fb023449938044dd6ad642, type: 3}
+    - {fileID: 2382317451061152242, guid: 1ee16b8646fb023449938044dd6ad642, type: 3}
+    - {fileID: -5423955073127433680, guid: 1ee16b8646fb023449938044dd6ad642, type: 3}
+  - id: Obstacle_BuriedTrunk
+    frames:
+    - {fileID: 3488771317221302491, guid: d65db78e3b501dc45a96f22ead742311, type: 3}
+  - id: Obstacle_SandRock_0
+    frames:
+    - {fileID: 2926066632583856562, guid: 462d85eb1b7a05b4ab13f2625940411b, type: 3}
+  - id: Obstacle_SandRock_1
+    frames:
+    - {fileID: 7350334796813472068, guid: 83a7cd8e7f750de4082c85b209dea81d, type: 3}
+  - id: Plant_DryCalamites_Rustle
+    frames:
+    - {fileID: -2407256916170081057, guid: 756cdf0017116824b9244da66eb519ee, type: 3}
+    - {fileID: 6451273567068020772, guid: 756cdf0017116824b9244da66eb519ee, type: 3}
+    - {fileID: -8317168084689907556, guid: 756cdf0017116824b9244da66eb519ee, type: 3}
+    - {fileID: 6268048995164754178, guid: 756cdf0017116824b9244da66eb519ee, type: 3}
+    - {fileID: -6328799775307041529, guid: 756cdf0017116824b9244da66eb519ee, type: 3}
+    - {fileID: -4437706715034014835, guid: 756cdf0017116824b9244da66eb519ee, type: 3}
+  - id: Plant_DryCalamites_Sway
+    frames:
+    - {fileID: 243539626130885165, guid: d430cf1d033409b42b59e5c7c59e29b1, type: 3}
+    - {fileID: 4683532071683876678, guid: d430cf1d033409b42b59e5c7c59e29b1, type: 3}
+    - {fileID: 502565248076445373, guid: d430cf1d033409b42b59e5c7c59e29b1, type: 3}
+    - {fileID: 5854798380279075871, guid: d430cf1d033409b42b59e5c7c59e29b1, type: 3}
+  - id: Plant_DryTuft_0_Rustle
+    frames:
+    - {fileID: -3960777522383433766, guid: 5745c8dd17272354989b80a86293051e, type: 3}
+    - {fileID: 2726862226003139944, guid: 5745c8dd17272354989b80a86293051e, type: 3}
+    - {fileID: 4674429241676819426, guid: 5745c8dd17272354989b80a86293051e, type: 3}
+    - {fileID: -8096335065692326166, guid: 5745c8dd17272354989b80a86293051e, type: 3}
+    - {fileID: -398648379675328233, guid: 5745c8dd17272354989b80a86293051e, type: 3}
+    - {fileID: 8393274257419240629, guid: 5745c8dd17272354989b80a86293051e, type: 3}
+  - id: Plant_DryTuft_0_Sway
+    frames:
+    - {fileID: 6305564117276925015, guid: 1ffdb00162912864b9463087447778cb, type: 3}
+    - {fileID: 4455281430982863778, guid: 1ffdb00162912864b9463087447778cb, type: 3}
+    - {fileID: -8213215746054290279, guid: 1ffdb00162912864b9463087447778cb, type: 3}
+    - {fileID: 455231963603277237, guid: 1ffdb00162912864b9463087447778cb, type: 3}
+  - id: Plant_DryTuft_1_Rustle
+    frames:
+    - {fileID: -4744762285538335629, guid: 35c44448148f1b24f82a56406a2f91d4, type: 3}
+    - {fileID: -7380134135560944594, guid: 35c44448148f1b24f82a56406a2f91d4, type: 3}
+    - {fileID: -5306400454377504927, guid: 35c44448148f1b24f82a56406a2f91d4, type: 3}
+    - {fileID: 2556235295204872778, guid: 35c44448148f1b24f82a56406a2f91d4, type: 3}
+    - {fileID: -627254406495085405, guid: 35c44448148f1b24f82a56406a2f91d4, type: 3}
+    - {fileID: 4267591141227255096, guid: 35c44448148f1b24f82a56406a2f91d4, type: 3}
+  - id: Plant_DryTuft_1_Sway
+    frames:
+    - {fileID: -6001867096199746763, guid: 8dc58524e616b5740882c7d89909d58e, type: 3}
+    - {fileID: 8661051755494946016, guid: 8dc58524e616b5740882c7d89909d58e, type: 3}
+    - {fileID: 4001825836658648907, guid: 8dc58524e616b5740882c7d89909d58e, type: 3}
+    - {fileID: 2100562113842124324, guid: 8dc58524e616b5740882c7d89909d58e, type: 3}
+  - id: Plant_DryTuft_2_Rustle
+    frames:
+    - {fileID: 4040673201862054475, guid: b228a3f886a37a0408988e7bcb97b75a, type: 3}
+    - {fileID: -2803916795913550996, guid: b228a3f886a37a0408988e7bcb97b75a, type: 3}
+    - {fileID: -4277928463046986554, guid: b228a3f886a37a0408988e7bcb97b75a, type: 3}
+    - {fileID: 2404075520348070689, guid: b228a3f886a37a0408988e7bcb97b75a, type: 3}
+    - {fileID: 3508786842341096062, guid: b228a3f886a37a0408988e7bcb97b75a, type: 3}
+    - {fileID: -4404647926968427656, guid: b228a3f886a37a0408988e7bcb97b75a, type: 3}
+  - id: Plant_DryTuft_2_Sway
+    frames:
+    - {fileID: -1860740117172090180, guid: 51be52bc55c9d29488e7585d2e693d9a, type: 3}
+    - {fileID: 1021104953852165729, guid: 51be52bc55c9d29488e7585d2e693d9a, type: 3}
+    - {fileID: -6311145412230038706, guid: 51be52bc55c9d29488e7585d2e693d9a, type: 3}
+    - {fileID: -6798496212546470476, guid: 51be52bc55c9d29488e7585d2e693d9a, type: 3}
+  - id: Plant_Walchia_0_Rustle
+    frames:
+    - {fileID: 2628622755419601840, guid: b73921c178904c547a076f137d922e1e, type: 3}
+    - {fileID: -8926368727116321255, guid: b73921c178904c547a076f137d922e1e, type: 3}
+    - {fileID: -5122708189908405658, guid: b73921c178904c547a076f137d922e1e, type: 3}
+    - {fileID: -1912238256590490309, guid: b73921c178904c547a076f137d922e1e, type: 3}
+    - {fileID: 8477937298425604820, guid: b73921c178904c547a076f137d922e1e, type: 3}
+    - {fileID: 2151068100213938180, guid: b73921c178904c547a076f137d922e1e, type: 3}
+  - id: Plant_Walchia_0_Sway
+    frames:
+    - {fileID: 3494506271140022273, guid: f77e2fc42a9bacf4db7866ba74fcf032, type: 3}
+    - {fileID: -164414708914231960, guid: f77e2fc42a9bacf4db7866ba74fcf032, type: 3}
+    - {fileID: -1630419714462433446, guid: f77e2fc42a9bacf4db7866ba74fcf032, type: 3}
+    - {fileID: 6080151392310609795, guid: f77e2fc42a9bacf4db7866ba74fcf032, type: 3}
+  - id: Plant_Walchia_1_Rustle
+    frames:
+    - {fileID: -3839891929605172260, guid: cf46ff9abb683f84598c05b669bd4b0c, type: 3}
+    - {fileID: 9011529207357059850, guid: cf46ff9abb683f84598c05b669bd4b0c, type: 3}
+    - {fileID: -9032458677119637943, guid: cf46ff9abb683f84598c05b669bd4b0c, type: 3}
+    - {fileID: -2411966310401823929, guid: cf46ff9abb683f84598c05b669bd4b0c, type: 3}
+    - {fileID: 215668019313832509, guid: cf46ff9abb683f84598c05b669bd4b0c, type: 3}
+    - {fileID: 6269390348239453830, guid: cf46ff9abb683f84598c05b669bd4b0c, type: 3}
+  - id: Plant_Walchia_1_Sway
+    frames:
+    - {fileID: 7420216125773028520, guid: d2fdbf9ebabd08d40adaa29fb9728021, type: 3}
+    - {fileID: 4678901804547828326, guid: d2fdbf9ebabd08d40adaa29fb9728021, type: 3}
+    - {fileID: 1508449723783032387, guid: d2fdbf9ebabd08d40adaa29fb9728021, type: 3}
+    - {fileID: -5641225097586510280, guid: d2fdbf9ebabd08d40adaa29fb9728021, type: 3}

@@ -36,6 +36,9 @@ namespace Primordia.Editor
             serializedPit.FindProperty("pitFramesPerSecond").floatValue = 1f / 0.167f;
             serializedPit.ApplyModifiedPropertiesWithoutUndo();
             floor3.ConfigureTransition(cave, pit, mid, next);
+            // Provisional: baja el sumidero 3,5 celdas dentro de la cueva.
+            floor3.ConfigurePitOffset(new Vector2(0f, -3.5f));
+            floor3.ConfigureExitDecor(ArtSetup.ImportFloor3ExitDecor());
             floor3.ConfigureFloor(3, null);
             floor3.ConfigureNextFloor(Array.Empty<MutationData>(), "");
             EditorUtility.SetDirty(floor3);

@@ -77,5 +77,47 @@ namespace Primordia.Editor
                 Pit = SliceSheet(pit, PitCellWidth), Bubble = SliceSheet(dust, BubbleCellWidth), Key = key,
             });
         }
+
+        internal const string ExitDecorAssetPath = "Assets/_Primordia/Data/Rooms/ExitDecorArt_Floor3.asset";
+
+        /// <summary>
+        /// Importa el decorado aprobado de la sala de paso (docs/multimedia-temp/floor3-exit/decor) y lo reúne en un
+        /// <see cref="ExitDecorArt"/>. Pivote abajo-centro salvo las calcomanías del suelo (huellas, cola, barro, sal), que lo llevan
+        /// en el centro; las hojas se cortan por el número de cuadros (plantas: 4 de balanceo y 6 de ráfaga).
+        /// </summary>
+        internal static ExitDecorArt ImportFloor3ExitDecor()
+        {
+            string source = $"{Floor3ExitSource}/decor";
+            string target = $"{Floor3ExitFolder}/decor";
+            if (!Directory.Exists(source))
+                throw new DirectoryNotFoundException(source);
+
+            var pieces = new System.Collections.Generic.List<ExitDecorArt.Piece>();
+            foreach (string path in Directory.GetFiles(source, "*.png").OrderBy(file => file))
+            {
+                string id = Path.GetFileNameWithoutExtension(path);
+                string imported = $"{target}/{id}.png";
+                if (!CopyArt(path, imported))
+                    throw new FileNotFoundException(path);
+
+                int frames = id.EndsWith("_Sway") ? 4 : id.EndsWith("_Rustle") || id.StartsWith("Fx_SandGust") ? 6 : 1;
+                bool ground = id.StartsWith("Deco_Track") || id.StartsWith("Deco_TailDrag") || id.StartsWith("Deco_MudCracks")
+                    || id.StartsWith("Deco_SaltCrust") || id.StartsWith("Fx_");
+                var pivot = ground ? new Vector2(0.5f, 0.5f) : new Vector2(0.5f, 0f);
+                ((TextureImporter)AssetImporter.GetAtPath(imported)).GetSourceTextureWidthAndHeight(out int width, out _);
+                pieces.Add(new ExitDecorArt.Piece { id = id, frames = SliceSheet(imported, width / frames, pivot) });
+            }
+
+            var art = AssetDatabase.LoadAssetAtPath<ExitDecorArt>(ExitDecorAssetPath);
+            if (art == null)
+            {
+                art = ScriptableObject.CreateInstance<ExitDecorArt>();
+                AssetDatabase.CreateAsset(art, ExitDecorAssetPath);
+            }
+            art.pieces = pieces.ToArray();
+            EditorUtility.SetDirty(art);
+            AssetDatabase.SaveAssets();
+            return art;
+        }
     }
 }

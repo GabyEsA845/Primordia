@@ -476,7 +476,7 @@ namespace Primordia.Rooms
                 return;
 
             var door = new Vector2((float)entry.Average(cell => cell.x), (float)entry.Average(cell => cell.y)) + Vector2.one * 0.5f;
-            float span = Mathf.Max(1f, Vector2.Distance(door, room.FloorCenter));
+            float span = Mathf.Max(1f, Vector2.Distance(door, PitCenter(room, config)));
             var others = placed.Where(other => other != room).Select(other => other.Rect).ToList();
             var area = room.Rect;
             area.SetMinMax(area.min - Vector2Int.one * TransitionThemePadding, area.max + Vector2Int.one * TransitionThemePadding);
@@ -496,7 +496,7 @@ namespace Primordia.Rooms
                 float t = Vector2.Distance(cell + Vector2.one * 0.5f, door) / span
                     + ((CellNoise(cell) & 1023) / 1023f * 2f - 1f) * ThemeNoise;
                 if (config.TransitionMidTheme != null && config.TransitionMidTheme.RippleBorders)
-                    t = RippleTransitionDistance(cell, door, room.FloorCenter) / span;
+                    t = RippleTransitionDistance(cell, door, PitCenter(room, config)) / span;
                 map.SetTheme(cell, t < MidThemeFrom ? entryTheme : t < NextThemeFrom ? MidTheme : NextTheme);
             }
 
@@ -506,6 +506,13 @@ namespace Primordia.Rooms
                         && (room.Rect.Contains(cell) || (map.Get(cell) == FloorMap.Kind.Wall
                             && !others.Any(other => Distance(other, cell) <= Distance(room.Rect, cell)))))
                         map.SetTheme(cell, map.GetTheme(cell + Vector2Int.up));
+
+            // Una fosa desplazada conserva su claro dentro del tema final; la mezcla queda fuera del borde.
+            // El offset cero mantiene exactamente el reparto de los pisos anteriores.
+            if (config.PitOffset != Vector2.zero)
+                foreach (var cell in PitCells(room, config))
+                    if (map.Get(cell) == FloorMap.Kind.Floor)
+                        map.SetTheme(cell, NextTheme);
         }
 
         // Provisional: amplitud máxima 3,5 celdas, periodos de 12 y 8 filas y grano de media celda.
@@ -537,14 +544,17 @@ namespace Primordia.Rooms
             }
         }
 
+        /// <summary>Centro compartido por la fosa, su claro y las franjas de la sala de paso.</summary>
+        internal static Vector2 PitCenter(PlacedRoom room, FloorConfig config) => room.FloorCenter + config.PitOffset;
+
         /// <summary>Celdas bajo la fosa de la sala de paso y junto a su borde.</summary>
-        static IEnumerable<Vector2Int> PitCells(PlacedRoom room, FloorConfig config)
+        internal static IEnumerable<Vector2Int> PitCells(PlacedRoom room, FloorConfig config)
         {
             if (config.TransitionPit == null)
                 yield break;
 
             var radii = config.TransitionPit.EdgeRadii + Vector2.one * PitClearance;
-            var center = room.FloorCenter;
+            var center = PitCenter(room, config);
             for (int y = Mathf.FloorToInt(center.y - radii.y); y <= Mathf.CeilToInt(center.y + radii.y); y++)
             {
                 for (int x = Mathf.FloorToInt(center.x - radii.x); x <= Mathf.CeilToInt(center.x + radii.x); x++)
@@ -849,7 +859,7 @@ namespace Primordia.Rooms
             // En la sala de paso, la vegetación del piso siguiente solo crece donde el suelo ya es suyo (junto a la charca).
             if (placed.Layout.Role == RoomRole.Transition && config.NextFloorTheme != null)
             {
-                var pitCenter = placed.FloorCenter;
+                var pitCenter = PitCenter(placed, config);
                 BuildFerns(roomObject.transform, placed, config.NextFloorTheme, random, taken, cell =>
                 {
                     var global = placed.Origin + cell;
@@ -861,6 +871,8 @@ namespace Primordia.Rooms
             {
                 BuildFerns(roomObject.transform, placed, theme, random, taken);
             }
+            if (placed.Layout.Role == RoomRole.Transition)
+                BuildExitDecor(roomObject.transform, placed, theme, config, map, taken);
             var vents = BuildPieces(roomObject.transform, placed, config, random);
             // Donde aparece el jefe no hay algas ni plantas: taparían su presentación.
             Vector2? bossSpot = placed.Layout.Role == RoomRole.Boss ? placed.FloorCenter + boss.offset : null;
@@ -951,7 +963,7 @@ namespace Primordia.Rooms
 
             if (placed.Layout.Role == RoomRole.Transition && config.TransitionPit != null)
             {
-                var pit = Object.Instantiate(config.TransitionPit, placed.FloorCenter, Quaternion.identity, roomObject.transform);
+                var pit = Object.Instantiate(config.TransitionPit, PitCenter(placed, config), Quaternion.identity, roomObject.transform);
                 pit.SetNextFloor(config.NextFloorMouths, config.NextFloorName);
             }
 

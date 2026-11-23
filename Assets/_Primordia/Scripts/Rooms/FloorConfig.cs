@@ -457,6 +457,9 @@ namespace Primordia.Rooms
         [Tooltip("Forma de la sala de paso, pegada a la del jefe. Vacío (o sin fosa): el jefe deja la salida de siempre.")]
         [SerializeField] RoomTemplate transitionRoom;
         [SerializeField] TransitionPit transitionPit;
+        [SerializeField] Vector2 pitOffset;
+        [Tooltip("Decorado de la sala de paso (piezas por franja, rastro y ráfagas). Vacío: la sala de paso sale sin decorado.")]
+        [SerializeField] ExitDecorArt exitDecor;
         [Tooltip("Tileset de la zona intermedia de la sala de paso, a medio camino entre este piso y el siguiente.")]
         [SerializeField] RoomTheme transitionMidTheme;
         [Tooltip("Tileset del piso siguiente: el de la zona de la fosa.")]
@@ -545,6 +548,8 @@ namespace Primordia.Rooms
         public bool HasShop => shopRoom != null && shopPrefab != null;
         public RoomTemplate TransitionRoom => transitionRoom;
         public TransitionPit TransitionPit => transitionPit;
+        public Vector2 PitOffset => pitOffset;
+        public ExitDecorArt ExitDecor => exitDecor;
         public RoomTheme TransitionMidTheme => transitionMidTheme;
         public RoomTheme NextFloorTheme => nextFloorTheme;
         public bool HasTransition => transitionRoom != null && transitionPit != null;
@@ -610,6 +615,10 @@ namespace Primordia.Rooms
             transitionMidTheme = newMidTheme;
             nextFloorTheme = newNextTheme;
         }
+
+        internal void ConfigurePitOffset(Vector2 offset) => pitOffset = offset;
+
+        internal void ConfigureExitDecor(ExitDecorArt art) => exitDecor = art;
 
         internal void ConfigureNextFloor(MutationData[] newMouths, string newName)
         {

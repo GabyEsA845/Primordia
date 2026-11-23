@@ -176,6 +176,22 @@ namespace Primordia.Tests
             var transition = built.MapRooms.Single(room => room.Role == RoomRole.Transition);
             var pit = transition.Room.GetComponentInChildren<TransitionPit>(true);
             Assert.IsNotNull(pit);
+            Assert.AreEqual(new Vector2(0f, -3.5f), config.PitOffset);
+            Assert.AreEqual(config.PitOffset, (Vector2)(pit.transform.position - transition.Room.transform.position));
+            var placed = new FloorBuilder.PlacedRoom { Layout = layout.Transition, Origin = transition.Rect.min };
+            foreach (var cell in FloorBuilder.PitCells(placed, config))
+                Assert.AreEqual(FloorMap.Kind.Floor, built.Map.Get(cell), $"Claro de la fosa, semilla {seed}: {cell}");
+            var blendLayers = parent.GetComponentsInChildren<Tilemap>().Where(layer => layer.name.StartsWith("BlendFloor"));
+            foreach (var cell in FloorBuilder.PitCells(placed, config))
+            {
+                var distance = ((Vector2)cell + Vector2.one * 0.5f - (Vector2)pit.transform.position) / pit.EdgeRadii;
+                if (distance.sqrMagnitude > 1f) continue;
+                foreach (var layer in blendLayers)
+                    Assert.IsFalse(layer.HasTile(new Vector3Int(cell.x, cell.y, 0)), $"Mezcla bajo la fosa: {cell}, semilla {seed}");
+            }
+            var pitBounds = new Bounds(pit.transform.position, (Vector3)(pit.EdgeRadii * 2f));
+            foreach (var decal in parent.GetComponentsInChildren<SpriteRenderer>().Where(sprite => sprite.name == "SandDrift"))
+                Assert.IsFalse(decal.bounds.Intersects(pitBounds), $"Arena sobre la fosa, semilla {seed}");
             Assert.AreEqual(3, built.Map.GetTheme(Vector2Int.FloorToInt(pit.transform.position)));
             var seen = new HashSet<int>();
             foreach (var cell in transition.Rect.allPositionsWithin)
@@ -190,12 +206,88 @@ namespace Primordia.Tests
             Assert.IsEmpty(transition.Room.GetComponentsInChildren<Fern>(true));
         }
 
+        [TestCase(7)]
+        [TestCase(42)]
+        [TestCase(91)]
+        public void Decoracion_NoSeSolapaYQuedaLejosDelSumidero(int seed)
+        {
+            var config = Config("Floor_3");
+            Assert.IsNotNull(config.ExitDecor, "Floor_3 no tiene el decorado de la sala de paso (ejecuta el menú de la sala de paso del piso 3).");
+            var parent = Track(new GameObject("Piso3"));
+            var layout = FloorLayoutGenerator.Generate(config, new System.Random(seed));
+            var built = FloorBuilder.Build(layout, config, parent.transform, new System.Random(seed));
+            var transition = built.MapRooms.Single(room => room.Role == RoomRole.Transition);
+            var pit = transition.Room.GetComponentInChildren<TransitionPit>(true);
+            var holder = transition.Room.transform.Find("ExitDecor");
+            Assert.IsNotNull(holder, "La sala de paso no tiene decorado.");
+            var trail = holder.Find("Trail");
+            var pieces = holder.GetComponentsInChildren<SpriteRenderer>(true)
+                .Where(renderer => renderer.sprite != null && renderer.name != "Outline" && !renderer.transform.IsChildOf(holder.Find("Wind") ?? holder)
+                    && (trail == null || !renderer.transform.IsChildOf(trail)))
+                .ToList();
+            Assert.GreaterOrEqual(pieces.Count, 25, $"Muy pocas piezas, semilla {seed}");
+
+            // Ninguna pieza toca a otra: cada una con su sitio propio (ni siquiera con el borde transparente de su imagen).
+            for (int i = 0; i < pieces.Count; i++)
+                for (int j = i + 1; j < pieces.Count; j++)
+                    Assert.IsFalse(pieces[i].bounds.Intersects(pieces[j].bounds), $"{pieces[i].name} y {pieces[j].name} se solapan, semilla {seed}");
+
+            var pitBounds = new Bounds(pit.transform.position, (Vector3)(pit.EdgeRadii * 2f));
+            foreach (var piece in pieces)
+            {
+                Assert.IsFalse(piece.bounds.Intersects(pitBounds), $"{piece.name} pisa el sumidero, semilla {seed}");
+                for (float x = piece.bounds.min.x + 0.01f; x < piece.bounds.max.x; x += 0.5f)
+                    for (float y = piece.bounds.min.y + 0.01f; y < piece.bounds.max.y; y += 0.5f)
+                        Assert.AreEqual(FloorMap.Kind.Floor, built.Map.Get(Vector2Int.FloorToInt(new Vector2(x, y))), $"{piece.name} sale del suelo, semilla {seed}");
+            }
+
+            // El rastro tampoco pisa a nadie (salvo sus propias piezas) ni el sumidero.
+            if (trail != null)
+                foreach (var step in trail.GetComponentsInChildren<SpriteRenderer>())
+                {
+                    // Contra la elipse del sumidero, no contra su caja: el rastro llega en diagonal.
+                    foreach (var corner in new[] { step.bounds.min, step.bounds.max, new Vector3(step.bounds.min.x, step.bounds.max.y), new Vector3(step.bounds.max.x, step.bounds.min.y), step.bounds.center })
+                    {
+                        var offset = ((Vector2)corner - (Vector2)pit.transform.position) / pit.EdgeRadii;
+                        Assert.GreaterOrEqual(offset.sqrMagnitude, 1f, $"El rastro pisa el sumidero, semilla {seed}");
+                    }
+                    foreach (var piece in pieces)
+                        Assert.IsFalse(step.bounds.Intersects(piece.bounds), $"El rastro pisa {piece.name}, semilla {seed}");
+                }
+
+            // Peñascos y troncos de pie bloquean; las plantas se mecen; hay ráfagas.
+            Assert.GreaterOrEqual(holder.GetComponentsInChildren<ExitDecorObstacle>().Length, 3, $"Obstáculos, semilla {seed}");
+            Assert.GreaterOrEqual(holder.GetComponentsInChildren<ExitDecorPlant>().Length, 3, $"Plantas, semilla {seed}");
+            foreach (var obstacle in holder.GetComponentsInChildren<ExitDecorObstacle>())
+                Assert.IsNotNull(obstacle.GetComponent<BoxCollider2D>());
+            var wind = holder.GetComponentInChildren<ExitDecorWind>();
+            Assert.IsNotNull(wind);
+            Assert.Greater(wind.RowCount, 0);
+        }
+
+        [Test]
+        public void Decoracion_PisosAnterioresSalenSinDecorado()
+        {
+            foreach (string name in new[] { "Floor_1", "Floor_2" })
+            {
+                var config = Config(name);
+                Assert.IsNull(config.ExitDecor, name);
+                var parent = Track(new GameObject(name));
+                var layout = FloorLayoutGenerator.Generate(config, new System.Random(7));
+                var built = FloorBuilder.Build(layout, config, parent.transform, new System.Random(7));
+                Assert.IsNull(parent.transform.Find("ExitDecor"));
+                Assert.IsEmpty(parent.GetComponentsInChildren<ExitDecorObstacle>(true), name);
+                layout.ReleaseGenerated();
+            }
+        }
+
         [Test]
         public void EscenaYSumidero_EstanGuardadosConOchoCuadrosYPolvo()
         {
             Assert.IsNotNull(AssetDatabase.LoadAssetAtPath<SceneAsset>("Assets/_Primordia/Scenes/Test_Floor3Transition.unity"));
             var config = Config("Floor_3TransitionTest");
             Assert.IsNotNull(config);
+            Assert.AreEqual(new Vector2(0f, -3.5f), config.PitOffset);
             Assert.IsNotNull(config.TransitionPit);
             var serialized = new SerializedObject(config.TransitionPit);
             Assert.AreEqual(8, serialized.FindProperty("pitFrames").arraySize);
@@ -210,6 +302,7 @@ namespace Primordia.Tests
         public void PisosAnteriores_ConservanExactamenteElMapaDeTemas(string name)
         {
             var config = Config(name);
+            Assert.AreEqual(Vector2.zero, config.PitOffset);
             Assert.IsFalse(config.TransitionMidTheme.RippleBorders);
             var room = new FloorBuilder.PlacedRoom
             {
@@ -218,6 +311,7 @@ namespace Primordia.Tests
             };
             var entry = config.TransitionRoom.DoorCells(Vector2Int.left).Select(cell => cell + room.Origin).ToList();
             room.DoorCells.Add(Vector2Int.left, entry);
+            Assert.AreEqual(room.FloorCenter, FloorBuilder.PitCenter(room, config));
             var map = new FloorMap(new RectInt(room.Origin - Vector2Int.one * 16, room.Rect.size + Vector2Int.one * 32));
             FloorBuilder.ThemeTransition(map, room, new List<FloorBuilder.PlacedRoom> { room }, config);
             var door = new Vector2((float)entry.Average(cell => cell.x), (float)entry.Average(cell => cell.y)) + Vector2.one * 0.5f;

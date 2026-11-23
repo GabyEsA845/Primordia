@@ -17,4 +17,4 @@ Tras probar `Test_Floor3Transition`, la usuaria ve el sumidero **demasiado arrib
 Decoraciones/objetos de la sala (arte pendiente, lo hace Opus), plantilla de la cueva, piso 4, audio. No editar PNG ni ejecutar `.py`.
 
 ## Resultado
-(Codex lo rellena.)
+Codex se quedó sin tokens a medias; la terminó Claude (2026-11-23). `FloorConfig.PitOffset` (`ConfigurePitOffset`), `FloorBuilder.PitCenter(placed, config)` usado por la fosa, su claro (`PitCells`), los helechos y el reparto de franjas; `Floor_3` = (0, -3,5) desde el menú del piso 3; el claro de la fosa se mantiene en el tema final. Pruebas ampliadas en `FloorTransitionPiso3Tests`; `Floor_1`/`Floor_2` con offset cero y mapa idéntico. Pendiente: que la usuaria lo vea (si hay que subirlo o bajarlo más, cambiar el valor en `FloorTransitionSetup.Floor3.cs` y repetir el menú).

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a4ba12a379f398148bd08d9c95bcf113, type: 3}
-  m_Name: Floor_3TransitionTest
+  m_Name: Floor_3
   m_EditorClassIdentifier: Primordia::Primordia.Rooms.FloorConfig
   floorNumber: 3
   nextFloor: {fileID: 0}
@@ -710,6 +710,8 @@ MonoBehaviour:
   teleporterPrefab: {fileID: 5755237045130047665, guid: 43e86884a118e5243b78a86796f5111c, type: 3}
   transitionRoom: {fileID: 11400000, guid: a1cc0837e3579584189ff066928ff179, type: 2}
   transitionPit: {fileID: 5413735273365125961, guid: 9b4f98691dabe70449cb727080323eea, type: 3}
+  pitOffset: {x: 0, y: -3.5}
+  exitDecor: {fileID: 11400000, guid: c1b718aea4516f1499caf677c1a13def, type: 2}
   transitionMidTheme: {fileID: 11400000, guid: c05bcfd6c4b39054fb11ded93a32ae7f, type: 2}
   nextFloorTheme: {fileID: 11400000, guid: 10b460ee2812e2f46ad58676dbee5582, type: 2}
   nextFloorMouths: []

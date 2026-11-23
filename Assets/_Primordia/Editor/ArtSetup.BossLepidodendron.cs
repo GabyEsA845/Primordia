@@ -223,6 +223,7 @@ namespace Primordia.Editor
                 if (name == "Lepido_ConeBranch_Tile") return (72, new Vector2(0.5f, 0.5f));
                 if (name.Contains("Shatter")) return (128, new Vector2(0.5f, 1f - 104f / 112));
                 if (name == "Lepido_Cone_Burst") return (128, new Vector2(0.5f, 1f - 114f / 120));
+                if (name.StartsWith("Fx_ConeMark_")) return (64, new Vector2(0.5f, 0.5f));
                 if (name == "Fx_ConeShadow" || name == "Fx_ConeCrater") return (72, new Vector2(0.5f, 0.5f));
                 if (name == "Fx_ConeSlam") return (128, new Vector2(0.5f, 1f - 36f / 64));
                 if (name == "Fx_ConeLift") return (64, new Vector2(0.5f, 1f - 40f / 48));

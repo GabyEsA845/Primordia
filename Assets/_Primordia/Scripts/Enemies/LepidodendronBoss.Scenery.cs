@@ -81,7 +81,7 @@ namespace Primordia.Enemies
                     "Lepido_ShroomA_Warn", "Lepido_ShroomB_Warn", "Lepido_ShroomC_Warn",
                     "Lepido_ConeBranch_Tile", "Lepido_ConeBranch_Torn", "Lepido_Cone_Shatter", "Lepido_Cone_ShatterCharred",
                     "Lepido_Cone_Exposed_Idle", "Lepido_Cone_Exposed_Hurt", "Lepido_Cone_Burst", "Lepido_Cone_Husk",
-                    "Fx_ConeShadow", "Fx_ConeSlam", "Fx_ConeCrater", "Fx_ConeLift", "Fx_ArmorChip", "Fx_ArmorChipCharred" })
+                    "Fx_ConeMark_Follow", "Fx_ConeMark_Lock", "Fx_ConeMark_Hold", "Fx_ConeShadow", "Fx_ConeSlam", "Fx_ConeCrater", "Fx_ConeLift", "Fx_ArmorChip", "Fx_ArmorChipCharred" })
                     yield return name;
                 for (int state = 0; state < 3; state++)
                 {

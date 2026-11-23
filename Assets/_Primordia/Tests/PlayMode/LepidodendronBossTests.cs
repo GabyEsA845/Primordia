@@ -701,6 +701,45 @@ namespace Primordia.Tests
             Assert.AreEqual(before - damage, health.Current);
         }
 
+        // El área del golpe es la elipse de la marca: semiejes 1,6 × 1,12 (el collider del jugador de prueba mide 1×1).
+        [TestCase(0f, 1.5f, 2)]
+        [TestCase(0f, 1.7f, 0)]
+        [TestCase(1.5f, 0f, 2)]
+        [TestCase(1.5f, 1.4f, 0)]
+        public void L3GolpeEsUnaElipseMasAnchaQueAlta(float dx, float dy, int damage)
+        {
+            boss.TestFinalPhase();
+            CreateWalker(boss.ArenaCenter + new Vector2(dx, dy));
+            var health = walker.AddComponent<Health>();
+            walker.AddComponent<BoxCollider2D>();
+            int before = health.Current;
+            Physics2D.SyncTransforms();
+            var cone = boss.Cones[0];
+            float start = Time.time;
+            cone.BeginDrop(1.5f, Vector2.zero, start);
+            cone.Tick(start + 2.571f);
+            Assert.AreEqual(before - damage, health.Current);
+        }
+
+        [Test]
+        public void L3MarcaDeAvisoUsaElArteAprobadoSinGirarNiEscalar()
+        {
+            CreateWalker(boss.ArenaCenter);
+            boss.ConePlayer = walker.transform;
+            var cone = boss.Cones[0];
+            float start = Time.time;
+            cone.BeginDrop(1.5f, Vector2.zero, start);
+            var marker = cone.transform.Find("Marker").GetComponent<SpriteRenderer>();
+            foreach (float at in new[] { 0.5f, 1.6f, 2.3f })
+            {
+                cone.Tick(start + at);
+                Assert.IsTrue(marker.enabled);
+                Assert.IsTrue(marker.sprite.name.StartsWith("Fx_ConeMark_"), marker.sprite.name);
+                Assert.AreEqual(Quaternion.identity, marker.transform.rotation);
+                Assert.AreEqual(Vector3.one, marker.transform.localScale);
+            }
+        }
+
         [Test]
         public void L3ArmaduraAcumuladaVentanaDeOchoSegundosYSubidaSinCuracion()
         {

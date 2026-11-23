@@ -11,9 +11,9 @@ namespace Primordia.Enemies
     public class LepidodendronCone : MonoBehaviour, IFlammable
     {
         public const int ArmorEndurance = 30, ConeHealth = 50, SlamDamage = 2;
-        // Provisionales: tiempos de combate, dimensiones y radio.
+        // Provisionales: tiempos de combate y dimensiones; el golpe es una elipse de semiejes SlamRadius × SlamRadiusY.
         public const float WarningSeconds = 1.5f, ShadowSeconds = 0.72f, DescentSeconds = 0.35f;
-        public const float GroundSeconds = 8f, LiftSeconds = 1f, SlamRadius = 1.6f;
+        public const float GroundSeconds = 8f, LiftSeconds = 1f, SlamRadius = 1.6f, SlamRadiusY = SlamRadius * 0.7f;
         const int ArmorStep = 10, CharredMultiplier = 2, ContactShadowFrame = 4;
         const float Ppu = 16f, BouncePixels = 2f, BodyWidth = 2.5f, BodyHeight = 0.8f;
         const float HitHeight = 5f, BehindOpacity = 0.5f, HurtStep = 0.06f, BurnStep = 0.15f;
@@ -92,33 +92,15 @@ namespace Primordia.Enemies
             return obj.AddComponent<SpriteRenderer>();
         }
 
-        // Marca de aviso en el suelo (provisional, dibujada por código con el rojo de aviso de la espora): sigue al jugador durante
-        // el aviso, parpadea más fuerte al fijarse el punto y se queda hasta el golpe. Radio = el del daño.
-        const int MarkerPixels = 64;
-        const float MarkerFollowAlpha = 0.45f, MarkerShadowAlpha = 0.95f;
+        // Marca de aviso en el suelo (arte aprobado, Cones/Fx_ConeMark_*): anillo de esporas rojas en elipse en picada (alto = 0,7 ×
+        // ancho). Sigue al jugador durante el aviso, se cierra y se enciende al fijarse el punto y destella hasta el golpe. Su borde de
+        // fuera es el área del daño (semiejes SlamRadius × SlamRadiusY). Sin giro ni escala: rompen el píxel.
+        const float MarkerFollowStep = 0.11f, MarkerLockStep = 0.09f, MarkerHoldStep = 0.06f, MarkerFollowAlpha = 0.85f;
         SpriteRenderer marker;
-        Texture2D markerTexture;
-        Sprite markerSprite;
 
         void BuildMarker()
         {
-            markerTexture = new Texture2D(MarkerPixels, MarkerPixels, TextureFormat.RGBA32, false) { filterMode = FilterMode.Point };
-            var pixels = new Color32[MarkerPixels * MarkerPixels];
-            float c = (MarkerPixels - 1) / 2f;
-            for (int y = 0; y < MarkerPixels; y++)
-                for (int x = 0; x < MarkerPixels; x++)
-                {
-                    float dx = x - c, dy = y - c, r = Mathf.Sqrt(dx * dx + dy * dy);
-                    float angle = Mathf.Atan2(dy, dx) * Mathf.Rad2Deg;
-                    bool dash = Mathf.FloorToInt((angle + 180f) / 15f) % 2 == 0;
-                    if (r >= c - 2.5f && r <= c && dash) pixels[y * MarkerPixels + x] = new Color32(255, 80, 60, 255);
-                    else if (r < c - 2.5f) pixels[y * MarkerPixels + x] = new Color32(255, 60, 40, 40);
-                }
-            markerTexture.SetPixels32(pixels);
-            markerTexture.Apply();
-            markerSprite = Sprite.Create(markerTexture, new Rect(0, 0, MarkerPixels, MarkerPixels), new Vector2(0.5f, 0.5f), MarkerPixels / (2f * SlamRadius));
             marker = Drawing("Marker");
-            marker.sprite = markerSprite;
             marker.enabled = false;
         }
 
@@ -129,24 +111,38 @@ namespace Primordia.Enemies
             if (!show) return;
             marker.sortingOrder = GroundOrder + 1;
             float age = now - phaseAt;
-            float alpha, scale = 1f;
+            float alpha = 1f;
+            Sprite[] frames;
+            int frame;
             if (State == Phase.Warning)
             {
+                frames = Frames("Fx_ConeMark_Follow");
+                frame = Mathf.FloorToInt(now / MarkerFollowStep);
                 // Pulso lento que se acelera al acercarse el final del aviso.
                 float left = Mathf.Max(0f, CurrentWarningSeconds - age);
                 float rate = Mathf.Lerp(2f, 6f, 1f - Mathf.Clamp01(left / CurrentWarningSeconds));
-                alpha = MarkerFollowAlpha * (0.7f + 0.3f * Mathf.Sin(now * rate * Mathf.PI * 2f));
+                alpha = MarkerFollowAlpha * (0.8f + 0.2f * Mathf.Sin(now * rate * Mathf.PI * 2f));
             }
             else if (State == Phase.Shadow)
             {
-                alpha = MarkerShadowAlpha * (Mathf.Sin(now * 14f * Mathf.PI) > 0f ? 1f : 0.55f);
-                scale = Mathf.Lerp(1.2f, 1f, Mathf.Clamp01(age / ShadowSeconds));
+                frames = Frames("Fx_ConeMark_Lock");
+                frame = Mathf.FloorToInt(age / MarkerLockStep);
             }
-            else alpha = 1f;
+            else
+            {
+                frames = Frames("Fx_ConeMark_Hold");
+                frame = Mathf.FloorToInt(age / MarkerHoldStep);
+            }
+            marker.sprite = frames[Mathf.Clamp(State == Phase.Shadow ? frame : ((frame % frames.Length) + frames.Length) % frames.Length, 0, frames.Length - 1)];
             marker.color = new Color(1f, 1f, 1f, alpha);
-            marker.transform.localScale = Vector3.one * scale;
-            marker.transform.rotation = Quaternion.Euler(0f, 0f, now * 45f);
             marker.transform.position = LandingPoint;
+        }
+
+        /// <summary>True si el punto más cercano a la marca de ese collider cae dentro de la elipse del golpe.</summary>
+        bool InSlamArea(Collider2D collider)
+        {
+            var offset = collider.ClosestPoint(LandingPoint) - LandingPoint;
+            return Mathf.Pow(offset.x / SlamRadius, 2f) + Mathf.Pow(offset.y / SlamRadiusY, 2f) <= 1f;
         }
 
         Sprite[] Frames(string name) => owner.Art.Find(name).sprites;
@@ -187,6 +183,7 @@ namespace Primordia.Enemies
                 var victims = new HashSet<Health>();
                 foreach (var collider in Physics2D.OverlapCircleAll(LandingPoint, SlamRadius, LayerMask.GetMask(CombatLayers.Player)))
                 {
+                    if (!InSlamArea(collider)) continue;
                     var health = collider.GetComponentInParent<Health>();
                     if (health != null && victims.Add(health)) health.TakeDamage(SlamDamage);
                 }
@@ -366,8 +363,6 @@ namespace Primordia.Enemies
         void OnDisable() { foreach (var point in ignitionPoints) Flammables.Unregister(point); }
         void OnDestroy()
         {
-            if (markerSprite != null) Destroy(markerSprite);
-            if (markerTexture != null) Destroy(markerTexture);
             if (slamFront != null) foreach (var sprite in slamFront) if (sprite != null) Destroy(sprite);
             if (slamBack != null) foreach (var sprite in slamBack) if (sprite != null) Destroy(sprite);
             if (Health == null) return;

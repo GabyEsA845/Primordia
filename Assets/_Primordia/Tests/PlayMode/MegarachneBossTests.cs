@@ -400,8 +400,9 @@ namespace Primordia.Tests
         public void ArteTieneNueveFilasYDropClimbUna()
         {
             var art = AssetDatabase.LoadAssetAtPath<DirectionalArt>("Assets/_Primordia/Data/Bosses/MegarachneArt.asset");
-            Assert.AreEqual(39, art.Sheets.Count);
-            Assert.AreEqual(24, art.Sheets.Count(s => !s.name.EndsWith("_Rage")
+            // 24 de M1-M4, Rage (13), IntroEmerge y Screech (M5), y Threat, Death y Dead con sus sombras (M6).
+            Assert.AreEqual(45, art.Sheets.Count);
+            Assert.AreEqual(30, art.Sheets.Count(s => !s.name.EndsWith("_Rage")
                 && s.name != "Megarachne_IntroEmerge" && s.name != "Megarachne_Screech"));
             foreach (var sheet in art.Sheets)
             {
@@ -427,6 +428,123 @@ namespace Primordia.Tests
             boss.Target = actor.transform;
             Physics2D.SyncTransforms();
             return player;
+        }
+
+        // ---------- M6: barra, entrada, muerte y recompensa ----------
+
+        [Test]
+        public void BarraTienePielPropiaYUnaMuescaAlCincuentaPorCiento()
+        {
+            var appearance = boss.GetComponent<Primordia.UI.BossBarAppearance>();
+            Assert.IsNotNull(appearance);
+            Assert.IsNotNull(appearance.Skin);
+            Assert.AreEqual(new[] { 0.5f }, boss.PhaseThresholds);
+            Assert.AreEqual(0, boss.PhaseIndex);
+            Assert.AreSame(boss, ActiveBoss.Current, "Sin presentación, la barra sale desde que se activa la sala.");
+            Assert.AreEqual(BossBarStyle.Immune, boss.BarStyle, "En su cable es invulnerable.");
+        }
+
+        [UnityTest]
+        public IEnumerator BarraPasaALaFaseDelEnfado()
+        {
+            yield return EnterRage();
+            Assert.AreEqual(1, boss.PhaseIndex);
+        }
+
+        [Test]
+        public void PrefabLlevaLaPresentacionConSuTituloYElRotuloDelMinijefe()
+        {
+            var intro = boss.GetComponent<BossIntro>();
+            Assert.IsNotNull(intro);
+            Assert.IsNotNull(intro.Data);
+            Assert.AreEqual("La araña que nunca fue", intro.Data.Title);
+        }
+
+        [UnityTest]
+        public IEnumerator EntradaSaleDelEmbudoBajaAmenazaYEmpiezaElCombateAlTerminarElRotulo()
+        {
+            MakePlayer(boss.ArenaCenter + new Vector2(-6f, -5f));
+            boss.StartEntry();
+            Assert.IsTrue(boss.IsEntering);
+            Assert.IsTrue(boss.Health.IsInvulnerable);
+            Assert.IsFalse(boss.GetComponentInChildren<DirectionalSprite>().GetComponent<SpriteRenderer>().enabled, "Escondida en el embudo.");
+            yield return new WaitForSeconds(0.3f);
+            Assert.IsFalse(boss.EntryAtThreat, "Espera a la pose de la presentación.");
+            boss.PlayIntroPose(2f);
+            var eyes = boss.Canopy.transform.Find("Ojos");
+            yield return new WaitForSeconds(0.3f);
+            Assert.IsNotNull(boss.Canopy.transform.Find("Ojos"));
+            Assert.IsTrue(boss.Canopy.transform.Find("Ojos").GetComponent<SpriteRenderer>().enabled, "Los ojos se encienden en el embudo.");
+            yield return Until(() => boss.EntryAtThreat, 4f);
+            Assert.IsTrue(boss.IsEntering, "Amenaza hasta que acaba el rótulo.");
+            Assert.AreEqual(0f, boss.VisualHeight);
+            Assert.IsFalse(boss.Canopy.transform.Find("Ojos").GetComponent<SpriteRenderer>().enabled);
+            boss.BeginFight();
+            Assert.IsFalse(boss.IsEntering);
+            Assert.AreEqual(MegarachneBoss.Mode.Ground, boss.CurrentMode);
+            Assert.IsFalse(boss.Health.IsInvulnerable, "Aterriza vulnerable.");
+            Assert.AreSame(boss, ActiveBoss.Current);
+        }
+
+        [UnityTest]
+        public IEnumerator SaltarElRotuloAcabaLaEntradaAlMomento()
+        {
+            boss.StartEntry();
+            boss.PlayIntroPose(2f);
+            yield return new WaitForSeconds(0.2f);
+            Assert.IsTrue(boss.IsEntering);
+            boss.BeginFight();
+            Assert.IsFalse(boss.IsEntering);
+            Assert.AreEqual(MegarachneBoss.Mode.Ground, boss.CurrentMode);
+            Assert.IsTrue(boss.GetComponentInChildren<DirectionalSprite>().GetComponent<SpriteRenderer>().enabled);
+        }
+
+        [UnityTest]
+        public IEnumerator MuerteDejaElCuerpoPanzaArribaDeshaceLaRedYSueltaElCapulloConElCorazon()
+        {
+            RunInventory.Reset();
+            boss.Health.IsInvulnerable = false;
+            boss.Health.TakeDamage(MegarachneBoss.MaxHealth);
+            Assert.IsTrue(boss.DeathStarted);
+            var corpse = room.GetComponentInChildren<MegarachneCorpse>();
+            Assert.IsNotNull(corpse, "El cuerpo pasa a la sala y sobrevive al jefe.");
+            yield return null;
+            Assert.IsTrue(Enumerable.Range(0, 5).All(i => !CableLine(i).enabled), "Los cables se descuelgan.");
+            yield return Until(() => corpse.Dead, 2f);
+            Assert.IsTrue(corpse.GetComponentInChildren<DirectionalSprite>().Current.StartsWith("Megarachne_Dead"));
+            yield return Until(() => corpse.CocoonLanded, 6f);
+            Assert.GreaterOrEqual(Vector2.Distance(corpse.CocoonPoint, corpse.transform.position), 2f, "El capullo no cae sobre el cuerpo.");
+            yield return Until(() => corpse.CocoonOpened, 2f);
+            var heart = room.GetComponentInChildren<LepidodendronDrop>();
+            Assert.IsNotNull(heart, "El capullo suelta un contenedor de corazón.");
+            Assert.AreEqual(0, corpse.BiomassDropped, "Sin RoomBiomass en la sala de prueba no cae biomasa.");
+        }
+
+        [UnityTest]
+        public IEnumerator ElCorazonSoloCaeUnaVezPorPartida()
+        {
+            RunInventory.Reset();
+            RunInventory.SetFlag(MegarachneCorpse.HeartFlag);
+            boss.Health.IsInvulnerable = false;
+            boss.Health.TakeDamage(MegarachneBoss.MaxHealth);
+            var corpse = room.GetComponentInChildren<MegarachneCorpse>();
+            yield return Until(() => corpse.CocoonOpened, 12f);
+            Assert.IsNull(room.GetComponentInChildren<LepidodendronDrop>());
+            RunInventory.Reset();
+        }
+
+        [Test]
+        public void TarjetasOfrecenSoloMutacionesEquipadasQueAunPuedenSubir()
+        {
+            var player = new GameObject("JugadorMutaciones");
+            actor = player;
+            player.AddComponent<Rigidbody2D>();
+            player.AddComponent<CircleCollider2D>();
+            player.AddComponent<Health>().SetMax(20);
+            player.AddComponent<Weapon>();
+            player.AddComponent<PlayerController>();
+            var mutations = player.AddComponent<Primordia.Mutations.PlayerMutations>();
+            Assert.IsEmpty(MegarachneCorpse.UpgradableMutations(mutations, 3), "Sin mutaciones equipadas no hay tarjetas.");
         }
 
         static IEnumerator Until(System.Func<bool> condition, float seconds)

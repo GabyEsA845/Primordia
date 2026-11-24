@@ -130,6 +130,34 @@ namespace Primordia.Editor
             Debug.Log("Megarachne M5: arte de enfado importado, prefab y escena guardados. Ctrl+Mayús+F11 enfado; F12 incendio del Nido.");
         }
 
+        [MenuItem("Primordia/Boss/Actualizar entrada, barra, muerte y recompensa Megarachne (M6)")]
+        public static void UpdateFinal()
+        {
+            if (!Application.isBatchMode && !EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo()) return;
+            var effects = ArtSetup.ImportMegarachneFinal();
+            var heart = ArtSetup.LoadShopHeartContainer();
+            if (heart.Length == 0) throw new InvalidOperationException("Falta el corazón de la tienda (Item_HeartContainer_Idle): importa antes la tienda.");
+            var skin = ArtSetup.CreateMegarachneBarSkin();
+            if (skin == null) throw new InvalidOperationException("No se pudo crear la barra de Megarachne.");
+            var root = PrefabUtility.LoadPrefabContents(PrefabPath);
+            try
+            {
+                root.GetComponent<MegarachneBoss>().ConfigureFinal(effects, heart);
+                var appearance = root.GetComponent<Primordia.UI.BossBarAppearance>();
+                if (appearance == null) appearance = root.AddComponent<Primordia.UI.BossBarAppearance>();
+                appearance.Configure(skin);
+                PrefabUtility.SaveAsPrefabAsset(root, PrefabPath, out bool saved);
+                if (!saved) throw new InvalidOperationException("No se pudo guardar el prefab de Megarachne.");
+            }
+            finally { PrefabUtility.UnloadPrefabContents(root); }
+            // Retrato, nombre y título («La araña que nunca fue», con el sello MINIJEFE) y el componente de presentación en el prefab.
+            ArtSetup.ImportBossIntro("Megarachne");
+            var scene = EditorSceneManager.OpenScene(TestScenePath, OpenSceneMode.Single);
+            EditorSceneManager.SaveScene(scene);
+            AssetDatabase.SaveAssets();
+            Debug.Log("Megarachne M6: entrada, barra con piel BossBar_Megarachne, muerte y recompensa listas en el prefab y la escena de prueba.");
+        }
+
         static (Material cable, Material thread) PrepareCableMaterials() =>
             (PrepareCableMaterial(MaterialPath, "Cable_Normal", 1),
              PrepareCableMaterial(ThinMaterialPath, "Cable_Thin", 3));

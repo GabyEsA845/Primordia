@@ -59,6 +59,8 @@ namespace Primordia.Enemies
                 if (sheet.name == name) return sheet.frames;
             foreach (var sheet in rageEffects)
                 if (sheet.name == name) return sheet.frames;
+            foreach (var sheet in finalEffects)
+                if (sheet.name == name) return sheet.frames;
             foreach (var sheet in cableFireArt.effects)
                 if (sheet.name == name) return sheet.frames;
             return Array.Empty<Sprite>();

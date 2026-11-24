@@ -161,6 +161,7 @@ namespace Primordia.Enemies
 
         /// <summary>Donde mira la cámara: el cuerpo del jefe (el de la ameba no está en su raíz).</summary>
         Vector2 FocusPoint() =>
+            boss is MegarachneBoss mega ? mega.IntroFocus :
             boss is ArthropleuraBoss arthro ? arthro.GroundToWorld(arthro.NodeGround(0)) :
             boss is AmoebaBoss amoeba && amoeba.MainBody != null ? amoeba.MainBody.transform.position : transform.position;
 

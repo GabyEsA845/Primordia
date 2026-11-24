@@ -122,6 +122,8 @@ GameObject:
   - component: {fileID: 6552963729916740724}
   - component: {fileID: 41182802857315685}
   - component: {fileID: 2551370407110946467}
+  - component: {fileID: 7211595535948319239}
+  - component: {fileID: 7664096404105852242}
   m_Layer: 7
   m_Name: Boss_Megarachne
   m_TagString: Untagged
@@ -417,6 +419,42 @@ MonoBehaviour:
   - {fileID: -3639621887285183741, guid: 7c70c4debe30d7940ae2b729432ce70b, type: 3}
   cableMaterial: {fileID: 2100000, guid: 6ea1b4aa2eea1d74bbc3b733610ee9c4, type: 2}
   threadMaterial: {fileID: 2100000, guid: 8911c145ff71add469cd07a26f43dd28, type: 2}
+  finalEffects:
+  - name: Nido_Eyes
+    frames:
+    - {fileID: 7206951525988495656, guid: 3517ecc013470d446b39a23ca778842c, type: 3}
+    - {fileID: -7111876924452535873, guid: 3517ecc013470d446b39a23ca778842c, type: 3}
+    - {fileID: -5089617594752856135, guid: 3517ecc013470d446b39a23ca778842c, type: 3}
+    - {fileID: 5701020253995673360, guid: 3517ecc013470d446b39a23ca778842c, type: 3}
+    - {fileID: 7093736291589285218, guid: 3517ecc013470d446b39a23ca778842c, type: 3}
+    - {fileID: 50530517, guid: 3517ecc013470d446b39a23ca778842c, type: 3}
+  - name: Megarachne_Cocoon_Fall
+    frames:
+    - {fileID: -1359755131581356734, guid: 3d341aeb19c534144af375473e67022d, type: 3}
+    - {fileID: -5542960577749838510, guid: 3d341aeb19c534144af375473e67022d, type: 3}
+    - {fileID: 8481217368311945060, guid: 3d341aeb19c534144af375473e67022d, type: 3}
+    - {fileID: -974796836, guid: 3d341aeb19c534144af375473e67022d, type: 3}
+  - name: Megarachne_Cocoon_Open
+    frames:
+    - {fileID: 8944700727171363170, guid: 807a2ed45f975e34bb3e12ef4270e346, type: 3}
+    - {fileID: 4765108630415740419, guid: 807a2ed45f975e34bb3e12ef4270e346, type: 3}
+    - {fileID: -1944962546637567586, guid: 807a2ed45f975e34bb3e12ef4270e346, type: 3}
+    - {fileID: 1413147063782949385, guid: 807a2ed45f975e34bb3e12ef4270e346, type: 3}
+    - {fileID: 6920504949186829980, guid: 807a2ed45f975e34bb3e12ef4270e346, type: 3}
+    - {fileID: 301018555793033574, guid: 807a2ed45f975e34bb3e12ef4270e346, type: 3}
+  - name: Fx_MegarachneDust
+    frames:
+    - {fileID: -1546126835898851043, guid: 8faf6fc80df969f448d5279068564a8f, type: 3}
+    - {fileID: 4458357432351074461, guid: 8faf6fc80df969f448d5279068564a8f, type: 3}
+    - {fileID: -690036679763971073, guid: 8faf6fc80df969f448d5279068564a8f, type: 3}
+    - {fileID: -2996624183990900878, guid: 8faf6fc80df969f448d5279068564a8f, type: 3}
+    - {fileID: 3576642091368216952, guid: 8faf6fc80df969f448d5279068564a8f, type: 3}
+    - {fileID: -3319517467914802749, guid: 8faf6fc80df969f448d5279068564a8f, type: 3}
+  rewardHeart:
+  - {fileID: 3039545650275437121, guid: 56aa7cb199c1c7549b5548efc197dd5a, type: 3}
+  - {fileID: -2076769524110945384, guid: 56aa7cb199c1c7549b5548efc197dd5a, type: 3}
+  - {fileID: 7211201024347901294, guid: 56aa7cb199c1c7549b5548efc197dd5a, type: 3}
+  - {fileID: 2102265408, guid: 56aa7cb199c1c7549b5548efc197dd5a, type: 3}
   cableFireArt:
     burning: {fileID: 2800000, guid: d9e1a27f218871745887c944a136200d, type: 3}
     charred: {fileID: 2800000, guid: 5aa0bf51478b8514380540c22316320d, type: 3}
@@ -588,6 +626,36 @@ MonoBehaviour:
   bodyRenderer: {fileID: 4399486962728544620}
   shadowRenderer: {fileID: 4857836037127719527}
   testKeys: 1
+--- !u!114 &7211595535948319239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1514774211954551099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67332564f65997f499fcf325871a9d21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Primordia::Primordia.UI.BossBarAppearance
+  skin: {fileID: 11400000, guid: d12424e342248c84b861ebc46f589625, type: 2}
+--- !u!114 &7664096404105852242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1514774211954551099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0f72950862b78c4dae7c086cbbd21fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Primordia::Primordia.Enemies.BossIntro
+  data: {fileID: 11400000, guid: 66a42206ee4762946a7ac7e8882556b6, type: 2}
+  panTime: 0.6
+  bannerAt: 1
+  bannerUntil: 3.2
+  skipText: '[E] Saltar'
 --- !u!1 &3246292184383215502
 GameObject:
   m_ObjectHideFlags: 0

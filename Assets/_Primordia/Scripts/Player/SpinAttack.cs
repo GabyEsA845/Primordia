@@ -24,6 +24,9 @@ namespace Primordia.Player
         const float DefaultDizzySeconds = 1f;
         // Radio al que está dibujado el remolino.
         const float EffectArtRadius = 1.5f;
+        // Anillo de alcance: 4 cuadros de 50 ms al abrirse y el daño empieza en el cuadro 2; el dibujo va debajo del remolino.
+        public const float RingFrameSeconds = 0.05f;
+        const int RingOrder = 10;
 
         PlayerController controller;
         PlayerAnimator animator;
@@ -31,6 +34,7 @@ namespace Primordia.Player
         Health health;
         AttackData attack;
         GameObject effect;
+        SpinRing ring;
         float phaseTimer;
         float tickTimer;
         float spinTime;
@@ -47,6 +51,10 @@ namespace Primordia.Player
 
         /// <summary>Segundos que lleva girando en este giro.</summary>
         public float SpinSeconds => spinTime;
+
+        /// <summary>True cuando el anillo de alcance ya está abierto y daña (tras el giro mínimo y el cuadro 2 de su apertura).</summary>
+        public bool RingDamaging => State == Phase.Spinning && attack != null && attack.SpinRingAfter > 0f
+            && spinTime >= attack.SpinRingAfter + SpinRing.DamageFrame * RingFrameSeconds;
 
         void Awake()
         {
@@ -148,6 +156,9 @@ namespace Primordia.Player
                 Strike();
             }
 
+            if (ring == null && attack.SpinRingAfter > 0f && spinTime >= attack.SpinRingAfter)
+                OpenRing();
+
             if (attack.SpinReflects)
                 ReturnProjectiles();
 
@@ -157,13 +168,24 @@ namespace Primordia.Player
                 Finish(dizzy: true, spun: true);
         }
 
+        // Tras el giro mínimo se abre el anillo: el dibujo (si hay) y, un poco después, el daño con el radio ampliado.
+        void OpenRing()
+        {
+            if (attack.SpinRingAppear.Length == 0 || attack.SpinRingLoop.Length == 0)
+                return;
+            ring = SpinRing.Create(transform, attack.SpinRingAppear, attack.SpinRingLoop, attack.SpinRingEnd, RingFrameSeconds, RingOrder);
+        }
+
+        /// <summary>Radio del golpe: el del giro y, con el anillo abierto, el del anillo.</summary>
+        float StrikeRadius => RingDamaging ? Mathf.Max(attack.SpinRadius, attack.SpinRingRadius) : attack.SpinRadius;
+
         /// <summary>Daña y empuja hacia fuera a cada enemigo del radio.</summary>
         void Strike()
         {
             int damage = Mathf.Max(0, Mathf.CeilToInt(attack.SpinDamage * weapon.DamageMultiplier - 0.001f));
             Vector2 center = transform.position;
             struck.Clear();
-            foreach (var hit in Physics2D.OverlapCircleAll(center, attack.SpinRadius, LayerMask.GetMask(CombatLayers.Enemy)))
+            foreach (var hit in Physics2D.OverlapCircleAll(center, StrikeRadius, LayerMask.GetMask(CombatLayers.Enemy)))
             {
                 if (hit.isTrigger)
                     continue;
@@ -241,7 +263,9 @@ namespace Primordia.Player
             if (boomerang.TryGetComponent<SpinBoomerang>(out var thrown))
             {
                 thrownBoomerang = thrown;
-                thrown.Launch(transform, controller.AimDirection, attack.BoomerangRange, damage, attack.BoomerangStun, weapon);
+                int ringDamage = Mathf.Max(0, Mathf.CeilToInt(attack.SpinDamage * weapon.DamageMultiplier - 0.001f));
+                thrown.Launch(transform, controller.AimDirection, attack.BoomerangRange, damage, attack.BoomerangStun, weapon,
+                    attack.SpinRingAfter > 0f ? ringDamage : 0, attack.SpinTick, attack.SpinRingRadius);
             }
             boomerang.SetActive(true);
         }
@@ -282,6 +306,9 @@ namespace Primordia.Player
 
         void RemoveEffect()
         {
+            if (ring != null)
+                ring.Release();
+            ring = null;
             if (effect != null)
                 Destroy(effect);
             effect = null;

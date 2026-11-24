@@ -20,6 +20,10 @@ namespace Primordia.Combat
         const float MaxSeconds = 4f;
         const float SpinFrameSeconds = 0.04f;
         const float AppearFrameSeconds = 0.05f;
+        // El anillo del clon va a 40 ms por cuadro (apertura de 4, bucle de 8 con un destello, final de 3); el daño empieza en el cuadro 2.
+        const float RingFrameSeconds = 0.04f;
+        const int RingDamageFrame = 2;
+        const int RingOrder = 18;
         // Los ecos van en las dos posiciones anteriores: el primero al 100 % y el segundo al 55 %.
         static readonly float[] EchoAlpha = { 1f, 0.55f };
 
@@ -33,6 +37,11 @@ namespace Primordia.Combat
         [SerializeField] Sprite[] whirlFrames = System.Array.Empty<Sprite>();
         [SerializeField] Sprite[] appearFrames = System.Array.Empty<Sprite>();
         [SerializeField] Sprite[] mergeFrames = System.Array.Empty<Sprite>();
+        [Tooltip("Anillo de alcance del clon (docs/multimedia-temp/floor3-spin-ring): sale con el clon, da vueltas y se deshace al fundirse.")]
+        [SerializeField] SpriteRenderer ringRenderer;
+        [SerializeField] Sprite[] ringAppear = System.Array.Empty<Sprite>();
+        [SerializeField] Sprite[] ringLoop = System.Array.Empty<Sprite>();
+        [SerializeField] Sprite[] ringEnd = System.Array.Empty<Sprite>();
 
         Transform owner;
         Weapon weapon;
@@ -40,6 +49,10 @@ namespace Primordia.Combat
         float range;
         int damage;
         float stun;
+        int ringDamage;
+        float ringTick;
+        float ringRadius;
+        float nextRingStrike;
         float traveled;
         float age;
         bool returning;
@@ -63,8 +76,25 @@ namespace Primordia.Combat
             mergeFrames = merge;
         }
 
-        public void Launch(Transform thrower, Vector2 aim, float maxRange, int hitDamage, float stunSeconds, Weapon source)
+        internal void ConfigureRing(SpriteRenderer newRenderer, Sprite[] appear, Sprite[] loop, Sprite[] end)
         {
+            ringRenderer = newRenderer;
+            ringAppear = appear;
+            ringLoop = loop;
+            ringEnd = end;
+        }
+
+        /// <summary>
+        /// Lanza el clon. Con <paramref name="ringDamageAmount"/> &gt; 0 lleva además el anillo de alcance: daña lo que roza en
+        /// <paramref name="ringReach"/> con el daño y el intervalo del giro, a la par que su golpe fuerte (que no cambia).
+        /// </summary>
+        public void Launch(Transform thrower, Vector2 aim, float maxRange, int hitDamage, float stunSeconds, Weapon source,
+            int ringDamageAmount = 0, float ringInterval = 0.25f, float ringReach = 2f)
+        {
+            ringDamage = ringDamageAmount;
+            ringTick = Mathf.Max(0.05f, ringInterval);
+            ringRadius = ringReach;
+            nextRingStrike = Time.time + RingDamageFrame * RingFrameSeconds;
             owner = thrower;
             weapon = source;
             direction = aim.sqrMagnitude > 0.0001f ? aim.normalized : Vector2.right;
@@ -106,6 +136,7 @@ namespace Primordia.Combat
             transform.position = position;
             Animate(position);
             StrikeNearby(position);
+            RingStrike(position);
         }
 
         // Aparece como la silueta clara del jugador y pasa a girar; los ecos y el remolino acompañan al clon.
@@ -120,6 +151,7 @@ namespace Primordia.Combat
                     trail.RemoveAt(0);
             }
 
+            AnimateRing();
             bool appearing = appearFrames.Length > 0 && age < appearFrames.Length * AppearFrameSeconds;
             if (body != null)
             {
@@ -152,10 +184,46 @@ namespace Primordia.Combat
             }
         }
 
-        // Al recogerlo, un destello se recoge en el jugador (el clon desaparece en el cuadro 0).
+        // El anillo daña a cada enemigo de su radio cada intervalo, con el daño del giro (aparte del golpe fuerte de una vez por tramo).
+        void RingStrike(Vector2 position)
+        {
+            if (ringDamage <= 0 || Time.time < nextRingStrike)
+                return;
+            nextRingStrike = Time.time + ringTick;
+            foreach (var hit in Physics2D.OverlapCircleAll(position, ringRadius, LayerMask.GetMask(CombatLayers.Enemy)))
+            {
+                if (hit.isTrigger)
+                    continue;
+                var target = hit.GetComponentInParent<Health>();
+                if (target == null || target.IsDead)
+                    continue;
+                if (target.TakeDamage(ringDamage, DamageKind.Hit, DamageSource.Spin, hit.ClosestPoint(position)) && weapon != null)
+                    weapon.ReportHit(target);
+            }
+        }
+
+        // Anillo de alcance: la apertura y luego el bucle, centrado en el clon y debajo de los ecos.
+        void AnimateRing()
+        {
+            if (ringRenderer == null || ringLoop.Length == 0)
+                return;
+            ringRenderer.enabled = true;
+            int frame = Mathf.FloorToInt(age / RingFrameSeconds);
+            ringRenderer.sprite = frame < ringAppear.Length ? ringAppear[frame] : ringLoop[(frame - ringAppear.Length) % ringLoop.Length];
+        }
+
+        // Al recogerlo, un destello se recoge en el jugador (el clon desaparece en el cuadro 0) y el anillo se deshace.
         void MergeIntoOwner()
         {
-            if (owner == null || mergeFrames.Length == 0)
+            if (owner == null)
+                return;
+            if (ringEnd.Length > 0 && ringRenderer != null)
+            {
+                var ring = new GameObject("SpinCloneRingEnd");
+                ring.transform.SetParent(owner, false);
+                ring.AddComponent<MergeFlash>().Play(ringEnd, RingFrameSeconds, RingOrder);
+            }
+            if (mergeFrames.Length == 0)
                 return;
             var flash = new GameObject("SpinCloneMerge");
             flash.transform.SetParent(owner, false);
@@ -170,12 +238,12 @@ namespace Primordia.Combat
             float elapsed;
             SpriteRenderer render;
 
-            public void Play(Sprite[] newFrames, float newFrameSeconds)
+            public void Play(Sprite[] newFrames, float newFrameSeconds, int sortingOrder = 22)
             {
                 frames = newFrames;
                 frameSeconds = newFrameSeconds;
                 render = gameObject.AddComponent<SpriteRenderer>();
-                render.sortingOrder = 22;
+                render.sortingOrder = sortingOrder;
                 render.sprite = frames[0];
             }
 

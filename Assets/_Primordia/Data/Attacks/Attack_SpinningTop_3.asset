@@ -92,6 +92,22 @@ MonoBehaviour:
   boomerangPrefab: {fileID: 3770938396781863838, guid: fd99df77e9988964ba7188c52cb44069, type: 3}
   spinEffect: {fileID: 8151234160488684050, guid: 11ba3ba5f3e7f4e4a94489f28ad410a1, type: 3}
   spinDeflectEffect: {fileID: 1403432392331564938, guid: ac2bcc38a1df1b44fbdff851be46918f, type: 3}
+  spinRingAfter: 1
+  spinRingRadius: 2
+  spinRingAppear:
+  - {fileID: -3109215095389135742, guid: aefbebf84d27de24796437c8e51243c4, type: 3}
+  - {fileID: 6248884624563189451, guid: aefbebf84d27de24796437c8e51243c4, type: 3}
+  - {fileID: -3962824759979418834, guid: aefbebf84d27de24796437c8e51243c4, type: 3}
+  - {fileID: 502947557000894896, guid: aefbebf84d27de24796437c8e51243c4, type: 3}
+  spinRingLoop:
+  - {fileID: 6612871578369309679, guid: 366370cfab8836e44b89d72015f6a571, type: 3}
+  - {fileID: 230705039460027694, guid: 366370cfab8836e44b89d72015f6a571, type: 3}
+  - {fileID: -1956614476958238503, guid: 366370cfab8836e44b89d72015f6a571, type: 3}
+  - {fileID: -5046881824979898872, guid: 366370cfab8836e44b89d72015f6a571, type: 3}
+  spinRingEnd:
+  - {fileID: 3784204646523853218, guid: 9eeeb9d719f7927479f506a04423b481, type: 3}
+  - {fileID: 8405173152561763215, guid: 9eeeb9d719f7927479f506a04423b481, type: 3}
+  - {fileID: 6861753004481701042, guid: 9eeeb9d719f7927479f506a04423b481, type: 3}
   jet: 0
   jetRange: 5
   jetTick: 0.15

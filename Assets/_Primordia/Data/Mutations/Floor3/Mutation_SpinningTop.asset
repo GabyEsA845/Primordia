@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Mutation_SpinningTop
   m_EditorClassIdentifier: Primordia::Primordia.Mutations.AttackMutation
   displayName: Peonza
-  description: "Mant\xE9n el bot\xF3n para girar como una peonza: golpea a los enemigos cercanos (2 de da\xF1o cada 0,25 s en 1,3 u) y los empuja, pero te mueves un 35 % m\xE1s lento. Aguanta 3 s y despu\xE9s te mareas 1 s, sin poder moverte ni atacar."
+  description: "Mant\xE9n el bot\xF3n para girar como una peonza: golpea a los enemigos cercanos (2 de da\xF1o cada 0,25 s en 1,3 u) y los empuja, pero te mueves un 35 % m\xE1s lento. Tras 1 s girando se abre un anillo de viento de 2 u que golpea igual. Aguanta 3 s y despu\xE9s te mareas 1 s, sin poder moverte ni atacar."
   slot: 0
   lineages:
   - {fileID: 11400000, guid: 6badadfe6c6600f44959c103b47c6fed, type: 2}
@@ -30,8 +30,8 @@ MonoBehaviour:
   color: {r: 0.95, g: 0.5, b: 0.35, a: 1}
   summary: Gira como una peonza golpeando y empujando a los cercanos.
   levelDescriptions:
-  - "3 de da\xF1o, radio de 1,5 u, aguanta 4 s y devuelve los proyectiles que entran en el radio."
-  - "Bumer\xE1n: si giras al menos 1 s, al soltar lanza un clon transl\xFAcido 9 u hacia el cursor que va y vuelve con 8 de da\xF1o y aturde. No puedes atacar hasta que regrese."
+  - "3 de da\xF1o, radio de 1,5 u (el anillo sigue en 2 u), aguanta 4 s y devuelve los proyectiles que entran en el radio."
+  - "Bumer\xE1n: si giras al menos 1 s, al soltar lanza un clon transl\xFAcido 9 u hacia el cursor que va y vuelve con 8 de da\xF1o y aturde, y lleva su propio anillo de 2 u que da\xF1a como el giro. No puedes atacar hasta que regrese."
   dodgeSound: 
   floor: 3
   special: 0

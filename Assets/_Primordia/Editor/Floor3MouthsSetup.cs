@@ -188,14 +188,13 @@ namespace Primordia.Editor
             });
             var three = Attack("Attack_SpinningTop_3", two, a => a.ConfigureBoomerang(1f, 9f, 8, 0.8f, boomerang));
 
-            mutation.ConfigureBase(mutation.DisplayName,
-                "Mantén el botón para girar como una peonza: golpea a los enemigos cercanos (2 de daño cada 0,25 s en 1,3 u) y los empuja, pero te mueves un 35 % más lento. Aguanta 3 s y después te mareas 1 s, sin poder moverte ni atacar.",
-                MutationSlot.Mouth, mutation.Color);
-            mutation.SetLevelDescriptions("3 de daño, radio de 1,5 u, aguanta 4 s y devuelve los proyectiles que entran en el radio.",
-                "Bumerán: si giras al menos 1 s, al soltar lanza un clon translúcido 9 u hacia el cursor que va y vuelve con 8 de daño y aturde. No puedes atacar hasta que regrese.");
+            mutation.ConfigureBase(mutation.DisplayName, Floor3SpinRingSetup.BaseDescription, MutationSlot.Mouth, mutation.Color);
+            mutation.SetLevelDescriptions(Floor3SpinRingSetup.LevelTwoDescription, Floor3SpinRingSetup.LevelThreeDescription);
             mutation.Configure(one, newHealEveryKills: 0);
             mutation.ConfigureUpgrades(new AttackMutation.AttackLevel { attack = two }, new AttackMutation.AttackLevel { attack = three });
             EditorUtility.SetDirty(mutation);
+            // El anillo de alcance (3 niveles y clon) va aparte: se aplica siempre que se rehace la Peonza.
+            Floor3SpinRingSetup.Apply();
         }
 
         /// <summary>Las hojas del clon de la Peonza (floor3-top-clone).</summary>

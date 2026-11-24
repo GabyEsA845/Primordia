@@ -187,6 +187,12 @@ namespace Primordia.Combat
         [Tooltip("Remolino que se ve alrededor mientras gira (en bucle) y destello al devolver un proyectil.")]
         [SerializeField] GameObject spinEffect;
         [SerializeField] GameObject spinDeflectEffect;
+        [Tooltip("Anillo de alcance: tras estos segundos girando se abre un anillo del radio dado que golpea con el daño y el intervalo del giro. 0 = sin anillo.")]
+        [SerializeField, Min(0f)] float spinRingAfter;
+        [SerializeField, Min(0.1f)] float spinRingRadius = 2f;
+        [SerializeField] Sprite[] spinRingAppear = System.Array.Empty<Sprite>();
+        [SerializeField] Sprite[] spinRingLoop = System.Array.Empty<Sprite>();
+        [SerializeField] Sprite[] spinRingEnd = System.Array.Empty<Sprite>();
 
         [Header("Chorro de vinagre")]
         [Tooltip("Ataque que se mantiene: un chorro desde la cola que sigue al cursor mientras haya carga (el Chorro de vinagre). Falso = ataque normal.")]
@@ -322,6 +328,11 @@ namespace Primordia.Combat
         public GameObject BoomerangPrefab => boomerangPrefab;
         public GameObject SpinEffect => spinEffect;
         public GameObject SpinDeflectEffect => spinDeflectEffect;
+        public float SpinRingAfter => spinRingAfter;
+        public float SpinRingRadius => spinRingRadius;
+        public Sprite[] SpinRingAppear => spinRingAppear ?? System.Array.Empty<Sprite>();
+        public Sprite[] SpinRingLoop => spinRingLoop ?? System.Array.Empty<Sprite>();
+        public Sprite[] SpinRingEnd => spinRingEnd ?? System.Array.Empty<Sprite>();
         public bool IsSpit => spit;
         public bool SpitMini => spitMini;
         public float SpitTrailEvery => spitTrailEvery;
@@ -487,6 +498,15 @@ namespace Primordia.Combat
             spinReflects = reflects;
             spinEffect = effect;
             spinDeflectEffect = deflectEffect;
+        }
+
+        internal void ConfigureSpinRing(float after, float radius, Sprite[] appear, Sprite[] loop, Sprite[] end)
+        {
+            spinRingAfter = Mathf.Max(0f, after);
+            spinRingRadius = Mathf.Max(0.1f, radius);
+            spinRingAppear = appear ?? System.Array.Empty<Sprite>();
+            spinRingLoop = loop ?? System.Array.Empty<Sprite>();
+            spinRingEnd = end ?? System.Array.Empty<Sprite>();
         }
 
         internal void ConfigureJet(float range, float tick, float turnRate, float maxSeconds, float refillSeconds, float emptyRefillSeconds,

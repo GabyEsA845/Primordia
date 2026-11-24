@@ -215,6 +215,61 @@ namespace Primordia.Tests
         }
 
         [UnityTest]
+        public IEnumerator TheRing_HitsBeyondTheSpinRadius_OnlyOnceItHasOpened()
+        {
+            // Anillo de 2 u que se abre a los 0,3 s de giro y daña desde su cuadro 2 (0,1 s después).
+            attack.ConfigureSpinRing(0.3f, 2f, null, null, null);
+            var inside = Enemy(new Vector2(1f, 0f));
+            var inRing = Enemy(new Vector2(0f, 1.8f));
+            var outside = Enemy(new Vector2(-2.6f, 0f));
+            yield return null;
+
+            playerAttack.attackHeld = true;
+            yield return new WaitForSeconds(0.25f);
+            Assert.Less(inside.Current, 100, "El giro de siempre golpea a 1 u.");
+            Assert.AreEqual(100, inRing.Current, "A 1,8 u, sin anillo todavía, no pasa nada.");
+
+            yield return new WaitForSeconds(0.55f);
+            Assert.Less(inRing.Current, 100, "Con el anillo abierto golpea a 1,8 u.");
+            Assert.AreEqual(100, outside.Current, "Fuera del anillo no le pasa nada.");
+            Assert.IsTrue(player.GetComponent<SpinAttack>().RingDamaging);
+
+            playerAttack.attackHeld = false;
+            yield return new WaitForSeconds(0.1f);
+            int afterRelease = inRing.Current;
+            yield return new WaitForSeconds(0.4f);
+            Assert.AreEqual(afterRelease, inRing.Current, "Al soltar, el anillo se deshace sin dañar.");
+            Assert.IsFalse(player.GetComponent<SpinAttack>().RingDamaging);
+        }
+
+        [UnityTest]
+        public IEnumerator TheRing_DoesNotExistWithoutIt()
+        {
+            var inRing = Enemy(new Vector2(0f, 1.8f));
+            yield return null;
+            playerAttack.attackHeld = true;
+            yield return new WaitForSeconds(0.9f);
+            Assert.AreEqual(100, inRing.Current, "Sin anillo configurado, el radio es el del giro.");
+            Assert.IsFalse(player.GetComponent<SpinAttack>().RingDamaging);
+        }
+
+        [UnityTest]
+        public IEnumerator TheCloneRing_DamagesAroundTheClone_ApartFromItsStrongHit()
+        {
+            var inRing = Enemy(new Vector2(1.5f, 1.8f));
+            yield return null;
+
+            // Se lanza en el mismo fotograma en que nace, como hace SpinAttack.
+            var prefab = Track(new GameObject("Clone"));
+            prefab.transform.position = player.transform.position;
+            var clone = prefab.AddComponent<SpinBoomerang>();
+            clone.Launch(player.transform, Vector2.right, 3f, 8, 0f, weapon, ringDamageAmount: 2, ringInterval: 0.1f, ringReach: 2f);
+            yield return new WaitForSeconds(0.3f);
+            Assert.Less(inRing.Current, 100, "El anillo del clon daña a 1,8 u (el golpe fuerte solo llega a 0,7 u).");
+            Assert.GreaterOrEqual(inRing.Current, 100 - 2 * 4, "Solo con el daño del giro, no el golpe de 8.");
+        }
+
+        [UnityTest]
         public IEnumerator LevelThree_ThrowsTheBoomerang_OnlyIfSpunLongEnough()
         {
             var prefab = Track(new GameObject("BoomerangPrefab"));

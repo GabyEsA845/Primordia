@@ -23,6 +23,8 @@ namespace Primordia.Editor
         const string LookFolder = "docs/multimedia-temp/floor3-specials-look";
         const string CapsuleFolder = "docs/multimedia-temp/floor3-capsule";
         const string DropFolder = "docs/multimedia-temp/floor3-drop";
+        // Iconos aprobados el 2026-11-23 (contorno dorado y destello en estrella): sustituyen a los de floor3-mutations/Icons.
+        const string IconsFolder = "docs/multimedia-temp/floor3-amber-icons/Icons";
         const string UIArtFolder = "Assets/_Primordia/Art/UI/Icons";
         const string EffectsArtFolder = "Assets/_Primordia/Art/Effects/Floor3Amber";
         const string ScenePath = "Assets/_Primordia/Scenes/Test_Floor3Specials.unity";
@@ -44,6 +46,21 @@ namespace Primordia.Editor
             EditorApplication.ExecuteMenuItem("Primordia/Floor 3/Crear sala del ámbar");
             AssetDatabase.SaveAssets();
             Debug.Log("Floor3AmberSpecialsSetup: Cercos de cucaracha, Cápsula de ámbar y Gota de ámbar creadas y en el bloque de la sala del ámbar.");
+        }
+
+        /// <summary>Solo cambia los iconos de las tres especiales por los aprobados, sin recrear nada más.</summary>
+        [MenuItem("Primordia/Floor 3/Actualizar iconos de las especiales del ámbar")]
+        internal static void UpdateIcons()
+        {
+            foreach (var (asset, name) in new[] { ("Mutation_Cerci", "Cerci"), ("Mutation_AmberCapsule", "AmberCapsule"), ("Mutation_AmberGland", "AmberDrop") })
+            {
+                var mutation = AssetDatabase.LoadAssetAtPath<MutationData>($"{DataFolder}/{asset}.asset");
+                if (mutation == null)
+                    throw new System.InvalidOperationException($"Falta {asset}; ejecuta antes Primordia > Floor 3 > Crear mutaciones especiales del ámbar.");
+                SetIcons(mutation, name);
+            }
+            AssetDatabase.SaveAssets();
+            Debug.Log("Floor3AmberSpecialsSetup: iconos de Cercos, Cápsula y Gota de ámbar actualizados (contorno dorado y destello).");
         }
 
         // ---------- Cercos de cucaracha ----------
@@ -288,8 +305,8 @@ namespace Primordia.Editor
 
         static void SetIcons(MutationData mutation, string name)
         {
-            var small = ArtSetup.ImportLooseSprite($"{SourceFolder}/Icons/Icon_{name}_16.png", $"{UIArtFolder}/Icon_{name}_16.png");
-            var large = ArtSetup.ImportLooseSprite($"{SourceFolder}/Icons/Icon_{name}_32.png", $"{UIArtFolder}/Icon_{name}_32.png");
+            var small = ArtSetup.ImportLooseSprite($"{IconsFolder}/Icon_{name}_16.png", $"{UIArtFolder}/Icon_{name}_16.png");
+            var large = ArtSetup.ImportLooseSprite($"{IconsFolder}/Icon_{name}_32.png", $"{UIArtFolder}/Icon_{name}_32.png");
             if (small != null)
                 mutation.SetIcons(small, large);
         }

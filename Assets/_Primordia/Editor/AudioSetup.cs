@@ -59,6 +59,23 @@ namespace Primordia.Editor
             ["Skin_Trilobite_Bounce"] = 0.05f, ["Special_Cuticle_Reflect"] = 0.05f, ["Special_Flagella_Lash"] = 0.1f,
             ["Status_Shatter"] = 0.1f, ["Limbs_Tail_BubblePop"] = 0.05f, ["Lineage_Carrion_Eat"] = 0.1f,
             ["Mouth_ArmCrown_Tide"] = 0.1f,
+            // Piso 3 (los «intervalo ~X s» del README_piso3)
+            ["Fire_Ignite"] = 0.12f, ["Fire_Extinguish"] = 0.2f, ["Status_Burn_Tick"] = 0.1f,
+            ["Methane_Explosion"] = 0.08f, ["Methane_Bubble_Warn"] = 0.3f, ["Poison_Puddle"] = 0.1f,
+            ["Fumarole_Warn"] = 0.25f, ["Fumarole_Erupt"] = 0.25f, ["Fern_Rustle"] = 0.15f,
+            ["Mud_Splash"] = 0.1f, ["Water_Splash"] = 0.1f, ["Mouth_Spit_Trail"] = 0.2f,
+            ["Mouth_Spin_Hit"] = 0.1f, ["Mouth_Vinegar_Hit"] = 0.1f, ["Skin_Char_Kindle"] = 3f,
+            ["Status_Confused"] = 0.15f, ["Lineage_Tinder_Trail"] = 0.15f, ["Limbs_Spinner_Snare"] = 0.2f,
+            ["Special_Capsule_Hit"] = 0.1f, ["Special_Drop_Hit"] = 0.1f, ["Lineage_Parasite_Suck"] = 0.25f,
+            ["Enemy_Toad_Croak"] = 0.5f, ["Enemy_Bombardier_Flame_Start"] = 0.1f, ["Enemy_Bombardier_Flame_End"] = 0.1f,
+            ["Critter_Scurry"] = 0.5f, ["Room_Log_Step"] = 0.25f,
+            ["Boss_Meganeura_Hurt"] = 0.08f, ["Boss_Meganeura_Nymph_Death"] = 0.1f, ["Boss_Meganeura_Bolt_Strike"] = 0.06f,
+            ["Boss_Arthropleura_Shell_Hit"] = 0.08f, ["Boss_Arthropleura_Plate_Open"] = 0.15f,
+            ["Boss_Arthropleura_Plate_Close"] = 0.15f, ["Boss_Arthropleura_Hurt"] = 0.08f, ["Boss_Arthropleura_Hiss"] = 2f,
+            ["Boss_Megarachne_Silk_Splat"] = 0.05f, ["Boss_Megarachne_Hurt"] = 0.08f, ["Boss_Megarachne_Brood_Death"] = 0.08f,
+            ["Boss_Lepidodendron_RootWall_Hit"] = 0.06f, ["Boss_Lepidodendron_RootWall_KnotHit"] = 0.06f,
+            ["Boss_Lepidodendron_Wave_Spawn"] = 0.1f, ["Boss_Lepidodendron_Spore_Impact"] = 0.05f,
+            ["Boss_Lepidodendron_Trunk_Hit"] = 0.08f,
         };
 
         // Variación de tono distinta de la normal (la biomasa ya sube de tono al encadenarse).

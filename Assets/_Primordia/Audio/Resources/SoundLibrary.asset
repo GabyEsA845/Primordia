@@ -1874,6 +1874,2634 @@ MonoBehaviour:
     minInterval: 0.03
     pitchJitter: 0
     loop: 1
+  - id: Fire_Ignite
+    clips:
+    - {fileID: 8300000, guid: 446be26601aed2c44b8314b1fc28c0bc, type: 3}
+    - {fileID: 8300000, guid: ec393061daddf2a4b9ca690bdbb020e6, type: 3}
+    - {fileID: 8300000, guid: 5ec7fc6e3b992f94e97ab761576bb54d, type: 3}
+    volume: 0.5
+    group: 1
+    minInterval: 0.12
+    pitchJitter: 0.04
+    loop: 0
+  - id: Fire_Burn_Loop
+    clips:
+    - {fileID: 8300000, guid: af2953b77e976974581b78849003e837, type: 3}
+    volume: 0.3
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0
+    loop: 1
+  - id: Fire_Extinguish
+    clips:
+    - {fileID: 8300000, guid: e0d3478b94ea0ea4b98ce7a49812de0f, type: 3}
+    - {fileID: 8300000, guid: 6c6c0cdc680907448afa735a900ea155, type: 3}
+    volume: 0.5
+    group: 1
+    minInterval: 0.2
+    pitchJitter: 0.04
+    loop: 0
+  - id: Status_Burn_Start
+    clips:
+    - {fileID: 8300000, guid: 8fd7f5aa23445124f82d7f9193c936fd, type: 3}
+    - {fileID: 8300000, guid: 1938a3c8060201e4b964a6c3f78011ad, type: 3}
+    volume: 0.5
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Status_Burn_Tick
+    clips:
+    - {fileID: 8300000, guid: 9622a1ccca85aff42b3e59e5eabf5a98, type: 3}
+    - {fileID: 8300000, guid: 120b8bca2577e09469699d762ba9f7da, type: 3}
+    - {fileID: 8300000, guid: 29f39debb80168d4bba30b13ddebb14c, type: 3}
+    volume: 0.3
+    group: 1
+    minInterval: 0.1
+    pitchJitter: 0.04
+    loop: 0
+  - id: Methane_Explosion
+    clips:
+    - {fileID: 8300000, guid: cc964a062c30b3d45876fd5d1653b76f, type: 3}
+    - {fileID: 8300000, guid: 855d1d467b75c034a8b387be91afc111, type: 3}
+    - {fileID: 8300000, guid: ee982dc5de1084c4ba119b60bcf4d880, type: 3}
+    volume: 0.75
+    group: 1
+    minInterval: 0.08
+    pitchJitter: 0.04
+    loop: 0
+  - id: Methane_FogFlash
+    clips:
+    - {fileID: 8300000, guid: 8d5edf2537a0735449bbcd17f127c8a5, type: 3}
+    volume: 0.6
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Methane_Mist_Loop
+    clips:
+    - {fileID: 8300000, guid: 0cad79503b28cf640bcd34540989dadc, type: 3}
+    volume: 0.18
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0
+    loop: 1
+  - id: Methane_GasBag_Burst
+    clips:
+    - {fileID: 8300000, guid: 43d878656c3c5854cab5115fa24691d8, type: 3}
+    - {fileID: 8300000, guid: 47213aaad9c3a5e44bafc8cd396f3c14, type: 3}
+    volume: 0.55
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Methane_GasBag_Regrow
+    clips:
+    - {fileID: 8300000, guid: b5cb62d7745513045bfd131d961c55af, type: 3}
+    volume: 0.35
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Methane_Bubble_Warn
+    clips:
+    - {fileID: 8300000, guid: 4afdd9c963dd29e4d95b8cdbd90a7679, type: 3}
+    volume: 0.55
+    group: 1
+    minInterval: 0.3
+    pitchJitter: 0.04
+    loop: 0
+  - id: Methane_Bubble_Pop
+    clips:
+    - {fileID: 8300000, guid: a299348c5f38aef4f83da79f8551fa3a, type: 3}
+    - {fileID: 8300000, guid: 7647d4f206d761c4b91ff765e99937de, type: 3}
+    volume: 0.6
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Poison_Puddle
+    clips:
+    - {fileID: 8300000, guid: 52edcc3376477f74598a445465475537, type: 3}
+    - {fileID: 8300000, guid: 6b27ede6cc1c23044bf5a6b2abdf9cc0, type: 3}
+    - {fileID: 8300000, guid: 414c6988443f02644a61eaf645c7ec6c, type: 3}
+    volume: 0.4
+    group: 1
+    minInterval: 0.1
+    pitchJitter: 0.04
+    loop: 0
+  - id: Poison_ToxicCloud
+    clips:
+    - {fileID: 8300000, guid: 2ac8baeb65d40a343a27c6f62cbb663e, type: 3}
+    volume: 0.55
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Poison_Bulb_Burst
+    clips:
+    - {fileID: 8300000, guid: efe743a5c94ec3848be592e705d2c5e9, type: 3}
+    - {fileID: 8300000, guid: 11f5f5b67bc8bcd46b86b9833fa68f91, type: 3}
+    volume: 0.55
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Poison_Bulb_Regrow
+    clips:
+    - {fileID: 8300000, guid: 1be8eff1e68d2134cbd0420aa5395654, type: 3}
+    volume: 0.3
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Fumarole_Warn
+    clips:
+    - {fileID: 8300000, guid: cac69dbeaf1de644ca800b7c2e1d0a89, type: 3}
+    volume: 0.6
+    group: 1
+    minInterval: 0.25
+    pitchJitter: 0.04
+    loop: 0
+  - id: Fumarole_Erupt
+    clips:
+    - {fileID: 8300000, guid: 1a0476228547f5a4998aa6313a63b496, type: 3}
+    - {fileID: 8300000, guid: dec5fa28b5acace40bdeb19769325974, type: 3}
+    volume: 0.7
+    group: 1
+    minInterval: 0.25
+    pitchJitter: 0.04
+    loop: 0
+  - id: Fern_Rustle
+    clips:
+    - {fileID: 8300000, guid: 461f0bd882229e741b952a4d436c11c2, type: 3}
+    - {fileID: 8300000, guid: 4395c706a003c4949a4bcc2bf318628b, type: 3}
+    - {fileID: 8300000, guid: 70a3b98520eedfb4792dc6f0fb970f93, type: 3}
+    volume: 0.3
+    group: 1
+    minInterval: 0.15
+    pitchJitter: 0.04
+    loop: 0
+  - id: Fern_Burn
+    clips:
+    - {fileID: 8300000, guid: 65c27c4de77c7524a859690350339164, type: 3}
+    - {fileID: 8300000, guid: ebde6ec33c455be4bbf692ddca69807a, type: 3}
+    volume: 0.55
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Brush_BurnAway
+    clips:
+    - {fileID: 8300000, guid: fe0c4652725deb848aa21551ed53b985, type: 3}
+    volume: 0.55
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Mud_Sink_Loop
+    clips:
+    - {fileID: 8300000, guid: 12e59623136af184ca6000708e7c5526, type: 3}
+    volume: 0.4
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0
+    loop: 1
+  - id: Mud_Escape
+    clips:
+    - {fileID: 8300000, guid: 05b13d86650f24940a45c82e46806cd7, type: 3}
+    - {fileID: 8300000, guid: 38156a50d8fa87241894b555241bc25d, type: 3}
+    volume: 0.5
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Mud_Drown
+    clips:
+    - {fileID: 8300000, guid: 43ab8901131b1514a801794e2d7b55cd, type: 3}
+    volume: 0.6
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Mud_Splash
+    clips:
+    - {fileID: 8300000, guid: 23b3530f7a3b20f4c89d6167509a001c, type: 3}
+    - {fileID: 8300000, guid: b98edb9cbfe87054290ea39c681d9677, type: 3}
+    - {fileID: 8300000, guid: c88365ada246b5d4eac7e3538e42e732, type: 3}
+    volume: 0.4
+    group: 1
+    minInterval: 0.1
+    pitchJitter: 0.04
+    loop: 0
+  - id: Water_Splash
+    clips:
+    - {fileID: 8300000, guid: 0504d8e729279b042958414a9d92028e, type: 3}
+    - {fileID: 8300000, guid: 468e5e82ec62e8841b006a00789986c9, type: 3}
+    - {fileID: 8300000, guid: 167c368e36b412c488fc21e3b47f7934, type: 3}
+    volume: 0.35
+    group: 1
+    minInterval: 0.1
+    pitchJitter: 0.04
+    loop: 0
+  - id: Web_Stick
+    clips:
+    - {fileID: 8300000, guid: a1cffd1b1e0d29342a5fe4d0031dc029, type: 3}
+    - {fileID: 8300000, guid: 8b0a6397f77e00c479c190c93c54a0d6, type: 3}
+    volume: 0.45
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Web_Burn
+    clips:
+    - {fileID: 8300000, guid: 353d8bfa2b6d30645bff8747ab790c12, type: 3}
+    - {fileID: 8300000, guid: f6ac4615bc5dec74a9a5ce1a9adf751d, type: 3}
+    volume: 0.45
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Player_Dodge_Frog
+    clips:
+    - {fileID: 8300000, guid: 3d2f54fdd1ddff941abaa744c10331ca, type: 3}
+    - {fileID: 8300000, guid: 633c9ebbe83dc3c4ea29865f116c0ec3, type: 3}
+    - {fileID: 8300000, guid: 30d12a425eaa3f04397bd2caf2592fe2, type: 3}
+    volume: 0.45
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Player_Dodge_Diplocaulus
+    clips:
+    - {fileID: 8300000, guid: 2df3728ec7e39774c8b8d66509f284f5, type: 3}
+    - {fileID: 8300000, guid: 5b700bf40573d6341972e97036b6716c, type: 3}
+    - {fileID: 8300000, guid: 8a5e38d28c3c9e04289d2d42942e70d2, type: 3}
+    volume: 0.45
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Player_Dodge_Scorpion
+    clips:
+    - {fileID: 8300000, guid: 058f71e187edff043b92b439ba27f45d, type: 3}
+    - {fileID: 8300000, guid: f697b384dc2ff044daa03521f500ab10, type: 3}
+    - {fileID: 8300000, guid: 59f4506e56e38e045afefe48ab2ce03a, type: 3}
+    volume: 0.45
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Mouth_Spit_Shoot
+    clips:
+    - {fileID: 8300000, guid: 3c4ee0cf9636d074a8080bace31a3195, type: 3}
+    - {fileID: 8300000, guid: 836a7894fbd967640947c53702d90e09, type: 3}
+    - {fileID: 8300000, guid: 0dd48c6c696d7a74cbc3c45a21053acb, type: 3}
+    volume: 0.5
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Mouth_Spit_Trail
+    clips:
+    - {fileID: 8300000, guid: 692fbbc3637c6dd4489e10dea13a3d05, type: 3}
+    - {fileID: 8300000, guid: 0a084837b37af8e49be5b3dc02fb2fa9, type: 3}
+    - {fileID: 8300000, guid: c165e21446375034485c9ec95871ace1, type: 3}
+    volume: 0.18
+    group: 1
+    minInterval: 0.2
+    pitchJitter: 0.04
+    loop: 0
+  - id: Mouth_Spit_Burst
+    clips:
+    - {fileID: 8300000, guid: 8e6fcea792a4c26409ec1645238c05d1, type: 3}
+    - {fileID: 8300000, guid: 1cf40a5a20a4d564bab2f68dfb4658aa, type: 3}
+    volume: 0.6
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Mouth_Spit_Split
+    clips:
+    - {fileID: 8300000, guid: 1f89c327ae70b734b9ee16fdfba6b519, type: 3}
+    volume: 0.45
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Mouth_Spin_Start
+    clips:
+    - {fileID: 8300000, guid: 877b762a3f7fa3241b11be4d58ae5168, type: 3}
+    volume: 0.45
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Mouth_Spin_Loop
+    clips:
+    - {fileID: 8300000, guid: ddb2f88292f3b2a4b8b147d5e7dab146, type: 3}
+    volume: 0.35
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0
+    loop: 1
+  - id: Mouth_Spin_Hit
+    clips:
+    - {fileID: 8300000, guid: a117dcac67412474081c4a1c26fdee0a, type: 3}
+    - {fileID: 8300000, guid: d89f582c2ea16884aabcaef003b804b4, type: 3}
+    - {fileID: 8300000, guid: 13a17ff0bceb04c47b415a179753e988, type: 3}
+    volume: 0.4
+    group: 1
+    minInterval: 0.1
+    pitchJitter: 0.04
+    loop: 0
+  - id: Mouth_Spin_Dizzy
+    clips:
+    - {fileID: 8300000, guid: 573ba7105f3f910418187705cca6e5f5, type: 3}
+    volume: 0.4
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Mouth_Spin_Deflect
+    clips:
+    - {fileID: 8300000, guid: d5c0d371dab960b479481dca135a6f60, type: 3}
+    - {fileID: 8300000, guid: 872274de3b0dd624c80d4c8061fd9a4e, type: 3}
+    volume: 0.45
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Mouth_Spin_Boomerang
+    clips:
+    - {fileID: 8300000, guid: 13581c9108135184190c89edc2fe9e69, type: 3}
+    volume: 0.55
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Mouth_Vinegar_Start
+    clips:
+    - {fileID: 8300000, guid: 6fe36a73f8e851d418d61ac6759fadc8, type: 3}
+    volume: 0.45
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Mouth_Vinegar_Loop
+    clips:
+    - {fileID: 8300000, guid: 56175505941160b4ebea3fcc0b3e5d5b, type: 3}
+    volume: 0.35
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0
+    loop: 1
+  - id: Mouth_Vinegar_Hit
+    clips:
+    - {fileID: 8300000, guid: ce7f8036662461c4b91beae73ca02677, type: 3}
+    - {fileID: 8300000, guid: f1f8812508eed804697e72d89efe221a, type: 3}
+    - {fileID: 8300000, guid: a39327158dcce7248b443aa51e113511, type: 3}
+    volume: 0.25
+    group: 1
+    minInterval: 0.1
+    pitchJitter: 0.04
+    loop: 0
+  - id: Mouth_Vinegar_Empty
+    clips:
+    - {fileID: 8300000, guid: 67926159ea0a25e42944f64fe3230e22, type: 3}
+    volume: 0.45
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Mouth_Vinegar_Ready
+    clips:
+    - {fileID: 8300000, guid: aaa8772310ef7c24d912ca84092f6ca6, type: 3}
+    volume: 0.35
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Mouth_Vinegar_Splash
+    clips:
+    - {fileID: 8300000, guid: 8c30a2c08f3e7bb4bb36be1af6740d4a, type: 3}
+    - {fileID: 8300000, guid: 21af8aab1cae23c4eada5584e24d9259, type: 3}
+    volume: 0.45
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Limbs_Jump_Takeoff
+    clips:
+    - {fileID: 8300000, guid: d4cbd0bcdfa6ac040a9f930c365fd68d, type: 3}
+    - {fileID: 8300000, guid: a2f41bfc48e9af04bb79cf56133ca2b1, type: 3}
+    - {fileID: 8300000, guid: 53c251a9fc3a59944b13d7e9b33472e8, type: 3}
+    volume: 0.45
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Limbs_Jump_Land
+    clips:
+    - {fileID: 8300000, guid: f5c9c744e3b002049b17b686abce2c37, type: 3}
+    - {fileID: 8300000, guid: b9afa844a57d79645a1f0cb33d803a52, type: 3}
+    - {fileID: 8300000, guid: e1ec5f1e10c4067438307c0e5f524c9d, type: 3}
+    volume: 0.5
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Limbs_Jump_Stun
+    clips:
+    - {fileID: 8300000, guid: c47cb488b625b8348a803c261f4aade3, type: 3}
+    volume: 0.6
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Limbs_Spinner_Thread
+    clips:
+    - {fileID: 8300000, guid: 47b3379dc34ed8441b769e6795807b29, type: 3}
+    - {fileID: 8300000, guid: 624fb3ea7a9fac74cb260cfb8160a2ba, type: 3}
+    volume: 0.4
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Limbs_Spinner_Snare
+    clips:
+    - {fileID: 8300000, guid: 064ef48245a725844bee441763a45f81, type: 3}
+    volume: 0.35
+    group: 1
+    minInterval: 0.2
+    pitchJitter: 0.04
+    loop: 0
+  - id: Limbs_Spinner_Web
+    clips:
+    - {fileID: 8300000, guid: 1ec046397d8fded4390760dbe75ffc2d, type: 3}
+    volume: 0.5
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Skin_Mucus_Charged
+    clips:
+    - {fileID: 8300000, guid: fdbc830dc934c57459c4edd0eab9fe6b, type: 3}
+    volume: 0.4
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Skin_Mucus_Absorb
+    clips:
+    - {fileID: 8300000, guid: cd28c4fc04fd34a4eb9d738c5ba6d785, type: 3}
+    - {fileID: 8300000, guid: 3f21042fb281c2c499fa76abd3e3a025, type: 3}
+    volume: 0.55
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Skin_Mucus_Reflect
+    clips:
+    - {fileID: 8300000, guid: 2d2169c1a6fcdb7448ac397691cda4bf, type: 3}
+    volume: 0.5
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Skin_Char_Kindle
+    clips:
+    - {fileID: 8300000, guid: 0f1ba5dc5bb71154aba83a8e04ee75c5, type: 3}
+    volume: 0.45
+    group: 1
+    minInterval: 3
+    pitchJitter: 0.04
+    loop: 0
+  - id: Skin_Char_Flare
+    clips:
+    - {fileID: 8300000, guid: 73af0b76de2b702448da9c961bc95b2e, type: 3}
+    volume: 0.6
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Organ_Methane_Release
+    clips:
+    - {fileID: 8300000, guid: b29b08f8a4b4c024199154f174427281, type: 3}
+    volume: 0.5
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Organ_Methane_Cloud_Loop
+    clips:
+    - {fileID: 8300000, guid: 50991e9edab72964e896e95b13d2cc4b, type: 3}
+    volume: 0.15
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0
+    loop: 1
+  - id: Organ_Pheromone_Cast
+    clips:
+    - {fileID: 8300000, guid: 0de162a6dd5a12644aebc0bf6782604b, type: 3}
+    volume: 0.5
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Status_Confused
+    clips:
+    - {fileID: 8300000, guid: 9f43c3631ff96244e8b6c4b87b12f368, type: 3}
+    volume: 0.4
+    group: 1
+    minInterval: 0.15
+    pitchJitter: 0.04
+    loop: 0
+  - id: Room_AmberBlock_Break
+    clips:
+    - {fileID: 8300000, guid: a4cd1c36e9e94cb44aaa62092e1749fd, type: 3}
+    volume: 0.65
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Special_Cerci_Dash
+    clips:
+    - {fileID: 8300000, guid: e76b900c951bd2c419db28cf12f150c7, type: 3}
+    - {fileID: 8300000, guid: b577cb12ae20ff746aa6ad11dbe26f83, type: 3}
+    - {fileID: 8300000, guid: 9066001096c2add45a8400e9fca15c8a, type: 3}
+    volume: 0.45
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Special_Cerci_Ready
+    clips:
+    - {fileID: 8300000, guid: 5d15fec5063e70447ad576c069b1ea04, type: 3}
+    volume: 0.35
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Special_Capsule_Encase
+    clips:
+    - {fileID: 8300000, guid: 882562482122ce644b18bf11e5793473, type: 3}
+    volume: 0.6
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Special_Capsule_Heal
+    clips:
+    - {fileID: 8300000, guid: 1c5a7a84913973d448f3d235174a45e1, type: 3}
+    volume: 0.55
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Special_Capsule_Hit
+    clips:
+    - {fileID: 8300000, guid: c8c63f9b7e9e5ed488d58f69c14d399a, type: 3}
+    - {fileID: 8300000, guid: bb5c721b066cf1643862281b0e887274, type: 3}
+    volume: 0.45
+    group: 1
+    minInterval: 0.1
+    pitchJitter: 0.04
+    loop: 0
+  - id: Special_Capsule_Shatter
+    clips:
+    - {fileID: 8300000, guid: 5eeda9dc470adbf4ab72efe401abd7dc, type: 3}
+    - {fileID: 8300000, guid: 6f0d153c4e06c4347a6553eb118f65a6, type: 3}
+    volume: 0.6
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Special_Drop_Shoot
+    clips:
+    - {fileID: 8300000, guid: 6c38c1058d350e7448165be5ead4146c, type: 3}
+    - {fileID: 8300000, guid: 904a145f29461574cb43076f580df192, type: 3}
+    volume: 0.45
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Special_Drop_Encase
+    clips:
+    - {fileID: 8300000, guid: 5f18667fba87ceb4cbb1c99de27e9e53, type: 3}
+    - {fileID: 8300000, guid: 1df45df0abec52648a0cbfacbd9d42ab, type: 3}
+    volume: 0.55
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Special_Drop_Hit
+    clips:
+    - {fileID: 8300000, guid: c7b941a9708b8204e8edabe88ccb8161, type: 3}
+    - {fileID: 8300000, guid: c591e19d0a91f4e498d1311d8a733cff, type: 3}
+    - {fileID: 8300000, guid: fefe008aad8546f408973766db5100a7, type: 3}
+    volume: 0.45
+    group: 1
+    minInterval: 0.1
+    pitchJitter: 0.04
+    loop: 0
+  - id: Special_Drop_Shatter
+    clips:
+    - {fileID: 8300000, guid: 77e2505d412365a4fada0a05961ca9c3, type: 3}
+    - {fileID: 8300000, guid: 44dabfbb6b83dc745a2ced61da526e02, type: 3}
+    volume: 0.55
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Special_Drop_Fossil
+    clips:
+    - {fileID: 8300000, guid: 983579de79099af459c62879ad75a118, type: 3}
+    volume: 0.6
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Special_Drop_Ready
+    clips:
+    - {fileID: 8300000, guid: d4d1cfefb45d052478f2668fc1ee79b6, type: 3}
+    volume: 0.35
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Lineage_Parasite_Attach
+    clips:
+    - {fileID: 8300000, guid: 508a52653debc27478199280fb1eb6a5, type: 3}
+    - {fileID: 8300000, guid: f8095ca164b07c84c8b2aaa0abc82f34, type: 3}
+    - {fileID: 8300000, guid: b30b935426d924d45892070df2126ba0, type: 3}
+    volume: 0.45
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Lineage_Parasite_Suck
+    clips:
+    - {fileID: 8300000, guid: d686108549f1bd448a9d9345f141f06d, type: 3}
+    - {fileID: 8300000, guid: c2c79212758ffb44caed1060974dbdbf, type: 3}
+    - {fileID: 8300000, guid: ed7c547f0c8c95945b210a1ec2916d65, type: 3}
+    volume: 0.15
+    group: 1
+    minInterval: 0.25
+    pitchJitter: 0.04
+    loop: 0
+  - id: Lineage_Parasite_Drain
+    clips:
+    - {fileID: 8300000, guid: e065d8f59c6cbc24790ab495193351ef, type: 3}
+    volume: 0.5
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Lineage_Parasite_Jump
+    clips:
+    - {fileID: 8300000, guid: 776f3d80160d46442821c6f62dfb71c1, type: 3}
+    - {fileID: 8300000, guid: 544aa3b1bde83fe4b9958c5ef67bc5a3, type: 3}
+    volume: 0.45
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Lineage_Colonize_Floor3
+    clips:
+    - {fileID: 8300000, guid: 37d85bdf258394642a6d73b680b6bf24, type: 3}
+    volume: 0.55
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Lineage_Mushroom_Sprout
+    clips:
+    - {fileID: 8300000, guid: bd7c155b5da6e044183f98fa5f22a5b9, type: 3}
+    - {fileID: 8300000, guid: 1ce5d5c9ce61e3547b13204363a57c0c, type: 3}
+    volume: 0.5
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Lineage_Eryops_Wade_Loop
+    clips:
+    - {fileID: 8300000, guid: 27051dda9e5b593408d4fc2ec66000dc, type: 3}
+    volume: 0.3
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0
+    loop: 1
+  - id: Lineage_Eryops_Emerge
+    clips:
+    - {fileID: 8300000, guid: 7ea63f3e144567846b41793d58566b9a, type: 3}
+    volume: 0.5
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Lineage_Xenacanthus_Spine
+    clips:
+    - {fileID: 8300000, guid: bd7f04f5478f7b34684b47ae8f70b570, type: 3}
+    - {fileID: 8300000, guid: 9759a6576edb97841a828402c02f450d, type: 3}
+    volume: 0.45
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Lineage_GasSting_Toxify
+    clips:
+    - {fileID: 8300000, guid: ed3e1373ea69e7345a661224facb16a9, type: 3}
+    - {fileID: 8300000, guid: 2c63403f94c4588419fdd0972cbd38ad, type: 3}
+    volume: 0.5
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Lineage_Centipede_Puddle
+    clips:
+    - {fileID: 8300000, guid: 66fcbe2b5482e5d4da6a3118553d7ead, type: 3}
+    - {fileID: 8300000, guid: de160439ca321c949b9c524107b82eab, type: 3}
+    - {fileID: 8300000, guid: 6dfc879e7700db74fb49c81703bf9703, type: 3}
+    volume: 0.4
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Lineage_Tinder_Shoot
+    clips:
+    - {fileID: 8300000, guid: d2fa40cd8b71da847a8585c74ae2fdbd, type: 3}
+    - {fileID: 8300000, guid: b292e213fbca0334d97d4342d7755555, type: 3}
+    volume: 0.5
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Lineage_Tinder_Trail
+    clips:
+    - {fileID: 8300000, guid: 14e3d174283b022478ae1ffdebf5f239, type: 3}
+    - {fileID: 8300000, guid: 25195159269a99245b58f300f0498155, type: 3}
+    - {fileID: 8300000, guid: e589d37f64b44b944be4029b31abe7ab, type: 3}
+    volume: 0.2
+    group: 1
+    minInterval: 0.15
+    pitchJitter: 0.04
+    loop: 0
+  - id: Lineage_Tinder_Burst
+    clips:
+    - {fileID: 8300000, guid: 137fbaa6a548d2e40ad87e0d30d2b64a, type: 3}
+    volume: 0.6
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Lineage_Zombie_Rise
+    clips:
+    - {fileID: 8300000, guid: f22088158ecb58d4195695f3b17470ed, type: 3}
+    volume: 0.55
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Lineage_Zombie_Collapse
+    clips:
+    - {fileID: 8300000, guid: 2ea6d1a3ba4a5474db84426013a0abf1, type: 3}
+    volume: 0.5
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Lineage_Lamprey_Attach
+    clips:
+    - {fileID: 8300000, guid: eafd8810f440a674db175b6a79e65ba5, type: 3}
+    - {fileID: 8300000, guid: 59cfbafbdbee71e48ad09ee3e07d3068, type: 3}
+    volume: 0.45
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Lineage_Leech_Burst
+    clips:
+    - {fileID: 8300000, guid: b385a90678dd0c94fa034333b0f803ba, type: 3}
+    volume: 0.6
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Enemy_Calamites_Hurt
+    clips:
+    - {fileID: 8300000, guid: 875aeeb9f274af64883687697a7a665b, type: 3}
+    - {fileID: 8300000, guid: bfe43f2ce2a5e1c4f848e6c006292d5c, type: 3}
+    - {fileID: 8300000, guid: c39c13e881ef85244976a58050e75d78, type: 3}
+    volume: 0.5
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Enemy_Calamites_Death
+    clips:
+    - {fileID: 8300000, guid: d11ad10663c924e4f9edca4c9fa27c3a, type: 3}
+    volume: 0.6
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Enemy_Calamites_Sprout
+    clips:
+    - {fileID: 8300000, guid: c4598ff318f57624a8cce808bfbdf72f, type: 3}
+    - {fileID: 8300000, guid: 4945b1530e075ca41a45d70183d344e4, type: 3}
+    volume: 0.45
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Enemy_Calamites_SporeRing
+    clips:
+    - {fileID: 8300000, guid: aaabe0d156ab2204f9700a9319f73f59, type: 3}
+    volume: 0.55
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Enemy_CalamitesSprout_Hurt
+    clips:
+    - {fileID: 8300000, guid: 1cdf1f57f3dc80047959f0c50099cff2, type: 3}
+    - {fileID: 8300000, guid: 60442c57add580b499e6580b70f2364f, type: 3}
+    volume: 0.35
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Enemy_CalamitesSprout_Death
+    clips:
+    - {fileID: 8300000, guid: 42a395dd88498a847a7d49b3e4ada22e, type: 3}
+    - {fileID: 8300000, guid: 7018fe48afbf6fb4fa02945d144ba875, type: 3}
+    volume: 0.4
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Enemy_CalamitesSprout_Wither
+    clips:
+    - {fileID: 8300000, guid: 2db6855a80368484ca38b3bf1ba9c40a, type: 3}
+    volume: 0.45
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Enemy_Medullosa_Hurt
+    clips:
+    - {fileID: 8300000, guid: d2684065bb68e3a4cba2f2e3d6d404e9, type: 3}
+    - {fileID: 8300000, guid: 0dc604f0ad1a8264499cfeb7377513ce, type: 3}
+    - {fileID: 8300000, guid: adf8a405e1441e24f971bff276f94808, type: 3}
+    volume: 0.5
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Enemy_Medullosa_Death
+    clips:
+    - {fileID: 8300000, guid: 6fd9e1907b4c6214794def81cf747cbc, type: 3}
+    volume: 0.6
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Enemy_Medullosa_Launch
+    clips:
+    - {fileID: 8300000, guid: 30d8ff3bc252fc24b8323b798e4c8a4f, type: 3}
+    - {fileID: 8300000, guid: 61d190c62a966f74a997a6df042ae402, type: 3}
+    volume: 0.55
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Enemy_Medullosa_Fall
+    clips:
+    - {fileID: 8300000, guid: c391cb8444813e14996a3944483507ce, type: 3}
+    volume: 0.45
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Enemy_Medullosa_Impact
+    clips:
+    - {fileID: 8300000, guid: 99aa47790088246429cf19c2fe014368, type: 3}
+    - {fileID: 8300000, guid: 22f1ababf122d634e89e4d091485deac, type: 3}
+    volume: 0.6
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Enemy_Dragonfly_Buzz_Loop
+    clips:
+    - {fileID: 8300000, guid: 67f7f1bfc87ab96409b67a3a4effe37a, type: 3}
+    volume: 0.3
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0
+    loop: 1
+  - id: Enemy_Dragonfly_Warn
+    clips:
+    - {fileID: 8300000, guid: 0542841c7edf7ce44bb7b0f533de2ffd, type: 3}
+    volume: 0.6
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Enemy_Dragonfly_Dive
+    clips:
+    - {fileID: 8300000, guid: 1413959acb4f3444a8a999be468f7c1a, type: 3}
+    - {fileID: 8300000, guid: 1291517f959b67f438488dfb5be8a4d0, type: 3}
+    volume: 0.6
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Enemy_Dragonfly_Land
+    clips:
+    - {fileID: 8300000, guid: 5fcb261129b8e17498dc4fbcce19b36f, type: 3}
+    - {fileID: 8300000, guid: 134c5097634124741a9e9b35a195297b, type: 3}
+    volume: 0.45
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Enemy_Dragonfly_Hurt
+    clips:
+    - {fileID: 8300000, guid: 7e6a8b002ba75fc4bb190b05c5dfcaf1, type: 3}
+    - {fileID: 8300000, guid: 400f6b6801ce58b48bd2815418ba3cf6, type: 3}
+    - {fileID: 8300000, guid: fdd192420b513204299cf566ace542ec, type: 3}
+    volume: 0.45
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Enemy_Dragonfly_Death
+    clips:
+    - {fileID: 8300000, guid: 5cbaaab225062ed439e696060c3d8ed3, type: 3}
+    volume: 0.55
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Enemy_Bombardier_Warn
+    clips:
+    - {fileID: 8300000, guid: 143ccf6c872d39047a4e549136344ab7, type: 3}
+    volume: 0.6
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Enemy_Bombardier_Flame_Start
+    clips:
+    - {fileID: 8300000, guid: f295472e536ecf743b0c21ed442997b2, type: 3}
+    volume: 0.6
+    group: 1
+    minInterval: 0.1
+    pitchJitter: 0.04
+    loop: 0
+  - id: Enemy_Bombardier_Flame_Loop
+    clips:
+    - {fileID: 8300000, guid: 3cfbdb8adb32efc4daa76b224dffb1e6, type: 3}
+    volume: 0.5
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0
+    loop: 1
+  - id: Enemy_Bombardier_Flame_End
+    clips:
+    - {fileID: 8300000, guid: 9f6b5abb732afab44aa2d20154a50587, type: 3}
+    volume: 0.5
+    group: 1
+    minInterval: 0.1
+    pitchJitter: 0.04
+    loop: 0
+  - id: Enemy_Bombardier_Hurt
+    clips:
+    - {fileID: 8300000, guid: 83fe68c6066eb7b48b8120e91f11d44f, type: 3}
+    - {fileID: 8300000, guid: 978c8e550609f1f4fa4d621c56e8bcde, type: 3}
+    - {fileID: 8300000, guid: af8d0dcee61a81c498f50dac958d34a3, type: 3}
+    volume: 0.5
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Enemy_Bombardier_Death
+    clips:
+    - {fileID: 8300000, guid: 51f058882f9559c4f9affe60ff5b6f3e, type: 3}
+    volume: 0.6
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Enemy_Spider_FernShake_Loop
+    clips:
+    - {fileID: 8300000, guid: 25c927feeb0b07747a8588ec2be5e0e1, type: 3}
+    volume: 0.25
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0
+    loop: 1
+  - id: Enemy_Spider_Emerge
+    clips:
+    - {fileID: 8300000, guid: 0e387bdc5f5386b4cb107f893990dccf, type: 3}
+    volume: 0.55
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Enemy_Spider_Silk
+    clips:
+    - {fileID: 8300000, guid: 9a31c0945f2af0d4aa6cd39a3b61ee65, type: 3}
+    - {fileID: 8300000, guid: 7262783615d1a6a4e87619df6318609f, type: 3}
+    volume: 0.45
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Enemy_Spider_Leap
+    clips:
+    - {fileID: 8300000, guid: 738b5663151eb254faf7ef284da3cdfa, type: 3}
+    - {fileID: 8300000, guid: e3d995da6a86872498324c8d5d511b5f, type: 3}
+    volume: 0.45
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Enemy_Spider_Hurt
+    clips:
+    - {fileID: 8300000, guid: d42f5562f28f29a40b16aafd0c5e217e, type: 3}
+    - {fileID: 8300000, guid: 20d8c735d6d3d714686822aa064a8638, type: 3}
+    - {fileID: 8300000, guid: 3674be69e4d746c43b97a0df824f4c28, type: 3}
+    volume: 0.45
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Enemy_Spider_Death
+    clips:
+    - {fileID: 8300000, guid: f5633751cd29a8d4fbe11b8f8f9e6b71, type: 3}
+    volume: 0.55
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Enemy_Toad_Croak
+    clips:
+    - {fileID: 8300000, guid: 15fccc8f337e38a4ba00a9cb1d894cfc, type: 3}
+    - {fileID: 8300000, guid: 4cbb16f666506284dab46e8de18d275b, type: 3}
+    volume: 0.5
+    group: 1
+    minInterval: 0.5
+    pitchJitter: 0.04
+    loop: 0
+  - id: Enemy_Toad_Spit
+    clips:
+    - {fileID: 8300000, guid: e099425368970bc4aaac0b428109c224, type: 3}
+    - {fileID: 8300000, guid: fbb9997f8927a314f879aafbb21776f4, type: 3}
+    volume: 0.55
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Enemy_Toad_BallSplat
+    clips:
+    - {fileID: 8300000, guid: 039bf4693b48a5b4d9354893acf46361, type: 3}
+    - {fileID: 8300000, guid: 9392b2b04e52c0542853c187b7983207, type: 3}
+    volume: 0.5
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Enemy_Toad_Dive
+    clips:
+    - {fileID: 8300000, guid: b559c91a302e53a4d8383acc6ef9c888, type: 3}
+    volume: 0.55
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Enemy_Toad_Surface
+    clips:
+    - {fileID: 8300000, guid: 29903a8b1b3cc18458df1dd19b84160d, type: 3}
+    volume: 0.5
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Enemy_Toad_Swell
+    clips:
+    - {fileID: 8300000, guid: a550260e1f23c784480d2ad760c5d3c7, type: 3}
+    volume: 0.6
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Enemy_Toad_Burst
+    clips:
+    - {fileID: 8300000, guid: 31da4d4074c99ba468e00e74a93cf900, type: 3}
+    volume: 0.7
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Enemy_Toad_Hurt
+    clips:
+    - {fileID: 8300000, guid: 1535ad8d84179e7469c31b8866101c9f, type: 3}
+    - {fileID: 8300000, guid: f6354014e9da63e4da45590191dcf4fd, type: 3}
+    - {fileID: 8300000, guid: 52cc20df683cf6042a26eee6fe22bc33, type: 3}
+    volume: 0.5
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Enemy_Toad_Death
+    clips:
+    - {fileID: 8300000, guid: 1345d4f29d6e04043be549479ff362d9, type: 3}
+    volume: 0.55
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Trap_Carnivore_Snap
+    clips:
+    - {fileID: 8300000, guid: 3f813c1f956b12040abe3aac4e6c5db9, type: 3}
+    - {fileID: 8300000, guid: cde8825439ad80c4f9b9ea43d286d9b4, type: 3}
+    volume: 0.65
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Trap_Carnivore_Chew
+    clips:
+    - {fileID: 8300000, guid: 5c6bed77d1db69b44b59c8631136b939, type: 3}
+    volume: 0.5
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Trap_Carnivore_Release
+    clips:
+    - {fileID: 8300000, guid: 714b6951dd5285d49ad04bfaefec9199, type: 3}
+    volume: 0.55
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Trap_Carnivore_Eat
+    clips:
+    - {fileID: 8300000, guid: e79815917eddffd4d8826e54fe439e71, type: 3}
+    volume: 0.6
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Trap_Carnivore_Open
+    clips:
+    - {fileID: 8300000, guid: 0086af1f7034af647992cd3e1d1fc6dc, type: 3}
+    volume: 0.45
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Trap_Carnivore_Wither
+    clips:
+    - {fileID: 8300000, guid: 1fcff7dc66c470943ae972b35101e086, type: 3}
+    volume: 0.45
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Trap_Mayfly_Swarm_Loop
+    clips:
+    - {fileID: 8300000, guid: 4cc8e63b8b53df547a184339b9b4191d, type: 3}
+    volume: 0.35
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0
+    loop: 1
+  - id: Trap_Mayfly_Sting
+    clips:
+    - {fileID: 8300000, guid: e14188c688d987543a8990f0ed27ab79, type: 3}
+    - {fileID: 8300000, guid: 862d46f5f39f4a64281ec154f229305f, type: 3}
+    - {fileID: 8300000, guid: 52f1e0586640c6249ad3aeb70b885282, type: 3}
+    volume: 0.35
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Trap_Mayfly_Burn
+    clips:
+    - {fileID: 8300000, guid: 7f14bb6b6d47e2646ba17aad8d404923, type: 3}
+    volume: 0.55
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Room_Roots_Close
+    clips:
+    - {fileID: 8300000, guid: c893a1b68d0c29c45865542a4f12dfad, type: 3}
+    volume: 0.6
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Room_Roots_Open
+    clips:
+    - {fileID: 8300000, guid: 0767f0c2583496d448c243fab77d01be, type: 3}
+    volume: 0.55
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Room_Cleared_Floor3
+    clips:
+    - {fileID: 8300000, guid: 7404ca06c41f9b2479c3e0245c4b0afc, type: 3}
+    volume: 0.55
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Room_WaveStart_Floor3
+    clips:
+    - {fileID: 8300000, guid: 9ae00e1e8f064fe46ba4c6da2502911d, type: 3}
+    volume: 0.6
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Room_ConeChest_Open
+    clips:
+    - {fileID: 8300000, guid: d0f35a0570e13384fabcc5fc45202eb4, type: 3}
+    volume: 0.6
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Room_ConeChest_Open_Big
+    clips:
+    - {fileID: 8300000, guid: ee06dccbbe1593c4eb2c5dd1668c54e8, type: 3}
+    volume: 0.7
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Room_Teleport_Wake
+    clips:
+    - {fileID: 8300000, guid: cc7f0f5566793a64cb939d81efc6447c, type: 3}
+    volume: 0.5
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Room_Teleport_Warp
+    clips:
+    - {fileID: 8300000, guid: 016e56dc9d02d6b4b8dd64ff14d79171, type: 3}
+    volume: 0.6
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Room_Heart_Drop
+    clips:
+    - {fileID: 8300000, guid: 54d2544ca17eac742b5e671abbe8c261, type: 3}
+    volume: 0.5
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Room_HeartPod_Send
+    clips:
+    - {fileID: 8300000, guid: 4088a8886f6e6344b8dc2d1107fb50cf, type: 3}
+    volume: 0.5
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Room_HeartPod_Take
+    clips:
+    - {fileID: 8300000, guid: 481f209273616434bb0d218334984044, type: 3}
+    volume: 0.55
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Room_HeartPod_Empty
+    clips:
+    - {fileID: 8300000, guid: 7101da2a2e8d80047b1a6b2e404debe7, type: 3}
+    volume: 0.45
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Roach_Emerge
+    clips:
+    - {fileID: 8300000, guid: f17a46d36c3e5b34eb28c106d340e611, type: 3}
+    - {fileID: 8300000, guid: 32f8d6b840640c748973bdf69c8e9013, type: 3}
+    volume: 0.4
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Roach_Scurry_Loop
+    clips:
+    - {fileID: 8300000, guid: ea5d7bb6dfbe3274d881b8b54b3729da, type: 3}
+    volume: 0.3
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0
+    loop: 1
+  - id: Roach_Grab
+    clips:
+    - {fileID: 8300000, guid: 2531283e7b7f2f24caeed78d1baf11fd, type: 3}
+    - {fileID: 8300000, guid: 10d58986aa5fd304dacf6ad0588b2c07, type: 3}
+    volume: 0.45
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Roach_Hide
+    clips:
+    - {fileID: 8300000, guid: 1e4b08c768c0a614fac7c29fe6a492aa, type: 3}
+    volume: 0.4
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Roach_Hurt
+    clips:
+    - {fileID: 8300000, guid: 0cad1cdd8d444524294acbe2a3fbc41a, type: 3}
+    - {fileID: 8300000, guid: 035759fed6b548a4f903b594e8881dcf, type: 3}
+    volume: 0.4
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Roach_Death
+    clips:
+    - {fileID: 8300000, guid: 5ecbaa53423a1974a961e7f45a92b15f, type: 3}
+    volume: 0.45
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Critter_Scurry
+    clips:
+    - {fileID: 8300000, guid: 28a5c911ef3818f4e86e6357b8712cc7, type: 3}
+    - {fileID: 8300000, guid: f88d9dac56ded5b47a8fce18ade5c257, type: 3}
+    volume: 0.2
+    group: 1
+    minInterval: 0.5
+    pitchJitter: 0.04
+    loop: 0
+  - id: Room_RootWall_HeartPlace
+    clips:
+    - {fileID: 8300000, guid: b41d84ffc71bfbe4f854e75d32d59419, type: 3}
+    volume: 0.65
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Room_RootWall_Open
+    clips:
+    - {fileID: 8300000, guid: fbaef56e60f62304680078ccb5a02f38, type: 3}
+    volume: 0.7
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Room_PurpleFlower_Pickup
+    clips:
+    - {fileID: 8300000, guid: fa1950d3e3752be45a11d0e4a500aa17, type: 3}
+    volume: 0.55
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Room_PurpleSeed_Sprout
+    clips:
+    - {fileID: 8300000, guid: 9dde35b15214ebd4395a06241bf47c98, type: 3}
+    volume: 0.65
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Room_Log_Step
+    clips:
+    - {fileID: 8300000, guid: 567a94a94717fb74c80cdc6b221a079b, type: 3}
+    - {fileID: 8300000, guid: dedf652537d9f584386bdde87a82b08c, type: 3}
+    - {fileID: 8300000, guid: 929fbdfa19e53b74787257761a734d72, type: 3}
+    volume: 0.35
+    group: 1
+    minInterval: 0.25
+    pitchJitter: 0.04
+    loop: 0
+  - id: Room_Log_Bubble
+    clips:
+    - {fileID: 8300000, guid: eadacf45e8514e24cb0dc97c4bdaed1f, type: 3}
+    - {fileID: 8300000, guid: d89fb8eb55294b94984a173b4d1e10dc, type: 3}
+    volume: 0.3
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Room_Coal_Ignite
+    clips:
+    - {fileID: 8300000, guid: c04bc30452fc6834681716b6034b58e6, type: 3}
+    volume: 0.65
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Room_Coal_Burn_Loop
+    clips:
+    - {fileID: 8300000, guid: 9fbfc4b22a9834f4ab09d93719fee3c2, type: 3}
+    volume: 0.35
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0
+    loop: 1
+  - id: Room_FireFront_Loop
+    clips:
+    - {fileID: 8300000, guid: a47cd9cef4eb53845b726125a6c8468c, type: 3}
+    volume: 0.45
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0
+    loop: 1
+  - id: Room_Stump_Light_Loop
+    clips:
+    - {fileID: 8300000, guid: 8f7ac841d00b49d43963e86cf3a1912a, type: 3}
+    volume: 0.25
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0
+    loop: 1
+  - id: Boss_Meganeura_Intro
+    clips:
+    - {fileID: 8300000, guid: 61ccc634ae5cda34394530d5801f4d67, type: 3}
+    volume: 0.75
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Meganeura_Wings_Loop
+    clips:
+    - {fileID: 8300000, guid: e9c0a7ceaaf86c148aee923a6e253c6b, type: 3}
+    volume: 0.3
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0
+    loop: 1
+  - id: Boss_Meganeura_TakeOff
+    clips:
+    - {fileID: 8300000, guid: ab890753c8c54b64aa5867c92f3168ec, type: 3}
+    volume: 0.65
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Meganeura_Mark
+    clips:
+    - {fileID: 8300000, guid: 84d5b65cba808654fb015216bcf137a3, type: 3}
+    volume: 0.5
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Meganeura_MarkLock
+    clips:
+    - {fileID: 8300000, guid: 930f7a7199886194aaf7cdc24b04ef2f, type: 3}
+    volume: 0.65
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Meganeura_Dive
+    clips:
+    - {fileID: 8300000, guid: d19d1accbd203f448bcb14e09ec713d9, type: 3}
+    - {fileID: 8300000, guid: 897f6ea3118a2d34e8408c0106c289aa, type: 3}
+    volume: 0.7
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Meganeura_DiveImpact
+    clips:
+    - {fileID: 8300000, guid: 434e3b2422b6ecf4599e2b57945ac780, type: 3}
+    - {fileID: 8300000, guid: 97c3cabe63107464fa7d994659a2962e, type: 3}
+    volume: 0.75
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Meganeura_TrunkStuck
+    clips:
+    - {fileID: 8300000, guid: aa4a94e768211b94b8e758cd7331a2da, type: 3}
+    volume: 0.7
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Meganeura_Gust
+    clips:
+    - {fileID: 8300000, guid: fd3bbc6f5d679ab4684763964c18f687, type: 3}
+    volume: 0.75
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Meganeura_FallBurning
+    clips:
+    - {fileID: 8300000, guid: fa35073b9fa01684f9acfdfb363d0568, type: 3}
+    volume: 0.75
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Meganeura_Hurt
+    clips:
+    - {fileID: 8300000, guid: 4b07043f807e9fb4f9649a43c5550819, type: 3}
+    - {fileID: 8300000, guid: 2e35d29804c797e4e93059644ff00d0d, type: 3}
+    - {fileID: 8300000, guid: a6526677c655ca046aee6db4a7e2a030, type: 3}
+    volume: 0.6
+    group: 1
+    minInterval: 0.08
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Meganeura_Cry
+    clips:
+    - {fileID: 8300000, guid: 24882c198816b884383968a16e38e8e9, type: 3}
+    volume: 0.7
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Meganeura_EggLay
+    clips:
+    - {fileID: 8300000, guid: f1f5db0f781c3b841a11c6062bc27d48, type: 3}
+    volume: 0.6
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Meganeura_Egg_Hit
+    clips:
+    - {fileID: 8300000, guid: 15e57e418d59f5d488af56c34dac32c6, type: 3}
+    - {fileID: 8300000, guid: 6fac5d8f09ac3004088000ddae428dd1, type: 3}
+    - {fileID: 8300000, guid: 0559f7f3b6bb9c348b15c3f09ae7addd, type: 3}
+    volume: 0.45
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Meganeura_Egg_Break
+    clips:
+    - {fileID: 8300000, guid: e5db17403f726d1489b5c3073965cad0, type: 3}
+    - {fileID: 8300000, guid: 326ce0f48adfd2a46b0e6eaaa5ac2e0f, type: 3}
+    volume: 0.6
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Meganeura_Egg_Hatch
+    clips:
+    - {fileID: 8300000, guid: 786e6a5b8fb622e418b95167af560d84, type: 3}
+    volume: 0.55
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Meganeura_Nymph_Warn
+    clips:
+    - {fileID: 8300000, guid: 1e6a25718f0af8e4aa4d3d636d8af2b3, type: 3}
+    volume: 0.5
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Meganeura_Nymph_Lash
+    clips:
+    - {fileID: 8300000, guid: 84683819ddac51f4bbb95f4f348fff32, type: 3}
+    - {fileID: 8300000, guid: 1771ffc014ad64346843d79c6cc31416, type: 3}
+    volume: 0.6
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Meganeura_Nymph_Pull
+    clips:
+    - {fileID: 8300000, guid: 72844c56d8fdf2340a86e74b4bd10435, type: 3}
+    volume: 0.55
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Meganeura_Nymph_Hurt
+    clips:
+    - {fileID: 8300000, guid: 9c10f87b1d5f1b94d8db084620fbbd72, type: 3}
+    - {fileID: 8300000, guid: fc2b93d06d092c246893fe0870880bf6, type: 3}
+    - {fileID: 8300000, guid: 59572232e8638014a972c2173c752a27, type: 3}
+    volume: 0.4
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Meganeura_Nymph_Death
+    clips:
+    - {fileID: 8300000, guid: 3990bc38b118029419ea2f53f6323035, type: 3}
+    - {fileID: 8300000, guid: c73339aa003738142a4431ac6b764476, type: 3}
+    volume: 0.5
+    group: 1
+    minInterval: 0.1
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Meganeura_Screech
+    clips:
+    - {fileID: 8300000, guid: 3b20419d00ecdd24b98d000fa4aae64f, type: 3}
+    volume: 0.8
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Meganeura_Land
+    clips:
+    - {fileID: 8300000, guid: eba828345aef57c4da6eb9a288b8f80c, type: 3}
+    volume: 0.65
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Meganeura_StormEntry
+    clips:
+    - {fileID: 8300000, guid: 74203df09cf04e141a939101353d792d, type: 3}
+    volume: 0.85
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Meganeura_Thunder
+    clips:
+    - {fileID: 8300000, guid: 3ba170b13d49aa24d8c0f459962fd469, type: 3}
+    - {fileID: 8300000, guid: 4191e3b5a022b5f48b0bcf6aef32fab8, type: 3}
+    - {fileID: 8300000, guid: afde6f078a49ac944b42e4ac5300060a, type: 3}
+    volume: 0.6
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Meganeura_BigBolt_Warn
+    clips:
+    - {fileID: 8300000, guid: 803681f92f350b643a492c306480d8c4, type: 3}
+    volume: 0.65
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Meganeura_LooseBolt_Warn
+    clips:
+    - {fileID: 8300000, guid: ea36ed1a6b1a8c94bae04834827324aa, type: 3}
+    volume: 0.5
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Meganeura_Bolt_Strike
+    clips:
+    - {fileID: 8300000, guid: 485bbff9d59231f4390aac902713b99a, type: 3}
+    - {fileID: 8300000, guid: 2f14b8caaef769e48b66d3322388ba10, type: 3}
+    - {fileID: 8300000, guid: b4389c55ab2a1ff4fb40e16d1b32241c, type: 3}
+    volume: 0.8
+    group: 1
+    minInterval: 0.06
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Meganeura_Electrocuted
+    clips:
+    - {fileID: 8300000, guid: 534f0e6e512fff04493656edd46e1fd0, type: 3}
+    volume: 0.8
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Meganeura_Puddle_Electric_Loop
+    clips:
+    - {fileID: 8300000, guid: fad986b929d78e343a7d2b4fa7bbadc6, type: 3}
+    volume: 0.3
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0
+    loop: 1
+  - id: Boss_Meganeura_Ring_Loop
+    clips:
+    - {fileID: 8300000, guid: a5d10c206f2b1454bb921d7876ca6593, type: 3}
+    volume: 0.35
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0
+    loop: 1
+  - id: Boss_Meganeura_Sigillaria_Burn
+    clips:
+    - {fileID: 8300000, guid: e6426655dbdfe964dbd99e398e8a7aeb, type: 3}
+    volume: 0.7
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Meganeura_Death
+    clips:
+    - {fileID: 8300000, guid: 4164bfa0c1ec09547ba43d6679e1c687, type: 3}
+    volume: 0.85
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Meganeura_StormFade
+    clips:
+    - {fileID: 8300000, guid: ae0a0998447b7834b92c55f1cd86df98, type: 3}
+    volume: 0.55
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Amb_Floor3_Rain_Loop
+    clips:
+    - {fileID: 8300000, guid: a09518b147fa84144958af9ab79fa4e0, type: 3}
+    volume: 0.35
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0
+    loop: 1
+  - id: Boss_Arthropleura_Intro
+    clips:
+    - {fileID: 8300000, guid: 7424a3449476c864398e9b6dc816be9e, type: 3}
+    volume: 0.8
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Arthropleura_Legs_Loop
+    clips:
+    - {fileID: 8300000, guid: 2817dae465fe01842918d5480945ad4d, type: 3}
+    volume: 0.4
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0
+    loop: 1
+  - id: Boss_Arthropleura_Rustle_Loop
+    clips:
+    - {fileID: 8300000, guid: c3c44c3b4e2af0a49b81d4fdbf44f9d5, type: 3}
+    volume: 0.35
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0
+    loop: 1
+  - id: Boss_Arthropleura_Charge_Warn
+    clips:
+    - {fileID: 8300000, guid: 9407d1e2b24feee4b97c7f8500deb6b0, type: 3}
+    volume: 0.7
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Arthropleura_Charge
+    clips:
+    - {fileID: 8300000, guid: 75c34b4c01fa1444d81a5b15448c5214, type: 3}
+    - {fileID: 8300000, guid: 2245cc9a6cd28c747baae6ae48ac21e0, type: 3}
+    volume: 0.8
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Arthropleura_EdgeBreak
+    clips:
+    - {fileID: 8300000, guid: a74872c2470f1ff4d868c6358a422dbc, type: 3}
+    volume: 0.8
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Arthropleura_Shell_Hit
+    clips:
+    - {fileID: 8300000, guid: 142bc68ef61767d4b92a361da97fa180, type: 3}
+    - {fileID: 8300000, guid: 9ae3cd54b3bd8c0458eb7981419d0a74, type: 3}
+    - {fileID: 8300000, guid: d1e7bcfc2178205498802faf032fe1f8, type: 3}
+    volume: 0.5
+    group: 1
+    minInterval: 0.08
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Arthropleura_Plate_Open
+    clips:
+    - {fileID: 8300000, guid: 5422ae402bf85f04a9a96ada35c5ab5f, type: 3}
+    volume: 0.6
+    group: 1
+    minInterval: 0.15
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Arthropleura_Plate_Close
+    clips:
+    - {fileID: 8300000, guid: f0f3b088b06d3054b976b306f3dd4c90, type: 3}
+    volume: 0.55
+    group: 1
+    minInterval: 0.15
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Arthropleura_Hurt
+    clips:
+    - {fileID: 8300000, guid: 5f8ce5de2b19426448d880bbef19c425, type: 3}
+    - {fileID: 8300000, guid: 00bb7ee7e061a38428b3cb318892f3b0, type: 3}
+    - {fileID: 8300000, guid: b910c266a3fefe64e8f98517c1efea5c, type: 3}
+    volume: 0.6
+    group: 1
+    minInterval: 0.08
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Arthropleura_Ignite
+    clips:
+    - {fileID: 8300000, guid: 8d69039f9f75d3d418efb1aefe6bfe14, type: 3}
+    volume: 0.7
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Arthropleura_Fuse_Loop
+    clips:
+    - {fileID: 8300000, guid: 4a8fc9e5315bb694fba6432275db27db, type: 3}
+    volume: 0.45
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0
+    loop: 1
+  - id: Boss_Arthropleura_Hiss
+    clips:
+    - {fileID: 8300000, guid: 07dda31517378154692b8e87499c046d, type: 3}
+    - {fileID: 8300000, guid: f9a799061aed7594089077214c3fee3b, type: 3}
+    volume: 0.7
+    group: 1
+    minInterval: 2
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Arthropleura_WallCollapse
+    clips:
+    - {fileID: 8300000, guid: 10a748ed7f3042244bb13aba49a6595b, type: 3}
+    volume: 0.85
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Arthropleura_Stomp_Warn
+    clips:
+    - {fileID: 8300000, guid: c89dabe8dab261c44a9bec61fcb0f525, type: 3}
+    volume: 0.7
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Arthropleura_Stomp_Wave
+    clips:
+    - {fileID: 8300000, guid: ee66cb881e460b64ba662a337c0c8bc2, type: 3}
+    - {fileID: 8300000, guid: 30a974a139992c34ca47b11c3fad6a91, type: 3}
+    - {fileID: 8300000, guid: 83f93871362bbf946869e60580ba5fc5, type: 3}
+    volume: 0.75
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Arthropleura_TreeFall
+    clips:
+    - {fileID: 8300000, guid: a4b7fcf1857220d469412ea4cf7dc02c, type: 3}
+    - {fileID: 8300000, guid: a002a67595d23d2489018bf41dc22615, type: 3}
+    volume: 0.75
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Arthropleura_Stunned
+    clips:
+    - {fileID: 8300000, guid: 8ca9024898fdc6948af8d69ff3201054, type: 3}
+    volume: 0.75
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Arthropleura_EatFern
+    clips:
+    - {fileID: 8300000, guid: 24841132b43fb9545922df741570d56e, type: 3}
+    - {fileID: 8300000, guid: 900a824f01cda75408091f88f19bdd6e, type: 3}
+    volume: 0.65
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Arthropleura_Douse
+    clips:
+    - {fileID: 8300000, guid: 304cad467b5eee248b468656e1e2271a, type: 3}
+    volume: 0.75
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Arthropleura_Ring_Close
+    clips:
+    - {fileID: 8300000, guid: 8f34f3b7dd63adf4aaf812f1a4057467, type: 3}
+    volume: 0.75
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Arthropleura_Squeeze
+    clips:
+    - {fileID: 8300000, guid: 0e453b985dd079e488e0baa1ef773cf2, type: 3}
+    volume: 0.75
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Arthropleura_Expel
+    clips:
+    - {fileID: 8300000, guid: d000a19c7d4e0544ab7872bef60eb070, type: 3}
+    volume: 0.65
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Arthropleura_Coil
+    clips:
+    - {fileID: 8300000, guid: 8b4d1713bf41d054fadaf7f39b431a00, type: 3}
+    volume: 0.75
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Arthropleura_Roll_Loop
+    clips:
+    - {fileID: 8300000, guid: 059d864a84fd9cd47bef52d4afde54ae, type: 3}
+    volume: 0.5
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0
+    loop: 1
+  - id: Boss_Arthropleura_Roll_Crash
+    clips:
+    - {fileID: 8300000, guid: 4fa04977f6d13e142b0ef93ac2a6e4f5, type: 3}
+    - {fileID: 8300000, guid: 31bd97bfa8ecc6a4fac5902eeae0fd62, type: 3}
+    volume: 0.85
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Arthropleura_Death
+    clips:
+    - {fileID: 8300000, guid: 9c561b27d280503469357a266f3a5328, type: 3}
+    volume: 0.85
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Arthropleura_Smolder_Loop
+    clips:
+    - {fileID: 8300000, guid: fdb332ae2d1396646b779630fcdda659, type: 3}
+    volume: 0.2
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0
+    loop: 1
+  - id: Boss_Megarachne_Intro
+    clips:
+    - {fileID: 8300000, guid: 313e34ed7d56c174388eabb7a56ea187, type: 3}
+    volume: 0.8
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Megarachne_CableRun_Loop
+    clips:
+    - {fileID: 8300000, guid: e903ebef505a2744bbd78a1cef710924, type: 3}
+    volume: 0.4
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0
+    loop: 1
+  - id: Boss_Megarachne_Walk_Loop
+    clips:
+    - {fileID: 8300000, guid: 43a1b61dab2d0224a8d0124ce71a5e22, type: 3}
+    volume: 0.4
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0
+    loop: 1
+  - id: Boss_Megarachne_Climb
+    clips:
+    - {fileID: 8300000, guid: 3dd285ddafa13314f9b87046f2d0229b, type: 3}
+    volume: 0.55
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Megarachne_Drop
+    clips:
+    - {fileID: 8300000, guid: 497edd10ffb9c7142b82ba71ea7faeba, type: 3}
+    volume: 0.55
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Megarachne_Jump_Warn
+    clips:
+    - {fileID: 8300000, guid: 5348c0fd5c8b06947a43a373e37523df, type: 3}
+    volume: 0.65
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Megarachne_Jump_Land
+    clips:
+    - {fileID: 8300000, guid: 343c8faeb2f0d294eb97fe6724b509ab, type: 3}
+    - {fileID: 8300000, guid: 1516c3958bdc22144ab3be8423f8b66f, type: 3}
+    volume: 0.7
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Megarachne_SilkVolley
+    clips:
+    - {fileID: 8300000, guid: e800d1981fc95514fad6e0bca4df65af, type: 3}
+    volume: 0.6
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Megarachne_Silk_Splat
+    clips:
+    - {fileID: 8300000, guid: 26f8a67df6615c04bbf3e463ff386a84, type: 3}
+    - {fileID: 8300000, guid: bcea9478ad351ee488c69a7f0b23af2d, type: 3}
+    - {fileID: 8300000, guid: 8fe764be53ce77c44bfc559857d7b71b, type: 3}
+    volume: 0.3
+    group: 1
+    minInterval: 0.05
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Megarachne_Net_Warn
+    clips:
+    - {fileID: 8300000, guid: 0f6778d2d8a76434288807cf0c112f07, type: 3}
+    volume: 0.55
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Megarachne_Net_Drop
+    clips:
+    - {fileID: 8300000, guid: f976d94bcc01d354892d8edc477ef7b1, type: 3}
+    volume: 0.65
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Megarachne_Net_Trap
+    clips:
+    - {fileID: 8300000, guid: ec493c8321173c44fa8e9d9f2b8a47f7, type: 3}
+    volume: 0.55
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Megarachne_Sac_Weave
+    clips:
+    - {fileID: 8300000, guid: a9619b0a8dbe20041b84d18ae67be4a6, type: 3}
+    volume: 0.5
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Megarachne_Sac_Tremble
+    clips:
+    - {fileID: 8300000, guid: dee6bfc13084a2f458f863d9649d1087, type: 3}
+    volume: 0.55
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Megarachne_Sac_Hit
+    clips:
+    - {fileID: 8300000, guid: 678ea6b32f6a6b24bae17d670dc28298, type: 3}
+    - {fileID: 8300000, guid: d81a6976fbc3e9e40a5c83327e368e8f, type: 3}
+    - {fileID: 8300000, guid: 1199fa1d7bdcfde4b99969e6949dd4d6, type: 3}
+    volume: 0.4
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Megarachne_Sac_Break
+    clips:
+    - {fileID: 8300000, guid: 3571dbd555e8c9d47bf1bcb74b358f69, type: 3}
+    volume: 0.55
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Megarachne_Sac_Burst
+    clips:
+    - {fileID: 8300000, guid: a9c48a76d7669634d95e167e63f79273, type: 3}
+    volume: 0.65
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Megarachne_Brood_Loop
+    clips:
+    - {fileID: 8300000, guid: 7d3288f2be2d4094cb7cbf4707593dd2, type: 3}
+    volume: 0.25
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0
+    loop: 1
+  - id: Boss_Megarachne_Brood_Bite
+    clips:
+    - {fileID: 8300000, guid: 03108c71fd3c5994e82a174a9d88216d, type: 3}
+    - {fileID: 8300000, guid: 4a25538cad077a94787c32ea223611b8, type: 3}
+    - {fileID: 8300000, guid: 90ebebf0412ba764ba0cfeae4d800810, type: 3}
+    volume: 0.4
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Megarachne_Brood_Death
+    clips:
+    - {fileID: 8300000, guid: b6cd31eb1e715d34b84960b14873c81b, type: 3}
+    - {fileID: 8300000, guid: 5544167fce7d52f49930cf11428772e7, type: 3}
+    - {fileID: 8300000, guid: 0a8db31f083202a43bb2b92eb4eab450, type: 3}
+    volume: 0.4
+    group: 1
+    minInterval: 0.08
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Megarachne_Cable_Weave
+    clips:
+    - {fileID: 8300000, guid: d61c7fc58edf8bf42ab80f6315421514, type: 3}
+    volume: 0.5
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Megarachne_Cable_Ignite
+    clips:
+    - {fileID: 8300000, guid: 8a2afd49912b9a2458b07316fd2f47fc, type: 3}
+    volume: 0.55
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Megarachne_Cable_Fuse_Loop
+    clips:
+    - {fileID: 8300000, guid: 6bd57db2b4613f149a2f1df11b7195c7, type: 3}
+    volume: 0.45
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0
+    loop: 1
+  - id: Boss_Megarachne_Cable_Snap
+    clips:
+    - {fileID: 8300000, guid: 5cd858cf74cc96a4aa3405c2644546cd, type: 3}
+    volume: 0.65
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Megarachne_Fall_Stunned
+    clips:
+    - {fileID: 8300000, guid: 13570bcccf0a18749b63217990978f01, type: 3}
+    volume: 0.75
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Megarachne_Hurt
+    clips:
+    - {fileID: 8300000, guid: d1d058e4862f31c4f85b32f753ac749b, type: 3}
+    - {fileID: 8300000, guid: 20076ef393fb9884cb12fdb40c43c237, type: 3}
+    - {fileID: 8300000, guid: fbb1437a76278d24ca87db10c566f750, type: 3}
+    volume: 0.55
+    group: 1
+    minInterval: 0.08
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Megarachne_Rage_Screech
+    clips:
+    - {fileID: 8300000, guid: 0a3073e2b3ce5e14a9c3bf1ffed5bc80, type: 3}
+    volume: 0.85
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Megarachne_Nest_Wither
+    clips:
+    - {fileID: 8300000, guid: 9471c6fd858e518429a12581e3ca49cb, type: 3}
+    volume: 0.6
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Megarachne_Nest_Burn
+    clips:
+    - {fileID: 8300000, guid: 38ef1e19a422ef74e8e5a00c641f0cf9, type: 3}
+    volume: 0.75
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Megarachne_Web_Collapse
+    clips:
+    - {fileID: 8300000, guid: 85cb1d23b22c93d4ba5ce956287550d6, type: 3}
+    volume: 0.7
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Megarachne_Death
+    clips:
+    - {fileID: 8300000, guid: d7efc5b52bbb9204ab5f42613ebe853f, type: 3}
+    volume: 0.8
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Megarachne_Cables_Drop
+    clips:
+    - {fileID: 8300000, guid: 44e8cb0a186214441aedc0f86714be0d, type: 3}
+    volume: 0.6
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Megarachne_Cocoon_Fall
+    clips:
+    - {fileID: 8300000, guid: ac83288ca02b19a44ae64f23c7f82b7b, type: 3}
+    volume: 0.55
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Megarachne_Cocoon_Open
+    clips:
+    - {fileID: 8300000, guid: cb48374baa5c56f40a2c2d9035ad06a1, type: 3}
+    volume: 0.65
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Lepidodendron_Intro
+    clips:
+    - {fileID: 8300000, guid: 4680ca49c964dfc4aa1aa3db2415e603, type: 3}
+    volume: 0.8
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Lepidodendron_Creak_Loop
+    clips:
+    - {fileID: 8300000, guid: 80cd57b3d760fdf438f172d4a91da0ab, type: 3}
+    volume: 0.25
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0
+    loop: 1
+  - id: Boss_Lepidodendron_RootWall_Hit
+    clips:
+    - {fileID: 8300000, guid: ccf6e3ac09da61f46abe220f800434d8, type: 3}
+    - {fileID: 8300000, guid: 0a9d04736e8a59b4db3a95cb8088d988, type: 3}
+    - {fileID: 8300000, guid: ecc7bd9f701daa84892596acf904ee35, type: 3}
+    volume: 0.5
+    group: 1
+    minInterval: 0.06
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Lepidodendron_RootWall_KnotHit
+    clips:
+    - {fileID: 8300000, guid: 10e7e5296b2d9084b89091e5cc65580d, type: 3}
+    - {fileID: 8300000, guid: 6c7906e0cc9134142a45d402b4d387fd, type: 3}
+    - {fileID: 8300000, guid: a37b374afff00bb4cb53d4c9451f3790, type: 3}
+    volume: 0.6
+    group: 1
+    minInterval: 0.06
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Lepidodendron_RootWall_Ignite
+    clips:
+    - {fileID: 8300000, guid: 53273faaa0fec1447b9a3fe1ceb6df3e, type: 3}
+    volume: 0.7
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Lepidodendron_RootWall_Burn_Loop
+    clips:
+    - {fileID: 8300000, guid: 2055fec245307704baabcb15406f61fd, type: 3}
+    volume: 0.4
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0
+    loop: 1
+  - id: Boss_Lepidodendron_RootWall_Retract
+    clips:
+    - {fileID: 8300000, guid: ccdbcc9bbe42d15499879192bcb3a672, type: 3}
+    volume: 0.75
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Lepidodendron_RootWall_Crumble
+    clips:
+    - {fileID: 8300000, guid: 602024ab3e1d6b14c825353a259f482e, type: 3}
+    volume: 0.75
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Lepidodendron_Wave_Spawn
+    clips:
+    - {fileID: 8300000, guid: 6e9c5ef656d12484faf073eaa811634e, type: 3}
+    - {fileID: 8300000, guid: d2dc8611722aa9b4b89877b94b1c559a, type: 3}
+    volume: 0.55
+    group: 1
+    minInterval: 0.1
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Lepidodendron_SporeArc
+    clips:
+    - {fileID: 8300000, guid: 2fcd4606bde095944b78bd623ee84bbc, type: 3}
+    volume: 0.6
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Lepidodendron_SporeRain_Warn
+    clips:
+    - {fileID: 8300000, guid: 76f362816303f4c45b67f5a9b33a3ed6, type: 3}
+    volume: 0.6
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Lepidodendron_Spore_Impact
+    clips:
+    - {fileID: 8300000, guid: 3c867e1ad9dc99e49b2072fcd6995272, type: 3}
+    - {fileID: 8300000, guid: 04bbfe9d86e802844b5c25cec862c198, type: 3}
+    - {fileID: 8300000, guid: 3774be549460a134486a786417a8da8d, type: 3}
+    volume: 0.4
+    group: 1
+    minInterval: 0.05
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Lepidodendron_Phase_Final
+    clips:
+    - {fileID: 8300000, guid: 35490460d64a26644bb0fdc136593102, type: 3}
+    volume: 0.85
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Lepidodendron_Trunk_Hit
+    clips:
+    - {fileID: 8300000, guid: 9bc095a1da329bb4798b9077f51f4c16, type: 3}
+    - {fileID: 8300000, guid: 7eb374f2eae960b4fbdb67f207b4a292, type: 3}
+    - {fileID: 8300000, guid: ef9dc2510c9829344b854717f17f6ca2, type: 3}
+    volume: 0.5
+    group: 1
+    minInterval: 0.08
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Lepidodendron_Cone_Warn
+    clips:
+    - {fileID: 8300000, guid: a7dc1e85c770f51499638221b8341647, type: 3}
+    volume: 0.6
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Lepidodendron_Cone_Descend
+    clips:
+    - {fileID: 8300000, guid: 6e159f9c3a87dc94795ece311f36d75b, type: 3}
+    volume: 0.7
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Lepidodendron_Cone_Slam
+    clips:
+    - {fileID: 8300000, guid: 93bd2e6476f0f2d43b54bbb88394fe78, type: 3}
+    - {fileID: 8300000, guid: d95e6aafbb72c4d4bb75bc1bd200e049, type: 3}
+    volume: 0.85
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Lepidodendron_Cone_Lift
+    clips:
+    - {fileID: 8300000, guid: c7bb6b7d04ceee14e8b191017b5eadc3, type: 3}
+    volume: 0.55
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Lepidodendron_Armor_Hit
+    clips:
+    - {fileID: 8300000, guid: 417da7b26f23ffa45bc004cfd951a1f6, type: 3}
+    - {fileID: 8300000, guid: b0aad5ac420fa00448da656343050720, type: 3}
+    - {fileID: 8300000, guid: 6f1cde185aba33246ba50f2a550f3a13, type: 3}
+    volume: 0.5
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Lepidodendron_Armor_Break
+    clips:
+    - {fileID: 8300000, guid: 5edfd3a60064659409b8169c48143db1, type: 3}
+    volume: 0.75
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Lepidodendron_Cone_Hurt
+    clips:
+    - {fileID: 8300000, guid: 6a39af95f16d4494f8eef189897475dd, type: 3}
+    - {fileID: 8300000, guid: 919e9052db7c56745b2d251fb378d6c7, type: 3}
+    - {fileID: 8300000, guid: 7aa5167c87540ad4ebc3b472ddf9d889, type: 3}
+    volume: 0.55
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Lepidodendron_Cone_Break
+    clips:
+    - {fileID: 8300000, guid: fc9e6c2f0f116c645ab65034a6739a77, type: 3}
+    volume: 0.8
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Lepidodendron_RootLash_Warn
+    clips:
+    - {fileID: 8300000, guid: a63f15c3ddddc5f42abe3cd76a9d0f3d, type: 3}
+    volume: 0.65
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Lepidodendron_RootLash
+    clips:
+    - {fileID: 8300000, guid: 4fd0ab75c7d6c264d91a4cf2d7ae0174, type: 3}
+    - {fileID: 8300000, guid: ebc7de6d489fe664d8f10dc3590c0a67, type: 3}
+    volume: 0.8
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Lepidodendron_SpikeRing_Warn
+    clips:
+    - {fileID: 8300000, guid: 09ad5fb36d5dc60478e17dbb1729f1db, type: 3}
+    volume: 0.6
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Lepidodendron_SpikeRing
+    clips:
+    - {fileID: 8300000, guid: 8149fa09a548a3a4699140af84178066, type: 3}
+    volume: 0.8
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Lepidodendron_Corner_Warn
+    clips:
+    - {fileID: 8300000, guid: 91a08dc8c9122424cb3260eb33926f56, type: 3}
+    volume: 0.6
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Lepidodendron_Corner_Strike
+    clips:
+    - {fileID: 8300000, guid: 9236e8a925c0bae4293b1d80e091968a, type: 3}
+    volume: 0.8
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Lepidodendron_Methane_Warn
+    clips:
+    - {fileID: 8300000, guid: 91091cb2905f0174eb8f309ff73dc600, type: 3}
+    volume: 0.55
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Lepidodendron_Tree_Shake
+    clips:
+    - {fileID: 8300000, guid: a8688f0cccd20234aaba2c83f0371d24, type: 3}
+    volume: 0.85
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Lepidodendron_Death_Crack
+    clips:
+    - {fileID: 8300000, guid: 59c41f2be81e2f042b483df374e3c9ba, type: 3}
+    volume: 0.85
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Lepidodendron_Death_Fall
+    clips:
+    - {fileID: 8300000, guid: 962612baec663ab4f87550d60d3193b2, type: 3}
+    volume: 0.9
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Lepidodendron_LightColumn
+    clips:
+    - {fileID: 8300000, guid: 338c3ed6cfb8c7a4dac58a764db93cbe, type: 3}
+    volume: 0.7
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Lepidodendron_Reward_Descend
+    clips:
+    - {fileID: 8300000, guid: 4c8d379f8bfabdd42a2b84cc64afb4e5, type: 3}
+    volume: 0.6
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Lepidodendron_Heart_Pickup
+    clips:
+    - {fileID: 8300000, guid: 1753b3bb79c373c4194085405227734f, type: 3}
+    volume: 0.65
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Lepidodendron_PurpleSpore_Pickup
+    clips:
+    - {fileID: 8300000, guid: 356d4c39adc35d949a772e9e58cc92eb, type: 3}
+    volume: 0.65
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Lepidodendron_Stump_Enter
+    clips:
+    - {fileID: 8300000, guid: 4d7774b7ecf5a4945ae85bae772cd84d, type: 3}
+    volume: 0.55
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Boss_Lepidodendron_Relic_Pickup
+    clips:
+    - {fileID: 8300000, guid: 6701ba046befea24c897061610ec0115, type: 3}
+    volume: 0.75
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0.04
+    loop: 0
+  - id: Amb_Floor3_Smoke_Loop
+    clips:
+    - {fileID: 8300000, guid: 08831b08948491b409dcf0c2d525640c, type: 3}
+    volume: 0.3
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0
+    loop: 1
+  - id: Amb_Floor3_Burnt_Loop
+    clips:
+    - {fileID: 8300000, guid: 960d09e47294dde4aac06316b82da09e, type: 3}
+    volume: 0.3
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0
+    loop: 1
+  - id: Amb_Floor3_BossRoom_Loop
+    clips:
+    - {fileID: 8300000, guid: 41ee286aef81b9b4a8e300788413a803, type: 3}
+    volume: 0.3
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0
+    loop: 1
+  - id: Amb_Floor3_Amber_Loop
+    clips:
+    - {fileID: 8300000, guid: 809a1f9e651df1c4c8dba58157d04f4e, type: 3}
+    volume: 0.3
+    group: 1
+    minInterval: 0.03
+    pitchJitter: 0
+    loop: 1
   tracks:
   - id: Music_MainMenu
     clip: {fileID: 8300000, guid: b713497956f6e8e4b81fff9469e9496f, type: 3}
@@ -1961,5 +4589,69 @@ MonoBehaviour:
     loop: 1
   - id: Music_Boss_Eurypterid_LastStand
     clip: {fileID: 8300000, guid: 0a1f1af37c0b8374fa91826342c7ac74, type: 3}
+    volume: 0.7
+    loop: 0
+  - id: Music_Floor3_Green_Explore
+    clip: {fileID: 8300000, guid: 7fa37d49c52f21a49835719a5f0e513f, type: 3}
+    volume: 0.6
+    loop: 1
+  - id: Music_Floor3_Green_Combat
+    clip: {fileID: 8300000, guid: d6a2786d74c44a44abec74df09fa121f, type: 3}
+    volume: 0.6
+    loop: 1
+  - id: Music_Floor3_Smoke_Explore
+    clip: {fileID: 8300000, guid: 5a66c7c57fd6aeb4fb1138036f9c6d0c, type: 3}
+    volume: 0.6
+    loop: 1
+  - id: Music_Floor3_Smoke_Combat
+    clip: {fileID: 8300000, guid: 40dc96983aa1b334b9ea94b0a123e34b, type: 3}
+    volume: 0.6
+    loop: 1
+  - id: Music_Floor3_Burnt_Explore
+    clip: {fileID: 8300000, guid: c28a25cba9530f44ea7bcbfe86e87a60, type: 3}
+    volume: 0.6
+    loop: 1
+  - id: Music_Floor3_Burnt_Combat
+    clip: {fileID: 8300000, guid: 8272defaf08ade349a7706f504d85b00, type: 3}
+    volume: 0.6
+    loop: 1
+  - id: Music_Boss_Meganeura
+    clip: {fileID: 8300000, guid: 62e42f3165d4b8147ad62d353ca29c45, type: 3}
+    volume: 0.65
+    loop: 1
+  - id: Music_Boss_Meganeura_Storm
+    clip: {fileID: 8300000, guid: 4bfce28c2b9a46447be2215dcf42b48f, type: 3}
+    volume: 0.65
+    loop: 1
+  - id: Music_Boss_Arthropleura
+    clip: {fileID: 8300000, guid: e0114af709958204bb3f4a104700c13b, type: 3}
+    volume: 0.65
+    loop: 1
+  - id: Music_Boss_Arthropleura_Coil
+    clip: {fileID: 8300000, guid: 9a1acd9169168c34fbbdda4d789e883a, type: 3}
+    volume: 0.65
+    loop: 1
+  - id: Music_Boss_Megarachne
+    clip: {fileID: 8300000, guid: 78748cda9eafc89498013c915b865ee0, type: 3}
+    volume: 0.65
+    loop: 1
+  - id: Music_Boss_Megarachne_Rage
+    clip: {fileID: 8300000, guid: f54c7d92809bfdc4aaa6e78c2b2067bb, type: 3}
+    volume: 0.65
+    loop: 1
+  - id: Music_Boss_Lepidodendron
+    clip: {fileID: 8300000, guid: 3bad95b52fc0d9d4796940076a151de0, type: 3}
+    volume: 0.65
+    loop: 1
+  - id: Music_Boss_Lepidodendron_Final
+    clip: {fileID: 8300000, guid: dd7cb6645c6d951419bddb9657defa89, type: 3}
+    volume: 0.65
+    loop: 1
+  - id: Music_Sting_SecretBoss
+    clip: {fileID: 8300000, guid: 84b4cacf740e8984ba218d07dbdd44d5, type: 3}
+    volume: 0.7
+    loop: 0
+  - id: Music_Sting_Relic
+    clip: {fileID: 8300000, guid: d9da892631ef0794f9f9466d970e3245, type: 3}
     volume: 0.7
     loop: 0

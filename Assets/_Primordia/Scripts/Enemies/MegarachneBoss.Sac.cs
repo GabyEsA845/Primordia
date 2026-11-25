@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using System.Collections.Generic;
 using Primordia.Combat;
 using UnityEngine;
@@ -23,6 +24,7 @@ namespace Primordia.Enemies
             sacAnchor = body.position + Vector2.up * VisualHeight;
             facing = (sacPoint - sacAnchor).normalized;
             attack = AttackStage.SacWeave;
+            Sfx.Play(Sounds.BossMegarachneSacWeave);
             Play("Weave", WeaveMs);
             return true;
         }

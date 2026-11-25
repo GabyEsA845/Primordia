@@ -70,6 +70,7 @@ namespace Primordia.Enemies
             if (setup.body != null) setup.body.Play("Megarachne_Dead", DeathMs, true, restart: true);
             if (setup.shadow != null) setup.shadow.Play("Megarachne_Shadow_Dead", DeathMs, true, restart: true);
             Dead = true;
+            Sfx.Play(Sounds.BossMegarachneWebCollapse);
 
             // La seda del Nido se deshace mientras el cuerpo se queda quieto.
             for (float t = 0f; t < setup.webDecay.Length * WebFrameSeconds && setup.canopy != null; t += Time.deltaTime)
@@ -90,6 +91,7 @@ namespace Primordia.Enemies
             cocoon.transform.SetParent(setup.arena, true);
             cocoon.sortingOrder = CocoonOrder;
             Vector2 from = setup.nest;
+            Sfx.Play(Sounds.BossMegarachneCocoonFall);
             for (float t = 0f; t < CocoonFallSeconds; t += Time.deltaTime)
             {
                 float k = t / CocoonFallSeconds;
@@ -102,6 +104,8 @@ namespace Primordia.Enemies
             ScreenShake.Pulse(2f, 0.2f);
             if (setup.dust.Length > 0) SpriteFramePlayer.PlayOnce(setup.dust, 0.08f, CocoonPoint + Vector2.down * 0.3f, DustOrder);
             yield return new WaitForSeconds(0.4f);
+            // Se abre con el contenedor de corazón: este sonido sustituye al del coral de siempre.
+            Sfx.Play(Sounds.BossMegarachneCocoonOpen);
             for (int i = 0; i < setup.cocoonOpen.Length; i++)
             {
                 cocoon.sprite = setup.cocoonOpen[i];
@@ -154,7 +158,6 @@ namespace Primordia.Enemies
             HeartTaken = true;
             if (setup.player != null && setup.player.TryGetComponent<Health>(out var health))
                 health.SetMax(health.Max + 2); // Un corazón entero son dos medios; SetMax cura la diferencia.
-            Sfx.Play(Sounds.HeartCoral);
         }
 
         // Las mutaciones equipadas que aún pueden subir de nivel, para que elija una (hasta las tarjetas que caben).

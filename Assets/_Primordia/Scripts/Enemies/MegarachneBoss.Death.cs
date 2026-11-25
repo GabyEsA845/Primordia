@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using System;
 using Primordia.Core;
 using Primordia.Player;
@@ -28,6 +29,8 @@ namespace Primordia.Enemies
         {
             if (deathStarted) return;
             deathStarted = true;
+            Sfx.Play(Sounds.BossMegarachneDeath);
+            StopMovementSound();
             entryStage = EntryStage.None;
             ActiveBoss.Clear(this);
             ClearAttacks();
@@ -58,6 +61,8 @@ namespace Primordia.Enemies
         // Los cables se descuelgan: se quitan sus dibujos (el jefe se destruye con sus materiales) y la seda se deshace en el Nido.
         void DropCables()
         {
+            // Cinco tañidos que bajan y caen.
+            Sfx.Play(Sounds.BossMegarachneCablesDrop);
             if (scenery == null) return;
             foreach (var line in scenery.GetComponentsInChildren<LineRenderer>(true)) line.enabled = false;
             foreach (var renderer in scenery.GetComponentsInChildren<SpriteRenderer>(true))

@@ -158,6 +158,8 @@ namespace Primordia.Editor
             // La muerte de la Meganeura suena desde su rutina (la caída dura 2,8 s)
             ("Floor3/Enemy_MeganeuraBoss", "Boss_Meganeura_Hurt", null, null, null, null),
             ("Floor3/Enemy_MeganeuraNymph", "Boss_Meganeura_Nymph_Hurt", "Boss_Meganeura_Nymph_Death", null, null, null),
+            // La muerte de la Megarachne suena desde su rutina (cae panza arriba y los cables se descuelgan)
+            ("Floor3/Enemy_MegarachneBoss", "Boss_Megarachne_Hurt", null, null, null, null),
         };
 
         // Efectos visuales que suenan al aparecer.

@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using Primordia.Combat;
 using Primordia.Core;
 using UnityEngine;
@@ -39,11 +40,25 @@ namespace Primordia.Enemies
             Health.InvulnerabilityAfterHit = 0f;
             Health.Damaged += Hurt;
             Health.Died += Die;
+            // Todas las crías vivas comparten un bucle.
+            SharedLoop.Acquire(Sounds.BossMegarachneBroodLoop);
+            looping = true;
             Show();
+        }
+
+        bool looping;
+
+        void StopLoop()
+        {
+            if (!looping)
+                return;
+            looping = false;
+            SharedLoop.Release(Sounds.BossMegarachneBroodLoop);
         }
 
         void OnDestroy()
         {
+            StopLoop();
             if (Health == null) return;
             Health.Damaged -= Hurt;
             Health.Died -= Die;
@@ -53,6 +68,8 @@ namespace Primordia.Enemies
 
         void Die()
         {
+            StopLoop();
+            Sfx.Play(Sounds.BossMegarachneBroodDeath);
             hit.enabled = false;
             Play(State.Death);
         }
@@ -92,7 +109,11 @@ namespace Primordia.Enemies
                 if (!bit && age >= BiteFrame * frame)
                 {
                     bit = true;
-                    if (close) target.GetComponent<Health>()?.TakeDamage(BiteDamage);
+                    if (close)
+                    {
+                        Sfx.Play(Sounds.BossMegarachneBroodBite);
+                        target.GetComponent<Health>()?.TakeDamage(BiteDamage);
+                    }
                 }
                 if (age >= BiteFrames * frame) Play(State.Move);
             }

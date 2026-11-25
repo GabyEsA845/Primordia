@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using System;
 using System.Collections.Generic;
 using Primordia.Core;
@@ -107,18 +108,21 @@ namespace Primordia.Enemies
             if (kind == AttackKind.Jump)
             {
                 attack = AttackStage.JumpWarn;
+                Sfx.Play(Sounds.BossMegarachneJumpWarn);
                 marker = CreateFx("MarcaSalto", attackPoint);
                 Play("DropWarn", WarnMs);
             }
             else if (kind == AttackKind.Silk)
             {
                 attack = AttackStage.Silk;
+                Sfx.Play(Sounds.BossMegarachneSilkVolley);
                 silkReleased = false;
                 Play("SilkShoot", SilkMs);
             }
             else
             {
                 attack = AttackStage.NetWarn;
+                Sfx.Play(Sounds.BossMegarachneNetWarn);
                 marker = CreateFx("Red", attackPoint);
                 Play("Weave", WeaveMs);
             }
@@ -189,6 +193,7 @@ namespace Primordia.Enemies
                     if (t >= 1f)
                     {
                         RemoveMarker();
+                        Sfx.Play(Sounds.BossMegarachneJumpLand);
                         Land();
                         Play("Land", LandMs);
                         SpawnFx("Fx_MegarachneDust", attackPoint);
@@ -205,7 +210,12 @@ namespace Primordia.Enemies
                     marker.transform.position = attackPoint;
                     // La hoja aprobada ya incluye el crecimiento de la sombra.
                     Frame(marker, "Fx_MegarachneNet_Shadow", stageTime / NetWarning * 6f * FxFrameSeconds, false);
-                    if (stageTime >= NetWarning) { attack = AttackStage.NetFall; stageTime = 0f; }
+                    if (stageTime >= NetWarning)
+                    {
+                        attack = AttackStage.NetFall;
+                        stageTime = 0f;
+                        Sfx.Play(Sounds.BossMegarachneNetDrop);
+                    }
                     break;
                 case AttackStage.NetFall:
                     Frame(marker, "Fx_MegarachneNet_Fall", stageTime, false);
@@ -259,6 +269,7 @@ namespace Primordia.Enemies
                 if (health.IsDead || player.IsDodging || player.IsLunging) continue;
                 health.TakeDamage(NetDamage);
                 trappedPlayer = player;
+                Sfx.Play(Sounds.BossMegarachneNetTrap);
                 savedMovementLock = player.MovementLocked;
                 player.MovementLocked = true;
                 player.StopLunge();
@@ -353,6 +364,8 @@ namespace Primordia.Enemies
                 Frame(ball.renderer, "Proj_MegarachneSilk", ball.age);
                 if (impact || ball.remaining <= Mathf.Epsilon)
                 {
+                    // Caen 5-7 casi a la vez: el intervalo del sonido las junta.
+                    Sfx.Play(Sounds.BossMegarachneSilkSplat);
                     CreateWeb(end);
                     Destroy(ball.renderer.gameObject);
                     silkBalls.RemoveAt(i);
@@ -386,6 +399,14 @@ namespace Primordia.Enemies
 
         void ClearAttacks(bool clearWebs = true)
         {
+            // Si un ataque se interrumpe, se cortan sus avisos.
+            if (attack != AttackStage.None)
+            {
+                Sfx.Stop(Sounds.BossMegarachneJumpWarn);
+                Sfx.Stop(Sounds.BossMegarachneNetWarn);
+                Sfx.Stop(Sounds.BossMegarachneNetDrop);
+                Sfx.Stop(Sounds.BossMegarachneSacWeave);
+            }
             ReleasePlayer();
             RemoveMarker();
             foreach (var ball in silkBalls) if (ball.renderer != null) Destroy(ball.renderer.gameObject);

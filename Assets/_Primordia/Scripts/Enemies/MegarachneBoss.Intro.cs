@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using Primordia.Core;
 using UnityEngine;
 
@@ -57,6 +58,7 @@ namespace Primordia.Enemies
             if (entryStage != EntryStage.Waiting) return;
             entryStage = EntryStage.Eyes;
             entryTime = 0f;
+            Sfx.Play(Sounds.BossMegarachneIntro);
             ScreenShake.Pulse(EntryShakePixels, EntryShakeSeconds);
         }
 
@@ -93,6 +95,7 @@ namespace Primordia.Enemies
                     if (shadowRenderer != null) shadowRenderer.enabled = true;
                     entryStage = EntryStage.Descend;
                     entryTime = 0f;
+                    Sfx.Play(Sounds.BossMegarachneDrop);
                     break;
                 case EntryStage.Descend:
                     SetHeight(Mathf.Lerp(dropHeight, 0f, entryTime / DropSeconds));

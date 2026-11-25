@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using Primordia.Core;
 using UnityEngine;
 
@@ -34,6 +35,11 @@ namespace Primordia.Enemies
             Health.ResetHealth();
             Health.InvulnerabilityAfterHit = 0f;
             Health.Died += Break;
+            Health.Damaged += _ =>
+            {
+                if (Health.Current > 0)
+                    Sfx.Play(Sounds.BossMegarachneSacHit);
+            };
             Show();
         }
 
@@ -51,6 +57,9 @@ namespace Primordia.Enemies
 
         void Finish(Stage ending)
         {
+            // Si estaba temblando, el temblor se corta; rotura por el jugador (sin crías) o reventón (salen las crías).
+            Sfx.Stop(Sounds.BossMegarachneSacTremble);
+            Sfx.Play(ending == Stage.Break ? Sounds.BossMegarachneSacBreak : Sounds.BossMegarachneSacBurst);
             stage = ending;
             age = 0f;
             hit.enabled = false;
@@ -64,6 +73,7 @@ namespace Primordia.Enemies
             if (stage == Stage.Idle && age >= IdleSeconds)
             {
                 stage = Stage.Tremble;
+                Sfx.Play(Sounds.BossMegarachneSacTremble);
                 age -= IdleSeconds;
             }
             if (stage == Stage.Tremble && age >= TrembleSeconds) Burst();

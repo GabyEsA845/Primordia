@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using Primordia.Combat;
 using Primordia.Core;
 using Primordia.Player;
@@ -137,10 +138,50 @@ namespace Primordia.Enemies
 #endif
         }
 
+        // Sonido del movimiento: el bucle del cable o el del suelo (excluyentes), y subir / bajar del cable.
+        Vector2 lastSoundPosition;
+        Travel lastSoundTravel;
+
+        void UpdateMovementSound()
+        {
+            Vector2 position = body.position;
+            bool moved = (position - lastSoundPosition).sqrMagnitude > 0.00001f;
+            lastSoundPosition = position;
+
+            bool onCable = CurrentMode == Mode.OnCable && travel is Travel.Run or Travel.Cross && attack != AttackStage.JumpFall;
+            bool onGround = CurrentMode == Mode.Ground && travel == Travel.None && !IsEnraging && !IsAttacking && moved;
+            if (onCable)
+                Sfx.StartLoop(Sounds.BossMegarachneCableRunLoop);
+            else
+                Sfx.StopLoop(Sounds.BossMegarachneCableRunLoop);
+            if (onGround)
+                Sfx.StartLoop(Sounds.BossMegarachneWalkLoop);
+            else
+                Sfx.StopLoop(Sounds.BossMegarachneWalkLoop);
+
+            if (travel != lastSoundTravel)
+            {
+                if (travel == Travel.Climb)
+                    Sfx.Play(Sounds.BossMegarachneClimb);
+                else if (travel == Travel.Drop)
+                    Sfx.Play(Sounds.BossMegarachneDrop);
+                lastSoundTravel = travel;
+            }
+        }
+
+        void StopMovementSound()
+        {
+            Sfx.StopLoop(Sounds.BossMegarachneCableRunLoop);
+            Sfx.StopLoop(Sounds.BossMegarachneWalkLoop);
+            Sfx.StopLoop(Sounds.BossMegarachneCableFuseLoop);
+            cableFusing = false;
+        }
+
         void FixedUpdate()
         {
-            if (Health.IsDead) { ClearAttacks(); return; }
+            if (Health.IsDead) { ClearAttacks(); StopMovementSound(); return; }
             float dt = Time.fixedDeltaTime;
+            UpdateMovementSound();
             if (TickEntry(dt)) return;
             CheckRageHealth(Health.Current, Health.Max);
             TickNest(dt);

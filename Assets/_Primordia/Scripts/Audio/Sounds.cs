@@ -448,5 +448,40 @@ namespace Primordia.Audio
         public const string BossArthropleuraRollCrash = "Boss_Arthropleura_Roll_Crash";
         public const string BossArthropleuraDeath = "Boss_Arthropleura_Death";
         public const string BossArthropleuraSmolderLoop = "Boss_Arthropleura_Smolder_Loop";
+
+        // Piso 3, tanda 8: minijefe Megarachne (el golpe va en los datos del jefe)
+        public const string BossMegarachneIntro = "Boss_Megarachne_Intro";
+        public const string BossMegarachneCableRunLoop = "Boss_Megarachne_CableRun_Loop";
+        public const string BossMegarachneWalkLoop = "Boss_Megarachne_Walk_Loop";
+        public const string BossMegarachneClimb = "Boss_Megarachne_Climb";
+        public const string BossMegarachneDrop = "Boss_Megarachne_Drop";
+        public const string BossMegarachneJumpWarn = "Boss_Megarachne_Jump_Warn";
+        public const string BossMegarachneJumpLand = "Boss_Megarachne_Jump_Land";
+        public const string BossMegarachneSilkVolley = "Boss_Megarachne_SilkVolley";
+        public const string BossMegarachneSilkSplat = "Boss_Megarachne_Silk_Splat";
+        public const string BossMegarachneNetWarn = "Boss_Megarachne_Net_Warn";
+        public const string BossMegarachneNetDrop = "Boss_Megarachne_Net_Drop";
+        public const string BossMegarachneNetTrap = "Boss_Megarachne_Net_Trap";
+        public const string BossMegarachneSacWeave = "Boss_Megarachne_Sac_Weave";
+        public const string BossMegarachneSacTremble = "Boss_Megarachne_Sac_Tremble";
+        public const string BossMegarachneSacHit = "Boss_Megarachne_Sac_Hit";
+        public const string BossMegarachneSacBreak = "Boss_Megarachne_Sac_Break";
+        public const string BossMegarachneSacBurst = "Boss_Megarachne_Sac_Burst";
+        public const string BossMegarachneBroodLoop = "Boss_Megarachne_Brood_Loop";
+        public const string BossMegarachneBroodBite = "Boss_Megarachne_Brood_Bite";
+        public const string BossMegarachneBroodDeath = "Boss_Megarachne_Brood_Death";
+        public const string BossMegarachneCableWeave = "Boss_Megarachne_Cable_Weave";
+        public const string BossMegarachneCableIgnite = "Boss_Megarachne_Cable_Ignite";
+        public const string BossMegarachneCableFuseLoop = "Boss_Megarachne_Cable_Fuse_Loop";
+        public const string BossMegarachneCableSnap = "Boss_Megarachne_Cable_Snap";
+        public const string BossMegarachneFallStunned = "Boss_Megarachne_Fall_Stunned";
+        public const string BossMegarachneRageScreech = "Boss_Megarachne_Rage_Screech";
+        public const string BossMegarachneNestWither = "Boss_Megarachne_Nest_Wither";
+        public const string BossMegarachneNestBurn = "Boss_Megarachne_Nest_Burn";
+        public const string BossMegarachneWebCollapse = "Boss_Megarachne_Web_Collapse";
+        public const string BossMegarachneDeath = "Boss_Megarachne_Death";
+        public const string BossMegarachneCablesDrop = "Boss_Megarachne_Cables_Drop";
+        public const string BossMegarachneCocoonFall = "Boss_Megarachne_Cocoon_Fall";
+        public const string BossMegarachneCocoonOpen = "Boss_Megarachne_Cocoon_Open";
     }
 }

@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using System;
 using Primordia.Core;
 using UnityEngine;
@@ -125,6 +126,9 @@ namespace Primordia.Enemies
                     if (bodyRenderer != null) bodyRenderer.enabled = false;
                     if (shadowRenderer != null) shadowRenderer.enabled = false;
                     rageStage = RageStage.Screech;
+                    // El chillido dura 2,5 s; a mitad el árbol se seca.
+                    Sfx.Play(Sounds.BossMegarachneRageScreech);
+                    Invoke(nameof(PlayNestWither), ScreechSeconds * 0.5f);
                     rageTime = 0f;
                     ScreenShake.Pulse(ShakePixels, ShakeSeconds);
                     break;
@@ -243,6 +247,8 @@ namespace Primordia.Enemies
         {
             if (!isActiveAndEnabled || Health.IsDead || !NestCanBurn) return false;
             NestBurned = true;
+            Sfx.Play(Sounds.BossMegarachneNestBurn);
+            Invoke(nameof(PlayWebCollapse), NestBurnSeconds);
             nestTime = 0f;
             ClearAttacks(false);
             for (int i = 0; i < CableCount; i++)
@@ -267,6 +273,10 @@ namespace Primordia.Enemies
             TickFireReaction(0f);
             return true;
         }
+
+        void PlayNestWither() => Sfx.Play(Sounds.BossMegarachneNestWither);
+
+        void PlayWebCollapse() => Sfx.Play(Sounds.BossMegarachneWebCollapse);
 
         void ShowNestTree(string name, float frame, bool loop)
         {

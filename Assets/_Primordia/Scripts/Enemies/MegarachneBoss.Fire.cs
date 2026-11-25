@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using System;
 using System.Collections.Generic;
 using Primordia.Rooms;
@@ -124,6 +125,7 @@ namespace Primordia.Enemies
         {
             if (!CanIgniteCable(i)) return false;
             var cable = cableFire[i];
+            Sfx.Play(Sounds.BossMegarachneCableIgnite);
             cable.state = CableState.Burning;
             cable.low = cable.high = Mathf.Clamp(distance, cable.nestLimit, cable.length);
             cable.age = 0f;
@@ -148,6 +150,7 @@ namespace Primordia.Enemies
         {
             if (cableFire == null) return;
             fireClock += dt;
+            UpdateCableFuseSound();
             TickFireSacs();
             TickAsh(dt);
             for (int i = 0; i < CableCount; i++)
@@ -175,6 +178,7 @@ namespace Primordia.Enemies
                         if (!IsEnraging && !cable.retired && cable.age >= (IsRage ? RageReweaveDelay : ReweaveDelay))
                         {
                             cable.state = CableState.Growing;
+                            Sfx.Play(Sounds.BossMegarachneCableWeave);
                             cable.age = 0f;
                             if (cable.growingMaterial == null) cable.growingMaterial = MakeFireMaterial(cableFireArt.growing, GrowFrames);
                             cable.outer.sharedMaterial = cable.growingMaterial;
@@ -215,6 +219,7 @@ namespace Primordia.Enemies
             DrawBurningCable(i, cable);
             if (cable.low > cable.nestLimit || cable.high < cable.length) return;
 
+            Sfx.Play(Sounds.BossMegarachneCableSnap);
             cable.state = CableState.Missing;
             cable.age = 0f;
             cable.normal.enabled = cable.outer.enabled = cable.charred.enabled = false;
@@ -366,6 +371,7 @@ namespace Primordia.Enemies
                 if (fireFallHeight > 0f)
                 {
                     CurrentMode = Mode.Falling;
+                    Sfx.Play(Sounds.BossMegarachneFallStunned);
                     Play("Fall", FallMs);
                 }
                 else BeginStun();
@@ -411,6 +417,25 @@ namespace Primordia.Enemies
                     return false;
             }
             return true;
+        }
+
+        // El bucle de la mecha suena mientras el fuego corra por algún cable (puede haber dos ardiendo).
+        bool cableFusing;
+
+        void UpdateCableFuseSound()
+        {
+            bool burning = false;
+            for (int i = 0; i < CableCount && !burning; i++)
+                burning = cableFire[i].state == CableState.Burning;
+            if (Health.IsDead)
+                burning = false;
+            if (burning == cableFusing)
+                return;
+            cableFusing = burning;
+            if (burning)
+                Sfx.StartLoop(Sounds.BossMegarachneCableFuseLoop);
+            else
+                Sfx.StopLoop(Sounds.BossMegarachneCableFuseLoop);
         }
 
         void BeginStun()

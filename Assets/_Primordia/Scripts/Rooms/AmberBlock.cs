@@ -75,7 +75,7 @@ namespace Primordia.Rooms
 
         IEnumerator Break(GameObject player)
         {
-            Sfx.Play(Sounds.ClamOpenBig);
+            Sfx.Play(Sounds.RoomAmberBlockBreak);
             if (glow != null)
                 glow.enabled = false;
             for (int i = 0; i < shatter.Length; i++)

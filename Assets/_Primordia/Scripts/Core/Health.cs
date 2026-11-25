@@ -184,6 +184,9 @@ namespace Primordia.Core
         /// <summary>Se lanza cuando un golpe no hace nada porque es invulnerable (la ameba gigante en su escena final).</summary>
         public event Action Deflected;
 
+        /// <summary>Un golpe no hace nada porque ahora no puede recibir daño (invulnerable por tiempo o por estado). Para el sonido de la Cápsula.</summary>
+        public event Action BlockedWhileInvulnerable;
+
         float invulnerableUntil;
         int shields;
         int barrier;
@@ -277,6 +280,8 @@ namespace Primordia.Core
             {
                 if (amount > 0 && !IsDead && IsInvulnerable)
                     Deflected?.Invoke();
+                if (amount > 0 && !IsDead)
+                    BlockedWhileInvulnerable?.Invoke();
                 return false;
             }
             if (DamageGate != null)

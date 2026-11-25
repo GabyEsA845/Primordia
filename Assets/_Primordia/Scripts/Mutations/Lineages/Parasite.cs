@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using System;
 using System.Collections.Generic;
 using Primordia.Combat;
@@ -67,6 +68,9 @@ namespace Primordia.Mutations
         public static bool Has(Health target) => target != null && target.TryGetComponent<Parasite>(out _);
 
         /// <summary>Pega un parásito. Null si no cabe (máximo), ya lo tiene, está muerto o no es un enemigo.</summary>
+        // Al saltar de un huésped muerto a otro, o al duplicar con la Lamprea, suena su propio sonido y no el de pegarse.
+        internal static bool QuietAttach;
+
         public static Parasite Attach(Health target, int damagePerSecond, GameObject marker, GameObject jump)
         {
             if (target == null || target.IsDead || all.Count >= Limit || !target.TryGetComponent<Enemy>(out _) || Has(target))
@@ -81,6 +85,8 @@ namespace Primordia.Mutations
             target.Died += parasite.OnHostDied;
             // Pegado al cuerpo, no encima de la cabeza.
             StatusMarkers.Show(target, Key, marker, 0f, overhead: false);
+            if (!QuietAttach)
+                Sfx.Play(Sounds.LineageParasiteAttach);
             Attached?.Invoke(parasite);
             return parasite;
         }
@@ -124,7 +130,10 @@ namespace Primordia.Mutations
             // Si ha matado al enemigo, su muerte ya ha movido el parásito (OnHostDied).
             int taken = before - host.Current;
             if (taken > 0)
+            {
+                Sfx.Play(Sounds.LineageParasiteSuck);
                 Drained?.Invoke(this, taken);
+            }
         }
 
         void OnHostDied()
@@ -137,9 +146,19 @@ namespace Primordia.Mutations
 
             if (next == null)
                 return;
-            var moved = Attach(next, damage, markerPrefab, jumpEffect);
+            QuietAttach = true;
+            Parasite moved;
+            try
+            {
+                moved = Attach(next, damage, markerPrefab, jumpEffect);
+            }
+            finally
+            {
+                QuietAttach = false;
+            }
             if (moved != null)
             {
+                Sfx.Play(Sounds.LineageParasiteJump);
                 // El bicho cruza en arco de un cuerpo al otro (el efecto se destruye al llegar).
                 var leap = OneShotEffect.Spawn(jumpEffect, origin);
                 if (leap != null && leap.TryGetComponent<ArcFlight>(out var flight))

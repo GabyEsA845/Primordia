@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using Primordia.Core;
 using Primordia.Player;
 using UnityEngine;
@@ -62,8 +63,21 @@ namespace Primordia.Mutations
                 benefit.SetLimit(spinLimit);
                 highUntil = Time.time + LimitGrace;
                 var next = Parasite.FindNextHost(parasite.Host);
-                if (next != null && benefit.AttachTo(next) != null)
+                Parasite.QuietAttach = true;
+                Parasite second;
+                try
+                {
+                    second = next != null ? benefit.AttachTo(next) : null;
+                }
+                finally
+                {
+                    Parasite.QuietAttach = false;
+                }
+                if (second != null)
+                {
+                    Sfx.Play(Sounds.LineageLampreyAttach);
                     Duplicated++;
+                }
             }
             finally
             {

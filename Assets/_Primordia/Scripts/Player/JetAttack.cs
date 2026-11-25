@@ -417,7 +417,10 @@ namespace Primordia.Player
             if (toxifiable == null)
                 return false;
             if (toxifiable.CanToxify)
+            {
                 toxifiable.Toxify();
+                Sfx.Play(Sounds.LineageGasStingToxify);
+            }
             return true;
         }
 

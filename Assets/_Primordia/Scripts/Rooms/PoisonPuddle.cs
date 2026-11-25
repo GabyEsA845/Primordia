@@ -89,12 +89,16 @@ namespace Primordia.Rooms
         /// Hace un charco en ese punto (el centro del dibujo). Sin <paramref name="harmsPlayer"/>, el jugador lo pisa sin frenarse ni
         /// envenenarse (los charcos que deja él mismo). Null si no hay arte del veneno.
         /// </summary>
+        // Quien ya hace su propio sonido (el toque del Ciempiés) pide un charco sin el sonido de siempre.
+        internal static bool QuietSpawn;
+
         public static PoisonPuddle Spawn(Vector2 position, float seconds = DefaultSeconds, bool harmsPlayer = true)
         {
             var kit = ReactionKit.Current;
             if (kit == null || kit.PuddleIdle.Length == 0)
                 return null;
-            Sfx.Play(Sounds.PoisonPuddle);
+            if (!QuietSpawn)
+                Sfx.Play(Sounds.PoisonPuddle);
             return Create(kit, position, seconds, Radius, harmsPlayer, splat: false);
         }
 

@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using System;
 using System.Collections.Generic;
 using Primordia.Core;
@@ -146,6 +147,7 @@ namespace Primordia.Mutations
             Healed++;
             if (player.Current >= player.Max)
                 return;
+            Sfx.Play(Sounds.LineageParasiteDrain);
             player.Heal(1);
             OneShotEffect.Spawn(healEffect, transform.position, parent: transform);
         }

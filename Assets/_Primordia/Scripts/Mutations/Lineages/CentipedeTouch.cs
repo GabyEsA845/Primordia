@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using Primordia.Combat;
 using Primordia.Rooms;
 using UnityEngine;
@@ -33,7 +34,17 @@ namespace Primordia.Mutations
         void OnLanded(Vector2 point)
         {
             PuddlesLeft++;
-            PoisonPuddle.Spawn(point, puddleSeconds, harmsPlayer: false);
+            // Suena su propio sonido y no el del charco normal.
+            Sfx.Play(Sounds.LineageCentipedePuddle);
+            PoisonPuddle.QuietSpawn = true;
+            try
+            {
+                PoisonPuddle.Spawn(point, puddleSeconds, harmsPlayer: false);
+            }
+            finally
+            {
+                PoisonPuddle.QuietSpawn = false;
+            }
         }
 
         void OnDestroy()

@@ -82,7 +82,9 @@ namespace Primordia.Mutations
                 return amount;
 
             int damage = Health.ScaleDamage(amount, target.TryGetComponent<IBoss>(out _) ? bossMultiplier : multiplier);
-            Sfx.Play(Sounds.LineageFinisher);
+            // Xenacanthus: si solo cuenta como herido por estar confundido, suena la espina.
+            Sfx.Play(confusedCount && target.TryGetComponent<EnemyAI>(out var confusedAI) && confusedAI.IsConfused
+                && target.Current > target.Max * threshold ? Sounds.LineageXenacanthusSpine : Sounds.LineageFinisher);
 
             // El modificador se aplica justo antes de quitar la vida: si llega a 0, este golpe es el remate (aunque
             // la muerte se anuncie más tarde, como la de la ameba que se divide).

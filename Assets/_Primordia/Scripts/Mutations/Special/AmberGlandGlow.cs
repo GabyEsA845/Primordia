@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using Primordia.Player;
 using UnityEngine;
 
@@ -14,6 +15,8 @@ namespace Primordia.Mutations
         PlayerAnimator animator;
         CreatureLayerMirror crystal;
         float chargeStart = -1f;
+        // Para avisar solo cuando la gota vuelve a estar lista, no al equiparla.
+        bool wasReady = true;
 
         /// <summary>De 0 a 1: lo cargada que está la gota que se está reteniendo.</summary>
         public float Charge { get; private set; }
@@ -40,6 +43,10 @@ namespace Primordia.Mutations
 
         void Update()
         {
+            bool ready = ability == null || ability.IsReady;
+            if (ready && !wasReady)
+                Sfx.Play(Sounds.SpecialDropReady);
+            wasReady = ready;
             if (IsCharging)
                 Charge = Mathf.Clamp01((Time.time - chargeStart) / Mathf.Max(0.05f, mutation.ChargeSeconds));
             UpdateCrystal();

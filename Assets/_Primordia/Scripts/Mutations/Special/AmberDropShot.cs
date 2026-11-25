@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using Primordia.Combat;
 using Primordia.Core;
 using Primordia.Enemies;
@@ -55,6 +56,7 @@ namespace Primordia.Mutations
             if (settings.dropFrames != null && settings.dropFrames.Length > 1)
                 go.AddComponent<SpriteFramePlayer>().Play(shot.renderer2D, settings.dropFrames, 0.08f, newLoop: true);
             go.transform.right = shot.direction;
+            Sfx.Play(Sounds.SpecialDropShoot);
             return shot;
         }
 

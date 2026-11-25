@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using Primordia.Core;
 using Primordia.Player;
 using Primordia.Rooms;
@@ -94,6 +95,8 @@ namespace Primordia.Mutations
             float now = Time.time;
             bool was = inMud;
             inMud = forceInMud ?? DetectMud();
+            if (inMud && !was)
+                Sfx.StartLoop(Sounds.LineageEryopsWadeLoop);
             if (inMud)
             {
                 buffUntil = now + buffSeconds;
@@ -101,6 +104,8 @@ namespace Primordia.Mutations
             }
             else if (was)
             {
+                Sfx.StopLoop(Sounds.LineageEryopsWadeLoop);
+                Sfx.Play(Sounds.LineageEryopsEmerge);
                 exitTime = now;
                 afterMud = true;
                 flakesDropped = false;
@@ -274,6 +279,7 @@ namespace Primordia.Mutations
 
         void OnDestroy()
         {
+            Sfx.StopLoop(Sounds.LineageEryopsWadeLoop);
             if (sink != null)
             {
                 sink.SinkImmune = false;

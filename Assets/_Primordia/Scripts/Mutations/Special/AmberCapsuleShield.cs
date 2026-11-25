@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using Primordia.Core;
 using Primordia.Player;
 using Primordia.Rooms;
@@ -67,6 +68,7 @@ namespace Primordia.Mutations
             animator = GetComponent<PlayerAnimator>();
             left = settings.perRoom;
             health.Damaged += OnDamaged;
+            health.BlockedWhileInvulnerable += OnBlocked;
             Health.AddLethalInterceptor(Intercept);
             Room.PlayerEnteredAny += OnRoomEntered;
             halo = AmberHalo.Create(animator, settings.halo, settings.levelThree, left);
@@ -76,6 +78,7 @@ namespace Primordia.Mutations
         {
             if (health != null)
                 health.Damaged -= OnDamaged;
+                health.BlockedWhileInvulnerable -= OnBlocked;
             Health.RemoveLethalInterceptor(Intercept);
             Room.PlayerEnteredAny -= OnRoomEntered;
             Unlock();
@@ -98,6 +101,13 @@ namespace Primordia.Mutations
 
         // Un golpe mortal con una activación a mano: no se muere; la cápsula lo recoge.
         bool Intercept(Health target) => target == health && left > 0 && shell == null;
+
+        // Un golpe que choca contra la cápsula mientras estás dentro.
+        void OnBlocked()
+        {
+            if (shell != null && !shell.IsBroken && !shell.IsForming)
+                Sfx.Play(Sounds.SpecialCapsuleHit);
+        }
 
         void OnDamaged(int amount)
         {
@@ -140,6 +150,7 @@ namespace Primordia.Mutations
             shell = AmberShell.Create(transform, art, settings.lockSeconds, AmberShell.Anchor.Center,
                 freezeWorld: art.FormSeconds > 0f, heal: settings.healArt);
             shell.Broken += OnBroken;
+            Sfx.Play(Sounds.SpecialCapsuleEncase);
         }
 
         /// <summary>Cura medio corazón en cada pulso de la curación y tiñe de dorado a la criatura.</summary>
@@ -148,6 +159,8 @@ namespace Primordia.Mutations
             float held = shell.HoldTime;
             while (healedPulses < settings.heal && held >= PulseTime(healedPulses))
             {
+                if (healedPulses == 0)
+                    Sfx.Play(Sounds.SpecialCapsuleHeal);
                 health.Heal(1);
                 healedPulses++;
             }
@@ -193,6 +206,7 @@ namespace Primordia.Mutations
             }
             ClearTint();
             Unlock();
+            Sfx.Play(Sounds.SpecialCapsuleShatter);
             AmberShards.Burst(center, settings.shardRadius, settings.shardDamage, settings.shardPush, settings.shardStun);
         }
 

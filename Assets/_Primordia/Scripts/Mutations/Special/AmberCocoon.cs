@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using Primordia.Combat;
 using Primordia.Core;
 using Primordia.Enemies;
@@ -68,6 +69,7 @@ namespace Primordia.Mutations
             {
                 // Nivel III: muere al instante y su cadáver queda en ámbar.
                 AmberCorpse.Create(health, settings, large);
+                Sfx.Play(Sounds.SpecialDropFossil);
                 return null;
             }
 
@@ -87,6 +89,8 @@ namespace Primordia.Mutations
             cocoon.shell = AmberShell.Create(health.transform, art, hold, AmberShell.Anchor.Feet, boss ? 0f : FormDelay);
             cocoon.shell.CrackByTime = !boss;
             cocoon.shell.Broken += cocoon.OnBroken;
+            // El bloque se forma tras FormDelay (0,12 s): el sonido de encierro cae ahí.
+            cocoon.Invoke(nameof(PlayEncase), boss ? 0f : FormDelay);
             return cocoon;
         }
 
@@ -107,12 +111,16 @@ namespace Primordia.Mutations
             if (!stunOnly && Time.time >= nextTick && settings.damagePerSecond > 0 && shell != null && !shell.IsBroken)
             {
                 nextTick = Time.time + TickSeconds;
+                Sfx.Play(Sounds.SpecialDropHit);
                 health.TakeDamage(Mathf.Max(1, Mathf.RoundToInt(settings.damagePerSecond * TickSeconds)));
             }
         }
 
+        void PlayEncase() => Sfx.Play(Sounds.SpecialDropEncase);
+
         void OnBroken(Vector2 center)
         {
+            Sfx.Play(Sounds.SpecialDropShatter);
             if (!stunOnly)
                 AmberShards.Burst(center, settings.shardRadius, settings.shardDamage, settings.shardPush, 0f, health);
             Destroy(this);
@@ -241,6 +249,8 @@ namespace Primordia.Mutations
         {
             if (shell == null || max <= 0)
                 return;
+            if (current < max)
+                Sfx.Play(Sounds.SpecialDropHit);
             shell.SetCrackPhase(Mathf.CeilToInt(3f * (max - current) / max));
         }
 
@@ -253,6 +263,7 @@ namespace Primordia.Mutations
         // En el cuadro que libera, el fósil ya no está y salen las esquirlas.
         void OnBroken(Vector2 center)
         {
+            Sfx.Play(Sounds.SpecialDropShatter);
             AmberShards.Burst(center, settings.shardRadius, settings.shardDamage, settings.shardPush, 0f);
             Destroy(gameObject);
         }

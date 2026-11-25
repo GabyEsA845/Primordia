@@ -107,11 +107,14 @@ namespace Primordia.Mutations
                 var point = corpse + Random.insideUnitCircle.normalized * Random.Range(spacing, spacing * 1.6f);
                 if (!IsFree(point, radius))
                     continue;
-                Sfx.Play(Sounds.LineageColonize);
+                // Piso 3: la mata grande que brota sobre el enemigo muerto tiene su propio sonido.
+                Sfx.Play(FloorColonize ? (large ? Sounds.LineageMushroomSprout : Sounds.LineageColonizeFloor3) : Sounds.LineageColonize);
                 Spawn(point, large);
                 return;
             }
         }
+
+        static bool FloorColonize => Primordia.Rooms.FloorGenerator.CurrentFloor >= 3;
 
         // Al entrar todavía no se sabe si la sala tiene enemigos: se mira después.
         void OnRoomEntered(Room room) => pendingRoom = room;
@@ -141,7 +144,7 @@ namespace Primordia.Mutations
         public void Colonize(Bounds bounds)
         {
             ClearMats();
-            Sfx.Play(Sounds.LineageColonize);
+            Sfx.Play(FloorColonize ? Sounds.LineageColonizeFloor3 : Sounds.LineageColonize);
 
             for (int i = 0; i < count; i++)
             {

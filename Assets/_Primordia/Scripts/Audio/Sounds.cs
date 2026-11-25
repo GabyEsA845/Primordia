@@ -289,5 +289,34 @@ namespace Primordia.Audio
         public const string PlayerDodgeFrog = "Player_Dodge_Frog";
         public const string PlayerDodgeDiplocaulus = "Player_Dodge_Diplocaulus";
         public const string PlayerDodgeScorpion = "Player_Dodge_Scorpion";
+
+        // Piso 3, tanda 3: especiales del ámbar, clases y linajes
+        public const string RoomAmberBlockBreak = "Room_AmberBlock_Break";
+        public const string SpecialCerciDash = "Special_Cerci_Dash";
+        public const string SpecialCerciReady = "Special_Cerci_Ready";
+        public const string SpecialCapsuleEncase = "Special_Capsule_Encase";
+        public const string SpecialCapsuleHeal = "Special_Capsule_Heal";
+        public const string SpecialCapsuleHit = "Special_Capsule_Hit";
+        public const string SpecialCapsuleShatter = "Special_Capsule_Shatter";
+        public const string SpecialDropShoot = "Special_Drop_Shoot";
+        public const string SpecialDropEncase = "Special_Drop_Encase";
+        public const string SpecialDropHit = "Special_Drop_Hit";
+        public const string SpecialDropShatter = "Special_Drop_Shatter";
+        public const string SpecialDropFossil = "Special_Drop_Fossil";
+        public const string SpecialDropReady = "Special_Drop_Ready";
+        public const string LineageParasiteAttach = "Lineage_Parasite_Attach";
+        public const string LineageParasiteSuck = "Lineage_Parasite_Suck";
+        public const string LineageParasiteDrain = "Lineage_Parasite_Drain";
+        public const string LineageParasiteJump = "Lineage_Parasite_Jump";
+        public const string LineageColonizeFloor3 = "Lineage_Colonize_Floor3";
+        public const string LineageMushroomSprout = "Lineage_Mushroom_Sprout";
+        public const string LineageEryopsWadeLoop = "Lineage_Eryops_Wade_Loop";
+        public const string LineageEryopsEmerge = "Lineage_Eryops_Emerge";
+        public const string LineageXenacanthusSpine = "Lineage_Xenacanthus_Spine";
+        public const string LineageGasStingToxify = "Lineage_GasSting_Toxify";
+        public const string LineageCentipedePuddle = "Lineage_Centipede_Puddle";
+        public const string LineageZombieRise = "Lineage_Zombie_Rise";
+        public const string LineageZombieCollapse = "Lineage_Zombie_Collapse";
+        public const string LineageLampreyAttach = "Lineage_Lamprey_Attach";
     }
 }

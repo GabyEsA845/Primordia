@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using System.Collections.Generic;
 using Primordia.Combat;
 using Primordia.Core;
@@ -109,6 +110,7 @@ namespace Primordia.Mutations
             // Se queda con 1 de vida y es intocable mientras dura (se renueva en Update: TakeDamage pisa la del golpe que lo salvó).
             endTime = Time.time + seconds;
             riseEnd = Time.time + RiseSeconds;
+            Sfx.Play(Sounds.LineageZombieRise);
             lastPosition = transform.position;
 
             // No hiere al jugador al tocarlo: solo a los demás enemigos (lo hace Confusion con su daño de contacto).
@@ -180,6 +182,7 @@ namespace Primordia.Mutations
         void Fall()
         {
             ending = true;
+            Sfx.Play(Sounds.LineageZombieCollapse);
             SpriteFramePlayer.PlayOnce(art.Crumble, CrumbleFrameSeconds, FeetPosition(), BodyOrder() + 1);
             foreach (var renderer in GetComponentsInChildren<SpriteRenderer>())
                 renderer.enabled = false;

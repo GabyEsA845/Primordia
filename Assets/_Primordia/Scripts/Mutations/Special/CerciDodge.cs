@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using Primordia.Combat;
 using Primordia.Core;
 using Primordia.Player;
@@ -84,6 +85,8 @@ namespace Primordia.Mutations
                 bool now = Time.time >= readyAt[i];
                 // Una carga que vuelve: destello.
                 if (now && !wasReady[i])
+                    Sfx.Play(Sounds.SpecialCerciReady);
+                if (now && !wasReady[i])
                     FrameEffect.Play("CerciReady", settings.readyFrames, settings.frameDuration, SortingOrder, null, (Vector2)transform.position + Vector2.up * 0.7f);
                 wasReady[i] = now;
             }
@@ -119,6 +122,7 @@ namespace Primordia.Mutations
             wasReady[use] = false;
             DodgesMade++;
             health.MakeInvulnerable(settings.dodgeSeconds);
+            Sfx.Play(Sounds.SpecialCerciDash);
 
             Vector2 center = transform.position;
             FrameEffect.Play("CerciFlash", settings.flashFrames, settings.frameDuration, SortingOrder, transform, center);

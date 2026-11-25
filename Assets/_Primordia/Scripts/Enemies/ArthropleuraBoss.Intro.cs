@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using System.Collections.Generic;
 using Primordia.Core;
 using UnityEngine;
@@ -55,6 +56,7 @@ namespace Primordia.Enemies
             for (float angle = IntroRingStep; angle < Mathf.PI * 1.5f; angle += IntroRingStep)
                 introRoute.Add(RingPoint(start + turn * angle));
             introRoute.Add(new Vector2(0f, RingHalf.y));
+            Sfx.Play(Sounds.BossArthropleuraIntro);
             ScreenShake.Pulse(IntroShakePixels, IntroShakeSeconds);
             ScreenShake.SetRumble(this, IntroRumblePixels);
             nextIntroTremor = 0f;
@@ -86,6 +88,7 @@ namespace Primordia.Enemies
                 SpawnEffect(effects.edgeBreak, center + Vector2.up * ClearingHalf.y, 0f, 0.08f);
                 ScreenShake.ClearRumble(this);
                 ScreenShake.Pulse(BreachShakePixels, BreachShakeSeconds);
+                Sfx.Play(Sounds.BossArthropleuraEdgeBreak);
                 return; // El borde revienta antes de que avance la cabeza.
             }
             if (IntroStage == EntryStage.Peeking)

@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using System;
 using System.Collections.Generic;
 using Primordia.Combat;
@@ -164,6 +165,9 @@ namespace Primordia.Enemies
             var piece = firePieces[index];
             if (!piece.Ready) return;
             piece.state = FireState.Burning;
+            Sfx.Play(Sounds.BossArthropleuraIgnite);
+            Sfx.Play(Sounds.BossArthropleuraHiss);
+            Sfx.Play(Sounds.BossArthropleuraPlateOpen);
             piece.started = fireClock;
             piece.spreadAt = fireClock + FuseSeconds;
             if (!IsHidden(NodeGround(index)))
@@ -191,6 +195,8 @@ namespace Primordia.Enemies
             OpenSection(UnityEngine.Random.Range(2, 4));
         }
 
+        void PlayPlateClose() => Sfx.Play(Sounds.BossArthropleuraPlateClose);
+
         void OpenSection(int length)
         {
             // Solo el tronco (1..28): la cabeza y la cola tienen hoja propia sin placas articuladas.
@@ -200,6 +206,9 @@ namespace Primordia.Enemies
                 firePieces[i].forcedStart = fireClock;
                 firePieces[i].forcedSeconds = SectionOpenSeconds;
             }
+            // Un tramo de la F3 abre y cierra sus placas: el cierre cae al acabar el tiempo abierto.
+            Sfx.Play(Sounds.BossArthropleuraPlateOpen);
+            Invoke(nameof(PlayPlateClose), SectionOpenSeconds + PlateTransitionSeconds);
             LastSectionStart = start;
             LastSectionLength = length;
             SectionsOpened++;
@@ -226,6 +235,7 @@ namespace Primordia.Enemies
                 if (fireClock >= piece.started + PlatesOpenSeconds + 2 * PlateTransitionSeconds)
                 {
                     piece.state = FireState.Charred;
+                    Sfx.Play(Sounds.BossArthropleuraPlateClose);
                     piece.charred = true;
                     piece.cooledAt = fireClock + CharredCoolSeconds;
                 }
@@ -246,7 +256,10 @@ namespace Primordia.Enemies
                 burnFraction -= requested; // El exceso de la limitadora se descarta, no se acumula.
                 int allowed = fireLimiter.Apply(requested, DamageSource.Burn, fireClock);
                 int untilPhase2 = Mathf.Max(0, Health.Current - Mathf.RoundToInt(Health.Max * Thresholds[Mathf.Min(PhaseIndex, 2)]));
-                Health.Drain(Mathf.Min(allowed, untilPhase2));
+                int drained = Mathf.Min(allowed, untilPhase2);
+                if (drained > 0)
+                    Sfx.Play(Sounds.BossArthropleuraHurt);
+                Health.Drain(drained);
             }
             else burnFraction = 0f;
             foreach (var slot in sacs)
@@ -256,6 +269,7 @@ namespace Primordia.Enemies
                     slot.regrowAt = fireClock + SacRegrowSeconds;
                 if (PhaseIndex <= 1 && fireClock >= slot.regrowAt) GrowSac(slot);
             }
+            UpdateFuseSound();
             if (reachedPhase2 && !transitionStarted && CurrentMode != Mode.Charge)
             {
                 BeginTransition();

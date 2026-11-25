@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using System.Collections.Generic;
 using Primordia.Core;
 using UnityEngine;
@@ -151,6 +152,7 @@ namespace Primordia.Enemies
                     continue;
                 tree.direction = tree.foot.x >= head.x ? 1 : -1;
                 tree.state = TreeState.Falling;
+                Sfx.Play(Sounds.BossArthropleuraTreeFall);
                 tree.fallStart = fireClock;
                 tree.renderer.flipX = tree.direction < 0;
                 if (tree.collider != null) tree.collider.enabled = false;

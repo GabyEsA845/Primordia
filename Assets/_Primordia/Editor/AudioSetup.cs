@@ -76,6 +76,7 @@ namespace Primordia.Editor
             ["Boss_Lepidodendron_RootWall_Hit"] = 0.06f, ["Boss_Lepidodendron_RootWall_KnotHit"] = 0.06f,
             ["Boss_Lepidodendron_Wave_Spawn"] = 0.1f, ["Boss_Lepidodendron_Spore_Impact"] = 0.05f,
             ["Boss_Lepidodendron_Trunk_Hit"] = 0.08f, ["Boss_Meganeura_Nymph_Hurt"] = 0.1f,
+            ["Boss_Arthropleura_Ignite"] = 0.12f, ["Boss_Arthropleura_Stomp_Wave"] = 0.1f,
         };
 
         // Variación de tono distinta de la normal (la biomasa ya sube de tono al encadenarse).

@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using System.Collections.Generic;
 using Primordia.Core;
 using Primordia.Player;
@@ -79,9 +80,18 @@ namespace Primordia.Enemies
                 enemy.Died += _ => BuildCorpse();
         }
 
-        void OnEnable() { EnableFire(); if (awake && IntroStage == EntryStage.Complete) ActiveBoss.Set(this); }
+        // Lo que choca contra el caparazón (siempre invulnerable) suena sordo.
+        void OnShellHit() => Sfx.Play(Sounds.BossArthropleuraShellHit);
+
+        void OnEnable() { Health.Deflected += OnShellHit; EnableFire(); if (awake && IntroStage == EntryStage.Complete) ActiveBoss.Set(this); }
         void OnDisable()
         {
+            Health.Deflected -= OnShellHit;
+            Sfx.StopLoop(Sounds.BossArthropleuraRustleLoop);
+            Sfx.StopLoop(Sounds.BossArthropleuraLegsLoop);
+            Sfx.StopLoop(Sounds.BossArthropleuraRollLoop);
+            Sfx.StopLoop(Sounds.BossArthropleuraFuseLoop);
+            fusing = false;
             ActiveBoss.Clear(this);
             DisableFire();
             ReleaseCamera();

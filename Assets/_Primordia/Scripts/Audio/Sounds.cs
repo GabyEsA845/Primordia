@@ -418,5 +418,35 @@ namespace Primordia.Audio
         public const string BossMeganeuraDeath = "Boss_Meganeura_Death";
         public const string BossMeganeuraStormFade = "Boss_Meganeura_StormFade";
         public const string AmbFloor3RainLoop = "Amb_Floor3_Rain_Loop";
+
+        // Piso 3, tanda 7: jefe Arthropleura
+        public const string BossArthropleuraIntro = "Boss_Arthropleura_Intro";
+        public const string BossArthropleuraRustleLoop = "Boss_Arthropleura_Rustle_Loop";
+        public const string BossArthropleuraLegsLoop = "Boss_Arthropleura_Legs_Loop";
+        public const string BossArthropleuraChargeWarn = "Boss_Arthropleura_Charge_Warn";
+        public const string BossArthropleuraCharge = "Boss_Arthropleura_Charge";
+        public const string BossArthropleuraEdgeBreak = "Boss_Arthropleura_EdgeBreak";
+        public const string BossArthropleuraShellHit = "Boss_Arthropleura_Shell_Hit";
+        public const string BossArthropleuraPlateOpen = "Boss_Arthropleura_Plate_Open";
+        public const string BossArthropleuraPlateClose = "Boss_Arthropleura_Plate_Close";
+        public const string BossArthropleuraHurt = "Boss_Arthropleura_Hurt";
+        public const string BossArthropleuraIgnite = "Boss_Arthropleura_Ignite";
+        public const string BossArthropleuraFuseLoop = "Boss_Arthropleura_Fuse_Loop";
+        public const string BossArthropleuraHiss = "Boss_Arthropleura_Hiss";
+        public const string BossArthropleuraWallCollapse = "Boss_Arthropleura_WallCollapse";
+        public const string BossArthropleuraStompWarn = "Boss_Arthropleura_Stomp_Warn";
+        public const string BossArthropleuraStompWave = "Boss_Arthropleura_Stomp_Wave";
+        public const string BossArthropleuraTreeFall = "Boss_Arthropleura_TreeFall";
+        public const string BossArthropleuraStunned = "Boss_Arthropleura_Stunned";
+        public const string BossArthropleuraEatFern = "Boss_Arthropleura_EatFern";
+        public const string BossArthropleuraDouse = "Boss_Arthropleura_Douse";
+        public const string BossArthropleuraRingClose = "Boss_Arthropleura_Ring_Close";
+        public const string BossArthropleuraSqueeze = "Boss_Arthropleura_Squeeze";
+        public const string BossArthropleuraExpel = "Boss_Arthropleura_Expel";
+        public const string BossArthropleuraCoil = "Boss_Arthropleura_Coil";
+        public const string BossArthropleuraRollLoop = "Boss_Arthropleura_Roll_Loop";
+        public const string BossArthropleuraRollCrash = "Boss_Arthropleura_Roll_Crash";
+        public const string BossArthropleuraDeath = "Boss_Arthropleura_Death";
+        public const string BossArthropleuraSmolderLoop = "Boss_Arthropleura_Smolder_Loop";
     }
 }

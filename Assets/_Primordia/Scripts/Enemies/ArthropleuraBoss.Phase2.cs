@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using System.Collections.Generic;
 using Primordia.Core;
 using UnityEngine;
@@ -156,6 +157,8 @@ namespace Primordia.Enemies
 
         void FireWave()
         {
+            // Un sonido por onda (cada 0,3 s).
+            Sfx.Play(Sounds.BossArthropleuraStompWave);
             wavesFired++;
             var wave = new Wave { origin = headPos, baseAngle = stompAngle, radius = 1f, root = new GameObject("Wave").transform };
             wave.root.SetParent(transform, false);

@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using Primordia.Core;
 using Primordia.Rooms;
 using UnityEngine;
@@ -176,6 +177,7 @@ namespace Primordia.Enemies
         void WheelCrash()
         {
             ScreenShake.Pulse(5f, 0.4f);
+            Sfx.Play(Sounds.BossArthropleuraRollCrash);
             SpawnEffect(effects.stomp, wheelPos, 0f, 0.07f);
             DrainWheel(WheelHitDamage);
             if (!Health.IsDead)

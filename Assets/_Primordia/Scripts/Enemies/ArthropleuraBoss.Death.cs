@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using System.Collections.Generic;
 using Primordia.Core;
 using UnityEngine;
@@ -18,6 +19,9 @@ namespace Primordia.Enemies
         void BuildCorpse()
         {
             SetMode(Mode.Dead);
+            // Después de morir, el cadáver humea: bucle muy bajo solo cerca de él.
+            Vector2 corpseAt = GroundToWorld(headPos);
+            NearbyLoop.Ensure(Sounds.BossArthropleuraSmolderLoop, from => Vector2.Distance(from, corpseAt), 7f, 0.5f);
             HideAim();
             ClearWaves();
             HideGap();

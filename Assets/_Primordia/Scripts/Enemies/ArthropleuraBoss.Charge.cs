@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -24,8 +25,71 @@ namespace Primordia.Enemies
 
         void SetMode(Mode mode)
         {
+            var previous = CurrentMode;
             CurrentMode = mode;
             modeTimer = 0f;
+            PlayModeSound(previous, mode);
+        }
+
+        /// <summary>
+        /// El sonido de cada modo. Los bucles del cuerpo cambian con la fase (susurro en la F1, patas en la F2 y F3, rueda en la F4)
+        /// y no suenan quieta, aturdida ni muerta. El aviso de la embestida se corta si no llega a embestir.
+        /// </summary>
+        void PlayModeSound(Mode previous, Mode next)
+        {
+            if (previous == next)
+                return;
+            if (previous == Mode.Warn && next != Mode.Charge)
+                Sfx.Stop(Sounds.BossArthropleuraChargeWarn);
+
+            bool rustle = PhaseIndex == 0 && next == Mode.Circling;
+            bool legs = PhaseIndex >= 1 && next is Mode.Circling or Mode.Chase or Mode.Charge or Mode.RingForm or Mode.RingHold or Mode.RingContract;
+            bool roll = next == Mode.WheelRoll;
+            SetBodyLoop(Sounds.BossArthropleuraRustleLoop, rustle);
+            SetBodyLoop(Sounds.BossArthropleuraLegsLoop, legs);
+            SetBodyLoop(Sounds.BossArthropleuraRollLoop, roll);
+
+            switch (next)
+            {
+                case Mode.Warn: Sfx.Play(Sounds.BossArthropleuraChargeWarn); break;
+                case Mode.Charge: Sfx.Play(Sounds.BossArthropleuraCharge); break;
+                case Mode.Phase2Pending: Sfx.Play(Sounds.BossArthropleuraWallCollapse); break;
+                case Mode.Phase3Pending: Sfx.Play(Sounds.BossArthropleuraHiss); break;
+                case Mode.Phase4Pending: Sfx.Play(Sounds.BossArthropleuraCoil); break;
+                case Mode.StompWarn: Sfx.Play(Sounds.BossArthropleuraStompWarn); break;
+                case Mode.Eat: Sfx.Play(Sounds.BossArthropleuraEatFern); break;
+                case Mode.Douse: Sfx.Play(Sounds.BossArthropleuraDouse); break;
+                case Mode.RingContract: Sfx.Play(Sounds.BossArthropleuraRingClose); break;
+                case Mode.Stunned:
+                    Sfx.Play(Sounds.BossArthropleuraStunned);
+                    Sfx.Play(Sounds.BossArthropleuraHiss);
+                    break;
+                case Mode.Dead:
+                    Sfx.Play(Sounds.BossArthropleuraDeath);
+                    Sfx.StopLoop(Sounds.BossArthropleuraFuseLoop);
+                    fusing = false;
+                    break;
+            }
+        }
+
+        static void SetBodyLoop(string id, bool on)
+        {
+            if (on)
+                Sfx.StartLoop(id);
+            else
+                Sfx.StopLoop(id);
+        }
+
+        // El bucle de la mecha suena mientras el fuego corre por el cuerpo.
+        bool fusing;
+
+        void UpdateFuseSound()
+        {
+            bool burning = CurrentMode != Mode.Dead && BurningPieces > 0;
+            if (burning == fusing)
+                return;
+            fusing = burning;
+            SetBodyLoop(Sounds.BossArthropleuraFuseLoop, burning);
         }
 
         bool AnyPieceInClearing()
@@ -131,6 +195,7 @@ namespace Primordia.Enemies
             if (chargeEntered && !chargeBroke && thicket.Contains(CellOf(nextWorld)))
             {
                 chargeBroke = true;
+                Sfx.Play(Sounds.BossArthropleuraEdgeBreak);
                 chargeImpact = head;
                 BreakLine(head, chargeDirection, -1f, ChargeBeyond + 4f);
                 SpawnEffect(effects.edgeBreak, GroundToWorld(head), WorldAngle(chargeDirection) - 90f, 0.08f);

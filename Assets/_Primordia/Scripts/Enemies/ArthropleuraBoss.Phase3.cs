@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using System.Collections.Generic;
 using Primordia.Core;
 using UnityEngine;
@@ -127,11 +128,13 @@ namespace Primordia.Enemies
             squeezed = true;
             Vector2 direction = offset.sqrMagnitude > 0.01f ? offset.normalized : Vector2.up;
             playerHealth.TakeDamage(SqueezeDamage, DamageKind.Hit, DamageSource.Unknown, player.position);
+            Sfx.Play(Sounds.BossArthropleuraSqueeze);
             playerHealth.MakeInvulnerable(ExpelInvulnerableSeconds);
             Vector2 landing = ringCenter + direction * (RingFinalRadius + ExpelDistance);
             landing.x = Mathf.Clamp(landing.x, -ArenaWidth / 2f + 2f, ArenaWidth / 2f - 2f);
             landing.y = Mathf.Clamp(landing.y, -(ArenaHeight / 2f - 2f) / GroundSquash, (ArenaHeight / 2f - 2f) / GroundSquash);
             Vector2 world = GroundToWorld(landing);
+            Sfx.Play(Sounds.BossArthropleuraExpel);
             if (player.TryGetComponent<Rigidbody2D>(out var body)) body.position = world;
             player.position = world;
             ScreenShake.Pulse(4f, 0.3f);

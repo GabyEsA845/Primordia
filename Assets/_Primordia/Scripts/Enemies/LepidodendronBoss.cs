@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using System.Collections.Generic;
 using Primordia.Core;
 using Primordia.Player;
@@ -118,6 +119,9 @@ namespace Primordia.Enemies
             BuildScenery();
             BuildCones();
             built = true;
+            // Crujido bajo del árbol mientras el jugador está cerca y el jefe vive (la sala entera es de ~20 u).
+            NearbyLoop.Ensure(Sounds.BossLepidodendronCreakLoop,
+                from => this == null || Health.IsDead || Collapsing || HasCollapsed ? float.MaxValue : Vector2.Distance(from, ArenaCenter), 20f, 0.6f);
         }
 
         public void PlayIntroPose(float hold) { WarnCones(Time.time, hold); }

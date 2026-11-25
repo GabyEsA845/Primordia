@@ -67,6 +67,8 @@ namespace Primordia.Enemies
 
         IEnumerator DropRewards()
         {
+            // El sonido empieza al soltarse; el latido final cae a los 2 s, con la bajada.
+            Sfx.Play(Sounds.BossLepidodendronRewardDescend);
             yield return new WaitForSeconds(RewardStartDelay);
             Vector2 foot = Foot;
             if (!RunInventory.HasFlag(RunInventory.LepidoHeartTaken))
@@ -93,7 +95,7 @@ namespace Primordia.Enemies
             RunInventory.SetFlag(RunInventory.LepidoHeartTaken);
             if (player != null && player.TryGetComponent<Health>(out var health))
                 health.SetMax(health.Max + 2); // Un corazón entero son dos medios; SetMax cura la diferencia.
-            Sfx.Play(Sounds.HeartCoral);
+            Sfx.Play(Sounds.BossLepidodendronHeartPickup);
             yield break;
         }
 
@@ -114,7 +116,7 @@ namespace Primordia.Enemies
         IEnumerator TakeSpore()
         {
             RunInventory.AddKeyItem(SporeEntry());
-            Sfx.Play(Sounds.HeartCoral);
+            Sfx.Play(Sounds.BossLepidodendronPurpleSporePickup);
             yield return Present("O B J E T O   C L A V E", "Item_PurpleSpore_Big", "Title_Key_PurpleSpore", "Abre un camino secreto en el piso 4",
                 player != null ? (Vector2)player.position + Vector2.up : Foot);
         }
@@ -145,6 +147,7 @@ namespace Primordia.Enemies
         {
             if (rewardBusy || InStumpRoom) yield break;
             rewardBusy = true;
+            Sfx.Play(Sounds.BossLepidodendronStumpEnter);
             yield return Transition(() =>
             {
                 BuildStumpRoom();
@@ -263,7 +266,7 @@ namespace Primordia.Enemies
             RunInventory.AddRelic(RelicEntry());
             foreach (var prompt in rewardRoot.GetComponentsInChildren<LepidodendronPrompt>())
                 if (prompt.Title == "Raíz ancestral") prompt.Disable();
-            Sfx.Play(Sounds.HeartCoral);
+            Sfx.Play(Sounds.BossLepidodendronRelicPickup);
             yield return Present("R E L I Q U I A", "Relic_RootAncestral_Big", "Title_Relic_RootAncestral", "Al llegar a un piso nuevo recuperas toda la vida", from);
             if (pedestal != null)
             {

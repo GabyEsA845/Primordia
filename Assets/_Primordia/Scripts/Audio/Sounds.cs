@@ -483,5 +483,45 @@ namespace Primordia.Audio
         public const string BossMegarachneCablesDrop = "Boss_Megarachne_Cables_Drop";
         public const string BossMegarachneCocoonFall = "Boss_Megarachne_Cocoon_Fall";
         public const string BossMegarachneCocoonOpen = "Boss_Megarachne_Cocoon_Open";
+
+        // Piso 3, tanda 9: jefe secreto Lepidodendron ancestral
+        public const string BossLepidodendronIntro = "Boss_Lepidodendron_Intro";
+        public const string BossLepidodendronCreakLoop = "Boss_Lepidodendron_Creak_Loop";
+        public const string BossLepidodendronRootWallHit = "Boss_Lepidodendron_RootWall_Hit";
+        public const string BossLepidodendronRootWallKnotHit = "Boss_Lepidodendron_RootWall_KnotHit";
+        public const string BossLepidodendronRootWallIgnite = "Boss_Lepidodendron_RootWall_Ignite";
+        public const string BossLepidodendronRootWallBurnLoop = "Boss_Lepidodendron_RootWall_Burn_Loop";
+        public const string BossLepidodendronRootWallRetract = "Boss_Lepidodendron_RootWall_Retract";
+        public const string BossLepidodendronRootWallCrumble = "Boss_Lepidodendron_RootWall_Crumble";
+        public const string BossLepidodendronWaveSpawn = "Boss_Lepidodendron_Wave_Spawn";
+        public const string BossLepidodendronSporeArc = "Boss_Lepidodendron_SporeArc";
+        public const string BossLepidodendronSporeRainWarn = "Boss_Lepidodendron_SporeRain_Warn";
+        public const string BossLepidodendronSporeImpact = "Boss_Lepidodendron_Spore_Impact";
+        public const string BossLepidodendronPhaseFinal = "Boss_Lepidodendron_Phase_Final";
+        public const string BossLepidodendronTrunkHit = "Boss_Lepidodendron_Trunk_Hit";
+        public const string BossLepidodendronConeWarn = "Boss_Lepidodendron_Cone_Warn";
+        public const string BossLepidodendronConeDescend = "Boss_Lepidodendron_Cone_Descend";
+        public const string BossLepidodendronConeSlam = "Boss_Lepidodendron_Cone_Slam";
+        public const string BossLepidodendronConeLift = "Boss_Lepidodendron_Cone_Lift";
+        public const string BossLepidodendronArmorHit = "Boss_Lepidodendron_Armor_Hit";
+        public const string BossLepidodendronArmorBreak = "Boss_Lepidodendron_Armor_Break";
+        public const string BossLepidodendronConeHurt = "Boss_Lepidodendron_Cone_Hurt";
+        public const string BossLepidodendronConeBreak = "Boss_Lepidodendron_Cone_Break";
+        public const string BossLepidodendronRootLashWarn = "Boss_Lepidodendron_RootLash_Warn";
+        public const string BossLepidodendronRootLash = "Boss_Lepidodendron_RootLash";
+        public const string BossLepidodendronSpikeRingWarn = "Boss_Lepidodendron_SpikeRing_Warn";
+        public const string BossLepidodendronSpikeRing = "Boss_Lepidodendron_SpikeRing";
+        public const string BossLepidodendronCornerWarn = "Boss_Lepidodendron_Corner_Warn";
+        public const string BossLepidodendronCornerStrike = "Boss_Lepidodendron_Corner_Strike";
+        public const string BossLepidodendronMethaneWarn = "Boss_Lepidodendron_Methane_Warn";
+        public const string BossLepidodendronTreeShake = "Boss_Lepidodendron_Tree_Shake";
+        public const string BossLepidodendronDeathCrack = "Boss_Lepidodendron_Death_Crack";
+        public const string BossLepidodendronDeathFall = "Boss_Lepidodendron_Death_Fall";
+        public const string BossLepidodendronLightColumn = "Boss_Lepidodendron_LightColumn";
+        public const string BossLepidodendronRewardDescend = "Boss_Lepidodendron_Reward_Descend";
+        public const string BossLepidodendronHeartPickup = "Boss_Lepidodendron_Heart_Pickup";
+        public const string BossLepidodendronPurpleSporePickup = "Boss_Lepidodendron_PurpleSpore_Pickup";
+        public const string BossLepidodendronStumpEnter = "Boss_Lepidodendron_Stump_Enter";
+        public const string BossLepidodendronRelicPickup = "Boss_Lepidodendron_Relic_Pickup";
     }
 }

@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using System.Collections.Generic;
 using Primordia.Combat;
 using Primordia.Core;
@@ -204,6 +205,14 @@ namespace Primordia.Enemies
 
         void SetPhase(Phase phase, float now)
         {
+            switch (phase)
+            {
+                case Phase.Warning: Sfx.Play(Sounds.BossLepidodendronConeWarn); break;
+                // La sombra fija y la bajada suenan juntas (1,1 s).
+                case Phase.Shadow: Sfx.Play(Sounds.BossLepidodendronConeDescend); break;
+                case Phase.Grounded: Sfx.Play(Sounds.BossLepidodendronConeSlam); break;
+                case Phase.Rising: Sfx.Play(Sounds.BossLepidodendronConeLift); break;
+            }
             State = phase;
             phaseAt = now;
             target.enabled = phase == Phase.Grounded;
@@ -226,6 +235,7 @@ namespace Primordia.Enemies
                 int damage = owner.LimitWallDamage(Mathf.Min(ArmorRemaining, amount * (Charred ? CharredMultiplier : 1)), source);
                 if (damage <= 0) return 0;
                 ArmorRemaining -= damage;
+                Sfx.Play(ArmorRemaining == 0 ? Sounds.BossLepidodendronArmorBreak : Sounds.BossLepidodendronArmorHit);
                 Effect(Charred ? "Fx_ArmorChipCharred" : "Fx_ArmorChip", ChipStep, Health.LastImpactPoint ?? Position);
                 Play(ArmorRemaining == 0 ? $"Lepido_Cone_Shatter{(Charred ? "Charred" : "")}" : ArmorSheet + "_Hurt",
                     ArmorRemaining == 0 ? ShatterStep : HurtStep);
@@ -249,6 +259,7 @@ namespace Primordia.Enemies
             owner.ConeLostHealth(lost);
             if (lost > 0)
             {
+                Sfx.Play(Sounds.BossLepidodendronConeHurt);
                 if (ArmorRemaining == 0) Play("Lepido_Cone_Exposed_Hurt", HurtStep);
                 owner.HitConeVeins();
             }
@@ -260,6 +271,7 @@ namespace Primordia.Enemies
             // También el cono roto por el tronco queda en su punto de suelo, nunca suspendido.
             transform.position = LandingPoint;
             SetPhase(Phase.Husk, Time.time);
+            Sfx.Play(Sounds.BossLepidodendronConeBreak);
             Play("Lepido_Cone_Burst", BurstStep);
             owner.ConeFinished(Time.time);
             owner.CheckConesDestroyed();

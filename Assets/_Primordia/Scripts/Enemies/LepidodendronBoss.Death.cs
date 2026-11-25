@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using System;
 using System.Collections;
 using System.Linq;
@@ -35,6 +36,11 @@ namespace Primordia.Enemies
             }
             Collapsing = true;
             collapseAt = Time.time;
+            // El desplome (6,6 s) va en tres sonidos: grietas, caída y columna de luz. Se apagan los bucles del jefe.
+            Sfx.Stop(Sounds.BossLepidodendronIntro);
+            Sfx.Play(Sounds.BossLepidodendronDeathCrack);
+            Sfx.StopLoop(Sounds.BossLepidodendronCreakLoop);
+            Sfx.StopLoop(Sounds.BossLepidodendronRootWallBurnLoop);
             CancelAttacks();
             wallWaves.Clear();
             AcquireCinematic();
@@ -68,6 +74,7 @@ namespace Primordia.Enemies
                 yield return new WaitForSeconds(CrackSeconds / 5f);
             }
             fallen = Piece("FallingTrunk", "Lepido_Death_Fall", Foot, TrunkOrder + 1);
+            Sfx.Play(Sounds.BossLepidodendronDeathFall);
             StartCoroutine(CollapseEffect("TrunkSplinters", "Fx_TrunkSplinters", Foot + new Vector2(0, -4.5f), 0.06f));
             Vector2 impactFocus = Foot + new Vector2(-50f + (Camera.main != null ? Camera.main.orthographicSize * Camera.main.aspect : 20f), 0f);
             for (int i = 0; i < FallSteps.Length; i++)
@@ -100,6 +107,7 @@ namespace Primordia.Enemies
             float openAt = CollapseSeconds - ReturnSeconds;
             while (Time.time - collapseAt < openAt) yield return null;
             Piece("GoldColumn", "Fx_GoldColumn", Foot + Vector2.up * (4f / Ppu), LightOrder, 0.12f);
+            Sfx.Play(Sounds.BossLepidodendronLightColumn);
             for (float t = 0; t < ReturnSeconds; t += Time.deltaTime)
             {
                 SetFrame(trunk, "Lepido_Stump_Open", Mathf.Min(7, Mathf.FloorToInt(t / 0.11f)));

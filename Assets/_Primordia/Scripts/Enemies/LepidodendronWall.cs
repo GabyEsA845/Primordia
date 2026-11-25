@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using System;
 using System.Collections.Generic;
 using Primordia.Combat;
@@ -134,6 +135,8 @@ namespace Primordia.Enemies
             else if (kind == DamageKind.Hit && !health.LastImpactPoint.HasValue && FullyCharred)
                 factor *= CharredMultiplier;
             int allowed = owner.LimitWallDamage(Mathf.Min(health.Current, amount * factor), source);
+            if (allowed > 0)
+                Sfx.Play(node >= 0 && knots[node].remaining > 0 ? Sounds.BossLepidodendronRootWallKnotHit : Sounds.BossLepidodendronRootWallHit);
             if (allowed > 0 && node >= 0 && knots[node].remaining > 0)
             {
                 var knot = knots[node];
@@ -174,10 +177,24 @@ namespace Primordia.Enemies
             Show();
         }
 
+        bool burnLooping;
+
+        void StopBurnLoop()
+        {
+            if (!burnLooping)
+                return;
+            burnLooping = false;
+            SharedLoop.Release(Sounds.BossLepidodendronRootWallBurnLoop);
+        }
+
         public void IgniteAt(float height)
         {
             if (burning || Fallen) return;
             burning = true;
+            // Prender suena una vez por pared; todas las que arden comparten un bucle.
+            Sfx.Play(Sounds.BossLepidodendronRootWallIgnite);
+            SharedLoop.Acquire(Sounds.BossLepidodendronRootWallBurnLoop);
+            burnLooping = true;
             burnStart = Time.time;
             burnLastTick = Time.time;
             burnAtY = Mathf.Clamp(height, 0f, Height);
@@ -276,6 +293,9 @@ namespace Primordia.Enemies
         {
             if (Fallen) return;
             fallCharred = FullyCharred;
+            StopBurnLoop();
+            // Se retira, o se desmorona si estaba carbonizada del todo.
+            Sfx.Play(fallCharred ? Sounds.BossLepidodendronRootWallCrumble : Sounds.BossLepidodendronRootWallRetract);
             Fallen = true;
             fellAt = Time.time;
             blocker.enabled = false;
@@ -358,6 +378,7 @@ namespace Primordia.Enemies
 
         void OnDestroy()
         {
+            StopBurnLoop();
             if (health != null)
             {
                 health.Damaged -= OnDamaged;

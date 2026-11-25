@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -67,6 +68,7 @@ namespace Primordia.Enemies
         {
             if (!FinalPhaseReady || FinalEngaged || AllConesDestroyed) return;
             FinalEngaged = true;
+            Sfx.Play(Sounds.BossLepidodendronPhaseFinal);
             nextConeAt = Time.time;
             StartFinalAttacks();
         }
@@ -80,7 +82,13 @@ namespace Primordia.Enemies
 
         // El tronco no recibe daño en la fase final: la barra del jefe solo baja con la vida de los conos, y cada cono se rompe
         // con golpes directos en su ventana en el suelo. Hay que romper los tres para terminar con el jefe.
-        int FilterTrunkDamage(int amount, DamageKind kind, DamageSource source) => 0;
+        int FilterTrunkDamage(int amount, DamageKind kind, DamageSource source)
+        {
+            // El tronco no recibe daño, pero el golpe suena (intervalo corto en los datos de audio).
+            if (amount > 0)
+                Sfx.Play(Sounds.BossLepidodendronTrunkHit);
+            return 0;
+        }
 
         internal void ConeLostHealth(int amount) => Health.Drain(amount, allowZero: true);
 
@@ -143,6 +151,8 @@ namespace Primordia.Enemies
         {
             if (!FinalEngaged || AllConesDestroyed || Vector2.Distance(position, Foot) > MethaneTrunkRadius) return;
             var free = cones.Where(c => c.Available).ToArray();
+            if (free.Length > 0)
+                Sfx.Play(Sounds.BossLepidodendronMethaneWarn);
             for (int i = 0; i < free.Length; i++)
                 free[i].BeginDrop(MethaneWarning, Vector2.right * ((i - (free.Length - 1) / 2f) * ConeSpacing), now, spread: true);
             if (free.Length > 0) nextConeAt = float.PositiveInfinity;
@@ -152,6 +162,7 @@ namespace Primordia.Enemies
         {
             coneWarnAt = now;
             coneWarnUntil = now + duration;
+            Sfx.Play(Sounds.BossLepidodendronTreeShake);
             ShakeCanopy(ConeShakeSeconds);
         }
 

@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -128,6 +129,8 @@ namespace Primordia.Enemies
                 if (!FindWallSpawn(wave.wall.Index, out var position))
                     return;
                 var enemies = EncounterPlanner.Spawn(encounterConfig, wave.pending.Dequeue(), position, wallRoom);
+                // Varios a la vez: el intervalo del sonido los junta.
+                Sfx.Play(Sounds.BossLepidodendronWaveSpawn);
                 foreach (var enemy in enemies)
                 {
                     enemy.DropsBiomass = false;

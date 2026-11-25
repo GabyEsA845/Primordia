@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -57,6 +58,7 @@ namespace Primordia.Enemies
         {
             IntroPlaying = true;
             IntroPlayed = true;
+            Sfx.Play(Sounds.BossLepidodendronIntro);
             presentedScenes.Add(gameObject.scene);
             AcquireCinematic();
             Vector2 start = player != null ? (Vector2)player.position : entrance;

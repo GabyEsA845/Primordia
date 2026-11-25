@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using System.Collections.Generic;
 using System.Linq;
 using Primordia.Combat;
@@ -183,6 +184,14 @@ namespace Primordia.Enemies
             AttackWarningUntil = attackClock + warning;
             nextAttackStart = attackClock + Mathf.Max(AttackGap, warning);
             var target = ClampConePoint(player.position);
+            // El aviso de cada ataque suena al empezar (un solo sonido por ataque).
+            switch (kind)
+            {
+                case AttackKind.Whip: Sfx.Play(Sounds.BossLepidodendronRootLashWarn); break;
+                case AttackKind.Spikes: Sfx.Play(Sounds.BossLepidodendronSpikeRingWarn); break;
+                case AttackKind.Rain: Sfx.Play(Sounds.BossLepidodendronSporeRainWarn); break;
+                case AttackKind.Corners: Sfx.Play(Sounds.BossLepidodendronCornerWarn); break;
+            }
             if (kind == AttackKind.Rain) SpawnRain(null);
             else if (kind == AttackKind.Corners) SpawnCornerWarnings();
             else
@@ -244,6 +253,9 @@ namespace Primordia.Enemies
 
         void SpawnRain(LepidodendronWall wall)
         {
+            // Las esporas de las paredes salen en arco por encima de ellas.
+            if (wall != null)
+                Sfx.Play(Sounds.BossLepidodendronSporeArc);
             int count = wall != null ? Random.Range(3, 5) : FinalSporeCount;
             for (int i = 0; i < count; i++)
             {
@@ -304,6 +316,7 @@ namespace Primordia.Enemies
         void SpawnCornerEnemy(AttackVisual a)
         {
             if (a.harmless || AllConesDestroyed || LivingWaveEnemies >= AliveLimit) return;
+            Sfx.Play(Sounds.BossLepidodendronCornerStrike);
             foreach (var enemy in EncounterPlanner.Spawn(encounterConfig, a.prefab, a.point, wallRoom))
             {
                 enemy.DropsBiomass = false;
@@ -335,6 +348,11 @@ namespace Primordia.Enemies
             else if (age < warning + frames * step)
             {
                 int frame = Mathf.FloorToInt((age - warning) / step);
+                if (!a.struck)
+                {
+                    a.struck = true;
+                    Sfx.Play(whip ? Sounds.BossLepidodendronRootLash : Sounds.BossLepidodendronSpikeRing);
+                }
                 SetAttackFrame(a.body, prefix + (whip ? "Sweep" : "Erupt"), frame);
                 a.body.sortingOrder = player.position.y > a.point.y - (whip ? 6f / Ppu : 0f) ? AttackFrontOrder : AttackBackOrder;
                 if (whip && frame >= 3 && frame <= 14 && !a.shook)
@@ -376,7 +394,11 @@ namespace Primordia.Enemies
                 int frame = Mathf.FloorToInt((age - SporeFall) / SplashFrame);
                 if (frame >= 5) return true;
                 SetAttackFrame(a.body, "Fx_LepidoSporeSplash", frame);
-                if (frame == 0) DamageAttack(a, 0);
+                if (frame == 0)
+                {
+                    Sfx.Play(Sounds.BossLepidodendronSporeImpact);
+                    DamageAttack(a, 0);
+                }
             }
             return false;
         }
@@ -415,7 +437,7 @@ namespace Primordia.Enemies
             public AttackKind kind;
             public Vector2 point;
             public float start;
-            public bool right, shook, harmless;
+            public bool right, shook, harmless, struck;
             public SpriteRenderer body, projectile;
             public LepidodendronWall wall;
             public Enemy prefab;

@@ -123,9 +123,13 @@ namespace Primordia.Enemies
 
         // ---------- Entrada ----------
 
+        /// <summary>Empieza la fase 3 (la tormenta): la música pasa a su pista de tormenta.</summary>
+        public event System.Action StormPhaseStarted;
+
         IEnumerator StormEntry()
         {
             stormStarted = true;
+            StormPhaseStarted?.Invoke();
             Sfx.Play(Sounds.BossMeganeuraStormEntry);
             // Los huevos que queden se van; las ninfas siguen.
             foreach (var egg in new List<MeganeuraEgg>(MeganeuraEgg.Alive))

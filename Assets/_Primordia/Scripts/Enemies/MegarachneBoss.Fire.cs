@@ -478,7 +478,11 @@ namespace Primordia.Enemies
             {
                 if (slot.sac.IsSpent && float.IsPositiveInfinity(slot.regrowAt))
                     slot.regrowAt = fireClock + SacRegrowSeconds;
-                if (fireClock >= slot.regrowAt) GrowFireSac(slot);
+                if (fireClock >= slot.regrowAt)
+                {
+                    GrowFireSac(slot);
+                    Sfx.Play(Sounds.MethaneGasBagRegrow);
+                }
             }
         }
     }

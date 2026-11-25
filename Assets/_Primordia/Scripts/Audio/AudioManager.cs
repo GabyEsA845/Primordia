@@ -247,7 +247,7 @@ namespace Primordia.Audio
         }
 
         /// <summary>Enciende un bucle (con un fundido corto). Si ya suena, no hace nada.</summary>
-        public void StartLoop(string id, float volumeScale = 1f)
+        public void StartLoop(string id, float volumeScale = 1f, float pitch = 1f)
         {
             var sound = library != null ? library.GetSound(id) : null;
             if (sound == null || sound.clips.Length == 0)
@@ -262,6 +262,7 @@ namespace Primordia.Audio
                 loops[id] = loop;
             }
             loop.Volume = sound.volume * volumeScale;
+            loop.Source.pitch = pitch;
             loop.Target = 1f;
             if (!loop.Source.isPlaying)
                 loop.Source.Play();

@@ -151,7 +151,11 @@ namespace Primordia.Enemies
             bool onCable = CurrentMode == Mode.OnCable && travel is Travel.Run or Travel.Cross && attack != AttackStage.JumpFall;
             bool onGround = CurrentMode == Mode.Ground && travel == Travel.None && !IsEnraging && !IsAttacking && moved;
             if (onCable)
-                Sfx.StartLoop(Sounds.BossMegarachneCableRunLoop);
+            {
+                // Al enfadarse corre ×1,4 más rápido: el bucle suena algo más agudo.
+                if (AudioManager.Instance != null)
+                    AudioManager.Instance.StartLoop(Sounds.BossMegarachneCableRunLoop, 1f, IsRage ? 1.1f : 1f);
+            }
             else
                 Sfx.StopLoop(Sounds.BossMegarachneCableRunLoop);
             if (onGround)

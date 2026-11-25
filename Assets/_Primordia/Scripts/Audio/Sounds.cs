@@ -523,5 +523,27 @@ namespace Primordia.Audio
         public const string BossLepidodendronPurpleSporePickup = "Boss_Lepidodendron_PurpleSpore_Pickup";
         public const string BossLepidodendronStumpEnter = "Boss_Lepidodendron_Stump_Enter";
         public const string BossLepidodendronRelicPickup = "Boss_Lepidodendron_Relic_Pickup";
+
+        // Piso 3, tanda 10: música y ambientes
+        public const string MusicFloor3GreenExplore = "Music_Floor3_Green_Explore";
+        public const string MusicFloor3GreenCombat = "Music_Floor3_Green_Combat";
+        public const string MusicFloor3SmokeExplore = "Music_Floor3_Smoke_Explore";
+        public const string MusicFloor3SmokeCombat = "Music_Floor3_Smoke_Combat";
+        public const string MusicFloor3BurntExplore = "Music_Floor3_Burnt_Explore";
+        public const string MusicFloor3BurntCombat = "Music_Floor3_Burnt_Combat";
+        public const string MusicBossMeganeura = "Music_Boss_Meganeura";
+        public const string MusicBossMeganeuraStorm = "Music_Boss_Meganeura_Storm";
+        public const string MusicBossArthropleura = "Music_Boss_Arthropleura";
+        public const string MusicBossArthropleuraCoil = "Music_Boss_Arthropleura_Coil";
+        public const string MusicBossMegarachne = "Music_Boss_Megarachne";
+        public const string MusicBossMegarachneRage = "Music_Boss_Megarachne_Rage";
+        public const string MusicBossLepidodendron = "Music_Boss_Lepidodendron";
+        public const string MusicBossLepidodendronFinal = "Music_Boss_Lepidodendron_Final";
+        public const string StingSecretBoss = "Music_Sting_SecretBoss";
+        public const string StingRelic = "Music_Sting_Relic";
+        public const string AmbFloor3Smoke = "Amb_Floor3_Smoke_Loop";
+        public const string AmbFloor3Burnt = "Amb_Floor3_Burnt_Loop";
+        public const string AmbFloor3BossRoom = "Amb_Floor3_BossRoom_Loop";
+        public const string AmbFloor3Amber = "Amb_Floor3_Amber_Loop";
     }
 }

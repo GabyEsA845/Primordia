@@ -20,6 +20,9 @@ namespace Primordia.Enemies
         public bool Collapsing { get; private set; }
         public bool HasCollapsed { get; private set; }
         public event Action Collapsed;
+
+        /// <summary>Empieza el desplome (6,6 s con su propio sonido): la música se apaga.</summary>
+        public event Action CollapseStarted;
         internal int FallFrame { get; private set; } = -1;
         internal Transform StumpCrack => scenery != null ? scenery.Find("StumpCrack") : null;
         SpriteRenderer fallen, deathShadow;
@@ -36,6 +39,7 @@ namespace Primordia.Enemies
             }
             Collapsing = true;
             collapseAt = Time.time;
+            CollapseStarted?.Invoke();
             // El desplome (6,6 s) va en tres sonidos: grietas, caída y columna de luz. Se apagan los bucles del jefe.
             Sfx.Stop(Sounds.BossLepidodendronIntro);
             Sfx.Play(Sounds.BossLepidodendronDeathCrack);

@@ -299,8 +299,10 @@ namespace Primordia.Mutations
             Vector2 point = transform.position;
             SpriteFramePlayer.PlayOnce(land, FrameSeconds, point + Vector2.down * 0.25f, FxOrder);
             Sfx.Play(Sounds.LimbsJumpLand);
-            if (Pits.IsDeepInMud(point))
+            if (Pits.IsDeepInMud(point) || GroundPuddle.IsSludgeOver(point))
                 Sfx.Play(Sounds.MudSplash);
+            else if (GroundPuddle.IsOver(point))
+                Sfx.Play(Sounds.WaterSplash);
             if (big && settings.chargedStun > 0f)
                 Sfx.Play(Sounds.LimbsJumpStun);
             float radius = big ? settings.chargedRadius : settings.landRadius;

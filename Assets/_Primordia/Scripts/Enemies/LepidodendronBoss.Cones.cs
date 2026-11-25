@@ -64,10 +64,14 @@ namespace Primordia.Enemies
         public bool FinalEngaged { get; private set; }
         public const float EngageMargin = 2f; // Provisional: a cuántas u antes del centro de la arena se considera «llegado».
 
+        /// <summary>Llega al centro de la arena: empieza la fase final (la música cambia).</summary>
+        public event Action FinalPhaseEngaged;
+
         internal void EngageFinalPhase()
         {
             if (!FinalPhaseReady || FinalEngaged || AllConesDestroyed) return;
             FinalEngaged = true;
+            FinalPhaseEngaged?.Invoke();
             Sfx.Play(Sounds.BossLepidodendronPhaseFinal);
             nextConeAt = Time.time;
             StartFinalAttacks();

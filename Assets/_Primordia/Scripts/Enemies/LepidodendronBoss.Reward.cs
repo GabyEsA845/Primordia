@@ -267,6 +267,9 @@ namespace Primordia.Enemies
             foreach (var prompt in rewardRoot.GetComponentsInChildren<LepidodendronPrompt>())
                 if (prompt.Title == "Raíz ancestral") prompt.Disable();
             Sfx.Play(Sounds.BossLepidodendronRelicPickup);
+            // Como los fragmentos del piso 1: una frase corta y la música sigue.
+            if (AudioManager.Instance != null)
+                AudioManager.Instance.Music.Stinger(Sounds.StingRelic, resume: true);
             yield return Present("R E L I Q U I A", "Relic_RootAncestral_Big", "Title_Relic_RootAncestral", "Al llegar a un piso nuevo recuperas toda la vida", from);
             if (pedestal != null)
             {

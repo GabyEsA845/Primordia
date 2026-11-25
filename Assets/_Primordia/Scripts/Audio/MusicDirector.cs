@@ -40,7 +40,8 @@ namespace Primordia.Audio
 
         static readonly string[] Ambiences =
         {
-            Sounds.AmbFloor1, Sounds.AmbBossRoom, Sounds.AmbFloor2, Sounds.AmbFloor2Abyss, Sounds.AmbFloor2BossRoom, Sounds.AmbFloor3
+            Sounds.AmbFloor1, Sounds.AmbBossRoom, Sounds.AmbFloor2, Sounds.AmbFloor2Abyss, Sounds.AmbFloor2BossRoom, Sounds.AmbFloor3,
+            Sounds.AmbFloor3Smoke, Sounds.AmbFloor3Burnt, Sounds.AmbFloor3BossRoom, Sounds.AmbFloor3Amber
         };
 
         AudioManager manager;
@@ -54,25 +55,40 @@ namespace Primordia.Audio
         int band;
         AnomalocarisBoss anomalocaris;
         EurypteridBoss eurypterid;
+        MeganeuraBoss meganeura;
+        Enemy meganeuraEnemy;
+        ArthropleuraBoss arthropleura;
+        MegarachneBoss megarachne;
+        LepidodendronBoss lepidodendron;
 
         /// <summary>Franja de profundidad cuya música suena (0 en los pisos sin franjas).</summary>
         public int CurrentBand => band;
 
         // Ambiente de cada piso: la sopa en el primero y el océano desde el segundo (más hondo en el Abismo).
         string FloorAmbience => floorNumber < 2 ? Sounds.AmbFloor1
-            : floorNumber >= 3 ? Sounds.AmbFloor3
+            : floorNumber >= 3 ? (band switch { 0 => Sounds.AmbFloor3, 1 => Sounds.AmbFloor3Smoke, _ => Sounds.AmbFloor3Burnt })
             : band >= AbyssBand ? Sounds.AmbFloor2Abyss : Sounds.AmbFloor2;
 
         // Lo que se oye junto a la fosa de la sala de paso: el océano en el piso 1 y el pantano en el 2.
         string NextAmbience => floorNumber == 1 ? Sounds.AmbFloor2 : floorNumber == 2 ? Sounds.AmbFloor3 : null;
 
-        string BossAmbience => floorNumber < 2 ? Sounds.AmbBossRoom : Sounds.AmbFloor2BossRoom;
+        string BossAmbience => floorNumber < 2 ? Sounds.AmbBossRoom : floorNumber >= 3 ? Sounds.AmbFloor3BossRoom : Sounds.AmbFloor2BossRoom;
 
         /// <summary>Exploración y combate del piso y la franja actuales.</summary>
         (string explore, string combat) FloorTracks()
         {
             if (floorNumber < 2)
                 return (Sounds.MusicFloor1Explore, Sounds.MusicFloor1Combat);
+            // Piso 3: un verde (la selva), un humo (la veta) y un quemado (el final), por tercios del camino.
+            if (floorNumber >= 3)
+            {
+                return band switch
+                {
+                    0 => (Sounds.MusicFloor3GreenExplore, Sounds.MusicFloor3GreenCombat),
+                    1 => (Sounds.MusicFloor3SmokeExplore, Sounds.MusicFloor3SmokeCombat),
+                    _ => (Sounds.MusicFloor3BurntExplore, Sounds.MusicFloor3BurntCombat)
+                };
+            }
             return band switch
             {
                 0 => (Sounds.MusicFloor2ShallowsExplore, Sounds.MusicFloor2ShallowsCombat),
@@ -195,6 +211,8 @@ namespace Primordia.Audio
 
             manager.StopLoop(Sounds.AmbFloor2, 0f);
             manager.StopLoop(Sounds.AmbFloor3, 0f);
+            manager.StopLoop(Sounds.AmbFloor3Smoke, 0f);
+            manager.StopLoop(Sounds.AmbFloor3Burnt, 0f);
             PlayFloor(fade: 1.5f);
         }
 
@@ -265,6 +283,9 @@ namespace Primordia.Audio
                 fade = BandFade;
             }
             PlayFloor(fade);
+            // La sala del ámbar suena siempre igual, sea cual sea el tramo.
+            if (floorNumber >= 3 && room.GetComponentInChildren<AmberBlock>(true) != null)
+                PlayAmbience(Sounds.AmbFloor3Amber);
             manager.Music.SetLayer(room.State == Room.RoomState.Combat ? 1f : 0f);
         }
 
@@ -275,7 +296,8 @@ namespace Primordia.Audio
             bossRoomStarted = room;
 
             manager.Music.Play(BossTrack(boss), 0.3f);
-            manager.Music.Stinger(Sounds.StingBossIntro, resume: true);
+            // El jefe secreto tiene su propio aviso.
+            manager.Music.Stinger(boss is LepidodendronBoss ? Sounds.StingSecretBoss : Sounds.StingBossIntro, resume: true);
             if (boss is AmoebaBoss)
                 manager.PlaySound(Sounds.AmoebaIntro);
             else if (boss is BossAI)
@@ -289,6 +311,10 @@ namespace Primordia.Audio
             AmoebaBoss => Sounds.MusicBossAmoeba,
             AnomalocarisBoss => Sounds.MusicBossAnomalocaris,
             EurypteridBoss => Sounds.MusicBossEurypterid,
+            MeganeuraBoss => Sounds.MusicBossMeganeura,
+            ArthropleuraBoss => Sounds.MusicBossArthropleura,
+            MegarachneBoss => Sounds.MusicBossMegarachne,
+            LepidodendronBoss => Sounds.MusicBossLepidodendron,
             _ => Sounds.MusicBossVirus
         };
 
@@ -305,7 +331,68 @@ namespace Primordia.Audio
                 anomalocaris.ModeChanged += OnAnomalocarisMode;
             if (eurypterid != null)
                 eurypterid.ModeChanged += OnEurypteridMode;
+            WatchFloor3Bosses(boss);
         }
+
+        // Las pistas de cada fase de los jefes del piso 3.
+        void WatchFloor3Bosses(IBoss boss)
+        {
+            if (meganeura != null)
+                meganeura.StormPhaseStarted -= OnStormStarted;
+            if (meganeuraEnemy != null)
+                meganeuraEnemy.Died -= OnMeganeuraDied;
+            if (arthropleura != null)
+                arthropleura.ReachedPhase3 -= OnArthropleuraRing;
+            if (megarachne != null)
+            {
+                megarachne.RageScreechStarted -= OnMegarachneScreechStart;
+                megarachne.RageScreechEnded -= OnMegarachneScreechEnd;
+            }
+            if (lepidodendron != null)
+            {
+                lepidodendron.FinalPhaseEngaged -= OnLepidodendronFinal;
+                lepidodendron.CollapseStarted -= OnLepidodendronCollapse;
+            }
+            meganeura = boss as MeganeuraBoss;
+            meganeuraEnemy = meganeura != null ? meganeura.GetComponent<Enemy>() : null;
+            arthropleura = boss as ArthropleuraBoss;
+            megarachne = boss as MegarachneBoss;
+            lepidodendron = boss as LepidodendronBoss;
+            if (meganeura != null)
+                meganeura.StormPhaseStarted += OnStormStarted;
+            if (meganeuraEnemy != null)
+                meganeuraEnemy.Died += OnMeganeuraDied;
+            if (arthropleura != null)
+                arthropleura.ReachedPhase3 += OnArthropleuraRing;
+            if (megarachne != null)
+            {
+                megarachne.RageScreechStarted += OnMegarachneScreechStart;
+                megarachne.RageScreechEnded += OnMegarachneScreechEnd;
+            }
+            if (lepidodendron != null)
+            {
+                lepidodendron.FinalPhaseEngaged += OnLepidodendronFinal;
+                lepidodendron.CollapseStarted += OnLepidodendronCollapse;
+            }
+        }
+
+        // Meganeura: la fase 3 (la tormenta) cambia la pista; al morir, la música se apaga despacio mientras la tormenta amaina.
+        void OnStormStarted() => manager.Music.Play(Sounds.MusicBossMeganeuraStorm, 0.5f);
+
+        void OnMeganeuraDied(Enemy _) => manager.Music.Stop(3f);
+
+        // Arthropleura: el anillo (35 %) cambia la pista, y la misma sigue en la rueda del último 10 %.
+        void OnArthropleuraRing() => manager.Music.Play(Sounds.MusicBossArthropleuraCoil, 0.5f);
+
+        // Megarachne: durante el chillido (2,5 s) la música calla y luego entra la pista furiosa.
+        void OnMegarachneScreechStart() => manager.Music.Stop(0.4f);
+
+        void OnMegarachneScreechEnd() => manager.Music.Play(Sounds.MusicBossMegarachneRage, 0.3f);
+
+        // Lepidodendron: al llegar al centro, la pista final; durante el desplome calla (la escena tiene su propio sonido).
+        void OnLepidodendronFinal() => manager.Music.Play(Sounds.MusicBossLepidodendronFinal, 0.5f);
+
+        void OnLepidodendronCollapse() => manager.Music.Stop(1.5f);
 
         void OnAnomalocarisMode(AnomalocarisBoss.Mode mode)
         {

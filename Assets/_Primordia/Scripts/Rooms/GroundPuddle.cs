@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using System.Collections.Generic;
 using Primordia.Combat;
 using Primordia.Core;
@@ -201,6 +202,8 @@ namespace Primordia.Rooms
                 var feet = (Vector2)body.position + FootOffset;
                 if (entered)
                 {
+                    if (player != null)
+                        Sfx.Play(sludge ? Sounds.MudSplash : Sounds.WaterSplash);
                     Fx(PolishArt.Current?.waterSplash, feet, FxOrder);
                     if (burning)
                         Fx(PolishArt.Current?.steamHiss, feet, FxOrder);

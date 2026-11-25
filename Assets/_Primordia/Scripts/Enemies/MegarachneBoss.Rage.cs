@@ -27,6 +27,10 @@ namespace Primordia.Enemies
         public bool IsRage { get; private set; }
         public bool IsEnraging => rageStage != RageStage.None;
         public bool NestBurned { get; private set; }
+
+        /// <summary>El chillido del enfado empieza (la música baja) y acaba (entra la pista furiosa).</summary>
+        public event System.Action RageScreechStarted;
+        public event System.Action RageScreechEnded;
         public float MovementMultiplier => IsRage ? RageSpeedMultiplier : 1f;
         public float CurrentCableSpeed => CableSpeed * MovementMultiplier;
         public float CurrentAttackInterval => IsRage ? RageAttackInterval : AttackInterval;
@@ -128,6 +132,7 @@ namespace Primordia.Enemies
                     rageStage = RageStage.Screech;
                     // El chillido dura 2,5 s; a mitad el árbol se seca.
                     Sfx.Play(Sounds.BossMegarachneRageScreech);
+                    RageScreechStarted?.Invoke();
                     Invoke(nameof(PlayNestWither), ScreechSeconds * 0.5f);
                     rageTime = 0f;
                     ScreenShake.Pulse(ShakePixels, ShakeSeconds);
@@ -145,6 +150,7 @@ namespace Primordia.Enemies
                     ShowFireSprite(ref screechWave, "Fx_Megarachne_Screech", NestPosition, rageTime);
                     if (rageTime < ScreechSeconds) break;
                     IsRage = true;
+                    RageScreechEnded?.Invoke();
                     nextAttack = AttackKind.Jump;
                     rageAttackSlot = 0;
                     ShowNestTree("Nido_Tree_Dry", 0f, false);

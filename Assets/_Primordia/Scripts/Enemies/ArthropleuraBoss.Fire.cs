@@ -267,7 +267,11 @@ namespace Primordia.Enemies
                 // También recupera odres desinflados por gas para no agotar los recursos.
                 if (slot.sac != null && slot.sac.IsSpent && float.IsPositiveInfinity(slot.regrowAt))
                     slot.regrowAt = fireClock + SacRegrowSeconds;
-                if (PhaseIndex <= 1 && fireClock >= slot.regrowAt) GrowSac(slot);
+                if (PhaseIndex <= 1 && fireClock >= slot.regrowAt)
+                {
+                    GrowSac(slot);
+                    Sfx.Play(Sounds.MethaneGasBagRegrow);
+                }
             }
             UpdateFuseSound();
             if (reachedPhase2 && !transitionStarted && CurrentMode != Mode.Charge)

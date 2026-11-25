@@ -67,4 +67,5 @@
 - [Jefe Anomalocaris](primordia-boss-anomalocaris.md) — BossBarSkin/IPhasedBoss
 - [Jefe Euriptérido](primordia-boss-eurypterid.md) — derrumbe, bullet hell
 - [Audio del piso 2](primordia-floor2-audio.md) — Sfx.Stop
+- **[Audio del piso 3](primordia-floor3-audio.md) — GENERADO (2026-11-25): efectos, música y ambientes; falta aprobar la música, commit, documentación y conectarlo (Sonnet); README_piso3.md para Sonnet; muestrario_piso3.html**
 - **[Cables v2 de la Megarachne](primordia-megarachne-cable-art-pending.md) — 2026-11-20: HECHOS y probados (arte + código; tarea 16)**

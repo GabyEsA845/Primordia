@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using UnityEngine;
 
 namespace Primordia.Rooms
@@ -50,6 +51,7 @@ namespace Primordia.Rooms
                 if (run.Length > 0)
                     body.sprite = run[Mathf.FloorToInt(Time.time / RunFrameSeconds) % run.Length];
                 body.flipX = away.x < 0f;
+                Sfx.Play(Sounds.CritterScurry);
                 return;
             }
 

@@ -192,6 +192,7 @@ namespace Primordia.Rooms
                 shadowRenderer.sortingOrder = 4;
                 shadow.AddComponent<FixedShadow>();
             }
+            Sfx.Play(Sounds.RoomHeartDrop);
             var pickup = go.AddComponent<RoomHeartPickup>();
             // Desde el piso 3, con la vida llena se puede enviar a la vaina de la tienda con E.
             pickup.ConfigurePrompt(HeartStorage.KeyPrompt, 0.9f);
@@ -221,7 +222,7 @@ namespace Primordia.Rooms
             var shop = FindAnyObjectByType<Primordia.Shop.ShopRoom>(FindObjectsInactive.Include);
             Vector2 toward = shop != null ? (Vector2)shop.transform.position - (Vector2)transform.position : Vector2.up;
             HeartFlight.Launch(transform.position, toward);
-            Sfx.Play(Sounds.PlayerHeal);
+            Sfx.Play(Sounds.RoomHeartPodSend);
             Destroy(gameObject);
         }
 

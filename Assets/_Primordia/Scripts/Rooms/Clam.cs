@@ -90,7 +90,11 @@ namespace Primordia.Rooms
 
         IEnumerator Open(GameObject player)
         {
-            Sfx.Play(big ? Sounds.ClamOpenBig : Sounds.ClamOpen);
+            // En el piso 3 el cofre de cono (y el del Tocón hueco, el grande) tiene su sonido.
+            if (FloorGenerator.CurrentFloor >= 3)
+                Sfx.Play(big ? Sounds.RoomConeChestOpenBig : Sounds.RoomConeChestOpen);
+            else
+                Sfx.Play(big ? Sounds.ClamOpenBig : Sounds.ClamOpen);
             bool released = false;
             for (int i = 0; i < open.Length; i++)
             {

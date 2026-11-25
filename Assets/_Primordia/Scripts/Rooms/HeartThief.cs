@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using System.Collections.Generic;
 using Primordia.Core;
 using UnityEngine;
@@ -147,8 +148,35 @@ namespace Primordia.Rooms
 
         void SetPhase(Phase next)
         {
+            switch (next)
+            {
+                case Phase.Emerge:
+                    Sfx.Play(Sounds.RoachEmerge);
+                    break;
+                case Phase.Grab:
+                    Sfx.Play(Sounds.RoachGrab);
+                    break;
+                case Phase.Hide:
+                    Sfx.Play(Sounds.RoachHide);
+                    break;
+            }
+            SetScurry(next is Phase.ToLoot or Phase.Flee);
             phase = next;
             phaseStart = Time.time;
+        }
+
+        // Todas las cucarachas que corren comparten un solo bucle.
+        bool scurrying;
+
+        void SetScurry(bool on)
+        {
+            if (on == scurrying)
+                return;
+            scurrying = on;
+            if (on)
+                SharedLoop.Acquire(Sounds.RoachScurryLoop);
+            else
+                SharedLoop.Release(Sounds.RoachScurryLoop);
         }
 
         float Age => Time.time - phaseStart;
@@ -301,6 +329,7 @@ namespace Primordia.Rooms
 
         void OnDestroy()
         {
+            SetScurry(false);
             if (loot != null)
                 Destroy(loot.gameObject);
         }

@@ -88,6 +88,7 @@ namespace Primordia.Editor
             ["Lineage_Carrion_Eat"] = 0f, ["Room_HeartCoral"] = 0f, ["Exchange_Capsule_Accept"] = 0f,
             ["Exchange_Capsule_Open"] = 0f, ["Room_Clam_Open_Big"] = 0f, ["Room_WaveStart"] = 0f,
             ["Room_Slabs_Open"] = 0f, ["Special_Flagella_Ready"] = 0f,
+            ["Room_Cleared_Floor3"] = 0f, ["Room_WaveStart_Floor3"] = 0f, ["Room_Roots_Open"] = 0f,
         };
 
         // Ataque → (disparo, golpe, avance, impacto).

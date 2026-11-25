@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,6 +48,18 @@ namespace Primordia.Rooms
             if (started != room || this.started)
                 return;
             this.started = true;
+            // Bucle mientras el frente avanza: se oye según la distancia al fuego más cercano de la sala.
+            var bounds = area;
+            Primordia.Audio.NearbyLoop.Ensure(Sounds.RoomFireFrontLoop, from =>
+            {
+                float best = float.MaxValue;
+                foreach (var fire in GroundFire.All)
+                {
+                    if (fire.IsBurning && bounds.Contains(fire.transform.position))
+                        best = Mathf.Min(best, Vector2.Distance(from, fire.transform.position));
+                }
+                return best;
+            }, 12f);
             nextCheck = Time.time + FirstDelay + CheckEvery;
             StartCoroutine(LightSeeds(FirstDelay, Seeds));
         }

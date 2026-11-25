@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -109,6 +110,10 @@ namespace Primordia.Rooms
 
         void SetMode(Mode newMode)
         {
+            if (newMode == Mode.Waking)
+                Sfx.Play(Sounds.RoomTeleportWake);
+            else if (newMode == Mode.Warping)
+                Sfx.Play(Sounds.RoomTeleportWarp);
             mode = newMode;
             modeStart = Time.time;
         }

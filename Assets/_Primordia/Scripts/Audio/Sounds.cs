@@ -353,5 +353,36 @@ namespace Primordia.Audio
         public const string TrapMayflySwarmLoop = "Trap_Mayfly_Swarm_Loop";
         public const string TrapMayflySting = "Trap_Mayfly_Sting";
         public const string TrapMayflyBurn = "Trap_Mayfly_Burn";
+
+        // Piso 3, tanda 5: salas y escenario
+        public const string RoomRootsClose = "Room_Roots_Close";
+        public const string RoomRootsOpen = "Room_Roots_Open";
+        public const string RoomClearedFloor3 = "Room_Cleared_Floor3";
+        public const string RoomWaveStartFloor3 = "Room_WaveStart_Floor3";
+        public const string RoomConeChestOpen = "Room_ConeChest_Open";
+        public const string RoomConeChestOpenBig = "Room_ConeChest_Open_Big";
+        public const string RoomTeleportWake = "Room_Teleport_Wake";
+        public const string RoomTeleportWarp = "Room_Teleport_Warp";
+        public const string RoomHeartDrop = "Room_Heart_Drop";
+        public const string RoomHeartPodSend = "Room_HeartPod_Send";
+        public const string RoomHeartPodTake = "Room_HeartPod_Take";
+        public const string RoomHeartPodEmpty = "Room_HeartPod_Empty";
+        public const string RoachEmerge = "Roach_Emerge";
+        public const string RoachGrab = "Roach_Grab";
+        public const string RoachHide = "Roach_Hide";
+        public const string RoachScurryLoop = "Roach_Scurry_Loop";
+        public const string RoachHurt = "Roach_Hurt";
+        public const string RoachDeath = "Roach_Death";
+        public const string CritterScurry = "Critter_Scurry";
+        public const string RoomRootWallHeartPlace = "Room_RootWall_HeartPlace";
+        public const string RoomRootWallOpen = "Room_RootWall_Open";
+        public const string RoomPurpleFlowerPickup = "Room_PurpleFlower_Pickup";
+        public const string RoomPurpleSeedSprout = "Room_PurpleSeed_Sprout";
+        public const string RoomLogStep = "Room_Log_Step";
+        public const string RoomLogBubble = "Room_Log_Bubble";
+        public const string RoomCoalIgnite = "Room_Coal_Ignite";
+        public const string RoomCoalBurnLoop = "Room_Coal_Burn_Loop";
+        public const string RoomFireFrontLoop = "Room_FireFront_Loop";
+        public const string RoomStumpLightLoop = "Room_Stump_Light_Loop";
     }
 }

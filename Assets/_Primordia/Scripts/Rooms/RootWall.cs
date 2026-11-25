@@ -160,13 +160,15 @@ namespace Primordia.Rooms
         IEnumerator Open(bool seed)
         {
             busy = true;
-            Sfx.Play(Sounds.HeartCoral);
+            Sfx.Play(Sounds.RoomRootWallHeartPlace);
             foreach (var frame in seed ? art.insertSeed : art.insertHeart)
             {
                 body.sprite = frame;
                 yield return new WaitForSeconds(InsertFrameSeconds);
             }
 
+            // El desgarro del sonido cae a ~0,9 s, cuando se abre el hueco (cuadro 8).
+            Sfx.Play(Sounds.RoomRootWallOpen);
             for (int i = 0; i < art.open.Length; i++)
             {
                 body.sprite = art.open[i];

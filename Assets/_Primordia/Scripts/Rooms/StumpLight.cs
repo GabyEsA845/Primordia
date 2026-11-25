@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using UnityEngine;
 
 namespace Primordia.Rooms
@@ -33,6 +34,28 @@ namespace Primordia.Rooms
             Ambience.CreateGlow(go.transform, puddle + Vector2.up * 0.6f, new Glow(null, Warm, 3.2f, new Vector2(0.9f, 1.2f), 4f), 0f);
             return light;
         }
+
+        static readonly System.Collections.Generic.List<StumpLight> all = new();
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        static void ResetStatics() => all.Clear();
+
+        static float NearestDistance(Vector2 from)
+        {
+            float best = float.MaxValue;
+            foreach (var light in all)
+                best = Mathf.Min(best, Vector2.Distance(from, light.transform.position));
+            return best;
+        }
+
+        // Bucle bajo mientras el jugador está en la sala del tocón.
+        void OnEnable()
+        {
+            all.Add(this);
+            Primordia.Audio.NearbyLoop.Ensure(Sounds.RoomStumpLightLoop, NearestDistance, 7f, 0.7f);
+        }
+
+        void OnDisable() => all.Remove(this);
 
         void Update() => body.sprite = frames[Mathf.FloorToInt((Time.time + phase) / FrameSeconds) % frames.Length];
     }

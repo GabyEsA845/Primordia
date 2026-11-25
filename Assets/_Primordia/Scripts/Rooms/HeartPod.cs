@@ -91,15 +91,20 @@ namespace Primordia.Rooms
 
         public override void Interact(GameObject player)
         {
-            if (HeartStorage.Stored <= 0 || player == null || !player.TryGetComponent<Health>(out var health))
+            if (player == null || !player.TryGetComponent<Health>(out var health))
                 return;
-            // Con la vida llena no se gasta.
-            if (health.IsDead || health.Current >= health.Max)
+            // Sin corazones o con la vida llena no pasa nada (suena el «vacío»).
+            if (HeartStorage.Stored <= 0 || (!health.IsDead && health.Current >= health.Max))
+            {
+                Sfx.Play(Sounds.RoomHeartPodEmpty);
+                return;
+            }
+            if (health.IsDead)
                 return;
             if (!HeartStorage.Take())
                 return;
             health.Heal(1);
-            Sfx.Play(Sounds.PlayerHeal);
+            Sfx.Play(Sounds.RoomHeartPodTake);
             RefreshTooltip(player);
         }
 

@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -127,6 +128,7 @@ namespace Primordia.Rooms
             int index = column - LeftEndCells;
             if (PieceAt(index) is not { } stepped)
                 return;
+            Sfx.Play(Sounds.RoomLogStep);
             stepped.stepAt = Time.time;
             if (PieceAt(index - 1) is { } before)
                 before.dipAt = Time.time;
@@ -210,6 +212,9 @@ namespace Primordia.Rooms
             if (!found)
                 yield break;
 
+            // Solo las burbujas grandes suenan.
+            if (big)
+                Sfx.Play(Sounds.RoomLogBubble);
             var go = new GameObject("MudBubble");
             go.transform.SetParent(transform, false);
             go.transform.position = spot;

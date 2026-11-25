@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using Primordia.Combat;
 using Primordia.Core;
 using Primordia.Enemies;
@@ -138,8 +139,45 @@ namespace Primordia.Rooms
             SetState(State.Igniting);
         }
 
+        // Un solo bucle para toda la veta: suena mientras arda alguna casilla y baja (40 %) cuando solo quedan brasas.
+        static int burning;
+        static int embers;
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        static void ResetStatics()
+        {
+            burning = 0;
+            embers = 0;
+        }
+
+        static void Count(State from, State to)
+        {
+            if (from == State.Burning)
+                burning--;
+            else if (from == State.Embers)
+                embers--;
+            if (to == State.Burning)
+                burning++;
+            else if (to == State.Embers)
+                embers++;
+            burning = Mathf.Max(0, burning);
+            embers = Mathf.Max(0, embers);
+            if (burning > 0)
+                AudioManager.Instance?.StartLoop(Sounds.RoomCoalBurnLoop, 1f);
+            else if (embers > 0)
+                AudioManager.Instance?.StartLoop(Sounds.RoomCoalBurnLoop, 0.4f);
+            else
+                Sfx.StopLoop(Sounds.RoomCoalBurnLoop);
+        }
+
+        void OnDestroy() => Count(state, State.Idle);
+
         void SetState(State next)
         {
+            // La primera casilla que prende suena con su chispazo.
+            if (next == State.Igniting && burning == 0 && embers == 0)
+                Sfx.Play(Sounds.RoomCoalIgnite);
+            Count(state, next);
             state = next;
             stateStart = Time.time;
             if (next == State.Burning)

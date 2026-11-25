@@ -55,6 +55,17 @@ namespace Primordia.Rooms
         // Desde el piso 2 las puertas son losas de roca, no membranas: suenan a piedra.
         static bool SlabDoors => FloorGenerator.CurrentFloor >= 2;
 
+        // En el piso 3 las puertas son raíces: puertas, oleada y sala limpia tienen su propio sonido.
+        static bool RootDoors => FloorGenerator.CurrentFloor >= 3;
+
+        static string DoorsCloseSound => RootDoors ? Sounds.RoomRootsClose : SlabDoors ? Sounds.SlabsClose : Sounds.DoorsClose;
+
+        static string DoorsOpenSound => RootDoors ? Sounds.RoomRootsOpen : SlabDoors ? Sounds.SlabsOpen : Sounds.DoorsOpen;
+
+        static string WaveStartSound => RootDoors ? Sounds.RoomWaveStartFloor3 : Sounds.WaveStart;
+
+        static string ClearedSound => RootDoors ? Sounds.RoomClearedFloor3 : Sounds.RoomCleared;
+
         public event Action<Room> Entered;
 
         /// <summary>Ha llegado una oleada (con el número de oleada, desde la segunda).</summary>
@@ -172,7 +183,7 @@ namespace Primordia.Rooms
             foreach (var door in doors)
                 door.Close();
             if (doors.Length > 0)
-                Sfx.Play(SlabDoors ? Sounds.SlabsClose : Sounds.DoorsClose);
+                Sfx.Play(DoorsCloseSound);
             CombatStartedAny?.Invoke(this);
 
             OpenVents();
@@ -220,7 +231,7 @@ namespace Primordia.Rooms
                 if (enemy.TryGetComponent<EnemyAI>(out var ai))
                     ai.Alert();
             }
-            Sfx.Play(Sounds.WaveStart);
+            Sfx.Play(WaveStartSound);
             WaveStarted?.Invoke(this, CurrentWave);
 
             if (enemies.Length == 0)
@@ -271,8 +282,8 @@ namespace Primordia.Rooms
             if (fought)
             {
                 if (doors.Length > 0)
-                    Sfx.Play(SlabDoors ? Sounds.SlabsOpen : Sounds.DoorsOpen);
-                Sfx.Play(Sounds.RoomCleared);
+                    Sfx.Play(DoorsOpenSound);
+                Sfx.Play(ClearedSound);
             }
 
             Cleared?.Invoke(this);

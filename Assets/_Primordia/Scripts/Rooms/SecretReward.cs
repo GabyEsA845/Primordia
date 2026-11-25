@@ -55,7 +55,7 @@ namespace Primordia.Rooms
             HidePrompt();
             // Un corazón entero son dos medios; SetMax cura la diferencia.
             health.SetMax(health.Max + 2);
-            Sfx.Play(Sounds.HeartCoral);
+            Sfx.Play(Sounds.RoomPurpleSeedSprout);
             body.enabled = false;
         }
     }

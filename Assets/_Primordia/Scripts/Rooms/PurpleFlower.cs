@@ -59,7 +59,7 @@ namespace Primordia.Rooms
                 return;
             taken = true;
             HidePrompt();
-            Sfx.Play(Sounds.HeartCoral);
+            Sfx.Play(Sounds.RoomPurpleFlowerPickup);
             trail?.OnTaken(player);
             StartCoroutine(Burst());
         }

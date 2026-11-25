@@ -145,6 +145,14 @@ namespace Primordia.Editor
             ("Floor2/Enemy_Pikaia", "Enemy_Hit", "Enemy_Pikaia_Death", null, null, null),
             ("Floor2/Enemy_AnomalocarisBoss", "Boss_Anomalocaris_Hurt", "Boss_Anomalocaris_Death", null, null, null),
             ("Floor2/Enemy_EurypteridBoss", "Boss_Eurypterid_Hurt", "Boss_Eurypterid_Death", null, null, null),
+            // Piso 3
+            ("Floor3/Enemy_Calamites", "Enemy_Calamites_Hurt", "Enemy_Calamites_Death", null, null, null),
+            ("Floor3/Enemy_CalamitesSprout", "Enemy_CalamitesSprout_Hurt", "Enemy_CalamitesSprout_Death", null, null, null),
+            ("Floor3/Enemy_Medullosa", "Enemy_Medullosa_Hurt", "Enemy_Medullosa_Death", null, null, null),
+            ("Floor3/Enemy_Dragonfly", "Enemy_Dragonfly_Hurt", "Enemy_Dragonfly_Death", null, null, null),
+            ("Floor3/Enemy_Beetle", "Enemy_Bombardier_Hurt", "Enemy_Bombardier_Death", null, null, null),
+            ("Floor3/Enemy_Spider", "Enemy_Spider_Hurt", "Enemy_Spider_Death", null, null, null),
+            ("Floor3/Enemy_Toad", "Enemy_Toad_Hurt", "Enemy_Toad_Death", null, "Enemy_Toad_Croak", null),
         };
 
         // Efectos visuales que suenan al aparecer.

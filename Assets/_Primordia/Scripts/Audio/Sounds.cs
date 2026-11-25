@@ -318,5 +318,40 @@ namespace Primordia.Audio
         public const string LineageZombieRise = "Lineage_Zombie_Rise";
         public const string LineageZombieCollapse = "Lineage_Zombie_Collapse";
         public const string LineageLampreyAttach = "Lineage_Lamprey_Attach";
+
+        // Piso 3, tanda 4: enemigos y trampas (el golpe y la muerte van en los datos de cada enemigo)
+        public const string EnemyCalamitesSprout = "Enemy_Calamites_Sprout";
+        public const string EnemyCalamitesSporeRing = "Enemy_Calamites_SporeRing";
+        public const string EnemyCalamitesSproutWither = "Enemy_CalamitesSprout_Wither";
+        public const string EnemyMedullosaLaunch = "Enemy_Medullosa_Launch";
+        public const string EnemyMedullosaFall = "Enemy_Medullosa_Fall";
+        public const string EnemyMedullosaImpact = "Enemy_Medullosa_Impact";
+        public const string EnemyDragonflyBuzzLoop = "Enemy_Dragonfly_Buzz_Loop";
+        public const string EnemyDragonflyWarn = "Enemy_Dragonfly_Warn";
+        public const string EnemyDragonflyDive = "Enemy_Dragonfly_Dive";
+        public const string EnemyDragonflyLand = "Enemy_Dragonfly_Land";
+        public const string EnemyBombardierWarn = "Enemy_Bombardier_Warn";
+        public const string EnemyBombardierFlameStart = "Enemy_Bombardier_Flame_Start";
+        public const string EnemyBombardierFlameLoop = "Enemy_Bombardier_Flame_Loop";
+        public const string EnemyBombardierFlameEnd = "Enemy_Bombardier_Flame_End";
+        public const string EnemySpiderFernShakeLoop = "Enemy_Spider_FernShake_Loop";
+        public const string EnemySpiderEmerge = "Enemy_Spider_Emerge";
+        public const string EnemySpiderSilk = "Enemy_Spider_Silk";
+        public const string EnemySpiderLeap = "Enemy_Spider_Leap";
+        public const string EnemyToadSpit = "Enemy_Toad_Spit";
+        public const string EnemyToadBallSplat = "Enemy_Toad_BallSplat";
+        public const string EnemyToadDive = "Enemy_Toad_Dive";
+        public const string EnemyToadSurface = "Enemy_Toad_Surface";
+        public const string EnemyToadSwell = "Enemy_Toad_Swell";
+        public const string EnemyToadBurst = "Enemy_Toad_Burst";
+        public const string TrapCarnivoreSnap = "Trap_Carnivore_Snap";
+        public const string TrapCarnivoreChew = "Trap_Carnivore_Chew";
+        public const string TrapCarnivoreRelease = "Trap_Carnivore_Release";
+        public const string TrapCarnivoreEat = "Trap_Carnivore_Eat";
+        public const string TrapCarnivoreOpen = "Trap_Carnivore_Open";
+        public const string TrapCarnivoreWither = "Trap_Carnivore_Wither";
+        public const string TrapMayflySwarmLoop = "Trap_Mayfly_Swarm_Loop";
+        public const string TrapMayflySting = "Trap_Mayfly_Sting";
+        public const string TrapMayflyBurn = "Trap_Mayfly_Burn";
     }
 }

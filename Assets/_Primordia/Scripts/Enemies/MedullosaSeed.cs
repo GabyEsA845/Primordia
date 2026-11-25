@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using Primordia.Combat;
 using Primordia.Core;
 using Primordia.Rooms;
@@ -84,6 +85,7 @@ namespace Primordia.Enemies
 
         void Land()
         {
+            Sfx.Play(Sounds.EnemyMedullosaImpact);
             flying = false;
             if (burst != null)
                 Instantiate(burst, to, Quaternion.identity);

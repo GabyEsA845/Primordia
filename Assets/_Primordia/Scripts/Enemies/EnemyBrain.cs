@@ -46,6 +46,9 @@ namespace Primordia.Enemies
         /// <summary>Animación de daño que se ve ahora (null = Hurt): el sapo en el lodo la tiene propia.</summary>
         public virtual string HurtState => null;
 
+        /// <summary>True si su muerte ahora no suena como la normal (el retoño que se seca, el sapo que revienta): ya suena otra cosa.</summary>
+        public virtual bool SilentDeath => false;
+
         /// <summary>Animación de muerte que se ve ahora (null = Death).</summary>
         public virtual string DeathState => null;
 

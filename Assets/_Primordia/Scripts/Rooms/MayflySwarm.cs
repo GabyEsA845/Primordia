@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using Primordia.Combat;
 using Primordia.Core;
 using Primordia.Player;
@@ -64,8 +65,33 @@ namespace Primordia.Rooms
             body.sortingOrder = 15;
         }
 
+        // El zumbido del enjambre (un bucle compartido: se apaga cuando no queda ninguno que persiga).
+        static int buzzing;
+        bool buzzes;
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        static void ResetStatics() => buzzing = 0;
+
+        void SetBuzz(bool on)
+        {
+            if (on == buzzes)
+                return;
+            buzzes = on;
+            if (on)
+            {
+                if (++buzzing == 1)
+                    Sfx.StartLoop(Sounds.TrapMayflySwarmLoop);
+            }
+            else if (--buzzing <= 0)
+            {
+                buzzing = 0;
+                Sfx.StopLoop(Sounds.TrapMayflySwarmLoop);
+            }
+        }
+
         void Start()
         {
+            SetBuzz(true);
             room = GetComponentInParent<Room>();
             if (room != null)
                 room.Cleared += OnRoomCleared;
@@ -78,6 +104,7 @@ namespace Primordia.Rooms
 
         void OnDestroy()
         {
+            SetBuzz(false);
             if (room != null)
                 room.Cleared -= OnRoomCleared;
         }
@@ -89,6 +116,7 @@ namespace Primordia.Rooms
         {
             if (state != State.Swarm)
                 return;
+            SetBuzz(false);
             state = State.Fading;
             stateStart = Time.time;
         }
@@ -97,6 +125,8 @@ namespace Primordia.Rooms
         {
             if (!CanIgnite)
                 return;
+            SetBuzz(false);
+            Sfx.Play(Sounds.TrapMayflyBurn);
             state = State.Burning;
             stateStart = Time.time;
         }
@@ -188,6 +218,7 @@ namespace Primordia.Rooms
                 if (hit.GetComponentInParent<PlayerController>() is { IsDodging: true })
                     continue;
                 nextDamageAt = Time.time + damageEvery;
+                Sfx.Play(Sounds.TrapMayflySting);
                 health.TakeDamage(damage);
                 return;
             }

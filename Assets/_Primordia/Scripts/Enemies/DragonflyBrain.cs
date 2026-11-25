@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using System.Collections.Generic;
 using Primordia.Core;
 using Primordia.Rooms;
@@ -114,14 +115,36 @@ namespace Primordia.Enemies
 
         void OnDisable()
         {
+            flying.Remove(this);
             ClearLine();
             if (Health != null)
                 Health.DamageTakenMultiplier = 1f;
         }
 
         /// <summary>En el aire: recibe menos daño y no choca con el jugador (sus proyectiles sí la alcanzan); las paredes la paran.</summary>
+        // Las libélulas en el aire: un solo zumbido compartido, que se oye según la más cercana.
+        static readonly System.Collections.Generic.List<DragonflyBrain> flying = new();
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        static void ResetStatics() => flying.Clear();
+
+        static float NearestDistance(Vector2 from)
+        {
+            float best = float.MaxValue;
+            foreach (var fly in flying)
+                best = Mathf.Min(best, Vector2.Distance(from, fly.transform.position));
+            return best;
+        }
+
         void SetAirborne(bool airborne)
         {
+            if (airborne && !flying.Contains(this))
+            {
+                flying.Add(this);
+                NearbyLoop.Ensure(Sounds.EnemyDragonflyBuzzLoop, NearestDistance, 10f, 0.8f);
+            }
+            else if (!airborne)
+                flying.Remove(this);
             if (Health != null)
                 Health.DamageTakenMultiplier = airborne ? airborneDamageTaken : 1f;
             if (Body != null)
@@ -132,6 +155,22 @@ namespace Primordia.Enemies
 
         void Enter(Phase phase, float duration)
         {
+            // Si el aviso se cancela (no llega al picado), se corta.
+            if (Current == Phase.Warn && phase != Phase.Dive)
+                Sfx.Stop(Sounds.EnemyDragonflyWarn);
+            switch (phase)
+            {
+                case Phase.Warn:
+                    Sfx.Play(Sounds.EnemyDragonflyWarn);
+                    break;
+                case Phase.Dive:
+                    Sfx.Play(Sounds.EnemyDragonflyDive);
+                    break;
+                case Phase.Land:
+                    // Sobre el lodo no se posa: salpica.
+                    Sfx.Play(Primordia.Rooms.Pits.IsDeepInMud(transform.position) ? Sounds.MudSplash : Sounds.EnemyDragonflyLand);
+                    break;
+            }
             Current = phase;
             phaseStart = Time.time;
             phaseUntil = Time.time + duration;

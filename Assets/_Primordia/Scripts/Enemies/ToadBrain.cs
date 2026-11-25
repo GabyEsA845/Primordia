@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using Primordia.Combat;
 using Primordia.Core;
 using Primordia.Rooms;
@@ -143,8 +144,23 @@ namespace Primordia.Enemies
                 bodyCollider.enabled = !submerged;
         }
 
+        // El sapo que revienta no hace su muerte normal: suena el reventón.
+        public override bool SilentDeath => HasBurst;
+
         void Enter(Phase phase, float duration)
         {
+            switch (phase)
+            {
+                case Phase.Dive:
+                    Sfx.Play(Sounds.EnemyToadDive);
+                    break;
+                case Phase.Emerge:
+                    Sfx.Play(Sounds.EnemyToadSurface);
+                    break;
+                case Phase.Inflate:
+                    Sfx.Play(Sounds.EnemyToadSwell);
+                    break;
+            }
             Current = phase;
             phaseStart = Time.time;
             phaseUntil = Time.time + duration;
@@ -356,6 +372,7 @@ namespace Primordia.Enemies
             Vector2 position = transform.position;
             Vector2 aim = target != null ? (Vector2)target.position : position + facing * 4f;
             Spat?.Invoke(aim);
+            Sfx.Play(Sounds.EnemyToadSpit);
             if (ballPrefab == null)
                 return;
             Vector2 mouth = position + new Vector2(facing.x < 0f ? -mouthOffset.x : mouthOffset.x, mouthOffset.y);
@@ -368,6 +385,7 @@ namespace Primordia.Enemies
             if (HasBurst)
                 return;
             HasBurst = true;
+            Sfx.Play(Sounds.EnemyToadBurst);
             Vector2 position = transform.position;
             if (burstEffect != null)
                 Instantiate(burstEffect, position, Quaternion.identity);

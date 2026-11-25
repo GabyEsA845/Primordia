@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using System.Linq;
 using Primordia.Core;
 using Primordia.Rooms;
@@ -126,13 +127,31 @@ namespace Primordia.Enemies
 
         void OnDisable()
         {
+            hiding.Remove(this);
             if (Hideout != null)
                 Hideout.Trembling = false;
         }
 
         /// <summary>Se esconde en ese sitio: inmune, sin cuerpo físico, con la capa de ojos sobre el escondite.</summary>
+        // Las arañas escondidas hacen temblar su helecho: un solo bucle compartido, solo si hay una a menos de ~6 u (es la pista para descubrirla).
+        static readonly System.Collections.Generic.List<SpiderBrain> hiding = new();
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        static void ResetStatics() => hiding.Clear();
+
+        static float NearestHidden(Vector2 from)
+        {
+            float best = float.MaxValue;
+            foreach (var spider in hiding)
+                best = Mathf.Min(best, Vector2.Distance(from, spider.transform.position));
+            return best;
+        }
+
         public void HideIn(IHidingPlace place)
         {
+            if (!hiding.Contains(this))
+                hiding.Add(this);
+            NearbyLoop.Ensure(Sounds.EnemySpiderFernShakeLoop, NearestHidden, 6f);
             Hideout = place;
             place.Trembling = true;
             Current = Phase.Hidden;
@@ -171,6 +190,8 @@ namespace Primordia.Enemies
         {
             if (Current != Phase.Hidden)
                 return;
+            hiding.Remove(this);
+            Sfx.Play(Sounds.EnemySpiderEmerge);
             if (Hideout != null)
                 Hideout.Trembling = false;
             SetHidden(false);
@@ -283,6 +304,7 @@ namespace Primordia.Enemies
             nextJumpAt = Time.time + jumpCooldown;
             jumpDirection = direction;
             Enter(Phase.Jump, Length("Jump", DefaultJump));
+            Sfx.Play(Sounds.EnemySpiderLeap);
             Jumped?.Invoke(direction);
         }
 
@@ -291,6 +313,7 @@ namespace Primordia.Enemies
             Vector2 position = transform.position;
             Vector2 aim = target != null ? (Vector2)target.position : position + facing * 4f;
             Spat?.Invoke(aim);
+            Sfx.Play(Sounds.EnemySpiderSilk);
             if (silkPrefab == null)
                 return;
             Vector2 mouth = position + new Vector2(facing.x < 0f ? -mouthOffset.x : mouthOffset.x, mouthOffset.y);

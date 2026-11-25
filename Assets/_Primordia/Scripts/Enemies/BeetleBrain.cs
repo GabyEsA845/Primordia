@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using Primordia.Combat;
 using Primordia.Core;
 using Primordia.Rooms;
@@ -131,8 +132,17 @@ namespace Primordia.Enemies
                 : amount;
         }
 
+        // Varios bombarderos comparten el bucle del lanzallamas: se apaga cuando no queda ninguno escupiendo.
+        static int spraying;
+        bool sounding;
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        static void ResetStatics() => spraying = 0;
+
         void Enter(Phase phase, float duration)
         {
+            if (phase == Phase.Warn)
+                Sfx.Play(Sounds.EnemyBombardierWarn);
             Current = phase;
             phaseStart = Time.time;
             phaseUntil = Time.time + duration;
@@ -254,6 +264,13 @@ namespace Primordia.Enemies
         void StartCone()
         {
             nextTick = Time.time;
+            Sfx.Play(Sounds.EnemyBombardierFlameStart);
+            if (!sounding)
+            {
+                sounding = true;
+                if (++spraying == 1)
+                    Sfx.StartLoop(Sounds.EnemyBombardierFlameLoop);
+            }
             if (sprayEffect == null)
                 return;
             cone = Instantiate(sprayEffect, Tip, Quaternion.Euler(0f, 0f, Mathf.Atan2(SprayDirection.y, SprayDirection.x) * Mathf.Rad2Deg));
@@ -265,6 +282,16 @@ namespace Primordia.Enemies
         /// </summary>
         void EndCone(bool graceful = false)
         {
+            if (sounding)
+            {
+                sounding = false;
+                if (--spraying <= 0)
+                {
+                    spraying = 0;
+                    Sfx.StopLoop(Sounds.EnemyBombardierFlameLoop);
+                }
+                Sfx.Play(Sounds.EnemyBombardierFlameEnd);
+            }
             if (cone != null)
             {
                 if (graceful && cone.TryGetComponent<ConeEffect>(out var effect))

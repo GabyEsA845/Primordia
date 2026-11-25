@@ -109,10 +109,13 @@ namespace Primordia.Enemies
             splitDuration = newSplitDuration;
         }
 
+        /// <summary>La planta carnívora que se lo come pide que no suene su muerte (suena el bocado).</summary>
+        public bool MuteDeathSound { get; set; }
+
         void OnDied()
         {
             // El que cae a la fosa ya sonó al caer (Enemy_PitFall).
-            if (data != null && !FellIntoPit)
+            if (data != null && !FellIntoPit && !MuteDeathSound && !(TryGetComponent<EnemyBrain>(out var brain) && brain.SilentDeath))
                 Sfx.Play(WillSplit && !string.IsNullOrEmpty(data.SplitSound) ? data.SplitSound : data.DeathSound);
 
             if (WillSplit && splitDuration > 0f)

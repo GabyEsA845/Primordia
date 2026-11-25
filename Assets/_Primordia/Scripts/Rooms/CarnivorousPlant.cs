@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using Primordia.Combat;
 using Primordia.Core;
 using Primordia.Enemies;
@@ -115,6 +116,21 @@ namespace Primordia.Rooms
 
         void Enter(State state)
         {
+            switch (state)
+            {
+                case State.Snap:
+                    Sfx.Play(Sounds.TrapCarnivoreSnap);
+                    break;
+                case State.Chew:
+                    Sfx.Play(Sounds.TrapCarnivoreChew);
+                    break;
+                case State.Open:
+                    Sfx.Play(Sounds.TrapCarnivoreOpen);
+                    break;
+                case State.Wilted:
+                    Sfx.Play(Sounds.TrapCarnivoreWither);
+                    break;
+            }
             Current = state;
             stateStart = Time.time;
             Show();
@@ -263,12 +279,16 @@ namespace Primordia.Rooms
                 victimIsPlayer = false;
                 if (finished != null && !finished.IsDead)
                     finished.TakeDamage(playerDamage);
+                Sfx.Play(Sounds.TrapCarnivoreRelease);
                 Released?.Invoke(finished);
             }
             else if (eatenEnemy != null)
             {
                 var eaten = eatenEnemy;
                 eatenEnemy = null;
+                // Se lo come: suena el bocado y no su muerte de siempre.
+                eaten.MuteDeathSound = true;
+                Sfx.Play(Sounds.TrapCarnivoreEat);
                 if (finished != null && !finished.IsDead)
                     finished.Kill();
                 Ate?.Invoke(eaten);
@@ -290,6 +310,8 @@ namespace Primordia.Rooms
                 // Lo comido no puede quedar invisible e inmortal: se le deja morir.
                 var eaten = eatenEnemy;
                 eatenEnemy = null;
+                if (eaten != null)
+                    eaten.MuteDeathSound = true;
                 if (eaten != null && eaten.TryGetComponent<Health>(out var health) && !health.IsDead)
                     health.Kill();
             }

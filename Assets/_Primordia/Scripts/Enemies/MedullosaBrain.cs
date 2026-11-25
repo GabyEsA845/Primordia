@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using Primordia.Core;
 using UnityEngine;
 
@@ -129,6 +130,8 @@ namespace Primordia.Enemies
         void Fire()
         {
             Fired?.Invoke(aimPoint);
+            Sfx.Play(Sounds.EnemyMedullosaLaunch);
+            Sfx.Play(Sounds.EnemyMedullosaFall);
             if (seedPrefab == null)
                 return;
             Vector2 feet = transform.position;

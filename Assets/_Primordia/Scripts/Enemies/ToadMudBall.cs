@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using Primordia.Combat;
 using Primordia.Core;
 using Primordia.Rooms;
@@ -79,6 +80,7 @@ namespace Primordia.Enemies
         void Land()
         {
             flying = false;
+            Sfx.Play(Sounds.EnemyToadBallSplat);
             if (splat != null)
                 Instantiate(splat, to, Quaternion.identity);
 

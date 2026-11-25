@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using Primordia.Core;
 using UnityEngine;
 
@@ -48,6 +49,9 @@ namespace Primordia.Enemies
             if (TryGetComponent<Combat.ContactDamage>(out var contact))
                 contact.enabled = false;
         }
+
+        // Los retoños que se secan con la madre no hacen su muerte normal: suena una sola vez «Wither» (en la madre).
+        public override bool SilentDeath => Current == Phase.Wither;
 
         public override Vector2 Think(Transform target, EnemyData data)
         {

@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using System.Collections.Generic;
 using Primordia.Combat;
 using Primordia.Core;
@@ -99,11 +100,18 @@ namespace Primordia.Enemies
         // Al morir la madre, los retoños se secan.
         void OnDied()
         {
+            bool any = false;
             foreach (var sprout in sprouts)
             {
                 if (sprout != null)
+                {
                     sprout.Wither();
+                    any = true;
+                }
             }
+            // Un solo sonido aunque se sequen varios retoños.
+            if (any)
+                Sfx.Play(Sounds.EnemyCalamitesSproutWither);
         }
 
         void Enter(Phase phase, float duration)
@@ -193,6 +201,7 @@ namespace Primordia.Enemies
                 }
             }
 
+            Sfx.Play(Sounds.EnemyCalamitesSprout);
             var sprout = Instantiate(sproutPrefab, spot, Quaternion.identity, transform.parent);
             sprout.Bind(this);
             if (sprout.TryGetComponent<Enemy>(out var enemy))
@@ -207,6 +216,7 @@ namespace Primordia.Enemies
 
         void FireRing()
         {
+            Sfx.Play(Sounds.EnemyCalamitesSporeRing);
             if (weapon != null && weapon.Attack != null)
             {
                 float step = 360f / sporeCount;

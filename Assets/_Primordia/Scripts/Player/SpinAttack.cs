@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using System.Collections.Generic;
 using Primordia.Combat;
 using Primordia.Core;
@@ -134,6 +135,8 @@ namespace Primordia.Player
         {
             controller.ChannelSpeedFactor = attack.SpinSpeedFactor;
             animator.Hold("Spin");
+            Sfx.Play(Sounds.MouthSpinStart);
+            Sfx.StartLoop(Sounds.MouthSpinLoop);
             State = Phase.Spinning;
             tickTimer = 0f;
             if (attack.SpinEffect != null && effect == null)
@@ -185,6 +188,7 @@ namespace Primordia.Player
             int damage = Mathf.Max(0, Mathf.CeilToInt(attack.SpinDamage * weapon.DamageMultiplier - 0.001f));
             Vector2 center = transform.position;
             struck.Clear();
+            bool landed = false;
             foreach (var hit in Physics2D.OverlapCircleAll(center, StrikeRadius, LayerMask.GetMask(CombatLayers.Enemy)))
             {
                 if (hit.isTrigger)
@@ -194,7 +198,10 @@ namespace Primordia.Player
                     continue;
 
                 if (target.TakeDamage(damage, DamageKind.Hit, DamageSource.Spin))
+                {
                     weapon.ReportHit(target);
+                    landed = true;
+                }
                 if (target.IsDead || attack.SpinPush <= 0f)
                     continue;
                 var pushable = hit.GetComponentInParent<IPushable>();
@@ -204,6 +211,9 @@ namespace Primordia.Player
                 away = away.sqrMagnitude > 0.0001f ? away.normalized : Random.insideUnitCircle.normalized;
                 pushable.Knockback(away * attack.SpinPush, PushStun);
             }
+            // Un solo sonido por golpe del giro, aunque alcance a varios.
+            if (landed)
+                Sfx.Play(Sounds.MouthSpinHit);
         }
 
         /// <summary>Nivel II: los proyectiles enemigos del radio vuelven hacia quien los lanzó, ya como disparos del jugador.</summary>
@@ -218,6 +228,8 @@ namespace Primordia.Player
                     toReturn.Add(projectile);
             }
 
+            if (toReturn.Count > 0)
+                Sfx.Play(Sounds.MouthSpinDeflect);
             foreach (var projectile in toReturn)
             {
                 var returned = projectile.Attack;
@@ -268,6 +280,7 @@ namespace Primordia.Player
                     attack.SpinRingAfter > 0f ? ringDamage : 0, attack.SpinTick, attack.SpinRingRadius);
             }
             boomerang.SetActive(true);
+            Sfx.Play(Sounds.MouthSpinBoomerang);
         }
 
         void AfterEnding()
@@ -275,6 +288,7 @@ namespace Primordia.Player
             if (dizzyNext)
             {
                 animator.Hold("Dizzy");
+                Sfx.Play(Sounds.MouthSpinDizzy);
                 // Mareado no puede andar ni esquivar.
                 controller.MovementLocked = true;
                 phaseTimer = attack.SpinDizzySeconds > 0f ? attack.SpinDizzySeconds : DefaultDizzySeconds;
@@ -306,6 +320,7 @@ namespace Primordia.Player
 
         void RemoveEffect()
         {
+            Sfx.StopLoop(Sounds.MouthSpinLoop);
             if (ring != null)
                 ring.Release();
             ring = null;

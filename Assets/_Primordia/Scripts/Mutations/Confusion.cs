@@ -62,6 +62,7 @@ namespace Primordia.Mutations
             if (confusion == null)
             {
                 confusion = target.gameObject.AddComponent<Confusion>();
+                Primordia.Audio.Sfx.Play(Primordia.Audio.Sounds.StatusConfused);
                 confusion.ai = enemyAI;
                 confusion.health = target;
                 confusion.weapon = target.GetComponent<Weapon>();

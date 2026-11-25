@@ -249,5 +249,45 @@ namespace Primordia.Audio
         public const string WaterSplash = "Water_Splash";
         public const string WebStick = "Web_Stick";
         public const string WebBurn = "Web_Burn";
+
+        // Piso 3, tanda 2: jugador (esquivas, Bocas y mutaciones)
+        public const string MouthSpitShoot = "Mouth_Spit_Shoot";
+        public const string MouthSpitTrail = "Mouth_Spit_Trail";
+        public const string MouthSpitBurst = "Mouth_Spit_Burst";
+        public const string MouthSpitSplit = "Mouth_Spit_Split";
+        public const string MouthSpinStart = "Mouth_Spin_Start";
+        public const string MouthSpinLoop = "Mouth_Spin_Loop";
+        public const string MouthSpinHit = "Mouth_Spin_Hit";
+        public const string MouthSpinDizzy = "Mouth_Spin_Dizzy";
+        public const string MouthSpinDeflect = "Mouth_Spin_Deflect";
+        public const string MouthSpinBoomerang = "Mouth_Spin_Boomerang";
+        public const string MouthVinegarStart = "Mouth_Vinegar_Start";
+        public const string MouthVinegarLoop = "Mouth_Vinegar_Loop";
+        public const string MouthVinegarHit = "Mouth_Vinegar_Hit";
+        public const string MouthVinegarEmpty = "Mouth_Vinegar_Empty";
+        public const string MouthVinegarReady = "Mouth_Vinegar_Ready";
+        public const string MouthVinegarSplash = "Mouth_Vinegar_Splash";
+        public const string LimbsJumpTakeoff = "Limbs_Jump_Takeoff";
+        public const string LimbsJumpLand = "Limbs_Jump_Land";
+        public const string LimbsJumpStun = "Limbs_Jump_Stun";
+        public const string LimbsSpinnerThread = "Limbs_Spinner_Thread";
+        public const string LimbsSpinnerSnare = "Limbs_Spinner_Snare";
+        public const string LimbsSpinnerWeb = "Limbs_Spinner_Web";
+        public const string SkinMucusCharged = "Skin_Mucus_Charged";
+        public const string SkinMucusAbsorb = "Skin_Mucus_Absorb";
+        public const string SkinMucusReflect = "Skin_Mucus_Reflect";
+        public const string SkinCharKindle = "Skin_Char_Kindle";
+        public const string SkinCharFlare = "Skin_Char_Flare";
+        public const string OrganMethaneRelease = "Organ_Methane_Release";
+        public const string OrganMethaneCloudLoop = "Organ_Methane_Cloud_Loop";
+        public const string OrganPheromoneCast = "Organ_Pheromone_Cast";
+        public const string StatusConfused = "Status_Confused";
+        public const string LineageTinderShoot = "Lineage_Tinder_Shoot";
+        public const string LineageTinderTrail = "Lineage_Tinder_Trail";
+        public const string LineageTinderBurst = "Lineage_Tinder_Burst";
+        public const string LineageLeechBurst = "Lineage_Leech_Burst";
+        public const string PlayerDodgeFrog = "Player_Dodge_Frog";
+        public const string PlayerDodgeDiplocaulus = "Player_Dodge_Diplocaulus";
+        public const string PlayerDodgeScorpion = "Player_Dodge_Scorpion";
     }
 }

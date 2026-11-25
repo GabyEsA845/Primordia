@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using System.Collections.Generic;
 using Primordia.Core;
 using Primordia.Enemies;
@@ -55,6 +56,7 @@ namespace Primordia.Combat
         float launchedAt;
         bool leech;
         bool tinder;
+        Vector2 lastTrailSound;
         float nextBurn;
         Vector2 lastFire;
         Vector2 heading = Vector2.right;
@@ -126,6 +128,9 @@ namespace Primordia.Combat
                     harmsPlayer: !IsPlayerShot, leech: leech);
             }
             Draw();
+            lastTrailSound = transform.position;
+            if (!attack.SpitMini)
+                Sfx.Play(tinder ? Sounds.LineageTinderShoot : Sounds.MouthSpitShoot);
             if (weapon == null || attack.SpitMini)
                 return;
 
@@ -145,6 +150,12 @@ namespace Primordia.Combat
                 trail.Extend(transform.position);
             if (tinder)
                 Smolder();
+            else if (Vector2.Distance(transform.position, lastTrailSound) >= attack.SpitTrailEvery)
+            {
+                // Un chasquido suave por cada charquito del rastro.
+                lastTrailSound = transform.position;
+                Sfx.Play(Sounds.MouthSpitTrail);
+            }
         }
 
         // Yesquero: va ardiendo. Deja fuego cada trecho y quema a los enemigos y lo inflamable que roza.
@@ -155,6 +166,7 @@ namespace Primordia.Combat
             {
                 lastFire = position;
                 TinderScorch.Attach(GroundFire.Spawn(position, attack.SpitTrailSeconds, harmsPlayer: false));
+                Sfx.Play(Sounds.LineageTinderTrail);
             }
 
             if (Time.time < nextBurn)
@@ -292,6 +304,7 @@ namespace Primordia.Combat
             // Camada: bolitas en cruz.
             if (attack.SpitSplitCount > 0 && attack.SpitSplitAttack != null && attack.SpitSplitAttack.ProjectilePrefab != null)
             {
+                Sfx.Play(Sounds.MouthSpitSplit);
                 float step = 360f / attack.SpitSplitCount;
                 for (int i = 0; i < attack.SpitSplitCount; i++)
                 {

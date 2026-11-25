@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using System.Collections.Generic;
 using Primordia.Combat;
 using Primordia.Core;
@@ -211,11 +212,17 @@ namespace Primordia.Player
             float seconds = locked ? attack.JetEmptyRefillSeconds : attack.JetRefillSeconds;
             charge = Mathf.Min(max, charge + max / seconds * dt);
             if (charge >= max)
+            {
+                // Solo suena «lista» si se había vaciado del todo.
+                if (locked)
+                    Sfx.Play(Sounds.MouthVinegarReady);
                 locked = false;
+            }
         }
 
         void Begin()
         {
+            Sfx.Play(Sounds.MouthVinegarStart);
             // Un chorro nuevo no hereda lo que quedaba del anterior recogiéndose.
             ClearDrawing();
             jetAngle = Mathf.Atan2(controller.AimDirection.y, controller.AimDirection.x) * Mathf.Rad2Deg;
@@ -236,6 +243,7 @@ namespace Primordia.Player
             reach = 0f;
             tailDistance = 0f;
             struck.Clear();
+            Sfx.StartLoop(Sounds.MouthVinegarLoop);
             PlayLoop();
         }
 
@@ -283,6 +291,7 @@ namespace Primordia.Player
             {
                 charge = 0f;
                 locked = true;
+                Sfx.Play(Sounds.MouthVinegarEmpty);
                 Stop();
             }
             else if (!held)
@@ -347,6 +356,7 @@ namespace Primordia.Player
         {
             int damage = Mathf.Max(0, Mathf.CeilToInt(attack.Damage * weapon.DamageMultiplier - 0.001f));
             bool venom = Venom;
+            bool landed = false;
             foreach (var (target, distance) in targets)
             {
                 if (target == null || target.IsDead || distance > reach + 0.05f)
@@ -356,11 +366,15 @@ namespace Primordia.Player
                     continue;
                 if (target.TakeDamage(damage, DamageKind.Hit, DamageSource.Jet))
                 {
+                    landed = true;
                     weapon.ReportHit(target);
                     if (venom)
                         Poisoned(target);
                 }
             }
+            // Un solo sonido por tic, aunque toque a varios.
+            if (landed)
+                Sfx.Play(Sounds.MouthVinegarHit);
             if (venom)
                 Flammables.ToxifyAlong(Origin, Origin + lastDirection * reach, JetRadius);
         }
@@ -368,6 +382,7 @@ namespace Primordia.Player
         // Nivel III: daño alrededor del final del chorro.
         void Splash(Vector2 end)
         {
+            Sfx.Play(Sounds.MouthVinegarSplash);
             int damage = Mathf.Max(0, Mathf.CeilToInt(attack.JetSplashDamage * weapon.DamageMultiplier - 0.001f));
             // Las tres salpicaduras se alternan en cada golpe.
             var splashes = CurrentSplashEffects;
@@ -552,6 +567,7 @@ namespace Primordia.Player
         /// <summary>Deja de echar chorro: el chorro se recoge hacia el final, baja la cola y vuelve a reposo.</summary>
         void Stop()
         {
+            Sfx.StopLoop(Sounds.MouthVinegarLoop);
             ClearEffects();
             if (reach > 0.05f && attack != null && CurrentArt != null)
             {
@@ -577,6 +593,7 @@ namespace Primordia.Player
 
         void Rest()
         {
+            Sfx.StopLoop(Sounds.MouthVinegarLoop);
             animator.Release();
             State = Phase.Idle;
             loopClip = null;

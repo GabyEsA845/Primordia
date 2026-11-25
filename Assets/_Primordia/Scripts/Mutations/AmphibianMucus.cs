@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using System;
 using Primordia.Combat;
 using Primordia.Core;
@@ -98,6 +99,7 @@ namespace Primordia.Mutations
             if (charge >= chargeSeconds)
             {
                 Charged = true;
+                Sfx.Play(Sounds.SkinMucusCharged);
                 HideChargeFx();
                 ShowShieldFx();
                 // El moco apaga lo que ardiera.
@@ -127,6 +129,7 @@ namespace Primordia.Mutations
             Charged = false;
             charge = 0f;
             Breaks++;
+            Sfx.Play(Sounds.SkinMucusAbsorb);
             HideShieldFx();
             if (blocked && health != null)
                 health.MakeInvulnerable(AfterBreak);

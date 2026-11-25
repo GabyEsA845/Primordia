@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using System;
 using System.Collections.Generic;
 using Primordia.Core;
@@ -131,6 +132,7 @@ namespace Primordia.Mutations
 
             float life = seconds > 0f ? seconds : float.PositiveInfinity;
             var created = SilkThread.Spawn(origin, end, life, damage, thread, anchor, hit);
+            Sfx.Play(Sounds.LimbsSpinnerThread);
             laid.Add(created);
             Laid?.Invoke(created);
             if (net && laid.Count >= maxThreads)
@@ -140,6 +142,7 @@ namespace Primordia.Mutations
         /// <summary>Une los extremos de los hilos tendidos, suelta los hilos y deja la red en su sitio.</summary>
         void FormNet()
         {
+            Sfx.Play(Sounds.LimbsSpinnerWeb);
             var ends = new List<Vector2>();
             foreach (var t in laid)
             {

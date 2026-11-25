@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -47,6 +48,7 @@ namespace Primordia.Combat
         {
             var obj = new GameObject("PoisonSpitBurst");
             obj.transform.position = position;
+            Sfx.Play(look == Look.Fire ? Sounds.LineageTinderBurst : look == Look.Leech ? Sounds.LineageLeechBurst : Sounds.MouthSpitBurst);
             obj.AddComponent<PoisonSpitBurst>().StartCoroutine(Run(obj, position, damage, radius, puddleSeconds, source, victims, look));
             if (victims == Team.Enemy)
                 Burst?.Invoke(position, source, radius < SmallBurstRadius);

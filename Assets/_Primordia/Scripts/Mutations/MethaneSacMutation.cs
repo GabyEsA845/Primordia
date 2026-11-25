@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using System.Collections;
 using Primordia.Core;
 using UnityEngine;
@@ -46,6 +47,7 @@ namespace Primordia.Mutations
             Vector2 origin = player.transform.position;
             Vector2 aim = player.Controller.AimDirection.sqrMagnitude > 0.0001f ? player.Controller.AimDirection : Vector2.right;
             SpriteFramePlayer.PlayOnce(releaseFrames, 0.07f, origin, 22);
+            Sfx.Play(Sounds.OrganMethaneRelease);
             var settings = cloudSettings;
             settings.fireSeconds = level >= MaxLevel ? incendioSeconds : 0f;
             player.StartCoroutine(Release(origin, aim, CloudCountAt(level), settings));

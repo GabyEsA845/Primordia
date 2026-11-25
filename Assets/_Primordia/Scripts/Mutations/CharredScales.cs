@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using System.Collections.Generic;
 using Primordia.Combat;
 using Primordia.Core;
@@ -148,7 +149,13 @@ namespace Primordia.Mutations
         }
 
         /// <summary>Ceba los ataques durante el tiempo de siempre (también lo usan las pruebas).</summary>
-        public void Prime() => primedUntil = Time.time + primedSeconds;
+        public void Prime()
+        {
+            // Solo suena al cebarse de nuevo, no mientras se renueva pisando fuego (el intervalo del sonido lo evita).
+            if (!IsPrimed)
+                Sfx.Play(Sounds.SkinCharKindle);
+            primedUntil = Time.time + primedSeconds;
+        }
 
         void OnHitTarget(Health target)
         {
@@ -167,6 +174,7 @@ namespace Primordia.Mutations
                 return;
             nextBlaze = Time.time + blazeCooldown;
             Blazes++;
+            Sfx.Play(Sounds.SkinCharFlare);
             Vector2 center = transform.position;
             FrameEffect.Play("CharredBlaze", blazeFx, 0.06f, FxOrder, null, center);
 

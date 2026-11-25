@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using System;
 using System.Collections.Generic;
 using Primordia.Combat;
@@ -269,6 +270,7 @@ namespace Primordia.Mutations
             if (airborne)
                 return;
             airborne = true;
+            Sfx.Play(Sounds.LimbsJumpTakeoff);
             if (body != null)
             {
                 previousExclude = body.excludeLayers;
@@ -296,6 +298,11 @@ namespace Primordia.Mutations
 
             Vector2 point = transform.position;
             SpriteFramePlayer.PlayOnce(land, FrameSeconds, point + Vector2.down * 0.25f, FxOrder);
+            Sfx.Play(Sounds.LimbsJumpLand);
+            if (Pits.IsDeepInMud(point))
+                Sfx.Play(Sounds.MudSplash);
+            if (big && settings.chargedStun > 0f)
+                Sfx.Play(Sounds.LimbsJumpStun);
             float radius = big ? settings.chargedRadius : settings.landRadius;
             SpreadPuddles(point, radius);
             int damage = big ? settings.chargedDamage : settings.landDamage;

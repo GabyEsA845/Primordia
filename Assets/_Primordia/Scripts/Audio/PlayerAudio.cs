@@ -138,7 +138,31 @@ namespace Primordia.Audio
         void OnDodgeStarted()
         {
             var limbs = mutations != null ? mutations.Get(MutationSlot.Limbs) : null;
-            Sfx.Play(limbs != null && !string.IsNullOrEmpty(limbs.DodgeSound) ? limbs.DodgeSound : Sounds.PlayerDodge);
+            if (limbs != null && !string.IsNullOrEmpty(limbs.DodgeSound))
+            {
+                Sfx.Play(limbs.DodgeSound);
+                return;
+            }
+            // Con las Patas de salto la esquiva es un salto y suena su despegue (JumpingLegs).
+            if (TryGetComponent<JumpingLegs>(out _))
+                return;
+            Sfx.Play(DodgeSound());
+        }
+
+        // En el piso 3 cada cuerpo (el de la familia de la Boca) tiene su esquiva: rana (Área), Diplocaulus (cuerpo a cuerpo)
+        // y vinagrillo (proyectil). Antes, la de siempre.
+        string DodgeSound()
+        {
+            if (Primordia.Rooms.FloorGenerator.CurrentFloor < 3)
+                return Sounds.PlayerDodge;
+            var mouth = mutations != null ? mutations.Get(MutationSlot.Mouth) : null;
+            var family = mouth != null ? mouth.Family : WeaponFamily.Projectile;
+            return family switch
+            {
+                WeaponFamily.Area => Sounds.PlayerDodgeFrog,
+                WeaponFamily.Melee => Sounds.PlayerDodgeDiplocaulus,
+                _ => Sounds.PlayerDodgeScorpion,
+            };
         }
 
         // Al subir de nivel llega LevelChanged y luego Changed: esa no es una mutación nueva (la subida ya suena

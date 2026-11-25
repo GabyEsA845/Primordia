@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using Primordia.Core;
 using UnityEngine;
 
@@ -42,6 +43,7 @@ namespace Primordia.Mutations
 
             // El dibujo mide 72 px (4,5 u de diámetro): se escala para que su radio máximo sea el del área.
             SpriteFramePlayer.PlayOnce(releaseFrames, 0.07f, center, 20, radius / 2.25f);
+            Sfx.Play(Sounds.OrganPheromoneCast);
             Confuse(center, SecondsAt(level), level >= MaxLevel);
         }
 

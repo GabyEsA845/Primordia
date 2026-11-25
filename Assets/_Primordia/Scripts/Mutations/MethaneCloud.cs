@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using System.Collections;
 using System.Collections.Generic;
 using Primordia.Combat;
@@ -111,12 +112,16 @@ namespace Primordia.Mutations
         {
             Flammables.Unregister(this);
             all.Remove(this);
+            // Un solo bucle para todas las nubes: se apaga cuando no queda ninguna.
+            if (all.Count == 0)
+                Sfx.StopLoop(Sounds.OrganMethaneCloudLoop);
         }
 
         void Start()
         {
             if (!all.Contains(this))
                 all.Add(this);
+            Sfx.StartLoop(Sounds.OrganMethaneCloudLoop);
         }
 
         void Update()

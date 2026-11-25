@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using System.Collections.Generic;
 using Primordia.Combat;
 using Primordia.Core;
@@ -28,6 +29,8 @@ namespace Primordia.Mutations
         public static IReadOnlyList<SilkThread> All => all;
 
         readonly HashSet<Health> harmed = new();
+        // A quién ya se le avisó con el sonido de quedar atrapado en este hilo.
+        readonly HashSet<Health> snared = new();
         Vector2 from;
         Vector2 to;
         float until;
@@ -124,7 +127,11 @@ namespace Primordia.Mutations
                 if (health == null || health.IsDead)
                     continue;
                 if (health.TryGetComponent<EnemyAI>(out var ai))
+                {
                     ai.Slow(SlowFactor, CheckEvery * 3f);
+                    if (snared.Add(health))
+                        Sfx.Play(Sounds.LimbsSpinnerSnare);
+                }
                 if (damage > 0 && harmed.Add(health))
                 {
                     health.TakeDamage(damage);

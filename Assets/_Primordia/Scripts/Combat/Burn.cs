@@ -69,8 +69,18 @@ namespace Primordia.Combat
             enemy.GetComponent<Primordia.Enemies.CalamitesBrain>() != null || enemy.GetComponent<Primordia.Enemies.CalamitesSproutBrain>() != null
             || enemy.GetComponent<Primordia.Enemies.MedullosaBrain>() != null || enemy.GetComponent<Primordia.Enemies.DragonflyBrain>() != null;
 
+        protected override void OnTick() => Primordia.Audio.Sfx.Play(Primordia.Audio.Sounds.StatusBurnTick);
+
         /// <summary>Null si el objetivo es inmune al fuego.</summary>
-        public static Burn Apply(Health target, int damagePerSecond, float duration, GameObject effectPrefab = null) =>
-            FireImmune.Has(target) ? null : Apply<Burn>(target, damagePerSecond, duration, effectPrefab);
+        public static Burn Apply(Health target, int damagePerSecond, float duration, GameObject effectPrefab = null)
+        {
+            if (FireImmune.Has(target))
+                return null;
+            bool fresh = !target.TryGetComponent<Burn>(out _);
+            var burn = Apply<Burn>(target, damagePerSecond, duration, effectPrefab);
+            if (fresh)
+                Primordia.Audio.Sfx.Play(Primordia.Audio.Sounds.StatusBurnStart);
+            return burn;
+        }
     }
 }

@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -89,6 +90,7 @@ namespace Primordia.Rooms
 
         void Open()
         {
+            Sfx.Play(Sounds.BrushBurnAway);
             IsOpen = true;
             if (blocker != null)
                 blocker.enabled = false;

@@ -219,5 +219,35 @@ namespace Primordia.Audio
         public const string MusicBossAnomalocarisFrenzy = "Music_Boss_Anomalocaris_Frenzy";
         public const string MusicBossEurypterid = "Music_Boss_Eurypterid";
         public const string MusicBossEurypteridLastStand = "Music_Boss_Eurypterid_LastStand";
+
+        // Piso 3, tanda 1: reacciones y terreno
+        public const string FireIgnite = "Fire_Ignite";
+        public const string FireBurnLoop = "Fire_Burn_Loop";
+        public const string FireExtinguish = "Fire_Extinguish";
+        public const string StatusBurnStart = "Status_Burn_Start";
+        public const string StatusBurnTick = "Status_Burn_Tick";
+        public const string MethaneExplosion = "Methane_Explosion";
+        public const string MethaneGasBagBurst = "Methane_GasBag_Burst";
+        public const string MethaneGasBagRegrow = "Methane_GasBag_Regrow";
+        public const string MethaneFogFlash = "Methane_FogFlash";
+        public const string MethaneMistLoop = "Methane_Mist_Loop";
+        public const string MethaneBubbleWarn = "Methane_Bubble_Warn";
+        public const string MethaneBubblePop = "Methane_Bubble_Pop";
+        public const string PoisonPuddle = "Poison_Puddle";
+        public const string PoisonToxicCloud = "Poison_ToxicCloud";
+        public const string PoisonBulbBurst = "Poison_Bulb_Burst";
+        public const string PoisonBulbRegrow = "Poison_Bulb_Regrow";
+        public const string FumaroleWarn = "Fumarole_Warn";
+        public const string FumaroleErupt = "Fumarole_Erupt";
+        public const string FernRustle = "Fern_Rustle";
+        public const string FernBurn = "Fern_Burn";
+        public const string BrushBurnAway = "Brush_BurnAway";
+        public const string MudSinkLoop = "Mud_Sink_Loop";
+        public const string MudEscape = "Mud_Escape";
+        public const string MudDrown = "Mud_Drown";
+        public const string MudSplash = "Mud_Splash";
+        public const string WaterSplash = "Water_Splash";
+        public const string WebStick = "Web_Stick";
+        public const string WebBurn = "Web_Burn";
     }
 }

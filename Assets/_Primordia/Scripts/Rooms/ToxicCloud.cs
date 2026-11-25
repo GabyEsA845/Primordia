@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using System.Collections;
 using System.Collections.Generic;
 using Primordia.Core;
@@ -43,6 +44,7 @@ namespace Primordia.Rooms
             renderer.sortingOrder = 16;
             var cloud = obj.AddComponent<ToxicCloud>();
             cloud.endTime = Time.time + Seconds;
+            Sfx.Play(Sounds.PoisonToxicCloud);
             cloud.StartCoroutine(cloud.Run(renderer, kit));
             return cloud;
         }
@@ -64,6 +66,7 @@ namespace Primordia.Rooms
             var cloud = obj.AddComponent<ToxicCloud>();
             cloud.haze = true;
             cloud.endTime = Time.time + Seconds;
+            Sfx.Play(Sounds.PoisonToxicCloud);
             cloud.StartCoroutine(cloud.RunHaze(renderer, kit));
             return cloud;
         }

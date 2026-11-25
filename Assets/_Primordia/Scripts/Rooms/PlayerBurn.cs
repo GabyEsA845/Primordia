@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using Primordia.Combat;
 using Primordia.Core;
 using Primordia.Player;
@@ -112,9 +113,13 @@ namespace Primordia.Rooms
                 // Medio corazón; la barra empieza otra vez y, mientras siga ardiendo, vuelve a llenarse sola.
                 if (health != null)
                     health.TakeDamage(BurnDamage, DamageKind.Tick);
+                Sfx.Play(Sounds.StatusBurnTick);
                 Bar = 0f;
                 if (!Burning)
+                {
                     ShowMarker();
+                    Sfx.Play(Sounds.StatusBurnStart);
+                }
                 Burning = true;
             }
 
@@ -143,7 +148,10 @@ namespace Primordia.Rooms
             fed = 0f;
             Bar = Mathf.Max(0f, Bar - amount);
             if (Bar <= ExtinguishBelow)
+            {
                 Extinguish();
+                Sfx.Play(Sounds.FireExtinguish);
+            }
             Show(1f);
         }
 

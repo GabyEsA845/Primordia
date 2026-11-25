@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using System.Collections.Generic;
 using Primordia.Core;
 using Primordia.Enemies;
@@ -96,6 +97,7 @@ namespace Primordia.Rooms
                 return;
             state = State.Burning;
             stateStart = Time.time;
+            Sfx.Play(Sounds.WebBurn);
             Show();
         }
 
@@ -143,7 +145,26 @@ namespace Primordia.Rooms
             body.sprite = frames[frame];
         }
 
+        // Quién estaba pegado en la comprobación anterior: el sonido solo suena al quedarse pegado, no en cada comprobación.
+        readonly HashSet<Component> stuck = new();
+        readonly HashSet<Component> stuckNow = new();
+
+        void MarkStuck(Component who)
+        {
+            stuckNow.Add(who);
+            if (!stuck.Contains(who))
+                Sfx.Play(Sounds.WebStick);
+        }
+
         void SlowWhoStands()
+        {
+            stuckNow.Clear();
+            SlowWhoStandsCore();
+            stuck.Clear();
+            stuck.UnionWith(stuckNow);
+        }
+
+        void SlowWhoStandsCore()
         {
             var seen = new HashSet<Health>();
             foreach (var hit in Physics2D.OverlapCircleAll(transform.position, Radius))
@@ -154,7 +175,10 @@ namespace Primordia.Rooms
                 if (hit.GetComponentInParent<PlayerController>() is { } player)
                 {
                     if (!player.IsDodging && !player.IsLunging)
+                    {
                         player.Slow(WebSpeed, SlowHold);
+                        MarkStuck(player);
+                    }
                     continue;
                 }
 
@@ -162,7 +186,10 @@ namespace Primordia.Rooms
                 var health = hit.GetComponentInParent<Health>();
                 if (health != null && !health.IsDead && seen.Add(health) && !health.TryGetComponent<SpiderBrain>(out _)
                     && health.TryGetComponent<EnemyAI>(out var ai))
+                {
                     ai.Slow(WebSpeed, SlowHold);
+                    MarkStuck(ai);
+                }
             }
         }
     }

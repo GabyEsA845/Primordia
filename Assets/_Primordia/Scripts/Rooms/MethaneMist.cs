@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using System.Collections.Generic;
 using Primordia.Combat;
 using Primordia.Core;
@@ -29,6 +30,23 @@ namespace Primordia.Rooms
 
         SpriteRenderer body;
         bool lit;
+
+        static readonly List<MethaneMist> all = new();
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        static void ResetStatics() => all.Clear();
+
+        /// <summary>Distancia desde ese punto a la mancha sin encender más cercana (para el bucle de escenario).</summary>
+        static float NearestDistance(Vector2 from)
+        {
+            float best = float.MaxValue;
+            foreach (var mist in all)
+            {
+                if (!mist.lit)
+                    best = Mathf.Min(best, Vector2.Distance(from, mist.transform.position));
+            }
+            return best;
+        }
 
         public Vector2 Position => transform.position;
 
@@ -65,12 +83,16 @@ namespace Primordia.Rooms
 
         void OnEnable()
         {
+            all.Add(this);
             Flammables.Register(this);
             Wind.Register(this);
+            // Bucle muy bajo, solo cerca de la niebla.
+            NearbyLoop.Ensure(Sounds.MethaneMistLoop, NearestDistance, 3f, 0.6f);
         }
 
         void OnDisable()
         {
+            all.Remove(this);
             Flammables.Unregister(this);
             Wind.Unregister(this);
         }
@@ -83,6 +105,7 @@ namespace Primordia.Rooms
                 return;
             lit = true;
             Flammables.Unregister(this);
+            Sfx.Play(Sounds.MethaneFogFlash);
             StartCoroutine(Flash());
         }
 

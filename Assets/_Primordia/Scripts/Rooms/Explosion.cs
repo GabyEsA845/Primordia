@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using System.Collections.Generic;
 using Primordia.Combat;
 using Primordia.Core;
@@ -26,6 +27,7 @@ namespace Primordia.Rooms
         /// </summary>
         public static void Detonate(Vector2 center, float radius, int enemyDamage, int playerDamage, bool leaveFire)
         {
+            Sfx.Play(Sounds.MethaneExplosion);
             var kit = ReactionKit.Current;
             if (kit != null && kit.Explosion.Length > 0)
                 SpriteFramePlayer.PlayOnce(kit.Explosion, kit.ExplosionFrameSeconds, center, 15);

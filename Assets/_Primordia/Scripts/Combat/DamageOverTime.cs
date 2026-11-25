@@ -72,10 +72,14 @@ namespace Primordia.Combat
             if (BossDamageCap < damage && health.GetComponentInParent<IBoss>() != null)
                 damage = BossDamageCap;
             health.TakeDamage(damage, DamageKind.Tick, Source);
+            OnTick();
 
             if (ticksLeft <= 0)
                 Destroy(this);
         }
+
+        /// <summary>Después de cada golpe (para el sonido del tipo).</summary>
+        protected virtual void OnTick() { }
 
         protected virtual void OnDestroy()
         {

@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using Primordia.Core;
 using UnityEngine;
 
@@ -72,6 +73,7 @@ namespace Primordia.Rooms
             if (!CanIgnite)
                 return;
             SetState(State.Burning);
+            Sfx.Play(Sounds.FernBurn);
             GroundFire.Spawn(transform.position, BaseFireSeconds);
         }
 
@@ -84,6 +86,7 @@ namespace Primordia.Rooms
                 return;
             // La sacudida está dibujada empujando hacia la derecha: si pasa por la derecha, se voltea.
             body.flipX = body2D.position.x > transform.position.x;
+            Sfx.Play(Sounds.FernRustle);
             SetState(State.Rustle);
         }
 

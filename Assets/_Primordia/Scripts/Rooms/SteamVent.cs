@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using System.Collections;
 using System.Collections.Generic;
 using Primordia.Combat;
@@ -77,6 +78,7 @@ namespace Primordia.Rooms
                 IsActive = false;
                 yield return Loop(idle, IdleFrameSeconds, IdleSeconds);
                 IsActive = true;
+                Sfx.Play(Sounds.FumaroleWarn);
                 yield return Loop(warn, WarnFrameSeconds, WarnSeconds);
                 yield return Blast();
             }
@@ -98,6 +100,7 @@ namespace Primordia.Rooms
 
         IEnumerator Blast()
         {
+            Sfx.Play(Sounds.FumaroleErupt);
             var hurt = new HashSet<Health>();
             for (int i = 0; i < blast.Length; i++)
             {

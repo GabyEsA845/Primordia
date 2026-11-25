@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using System.Collections;
 using Primordia.Combat;
 using Primordia.Core;
@@ -171,6 +172,7 @@ namespace Primordia.Rooms
             if (state != State.Idle)
                 return;
             state = State.Bursting;
+            Sfx.Play(Sounds.MethaneGasBagBurst);
             BurstStarted?.Invoke(this);
             Flammables.Unregister(this);
             if (glow != null)

@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using System.Collections;
 using System.Collections.Generic;
 using Primordia.Combat;
@@ -132,6 +133,7 @@ namespace Primordia.Rooms
             if (state != State.Idle)
                 return;
             state = State.Bursting;
+            Sfx.Play(Sounds.PoisonBulbBurst);
             Flammables.Unregister(this);
             SetColliders(false);
             StartCoroutine(Run());
@@ -164,6 +166,7 @@ namespace Primordia.Rooms
             yield return new WaitForSeconds(RegrowAfterSeconds);
 
             state = State.Regrowing;
+            Sfx.Play(Sounds.PoisonBulbRegrow);
             foreach (var frame in art.bulbRegrow)
             {
                 body.sprite = frame;

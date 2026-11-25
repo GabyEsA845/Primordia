@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using System.Collections;
 using System.Collections.Generic;
 using Primordia.Combat;
@@ -93,6 +94,7 @@ namespace Primordia.Rooms
             var kit = ReactionKit.Current;
             if (kit == null || kit.PuddleIdle.Length == 0)
                 return null;
+            Sfx.Play(Sounds.PoisonPuddle);
             return Create(kit, position, seconds, Radius, harmsPlayer, splat: false);
         }
 

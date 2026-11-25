@@ -68,6 +68,9 @@ namespace Primordia.Rooms
             health = GetComponent<Health>();
         }
 
+        // Para el chapoteo al entrar en el lodo profundo.
+        bool wasInMud;
+
         void OnEnable() => hasFirm = false;
 
         void OnDisable() => Clear();
@@ -86,13 +89,19 @@ namespace Primordia.Rooms
             if (controller.IsDodging || controller.IsLunging)
             {
                 if (DodgeResetsSink && Sink > 0f)
+                {
+                    Sfx.Play(Sounds.MudEscape);
                     Clear();
+                }
                 return;
             }
 
             if (SinkImmune)
             {
                 bool wading = Pits.IsDeepInMud(feet);
+                if (wading && !wasInMud)
+                    Sfx.Play(Sounds.MudSplash);
+                wasInMud = wading;
                 if (wading && TryGetComponent<PlayerBurn>(out var wet))
                     wet.Douse(BurnDouseSpeed * Time.fixedDeltaTime);
                 if (Sink > 0f)
@@ -107,11 +116,16 @@ namespace Primordia.Rooms
             }
 
             bool inMud = Pits.IsDeepInMud(feet);
+            if (inMud && !wasInMud)
+                Sfx.Play(Sounds.MudSplash);
+            wasInMud = inMud;
             // El lodo apaga el quemado casi de golpe (la barra entera en ~⅓ de segundo).
             if (inMud && TryGetComponent<PlayerBurn>(out var burn))
                 burn.Douse(BurnDouseSpeed * Time.fixedDeltaTime);
             float before = Sink;
             Sink = Mathf.Clamp01(Sink + (inMud ? 1f / fillSeconds : -1f / emptySeconds) * Time.fixedDeltaTime);
+            if (before <= 0f && Sink > 0f)
+                Sfx.StartLoop(Sounds.MudSinkLoop);
 
             if (Sink > 0f)
             {
@@ -136,6 +150,7 @@ namespace Primordia.Rooms
 
         void Clear()
         {
+            Sfx.StopLoop(Sounds.MudSinkLoop);
             Sink = 0f;
             controller.TerrainSpeedFactor = 1f;
             MudSinkVisual.SetLevel(transform, 0f);
@@ -145,7 +160,8 @@ namespace Primordia.Rooms
         {
             IsSinking = true;
             controller.enabled = false;
-            Sfx.Play(Sounds.PlayerPitFall);
+            Sfx.StopLoop(Sounds.MudSinkLoop);
+            Sfx.Play(Sounds.MudDrown);
             if (body != null)
             {
                 body.linearVelocity = Vector2.zero;

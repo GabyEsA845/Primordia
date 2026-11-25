@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using System.Collections;
 using UnityEngine;
 
@@ -71,6 +72,7 @@ namespace Primordia.Rooms
                 bubble.sprite = null;
                 yield return Loop(idle, IdleFrameSeconds, Random.Range(RestSeconds.x, RestSeconds.y));
                 IsActive = true;
+                Sfx.Play(Sounds.MethaneBubbleWarn);
                 yield return Loop(warn, WarnFrameSeconds, WarnSeconds);
                 for (int i = 0; i < bubbleFrames.Length; i++)
                 {
@@ -78,6 +80,7 @@ namespace Primordia.Rooms
                     yield return new WaitForSeconds(BubbleFrameSeconds);
                 }
                 bubble.sprite = null;
+                Sfx.Play(Sounds.MethaneBubblePop);
                 Explosion.Detonate((Vector2)transform.position + Vector2.up * BlastHeight, BlastRadius, EnemyDamage, PlayerDamage, false);
                 Blasts++;
             }

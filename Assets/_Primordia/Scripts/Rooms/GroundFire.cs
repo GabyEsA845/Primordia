@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using System.Collections.Generic;
 using Primordia.Combat;
 using Primordia.Core;
@@ -41,13 +42,33 @@ namespace Primordia.Rooms
         /// <summary>Descuenta tiempo de fuego sin cambiar su desgaste natural ni su animación de apagado.</summary>
         public void Quench(float seconds)
         {
-            if (IsBurning)
-                endTime -= Mathf.Max(0f, seconds);
+            if (!IsBurning)
+                return;
+            endTime -= Mathf.Max(0f, seconds);
+            // Suena una sola vez por fuego, no en cada fotograma de lluvia.
+            if (!quenchHeard && seconds > 0f)
+            {
+                quenchHeard = true;
+                Sfx.Play(Sounds.FireExtinguish);
+            }
+        }
+
+        /// <summary>Distancia desde ese punto al fuego encendido más cercano (float.MaxValue si no hay ninguno). Para el bucle de escenario.</summary>
+        static float NearestDistance(Vector2 from)
+        {
+            float best = float.MaxValue;
+            foreach (var fire in all)
+            {
+                if (fire.IsBurning)
+                    best = Mathf.Min(best, Vector2.Distance(from, fire.transform.position));
+            }
+            return best;
         }
 
         float nextSpread;
         float nextCheck;
         bool dying;
+        bool quenchHeard;
         bool harmsPlayer = true;
         SpriteRenderer body;
 
@@ -82,6 +103,8 @@ namespace Primordia.Rooms
             fireComponent.endTime = Time.time + seconds;
             fireComponent.nextSpread = Time.time + SpreadEvery;
             obj.AddComponent<SpriteFramePlayer>().Play(renderer, kit.GroundFire, kit.GroundFireFrameSeconds, newLoop: true);
+            Sfx.Play(Sounds.FireIgnite);
+            NearbyLoop.Ensure(Sounds.FireBurnLoop, NearestDistance, 8f);
             return fireComponent;
         }
 

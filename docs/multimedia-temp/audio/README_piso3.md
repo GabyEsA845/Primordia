@@ -1,5 +1,7 @@
 # Audio del piso 3: cómo conectarlo en el juego
 
+**ESTADO (2026-11-25): todo lo de esta guía está CONECTADO en Unity** (tandas 0-10, rama `feature/floor3-audio-impl`; ver `docs/memoria-claude/primordia-floor3-audio.md`). Quedan fuera por decisión: `Skin_Mucus_Reflect`, un `Boss_Meganeura_Thunder` por cada relámpago y el sonido de la sala de paso.
+
 Guía para quien integre el audio del piso 3 (pensada para Sonnet). Los sonidos ya están generados y aprobados por
 la usuaria en `docs/multimedia-temp/audio/` (`efectos_piso3.py`, tablas en `PROMPT_piso3.md`; muestrario solo del
 piso en `muestrario_piso3.html`). **No se regeneran ni se retocan sin que ella lo pida.** Aquí va lo que no es

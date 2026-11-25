@@ -41,6 +41,33 @@ namespace Primordia.Rooms
             public bool isLick;
         }
 
+        // Cuerpos grandes (jefes): en lugar de una fila de la misma llama en los pies, llamas sueltas repartidas por la superficie.
+        const float BigHeightPixels = 36f;
+        const float BigWidthPixels = 56f;
+        const int BigPieces = 4;
+        const float AreaPerFlamePixels = 900f;
+        const int MinFlames = 5;
+        const int MaxFlames = 14;
+        const float FadeIn = 0.25f;
+        const float FadeOut = 0.35f;
+        static readonly Vector2 PatchLife = new(1.4f, 2.8f);
+
+        class Patch
+        {
+            public SpriteRenderer renderer;
+            public SpriteRenderer source;
+            public bool lick;
+            public Sprite[] frames;
+            public float seconds;
+            public float phase;
+            public float u, v;
+            public float born, until;
+        }
+
+        readonly List<Patch> patches = new();
+        readonly List<SpriteRenderer> candidates = new();
+        bool big;
+
         readonly Dictionary<SpriteRenderer, SpriteRenderer> tints = new();
         readonly List<SpriteRenderer> dead = new();
         readonly List<Flame> flames = new();
@@ -77,11 +104,38 @@ namespace Primordia.Rooms
                 Scan();
             else
                 UpdateBounds();
+            // Sin cuerpo a la vista (la Meganeura que vuela alto y solo deja su sombra), tampoco se ven las llamas ni el velo:
+            // el velo es un sprite aparte que, si no se apaga, se queda dibujado aunque el cuerpo ya no esté.
+            SetVisible(hasBounds);
             if (!hasBounds)
                 return;
 
             Place();
             Tint();
+        }
+
+        void SetVisible(bool visible)
+        {
+            foreach (var flame in flames)
+            {
+                if (flame.renderer != null)
+                    flame.renderer.enabled = visible;
+            }
+            if (!visible)
+            {
+                foreach (var patch in patches)
+                {
+                    if (patch.renderer != null)
+                        patch.renderer.enabled = false;
+                }
+            }
+            if (visible)
+                return;
+            foreach (var tint in tints.Values)
+            {
+                if (tint != null)
+                    tint.enabled = false;
+            }
         }
 
         void OnDestroy()
@@ -125,11 +179,14 @@ namespace Primordia.Rooms
                 return;
             // Las llamas se rehacen solo si el cuerpo cambia de talla (S, M o L) o de cuántas caben a lo ancho.
             float height = bounds.size.y * PixelsPerUnit;
-            float shape = height * 1000f + bounds.size.x * PixelsPerUnit;
-            if (!Mathf.Approximately(shape, sizePixels))
+            float width = bounds.size.x * PixelsPerUnit;
+            bool wantBig = height > BigHeightPixels || width > BigWidthPixels || tints.Count >= BigPieces;
+            float shape = wantBig ? 1e9f + Mathf.Round(BodyAreaPixels() / 300f) : height * 1000f + width;
+            if (!Mathf.Approximately(shape, sizePixels) || wantBig != big)
             {
                 sizePixels = shape;
-                Rebuild(height, bounds.size.x * PixelsPerUnit);
+                big = wantBig;
+                Rebuild(height, width);
             }
         }
 
@@ -184,8 +241,19 @@ namespace Primordia.Rooms
                     Destroy(flame.renderer.gameObject);
             }
             flames.Clear();
+            foreach (var patch in patches)
+            {
+                if (patch.renderer != null)
+                    Destroy(patch.renderer.gameObject);
+            }
+            patches.Clear();
 
             var art = PolishArt.Current;
+            if (big)
+            {
+                BuildPatches(art);
+                return;
+            }
             var frames = art.bodyFlame.ForHeight(heightPixels);
             if (frames.Length == 0)
                 return;
@@ -214,8 +282,130 @@ namespace Primordia.Rooms
             return new Flame { renderer = renderer, frames = frames, seconds = seconds, phase = phase, offsetX = offsetX, lick = lick, isLick = isLick };
         }
 
+        /// <summary>Superficie que cubren los sprites del cuerpo (en píxeles²): decide cuántas llamas lleva un cuerpo grande.</summary>
+        float BodyAreaPixels()
+        {
+            float area = 0f;
+            foreach (var renderer in tints.Keys)
+            {
+                if (renderer == null || renderer.sprite == null || !renderer.enabled)
+                    continue;
+                var size = renderer.bounds.size;
+                area += size.x * size.y * PixelsPerUnit * PixelsPerUnit;
+            }
+            return area;
+        }
+
+        void BuildPatches(PolishArt art)
+        {
+            int count = Mathf.Clamp(Mathf.RoundToInt(BodyAreaPixels() / AreaPerFlamePixels), MinFlames, MaxFlames);
+            int licks = art.flameLick.Length > 0 ? Mathf.Clamp(count / 2, 2, 6) : 0;
+            for (int i = 0; i < count + licks; i++)
+            {
+                var go = new GameObject(i < count ? "BodyFlame" : "FlameLick");
+                go.transform.SetParent(transform, false);
+                var patch = new Patch { renderer = go.AddComponent<SpriteRenderer>(), lick = i >= count };
+                // Cada una nace en un momento distinto, para que no parpadeen a la vez.
+                patch.until = Time.time + Random.Range(0f, PatchLife.y);
+                patch.born = patch.until - Random.Range(PatchLife.x, PatchLife.y);
+                patches.Add(patch);
+            }
+        }
+
+        /// <summary>Elige otra pieza del cuerpo, otro punto, otro tamaño y otra velocidad para esa llama.</summary>
+        void Reroll(Patch patch)
+        {
+            patch.born = Time.time;
+            patch.until = Time.time + Random.Range(PatchLife.x, PatchLife.y);
+            patch.phase = Random.value;
+            patch.renderer.flipX = Random.value < 0.5f;
+
+            candidates.Clear();
+            float total = 0f;
+            foreach (var renderer in tints.Keys)
+            {
+                if (renderer == null || renderer.sprite == null || !renderer.enabled)
+                    continue;
+                candidates.Add(renderer);
+                total += renderer.bounds.size.x * renderer.bounds.size.y;
+            }
+            patch.source = null;
+            if (candidates.Count == 0)
+                return;
+
+            // Más probable en las piezas grandes (cuerpo de una pieza: siempre en ella).
+            float pick = Random.value * total;
+            patch.source = candidates[candidates.Count - 1];
+            foreach (var renderer in candidates)
+            {
+                pick -= renderer.bounds.size.x * renderer.bounds.size.y;
+                if (pick <= 0f)
+                {
+                    patch.source = renderer;
+                    break;
+                }
+            }
+
+            var art = PolishArt.Current;
+            float pieceHeight = patch.source.bounds.size.y * PixelsPerUnit;
+            patch.u = Random.Range(-0.4f, 0.4f);
+            if (patch.lick)
+            {
+                patch.frames = art.flameLick;
+                patch.seconds = LickFrameSeconds * Random.Range(0.85f, 1.2f);
+                patch.v = Random.Range(0.45f, 0.95f);
+                return;
+            }
+            // El tamaño sigue a la pieza, con algo de variedad: las grandes llevan sobre todo L, mezcladas con M.
+            Sprite[] frames = art.bodyFlame.ForHeight(pieceHeight);
+            if (pieceHeight > 26f && Random.value < 0.4f)
+                frames = art.bodyFlame.m;
+            else if (pieceHeight >= 14f && Random.value < 0.2f)
+                frames = art.bodyFlame.s;
+            patch.frames = frames.Length > 0 ? frames : art.bodyFlame.m;
+            patch.seconds = FrameSeconds * Random.Range(0.85f, 1.2f);
+            // Sobre todo en la mitad de abajo del cuerpo, pero no solo en los pies.
+            patch.v = Random.Range(0f, 0.6f);
+        }
+
+        void PlacePatches()
+        {
+            foreach (var patch in patches)
+            {
+                if (patch.renderer == null)
+                    continue;
+                if (patch.source == null || !patch.source.enabled || patch.source.sprite == null || Time.time >= patch.until)
+                    Reroll(patch);
+                if (patch.source == null || patch.frames == null || patch.frames.Length == 0)
+                {
+                    patch.renderer.enabled = false;
+                    continue;
+                }
+                patch.renderer.enabled = true;
+                var area = patch.source.bounds;
+                patch.renderer.transform.position = new Vector3(
+                    area.center.x + patch.u * area.size.x, area.min.y + patch.v * area.size.y, 0f);
+
+                // Nace y se apaga con un fundido, para que al cambiar de sitio no salte.
+                float age = Time.time - patch.born, life = patch.until - patch.born;
+                float fade = Mathf.Clamp01(Mathf.Min(age / FadeIn, (life - age) / FadeOut));
+                patch.renderer.color = new Color(1f, 1f, 1f, fade);
+                patch.renderer.transform.localScale = Vector3.one * Mathf.Lerp(0.7f, 1f, fade);
+
+                int index = Mathf.FloorToInt((Time.time + patch.phase) / patch.seconds) % patch.frames.Length;
+                patch.renderer.sprite = patch.frames[index];
+                patch.renderer.sortingLayerID = patch.source.sortingLayerID;
+                patch.renderer.sortingOrder = patch.source.sortingOrder + (patch.lick ? 3 : 2);
+            }
+        }
+
         void Place()
         {
+            if (big)
+            {
+                PlacePatches();
+                return;
+            }
             var feet = new Vector2(bounds.center.x, bounds.min.y - FeetDrop);
             foreach (var flame in flames)
             {

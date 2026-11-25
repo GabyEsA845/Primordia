@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using System.Collections;
 using System.Collections.Generic;
 using Primordia.Core;
@@ -41,8 +42,16 @@ namespace Primordia.Enemies
 
         Transform SummonParent => transform.parent != null ? transform.parent : arenaCenter;
 
+        // El grito de la fase 2 suena una sola vez, al empezar los huevos.
+        bool cried;
+
         IEnumerator PhaseTwoCycle()
         {
+            if (!cried)
+            {
+                cried = true;
+                Sfx.Play(Sounds.BossMeganeuraCry);
+            }
             ClearMethane();
             EnsurePuddles();
             int clusters = Random.Range(3, 5);
@@ -120,6 +129,7 @@ namespace Primordia.Enemies
             PlayBody("Lay", 120f, loop: false, restart: true);
             yield return Wait(0.36f);
             var at = (Vector2)transform.position + new Vector2(Random.Range(-1.4f, 1.4f), -1.2f);
+            Sfx.Play(Sounds.BossMeganeuraEggLay);
             MeganeuraEgg.Spawn(SummonParent, at, effects, nymphPrefab, EggHatchSeconds);
             yield return Wait(0.36f);
         }

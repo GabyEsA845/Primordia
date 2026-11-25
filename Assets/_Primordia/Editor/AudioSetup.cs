@@ -75,7 +75,7 @@ namespace Primordia.Editor
             ["Boss_Megarachne_Silk_Splat"] = 0.05f, ["Boss_Megarachne_Hurt"] = 0.08f, ["Boss_Megarachne_Brood_Death"] = 0.08f,
             ["Boss_Lepidodendron_RootWall_Hit"] = 0.06f, ["Boss_Lepidodendron_RootWall_KnotHit"] = 0.06f,
             ["Boss_Lepidodendron_Wave_Spawn"] = 0.1f, ["Boss_Lepidodendron_Spore_Impact"] = 0.05f,
-            ["Boss_Lepidodendron_Trunk_Hit"] = 0.08f,
+            ["Boss_Lepidodendron_Trunk_Hit"] = 0.08f, ["Boss_Meganeura_Nymph_Hurt"] = 0.1f,
         };
 
         // Variación de tono distinta de la normal (la biomasa ya sube de tono al encadenarse).
@@ -154,6 +154,9 @@ namespace Primordia.Editor
             ("Floor3/Enemy_Beetle", "Enemy_Bombardier_Hurt", "Enemy_Bombardier_Death", null, null, null),
             ("Floor3/Enemy_Spider", "Enemy_Spider_Hurt", "Enemy_Spider_Death", null, null, null),
             ("Floor3/Enemy_Toad", "Enemy_Toad_Hurt", "Enemy_Toad_Death", null, "Enemy_Toad_Croak", null),
+            // La muerte de la Meganeura suena desde su rutina (la caída dura 2,8 s)
+            ("Floor3/Enemy_MeganeuraBoss", "Boss_Meganeura_Hurt", null, null, null, null),
+            ("Floor3/Enemy_MeganeuraNymph", "Boss_Meganeura_Nymph_Hurt", "Boss_Meganeura_Nymph_Death", null, null, null),
         };
 
         // Efectos visuales que suenan al aparecer.

@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using System.Collections;
 using Primordia.Combat;
 using Primordia.Core;
@@ -121,6 +122,7 @@ namespace Primordia.Enemies
                     {
                         rb.linearVelocity = Vector2.zero;
                         CurrentMode = Mode.Warn;
+                        Sfx.Play(Sounds.BossMeganeuraNymphWarn);
                         busyUntil = Time.time + WarnSeconds;
                         Play("Warn", 130f, false);
                     }
@@ -136,6 +138,7 @@ namespace Primordia.Enemies
                     if (Time.time >= busyUntil)
                     {
                         CurrentMode = Mode.Strike;
+                        Sfx.Play(Sounds.BossMeganeuraNymphLash);
                         struck = false;
                         busyUntil = Time.time + StrikeSeconds;
                         Play("Strike", 60f, false);
@@ -166,6 +169,7 @@ namespace Primordia.Enemies
             int damage = confusion != null && confusion.Frenzy ? StrikeDamage * 2 : StrikeDamage;
             if (health.TakeDamage(damage) && aimAt.TryGetComponent<PlayerController>(out var controller))
                 controller.Shove(-toPlayer.normalized * PullSpeed, 0.25f);
+                Sfx.Play(Sounds.BossMeganeuraNymphPull);
         }
 
         void OnDamaged(int _) => flashUntil = Time.time + FlashTime;

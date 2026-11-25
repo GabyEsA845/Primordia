@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -55,6 +56,11 @@ namespace Primordia.Enemies
             egg.health = go.AddComponent<Health>();
             egg.health.SetMax(MaxHealth, healDifference: false);
             egg.health.ResetHealth();
+            egg.health.Damaged += _ =>
+            {
+                if (egg.health.Current > 0)
+                    Sfx.Play(Sounds.BossMeganeuraEggHit);
+            };
             egg.StartCoroutine(egg.Run());
             return egg;
         }
@@ -84,6 +90,7 @@ namespace Primordia.Enemies
             if (health.IsDead)
             {
                 Finish(broken: true);
+                Sfx.Play(Sounds.BossMeganeuraEggBreak);
                 foreach (var collider in GetComponents<Collider2D>())
                     collider.enabled = false;
                 yield return Play(art.eggBreak, BreakFrame);
@@ -92,6 +99,7 @@ namespace Primordia.Enemies
             }
 
             // Eclosiona: la ninfa sale en el cuadro 3 y el racimo deja de contar.
+            Sfx.Play(Sounds.BossMeganeuraEggHatch);
             for (int i = 0; i < art.eggHatch.Length; i++)
             {
                 body.sprite = art.eggHatch[i];

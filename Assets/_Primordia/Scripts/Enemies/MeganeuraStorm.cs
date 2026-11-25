@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using System.Collections.Generic;
 using UnityEngine;
 using Primordia.Rooms;
@@ -141,6 +142,11 @@ namespace Primordia.Enemies
         {
             if (Raining != on)
                 wetElapsed = 0f;
+            // La lluvia suena mientras llueve y se va con un fundido largo al amainar.
+            if (on && !Raining)
+                Sfx.StartLoop(Sounds.AmbFloor3RainLoop);
+            else if (!on && Raining && AudioManager.Instance != null)
+                AudioManager.Instance.StopLoop(Sounds.AmbFloor3RainLoop, 3f);
             Raining = on;
             SetTiles(rain, on);
         }
@@ -181,6 +187,7 @@ namespace Primordia.Enemies
             Darken(0f, seconds);
             if (calming)
                 return;
+            Sfx.Play(Sounds.BossMeganeuraStormFade);
             calming = true;
             if (silhouette != null)
                 Destroy(silhouette);

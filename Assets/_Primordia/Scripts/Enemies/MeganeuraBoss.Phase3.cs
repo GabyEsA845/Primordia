@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using System.Collections;
 using System.Collections.Generic;
 using Primordia.Core;
@@ -125,6 +126,7 @@ namespace Primordia.Enemies
         IEnumerator StormEntry()
         {
             stormStarted = true;
+            Sfx.Play(Sounds.BossMeganeuraStormEntry);
             // Los huevos que queden se van; las ninfas siguen.
             foreach (var egg in new List<MeganeuraEgg>(MeganeuraEgg.Alive))
                 egg.Vanish();
@@ -154,6 +156,9 @@ namespace Primordia.Enemies
             yield return Wait(0.4f);
             FindPlayer();
             var thunder = ThunderSpot();
+            // El primer trueno cae junto al jugador.
+            Sfx.Play(Sounds.BossMeganeuraThunder);
+            Sfx.Play(Sounds.BossMeganeuraBoltStrike);
             SpriteFramePlayer.PlayOnce(effects.boltHuge, 0.05f, thunder, 28);
             SpriteFramePlayer.PlayOnce(effects.boltBigImpact, 0.06f, thunder, 28);
             SpriteFramePlayer.PlayOnce(effects.boltScorch, 0.5f, thunder, 2);
@@ -249,6 +254,8 @@ namespace Primordia.Enemies
                 temporary.Add(mark);
                 marks.Add(mark);
             }
+            // Un solo aviso por andanada, no por rayo.
+            Sfx.Play(Sounds.BossMeganeuraLooseBoltWarn);
             yield return Wait(LooseChargeSeconds);
             foreach (var mark in marks)
                 Destroy(mark);
@@ -258,6 +265,7 @@ namespace Primordia.Enemies
 
         void StrikeSmall(Vector2 spot)
         {
+            Sfx.Play(Sounds.BossMeganeuraBoltStrike);
             SpriteFramePlayer.PlayOnce(effects.boltSmall, 0.05f, spot, 28);
             SpriteFramePlayer.PlayOnce(effects.boltSmallImpact, 0.06f, spot, 28);
             SpriteFramePlayer.PlayOnce(effects.boltScorch, 0.5f, spot, 2);
@@ -281,6 +289,8 @@ namespace Primordia.Enemies
             renderer.sortingOrder = 26;
             temporary.Add(mark);
             var frames = effects.boltBigMark;
+            // Dura 2 s (carga + fijo) y llega a lo más alto al caer el rayo.
+            Sfx.Play(Sounds.BossMeganeuraBigBoltWarn);
             int charge = Mathf.Max(1, frames.Length - 2);
             // Cuadros 0-7: la carga, sigue al jugador. Cuadros 8-9: fijo un instante (blanco que late) antes de caer.
             for (float t = 0f; t < BigChargeSeconds; t += Playing ? Time.deltaTime : 0f)
@@ -308,10 +318,12 @@ namespace Primordia.Enemies
         {
             var rod = BossSigillaria.Nearest(position, BossSigillaria.AttractRadius);
             Vector2 target = position;
+            Sfx.Play(Sounds.BossMeganeuraBoltStrike);
             if (rod != null)
             {
                 target = rod.Position;
                 rod.Strike(effects);
+                Sfx.Play(Sounds.BossMeganeuraSigillariaBurn);
             }
             SpriteFramePlayer.PlayOnce(effects.boltBig, 0.05f, target, 28);
             SpriteFramePlayer.PlayOnce(effects.boltBigImpact, 0.06f, target, 28);
@@ -328,6 +340,7 @@ namespace Primordia.Enemies
         /// <summary>La corriente circular (≈ 4 s): se expande de 1,6 a 2,6 u y daña una vez al jugador que la cruza.</summary>
         IEnumerator RingRoutine(Vector2 center)
         {
+            Sfx.StartLoop(Sounds.BossMeganeuraRingLoop);
             SpriteFramePlayer.PlayOnce(effects.boltRing, RingSeconds / Mathf.Max(1, effects.boltRing.Length), center, 27);
             bool hit = false;
             for (float t = 0f; t < RingSeconds; t += Playing ? Time.deltaTime : 0f)
@@ -342,6 +355,7 @@ namespace Primordia.Enemies
                 }
                 yield return null;
             }
+            Sfx.StopLoop(Sounds.BossMeganeuraRingLoop);
         }
 
         // ---------- Charcas electrificadas ----------
@@ -358,6 +372,8 @@ namespace Primordia.Enemies
         IEnumerator PuddleLive(PuddleInfo puddle)
         {
             puddle.live = true;
+            // Todas las charcas electrificadas comparten un bucle.
+            SharedLoop.Acquire(Sounds.BossMeganeuraPuddleElectricLoop);
             float radius = PuddleRadii[puddle.electricSet];
             GameObject overlay = null;
             if (puddle.electricSet < effects.puddleElectric.Length && effects.puddleElectric[puddle.electricSet].frames.Length > 0)
@@ -391,6 +407,7 @@ namespace Primordia.Enemies
             if (overlay != null)
                 Destroy(overlay);
             puddle.live = false;
+            SharedLoop.Release(Sounds.BossMeganeuraPuddleElectricLoop);
         }
 
         // ---------- Electrocutada ----------

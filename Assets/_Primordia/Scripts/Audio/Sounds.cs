@@ -384,5 +384,39 @@ namespace Primordia.Audio
         public const string RoomCoalBurnLoop = "Room_Coal_Burn_Loop";
         public const string RoomFireFrontLoop = "Room_FireFront_Loop";
         public const string RoomStumpLightLoop = "Room_Stump_Light_Loop";
+
+        // Piso 3, tanda 6: jefe Meganeura (el golpe va en los datos del jefe y de la ninfa)
+        public const string BossMeganeuraIntro = "Boss_Meganeura_Intro";
+        public const string BossMeganeuraWingsLoop = "Boss_Meganeura_Wings_Loop";
+        public const string BossMeganeuraTakeOff = "Boss_Meganeura_TakeOff";
+        public const string BossMeganeuraMark = "Boss_Meganeura_Mark";
+        public const string BossMeganeuraMarkLock = "Boss_Meganeura_MarkLock";
+        public const string BossMeganeuraDive = "Boss_Meganeura_Dive";
+        public const string BossMeganeuraDiveImpact = "Boss_Meganeura_DiveImpact";
+        public const string BossMeganeuraTrunkStuck = "Boss_Meganeura_TrunkStuck";
+        public const string BossMeganeuraGust = "Boss_Meganeura_Gust";
+        public const string BossMeganeuraFallBurning = "Boss_Meganeura_FallBurning";
+        public const string BossMeganeuraCry = "Boss_Meganeura_Cry";
+        public const string BossMeganeuraEggLay = "Boss_Meganeura_EggLay";
+        public const string BossMeganeuraEggHit = "Boss_Meganeura_Egg_Hit";
+        public const string BossMeganeuraEggBreak = "Boss_Meganeura_Egg_Break";
+        public const string BossMeganeuraEggHatch = "Boss_Meganeura_Egg_Hatch";
+        public const string BossMeganeuraNymphWarn = "Boss_Meganeura_Nymph_Warn";
+        public const string BossMeganeuraNymphLash = "Boss_Meganeura_Nymph_Lash";
+        public const string BossMeganeuraNymphPull = "Boss_Meganeura_Nymph_Pull";
+        public const string BossMeganeuraScreech = "Boss_Meganeura_Screech";
+        public const string BossMeganeuraLand = "Boss_Meganeura_Land";
+        public const string BossMeganeuraStormEntry = "Boss_Meganeura_StormEntry";
+        public const string BossMeganeuraThunder = "Boss_Meganeura_Thunder";
+        public const string BossMeganeuraBigBoltWarn = "Boss_Meganeura_BigBolt_Warn";
+        public const string BossMeganeuraLooseBoltWarn = "Boss_Meganeura_LooseBolt_Warn";
+        public const string BossMeganeuraBoltStrike = "Boss_Meganeura_Bolt_Strike";
+        public const string BossMeganeuraElectrocuted = "Boss_Meganeura_Electrocuted";
+        public const string BossMeganeuraPuddleElectricLoop = "Boss_Meganeura_Puddle_Electric_Loop";
+        public const string BossMeganeuraRingLoop = "Boss_Meganeura_Ring_Loop";
+        public const string BossMeganeuraSigillariaBurn = "Boss_Meganeura_Sigillaria_Burn";
+        public const string BossMeganeuraDeath = "Boss_Meganeura_Death";
+        public const string BossMeganeuraStormFade = "Boss_Meganeura_StormFade";
+        public const string AmbFloor3RainLoop = "Amb_Floor3_Rain_Loop";
     }
 }

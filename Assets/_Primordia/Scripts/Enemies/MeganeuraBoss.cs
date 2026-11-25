@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using System.Collections;
 using Primordia.Core;
 using Primordia.Rooms;
@@ -277,6 +278,7 @@ namespace Primordia.Enemies
         /// </summary>
         IEnumerator IntroRoutine()
         {
+            Sfx.Play(Sounds.BossMeganeuraIntro);
             Burnt = false;
             HideForIntro();
             Vector2 end = stumpGround;
@@ -324,6 +326,7 @@ namespace Primordia.Enemies
         {
             fighting = false;
             CurrentMode = Mode.Dead;
+            Sfx.Play(Sounds.BossMeganeuraDeath);
             StopFight();
             ClearSummons();
             StopAllCoroutines();

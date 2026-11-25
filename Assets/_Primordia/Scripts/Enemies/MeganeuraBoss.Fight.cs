@@ -1,3 +1,4 @@
+using Primordia.Audio;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -117,7 +118,54 @@ namespace Primordia.Enemies
         Transform playerTarget;
         readonly List<GameObject> temporary = new();
 
-        public Mode CurrentMode { get; private set; } = Mode.Perched;
+        Mode currentMode = Mode.Perched;
+
+        public Mode CurrentMode
+        {
+            get => currentMode;
+            private set
+            {
+                var previous = currentMode;
+                currentMode = value;
+                PlayModeSound(previous, value);
+            }
+        }
+
+        /// <summary>
+        /// El sonido de cada modo. El bucle de las alas suena mientras vuela (alta o a ras de suelo) y se apaga en el suelo, clavada,
+        /// cayendo o muerta. Los avisos se cortan si el modo acaba antes de llegar al picado.
+        /// </summary>
+        static void PlayModeSound(Mode previous, Mode next)
+        {
+            if (previous == next)
+                return;
+            if (previous == Mode.Marking && next != Mode.Diving)
+            {
+                Sfx.Stop(Sounds.BossMeganeuraMark);
+                Sfx.Stop(Sounds.BossMeganeuraMarkLock);
+            }
+            if (previous == Mode.Stuck)
+                Sfx.Stop(Sounds.BossMeganeuraTrunkStuck);
+
+            bool wings = next is Mode.Climbing or Mode.High or Mode.Marking or Mode.Diving or Mode.Hover;
+            if (wings)
+                Sfx.StartLoop(Sounds.BossMeganeuraWingsLoop);
+            else
+                Sfx.StopLoop(Sounds.BossMeganeuraWingsLoop);
+
+            switch (next)
+            {
+                case Mode.Climbing: Sfx.Play(Sounds.BossMeganeuraTakeOff); break;
+                case Mode.Marking: Sfx.Play(Sounds.BossMeganeuraMark); break;
+                case Mode.Diving: Sfx.Play(Sounds.BossMeganeuraDive); break;
+                case Mode.Stuck: Sfx.Play(Sounds.BossMeganeuraTrunkStuck); break;
+                case Mode.Gust: Sfx.Play(Sounds.BossMeganeuraGust); break;
+                case Mode.Rage: Sfx.Play(Sounds.BossMeganeuraScreech); break;
+                case Mode.Shocked: Sfx.Play(Sounds.BossMeganeuraElectrocuted); break;
+                // Se posa en la ventana de daño tras el picado o tras chillar.
+                case Mode.Hover when previous is Mode.Diving or Mode.Rage: Sfx.Play(Sounds.BossMeganeuraLand); break;
+            }
+        }
 
         /// <summary>True mientras vuela alta o cae en picado: invulnerable (la barra se ve con candado).</summary>
         public bool IsHigh => CurrentMode is Mode.Climbing or Mode.High or Mode.Marking or Mode.Diving;
@@ -252,6 +300,7 @@ namespace Primordia.Enemies
 
             // La marca se fija en rojo y las muescas se cierran.
             SetMarkFrames(mark, effects.diveMarkLocked, 0.09f);
+            Sfx.Play(Sounds.BossMeganeuraMarkLock);
             yield return Wait(MarkLockSeconds);
 
             // Cae: el cuerpo aparece en lo alto, con el morro al blanco.
@@ -283,6 +332,7 @@ namespace Primordia.Enemies
 
         void Impact(Vector2 position)
         {
+            Sfx.Play(Sounds.BossMeganeuraDiveImpact);
             SpriteFramePlayer.PlayOnce(effects.diveImpact, 0.07f, position, 7);
             SpriteFramePlayer.PlayOnce(effects.diveCrack, 0.4f, position, 1);
             FindPlayer();
@@ -425,7 +475,10 @@ namespace Primordia.Enemies
             ShowBody(true);
             PlayBody("Fall", 70f, loop: true, restart: true);
             if (burning)
+            {
+                Sfx.Play(Sounds.BossMeganeuraFallBurning);
                 PlayFire("Meganeura_Fall_Burning", 70f);
+            }
             float from = Altitude;
             const float fallSeconds = 0.6f;
             for (float t = 0f; t < fallSeconds; t += Playing ? Time.deltaTime : 0f)

@@ -54,7 +54,7 @@ módulos de los pisos y leer las tablas de todos los `PROMPT*.md`.
 - **Capas sincronizadas** (exploración y combate de un piso): mismo tempo, tonalidad, armonía y duración exacta en
   muestras; el juego las reproduce a la vez y funde una con otra.
 - **WebGL:** sin mezclador ni filtros de Unity; el volumen relativo va en `vol` (0 a 1) y en el grupo (`SFX`, `UI`,
-  `Music`). La música de un piso no pasa de unos 12 MB; un efecto, de 200-300 KB.
+  `Music`). La música de un piso ronda los 12 MB (pauta, no límite: el piso 3 llega a ~16-18 MB); un efecto, de 200-300 KB.
 - Audio ya aprobado: **no se regenera ni se "mejora" sin que el usuario lo pida.** Generar solo los nombres
   nuevos (`generar_audio.py Nombre …`), para no reescribir archivos de LFS sin necesidad.
 

@@ -122,6 +122,8 @@ GameObject:
   - component: {fileID: 6552963729916740724}
   - component: {fileID: 41182802857315685}
   - component: {fileID: 2551370407110946467}
+  - component: {fileID: 7211595535948319239}
+  - component: {fileID: 7664096404105852242}
   m_Layer: 7
   m_Name: Boss_Megarachne
   m_TagString: Untagged
@@ -417,6 +419,42 @@ MonoBehaviour:
   - {fileID: -3639621887285183741, guid: 7c70c4debe30d7940ae2b729432ce70b, type: 3}
   cableMaterial: {fileID: 2100000, guid: 6ea1b4aa2eea1d74bbc3b733610ee9c4, type: 2}
   threadMaterial: {fileID: 2100000, guid: 8911c145ff71add469cd07a26f43dd28, type: 2}
+  finalEffects:
+  - name: Nido_Eyes
+    frames:
+    - {fileID: 7206951525988495656, guid: 3517ecc013470d446b39a23ca778842c, type: 3}
+    - {fileID: -7111876924452535873, guid: 3517ecc013470d446b39a23ca778842c, type: 3}
+    - {fileID: -5089617594752856135, guid: 3517ecc013470d446b39a23ca778842c, type: 3}
+    - {fileID: 5701020253995673360, guid: 3517ecc013470d446b39a23ca778842c, type: 3}
+    - {fileID: 7093736291589285218, guid: 3517ecc013470d446b39a23ca778842c, type: 3}
+    - {fileID: 50530517, guid: 3517ecc013470d446b39a23ca778842c, type: 3}
+  - name: Megarachne_Cocoon_Fall
+    frames:
+    - {fileID: -1359755131581356734, guid: 3d341aeb19c534144af375473e67022d, type: 3}
+    - {fileID: -5542960577749838510, guid: 3d341aeb19c534144af375473e67022d, type: 3}
+    - {fileID: 8481217368311945060, guid: 3d341aeb19c534144af375473e67022d, type: 3}
+    - {fileID: -974796836, guid: 3d341aeb19c534144af375473e67022d, type: 3}
+  - name: Megarachne_Cocoon_Open
+    frames:
+    - {fileID: 8944700727171363170, guid: 807a2ed45f975e34bb3e12ef4270e346, type: 3}
+    - {fileID: 4765108630415740419, guid: 807a2ed45f975e34bb3e12ef4270e346, type: 3}
+    - {fileID: -1944962546637567586, guid: 807a2ed45f975e34bb3e12ef4270e346, type: 3}
+    - {fileID: 1413147063782949385, guid: 807a2ed45f975e34bb3e12ef4270e346, type: 3}
+    - {fileID: 6920504949186829980, guid: 807a2ed45f975e34bb3e12ef4270e346, type: 3}
+    - {fileID: 301018555793033574, guid: 807a2ed45f975e34bb3e12ef4270e346, type: 3}
+  - name: Fx_MegarachneDust
+    frames:
+    - {fileID: -1546126835898851043, guid: 8faf6fc80df969f448d5279068564a8f, type: 3}
+    - {fileID: 4458357432351074461, guid: 8faf6fc80df969f448d5279068564a8f, type: 3}
+    - {fileID: -690036679763971073, guid: 8faf6fc80df969f448d5279068564a8f, type: 3}
+    - {fileID: -2996624183990900878, guid: 8faf6fc80df969f448d5279068564a8f, type: 3}
+    - {fileID: 3576642091368216952, guid: 8faf6fc80df969f448d5279068564a8f, type: 3}
+    - {fileID: -3319517467914802749, guid: 8faf6fc80df969f448d5279068564a8f, type: 3}
+  rewardHeart:
+  - {fileID: 3039545650275437121, guid: 56aa7cb199c1c7549b5548efc197dd5a, type: 3}
+  - {fileID: -2076769524110945384, guid: 56aa7cb199c1c7549b5548efc197dd5a, type: 3}
+  - {fileID: 7211201024347901294, guid: 56aa7cb199c1c7549b5548efc197dd5a, type: 3}
+  - {fileID: 2102265408, guid: 56aa7cb199c1c7549b5548efc197dd5a, type: 3}
   cableFireArt:
     burning: {fileID: 2800000, guid: d9e1a27f218871745887c944a136200d, type: 3}
     charred: {fileID: 2800000, guid: 5aa0bf51478b8514380540c22316320d, type: 3}
@@ -480,11 +518,144 @@ MonoBehaviour:
     - {fileID: 5721329496203764564, guid: e8f5ebb779030b5438af49b0d5f25339, type: 3}
     - {fileID: 5930052353563706475, guid: e8f5ebb779030b5438af49b0d5f25339, type: 3}
     sacRemains: {fileID: -3776662731488166539, guid: 3a57b96e00094a442844e8096fb0cbce, type: 3}
+  rageEffects:
+  - name: Nido_Tree_Dry
+    frames:
+    - {fileID: -212899620, guid: ba3707afb04bc8c4cbd69439012611e5, type: 3}
+  - name: Nido_Tree_Dry_Tronco
+    frames:
+    - {fileID: -1703833492, guid: ba3707afb04bc8c4cbd69439012611e5, type: 3}
+  - name: Nido_Tree_Charred
+    frames:
+    - {fileID: -793777248, guid: 27907366e01595e4dbb1589992fbc706, type: 3}
+  - name: Nido_Tree_Charred_Tronco
+    frames:
+    - {fileID: -823549263, guid: 27907366e01595e4dbb1589992fbc706, type: 3}
+  - name: Nido_Tree_Shake
+    frames:
+    - {fileID: 859248080, guid: ff446d3ddc8a64c41a1ee96a0370cbfa, type: 3}
+    - {fileID: -1295988208, guid: ff446d3ddc8a64c41a1ee96a0370cbfa, type: 3}
+    - {fileID: -1800506766, guid: ff446d3ddc8a64c41a1ee96a0370cbfa, type: 3}
+    - {fileID: -1497343810, guid: ff446d3ddc8a64c41a1ee96a0370cbfa, type: 3}
+    - {fileID: -1162952331, guid: ff446d3ddc8a64c41a1ee96a0370cbfa, type: 3}
+    - {fileID: -740289712, guid: ff446d3ddc8a64c41a1ee96a0370cbfa, type: 3}
+  - name: Nido_Tree_Shake_Tronco
+    frames:
+    - {fileID: -1486155129, guid: ff446d3ddc8a64c41a1ee96a0370cbfa, type: 3}
+    - {fileID: 428087049, guid: ff446d3ddc8a64c41a1ee96a0370cbfa, type: 3}
+    - {fileID: -152023121, guid: ff446d3ddc8a64c41a1ee96a0370cbfa, type: 3}
+    - {fileID: 71218992, guid: ff446d3ddc8a64c41a1ee96a0370cbfa, type: 3}
+    - {fileID: -1584730667, guid: ff446d3ddc8a64c41a1ee96a0370cbfa, type: 3}
+    - {fileID: 744469786, guid: ff446d3ddc8a64c41a1ee96a0370cbfa, type: 3}
+  - name: Nido_Tree_Drying
+    frames:
+    - {fileID: 2049674447, guid: f9bffd3f9c304ba4d982031f6fdcd717, type: 3}
+    - {fileID: -1382427417, guid: f9bffd3f9c304ba4d982031f6fdcd717, type: 3}
+    - {fileID: -1364657114, guid: f9bffd3f9c304ba4d982031f6fdcd717, type: 3}
+    - {fileID: 253785366, guid: f9bffd3f9c304ba4d982031f6fdcd717, type: 3}
+    - {fileID: 1941073695, guid: f9bffd3f9c304ba4d982031f6fdcd717, type: 3}
+    - {fileID: -653971947, guid: f9bffd3f9c304ba4d982031f6fdcd717, type: 3}
+  - name: Nido_Tree_Drying_Tronco
+    frames:
+    - {fileID: 670128991, guid: f9bffd3f9c304ba4d982031f6fdcd717, type: 3}
+    - {fileID: 1204375868, guid: f9bffd3f9c304ba4d982031f6fdcd717, type: 3}
+    - {fileID: -2027755, guid: f9bffd3f9c304ba4d982031f6fdcd717, type: 3}
+    - {fileID: 595698737, guid: f9bffd3f9c304ba4d982031f6fdcd717, type: 3}
+    - {fileID: -2122521110, guid: f9bffd3f9c304ba4d982031f6fdcd717, type: 3}
+    - {fileID: -1352055775, guid: f9bffd3f9c304ba4d982031f6fdcd717, type: 3}
+  - name: Nido_Burn
+    frames:
+    - {fileID: 235645838, guid: 68ad1e3fa5e5801499833f17be3fe54c, type: 3}
+    - {fileID: 1744306283, guid: 68ad1e3fa5e5801499833f17be3fe54c, type: 3}
+    - {fileID: 65014400, guid: 68ad1e3fa5e5801499833f17be3fe54c, type: 3}
+    - {fileID: 750161705, guid: 68ad1e3fa5e5801499833f17be3fe54c, type: 3}
+    - {fileID: 2140788575, guid: 68ad1e3fa5e5801499833f17be3fe54c, type: 3}
+    - {fileID: 1920617546, guid: 68ad1e3fa5e5801499833f17be3fe54c, type: 3}
+    - {fileID: 500972559, guid: 68ad1e3fa5e5801499833f17be3fe54c, type: 3}
+    - {fileID: 1998861153, guid: 68ad1e3fa5e5801499833f17be3fe54c, type: 3}
+  - name: Nido_Burn_Tronco
+    frames:
+    - {fileID: 1409037877, guid: 68ad1e3fa5e5801499833f17be3fe54c, type: 3}
+    - {fileID: -222959240, guid: 68ad1e3fa5e5801499833f17be3fe54c, type: 3}
+    - {fileID: -60245724, guid: 68ad1e3fa5e5801499833f17be3fe54c, type: 3}
+    - {fileID: -751282060, guid: 68ad1e3fa5e5801499833f17be3fe54c, type: 3}
+    - {fileID: -1260537415, guid: 68ad1e3fa5e5801499833f17be3fe54c, type: 3}
+    - {fileID: 1781957130, guid: 68ad1e3fa5e5801499833f17be3fe54c, type: 3}
+    - {fileID: 886114228, guid: 68ad1e3fa5e5801499833f17be3fe54c, type: 3}
+    - {fileID: 410877876, guid: 68ad1e3fa5e5801499833f17be3fe54c, type: 3}
+  - name: Nido_Tree_Charred_Smolder
+    frames:
+    - {fileID: 201434258, guid: ba36f35707d9859499dab98eee335831, type: 3}
+    - {fileID: 697901680, guid: ba36f35707d9859499dab98eee335831, type: 3}
+    - {fileID: 1922797910, guid: ba36f35707d9859499dab98eee335831, type: 3}
+    - {fileID: -673253104, guid: ba36f35707d9859499dab98eee335831, type: 3}
+  - name: Nido_Tree_Charred_Smolder_Tronco
+    frames:
+    - {fileID: -1140896575, guid: ba36f35707d9859499dab98eee335831, type: 3}
+    - {fileID: 42031099, guid: ba36f35707d9859499dab98eee335831, type: 3}
+    - {fileID: 335146854, guid: ba36f35707d9859499dab98eee335831, type: 3}
+    - {fileID: 1543412180, guid: ba36f35707d9859499dab98eee335831, type: 3}
+  - name: Fx_Nido_Rain
+    frames:
+    - {fileID: -6190613356641037883, guid: b73b102f96c0fba45be3d60ab7119f93, type: 3}
+    - {fileID: -1161899576, guid: b73b102f96c0fba45be3d60ab7119f93, type: 3}
+    - {fileID: -599320315, guid: b73b102f96c0fba45be3d60ab7119f93, type: 3}
+    - {fileID: 172224192, guid: b73b102f96c0fba45be3d60ab7119f93, type: 3}
+    - {fileID: 999095972, guid: b73b102f96c0fba45be3d60ab7119f93, type: 3}
+    - {fileID: -872208733, guid: b73b102f96c0fba45be3d60ab7119f93, type: 3}
+    - {fileID: 235213294, guid: b73b102f96c0fba45be3d60ab7119f93, type: 3}
+    - {fileID: 1692128946, guid: b73b102f96c0fba45be3d60ab7119f93, type: 3}
+  - name: Nido_WebDecay
+    frames:
+    - {fileID: -6908796080386164479, guid: 44a91aaa600e4f7438cf35939d04b287, type: 3}
+    - {fileID: -1651829413880334617, guid: 44a91aaa600e4f7438cf35939d04b287, type: 3}
+    - {fileID: 2149752528483320313, guid: 44a91aaa600e4f7438cf35939d04b287, type: 3}
+    - {fileID: 1279454231149461638, guid: 44a91aaa600e4f7438cf35939d04b287, type: 3}
+    - {fileID: 4291574932246682954, guid: 44a91aaa600e4f7438cf35939d04b287, type: 3}
+    - {fileID: 658040069, guid: 44a91aaa600e4f7438cf35939d04b287, type: 3}
+  - name: Fx_Megarachne_Screech
+    frames:
+    - {fileID: 1230895773475332159, guid: ae3d131c6e4610c42b83262b9a044745, type: 3}
+    - {fileID: -2050999046065956884, guid: ae3d131c6e4610c42b83262b9a044745, type: 3}
+    - {fileID: -649489518156373627, guid: ae3d131c6e4610c42b83262b9a044745, type: 3}
+    - {fileID: 8780409923914695822, guid: ae3d131c6e4610c42b83262b9a044745, type: 3}
+    - {fileID: -6511046114380391634, guid: ae3d131c6e4610c42b83262b9a044745, type: 3}
+    - {fileID: 4070094962413174584, guid: ae3d131c6e4610c42b83262b9a044745, type: 3}
   bodySprite: {fileID: 6937354316982153534}
   shadowSprite: {fileID: 428458217188991573}
   bodyRenderer: {fileID: 4399486962728544620}
   shadowRenderer: {fileID: 4857836037127719527}
   testKeys: 1
+--- !u!114 &7211595535948319239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1514774211954551099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67332564f65997f499fcf325871a9d21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Primordia::Primordia.UI.BossBarAppearance
+  skin: {fileID: 11400000, guid: d12424e342248c84b861ebc46f589625, type: 2}
+--- !u!114 &7664096404105852242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1514774211954551099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0f72950862b78c4dae7c086cbbd21fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Primordia::Primordia.Enemies.BossIntro
+  data: {fileID: 11400000, guid: 66a42206ee4762946a7ac7e8882556b6, type: 2}
+  panTime: 0.6
+  bannerAt: 1
+  bannerUntil: 3.2
+  skipText: '[E] Saltar'
 --- !u!1 &3246292184383215502
 GameObject:
   m_ObjectHideFlags: 0

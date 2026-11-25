@@ -23,10 +23,10 @@ namespace Primordia.Rooms
         public static List<IFlammable> Near(Vector2 position, float radius)
         {
             var result = new List<IFlammable>();
-            float squared = radius * radius;
             foreach (var flammable in all)
             {
-                if (flammable.CanIgnite && (flammable.Position - position).sqrMagnitude <= squared)
+                float reach = radius + (flammable is IFlammableRadius area ? Mathf.Max(0f, area.IgnitionRadius) : 0f);
+                if (flammable.CanIgnite && (flammable.Position - position).sqrMagnitude <= reach * reach)
                     result.Add(flammable);
             }
             return result;

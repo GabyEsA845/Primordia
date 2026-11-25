@@ -2,6 +2,12 @@ using UnityEngine;
 
 namespace Primordia.Rooms
 {
+    /// <summary>Radio opcional; los inflamables sin esta interfaz conservan alcance cero.</summary>
+    public interface IFlammableRadius
+    {
+        float IgnitionRadius { get; }
+    }
+
     /// <summary>
     /// Lo que puede arder (piso 3): la maleza que sella atajos y los helechos. Quien produce fuego (el fuego en el suelo, una
     /// explosión de gas, un ataque de fuego) busca lo inflamable cercano con <see cref="Flammables"/> y llama a

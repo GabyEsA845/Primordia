@@ -55,7 +55,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -83,7 +83,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -124,89 +124,89 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Megarachne_Climb_Rage_0
+      name: Megarachne_Climb_Rage_0_0
       rect:
         serializedVersion: 2
-        x: 27
-        y: 31
-        width: 74
-        height: 64
+        x: 0
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6db359b6e53313bb0800000000000000
-      internalID: -4958125234133320746
+      spriteID: 7a9e8aae25aa5c846894047eb35d627c
+      internalID: 1820447948
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Climb_Rage_1
+      name: Megarachne_Climb_Rage_0_1
       rect:
         serializedVersion: 2
-        x: 155
-        y: 31
-        width: 74
-        height: 64
+        x: 128
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 8a1f81dc4d4f2a9d0800000000000000
-      internalID: -2764378026440855128
+      spriteID: 16046d8464baba84c9c60be316daa30a
+      internalID: 1954969462
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Climb_Rage_2
+      name: Megarachne_Climb_Rage_0_2
       rect:
         serializedVersion: 2
-        x: 283
-        y: 29
-        width: 74
-        height: 66
+        x: 256
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f47ba8ab09e2b4640800000000000000
-      internalID: 5065193405048076111
+      spriteID: bdca05aac0d7d7a479703d62f5339e9d
+      internalID: -317192769
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Climb_Rage_3
+      name: Megarachne_Climb_Rage_0_3
       rect:
         serializedVersion: 2
-        x: 411
-        y: 29
-        width: 74
-        height: 66
+        x: 384
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 672681929c35fdd30800000000000000
-      internalID: 4458374279563076214
+      spriteID: d217db9028e49ef44bb205f89a7e8e02
+      internalID: 2063803286
       vertices: []
       indices: 
       edges: []
@@ -225,10 +225,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Megarachne_Climb_Rage_0: -4958125234133320746
-      Megarachne_Climb_Rage_1: -2764378026440855128
-      Megarachne_Climb_Rage_2: 5065193405048076111
-      Megarachne_Climb_Rage_3: 4458374279563076214
+      Megarachne_Climb_Rage_0_0: 1820447948
+      Megarachne_Climb_Rage_0_1: 1954969462
+      Megarachne_Climb_Rage_0_2: -317192769
+      Megarachne_Climb_Rage_0_3: 2063803286
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

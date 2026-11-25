@@ -39,6 +39,175 @@ namespace Primordia.Tests
         }
         LineRenderer CableLine(int index) => boss.Canopy.transform.Find("Cable_" + index).GetComponent<LineRenderer>();
 
+        IEnumerator EnterRage()
+        {
+            Assert.IsTrue(boss.ForceRage());
+            yield return Until(() => boss.IsRage && !boss.IsEnraging, 10f);
+        }
+
+        [UnityTest]
+        public IEnumerator UmbralExactoCancelaAtaqueEsInvulnerableYNoSeRepite()
+        {
+            MakePlayer(boss.ArenaCenter + Vector2.right * 10f);
+            Assert.IsTrue(boss.ForceAttack(MegarachneBoss.AttackKind.Silk));
+            boss.Health.IsInvulnerable = false;
+            Assert.IsTrue(boss.Health.TakeDamage(74));
+            Assert.IsFalse(boss.IsEnraging);
+            Assert.IsTrue(boss.Health.TakeDamage(1));
+            Assert.IsTrue(boss.IsEnraging);
+            Assert.IsFalse(boss.IsAttacking);
+            Assert.IsFalse(boss.Health.TakeDamage(1));
+            Assert.IsFalse(boss.ForceAttack(MegarachneBoss.AttackKind.Jump));
+            Assert.IsFalse(boss.NestCanBurn);
+            Assert.IsFalse(boss.ForceRage());
+            yield return Until(() => !boss.IsEnraging, 10f);
+            Assert.IsTrue(boss.IsRage);
+            Assert.IsFalse(boss.ForceRage());
+            Assert.That(boss.CurrentCableSpeed, Is.EqualTo(7f * 1.4f).Within(0.001f));
+            Assert.AreEqual(3f, boss.CurrentAttackInterval);
+            Assert.IsTrue(boss.GetComponentsInChildren<DirectionalSprite>().Any(s => s.Current.EndsWith("_Rage")));
+            Assert.AreEqual(100, actor.GetComponent<Health>().Current);
+        }
+
+        [UnityTest]
+        public IEnumerator AtajoDeVidaDisparaEnfadoYAgregaDosCablesSeparados()
+        {
+            boss.SetTestHealth();
+            Assert.AreEqual(75, boss.Health.Current);
+            yield return Until(() => boss.IsRage && !boss.IsEnraging, 10f);
+            Assert.AreEqual(7, boss.CableCount);
+            for (int i = 5; i < 7; i++)
+                for (int j = 0; j < i; j++)
+                    Assert.GreaterOrEqual(Vector2.Distance(CableLine(i).GetPosition(1), CableLine(j).GetPosition(1)), 6f);
+            yield return Until(() => CableNodes(5)[0].CanIgnite && CableNodes(6)[0].CanIgnite, 4f);
+        }
+
+        [UnityTest]
+        public IEnumerator NidoTieneRadioPropioArdeUnaVezAturdeSeisYTejeSoloDos()
+        {
+            var node = room.GetComponentInChildren<MegarachneBossNest>();
+            Assert.IsFalse(node.CanIgnite);
+            Assert.IsFalse(boss.IgniteNest());
+            yield return EnterRage();
+            Assert.IsTrue(node.CanIgnite);
+            Assert.IsFalse(Flammables.Near(node.Position + Vector2.right * 2.6f, 0f).Contains(node));
+            Assert.IsTrue(Flammables.Near(node.Position + Vector2.right * 2.49f, 0f).Contains(node));
+            Flammables.IgniteNear(node.Position + Vector2.right * 2.49f, 0f);
+            Assert.IsTrue(boss.NestBurned);
+            Assert.IsFalse(node.CanIgnite);
+            Assert.IsFalse(boss.IgniteNest());
+            Assert.IsTrue(Enumerable.Range(0, 7).All(i => boss.FireStateAt(i) == MegarachneBoss.CableState.Missing));
+            Assert.IsTrue(Enumerable.Range(0, 7).All(i => !CableLine(i).enabled));
+            yield return Until(() => boss.IsFireStunned, 0.6f);
+            float stunned = Time.fixedTime;
+            Assert.IsTrue(boss.Health.TakeDamage(1));
+            yield return Until(() => boss.CurrentMode == MegarachneBoss.Mode.Recovering, 6.2f);
+            Assert.That(Time.fixedTime - stunned, Is.EqualTo(6f).Within(0.08f));
+            yield return Until(() => boss.CurrentMode == MegarachneBoss.Mode.Ground, 0.5f);
+            float recovered = Time.fixedTime;
+            yield return Until(() => boss.FireStateAt(5) == MegarachneBoss.CableState.Growing, 4.2f);
+            Assert.That(Time.fixedTime - recovered, Is.EqualTo(4f).Within(0.08f));
+            float growing = Time.fixedTime;
+            yield return Until(() => boss.FireStateAt(5) == MegarachneBoss.CableState.Intact, 2.2f);
+            Assert.That(Time.fixedTime - growing, Is.EqualTo(2f).Within(0.08f));
+            Assert.AreEqual(2, Enumerable.Range(0, 7).Count(i => boss.FireStateAt(i) == MegarachneBoss.CableState.Intact));
+            Assert.IsTrue(Enumerable.Range(0, 5).All(i => boss.FireStateAt(i) == MegarachneBoss.CableState.Missing));
+            Assert.IsFalse(boss.Canopy.transform.Find("Telarana").GetComponent<SpriteRenderer>().enabled);
+        }
+
+        [UnityTest]
+        public IEnumerator MechaLlegaAlNidoSecoYLoPrende()
+        {
+            yield return EnterRage();
+            CableNodes(0)[0].Ignite();
+            yield return Until(() => boss.NestBurned, 0.5f);
+            Assert.IsFalse(boss.NestCanBurn);
+        }
+
+        [UnityTest]
+        public IEnumerator EnfadoConservaSacoYCriasYAceleraSuVelocidad()
+        {
+            MakePlayer(boss.ArenaCenter + new Vector2(-6f, -5f));
+            yield return WeaveSac();
+            var sac = boss.ActiveSac;
+            var web = boss.CreateWeb(boss.ArenaCenter + Vector2.left * 8f);
+            boss.ReleaseBrood(boss.ArenaCenter + Vector2.right * 8f);
+            var children = Brood();
+            Assert.AreEqual(4, children.Length);
+            Assert.IsTrue(boss.ForceRage());
+            Assert.AreSame(sac, boss.ActiveSac);
+            Assert.IsTrue(web != null && web.gameObject.activeSelf);
+            Assert.IsTrue(children.All(c => c != null && !c.Health.IsDead));
+            yield return Until(() => boss.IsRage, 10f);
+            Assert.IsTrue(children.All(c => Mathf.Approximately(c.CurrentSpeed, MegarachneBrood.Speed * 1.2f)));
+            boss.KillAllBrood();
+            boss.ReleaseBrood(boss.ArenaCenter + Vector2.right * 8f);
+            Assert.AreEqual(5, Brood().Count(c => !c.Health.IsDead));
+            boss.ReleaseBrood(boss.ArenaCenter + Vector2.right * 8f);
+            boss.ReleaseBrood(boss.ArenaCenter + Vector2.right * 8f);
+            Assert.AreEqual(10, Brood().Count(c => !c.Health.IsDead));
+        }
+
+        [UnityTest]
+        public IEnumerator SinCablesVuelvePorElSueloYCompletaElEnfado()
+        {
+            for (int i = 0; i < boss.CableCount; i++) CableNodes(i)[2].Ignite();
+            yield return Until(() => Enumerable.Range(0, 5).All(i => boss.FireStateAt(i) == MegarachneBoss.CableState.Missing), 3f);
+            yield return Until(() => boss.CurrentMode == MegarachneBoss.Mode.Ground, 4f);
+            yield return EnterRage();
+            Assert.AreEqual(7, boss.CableCount);
+        }
+
+        [UnityTest]
+        public IEnumerator RageInsertaSacoCadaTresVueltasSinPerderLaRed()
+        {
+            MakePlayer(boss.ArenaCenter + new Vector2(-6f, -5f));
+            yield return EnterRage();
+            yield return Until(() => boss.CurrentMode == MegarachneBoss.Mode.OnCable, 2f);
+            boss.AutomaticAttacks = true;
+            var expected = new[] { MegarachneBoss.AttackKind.Jump, MegarachneBoss.AttackKind.Silk,
+                MegarachneBoss.AttackKind.Sac, MegarachneBoss.AttackKind.Net, MegarachneBoss.AttackKind.Jump,
+                MegarachneBoss.AttackKind.Sac };
+            float previous = 0f;
+            for (int i = 0; i < expected.Length; i++)
+            {
+                int count = i + 1;
+                yield return Until(() => boss.AttacksStarted == count, 4f);
+                Assert.AreEqual(expected[i], boss.LastAttack);
+                // El reloj es de 3 s; el salto conserva su ventana vulnerable y termina de trepar antes de atacar.
+                if (i > 0) Assert.That(Time.fixedTime - previous, Is.InRange(2.9f, 3.45f));
+                previous = Time.fixedTime;
+                if (expected[i] == MegarachneBoss.AttackKind.Sac)
+                {
+                    yield return Until(() => boss.ActiveSac != null, 1.1f);
+                    boss.ActiveSac.Burst();
+                }
+            }
+        }
+
+        [UnityTest]
+        public IEnumerator CableTrasIncendioAturdeTresYRecreceTrasSiete()
+        {
+            yield return EnterRage();
+            boss.IgniteNest();
+            yield return Until(() => boss.FireStateAt(5) == MegarachneBoss.CableState.Intact, 14f);
+            yield return Until(() => boss.CurrentMode == MegarachneBoss.Mode.OnCable, 1f);
+            yield return new WaitForSeconds(0.5f);
+            int cable = boss.CurrentCable;
+            PutBossAlongCurrentCable(0.5f);
+            Assert.IsTrue(boss.IgniteOccupiedCable());
+            yield return Until(() => boss.IsFireStunned, 0.6f);
+            float stunned = Time.fixedTime;
+            yield return Until(() => boss.FireStateAt(cable) == MegarachneBoss.CableState.Missing, 3f);
+            float missing = Time.fixedTime;
+            yield return Until(() => boss.CurrentMode == MegarachneBoss.Mode.Recovering, 3.2f);
+            Assert.That(Time.fixedTime - stunned, Is.EqualTo(3f).Within(0.08f));
+            yield return Until(() => boss.FireStateAt(cable) == MegarachneBoss.CableState.Growing, 7.2f);
+            Assert.That(Time.fixedTime - missing, Is.EqualTo(7f).Within(0.08f));
+            Assert.IsTrue(boss.NestBurned);
+            Assert.IsFalse(boss.IgniteNest());
+        }
+
         MegarachneCableNode[] CableNodes(int index) => CableLine(index).GetComponentsInChildren<MegarachneCableNode>();
 
         SpriteRenderer[] FireSprites(string objectName) => boss.Canopy.GetComponentsInChildren<SpriteRenderer>()
@@ -231,10 +400,15 @@ namespace Primordia.Tests
         public void ArteTieneNueveFilasYDropClimbUna()
         {
             var art = AssetDatabase.LoadAssetAtPath<DirectionalArt>("Assets/_Primordia/Data/Bosses/MegarachneArt.asset");
-            Assert.AreEqual(24, art.Sheets.Count);
+            // 24 de M1-M4, Rage (13), IntroEmerge y Screech (M5), y Threat, Death y Dead con sus sombras (M6).
+            Assert.AreEqual(45, art.Sheets.Count);
+            Assert.AreEqual(30, art.Sheets.Count(s => !s.name.EndsWith("_Rage")
+                && s.name != "Megarachne_IntroEmerge" && s.name != "Megarachne_Screech"));
             foreach (var sheet in art.Sheets)
             {
-                Assert.AreEqual(sheet.name.EndsWith("_Drop") || sheet.name.EndsWith("_Climb") ? 1 : 9, sheet.rows);
+                string name = sheet.name.Replace("_Rage", "");
+                Assert.AreEqual(name.EndsWith("_Drop") || name.EndsWith("_Climb")
+                    || name.EndsWith("_IntroEmerge") || name.EndsWith("_Screech") ? 1 : 9, sheet.rows);
                 Assert.AreEqual(sheet.rows * sheet.frames, sheet.sprites.Length);
                 Assert.IsTrue(sheet.sprites.All(s => s != null && s.pixelsPerUnit == 16f));
             }
@@ -254,6 +428,123 @@ namespace Primordia.Tests
             boss.Target = actor.transform;
             Physics2D.SyncTransforms();
             return player;
+        }
+
+        // ---------- M6: barra, entrada, muerte y recompensa ----------
+
+        [Test]
+        public void BarraTienePielPropiaYUnaMuescaAlCincuentaPorCiento()
+        {
+            var appearance = boss.GetComponent<Primordia.UI.BossBarAppearance>();
+            Assert.IsNotNull(appearance);
+            Assert.IsNotNull(appearance.Skin);
+            Assert.AreEqual(new[] { 0.5f }, boss.PhaseThresholds);
+            Assert.AreEqual(0, boss.PhaseIndex);
+            Assert.AreSame(boss, ActiveBoss.Current, "Sin presentación, la barra sale desde que se activa la sala.");
+            Assert.AreEqual(BossBarStyle.Immune, boss.BarStyle, "En su cable es invulnerable.");
+        }
+
+        [UnityTest]
+        public IEnumerator BarraPasaALaFaseDelEnfado()
+        {
+            yield return EnterRage();
+            Assert.AreEqual(1, boss.PhaseIndex);
+        }
+
+        [Test]
+        public void PrefabLlevaLaPresentacionConSuTituloYElRotuloDelMinijefe()
+        {
+            var intro = boss.GetComponent<BossIntro>();
+            Assert.IsNotNull(intro);
+            Assert.IsNotNull(intro.Data);
+            Assert.AreEqual("La araña que nunca fue", intro.Data.Title);
+        }
+
+        [UnityTest]
+        public IEnumerator EntradaSaleDelEmbudoBajaAmenazaYEmpiezaElCombateAlTerminarElRotulo()
+        {
+            MakePlayer(boss.ArenaCenter + new Vector2(-6f, -5f));
+            boss.StartEntry();
+            Assert.IsTrue(boss.IsEntering);
+            Assert.IsTrue(boss.Health.IsInvulnerable);
+            Assert.IsFalse(boss.GetComponentInChildren<DirectionalSprite>().GetComponent<SpriteRenderer>().enabled, "Escondida en el embudo.");
+            yield return new WaitForSeconds(0.3f);
+            Assert.IsFalse(boss.EntryAtThreat, "Espera a la pose de la presentación.");
+            boss.PlayIntroPose(2f);
+            var eyes = boss.Canopy.transform.Find("Ojos");
+            yield return new WaitForSeconds(0.3f);
+            Assert.IsNotNull(boss.Canopy.transform.Find("Ojos"));
+            Assert.IsTrue(boss.Canopy.transform.Find("Ojos").GetComponent<SpriteRenderer>().enabled, "Los ojos se encienden en el embudo.");
+            yield return Until(() => boss.EntryAtThreat, 4f);
+            Assert.IsTrue(boss.IsEntering, "Amenaza hasta que acaba el rótulo.");
+            Assert.AreEqual(0f, boss.VisualHeight);
+            Assert.IsFalse(boss.Canopy.transform.Find("Ojos").GetComponent<SpriteRenderer>().enabled);
+            boss.BeginFight();
+            Assert.IsFalse(boss.IsEntering);
+            Assert.AreEqual(MegarachneBoss.Mode.Ground, boss.CurrentMode);
+            Assert.IsFalse(boss.Health.IsInvulnerable, "Aterriza vulnerable.");
+            Assert.AreSame(boss, ActiveBoss.Current);
+        }
+
+        [UnityTest]
+        public IEnumerator SaltarElRotuloAcabaLaEntradaAlMomento()
+        {
+            boss.StartEntry();
+            boss.PlayIntroPose(2f);
+            yield return new WaitForSeconds(0.2f);
+            Assert.IsTrue(boss.IsEntering);
+            boss.BeginFight();
+            Assert.IsFalse(boss.IsEntering);
+            Assert.AreEqual(MegarachneBoss.Mode.Ground, boss.CurrentMode);
+            Assert.IsTrue(boss.GetComponentInChildren<DirectionalSprite>().GetComponent<SpriteRenderer>().enabled);
+        }
+
+        [UnityTest]
+        public IEnumerator MuerteDejaElCuerpoPanzaArribaDeshaceLaRedYSueltaElCapulloConElCorazon()
+        {
+            RunInventory.Reset();
+            boss.Health.IsInvulnerable = false;
+            boss.Health.TakeDamage(MegarachneBoss.MaxHealth);
+            Assert.IsTrue(boss.DeathStarted);
+            var corpse = room.GetComponentInChildren<MegarachneCorpse>();
+            Assert.IsNotNull(corpse, "El cuerpo pasa a la sala y sobrevive al jefe.");
+            yield return null;
+            Assert.IsTrue(Enumerable.Range(0, 5).All(i => !CableLine(i).enabled), "Los cables se descuelgan.");
+            yield return Until(() => corpse.Dead, 2f);
+            Assert.IsTrue(corpse.GetComponentInChildren<DirectionalSprite>().Current.StartsWith("Megarachne_Dead"));
+            yield return Until(() => corpse.CocoonLanded, 6f);
+            Assert.GreaterOrEqual(Vector2.Distance(corpse.CocoonPoint, corpse.transform.position), 2f, "El capullo no cae sobre el cuerpo.");
+            yield return Until(() => corpse.CocoonOpened, 2f);
+            var heart = room.GetComponentInChildren<LepidodendronDrop>();
+            Assert.IsNotNull(heart, "El capullo suelta un contenedor de corazón.");
+            Assert.AreEqual(0, corpse.BiomassDropped, "Sin RoomBiomass en la sala de prueba no cae biomasa.");
+        }
+
+        [UnityTest]
+        public IEnumerator ElCorazonSoloCaeUnaVezPorPartida()
+        {
+            RunInventory.Reset();
+            RunInventory.SetFlag(MegarachneCorpse.HeartFlag);
+            boss.Health.IsInvulnerable = false;
+            boss.Health.TakeDamage(MegarachneBoss.MaxHealth);
+            var corpse = room.GetComponentInChildren<MegarachneCorpse>();
+            yield return Until(() => corpse.CocoonOpened, 12f);
+            Assert.IsNull(room.GetComponentInChildren<LepidodendronDrop>());
+            RunInventory.Reset();
+        }
+
+        [Test]
+        public void TarjetasOfrecenSoloMutacionesEquipadasQueAunPuedenSubir()
+        {
+            var player = new GameObject("JugadorMutaciones");
+            actor = player;
+            player.AddComponent<Rigidbody2D>();
+            player.AddComponent<CircleCollider2D>();
+            player.AddComponent<Health>().SetMax(20);
+            player.AddComponent<Weapon>();
+            player.AddComponent<PlayerController>();
+            var mutations = player.AddComponent<Primordia.Mutations.PlayerMutations>();
+            Assert.IsEmpty(MegarachneCorpse.UpgradableMutations(mutations, 3), "Sin mutaciones equipadas no hay tarjetas.");
         }
 
         static IEnumerator Until(System.Func<bool> condition, float seconds)

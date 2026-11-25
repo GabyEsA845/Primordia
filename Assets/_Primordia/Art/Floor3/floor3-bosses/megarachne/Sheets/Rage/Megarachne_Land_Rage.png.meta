@@ -124,7 +124,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -152,7 +152,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -193,595 +193,595 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Megarachne_Land_Rage_0
+      name: Megarachne_Land_Rage_0_0
       rect:
         serializedVersion: 2
-        x: 12
-        y: 1054
-        width: 104
-        height: 80
+        x: 0
+        y: 1024
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f2f99357b1f959530800000000000000
-      internalID: 3861167195819712303
+      spriteID: 9bce87ee10c029a4caafd1c2594da2bc
+      internalID: 1992901453
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Land_Rage_1
+      name: Megarachne_Land_Rage_0_1
       rect:
         serializedVersion: 2
-        x: 142
-        y: 1055
-        width: 100
-        height: 80
+        x: 128
+        y: 1024
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a3748953c27eff580800000000000000
-      internalID: -8791053770540169414
+      spriteID: 99334ed835b54e34e9edcb84d9c61b74
+      internalID: 1700632861
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Land_Rage_2
+      name: Megarachne_Land_Rage_0_2
       rect:
         serializedVersion: 2
-        x: 272
-        y: 1056
-        width: 96
-        height: 79
+        x: 256
+        y: 1024
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 24c5f5a23dfa4b840800000000000000
-      internalID: 5239005588022582338
+      spriteID: dcb22a5c8dccb794288accabaf3ea924
+      internalID: -681228279
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Land_Rage_3
+      name: Megarachne_Land_Rage_1_0
       rect:
         serializedVersion: 2
-        x: 15
-        y: 928
-        width: 107
-        height: 82
+        x: 0
+        y: 896
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ec0b05d13abefa760800000000000000
-      internalID: 7471449392634966222
+      spriteID: 41653d4479f90724dbd83107e6121ff1
+      internalID: -264625236
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Land_Rage_4
+      name: Megarachne_Land_Rage_1_1
       rect:
         serializedVersion: 2
-        x: 145
-        y: 928
-        width: 103
-        height: 82
+        x: 128
+        y: 896
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 1f6ad956d063d7220800000000000000
-      internalID: 2485202000545687281
+      spriteID: d68c648bf4721f842a57fe25ea61fb7f
+      internalID: -864239214
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Land_Rage_5
+      name: Megarachne_Land_Rage_1_2
       rect:
         serializedVersion: 2
-        x: 275
-        y: 929
-        width: 99
-        height: 81
+        x: 256
+        y: 896
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: bd4eb47321838e8c0800000000000000
-      internalID: -3969861420638804773
+      spriteID: 45f83d70ae0e07e488e9280e4e643355
+      internalID: -1849293022
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Land_Rage_6
+      name: Megarachne_Land_Rage_2_0
       rect:
         serializedVersion: 2
-        x: 18
-        y: 794
-        width: 103
-        height: 89
+        x: 0
+        y: 768
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: de702757b6b5d6820800000000000000
-      internalID: 2913085051068614637
+      spriteID: 0c7440dc04e69ca4f9de44c2172bb344
+      internalID: 1064911714
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Land_Rage_7
+      name: Megarachne_Land_Rage_2_1
       rect:
         serializedVersion: 2
-        x: 147
-        y: 795
-        width: 100
-        height: 87
+        x: 128
+        y: 768
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2fa29611d47405fc0800000000000000
-      internalID: -3508225713391457550
+      spriteID: a57bb6e267cae4646bcb8a09b7d83714
+      internalID: -971629887
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Land_Rage_8
+      name: Megarachne_Land_Rage_2_2
       rect:
         serializedVersion: 2
-        x: 277
-        y: 796
-        width: 97
-        height: 85
+        x: 256
+        y: 768
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2ca81a5b77d4850d0800000000000000
-      internalID: -3433909539326293310
+      spriteID: d2367cd760b139249876b7fb555059c0
+      internalID: -1387225001
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Land_Rage_9
+      name: Megarachne_Land_Rage_3_0
       rect:
         serializedVersion: 2
-        x: 25
-        y: 664
-        width: 96
-        height: 91
+        x: 0
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f053f53bc24370840800000000000000
-      internalID: 5190174462160352527
+      spriteID: 3a67a582d4ea7fb4bae4231c0a6eda4e
+      internalID: 1305455797
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Land_Rage_10
+      name: Megarachne_Land_Rage_3_1
       rect:
         serializedVersion: 2
-        x: 153
-        y: 665
-        width: 95
-        height: 89
+        x: 128
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 90817f9b4cec02b00800000000000000
-      internalID: 801868078000838665
+      spriteID: ee112335e7c1d0a4280bde0f8ca2f06f
+      internalID: -1329442166
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Land_Rage_11
+      name: Megarachne_Land_Rage_3_2
       rect:
         serializedVersion: 2
-        x: 281
-        y: 667
-        width: 94
-        height: 86
+        x: 256
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 4c97a5386d76bb380800000000000000
-      internalID: -8954449263071692348
+      spriteID: 19865320a3bf67a4285cd2b06e733094
+      internalID: -742481661
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Land_Rage_12
+      name: Megarachne_Land_Rage_4_0
       rect:
         serializedVersion: 2
-        x: 22
-        y: 533
-        width: 90
-        height: 89
+        x: 0
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e79c9f721b32a8bf0800000000000000
-      internalID: -321405179616704130
+      spriteID: 11420518c1abf3840a1cd1144329514e
+      internalID: -1142166467
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Land_Rage_13
+      name: Megarachne_Land_Rage_4_1
       rect:
         serializedVersion: 2
-        x: 150
-        y: 534
-        width: 90
-        height: 87
+        x: 128
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 767e0ab5cf1fcc110800000000000000
-      internalID: 1282666060065072999
+      spriteID: 64053d84441fd6c45b4741eea2b790f6
+      internalID: -1508743647
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Land_Rage_14
+      name: Megarachne_Land_Rage_4_2
       rect:
         serializedVersion: 2
-        x: 278
-        y: 536
-        width: 90
-        height: 84
+        x: 256
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 99ff8cf19a519c390800000000000000
-      internalID: -7797677463688380519
+      spriteID: e3a31da9e696aa94188886815c3788a9
+      internalID: 1348607568
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Land_Rage_15
+      name: Megarachne_Land_Rage_5_0
       rect:
         serializedVersion: 2
-        x: 25
-        y: 400
-        width: 96
-        height: 90
+        x: 0
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7412e3c7099f6ae70800000000000000
-      internalID: 9126256093867942215
+      spriteID: e37ebb149c2a3194493541c7c0283a65
+      internalID: -1642624185
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Land_Rage_16
+      name: Megarachne_Land_Rage_5_1
       rect:
         serializedVersion: 2
-        x: 153
-        y: 402
-        width: 95
-        height: 87
+        x: 128
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 4291576476f3a66c0800000000000000
-      internalID: -4149434393872230108
+      spriteID: 3e6e05d696a65e144a5810019995c37f
+      internalID: -261188333
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Land_Rage_17
+      name: Megarachne_Land_Rage_5_2
       rect:
         serializedVersion: 2
-        x: 281
-        y: 403
-        width: 94
-        height: 85
+        x: 256
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: dcf92754632cd5680800000000000000
-      internalID: -8764635761443954739
+      spriteID: 1f1606df9c3029b498f83c68503f5727
+      internalID: -32014580
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Land_Rage_18
+      name: Megarachne_Land_Rage_6_0
       rect:
         serializedVersion: 2
-        x: 18
-        y: 273
-        width: 103
-        height: 85
+        x: 0
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2313d02ecb7940f90800000000000000
-      internalID: -6988293884270005966
+      spriteID: 7d1bcd9f628dd854aaa8db454a1e2e48
+      internalID: 53378243
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Land_Rage_19
+      name: Megarachne_Land_Rage_6_1
       rect:
         serializedVersion: 2
-        x: 147
-        y: 274
-        width: 100
-        height: 83
+        x: 128
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d124d1fffc50cf2b0800000000000000
-      internalID: -5549554249930816995
+      spriteID: a557e502e78ec17439f6270ad346b5b9
+      internalID: 1830770206
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Land_Rage_20
+      name: Megarachne_Land_Rage_6_2
       rect:
         serializedVersion: 2
-        x: 277
-        y: 275
-        width: 97
-        height: 82
+        x: 256
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b5a8d5cef00f47e60800000000000000
-      internalID: 7959250392651237979
+      spriteID: 06d4b5f896f471649b710731ca67c920
+      internalID: -532051984
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Land_Rage_21
+      name: Megarachne_Land_Rage_7_0
       rect:
         serializedVersion: 2
-        x: 15
-        y: 145
-        width: 107
-        height: 80
+        x: 0
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e7ccb0404dfcc1cf0800000000000000
-      internalID: -280120567295914882
+      spriteID: 3544eae2bc3dd2e46bffe5ab4ecad846
+      internalID: 341564246
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Land_Rage_22
+      name: Megarachne_Land_Rage_7_1
       rect:
         serializedVersion: 2
-        x: 145
-        y: 146
-        width: 103
-        height: 81
+        x: 128
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 9de0b43878f771cc0800000000000000
-      internalID: -3740380745507860775
+      spriteID: 31ba35510c575b44898f0e5e8466cdc1
+      internalID: -1560215809
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Land_Rage_23
+      name: Megarachne_Land_Rage_7_2
       rect:
         serializedVersion: 2
-        x: 275
-        y: 146
-        width: 99
-        height: 82
+        x: 256
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 4e0e4c68f9c5b88e0800000000000000
-      internalID: -1690155394916884252
+      spriteID: 393c9f619153b274eb2ec81fccb08050
+      internalID: -402007740
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Land_Rage_24
+      name: Megarachne_Land_Rage_8_0
       rect:
         serializedVersion: 2
-        x: 12
-        y: 24
-        width: 104
-        height: 76
+        x: 0
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2f83ee53e2e67e060800000000000000
-      internalID: 6982670892013598962
+      spriteID: 741763ab076800c4e9e228650864a013
+      internalID: -1505318467
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Land_Rage_25
+      name: Megarachne_Land_Rage_8_1
       rect:
         serializedVersion: 2
-        x: 142
-        y: 24
-        width: 100
-        height: 77
+        x: 128
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 334078acc6802ddd0800000000000000
-      internalID: -2462896782870903757
+      spriteID: 1aab773ad33a2164aada39aa7c58be62
+      internalID: 705994869
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Land_Rage_26
+      name: Megarachne_Land_Rage_8_2
       rect:
         serializedVersion: 2
-        x: 272
-        y: 24
-        width: 96
-        height: 78
+        x: 256
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 8215f802a21cadac0800000000000000
-      internalID: -3829536146446135000
+      spriteID: 1572fd624d0909e48bfbd6e029c2610b
+      internalID: 1763247163
       vertices: []
       indices: 
       edges: []
@@ -800,33 +800,33 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Megarachne_Land_Rage_0: 3861167195819712303
-      Megarachne_Land_Rage_1: -8791053770540169414
-      Megarachne_Land_Rage_10: 801868078000838665
-      Megarachne_Land_Rage_11: -8954449263071692348
-      Megarachne_Land_Rage_12: -321405179616704130
-      Megarachne_Land_Rage_13: 1282666060065072999
-      Megarachne_Land_Rage_14: -7797677463688380519
-      Megarachne_Land_Rage_15: 9126256093867942215
-      Megarachne_Land_Rage_16: -4149434393872230108
-      Megarachne_Land_Rage_17: -8764635761443954739
-      Megarachne_Land_Rage_18: -6988293884270005966
-      Megarachne_Land_Rage_19: -5549554249930816995
-      Megarachne_Land_Rage_2: 5239005588022582338
-      Megarachne_Land_Rage_20: 7959250392651237979
-      Megarachne_Land_Rage_21: -280120567295914882
-      Megarachne_Land_Rage_22: -3740380745507860775
-      Megarachne_Land_Rage_23: -1690155394916884252
-      Megarachne_Land_Rage_24: 6982670892013598962
-      Megarachne_Land_Rage_25: -2462896782870903757
-      Megarachne_Land_Rage_26: -3829536146446135000
-      Megarachne_Land_Rage_3: 7471449392634966222
-      Megarachne_Land_Rage_4: 2485202000545687281
-      Megarachne_Land_Rage_5: -3969861420638804773
-      Megarachne_Land_Rage_6: 2913085051068614637
-      Megarachne_Land_Rage_7: -3508225713391457550
-      Megarachne_Land_Rage_8: -3433909539326293310
-      Megarachne_Land_Rage_9: 5190174462160352527
+      Megarachne_Land_Rage_0_0: 1992901453
+      Megarachne_Land_Rage_0_1: 1700632861
+      Megarachne_Land_Rage_0_2: -681228279
+      Megarachne_Land_Rage_1_0: -264625236
+      Megarachne_Land_Rage_1_1: -864239214
+      Megarachne_Land_Rage_1_2: -1849293022
+      Megarachne_Land_Rage_2_0: 1064911714
+      Megarachne_Land_Rage_2_1: -971629887
+      Megarachne_Land_Rage_2_2: -1387225001
+      Megarachne_Land_Rage_3_0: 1305455797
+      Megarachne_Land_Rage_3_1: -1329442166
+      Megarachne_Land_Rage_3_2: -742481661
+      Megarachne_Land_Rage_4_0: -1142166467
+      Megarachne_Land_Rage_4_1: -1508743647
+      Megarachne_Land_Rage_4_2: 1348607568
+      Megarachne_Land_Rage_5_0: -1642624185
+      Megarachne_Land_Rage_5_1: -261188333
+      Megarachne_Land_Rage_5_2: -32014580
+      Megarachne_Land_Rage_6_0: 53378243
+      Megarachne_Land_Rage_6_1: 1830770206
+      Megarachne_Land_Rage_6_2: -532051984
+      Megarachne_Land_Rage_7_0: 341564246
+      Megarachne_Land_Rage_7_1: -1560215809
+      Megarachne_Land_Rage_7_2: -402007740
+      Megarachne_Land_Rage_8_0: -1505318467
+      Megarachne_Land_Rage_8_1: 705994869
+      Megarachne_Land_Rage_8_2: 1763247163
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

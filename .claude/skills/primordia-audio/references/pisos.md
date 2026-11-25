@@ -68,11 +68,21 @@ Cerrado y aprobado por el usuario (en `musica_piso2.py`, `efectos_piso2.py` e `i
 - **Efectos:** 102 + 2 ambientes. Avisos con la duración exacta del aviso del juego; los que el juego puede acortar
   (carga del frenesí, aviso de pinzas en fase blanda, cerco, silueta) se cortan con `Sfx.Stop`.
 
-## Piso 3: pantano carbonífero (empezado, 2026-11-03)
+## Piso 3: pantano carbonífero (cerrado y aprobado, 2026-11-25)
 
-- **Ambiente hecho:** `Amb_Floor3_Loop` (en `efectos_piso3.py`, encargo `PROMPT_piso3.md`): aire caliente y húmedo que
-  respira (3 veces por bucle de 24 s), fondo grave en **re y la** (73,4 / 110 / 36,7 Hz, con batido lento), croar
-  lejano en grupos (re y la), insectos que pasan, burbujas gordas de lodo y metano, gotas del musgo y frondas.
-  Sube junto a la charca de la sala de paso del piso 2 y suena en el pantano verde.
-- Pendiente (paso 8 del PLAN): modo y tempo de la música, ambientes del bosque humeante y la tierra quemada, Bocas,
-  enemigos, reacciones (fuego, metano, veneno) y jefes.
+- **Módulos:** `efectos_piso3.py` (efectos y ambientes), `musica_piso3.py` (música), encargo `PROMPT_piso3.md`,
+  muestrario propio `muestrario_piso3.html` y guía para conectarlo en `README_piso3.md`. La usuaria pidió crear todos
+  los sonidos nuevos posibles en vez de reutilizar los de pisos anteriores (golpe y muerte propios de cada enemigo,
+  esquiva por cuerpo, puertas, sala limpia y oleada propias).
+- **Música por tramo del incendio** (dos capas sincronizadas): pantano verde en **re dórico, 98 BPM** (marimba de
+  madera, flauta de caña, croar como bombo, semillas); bosque humeante en **re eólico, 105 BPM** (pad oscuro,
+  ostinato de cuerda grave, tambores de tronco); tierra quemada en **re frigio dominante (re, mi bemol, fa sostenido),
+  112 BPM** (metales graves que se hinchan, percusión de brasas).
+- **Jefes:** Meganeura re frigio 126 → 140 (tormenta); Arthropleura re eólico 84 → 105 (rueda); Megarachne re con mi
+  bemol 120 → 126 (enfado); Lepidodendron re frigio 72 → 90 (fase final). Stings propios: jefe secreto (frigio,
+  morado) y reliquia (re mayor, dorado).
+- **Paleta:** fuego = soplo + crepitar + rugido grave; metano = golpe hueco; veneno = efervescencia; lodo = succión
+  grave; ámbar = resina y cristal cálido; seda de la Megarachne = cuerdas graves pulsadas en re y mi bemol; el
+  Lepidodendron = madera frotada (arco) y coro; lo secreto, en re frigio; la recompensa, en re mayor.
+- **Ambientes:** pantano verde (`Amb_Floor3_Loop`), humo, quemado, sala de jefe, sala del ámbar y lluvia de la
+  tormenta. Pendiente: el sonido de la sala de paso del piso 3, con la música del piso 4.

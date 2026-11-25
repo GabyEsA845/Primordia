@@ -18,6 +18,26 @@ namespace Primordia.Enemies
             cableRoots = roots;
         }
         void LateUpdate() => Refresh();
+        internal void ShowTree(Sprite[] frames, float frame, bool loop)
+        {
+            if (frames.Length == 0 || crown == null) return;
+            int index = Mathf.Max(0, Mathf.FloorToInt(frame));
+            crown.sprite = frames[loop ? index % frames.Length : Mathf.Min(index, frames.Length - 1)];
+        }
+        internal void ShowTrunk(Sprite[] frames, float frame, bool loop)
+        {
+            if (frames.Length == 0) return;
+            var trunk = transform.Find("BaseTronco").GetComponent<SpriteRenderer>();
+            int index = Mathf.Max(0, Mathf.FloorToInt(frame));
+            trunk.sprite = frames[loop ? index % frames.Length : Mathf.Min(index, frames.Length - 1)];
+        }
+        internal void ShowWeb(Sprite[] frames, float frame)
+        {
+            if (nest == null || frames.Length == 0) return;
+            int index = Mathf.Max(0, Mathf.FloorToInt(frame));
+            nest.enabled = index < frames.Length;
+            nest.sprite = frames[Mathf.Min(index, frames.Length - 1)];
+        }
         public void Refresh()
         {
             Vector2 center = (Vector2)transform.position + Vector2.up * 4f;
@@ -30,7 +50,7 @@ namespace Primordia.Enemies
                 var player = collider.GetComponentInParent<PlayerController>();
                 if (enemy == null && player == null && collider.GetComponentInParent<MegarachneBrood>() == null) continue;
                 var mega = collider.GetComponentInParent<MegarachneBoss>();
-                if (mega != null && mega.CurrentMode == MegarachneBoss.Mode.OnCable) continue;
+                if (mega != null && (mega.CurrentMode == MegarachneBoss.Mode.OnCable || (mega.IsEnraging && mega.VisualHeight > 0f))) continue;
                 Vector2 delta = (Vector2)collider.bounds.center - center;
                 if (delta.x * delta.x / 16f + delta.y * delta.y / (2.75f * 2.75f) <= 1f)
                 { covered = true; break; }

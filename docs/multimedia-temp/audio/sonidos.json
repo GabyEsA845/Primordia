@@ -2081,6 +2081,2943 @@
    "volume": 0.3,
    "group": "SFX",
    "loop": true
+  },
+  {
+   "id": "Fire_Ignite",
+   "files": [
+    "SFX_Fire_Ignite_01.wav",
+    "SFX_Fire_Ignite_02.wav",
+    "SFX_Fire_Ignite_03.wav"
+   ],
+   "volume": 0.5,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Fire_Burn_Loop",
+   "files": [
+    "SFX_Fire_Burn_Loop.wav"
+   ],
+   "volume": 0.3,
+   "group": "SFX",
+   "loop": true
+  },
+  {
+   "id": "Fire_Extinguish",
+   "files": [
+    "SFX_Fire_Extinguish_01.wav",
+    "SFX_Fire_Extinguish_02.wav"
+   ],
+   "volume": 0.5,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Status_Burn_Start",
+   "files": [
+    "SFX_Status_Burn_Start_01.wav",
+    "SFX_Status_Burn_Start_02.wav"
+   ],
+   "volume": 0.5,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Status_Burn_Tick",
+   "files": [
+    "SFX_Status_Burn_Tick_01.wav",
+    "SFX_Status_Burn_Tick_02.wav",
+    "SFX_Status_Burn_Tick_03.wav"
+   ],
+   "volume": 0.3,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Methane_Explosion",
+   "files": [
+    "SFX_Methane_Explosion_01.wav",
+    "SFX_Methane_Explosion_02.wav",
+    "SFX_Methane_Explosion_03.wav"
+   ],
+   "volume": 0.75,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Methane_FogFlash",
+   "files": [
+    "SFX_Methane_FogFlash.wav"
+   ],
+   "volume": 0.6,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Methane_Mist_Loop",
+   "files": [
+    "SFX_Methane_Mist_Loop.wav"
+   ],
+   "volume": 0.18,
+   "group": "SFX",
+   "loop": true
+  },
+  {
+   "id": "Methane_GasBag_Burst",
+   "files": [
+    "SFX_Methane_GasBag_Burst_01.wav",
+    "SFX_Methane_GasBag_Burst_02.wav"
+   ],
+   "volume": 0.55,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Methane_GasBag_Regrow",
+   "files": [
+    "SFX_Methane_GasBag_Regrow.wav"
+   ],
+   "volume": 0.35,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Methane_Bubble_Warn",
+   "files": [
+    "SFX_Methane_Bubble_Warn.wav"
+   ],
+   "volume": 0.55,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Methane_Bubble_Pop",
+   "files": [
+    "SFX_Methane_Bubble_Pop_01.wav",
+    "SFX_Methane_Bubble_Pop_02.wav"
+   ],
+   "volume": 0.6,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Poison_Puddle",
+   "files": [
+    "SFX_Poison_Puddle_01.wav",
+    "SFX_Poison_Puddle_02.wav",
+    "SFX_Poison_Puddle_03.wav"
+   ],
+   "volume": 0.4,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Poison_ToxicCloud",
+   "files": [
+    "SFX_Poison_ToxicCloud.wav"
+   ],
+   "volume": 0.55,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Poison_Bulb_Burst",
+   "files": [
+    "SFX_Poison_Bulb_Burst_01.wav",
+    "SFX_Poison_Bulb_Burst_02.wav"
+   ],
+   "volume": 0.55,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Poison_Bulb_Regrow",
+   "files": [
+    "SFX_Poison_Bulb_Regrow.wav"
+   ],
+   "volume": 0.3,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Fumarole_Warn",
+   "files": [
+    "SFX_Fumarole_Warn.wav"
+   ],
+   "volume": 0.6,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Fumarole_Erupt",
+   "files": [
+    "SFX_Fumarole_Erupt_01.wav",
+    "SFX_Fumarole_Erupt_02.wav"
+   ],
+   "volume": 0.7,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Fern_Rustle",
+   "files": [
+    "SFX_Fern_Rustle_01.wav",
+    "SFX_Fern_Rustle_02.wav",
+    "SFX_Fern_Rustle_03.wav"
+   ],
+   "volume": 0.3,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Fern_Burn",
+   "files": [
+    "SFX_Fern_Burn_01.wav",
+    "SFX_Fern_Burn_02.wav"
+   ],
+   "volume": 0.55,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Brush_BurnAway",
+   "files": [
+    "SFX_Brush_BurnAway.wav"
+   ],
+   "volume": 0.55,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Mud_Sink_Loop",
+   "files": [
+    "SFX_Mud_Sink_Loop.wav"
+   ],
+   "volume": 0.4,
+   "group": "SFX",
+   "loop": true
+  },
+  {
+   "id": "Mud_Escape",
+   "files": [
+    "SFX_Mud_Escape_01.wav",
+    "SFX_Mud_Escape_02.wav"
+   ],
+   "volume": 0.5,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Mud_Drown",
+   "files": [
+    "SFX_Mud_Drown.wav"
+   ],
+   "volume": 0.6,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Mud_Splash",
+   "files": [
+    "SFX_Mud_Splash_01.wav",
+    "SFX_Mud_Splash_02.wav",
+    "SFX_Mud_Splash_03.wav"
+   ],
+   "volume": 0.4,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Water_Splash",
+   "files": [
+    "SFX_Water_Splash_01.wav",
+    "SFX_Water_Splash_02.wav",
+    "SFX_Water_Splash_03.wav"
+   ],
+   "volume": 0.35,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Web_Stick",
+   "files": [
+    "SFX_Web_Stick_01.wav",
+    "SFX_Web_Stick_02.wav"
+   ],
+   "volume": 0.45,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Web_Burn",
+   "files": [
+    "SFX_Web_Burn_01.wav",
+    "SFX_Web_Burn_02.wav"
+   ],
+   "volume": 0.45,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Player_Dodge_Frog",
+   "files": [
+    "SFX_Player_Dodge_Frog_01.wav",
+    "SFX_Player_Dodge_Frog_02.wav",
+    "SFX_Player_Dodge_Frog_03.wav"
+   ],
+   "volume": 0.45,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Player_Dodge_Diplocaulus",
+   "files": [
+    "SFX_Player_Dodge_Diplocaulus_01.wav",
+    "SFX_Player_Dodge_Diplocaulus_02.wav",
+    "SFX_Player_Dodge_Diplocaulus_03.wav"
+   ],
+   "volume": 0.45,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Player_Dodge_Scorpion",
+   "files": [
+    "SFX_Player_Dodge_Scorpion_01.wav",
+    "SFX_Player_Dodge_Scorpion_02.wav",
+    "SFX_Player_Dodge_Scorpion_03.wav"
+   ],
+   "volume": 0.45,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Mouth_Spit_Shoot",
+   "files": [
+    "SFX_Mouth_Spit_Shoot_01.wav",
+    "SFX_Mouth_Spit_Shoot_02.wav",
+    "SFX_Mouth_Spit_Shoot_03.wav"
+   ],
+   "volume": 0.5,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Mouth_Spit_Trail",
+   "files": [
+    "SFX_Mouth_Spit_Trail_01.wav",
+    "SFX_Mouth_Spit_Trail_02.wav",
+    "SFX_Mouth_Spit_Trail_03.wav"
+   ],
+   "volume": 0.18,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Mouth_Spit_Burst",
+   "files": [
+    "SFX_Mouth_Spit_Burst_01.wav",
+    "SFX_Mouth_Spit_Burst_02.wav"
+   ],
+   "volume": 0.6,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Mouth_Spit_Split",
+   "files": [
+    "SFX_Mouth_Spit_Split.wav"
+   ],
+   "volume": 0.45,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Mouth_Spin_Start",
+   "files": [
+    "SFX_Mouth_Spin_Start.wav"
+   ],
+   "volume": 0.45,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Mouth_Spin_Loop",
+   "files": [
+    "SFX_Mouth_Spin_Loop.wav"
+   ],
+   "volume": 0.35,
+   "group": "SFX",
+   "loop": true
+  },
+  {
+   "id": "Mouth_Spin_Hit",
+   "files": [
+    "SFX_Mouth_Spin_Hit_01.wav",
+    "SFX_Mouth_Spin_Hit_02.wav",
+    "SFX_Mouth_Spin_Hit_03.wav"
+   ],
+   "volume": 0.4,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Mouth_Spin_Dizzy",
+   "files": [
+    "SFX_Mouth_Spin_Dizzy.wav"
+   ],
+   "volume": 0.4,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Mouth_Spin_Deflect",
+   "files": [
+    "SFX_Mouth_Spin_Deflect_01.wav",
+    "SFX_Mouth_Spin_Deflect_02.wav"
+   ],
+   "volume": 0.45,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Mouth_Spin_Boomerang",
+   "files": [
+    "SFX_Mouth_Spin_Boomerang.wav"
+   ],
+   "volume": 0.55,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Mouth_Vinegar_Start",
+   "files": [
+    "SFX_Mouth_Vinegar_Start.wav"
+   ],
+   "volume": 0.45,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Mouth_Vinegar_Loop",
+   "files": [
+    "SFX_Mouth_Vinegar_Loop.wav"
+   ],
+   "volume": 0.35,
+   "group": "SFX",
+   "loop": true
+  },
+  {
+   "id": "Mouth_Vinegar_Hit",
+   "files": [
+    "SFX_Mouth_Vinegar_Hit_01.wav",
+    "SFX_Mouth_Vinegar_Hit_02.wav",
+    "SFX_Mouth_Vinegar_Hit_03.wav"
+   ],
+   "volume": 0.25,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Mouth_Vinegar_Empty",
+   "files": [
+    "SFX_Mouth_Vinegar_Empty.wav"
+   ],
+   "volume": 0.45,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Mouth_Vinegar_Ready",
+   "files": [
+    "SFX_Mouth_Vinegar_Ready.wav"
+   ],
+   "volume": 0.35,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Mouth_Vinegar_Splash",
+   "files": [
+    "SFX_Mouth_Vinegar_Splash_01.wav",
+    "SFX_Mouth_Vinegar_Splash_02.wav"
+   ],
+   "volume": 0.45,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Limbs_Jump_Takeoff",
+   "files": [
+    "SFX_Limbs_Jump_Takeoff_01.wav",
+    "SFX_Limbs_Jump_Takeoff_02.wav",
+    "SFX_Limbs_Jump_Takeoff_03.wav"
+   ],
+   "volume": 0.45,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Limbs_Jump_Land",
+   "files": [
+    "SFX_Limbs_Jump_Land_01.wav",
+    "SFX_Limbs_Jump_Land_02.wav",
+    "SFX_Limbs_Jump_Land_03.wav"
+   ],
+   "volume": 0.5,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Limbs_Jump_Stun",
+   "files": [
+    "SFX_Limbs_Jump_Stun.wav"
+   ],
+   "volume": 0.6,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Limbs_Spinner_Thread",
+   "files": [
+    "SFX_Limbs_Spinner_Thread_01.wav",
+    "SFX_Limbs_Spinner_Thread_02.wav"
+   ],
+   "volume": 0.4,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Limbs_Spinner_Snare",
+   "files": [
+    "SFX_Limbs_Spinner_Snare.wav"
+   ],
+   "volume": 0.35,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Limbs_Spinner_Web",
+   "files": [
+    "SFX_Limbs_Spinner_Web.wav"
+   ],
+   "volume": 0.5,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Skin_Mucus_Charged",
+   "files": [
+    "SFX_Skin_Mucus_Charged.wav"
+   ],
+   "volume": 0.4,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Skin_Mucus_Absorb",
+   "files": [
+    "SFX_Skin_Mucus_Absorb_01.wav",
+    "SFX_Skin_Mucus_Absorb_02.wav"
+   ],
+   "volume": 0.55,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Skin_Mucus_Reflect",
+   "files": [
+    "SFX_Skin_Mucus_Reflect.wav"
+   ],
+   "volume": 0.5,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Skin_Char_Kindle",
+   "files": [
+    "SFX_Skin_Char_Kindle.wav"
+   ],
+   "volume": 0.45,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Skin_Char_Flare",
+   "files": [
+    "SFX_Skin_Char_Flare.wav"
+   ],
+   "volume": 0.6,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Organ_Methane_Release",
+   "files": [
+    "SFX_Organ_Methane_Release.wav"
+   ],
+   "volume": 0.5,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Organ_Methane_Cloud_Loop",
+   "files": [
+    "SFX_Organ_Methane_Cloud_Loop.wav"
+   ],
+   "volume": 0.15,
+   "group": "SFX",
+   "loop": true
+  },
+  {
+   "id": "Organ_Pheromone_Cast",
+   "files": [
+    "SFX_Organ_Pheromone_Cast.wav"
+   ],
+   "volume": 0.5,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Status_Confused",
+   "files": [
+    "SFX_Status_Confused.wav"
+   ],
+   "volume": 0.4,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Room_AmberBlock_Break",
+   "files": [
+    "SFX_Room_AmberBlock_Break.wav"
+   ],
+   "volume": 0.65,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Special_Cerci_Dash",
+   "files": [
+    "SFX_Special_Cerci_Dash_01.wav",
+    "SFX_Special_Cerci_Dash_02.wav",
+    "SFX_Special_Cerci_Dash_03.wav"
+   ],
+   "volume": 0.45,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Special_Cerci_Ready",
+   "files": [
+    "SFX_Special_Cerci_Ready.wav"
+   ],
+   "volume": 0.35,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Special_Capsule_Encase",
+   "files": [
+    "SFX_Special_Capsule_Encase.wav"
+   ],
+   "volume": 0.6,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Special_Capsule_Heal",
+   "files": [
+    "SFX_Special_Capsule_Heal.wav"
+   ],
+   "volume": 0.55,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Special_Capsule_Hit",
+   "files": [
+    "SFX_Special_Capsule_Hit_01.wav",
+    "SFX_Special_Capsule_Hit_02.wav"
+   ],
+   "volume": 0.45,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Special_Capsule_Shatter",
+   "files": [
+    "SFX_Special_Capsule_Shatter_01.wav",
+    "SFX_Special_Capsule_Shatter_02.wav"
+   ],
+   "volume": 0.6,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Special_Drop_Shoot",
+   "files": [
+    "SFX_Special_Drop_Shoot_01.wav",
+    "SFX_Special_Drop_Shoot_02.wav"
+   ],
+   "volume": 0.45,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Special_Drop_Encase",
+   "files": [
+    "SFX_Special_Drop_Encase_01.wav",
+    "SFX_Special_Drop_Encase_02.wav"
+   ],
+   "volume": 0.55,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Special_Drop_Hit",
+   "files": [
+    "SFX_Special_Drop_Hit_01.wav",
+    "SFX_Special_Drop_Hit_02.wav",
+    "SFX_Special_Drop_Hit_03.wav"
+   ],
+   "volume": 0.45,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Special_Drop_Shatter",
+   "files": [
+    "SFX_Special_Drop_Shatter_01.wav",
+    "SFX_Special_Drop_Shatter_02.wav"
+   ],
+   "volume": 0.55,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Special_Drop_Fossil",
+   "files": [
+    "SFX_Special_Drop_Fossil.wav"
+   ],
+   "volume": 0.6,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Special_Drop_Ready",
+   "files": [
+    "SFX_Special_Drop_Ready.wav"
+   ],
+   "volume": 0.35,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Lineage_Parasite_Attach",
+   "files": [
+    "SFX_Lineage_Parasite_Attach_01.wav",
+    "SFX_Lineage_Parasite_Attach_02.wav",
+    "SFX_Lineage_Parasite_Attach_03.wav"
+   ],
+   "volume": 0.45,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Lineage_Parasite_Suck",
+   "files": [
+    "SFX_Lineage_Parasite_Suck_01.wav",
+    "SFX_Lineage_Parasite_Suck_02.wav",
+    "SFX_Lineage_Parasite_Suck_03.wav"
+   ],
+   "volume": 0.15,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Lineage_Parasite_Drain",
+   "files": [
+    "SFX_Lineage_Parasite_Drain.wav"
+   ],
+   "volume": 0.5,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Lineage_Parasite_Jump",
+   "files": [
+    "SFX_Lineage_Parasite_Jump_01.wav",
+    "SFX_Lineage_Parasite_Jump_02.wav"
+   ],
+   "volume": 0.45,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Lineage_Colonize_Floor3",
+   "files": [
+    "SFX_Lineage_Colonize_Floor3.wav"
+   ],
+   "volume": 0.55,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Lineage_Mushroom_Sprout",
+   "files": [
+    "SFX_Lineage_Mushroom_Sprout_01.wav",
+    "SFX_Lineage_Mushroom_Sprout_02.wav"
+   ],
+   "volume": 0.5,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Lineage_Eryops_Wade_Loop",
+   "files": [
+    "SFX_Lineage_Eryops_Wade_Loop.wav"
+   ],
+   "volume": 0.3,
+   "group": "SFX",
+   "loop": true
+  },
+  {
+   "id": "Lineage_Eryops_Emerge",
+   "files": [
+    "SFX_Lineage_Eryops_Emerge.wav"
+   ],
+   "volume": 0.5,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Lineage_Xenacanthus_Spine",
+   "files": [
+    "SFX_Lineage_Xenacanthus_Spine_01.wav",
+    "SFX_Lineage_Xenacanthus_Spine_02.wav"
+   ],
+   "volume": 0.45,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Lineage_GasSting_Toxify",
+   "files": [
+    "SFX_Lineage_GasSting_Toxify_01.wav",
+    "SFX_Lineage_GasSting_Toxify_02.wav"
+   ],
+   "volume": 0.5,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Lineage_Centipede_Puddle",
+   "files": [
+    "SFX_Lineage_Centipede_Puddle_01.wav",
+    "SFX_Lineage_Centipede_Puddle_02.wav",
+    "SFX_Lineage_Centipede_Puddle_03.wav"
+   ],
+   "volume": 0.4,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Lineage_Tinder_Shoot",
+   "files": [
+    "SFX_Lineage_Tinder_Shoot_01.wav",
+    "SFX_Lineage_Tinder_Shoot_02.wav"
+   ],
+   "volume": 0.5,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Lineage_Tinder_Trail",
+   "files": [
+    "SFX_Lineage_Tinder_Trail_01.wav",
+    "SFX_Lineage_Tinder_Trail_02.wav",
+    "SFX_Lineage_Tinder_Trail_03.wav"
+   ],
+   "volume": 0.2,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Lineage_Tinder_Burst",
+   "files": [
+    "SFX_Lineage_Tinder_Burst.wav"
+   ],
+   "volume": 0.6,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Lineage_Zombie_Rise",
+   "files": [
+    "SFX_Lineage_Zombie_Rise.wav"
+   ],
+   "volume": 0.55,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Lineage_Zombie_Collapse",
+   "files": [
+    "SFX_Lineage_Zombie_Collapse.wav"
+   ],
+   "volume": 0.5,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Lineage_Lamprey_Attach",
+   "files": [
+    "SFX_Lineage_Lamprey_Attach_01.wav",
+    "SFX_Lineage_Lamprey_Attach_02.wav"
+   ],
+   "volume": 0.45,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Lineage_Leech_Burst",
+   "files": [
+    "SFX_Lineage_Leech_Burst.wav"
+   ],
+   "volume": 0.6,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Enemy_Calamites_Hurt",
+   "files": [
+    "SFX_Enemy_Calamites_Hurt_01.wav",
+    "SFX_Enemy_Calamites_Hurt_02.wav",
+    "SFX_Enemy_Calamites_Hurt_03.wav"
+   ],
+   "volume": 0.5,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Enemy_Calamites_Death",
+   "files": [
+    "SFX_Enemy_Calamites_Death.wav"
+   ],
+   "volume": 0.6,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Enemy_Calamites_Sprout",
+   "files": [
+    "SFX_Enemy_Calamites_Sprout_01.wav",
+    "SFX_Enemy_Calamites_Sprout_02.wav"
+   ],
+   "volume": 0.45,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Enemy_Calamites_SporeRing",
+   "files": [
+    "SFX_Enemy_Calamites_SporeRing.wav"
+   ],
+   "volume": 0.55,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Enemy_CalamitesSprout_Hurt",
+   "files": [
+    "SFX_Enemy_CalamitesSprout_Hurt_01.wav",
+    "SFX_Enemy_CalamitesSprout_Hurt_02.wav"
+   ],
+   "volume": 0.35,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Enemy_CalamitesSprout_Death",
+   "files": [
+    "SFX_Enemy_CalamitesSprout_Death_01.wav",
+    "SFX_Enemy_CalamitesSprout_Death_02.wav"
+   ],
+   "volume": 0.4,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Enemy_CalamitesSprout_Wither",
+   "files": [
+    "SFX_Enemy_CalamitesSprout_Wither.wav"
+   ],
+   "volume": 0.45,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Enemy_Medullosa_Hurt",
+   "files": [
+    "SFX_Enemy_Medullosa_Hurt_01.wav",
+    "SFX_Enemy_Medullosa_Hurt_02.wav",
+    "SFX_Enemy_Medullosa_Hurt_03.wav"
+   ],
+   "volume": 0.5,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Enemy_Medullosa_Death",
+   "files": [
+    "SFX_Enemy_Medullosa_Death.wav"
+   ],
+   "volume": 0.6,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Enemy_Medullosa_Launch",
+   "files": [
+    "SFX_Enemy_Medullosa_Launch_01.wav",
+    "SFX_Enemy_Medullosa_Launch_02.wav"
+   ],
+   "volume": 0.55,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Enemy_Medullosa_Fall",
+   "files": [
+    "SFX_Enemy_Medullosa_Fall.wav"
+   ],
+   "volume": 0.45,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Enemy_Medullosa_Impact",
+   "files": [
+    "SFX_Enemy_Medullosa_Impact_01.wav",
+    "SFX_Enemy_Medullosa_Impact_02.wav"
+   ],
+   "volume": 0.6,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Enemy_Dragonfly_Buzz_Loop",
+   "files": [
+    "SFX_Enemy_Dragonfly_Buzz_Loop.wav"
+   ],
+   "volume": 0.3,
+   "group": "SFX",
+   "loop": true
+  },
+  {
+   "id": "Enemy_Dragonfly_Warn",
+   "files": [
+    "SFX_Enemy_Dragonfly_Warn.wav"
+   ],
+   "volume": 0.6,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Enemy_Dragonfly_Dive",
+   "files": [
+    "SFX_Enemy_Dragonfly_Dive_01.wav",
+    "SFX_Enemy_Dragonfly_Dive_02.wav"
+   ],
+   "volume": 0.6,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Enemy_Dragonfly_Land",
+   "files": [
+    "SFX_Enemy_Dragonfly_Land_01.wav",
+    "SFX_Enemy_Dragonfly_Land_02.wav"
+   ],
+   "volume": 0.45,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Enemy_Dragonfly_Hurt",
+   "files": [
+    "SFX_Enemy_Dragonfly_Hurt_01.wav",
+    "SFX_Enemy_Dragonfly_Hurt_02.wav",
+    "SFX_Enemy_Dragonfly_Hurt_03.wav"
+   ],
+   "volume": 0.45,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Enemy_Dragonfly_Death",
+   "files": [
+    "SFX_Enemy_Dragonfly_Death.wav"
+   ],
+   "volume": 0.55,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Enemy_Bombardier_Warn",
+   "files": [
+    "SFX_Enemy_Bombardier_Warn.wav"
+   ],
+   "volume": 0.6,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Enemy_Bombardier_Flame_Start",
+   "files": [
+    "SFX_Enemy_Bombardier_Flame_Start.wav"
+   ],
+   "volume": 0.6,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Enemy_Bombardier_Flame_Loop",
+   "files": [
+    "SFX_Enemy_Bombardier_Flame_Loop.wav"
+   ],
+   "volume": 0.5,
+   "group": "SFX",
+   "loop": true
+  },
+  {
+   "id": "Enemy_Bombardier_Flame_End",
+   "files": [
+    "SFX_Enemy_Bombardier_Flame_End.wav"
+   ],
+   "volume": 0.5,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Enemy_Bombardier_Hurt",
+   "files": [
+    "SFX_Enemy_Bombardier_Hurt_01.wav",
+    "SFX_Enemy_Bombardier_Hurt_02.wav",
+    "SFX_Enemy_Bombardier_Hurt_03.wav"
+   ],
+   "volume": 0.5,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Enemy_Bombardier_Death",
+   "files": [
+    "SFX_Enemy_Bombardier_Death.wav"
+   ],
+   "volume": 0.6,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Enemy_Spider_FernShake_Loop",
+   "files": [
+    "SFX_Enemy_Spider_FernShake_Loop.wav"
+   ],
+   "volume": 0.25,
+   "group": "SFX",
+   "loop": true
+  },
+  {
+   "id": "Enemy_Spider_Emerge",
+   "files": [
+    "SFX_Enemy_Spider_Emerge.wav"
+   ],
+   "volume": 0.55,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Enemy_Spider_Silk",
+   "files": [
+    "SFX_Enemy_Spider_Silk_01.wav",
+    "SFX_Enemy_Spider_Silk_02.wav"
+   ],
+   "volume": 0.45,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Enemy_Spider_Leap",
+   "files": [
+    "SFX_Enemy_Spider_Leap_01.wav",
+    "SFX_Enemy_Spider_Leap_02.wav"
+   ],
+   "volume": 0.45,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Enemy_Spider_Hurt",
+   "files": [
+    "SFX_Enemy_Spider_Hurt_01.wav",
+    "SFX_Enemy_Spider_Hurt_02.wav",
+    "SFX_Enemy_Spider_Hurt_03.wav"
+   ],
+   "volume": 0.45,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Enemy_Spider_Death",
+   "files": [
+    "SFX_Enemy_Spider_Death.wav"
+   ],
+   "volume": 0.55,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Enemy_Toad_Croak",
+   "files": [
+    "SFX_Enemy_Toad_Croak_01.wav",
+    "SFX_Enemy_Toad_Croak_02.wav"
+   ],
+   "volume": 0.5,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Enemy_Toad_Spit",
+   "files": [
+    "SFX_Enemy_Toad_Spit_01.wav",
+    "SFX_Enemy_Toad_Spit_02.wav"
+   ],
+   "volume": 0.55,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Enemy_Toad_BallSplat",
+   "files": [
+    "SFX_Enemy_Toad_BallSplat_01.wav",
+    "SFX_Enemy_Toad_BallSplat_02.wav"
+   ],
+   "volume": 0.5,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Enemy_Toad_Dive",
+   "files": [
+    "SFX_Enemy_Toad_Dive.wav"
+   ],
+   "volume": 0.55,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Enemy_Toad_Surface",
+   "files": [
+    "SFX_Enemy_Toad_Surface.wav"
+   ],
+   "volume": 0.5,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Enemy_Toad_Swell",
+   "files": [
+    "SFX_Enemy_Toad_Swell.wav"
+   ],
+   "volume": 0.6,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Enemy_Toad_Burst",
+   "files": [
+    "SFX_Enemy_Toad_Burst.wav"
+   ],
+   "volume": 0.7,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Enemy_Toad_Hurt",
+   "files": [
+    "SFX_Enemy_Toad_Hurt_01.wav",
+    "SFX_Enemy_Toad_Hurt_02.wav",
+    "SFX_Enemy_Toad_Hurt_03.wav"
+   ],
+   "volume": 0.5,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Enemy_Toad_Death",
+   "files": [
+    "SFX_Enemy_Toad_Death.wav"
+   ],
+   "volume": 0.55,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Trap_Carnivore_Snap",
+   "files": [
+    "SFX_Trap_Carnivore_Snap_01.wav",
+    "SFX_Trap_Carnivore_Snap_02.wav"
+   ],
+   "volume": 0.65,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Trap_Carnivore_Chew",
+   "files": [
+    "SFX_Trap_Carnivore_Chew.wav"
+   ],
+   "volume": 0.5,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Trap_Carnivore_Release",
+   "files": [
+    "SFX_Trap_Carnivore_Release.wav"
+   ],
+   "volume": 0.55,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Trap_Carnivore_Eat",
+   "files": [
+    "SFX_Trap_Carnivore_Eat.wav"
+   ],
+   "volume": 0.6,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Trap_Carnivore_Open",
+   "files": [
+    "SFX_Trap_Carnivore_Open.wav"
+   ],
+   "volume": 0.45,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Trap_Carnivore_Wither",
+   "files": [
+    "SFX_Trap_Carnivore_Wither.wav"
+   ],
+   "volume": 0.45,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Trap_Mayfly_Swarm_Loop",
+   "files": [
+    "SFX_Trap_Mayfly_Swarm_Loop.wav"
+   ],
+   "volume": 0.35,
+   "group": "SFX",
+   "loop": true
+  },
+  {
+   "id": "Trap_Mayfly_Sting",
+   "files": [
+    "SFX_Trap_Mayfly_Sting_01.wav",
+    "SFX_Trap_Mayfly_Sting_02.wav",
+    "SFX_Trap_Mayfly_Sting_03.wav"
+   ],
+   "volume": 0.35,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Trap_Mayfly_Burn",
+   "files": [
+    "SFX_Trap_Mayfly_Burn.wav"
+   ],
+   "volume": 0.55,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Room_Roots_Close",
+   "files": [
+    "SFX_Room_Roots_Close.wav"
+   ],
+   "volume": 0.6,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Room_Roots_Open",
+   "files": [
+    "SFX_Room_Roots_Open.wav"
+   ],
+   "volume": 0.55,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Room_Cleared_Floor3",
+   "files": [
+    "SFX_Room_Cleared_Floor3.wav"
+   ],
+   "volume": 0.55,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Room_WaveStart_Floor3",
+   "files": [
+    "SFX_Room_WaveStart_Floor3.wav"
+   ],
+   "volume": 0.6,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Room_ConeChest_Open",
+   "files": [
+    "SFX_Room_ConeChest_Open.wav"
+   ],
+   "volume": 0.6,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Room_ConeChest_Open_Big",
+   "files": [
+    "SFX_Room_ConeChest_Open_Big.wav"
+   ],
+   "volume": 0.7,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Room_Teleport_Wake",
+   "files": [
+    "SFX_Room_Teleport_Wake.wav"
+   ],
+   "volume": 0.5,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Room_Teleport_Warp",
+   "files": [
+    "SFX_Room_Teleport_Warp.wav"
+   ],
+   "volume": 0.6,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Room_Heart_Drop",
+   "files": [
+    "SFX_Room_Heart_Drop.wav"
+   ],
+   "volume": 0.5,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Room_HeartPod_Send",
+   "files": [
+    "SFX_Room_HeartPod_Send.wav"
+   ],
+   "volume": 0.5,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Room_HeartPod_Take",
+   "files": [
+    "SFX_Room_HeartPod_Take.wav"
+   ],
+   "volume": 0.55,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Room_HeartPod_Empty",
+   "files": [
+    "SFX_Room_HeartPod_Empty.wav"
+   ],
+   "volume": 0.45,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Roach_Emerge",
+   "files": [
+    "SFX_Roach_Emerge_01.wav",
+    "SFX_Roach_Emerge_02.wav"
+   ],
+   "volume": 0.4,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Roach_Scurry_Loop",
+   "files": [
+    "SFX_Roach_Scurry_Loop.wav"
+   ],
+   "volume": 0.3,
+   "group": "SFX",
+   "loop": true
+  },
+  {
+   "id": "Roach_Grab",
+   "files": [
+    "SFX_Roach_Grab_01.wav",
+    "SFX_Roach_Grab_02.wav"
+   ],
+   "volume": 0.45,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Roach_Hide",
+   "files": [
+    "SFX_Roach_Hide.wav"
+   ],
+   "volume": 0.4,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Roach_Hurt",
+   "files": [
+    "SFX_Roach_Hurt_01.wav",
+    "SFX_Roach_Hurt_02.wav"
+   ],
+   "volume": 0.4,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Roach_Death",
+   "files": [
+    "SFX_Roach_Death.wav"
+   ],
+   "volume": 0.45,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Critter_Scurry",
+   "files": [
+    "SFX_Critter_Scurry_01.wav",
+    "SFX_Critter_Scurry_02.wav"
+   ],
+   "volume": 0.2,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Room_RootWall_HeartPlace",
+   "files": [
+    "SFX_Room_RootWall_HeartPlace.wav"
+   ],
+   "volume": 0.65,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Room_RootWall_Open",
+   "files": [
+    "SFX_Room_RootWall_Open.wav"
+   ],
+   "volume": 0.7,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Room_PurpleFlower_Pickup",
+   "files": [
+    "SFX_Room_PurpleFlower_Pickup.wav"
+   ],
+   "volume": 0.55,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Room_PurpleSeed_Sprout",
+   "files": [
+    "SFX_Room_PurpleSeed_Sprout.wav"
+   ],
+   "volume": 0.65,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Room_Log_Step",
+   "files": [
+    "SFX_Room_Log_Step_01.wav",
+    "SFX_Room_Log_Step_02.wav",
+    "SFX_Room_Log_Step_03.wav"
+   ],
+   "volume": 0.35,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Room_Log_Bubble",
+   "files": [
+    "SFX_Room_Log_Bubble_01.wav",
+    "SFX_Room_Log_Bubble_02.wav"
+   ],
+   "volume": 0.3,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Room_Coal_Ignite",
+   "files": [
+    "SFX_Room_Coal_Ignite.wav"
+   ],
+   "volume": 0.65,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Room_Coal_Burn_Loop",
+   "files": [
+    "SFX_Room_Coal_Burn_Loop.wav"
+   ],
+   "volume": 0.35,
+   "group": "SFX",
+   "loop": true
+  },
+  {
+   "id": "Room_FireFront_Loop",
+   "files": [
+    "SFX_Room_FireFront_Loop.wav"
+   ],
+   "volume": 0.45,
+   "group": "SFX",
+   "loop": true
+  },
+  {
+   "id": "Room_Stump_Light_Loop",
+   "files": [
+    "SFX_Room_Stump_Light_Loop.wav"
+   ],
+   "volume": 0.25,
+   "group": "SFX",
+   "loop": true
+  },
+  {
+   "id": "Boss_Meganeura_Intro",
+   "files": [
+    "SFX_Boss_Meganeura_Intro.wav"
+   ],
+   "volume": 0.75,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Meganeura_Wings_Loop",
+   "files": [
+    "SFX_Boss_Meganeura_Wings_Loop.wav"
+   ],
+   "volume": 0.3,
+   "group": "SFX",
+   "loop": true
+  },
+  {
+   "id": "Boss_Meganeura_TakeOff",
+   "files": [
+    "SFX_Boss_Meganeura_TakeOff.wav"
+   ],
+   "volume": 0.65,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Meganeura_Mark",
+   "files": [
+    "SFX_Boss_Meganeura_Mark.wav"
+   ],
+   "volume": 0.5,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Meganeura_MarkLock",
+   "files": [
+    "SFX_Boss_Meganeura_MarkLock.wav"
+   ],
+   "volume": 0.65,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Meganeura_Dive",
+   "files": [
+    "SFX_Boss_Meganeura_Dive_01.wav",
+    "SFX_Boss_Meganeura_Dive_02.wav"
+   ],
+   "volume": 0.7,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Meganeura_DiveImpact",
+   "files": [
+    "SFX_Boss_Meganeura_DiveImpact_01.wav",
+    "SFX_Boss_Meganeura_DiveImpact_02.wav"
+   ],
+   "volume": 0.75,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Meganeura_TrunkStuck",
+   "files": [
+    "SFX_Boss_Meganeura_TrunkStuck.wav"
+   ],
+   "volume": 0.7,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Meganeura_Gust",
+   "files": [
+    "SFX_Boss_Meganeura_Gust.wav"
+   ],
+   "volume": 0.75,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Meganeura_FallBurning",
+   "files": [
+    "SFX_Boss_Meganeura_FallBurning.wav"
+   ],
+   "volume": 0.75,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Meganeura_Hurt",
+   "files": [
+    "SFX_Boss_Meganeura_Hurt_01.wav",
+    "SFX_Boss_Meganeura_Hurt_02.wav",
+    "SFX_Boss_Meganeura_Hurt_03.wav"
+   ],
+   "volume": 0.6,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Meganeura_Cry",
+   "files": [
+    "SFX_Boss_Meganeura_Cry.wav"
+   ],
+   "volume": 0.7,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Meganeura_EggLay",
+   "files": [
+    "SFX_Boss_Meganeura_EggLay.wav"
+   ],
+   "volume": 0.6,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Meganeura_Egg_Hit",
+   "files": [
+    "SFX_Boss_Meganeura_Egg_Hit_01.wav",
+    "SFX_Boss_Meganeura_Egg_Hit_02.wav",
+    "SFX_Boss_Meganeura_Egg_Hit_03.wav"
+   ],
+   "volume": 0.45,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Meganeura_Egg_Break",
+   "files": [
+    "SFX_Boss_Meganeura_Egg_Break_01.wav",
+    "SFX_Boss_Meganeura_Egg_Break_02.wav"
+   ],
+   "volume": 0.6,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Meganeura_Egg_Hatch",
+   "files": [
+    "SFX_Boss_Meganeura_Egg_Hatch.wav"
+   ],
+   "volume": 0.55,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Meganeura_Nymph_Warn",
+   "files": [
+    "SFX_Boss_Meganeura_Nymph_Warn.wav"
+   ],
+   "volume": 0.5,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Meganeura_Nymph_Lash",
+   "files": [
+    "SFX_Boss_Meganeura_Nymph_Lash_01.wav",
+    "SFX_Boss_Meganeura_Nymph_Lash_02.wav"
+   ],
+   "volume": 0.6,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Meganeura_Nymph_Pull",
+   "files": [
+    "SFX_Boss_Meganeura_Nymph_Pull.wav"
+   ],
+   "volume": 0.55,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Meganeura_Nymph_Hurt",
+   "files": [
+    "SFX_Boss_Meganeura_Nymph_Hurt_01.wav",
+    "SFX_Boss_Meganeura_Nymph_Hurt_02.wav",
+    "SFX_Boss_Meganeura_Nymph_Hurt_03.wav"
+   ],
+   "volume": 0.4,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Meganeura_Nymph_Death",
+   "files": [
+    "SFX_Boss_Meganeura_Nymph_Death_01.wav",
+    "SFX_Boss_Meganeura_Nymph_Death_02.wav"
+   ],
+   "volume": 0.5,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Meganeura_Screech",
+   "files": [
+    "SFX_Boss_Meganeura_Screech.wav"
+   ],
+   "volume": 0.8,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Meganeura_Land",
+   "files": [
+    "SFX_Boss_Meganeura_Land.wav"
+   ],
+   "volume": 0.65,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Meganeura_StormEntry",
+   "files": [
+    "SFX_Boss_Meganeura_StormEntry.wav"
+   ],
+   "volume": 0.85,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Meganeura_Thunder",
+   "files": [
+    "SFX_Boss_Meganeura_Thunder_01.wav",
+    "SFX_Boss_Meganeura_Thunder_02.wav",
+    "SFX_Boss_Meganeura_Thunder_03.wav"
+   ],
+   "volume": 0.6,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Meganeura_BigBolt_Warn",
+   "files": [
+    "SFX_Boss_Meganeura_BigBolt_Warn.wav"
+   ],
+   "volume": 0.65,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Meganeura_LooseBolt_Warn",
+   "files": [
+    "SFX_Boss_Meganeura_LooseBolt_Warn.wav"
+   ],
+   "volume": 0.5,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Meganeura_Bolt_Strike",
+   "files": [
+    "SFX_Boss_Meganeura_Bolt_Strike_01.wav",
+    "SFX_Boss_Meganeura_Bolt_Strike_02.wav",
+    "SFX_Boss_Meganeura_Bolt_Strike_03.wav"
+   ],
+   "volume": 0.8,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Meganeura_Electrocuted",
+   "files": [
+    "SFX_Boss_Meganeura_Electrocuted.wav"
+   ],
+   "volume": 0.8,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Meganeura_Puddle_Electric_Loop",
+   "files": [
+    "SFX_Boss_Meganeura_Puddle_Electric_Loop.wav"
+   ],
+   "volume": 0.3,
+   "group": "SFX",
+   "loop": true
+  },
+  {
+   "id": "Boss_Meganeura_Ring_Loop",
+   "files": [
+    "SFX_Boss_Meganeura_Ring_Loop.wav"
+   ],
+   "volume": 0.35,
+   "group": "SFX",
+   "loop": true
+  },
+  {
+   "id": "Boss_Meganeura_Sigillaria_Burn",
+   "files": [
+    "SFX_Boss_Meganeura_Sigillaria_Burn.wav"
+   ],
+   "volume": 0.7,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Meganeura_Death",
+   "files": [
+    "SFX_Boss_Meganeura_Death.wav"
+   ],
+   "volume": 0.85,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Meganeura_StormFade",
+   "files": [
+    "SFX_Boss_Meganeura_StormFade.wav"
+   ],
+   "volume": 0.55,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Amb_Floor3_Rain_Loop",
+   "files": [
+    "SFX_Amb_Floor3_Rain_Loop.wav"
+   ],
+   "volume": 0.35,
+   "group": "SFX",
+   "loop": true
+  },
+  {
+   "id": "Boss_Arthropleura_Intro",
+   "files": [
+    "SFX_Boss_Arthropleura_Intro.wav"
+   ],
+   "volume": 0.8,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Arthropleura_Legs_Loop",
+   "files": [
+    "SFX_Boss_Arthropleura_Legs_Loop.wav"
+   ],
+   "volume": 0.4,
+   "group": "SFX",
+   "loop": true
+  },
+  {
+   "id": "Boss_Arthropleura_Rustle_Loop",
+   "files": [
+    "SFX_Boss_Arthropleura_Rustle_Loop.wav"
+   ],
+   "volume": 0.35,
+   "group": "SFX",
+   "loop": true
+  },
+  {
+   "id": "Boss_Arthropleura_Charge_Warn",
+   "files": [
+    "SFX_Boss_Arthropleura_Charge_Warn.wav"
+   ],
+   "volume": 0.7,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Arthropleura_Charge",
+   "files": [
+    "SFX_Boss_Arthropleura_Charge_01.wav",
+    "SFX_Boss_Arthropleura_Charge_02.wav"
+   ],
+   "volume": 0.8,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Arthropleura_EdgeBreak",
+   "files": [
+    "SFX_Boss_Arthropleura_EdgeBreak.wav"
+   ],
+   "volume": 0.8,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Arthropleura_Shell_Hit",
+   "files": [
+    "SFX_Boss_Arthropleura_Shell_Hit_01.wav",
+    "SFX_Boss_Arthropleura_Shell_Hit_02.wav",
+    "SFX_Boss_Arthropleura_Shell_Hit_03.wav"
+   ],
+   "volume": 0.5,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Arthropleura_Plate_Open",
+   "files": [
+    "SFX_Boss_Arthropleura_Plate_Open.wav"
+   ],
+   "volume": 0.6,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Arthropleura_Plate_Close",
+   "files": [
+    "SFX_Boss_Arthropleura_Plate_Close.wav"
+   ],
+   "volume": 0.55,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Arthropleura_Hurt",
+   "files": [
+    "SFX_Boss_Arthropleura_Hurt_01.wav",
+    "SFX_Boss_Arthropleura_Hurt_02.wav",
+    "SFX_Boss_Arthropleura_Hurt_03.wav"
+   ],
+   "volume": 0.6,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Arthropleura_Ignite",
+   "files": [
+    "SFX_Boss_Arthropleura_Ignite.wav"
+   ],
+   "volume": 0.7,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Arthropleura_Fuse_Loop",
+   "files": [
+    "SFX_Boss_Arthropleura_Fuse_Loop.wav"
+   ],
+   "volume": 0.45,
+   "group": "SFX",
+   "loop": true
+  },
+  {
+   "id": "Boss_Arthropleura_Hiss",
+   "files": [
+    "SFX_Boss_Arthropleura_Hiss_01.wav",
+    "SFX_Boss_Arthropleura_Hiss_02.wav"
+   ],
+   "volume": 0.7,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Arthropleura_WallCollapse",
+   "files": [
+    "SFX_Boss_Arthropleura_WallCollapse.wav"
+   ],
+   "volume": 0.85,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Arthropleura_Stomp_Warn",
+   "files": [
+    "SFX_Boss_Arthropleura_Stomp_Warn.wav"
+   ],
+   "volume": 0.7,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Arthropleura_Stomp_Wave",
+   "files": [
+    "SFX_Boss_Arthropleura_Stomp_Wave_01.wav",
+    "SFX_Boss_Arthropleura_Stomp_Wave_02.wav",
+    "SFX_Boss_Arthropleura_Stomp_Wave_03.wav"
+   ],
+   "volume": 0.75,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Arthropleura_TreeFall",
+   "files": [
+    "SFX_Boss_Arthropleura_TreeFall_01.wav",
+    "SFX_Boss_Arthropleura_TreeFall_02.wav"
+   ],
+   "volume": 0.75,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Arthropleura_Stunned",
+   "files": [
+    "SFX_Boss_Arthropleura_Stunned.wav"
+   ],
+   "volume": 0.75,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Arthropleura_EatFern",
+   "files": [
+    "SFX_Boss_Arthropleura_EatFern_01.wav",
+    "SFX_Boss_Arthropleura_EatFern_02.wav"
+   ],
+   "volume": 0.65,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Arthropleura_Douse",
+   "files": [
+    "SFX_Boss_Arthropleura_Douse.wav"
+   ],
+   "volume": 0.75,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Arthropleura_Ring_Close",
+   "files": [
+    "SFX_Boss_Arthropleura_Ring_Close.wav"
+   ],
+   "volume": 0.75,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Arthropleura_Squeeze",
+   "files": [
+    "SFX_Boss_Arthropleura_Squeeze.wav"
+   ],
+   "volume": 0.75,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Arthropleura_Expel",
+   "files": [
+    "SFX_Boss_Arthropleura_Expel.wav"
+   ],
+   "volume": 0.65,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Arthropleura_Coil",
+   "files": [
+    "SFX_Boss_Arthropleura_Coil.wav"
+   ],
+   "volume": 0.75,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Arthropleura_Roll_Loop",
+   "files": [
+    "SFX_Boss_Arthropleura_Roll_Loop.wav"
+   ],
+   "volume": 0.5,
+   "group": "SFX",
+   "loop": true
+  },
+  {
+   "id": "Boss_Arthropleura_Roll_Crash",
+   "files": [
+    "SFX_Boss_Arthropleura_Roll_Crash_01.wav",
+    "SFX_Boss_Arthropleura_Roll_Crash_02.wav"
+   ],
+   "volume": 0.85,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Arthropleura_Death",
+   "files": [
+    "SFX_Boss_Arthropleura_Death.wav"
+   ],
+   "volume": 0.85,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Arthropleura_Smolder_Loop",
+   "files": [
+    "SFX_Boss_Arthropleura_Smolder_Loop.wav"
+   ],
+   "volume": 0.2,
+   "group": "SFX",
+   "loop": true
+  },
+  {
+   "id": "Boss_Megarachne_Intro",
+   "files": [
+    "SFX_Boss_Megarachne_Intro.wav"
+   ],
+   "volume": 0.8,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Megarachne_CableRun_Loop",
+   "files": [
+    "SFX_Boss_Megarachne_CableRun_Loop.wav"
+   ],
+   "volume": 0.4,
+   "group": "SFX",
+   "loop": true
+  },
+  {
+   "id": "Boss_Megarachne_Walk_Loop",
+   "files": [
+    "SFX_Boss_Megarachne_Walk_Loop.wav"
+   ],
+   "volume": 0.4,
+   "group": "SFX",
+   "loop": true
+  },
+  {
+   "id": "Boss_Megarachne_Climb",
+   "files": [
+    "SFX_Boss_Megarachne_Climb.wav"
+   ],
+   "volume": 0.55,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Megarachne_Drop",
+   "files": [
+    "SFX_Boss_Megarachne_Drop.wav"
+   ],
+   "volume": 0.55,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Megarachne_Jump_Warn",
+   "files": [
+    "SFX_Boss_Megarachne_Jump_Warn.wav"
+   ],
+   "volume": 0.65,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Megarachne_Jump_Land",
+   "files": [
+    "SFX_Boss_Megarachne_Jump_Land_01.wav",
+    "SFX_Boss_Megarachne_Jump_Land_02.wav"
+   ],
+   "volume": 0.7,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Megarachne_SilkVolley",
+   "files": [
+    "SFX_Boss_Megarachne_SilkVolley.wav"
+   ],
+   "volume": 0.6,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Megarachne_Silk_Splat",
+   "files": [
+    "SFX_Boss_Megarachne_Silk_Splat_01.wav",
+    "SFX_Boss_Megarachne_Silk_Splat_02.wav",
+    "SFX_Boss_Megarachne_Silk_Splat_03.wav"
+   ],
+   "volume": 0.3,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Megarachne_Net_Warn",
+   "files": [
+    "SFX_Boss_Megarachne_Net_Warn.wav"
+   ],
+   "volume": 0.55,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Megarachne_Net_Drop",
+   "files": [
+    "SFX_Boss_Megarachne_Net_Drop.wav"
+   ],
+   "volume": 0.65,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Megarachne_Net_Trap",
+   "files": [
+    "SFX_Boss_Megarachne_Net_Trap.wav"
+   ],
+   "volume": 0.55,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Megarachne_Sac_Weave",
+   "files": [
+    "SFX_Boss_Megarachne_Sac_Weave.wav"
+   ],
+   "volume": 0.5,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Megarachne_Sac_Tremble",
+   "files": [
+    "SFX_Boss_Megarachne_Sac_Tremble.wav"
+   ],
+   "volume": 0.55,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Megarachne_Sac_Hit",
+   "files": [
+    "SFX_Boss_Megarachne_Sac_Hit_01.wav",
+    "SFX_Boss_Megarachne_Sac_Hit_02.wav",
+    "SFX_Boss_Megarachne_Sac_Hit_03.wav"
+   ],
+   "volume": 0.4,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Megarachne_Sac_Break",
+   "files": [
+    "SFX_Boss_Megarachne_Sac_Break.wav"
+   ],
+   "volume": 0.55,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Megarachne_Sac_Burst",
+   "files": [
+    "SFX_Boss_Megarachne_Sac_Burst.wav"
+   ],
+   "volume": 0.65,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Megarachne_Brood_Loop",
+   "files": [
+    "SFX_Boss_Megarachne_Brood_Loop.wav"
+   ],
+   "volume": 0.25,
+   "group": "SFX",
+   "loop": true
+  },
+  {
+   "id": "Boss_Megarachne_Brood_Bite",
+   "files": [
+    "SFX_Boss_Megarachne_Brood_Bite_01.wav",
+    "SFX_Boss_Megarachne_Brood_Bite_02.wav",
+    "SFX_Boss_Megarachne_Brood_Bite_03.wav"
+   ],
+   "volume": 0.4,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Megarachne_Brood_Death",
+   "files": [
+    "SFX_Boss_Megarachne_Brood_Death_01.wav",
+    "SFX_Boss_Megarachne_Brood_Death_02.wav",
+    "SFX_Boss_Megarachne_Brood_Death_03.wav"
+   ],
+   "volume": 0.4,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Megarachne_Cable_Weave",
+   "files": [
+    "SFX_Boss_Megarachne_Cable_Weave.wav"
+   ],
+   "volume": 0.5,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Megarachne_Cable_Ignite",
+   "files": [
+    "SFX_Boss_Megarachne_Cable_Ignite.wav"
+   ],
+   "volume": 0.55,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Megarachne_Cable_Fuse_Loop",
+   "files": [
+    "SFX_Boss_Megarachne_Cable_Fuse_Loop.wav"
+   ],
+   "volume": 0.45,
+   "group": "SFX",
+   "loop": true
+  },
+  {
+   "id": "Boss_Megarachne_Cable_Snap",
+   "files": [
+    "SFX_Boss_Megarachne_Cable_Snap.wav"
+   ],
+   "volume": 0.65,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Megarachne_Fall_Stunned",
+   "files": [
+    "SFX_Boss_Megarachne_Fall_Stunned.wav"
+   ],
+   "volume": 0.75,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Megarachne_Hurt",
+   "files": [
+    "SFX_Boss_Megarachne_Hurt_01.wav",
+    "SFX_Boss_Megarachne_Hurt_02.wav",
+    "SFX_Boss_Megarachne_Hurt_03.wav"
+   ],
+   "volume": 0.55,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Megarachne_Rage_Screech",
+   "files": [
+    "SFX_Boss_Megarachne_Rage_Screech.wav"
+   ],
+   "volume": 0.85,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Megarachne_Nest_Wither",
+   "files": [
+    "SFX_Boss_Megarachne_Nest_Wither.wav"
+   ],
+   "volume": 0.6,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Megarachne_Nest_Burn",
+   "files": [
+    "SFX_Boss_Megarachne_Nest_Burn.wav"
+   ],
+   "volume": 0.75,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Megarachne_Web_Collapse",
+   "files": [
+    "SFX_Boss_Megarachne_Web_Collapse.wav"
+   ],
+   "volume": 0.7,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Megarachne_Death",
+   "files": [
+    "SFX_Boss_Megarachne_Death.wav"
+   ],
+   "volume": 0.8,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Megarachne_Cables_Drop",
+   "files": [
+    "SFX_Boss_Megarachne_Cables_Drop.wav"
+   ],
+   "volume": 0.6,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Megarachne_Cocoon_Fall",
+   "files": [
+    "SFX_Boss_Megarachne_Cocoon_Fall.wav"
+   ],
+   "volume": 0.55,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Megarachne_Cocoon_Open",
+   "files": [
+    "SFX_Boss_Megarachne_Cocoon_Open.wav"
+   ],
+   "volume": 0.65,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Lepidodendron_Intro",
+   "files": [
+    "SFX_Boss_Lepidodendron_Intro.wav"
+   ],
+   "volume": 0.8,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Lepidodendron_Creak_Loop",
+   "files": [
+    "SFX_Boss_Lepidodendron_Creak_Loop.wav"
+   ],
+   "volume": 0.25,
+   "group": "SFX",
+   "loop": true
+  },
+  {
+   "id": "Boss_Lepidodendron_RootWall_Hit",
+   "files": [
+    "SFX_Boss_Lepidodendron_RootWall_Hit_01.wav",
+    "SFX_Boss_Lepidodendron_RootWall_Hit_02.wav",
+    "SFX_Boss_Lepidodendron_RootWall_Hit_03.wav"
+   ],
+   "volume": 0.5,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Lepidodendron_RootWall_KnotHit",
+   "files": [
+    "SFX_Boss_Lepidodendron_RootWall_KnotHit_01.wav",
+    "SFX_Boss_Lepidodendron_RootWall_KnotHit_02.wav",
+    "SFX_Boss_Lepidodendron_RootWall_KnotHit_03.wav"
+   ],
+   "volume": 0.6,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Lepidodendron_RootWall_Ignite",
+   "files": [
+    "SFX_Boss_Lepidodendron_RootWall_Ignite.wav"
+   ],
+   "volume": 0.7,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Lepidodendron_RootWall_Burn_Loop",
+   "files": [
+    "SFX_Boss_Lepidodendron_RootWall_Burn_Loop.wav"
+   ],
+   "volume": 0.4,
+   "group": "SFX",
+   "loop": true
+  },
+  {
+   "id": "Boss_Lepidodendron_RootWall_Retract",
+   "files": [
+    "SFX_Boss_Lepidodendron_RootWall_Retract.wav"
+   ],
+   "volume": 0.75,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Lepidodendron_RootWall_Crumble",
+   "files": [
+    "SFX_Boss_Lepidodendron_RootWall_Crumble.wav"
+   ],
+   "volume": 0.75,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Lepidodendron_Wave_Spawn",
+   "files": [
+    "SFX_Boss_Lepidodendron_Wave_Spawn_01.wav",
+    "SFX_Boss_Lepidodendron_Wave_Spawn_02.wav"
+   ],
+   "volume": 0.55,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Lepidodendron_SporeArc",
+   "files": [
+    "SFX_Boss_Lepidodendron_SporeArc.wav"
+   ],
+   "volume": 0.6,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Lepidodendron_SporeRain_Warn",
+   "files": [
+    "SFX_Boss_Lepidodendron_SporeRain_Warn.wav"
+   ],
+   "volume": 0.6,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Lepidodendron_Spore_Impact",
+   "files": [
+    "SFX_Boss_Lepidodendron_Spore_Impact_01.wav",
+    "SFX_Boss_Lepidodendron_Spore_Impact_02.wav",
+    "SFX_Boss_Lepidodendron_Spore_Impact_03.wav"
+   ],
+   "volume": 0.4,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Lepidodendron_Phase_Final",
+   "files": [
+    "SFX_Boss_Lepidodendron_Phase_Final.wav"
+   ],
+   "volume": 0.85,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Lepidodendron_Trunk_Hit",
+   "files": [
+    "SFX_Boss_Lepidodendron_Trunk_Hit_01.wav",
+    "SFX_Boss_Lepidodendron_Trunk_Hit_02.wav",
+    "SFX_Boss_Lepidodendron_Trunk_Hit_03.wav"
+   ],
+   "volume": 0.5,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Lepidodendron_Cone_Warn",
+   "files": [
+    "SFX_Boss_Lepidodendron_Cone_Warn.wav"
+   ],
+   "volume": 0.6,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Lepidodendron_Cone_Descend",
+   "files": [
+    "SFX_Boss_Lepidodendron_Cone_Descend.wav"
+   ],
+   "volume": 0.7,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Lepidodendron_Cone_Slam",
+   "files": [
+    "SFX_Boss_Lepidodendron_Cone_Slam_01.wav",
+    "SFX_Boss_Lepidodendron_Cone_Slam_02.wav"
+   ],
+   "volume": 0.85,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Lepidodendron_Cone_Lift",
+   "files": [
+    "SFX_Boss_Lepidodendron_Cone_Lift.wav"
+   ],
+   "volume": 0.55,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Lepidodendron_Armor_Hit",
+   "files": [
+    "SFX_Boss_Lepidodendron_Armor_Hit_01.wav",
+    "SFX_Boss_Lepidodendron_Armor_Hit_02.wav",
+    "SFX_Boss_Lepidodendron_Armor_Hit_03.wav"
+   ],
+   "volume": 0.5,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Lepidodendron_Armor_Break",
+   "files": [
+    "SFX_Boss_Lepidodendron_Armor_Break.wav"
+   ],
+   "volume": 0.75,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Lepidodendron_Cone_Hurt",
+   "files": [
+    "SFX_Boss_Lepidodendron_Cone_Hurt_01.wav",
+    "SFX_Boss_Lepidodendron_Cone_Hurt_02.wav",
+    "SFX_Boss_Lepidodendron_Cone_Hurt_03.wav"
+   ],
+   "volume": 0.55,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Lepidodendron_Cone_Break",
+   "files": [
+    "SFX_Boss_Lepidodendron_Cone_Break.wav"
+   ],
+   "volume": 0.8,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Lepidodendron_RootLash_Warn",
+   "files": [
+    "SFX_Boss_Lepidodendron_RootLash_Warn.wav"
+   ],
+   "volume": 0.65,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Lepidodendron_RootLash",
+   "files": [
+    "SFX_Boss_Lepidodendron_RootLash_01.wav",
+    "SFX_Boss_Lepidodendron_RootLash_02.wav"
+   ],
+   "volume": 0.8,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Lepidodendron_SpikeRing_Warn",
+   "files": [
+    "SFX_Boss_Lepidodendron_SpikeRing_Warn.wav"
+   ],
+   "volume": 0.6,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Lepidodendron_SpikeRing",
+   "files": [
+    "SFX_Boss_Lepidodendron_SpikeRing.wav"
+   ],
+   "volume": 0.8,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Lepidodendron_Corner_Warn",
+   "files": [
+    "SFX_Boss_Lepidodendron_Corner_Warn.wav"
+   ],
+   "volume": 0.6,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Lepidodendron_Corner_Strike",
+   "files": [
+    "SFX_Boss_Lepidodendron_Corner_Strike.wav"
+   ],
+   "volume": 0.8,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Lepidodendron_Methane_Warn",
+   "files": [
+    "SFX_Boss_Lepidodendron_Methane_Warn.wav"
+   ],
+   "volume": 0.55,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Lepidodendron_Tree_Shake",
+   "files": [
+    "SFX_Boss_Lepidodendron_Tree_Shake.wav"
+   ],
+   "volume": 0.85,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Lepidodendron_Death_Crack",
+   "files": [
+    "SFX_Boss_Lepidodendron_Death_Crack.wav"
+   ],
+   "volume": 0.85,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Lepidodendron_Death_Fall",
+   "files": [
+    "SFX_Boss_Lepidodendron_Death_Fall.wav"
+   ],
+   "volume": 0.9,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Lepidodendron_LightColumn",
+   "files": [
+    "SFX_Boss_Lepidodendron_LightColumn.wav"
+   ],
+   "volume": 0.7,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Lepidodendron_Reward_Descend",
+   "files": [
+    "SFX_Boss_Lepidodendron_Reward_Descend.wav"
+   ],
+   "volume": 0.6,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Lepidodendron_Heart_Pickup",
+   "files": [
+    "SFX_Boss_Lepidodendron_Heart_Pickup.wav"
+   ],
+   "volume": 0.65,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Lepidodendron_PurpleSpore_Pickup",
+   "files": [
+    "SFX_Boss_Lepidodendron_PurpleSpore_Pickup.wav"
+   ],
+   "volume": 0.65,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Lepidodendron_Stump_Enter",
+   "files": [
+    "SFX_Boss_Lepidodendron_Stump_Enter.wav"
+   ],
+   "volume": 0.55,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Boss_Lepidodendron_Relic_Pickup",
+   "files": [
+    "SFX_Boss_Lepidodendron_Relic_Pickup.wav"
+   ],
+   "volume": 0.75,
+   "group": "SFX",
+   "loop": false
+  },
+  {
+   "id": "Amb_Floor3_Smoke_Loop",
+   "files": [
+    "SFX_Amb_Floor3_Smoke_Loop.wav"
+   ],
+   "volume": 0.3,
+   "group": "SFX",
+   "loop": true
+  },
+  {
+   "id": "Amb_Floor3_Burnt_Loop",
+   "files": [
+    "SFX_Amb_Floor3_Burnt_Loop.wav"
+   ],
+   "volume": 0.3,
+   "group": "SFX",
+   "loop": true
+  },
+  {
+   "id": "Amb_Floor3_BossRoom_Loop",
+   "files": [
+    "SFX_Amb_Floor3_BossRoom_Loop.wav"
+   ],
+   "volume": 0.3,
+   "group": "SFX",
+   "loop": true
+  },
+  {
+   "id": "Amb_Floor3_Amber_Loop",
+   "files": [
+    "SFX_Amb_Floor3_Amber_Loop.wav"
+   ],
+   "volume": 0.3,
+   "group": "SFX",
+   "loop": true
   }
  ],
  "tracks": [
@@ -2213,6 +5150,102 @@
   {
    "id": "Music_Boss_Eurypterid_LastStand",
    "file": "Music_Boss_Eurypterid_LastStand.ogg",
+   "volume": 0.7,
+   "loop": false
+  },
+  {
+   "id": "Music_Floor3_Green_Explore",
+   "file": "Music_Floor3_Green_Explore.ogg",
+   "volume": 0.6,
+   "loop": true
+  },
+  {
+   "id": "Music_Floor3_Green_Combat",
+   "file": "Music_Floor3_Green_Combat.ogg",
+   "volume": 0.6,
+   "loop": true
+  },
+  {
+   "id": "Music_Floor3_Smoke_Explore",
+   "file": "Music_Floor3_Smoke_Explore.ogg",
+   "volume": 0.6,
+   "loop": true
+  },
+  {
+   "id": "Music_Floor3_Smoke_Combat",
+   "file": "Music_Floor3_Smoke_Combat.ogg",
+   "volume": 0.6,
+   "loop": true
+  },
+  {
+   "id": "Music_Floor3_Burnt_Explore",
+   "file": "Music_Floor3_Burnt_Explore.ogg",
+   "volume": 0.6,
+   "loop": true
+  },
+  {
+   "id": "Music_Floor3_Burnt_Combat",
+   "file": "Music_Floor3_Burnt_Combat.ogg",
+   "volume": 0.6,
+   "loop": true
+  },
+  {
+   "id": "Music_Boss_Meganeura",
+   "file": "Music_Boss_Meganeura.ogg",
+   "volume": 0.65,
+   "loop": true
+  },
+  {
+   "id": "Music_Boss_Meganeura_Storm",
+   "file": "Music_Boss_Meganeura_Storm.ogg",
+   "volume": 0.65,
+   "loop": true
+  },
+  {
+   "id": "Music_Boss_Arthropleura",
+   "file": "Music_Boss_Arthropleura.ogg",
+   "volume": 0.65,
+   "loop": true
+  },
+  {
+   "id": "Music_Boss_Arthropleura_Coil",
+   "file": "Music_Boss_Arthropleura_Coil.ogg",
+   "volume": 0.65,
+   "loop": true
+  },
+  {
+   "id": "Music_Boss_Megarachne",
+   "file": "Music_Boss_Megarachne.ogg",
+   "volume": 0.65,
+   "loop": true
+  },
+  {
+   "id": "Music_Boss_Megarachne_Rage",
+   "file": "Music_Boss_Megarachne_Rage.ogg",
+   "volume": 0.65,
+   "loop": true
+  },
+  {
+   "id": "Music_Boss_Lepidodendron",
+   "file": "Music_Boss_Lepidodendron.ogg",
+   "volume": 0.65,
+   "loop": true
+  },
+  {
+   "id": "Music_Boss_Lepidodendron_Final",
+   "file": "Music_Boss_Lepidodendron_Final.ogg",
+   "volume": 0.65,
+   "loop": true
+  },
+  {
+   "id": "Music_Sting_SecretBoss",
+   "file": "Music_Sting_SecretBoss.ogg",
+   "volume": 0.7,
+   "loop": false
+  },
+  {
+   "id": "Music_Sting_Relic",
+   "file": "Music_Sting_Relic.ogg",
    "volume": 0.7,
    "loop": false
   }

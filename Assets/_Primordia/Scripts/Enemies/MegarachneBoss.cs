@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 namespace Primordia.Enemies
 {
     [RequireComponent(typeof(Enemy), typeof(BossDamageLimiter), typeof(CircleCollider2D))]
-    public partial class MegarachneBoss : MonoBehaviour, IBoss
+    public partial class MegarachneBoss : MonoBehaviour, IBoss, IPhasedBoss
     {
         public const int MaxHealth = 150;
         public const float CableSpeed = 7f;
@@ -18,10 +18,10 @@ namespace Primordia.Enemies
         public const float BodyScale = 0.75f;
         const float SpinneretOffset = 1.5f * BodyScale;
         const float IdleMs = 180f, WalkMs = 80f, ClimbMs = 100f, DropMs = 120f;
-        const float ShadowAlpha = 120f / 255f, DebugHealthFraction = 0.51f;
+        const float ShadowAlpha = 120f / 255f, DebugHealthFraction = 0.5f;
         const float HitRadius = 1f, ContactMargin = 0.02f;
 
-        public enum Mode { Ground, OnCable, Falling, Stunned, Recovering }
+        public enum Mode { Ground, OnCable, Falling, Stunned, Recovering, Enraging }
         enum Travel { None, Climb, Run, Cross, Drop }
         [SerializeField] DirectionalSprite bodySprite, shadowSprite;
         [SerializeField] SpriteRenderer bodyRenderer, shadowRenderer;
@@ -36,7 +36,10 @@ namespace Primordia.Enemies
         public Mode CurrentMode { get; private set; }
         public Health Health { get; private set; }
         public string DisplayName => "Megarachne";
-        public BossBarStyle BarStyle => CurrentMode == Mode.OnCable ? BossBarStyle.Immune : BossBarStyle.Normal;
+        public BossBarStyle BarStyle => CurrentMode == Mode.OnCable || IsEntering || IsEnraging ? BossBarStyle.Immune : BossBarStyle.Normal;
+        // El enfado marca la fase de la barra: una muesca al 50 % de la vida.
+        public int PhaseIndex => rageTriggered ? 1 : 0;
+        public float[] PhaseThresholds { get; } = { 0.5f };
         public Vector2 ArenaCenter => arena != null ? (Vector2)arena.position : Vector2.zero;
         public Transform Target { get => target; set => target = value; }
         public float VisualHeight { get; private set; }
@@ -69,15 +72,24 @@ namespace Primordia.Enemies
         void OnEnable()
         {
             MethaneSac.BurstStarted += OnFireSacBurst;
+            Health.Changed += CheckRageHealth;
+            Health.Died += StartDeath;
             attackClock = 0f;
             nextAttack = AttackKind.Jump;
             attack = AttackStage.None;
             if (CableCount > 0) PlaceOnCable();
             else Health.IsInvulnerable = true;
+            BeginIntroIfAny();
+            // Sin presentación (pruebas), la barra de vida aparece desde que la sala se activa.
+            if (!IsEntering && !deathStarted) ActiveBoss.Set(this);
         }
         void OnDisable()
         {
             MethaneSac.BurstStarted -= OnFireSacBurst;
+            Health.Changed -= CheckRageHealth;
+            Health.Died -= StartDeath;
+            ActiveBoss.Clear(this);
+            RestoreRageVisibility();
             fireHitPending = false;
             if (stunEffect != null) stunEffect.enabled = false;
             ClearAttacks();
@@ -91,9 +103,6 @@ namespace Primordia.Enemies
             if (Health != null) Health.IsInvulnerable = false;
             if (thread != null) thread.enabled = false;
         }
-
-        public void PlayIntroPose(float hold) { }
-        public void BeginFight() { }
 
         void Update()
         {
@@ -118,8 +127,11 @@ namespace Primordia.Enemies
                     if (keyboard.f5Key.wasPressedThisFrame) ForceAttack(AttackKind.Silk);
                     if (keyboard.f6Key.wasPressedThisFrame) ForceAttack(AttackKind.Net);
                     if (keyboard.f7Key.wasPressedThisFrame) ForceAttack(AttackKind.Sac);
+                    if (keyboard.f8Key.wasPressedThisFrame) KillForTest();
                     if (keyboard.f9Key.wasPressedThisFrame) IgniteOccupiedCable();
                     if (keyboard.f10Key.wasPressedThisFrame) IgniteNearPlayer();
+                    if (keyboard.f11Key.wasPressedThisFrame) ForceRage();
+                    if (keyboard.f12Key.wasPressedThisFrame) IgniteNest();
                 }
             }
 #endif
@@ -129,6 +141,10 @@ namespace Primordia.Enemies
         {
             if (Health.IsDead) { ClearAttacks(); return; }
             float dt = Time.fixedDeltaTime;
+            if (TickEntry(dt)) return;
+            CheckRageHealth(Health.Current, Health.Max);
+            TickNest(dt);
+            if (TickRage(dt)) { TickFire(dt); return; }
             TickProjectiles(dt);
             TickFire(dt);
             if (IsAttacking || !fireHitPending) TickAttack(dt);
@@ -144,11 +160,12 @@ namespace Primordia.Enemies
 
         void Play(string animation, float milliseconds)
         {
+            if (animation == "Walk" || animation == "Climb") milliseconds /= MovementMultiplier;
             float angle = Mathf.Atan2(facing.y, facing.x) * Mathf.Rad2Deg;
             if (bodySprite != null)
             {
                 bodySprite.Angle = angle;
-                bodySprite.Play("Megarachne_" + animation, milliseconds, true);
+                bodySprite.Play("Megarachne_" + animation + (IsRage ? "_Rage" : ""), milliseconds, true);
             }
             if (shadowSprite != null)
             {
@@ -181,9 +198,16 @@ namespace Primordia.Enemies
             Play("Idle", IdleMs);
         }
 
+        // Atajo de prueba: la mata de golpe para ver la muerte y la recompensa.
+        void KillForTest()
+        {
+            Health.IsInvulnerable = false;
+            Health.TakeDamage(Health.Max);
+        }
+
         internal void SetTestHealth()
         {
-            // La vida es entera: 77 PV es el entero más próximo por encima del 51 %.
+            // El atajo deja la vida justo en el umbral provisional de M5.
             int desired = Mathf.CeilToInt(MaxHealth * DebugHealthFraction);
             Health.SetMax(desired, false);
             Health.ResetHealth();

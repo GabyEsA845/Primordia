@@ -55,7 +55,9 @@ Recetas que funcionaron en el piso 1 y reglas para que lo nuevo salga igual de b
 - `Song.render(target_db=-17)` iguala la sonoridad y limita a −1 dBFS. **El Vorbis rebasa un poco el pico en tramos
   muy densos** (pasó en `Music_Boss_Amoeba_Final`: 2 muestras a 0 dBFS): en pistas con mucho golpe, apuntar a
   `target_db` −18 o bajar el techo de `soft_limit` a −1,5 dBFS.
-- Tamaño: a calidad 5, un minuto estéreo ocupa ~1,1 MB; con 12 MB por piso caben ~10 minutos de música.
+- Tamaño: a calidad 5, un minuto estéreo ocupa ~1,1 MB. Pauta orientativa (no es un límite técnico): unos 12 MB por piso
+  (~10 minutos); un piso con muchos jefes puede llegar a ~16-18 MB (decidido por la usuaria el 2026-11-25 para el piso 3).
+  Lo que pesa de verdad en WebGL es la descarga y la música cargada a la vez; Unity vuelve a comprimir al importar.
 
 ## Lista de comprobación (antes de enseñar)
 

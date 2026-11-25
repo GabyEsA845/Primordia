@@ -39,6 +39,7 @@ namespace Primordia.Editor
             ("Anomalocaris", "Boss_Anomalocaris", "Terror del Cámbrico", Floor2Band, Floor2Accent),
             ("Eurypterid", "Boss_Eurypterid", "Escorpión de los mares", Floor2Band, Floor2Accent),
             ("Meganeura", "Boss_Meganeura", "Señora de la tormenta", Floor3Band, Floor3Accent),
+            ("Megarachne", "Boss_Megarachne", "La araña que nunca fue", Floor3Band, Floor3Accent),
         };
 
         [MenuItem("Primordia/Art/Importar presentaciones de jefes")]

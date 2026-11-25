@@ -82,7 +82,8 @@ namespace Primordia.Enemies
         {
             brood.RemoveAll(child => child == null);
             int living = brood.FindAll(child => !child.Health.IsDead).Count;
-            int count = Mathf.Min(BroodLimit - living, living >= CrowdedBroodThreshold ? CrowdedBroodPerSac : BroodPerSac);
+            int count = IsRage ? Mathf.Min(RageBroodLimit - living, RageBroodPerSac)
+                : Mathf.Min(BroodLimit - living, living >= CrowdedBroodThreshold ? CrowdedBroodPerSac : BroodPerSac);
             Vector2 forward = target != null ? ((Vector2)target.position - center).normalized : Vector2.down;
             if (forward == Vector2.zero) forward = Vector2.down;
             for (int i = 0; i < count; i++)

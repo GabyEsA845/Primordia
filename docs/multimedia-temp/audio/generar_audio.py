@@ -22,6 +22,7 @@ from musica import MUSIC
 import efectos_piso2  # noqa: F401,E402  (registran sus sonidos en SFX y MUSIC al importarse)
 import musica_piso2  # noqa: F401,E402
 import efectos_piso3  # noqa: F401,E402
+import musica_piso3  # noqa: F401,E402
 from sintesis import SR, finish_sfx, write_wav
 
 ROOT = Path(__file__).resolve().parent
@@ -39,6 +40,12 @@ RHYTHM = {
     # piso 2
     "SFX_Mouth_Cnidocytes_Shot": 333, "SFX_Mouth_JawPlates_Bite": 500, "SFX_Organ_BroodSac_LarvaBite": 180,
     "SFX_Limbs_Hallucigenia_Strike": 250, "SFX_Skin_Trilobite_Bounce": 300,
+    # piso 3
+    "SFX_Status_Burn_Tick": 500, "SFX_Fern_Rustle": 300, "SFX_Mud_Splash": 350, "SFX_Water_Splash": 350,
+    "SFX_Poison_Puddle": 500,
+    "SFX_Mouth_Spit_Trail": 500, "SFX_Mouth_Spin_Hit": 250, "SFX_Mouth_Vinegar_Hit": 150,
+    "SFX_Lineage_Parasite_Suck": 333, "SFX_Lineage_Tinder_Trail": 400,
+    "SFX_Room_Log_Step": 400,
 }
 
 
@@ -174,9 +181,15 @@ def card(title, meta, row, players, buttons=""):
             f'{players}<div class="row">{buttons}</div></div>')
 
 
-def build_page(rows, info):
+FLOOR3_MODULES = ("efectos_piso3", "musica_piso3")
+
+
+def build_page(rows, info, out="muestrario.html", keep=lambda fn: True, title="Primordia: muestrario de audio"):
+    """Escribe el muestrario; con keep, solo los sonidos cuyo generador lo cumple (p. ej. los del piso 3)."""
     groups = {}
     for name, spec in SFX.items():
+        if not keep(spec["fn"]):
+            continue
         key = f"SFX_{name}"
         files = [f for f, _ in sfx_files(name, spec)]
         durs = [info[f]["samples"] / SR for f in files if f in info]
@@ -194,7 +207,7 @@ def build_page(rows, info):
             buttons += f'<button onclick="rhythm([{lst}],{RHYTHM[key]},{spec["vol"]})">Ritmo real</button>'
         groups.setdefault(row["cat"], []).append(card(key + (".wav" if len(files) == 1 else "_0N.wav"), meta, row, players, buttons))
     for name, (fn, loop, vol) in MUSIC.items():
-        if name not in info:
+        if name not in info or not keep(fn):
             continue
         row = rows.get(name, dict(cat="Música", when="", desc=""))
         meta = f"{info[name]['samples'] / SR:.2f} s · {'bucle' if loop else 'sin bucle'} · Vol. {vol:.2f} (Music)"
@@ -208,7 +221,8 @@ def build_page(rows, info):
     size = lambda d, pat: sum(f.stat().st_size for f in d.glob(pat)) / 1e6
     summary = (f"{n_sfx} efectos .wav ({size(OUT_SFX, '*.wav'):.1f} MB) y {n_mus} pistas .ogg "
                f"({size(OUT_MUSIC, '*.ogg'):.1f} MB), generados por <code>generar_audio.py</code>.")
-    (ROOT / "muestrario.html").write_text(PAGE.format(summary=summary, sections=sections), encoding="utf-8")
+    page = PAGE.format(summary=summary, sections=sections).replace("Primordia: muestrario de audio", title)
+    (ROOT / out).write_text(page, encoding="utf-8")
 
 
 # ================================================================ comprobaciones
@@ -266,8 +280,11 @@ def main():
     print("Generando…")
     info = generate(only)
     write_manifest()
-    build_page(rows, {**info, **{p.stem: dict(samples=_wav_len(p)) for p in OUT_SFX.glob('*.wav') if p.stem not in info},
-                      **{p.stem: dict(samples=_ogg_len(p)) for p in OUT_MUSIC.glob('*.ogg') if p.stem not in info}})
+    all_info = {**info, **{p.stem: dict(samples=_wav_len(p)) for p in OUT_SFX.glob('*.wav') if p.stem not in info},
+                **{p.stem: dict(samples=_ogg_len(p)) for p in OUT_MUSIC.glob('*.ogg') if p.stem not in info}}
+    build_page(rows, all_info)
+    build_page(rows, all_info, "muestrario_piso3.html", lambda fn: fn.__module__ in FLOOR3_MODULES,
+               "Primordia: muestrario de audio del piso 3 (pantano carbonífero)")
     problems = check(rows, info, only is None)
     sfx_n, mus_n = len(list(OUT_SFX.glob("*.wav"))), len(list(OUT_MUSIC.glob("*.ogg")))
     sfx_mb = sum(f.stat().st_size for f in OUT_SFX.glob("*.wav")) / 1e6

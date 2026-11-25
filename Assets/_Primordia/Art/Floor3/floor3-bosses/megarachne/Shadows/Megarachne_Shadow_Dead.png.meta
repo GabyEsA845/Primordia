@@ -70,7 +70,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -98,7 +98,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -139,199 +139,199 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Megarachne_Shadow_Dead_0
+      name: Megarachne_Shadow_Dead_0_0
       rect:
         serializedVersion: 2
-        x: 43
-        y: 1054
-        width: 42
-        height: 68
+        x: 0
+        y: 1024
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 483c2b0968877a7c0800000000000000
-      internalID: -4060144019702627452
+      spriteID: 11e7b87da170c0748a3a25596b859a95
+      internalID: -1332793567
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Dead_1
+      name: Megarachne_Shadow_Dead_1_0
       rect:
         serializedVersion: 2
-        x: 38
-        y: 929
-        width: 54
-        height: 63
+        x: 0
+        y: 896
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: cfb927738db2e7970800000000000000
-      internalID: 8754482933298011132
+      spriteID: 242229a7cbf55fe4e9919df819e44a3b
+      internalID: 2106724065
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Dead_2
+      name: Megarachne_Shadow_Dead_2_0
       rect:
         serializedVersion: 2
-        x: 33
-        y: 806
-        width: 65
-        height: 54
+        x: 0
+        y: 768
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c84f849ef789fe190800000000000000
-      internalID: -7930952743634013044
+      spriteID: e7bc5da343d3c184bbe7d246ca09fa7f
+      internalID: 353590385
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Dead_3
+      name: Megarachne_Shadow_Dead_3_0
       rect:
         serializedVersion: 2
-        x: 26
-        y: 682
-        width: 77
-        height: 45
+        x: 0
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b35a8fd2c6fa13d40800000000000000
-      internalID: 5562419893941871931
+      spriteID: 3325cf1009bae574eaa80c7591b9ab14
+      internalID: -1449614360
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Dead_4
+      name: Megarachne_Shadow_Dead_4_0
       rect:
         serializedVersion: 2
-        x: 23
-        y: 558
-        width: 82
-        height: 36
+        x: 0
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c0ea9b8e4b8bf73a0800000000000000
-      internalID: -6665405836346937844
+      spriteID: 5b2eb9334380de24985688948f017053
+      internalID: -7362608
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Dead_5
+      name: Megarachne_Shadow_Dead_5_0
       rect:
         serializedVersion: 2
-        x: 26
-        y: 425
-        width: 77
-        height: 45
+        x: 0
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a639e28010b93a9b0800000000000000
-      internalID: -5070038326754503830
+      spriteID: 0e4db21da5349704fa6d60429fdbc22c
+      internalID: 873495232
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Dead_6
+      name: Megarachne_Shadow_Dead_6_0
       rect:
         serializedVersion: 2
-        x: 33
-        y: 292
-        width: 65
-        height: 54
+        x: 0
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f4224bf99f6be85e0800000000000000
-      internalID: -1905384409088646577
+      spriteID: e712e7643a022634d9a9650e71f17d31
+      internalID: -1970907781
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Dead_7
+      name: Megarachne_Shadow_Dead_7_0
       rect:
         serializedVersion: 2
-        x: 38
-        y: 160
-        width: 54
-        height: 63
+        x: 0
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0b736da5c53849170800000000000000
-      internalID: 8184310855523252144
+      spriteID: ec9f03e76de4b3e498731053bc58b3d6
+      internalID: -15840546
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Megarachne_Shadow_Dead_8
+      name: Megarachne_Shadow_Dead_8_0
       rect:
         serializedVersion: 2
-        x: 43
-        y: 30
-        width: 42
-        height: 68
+        x: 0
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7887e498a897f5d70800000000000000
-      internalID: 9034073013444573319
+      spriteID: d715cf092601bae48a3e2eb865441f54
+      internalID: 558542525
       vertices: []
       indices: 
       edges: []
@@ -350,15 +350,15 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Megarachne_Shadow_Dead_0: -4060144019702627452
-      Megarachne_Shadow_Dead_1: 8754482933298011132
-      Megarachne_Shadow_Dead_2: -7930952743634013044
-      Megarachne_Shadow_Dead_3: 5562419893941871931
-      Megarachne_Shadow_Dead_4: -6665405836346937844
-      Megarachne_Shadow_Dead_5: -5070038326754503830
-      Megarachne_Shadow_Dead_6: -1905384409088646577
-      Megarachne_Shadow_Dead_7: 8184310855523252144
-      Megarachne_Shadow_Dead_8: 9034073013444573319
+      Megarachne_Shadow_Dead_0_0: -1332793567
+      Megarachne_Shadow_Dead_1_0: 2106724065
+      Megarachne_Shadow_Dead_2_0: 353590385
+      Megarachne_Shadow_Dead_3_0: -1449614360
+      Megarachne_Shadow_Dead_4_0: -7362608
+      Megarachne_Shadow_Dead_5_0: 873495232
+      Megarachne_Shadow_Dead_6_0: -1970907781
+      Megarachne_Shadow_Dead_7_0: -15840546
+      Megarachne_Shadow_Dead_8_0: 558542525
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

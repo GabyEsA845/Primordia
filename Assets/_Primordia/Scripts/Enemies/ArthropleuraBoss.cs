@@ -191,6 +191,9 @@ namespace Primordia.Enemies
             UpdateCamera();
             UpdateEdgeArrows();
             Place();
+            if (awake && Moving)
+                ShakeCanopy();
+            StirMud();
         }
 
         /// <summary>Avanza la cabeza hacia un punto del suelo girando como mucho <paramref name="turnRate"/> grados por segundo.</summary>

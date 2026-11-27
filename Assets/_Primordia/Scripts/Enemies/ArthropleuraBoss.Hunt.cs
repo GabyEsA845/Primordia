@@ -139,6 +139,7 @@ namespace Primordia.Enemies
                     wallMap.SetTile(cell, thicketTile);
                     thicket.Add(rel);
                 }
+            RefreshCanopy(thicket);
             RefreshWallCollider();
         }
 
@@ -172,6 +173,7 @@ namespace Primordia.Enemies
                 wallMap.SetTile(wallMap.WorldToCell(center + new Vector2(rel.x + 0.5f, rel.y + 0.5f)), thicketTile);
                 thicket.Add(rel);
             }
+            RefreshCanopy(entryCells);
             RefreshWallCollider();
         }
 
@@ -196,6 +198,7 @@ namespace Primordia.Enemies
         int ClearThicket(System.Func<Vector2Int, bool> where, bool block = true, List<Vector2Int> removed = null)
         {
             int count = 0;
+            var cleared = new List<Vector2Int>();
             foreach (var rel in new List<Vector2Int>(thicket))
             {
                 if (!where(rel))
@@ -209,7 +212,16 @@ namespace Primordia.Enemies
                 }
                 thicket.Remove(rel);
                 removed?.Add(rel);
+                cleared.Add(rel);
                 count++;
+            }
+            // Con pared invisible es una brecha de embestida; sin ella, la caída de la F2.
+            if (block)
+                MarkBreached(cleared);
+            else
+            {
+                RefreshCanopy(cleared);
+                LayMats(cleared);
             }
             RefreshWallCollider();
             if (blockMap != null && blockMap.TryGetComponent<TilemapCollider2D>(out var blockCollider))

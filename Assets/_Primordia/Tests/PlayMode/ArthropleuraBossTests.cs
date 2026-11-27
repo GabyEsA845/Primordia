@@ -541,6 +541,34 @@ namespace Primordia.Tests
         }
 
         [UnityTest]
+        public IEnumerator Canopy_DrawsCrownsBreachesAndTheFallenMat()
+        {
+            boss = BuildInLevel();
+            yield return null;
+            yield return null;
+            Assert.Greater(boss.CrownCount, 30, "La espesura lleva coronas y copas.");
+            Assert.AreEqual(0, boss.BreakMarkCount);
+            var walls = boss.transform.parent.parent.Find("Walls").GetComponent<Tilemap>();
+            var tile = walls.GetTile<Tile>(walls.WorldToCell(new Vector3(300f + 0.5f, 100f + 12.5f)));
+            Assert.IsNotNull(tile, "La espesura usa sus propios tiles.");
+            StringAssert.StartsWith("Thicket_", tile.sprite.name);
+
+            int crownsBefore = boss.CrownCount;
+            CallBoss("BreakLine", Vector2.zero, Vector2.right, 0f, 25f);
+            yield return null;
+            Assert.Greater(boss.DebrisCount, 20, "La brecha deja restos.");
+            Assert.Greater(boss.BreakMarkCount, 10, "La espesura de la brecha queda rota.");
+            Assert.Less(boss.CrownCount, crownsBefore);
+
+            boss.Health.Drain(boss.Health.Current - Mathf.RoundToInt(boss.Health.Max * 0.69f));
+            float until = Time.time + 12f;
+            while (boss.CurrentMode != ArthropleuraBoss.Mode.Chase && Time.time < until) yield return null;
+            Assert.AreEqual(0, boss.CrownCount);
+            Assert.AreEqual(0, boss.BreakMarkCount);
+            Assert.Greater(boss.MatCount, 500, "Donde había espesura queda la alfombra.");
+        }
+
+        [UnityTest]
         public IEnumerator Phase2_StompFiresThreeWavesAndReturnsToChase()
         {
             yield return ReachChase();

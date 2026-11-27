@@ -251,7 +251,7 @@ MonoBehaviour:
   bosses:
   - prefab: {fileID: 7296380599794490421, guid: e9b3526ffb9e9d9468897cff94cfd736, type: 3}
     room: {fileID: 11400000, guid: a23345c46b9a22140aa1a05857733628, type: 2}
-    theme: {fileID: 11400000, guid: 91c375b155d807f41842a9c5a738317a, type: 2}
+    theme: {fileID: 11400000, guid: fa7a3ffbadb4a2a40b32568a2b3f2c6e, type: 2}
     offset: {x: 0, y: 0}
   rewardPool: {fileID: 11400000, guid: bdd034645ce4e1d4683bb2a2ea9f25db, type: 2}
   rewardOptions: 3
@@ -266,9 +266,11 @@ MonoBehaviour:
   teleporterPrefab: {fileID: 5755237045130047665, guid: 43e86884a118e5243b78a86796f5111c, type: 3}
   transitionRoom: {fileID: 0}
   transitionPit: {fileID: 0}
+  pitOffset: {x: 0, y: -3.5}
+  exitDecor: {fileID: 11400000, guid: c1b718aea4516f1499caf677c1a13def, type: 2}
   transitionMidTheme: {fileID: 0}
   nextFloorTheme: {fileID: 0}
   nextFloorMouths: []
-  nextFloorName: "oc\xE9ano c\xE1mbrico"
+  nextFloorName: 
   exitSprite: {fileID: 21300000, guid: bc9bd159743ed944e9321a5b368508a5, type: 3}
   exitColor: {r: 0.3, g: 0.95, b: 0.8, a: 1}

@@ -288,6 +288,7 @@ namespace Primordia.Enemies
                 float along = Vector2.Dot(q, d);
                 return along >= from && along <= to && Mathf.Abs(q.x * d.y - q.y * d.x) <= BreachWidth / 2f;
             });
+            LayTracks(origin, d, from, to);
         }
 
         /// <summary>Chevrones por la línea de embestida dentro del claro (arte Fx_Arthropleura_ChargeAim).</summary>

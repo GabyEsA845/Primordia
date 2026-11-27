@@ -34,13 +34,13 @@ namespace Primordia.Editor
             if (!Application.isBatchMode && !EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo())
                 return;
             var floor3 = AssetDatabase.LoadAssetAtPath<FloorConfig>(Floor3Setup.Floor3ConfigPath);
-            if (floor3 == null || floor3.BandThemes.Length < 3 || floor3.BandThemes[2] == null)
-                throw new InvalidOperationException("Falta Floor_3 o su tema de Tierra quemada.");
+            if (floor3 == null || floor3.BandThemes.Length < 2 || floor3.BandThemes[1] == null)
+                throw new InvalidOperationException("Falta Floor_3 o su tema de Bosque humeante.");
             var art = ArtSetup.ImportArthropleuraSheets();
             var room = CreateRoom();
             var prefab = CreatePrefab(art, floor3);
             ArtSetup.ImportBossIntro("Arthropleura");
-            var entry = new FloorConfig.BossEntry(prefab, room, floor3.BandThemes[2], Vector2.zero);
+            var entry = new FloorConfig.BossEntry(prefab, room, floor3.BandThemes[1], Vector2.zero);
             CreateTestConfig(floor3, entry);
             AssetDatabase.SaveAssets();
             CreateTestScene();
@@ -104,6 +104,7 @@ namespace Primordia.Editor
                 if (barSkin != null)
                     root.AddComponent<BossBarAppearance>().Configure(barSkin);
                 boss.ConfigureClearing(CreateClearingArt());
+                boss.ConfigureCanopy(CreateCanopyArt());
                 var fern = floor3.BandThemes.Where(t => t != null).SelectMany(t => t.Ferns).FirstOrDefault(f => f != null && f.IsValid && f.IsBurnable);
                 if (fern == null)
                     throw new InvalidOperationException("Falta un helecho inflamable aprobado en los temas del piso 3.");
@@ -143,6 +144,62 @@ namespace Primordia.Editor
                 throw new InvalidOperationException("Falta arte aprobado importado: " + path);
             return sprites;
         }
+
+        /// <summary>Espesura, brechas, caída y lodo (README del jefe, «Arte final de la sala»).</summary>
+        static ArthropleuraBoss.CanopyArt CreateCanopyArt()
+        {
+            const int variants = ArthropleuraBoss.CanopyArt.Variants;
+            var edges = new Sprite[256 * variants];
+            var breaks = new Sprite[256 * variants];
+            var matEdges = new Sprite[256];
+            for (int m = 0; m < 16; m++)
+                for (int c = 0; c < 16; c++)
+                {
+                    for (int v = 0; v < variants; v++)
+                    {
+                        string name = $"{m}_{c}" + (v > 0 ? $"_v{v}" : "");
+                        edges[(m * 16 + c) * variants + v] = Optional($"Thicket/Thicket_Edge_{name}");
+                        breaks[(m * 16 + c) * variants + v] = Optional($"Breach/Thicket_Break_{name}");
+                    }
+                    matEdges[m * 16 + c] = Optional($"Fallen/Fallen_Edge_{m}_{c}");
+                }
+            if (edges.Count(s => s != null) == 0)
+                throw new InvalidOperationException("Falta el arte de la espesura (Thicket/).");
+            return new ArthropleuraBoss.CanopyArt
+            {
+                inner = Numbered("Thicket/Thicket_Inner", 6),
+                edges = edges,
+                breaks = breaks,
+                crowns = Numbered("Thicket/Thicket_Crown", 4),
+                treeCrowns = Numbered("Thicket/Thicket_TreeCrown", 3),
+                spillTop = Spills("Top", 4), spillLeft = Spills("Left", 4), spillBottom = Spills("Bottom", 3),
+                debrisDense = Numbered("Breach/Breach_Debris_Dense", 4),
+                debrisLight = Numbered("Breach/Breach_Debris_Light", 4),
+                tracks = Numbered("Breach/Breach_Track", 2),
+                mats = Numbered("Fallen/Fallen_Mat", 4),
+                matEdges = matEdges,
+                fallenTrees = Numbered("Fallen/Fallen_Tree", 2),
+                fallenFerns = Numbered("Fallen/Fallen_Fern", 2),
+                fallenTreeVertical = Required($"{ArtFolder}/Fallen/Fallen_Tree_V.png"),
+                canopyShake = Sheet("Effects/Fx_Arthropleura_CanopyShake", 32, new Vector2(0.5f, 1f)),
+                mudDouse = Sheet("Effects/Fx_Arthropleura_MudDouse", 48, new Vector2(0.5f, 1f - 33f / 48f)),
+                mudWake = Sheet("Effects/Fx_Arthropleura_MudWake", 128),
+            };
+        }
+
+        static Sprite Optional(string relative) => AssetDatabase.LoadAssetAtPath<Sprite>($"{ArtFolder}/{relative}.png");
+
+        static Sprite Required(string path)
+        {
+            var sprite = AssetDatabase.LoadAssetAtPath<Sprite>(path);
+            return sprite != null ? sprite : throw new InvalidOperationException("Falta arte aprobado importado: " + path);
+        }
+
+        static Sprite[] Numbered(string relative, int count) =>
+            Enumerable.Range(0, count).Select(i => Required($"{ArtFolder}/{relative}_{i}.png")).ToArray();
+
+        static Sprite[] Spills(string side, int count) => Enumerable.Range(0, count)
+            .Select(i => Required($"Assets/_Primordia/Art/Floor3/floor3-environment/Smoke/deco/Spill_{side}_{i}.png")).ToArray();
 
         static ArthropleuraBoss.ClearingArt CreateClearingArt()
         {

@@ -50,6 +50,7 @@ namespace Primordia.Enemies
             HideAim();
             SetMode(Mode.Phase2Pending);
             ClearBlockers();
+            BeginCanopyFall();
             collapseCells = null;
             collapseIndex = 0;
             playerHealth?.MakeInvulnerable(TransitionSeconds + 0.5f);

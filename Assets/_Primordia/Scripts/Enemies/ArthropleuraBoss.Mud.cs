@@ -50,6 +50,7 @@ namespace Primordia.Enemies
                 piece.charred = true;
                 piece.spreadAt = float.PositiveInfinity;
                 piece.cooledAt = fireClock + CharredCoolSeconds;
+                SplashDouse(piece.Position);
             }
         }
 

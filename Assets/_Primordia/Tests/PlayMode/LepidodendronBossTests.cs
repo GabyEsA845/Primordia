@@ -1524,30 +1524,6 @@ namespace Primordia.Tests
         }
 
         [Test]
-        public void L5bLaPausaMuestraLasFilasSoloSiHayObjetos()
-        {
-            var panel = new GameObject("Pausa");
-            try
-            {
-                var row = panel.AddComponent<Primordia.UI.PauseRelicsRow>();
-                row.Rebuild();
-                Assert.AreEqual(0, row.RowCount);
-                Assert.IsFalse(row.ShowsRelics);
-                Assert.IsFalse(row.ShowsKeyItems);
-                RunInventory.AddKeyItem(new RunInventory.Entry { Id = RunInventory.PurpleSpore, Name = "Espora morada", Effect = "x" });
-                row.Rebuild();
-                Assert.IsTrue(row.ShowsKeyItems);
-                Assert.IsFalse(row.ShowsRelics);
-                Assert.AreEqual(2, row.RowCount); // encabezado + una fila
-                RunInventory.AddRelic(new RunInventory.Entry { Id = RunInventory.RootAncestral, Name = "Raíz ancestral", Effect = "y" });
-                row.Rebuild();
-                Assert.IsTrue(row.ShowsRelics);
-                Assert.AreEqual(4, row.RowCount);
-            }
-            finally { Object.DestroyImmediate(panel); }
-        }
-
-        [Test]
         public void L5bLaSalaDelToconNoSeCreaAntesDelDesplome()
         {
             Assert.IsNull(boss.StumpRoomRoot);

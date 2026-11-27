@@ -125,6 +125,7 @@ namespace Primordia.Enemies
             foreach (var cone in cones) cone.gameObject.SetActive(false);
             ActiveBoss.Clear(this);
             // No se emite Died: Enemy destruiría el escenario y MutationDrop daría la recompensa estándar.
+            GetComponent<Enemy>().ReportDefeated();
             wallRoom.GetComponent<Room>()?.CompleteScriptedBoss(GetComponent<Enemy>());
             Collapsed?.Invoke();
             BeginReward();

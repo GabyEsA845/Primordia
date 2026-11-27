@@ -21,7 +21,7 @@
 - [Arte de enemigos del piso 3](primordia-floor3-enemy-art-pending.md) — cono del escarabajo en 3 fases y sapo en el lodo: HECHO, integrado y probado; README y MULTIMEDIA.md HECHOS (2026-11-04)
 
 ## En curso
-- **[Rediseño del menú de pausa y bestiario](primordia-pause-menu-redesign.md) — 2026-11-26: ARTE COMPLETO y aprobado (README en docs/multimedia-temp/pause-menu/); SIGUIENTE: importar y programar con Sonnet**
+- **[Rediseño del menú de pausa y bestiario](primordia-pause-menu-redesign.md) — 2026-11-26: HECHO, probado y en origin (feature/pause-menu, rama desde la que seguir)**
 - **[Tanda de arte 2026-11-23](primordia-art-session-2026-11-23.md) — HECHOS y aprobados: sala de paso piso 3 (floor3-exit) y arte final de la sala de la Arthropleura; todo hecho e implementado; NO queda arte pendiente (2026-11-26)**
 - [Salas especiales del piso 3](primordia-floor3-special-rooms.md) — las 10 PROGRAMADAS; Tronco caído, Tocón hueco y cofre IMPLEMENTADOS (2026-11-26)
 - [Sala de paso del piso 2 → 3](primordia-floor2-transition-room.md) — charca, ambiente del pantano y metamorfosis por pareja HECHOS y subidos

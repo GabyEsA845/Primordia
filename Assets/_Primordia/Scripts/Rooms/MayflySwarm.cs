@@ -109,7 +109,13 @@ namespace Primordia.Rooms
                 room.Cleared -= OnRoomCleared;
         }
 
-        void OnRoomCleared(Room _) => Disperse();
+        void OnRoomCleared(Room _)
+        {
+            // Los quemados ya se contaron.
+            if (state == State.Swarm)
+                BestiaryProgress.ReportTrap("Mayflies");
+            Disperse();
+        }
 
         /// <summary>Se disipa (la sala se limpió). Si ya ardía, sigue ardiendo.</summary>
         public void Disperse()
@@ -127,6 +133,7 @@ namespace Primordia.Rooms
                 return;
             SetBuzz(false);
             Sfx.Play(Sounds.TrapMayflyBurn);
+            BestiaryProgress.ReportTrap("Mayflies");
             state = State.Burning;
             stateStart = Time.time;
         }

@@ -103,7 +103,12 @@ namespace Primordia.Rooms
 
         void OnDisable() => Release();
 
-        void OnRoomCleared(Room _) => Wither();
+        void OnRoomCleared(Room _)
+        {
+            // No se puede matar: cuenta para el bestiario al limpiar su sala.
+            BestiaryProgress.ReportTrap("CarnivorousPlant");
+            Wither();
+        }
 
         /// <summary>Se marchita: suelta lo que tenga y no vuelve a morder.</summary>
         public void Wither()

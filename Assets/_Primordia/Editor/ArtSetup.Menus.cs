@@ -9,8 +9,7 @@ namespace Primordia.Editor
 {
     /// <summary>
     /// Menú de pausa y menú principal (docs/multimedia-temp/menus/), y la fuente pixel de toda la interfaz.
-    /// Pausa: estadísticas a la izquierda, título en su cinta y botones en el centro, y a la derecha la criatura
-    /// en una lente con líneas hacia los recuadros de sus 4 ranuras y un cuadro de información al pasar el ratón.
+    /// Pausa: la zona de la criatura (el resto del menú de pausa está en ArtSetup.PauseMenu.cs).
     /// Menú principal: fondo de caldo primordial en 4 capas, logo con brillo, la célula y un marcador animado.
     /// Lo que crea se rehace entero cada vez; el resto de los prefabs no se toca.
     /// </summary>
@@ -22,7 +21,6 @@ namespace Primordia.Editor
 
         // Medidas en píxeles de la interfaz (lienzo de 480×270).
         static readonly Vector2 MenuButtonSize = new(96f, 16f);
-        const float StatsWidth = 120f;
         const float TooltipWidth = 140f;
         static readonly Vector2 CreatureZoneSize = new(170f, 164f);
         // Centros de los recuadros respecto al centro de la lente: Boca y Piel arriba, Extremidades y Órgano abajo.
@@ -37,15 +35,11 @@ namespace Primordia.Editor
         {
             ImportFonts();
             RemoveOldMutationList();
-            BuildPauseMenu();
-            // La pausa se rehace: la fila del linaje vuelve al panel de estadísticas.
+            BuildCreatureZone();
             UISetup.EnsureLineageBannerAndPanel();
-            // El panel de estadísticas se rehízo: el del volumen cuelga de él.
-            AddVolumeToPause();
             BuildMainMenu();
-            ApplyPixelFont(UISetup.GameUIPath);
-            ApplyPixelFont(UISetup.MainMenuUIPath);
-            AssetDatabase.SaveAssets();
+            // La pausa de membrana, su bestiario (también en el menú principal) y la fuente.
+            ImportPauseMenu();
             Debug.Log("ArtSetup: menús importados.");
         }
 
@@ -106,7 +100,8 @@ namespace Primordia.Editor
 
                 foreach (var button in root.GetComponentsInChildren<Button>(true))
                 {
-                    if (button.GetComponent<MutationCard>() != null)
+                    // Las tarjetas y los botones de membrana tienen su propio tamaño.
+                    if (button.GetComponent<MutationCard>() != null || button.image != null && button.image.type == Image.Type.Tiled)
                         continue;
                     if (button.TryGetComponent<LayoutElement>(out var element))
                     {
@@ -144,15 +139,13 @@ namespace Primordia.Editor
             }
         }
 
-        static void BuildPauseMenu()
+        /// <summary>
+        /// La criatura en su lente con los recuadros de sus ranuras y el cuadro de información. Solo se crea si la pausa
+        /// no la tiene (rehacerla perdería las insignias que le ponen otros menús); su aspecto actual lo pone
+        /// <see cref="ImportPauseMenu"/>.
+        /// </summary>
+        static void BuildCreatureZone()
         {
-            var title = MenuSprite("Pause", "UI_Pause_Title", new Vector4(8, 0, 8, 0));
-            var statsPanel = MenuSprite("Pause", "UI_Stats_Panel", 10);
-            var statsRow = MenuSprite("Pause", "UI_Stats_Row", new Vector4(4, 0, 4, 0));
-            var statIcons = new[] { MenuSprite("Pause", "UI_Stat_Health"), MenuSprite("Pause", "UI_Stat_Damage"), MenuSprite("Pause", "UI_Stat_Speed") };
-            var up = MenuSprite("Pause", "UI_Stat_Up");
-            var down = MenuSprite("Pause", "UI_Stat_Down");
-
             var lens = MenuSprite("Pause", "UI_Pause_Lens");
             var glint = MenuSprite("Pause", "UI_Pause_Lens_Glint");
             var bubbles = MenuSheet("Pause", "UI_Pause_LensBubbles", 112);
@@ -177,24 +170,11 @@ namespace Primordia.Editor
                     Debug.LogWarning("ArtSetup: GameUI no tiene PausePanel; créalo con Primordia > UI.");
                     return;
                 }
-
-                // Título arriba y, tras un hueco, la columna de botones.
-                var layout = pause.GetComponent<VerticalLayoutGroup>();
-                layout.childAlignment = TextAnchor.UpperCenter;
-                layout.padding = new RectOffset(0, 0, 24, 0);
-                layout.spacing = 6f;
-
-                var banner = TitleBanner(pause, "PAUSA", title);
-                var spacer = Recreate("Spacer", pause);
-                spacer.SetSiblingIndex(banner.GetSiblingIndex() + 1);
-                spacer.gameObject.AddComponent<LayoutElement>().preferredHeight = 30f;
-
-                BuildStats(pause, statsPanel, statsRow, statIcons, up, down);
+                if (pause.Find("Creature") != null)
+                    return;
 
                 var zone = Recreate("Creature", pause);
                 zone.gameObject.AddComponent<LayoutElement>().ignoreLayout = true;
-                zone.anchorMin = zone.anchorMax = zone.pivot = new Vector2(1f, 0.5f);
-                zone.anchoredPosition = new Vector2(-12f, -8f);
                 zone.sizeDelta = CreatureZoneSize;
 
                 // De atrás adelante: lente, burbujas, líneas, criatura, reflejo, puntos, recuadros y cuadro de información.
@@ -213,82 +193,6 @@ namespace Primordia.Editor
                 panel.Configure(portrait, callouts, info, lines, dots);
                 panel.ConfigureLook(line, dot, 0.18f);
             });
-        }
-
-        /// <summary>Mete el título del panel (el texto con ese contenido) en su cinta 9-slice.</summary>
-        static Transform TitleBanner(Transform panel, string titleText, Sprite sprite)
-        {
-            var banner = panel.Find("TitleBanner");
-            if (banner == null)
-            {
-                var title = panel.GetComponentsInChildren<Text>(true).FirstOrDefault(t => t.text == titleText && t.transform.parent == panel);
-                banner = UISetup.CreateRect("TitleBanner", panel);
-                banner.SetSiblingIndex(title != null ? title.transform.GetSiblingIndex() : 0);
-                banner.gameObject.AddComponent<Image>();
-                var element = banner.gameObject.AddComponent<LayoutElement>();
-                element.preferredWidth = 96f;
-                element.preferredHeight = 16f;
-
-                if (title != null)
-                {
-                    title.transform.SetParent(banner, false);
-                    UISetup.Stretch(title.rectTransform);
-                    title.raycastTarget = false;
-                }
-            }
-
-            var image = banner.GetComponent<Image>();
-            image.sprite = sprite;
-            image.type = Image.Type.Sliced;
-            image.raycastTarget = false;
-            return banner;
-        }
-
-        /// <summary>Panel de estadísticas a la izquierda: título y una fila por estadística (icono, nombre, valor y flecha).</summary>
-        static void BuildStats(Transform pause, Sprite panelSprite, Sprite rowSprite, Sprite[] icons, Sprite up, Sprite down)
-        {
-            string[] labels = { "Vida", "Daño", "Velocidad" };
-
-            var stats = Recreate("Stats", pause);
-            stats.gameObject.AddComponent<LayoutElement>().ignoreLayout = true;
-            stats.anchorMin = stats.anchorMax = stats.pivot = new Vector2(0f, 1f);
-            stats.anchoredPosition = new Vector2(16f, -64f);
-            stats.sizeDelta = new Vector2(StatsWidth, 0f);
-            SlicedImage(stats.gameObject, panelSprite);
-
-            var layout = stats.gameObject.AddComponent<VerticalLayoutGroup>();
-            layout.padding = new RectOffset(8, 8, 8, 10);
-            layout.spacing = 2f;
-            layout.childControlWidth = layout.childControlHeight = true;
-            layout.childForceExpandWidth = true;
-            layout.childForceExpandHeight = false;
-            stats.gameObject.AddComponent<ContentSizeFitter>().verticalFit = ContentSizeFitter.FitMode.PreferredSize;
-
-            var heading = Label(stats, "ESTADÍSTICAS", UISetup.TitleColor, TextAnchor.MiddleLeft);
-            heading.gameObject.AddComponent<LayoutElement>().preferredHeight = 14f;
-
-            var values = new Text[labels.Length];
-            var arrows = new Image[labels.Length];
-            for (int i = 0; i < labels.Length; i++)
-            {
-                var row = UISetup.CreateRow($"Row_{labels[i]}", stats, stats.childCount, TextAnchor.MiddleLeft);
-                row.GetComponent<HorizontalLayoutGroup>().padding = new RectOffset(3, 3, 1, 1);
-                row.gameObject.AddComponent<LayoutElement>().preferredHeight = 14f;
-                // Filas alternas con veta de fondo.
-                if (i % 2 == 0)
-                    SlicedImage(row.gameObject, rowSprite);
-
-                var icon = UISetup.CreateIcon("Icon", row, 12f);
-                icon.sprite = i < icons.Length ? icons[i] : null;
-                icon.enabled = icon.sprite != null;
-
-                var label = Label(row, labels[i], UISetup.TextColor, TextAnchor.MiddleLeft);
-                label.gameObject.AddComponent<LayoutElement>().flexibleWidth = 1f;
-                values[i] = Label(row, "-", UISetup.TextColor, TextAnchor.MiddleRight);
-                arrows[i] = UISetup.CreateIcon("Arrow", row, 7f);
-            }
-
-            stats.gameObject.AddComponent<PlayerStatsPanel>().Configure(values, arrows, up, down);
         }
 
         static SlotCallout Callout(RectTransform zone, MutationSlot slot, Vector2 position, Sprite frame, Sprite highlighted, Sprite empty)

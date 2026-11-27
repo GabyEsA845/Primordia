@@ -9,7 +9,7 @@ namespace Primordia.UI
     /// Cuadro de información de una ranura (pausa): franja del color de la ranura, nombre, ranura con su icono y
     /// nivel, lo que hace ahora (la descripción y solo la mejora de su nivel) y sus linajes en una línea corta. Se
     /// coloca al lado de su recuadro, hacia el centro del panel, con un piquito que lo señala. Con la ranura libre
-    /// dice "Ranura libre". También lo usa la fila del linaje de las estadísticas, con su propio texto.
+    /// dice "Ranura libre".
     /// </summary>
     public class MutationTooltip : MonoBehaviour
     {
@@ -24,6 +24,10 @@ namespace Primordia.UI
         [SerializeField, FormerlySerializedAs("lineageIcons")] Sprite[] slotIcons = new Sprite[4];
         [Tooltip("Separación entre el recuadro y el cuadro.")]
         [SerializeField] float gap = 4f;
+        [Tooltip("Píxeles que el piquito pisa el borde del cuadro.")]
+        [SerializeField] float pointerInset = 2f;
+        [Tooltip("Altura de su punto de anclaje (0 abajo, 1 arriba).")]
+        [SerializeField] float pointerPivotY = 3f / 7f;
         [SerializeField] Color emptyStripeColor = new(0.45f, 0.52f, 0.5f);
 
         RectTransform Rect => (RectTransform)transform;
@@ -47,6 +51,13 @@ namespace Primordia.UI
         }
 
         internal void SetSlotIcons(Sprite[] sprites) => slotIcons = sprites;
+
+        internal void ConfigurePointer(float inset, float pivotY, float newGap)
+        {
+            pointerInset = inset;
+            pointerPivotY = pivotY;
+            gap = newGap;
+        }
 
         public void Show(SlotCallout callout)
         {
@@ -122,10 +133,10 @@ namespace Primordia.UI
 
             // A la altura del centro del recuadro; pisa 2 px el borde del cuadro.
             pointer.anchorMin = pointer.anchorMax = new Vector2(opensRight ? 0f : 1f, alignTop ? 1f : 0f);
-            // Fila central (3 de 7) sobre la línea de píxel, sin medios píxeles.
-            pointer.pivot = new Vector2(1f, 3f / 7f);
+            // La fila central sobre la línea de píxel, sin medios píxeles.
+            pointer.pivot = new Vector2(1f, pointerPivotY);
             pointer.localScale = new Vector3(opensRight ? 1f : -1f, 1f, 1f);
-            pointer.anchoredPosition = new Vector2(opensRight ? 2f : -2f, alignTop ? -half.y : half.y);
+            pointer.anchoredPosition = new Vector2(opensRight ? pointerInset : -pointerInset, alignTop ? -half.y : half.y);
         }
     }
 }

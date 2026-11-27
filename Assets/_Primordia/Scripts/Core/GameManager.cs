@@ -50,6 +50,11 @@ namespace Primordia.Core
         /// <summary>Se lanza al cambiar de estado: (anterior, nuevo).</summary>
         public event Action<GameState, GameState> StateChanged;
 
+        /// <summary>
+        /// Lo pone el menú de pausa: Esc le pide volver un paso atrás. Si devuelve false (está en la raíz), reanuda.
+        /// </summary>
+        public Func<bool> PauseBack { get; set; }
+
         InputAction pauseAction;
         InputAction mapAction;
 
@@ -149,20 +154,20 @@ namespace Primordia.Core
 
         public void StartGame()
         {
-            RunInventory.Reset();
+            ResetRun();
             LoadScene(SceneNames.Game, GameState.Playing);
         }
 
         /// <summary>Vuelve a cargar la escena actual desde el principio.</summary>
         public void RestartLevel()
         {
-            RunInventory.Reset();
+            ResetRun();
             LoadScene(SceneManager.GetActiveScene().name, GameState.Playing);
         }
 
         public void GoToMainMenu()
         {
-            RunInventory.Reset();
+            ResetRun();
             LoadScene(SceneNames.MainMenu, GameState.MainMenu);
         }
 
@@ -183,7 +188,25 @@ namespace Primordia.Core
             SceneManager.LoadScene(sceneName);
         }
 
-        void OnPausePerformed(InputAction.CallbackContext _) => TogglePause();
+        static void ResetRun()
+        {
+            RunInventory.Reset();
+            RunStats.Reset();
+        }
+
+        // El tiempo de la partida solo corre mientras se juega.
+        void Update()
+        {
+            if (State is GameState.Playing or GameState.Cinematic)
+                RunStats.AddTime(Time.unscaledDeltaTime);
+        }
+
+        void OnPausePerformed(InputAction.CallbackContext _)
+        {
+            if (State == GameState.Paused && PauseBack != null && PauseBack())
+                return;
+            TogglePause();
+        }
 
         void OnMapPerformed(InputAction.CallbackContext _) => ToggleMap();
 

@@ -142,6 +142,9 @@ namespace Primordia.Editor
 
         // ---------- Ventana ----------
 
+        /// <summary>Rehace solo la ventana (al cambiar el aspecto de la pausa, del que copia la lente y los botones).</summary>
+        internal static void RebuildWindow() => BuildWindow();
+
         static void BuildWindow()
         {
             var root = PrefabUtility.LoadPrefabContents(UISetup.GameUIPath);
@@ -159,7 +162,7 @@ namespace Primordia.Editor
                 var choice = root.transform.Find("MutationChoicePanel");
                 var cardTemplate = choice != null ? choice.GetComponentInChildren<MutationCard>(true) : null;
                 var buttonTemplate = pause != null ? pause.GetComponentsInChildren<Button>(true).FirstOrDefault() : null;
-                var banner = pause != null ? pause.Find("TitleBanner") : null;
+                var banner = pause != null ? pause.Find("Templates/TitleBanner") : null;
                 if (zone == null || cardTemplate == null || buttonTemplate == null)
                 {
                     Debug.LogWarning("ExchangeRoomSetup: a GameUI le falta la pausa con la criatura o las tarjetas; usa antes Primordia > UI y Primordia > Art > Importar menús.");
@@ -176,7 +179,7 @@ namespace Primordia.Editor
                 {
                     var title = Object.Instantiate(banner.gameObject, panel).GetComponent<RectTransform>();
                     title.name = "TitleBanner";
-                    Place(title, new Vector2(0.5f, 1f), new Vector2(0f, -10f), new Vector2(170f, 16f));
+                    Place(title, new Vector2(0.5f, 1f), new Vector2(0f, -7f), new Vector2(190f, 22f));
                     foreach (var text in title.GetComponentsInChildren<Text>(true))
                         text.text = "LABORATORIO DE DARWIN";
                 }
@@ -191,6 +194,8 @@ namespace Primordia.Editor
                 // La criatura con sus ranuras, a la izquierda: un clon del de la pausa con un botón en cada ranura.
                 var creature = Object.Instantiate(zone.gameObject, panel).GetComponent<RectTransform>();
                 creature.name = "Creature";
+                // En la pausa solo se enciende en su pestaña.
+                creature.gameObject.SetActive(true);
                 Place(creature, new Vector2(0f, 0.5f), new Vector2(14f, -6f), creature.sizeDelta);
                 var callouts = creature.GetComponentsInChildren<SlotCallout>(true);
                 var slotButtons = new Button[4];

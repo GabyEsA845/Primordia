@@ -60,7 +60,7 @@ namespace Primordia.Editor
                 AssetDatabase.SaveAssets();
             }
 
-            ArtSetup.RebuildPauseOptions();
+            
 
             var boss = ArtSetup.CreateEurypterid();
             if (boss == null)

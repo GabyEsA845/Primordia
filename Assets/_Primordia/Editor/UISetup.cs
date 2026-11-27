@@ -111,7 +111,6 @@ namespace Primordia.Editor
             CreateHeartSprites();
             CreateGameUIPrefab();
             EnsureMutationChoice();
-            EnsureSeedLabel();
             EnsureBossBar();
             EnsureCinematicOverlay();
             EnsureMutationIcons();
@@ -702,8 +701,7 @@ namespace Primordia.Editor
         }
 
         /// <summary>
-        /// Añade al prefab GameUI el cartel que sale al completar un linaje (arriba, en el centro) y la fila del
-        /// linaje al final de las estadísticas de la pausa. Los rehace si ya estaban.
+        /// Añade al prefab GameUI el cartel que sale al completar un linaje (arriba, en el centro). Lo rehace si ya estaba.
         /// </summary>
         internal static void EnsureLineageBannerAndPanel()
         {
@@ -739,45 +737,6 @@ namespace Primordia.Editor
                 }
                 banner.gameObject.AddComponent<LineageBanner>().Configure(null, title, subtitle);
 
-                // Fila del linaje al final del panel de estadísticas de la pausa (ya no hay un cuadro aparte).
-                var pause = root.transform.Find("PausePanel");
-                var oldPanel = pause != null ? pause.Find("Lineage") : null;
-                if (oldPanel != null)
-                    Object.DestroyImmediate(oldPanel.gameObject);
-
-                var stats = pause != null ? pause.Find("Stats") : null;
-                if (stats == null)
-                    Debug.LogWarning("UISetup: la pausa no tiene panel de estadísticas; importa antes los menús. No se añade la fila del linaje.");
-                else
-                {
-                    var oldRow = stats.Find("Row_Lineage");
-                    if (oldRow != null)
-                        Object.DestroyImmediate(oldRow.gameObject);
-
-                    var row = CreateRect("Row_Lineage", stats);
-                    // Transparente, pero recibe el ratón para el cuadro de información.
-                    row.gameObject.AddComponent<Image>().color = Color.clear;
-                    var rowLayout = row.gameObject.AddComponent<VerticalLayoutGroup>();
-                    rowLayout.padding = new RectOffset(3, 3, 4, 1);
-                    rowLayout.spacing = 1f;
-                    rowLayout.childControlWidth = rowLayout.childControlHeight = true;
-                    rowLayout.childForceExpandWidth = true;
-                    rowLayout.childForceExpandHeight = false;
-
-                    var lineageName = CreateText(row, "", 8, TextColor);
-                    lineageName.name = "Name";
-                    lineageName.alignment = TextAnchor.MiddleLeft;
-                    var benefit = CreateText(row, "", 8, new Color(0.7f, 0.78f, 0.72f));
-                    benefit.name = "Benefit";
-                    benefit.alignment = TextAnchor.UpperLeft;
-                    benefit.horizontalOverflow = HorizontalWrapMode.Wrap;
-                    foreach (var text in new[] { lineageName, benefit })
-                        text.raycastTarget = false;
-
-                    var tooltip = pause.GetComponentInChildren<MutationTooltip>(true);
-                    row.gameObject.AddComponent<LineagePanel>().Configure(null, lineageName, benefit, tooltip);
-                }
-
                 PrefabUtility.SaveAsPrefabAsset(root, GameUIPath);
             }
             finally
@@ -794,37 +753,6 @@ namespace Primordia.Editor
             rect.pivot = new Vector2(0.5f, 1f);
             rect.anchoredPosition = new Vector2(0f, top);
             rect.sizeDelta = new Vector2(0f, height);
-        }
-
-        // ---------- Semilla en la pausa ----------
-
-        /// <summary>Añade al panel de pausa la semilla del piso, abajo a la izquierda, si todavía no la tiene.</summary>
-        static void EnsureSeedLabel()
-        {
-            var root = PrefabUtility.LoadPrefabContents(GameUIPath);
-            try
-            {
-                var pausePanel = root.transform.Find("PausePanel");
-                if (pausePanel == null || pausePanel.GetComponentInChildren<SeedLabel>(true) != null)
-                    return;
-
-                var label = CreateText(pausePanel, "", 9, new Color(0.6f, 0.7f, 0.65f));
-                label.name = "Seed";
-                label.alignment = TextAnchor.LowerLeft;
-                var rect = label.rectTransform;
-                rect.anchorMin = rect.anchorMax = rect.pivot = Vector2.zero;
-                rect.anchoredPosition = new Vector2(8f, 8f);
-                rect.sizeDelta = new Vector2(200f, 14f);
-                // Fuera de la columna centrada de botones del panel.
-                label.gameObject.AddComponent<LayoutElement>().ignoreLayout = true;
-                label.gameObject.AddComponent<SeedLabel>();
-
-                PrefabUtility.SaveAsPrefabAsset(root, GameUIPath);
-            }
-            finally
-            {
-                PrefabUtility.UnloadPrefabContents(root);
-            }
         }
 
         static MutationCard CreateMutationCard(Transform parent)

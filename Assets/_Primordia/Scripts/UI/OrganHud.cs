@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Primordia.Core;
 using Primordia.Mutations;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,7 +10,7 @@ namespace Primordia.UI
     /// Recuadro del Órgano especial, abajo a la izquierda del HUD (docs/multimedia-temp/organ-hud). Sustituye a la barra de recarga bajo el
     /// jugador. Muestra el icono del órgano y un tubo de savia que sube al recargar: el icono va apagado y le vuelve el color de abajo
     /// arriba al ritmo del tubo, con una línea lima en el borde que sube; si se recarga matando, el tubo lleva una muesca por enemigo.
-    /// Al quedar listo, destello una vez y luego un pulso suave hasta que se usa. Sin órgano, el recuadro vacío.
+    /// Al quedar listo, destello una vez y luego un pulso suave hasta que se usa. Sin órgano, el recuadro vacío. En la pausa se oculta.
     /// Todas las piezas de dibujo se miden en píxeles desde la esquina de arriba a la izquierda del recuadro (46×36).
     /// </summary>
     public class OrganHud : MonoBehaviour
@@ -56,6 +57,7 @@ namespace Primordia.UI
         Image bubbles;
         Image top;
         Image overlay;
+        CanvasGroup group;
         readonly List<Image> notches = new();
         bool built;
         bool wasCharging;
@@ -105,6 +107,8 @@ namespace Primordia.UI
             rect.anchorMin = rect.anchorMax = rect.pivot = Vector2.zero;
             rect.anchoredPosition = new Vector2(8f, 8f);
             rect.sizeDelta = new Vector2(PanelWidth, PanelHeight);
+            if (!TryGetComponent(out group))
+                group = gameObject.AddComponent<CanvasGroup>();
 
             panelImage = Piece("Panel", rect, 0f, 0f, PanelWidth, PanelHeight);
             emptyIconImage = Piece("EmptyIcon", rect, IconX, IconY, IconSize, IconSize);
@@ -163,6 +167,10 @@ namespace Primordia.UI
         void LateUpdate()
         {
             Build();
+            // En la pausa estorbaba al menú: se oculta (sin desactivarse, para no perder la cuenta de la recarga).
+            var manager = GameManager.Instance;
+            group.alpha = manager != null && manager.State == GameState.Paused ? 0f : 1f;
+
             if (ability == null)
             {
                 var player = GameObject.FindWithTag("Player");

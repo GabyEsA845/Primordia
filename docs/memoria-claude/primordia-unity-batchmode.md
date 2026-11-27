@@ -15,3 +15,5 @@ metadata:
 
 **En un ordenador nuevo:** Git LFS instalado (`git lfs install`), `git config user.name/email` local, abrir el proyecto con Unity 6000.6.2f1; los assets generados (Resources/*Art.asset, escenas Test_Floor3*, Floor_3_Themes) van en el repositorio, no hace falta repetir menús salvo que cambie el arte (entonces el menú de importación que toque).
 - **Actualización 2026-11-08 (suite completa 729 pruebas, 720 en verde):** además de esos 6, fallan SIEMPRE `HeartStorageTests.ShopPod_…` (semilla 1, «a la derecha»; ya fallaba antes de la Meganeura, es el 7.º de siempre) y, como efecto secundario suyo (deja objetos sueltos), `SlimeTrailTests.Clear_RemovesEveryStampAtOnce`; `PoisonSpitTests.Ball_…` es intermitente (pasa sola).
+
+**Suite completa 2026-11-26:** 40 fallos = los conocidos + una cascada por un fallo ya existente: las piezas inflamables de la Arthropleura (`ArthropleuraBoss.Fire.cs`, registradas en `BuildFire`) pueden quedarse en `Rooms/Flammables` al destruir el jefe, y las pruebas posteriores lanzan `MissingReferenceException`. Esas clases pasan (223/223) ejecutadas sin las de Arthropleura. Sin arreglar.

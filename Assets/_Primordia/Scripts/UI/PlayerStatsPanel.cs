@@ -8,7 +8,7 @@ namespace Primordia.UI
     /// Estadísticas actuales del jugador en la pausa: una fila por <see cref="Stat"/> con su valor y una flecha
     /// si una mutación lo ha subido o bajado respecto a la célula base. Se actualiza cada vez que se muestra.
     /// Para añadir una estadística: un valor nuevo en <see cref="Stat"/>, su cálculo en <see cref="Read"/>
-    /// y su fila en el prefab (Primordia > Art > Importar menús).
+    /// y su fila en <see cref="PauseMenu"/>.
     /// </summary>
     public class PlayerStatsPanel : MonoBehaviour
     {
@@ -60,72 +60,6 @@ namespace Primordia.UI
                     arrow.enabled = arrow.sprite != null;
                 }
             }
-
-            RefreshUnstable(player);
-        }
-
-        static readonly Color UnstableColor = new(1f, 0.85f, 0.38f);
-        UnstableRow unstableRow;
-
-        /// <summary>
-        /// Con mutaciones especiales, una fila más bajo la vida que solo dice "Inestable"; al pasar el ratón, el cuadro
-        /// de información dice cuánto daño extra recibes por golpe.
-        /// </summary>
-        void RefreshUnstable(PlayerMutations player)
-        {
-            int extra = player != null ? player.Health.ExtraHitDamage : 0;
-            if (unstableRow == null)
-            {
-                if (extra == 0)
-                    return;
-                unstableRow = CreateUnstableRow();
-                if (unstableRow == null)
-                    return;
-            }
-
-            unstableRow.gameObject.SetActive(extra > 0);
-            unstableRow.ExtraHalves = extra;
-        }
-
-        /// <summary>Copia la fila de la vida (sin icono, valor ni flecha) justo debajo de ella, con el nombre en dorado.</summary>
-        UnstableRow CreateUnstableRow()
-        {
-            var healthValue = ValueText(Stat.Health);
-            if (healthValue == null)
-                return null;
-
-            var source = healthValue.transform.parent;
-            var row = Instantiate(source.gameObject, source.parent);
-            row.name = "Row_Unstable";
-            row.transform.SetSiblingIndex(source.GetSiblingIndex() + 1);
-            // Sin la veta de fondo, para que no rompa la alternancia de las filas, pero recibe el ratón.
-            if (!row.TryGetComponent<Image>(out var background))
-                background = row.AddComponent<Image>();
-            background.sprite = null;
-            background.color = Color.clear;
-            background.enabled = true;
-            background.raycastTarget = true;
-
-            int healthIndex = healthValue.transform.GetSiblingIndex();
-            foreach (Transform child in row.transform)
-            {
-                if (child.TryGetComponent<Text>(out var text))
-                {
-                    text.color = UnstableColor;
-                    text.raycastTarget = false;
-                    text.text = child.GetSiblingIndex() == healthIndex ? "" : "Inestable";
-                }
-                else if (child.TryGetComponent<Image>(out var image))
-                {
-                    image.enabled = false;
-                }
-            }
-
-            var unstable = row.AddComponent<UnstableRow>();
-            // El cuadro de información de la pausa, el mismo de las ranuras y del linaje.
-            var tooltip = transform.parent != null ? transform.parent.GetComponentInChildren<MutationTooltip>(true) : null;
-            unstable.Configure(tooltip, UnstableColor);
-            return unstable;
         }
 
         /// <summary>Texto del valor y si está por encima (1), por debajo (−1) o igual (0) que en la célula base.</summary>
@@ -148,6 +82,17 @@ namespace Primordia.UI
                 default:
                     return ("-", 0);
             }
+        }
+
+        /// <summary>"medio corazón", "1 corazón", "1 corazón y medio", "2 corazones"…</summary>
+        internal static string Hearts(int halves)
+        {
+            int whole = halves / 2;
+            bool half = halves % 2 == 1;
+            if (whole == 0)
+                return half ? "medio corazón" : "0 corazones";
+            string hearts = whole == 1 ? "1 corazón" : $"{whole} corazones";
+            return half ? $"{hearts} y medio" : hearts;
         }
 
         /// <summary>Un decimal como mucho, con coma: 7, 5,5.</summary>

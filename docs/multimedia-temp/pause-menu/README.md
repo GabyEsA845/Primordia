@@ -1,6 +1,6 @@
 # Menú de pausa nuevo (estilo membrana) y bestiario
 
-Arte **aprobado** por la usuaria el 2026-11-26 (Opus), **sin importar ni programar**. Sustituye a la pausa actual
+Arte **aprobado** por la usuaria el 2026-11-26 (Opus), **importado y programado** el mismo día (menú `Primordia > Art > Importar menú de pausa`). Sustituye a la pausa actual
 (`docs/multimedia-temp/menus/Pause/`, que lo enseñaba todo a la vez). Decisiones y estado en
 `docs/memoria-claude/primordia-pause-menu-redesign.md`.
 

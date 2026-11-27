@@ -1,24 +1,20 @@
 using Primordia.Mutations;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Primordia.UI
 {
     /// <summary>
-    /// Fila del linaje en el panel de estadísticas de la pausa: el animal y su clase (del color de la clase) y debajo
-    /// los nombres de su beneficio ("Rematar · Sangre en el agua"). Al pasar el ratón, el cuadro de información
-    /// (<see cref="MutationTooltip"/>) explica el beneficio entero. Sin linaje completo dice "Ninguno". Si una mutación
-    /// especial completa dos linajes a la vez, un clic cambia al otro.
+    /// El linaje en la pestaña Estado de la pausa: el animal y su clase (del color de la clase) y debajo lo que da.
+    /// Sin linaje completo dice "ninguno". Si una mutación especial completa dos linajes a la vez, pulsarlo cambia
+    /// al otro.
     /// </summary>
-    public class LineagePanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
+    public class LineagePanel : MonoBehaviour
     {
         [Tooltip("Linaje a mostrar. Si está vacío, usa el del objeto con la etiqueta Player.")]
         [SerializeField] PlayerLineage lineage;
         [SerializeField] Text nameLabel;
         [SerializeField] Text benefitLabel;
-        [Tooltip("Cuadro de información de la pausa, el de las ranuras.")]
-        [SerializeField] MutationTooltip tooltip;
         [Tooltip("Colores por clase, en el orden Carnívoro, Herbívoro, Venenoso, Hongo, Carroñero (los del rótulo del HUD).")]
         [SerializeField] Color[] classColors =
         {
@@ -29,20 +25,14 @@ namespace Primordia.UI
         public string ShownName => nameLabel != null ? nameLabel.text : "";
         public string ShownBenefit => benefitLabel != null ? benefitLabel.text : "";
 
-        void OnEnable() => Refresh();
+        /// <summary>True si hay otro linaje completo al que cambiar.</summary>
+        public bool CanSwitch => Active != null && Other != null;
 
-        void OnDisable()
-        {
-            if (tooltip != null)
-                tooltip.Hide();
-        }
-
-        internal void Configure(PlayerLineage newLineage, Text newName, Text newBenefit, MutationTooltip newTooltip = null)
+        internal void Configure(PlayerLineage newLineage, Text newName, Text newBenefit)
         {
             lineage = newLineage;
             nameLabel = newName;
             benefitLabel = newBenefit;
-            tooltip = newTooltip;
         }
 
         LineageData Active
@@ -59,25 +49,21 @@ namespace Primordia.UI
             }
         }
 
-        Color ColorOf(LineageData active)
-        {
-            return active != null ? MutationText.ClassColor(active.Class, classColors) : emptyColor;
-        }
-
         public void Refresh()
         {
             var active = Active;
             if (nameLabel != null)
             {
-                nameLabel.text = active != null ? $"{active.DisplayName} · {MutationText.ClassName(active.Class)}" : "Linaje: ninguno";
-                nameLabel.color = ColorOf(active);
+                nameLabel.text = active != null ? $"{active.DisplayName} · {MutationText.ClassName(active.Class)}" : "Ninguno";
+                nameLabel.color = active != null ? MutationText.ClassColor(active.Class, classColors) : emptyColor;
             }
 
             if (benefitLabel != null)
             {
                 var other = Other;
-                benefitLabel.text = MutationText.BenefitTitle(active) + (other != null ? $"\nClic: cambiar a {other.DisplayName}" : "");
-                benefitLabel.gameObject.SetActive(active != null);
+                benefitLabel.text = active == null
+                    ? "Lleva las 4 mutaciones de un animal."
+                    : Describe(active) + (other != null ? $"\nPulsa para cambiar a {other.DisplayName}" : "");
             }
         }
 
@@ -97,33 +83,12 @@ namespace Primordia.UI
             }
         }
 
-        public void OnPointerClick(PointerEventData eventData)
+        public void Switch()
         {
-            var other = Active != null ? Other : null;
-            if (other == null)
+            if (!CanSwitch)
                 return;
-            lineage.Choose(other);
+            lineage.Choose(Other);
             Refresh();
-            OnPointerEnter(eventData);
-        }
-
-        public void OnPointerEnter(PointerEventData eventData)
-        {
-            if (tooltip == null)
-                return;
-
-            var active = Active;
-            if (active != null)
-                tooltip.Show(active.DisplayName, $"Linaje {MutationText.ClassName(active.Class).ToLowerInvariant()}", Describe(active),
-                    ColorOf(active), (RectTransform)transform);
-            else
-                tooltip.Show("Sin linaje", "", "Lleva las 4 mutaciones de un animal para completar su linaje.", emptyColor, (RectTransform)transform);
-        }
-
-        public void OnPointerExit(PointerEventData eventData)
-        {
-            if (tooltip != null)
-                tooltip.Hide();
         }
 
         /// <summary>"Rematar: … \n Sangre en el agua: …".</summary>

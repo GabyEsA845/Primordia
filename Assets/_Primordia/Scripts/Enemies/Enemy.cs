@@ -40,8 +40,20 @@ namespace Primordia.Enemies
         /// <summary>Se lanza al morir cualquier enemigo, a la vez que su <see cref="Died"/> (la Vacuola digestiva cuenta las muertes).</summary>
         public static event Action<Enemy> AnyDied;
 
+        /// <summary>
+        /// Como <see cref="AnyDied"/>, pero también con los jefes que acaban con una escena propia sin morir de la forma
+        /// normal (el Lepidodendron). Lo escuchan el bestiario y los contadores de la partida.
+        /// </summary>
+        public static event Action<Enemy> Defeated;
+
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-        static void ResetStatics() => AnyDied = null;
+        static void ResetStatics()
+        {
+            AnyDied = null;
+            Defeated = null;
+        }
+
+        internal void ReportDefeated() => Defeated?.Invoke(this);
 
         /// <summary>Se lanza por cada enemigo nuevo que nace de este: al dividirse o al ser invocado (jefe).</summary>
         public event Action<Enemy> ChildSpawned;
@@ -130,6 +142,7 @@ namespace Primordia.Enemies
             SpawnSplits();
             Died?.Invoke(this);
             AnyDied?.Invoke(this);
+            ReportDefeated();
 
             if (!WillSplit && deathDuration > 0f)
             {
@@ -148,6 +161,7 @@ namespace Primordia.Enemies
             SpawnSplits();
             Died?.Invoke(this);
             AnyDied?.Invoke(this);
+            ReportDefeated();
             Destroy(gameObject);
         }
 

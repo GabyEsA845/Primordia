@@ -1,0 +1,662 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3eaeda93fb11c941b1122e32db5f4e8, type: 3}
+  m_Name: PauseMenuArt
+  m_EditorClassIdentifier: Primordia::Primordia.UI.PauseMenuArt
+  font: {fileID: 12800000, guid: 3f5743f7a94fc904ebe05291aef83a98, type: 3}
+  boldFont: {fileID: 12800000, guid: 62418614cd0fc8c40abc8b797fbcacd4, type: 3}
+  panel: {fileID: 21300000, guid: 8a478396b1660564983c19cb99c3e312, type: 3}
+  title: {fileID: 21300000, guid: 497c99aa8866e5b47824194c79c98a95, type: 3}
+  buttonNormal: {fileID: 21300000, guid: f51d35920d07cb543a2108c8ae95f24b, type: 3}
+  buttonHighlighted: {fileID: 21300000, guid: bbd7de32fb387d34e9cfe3820292cd0d, type: 3}
+  buttonPressed: {fileID: 21300000, guid: b64346a2a8cce4242abcee10c88f78dc, type: 3}
+  dangerNormal: {fileID: 21300000, guid: a6c968b815bd7274aa69736feb15b0d7, type: 3}
+  dangerHighlighted: {fileID: 21300000, guid: 593038f8eb284ad4db41b4d9f765f8e5, type: 3}
+  dangerPressed: {fileID: 21300000, guid: 4124f97f0ca387147a375120598c0307, type: 3}
+  nucleus:
+  - {fileID: 647309216019420705, guid: b8da80cb5653cf340a43af8cb399795f, type: 3}
+  - {fileID: -3484600601359379119, guid: b8da80cb5653cf340a43af8cb399795f, type: 3}
+  - {fileID: 7096850860430110599, guid: b8da80cb5653cf340a43af8cb399795f, type: 3}
+  - {fileID: -134076803397556460, guid: b8da80cb5653cf340a43af8cb399795f, type: 3}
+  nucleusDanger:
+  - {fileID: -7630087406580636807, guid: 67c891b8e150e0247a0447fdf8db5ca7, type: 3}
+  - {fileID: -4597739454347689149, guid: 67c891b8e150e0247a0447fdf8db5ca7, type: 3}
+  - {fileID: -5658856101516314257, guid: 67c891b8e150e0247a0447fdf8db5ca7, type: 3}
+  - {fileID: 7237879694846367192, guid: 67c891b8e150e0247a0447fdf8db5ca7, type: 3}
+  tabActive: {fileID: 21300000, guid: 0d640e0f8bccf0645a6d3b532afb435b, type: 3}
+  tabIdle: {fileID: 21300000, guid: e1117b0828d8ec64f81fe9ba274f7444, type: 3}
+  tabHover: {fileID: 21300000, guid: 9d9aa9358b79f4b47bf3c41a1818726a, type: 3}
+  characterIcons:
+  - {fileID: 21300000, guid: e24a99b48a806c241a25358cf975dc99, type: 3}
+  - {fileID: 21300000, guid: 18fa18a52f6a3834fb50607aa897bab8, type: 3}
+  - {fileID: 21300000, guid: bbe891d0a8d2c0e48a8cdaac2fb10926, type: 3}
+  - {fileID: 21300000, guid: cca4fb74d952cd241933178f1afa3006, type: 3}
+  bestiaryIcons:
+  - {fileID: 21300000, guid: 00dac5ea397dfd74f9877a9e50d4289b, type: 3}
+  - {fileID: 21300000, guid: 9630e0b7d4ae458499651ffa72fa4b0c, type: 3}
+  - {fileID: 21300000, guid: a3348fbaf5eb5c14e804d9a5d1caf180, type: 3}
+  - {fileID: 21300000, guid: 33ad279ce4622ce48a3ab8c777a9e6e1, type: 3}
+  keyQ:
+  - {fileID: 8093424225466228814, guid: 086632cb7b6323140b91bd70746b37b6, type: 3}
+  - {fileID: -2093132358, guid: 086632cb7b6323140b91bd70746b37b6, type: 3}
+  keyE:
+  - {fileID: -4331231321830032528, guid: c4e7e4a75e961a4458b1c202aa913abb, type: 3}
+  - {fileID: -1723502315, guid: c4e7e4a75e961a4458b1c202aa913abb, type: 3}
+  slot: {fileID: 21300000, guid: 4e44b02038d04384795836948b604e4a, type: 3}
+  slotHighlighted: {fileID: 21300000, guid: ab2a1d73aa0c9514283912440adc5eb1, type: 3}
+  row: {fileID: 21300000, guid: be92c32d39cb77b498e87b84bfc08a00, type: 3}
+  tooltip: {fileID: 21300000, guid: 03825a5b995695042807f55b74b0d16b, type: 3}
+  tooltipPod: {fileID: 21300000, guid: 5ad0223e86f8fc048b6e8fa8b9fa2550, type: 3}
+  tooltipStripe: {fileID: 21300000, guid: 4263f59c45a7f724cae9fbd60c8de0dc, type: 3}
+  heartFull: {fileID: 21300000, guid: ef3ad0b4e60dd1b4d92b657cb70da11f, type: 3}
+  heartHalf: {fileID: 21300000, guid: fc347ae3d7a021944a5763c2f4178b1a, type: 3}
+  heartEmpty: {fileID: 21300000, guid: 12965bb24bea9e149ab2d41c0c5d3081, type: 3}
+  heartExtraFull:
+  - {fileID: -404142922127920074, guid: daf2eb52038ef69408c126dbd037fbc6, type: 3}
+  - {fileID: 302330792, guid: daf2eb52038ef69408c126dbd037fbc6, type: 3}
+  - {fileID: -1640043371, guid: daf2eb52038ef69408c126dbd037fbc6, type: 3}
+  - {fileID: 1225644173, guid: daf2eb52038ef69408c126dbd037fbc6, type: 3}
+  - {fileID: -2042675833, guid: daf2eb52038ef69408c126dbd037fbc6, type: 3}
+  - {fileID: 1123352621, guid: daf2eb52038ef69408c126dbd037fbc6, type: 3}
+  - {fileID: 1415583165, guid: daf2eb52038ef69408c126dbd037fbc6, type: 3}
+  - {fileID: -448512329, guid: daf2eb52038ef69408c126dbd037fbc6, type: 3}
+  heartExtraHalf: {fileID: 21300000, guid: d9b2ade14c061a44b8bb5ab55078d5ca, type: 3}
+  heartExtraEmpty: {fileID: 21300000, guid: 01a2a5f4af013d343a5ad41bd97d93bf, type: 3}
+  damageIcon: {fileID: 21300000, guid: b30f0e1b950055640b91b7360581ccfc, type: 3}
+  speedIcon: {fileID: 21300000, guid: 9a5d79f577175b446b11f8c8ff0365a1, type: 3}
+  unstableIcon: {fileID: 21300000, guid: a970f292b2f872e45a089587899295f8, type: 3}
+  upArrow: {fileID: 21300000, guid: 5fbeadd2c73ff3645a3ad198d7381ad6, type: 3}
+  downArrow: {fileID: 21300000, guid: 39a3f6ba62e2a0649818b43303008879, type: 3}
+  biomassIcon: {fileID: 21300000, guid: 9130201052df03a4c8d77561a9081743, type: 3}
+  floorIcon: {fileID: 21300000, guid: c48ad0de49bd0dd4e8f1c70fccfb107d, type: 3}
+  seedIcon: {fileID: 21300000, guid: d87e2425438035f4c8b6c264f2a30269, type: 3}
+  timeIcon: {fileID: 21300000, guid: cca4fb74d952cd241933178f1afa3006, type: 3}
+  enemiesIcon: {fileID: 21300000, guid: b8934ad680dbd7c4994734dde16e60f6, type: 3}
+  bossesIcon: {fileID: 21300000, guid: 33ad279ce4622ce48a3ab8c777a9e6e1, type: 3}
+  musicIcon: {fileID: 21300000, guid: 49697d1992c35ac489f49918d61f24b0, type: 3}
+  effectsIcon: {fileID: 21300000, guid: ad7a948bfe1e7e8468316c7756ca045f, type: 3}
+  shakeIcon: {fileID: 21300000, guid: 81baa96638ae77e4da244b189f53df8a, type: 3}
+  sliderTrack: {fileID: 21300000, guid: 836b4b8848900f44abd906c2c932762a, type: 3}
+  sliderFill: {fileID: 21300000, guid: d676a713711b06f4fb39f267cfc7520e, type: 3}
+  sliderKnob: {fileID: 21300000, guid: a547121bfcfb9214a9f7160e620a7691, type: 3}
+  toggleOff: {fileID: 21300000, guid: 74417b820f478b34cadc697745d53592, type: 3}
+  toggleOn: {fileID: 21300000, guid: 232c7756c9ce90a418d9f349908c6bb9, type: 3}
+  beastSlot: {fileID: 21300000, guid: 6a334cd35f5f79c498dfaaaa765c850a, type: 3}
+  beastSlotHighlighted: {fileID: 21300000, guid: 8ea3faa2c0cd2ca4e8f42c29852d238d, type: 3}
+  beastSlotLocked: {fileID: 21300000, guid: 4baec80a49b826740a704b2272b4815c, type: 3}
+  vacuole: {fileID: 21300000, guid: 35a5d3f8a8fe5784ea9d671158eea269, type: 3}
+  vacuoleGlint: {fileID: 21300000, guid: d053e7e89413aab449efc0c0934fe0d8, type: 3}
+  entries:
+  - id: Chaser
+    displayName: BACTERIA
+    tab: 0
+    trap: 0
+    secret: 0
+    notes:
+    - BACTERIA FLAGELADA. UN SOLO
+    - "L\xC1TIGO LE BASTA PARA"
+    - CAZAR TODO LO QUE SE MUEVE.
+    data: {fileID: 11400000, guid: e6dea1c2118063945bde39aa90ca332b, type: 2}
+    damage: 1
+    speed: "R\xC1PIDA"
+    portrait: {fileID: 21300000, guid: b8f42a3e91cf24d41a6b14e415c4203c, type: 3}
+    lockedPortrait: {fileID: 21300000, guid: e071cef66446f3746bc73153562d72fc, type: 3}
+    frames:
+    - {fileID: 130719258211147651, guid: f3c5f48ba35cd3d4f95b327a3f5251fa, type: 3}
+    - {fileID: -9112925449859737455, guid: f3c5f48ba35cd3d4f95b327a3f5251fa, type: 3}
+    - {fileID: -708144444, guid: f3c5f48ba35cd3d4f95b327a3f5251fa, type: 3}
+    - {fileID: 1526272589, guid: f3c5f48ba35cd3d4f95b327a3f5251fa, type: 3}
+    - {fileID: 1526272589, guid: f3c5f48ba35cd3d4f95b327a3f5251fa, type: 3}
+    contentSize: {x: 16, y: 11}
+    contentOffset: {x: 0, y: -0.5}
+  - id: Shooter
+    displayName: AMEBA
+    tab: 0
+    trap: 0
+    secret: 0
+    notes:
+    - CAMBIA DE FORMA SIN PARAR.
+    - ESCUPE LO QUE NO DIGIERE Y
+    - AL MORIR SE PARTE EN DOS.
+    data: {fileID: 11400000, guid: f77376ec8ef838c4c834495bcc008d53, type: 2}
+    damage: 1
+    speed: LENTA
+    portrait: {fileID: 21300000, guid: ccec596def35c6940978c32e11497299, type: 3}
+    lockedPortrait: {fileID: 21300000, guid: c0b69563ffd4f014eb5f117b4ec9e299, type: 3}
+    frames:
+    - {fileID: -5635793649105174925, guid: 6feaccab55ab61a4a87fa7717eb9c30f, type: 3}
+    - {fileID: -1625030690467747013, guid: 6feaccab55ab61a4a87fa7717eb9c30f, type: 3}
+    - {fileID: 800332182, guid: 6feaccab55ab61a4a87fa7717eb9c30f, type: 3}
+    - {fileID: 494812687, guid: 6feaccab55ab61a4a87fa7717eb9c30f, type: 3}
+    - {fileID: 494812687, guid: 6feaccab55ab61a4a87fa7717eb9c30f, type: 3}
+    contentSize: {x: 16, y: 16}
+    contentOffset: {x: 0, y: 0}
+  - id: Small
+    displayName: AMEBITA
+    tab: 0
+    trap: 0
+    secret: 0
+    notes:
+    - MITAD DE UNA AMEBA. LE
+    - "FALTA TAMA\xD1O, PERO NO"
+    - GANAS DE MORDER.
+    data: {fileID: 11400000, guid: 98ff373b82d6934429c9f149f743cefa, type: 2}
+    damage: 1
+    speed: "MUY R\xC1PIDA"
+    portrait: {fileID: 21300000, guid: 5b1da36ef6fa6754680ee48f5f72125b, type: 3}
+    lockedPortrait: {fileID: 21300000, guid: b43acc9d641275840b09386106bcdbef, type: 3}
+    frames:
+    - {fileID: 5204627415410256102, guid: ca92bb6ecc3f98743a5c41932f5f9ba0, type: 3}
+    - {fileID: 2315394354546155921, guid: ca92bb6ecc3f98743a5c41932f5f9ba0, type: 3}
+    - {fileID: -7295395422313467669, guid: ca92bb6ecc3f98743a5c41932f5f9ba0, type: 3}
+    - {fileID: 1132102557, guid: ca92bb6ecc3f98743a5c41932f5f9ba0, type: 3}
+    - {fileID: 1132102557, guid: ca92bb6ecc3f98743a5c41932f5f9ba0, type: 3}
+    contentSize: {x: 10, y: 10}
+    contentOffset: {x: 0, y: 0}
+  - id: Trilobite
+    displayName: TRILOBITE
+    tab: 1
+    trap: 0
+    secret: 0
+    notes:
+    - SUS OJOS ERAN CRISTALES
+    - DE CALCITA. EMBISTE Y SE
+    - ENROSCA SI LO VOLTEAN.
+    data: {fileID: 11400000, guid: 5e679722e4efa9c428cda045f7a598fa, type: 2}
+    damage: 1
+    speed: MEDIA
+    portrait: {fileID: 21300000, guid: b6620a46a4182a84c807db7043d15349, type: 3}
+    lockedPortrait: {fileID: 21300000, guid: 4a4f4fdcfc8025f4e8a5d946ec06e00b, type: 3}
+    frames:
+    - {fileID: -4531228657960640606, guid: d1deb074d79e46748943a3cfa9a7bc6a, type: 3}
+    - {fileID: 5293142863196759094, guid: d1deb074d79e46748943a3cfa9a7bc6a, type: 3}
+    - {fileID: -6221539764821011089, guid: d1deb074d79e46748943a3cfa9a7bc6a, type: 3}
+    - {fileID: -2407780653725680355, guid: d1deb074d79e46748943a3cfa9a7bc6a, type: 3}
+    - {fileID: -2407780653725680355, guid: d1deb074d79e46748943a3cfa9a7bc6a, type: 3}
+    contentSize: {x: 22, y: 22}
+    contentOffset: {x: 1, y: 0}
+  - id: Pikaia
+    displayName: PIKAIA
+    tab: 1
+    trap: 0
+    secret: 0
+    notes:
+    - UNO DE LOS PRIMEROS
+    - 'CORDADOS: UNA ESPINA'
+    - FLEXIBLE Y MUCHA PRISA.
+    data: {fileID: 11400000, guid: ff902501c75b6874e93501c68db1e145, type: 2}
+    damage: 1
+    speed: "R\xC1PIDA"
+    portrait: {fileID: 21300000, guid: b160ba1c9f79e454c8a104ab358c5e96, type: 3}
+    lockedPortrait: {fileID: 21300000, guid: 8bb3ed2808f5c294aa21d9b4d576d989, type: 3}
+    frames:
+    - {fileID: -6771687497242147763, guid: 6645f8b66d9cb964f8f4facee987d988, type: 3}
+    - {fileID: 677452107880798298, guid: 6645f8b66d9cb964f8f4facee987d988, type: 3}
+    - {fileID: 9123108175557843196, guid: 6645f8b66d9cb964f8f4facee987d988, type: 3}
+    - {fileID: 9123108175557843196, guid: 6645f8b66d9cb964f8f4facee987d988, type: 3}
+    contentSize: {x: 18, y: 8}
+    contentOffset: {x: 1, y: 0}
+  - id: Ottoia
+    displayName: OTTOIA
+    tab: 1
+    trap: 0
+    secret: 0
+    notes:
+    - "GUSANO PRIAP\xDALIDO. ESPERA"
+    - ENTERRADO Y SACA UNA
+    - TROMPA LLENA DE GANCHOS.
+    data: {fileID: 11400000, guid: d9708a0ec7a10c94f8d2da69a5bafdd2, type: 2}
+    damage: 1
+    speed: MEDIA
+    portrait: {fileID: 21300000, guid: 1785b65d579de9546b4e054bd25afbee, type: 3}
+    lockedPortrait: {fileID: 21300000, guid: b3a55e0c77e02bb4d8d841287a3ef10e, type: 3}
+    frames:
+    - {fileID: 3135662894243149668, guid: d1f2efa5d1a111e45b5e9bd7a70dc1e7, type: 3}
+    - {fileID: 5210351524002395841, guid: d1f2efa5d1a111e45b5e9bd7a70dc1e7, type: 3}
+    - {fileID: -3222021802532723843, guid: d1f2efa5d1a111e45b5e9bd7a70dc1e7, type: 3}
+    - {fileID: -2704945894388202465, guid: d1f2efa5d1a111e45b5e9bd7a70dc1e7, type: 3}
+    - {fileID: -3787976763655285676, guid: d1f2efa5d1a111e45b5e9bd7a70dc1e7, type: 3}
+    - {fileID: -2671845772616044386, guid: d1f2efa5d1a111e45b5e9bd7a70dc1e7, type: 3}
+    - {fileID: -2671845772616044386, guid: d1f2efa5d1a111e45b5e9bd7a70dc1e7, type: 3}
+    contentSize: {x: 21, y: 25}
+    contentOffset: {x: -0.5, y: 0.5}
+  - id: Vauxia
+    displayName: VAUXIA
+    tab: 1
+    trap: 0
+    secret: 0
+    notes:
+    - ESPONJA DEL ARRECIFE. NO
+    - SE MUEVE, PERO CURA A
+    - TODO LO QUE LA RODEA.
+    data: {fileID: 11400000, guid: 771db413ce5346d41a82f31426c5702c, type: 2}
+    damage: 0
+    speed: QUIETA
+    portrait: {fileID: 21300000, guid: a3d04e3fef568354ab3251cfe49ab464, type: 3}
+    lockedPortrait: {fileID: 21300000, guid: 6d4f3fa702adca240ab34993b771e7a9, type: 3}
+    frames:
+    - {fileID: -631771620808582444, guid: 65972cb53d41c2244a6e990af59253ce, type: 3}
+    - {fileID: -2334917415026643064, guid: 65972cb53d41c2244a6e990af59253ce, type: 3}
+    - {fileID: -1254573072465309335, guid: 65972cb53d41c2244a6e990af59253ce, type: 3}
+    - {fileID: 8655418919213127495, guid: 65972cb53d41c2244a6e990af59253ce, type: 3}
+    - {fileID: 8655418919213127495, guid: 65972cb53d41c2244a6e990af59253ce, type: 3}
+    contentSize: {x: 29, y: 31}
+    contentOffset: {x: 0.5, y: -0.5}
+  - id: BlueJelly
+    displayName: MEDUSA AZUL
+    tab: 1
+    trap: 0
+    secret: 0
+    notes:
+    - MEDUSA DEL ABISMO. SU
+    - CAMPANA BRILLA ANTES DE
+    - SOLTAR SUS DESCARGAS.
+    data: {fileID: 11400000, guid: 7ff9868fc624a3f41a5075b402910553, type: 2}
+    damage: 1
+    speed: LENTA
+    portrait: {fileID: 21300000, guid: f05ad5778cf85c14f967426065e41f94, type: 3}
+    lockedPortrait: {fileID: 21300000, guid: 41c03b21c7cb868419f28f6a1d483bc3, type: 3}
+    frames:
+    - {fileID: -494075906610884394, guid: 7b50d253111150b4ba286a6c8baaac95, type: 3}
+    - {fileID: 7205401471481188205, guid: 7b50d253111150b4ba286a6c8baaac95, type: 3}
+    - {fileID: -1082564940544484498, guid: 7b50d253111150b4ba286a6c8baaac95, type: 3}
+    - {fileID: 846281795162359401, guid: 7b50d253111150b4ba286a6c8baaac95, type: 3}
+    - {fileID: 846281795162359401, guid: 7b50d253111150b4ba286a6c8baaac95, type: 3}
+    contentSize: {x: 18, y: 15}
+    contentOffset: {x: 0, y: -0.5}
+  - id: Beetle
+    displayName: ESCARABAJO
+    tab: 2
+    trap: 0
+    secret: 0
+    notes:
+    - "ESCARABAJO DEL CARBON\xCDFERO."
+    - ACORAZADO; EMBISTE CUANDO
+    - SE SIENTE ACORRALADO.
+    data: {fileID: 11400000, guid: 391be8b1740f58644ad3343b59cfc8a3, type: 2}
+    damage: 1
+    speed: MEDIA
+    portrait: {fileID: 21300000, guid: 30456afbc1bc21747a4da595921d3a66, type: 3}
+    lockedPortrait: {fileID: 21300000, guid: bc3ef459ac0e6d84094d91411c1de8a8, type: 3}
+    frames:
+    - {fileID: -4461445364188423548, guid: 457a0e0df5455094e9dea1cea1e45a8c, type: 3}
+    - {fileID: 3736645970940767027, guid: 457a0e0df5455094e9dea1cea1e45a8c, type: 3}
+    - {fileID: 3731301336567513150, guid: 457a0e0df5455094e9dea1cea1e45a8c, type: 3}
+    - {fileID: 8334280100154132319, guid: 457a0e0df5455094e9dea1cea1e45a8c, type: 3}
+    - {fileID: 8334280100154132319, guid: 457a0e0df5455094e9dea1cea1e45a8c, type: 3}
+    contentSize: {x: 26, y: 13}
+    contentOffset: {x: 0, y: 0.5}
+  - id: Spider
+    displayName: "ARA\xD1A"
+    tab: 2
+    trap: 0
+    secret: 0
+    notes:
+    - SE OCULTA ENTRE LA MALEZA
+    - Y SALTA SOBRE LO QUE PASA.
+    - SUS PATAS LO SIENTEN TODO.
+    data: {fileID: 11400000, guid: 212697885deadda4d8ce1f050eb4b087, type: 2}
+    damage: 1
+    speed: MEDIA
+    portrait: {fileID: 21300000, guid: 0f2663d4b097b6f40912c917903697b2, type: 3}
+    lockedPortrait: {fileID: 21300000, guid: f71fc41ffaf2bd4469f162db1c60775f, type: 3}
+    frames:
+    - {fileID: -6214186918243580126, guid: 072a02879c5c14e478a9a6f6a4fa6f44, type: 3}
+    - {fileID: 8751310227203728815, guid: 072a02879c5c14e478a9a6f6a4fa6f44, type: 3}
+    - {fileID: 265420316558556667, guid: 072a02879c5c14e478a9a6f6a4fa6f44, type: 3}
+    - {fileID: -3463930186853206418, guid: 072a02879c5c14e478a9a6f6a4fa6f44, type: 3}
+    - {fileID: -3463930186853206418, guid: 072a02879c5c14e478a9a6f6a4fa6f44, type: 3}
+    contentSize: {x: 24, y: 18}
+    contentOffset: {x: 0, y: 1}
+  - id: Toad
+    displayName: SAPO
+    tab: 2
+    trap: 0
+    secret: 0
+    notes:
+    - ANFIBIO DEL PANTANO. SE
+    - HUNDE EN EL LODO Y SALTA
+    - CUANDO TE ACERCAS.
+    data: {fileID: 11400000, guid: 9d7612de17ee9104d8efe165f969c298, type: 2}
+    damage: 1
+    speed: MEDIA
+    portrait: {fileID: 21300000, guid: a77af4e455d511841b5161299091c34b, type: 3}
+    lockedPortrait: {fileID: 21300000, guid: 428be48995a7b6041aac18d28a3b1c56, type: 3}
+    frames:
+    - {fileID: 5637582727451878187, guid: 8a0ef4fa63569b94a92524d18dc9e36f, type: 3}
+    - {fileID: 4355546606670750266, guid: 8a0ef4fa63569b94a92524d18dc9e36f, type: 3}
+    - {fileID: -8422735276662490303, guid: 8a0ef4fa63569b94a92524d18dc9e36f, type: 3}
+    - {fileID: 5824422280787489608, guid: 8a0ef4fa63569b94a92524d18dc9e36f, type: 3}
+    - {fileID: 5824422280787489608, guid: 8a0ef4fa63569b94a92524d18dc9e36f, type: 3}
+    contentSize: {x: 28, y: 18}
+    contentOffset: {x: 1, y: -4}
+  - id: Dragonfly
+    displayName: "LIB\xC9LULA"
+    tab: 2
+    trap: 0
+    secret: 0
+    notes:
+    - "LIB\xC9LULA DEL CARBON\xCDFERO."
+    - "CON TANTO OX\xCDGENO EN EL"
+    - "AIRE, LOS INSECTOS CREC\xCDAN."
+    data: {fileID: 11400000, guid: e1929c40d924dc146a35170e072a541e, type: 2}
+    damage: 1
+    speed: "MUY R\xC1PIDA"
+    portrait: {fileID: 21300000, guid: a8aaf9adf326be748a9964789cf1bb94, type: 3}
+    lockedPortrait: {fileID: 21300000, guid: 48d74b66257b358499bdfa759dd11bdd, type: 3}
+    frames:
+    - {fileID: 4842021919730732618, guid: a34b0790b657e6641b7930029a8fab98, type: 3}
+    - {fileID: -8274121267868486068, guid: a34b0790b657e6641b7930029a8fab98, type: 3}
+    - {fileID: 3623285798848931788, guid: a34b0790b657e6641b7930029a8fab98, type: 3}
+    - {fileID: -5842227774056837006, guid: a34b0790b657e6641b7930029a8fab98, type: 3}
+    - {fileID: 8447332209730605647, guid: a34b0790b657e6641b7930029a8fab98, type: 3}
+    - {fileID: 8447332209730605647, guid: a34b0790b657e6641b7930029a8fab98, type: 3}
+    contentSize: {x: 29, y: 21}
+    contentOffset: {x: 0.5, y: -1.5}
+  - id: MeganeuraNymph
+    displayName: NINFA
+    tab: 2
+    trap: 0
+    secret: 0
+    notes:
+    - NINFA DE MEGANEURA. CAZA
+    - BAJO EL AGUA CON UNA
+    - "MAND\xCDBULA QUE SE DISPARA."
+    data: {fileID: 11400000, guid: 466169937aa364245ba8be0e5ba1b5bc, type: 2}
+    damage: 1
+    speed: MEDIA
+    portrait: {fileID: 21300000, guid: a22418017baf2884a9ef5a40ae91bd8f, type: 3}
+    lockedPortrait: {fileID: 21300000, guid: 3161a157dfd8b7d459f38fc89cef9732, type: 3}
+    frames:
+    - {fileID: -748097264, guid: afcdd56a7c9109e46a16bb44b38faf5a, type: 3}
+    - {fileID: 1952197828, guid: afcdd56a7c9109e46a16bb44b38faf5a, type: 3}
+    - {fileID: -416468809, guid: afcdd56a7c9109e46a16bb44b38faf5a, type: 3}
+    - {fileID: 1450640896, guid: afcdd56a7c9109e46a16bb44b38faf5a, type: 3}
+    - {fileID: 1888089569, guid: afcdd56a7c9109e46a16bb44b38faf5a, type: 3}
+    - {fileID: -121905008, guid: afcdd56a7c9109e46a16bb44b38faf5a, type: 3}
+    contentSize: {x: 38, y: 34}
+    contentOffset: {x: 1, y: -2}
+  - id: Calamites
+    displayName: CALAMITES
+    tab: 2
+    trap: 0
+    secret: 0
+    notes:
+    - COLA DE CABALLO GIGANTE.
+    - SUS TALLOS HUECOS SE
+    - "ALZABAN COMO \xC1RBOLES."
+    data: {fileID: 11400000, guid: d805547a27d1c584f914a26b6b902182, type: 2}
+    damage: 0
+    speed: QUIETA
+    portrait: {fileID: 21300000, guid: 795f702f449359548b0844f688281a4e, type: 3}
+    lockedPortrait: {fileID: 21300000, guid: 44175640b86add145b8e606874edc163, type: 3}
+    frames:
+    - {fileID: -7882617219535755628, guid: 2285dad29c5f9484ea4aa6572d6d02ec, type: 3}
+    - {fileID: 36988501281032128, guid: 2285dad29c5f9484ea4aa6572d6d02ec, type: 3}
+    - {fileID: 7488183934940987047, guid: 2285dad29c5f9484ea4aa6572d6d02ec, type: 3}
+    - {fileID: -6091211597581839222, guid: 2285dad29c5f9484ea4aa6572d6d02ec, type: 3}
+    - {fileID: -6091211597581839222, guid: 2285dad29c5f9484ea4aa6572d6d02ec, type: 3}
+    contentSize: {x: 29, y: 46}
+    contentOffset: {x: 0.5, y: 1}
+  - id: CalamitesSprout
+    displayName: BROTE
+    tab: 2
+    trap: 0
+    secret: 0
+    notes:
+    - BROTE DE CALAMITES. CRECE
+    - DEPRISA Y CORRE A
+    - MORDERTE LOS TOBILLOS.
+    data: {fileID: 11400000, guid: 3389d57ed02e3d14e95f2186b82b31cb, type: 2}
+    damage: 1
+    speed: MEDIA
+    portrait: {fileID: 21300000, guid: bf991e52793fd4244a0b605d1338d8dc, type: 3}
+    lockedPortrait: {fileID: 21300000, guid: cf136d74f590d4c448fa2afa07c13cde, type: 3}
+    frames:
+    - {fileID: -3839395628888792746, guid: 99145c5e19c570641bb7fc5730e66f2b, type: 3}
+    - {fileID: -2290275033215768057, guid: 99145c5e19c570641bb7fc5730e66f2b, type: 3}
+    - {fileID: -6999410741557915124, guid: 99145c5e19c570641bb7fc5730e66f2b, type: 3}
+    - {fileID: -237994733731727018, guid: 99145c5e19c570641bb7fc5730e66f2b, type: 3}
+    - {fileID: -237994733731727018, guid: 99145c5e19c570641bb7fc5730e66f2b, type: 3}
+    contentSize: {x: 12, y: 23}
+    contentOffset: {x: 0, y: 0.5}
+  - id: Medullosa
+    displayName: MEDULLOSA
+    tab: 2
+    trap: 0
+    secret: 0
+    notes:
+    - HELECHO CON SEMILLAS. LAS
+    - LANZA COMO PROYECTILES
+    - CUANDO ALGO SE ACERCA.
+    data: {fileID: 11400000, guid: d45f926c81105be4a8142d2ec02647ba, type: 2}
+    damage: 1
+    speed: QUIETA
+    portrait: {fileID: 21300000, guid: 6891ca05d6b621243b602ce0721cc636, type: 3}
+    lockedPortrait: {fileID: 21300000, guid: a93315ef23ab97542a81c43c0ff84e0c, type: 3}
+    frames:
+    - {fileID: -6387154467790775911, guid: a1ef36f80b837e24188241f71b80a33a, type: 3}
+    - {fileID: -7939427219351846349, guid: a1ef36f80b837e24188241f71b80a33a, type: 3}
+    - {fileID: -3294865162600447507, guid: a1ef36f80b837e24188241f71b80a33a, type: 3}
+    - {fileID: -5699795602363256309, guid: a1ef36f80b837e24188241f71b80a33a, type: 3}
+    - {fileID: -5699795602363256309, guid: a1ef36f80b837e24188241f71b80a33a, type: 3}
+    contentSize: {x: 32, y: 29}
+    contentOffset: {x: 0, y: -3.5}
+  - id: CarnivorousPlant
+    displayName: "PLANTA CARN\xCDVORA"
+    tab: 2
+    trap: 1
+    secret: 0
+    notes:
+    - 'NO PERSIGUE: ESPERA A'
+    - QUE PASES CERCA PARA
+    - CERRAR LA BOCA.
+    data: {fileID: 0}
+    damage: 1
+    speed: QUIETA
+    portrait: {fileID: 21300000, guid: 5bc4371c5298cf54493087183a7b8ef6, type: 3}
+    lockedPortrait: {fileID: 21300000, guid: 4bd864c9cf622a44eb58514bbf05b15c, type: 3}
+    frames:
+    - {fileID: 5294649780000948769, guid: 0586f78690bf37b4aa6ea366a3c1756b, type: 3}
+    - {fileID: 8936791313929586780, guid: 0586f78690bf37b4aa6ea366a3c1756b, type: 3}
+    - {fileID: 696862907947818856, guid: 0586f78690bf37b4aa6ea366a3c1756b, type: 3}
+    - {fileID: 5863578820646634980, guid: 0586f78690bf37b4aa6ea366a3c1756b, type: 3}
+    contentSize: {x: 33, y: 37}
+    contentOffset: {x: -2.5, y: -0.5}
+  - id: Mayflies
+    displayName: "EF\xCDMERAS"
+    tab: 2
+    trap: 1
+    secret: 0
+    notes:
+    - "VIVEN UN SOLO D\xCDA Y LO"
+    - PASAN EN UN ENJAMBRE
+    - QUE NO TE DEJA EN PAZ.
+    data: {fileID: 0}
+    damage: 1
+    speed: LENTA
+    portrait: {fileID: 21300000, guid: c8474eb746fca6c48a42c7748b467f86, type: 3}
+    lockedPortrait: {fileID: 21300000, guid: fd525ba252db6654080a79d3b19e5123, type: 3}
+    frames:
+    - {fileID: -429792054877940934, guid: 1c57a21752647174e932cc538ea3ba12, type: 3}
+    - {fileID: 3706940984748389647, guid: 1c57a21752647174e932cc538ea3ba12, type: 3}
+    - {fileID: 2394111295520707975, guid: 1c57a21752647174e932cc538ea3ba12, type: 3}
+    - {fileID: 3452409383480129087, guid: 1c57a21752647174e932cc538ea3ba12, type: 3}
+    - {fileID: 7428988492263166959, guid: 1c57a21752647174e932cc538ea3ba12, type: 3}
+    - {fileID: -6508490951737233914, guid: 1c57a21752647174e932cc538ea3ba12, type: 3}
+    contentSize: {x: 33, y: 17}
+    contentOffset: {x: 0.5, y: 1.5}
+  - id: AmoebaBoss
+    displayName: AMEBA GIGANTE
+    tab: 3
+    trap: 0
+    secret: 0
+    notes:
+    - SE HA COMIDO A TODAS SUS
+    - HERMANAS. AL PARTIRLA, SE
+    - "DIVIDE EN DOS M\xC1S R\xC1PIDAS."
+    data: {fileID: 11400000, guid: 8a80a5c211ba7bc4594a0c82f6089bdc, type: 2}
+    damage: 1
+    speed: LENTA
+    portrait: {fileID: 21300000, guid: e4599ca70920b4c4cab33ce34014ef2b, type: 3}
+    lockedPortrait: {fileID: 21300000, guid: 4fd6168f8c0da9d448fc095a50220fc4, type: 3}
+    frames:
+    - {fileID: -8049751707103350957, guid: 2069c05eed276e246bbf6dbd1e013918, type: 3}
+    - {fileID: -848142818204113592, guid: 2069c05eed276e246bbf6dbd1e013918, type: 3}
+    - {fileID: -9130404192812941178, guid: 2069c05eed276e246bbf6dbd1e013918, type: 3}
+    - {fileID: -1346613577312966988, guid: 2069c05eed276e246bbf6dbd1e013918, type: 3}
+    - {fileID: 7018728105956712210, guid: 2069c05eed276e246bbf6dbd1e013918, type: 3}
+    - {fileID: 9007569133292361310, guid: 2069c05eed276e246bbf6dbd1e013918, type: 3}
+    - {fileID: 9007569133292361310, guid: 2069c05eed276e246bbf6dbd1e013918, type: 3}
+    contentSize: {x: 76, y: 74}
+    contentOffset: {x: 0, y: -3}
+  - id: VirusBoss
+    displayName: VIRUS
+    tab: 3
+    trap: 0
+    secret: 0
+    notes:
+    - "NO EST\xC1 VIVO DEL TODO."
+    - "INYECTA SU C\xD3DIGO Y"
+    - MULTIPLICA LO QUE TOCA.
+    data: {fileID: 11400000, guid: 6fe0c5992b3636f41a76c2b51cd1c2a2, type: 2}
+    damage: 1
+    speed: LENTA
+    portrait: {fileID: 21300000, guid: 1101f8e364f077446be6030fbad388ca, type: 3}
+    lockedPortrait: {fileID: 21300000, guid: 6a80a748c35c00c4db0d78c034b47eb0, type: 3}
+    frames:
+    - {fileID: -7139289742542373013, guid: eacce1719564d0647837ab7704553ae9, type: 3}
+    - {fileID: 6828895199805187270, guid: eacce1719564d0647837ab7704553ae9, type: 3}
+    - {fileID: -800203275643850790, guid: eacce1719564d0647837ab7704553ae9, type: 3}
+    - {fileID: -7173114565592982448, guid: eacce1719564d0647837ab7704553ae9, type: 3}
+    - {fileID: -7173114565592982448, guid: eacce1719564d0647837ab7704553ae9, type: 3}
+    contentSize: {x: 44, y: 44}
+    contentOffset: {x: 0, y: 0}
+  - id: AnomalocarisBoss
+    displayName: ANOMALOCARIS
+    tab: 3
+    trap: 0
+    secret: 0
+    notes:
+    - EL GRAN DEPREDADOR DEL
+    - "C\xC1MBRICO. ATRAPABA PRESAS"
+    - CON SUS DOS GARFIOS.
+    data: {fileID: 11400000, guid: 4f4c8d47903331c47baf3c2556eb87c2, type: 2}
+    damage: 2
+    speed: "MUY R\xC1PIDA"
+    portrait: {fileID: 21300000, guid: 3c87eb5ff2a0771478ba9265879c36c4, type: 3}
+    lockedPortrait: {fileID: 21300000, guid: b42311ba55a7d8b47b898b49ad87d524, type: 3}
+    frames:
+    - {fileID: 6154321484008276973, guid: 470bedaa3fb43704292bcf3044a5c388, type: 3}
+    - {fileID: 7708905708582598452, guid: 470bedaa3fb43704292bcf3044a5c388, type: 3}
+    - {fileID: 5220235526697135045, guid: 470bedaa3fb43704292bcf3044a5c388, type: 3}
+    - {fileID: -7120401742443288429, guid: 470bedaa3fb43704292bcf3044a5c388, type: 3}
+    - {fileID: -7120401742443288429, guid: 470bedaa3fb43704292bcf3044a5c388, type: 3}
+    contentSize: {x: 90, y: 42}
+    contentOffset: {x: -7, y: -1}
+  - id: EurypteridBoss
+    displayName: "EURIPT\xC9RIDO"
+    tab: 3
+    trap: 0
+    secret: 0
+    notes:
+    - "ESCORPI\xD3N MARINO. SUS"
+    - "PALAS LE HAC\xCDAN NADAR Y"
+    - SU COLA, DERRUMBAR ROCAS.
+    data: {fileID: 11400000, guid: 85a4579886125c547b8623b6dc31ee47, type: 2}
+    damage: 2
+    speed: MEDIA
+    portrait: {fileID: 21300000, guid: 6c6e5258b06cbde4097aab5a6e7388ec, type: 3}
+    lockedPortrait: {fileID: 21300000, guid: 1fbdd9e1a1e654e42baa08ad26991a27, type: 3}
+    frames:
+    - {fileID: 5955548964859826699, guid: c7d1340b7076bab41b1f950cdfe9afc0, type: 3}
+    - {fileID: 56033109894101469, guid: c7d1340b7076bab41b1f950cdfe9afc0, type: 3}
+    - {fileID: -1814577837304699362, guid: c7d1340b7076bab41b1f950cdfe9afc0, type: 3}
+    - {fileID: 5430277696269251811, guid: c7d1340b7076bab41b1f950cdfe9afc0, type: 3}
+    - {fileID: 5430277696269251811, guid: c7d1340b7076bab41b1f950cdfe9afc0, type: 3}
+    contentSize: {x: 90, y: 53}
+    contentOffset: {x: 1, y: -0.5}
+  - id: ArthropleuraBoss
+    displayName: ARTHROPLEURA
+    tab: 3
+    trap: 0
+    secret: 0
+    notes:
+    - "EL MAYOR ARTR\xD3PODO DE"
+    - "TIERRA: M\xC1S DE DOS METROS"
+    - DE PATAS Y CORAZA.
+    data: {fileID: 11400000, guid: db621779c4f2a1e468fc6910bd4b0443, type: 2}
+    damage: 2
+    speed: MEDIA
+    portrait: {fileID: 21300000, guid: 2e01ebc64a703cd4ebd995fbc19258ae, type: 3}
+    lockedPortrait: {fileID: 21300000, guid: 5c309a40129c53e4e91cd57c671b0c93, type: 3}
+    frames: []
+    contentSize: {x: 0, y: 0}
+    contentOffset: {x: 0, y: 0}
+  - id: MeganeuraBoss
+    displayName: MEGANEURA
+    tab: 3
+    trap: 0
+    secret: 0
+    notes:
+    - "LIB\xC9LULA GIGANTE: SETENTA"
+    - "CENT\xCDMETROS DE ALAS."
+    - LLAMA A LA TORMENTA.
+    data: {fileID: 11400000, guid: 2990984de3aebaa45ad1f4fbf65350f1, type: 2}
+    damage: 2
+    speed: "R\xC1PIDA"
+    portrait: {fileID: 21300000, guid: 3f3372335a8a8964a9cd81b956a3c9d8, type: 3}
+    lockedPortrait: {fileID: 21300000, guid: 13ef6440aba6a2442b0de81e5c469a1a, type: 3}
+    frames:
+    - {fileID: -748097264, guid: afcdd56a7c9109e46a16bb44b38faf5a, type: 3}
+    - {fileID: 1952197828, guid: afcdd56a7c9109e46a16bb44b38faf5a, type: 3}
+    - {fileID: -416468809, guid: afcdd56a7c9109e46a16bb44b38faf5a, type: 3}
+    - {fileID: 1450640896, guid: afcdd56a7c9109e46a16bb44b38faf5a, type: 3}
+    - {fileID: 1888089569, guid: afcdd56a7c9109e46a16bb44b38faf5a, type: 3}
+    - {fileID: -121905008, guid: afcdd56a7c9109e46a16bb44b38faf5a, type: 3}
+    contentSize: {x: 38, y: 34}
+    contentOffset: {x: 1, y: -2}
+  - id: MegarachneBoss
+    displayName: MEGARACHNE
+    tab: 3
+    trap: 0
+    secret: 0
+    notes:
+    - SU NOMBRE SIGNIFICA
+    - "GRAN ARA\xD1A, AUNQUE ERA UN"
+    - "EURIPT\xC9RIDO. AQU\xCD TEJE."
+    data: {fileID: 11400000, guid: c772729761135894388be9f1a15f9f62, type: 2}
+    damage: 1
+    speed: MEDIA
+    portrait: {fileID: 21300000, guid: 1fb515499b5c8984fbfc4b5d654bfbf5, type: 3}
+    lockedPortrait: {fileID: 21300000, guid: 53ca6741616dcb5479a8dfe185928d36, type: 3}
+    frames:
+    - {fileID: -1552678768, guid: e8c0c4b096ac4304389e46138e7396ac, type: 3}
+    contentSize: {x: 92, y: 77}
+    contentOffset: {x: 0, y: -0.5}
+  - id: LepidodendronBoss
+    displayName: LEPIDODENDRON
+    tab: 3
+    trap: 0
+    secret: 1
+    notes:
+    - "\xC1RBOL ESCAMOSO DEL"
+    - "CARBON\xCDFERO. SUS RESTOS"
+    - "SON HOY CARB\xD3N."
+    data: {fileID: 11400000, guid: e2b3f6bb161a497448444bf5aa979d03, type: 2}
+    damage: 2
+    speed: QUIETA
+    portrait: {fileID: 21300000, guid: 396a611ddaf9e0543b042736b2f3e202, type: 3}
+    lockedPortrait: {fileID: 21300000, guid: 4f1735c643ae45444b8179c9a7168f87, type: 3}
+    frames: []
+    contentSize: {x: 0, y: 0}
+    contentOffset: {x: 0, y: 0}

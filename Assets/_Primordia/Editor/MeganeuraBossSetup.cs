@@ -58,8 +58,7 @@ namespace Primordia.Editor
             var themes = floor3.BandThemes;
             var theme = themes.Length > 2 && themes[2] != null ? themes[2] : floor3.BossTheme;
             var entry = new FloorConfig.BossEntry(boss, template, theme, Vector2.zero);
-            floor3.ConfigureBosses(new[] { entry });
-            EditorUtility.SetDirty(floor3);
+            Floor3Setup.RegisterBosses(floor3);
             AssetDatabase.SaveAssets();
 
             if (CreateTestConfig(floor3, entry) == null)

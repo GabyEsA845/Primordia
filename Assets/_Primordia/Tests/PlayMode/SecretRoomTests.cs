@@ -73,6 +73,40 @@ namespace Primordia.Tests
         }
 
         [Test]
+        public void Layout_PicksOneOfTheTwoFinalBosses_WithItsOwnRoom()
+        {
+            CollectionAssert.AreEquivalent(new[] { "Boss_Meganeura", "Boss_Arthropleura" }, config.Bosses.Select(b => b.prefab.name));
+            var seen = new System.Collections.Generic.HashSet<string>();
+            for (int seed = 1; seed <= 40; seed++)
+            {
+                var generated = FloorLayoutGenerator.Generate(config, new System.Random(seed));
+                var boss = generated.Rooms.Single(room => room.Role == RoomRole.Boss);
+                Assert.AreSame(generated.BossChoice.room, boss.Template, $"semilla {seed}");
+                seen.Add(generated.BossChoice.prefab.name);
+                generated.ReleaseGenerated();
+            }
+            Assert.AreEqual(2, seen.Count, "Salen los dos jefes.");
+        }
+
+        [Test]
+        public void Build_PutsEachFinalBossInItsRoom()
+        {
+            var seen = new System.Collections.Generic.HashSet<System.Type>();
+            for (int seed = 1; seed <= 20 && seen.Count < 2; seed++)
+            {
+                Build(seed);
+                foreach (var boss in parent.GetComponentsInChildren<MonoBehaviour>(true).OfType<Primordia.Enemies.IBoss>())
+                    seen.Add(boss.GetType());
+                Object.DestroyImmediate(parent.gameObject);
+                layout.ReleaseGenerated();
+                parent = null;
+                layout = null;
+            }
+            CollectionAssert.AreEquivalent(
+                new[] { typeof(Primordia.Enemies.MeganeuraBoss), typeof(Primordia.Enemies.ArthropleuraBoss) }, seen);
+        }
+
+        [Test]
         public void Build_PutsTheRootWallOnTheAntechamber_AndBlocksItsDoor()
         {
             for (int seed = 1; seed <= 6; seed++)

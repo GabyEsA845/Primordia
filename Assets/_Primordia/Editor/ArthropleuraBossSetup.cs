@@ -15,7 +15,7 @@ namespace Primordia.Editor
 {
     /// <summary>
     /// Arthropleura, subpaso A: importa sus hojas, crea la sala de prueba (suelo de 60×33 u de la F2), sus datos y su prefab, y la escena
-    /// Test_BossArthropleura. No la conecta a Floor_3 (el enganche al piso va al final). Se puede volver a ejecutar.
+    /// Test_BossArthropleura, y la registra en Floor_3 como jefe final. Se puede volver a ejecutar.
     /// </summary>
     public static class ArthropleuraBossSetup
     {
@@ -40,6 +40,7 @@ namespace Primordia.Editor
             var room = CreateRoom();
             var prefab = CreatePrefab(art, floor3);
             ArtSetup.ImportBossIntro("Arthropleura");
+            Floor3Setup.RegisterBosses(floor3);
             var entry = new FloorConfig.BossEntry(prefab, room, floor3.BandThemes[1], Vector2.zero);
             CreateTestConfig(floor3, entry);
             AssetDatabase.SaveAssets();

@@ -1,4 +1,5 @@
 using System.Linq;
+using Primordia.Enemies;
 using Primordia.Rooms;
 using UnityEditor;
 using UnityEditor.SceneManagement;
@@ -59,6 +60,46 @@ namespace Primordia.Editor
             Debug.Log("Floor3Setup: piso 3 listo. Empieza en Test_Floor3; Av Pág / Re Pág saltan de tramo.");
         }
 
+        // Jefes finales del piso 3: prefab, sala y tramo cuyo tileset viste la sala (0 pantano, 1 bosque humeante, 2 tierra quemada).
+        static readonly (string prefab, string room, int band)[] FinalBosses =
+        {
+            ("Assets/_Primordia/Prefabs/Enemies/Boss_Meganeura.prefab", "Assets/_Primordia/Data/Rooms/Floor3/Room_Boss_Meganeura.asset", 2),
+            (ArthropleuraBossSetup.PrefabPath, ArthropleuraBossSetup.RoomPath, 1),
+        };
+
+        [MenuItem("Primordia/Floor 3/Registrar jefes del piso 3")]
+        static void RegisterBossesMenu()
+        {
+            var config = AssetDatabase.LoadAssetAtPath<FloorConfig>(Floor3ConfigPath);
+            if (config == null || !RegisterBosses(config))
+            {
+                Debug.LogError("Floor3Setup: falta Floor_3 o no hay ningún jefe del piso 3 creado (Primordia > Boss).");
+                return;
+            }
+            AssetDatabase.SaveAssets();
+            Debug.Log($"Floor3Setup: {config.Bosses.Length} jefes finales en Floor_3 (sale uno al azar).");
+        }
+
+        /// <summary>Pone en el piso los jefes finales ya creados, cada uno con su sala. False si no hay ninguno (no toca nada).</summary>
+        internal static bool RegisterBosses(FloorConfig config)
+        {
+            var entries = new System.Collections.Generic.List<FloorConfig.BossEntry>();
+            foreach (var (prefabPath, roomPath, band) in FinalBosses)
+            {
+                var prefab = AssetDatabase.LoadAssetAtPath<Enemy>(prefabPath);
+                var room = AssetDatabase.LoadAssetAtPath<RoomTemplate>(roomPath);
+                if (prefab == null || room == null)
+                    continue;
+                var theme = config.BandThemes.Length > band && config.BandThemes[band] != null ? config.BandThemes[band] : config.BossTheme;
+                entries.Add(new FloorConfig.BossEntry(prefab, room, theme, Vector2.zero));
+            }
+            if (entries.Count == 0)
+                return false;
+            config.ConfigureBosses(entries.ToArray());
+            EditorUtility.SetDirty(config);
+            return true;
+        }
+
         /// <summary>Configuración del piso 3. Si ya existe, se conservan sus números (se pueden ajustar a mano en el asset).</summary>
         static void CreateConfig(FloorConfig floor2, RoomTheme[] bands)
         {
@@ -94,12 +135,17 @@ namespace Primordia.Editor
             config.ConfigureFloor(3, config.NextFloor);
             config.ConfigureArt(bands[0], floor2.BossTheme, floor2.ExitSprite);
             config.ConfigureBands(bands);
-            config.ConfigureBosses(floor2.Bosses);
+            // Los jefes del piso 3 no se pisan al repetir el menú: se vuelven a registrar los que ya estén creados. Los del
+            // piso 2 solo hacen de provisionales mientras no exista ninguno.
+            if (!RegisterBosses(config) && config.Bosses.Length == 0)
+                config.ConfigureBosses(floor2.Bosses);
             config.ConfigureBiomass(floor2.SmallBiomass, floor2.BigBiomass, floor2.MinimumBiomassPerRoom);
             config.ConfigureShop(floor2.ShopTemplate, floor2.ShopPrefab);
             // Reserva propia del piso 3 (solo mutaciones del piso 3; las Bocas, como mejora): recompensas, tienda y sala de cambio.
             config.ConfigureRewards(Floor3MutationsSetup.EnsurePool(), isNew ? floor2.RewardAfter : config.RewardAfter);
-            config.ConfigureTransition(null, null, null, null);
+            // La sala de paso la monta su propio menú: solo se deja vacía al crear el piso.
+            if (isNew)
+                config.ConfigureTransition(null, null, null, null);
             config.ConfigureFixedRooms(floor2.ExchangeRoom, floor2.AntechamberVertical, floor2.AntechamberHorizontal);
             config.ConfigurePieces(floor2.Pieces);
             config.ConfigureClams(floor2.Clams);

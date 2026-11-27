@@ -78,7 +78,7 @@ namespace Primordia.Rooms
                 IsActive = false;
                 yield return Loop(idle, IdleFrameSeconds, IdleSeconds);
                 IsActive = true;
-                Sfx.Play(Sounds.FumaroleWarn);
+                NearbySound.Play(Sounds.FumaroleWarn, transform.position);
                 yield return Loop(warn, WarnFrameSeconds, WarnSeconds);
                 yield return Blast();
             }
@@ -100,7 +100,7 @@ namespace Primordia.Rooms
 
         IEnumerator Blast()
         {
-            Sfx.Play(Sounds.FumaroleErupt);
+            NearbySound.Play(Sounds.FumaroleErupt, transform.position);
             var hurt = new HashSet<Health>();
             for (int i = 0; i < blast.Length; i++)
             {

@@ -43,3 +43,4 @@ cuando la usuaria lo confirme).
 
 **How to apply:** usar la skill [[primordia-audio-skill]]; continuar por la tanda siguiente; ampliar el README; al
 acabar todo, MULTIMEDIA.md, `references/pisos.md` y el documento del piso ([[primordia-floor-docs]]).
+**2026-11-27:** fumarolas y burbuja de metano sonaban desde todo el piso (se oia como agua en bucle); ahora usan `Audio/NearbySound` (pleno hasta 4 u, silencio desde 12 u). Para cualquier efecto de escenario periodico nuevo, usar NearbySound o NearbyLoop, no Sfx.Play directo.

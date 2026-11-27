@@ -22,6 +22,8 @@ namespace Primordia.Rooms
         const int FrontOrder = 40;
         // Los pies del jugador respecto al centro de su cuerpo.
         const float FootOffset = -0.3f;
+        // Lo que sigue el hueco por encima del arco (la fila de paso).
+        const float PassageHeight = 2f;
         static readonly Color Purple = new(0.75f, 0.45f, 1f);
 
         [SerializeField] SpriteRenderer body;
@@ -39,6 +41,10 @@ namespace Primordia.Rooms
 
         /// <summary>True mientras el jugador cruza el hueco del muro abierto (para las pruebas).</summary>
         public bool Crossing { get; private set; }
+
+        /// <summary>Centro del hueco de la puerta que cierra y borde de abajo de su arco.</summary>
+        internal Vector2 DoorCenter => doorCenter;
+        internal float ArchBottom => archBottom;
 
         /// <summary>Se dispara cuando el muro deja de bloquear.</summary>
         public event System.Action Opened;
@@ -139,7 +145,9 @@ namespace Primordia.Rooms
                 player = found.transform;
             }
             var feet = (Vector2)player.position + Vector2.up * FootOffset;
-            Crossing = IsOpen && !busy && Mathf.Abs(feet.x - doorCenter.x) < halfWidth && feet.y >= archBottom;
+            // Con límite por arriba: más allá del hueco ya no se está cruzando (la arena del jefe secreto queda encima del mapa).
+            float top = 2f * doorCenter.y - archBottom + PassageHeight;
+            Crossing = IsOpen && !busy && Mathf.Abs(feet.x - doorCenter.x) < halfWidth && feet.y >= archBottom && feet.y <= top;
             front.enabled = Crossing;
         }
 

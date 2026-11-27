@@ -54,6 +54,9 @@ namespace Primordia.Rooms
         public bool IsActive { get; private set; }
         public Vector2 Position => transform.position;
 
+        /// <summary>El dibujo en reposo: lo usa también la salida de la arena del jefe secreto.</summary>
+        internal Sprite[] IdleFrames => idle;
+
         internal void Configure(SpriteRenderer newBody, Sprite[] newDormant, Sprite[] newWake, Sprite[] newIdle, Sprite[] newWarp)
         {
             body = newBody;

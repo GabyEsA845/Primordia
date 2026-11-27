@@ -8,13 +8,13 @@ namespace Primordia.Rooms
     /// <summary>
     /// Atajos de la escena de prueba de la sala secreta (Test_Floor3Secret). 1 da un corazón morado, 2 lo rompe (aparecen las tres
     /// flores), 3 da la semilla morada directamente, 4 lleva delante del muro de raíces y 5 junto a la siguiente flor (aparecen al
-    /// romper el corazón). Para recorrer el piso sin pelear: F7 invulnerable y Mayús+F3 vacía la sala (DebugCheats). Solo para probar.
+    /// romper el corazón), y 6 lleva al Nido de la Megarachne. Para recorrer el piso sin pelear: F7 invulnerable y Mayús+F3 vacía la sala (DebugCheats). Solo para probar.
     /// </summary>
     public class SecretTestKeys : MonoBehaviour
     {
         Health health;
         int flowerIndex;
-        string notice = "1 corazón · 2 romper corazón · 3 semilla · 4 ir al muro · 5 ir a una flor";
+        string notice = "1 corazón · 2 romper corazón · 3 semilla · 4 ir al muro · 5 ir a una flor · 6 ir al Nido";
         float noticeUntil = float.MaxValue;
 
         void Update()
@@ -56,6 +56,8 @@ namespace Primordia.Rooms
                     Say("Delante del muro de raíces");
                 }
             }
+            else if (keyboard.digit6Key.wasPressedThisFrame || keyboard.numpad6Key.wasPressedThisFrame)
+                GoToNest();
             else if (keyboard.digit5Key.wasPressedThisFrame || keyboard.numpad5Key.wasPressedThisFrame)
             {
                 var flowers = FindObjectsByType<PurpleFlower>(FindObjectsInactive.Include)
@@ -70,6 +72,21 @@ namespace Primordia.Rooms
                     Say($"Junto a una flor ({(flower.gameObject.activeInHierarchy ? "visible" : "aún oculta: pulsa 2")})");
                 }
             }
+        }
+
+        // Desde el centro del Nido, hacia abajo: dentro de la sala (se cierra y empieza el combate) y lejos del árbol.
+        const float NestApproach = 6f;
+
+        void GoToNest()
+        {
+            var nest = FindObjectsByType<Room>().FirstOrDefault(room => room.name.Contains("_Lair_Boss_Megarachne"));
+            if (nest == null)
+            {
+                Say("En este piso no hay Nido");
+                return;
+            }
+            MoveTo((Vector2)nest.transform.position + Vector2.down * NestApproach);
+            Say("En el Nido");
         }
 
         void MoveTo(Vector2 position)

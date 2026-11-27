@@ -8,7 +8,10 @@ using UnityEngine.TestTools;
 
 namespace Primordia.Tests
 {
-    /// <summary>Sala secreta del piso 3: antesala en el último tercio con su cámara, muro de raíces, flores moradas y semilla.</summary>
+    /// <summary>
+    /// Sala secreta y jefes opcionales del piso 3: antesala en el Bosque humeante, muro de raíces, flores moradas y semilla, paso a la
+    /// arena del jefe secreto y el Nido de la Megarachne.
+    /// </summary>
     public class SecretRoomTests
     {
         const string ConfigPath = "Assets/_Primordia/Data/Rooms/Floor_3.asset";
@@ -49,27 +52,109 @@ namespace Primordia.Tests
         }
 
         [Test]
-        public void Layout_AlwaysHasTheAntechamberInTheLastThird_WithItsChamberAboveIt()
+        public void Layout_AlwaysHasTheAntechamberInTheSmokeBand_WithTheSecretArenaApart()
         {
             int found = 0;
             for (int seed = 1; seed <= 30; seed++)
             {
                 var generated = FloorLayoutGenerator.Generate(config, new System.Random(seed));
-                var antechamber = generated.Rooms.FirstOrDefault(room => room.Special is { secretChamber: not null });
+                var antechamber = generated.Rooms.FirstOrDefault(room => room.Special is { secretBoss: not null });
                 if (antechamber != null)
                 {
                     found++;
-                    var chamber = generated.Rooms.Single(room => room.Special is { secretReward: true });
-                    Assert.AreEqual(antechamber.Cell + Vector2Int.up, chamber.Cell, $"semilla {seed}: la cámara va justo encima.");
-                    Assert.IsTrue(generated.Links.Contains((antechamber, chamber)), $"semilla {seed}: antesala y cámara enlazadas.");
-                    // La puerta de arriba de la antesala es solo la de la cámara.
-                    Assert.AreEqual(1, antechamber.Doors.Count(d => d == Vector2Int.up), $"semilla {seed}: una sola puerta de arriba.");
-                    var combat = generated.Rooms.Where(room => room.Role == RoomRole.Combat).Max(room => room.Depth);
-                    Assert.Greater(antechamber.Depth * 3, combat * 2, $"semilla {seed}: último tercio.");
+                    var arena = generated.Detached.Single();
+                    Assert.AreEqual("Boss_Lepidodendron", arena.Special.Value.lairBoss.name, $"semilla {seed}");
+                    Assert.IsFalse(generated.Rooms.Contains(arena), $"semilla {seed}: la arena va aparte de la rejilla.");
+                    // La puerta de arriba de la antesala queda para el muro de raíces.
+                    Assert.IsFalse(antechamber.Doors.Contains(Vector2Int.up), $"semilla {seed}: sin pasillo por arriba.");
+                    Assert.AreEqual(1, SmokeBandOf(generated, antechamber), $"semilla {seed}: Bosque humeante.");
                 }
                 generated.ReleaseGenerated();
             }
             Assert.GreaterOrEqual(found, 28, "Sale en (casi) todas las partidas.");
+        }
+
+        int SmokeBandOf(FloorLayout generated, LayoutRoom room)
+        {
+            int deepest = generated.Rooms.Where(other => other.Role == RoomRole.Combat).Max(other => other.Depth);
+            return FloorBuilder.BandOf(room.Depth, deepest, config.BandThemes.Length);
+        }
+
+        [Test]
+        public void Layout_HasTheNestInTheSmokeBand_AboutOneInThreeTimes()
+        {
+            const int Runs = 300;
+            int found = 0;
+            for (int seed = 1; seed <= Runs; seed++)
+            {
+                var generated = FloorLayoutGenerator.Generate(config, new System.Random(seed));
+                var nests = generated.Rooms.Where(room => room.Role == RoomRole.Lair).ToList();
+                Assert.LessOrEqual(nests.Count, 1, $"semilla {seed}");
+                if (nests.Count == 1)
+                {
+                    found++;
+                    Assert.AreEqual("Boss_Megarachne", nests[0].Special.Value.lairBoss.name, $"semilla {seed}");
+                    Assert.AreEqual(1, SmokeBandOf(generated, nests[0]), $"semilla {seed}: Bosque humeante.");
+                    Assert.AreEqual(1, nests[0].Doors.Count, $"semilla {seed}: lateral sin salida.");
+                    Assert.IsFalse(nests[0].Reward, "Su recompensa es la del minijefe.");
+                }
+                generated.ReleaseGenerated();
+            }
+            Assert.That(found / (float)Runs, Is.InRange(0.23f, 0.43f));
+        }
+
+        [Test]
+        public void Build_PutsTheMegarachneAloneInItsNest()
+        {
+            for (int seed = 1; seed <= 40; seed++)
+            {
+                Build(seed);
+                if (layout.Rooms.All(room => room.Role != RoomRole.Lair))
+                {
+                    Object.DestroyImmediate(parent.gameObject);
+                    layout.ReleaseGenerated();
+                    parent = null;
+                    layout = null;
+                    continue;
+                }
+                var boss = parent.GetComponentInChildren<Primordia.Enemies.MegarachneBoss>(true);
+                Assert.IsNotNull(boss);
+                var nest = boss.transform.parent.parent;
+                Assert.AreEqual(1, nest.GetComponentsInChildren<Primordia.Enemies.Enemy>(true).Length, "Sin enemigos sueltos.");
+                Assert.AreEqual(3, nest.GetComponentsInChildren<MethaneSac>(true).Length, "Solo sus tres odres, sin los del escenario.");
+                Assert.IsNull(nest.GetComponent<RoomHearts>());
+                return;
+            }
+            Assert.Fail("Ninguna semilla sacó el Nido.");
+        }
+
+        [UnityTest]
+        public IEnumerator SecretPassage_CrossingTheOpenWall_TakesThePlayerToTheArena_AndBack()
+        {
+            Build(3);
+            var wall = parent.GetComponentInChildren<RootWall>(true);
+            var passage = parent.GetComponentInChildren<SecretPassage>(true);
+            Assert.IsFalse(passage.Exit.gameObject.activeSelf, "La salida aparece con el jefe vencido.");
+            var health = NewPlayer();
+            health.AddPurpleHeart();
+            wall.Interact(player);
+            yield return new WaitForSeconds(3f);
+
+            player.transform.position = passage.ReturnPoint + Vector2.up * 3.6f;
+            yield return new WaitForSeconds(1.5f);
+            Assert.Less(Vector2.Distance(player.transform.position, passage.ArenaEntry), 0.5f, "Al principio del pasillo.");
+
+            // La arena está encima del mapa: andar por ella en la misma columna que el muro no vuelve a cruzarlo.
+            var above = new Vector3(wall.transform.position.x, passage.ArenaEntry.y, 0f);
+            player.transform.position = above;
+            yield return new WaitForSeconds(1.5f);
+            Assert.IsFalse(wall.Crossing);
+            Assert.Less(Vector2.Distance(player.transform.position, above), 0.1f, "No se repite la transición.");
+
+            passage.Return(player);
+            yield return new WaitForSeconds(1.5f);
+            Assert.Less(Vector2.Distance(player.transform.position, passage.ReturnPoint), 0.5f, "De vuelta bajo el muro.");
+            Assert.IsFalse(passage.Travelling, "No vuelve a cruzar solo.");
         }
 
         [Test]
@@ -95,7 +180,9 @@ namespace Primordia.Tests
             for (int seed = 1; seed <= 20 && seen.Count < 2; seed++)
             {
                 Build(seed);
-                foreach (var boss in parent.GetComponentsInChildren<MonoBehaviour>(true).OfType<Primordia.Enemies.IBoss>())
+                // Solo la sala del jefe final: el Nido y la arena secreta tienen el suyo.
+                var final = parent.GetComponentsInChildren<Room>(true).Single(room => room.name == "Room_Boss");
+                foreach (var boss in final.GetComponentsInChildren<MonoBehaviour>(true).OfType<Primordia.Enemies.IBoss>())
                     seen.Add(boss.GetType());
                 Object.DestroyImmediate(parent.gameObject);
                 layout.ReleaseGenerated();
@@ -116,7 +203,8 @@ namespace Primordia.Tests
                 Assert.IsNotNull(wall, $"semilla {seed}: falta el muro de raíces.");
                 Assert.IsFalse(wall.IsOpen);
                 Assert.IsTrue(wall.GetComponent<Collider2D>().enabled, "Cierra el paso.");
-                Assert.IsNotNull(parent.GetComponentInChildren<SecretReward>(true), $"semilla {seed}: falta la recompensa de la cámara.");
+                Assert.IsNotNull(parent.GetComponentInChildren<SecretPassage>(true), $"semilla {seed}: falta el paso a la arena.");
+                Assert.IsNotNull(parent.GetComponentInChildren<Primordia.Enemies.LepidodendronBoss>(true), $"semilla {seed}: falta el jefe.");
                 Assert.AreEqual(PurpleTrail.FlowerCount, parent.GetComponentsInChildren<PurpleFlower>(true).Length, $"semilla {seed}: tres flores.");
                 Object.DestroyImmediate(parent.gameObject);
                 layout.ReleaseGenerated();

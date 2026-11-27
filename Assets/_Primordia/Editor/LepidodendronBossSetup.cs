@@ -28,12 +28,12 @@ namespace Primordia.Editor
             if (!Application.isBatchMode && !EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo())
                 return;
             var floor3 = AssetDatabase.LoadAssetAtPath<FloorConfig>(Floor3Setup.Floor3ConfigPath);
-            if (floor3 == null || floor3.BandThemes.Length < 3 || floor3.BandThemes[2] == null)
-                throw new InvalidOperationException("Falta Floor_3 o su tema de Tierra quemada.");
+            if (floor3 == null || floor3.BandThemes.Length < 3 || floor3.BandThemes[1] == null)
+                throw new InvalidOperationException("Falta Floor_3 o su tema de Bosque humeante.");
             var art = ArtSetup.ImportLepidodendronSheets();
             var room = CreateRoom();
             var prefab = CreatePrefab(art, floor3);
-            var entry = new FloorConfig.BossEntry(prefab, room, floor3.BandThemes[2], Vector2.zero);
+            var entry = new FloorConfig.BossEntry(prefab, room, floor3.BandThemes[1], Vector2.zero);
             CreateTestConfig(floor3, entry);
             AssetDatabase.SaveAssets();
             CreateTestScene();

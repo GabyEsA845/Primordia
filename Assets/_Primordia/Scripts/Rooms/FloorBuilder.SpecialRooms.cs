@@ -36,7 +36,7 @@ namespace Primordia.Rooms
             bool cone = special is { coneChest: true };
             var chests = cone ? template.CellsOf(RoomTemplate.Mark.Chest) : new List<Vector2Int>();
             bool smoke = special is { smoke: true };
-            if (coal.Count == 0 && embers.Count == 0 && vents.Count == 0 && piles.Count == 0 && mudPiles.Count == 0 && chests.Count == 0 && bubblers.Count == 0 && plantCells.Count == 0 && logCells.Count == 0 && !fireFront && special is not { secretReward: true } && !smoke)
+            if (coal.Count == 0 && embers.Count == 0 && vents.Count == 0 && piles.Count == 0 && mudPiles.Count == 0 && chests.Count == 0 && bubblers.Count == 0 && plantCells.Count == 0 && logCells.Count == 0 && !fireFront && !smoke)
                 return;
 
             var root = new GameObject("SpecialRoom").transform;
@@ -65,10 +65,6 @@ namespace Primordia.Rooms
 
             if (logCells.Count > 0)
                 BuildFallenLog(root, placed, art, logCells, presence);
-
-            // Cámara de la sala secreta: la recompensa (provisional) en el centro.
-            if (special is { secretReward: true })
-                SecretReward.Create(root, placed.FloorCenter, config.Pieces.heartCoralIdle, config.Pieces.keyPrompt);
 
             if (fireFront)
             {
@@ -166,6 +162,22 @@ namespace Primordia.Rooms
             int maxX = arch.Max(c => c.x), maxY = arch.Max(c => c.y);
             var size = new Vector2(maxX - minX + 1, maxY - minY + 1);
             return RootWall.Create(parent, art, new Vector2(minX, minY) + size / 2f, minY - 0.5f, size, config.Pieces.keyPrompt, 2.4f);
+        }
+
+        // Punto de entrada a la arena (desde su borde oeste) y salida tras el combate (junto al tocón, desde su borde sudoeste).
+        const float ArenaEntryX = 2.5f;
+        static readonly Vector2 ArenaExit = new(130f, 5f);
+
+        /// <summary>Une el muro de raíces de la antesala con la arena del jefe secreto.</summary>
+        static void BuildSecretPassage(Transform parent, Room arena, PlacedRoom placed, FloorConfig config)
+        {
+            var wall = parent.GetComponentInChildren<RootWall>(true);
+            if (wall == null)
+                return;
+            var floor = placed.Template.FloorBounds();
+            var entry = new Vector2(placed.Origin.x + floor.xMin + ArenaEntryX, placed.FloorCenter.y);
+            var exitFrames = config.TeleporterPrefab != null ? config.TeleporterPrefab.IdleFrames : null;
+            SecretPassage.Create(parent, wall, arena, entry, placed.Origin + ArenaExit, exitFrames, config.Pieces.keyPrompt);
         }
 
         /// <summary>

@@ -79,6 +79,9 @@ namespace Primordia.Rooms
         public class BuiltFloor
         {
             public readonly List<Room> Rooms = new();
+
+            /// <summary>Salas aparte del mapa (la arena del jefe secreto).</summary>
+            public readonly List<Room> DetachedRooms = new();
             public Vector2 StartPosition;
             public int MissingCells;
 
@@ -134,6 +137,7 @@ namespace Primordia.Rooms
                 config.NextFloorTheme != null ? config.NextFloorTheme : config.Theme
             }.Concat(config.BandThemes.Select(band => band != null ? band : config.Theme)).ToArray();
             var placed = Place(layout, config, random);
+            PlaceDetached(layout, placed);
             AssignThemes(placed, config);
             themes = AddSpecialThemes(placed, themes);
             var byLayout = placed.ToDictionary(room => room.Layout);
@@ -162,6 +166,9 @@ namespace Primordia.Rooms
                     Widen(map, cells, direction, config.CorridorWidth, roomRects, widened, noDecoration, random);
                 corridorCells.Add((from, to, cells));
             }
+            // La puerta de arriba de la antesala secreta no lleva pasillo: la cierra el muro de raíces y detrás se funde a la arena.
+            foreach (var room in placed.Where(IsSecretAntechamber).ToList())
+                OpenDoor(map, room, Vector2Int.up);
             if (widened.Count > 0)
                 RepairCorridors(map, widened, corridorCells.Select(corridor => corridor.cells).ToList(), noDecoration);
 
@@ -210,6 +217,13 @@ namespace Primordia.Rooms
                 var builtRoom = BuildRoom(parent, room, themes[room.Theme], config, boss, random, glows, brushes, map);
                 builtRoom.SetDepthBand(room.BaseTheme >= FirstBandTheme ? room.BaseTheme - FirstBandTheme : -1);
                 builtRoom.SetSignKey(room.Layout.Encounter?.signKey);
+                // Las salas aparte no salen en el mapa.
+                if (layout.Detached.Contains(room.Layout))
+                {
+                    built.DetachedRooms.Add(builtRoom);
+                    BuildSecretPassage(parent, builtRoom, room, config);
+                    continue;
+                }
                 built.Rooms.Add(builtRoom);
                 var mapRoom = new MapRoom
                 {
@@ -375,6 +389,25 @@ namespace Primordia.Rooms
                     if (along + (noise - 0.5f) * 0.8f <= 0.4f)
                         map.SetTheme(cell, previousTheme);
                 }
+            }
+        }
+
+        // Hueco entre la parte de arriba del mapa y las salas aparte: nada de ellas se ve desde el piso.
+        const int DetachedGap = 24;
+
+        static bool IsSecretAntechamber(PlacedRoom room) => room.Layout.Special is { secretBoss: not null };
+
+        /// <summary>Coloca las salas aparte (la arena del jefe secreto) por encima de todo el mapa, una sobre otra.</summary>
+        static void PlaceDetached(FloorLayout layout, List<PlacedRoom> placed)
+        {
+            if (layout.Detached.Count == 0)
+                return;
+            int left = placed.Min(room => room.Rect.xMin);
+            int top = placed.Max(room => room.Rect.yMax);
+            foreach (var room in layout.Detached)
+            {
+                placed.Add(new PlacedRoom { Layout = room, Origin = new Vector2Int(left, top + DetachedGap) });
+                top += DetachedGap + room.Template.Height;
             }
         }
 
@@ -829,7 +862,7 @@ namespace Primordia.Rooms
             {
                 var doorCells = direction == Vector2Int.up ? placed.ArchCells[direction] : cells;
                 // La puerta de arriba de la antesala secreta la cierra el muro de raíces, que sustituye al arco y a su marco.
-                bool rootWall = direction == Vector2Int.up && placed.Layout.Special is { secretChamber: not null };
+                bool rootWall = direction == Vector2Int.up && IsSecretAntechamber(placed);
                 doors.Add(BuildDoor(roomObject.transform, theme, direction, doorCells, rootWall));
                 if (rootWall)
                     BuildRootWall(roomObject.transform, placed, config, doorCells);
@@ -1491,6 +1524,15 @@ namespace Primordia.Rooms
                 case RoomRole.Exchange:
                 case RoomRole.Antechamber:
                 case RoomRole.Special:
+                    return;
+
+                case RoomRole.Lair:
+                    if (placed.Layout.Special is { lairBoss: not null } lair)
+                    {
+                        var miniboss = Object.Instantiate(lair.lairBoss, placed.FloorCenter, Quaternion.identity, enemiesRoot);
+                        if (miniboss.TryGetComponent<IBoss>(out var lairAI))
+                            lairAI.SetArena(enemiesRoot.parent, new Vector2(placed.Template.Width, placed.Template.Height));
+                    }
                     return;
 
                 case RoomRole.Boss:

@@ -7,8 +7,8 @@ using UnityEngine;
 namespace Primordia.Editor
 {
     /// <summary>
-    /// Escena de prueba de la sala secreta del piso 3 (paso 6, bloque 5): un piso corto con la antesala y su muro de raíces sí o sí,
-    /// con atajos para dar el corazón morado, romperlo, dar la semilla o ir al muro y a las flores (<see cref="SecretTestKeys"/>).
+    /// Escena de prueba de la sala secreta y los jefes opcionales del piso 3: un piso corto con la antesala (muro de raíces y jefe
+    /// secreto) y el Nido sí o sí, con atajos para dar el corazón morado, romperlo, dar la semilla o ir al muro y a las flores (<see cref="SecretTestKeys"/>).
     /// </summary>
     public static class Floor3SecretSceneSetup
     {
@@ -23,10 +23,10 @@ namespace Primordia.Editor
 
             var floor1 = AssetDatabase.LoadAssetAtPath<FloorConfig>(FloorSetup.FloorConfigPath);
             var floor3 = AssetDatabase.LoadAssetAtPath<FloorConfig>(Floor3Setup.Floor3ConfigPath);
-            var secret = floor3 != null ? floor3.SpecialRooms.Where(room => room.secretChamber != null).ToArray() : null;
+            var secret = floor3 != null ? floor3.SpecialRooms.Where(room => room.secretBoss != null).ToArray() : null;
             if (floor1 == null || secret == null || secret.Length == 0)
             {
-                Debug.LogError("Floor3SecretSceneSetup: faltan Floor_1/Floor_3 o la antesala secreta (Primordia > Floor 3 > Crear salas especiales).");
+                Debug.LogError("Floor3SecretSceneSetup: faltan Floor_1/Floor_3 o la antesala secreta (Primordia > Floor 3 > Enganchar jefes opcionales).");
                 return;
             }
 
@@ -37,10 +37,16 @@ namespace Primordia.Editor
                 AssetDatabase.CreateAsset(config, ConfigPath);
             }
             EditorUtility.CopySerialized(floor3, config);
-            secret[0].always = true;
-            config.ConfigureRooms(floor3.StartRoom, floor3.BossRoom, floor3.CombatRooms, floor3.SideRooms, new Vector2Int(7, 7), new Vector2Int(2, 2));
+            var specials = secret.Take(1).Concat(floor3.SpecialRooms.Where(room => room.chance > 0f && room.lairBoss != null))
+                .Select(room =>
+                {
+                    room.always = true;
+                    return room;
+                }).ToArray();
+            // Diez de combate: el Bosque humeante tiene así salas de sobra para colgar las dos.
+            config.ConfigureRooms(floor3.StartRoom, floor3.BossRoom, floor3.CombatRooms, floor3.SideRooms, new Vector2Int(10, 10), new Vector2Int(2, 2));
             config.ConfigureShortcuts(Vector2Int.zero);
-            config.ConfigureSpecialRooms(new[] { secret[0] }, new Vector2Int(1, 1));
+            config.ConfigureSpecialRooms(specials, new Vector2Int(specials.Length, specials.Length));
             config.ConfigureShop(null, null);
             EditorUtility.SetDirty(config);
             AssetDatabase.SaveAssets();

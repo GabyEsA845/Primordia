@@ -22,7 +22,9 @@ namespace Primordia.Rooms
         /// <summary>Antesala del jefe: túnel sin enemigos justo antes de su sala, en línea recta con ella.</summary>
         Antechamber,
         /// <summary>Sala especial del camino que no es de combate (el Parkour).</summary>
-        Special
+        Special,
+        /// <summary>Guarida de un jefe opcional (el Nido; la arena del jefe secreto): solo él, sin enemigos sueltos ni escenario.</summary>
+        Lair
     }
 
     /// <summary>Una sala del plano: su celda en la rejilla, su forma y hacia dónde tiene puertas.</summary>
@@ -78,6 +80,7 @@ namespace Primordia.Rooms
             RoomRole.Transition => "Room_Transition",
             RoomRole.Exchange => "Room_Exchange",
             RoomRole.Antechamber => "Room_Antechamber",
+            RoomRole.Lair => $"Room_{Depth}_Lair_{SpecialName}",
             RoomRole.Special => $"Room_{Depth}_{SpecialName}",
             _ when Special.HasValue => $"Room_{Depth}_{SpecialName}",
             _ => $"Room_{Depth}"
@@ -91,6 +94,9 @@ namespace Primordia.Rooms
     public class FloorLayout
     {
         public readonly List<LayoutRoom> Rooms = new();
+
+        /// <summary>Salas aparte de la rejilla y sin pasillos (la arena del jefe secreto): se llega a ellas con un fundido.</summary>
+        public readonly List<LayoutRoom> Detached = new();
         public readonly List<(LayoutRoom from, LayoutRoom to)> Links = new();
         readonly List<Vector2Int> linkDirections = new();
         readonly HashSet<int> shortcutLinks = new();
@@ -252,13 +258,16 @@ namespace Primordia.Rooms
             var always = all.Where(room => room.always).ToList();
             var candidates = all.Where(room => room.clamRoom && !room.always).ToList();
             var clamRoom = candidates.Count > 0 ? candidates[random.Next(candidates.Count)] : (FloorConfig.SpecialRoom?)null;
-            var pool = all.Where(room => !room.always && (!clamRoom.HasValue || room.template != clamRoom.Value.template)).ToList();
+            var pool = all.Where(room => !room.always && room.chance <= 0f
+                && (!clamRoom.HasValue || room.template != clamRoom.Value.template)).ToList();
 
             int total = Mathf.Max(always.Count, RandomRange(random, config.SpecialRoomCount));
             var others = pool.OrderBy(_ => random.Next()).Take(total - always.Count);
             var picked = always.Concat(others).ToList();
             if (clamRoom.HasValue)
                 picked.Add(clamRoom.Value);
+            // Las de probabilidad propia (el Nido), aparte; sin ninguna en el piso, no se gasta azar.
+            picked.AddRange(all.Where(room => !room.always && room.chance > 0f && random.NextDouble() < room.chance).ToList());
             return picked;
         }
 
@@ -483,8 +492,6 @@ namespace Primordia.Rooms
                 // Abismo, el Corazón morado podría quedarse sin sitio.
                 var parents = Enumerable.Range(0, slots.Count).Where(i => slots[i].Role == RoomRole.Combat)
                     .Where(i => slots[i].Depth >= FirstSpecialDepth && slots[i].Depth < combatCount && !taken.Contains(i))
-                    // La antesala de la sala secreta, en el último tercio del camino.
-                    .Where(i => special.secretChamber == null || slots[i].Depth * 3 > combatCount * 2)
                     .Where(i => special.band < 0 || bands == 0 || FloorBuilder.BandOf(slots[i].Depth, combatCount, bands) == special.band)
                     .OrderBy(_ => random.Next()).ToList();
 
@@ -493,15 +500,13 @@ namespace Primordia.Rooms
                 {
                     var cell = path[slots[parent].PathIndex];
                     var free = Directions.Select(d => cell + d).Where(c => !used.Contains(c)).ToList();
-                    // La antesala necesita libre la casilla de arriba (su cámara) y su puerta de arriba para ella: no puede colgar desde arriba.
-                    if (special.secretChamber != null)
-                        free = free.Where(c => c != cell + Vector2Int.down && !used.Contains(c + Vector2Int.up)).ToList();
+                    // La antesala secreta guarda su puerta de arriba para el muro de raíces: no puede colgar desde arriba.
+                    if (special.secretBoss != null)
+                        free = free.Where(c => c != cell + Vector2Int.down).ToList();
                     if (free.Count == 0)
                         continue;
                     var chosen = free[random.Next(free.Count)];
                     used.Add(chosen);
-                    if (special.secretChamber != null)
-                        used.Add(chosen + Vector2Int.up);
                     taken.Add(parent);
                     result.Add((special, parent, chosen));
                     placed = true;
@@ -612,21 +617,25 @@ namespace Primordia.Rooms
             foreach (var (special, parent, cell) in specialSides)
             {
                 // Su premio es lo que tiene dentro (el corazón morado, la almeja), no una elección de mutación.
-                var side = new LayoutRoom { Cell = cell, Role = RoomRole.Side, Depth = bySlot[parent].Depth, Special = special, Template = special.template };
+                var side = new LayoutRoom
+                {
+                    Cell = cell, Role = special.lairBoss != null ? RoomRole.Lair : RoomRole.Side, Depth = bySlot[parent].Depth,
+                    Special = special, Template = special.template,
+                };
                 layout.Rooms.Add(side);
                 layout.Link(bySlot[parent], side);
 
-                // Detrás del muro de raíces de la antesala: la cámara de la sala secreta, una casilla más arriba.
-                if (special.secretChamber != null)
+                // Detrás del muro de raíces de la antesala: la arena del jefe secreto, fuera de la rejilla.
+                if (special.secretBoss != null && special.secretArena != null)
                 {
-                    var chamber = new LayoutRoom
+                    layout.Detached.Add(new LayoutRoom
                     {
-                        Cell = cell + Vector2Int.up, Role = RoomRole.Side, Depth = side.Depth,
-                        Special = new FloorConfig.SpecialRoom { template = special.secretChamber, placement = FloorConfig.SpecialPlacement.Side, secretReward = true },
-                        Template = special.secretChamber,
-                    };
-                    layout.Rooms.Add(chamber);
-                    layout.Link(side, chamber);
+                        Cell = cell, Role = RoomRole.Lair, Depth = side.Depth, Template = special.secretArena,
+                        Special = new FloorConfig.SpecialRoom
+                        {
+                            template = special.secretArena, placement = FloorConfig.SpecialPlacement.Side, lairBoss = special.secretBoss,
+                        },
+                    });
                 }
             }
 

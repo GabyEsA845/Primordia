@@ -196,10 +196,14 @@ namespace Primordia.Rooms
             [Tooltip("Enemigo que sale además de los de siempre (las libélulas del Tronco caído) y cuántos.")]
             public Enemy bonusEnemy;
             [Min(0)] public int bonusCount;
-            [Tooltip("Antesala de la sala secreta (piso 3): lateral del último tercio del camino con el muro de raíces en su puerta de arriba; detrás, esta sala. Se abre con el corazón morado o con la semilla.")]
-            public RoomTemplate secretChamber;
-            [Tooltip("Cámara de la sala secreta: lleva la recompensa (provisional hasta tener el jefe secreto).")]
-            public bool secretReward;
+            [Tooltip("Probabilidad de que salga en una partida (el Nido de la Megarachne). 0 = sorteo normal. No cuenta en el número de especiales.")]
+            [Range(0f, 1f)] public float chance;
+            [Tooltip("Jefe de la sala (el Nido de la Megarachne): sale en su centro en vez de los enemigos y la sala no lleva escenario.")]
+            public Enemy lairBoss;
+            [Tooltip("Antesala secreta (piso 3): arena del jefe secreto, aparte del mapa. Se entra cruzando el muro de raíces, que cierra la puerta de arriba.")]
+            public RoomTemplate secretArena;
+            [Tooltip("Jefe secreto que espera en esa arena.")]
+            public Enemy secretBoss;
             [Tooltip("Tileset propio de la sala (el Tocón hueco): sus paredes, suelo y puertas, en vez del de la franja. Vacío: el de siempre.")]
             public RoomTheme theme;
             [Tooltip("Ladronas (piso 3): sus casillas P son biomasa en el suelo y cucarachas salen de las grietas a robarla.")]

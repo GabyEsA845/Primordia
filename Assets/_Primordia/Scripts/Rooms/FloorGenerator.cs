@@ -185,6 +185,9 @@ namespace Primordia.Rooms
             config = config.NextFloor;
             Generate(fixedSeed != 0 ? fixedSeed + config.FloorNumber : new System.Random().Next(1, int.MaxValue));
             RestorePlayer();
+            // La Raíz ancestral cura del todo al llegar a un piso nuevo.
+            if (player != null)
+                RunInventory.OnFloorEntered(player.gameObject);
 
             var manager = GameManager.Instance;
             if (manager != null)

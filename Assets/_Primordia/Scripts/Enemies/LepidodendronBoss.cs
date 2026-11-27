@@ -230,7 +230,8 @@ namespace Primordia.Enemies
             }
             if (zoom == null)
                 return;
-            zoomAmount = Mathf.MoveTowards(zoomAmount, target, Time.deltaTime / CameraTransition);
+            // Fuera de la arena solo se está tras un teletransporte: la cámara se suelta de golpe, bajo el fundido.
+            zoomAmount = inside ? Mathf.MoveTowards(zoomAmount, target, Time.deltaTime / CameraTransition) : 0f;
             zoom.Set(zoomAmount);
             if (lookAhead != null)
             {

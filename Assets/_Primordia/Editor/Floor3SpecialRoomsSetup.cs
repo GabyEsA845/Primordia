@@ -43,8 +43,7 @@ namespace Primordia.Editor
             var claro = CreateTemplate("Room_Special_PlantClearing", 36, 22, Clearing, 111, 3, 2);
             // Sala secreta: la antesala (con el muro de raíces en su puerta de arriba) y la cámara de detrás.
             var antesala = CreateTemplate("Room_Special_SecretAntechamber", 24, 15, (rows, width, height) => { }, 121, 0, 0);
-            var camara = CreateTemplate("Room_Special_SecretChamber", 20, 14, (rows, width, height) => { }, 122, 0, 0);
-            Register(veta, humo, fumarolas, ladronas, tronco, tesoro, tocon, frente, burbujeo, claro, antesala, camara);
+            Register(veta, humo, fumarolas, ladronas, tronco, tesoro, tocon, frente, burbujeo, claro, antesala);
         }
 
         // ---------- Arte ----------
@@ -509,7 +508,7 @@ namespace Primordia.Editor
         }
 
         static void Register(RoomTemplate veta, RoomTemplate humo, RoomTemplate fumarolas, RoomTemplate ladronas, RoomTemplate tronco, RoomTemplate tesoro,
-            RoomTemplate tocon, RoomTemplate frente, RoomTemplate burbujeo, RoomTemplate claro, RoomTemplate antesala, RoomTemplate camara)
+            RoomTemplate tocon, RoomTemplate frente, RoomTemplate burbujeo, RoomTemplate claro, RoomTemplate antesala)
         {
             var config = AssetDatabase.LoadAssetAtPath<FloorConfig>(Floor3Setup.Floor3ConfigPath);
             if (config == null)
@@ -518,7 +517,7 @@ namespace Primordia.Editor
                 return;
             }
 
-            var mine = new[] { veta, humo, fumarolas, ladronas, tronco, tesoro, tocon, frente, burbujeo, claro, antesala, camara };
+            var mine = new[] { veta, humo, fumarolas, ladronas, tronco, tesoro, tocon, frente, burbujeo, claro, antesala };
             // Se conservan las demás especiales (la del ámbar) y se sustituyen estas cuatro si ya estaban.
             var rooms = config.SpecialRooms.Where(room => !mine.Contains(room.template)).ToList();
             rooms.Add(Entry(veta, true));
@@ -551,13 +550,13 @@ namespace Primordia.Editor
             rooms.Add(fireRoom);
             rooms.Add(Entry(burbujeo, true));
             rooms.Add(WithEnemies(Entry(claro, true), 1.3f));
-            // Sala secreta: siempre sale (cerrada si no tienes el corazón morado ni la semilla), lateral del último tercio; la cámara se añade sola.
+            // Sala secreta: siempre sale (cerrada si no tienes el corazón morado ni la semilla); su jefe lo pone Floor3OptionalBossesSetup.
             var secretRoom = Entry(antesala, false);
             secretRoom.always = true;
-            secretRoom.secretChamber = camara;
             rooms.Add(secretRoom);
             // De las diez salas especiales salen 3-5 por partida (la del ámbar, que sale siempre, cuenta).
             config.ConfigureSpecialRooms(rooms.ToArray(), new Vector2Int(3, 5));
+            Floor3OptionalBossesSetup.Register(config);
             EditorUtility.SetDirty(config);
             AssetDatabase.SaveAssets();
             Debug.Log($"Floor3SpecialRoomsSetup: salas especiales creadas y registradas en Floor_3 ({rooms.Count} especiales en total).");

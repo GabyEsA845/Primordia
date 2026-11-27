@@ -63,3 +63,5 @@ Minijefe opcional del piso 3 ([[primordia-floor3-design]]), tanda 6 de arte, pro
 **2026-11-20 — M3 hecho (tarea 17):** saco y crías probados; M4 (fuego en cables) = tarea 18. Ver `primordia-project-status.md`.
 
 **2026-11-20 — M4 hecho (tarea 18):** fuego en cables probado (mecha 6 u/s, cae aturdida 3 s, cable se re-teje a los 10 s, 3 odres que rebrotan a los 20 s). SIGUIENTE M5 (enfado). Ver `primordia-project-status.md`.
+
+**2026-11-27:** ENGANCHADA al piso 3 como sala lateral «el Nido» (33 %, Bosque humeante, `RoomRole.Lair`). Ver [[primordia-project-status]].

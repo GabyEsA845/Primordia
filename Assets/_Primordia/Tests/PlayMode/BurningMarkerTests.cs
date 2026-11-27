@@ -62,6 +62,32 @@ namespace Primordia.Tests
             Assert.IsNull(body.transform.Find("BurnTint"), "Al apagarse, el velo desaparece con la marca.");
         }
 
+        [TestCase(false)]
+        [TestCase(true)]
+        public void BodyPoints_FallOnlyOnTheDrawing(bool unreadable)
+        {
+            if (unreadable)
+                Assume.That(SystemInfo.graphicsDeviceType != UnityEngine.Rendering.GraphicsDeviceType.Null, "Sin gráficos no se puede copiar la textura.");
+
+            // Solo está dibujado el cuadrante de abajo a la izquierda.
+            var texture = Track(new Texture2D(32, 32, TextureFormat.RGBA32, false));
+            var pixels = new Color32[32 * 32];
+            for (int y = 0; y < 16; y++)
+            {
+                for (int x = 0; x < 16; x++)
+                    pixels[y * 32 + x] = new Color32(255, 255, 255, 255);
+            }
+            texture.SetPixels32(pixels);
+            texture.Apply(false, unreadable);
+            var sprite = Track(Sprite.Create(texture, new Rect(0, 0, 32, 32), new Vector2(0.5f, 0.5f), 16f, 0, SpriteMeshType.FullRect));
+
+            var points = SpriteBodyPoints.For(sprite);
+
+            Assert.IsNotEmpty(points);
+            foreach (var point in points)
+                Assert.IsTrue(point.x < 0f && point.x > -1f && point.y < 0f && point.y > -1f, $"Fuera del dibujo: {point}");
+        }
+
         [Test]
         public void BurnIcon_ShowsAndHidesWithTheBar_WithOrWithoutArt()
         {

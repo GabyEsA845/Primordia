@@ -60,7 +60,8 @@ namespace Primordia.Rooms
             public Sprite[] frames;
             public float seconds;
             public float phase;
-            public float u, v;
+            // Dónde se agarra, en unidades locales de la pieza (sin voltear): siempre sobre píxeles dibujados.
+            public Vector2 anchor;
             public float born, until;
         }
 
@@ -324,7 +325,9 @@ namespace Primordia.Rooms
             float total = 0f;
             foreach (var renderer in tints.Keys)
             {
-                if (renderer == null || renderer.sprite == null || !renderer.enabled)
+                // Las piezas casi transparentes (brillos, avisos) o sin dibujo no llevan llamas.
+                if (renderer == null || !renderer.enabled || renderer.color.a < 0.5f
+                    || SpriteBodyPoints.For(renderer.sprite).Length == 0)
                     continue;
                 candidates.Add(renderer);
                 total += renderer.bounds.size.x * renderer.bounds.size.y;
@@ -348,12 +351,14 @@ namespace Primordia.Rooms
 
             var art = PolishArt.Current;
             float pieceHeight = patch.source.bounds.size.y * PixelsPerUnit;
-            patch.u = Random.Range(-0.4f, 0.4f);
+            // De dos puntos del dibujo, las llamas se quedan con el más bajo y las lenguas con el más alto.
+            var points = SpriteBodyPoints.For(patch.source.sprite);
+            Vector2 first = points[Random.Range(0, points.Length)], second = points[Random.Range(0, points.Length)];
+            patch.anchor = (first.y > second.y) == patch.lick ? first : second;
             if (patch.lick)
             {
                 patch.frames = art.flameLick;
                 patch.seconds = LickFrameSeconds * Random.Range(0.85f, 1.2f);
-                patch.v = Random.Range(0.45f, 0.95f);
                 return;
             }
             // El tamaño sigue a la pieza, con algo de variedad: las grandes llevan sobre todo L, mezcladas con M.
@@ -364,8 +369,6 @@ namespace Primordia.Rooms
                 frames = art.bodyFlame.s;
             patch.frames = frames.Length > 0 ? frames : art.bodyFlame.m;
             patch.seconds = FrameSeconds * Random.Range(0.85f, 1.2f);
-            // Sobre todo en la mitad de abajo del cuerpo, pero no solo en los pies.
-            patch.v = Random.Range(0f, 0.6f);
         }
 
         void PlacePatches()
@@ -374,7 +377,8 @@ namespace Primordia.Rooms
             {
                 if (patch.renderer == null)
                     continue;
-                if (patch.source == null || !patch.source.enabled || patch.source.sprite == null || Time.time >= patch.until)
+                if (patch.source == null || !patch.source.enabled || SpriteBodyPoints.For(patch.source.sprite).Length == 0
+                    || Time.time >= patch.until)
                     Reroll(patch);
                 if (patch.source == null || patch.frames == null || patch.frames.Length == 0)
                 {
@@ -382,9 +386,10 @@ namespace Primordia.Rooms
                     continue;
                 }
                 patch.renderer.enabled = true;
-                var area = patch.source.bounds;
-                patch.renderer.transform.position = new Vector3(
-                    area.center.x + patch.u * area.size.x, area.min.y + patch.v * area.size.y, 0f);
+                var position = OnBody(patch.source, patch.anchor);
+                if (!patch.lick)
+                    position.y -= FeetDrop;
+                patch.renderer.transform.position = position;
 
                 // Nace y se apaga con un fundido, para que al cambiar de sitio no salte.
                 float age = Time.time - patch.born, life = patch.until - patch.born;
@@ -397,6 +402,32 @@ namespace Primordia.Rooms
                 patch.renderer.sortingLayerID = patch.source.sortingLayerID;
                 patch.renderer.sortingOrder = patch.source.sortingOrder + (patch.lick ? 3 : 2);
             }
+        }
+
+        /// <summary>
+        /// El punto dibujado del fotograma actual más cercano al ancla, ya en el mundo (con volteo, giro y escala): así la
+        /// llama sigue pegada al cuerpo aunque la animación mueva las patas o las alas.
+        /// </summary>
+        static Vector3 OnBody(SpriteRenderer source, Vector2 anchor)
+        {
+            var nearest = anchor;
+            float best = float.MaxValue;
+            foreach (var point in SpriteBodyPoints.For(source.sprite))
+            {
+                float distance = (point - anchor).sqrMagnitude;
+                if (distance < best)
+                {
+                    best = distance;
+                    nearest = point;
+                }
+            }
+            if (source.flipX)
+                nearest.x = -nearest.x;
+            if (source.flipY)
+                nearest.y = -nearest.y;
+            var world = source.transform.TransformPoint(nearest);
+            world.z = 0f;
+            return world;
         }
 
         void Place()

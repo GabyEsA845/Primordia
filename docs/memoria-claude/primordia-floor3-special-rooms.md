@@ -54,3 +54,5 @@ Decisiones (preguntadas): detrás del muro, **cámara provisional** con +1 coraz
 - **Importación:** `ArtSetup.ImportSecretRoomArt` (desde «Importar arte de las salas especiales»); plantillas y registro en «Crear salas especiales…».
 
 **2026-11-08 (Sonnet), arreglos tras probar el bloque 5:** (1) la puerta normal ya no se dibuja bajo el muro de raíces: `BuildDoor(..., coveredByWall)` salta el arco, el cruce y la corona en la puerta de arriba de la antesala (queda solo el `Door` lógico, tapado por el muro). (2) Cruce del hueco: `RootWall` lleva una capa `Front` (orden 40) con `RootWall_OpenedFront.png` (el muro abierto con el interior transparente, generado con `docs/multimedia-temp/floor3-environment/make_rootwall_front.py`, derivada del arte aprobado, sin dibujo nuevo) que tapa al jugador mientras sus pies están en el hueco, como `DoorwayCrossing`. Sin sombra de profundidad por ahora. Escena de prueba: `Test_Floor3Secret` (atajos 1-5, `SecretTestKeys`).
+
+**2026-11-26 (la usuaria):** el Tronco caído, el Tocón hueco y el cofre ya están implementados.

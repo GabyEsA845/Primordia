@@ -30,3 +30,5 @@ Descartado: estética totalmente distinta por especial. Por decidir: si las espe
 **ACTUALIZACIÓN 2 (2026-11-06):** Cápsula y Gota rediseñadas y cerradas ([[primordia-floor3-capsule-redesign]], [[primordia-floor3-drop-redesign]]). **Los Cercos se quedan como están** (la usuaria dice que lucen bien; no retocarlos). Sigue pendiente la subtanda 3 (contorno dorado y motas).
 
 **ACTUALIZACIÓN (2026-11-06):** la usuaria ha empezado a rehacer el arte, por la Cápsula; ver [[primordia-floor3-capsule-redesign]] (forma D, formación, rotura, curación y halo hechos; la Gota y los Cercos siguen pendientes). Lo de `shell/` y `level3/` ya no vale para la Cápsula.
+
+**DESCARTADA (2026-11-26, la usuaria):** la subtanda 3 (contorno dorado y motas) ya no se hará. No queda arte pendiente de las especiales del ámbar.

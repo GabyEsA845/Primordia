@@ -21,17 +21,18 @@
 - [Arte de enemigos del piso 3](primordia-floor3-enemy-art-pending.md) — cono del escarabajo en 3 fases y sapo en el lodo: HECHO, integrado y probado; README y MULTIMEDIA.md HECHOS (2026-11-04)
 
 ## En curso
-- **[Tanda de arte 2026-11-23](primordia-art-session-2026-11-23.md) — HECHOS y aprobados: sala de paso piso 3 (floor3-exit) y arte final de la sala de la Arthropleura; SIGUIENTE: cono Lepidodendron → iconos ámbar → área de la Peonza; Veta de carbón y Bosque en humo APROBADOS**
-- [Salas especiales del piso 3](primordia-floor3-special-rooms.md) — las 10 PROGRAMADAS (commit 84969d99); arte del Tronco caído, Tocón hueco y cofre APROBADO 2026-11-06 (floor3-log-stump/), falta importarlo y programarlo (Sonnet)
+- **[Rediseño del menú de pausa y bestiario](primordia-pause-menu-redesign.md) — 2026-11-26: ARTE COMPLETO y aprobado (README en docs/multimedia-temp/pause-menu/); SIGUIENTE: importar y programar con Sonnet**
+- **[Tanda de arte 2026-11-23](primordia-art-session-2026-11-23.md) — HECHOS y aprobados: sala de paso piso 3 (floor3-exit) y arte final de la sala de la Arthropleura; todo hecho e implementado; NO queda arte pendiente (2026-11-26)**
+- [Salas especiales del piso 3](primordia-floor3-special-rooms.md) — las 10 PROGRAMADAS; Tronco caído, Tocón hueco y cofre IMPLEMENTADOS (2026-11-26)
 - [Sala de paso del piso 2 → 3](primordia-floor2-transition-room.md) — charca, ambiente del pantano y metamorfosis por pareja HECHOS y subidos
 - **[Estado de Primordia](primordia-project-status.md) — PRÓXIMA SESIÓN: Megarachne M5 enfado = tarea 19 (ver última sección)** · — pisos 1-2 en main; piso 3 en feature/floor-3: pasos 1-6 HECHOS (salvo la sala de paso, Opus) y paso 7: MEGANEURA CASI CERRADA (7a-7e-3 hechos con Codex, probados); SIGUIENTE: tarea 04 (telarana), arte de Opus del veneno, luego Arthropleura, Megarachne, Lepidodendron**
 - [Sala del ámbar y especiales del ámbar](primordia-floor3-amber.md) — paso 6 bloque 2: decisiones y niveles I-III cerrados 2026-11-04; subpaso 2a (sala+bloque) programado
 - **[Rediseño de la Cápsula de ámbar](primordia-floor3-capsule-redesign.md) — 2026-11-06: ARTE CERRADO (forma D, formación, reposo, rotura, curación, halo con alas; floor3-capsule/); falta importar y programar (Sonnet); luego Gota y Cercos**
 - **[Rediseño de la Gota de ámbar](primordia-floor3-drop-redesign.md) — 2026-11-06 (Opus): ARTE CERRADO (bloque C en 2 tallas, cristal del lomo, nivel III en ámbar antiguo; floor3-drop/); falta importar y programar (Sonnet)**
-- [Aspecto de las especiales del ámbar](primordia-floor3-specials-look.md) — Cápsula y Gota rediseñadas (2026-11-06); Cercos se quedan como están; falta la subtanda 3 (contorno dorado y motas)
+- [Aspecto de las especiales del ámbar](primordia-floor3-specials-look.md) — CERRADO: Cápsula y Gota rediseñadas, Cercos como están; subtanda 3 (contorno dorado y motas) DESCARTADA 2026-11-26
 - **[Arte pendiente: veneno + Escamas carbonizadas III](primordia-floor3-poison-fire-art.md) — 2026-11-11: la usuaria quiere arte nuevo de Opus (nube/llama ligera); ideas de codigo sin decidir**
 - [Cucarachas ladronas del piso 3](primordia-floor3-thief-roach.md) — arte APROBADO (2026-11-04, floor3-roach); bloque 3 (almacén + robo del corazón) PROGRAMADO 2026-11-05: parda carbonífera, cenital girada por código, botín a cuestas; las del corazón no se matan
-- [Salas con tema del piso 3](primordia-floor3-room-themes.md) — paso 6 bloque 1 programado (2026-11-04): 5 temas, menú, números; letrero DIBUJADO y aprobado (floor3-room-signs), falta importarlo y programarlo (Sonnet); piezas de escenario pendientes de Opus
+- [Salas con tema del piso 3](primordia-floor3-room-themes.md) — paso 6 bloque 1 programado (2026-11-04): 5 temas, menú, números; letrero DIBUJADO y aprobado (floor3-room-signs), falta importarlo y programarlo (Sonnet); decorado de los temas IMPLEMENTADO (2026-11-26)
 - [Enemigos y trampas del piso 3](primordia-floor3-enemies-decisions.md) — paso 5 HECHO: 6 enemigos + 2 trampas, números, archivos, generador, margen del lodo, matas Cordyceps
 - [Mutaciones y linajes del piso 3](primordia-floor3-mutations-decisions.md) — paso 4 COMPLETO (subpasos 1-5, 8 linajes y toques, reserva); detalle de cada pieza, archivos y decisiones
 - [Reacciones del piso 3](primordia-floor3-reactions-decisions.md) — paso 2 HECHO (subtandas A-D): quemado tipo Gungeon, odre, veneno, fumarolas
